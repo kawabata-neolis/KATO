@@ -1,0 +1,1 @@
+SELECT 棚番, 棚番名 FROM 棚番 WHERE 棚番= '{0}' AND 削除 = 'N'

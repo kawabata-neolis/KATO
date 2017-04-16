@@ -1,0 +1,2 @@
+SELECT COUNT(*) 
+FROM 中分類

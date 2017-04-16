@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6CF32DA0-7DBA-4794-AE83-BED0CE59ECCB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KATO</RootNamespace>
+    <AssemblyName>KATO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CustomControls">
+      <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\CustomControls.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelControls">
+      <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\ExcelControls.dll</HintPath>
+    </Reference>
+    <Reference Include="NewProgramUpdate">
+      <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\NewProgramUpdate.dll</HintPath>
+    </Reference>
+    <Reference Include="NonHCopyNet">
+      <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\NonHCopyNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
+    <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
+    <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
+    <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
+    <Compile Include="Business\TanaorosiInput\TanaorosiInput_B.cs" />
+    <Compile Include="Common\Business\ChubunruiList_B.cs" />
+    <Compile Include="Common\Business\DaibunruiList_B.cs" />
+    <Compile Include="Common\Business\EigyoushoList_B.cs" />
+    <Compile Include="Common\Business\MakerList_B.cs" />
+    <Compile Include="Common\Business\ShouhinList_B.cs" />
+    <Compile Include="Common\Business\TanabanList_B.cs" />
+    <Compile Include="Common\Ctl\BaseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseButton.Designer.cs">
+      <DependentUpon>BaseButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseComboBox.Designer.cs">
+      <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseForm.designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseLabel.Designer.cs">
+      <DependentUpon>BaseLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseLabelGray.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseLabelGray.Designer.cs">
+      <DependentUpon>BaseLabelGray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseText.designer.cs">
+      <DependentUpon>BaseText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseDataGridView.Designer.cs">
+      <DependentUpon>BaseDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\Calendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\Calendar.designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\Money.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\Money.Designer.cs">
+      <DependentUpon>Money.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Util\CommonTeisu.cs" />
+    <Compile Include="Common\Util\DBConnective.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Util\DBConnective.Designer.cs">
+      <DependentUpon>DBConnective.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\ChubunruiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ChubunruiList.Designer.cs">
+      <DependentUpon>ChubunruiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Util\OpenSQL.cs" />
+    <Compile Include="Common\Util\StringUtl.cs" />
+    <Compile Include="Form\JuchuInput\JuchuInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\JuchuInput\JuchuInput.Designer.cs">
+      <DependentUpon>JuchuInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.Designer.cs">
+      <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\DaibunruiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\DaibunruiList.Designer.cs">
+      <DependentUpon>DaibunruiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\EigyoushoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\EigyoushoList.Designer.cs">
+      <DependentUpon>EigyoushoList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1020_Maker\M1020_Maker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1020_Maker\M1020_Maker.Designer.cs">
+      <DependentUpon>M1020_Maker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\MakerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\MakerList.Designer.cs">
+      <DependentUpon>MakerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\ShouhinList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ShouhinList.Designer.cs">
+      <DependentUpon>ShouhinList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\TanabanList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TanabanList.Designer.cs">
+      <DependentUpon>TanabanList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1010_Daibunrui\M1010_Daibunrui.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1010_Daibunrui\M1010_Daibunrui.designer.cs">
+      <DependentUpon>M1010_Daibunrui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\TanaorosiInput\TanaorosiInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\TanaorosiInput\TanaorosiInput.Designer.cs">
+      <DependentUpon>TanaorosiInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\TantousyaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TantousyaList.Designer.cs">
+      <DependentUpon>TantousyaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Common\Ctl\BaseButton.resx">
+      <DependentUpon>BaseButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseComboBox.resx">
+      <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseDataGridView.resx">
+      <DependentUpon>BaseDataGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseLabel.resx">
+      <DependentUpon>BaseLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseLabelGray.resx">
+      <DependentUpon>BaseLabelGray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseText.resx">
+      <DependentUpon>BaseText.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\Money.resx">
+      <DependentUpon>Money.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
+      <DependentUpon>ChubunruiList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\JuchuInput\JuchuInput.resx">
+      <DependentUpon>JuchuInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
+      <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\DaibunruiList.resx">
+      <DependentUpon>DaibunruiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\EigyoushoList.resx">
+      <DependentUpon>EigyoushoList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1020_Maker\M1020_Maker.resx">
+      <DependentUpon>M1020_Maker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\MakerList.resx">
+      <DependentUpon>MakerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShouhinList.resx">
+      <DependentUpon>ShouhinList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\TanabanList.resx">
+      <DependentUpon>TanabanList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1010_Daibunrui\M1010_Daibunrui.resx">
+      <DependentUpon>M1010_Daibunrui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\TanaorosiInput\TanaorosiInput.resx">
+      <DependentUpon>TanaorosiInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\TantousyaList.resx">
+      <DependentUpon>TantousyaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Template\M1010_Daibunrui.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Log\" />
+    <Folder Include="SQL\common\" />
+    <Folder Include="Work\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\JuchuInput_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Tanaban_SELECT_LEAVE.sql" />
+    <Content Include="SQL\EigyoushoList_SELECT_DataView.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetDataGridView.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetYMD.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetItemTanaban.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetItemMaker.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetItemChubun.sql" />
+    <Content Include="SQL\Tanaorosi_SELECT_SetItem.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_DEL.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE_DELETE.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_INSERT.sql" />
+    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_ADD.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_ADD.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_DEL.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_LEAVE.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_LEAVE.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_UPDATE.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_INSERT.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_UPDATE_DELETE.sql" />
+    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_UPDATE_DELETE.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_INSERT.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_Kaburi_DEL.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_Kaburi_ADD.sql" />
+    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_UPDATE.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1 @@
+SELECT 中分類名 FROM 中分類 WHERE 中分類コード = '{0}'
