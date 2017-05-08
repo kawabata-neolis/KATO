@@ -40,7 +40,7 @@
             this.Size = new System.Drawing.Size(202, 22);
             this.TabIndex = 99;
             this.Text = " ";
-            this.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ResumeLayout(false);
 
         }

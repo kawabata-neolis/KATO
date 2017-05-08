@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.F0140_TanaorosiInput;
 using KATO.Common.Util;
 using KATO.Common.Business;
+using static KATO.Common.Util.CommonTeisu;
+
 
 namespace KATO.Common.Form
 {
@@ -39,18 +41,43 @@ namespace KATO.Common.Form
         //DB参照の場所を判断（テキストボックスから）
         int intDBjud = 0;
 
-        public ShouhinList()
+        public ShouhinList(Control c)
         {
+            if (c == null)
+            {
+                return;
+            }
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
             InitializeComponent();
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
         }
+
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+            }
+        }
+
 
         private void ShouhinList_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "商品リスト";
+
             List<int> lstInt = new List<int>();
 
             setTextData();
@@ -368,90 +395,30 @@ namespace KATO.Common.Form
         }
 
 
-        ///<summary>
-        ///judDaibunruiKeyDown
-        ///コード入力項目でのキー入力判定（大分類）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
-        ///</summary>
-        private void judDaibunruiKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                DaibunruiList daibunruiList = new DaibunruiList();
-                daibunruiList.Left = 100;
-                daibunruiList.StartPosition = FormStartPosition.Manual;
-                daibunruiList.intFrmKind = CommonTeisu.FRM_SHOUHINLIST;
-                daibunruiList.Show();
-            }
-            else
-            {
-                setMoveOrder(sender, e);
-            }
-        }
-
-        ///<summary>
-        ///judtxtCyubunruiKeyDown
-        ///コード入力項目でのキー入力判定（中分類）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
-        ///</summary>
-        private void judChubunruiKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                if (String.IsNullOrWhiteSpace(txtDaibunrui.Text).Equals(true))
-                {
-                    return;
-                }
-                ChubunruiList cyokusousakilist = new ChubunruiList();
-                cyokusousakilist.Left = 100;
-                cyokusousakilist.StartPosition = FormStartPosition.Manual;
-                cyokusousakilist.intFrmKind = CommonTeisu.FRM_SHOUHINLIST;
-                cyokusousakilist.strDaibunruiCode = txtDaibunrui.Text;
-                cyokusousakilist.Show();
-            }
-            else
-            {
-                setMoveOrder(sender, e);
-            }
-        }
-
-        ///<summary>
-        ///judtxtMakerKeyDown
-        ///コード入力項目でのキー入力判定（メーカー）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
-        ///</summary>
-        private void judMakerKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                if (String.IsNullOrWhiteSpace(txtDaibunrui.Text).Equals(true))
-                {
-                    return;
-                }
-                MakerList makerlist = new MakerList();
-                makerlist.Left = 100;
-                makerlist.StartPosition = FormStartPosition.Manual;
-                makerlist.intFrmKind = CommonTeisu.FRM_SHOUHINLIST;
-                makerlist.strDaibunruiCode = txtDaibunrui.Text;
-                makerlist.Show();
-            }
-            else
-            {
-                setMoveOrder(sender, e);
-            }
-        }
+        /////<summary>
+        /////judDaibunruiKeyDown
+        /////コード入力項目でのキー入力判定（大分類）
+        /////作成者：大河内
+        /////作成日：2017/3/17
+        /////更新者：大河内
+        /////更新日：2017/3/17
+        /////カラム論理名
+        /////</summary>
+        //private void judDaibunruiKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.F9)
+        //    {
+        //        DaibunruiList daibunruiList = new DaibunruiList(this);
+        //        daibunruiList.Left = 100;
+        //        daibunruiList.StartPosition = FormStartPosition.Manual;
+        //        daibunruiList.intFrmKind = CommonTeisu.FRM_SHOUHINLIST;
+        //        daibunruiList.Show();
+        //    }
+        //    else
+        //    {
+        //        setMoveOrder(sender, e);
+        //    }
+        //}
 
         ///<summary>
         ///setTorihikiDoubleClick
@@ -462,10 +429,11 @@ namespace KATO.Common.Form
         ///更新日：2017/3/17
         ///カラム論理名
         ///</summary>
-        private void setTorihikiDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTorihiki_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
+
 
         ///<summary>
         ///setSelectItem
@@ -820,7 +788,8 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setDaibunrui
+        ///
+        /// 
         ///取り出したデータをテキストボックスに配置（大分類）
         ///作成者：大河内
         ///作成日：2017/3/17

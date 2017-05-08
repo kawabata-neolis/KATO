@@ -60,27 +60,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
+    <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
-    <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
-    <Compile Include="Business\TanaorosiInput\TanaorosiInput_B.cs" />
+    <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
     <Compile Include="Common\Business\EigyoushoList_B.cs" />
     <Compile Include="Common\Business\MakerList_B.cs" />
     <Compile Include="Common\Business\ShouhinList_B.cs" />
     <Compile Include="Common\Business\TanabanList_B.cs" />
+    <Compile Include="Common\Business\TokuisakiList_B.cs" />
+    <Compile Include="Common\Business\TantoushaList_B.cs" />
     <Compile Include="Common\Ctl\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\Ctl\BaseButton.Designer.cs">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\BaseCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseCheckBox.Designer.cs">
+      <DependentUpon>BaseCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\BaseComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Common\Ctl\BaseComboBox.Designer.cs">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseDataGridViewEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseDataGridViewEdit.Designer.cs">
+      <DependentUpon>BaseDataGridViewEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Ctl\BaseForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +114,24 @@
     <Compile Include="Common\Ctl\BaseLabelGray.Designer.cs">
       <DependentUpon>BaseLabelGray.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\BaseMenuButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseMenuButton.Designer.cs">
+      <DependentUpon>BaseMenuButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseMessageBox.Designer.cs">
+      <DependentUpon>BaseMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseRadioButton.Designer.cs">
+      <DependentUpon>BaseRadioButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\BaseText.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -112,18 +144,73 @@
     <Compile Include="Common\Ctl\BaseDataGridView.Designer.cs">
       <DependentUpon>BaseDataGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Ctl\Calendar.cs">
+    <Compile Include="Common\Ctl\BaseCalendar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\Ctl\Calendar.designer.cs">
-      <DependentUpon>Calendar.cs</DependentUpon>
+    <Compile Include="Common\Ctl\BaseCalendar.designer.cs">
+      <DependentUpon>BaseCalendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Ctl\Money.cs">
+    <Compile Include="Common\Ctl\BaseTextLabelSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseTextLabelSet.designer.cs">
+      <DependentUpon>BaseTextLabelSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseTextMoney.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Common\Ctl\Money.Designer.cs">
-      <DependentUpon>Money.cs</DependentUpon>
+    <Compile Include="Common\Ctl\BaseTextMoney.Designer.cs">
+      <DependentUpon>BaseTextMoney.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Chubunrui.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Chubunrui.Designer.cs">
+      <DependentUpon>LabelSet_Chubunrui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Daibunrui.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Daibunrui.Designer.cs">
+      <DependentUpon>LabelSet_Daibunrui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Eigyousho.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Eigyousho.Designer.cs">
+      <DependentUpon>LabelSet_Eigyousho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Maker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Maker.Designer.cs">
+      <DependentUpon>LabelSet_Maker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tanaban.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tanaban.Designer.cs">
+      <DependentUpon>LabelSet_Tanaban.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tantousha.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tantousha.Designer.cs">
+      <DependentUpon>LabelSet_Tantousha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tokuisaki.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Tokuisaki.Designer.cs">
+      <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\TokuisakiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TokuisakiList.Designer.cs">
+      <DependentUpon>TokuisakiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Util\CommonException.cs" />
     <Compile Include="Common\Util\CommonTeisu.cs" />
     <Compile Include="Common\Util\DBConnective.cs">
       <SubType>Component</SubType>
@@ -193,27 +280,39 @@
     <Compile Include="Form\M1010_Daibunrui\M1010_Daibunrui.designer.cs">
       <DependentUpon>M1010_Daibunrui.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\TanaorosiInput\TanaorosiInput.cs">
+    <Compile Include="Form\F0140_TanaorosiInput\F0140_TanaorosiInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\TanaorosiInput\TanaorosiInput.Designer.cs">
-      <DependentUpon>TanaorosiInput.cs</DependentUpon>
+    <Compile Include="Form\F0140_TanaorosiInput\F0140_TanaorosiInput.Designer.cs">
+      <DependentUpon>F0140_TanaorosiInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Form\TantousyaList.cs">
+    <Compile Include="Common\Form\TantoushaList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\Form\TantousyaList.Designer.cs">
-      <DependentUpon>TantousyaList.cs</DependentUpon>
+    <Compile Include="Common\Form\TantoushaList.Designer.cs">
+      <DependentUpon>TantoushaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Z0000\Z0000.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Z0000\Z0000.Designer.cs">
+      <DependentUpon>Z0000.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Work\Class1.cs" />
     <EmbeddedResource Include="Common\Ctl\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseCheckBox.resx">
+      <DependentUpon>BaseCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseComboBox.resx">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseDataGridViewEdit.resx">
+      <DependentUpon>BaseDataGridViewEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseDataGridView.resx">
       <DependentUpon>BaseDataGridView.cs</DependentUpon>
@@ -228,18 +327,54 @@
     <EmbeddedResource Include="Common\Ctl\BaseLabelGray.resx">
       <DependentUpon>BaseLabelGray.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseMenuButton.resx">
+      <DependentUpon>BaseMenuButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseMessageBox.resx">
+      <DependentUpon>BaseMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseRadioButton.resx">
+      <DependentUpon>BaseRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseText.resx">
       <DependentUpon>BaseText.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Ctl\Calendar.resx">
-      <DependentUpon>Calendar.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Ctl\BaseCalendar.resx">
+      <DependentUpon>BaseCalendar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Ctl\Money.resx">
-      <DependentUpon>Money.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Ctl\BaseTextLabelSet.resx">
+      <DependentUpon>BaseTextLabelSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseTextMoney.resx">
+      <DependentUpon>BaseTextMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Chubunrui.resx">
+      <DependentUpon>LabelSet_Chubunrui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Daibunrui.resx">
+      <DependentUpon>LabelSet_Daibunrui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_EigyouSho.resx">
+      <DependentUpon>LabelSet_Eigyousho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Maker.resx">
+      <DependentUpon>LabelSet_Maker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Tanaban.resx">
+      <DependentUpon>LabelSet_Tanaban.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Tantousha.resx">
+      <DependentUpon>LabelSet_Tantousha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Tokuisaki.resx">
+      <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
       <DependentUpon>ChubunruiList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
+      <DependentUpon>TokuisakiList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput.resx">
       <DependentUpon>JuchuInput.cs</DependentUpon>
@@ -269,11 +404,14 @@
     <EmbeddedResource Include="Form\M1010_Daibunrui\M1010_Daibunrui.resx">
       <DependentUpon>M1010_Daibunrui.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\TanaorosiInput\TanaorosiInput.resx">
-      <DependentUpon>TanaorosiInput.cs</DependentUpon>
+    <EmbeddedResource Include="Form\F0140_TanaorosiInput\F0140_TanaorosiInput.resx">
+      <DependentUpon>F0140_TanaorosiInput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Form\TantousyaList.resx">
-      <DependentUpon>TantousyaList.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Form\TantoushaList.resx">
+      <DependentUpon>TantoushaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Z0000\Z0000.resx">
+      <DependentUpon>Z0000.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -300,19 +438,187 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Log\" />
-    <Folder Include="SQL\common\" />
+    <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQL\JuchuInput_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Tanaban_SELECT_LEAVE.sql" />
-    <Content Include="SQL\EigyoushoList_SELECT_DataView.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetDataGridView.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetYMD.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetItemTanaban.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetItemMaker.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetItemChubun.sql" />
-    <Content Include="SQL\Tanaorosi_SELECT_SetItem.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\TantoushaList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\MakerList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql" />
+    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Eigyousho_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_CALENDAR_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_DENPYONO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_DENPYONO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_EIGYOSHO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_EIGYOSHO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_GROUP_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_GROUP_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_GYOSHU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_GYOSHU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_HACHU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_HACHU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHU0_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHU0_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_JUCHU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_KARIKAKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_KARIKAKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MAKER_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MAKER_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MENUKENGEN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MENUKENGEN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MENU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MENU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_MYMENU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_MYMENU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_NYUKIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_NYUKIN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIHARAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIHARAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHIN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANABAN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANABAN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TANTOSHA_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TANTOSHA_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_UNCHIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_UNCHIN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKODATA_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKODATA_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKO_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZAIKO_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_UPD.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_UPD.sql" />
+    <Content Include="SQL\JuchuInput_DataGridView.sql" />
+    <Content Include="SQL\JuchuInput_Chubun_SELECT_LEAVE.sql" />
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetDataGridView.sql" />
+    <Content Include="SQL\Common\CommonForm\DaibunruiList_View.sql" />
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetYMD.sql" />
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetItem.sql" />
     <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_DEL.sql" />
     <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE_DELETE.sql" />
     <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE.sql" />
@@ -320,8 +626,6 @@
     <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_ADD.sql" />
     <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_ADD.sql" />
     <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_DEL.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_LEAVE.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_LEAVE.sql" />
     <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_UPDATE.sql" />
     <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_INSERT.sql" />
     <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_UPDATE_DELETE.sql" />

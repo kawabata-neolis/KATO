@@ -1,0 +1,1 @@
+SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N'

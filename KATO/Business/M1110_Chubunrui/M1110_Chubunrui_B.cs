@@ -10,218 +10,91 @@ using System.Data;
 
 namespace KATO.Business.M1110_Chubunrui
 {
+    ///<summary>
+    ///M1110_Chubunrui_B
+    ///中分類フォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     class M1110_Chubunrui_B
     {
         ///<summary>
         ///addChubunrui
         ///テキストボックス内のデータをDBに登録
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         public void addChubunrui(List<string> lstString)
         {
-            string strSQLName = null;
-
             //接続用クラスのインスタンス作成
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
 
             //トランザクション開始
-            dbConnective.BeginTrans();
-
+            dbconnective.BeginTrans();
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
+                string[] lstStrArray = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], "N", DateTime.Now.ToString(), lstString[4], DateTime.Now.ToString(), lstString[4] };
 
-                strSQLName = "M1110_Chubun_SELECT_Kaburi_ADD";
-
-                //データ渡し用
-                lstString.Add("M1110_Chubunrui");
-                lstString.Add(strSQLName);
-
-                OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstString);
-
-                //配列設定
-                string[] strArray = { lstString[0], lstString[1] };
-
-                strSQLInput = string.Format(strSQLInput, strArray);
-
-                lstStringSQL.Clear();
-
-                //検索件数を表示
-                int CoverCnt = int.Parse(dbConnective.ReadSql(strSQLInput).Rows[0][0].ToString());
-
-                if (CoverCnt == 0)
-                {
-                    strSQLName = "M1110_Chubun_INSERT";
-
-                    //データ渡し用
-                    lstStringSQL.Add("M1110_Chubunrui");
-                    lstStringSQL.Add(strSQLName);
-
-                    opensql = new OpenSQL();
-                    strSQLInput = opensql.setOpenSQL(lstString);
-
-                    if (lstString[2] == "")
-                    {
-                        //配列初期化、再設定
-                        strArray = new string[]{ lstString[0], lstString[1], "NULL", "N", DateTime.Now.ToString(), lstString[3], DateTime.Now.ToString(), lstString[3] };
-                    }
-                    else
-                    {
-                        //配列初期化、再設定
-                        strArray = new string[]{ lstString[0], lstString[1], lstString[2], "N", DateTime.Now.ToString(), lstString[3], DateTime.Now.ToString(), lstString[3] };
-                    }
-                }
-                else if (CoverCnt == 1)
-                {
-                    strSQLName = "M1110_Chubun_UPDATE";
-
-                    //データ渡し用
-                    lstStringSQL.Add("M1110_Chubunrui");
-                    lstStringSQL.Add(strSQLName);
-
-                    opensql = new OpenSQL();
-                    strSQLInput = opensql.setOpenSQL(lstString);
-
-                    if (lstString[2] == "")
-                    {
-                        //配列初期化、再設定
-                        strArray = new string[] { lstString[0], lstString[1], "NULL", "N", DateTime.Now.ToString(), lstString[3] };
-                    }
-                    else
-                    {
-                        //配列初期化、再設定
-                        strArray = new string[] { lstString[0], lstString[1], lstString[2], "N", DateTime.Now.ToString(), lstString[3] };
-
-                    }
-                }
-
-                strSQLInput = string.Format(strSQLInput, strArray);
-
-                dbConnective.RunSql(strSQLInput);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, lstStrArray);
 
                 //コミット開始
-                dbConnective.Commit();
-
-                MessageBox.Show("正常に登録されました。", "登録", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                dbconnective.Commit();
             }
-            catch
+            catch (Exception e)
             {
                 //ロールバック開始
-                dbConnective.Rollback();
+                dbconnective.Rollback();
+
+                new CommonException(e);
+                throw (e);
             }
             finally
             {
-                //closeが入る
+                dbconnective.DB_Disconnect();
             }
         }
 
         ///<summary>
         ///delChubunrui
         ///テキストボックス内のデータをDBから削除
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
-        public bool delChubunrui(List<string> lstString)
+        public void delChubunrui(List<string> lstString)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            bool blDelFinish = false;
-
-            string strSQLName = null;
-
             //接続用クラスのインスタンス作成
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
 
             //トランザクション開始
-            dbConnective.BeginTrans();
-
-            strSQLName = "M1110_Chubun_SELECT_Kaburi_DEL";
-
-            //データ渡し用
-            lstStringSQL.Add("M1110_Chubunrui");
-            lstStringSQL.Add(strSQLName);
-
-            OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstString);
-
-            //配列設定
-            string[] strArray = { lstString[0], lstString[1] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            lstStringSQL.Clear();
-
-            //検索件数を表示
-            int CoverCnt = int.Parse(dbConnective.ReadSql(strSQLInput).Rows[0][0].ToString());
-
-            if (CoverCnt == 0)
+            dbconnective.BeginTrans();
+            try
             {
-                //該当するものが無い、ボタンの機能がない場合
-                return(blDelFinish);
+                string[] strArray = new string[] { lstString[0], lstString[1]};
+
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_DEL, strArray);
+
+                //コミット開始
+                dbconnective.Commit();
             }
-            else if (CoverCnt == 1)
+            catch (Exception e)
             {
-                try
-                {
-                    if (DialogResult.OK == MessageBox.Show("表示中のレコードを削除します。よろしいですか。",
-                        "削除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
-                    {
-                        strSQLName = "M1110_Chubun_UPDATE_DELETE";
+                //ロールバック開始
+                dbconnective.Rollback();
 
-                        //データ渡し用
-                        lstStringSQL.Add("M1110_Chubunrui");
-                        lstStringSQL.Add(strSQLName);
-
-                        opensql = new OpenSQL();
-                        strSQLInput = opensql.setOpenSQL(lstString);
-
-                        //配列初期化、再設定
-                        strArray = new string[] { lstString[0], lstString[1], DateTime.Now.ToString(), lstString[2] };
-
-                        strSQLInput = string.Format(strSQLInput, strArray);
-
-                        dbConnective.RunSql(strSQLInput);
-
-                        //コミット開始
-                        dbConnective.Commit();
-
-                        MessageBox.Show("正常に削除されました。", "削除", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                        blDelFinish = true;
-                    }
-                }
-                catch
-                {
-                    //ロールバック開始
-                    dbConnective.Rollback();
-                }
-                finally
-                {
-                    //closeが入る
-                }
+                new CommonException(e);
+                throw (e);
             }
-            return (blDelFinish);
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
         }
 
         ///<summary>
         ///judTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         public DataTable judTxtChubunruiLeave(List<string> lstString)
         {
@@ -230,29 +103,42 @@ namespace KATO.Business.M1110_Chubunrui
 
             string strSQLName = null;
 
-            strSQLName = "M1110_Chubun_SELECT_LEAVE";
+            strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
 
             //データ渡し用
-            lstStringSQL.Add("M1110_Chubunrui");
+            lstStringSQL.Add("Common");
             lstStringSQL.Add(strSQLName);
 
-            OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstString);
-
-            //配列設定
-            string[] strArray = { lstString[0], lstString[1] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
             DataTable dtSetcode_B = new DataTable();
-
-            //SQLのインスタンス作成
+            OpenSQL opensql = new OpenSQL();
             DBConnective dbconnective = new DBConnective();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+                if (strSQLInput == "")
+                {
+                    return (dtSetcode_B);
+                }
 
-            return (dtSetcode_B);
+                //配列設定
+                string[] strArray = { lstString[0], lstString[1] };
+
+                strSQLInput = string.Format(strSQLInput, strArray);
+
+                dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetcode_B);
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+                throw (e);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
         }
     }
 }

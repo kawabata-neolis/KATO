@@ -57,17 +57,10 @@ namespace KATO.Common.Ctl
             this.RowHeadersVisible = false;
 
             //ヘッダのフォント、フォントサイズはプロパティで変更
-
             if (judLineSelect == true)
             {
                 //選択モードを行単位での選択のみにする
                 this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            }
-
-            //ソート禁止
-            foreach (DataGridViewColumn column in this.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
     }

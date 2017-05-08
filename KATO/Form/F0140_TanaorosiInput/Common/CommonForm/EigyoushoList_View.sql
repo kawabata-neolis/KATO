@@ -1,0 +1,1 @@
+SELECT 営業所コード, 営業所名 FROM 営業所 WHERE 削除 = 'N'

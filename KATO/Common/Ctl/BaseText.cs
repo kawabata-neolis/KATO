@@ -71,6 +71,8 @@ namespace KATO.Common.Ctl
             {
                 good = false;
             }
+            //
+
             return (good);
         }
     }

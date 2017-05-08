@@ -32,62 +32,18 @@ namespace KATO.Common.Form
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.lblDsp = new KATO.Common.Ctl.BaseLabelGray();
+            this.labelSet_Daibunrui1 = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
-            this.txtDaibunrui = new KATO.Common.Ctl.BaseText();
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.dgvSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.groupBox1.Location = new System.Drawing.Point(32, 73);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(226, 82);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "出力順";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radioButton2.Location = new System.Drawing.Point(33, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(137, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "大分類名の昇順";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.Click += new System.EventHandler(this.btnKensakuClick);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radioButton1.Location = new System.Drawing.Point(33, 18);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(169, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "大分類コードの昇順";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.Click += new System.EventHandler(this.btnKensakuClick);
             // 
             // lblRecords
             // 
@@ -99,99 +55,85 @@ namespace KATO.Common.Form
             this.lblRecords.TabIndex = 105;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
-            // lblDsp
+            // labelSet_Daibunrui1
             // 
-            this.lblDsp.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDsp.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDsp.ForeColor = System.Drawing.Color.Blue;
-            this.lblDsp.Location = new System.Drawing.Point(168, 17);
-            this.lblDsp.Name = "lblDsp";
-            this.lblDsp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDsp.Size = new System.Drawing.Size(123, 23);
-            this.lblDsp.TabIndex = 103;
-            this.lblDsp.Text = " ";
-            this.lblDsp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelSet_Daibunrui1.AppendLabelSize = 0;
+            this.labelSet_Daibunrui1.AppendLabelText = "";
+            this.labelSet_Daibunrui1.CodeTxtSize = 33;
+            this.labelSet_Daibunrui1.CodeTxtText = "";
+            this.labelSet_Daibunrui1.LabelName = "大分類コード";
+            this.labelSet_Daibunrui1.Location = new System.Drawing.Point(31, 14);
+            this.labelSet_Daibunrui1.Lschubundata = null;
+            this.labelSet_Daibunrui1.LsSubchubundata = null;
+            this.labelSet_Daibunrui1.Name = "labelSet_Daibunrui1";
+            this.labelSet_Daibunrui1.ShowAppendFlg = false;
+            this.labelSet_Daibunrui1.Size = new System.Drawing.Size(309, 22);
+            this.labelSet_Daibunrui1.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui1.SpaceNameCode = 4;
+            this.labelSet_Daibunrui1.SpaceValueAppend = 4;
+            this.labelSet_Daibunrui1.TabIndex = 0;
+            this.labelSet_Daibunrui1.ValueLabelSize = 150;
+            this.labelSet_Daibunrui1.ValueLabelText = "";
             // 
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKensaku.Location = new System.Drawing.Point(127, 44);
+            this.txtKensaku.Location = new System.Drawing.Point(138, 44);
             this.txtKensaku.MaxLength = 50;
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(164, 22);
             this.txtKensaku.TabIndex = 1;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
             // 
-            // txtDaibunrui
-            // 
-            this.txtDaibunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDaibunrui.Location = new System.Drawing.Point(127, 17);
-            this.txtDaibunrui.MaxLength = 2;
-            this.txtDaibunrui.Name = "txtDaibunrui";
-            this.txtDaibunrui.Size = new System.Drawing.Size(35, 22);
-            this.txtDaibunrui.TabIndex = 0;
-            this.txtDaibunrui.TextChanged += new System.EventHandler(this.setDaibunruiTextChanged);
-            this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
-            this.txtDaibunrui.Leave += new System.EventHandler(this.judtxtDaibunTextLeave);
-            // 
             // baseLabel2
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(39, 47);
+            this.baseLabel2.Location = new System.Drawing.Point(33, 47);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(87, 15);
             this.baseLabel2.TabIndex = 101;
             this.baseLabel2.Text = "検索文字列";
-            // 
-            // baseLabel1
-            // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(39, 20);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(55, 15);
-            this.baseLabel1.TabIndex = 101;
-            this.baseLabel1.Text = "大分類";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dgvSeihin
             // 
             this.dgvSeihin.AllowUserToAddRows = false;
             this.dgvSeihin.AllowUserToResizeColumns = false;
             this.dgvSeihin.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSeihin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSeihin.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSeihin.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvSeihin.EnableHeadersVisualStyles = false;
-            this.dgvSeihin.Location = new System.Drawing.Point(31, 161);
+            this.dgvSeihin.Location = new System.Drawing.Point(31, 86);
             this.dgvSeihin.Name = "dgvSeihin";
             this.dgvSeihin.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvSeihin.RowHeadersVisible = false;
             this.dgvSeihin.RowTemplate.Height = 21;
             this.dgvSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSeihin.Size = new System.Drawing.Size(474, 303);
+            this.dgvSeihin.Size = new System.Drawing.Size(474, 378);
             this.dgvSeihin.StandardTab = true;
             this.dgvSeihin.TabIndex = 3;
             this.dgvSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setdgvSeihinDoubleClick);
@@ -222,13 +164,10 @@ namespace KATO.Common.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
+            this.Controls.Add(this.labelSet_Daibunrui1);
             this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.lblDsp);
             this.Controls.Add(this.txtKensaku);
-            this.Controls.Add(this.txtDaibunrui);
             this.Controls.Add(this.baseLabel2);
-            this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.dgvSeihin);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
@@ -236,8 +175,6 @@ namespace KATO.Common.Form
             this.Text = "MakerList";
             this.Load += new System.EventHandler(this.MakerList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerListKeyDown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,14 +186,9 @@ namespace KATO.Common.Form
         private BaseDataGridView dgvSeihin;
         private BaseButton btnF11;
         private BaseButton btnF12;
-        private BaseLabel baseLabel1;
-        private BaseText txtDaibunrui;
         private BaseLabel baseLabel2;
         private BaseText txtKensaku;
-        private BaseLabelGray lblDsp;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label lblRecords;
+        private LabelSet_Daibunrui labelSet_Daibunrui1;
     }
 }

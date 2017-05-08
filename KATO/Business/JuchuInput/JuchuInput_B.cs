@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,28 +15,28 @@ namespace KATO.Business.JuchuInput
         {
             string strSQLName = null;
 
-            //ãƒ‡ãƒ¼ã‚¿æ¸¡ã—ç”¨
+            //ƒf[ƒ^“n‚µ—p
             List<string> lstStringSQL = new List<string>();
 
-            strSQLName = "JuchuInput_SELECT_LEAVE";
+            strSQLName = "JuchuInput_Chubun_SELECT_LEAVE";
 
-            //ãƒ‡ãƒ¼ã‚¿æ¸¡ã—ç”¨
+            //ƒf[ƒ^“n‚µ—p
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-           
-            //é…åˆ—è¨­å®š
+
+            //”z—ñİ’è
             string[] strArray = { strBaseText1 };
 
             strSQLInput = string.Format(strSQLInput, strArray);
 
-            //SQLã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä½œæˆ
+            //SQL‚ÌƒCƒ“ƒXƒ^ƒ“ƒXì¬
             DBConnective dbconnective = new DBConnective();
 
             DataTable dtSetcode_B = new DataTable();
 
-            //SQLæ–‡ã‚’ç›´æ›¸ãï¼ˆï¼‹æˆ»ã‚Šå€¤ã‚’å—ã‘å–ã‚‹)
+            //SQL•¶‚ğ’¼‘‚«i{–ß‚è’l‚ğó‚¯æ‚é)
             dtSetcode_B = dbconnective.ReadSql(strSQLInput);
 
             return (dtSetcode_B);

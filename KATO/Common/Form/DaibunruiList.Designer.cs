@@ -34,9 +34,6 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.大分類コードDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.大分類名DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,49 +42,11 @@ namespace KATO.Common.Form
             this.label4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.dgvSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).BeginInit();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.groupBox1.Location = new System.Drawing.Point(30, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(226, 82);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "出力順";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radioButton2.Location = new System.Drawing.Point(33, 47);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(137, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "大分類名の昇順";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radioButton1.Location = new System.Drawing.Point(33, 21);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(169, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "大分類コードの昇順";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // 大分類コードDataGridViewTextBoxColumn
             // 
@@ -153,16 +112,6 @@ namespace KATO.Common.Form
             this.label6DataGridViewTextBoxColumn.ReadOnly = true;
             this.label6DataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // btnF11
-            // 
-            this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(405, 41);
-            this.btnF11.Name = "btnF11";
-            this.btnF11.Size = new System.Drawing.Size(100, 23);
-            this.btnF11.TabIndex = 1;
-            this.btnF11.UseVisualStyleBackColor = true;
-            this.btnF11.Click += new System.EventHandler(this.btnKensakuClick);
-            // 
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -196,7 +145,7 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSeihin.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSeihin.EnableHeadersVisualStyles = false;
-            this.dgvSeihin.Location = new System.Drawing.Point(31, 115);
+            this.dgvSeihin.Location = new System.Drawing.Point(31, 54);
             this.dgvSeihin.Name = "dgvSeihin";
             this.dgvSeihin.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -210,7 +159,7 @@ namespace KATO.Common.Form
             this.dgvSeihin.RowHeadersVisible = false;
             this.dgvSeihin.RowTemplate.Height = 21;
             this.dgvSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSeihin.Size = new System.Drawing.Size(474, 349);
+            this.dgvSeihin.Size = new System.Drawing.Size(474, 410);
             this.dgvSeihin.StandardTab = true;
             this.dgvSeihin.TabIndex = 0;
             this.dgvSeihin.DoubleClick += new System.EventHandler(this.setdgvSeihinDoubleClick);
@@ -233,16 +182,13 @@ namespace KATO.Common.Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
             this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.dgvSeihin);
-            this.Controls.Add(this.groupBox1);
             this.Name = "DaibunruiList";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "DaiBunruiList";
             this.Load += new System.EventHandler(this.DaiBunruiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -250,9 +196,6 @@ namespace KATO.Common.Form
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn 大分類コードDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn 大分類名DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn label1DataGridViewTextBoxColumn;
@@ -263,7 +206,6 @@ namespace KATO.Common.Form
         private System.Windows.Forms.DataGridViewTextBoxColumn label6DataGridViewTextBoxColumn;
         private BaseDataGridView dgvSeihin;
         private BaseButton btnF12;
-        private BaseButton btnF11;
         private System.Windows.Forms.Label lblRecords;
     }
 }

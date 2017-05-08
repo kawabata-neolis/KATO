@@ -7,84 +7,151 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Form.M_Daibunrui;
-using KATO.Form.M_Chubunrui;
-using KATO.Form.TanaorosiInput;
-using KATO.Common.Util;
-using KATO.Common.Business;
 using System.Security.Permissions;
+using KATO.Form.M1010_Daibunrui;
+using KATO.Form.M1110_Chubunrui;
+using KATO.Form.F0140_TanaorosiInput;
+using KATO.Common.Util;
+using KATO.Common.Form;
+using KATO.Common.Business;
+using static KATO.Common.Util.CommonTeisu;
+using KATO.Common.Ctl;
 
 namespace KATO.Common.Form
 {
+    ///<summary>
+    ///DaibunruiList
+    ///大分類リストフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class DaibunruiList : System.Windows.Forms.Form
     {
-        //並び替えボタンの連続押しを防ぐ判定
-        int intOrderCode = 1;
+        LabelSet_Daibunrui lblSetDaibun = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
-        public DaibunruiList()
+        /// <summary>
+        /// DaibunruiList
+        /// フォーム関係の設定（通常のテキストボックスから）
+        /// </summary>
+        public DaibunruiList(Control c)
         {
+            if (c == null)
+            {
+                return;
+            }
+
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
             InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+
         }
 
+        /// <summary>
+        /// DaibunruiList
+        /// フォーム関係の設定（ラベルセットから）
+        /// </summary>
+        public DaibunruiList(Control c, LabelSet_Daibunrui lblSetDaibunSelect)
+        {
+            if (c == null)
+            {
+                return;
+            }
+
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            lblSetDaibun = lblSetDaibunSelect;
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+        }
+
+        /// <summary>
+        /// _Title
+        /// タイトルの設定
+        /// </summary>
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+            }
+        }
+
+        /// <summary>
+        /// DaiBunruiList_Load
+        /// 読み込み時
+        /// </summary>
         private void DaiBunruiList_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "大分類リスト";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
-            this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
             setDatagridView();
-
-            radioButton1.Checked = true;
         }
 
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         private void setDatagridView()
         {
             //処理部に移動
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
-            //データグリッドビュー部分
-            dgvSeihin.DataSource = daibunlistB.setDatagridView();
-
-            //幅の値を設定
-            dgvSeihin.Columns["大分類コード"].Width = 150;
-            dgvSeihin.Columns["大分類名"].Width = 150;
-
-            //中央揃え
-            dgvSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
-
-            //件数が0の場合
-            if (lblRecords.Text == "0")
+            try
             {
-                //表示を変える
-                MessageBox.Show("データが見つかりませんでした。");
-                return;
+                //データグリッドビュー部分
+                dgvSeihin.DataSource = daibunlistB.setDatagridView();
+
+                //幅の値を設定
+                dgvSeihin.Columns["大分類コード"].Width = 150;
+                dgvSeihin.Columns["大分類名"].Width = 150;
+
+                //中央揃え
+                dgvSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (lblRecords.Text == "0")
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+                throw (e);
             }
         }
-
-
 
         ///<summary>
         ///judDaiBunruiListKeyDown
         ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/2
-        ///カラム論理名
         ///</summary>
         private void judDaiBunruiListKeyDown(object sender, KeyEventArgs e)
         {
@@ -128,8 +195,6 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender,e);
                     break;
                 case Keys.F12:
                     //戻るボタン
@@ -141,91 +206,51 @@ namespace KATO.Common.Form
             }
         }
 
-
-        ///<summary>
-        ///setKensakuClick
-        ///検索ボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/2
-        ///カラム論理名
-        ///</summary>
-        public void btnKensakuClick(object sender, EventArgs e)
-        {
-            //並び替えの準備
-            ListSortDirection sortDirection = dgvSeihin.SortOrder == SortOrder.Ascending ?
-            ListSortDirection.Ascending : ListSortDirection.Ascending;
-
-            //コード昇順
-            if (radioButton1.Checked == true)
-            {
-                if (intOrderCode != 1)
-                {
-                    setDatagridView();
-                    dgvSeihin.Sort(dgvSeihin.Columns[0], sortDirection);
-                }
-                intOrderCode = 1;
-            }
-            //名前昇順
-            else if(radioButton2.Checked == true)
-            {
-                if(intOrderCode != 2)
-                {
-                    setDatagridView();
-                    dgvSeihin.Sort(dgvSeihin.Columns[1], sortDirection);
-                }
-                intOrderCode = 2;
-            }
-            else
-            {
-                MessageBox.Show("出力順が選択されていません");
-                return;
-            }
-            dgvSeihin.Focus();
-        }
-
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/2
-        ///カラム論理名
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
-            setEndAction();
+            List<string> lstString = new List<string>();
+            setEndAction(lstString);
         }
 
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
-        private void setEndAction()
+        private void setEndAction(List<string> lstString)
         {
+            if (lblSetDaibun != null && lstString.Count != 0)
+            {
+                lblSetDaibun.CodeTxtText = lstString[0];
+                lblSetDaibun.ValueLabelText = lstString[1];
+            }
+
             this.Close();
+
+            //データ渡し用
+            List<int> lstInt = new List<int>();
+
+            //データ渡し用
+            lstInt.Add(intFrmKind);
 
             //処理部に移動
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
-            daibunlistB.setEndAction(intFrmKind);
+            try
+            {
+                daibunlistB.setEndAction(lstInt);
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+            }
         }
-
 
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>
         public void setdgvSeihinDoubleClick(object sender, EventArgs e)
         {
@@ -235,11 +260,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>        
         private void judDgvSeihinKeyDown(object sender, KeyEventArgs e)
         {
@@ -285,8 +305,6 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
@@ -301,30 +319,38 @@ namespace KATO.Common.Form
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択後の処理
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>        
         private void setSelectItem()
         {
-            if (intFrmKind == 0)
-            {
-                return;
-            }
+            //データ渡し用
+            List<string> lstString = new List<string>();
+            List<int> lstInt = new List<int>();
 
             //選択行の大分類コード取得
-            string strSelectid = (string)dgvSeihin.CurrentRow.Cells[0].Value;
+            string strSelectId = (string)dgvSeihin.CurrentRow.Cells["大分類コード"].Value;
+            string strSelectName = (string)dgvSeihin.CurrentRow.Cells["大分類名"].Value;
+
+            lstInt.Add(intFrmKind);
+            lstString.Add(strSelectId);
+            lstString.Add(strSelectName);
 
             //処理部に移動
             DaibunruiList_B daibunListB = new DaibunruiList_B();
-            daibunListB.setSelectItem(intFrmKind, strSelectid);
-
-            setEndAction();
+            try
+            {
+                daibunListB.setSelectItem(lstInt, lstString);
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+            }
+            setEndAction(lstString);
         }
 
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>        
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,

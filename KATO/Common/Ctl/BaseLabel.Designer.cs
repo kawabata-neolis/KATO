@@ -33,6 +33,7 @@
             // BaseLabel
             // 
             this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ResumeLayout(false);
 
         }

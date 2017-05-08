@@ -16,10 +16,7 @@ namespace KATO
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KATO.Form.M_Daibunrui.M_Daibunrui());
-
-            //2017.04.21 suyama kawa
-
+            Application.Run(new KATO.Form.Z0000.Z0000());
         }
     }
 }

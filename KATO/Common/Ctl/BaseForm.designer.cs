@@ -46,6 +46,8 @@
             this.btnF02 = new System.Windows.Forms.Button();
             this.btnF01 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cmbSubWinShow = new System.Windows.Forms.ComboBox();
+            this.lblSubWinSHow = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +57,7 @@
             this.lblStatusHeader,
             this.lblStatusMessage,
             this.lblStatusUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 809);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 804);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1424, 22);
             this.statusStrip1.TabIndex = 0;
@@ -210,11 +212,35 @@
             this.timer1.Interval = 150;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // cmbSubWinShow
+            // 
+            this.cmbSubWinShow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSubWinShow.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cmbSubWinShow.FormattingEnabled = true;
+            this.cmbSubWinShow.Location = new System.Drawing.Point(1230, 12);
+            this.cmbSubWinShow.Name = "cmbSubWinShow";
+            this.cmbSubWinShow.Size = new System.Drawing.Size(182, 24);
+            this.cmbSubWinShow.TabIndex = 85;
+            this.cmbSubWinShow.Visible = false;
+            // 
+            // lblSubWinSHow
+            // 
+            this.lblSubWinSHow.AutoSize = true;
+            this.lblSubWinSHow.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSubWinSHow.Location = new System.Drawing.Point(1104, 15);
+            this.lblSubWinSHow.Name = "lblSubWinSHow";
+            this.lblSubWinSHow.Size = new System.Drawing.Size(120, 16);
+            this.lblSubWinSHow.TabIndex = 86;
+            this.lblSubWinSHow.Text = "サブ画面を選択";
+            this.lblSubWinSHow.Visible = false;
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 831);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblSubWinSHow);
+            this.Controls.Add(this.cmbSubWinShow);
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF10);
@@ -229,8 +255,9 @@
             this.Controls.Add(this.btnF01);
             this.Controls.Add(this.statusStrip1);
             this.Name = "BaseForm";
-            this.Text = "販売管理 - [{0}]";
+            this.Text = "[{0}]";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BaseForm_FormClosed);
+            this.Load += new System.EventHandler(this.BaseForm_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -257,5 +284,7 @@
         protected System.Windows.Forms.Button btnF02;
         protected System.Windows.Forms.Button btnF01;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox cmbSubWinShow;
+        private System.Windows.Forms.Label lblSubWinSHow;
     }
 }

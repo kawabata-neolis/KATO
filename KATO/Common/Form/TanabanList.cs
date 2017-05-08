@@ -7,36 +7,79 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.F0140_TanaorosiInput;
 using KATO.Common.Util;
+using KATO.Common.Ctl;
 using KATO.Common.Business;
 using System.Security.Permissions;
+using static KATO.Common.Util.CommonTeisu;
+
 
 namespace KATO.Common.Form
 {
     public partial class TanabanList : System.Windows.Forms.Form
     {
-        //並び替えボタンの連続押しを防ぐ判定
-        int intOrderCode = 1;
+        LabelSet_Tanaban lblSetTanaban = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
-        public TanabanList()
+        public TanabanList(Control c)
         {
+            if (c == null)
+            {
+                return;
+            }
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
             InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+        }
+
+        public TanabanList(Control c, LabelSet_Tanaban lblSetTanabanSelect)
+        {
+            if (c == null)
+            {
+                return;
+            }
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            lblSetTanaban = lblSetTanabanSelect;
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+        }
+
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+            }
         }
 
         private void TanabanList_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "棚番リスト";
+
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
-            this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
             setDatagridView();
-
-            radioButton1.Checked = true;
         }
 
         ///<summary>
@@ -125,8 +168,6 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
@@ -136,49 +177,6 @@ namespace KATO.Common.Form
                 default:
                     break;
             }
-        }
-
-        ///<summary>
-        ///setKensakuClick
-        ///検索ボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
-        ///</summary>
-        public void btnKensakuClick(object sender, EventArgs e)
-        {
-            //並び替えの準備
-            ListSortDirection sortDirection = dgvSeihin.SortOrder == SortOrder.Ascending ?
-            ListSortDirection.Ascending : ListSortDirection.Ascending;
-
-            //コード昇順
-            if (radioButton1.Checked == true)
-            {
-                if (intOrderCode != 1)
-                {
-                    setDatagridView();
-                    dgvSeihin.Sort(dgvSeihin.Columns[0], sortDirection);
-                }
-                intOrderCode = 1;
-            }
-            //名前昇順
-            else if (radioButton2.Checked == true)
-            {
-                if (intOrderCode != 2)
-                {
-                    setDatagridView();
-                    dgvSeihin.Sort(dgvSeihin.Columns[1], sortDirection);
-                }
-                intOrderCode = 2;
-            }
-            else
-            {
-                MessageBox.Show("出力順が選択されていません");
-                return;
-            }
-            dgvSeihin.Focus();
         }
 
         ///<summary>
@@ -192,7 +190,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
-            setEndAction();
+            List<string> lstString = new List<string>();
+            setEndAction(lstString);
         }
 
         ///<summary>
@@ -204,8 +203,20 @@ namespace KATO.Common.Form
         ///更新日：2017/3/14
         ///カラム論理名
         ///</summary>
-        private void setEndAction()
+        private void setEndAction(List<string> lstString)
         {
+            if (lblSetTanaban != null && lstString.Count != 0)
+            {
+                lblSetTanaban.CodeTxtText = lstString[0];
+                lblSetTanaban.ValueLabelText = lstString[1];
+            }
+
+            //データ渡し用
+            List<int> lstInt = new List<int>();
+
+            //データ渡し用
+            lstInt.Add(intFrmKind);
+
             this.Close();
 
             //処理部に移動
@@ -280,8 +291,6 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
@@ -304,21 +313,22 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-
-            if (intFrmKind == 0)
-            {
-                return;
-            }
-
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
             //選択行の営業所コード取得
             string strSelectid = (string)dgvSeihin.CurrentRow.Cells[0].Value;
+            string strSelectName = (string)dgvSeihin.CurrentRow.Cells[1].Value;
+
+            //データ渡し用
+            lstString.Add(strSelectid);
+            lstString.Add(strSelectName);
 
             //処理部に移動
             TanabanList_B tanabanlistB = new TanabanList_B();
             tanabanlistB.setSelectItem(intFrmKind, strSelectid);
 
-            setEndAction();
+            setEndAction(lstString);
         }
 
         // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効

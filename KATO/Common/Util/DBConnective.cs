@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Common.Util
 {
@@ -142,6 +143,55 @@ namespace KATO.Common.Util
             {
                 this.DB_Disconnect();
             }
+        }
+
+        public void RunSqlCommon(String strSqlName, String[] prms)
+        {
+            Boolean isConnect = false;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect();
+                isConnect = true;
+            }
+
+            List<string> lstStringSQL = new List<string>();
+
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSqlName);
+
+            OpenSQL opensql = new OpenSQL();
+            string sqlStr = opensql.setOpenSQL(lstStringSQL);
+
+            SqlDbType[] types = CommonTeisu.paramDic[strSqlName];
+
+            //UPDATE INSERT DELETE 用            
+            CM.CommandType = CommandType.Text;
+            CM.CommandText = sqlStr;
+            CM.Parameters.Clear();
+
+            for (int intPrmCnt = 0; intPrmCnt < prms.Count(); intPrmCnt++)
+            {
+                SetSqlParam("@p" + intPrmCnt.ToString(), types[intPrmCnt], prms[intPrmCnt]);
+            }
+
+            CM.ExecuteNonQuery();
+
+
+            if (isConnect)
+            {
+                this.DB_Disconnect();
+            }
+        }
+
+        public void SetSqlParam(string ParameterName, SqlDbType type, Object value)
+        {
+            SqlParameter param = CM.CreateParameter();
+            param.ParameterName = ParameterName;
+            param.SqlDbType = type;
+            param.Direction = ParameterDirection.Input;
+            param.Value = value;
+            CM.Parameters.Add(param);
         }
 
         #endregion

@@ -16,17 +16,19 @@ namespace KATO.Common.Ctl
         //最初のクリックかの判断
         Boolean firstclickjud = true;
 
-        //
-        Boolean blankFlg = false;
-        public Boolean BlankFlg
+        Boolean blnNull;
+
+
+        Boolean blankFlg;
+        public Boolean blnBlankFlg
         {
+            get
+            {
+                return this.blankFlg;
+            }
             set
             {
                 this.blankFlg = value;
-            }
-            get
-            {
-                return blankFlg;
             }
         }
 
@@ -91,29 +93,24 @@ namespace KATO.Common.Ctl
         //
         //コンボボックスのリストに入れる
         //
-        public string[] setComboBox (ArrayList arList)
+        public Boolean setComboBox(KeyValuePair<int, string>[] kvpComboBox)
         {
-            string[] strList = null;
+            //コンボボックス内にデータを入れる
+            this.DataSource = kvpComboBox;
+            this.DisplayMember = "Value";
+            this.ValueMember = "Key";
+
+            if (this.DataSource == null)
+            {
+                blnNull = true;
+            }
 
             if (blankFlg == true)
             {
-                //ArrayListの先頭に空を追加
-                arList.Insert(0, "");
+                blnNull = true;
             }
 
-            //配列型に変換
-            strList = (string[])arList.ToArray(typeof(string));
-
-            //空だった場合
-            if (!strList.Any())
-            {
-                strList.CopyTo(strList = new string[strList.Length + 1], 0);
-                strList[0] = "";
-            }
-
-            //コンボボックスのリストに追加
-            this.Items.AddRange(strList);
-            return (strList);
+            return (blnNull);
         }
     }
 }

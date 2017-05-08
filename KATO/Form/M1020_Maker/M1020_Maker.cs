@@ -13,15 +13,55 @@ using KATO.Common.Form;
 using KATO.Business.M1020_Maker_B;
 using static KATO.Common.Util.CommonTeisu;
 
-namespace KATO.Form.M_Maker
+namespace KATO.Form.M1020_Maker
 {
-    public partial class M_Maker : BaseForm
+    ///<summary>
+    ///M1020_Maker
+    ///メーカーフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
+    public partial class M1020_Maker : BaseForm
     {
-        public M_Maker()
+        /// <summary>
+        /// M1020_Maker
+        /// フォーム関係の設定
+        /// </summary>
+        public M1020_Maker(Control c)
         {
+            if (c == null)
+            {
+                return;
+            }
+
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
             InitializeComponent();
+
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
+
+            //最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
+        /// <summary>
+        /// M_Maker_Load
+        /// 読み込み時
+        /// </summary>
         private void M_Maker_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -40,11 +80,6 @@ namespace KATO.Form.M_Maker
         ///<summary>
         ///judMakerKeyDown
         ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>
         private void judMakerKeyDown(object sender, KeyEventArgs e)
         {
@@ -89,7 +124,6 @@ namespace KATO.Form.M_Maker
                 case Keys.F8:
                     break;
                 case Keys.F9:
-
                     break;
                 case Keys.F10:
                     break;
@@ -107,11 +141,6 @@ namespace KATO.Form.M_Maker
         ///<summary>
         ///judBtnClick
         ///ボタンの反応
-        ///作成者：大河内
-        ///作成日：2017/3/3
-        ///更新者：大河内
-        ///更新日：2017/3/3
-        ///カラム論理名
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -135,15 +164,31 @@ namespace KATO.Form.M_Maker
             }
         }
 
+        ///<summary>
+        ///txtMakerKeyDown
+        ///キー入力判定
+        ///</summary>
+        private void txtMakerKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                MakerList makerlist = new MakerList(this);
+                try
+                {
+                    makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
+                    makerlist.Show();
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    return;
+                }
+            }
+        }
 
         ///<summary>
         ///addMaker
         ///テキストボックス内のデータをDBに登録
-        ///作成者：大河内
-        ///作成日：2017/3/9
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         private void addMaker()
         {
@@ -153,7 +198,9 @@ namespace KATO.Form.M_Maker
             //文字判定
             if (txtMaker.blIsEmpty() == false)
             {
-                MessageBox.Show("項目が空です。文字を入力してください。", "入力項目", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
 
@@ -164,46 +211,55 @@ namespace KATO.Form.M_Maker
 
             //処理部に移動
             M1020_Maker_B makerB = new M1020_Maker_B();
-            //戻り値のDatatableを取り込む
-            makerB.addMaker(lstString);
 
-            delText();
+            try
+            {
+
+                //戻り値のDatatableを取り込む
+                makerB.addMaker(lstString);
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                txtMaker.Focus();
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+            }
         }
 
         ///<summary>
         ///delText
         ///テキストボックス内の文字を削除、ボタンの機能を消す
-        ///作成者：大河内
-        ///作成日：2017/3/9
-        ///更新者：大河内
-        ///更新日：2017/3/8
-        ///カラム論理名
         ///</summary>
         private void delText()
         {
-            BaseForm formreset = new BaseForm();
-            formreset.delFormClear(this);
+            delFormClear(this);
             txtMaker.Focus();
         }
 
         ///<summary>
         ///delMaker
         ///テキストボックス内のデータをDBから削除
-        ///作成者：大河内
-        ///作成日：2017/3/9
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         public void delMaker()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            bool blDelFinish = false;
-
             //文字判定
             if (txtMaker.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.No)
             {
                 return;
             }
@@ -214,25 +270,28 @@ namespace KATO.Form.M_Maker
 
             //処理部に移動
             M1020_Maker_B makerb = new M1020_Maker_B();
-            //戻り値のDatatableを取り込む
-            blDelFinish = makerb.delMaker(lstString);
 
-            if (blDelFinish == true)
+            try
             {
+                //戻り値のDatatableを取り込む
+                makerb.delMaker(lstString);
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
                 txtMaker.Focus();
+
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
             }
         }
 
         ///<summary>
         ///setMakerCode
         ///取り出したデータをテキストボックスに配置
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>
         public void setMakerCode(DataTable dtSelectData)
         {
@@ -241,34 +300,8 @@ namespace KATO.Form.M_Maker
         }
 
         ///<summary>
-        ///txtMakerKeyDown
-        ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/7
-        ///カラム論理名
-        ///</summary>
-        private void txtMakerKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                MakerList makerlist = new MakerList();
-                makerlist.Left = 100;
-                makerlist.StartPosition = FormStartPosition.Manual;
-                makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
-                makerlist.Show();
-            }
-        }
-
-        ///<summary>
         ///judtxtMakerTextLeave
         ///code入力箇所からフォーカスが外れた時
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         public void judtxtMakerTextLeave(object sender, EventArgs e)
         {
@@ -277,12 +310,14 @@ namespace KATO.Form.M_Maker
 
             DataTable dtSetcode;
 
-            if (txtMaker.Text.Equals(null) || String.IsNullOrWhiteSpace(txtMaker.Text).Equals(true))
+            //文字判定
+            if (txtMaker.blIsEmpty() == false)
             {
-                txtMaker.Text.Equals("");
-                txtName.Focus();
                 return;
             }
+
+            //前後の空白を取り除く
+            txtMaker.Text = txtMaker.Text.Trim();
 
             if (txtMaker.TextLength <= 3)
             {
@@ -294,32 +329,29 @@ namespace KATO.Form.M_Maker
 
             //処理部に移動
             M1020_Maker_B makerB = new M1020_Maker_B();
-            //戻り値のDatatableを取り込む
-            dtSetcode = makerB.judtxtMakerTextLeave(lstString);
 
-            //前後の空白を取り除く
-            txtMaker.Text = txtMaker.Text.Trim();
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetcode = makerB.judtxtMakerTextLeave(lstString);
 
-            if (dtSetcode.Rows.Count == 0)
-            {
+                if (dtSetcode.Rows.Count > 0)
+                {
+                    txtMaker.Text = dtSetcode.Rows[0]["メーカーコード"].ToString();
+                    txtName.Text = dtSetcode.Rows[0]["メーカー名"].ToString();
+                    txtName.Focus();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                txtMaker.Text = dtSetcode.Rows[0]["メーカーコード"].ToString();
-                txtName.Text = dtSetcode.Rows[0]["メーカー名"].ToString();
+                new CommonException(ex);
             }
-            txtName.Focus();
         }
 
 
         ///<summary>
         ///setmakerListClose
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
-        ///作成者：大河内
-        ///作成日：2017/3/3
-        ///更新者：大河内
-        ///更新日：2017/3/3
-        ///カラム論理名
         ///</summary>
         public void setmakerListClose()
         {
@@ -328,11 +360,6 @@ namespace KATO.Form.M_Maker
 
         ///judtxtDaibunruiKeyUp
         ///入力項目上でのキー判定と文字数判定
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         private void judtxtMakerKeyUp(object sender, KeyEventArgs e)
         {
@@ -341,15 +368,16 @@ namespace KATO.Form.M_Maker
             {
                 return;
             }
-            //左右のシフトキー 4つ
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey)
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
             {
                 return;
             }
 
             if (txtMaker.TextLength == 3)
             {
-                judtxtMakerTextLeave(sender, e);
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
             }
         }
     }

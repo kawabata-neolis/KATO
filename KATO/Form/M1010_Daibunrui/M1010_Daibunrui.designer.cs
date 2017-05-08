@@ -1,9 +1,9 @@
 ﻿using KATO.Common.Ctl;
 using KATO.Common.Util;
 
-namespace KATO.Form.M_Daibunrui
+namespace KATO.Form.M1010_Daibunrui
 {
-    partial class M_Daibunrui
+    partial class M1010_Daibunrui
     {
         /// <summary>
         /// Required designer variable.
@@ -40,14 +40,14 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel4 = new KATO.Common.Ctl.BaseText();
             this.txtLabel5 = new KATO.Common.Ctl.BaseText();
             this.txtLabel6 = new KATO.Common.Ctl.BaseText();
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF12
@@ -101,20 +101,22 @@ namespace KATO.Form.M_Daibunrui
             // txtDaibunrui
             // 
             this.txtDaibunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDaibunrui.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDaibunrui.Location = new System.Drawing.Point(595, 97);
             this.txtDaibunrui.MaxLength = 2;
             this.txtDaibunrui.Name = "txtDaibunrui";
             this.txtDaibunrui.Size = new System.Drawing.Size(33, 22);
             this.txtDaibunrui.TabIndex = 0;
-            this.txtDaibunrui.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyDown);
+            this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunKeyDown);
             this.txtDaibunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
             this.txtDaibunrui.Leave += new System.EventHandler(this.judtxtDaibunruiLeave);
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Katakana;
             this.txtName.Location = new System.Drawing.Point(595, 132);
+            this.txtName.MaxLength = 24;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(339, 22);
             this.txtName.TabIndex = 1;
@@ -126,6 +128,7 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel1.Name = "txtLabel1";
             this.txtLabel1.Size = new System.Drawing.Size(100, 22);
             this.txtLabel1.TabIndex = 2;
+            this.txtLabel1.Visible = false;
             // 
             // txtLabel2
             // 
@@ -134,6 +137,7 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel2.Name = "txtLabel2";
             this.txtLabel2.Size = new System.Drawing.Size(100, 22);
             this.txtLabel2.TabIndex = 3;
+            this.txtLabel2.Visible = false;
             // 
             // txtLabel3
             // 
@@ -142,6 +146,7 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel3.Name = "txtLabel3";
             this.txtLabel3.Size = new System.Drawing.Size(100, 22);
             this.txtLabel3.TabIndex = 4;
+            this.txtLabel3.Visible = false;
             // 
             // txtLabel4
             // 
@@ -150,6 +155,7 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel4.Name = "txtLabel4";
             this.txtLabel4.Size = new System.Drawing.Size(100, 22);
             this.txtLabel4.TabIndex = 5;
+            this.txtLabel4.Visible = false;
             // 
             // txtLabel5
             // 
@@ -158,6 +164,7 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel5.Name = "txtLabel5";
             this.txtLabel5.Size = new System.Drawing.Size(100, 22);
             this.txtLabel5.TabIndex = 6;
+            this.txtLabel5.Visible = false;
             // 
             // txtLabel6
             // 
@@ -166,99 +173,114 @@ namespace KATO.Form.M_Daibunrui
             this.txtLabel6.Name = "txtLabel6";
             this.txtLabel6.Size = new System.Drawing.Size(100, 22);
             this.txtLabel6.TabIndex = 7;
+            this.txtLabel6.Visible = false;
             // 
-            // baseLabel1
+            // lblBaseLabelCD
             // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(486, 100);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(103, 15);
-            this.baseLabel1.TabIndex = 86;
-            this.baseLabel1.Text = "大分類コード";
+            this.lblBaseLabelCD.AutoSize = true;
+            this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelCD.Location = new System.Drawing.Point(486, 100);
+            this.lblBaseLabelCD.Name = "lblBaseLabelCD";
+            this.lblBaseLabelCD.Size = new System.Drawing.Size(103, 15);
+            this.lblBaseLabelCD.TabIndex = 86;
+            this.lblBaseLabelCD.Text = "大分類コード";
+            this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel2
+            // lblBaseLabelName
             // 
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(486, 135);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel2.TabIndex = 0;
-            this.baseLabel2.Text = "大分類名";
+            this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelName.Location = new System.Drawing.Point(486, 135);
+            this.lblBaseLabelName.Name = "lblBaseLabelName";
+            this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelName.TabIndex = 0;
+            this.lblBaseLabelName.Text = "大分類名";
+            this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel3
+            // lblBaseLabel1
             // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(486, 184);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel3.TabIndex = 87;
-            this.baseLabel3.Text = "ラベル名１";
+            this.lblBaseLabel1.AutoSize = true;
+            this.lblBaseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel1.Location = new System.Drawing.Point(486, 184);
+            this.lblBaseLabel1.Name = "lblBaseLabel1";
+            this.lblBaseLabel1.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel1.TabIndex = 87;
+            this.lblBaseLabel1.Text = "ラベル名１";
+            this.lblBaseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel1.Visible = false;
             // 
-            // baseLabel4
+            // lblBaseLabel2
             // 
-            this.baseLabel4.AutoSize = true;
-            this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(486, 224);
-            this.baseLabel4.Name = "baseLabel4";
-            this.baseLabel4.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel4.TabIndex = 88;
-            this.baseLabel4.Text = "ラベル名２";
+            this.lblBaseLabel2.AutoSize = true;
+            this.lblBaseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel2.Location = new System.Drawing.Point(486, 224);
+            this.lblBaseLabel2.Name = "lblBaseLabel2";
+            this.lblBaseLabel2.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel2.TabIndex = 88;
+            this.lblBaseLabel2.Text = "ラベル名２";
+            this.lblBaseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel2.Visible = false;
             // 
-            // baseLabel5
+            // lblBaseLabel3
             // 
-            this.baseLabel5.AutoSize = true;
-            this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(486, 265);
-            this.baseLabel5.Name = "baseLabel5";
-            this.baseLabel5.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel5.TabIndex = 89;
-            this.baseLabel5.Text = "ラベル名３";
+            this.lblBaseLabel3.AutoSize = true;
+            this.lblBaseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel3.Location = new System.Drawing.Point(486, 265);
+            this.lblBaseLabel3.Name = "lblBaseLabel3";
+            this.lblBaseLabel3.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel3.TabIndex = 89;
+            this.lblBaseLabel3.Text = "ラベル名３";
+            this.lblBaseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel3.Visible = false;
             // 
-            // baseLabel6
+            // lblBaseLabel4
             // 
-            this.baseLabel6.AutoSize = true;
-            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(486, 306);
-            this.baseLabel6.Name = "baseLabel6";
-            this.baseLabel6.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel6.TabIndex = 90;
-            this.baseLabel6.Text = "ラベル名４";
+            this.lblBaseLabel4.AutoSize = true;
+            this.lblBaseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel4.Location = new System.Drawing.Point(486, 306);
+            this.lblBaseLabel4.Name = "lblBaseLabel4";
+            this.lblBaseLabel4.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel4.TabIndex = 90;
+            this.lblBaseLabel4.Text = "ラベル名４";
+            this.lblBaseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel4.Visible = false;
             // 
-            // baseLabel7
+            // lblBaseLabel5
             // 
-            this.baseLabel7.AutoSize = true;
-            this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel7.Location = new System.Drawing.Point(486, 343);
-            this.baseLabel7.Name = "baseLabel7";
-            this.baseLabel7.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel7.TabIndex = 91;
-            this.baseLabel7.Text = "ラベル名５";
+            this.lblBaseLabel5.AutoSize = true;
+            this.lblBaseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel5.Location = new System.Drawing.Point(486, 343);
+            this.lblBaseLabel5.Name = "lblBaseLabel5";
+            this.lblBaseLabel5.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel5.TabIndex = 91;
+            this.lblBaseLabel5.Text = "ラベル名５";
+            this.lblBaseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel5.Visible = false;
             // 
-            // baseLabel8
+            // lblBaseLabel6
             // 
-            this.baseLabel8.AutoSize = true;
-            this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel8.Location = new System.Drawing.Point(486, 380);
-            this.baseLabel8.Name = "baseLabel8";
-            this.baseLabel8.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel8.TabIndex = 92;
-            this.baseLabel8.Text = "ラベル名６";
+            this.lblBaseLabel6.AutoSize = true;
+            this.lblBaseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabel6.Location = new System.Drawing.Point(486, 380);
+            this.lblBaseLabel6.Name = "lblBaseLabel6";
+            this.lblBaseLabel6.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabel6.TabIndex = 92;
+            this.lblBaseLabel6.Text = "ラベル名６";
+            this.lblBaseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabel6.Visible = false;
             // 
-            // M_Daibunrui
+            // M1010_Daibunrui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 831);
-            this.Controls.Add(this.baseLabel8);
-            this.Controls.Add(this.baseLabel7);
-            this.Controls.Add(this.baseLabel6);
-            this.Controls.Add(this.baseLabel5);
-            this.Controls.Add(this.baseLabel4);
-            this.Controls.Add(this.baseLabel3);
-            this.Controls.Add(this.baseLabel2);
-            this.Controls.Add(this.baseLabel1);
+            this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.Controls.Add(this.lblBaseLabel6);
+            this.Controls.Add(this.lblBaseLabel5);
+            this.Controls.Add(this.lblBaseLabel4);
+            this.Controls.Add(this.lblBaseLabel3);
+            this.Controls.Add(this.lblBaseLabel2);
+            this.Controls.Add(this.lblBaseLabel1);
+            this.Controls.Add(this.lblBaseLabelName);
+            this.Controls.Add(this.lblBaseLabelCD);
             this.Controls.Add(this.txtLabel6);
             this.Controls.Add(this.txtLabel5);
             this.Controls.Add(this.txtLabel4);
@@ -267,9 +289,9 @@ namespace KATO.Form.M_Daibunrui
             this.Controls.Add(this.txtLabel1);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtDaibunrui);
-            this.Name = "M_Daibunrui";
-            this.Text = "大分類マスタ";
-            this.Load += new System.EventHandler(this.M_Daibunrui_Load);
+            this.Name = "M1010_Daibunrui";
+            this.Text = "M1010_Daibunrui";
+            this.Load += new System.EventHandler(this.M1010_Daibunrui_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiKeyDown);
             this.Controls.SetChildIndex(this.txtDaibunrui, 0);
             this.Controls.SetChildIndex(this.txtName, 0);
@@ -279,8 +301,8 @@ namespace KATO.Form.M_Daibunrui
             this.Controls.SetChildIndex(this.txtLabel4, 0);
             this.Controls.SetChildIndex(this.txtLabel5, 0);
             this.Controls.SetChildIndex(this.txtLabel6, 0);
-            this.Controls.SetChildIndex(this.baseLabel1, 0);
-            this.Controls.SetChildIndex(this.baseLabel2, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -293,12 +315,12 @@ namespace KATO.Form.M_Daibunrui
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.baseLabel3, 0);
-            this.Controls.SetChildIndex(this.baseLabel4, 0);
-            this.Controls.SetChildIndex(this.baseLabel5, 0);
-            this.Controls.SetChildIndex(this.baseLabel6, 0);
-            this.Controls.SetChildIndex(this.baseLabel7, 0);
-            this.Controls.SetChildIndex(this.baseLabel8, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel1, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel2, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel3, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel4, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel5, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabel6, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,13 +335,13 @@ namespace KATO.Form.M_Daibunrui
         private BaseText txtLabel4;
         private BaseText txtLabel5;
         private BaseText txtLabel6;
-        private BaseLabel baseLabel1;
-        private BaseLabel baseLabel2;
-        private BaseLabel baseLabel3;
-        private BaseLabel baseLabel4;
-        private BaseLabel baseLabel5;
-        private BaseLabel baseLabel6;
-        private BaseLabel baseLabel7;
-        private BaseLabel baseLabel8;
+        private BaseLabel lblBaseLabelCD;
+        private BaseLabel lblBaseLabelName;
+        private BaseLabel lblBaseLabel1;
+        private BaseLabel lblBaseLabel2;
+        private BaseLabel lblBaseLabel3;
+        private BaseLabel lblBaseLabel4;
+        private BaseLabel lblBaseLabel5;
+        private BaseLabel lblBaseLabel6;
     }
 }

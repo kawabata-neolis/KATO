@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Form.Z0000;
 
 namespace KATO.Common.Ctl
 {
@@ -38,6 +39,46 @@ namespace KATO.Common.Ctl
             {
                 String[] aryTitle = new string[]{value};
                 this.Text = string.Format(STR_TITLE, aryTitle);
+            }
+        }
+
+        private String strKeepDaibunrui;
+        public String StrKeepDaibunrui
+        {
+            set
+            {
+                strKeepDaibunrui = value;
+            }
+            get
+            {
+                return strKeepDaibunrui;
+            }
+        }
+
+        private String strKeepChubunrui;
+        public String StrKeepChubunrui
+        {
+            set
+            {
+                strKeepChubunrui = value;
+            }
+            get
+            {
+                return strKeepChubunrui;
+            }
+        }
+
+        private Boolean showSubWinCmbFlg = false;
+        public Boolean ShowSubWinCmbFlg
+        {
+            get {
+                return showSubWinCmbFlg;
+            }
+            set
+            {
+                showSubWinCmbFlg = value;
+                lblSubWinSHow.Visible = showSubWinCmbFlg;
+                cmbSubWinShow.Visible = showSubWinCmbFlg;
             }
         }
 
@@ -91,6 +132,16 @@ namespace KATO.Common.Ctl
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer1.Dispose();
+            //if (this.Text == "メニュー")
+            //{
+            //    Application.Exit();
+            //}
+            //else
+            //{
+            //    this.Dispose();
+            //    Z0000 z0000 = new Z0000();
+            //    z0000.Show();
+            //}
         }
 
         // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
@@ -127,7 +178,6 @@ namespace KATO.Common.Ctl
                 {
                     delFormClear(cControl, dgvData);
                 }
-
                 // コントロールの型が BaseText からの派生型の場合は BaseText をクリアする
                 if (cControl is BaseText)
                 {
@@ -161,7 +211,7 @@ namespace KATO.Common.Ctl
 
         ///<summary>
         ///delFormClear
-        ///フォーム上の項目を初期化
+        ///フォーム上の項目を初期化(DataGridViewがない場合)
         ///作成者：大河内
         ///作成日：2017/3/29
         ///更新者：大河内
@@ -206,5 +256,9 @@ namespace KATO.Common.Ctl
             }
         }
 
+        private void BaseForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using KATO.Common.Util;
+using KATO.Form.F0140_TanaorosiInput;
+
+namespace KATO.Common.Business
+{
+    ///<summary>
+    ///TantoushaList_B
+    ///担当者リスト（処理部）
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
+    class TantoushaList_B
+    {
+        string strSQLName = null;
+
+        /// <summary>
+        /// setViewGrid
+        /// 読み込み時の処理
+        /// </summary>
+        public DataTable setViewGrid()
+        {
+            DataTable dtGetTableGrid = new DataTable();
+
+            //SQL用に移動
+            DBConnective dbConnective = new DBConnective();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            try
+            {
+                strSQLName = "";
+
+                strSQLName = "TantoushaList_View";
+
+                //データ渡し用
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add("CommonForm");
+                lstStringSQL.Add(strSQLName);
+
+                OpenSQL opensql = new OpenSQL();
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                //検索データを表示
+                dtGetTableGrid = dbConnective.ReadSql(strSQLInput);
+
+                return (dtGetTableGrid);
+
+            }
+            catch
+            {
+
+            }
+            return (dtGetTableGrid);
+        }
+
+        /// <summary>
+        /// setEndAction
+        /// 終了時の処理
+        /// </summary>
+        public void setEndAction(List<int> lstInt)
+        {
+            //全てのフォームの中から
+            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+            {
+                //目的のフォームを探す
+                if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    F0140_TanaorosiInput tanaoroshi = (F0140_TanaorosiInput)frm;
+                    tanaoroshi.setDaibunruiListClose();
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// setSelectItem
+        /// 選択後の処理
+        /// </summary>
+        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        {
+            DataTable dtSelectData;
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            strSQLName = "C_LIST_Tantousha_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            //配列設定
+            string[] strArray = { lstString[0] };
+
+            strSQLInput = string.Format(strSQLInput, strArray);
+
+            dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+            switch (lstInt[0])
+            {
+                //大分類
+                case 1:
+                    break;
+                //中分類
+                case 2:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+
+    }
+}

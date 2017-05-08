@@ -6,12 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.F0140_TanaorosiInput;
 
 namespace KATO.Common.Business
 {
     class ShouhinList_B
     {
+        string strSQLName = null;
+
         ///<summary>
         ///setKensaku
         ///検索データを記入
@@ -168,6 +170,10 @@ namespace KATO.Common.Business
             //SQL文の確保
             string strSQL = "";
 
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+            OpenSQL opensql = new OpenSQL();
+
             //どこのDBを参照するか
             switch (lstint[0])
             {
@@ -187,15 +193,24 @@ namespace KATO.Common.Business
                         strTextCase = lstString[0];
                     }
 
-                    strSQL = "SELECT * FROM 大分類 ";
-                    strSQL = strSQL + " WHERE 大分類コード='" + strTextCase + "'";
-                    strSQL = strSQL + " AND 削除='N'";
+                    strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+
+                    //データ渡し用
+                    lstStringSQL.Add("Common");
+                    lstStringSQL.Add(strSQLName);
+
+                    string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                    //配列設定
+                    string[] strArray = { lstString[0]};
+
+                    strSQLInput = string.Format(strSQLInput, strArray);
 
                     //SQLのインスタンス作成
                     DBConnective dbconnective = new DBConnective();
 
                     //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
+                    dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
                 case 2://中分類
                     if (lstString[1] == "")
@@ -211,15 +226,25 @@ namespace KATO.Common.Business
                     {
                         strTextCase = lstString[1];
                     }
-                    strSQL = "SELECT 中分類コード,中分類名 FROM 中分類 ";
-                    strSQL = strSQL + " WHERE 中分類コード='" + strTextCase + "'AND 大分類コード='" + lstString[0] + "'";
-                    strSQL = strSQL + " AND 削除='N'";
+
+                    strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
+
+                    //データ渡し用
+                    lstStringSQL.Add("Common");
+                    lstStringSQL.Add(strSQLName);
+
+                    strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                    //配列設定
+                    strArray = new string[] { lstString[0], strTextCase };
+
+                    strSQLInput = string.Format(strSQLInput, strArray);
 
                     //SQLのインスタンス作成
                     dbconnective = new DBConnective();
 
                     //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
+                    dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
                 case 3://メーカー
                     if (lstString[2] == "")
@@ -235,15 +260,25 @@ namespace KATO.Common.Business
                     {
                         strTextCase = lstString[2];
                     }
-                    strSQL = "SELECT メーカーコード,メーカー名 FROM メーカー ";
-                    strSQL = strSQL + " WHERE メーカーコード='" + strTextCase + "'";
-                    strSQL = strSQL + " AND 削除='N'";
+
+                    strSQLName = "M1020_Maker_SELECT_LEAVE";
+
+                    //データ渡し用
+                    lstStringSQL.Add("Common");
+                    lstStringSQL.Add(strSQLName);
+
+                    strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                    //配列設定
+                    strArray = new string[] { strTextCase };
+
+                    strSQLInput = string.Format(strSQLInput, strArray);
 
                     //SQLのインスタンス作成
                     dbconnective = new DBConnective();
 
                     //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
+                    dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
                 default:
                     return(dtSetData);
@@ -252,116 +287,12 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///txtLieave
-        ///code入力箇所からフォーカスが外れた時(Grid表示関係)
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
-        ///</summary>
-        public DataTable txtLieave(int intDBjud, string strTxtDaibunrui, string strTxtChubunrui, string strTxtMaker)
-        {
-            //テキストボックスのデータを確保
-            string strTextCase = "";
-
-            //SQL文の確保
-            string strSQL = "";
-
-            //SQL出力後のデータテーブル
-            DataTable dtSetData = null;
-
-            //どこのDBを参照するか
-            switch (intDBjud)
-            {
-                case 1://大分類
-
-                    if (strTxtDaibunrui == "")
-                    {
-                        strTxtDaibunrui = "";
-                        return (dtSetData);
-                    }
-                    else if (strTxtDaibunrui.Length == 1)
-                    {
-                        strTextCase = strTxtDaibunrui.ToString().PadLeft(2, '0');
-                    }
-                    else
-                    {
-                        strTextCase = strTxtDaibunrui;
-                    }
-
-                    strSQL = "SELECT * FROM 大分類 ";
-                    strSQL = strSQL + " WHERE 大分類コード='" + strTextCase + "'";
-                    strSQL = strSQL + " AND 削除='N'";
-
-                    //SQLのインスタンス作成
-                    DBConnective dbconnective = new DBConnective();
-
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
-                    break;
-                case 2://中分類
-                    if (strTxtChubunrui == "")
-                    {
-                        strTxtChubunrui = "";
-                        return (dtSetData);
-                    }
-                    else if (strTxtChubunrui.Length == 1)
-                    {
-                        strTextCase = strTxtChubunrui.ToString().PadLeft(2, '0');
-                    }
-                    else
-                    {
-                        strTextCase = strTxtChubunrui;
-                    }
-                    strSQL = "SELECT 中分類コード,中分類名 FROM 中分類 ";
-                    strSQL = strSQL + " WHERE 中分類コード='" + strTextCase + "'AND 大分類コード='" + strTxtDaibunrui + "'";
-                    strSQL = strSQL + " AND 削除='N'";
-
-                    //SQLのインスタンス作成
-                    dbconnective = new DBConnective();
-
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
-                    break;
-                case 3://メーカー
-                    if (strTxtMaker == "")
-                    {
-                        strTxtMaker = "";
-                        return (dtSetData);
-                    }
-                    else if (strTxtMaker.Length <= 2)
-                    {
-                        strTextCase = strTxtMaker.ToString().PadLeft(3, '0');
-                    }
-                    else
-                    {
-                        strTextCase = strTxtMaker;
-                    }
-                    strSQL = "SELECT メーカーコード,メーカー名 FROM メーカー ";
-                    strSQL = strSQL + " WHERE メーカーコード='" + strTextCase + "'";
-                    strSQL = strSQL + " AND 削除='N'";
-
-                    //SQLのインスタンス作成
-                    dbconnective = new DBConnective();
-
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSetData = dbconnective.ReadSql(strSQL);
-                    break;
-                default:
-                    return (dtSetData);
-            }
-            return (dtSetData);
-        }
-
-
-        ///<summary>
         ///setSelectItem
         ///各画面へのデータ渡し
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/4/7
+        ///更新日：2017/4/12
         ///カラム論理名
         ///</summary>
         public void setSelectItem(List<int> lstInt, List<string> lstString)
@@ -377,13 +308,67 @@ namespace KATO.Common.Business
             DataTable dtShohinTanaIDMAX = new DataTable();
             DataTable dtShohinTanaName = new DataTable();
 
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            string strSQLNameM = null;
+            string strSQLNameD = null;
+            string strSQLNameC = null;
+
+            strSQLNameM = "C_LIST_Maker_SELECT_LEAVE";
+            strSQLNameD = "C_LIST_Daibun_SELECT_LEAVE";
+            strSQLNameC = "C_LIST_Chubun_SELECT_LEAVE";
+
+            //配列設定
+            string[] strArrayM = { lstString[3] };
+
+            //Makerの処理
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLNameM);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            strSQLInput = string.Format(strSQLInput, strArrayM);
+
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+            dtMaker = dbconnective.ReadSql(strSQLInput);
 
-            dtMaker = dbconnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N' AND メーカー名 = '" + lstString[3] + "'");
-            dtDaibun = dbconnective.ReadSql("SELECT 大分類コード, 大分類名 FROM 大分類 WHERE 削除 = 'N' AND 大分類名 = '" + lstString[4] + "'");
-            dtChubun = dbconnective.ReadSql("SELECT 中分類コード, 中分類名 FROM 中分類 WHERE 削除 = 'N' AND 大分類コード = '" + dtDaibun.Rows[0]["大分類コード"].ToString() + "' AND 中分類名 = '" + lstString[5] + "'");
+            //大分類の処理
+            lstStringSQL = new List<string>();
 
+            string[] strArrayD = { lstString[4] };
+
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLNameD);
+
+            strSQLInput = null;
+
+            strSQLInput = opensql.setOpenSQL(lstStringSQL);
+            strSQLInput = string.Format(strSQLInput, strArrayD);
+
+            dtDaibun = dbconnective.ReadSql(strSQLInput);
+
+
+            ////中分類の処理
+            //lstStringSQL = new List<string>();
+
+//大分類名で調べるSQLが必要
+            string[] strArrayC = { dtDaibun.Rows[0]["大分類コード"].ToString(), lstString[5] };
+
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLNameC);
+
+            strSQLInput = null;
+
+            strSQLInput = opensql.setOpenSQL(lstStringSQL);
+            strSQLInput = string.Format(strSQLInput, strArrayC);
+
+            dtChubun = dbconnective.ReadSql(strSQLInput);
+
+//テストから
             dtShohinTanaID = dbconnective.ReadSql("SELECT 棚番, 棚卸年月日, 指定日在庫, 棚卸数量 FROM 棚卸記入表 WHERE 商品コード = '" + lstString[2] + "'AND 営業所コード = '" + lstString[1] + "'ORDER BY 棚卸年月日 DESC");
 
             dtShohinTanaName = dbconnective.ReadSql("SELECT 棚番名 FROM 棚番 WHERE 棚番 = '" + dtShohinTanaID.Rows[0]["棚番"].ToString() + "'");
@@ -401,7 +386,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (frm.Name == "TanaorosiInput")
+                if (frm.Name == "F0140_TanaorosiInput")
                 {
                     //データ渡し用
                     lstStringTana.Add(lstString[2]);
@@ -414,7 +399,7 @@ namespace KATO.Common.Business
                     lstDTTana.Add(dtShohinTanaName);
 
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setShouhin(lstStringTana, lstDTTana);
                     break;
                 }
@@ -427,7 +412,7 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
         public void setEndAction(int intFrmKind)
@@ -436,19 +421,19 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name.Equals("Daibunrui"))
+                if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
                 {
                     MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name.Equals("Chubunrui"))
+                else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
                 {
                     MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "TanaorosiInput")
+                else if (intFrmKind == 5 && frm.Name == "F0140_TanaorosiInput")
                 {
                     ////データを連れてくるため、newをしないこと
                     //TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;

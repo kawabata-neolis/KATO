@@ -1,9 +1,9 @@
 ﻿using KATO.Common.Form;
 using KATO.Common.Util;
-using KATO.Form.M_Chubunrui;
-using KATO.Form.M_Daibunrui;
-using KATO.Form.M_Maker;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.M1010_Daibunrui;
+using KATO.Form.M1110_Chubunrui;
+using KATO.Form.M1020_Maker;
+using KATO.Form.F0140_TanaorosiInput;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,26 +14,42 @@ using System.Windows.Forms;
 
 namespace KATO.Common.Business
 {
+    //ここから修正
+
     class MakerList_B
     {
+        string strSQLName = null;
+
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
-        ///作成者：大河内
-        ///作成日：2017/3/23
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         public DataTable setDatagridView()
         {
             DataTable dtGetTableGrid = new DataTable();
 
             //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            strSQLName = "";
+
+            strSQLName = "MakerList_View";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("CommonForm");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            strSQLInput = string.Format(strSQLInput);
 
             //検索データを表示
-            dtGetTableGrid = dbConnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N'");
+            dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
 
             return (dtGetTableGrid);
         }
@@ -44,41 +60,33 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
-        public DataTable setKensaku(string strTxtDaibun, string strTxtKensaku, int RadioBtnJud)
+        public DataTable setKensaku(List<int> lstInt, List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strWhere = null;
 
             //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
 
             strWhere = "WHERE a.削除 = 'N'";
 
             //大分類
-            if (strTxtDaibun != "")
+            if (lstString[0] != "")
             {
-                strWhere = strWhere + " AND a.メーカーコード IN (SELECT メーカーコード FROM 商品 WHERE 削除 = 'N' AND 大分類コード = '" + strTxtDaibun + "')";
+                strWhere = strWhere + " AND a.メーカーコード IN (SELECT メーカーコード FROM 商品 WHERE 削除 = 'N' AND 大分類コード = '" + lstString[0] + "')";
             }
 
-            if (strTxtKensaku != "")
+            if (lstString[1] != "")
             {
                 //現行では検索不可能だが可能になった
-                strWhere = strWhere + "AND a.メーカー名 LIKE '%" + strTxtKensaku + "%'";
+                strWhere = strWhere + "AND a.メーカー名 LIKE '%" + lstString[1] + "%'";
             }
 
-            //並び替えボタンクリック時の動き
-            if (RadioBtnJud == 1)
-            {
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.メーカーコード, a.メーカー名 FROM メーカー a " + strWhere + " ORDER BY a.メーカーコード");
-            }
-            else
-            {
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.メーカーコード, a.メーカー名 FROM メーカー a " + strWhere + " ORDER BY a.メーカー名");
-            }
+            dtGetTableGrid = dbconnective.ReadSql("SELECT a.メーカーコード, a.メーカー名 FROM メーカー a " + strWhere );
             return (dtGetTableGrid);
         }
 
@@ -89,56 +97,58 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void setEndAction(List<int> lstInt)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name == "M_Daibunrui")
+                if (lstInt[0] == 1 && frm.Name == "M1010_Daibunrui")
                 {
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name == "M_Cyubunrui")
+                else if (lstInt[0] == 2 && frm.Name == "M1110_Chubunrui")
                 {
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 3 && frm.Name == "M_Maker")
+                else if (lstInt[0] == 3 && frm.Name == "M1020_Maker")
                 {
                     //データを連れてくるため、newをしないこと
-                    M_Maker maker = (M_Maker)frm;
+                    M1020_Maker maker = (M1020_Maker)frm;
                     maker.setmakerListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "TanaorosiInput")
+                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setMakerListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 6 && frm.Name == "TanaorosiInput")
+                else if (lstInt[0] == 6 && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setMakerListCloseEdit();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 7 && frm.Name == "ShouhinList")
+                else if (lstInt[0] == 7 && frm.Name == "ShouhinList")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinlist = (ShouhinList)frm;
                     shouhinlist.setMakerListClose();
+                    break;
+                }
+                else
+                {
                     break;
                 }
 
@@ -152,83 +162,65 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
-        public void setSelectItem(int intFrmKind, string strSelectid)
+        public void setSelectItem(List<int> lstInt, List<string> lstString)
         {
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
-            switch (intFrmKind)
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            strSQLName = "C_LIST_Maker_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            //配列設定
+            string[] strArray = { lstString[0] };
+
+            strSQLInput = string.Format(strSQLInput, strArray);
+
+            //SQL文を直書き（＋戻り値を受け取る)
+            dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+            switch (lstInt[0])
             {
                 //大分類
                 case 1:
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 //中分類
                 case 2:
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
 
                 //メーカー
                 case 3:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N' AND メーカーコード = '" + strSelectid + "'");
-
                     //全てのフォームの中から
                     foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                     {
                         //目的のフォームを探す
-                        if (frm.Name == "M_Maker")
+                        if (frm.Name == "M1020_Maker")
                         {
                             //データを連れてくるため、newをしないこと
-                            M_Maker maker = (M_Maker)frm;
+                            M1020_Maker maker = (M1020_Maker)frm;
                             maker.setMakerCode(dtSelectData);
                             break;
                         }
                     }
                     break;
                 case 5:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N' AND メーカーコード = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name == "TanaorosiInput")
-                        {
-                            //データを連れてくるため、newをしないこと
-                            TanaorosiInput tanaorosinput = (TanaorosiInput)frm;
-                            tanaorosinput.setMakerCode(dtSelectData);
-                            break;
-                        }
-                    }
                     break;
                 case 6:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N' AND メーカーコード = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name == "TanaorosiInput")
-                        {
-                            //データを連れてくるため、newをしないこと
-                            TanaorosiInput tanaorosinput = (TanaorosiInput)frm;
-                            tanaorosinput.setMakerEdit(dtSelectData);
-                            break;
-                        }
-                    }
                     break;
                 case 7:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT メーカーコード, メーカー名 FROM メーカー WHERE 削除 = 'N' AND メーカーコード = '" + strSelectid + "'");
-
                     //全てのフォームの中から
                     foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                     {
@@ -242,6 +234,8 @@ namespace KATO.Common.Business
                         }
                     }
                     break;
+                default:
+                    break;
             }
         }
 
@@ -251,18 +245,36 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/29
         ///更新者：大河内
-        ///更新日：2017/3/29
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
-        public DataTable judtxtDaibunTextLeave(string strTxtDaibun)
+        public DataTable judtxtDaibunTextLeave(List<string> lstString)
         {
             DataTable dtGetTable = new DataTable();
 
             //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
 
-            //該当する大分類コードと名前を確保
-            dtGetTable = dbConnective.ReadSql("SELECT 大分類名 FROM 大分類 WHERE 大分類コード = '" + strTxtDaibun + "' AND 削除 = 'N'");
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            //配列設定
+            string[] strArray = { lstString[0] };
+
+            strSQLInput = string.Format(strSQLInput, strArray);
+
+            //SQL文を直書き（＋戻り値を受け取る)
+            dtGetTable = dbconnective.ReadSql(strSQLInput);
 
             return (dtGetTable);
         }

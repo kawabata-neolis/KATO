@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace KATO.Common.Util
 {
-    class StringUtl
+    static class StringUtl
     {
         //
         //文字判定
         //
-        public bool blIsEmpty(string strText)
+        //名前修正
+        public static bool blIsEmpty(string strText)
         {
             Boolean good = true;
 
@@ -21,5 +22,25 @@ namespace KATO.Common.Util
             }
             return (good);
         }
+
+        //
+        //カレンダーのチェック
+        //
+        public static bool JudCalenderCheck(string strData)
+        {
+            Boolean good = true;
+            DateTime datiSub;
+
+            if (DateTime.TryParse(strData, out datiSub) == false)
+            {
+                good = false;
+            }
+            return (good);
+        }
+
+        //
+        //禁止文字チェック（個々を呼び出す形になるのでまとめて処理できるように）(戻り値はboolean）
+        //
+
     }
 }

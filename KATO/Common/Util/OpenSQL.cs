@@ -13,11 +13,6 @@ namespace KATO.Common.Util
         ///<summary>
         ///setOpenSQL
         ///SQL文ファイルの取り出し
-        ///作成者：大河内
-        ///作成日：2017/3/22
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         public string setOpenSQL(List<string> lstStringSQL)
         {
@@ -34,9 +29,13 @@ namespace KATO.Common.Util
                 {
                     BaseFilePath = "../../SQL/" + lstStringSQL[0] + ".sql";
                 }
-                else
+                else if (lstStringSQL.Count == 2)
                 {
                     BaseFilePath = "../../SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + ".sql";
+                }
+                else if (lstStringSQL.Count == 3)
+                {
+                    BaseFilePath = "../../SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + "/" + lstStringSQL[2] + ".sql";
                 }
 
                 //UTF - 8
@@ -50,7 +49,6 @@ namespace KATO.Common.Util
             }
             catch
             {
-                MessageBox.Show("エラー発生", "警告", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return("");
             }
             finally

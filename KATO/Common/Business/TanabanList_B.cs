@@ -1,5 +1,5 @@
 ﻿using KATO.Common.Util;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.F0140_TanaorosiInput;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,10 +26,10 @@ namespace KATO.Common.Business
             DataTable dtGetTableGrid = new DataTable();
 
             //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
 
             //検索データを表示
-            dtGetTableGrid = dbConnective.ReadSql("SELECT 棚番, 棚番名 FROM 棚番 WHERE 削除 = 'N'");
+            dtGetTableGrid = dbconnective.ReadSql("SELECT 棚番, 棚番名 FROM 棚番 WHERE 削除 = 'N'");
 
             return (dtGetTableGrid);
 
@@ -41,7 +41,7 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
         public void setEndAction(int intFrmKind)
@@ -50,31 +50,35 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name.Equals("Daibunrui"))
+                if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
                 {
                     MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name.Equals("Cyubunrui"))
+                else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
                 {
                     MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "TanaorosiInput")
+                else if (intFrmKind == 5 && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setTanabanListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 6 && frm.Name == "TanaorosiInput")
+                else if (intFrmKind == 6 && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setTanaListCloseEdit();
+                    break;
+                }
+                else
+                {
                     break;
                 }
             }
@@ -87,7 +91,7 @@ namespace KATO.Common.Business
         ///作成者：大河内
         ///作成日：2017/3/23
         ///更新者：大河内
-        ///更新日：2017/3/23
+        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>        
         public void setSelectItem(int intFrmKind, string strSelectid)
@@ -95,8 +99,10 @@ namespace KATO.Common.Business
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
+
             DBConnective dbconnective = new DBConnective();
 
+            //通常テキストボックスの場合に使用する
             switch (intFrmKind)
             {
                 //大分類
@@ -107,39 +113,11 @@ namespace KATO.Common.Business
                     break;
                 //棚番
                 case 5:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 棚番, 棚番名 FROM 棚番 WHERE 棚番 = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name == "TanaorosiInput")
-                        {
-                            //データを連れてくるため、newをしないこと
-                            TanaorosiInput tanaorosinput = (TanaorosiInput)frm;
-                            tanaorosinput.setTanabanCode(dtSelectData);
-                            break;
-                        }
-                    }
                     break;
                 //棚番(編集)
                 case 6:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 棚番, 棚番名 FROM 棚番 WHERE 棚番 = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name == "TanaorosiInput")
-                        {
-                            //データを連れてくるため、newをしないこと
-                            TanaorosiInput tanaorosinput = (TanaorosiInput)frm;
-                            tanaorosinput.setTanabanEdit(dtSelectData);
-                            break;
-                        }
-                    }
+                    break;
+                default:
                     break;
             }
         }

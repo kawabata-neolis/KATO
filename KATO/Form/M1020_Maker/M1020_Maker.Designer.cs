@@ -1,9 +1,9 @@
 ﻿using KATO.Common.Ctl;
 using KATO.Common.Util;
 
-namespace KATO.Form.M_Maker
+namespace KATO.Form.M1020_Maker
 {
-    partial class M_Maker
+    partial class M1020_Maker
     {
         /// <summary>
         /// Required designer variable.
@@ -114,6 +114,7 @@ namespace KATO.Form.M_Maker
             this.baseLabel2.Size = new System.Drawing.Size(87, 15);
             this.baseLabel2.TabIndex = 87;
             this.baseLabel2.Text = "メーカー名";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // baseLabel1
             // 
@@ -124,18 +125,19 @@ namespace KATO.Form.M_Maker
             this.baseLabel1.Size = new System.Drawing.Size(119, 15);
             this.baseLabel1.TabIndex = 88;
             this.baseLabel1.Text = "メーカーコード";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // M_Maker
+            // M1020_Maker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 831);
+            this.ClientSize = new System.Drawing.Size(1424, 828);
             this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.baseLabel2);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtMaker);
-            this.Name = "M_Maker";
-            this.Text = "Maker";
+            this.Name = "M1020_Maker";
+            this.Text = "M1020_Maker";
             this.Load += new System.EventHandler(this.M_Maker_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);

@@ -8,6 +8,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Common.Form
 {
@@ -29,8 +30,20 @@ namespace KATO.Common.Form
 
         }
 
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+            }
+        }
+
+
         private void TantousyaList_Load(object sender, EventArgs e)
         {
+            this.Show();
+            this._Title = "担当者リスト";
 
         }
 

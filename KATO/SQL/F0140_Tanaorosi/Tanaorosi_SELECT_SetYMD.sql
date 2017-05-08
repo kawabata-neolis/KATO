@@ -1,0 +1,1 @@
+SELECT MAX(棚卸年月日) FROM 棚卸記入表

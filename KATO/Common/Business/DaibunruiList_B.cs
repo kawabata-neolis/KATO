@@ -7,178 +7,197 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Common.Util;
-using KATO.Form.M_Chubunrui;
-using KATO.Form.M_Daibunrui;
-using KATO.Form.TanaorosiInput;
+using KATO.Form.M1010_Daibunrui;
+using KATO.Form.M1110_Chubunrui;
+using KATO.Form.F0140_TanaorosiInput;
 
 namespace KATO.Common.Business
 {
+    ///<summary>
+    ///DaibunruiList_B
+    ///中分類リストフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     class DaibunruiList_B
     {
+        string strSQLName = null;
 
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
-        ///作成者：大河内
-        ///作成日：2017/3/22
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         public DataTable setDatagridView()
         {
             DataTable dtGetTableGrid = new DataTable();
 
             //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //データ渡し用
+                List<string> lstStringSQL = new List<string>();
 
-            //検索データを表示
-            dtGetTableGrid = dbConnective.ReadSql("SELECT 大分類コード, 大分類名 FROM 大分類 WHERE 削除 = 'N'");
+                strSQLName = "";
 
+                strSQLName = "DaibunruiList_View";
+
+                //データ渡し用
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add("CommonForm");
+                lstStringSQL.Add(strSQLName);
+
+                OpenSQL opensql = new OpenSQL();
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                //検索データを表示
+                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception e)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+
+                new CommonException(e);
+                throw (e);
+            }
             return (dtGetTableGrid);
         }
 
         ///<summary>
         ///setEndAction
         ///元の画面に戻る
-        ///作成者：大河内
-        ///作成日：2017/3/23
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void setEndAction(List<int> lstInt)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name.Equals("M_Daibunrui"))
+                if (lstInt[0] == 1 && frm.Name.Equals("M1010_Daibunrui"))
                 {
                     //データを連れてくるため、newをしないこと
-                    M_Daibunrui daibunrui = (M_Daibunrui)frm;
+                    M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
                     daibunrui.setDaibunruiListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name.Equals("M_Chubunrui"))
+                else if (lstInt[0] == 2 && frm.Name.Equals("M1110_Chubunrui"))
                 {
                     //データを連れてくるため、newをしないこと
-                    M_Chubunrui daibunrui = (M_Chubunrui)frm;
-                    daibunrui.setDaibunruiListClose();
+                    M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
+                    chubunrui.setDaibunruiListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "TanaorosiInput")
+                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    TanaorosiInput tanaorosiinput = (TanaorosiInput)frm;
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setDaibunruiListClose();
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 7 && frm.Name == "ShouhinList")
+                else if (lstInt[0] == 7 && frm.Name == "ShouhinList")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinsist = (ShouhinList)frm;
                     shouhinsist.setDaibunruiListClose();
                     break;
                 }
+                else
+                {
+                    break;
+                }
             }
-
         }
 
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択後の処理
-        ///作成者：大河内
-        ///作成日：2017/3/23
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>        
-        public void setSelectItem(int intFrmKind, string strSelectid)
+        public void setSelectItem(List<int> lstInt, List<string> lstString)
         {
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
-            switch (intFrmKind)
+            try
             {
-                //大分類
-                case 1:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 大分類コード, 大分類名,ラベル名１,ラベル名２,ラベル名３,ラベル名４,ラベル名５,ラベル名６ FROM 大分類 WHERE 大分類コード = '" + strSelectid + "'");
+                //データ渡し用
+                List<string> lstStringSQL = new List<string>();
 
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name.Equals("M_Daibunrui"))
+                strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+
+                //データ渡し用
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add(strSQLName);
+
+                OpenSQL opensql = new OpenSQL();
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                //配列設定
+                string[] strArray = { lstString[0] };
+
+                strSQLInput = string.Format(strSQLInput, strArray);
+
+                dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+                switch (lstInt[0])
+                {
+                    //大分類
+                    case 1:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //データを連れてくるため、newをしないこと
-                            M_Daibunrui daibunrui = (M_Daibunrui)frm;
-                            daibunrui.setDaibunrui(dtSelectData);
-                            break;
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1010_Daibunrui"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
+                                daibunrui.setDaibunrui(dtSelectData);
+                                break;
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                //中分類
-                case 2:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 大分類コード, 大分類名 FROM 大分類 WHERE 大分類コード = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name.Equals("M_Chubunrui"))
+                    //中分類
+                    case 2:
+                        break;
+                    //棚番
+                    case 5:
+                        break;
+                    //商品リスト
+                    case 7:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //データを連れてくるため、newをしないこと
-                            M_Chubunrui daibunrui = (M_Chubunrui)frm;
-                            daibunrui.setDaibunrui(dtSelectData);
-                            break;
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("ShouhinList"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                ShouhinList shouhinlist = (ShouhinList)frm;
+                                shouhinlist.setDaibunrui(dtSelectData);
+                                break;
+                            }
                         }
-                    }
-                    break;
-                //棚番
-                case 5:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 大分類コード, 大分類名 FROM 大分類 WHERE 大分類コード = '" + strSelectid + "'");
+                        break;
+                    default:
+                        break;
+                }
 
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name.Equals("TanaorosiInput"))
-                        {
-                            //データを連れてくるため、newをしないこと
-                            TanaorosiInput tanaorosinput = (TanaorosiInput)frm;
-                            tanaorosinput.setDaibunrui(dtSelectData);
-                            break;
-                        }
-                    }
-                    break;
-                //商品リスト
-                case 7:
-                    //SQL文を直書き（＋戻り値を受け取る)
-                    dtSelectData = dbconnective.ReadSql("SELECT 大分類コード, 大分類名 FROM 大分類 WHERE 大分類コード = '" + strSelectid + "'");
-
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name.Equals("ShouhinList"))
-                        {
-                            //データを連れてくるため、newをしないこと
-                            ShouhinList shouhinlist = (ShouhinList)frm;
-                            shouhinlist.setDaibunrui(dtSelectData);
-                            break;
-                        }
-                    }
-                    break;
+            }
+            catch (Exception e)
+            {
+                new CommonException(e);
+                throw (e);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
             }
         }
     }
