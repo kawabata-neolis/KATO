@@ -18,7 +18,7 @@ namespace KATO
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new KATO.Form.M_Daibunrui.M_Daibunrui());
 
-            //2017.04.21 kawab
+            //2017.04.21 suyama
 
         }
     }
