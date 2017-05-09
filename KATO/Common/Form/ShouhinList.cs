@@ -11,10 +11,19 @@ using KATO.Form.F0140_TanaorosiInput;
 using KATO.Common.Util;
 using KATO.Common.Business;
 using static KATO.Common.Util.CommonTeisu;
-
+using KATO.Common.Ctl;
 
 namespace KATO.Common.Form
 {
+    ///<summary>
+    ///ShouhinList
+    ///商品リストフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class ShouhinList : System.Windows.Forms.Form
     {
         //他画面からという判断データ
@@ -41,6 +50,10 @@ namespace KATO.Common.Form
         //DB参照の場所を判断（テキストボックスから）
         int intDBjud = 0;
 
+        /// <summary>
+        /// ShouhinList
+        /// フォーム関係の設定（通常のテキストボックスから）
+        /// </summary>
         public ShouhinList(Control c)
         {
             if (c == null)
@@ -63,6 +76,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// _Title
+        /// タイトルの設定
+        /// </summary>
         public string _Title
         {
             set
@@ -72,7 +89,10 @@ namespace KATO.Common.Form
             }
         }
 
-
+        /// <summary>
+        /// MakerList_Load
+        /// 読み込み時
+        /// </summary>
         private void ShouhinList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -95,10 +115,6 @@ namespace KATO.Common.Form
 
             gmode = mode;
 
-            lblDspDaibunrui.TextAlign = ContentAlignment.MiddleLeft;
-            lblDspChubunrui.TextAlign = ContentAlignment.MiddleLeft;
-            lblDspMaker.TextAlign = ContentAlignment.MiddleLeft;
-
             //未登録棚番を使用する場合
             check1.Checked = false;
         }
@@ -106,11 +122,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///dgvSetUp
         ///DataGridView初期設定
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void dgvSetUp()
         {
@@ -188,11 +199,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setStart
         ///DataGridView初期設定続き
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void setStart()
         {
@@ -248,11 +254,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///judShouhinListKeyDown
         ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void judShouhinListKeyDown(object sender, KeyEventArgs e)
         {
@@ -312,11 +313,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setMoveOrder
         ///form内のエンターによるタブオーダー機能
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void setMoveOrder(object sender, KeyEventArgs e)
         {
@@ -330,11 +326,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///judDgvToriKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>        
         private void judDgvToriKeyDown(object sender, KeyEventArgs e)
         {
@@ -391,58 +382,20 @@ namespace KATO.Common.Form
                 default:
                     break;
             }
-
         }
-
-
-        /////<summary>
-        /////judDaibunruiKeyDown
-        /////コード入力項目でのキー入力判定（大分類）
-        /////作成者：大河内
-        /////作成日：2017/3/17
-        /////更新者：大河内
-        /////更新日：2017/3/17
-        /////カラム論理名
-        /////</summary>
-        //private void judDaibunruiKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.F9)
-        //    {
-        //        DaibunruiList daibunruiList = new DaibunruiList(this);
-        //        daibunruiList.Left = 100;
-        //        daibunruiList.StartPosition = FormStartPosition.Manual;
-        //        daibunruiList.intFrmKind = CommonTeisu.FRM_SHOUHINLIST;
-        //        daibunruiList.Show();
-        //    }
-        //    else
-        //    {
-        //        setMoveOrder(sender, e);
-        //    }
-        //}
-
+        
         ///<summary>
         ///setTorihikiDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         private void dgvTorihiki_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
-
-
+        
         ///<summary>
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         private void setSelectItem()
         {
@@ -478,20 +431,20 @@ namespace KATO.Common.Form
             lstString.Add(strSelectid);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
-            shohinlistB.setSelectItem(lstInt, lstString);
-
+            try
+            {
+                shohinlistB.setSelectItem(lstInt, lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
             setEndAction();
         }
-
-
+        
         ///<summary>
         ///setTextData
         ///前画面のデータを記入
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void setTextData()
         {
@@ -500,34 +453,28 @@ namespace KATO.Common.Form
 
             if (strDaibunruiCode.Length >= 1)
             {
-                txtDaibunrui.Text = strDaibunruiCode;
+                labelSet_Daibunrui.CodeTxtText = strDaibunruiCode;
                 intDBjud = 1;
                 setLabel(intDBjud);
             }
             if (strChubunruiCode.Length >= 1)
             {
-                txtChubunrui.Text = strChubunruiCode;
+                labelSet_Chubunrui.CodeTxtText = strChubunruiCode;
                 intDBjud = 2;
                 setLabel(intDBjud);
             }
             if (strMakerCode.Length >= 1)
             {
-                txtMaker.Text = strMakerCode;
+                labelSet_Maker.CodeTxtText = strMakerCode;
                 intDBjud = 3;
                 setLabel(intDBjud);
             }
             txtKensaku.Text = strKensaku;
         }
-
-
+        
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
@@ -537,29 +484,26 @@ namespace KATO.Common.Form
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void setEndAction()
         {
             this.Close();
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
-            shohinlistB.setEndAction(intFrmKind);
+            try
+            {
+                shohinlistB.setEndAction(intFrmKind);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
 
         ///<summary>
         ///btnKensakuClick
         ///検索ボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
@@ -584,13 +528,8 @@ namespace KATO.Common.Form
 
 
         ///<summary>
-        ///setKensaku
+        ///setShohinView
         ///検索データを記入
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         private void setShohinView(List<int> lstIntMode)
         {
@@ -607,9 +546,9 @@ namespace KATO.Common.Form
             lstInt.Add(gmode);
             lstInt.Add(lstIntMode[0]);
 
-            lstString.Add(txtDaibunrui.Text);
-            lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtMaker.Text);
+            lstString.Add(labelSet_Daibunrui.CodeTxtText);
+            lstString.Add(labelSet_Chubunrui.CodeTxtText);
+            lstString.Add(labelSet_Maker.CodeTxtText);
             lstString.Add(txtKensaku.Text);
             lstString.Add(txtHon.Text);
             lstString.Add(txtGifu.Text);
@@ -617,24 +556,26 @@ namespace KATO.Common.Form
             lstBoolean.Add(check1.Checked);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
-            dtView = shohinlistB.setShohinView(lstInt,lstString,lstBoolean);
+            try
+            {
+                dtView = shohinlistB.setShohinView(lstInt, lstString, lstBoolean);
 
-            dgvTorihiki.DataSource = dtView;
-            this.dgvTorihiki.Columns["コード"].Visible = false;
-            this.dgvTorihiki.Columns["大分類名"].Visible = false;
+                dgvTorihiki.DataSource = dtView;
+                this.dgvTorihiki.Columns["コード"].Visible = false;
+                this.dgvTorihiki.Columns["大分類名"].Visible = false;
 
-            lblRecords.Text = "該当件数(" + dgvTorihiki.RowCount.ToString() + "件)" ;
-            dgvTorihiki.Focus();
+                lblRecords.Text = "該当件数(" + dgvTorihiki.RowCount.ToString() + "件)";
+                dgvTorihiki.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///<summary>
         ///setLabel
         ///textboxのデータをlabelに記入
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         private void setLabel(int intDBjud)
         {
@@ -645,75 +586,79 @@ namespace KATO.Common.Form
             DataTable dtSetData = new DataTable();
 
             //データ渡し用
-            lstString.Add(txtDaibunrui.Text);
-            lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtMaker.Text);
+            lstString.Add(labelSet_Daibunrui.CodeTxtText);
+            lstString.Add(labelSet_Chubunrui.CodeTxtText);
+            lstString.Add(labelSet_Maker.CodeTxtText);
 
             lstInt.Add(intDBjud);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
-            dtSetData = shohinlistB.setLabel(lstString, lstInt);
-
-            //テキストボックスが空白のままの場合
-            if (dtSetData == null)
+            try
             {
-                return;
-            }
+                dtSetData = shohinlistB.setLabel(lstString, lstInt);
 
-            if (dtSetData.Rows.Count != 0)
-            {
-                switch (intDBjud)
+                //テキストボックスが空白のままの場合
+                if (dtSetData == null)
                 {
-                    case 1://大分類
-                        txtDaibunrui.Text = dtSetData.Rows[0]["大分類コード"].ToString();
-                        lblDspDaibunrui.Text = dtSetData.Rows[0]["大分類名"].ToString();
-                        break;
-                    case 2://中分類
-                        txtChubunrui.Text = dtSetData.Rows[0]["中分類コード"].ToString();
-                        lblDspChubunrui.Text = dtSetData.Rows[0]["中分類名"].ToString();
-                        break;
-                    case 3://メーカー
-                        txtMaker.Text = dtSetData.Rows[0]["メーカーコード"].ToString();
-                        lblDspMaker.Text = dtSetData.Rows[0]["メーカー名"].ToString();
-                        break;
-                    default:
-                        return;
+                    return;
                 }
-                //初期化
-                intDBjud = 0;
-            }
-            else
-            {
-                MessageBox.Show("入力された文字列が正しくありません。", "入力項目", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                switch (intDBjud)
+                if (dtSetData.Rows.Count != 0)
                 {
-                    case 1://大分類
-                        lblDspDaibunrui.Text = "";
-                        txtDaibunrui.Focus();
-                        break;
-                    case 2://中分類
-                        lblDspChubunrui.Text = "";
-                        txtChubunrui.Focus();
-                        break;
-                    case 3://メーカー
-                        lblDspMaker.Text = "";
-                        txtMaker.Focus();
-                        break;
-                    default:
-                        return;
+                    switch (intDBjud)
+                    {
+                        case 1://大分類
+                            labelSet_Daibunrui.CodeTxtText = dtSetData.Rows[0]["大分類コード"].ToString();
+                            labelSet_Daibunrui.ValueLabelText = dtSetData.Rows[0]["大分類名"].ToString();
+                            break;
+                        case 2://中分類
+                            labelSet_Chubunrui.CodeTxtText = dtSetData.Rows[0]["中分類コード"].ToString();
+                            labelSet_Chubunrui.ValueLabelText = dtSetData.Rows[0]["中分類名"].ToString();
+                            break;
+                        case 3://メーカー
+                            labelSet_Maker.CodeTxtText = dtSetData.Rows[0]["メーカーコード"].ToString();
+                            labelSet_Maker.ValueLabelText = dtSetData.Rows[0]["メーカー名"].ToString();
+                            break;
+                        default:
+                            return;
+                    }
+                    //初期化
+                    intDBjud = 0;
                 }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    switch (intDBjud)
+                    {
+                        case 1://大分類
+                            labelSet_Daibunrui.CodeTxtText = "";
+                            labelSet_Daibunrui.Focus();
+                            break;
+                        case 2://中分類
+                            labelSet_Chubunrui.CodeTxtText = "";
+                            labelSet_Chubunrui.Focus();
+                            break;
+                        case 3://メーカー
+                            labelSet_Maker.CodeTxtText = "";
+                            labelSet_Maker.Focus();
+                            break;
+                        default:
+                            return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
 
         ///<summary>
         ///btnHonshaZaikoClick
         ///本社在庫ボタン
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void btnHonshaZaikoClick(object sender, EventArgs e)
         {
@@ -748,11 +693,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///btnGifuZaikoClick
         ///岐阜在庫ボタン
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void btnGifuZaikoClick(object sender, EventArgs e)
         {
@@ -775,11 +715,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///ZaikoClick
         ///岐阜在庫ボタン
-        ///作成者：大河内
-        ///作成日：2017/4/7
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
         private void ZaikoClick(string mode)
         {
@@ -788,140 +723,93 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///
-        /// 
+        ///setDaibunrui
         ///取り出したデータをテキストボックスに配置（大分類）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setDaibunrui(DataTable dtSelectData)
         {
-            txtDaibunrui.Text = dtSelectData.Rows[0]["大分類コード"].ToString();
-            lblDspDaibunrui.Text = dtSelectData.Rows[0]["大分類名"].ToString();
+            labelSet_Daibunrui.CodeTxtText = dtSelectData.Rows[0]["大分類コード"].ToString();
+            labelSet_Daibunrui.ValueLabelText = dtSelectData.Rows[0]["大分類名"].ToString();
         }
 
         ///<summary>
         ///setCyubunrui
         ///取り出したデータをテキストボックスに配置（中分類）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setCyubunrui(DataTable dtSelectData)
         {
-            txtChubunrui.Text = dtSelectData.Rows[0]["中分類コード"].ToString();
-            lblDspChubunrui.Text = dtSelectData.Rows[0]["中分類名"].ToString();
+            labelSet_Chubunrui.CodeTxtText = dtSelectData.Rows[0]["中分類コード"].ToString();
+            labelSet_Chubunrui.ValueLabelText = dtSelectData.Rows[0]["中分類名"].ToString();
         }
 
         ///<summary>
         ///setMakerCode
         ///取り出したデータをテキストボックスに配置（メーカー）
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setMakerCode(DataTable dtSelectData)
         {
-            txtMaker.Text = dtSelectData.Rows[0]["メーカーコード"].ToString();
-            lblDspMaker.Text = dtSelectData.Rows[0]["メーカー名"].ToString();
+            labelSet_Maker.CodeTxtText = dtSelectData.Rows[0]["メーカーコード"].ToString();
+            labelSet_Maker.ValueLabelText = dtSelectData.Rows[0]["メーカー名"].ToString();
         }
 
         ///<summary>
         ///setDaibunruiListClose
         ///DaibunruiiListが閉じたらコード記入欄にフォーカス
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setDaibunruiListClose()
         {
-            txtDaibunrui.Focus();
+            labelSet_Daibunrui.Focus();
         }
 
         ///<summary>
         ///setChubunruiListClose
         ///ChubunruiListが閉じたらコード記入欄にフォーカス
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setChubunruiListClose()
         {
-            txtChubunrui.Focus();
+            labelSet_Chubunrui.Focus();
         }
 
         ///<summary>
         ///setMakerListClose
         ///MakerListが閉じたらコード記入欄にフォーカス
-        ///作成者：大河内
-        ///作成日：2017/3/17
-        ///更新者：大河内
-        ///更新日：2017/3/17
-        ///カラム論理名
         ///</summary>
         public void setMakerListClose()
         {
-            txtMaker.Focus();
+            labelSet_Maker.Focus();
         }
 
         ///<summary>
         ///txtDaibunruiLieave
         ///code入力箇所からフォーカスが外れた時(大分類)
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judDaibunruiLieave(object sender, EventArgs e)
         {
             intDBjud = 1;
-            lblDspDaibunrui.Text = "";
+            labelSet_Daibunrui.ValueLabelText = "";
             setLabel(intDBjud);
         }
 
         ///<summary>
         ///txtCyubunruiLieave
         ///code入力箇所からフォーカスが外れた時(中分類)
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judCyubunruiLieave(object sender, EventArgs e)
         {
             intDBjud = 2;
-            lblDspChubunrui.Text = "";
+            labelSet_Chubunrui.ValueLabelText = "";
             setLabel(intDBjud);
         }
 
         ///<summary>
         ///txtMakerLieave
         ///code入力箇所からフォーカスが外れた時(メーカー)
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judMakerLieave(object sender, EventArgs e)
         {
             intDBjud = 3;
-            lblDspMaker.Text = "";
+            labelSet_Maker.ValueLabelText = "";
             setLabel(intDBjud);
         }
-
     }
 }

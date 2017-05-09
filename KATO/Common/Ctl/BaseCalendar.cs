@@ -15,7 +15,7 @@ namespace KATO.Common.Ctl
     public partial class BaseCalendar : BaseText
     {
         //最初のクリックかの判断
-        Boolean blnFirstclick = true;
+        Boolean blnFirstClick = true;
 
         //記入の可不可
         Boolean blnEntry = true;
@@ -27,7 +27,6 @@ namespace KATO.Common.Ctl
         public BaseCalendar()
         {
             InitializeComponent();
-
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -72,7 +71,7 @@ namespace KATO.Common.Ctl
             this.BackColor = Color.Cyan;
 
             //this.SelectAll();
-            if (blnFirstclick == true && this.Text != "")
+            if (blnFirstClick == true && this.Text != "")
             {
                 //全選択
                 this.SelectAll();
@@ -81,7 +80,7 @@ namespace KATO.Common.Ctl
                 this.BeginInvoke(new MethodInvoker(() => this.SelectAll()));
 
                 //二回目以降のクリックに切り替える
-                blnFirstclick = false;
+                blnFirstClick = false;
             }
         }
 
@@ -112,7 +111,7 @@ namespace KATO.Common.Ctl
             this.BackColor = Color.White;
 
             //フォーカスが外れたのでリセット
-            blnFirstclick = true;
+            blnFirstClick = true;
 
             //何も書かれていない場合戻る
             if (updCalendarLeave == "")
@@ -177,7 +176,6 @@ namespace KATO.Common.Ctl
                 {
                     strD = strD.PadLeft(2, '0');
                 }
-
             }
             else if (strInData.Count() == 2)
             {
@@ -230,7 +228,6 @@ namespace KATO.Common.Ctl
 
                     //日部のみを取り出す
                     strD = strInData[0].Substring(strInData[0].Length - 2, 2);
-
                 }
                 else if (strInData[0].Length > 2)
                 {
@@ -342,21 +339,6 @@ namespace KATO.Common.Ctl
             {
                 e.Handled = true;
             }
-        }
-
-        //
-        //文字判定
-        //
-        public bool blIsEmpty()
-        {
-            Boolean good = true;
-
-            if (String.IsNullOrWhiteSpace(this.Text).Equals(true))
-            {
-                MessageBox.Show("項目が空です。項目を入力してください", "入力項目");
-                good = false;
-            }
-            return (good);
         }
     }
 }

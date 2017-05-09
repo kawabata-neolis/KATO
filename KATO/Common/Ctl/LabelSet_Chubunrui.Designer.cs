@@ -35,7 +35,7 @@
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtChubunruiLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtChubunruiLeave);
             // 
             // LabelSet_Chubunrui
             // 

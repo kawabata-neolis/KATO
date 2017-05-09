@@ -308,7 +308,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui_Edit.SpaceCodeValue = 4;
             this.labelSet_Chubunrui_Edit.SpaceNameCode = 4;
             this.labelSet_Chubunrui_Edit.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui_Edit.strDaibunCD = null;
+            this.labelSet_Chubunrui_Edit.strDaibunCd = null;
             this.labelSet_Chubunrui_Edit.TabIndex = 99;
             this.labelSet_Chubunrui_Edit.ValueLabelSize = 150;
             this.labelSet_Chubunrui_Edit.ValueLabelText = "";
@@ -390,7 +390,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtKensaku.Size = new System.Drawing.Size(186, 22);
             this.txtKensaku.TabIndex = 0;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaorosiKeyDown);
-            this.txtKensaku.Leave += new System.EventHandler(this.txtKensakuLeave);
+            this.txtKensaku.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
             // baseLabel9
             // 
@@ -444,7 +444,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtShouhinCD.Size = new System.Drawing.Size(81, 22);
             this.txtShouhinCD.TabIndex = 1;
             this.txtShouhinCD.Visible = false;
-            this.txtShouhinCD.Leave += new System.EventHandler(this.txtKensakuLeave);
+            this.txtShouhinCD.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
             // baseLabel7
             // 
@@ -502,7 +502,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui.SpaceCodeValue = 10;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui.strDaibunCD = null;
+            this.labelSet_Chubunrui.strDaibunCd = null;
             this.labelSet_Chubunrui.TabIndex = 2;
             this.labelSet_Chubunrui.ValueLabelSize = 150;
             this.labelSet_Chubunrui.ValueLabelText = "";

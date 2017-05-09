@@ -97,18 +97,27 @@ namespace KATO.Form.F0140_TanaorosiInput
                 F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();
                 dtYMD = tanaorosiinputB.setYMD();
 
-                string strYMD = dtYMD.Rows[0]["最新棚卸年月日"].ToString();
+                if (dtYMD.Rows.Count != 0)
+                {
+                    string strYMD = dtYMD.Rows[0]["最新棚卸年月日"].ToString();
 
-                txtYMD.Text = strYMD.Substring(0, 10);
+                    txtYMD.Text = strYMD.Substring(0, 10);
 
-                this.txtYMD.ReadOnly = true;
-                this.txtYMD.Enabled = false;
+                    this.txtYMD.ReadOnly = true;
+                    this.txtYMD.Enabled = false;
 
-                this.txtTyoubosuu.Enabled = false;
+                    this.txtTyoubosuu.Enabled = false;
 
-                this.btnF01.Text = STR_FUNC_F1;
-                this.btnF04.Text = STR_FUNC_F4;
-                this.btnF12.Text = STR_FUNC_F12;
+                    this.btnF01.Text = STR_FUNC_F1;
+                    this.btnF04.Text = STR_FUNC_F4;
+                    this.btnF12.Text = STR_FUNC_F12;
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -354,9 +363,9 @@ namespace KATO.Form.F0140_TanaorosiInput
                 labelSet_Eigyousho.Focus();
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -559,9 +568,9 @@ namespace KATO.Form.F0140_TanaorosiInput
                 blnEditting = false;
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -612,9 +621,9 @@ namespace KATO.Form.F0140_TanaorosiInput
                 txtTanasuu.Focus();
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -701,10 +710,10 @@ namespace KATO.Form.F0140_TanaorosiInput
         }
 
         ///<summary>
-        ///txtKensakuLeave
+        ///updTxtKensakuLeave
         //検索ウィンドウか別テキストボックスに移動
         ///</summary>
-        public void txtKensakuLeave(object sender, EventArgs e)
+        public void updTxtKensakuLeave(object sender, EventArgs e)
         {
             if(txtKensaku.TextLength > 0)
             {
@@ -730,7 +739,7 @@ namespace KATO.Form.F0140_TanaorosiInput
         }
 
         ///<summary>
-        ///txtKensakuLeave
+        ///judDGVCellChanged
         ///データグリッドビューに直接変更があった場合
         ///</summary>
         private void judDGVCellChanged(object sender, DataGridViewCellEventArgs e)

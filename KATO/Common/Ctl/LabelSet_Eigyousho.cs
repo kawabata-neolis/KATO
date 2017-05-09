@@ -13,13 +13,30 @@ using KATO.Form.Z0000;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Eigyousho
+    ///ラベルセット営業所
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Eigyousho : BaseTextLabelSet
     {
+        /// <summary>
+        /// LabelSet_Daibunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Eigyousho()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -28,11 +45,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///judEigyoushoKeyDown
         ///コード入力項目でのキー入力判定（営業所）
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judEigyoushoKeyDown(object sender, KeyEventArgs e)
         {
@@ -50,77 +62,35 @@ namespace KATO.Common.Ctl
             {
                 //閉じる
                 this.Parent.Dispose();
-                //this.Parent.Hide();
-                //Application.Exit();
-                //this.Parent = null;
-
-                //this.Parent.Dispose();
-                //Z0000 z0000 = new Z0000();
-                //z0000.Show();
             }
         }
 
         ///<summary>
-        ///txtEigyoushoLeave
-        ///code入力箇所からフォーカスが外れた時(テキスト処理)
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
+        ///updTxtEigyoushoLeave
+        ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void txtEigyoushoLeave(object sender, EventArgs e)
+        public void updTxtEigyoushoLeave(object sender, EventArgs e)
         {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            DataTable dtSetcode;
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-
             if (this.CodeTxtText.Length <= 3)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(this.CodeTxtText);
-
-            //処理部に移動
-            //戻り値のDatatableを取り込む
-            dtSetcode = judTxtEigyoushoLeave(lstString);
-
-            if (dtSetcode.Rows.Count != 0)
-            {
-                this.CodeTxtText = dtSetcode.Rows[0]["営業所コード"].ToString();
-                this.ValueLabelText = dtSetcode.Rows[0]["営業所名"].ToString();
-            }
-        }
-
-        ///<summary>
-        ///judTxtDaibunruiLeave
-        ///code入力箇所からフォーカスが外れた時(SQL処理)
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
-        ///</summary>
-        public DataTable judTxtEigyoushoLeave(List<string> lstString)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetcode_B = new DataTable();
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Eigyousho_SELECT_LEAVE";
 
@@ -129,34 +99,38 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
-                return (dtSetcode_B);
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                this.CodeTxtText = dtSetCd.Rows[0]["営業所コード"].ToString();
+                this.ValueLabelText = dtSetCd.Rows[0]["営業所名"].ToString();
+                return;
             }
-
-            //配列設定
-            string[] strArray = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
-
-            return (dtSetcode_B);
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///judTxtEigyousyoKeyUp
         ///入力項目上でのキー判定と文字数判定
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         private void judEigyousyoKeyUp(object sender, KeyEventArgs e)
         {
@@ -182,8 +156,8 @@ namespace KATO.Common.Ctl
 
             if (this.codeTxt.TextLength == 4)
             {
-                //次のコントロールを選択する
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
             }
         }
     }

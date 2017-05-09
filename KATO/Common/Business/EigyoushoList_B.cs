@@ -58,13 +58,13 @@ namespace KATO.Common.Business
                 dtGetTableGrid.Columns["営業所コード"].ColumnName = "業種コード";
                 dtGetTableGrid.Columns["営業所名"].ColumnName = "業種名";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             return (dtGetTableGrid);
         }
@@ -128,9 +128,9 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
@@ -152,13 +152,13 @@ namespace KATO.Common.Business
                         break;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
         }
     }

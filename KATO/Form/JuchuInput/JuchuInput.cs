@@ -70,7 +70,7 @@ namespace KATO.Form.JuchuInput
         {
             Boolean blnNull = false;
 
-            DataTable dtSetcode;
+            DataTable dtSetCd;
 
             //文字判定
             if (baseText1.blIsEmpty() == false)
@@ -84,21 +84,20 @@ namespace KATO.Form.JuchuInput
             //処理部に移動
             JuchuInput_B juchuinputB = new JuchuInput_B();
             //戻り値のDatatableを取り込む
-            dtSetcode = juchuinputB.baseText1_Leave(baseText1.Text);
+            dtSetCd = juchuinputB.baseText1_Leave(baseText1.Text);
 
-            if (dtSetcode.Rows.Count == 0)
+            if (dtSetCd.Rows.Count == 0)
             {
                 baseText1.Focus();
                 return;
             }
             else
             {
-                KeyValuePair<int, String>[] kvpData = new KeyValuePair<int, String>[dtSetcode.Rows.Count];
-                for (int intcnt = 0; intcnt < dtSetcode.Rows.Count; intcnt++)
+                KeyValuePair<int, String>[] kvpData = new KeyValuePair<int, String>[dtSetCd.Rows.Count];
+                for (int intcnt = 0; intcnt < dtSetCd.Rows.Count; intcnt++)
                 {
                     //KeyValuePairに取り込み
-                    KeyValuePair<int, String> kvpKari = new KeyValuePair<int, String>(int.Parse(dtSetcode.Rows[intcnt]["中分類コード"].ToString()), dtSetcode.Rows[intcnt]["中分類名"].ToString());
-                    //ArrayListに入れる
+                    KeyValuePair<int, String> kvpKari = new KeyValuePair<int, String>(int.Parse(dtSetCd.Rows[intcnt]["中分類コード"].ToString()), dtSetCd.Rows[intcnt]["中分類名"].ToString());
                     kvpData[intcnt] = kvpKari;
                 }
 

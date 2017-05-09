@@ -54,17 +54,17 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -99,17 +99,17 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 //該当する大分類コードと名前を確保
                 dtGetTableTxt = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -143,16 +143,16 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 dtGetTableTxt = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -187,9 +187,9 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { strdaibunCDsub, lstString[0] };
+                string[] aryStr = { strdaibunCDsub, lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
@@ -241,10 +241,10 @@ namespace KATO.Common.Business
                         break;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {

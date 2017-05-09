@@ -306,9 +306,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseCheckBox.resx">
       <DependentUpon>BaseCheckBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseComboBox.resx">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseDataGridViewEdit.resx">
       <DependentUpon>BaseDataGridViewEdit.cs</DependentUpon>
@@ -320,21 +322,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseLabel.resx">
       <DependentUpon>BaseLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseLabelGray.resx">
       <DependentUpon>BaseLabelGray.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseMenuButton.resx">
       <DependentUpon>BaseMenuButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseMessageBox.resx">
       <DependentUpon>BaseMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseRadioButton.resx">
       <DependentUpon>BaseRadioButton.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseText.resx">
       <DependentUpon>BaseText.cs</DependentUpon>
@@ -342,45 +350,59 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseCalendar.resx">
       <DependentUpon>BaseCalendar.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseTextLabelSet.resx">
       <DependentUpon>BaseTextLabelSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseTextMoney.resx">
       <DependentUpon>BaseTextMoney.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Chubunrui.resx">
       <DependentUpon>LabelSet_Chubunrui.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Daibunrui.resx">
       <DependentUpon>LabelSet_Daibunrui.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_EigyouSho.resx">
       <DependentUpon>LabelSet_Eigyousho.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Maker.resx">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tanaban.resx">
       <DependentUpon>LabelSet_Tanaban.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tantousha.resx">
       <DependentUpon>LabelSet_Tantousha.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tokuisaki.resx">
       <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
       <DependentUpon>ChubunruiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput.resx">
       <DependentUpon>JuchuInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
       <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\DaibunruiList.resx">
       <DependentUpon>DaibunruiList.cs</DependentUpon>
@@ -388,30 +410,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\EigyoushoList.resx">
       <DependentUpon>EigyoushoList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1020_Maker\M1020_Maker.resx">
       <DependentUpon>M1020_Maker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\MakerList.resx">
       <DependentUpon>MakerList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ShouhinList.resx">
       <DependentUpon>ShouhinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TanabanList.resx">
       <DependentUpon>TanabanList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1010_Daibunrui\M1010_Daibunrui.resx">
       <DependentUpon>M1010_Daibunrui.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\F0140_TanaorosiInput\F0140_TanaorosiInput.resx">
       <DependentUpon>F0140_TanaorosiInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TantoushaList.resx">
       <DependentUpon>TantoushaList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -441,6 +472,7 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TantoushaList_View.sql" />
     <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql" />

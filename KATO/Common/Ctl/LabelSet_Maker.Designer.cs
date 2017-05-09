@@ -33,9 +33,10 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(75, 0);
+            this.codeTxt.MaxLength = 3;
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtMakerLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtMakerLeave);
             // 
             // LabelSet_Maker
             // 

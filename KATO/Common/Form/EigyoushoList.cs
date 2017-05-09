@@ -248,9 +248,9 @@ namespace KATO.Common.Form
                 //データグリッドビュー部分
                 eigyoulistB.setEndAction(lstInt);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -347,9 +347,9 @@ namespace KATO.Common.Form
             {
                 eigyoulistB.setSelectItem(lstInt, lstString);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
             setEndAction(lstString);
         }

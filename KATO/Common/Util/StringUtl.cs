@@ -41,6 +41,18 @@ namespace KATO.Common.Util
         //
         //禁止文字チェック（個々を呼び出す形になるのでまとめて処理できるように）(戻り値はboolean）
         //
+        public static bool JudBanChar(string strData)
+        {
+            Boolean good = true;
 
+            //ファイル名に使用できない文字を取得
+            char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
+
+            if (strData.IndexOfAny(invalidChars) > 0)
+            {
+                good = false;
+            }
+            return (good);
+        }
     }
 }

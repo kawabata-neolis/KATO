@@ -202,9 +202,9 @@ namespace KATO.Common.Business
                     string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                     //配列設定
-                    string[] strArray = { lstString[0]};
+                    string[] aryStr = { lstString[0]};
 
-                    strSQLInput = string.Format(strSQLInput, strArray);
+                    strSQLInput = string.Format(strSQLInput, aryStr);
 
                     //SQLのインスタンス作成
                     DBConnective dbconnective = new DBConnective();
@@ -236,9 +236,9 @@ namespace KATO.Common.Business
                     strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                     //配列設定
-                    strArray = new string[] { lstString[0], strTextCase };
+                    aryStr = new string[] { lstString[0], strTextCase };
 
-                    strSQLInput = string.Format(strSQLInput, strArray);
+                    strSQLInput = string.Format(strSQLInput, aryStr);
 
                     //SQLのインスタンス作成
                     dbconnective = new DBConnective();
@@ -270,9 +270,9 @@ namespace KATO.Common.Business
                     strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                     //配列設定
-                    strArray = new string[] { strTextCase };
+                    aryStr = new string[] { strTextCase };
 
-                    strSQLInput = string.Format(strSQLInput, strArray);
+                    strSQLInput = string.Format(strSQLInput, aryStr);
 
                     //SQLのインスタンス作成
                     dbconnective = new DBConnective();
@@ -320,7 +320,7 @@ namespace KATO.Common.Business
             strSQLNameC = "C_LIST_Chubun_SELECT_LEAVE";
 
             //配列設定
-            string[] strArrayM = { lstString[3] };
+            string[] aryStr = { lstString[3] };
 
             //Makerの処理
             //データ渡し用
@@ -330,7 +330,7 @@ namespace KATO.Common.Business
             OpenSQL opensql = new OpenSQL();
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-            strSQLInput = string.Format(strSQLInput, strArrayM);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -339,7 +339,7 @@ namespace KATO.Common.Business
             //大分類の処理
             lstStringSQL = new List<string>();
 
-            string[] strArrayD = { lstString[4] };
+            string[] aryStrD = { lstString[4] };
 
             lstStringSQL.Add("Common");
             lstStringSQL.Add(strSQLNameD);
@@ -347,7 +347,7 @@ namespace KATO.Common.Business
             strSQLInput = null;
 
             strSQLInput = opensql.setOpenSQL(lstStringSQL);
-            strSQLInput = string.Format(strSQLInput, strArrayD);
+            strSQLInput = string.Format(strSQLInput, aryStrD);
 
             dtDaibun = dbconnective.ReadSql(strSQLInput);
 
@@ -356,7 +356,7 @@ namespace KATO.Common.Business
             //lstStringSQL = new List<string>();
 
 //大分類名で調べるSQLが必要
-            string[] strArrayC = { dtDaibun.Rows[0]["大分類コード"].ToString(), lstString[5] };
+            string[] aryStrC = { dtDaibun.Rows[0]["大分類コード"].ToString(), lstString[5] };
 
             lstStringSQL.Add("Common");
             lstStringSQL.Add(strSQLNameC);
@@ -364,7 +364,7 @@ namespace KATO.Common.Business
             strSQLInput = null;
 
             strSQLInput = opensql.setOpenSQL(lstStringSQL);
-            strSQLInput = string.Format(strSQLInput, strArrayC);
+            strSQLInput = string.Format(strSQLInput, aryStrC);
 
             dtChubun = dbconnective.ReadSql(strSQLInput);
 

@@ -55,9 +55,10 @@ namespace KATO.Business.F0140_TanaorosiInput_B
 
                 dtYMD.Columns["Column1"].ColumnName = "最新棚卸年月日";
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -91,11 +92,13 @@ namespace KATO.Business.F0140_TanaorosiInput_B
                 dbconnective.Commit();
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-                throw (e);
+
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -158,9 +161,9 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             }
 
             //配列設定
-            string[] strArray = { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5] };
+            string[] aryStr = { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5] };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -169,9 +172,10 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             {
                 dtView = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -207,17 +211,18 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //配列設定
-            string[] strArray = { lstString[0], lstString[1] };
+            string[] aryStr = { lstString[0], lstString[1] };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             try
             {
                 dtSelect = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {

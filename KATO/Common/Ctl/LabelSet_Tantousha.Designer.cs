@@ -33,9 +33,10 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
+            this.codeTxt.MaxLength = 4;
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtTokuisakiLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
             // 
             // LabelSet_Tantousha
             // 

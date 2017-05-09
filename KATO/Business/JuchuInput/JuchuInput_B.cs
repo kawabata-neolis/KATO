@@ -27,19 +27,19 @@ namespace KATO.Business.JuchuInput
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //配列設定
-            string[] strArray = { strBaseText1 };
+            string[] aryStr = { strBaseText1 };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
-            DataTable dtSetcode_B = new DataTable();
+            DataTable dtSetCd_B = new DataTable();
 
             //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+            dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-            return (dtSetcode_B);
+            return (dtSetCd_B);
         }
     }
 }

@@ -225,9 +225,9 @@ namespace KATO.Form.M1020_Maker
                 delText();
                 txtMaker.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -281,11 +281,10 @@ namespace KATO.Form.M1020_Maker
                 //テキストボックスを白紙にする
                 delText();
                 txtMaker.Focus();
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -300,15 +299,15 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///judtxtMakerTextLeave
+        ///updTxtMakerTextLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void judtxtMakerTextLeave(object sender, EventArgs e)
+        public void updTxtMakerTextLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            DataTable dtSetcode;
+            DataTable dtSetCd;
 
             //文字判定
             if (txtMaker.blIsEmpty() == false)
@@ -329,17 +328,22 @@ namespace KATO.Form.M1020_Maker
 
             //処理部に移動
             M1020_Maker_B makerB = new M1020_Maker_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetcode = makerB.judtxtMakerTextLeave(lstString);
+                dtSetCd = makerB.updTxtMakerTextLeave(lstString);
 
-                if (dtSetcode.Rows.Count > 0)
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    txtMaker.Text = dtSetcode.Rows[0]["メーカーコード"].ToString();
-                    txtName.Text = dtSetcode.Rows[0]["メーカー名"].ToString();
+                    txtMaker.Text = dtSetCd.Rows[0]["メーカーコード"].ToString();
+                    txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
                     txtName.Focus();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                 }
             }
             catch (Exception ex)

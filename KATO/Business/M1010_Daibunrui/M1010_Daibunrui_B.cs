@@ -39,21 +39,21 @@ namespace KATO.Business.M1010_Daibunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] lstStrArray = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], lstString[7], "N", DateTime.Now.ToString(), lstString[8], DateTime.Now.ToString(), lstString[8] };
+                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], lstString[7], "N", DateTime.Now.ToString(), lstString[8], DateTime.Now.ToString(), lstString[8] };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_UPD, lstStrArray);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();
             }
 
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -74,20 +74,20 @@ namespace KATO.Business.M1010_Daibunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] strArray = new string[] { lstString[0] };
+                string[] aryStr = new string[] { lstString[0] };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_DEL, strArray);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_DEL, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -96,10 +96,10 @@ namespace KATO.Business.M1010_Daibunrui
         }
 
         ///<summary>
-        ///judtxtDaibunruiLeave
+        ///updTxtDaibunruiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable judTxtDaibunruiLeave(List<string> lstString)
+        public DataTable updTxtDaibunruiLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
@@ -112,7 +112,7 @@ namespace KATO.Business.M1010_Daibunrui
             stringSQLAry.Add("Common");
             stringSQLAry.Add(strSQLName);
 
-            DataTable dtSetcode_B = new DataTable();
+            DataTable dtSetCd_B = new DataTable();
             OpenSQL opensql = new OpenSQL();
             DBConnective dbconnective = new DBConnective();
             try
@@ -121,22 +121,22 @@ namespace KATO.Business.M1010_Daibunrui
 
                 if (strSQLInput == "")
                 {
-                    return (dtSetcode_B);
+                    return (dtSetCd_B);
                 }
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
-                dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                return (dtSetcode_B);
+                return (dtSetCd_B);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {

@@ -12,13 +12,30 @@ using KATO.Common.Util;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Tokuisaki
+    ///ラベルセット得意先（取引先）
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Tokuisaki : BaseTextLabelSet
     {
+        /// <summary>
+        /// LabelSet_Daibunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Tokuisaki()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -27,11 +44,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///judTokuisakiKeyDown
         ///コード入力項目でのキー入力判定（営業所）
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judTokuisakiKeyDown(object sender, KeyEventArgs e)
         {
@@ -55,16 +67,18 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
-        ///txtEigyoushoLeave
+        ///updTxtTokuisakiLeave
         ///code入力箇所からフォーカスが外れた時(テキスト処理)
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
         ///</summary>
-        public void txtTokuisakiLeave(object sender, EventArgs e)
+        public void updTxtTokuisakiLeave(object sender, EventArgs e)
         {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
@@ -72,64 +86,8 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            DataTable dtSetcode;
-
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
-
-            //データ渡し用
-            lstString.Add(this.CodeTxtText);
-
-            //処理部に移動
-            //戻り値のDatatableを取り込む
-            dtSetcode = judTxtTokuisakiLeave(lstString);
-
-            if (dtSetcode.Rows.Count != 0)
-            {
-                string strZeikubun = "";
-
-                if (dtSetcode.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetcode.Rows[0]["消費税計算区分"].ToString() == "2")
-                {
-                    strZeikubun = "外税";
-                }
-                else if (dtSetcode.Rows[0]["消費税計算区分"].ToString() == "1")
-                {
-                    strZeikubun = "内税";
-                }
-
-                this.CodeTxtText = dtSetcode.Rows[0]["取引先コード"].ToString();
-                this.ValueLabelText = dtSetcode.Rows[0]["取引先名称"].ToString();
-                this.AppendLabelText = strZeikubun;
-            }
-            else
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                this.codeTxt.Focus();
-            }
-        }
-
-        ///<summary>
-        ///judTxtTokuisakiLeave
-        ///code入力箇所からフォーカスが外れた時(SQL処理)
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
-        ///</summary>
-        public DataTable judTxtTokuisakiLeave(List<string> lstString)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetcode_B = new DataTable();
 
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
 
@@ -138,34 +96,60 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
-                return (dtSetcode_B);
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    string strZeikubun = "";
+
+                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
+                    {
+                        strZeikubun = "外税";
+                    }
+                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
+                    {
+                        strZeikubun = "内税";
+                    }
+
+                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.AppendLabelText = strZeikubun;
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    this.codeTxt.Focus();
+                }
+                return;
             }
-
-            //配列設定
-            string[] strArray = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
-
-            return (dtSetcode_B);
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///judTokuisakiKeyUp
         ///入力項目上でのキー判定と文字数判定
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         private void judTokuisakiKeyUp(object sender, KeyEventArgs e)
         {

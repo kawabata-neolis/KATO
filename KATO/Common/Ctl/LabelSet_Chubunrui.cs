@@ -13,28 +13,49 @@ using KATO.Form.F0140_TanaorosiInput;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Chubunrui
+    ///ラベルセット中分類
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Chubunrui : BaseTextLabelSet
     {
-
         //大分類コード確保用
-        string strdaibunCD;
-        public string strDaibunCD
+        string strdaibunCd;
+
+        /// <summary>
+        /// strDaibunCd
+        /// プロパティの設定（大分類コード）
+        /// </summary>
+        public string strDaibunCd
         {
             get
             {
-                return this.strdaibunCD;
+                return this.strdaibunCd;
             }
             set
             {
-                this.strdaibunCD = value;
+                this.strdaibunCd = value;
             }
         }
 
+        /// <summary>
+        /// LabelSet_Chubunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Chubunrui()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -43,21 +64,16 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///judChubunruiKeyDown
         ///コード入力項目でのキー入力判定（中分類）
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judChubunruiKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F9)
             {
-                if (this.strdaibunCD == null)
+                if (this.strdaibunCd == null)
                 {
                     return;
                 }
-                ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCD);
+                ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
                 chubunruiList.Show();
             }
             else if (e.KeyCode == Keys.Enter)
@@ -71,20 +87,21 @@ namespace KATO.Common.Ctl
                 this.Parent.Dispose();
             }
         }
-
-
+        
         ///<summary>
-        ///judTxtChubunruiLeave
+        ///updTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
         ///</summary>
-        private void txtChubunruiLeave(object sender, EventArgs e)
+        private void updTxtChubunruiLeave(object sender, EventArgs e)
         {
-            if (this.strdaibunCD == null)
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
+            if (this.strdaibunCd == null)
             {
                 return;
             }
@@ -100,12 +117,8 @@ namespace KATO.Common.Ctl
                 CodeTxtText = CodeTxtText.ToString().PadLeft(2, '0');
             }
 
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetcode_B = new DataTable();
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
 
@@ -114,41 +127,48 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.strdaibunCd, this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["中分類コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["中分類名"].ToString();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                }
                 return;
             }
-
-            //配列設定
-            string[] strArray = { this.strdaibunCD, this.CodeTxtText};
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
-
-            if(dtSetcode_B.Rows.Count == 0)
+            catch (Exception ex)
             {
-                return;
+                new CommonException(ex);
             }
-
-            this.CodeTxtText = dtSetcode_B.Rows[0]["中分類コード"].ToString();
-            this.ValueLabelText = dtSetcode_B.Rows[0]["中分類名"].ToString();
-            return;
         }
 
+        ///<summary>
         ///judtxtChubunruiKeyUp
         ///入力項目上でのキー判定と文字数判定
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
         ///</summary>
         private void judtxtChubunruiKeyUp(object sender, KeyEventArgs e)
         {

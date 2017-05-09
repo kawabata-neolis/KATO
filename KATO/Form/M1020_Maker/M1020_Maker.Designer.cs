@@ -95,7 +95,7 @@ namespace KATO.Form.M1020_Maker
             this.txtMaker.TabIndex = 0;
             this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMakerKeyDown);
             this.txtMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
-            this.txtMaker.Leave += new System.EventHandler(this.judtxtMakerTextLeave);
+            this.txtMaker.Leave += new System.EventHandler(this.updTxtMakerTextLeave);
             // 
             // txtName
             // 

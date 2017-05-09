@@ -35,7 +35,7 @@
             this.codeTxt.Location = new System.Drawing.Point(43, 0);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxTanabanKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtTanabanLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtTanabanLeave);
             // 
             // LabelSet_Tanaban
             // 

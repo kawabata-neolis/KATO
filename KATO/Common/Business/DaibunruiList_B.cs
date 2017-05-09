@@ -56,13 +56,13 @@ namespace KATO.Common.Business
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             return (dtGetTableGrid);
         }
@@ -140,9 +140,9 @@ namespace KATO.Common.Business
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
@@ -188,12 +188,11 @@ namespace KATO.Common.Business
                     default:
                         break;
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {

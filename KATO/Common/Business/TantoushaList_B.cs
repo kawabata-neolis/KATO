@@ -12,7 +12,7 @@ namespace KATO.Common.Business
 {
     ///<summary>
     ///TantoushaList_B
-    ///担当者リスト（処理部）
+    ///担当者リスト
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -36,7 +36,6 @@ namespace KATO.Common.Business
 
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
-
             try
             {
                 strSQLName = "";
@@ -55,13 +54,12 @@ namespace KATO.Common.Business
                 dtGetTableGrid = dbConnective.ReadSql(strSQLInput);
 
                 return (dtGetTableGrid);
-
             }
-            catch
+            catch (Exception ex)
             {
-
+                new CommonException(ex);
+                throw (ex);
             }
-            return (dtGetTableGrid);
         }
 
         /// <summary>
@@ -112,14 +110,16 @@ namespace KATO.Common.Business
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //配列設定
-            string[] strArray = { lstString[0] };
+            string[] aryStr = { lstString[0] };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             dtSelectData = dbconnective.ReadSql(strSQLInput);
 
             switch (lstInt[0])
             {
+                //現状、ラベルセットからのみなので該当なし
+
                 //大分類
                 case 1:
                     break;
@@ -130,8 +130,6 @@ namespace KATO.Common.Business
                 default:
                     break;
             }
-        }
-
-
+        }        
     }
 }

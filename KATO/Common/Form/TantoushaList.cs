@@ -196,10 +196,10 @@ namespace KATO.Common.Form
         {
             DataTable dtView = new DataTable();
 
+            //処理部に移動
+            TantoushaList_B daibunlistB = new TantoushaList_B();
             try
             {
-                //処理部に移動
-                TantoushaList_B daibunlistB = new TantoushaList_B();
                 dtView = daibunlistB.setViewGrid();
 
                 //目標売上を整数型に
@@ -224,9 +224,9 @@ namespace KATO.Common.Form
                 lblRecords.Text = "該当件数( " + TantoushaGrid.RowCount.ToString() + "件)";
 
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                //今後記入
+                new CommonException(ex);
             }
 
             //件数が0の場合
@@ -374,8 +374,7 @@ namespace KATO.Common.Form
 
             setEndAction(lstString);
         }
-
-
+        
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき

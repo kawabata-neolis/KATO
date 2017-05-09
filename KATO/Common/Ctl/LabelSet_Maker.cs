@@ -13,13 +13,30 @@ using System.Windows.Forms;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Maker
+    ///ラベルセットメーカー
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Maker : BaseTextLabelSet
     {
+        /// <summary>
+        /// LabelSet_Daibunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Maker()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -28,11 +45,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///judMakerKeyDown
         ///コード入力項目でのキー入力判定（メーカー）
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judMakerKeyDown(object sender, KeyEventArgs e)
         {
@@ -55,69 +67,31 @@ namespace KATO.Common.Ctl
 
 
         ///<summary>
-        ///txtMakerLeave
-        ///code入力箇所からフォーカスが外れた時(テキスト処理)
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
+        ///updTxtMakerLeave
+        ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void txtMakerLeave(object sender, EventArgs e)
+        public void updTxtMakerLeave(object sender, EventArgs e)
         {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            DataTable dtSetcode;
-
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-
             if (this.CodeTxtText.Length <= 2)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(3, '0');
             }
 
-            //データ渡し用
-            lstString.Add(this.CodeTxtText);
-
-            ////処理部に移動
-            ////戻り値のDatatableを取り込む
-            dtSetcode = judTxtMakerLeave(lstString);
-
-            if (dtSetcode.Rows.Count != 0)
-            {
-                this.CodeTxtText = dtSetcode.Rows[0]["メーカーコード"].ToString();
-                this.ValueLabelText = dtSetcode.Rows[0]["メーカー名"].ToString();
-            }
-
-        }
-
-
-        ///<summary>
-        ///judTxtMakerLeave
-        ///code入力箇所からフォーカスが外れた時(SQL処理)
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
-        ///</summary>
-        public DataTable judTxtMakerLeave(List<string> lstString)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetcode_B = new DataTable();
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Maker_SELECT_LEAVE";
 
@@ -126,35 +100,39 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
-                return (dtSetcode_B);
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                this.CodeTxtText = dtSetCd.Rows[0]["メーカーコード"].ToString();
+                this.ValueLabelText = dtSetCd.Rows[0]["メーカー名"].ToString();
+                return;
             }
-
-            //配列設定
-            string[] strArray = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
-
-            return (dtSetcode_B);
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
-
+        ///<summary>
         ///judtxtMakerKeyUp
         ///入力項目上でのキー判定と文字数判定
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
         ///</summary>
         private void judtxtMakerKeyUp(object sender, KeyEventArgs e)
         {

@@ -195,6 +195,8 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    //検索ボタン
+                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
@@ -328,11 +330,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///btnKensakuClick
         ///検索ボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
@@ -349,12 +346,21 @@ namespace KATO.Common.Form
 
             //処理部に移動
             TokuisakiList_B tokuisakiB = new TokuisakiList_B();
-            //データグリッドビュー部分
-            TokuisakiGrid.DataSource = tokuisakiB.setKensaku(lstInt, lstString);
+            try
+            {
+                //データグリッドビュー部分
+                TokuisakiGrid.DataSource = tokuisakiB.setKensaku(lstInt, lstString);
 
-            lblRecords.Text = "該当件数( " + TokuisakiGrid.RowCount.ToString() + "件)";
-            
-            TokuisakiGrid.Focus();
+                lblRecords.Text = "該当件数( " + TokuisakiGrid.RowCount.ToString() + "件)";
+
+                TokuisakiGrid.Focus();
+
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
         }
 
 

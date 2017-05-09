@@ -176,9 +176,9 @@ namespace KATO.Common.Form
                     return;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -277,9 +277,9 @@ namespace KATO.Common.Form
             {
                 chubunListB.setEndAction(lstInt);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
 
         }
@@ -388,9 +388,9 @@ namespace KATO.Common.Form
             {
                 chubunListB.setSelectItem(lstInt, lstString, strdaibunCDsub);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
             setEndAction(lstString);
         }

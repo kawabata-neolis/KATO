@@ -36,7 +36,7 @@
             this.codeTxt.MaxLength = 4;
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtTokuisakiLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
             // 
             // LabelSet_Tokuisaki
             // 

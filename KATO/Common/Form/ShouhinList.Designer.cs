@@ -44,22 +44,13 @@ namespace KATO.Common.Form
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblDspMaker = new KATO.Common.Ctl.BaseLabelGray();
-            this.lblDspChubunrui = new KATO.Common.Ctl.BaseLabelGray();
-            this.lblDspDaibunrui = new KATO.Common.Ctl.BaseLabelGray();
-            this.txtMaker = new KATO.Common.Ctl.BaseText();
             this.txtGifu = new KATO.Common.Ctl.BaseText();
             this.txtHon = new KATO.Common.Ctl.BaseText();
-            this.txtChubunrui = new KATO.Common.Ctl.BaseText();
-            this.txtDaibunrui = new KATO.Common.Ctl.BaseText();
-            this.labelSet_Daibunrui1 = new KATO.Common.Ctl.LabelSet_Daibunrui();
-            this.labelSet_Chubunrui1 = new KATO.Common.Ctl.LabelSet_Chubunrui();
-            this.labelSet_Maker1 = new KATO.Common.Ctl.LabelSet_Maker();
+            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
+            this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
+            this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
@@ -174,7 +165,7 @@ namespace KATO.Common.Form
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKensaku.Location = new System.Drawing.Point(106, 94);
+            this.txtKensaku.Location = new System.Drawing.Point(106, 97);
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(199, 22);
             this.txtKensaku.TabIndex = 101;
@@ -195,34 +186,12 @@ namespace KATO.Common.Form
             // 
             this.baseLabel8.AutoSize = true;
             this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel8.Location = new System.Drawing.Point(16, 97);
+            this.baseLabel8.Location = new System.Drawing.Point(12, 100);
             this.baseLabel8.Name = "baseLabel8";
             this.baseLabel8.Size = new System.Drawing.Size(87, 15);
             this.baseLabel8.TabIndex = 100;
             this.baseLabel8.Text = "検索文字列";
             this.baseLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // baseLabel5
-            // 
-            this.baseLabel5.AutoSize = true;
-            this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(306, 86);
-            this.baseLabel5.Name = "baseLabel5";
-            this.baseLabel5.Size = new System.Drawing.Size(71, 15);
-            this.baseLabel5.TabIndex = 97;
-            this.baseLabel5.Text = "メーカー";
-            this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // baseLabel4
-            // 
-            this.baseLabel4.AutoSize = true;
-            this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(306, 58);
-            this.baseLabel4.Name = "baseLabel4";
-            this.baseLabel4.Size = new System.Drawing.Size(55, 15);
-            this.baseLabel4.TabIndex = 98;
-            this.baseLabel4.Text = "中分類";
-            this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // baseLabel6
             // 
@@ -248,69 +217,6 @@ namespace KATO.Common.Form
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.baseLabel2.Visible = false;
             // 
-            // baseLabel3
-            // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(306, 30);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(55, 15);
-            this.baseLabel3.TabIndex = 99;
-            this.baseLabel3.Text = "大分類";
-            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblDspMaker
-            // 
-            this.lblDspMaker.AutoEllipsis = true;
-            this.lblDspMaker.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDspMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDspMaker.ForeColor = System.Drawing.Color.Blue;
-            this.lblDspMaker.Location = new System.Drawing.Point(434, 82);
-            this.lblDspMaker.Name = "lblDspMaker";
-            this.lblDspMaker.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDspMaker.Size = new System.Drawing.Size(161, 23);
-            this.lblDspMaker.TabIndex = 94;
-            this.lblDspMaker.Text = " ";
-            this.lblDspMaker.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblDspChubunrui
-            // 
-            this.lblDspChubunrui.AutoEllipsis = true;
-            this.lblDspChubunrui.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDspChubunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDspChubunrui.ForeColor = System.Drawing.Color.Blue;
-            this.lblDspChubunrui.Location = new System.Drawing.Point(434, 54);
-            this.lblDspChubunrui.Name = "lblDspChubunrui";
-            this.lblDspChubunrui.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDspChubunrui.Size = new System.Drawing.Size(161, 23);
-            this.lblDspChubunrui.TabIndex = 95;
-            this.lblDspChubunrui.Text = " ";
-            this.lblDspChubunrui.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblDspDaibunrui
-            // 
-            this.lblDspDaibunrui.AutoEllipsis = true;
-            this.lblDspDaibunrui.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblDspDaibunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDspDaibunrui.ForeColor = System.Drawing.Color.Blue;
-            this.lblDspDaibunrui.Location = new System.Drawing.Point(434, 26);
-            this.lblDspDaibunrui.Name = "lblDspDaibunrui";
-            this.lblDspDaibunrui.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDspDaibunrui.Size = new System.Drawing.Size(161, 23);
-            this.lblDspDaibunrui.TabIndex = 96;
-            this.lblDspDaibunrui.Text = " ";
-            this.lblDspDaibunrui.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtMaker
-            // 
-            this.txtMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMaker.Location = new System.Drawing.Point(396, 83);
-            this.txtMaker.MaxLength = 3;
-            this.txtMaker.Name = "txtMaker";
-            this.txtMaker.Size = new System.Drawing.Size(32, 22);
-            this.txtMaker.TabIndex = 93;
-            this.txtMaker.Leave += new System.EventHandler(this.judMakerLieave);
-            // 
             // txtGifu
             // 
             this.txtGifu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -334,91 +240,71 @@ namespace KATO.Common.Form
             this.txtHon.Visible = false;
             this.txtHon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
             // 
-            // txtChubunrui
+            // labelSet_Daibunrui
             // 
-            this.txtChubunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtChubunrui.Location = new System.Drawing.Point(396, 54);
-            this.txtChubunrui.MaxLength = 2;
-            this.txtChubunrui.Name = "txtChubunrui";
-            this.txtChubunrui.Size = new System.Drawing.Size(32, 22);
-            this.txtChubunrui.TabIndex = 92;
-            this.txtChubunrui.Leave += new System.EventHandler(this.judCyubunruiLieave);
+            this.labelSet_Daibunrui.AppendLabelSize = 0;
+            this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.CodeTxtSize = 33;
+            this.labelSet_Daibunrui.CodeTxtText = "";
+            this.labelSet_Daibunrui.LabelName = "大分類";
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 12);
+            this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
+            this.labelSet_Daibunrui.ShowAppendFlg = false;
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(308, 22);
+            this.labelSet_Daibunrui.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui.SpaceNameCode = 20;
+            this.labelSet_Daibunrui.SpaceValueAppend = 4;
+            this.labelSet_Daibunrui.TabIndex = 108;
+            this.labelSet_Daibunrui.ValueLabelSize = 150;
+            this.labelSet_Daibunrui.ValueLabelText = "";
             // 
-            // txtDaibunrui
+            // labelSet_Chubunrui
             // 
-            this.txtDaibunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDaibunrui.Location = new System.Drawing.Point(396, 26);
-            this.txtDaibunrui.MaxLength = 2;
-            this.txtDaibunrui.Name = "txtDaibunrui";
-            this.txtDaibunrui.Size = new System.Drawing.Size(32, 22);
-            this.txtDaibunrui.TabIndex = 91;
-            this.txtDaibunrui.Leave += new System.EventHandler(this.judDaibunruiLieave);
+            this.labelSet_Chubunrui.AppendLabelSize = 0;
+            this.labelSet_Chubunrui.AppendLabelText = "";
+            this.labelSet_Chubunrui.CodeTxtSize = 33;
+            this.labelSet_Chubunrui.CodeTxtText = "";
+            this.labelSet_Chubunrui.LabelName = "中分類";
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(12, 41);
+            this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
+            this.labelSet_Chubunrui.ShowAppendFlg = false;
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(293, 22);
+            this.labelSet_Chubunrui.SpaceCodeValue = 4;
+            this.labelSet_Chubunrui.SpaceNameCode = 20;
+            this.labelSet_Chubunrui.SpaceValueAppend = 4;
+            this.labelSet_Chubunrui.strDaibunCd = null;
+            this.labelSet_Chubunrui.TabIndex = 109;
+            this.labelSet_Chubunrui.ValueLabelSize = 150;
+            this.labelSet_Chubunrui.ValueLabelText = "";
             // 
-            // labelSet_Daibunrui1
+            // labelSet_Maker
             // 
-            this.labelSet_Daibunrui1.AppendLabelSize = 0;
-            this.labelSet_Daibunrui1.AppendLabelText = "";
-            this.labelSet_Daibunrui1.CodeTxtSize = 33;
-            this.labelSet_Daibunrui1.CodeTxtText = "";
-            this.labelSet_Daibunrui1.LabelName = "大分類";
-            this.labelSet_Daibunrui1.Location = new System.Drawing.Point(12, 12);
-            this.labelSet_Daibunrui1.Lschubundata = null;
-            this.labelSet_Daibunrui1.LsSubchubundata = null;
-            this.labelSet_Daibunrui1.Name = "labelSet_Daibunrui1";
-            this.labelSet_Daibunrui1.ShowAppendFlg = false;
-            this.labelSet_Daibunrui1.Size = new System.Drawing.Size(308, 22);
-            this.labelSet_Daibunrui1.SpaceCodeValue = 4;
-            this.labelSet_Daibunrui1.SpaceNameCode = 4;
-            this.labelSet_Daibunrui1.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui1.TabIndex = 108;
-            this.labelSet_Daibunrui1.ValueLabelSize = 150;
-            this.labelSet_Daibunrui1.ValueLabelText = "";
-            // 
-            // labelSet_Chubunrui1
-            // 
-            this.labelSet_Chubunrui1.AppendLabelSize = 0;
-            this.labelSet_Chubunrui1.AppendLabelText = "";
-            this.labelSet_Chubunrui1.CodeTxtSize = 33;
-            this.labelSet_Chubunrui1.CodeTxtText = "";
-            this.labelSet_Chubunrui1.LabelName = "中分類";
-            this.labelSet_Chubunrui1.Location = new System.Drawing.Point(12, 41);
-            this.labelSet_Chubunrui1.Name = "labelSet_Chubunrui1";
-            this.labelSet_Chubunrui1.ShowAppendFlg = false;
-            this.labelSet_Chubunrui1.Size = new System.Drawing.Size(293, 22);
-            this.labelSet_Chubunrui1.SpaceCodeValue = 4;
-            this.labelSet_Chubunrui1.SpaceNameCode = 4;
-            this.labelSet_Chubunrui1.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui1.strDaibunCD = null;
-            this.labelSet_Chubunrui1.TabIndex = 109;
-            this.labelSet_Chubunrui1.ValueLabelSize = 0;
-            this.labelSet_Chubunrui1.ValueLabelText = "";
-            // 
-            // labelSet_Maker1
-            // 
-            this.labelSet_Maker1.AppendLabelSize = 0;
-            this.labelSet_Maker1.AppendLabelText = "";
-            this.labelSet_Maker1.CodeTxtSize = 33;
-            this.labelSet_Maker1.CodeTxtText = "";
-            this.labelSet_Maker1.LabelName = "メーカー";
-            this.labelSet_Maker1.Location = new System.Drawing.Point(12, 70);
-            this.labelSet_Maker1.Name = "labelSet_Maker1";
-            this.labelSet_Maker1.ShowAppendFlg = false;
-            this.labelSet_Maker1.Size = new System.Drawing.Size(288, 22);
-            this.labelSet_Maker1.SpaceCodeValue = 4;
-            this.labelSet_Maker1.SpaceNameCode = 4;
-            this.labelSet_Maker1.SpaceValueAppend = 4;
-            this.labelSet_Maker1.TabIndex = 110;
-            this.labelSet_Maker1.ValueLabelSize = 150;
-            this.labelSet_Maker1.ValueLabelText = "";
+            this.labelSet_Maker.AppendLabelSize = 0;
+            this.labelSet_Maker.AppendLabelText = "";
+            this.labelSet_Maker.CodeTxtSize = 33;
+            this.labelSet_Maker.CodeTxtText = "";
+            this.labelSet_Maker.LabelName = "メーカー";
+            this.labelSet_Maker.Location = new System.Drawing.Point(12, 70);
+            this.labelSet_Maker.Name = "labelSet_Maker";
+            this.labelSet_Maker.ShowAppendFlg = false;
+            this.labelSet_Maker.Size = new System.Drawing.Size(288, 22);
+            this.labelSet_Maker.SpaceCodeValue = 4;
+            this.labelSet_Maker.SpaceNameCode = 4;
+            this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.TabIndex = 110;
+            this.labelSet_Maker.ValueLabelSize = 150;
+            this.labelSet_Maker.ValueLabelText = "";
             // 
             // ShouhinList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 614);
-            this.Controls.Add(this.labelSet_Maker1);
-            this.Controls.Add(this.labelSet_Chubunrui1);
-            this.Controls.Add(this.labelSet_Daibunrui1);
+            this.Controls.Add(this.labelSet_Maker);
+            this.Controls.Add(this.labelSet_Chubunrui);
+            this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.check1);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
@@ -429,19 +315,10 @@ namespace KATO.Common.Form
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.baseLabel8);
-            this.Controls.Add(this.baseLabel5);
-            this.Controls.Add(this.baseLabel4);
             this.Controls.Add(this.baseLabel6);
             this.Controls.Add(this.baseLabel2);
-            this.Controls.Add(this.baseLabel3);
-            this.Controls.Add(this.lblDspMaker);
-            this.Controls.Add(this.lblDspChubunrui);
-            this.Controls.Add(this.lblDspDaibunrui);
-            this.Controls.Add(this.txtMaker);
             this.Controls.Add(this.txtGifu);
             this.Controls.Add(this.txtHon);
-            this.Controls.Add(this.txtChubunrui);
-            this.Controls.Add(this.txtDaibunrui);
             this.Name = "ShouhinList";
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
@@ -453,16 +330,6 @@ namespace KATO.Common.Form
         }
 
         #endregion
-
-        private BaseLabel baseLabel5;
-        private BaseLabel baseLabel4;
-        private BaseLabel baseLabel3;
-        private BaseLabelGray lblDspMaker;
-        private BaseLabelGray lblDspChubunrui;
-        private BaseLabelGray lblDspDaibunrui;
-        private BaseText txtMaker;
-        private BaseText txtChubunrui;
-        private BaseText txtDaibunrui;
         private BaseText txtKensaku;
         private BaseLabel baseLabel8;
         private BaseDataGridView dgvTorihiki;
@@ -477,8 +344,8 @@ namespace KATO.Common.Form
         private BaseText txtGifu;
         private BaseLabel baseLabel2;
         private BaseLabel baseLabel6;
-        private LabelSet_Daibunrui labelSet_Daibunrui1;
-        private LabelSet_Chubunrui labelSet_Chubunrui1;
-        private LabelSet_Maker labelSet_Maker1;
+        private LabelSet_Daibunrui labelSet_Daibunrui;
+        private LabelSet_Chubunrui labelSet_Chubunrui;
+        private LabelSet_Maker labelSet_Maker;
     }
 }

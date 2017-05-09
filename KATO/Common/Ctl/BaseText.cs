@@ -13,7 +13,7 @@ namespace KATO.Common.Ctl
     public partial class BaseText : TextBox
     {
         //最初のクリックかの判断
-        Boolean firstclickjud = true;
+        Boolean blnFirstClick = true;
 
         public BaseText()
         {
@@ -22,8 +22,7 @@ namespace KATO.Common.Ctl
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            base.OnPaint(pe);
-
+            base.OnPaint(pe);        
         }
 
         //
@@ -35,7 +34,7 @@ namespace KATO.Common.Ctl
             this.BackColor = Color.Cyan;
 
             //this.SelectAll();
-            if (firstclickjud == true && this.Text != "")
+            if (blnFirstClick == true && this.Text != "")
             {
                 //全選択
                 this.SelectAll();
@@ -44,7 +43,7 @@ namespace KATO.Common.Ctl
                 this.BeginInvoke(new MethodInvoker(() => this.SelectAll()));
 
                 //二回目以降のクリックに切り替える
-                firstclickjud = false;
+                blnFirstClick = false;
             }
         }
 
@@ -57,7 +56,7 @@ namespace KATO.Common.Ctl
             this.BackColor = Color.White;
 
             //フォーカスが外れたのでリセット
-            firstclickjud = true;
+            blnFirstClick = true;
         }
 
         //
@@ -71,8 +70,6 @@ namespace KATO.Common.Ctl
             {
                 good = false;
             }
-            //
-
             return (good);
         }
     }

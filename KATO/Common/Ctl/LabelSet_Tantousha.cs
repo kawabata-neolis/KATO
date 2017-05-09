@@ -12,14 +12,30 @@ using KATO.Common.Util;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Tantousha
+    ///ラベルセット担当者
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Tantousha : BaseTextLabelSet
     {
-
+        /// <summary>
+        /// LabelSet_Daibunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Tantousha()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -51,66 +67,32 @@ namespace KATO.Common.Ctl
             }
         }
 
-
         ///<summary>
-        ///txtTokuisakiLeave
-        ///code入力箇所からフォーカスが外れた時(テキスト処理)
+        ///updTxtTokuisakiLeave
+        ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void txtTokuisakiLeave(object sender, EventArgs e)
+        public void updTxtTokuisakiLeave(object sender, EventArgs e)
         {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            DataTable dtSetcode;
-
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-
             if (this.CodeTxtText.Length <= 3)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(this.CodeTxtText);
-
-            //処理部に移動
-            //戻り値のDatatableを取り込む
-            dtSetcode = judTxtTantoushaLeave(lstString);
-
-            if (dtSetcode.Rows.Count != 0)
-            {
-                this.CodeTxtText = dtSetcode.Rows[0]["担当者コード"].ToString();
-                this.ValueLabelText = dtSetcode.Rows[0]["担当者名"].ToString();
-            }
-            else
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                this.codeTxt.Focus();
-            }
-        }
-
-        ///<summary>
-        ///judTxtDaibunruiLeave
-        ///code入力箇所からフォーカスが外れた時(SQL処理)
-        ///</summary>
-        public DataTable judTxtTantoushaLeave(List<string> lstString)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetcode_B = new DataTable();
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Tantousha_SELECT_LEAVE";
 
@@ -119,25 +101,34 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
-                return (dtSetcode_B);
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                this.CodeTxtText = dtSetCd.Rows[0]["担当者コード"].ToString();
+                this.ValueLabelText = dtSetCd.Rows[0]["担当者名"].ToString();
+                return;
             }
-
-            //配列設定
-            string[] strArray = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, strArray);
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
-
-            return (dtSetcode_B);
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///judtxtDaibunruiKeyUp

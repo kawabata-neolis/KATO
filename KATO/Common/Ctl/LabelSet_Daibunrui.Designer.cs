@@ -36,7 +36,7 @@
             this.codeTxt.MaxLength = 2;
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaibunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.txtDaibunruiLeave);
+            this.codeTxt.Leave += new System.EventHandler(this.updTxtDaibunruiLeave);
             // 
             // LabelSet_Daibunrui
             // 

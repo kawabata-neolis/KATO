@@ -19,6 +19,15 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Common.Form
 {
+    ///<summary>
+    ///MakerList
+    ///メーカーリストフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class MakerList : System.Windows.Forms.Form
     {
         LabelSet_Maker lblSetMaker = null;
@@ -29,6 +38,10 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        /// <summary>
+        /// MakerList
+        /// フォーム関係の設定（通常のテキストボックスから）
+        /// </summary>
         public MakerList(Control c)
         {
             if (c == null)
@@ -48,6 +61,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// MakerList
+        /// フォーム関係の設定（ラベルセットから）
+        /// </summary>
         public MakerList(Control c, LabelSet_Maker lblSetMakerSelect)
         {
             if (c == null)
@@ -68,6 +85,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// _Title
+        /// タイトルの設定
+        /// </summary>
         public string _Title
         {
             set
@@ -77,7 +98,10 @@ namespace KATO.Common.Form
             }
         }
 
-
+        /// <summary>
+        /// MakerList_Load
+        /// 読み込み時
+        /// </summary>
         private void MakerList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -89,7 +113,6 @@ namespace KATO.Common.Form
             if(labelSet_Daibunrui1.CodeTxtText.Length > 0)
             {
                 btnKensakuClick(sender, e);
-                judtxtDaibunTextLeave(sender, e);
             }
             else
             {
@@ -103,36 +126,38 @@ namespace KATO.Common.Form
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         public void setDatagridView()
         {
             //処理部に移動
             MakerList_B makerlistB = new MakerList_B();
-            //データグリッドビュー部分
-            dgvSeihin.DataSource = makerlistB.setDatagridView();
-
-            //幅の値を設定
-            dgvSeihin.Columns["メーカーコード"].Width = 150;
-            dgvSeihin.Columns["メーカー名"].Width = 200;
-
-            //中央揃え
-            dgvSeihin.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //検索件数を表示
-            lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
-
-            //件数が0の場合
-            if (lblRecords.Text.Equals("0"))
+            try
             {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                //データグリッドビュー部分
+                dgvSeihin.DataSource = makerlistB.setDatagridView();
+
+                //幅の値を設定
+                dgvSeihin.Columns["メーカーコード"].Width = 150;
+                dgvSeihin.Columns["メーカー名"].Width = 200;
+
+                //中央揃え
+                dgvSeihin.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                //検索件数を表示
+                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (lblRecords.Text.Equals("0"))
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
 
@@ -140,11 +165,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///judMakerListKeyDown
         ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/7
-        ///カラム論理名
         ///</summary>
         private void judMakerListKeyDown(object sender, KeyEventArgs e)
         {
@@ -204,15 +224,10 @@ namespace KATO.Common.Form
         ///<summary>
         ///setMoveOrder
         ///form内のエンターによるタブオーダー機能
-        ///作成者：大河内
-        ///作成日：2017/3/15
-        ///更新者：大河内
-        ///更新日：2017/3/15
-        ///カラム論理名
         ///</summary>
         private void setMoveOrder(object sender, KeyEventArgs e)
         {
-            //F1キーが押されたか調べる
+            //エンターキーが押されたか調べる
             if (e.KeyData == Keys.Enter)
             {
                 SendKeys.Send("{TAB}");
@@ -220,43 +235,8 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///btnKensakuClick
-        ///検索ボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
-        ///</summary>
-        private void btnKensakuClick(object sender, EventArgs e)
-        {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstString.Add(labelSet_Daibunrui1.CodeTxtText);
-            lstString.Add(txtKensaku.Text);
-
-            //処理部に移動
-            MakerList_B makerlistB = new MakerList_B();
-            //データグリッドビュー部分
-            dgvSeihin.DataSource = makerlistB.setKensaku(lstInt, lstString);
-
-            lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
-
-            dgvSeihin.Focus();
-        }
-
-
-        ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/8
-        ///カラム論理名
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
@@ -264,15 +244,9 @@ namespace KATO.Common.Form
             setEndAction(lstString);
         }
 
-
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
-        ///作成者：大河内
-        ///作成日：2017/3/8
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
@@ -291,68 +265,50 @@ namespace KATO.Common.Form
             lstInt.Add(intFrmKind);
 
             MakerList_B makerlistB = new MakerList_B();
-            makerlistB.setEndAction(lstInt);
+            try
+            {
+                makerlistB.setEndAction(lstInt);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///<summary>
-        ///judtxtDaibunTextLeave
-        ///code入力箇所からフォーカスが外れた時
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
+        ///btnKensakuClick
+        ///検索ボタンを押したとき
         ///</summary>
-        private void judtxtDaibunTextLeave(object sender, EventArgs e)
+        private void btnKensakuClick(object sender, EventArgs e)
         {
-            DataTable dtGetTable = new DataTable();
+            //データ渡し用
+            List<string> lstString = new List<string>();
+            List<int> lstInt = new List<int>();
 
-            if (labelSet_Daibunrui1.CodeTxtText == "")
+            //データ渡し用
+            lstString.Add(labelSet_Daibunrui1.CodeTxtText);
+            lstString.Add(txtKensaku.Text);
+
+            //処理部に移動
+            MakerList_B makerlistB = new MakerList_B();
+            try
             {
-                labelSet_Daibunrui1.ValueLabelText = "";
-                return;
+                //データグリッドビュー部分
+                dgvSeihin.DataSource = makerlistB.setKensaku(lstInt, lstString);
+
+                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+
+                dgvSeihin.Focus();
             }
-            else if (labelSet_Daibunrui1.CodeTxtText.Length == 1)
+            catch (Exception ex)
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                ////0パティングする場合（予備）
-                //labelSet_Daibunrui1.CodeTxtText = labelSet_Daibunrui1.CodeTxtText.ToString().PadLeft(2, '0');
-            }
-            else
-            {
-                //データ渡し用
-                List<string> lstString = new List<string>();
-
-                //データ渡し用
-                lstString.Add(labelSet_Daibunrui1.CodeTxtText);
-
-                MakerList_B makerlistB = new MakerList_B();
-                dtGetTable = makerlistB.judtxtDaibunTextLeave(lstString);
-
-                if (dtGetTable.Rows.Count == 0)
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                }
-                else
-                {
-                    //名前を表示
-                    labelSet_Daibunrui1.ValueLabelText = dtGetTable.Rows[0]["大分類名"].ToString();
-                    dgvSeihin.Focus();
-                }
+                new CommonException(ex);
             }
         }
 
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
-        ///作成者：大河内
-        ///作成日：2017/3/2
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>        
         private void setdgvSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -362,11 +318,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/7
-        ///カラム論理名
         ///</summary>        
         private void judDgvSeihinKeyDown(object sender, KeyEventArgs e)
         {
@@ -427,11 +378,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択後の処理
-        ///作成者：大河内
-        ///作成日：2017/3/7
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>        
         private void setSelectItem()
         {
@@ -449,12 +395,22 @@ namespace KATO.Common.Form
             lstString.Add(strSelectName);
 
             MakerList_B makerlistB = new MakerList_B();
-            makerlistB.setSelectItem(lstInt, lstString);
+            try
+            {
+                makerlistB.setSelectItem(lstInt, lstString);
 
-            setEndAction(lstString);
+                setEndAction(lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>        
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
@@ -468,6 +424,5 @@ namespace KATO.Common.Form
                 return cpForm;
             }
         }
-
     }
 }

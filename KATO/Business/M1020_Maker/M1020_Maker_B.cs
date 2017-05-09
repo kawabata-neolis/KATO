@@ -34,19 +34,19 @@ namespace KATO.Business.M1020_Maker_B
             dbconnective.BeginTrans();
             try
             {
-                string[] lstStringArray = new string[] { lstString[0], lstString[1], "N", DateTime.Now.ToString(), lstString[2], DateTime.Now.ToString(), lstString[2] };
+                string[] aryStr = new string[] { lstString[0], lstString[1], "N", DateTime.Now.ToString(), lstString[2], DateTime.Now.ToString(), lstString[2] };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_UPD, lstStringArray);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_UPD, aryStr);
 
                 dbconnective.Commit();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -67,20 +67,20 @@ namespace KATO.Business.M1020_Maker_B
             dbconnective.BeginTrans();
             try
             {
-                string[] strArray = new string[] { lstString[0] };
+                string[] aryStr = new string[] { lstString[0] };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_DEL, strArray);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_DEL, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
 
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {
@@ -89,10 +89,10 @@ namespace KATO.Business.M1020_Maker_B
         }
 
         ///<summary>
-        ///judtxtDaibunTextLeave
+        ///updTxtMakerTextLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable judtxtMakerTextLeave(List<string> lstString)
+        public DataTable updTxtMakerTextLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
@@ -105,7 +105,7 @@ namespace KATO.Business.M1020_Maker_B
             stringSQLAry.Add("Common");
             stringSQLAry.Add(strSQLName);
 
-            DataTable dtSetcode_B = new DataTable();
+            DataTable dtSetCd_B = new DataTable();
             OpenSQL opensql = new OpenSQL();
             DBConnective dbconnective = new DBConnective();
             try
@@ -114,22 +114,22 @@ namespace KATO.Business.M1020_Maker_B
 
                 if (strSQLInput == "")
                 {
-                    return (dtSetcode_B);
+                    return (dtSetCd_B);
                 }
 
                 //配列設定
-                string[] strArray = { lstString[0] };
+                string[] aryStr = { lstString[0] };
 
-                strSQLInput = string.Format(strSQLInput, strArray);
+                strSQLInput = string.Format(strSQLInput, aryStr);
 
-                dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                return (dtSetcode_B);
+                return (dtSetCd_B);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
-                throw (e);
+                new CommonException(ex);
+                throw (ex);
             }
             finally
             {

@@ -188,7 +188,6 @@ namespace KATO.Form.M1110_Chubunrui
                     catch (Exception ex)
                     {
                         new CommonException(ex);
-                        return;
                     }
                 }
             }
@@ -238,7 +237,6 @@ namespace KATO.Form.M1110_Chubunrui
 
             //処理部に移動
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
-
             try
             {
                 chubunB.addChubunrui(lstString);
@@ -250,9 +248,9 @@ namespace KATO.Form.M1110_Chubunrui
                 delText();
                 LabelSet_Daibun.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -297,7 +295,6 @@ namespace KATO.Form.M1110_Chubunrui
 
             //処理部に移動(チェック)
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
-
             try
             {
                 chubunB.delChubunrui(lstString);
@@ -308,9 +305,9 @@ namespace KATO.Form.M1110_Chubunrui
                 delText();
                 LabelSet_Daibun.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -326,7 +323,7 @@ namespace KATO.Form.M1110_Chubunrui
         }
 
         ///<summary>
-        ///setCyoku
+        ///setChubunrui
         ///取り出したデータをテキストボックスに配置（中分類）
         ///</summary>
         public void setChubunrui(DataTable dtSelectData)
@@ -334,17 +331,17 @@ namespace KATO.Form.M1110_Chubunrui
             txtChubunrui.Text = dtSelectData.Rows[0]["中分類コード"].ToString();
             txtElem.Text = dtSelectData.Rows[0]["中分類名"].ToString();
         }
-      
+
         ///<summary>
-        ///judtxtChubunruiLeave
+        ///updTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時（中分類）
         ///</summary>
-        public void judtxtChubunruiLeave(object sender, EventArgs e)
+        public void updTxtChubunruiLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            DataTable DtSetcode;
+            DataTable dtSetCd;
 
             if (txtChubunrui.Text == "" || String.IsNullOrWhiteSpace(txtChubunrui.Text).Equals(true))
             {
@@ -369,13 +366,19 @@ namespace KATO.Form.M1110_Chubunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                DtSetcode = chubunB.judTxtChubunruiLeave(lstString);
+                dtSetCd = chubunB.updTxtChubunruiLeave(lstString);
 
-                if (DtSetcode.Rows.Count != 0)
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    LabelSet_Daibun.CodeTxtText = DtSetcode.Rows[0]["大分類コード"].ToString();
-                    txtChubunrui.Text = DtSetcode.Rows[0]["中分類コード"].ToString();
-                    txtElem.Text = DtSetcode.Rows[0]["中分類名"].ToString();
+                    LabelSet_Daibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    txtChubunrui.Text = dtSetCd.Rows[0]["中分類コード"].ToString();
+                    txtElem.Text = dtSetCd.Rows[0]["中分類名"].ToString();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                 }
             }
             catch (Exception ex)

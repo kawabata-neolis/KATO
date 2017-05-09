@@ -59,7 +59,7 @@
             // 
             this.lblBaseLabelName.AutoSize = true;
             this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(33, 59);
+            this.lblBaseLabelName.Location = new System.Drawing.Point(24, 49);
             this.lblBaseLabelName.Name = "lblBaseLabelName";
             this.lblBaseLabelName.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelName.TabIndex = 87;
@@ -70,7 +70,7 @@
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
-            this.baseLabel2.Location = new System.Drawing.Point(433, 64);
+            this.baseLabel2.Location = new System.Drawing.Point(433, 65);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(305, 12);
             this.baseLabel2.TabIndex = 87;
@@ -81,7 +81,7 @@
             // 
             this.lblBaseLabelHuri.AutoSize = true;
             this.lblBaseLabelHuri.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelHuri.Location = new System.Drawing.Point(33, 32);
+            this.lblBaseLabelHuri.Location = new System.Drawing.Point(24, 22);
             this.lblBaseLabelHuri.Name = "lblBaseLabelHuri";
             this.lblBaseLabelHuri.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelHuri.TabIndex = 87;
@@ -91,7 +91,7 @@
             // txtTorihikisaki
             // 
             this.txtTorihikisaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihikisaki.Location = new System.Drawing.Point(133, 56);
+            this.txtTorihikisaki.Location = new System.Drawing.Point(124, 46);
             this.txtTorihikisaki.Name = "txtTorihikisaki";
             this.txtTorihikisaki.Size = new System.Drawing.Size(296, 22);
             this.txtTorihikisaki.TabIndex = 1;
@@ -100,7 +100,7 @@
             // txtHurigana
             // 
             this.txtHurigana.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHurigana.Location = new System.Drawing.Point(133, 28);
+            this.txtHurigana.Location = new System.Drawing.Point(124, 18);
             this.txtHurigana.Name = "txtHurigana";
             this.txtHurigana.Size = new System.Drawing.Size(146, 22);
             this.txtHurigana.TabIndex = 0;

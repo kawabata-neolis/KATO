@@ -113,9 +113,9 @@ namespace KATO.Common.Business
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //配列設定
-            string[] strArray = { lstString[0] };
+            string[] aryStr = { lstString[0] };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             dtSelectData = dbconnective.ReadSql(strSQLInput);
 

@@ -54,7 +54,7 @@ namespace KATO.Common.Ctl
 
 
         ///<summary>
-        ///txtTanabanLeave
+        ///updTxtTanabanLeave
         ///code入力箇所からフォーカスが外れた時(テキスト処理)
         ///作成者：大河内
         ///作成日：2017/4/25
@@ -62,7 +62,7 @@ namespace KATO.Common.Ctl
         ///更新日：2017/4/25
         ///カラム論理名
         ///</summary>
-        public void txtTanabanLeave(object sender, EventArgs e)
+        public void updTxtTanabanLeave(object sender, EventArgs e)
         {
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
@@ -73,7 +73,7 @@ namespace KATO.Common.Ctl
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            DataTable dtSetcode;
+            DataTable dtSetCd;
 
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
@@ -83,17 +83,17 @@ namespace KATO.Common.Ctl
 
             //処理部に移動
             //戻り値のDatatableを取り込む
-            dtSetcode = judTxtTanabanLeave(lstString);
+            dtSetCd = updTxtTanabanLeave(lstString);
 
-            if (dtSetcode.Rows.Count != 0)
+            if (dtSetCd.Rows.Count != 0)
             {
-                this.CodeTxtText = dtSetcode.Rows[0]["棚番"].ToString();
-                this.ValueLabelText = dtSetcode.Rows[0]["棚番名"].ToString();
+                this.CodeTxtText = dtSetCd.Rows[0]["棚番"].ToString();
+                this.ValueLabelText = dtSetCd.Rows[0]["棚番名"].ToString();
             }
         }
 
         ///<summary>
-        ///judTxtDaibunruiLeave
+        ///updTxtTanabanLeave
         ///code入力箇所からフォーカスが外れた時(SQL処理)
         ///作成者：大河内
         ///作成日：2017/3/21
@@ -101,14 +101,14 @@ namespace KATO.Common.Ctl
         ///更新日：2017/4/7
         ///カラム論理名
         ///</summary>
-        public DataTable judTxtTanabanLeave(List<string> lstString)
+        public DataTable updTxtTanabanLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
             string strSQLName = null;
 
-            DataTable dtSetcode_B = new DataTable();
+            DataTable dtSetCd_B = new DataTable();
 
             strSQLName = "C_LIST_Tanaban_SELECT_LEAVE";
 
@@ -121,22 +121,22 @@ namespace KATO.Common.Ctl
 
             if (strSQLInput == "")
             {
-                return (dtSetcode_B);
+                return (dtSetCd_B);
             }
 
             //配列設定
-            string[] strArray = { lstString[0] };
+            string[] aryStr = { lstString[0] };
 
-            strSQLInput = string.Format(strSQLInput, strArray);
+            strSQLInput = string.Format(strSQLInput, aryStr);
 
             //SQLのインスタンス作成
 
             DBConnective dbconnective = new DBConnective();
 
             //SQL文を直書き（＋戻り値を受け取る)
-            dtSetcode_B = dbconnective.ReadSql(strSQLInput);
+            dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-            return (dtSetcode_B);
+            return (dtSetCd_B);
         }
 
         ///judtxTanabanKeyUp

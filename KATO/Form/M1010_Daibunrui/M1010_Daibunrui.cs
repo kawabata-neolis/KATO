@@ -239,9 +239,9 @@ namespace KATO.Form.M1010_Daibunrui
                 delText();
                 txtDaibunrui.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -295,9 +295,9 @@ namespace KATO.Form.M1010_Daibunrui
                 delText();
                 txtDaibunrui.Focus();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                new CommonException(e);
+                new CommonException(ex);
             }
         }
 
@@ -319,15 +319,15 @@ namespace KATO.Form.M1010_Daibunrui
 
 
         /// <summary>
-        /// judtxtDaibunruLeave
+        /// updTxtDaibunruiLeave
         /// code入力箇所からフォーカスが外れた時
         /// </summary>
-        public void judtxtDaibunruiLeave(object sender, EventArgs e)
+        public void updTxtDaibunruiLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            DataTable dtSetcode;
+            DataTable dtSetCd;
 
             //文字判定
             if (txtDaibunrui.blIsEmpty() == false)
@@ -352,19 +352,25 @@ namespace KATO.Form.M1010_Daibunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetcode = daibunB.judTxtDaibunruiLeave(lstString);
+                dtSetCd = daibunB.updTxtDaibunruiLeave(lstString);
 
-                if (dtSetcode.Rows.Count > 0)
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    txtDaibunrui.Text = dtSetcode.Rows[0]["大分類コード"].ToString();
-                    txtName.Text = dtSetcode.Rows[0]["大分類名"].ToString();
-                    txtLabel1.Text = dtSetcode.Rows[0]["ラベル名１"].ToString();
-                    txtLabel2.Text = dtSetcode.Rows[0]["ラベル名２"].ToString();
-                    txtLabel3.Text = dtSetcode.Rows[0]["ラベル名３"].ToString();
-                    txtLabel4.Text = dtSetcode.Rows[0]["ラベル名４"].ToString();
-                    txtLabel5.Text = dtSetcode.Rows[0]["ラベル名５"].ToString();
-                    txtLabel6.Text = dtSetcode.Rows[0]["ラベル名６"].ToString();
+                    txtDaibunrui.Text = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    txtName.Text = dtSetCd.Rows[0]["大分類名"].ToString();
+                    txtLabel1.Text = dtSetCd.Rows[0]["ラベル名１"].ToString();
+                    txtLabel2.Text = dtSetCd.Rows[0]["ラベル名２"].ToString();
+                    txtLabel3.Text = dtSetCd.Rows[0]["ラベル名３"].ToString();
+                    txtLabel4.Text = dtSetCd.Rows[0]["ラベル名４"].ToString();
+                    txtLabel5.Text = dtSetCd.Rows[0]["ラベル名５"].ToString();
+                    txtLabel6.Text = dtSetCd.Rows[0]["ラベル名６"].ToString();
                     txtName.Focus();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                 }
             }
             catch (Exception ex)

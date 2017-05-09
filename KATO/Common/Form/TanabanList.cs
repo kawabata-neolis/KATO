@@ -17,6 +17,15 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Common.Form
 {
+    ///<summary>
+    ///TanabanList
+    ///棚番リストフォーム
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class TanabanList : System.Windows.Forms.Form
     {
         LabelSet_Tanaban lblSetTanaban = null;
@@ -24,6 +33,10 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        /// <summary>
+        /// TanabanList
+        /// フォーム関係の設定（通常のテキストボックスから）
+        /// </summary>
         public TanabanList(Control c)
         {
             if (c == null)
@@ -42,6 +55,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// TanabanList
+        /// フォーム関係の設定（ラベルセットから）
+        /// </summary>
         public TanabanList(Control c, LabelSet_Tanaban lblSetTanabanSelect)
         {
             if (c == null)
@@ -61,6 +78,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// _Title
+        /// タイトルの設定
+        /// </summary>
         public string _Title
         {
             set
@@ -70,6 +91,10 @@ namespace KATO.Common.Form
             }
         }
 
+        /// <summary>
+        /// TanabanList_Load
+        /// 読み込み時
+        /// </summary>
         private void TanabanList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -85,34 +110,38 @@ namespace KATO.Common.Form
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/23
-        ///カラム論理名
         ///</summary>
         private void setDatagridView()
         {
             //処理部に移動
             TanabanList_B tanabanlistB = new TanabanList_B();
-            //データグリッドビュー部分
-            dgvSeihin.DataSource = tanabanlistB.setDatagridView();
-
-            //幅の値を設定
-            dgvSeihin.Columns["棚番"].Width = 150;
-            dgvSeihin.Columns["棚番名"].Width = 150;
-
-            //中央揃え
-            dgvSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
-
-            //件数が0の場合
-            if (lblRecords.Text == "0")
+            try
             {
-                //表示を変える
-                MessageBox.Show("データが見つかりませんでした。");
-                return;
+                //データグリッドビュー部分
+                dgvSeihin.DataSource = tanabanlistB.setDatagridView();
+
+                //幅の値を設定
+                dgvSeihin.Columns["棚番"].Width = 150;
+                dgvSeihin.Columns["棚番名"].Width = 150;
+
+                //中央揃え
+                dgvSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (lblRecords.Text == "0")
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
 
@@ -120,11 +149,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///judTanabanListKeyDown
         ///キー入力判定
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judTanabanListKeyDown(object sender, KeyEventArgs e)
         {
@@ -182,11 +206,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
@@ -197,11 +216,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
@@ -221,17 +235,19 @@ namespace KATO.Common.Form
 
             //処理部に移動
             TanabanList_B tanabanlistB = new TanabanList_B();
-            tanabanlistB.setEndAction(intFrmKind);
+            try
+            {
+                tanabanlistB.setEndAction(intFrmKind);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///<summary>
         ///setdgvEigyousyoDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         public void setdgvEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -241,11 +257,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///judDgvTanabanKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>        
         private void judDgvTanabanKeyDown(object sender, KeyEventArgs e)
         {
@@ -305,11 +316,6 @@ namespace KATO.Common.Form
         ///<summary>
         ///setdgvSeihinDoubleClick
         ///データグリッドビュー内のデータ選択後の処理
-        ///作成者：大河内
-        ///作成日：2017/3/6
-        ///更新者：大河内
-        ///更新日：2017/3/6
-        ///カラム論理名
         ///</summary>        
         private void setSelectItem()
         {
@@ -326,12 +332,22 @@ namespace KATO.Common.Form
 
             //処理部に移動
             TanabanList_B tanabanlistB = new TanabanList_B();
-            tanabanlistB.setSelectItem(intFrmKind, strSelectid);
+            try
+            {
+                tanabanlistB.setSelectItem(intFrmKind, strSelectid);
 
-            setEndAction(lstString);
+                setEndAction(lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>        
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
@@ -345,6 +361,5 @@ namespace KATO.Common.Form
                 return cpForm;
             }
         }
-
     }
 }
