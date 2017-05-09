@@ -10,7 +10,6 @@ namespace KATO
     {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
-        /// おおこうち
         /// </summary>
         [STAThread]
         static void Main()
