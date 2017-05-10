@@ -81,7 +81,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
-            baseRadioButton4.Checked = true;
+            radBase4.Checked = true;
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -114,7 +114,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                 }
                 else
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                 }
@@ -126,13 +126,13 @@ namespace KATO.Form.F0140_TanaorosiInput
         }
 
         ///<summary>
-        ///dgvSetUp
+        ///GridSetUp
         ///DataGridView初期設定
         ///</summary>
         private void SetUpGrid()
         {
             //列自動生成禁止
-            dgvRireki.AutoGenerateColumns = false;
+            gridRireki.AutoGenerateColumns = false;
 
             //データをバインド
             DataGridViewTextBoxColumn tanaban = new DataGridViewTextBoxColumn();
@@ -176,47 +176,47 @@ namespace KATO.Form.F0140_TanaorosiInput
             syouhinCD.HeaderText = "商品コード";
 
             //バインドしたデータを追加
-            dgvRireki.Columns.Add(tanaban);
-            dgvRireki.Columns.Add(maker);
-            dgvRireki.Columns.Add(hinmei);
-            dgvRireki.Columns.Add(tyoubo);
-            dgvRireki.Columns.Add(tana);
-            dgvRireki.Columns.Add(koushin);
-            dgvRireki.Columns.Add(gyousyoCD);
-            dgvRireki.Columns.Add(syouhinCD);
+            gridRireki.Columns.Add(tanaban);
+            gridRireki.Columns.Add(maker);
+            gridRireki.Columns.Add(hinmei);
+            gridRireki.Columns.Add(tyoubo);
+            gridRireki.Columns.Add(tana);
+            gridRireki.Columns.Add(koushin);
+            gridRireki.Columns.Add(gyousyoCD);
+            gridRireki.Columns.Add(syouhinCD);
 
             //個々の幅、文章の寄せ
-            dgvRireki.Columns["棚番"].Width = 70;
-            dgvRireki.Columns["棚番"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvRireki.Columns["棚番"].HeaderCell.Style.Alignment =DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["棚番"].Width = 70;
+            gridRireki.Columns["棚番"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["棚番"].HeaderCell.Style.Alignment =DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["メーカー名"].Width = 130;
-            dgvRireki.Columns["メーカー名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvRireki.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["メーカー名"].Width = 130;
+            gridRireki.Columns["メーカー名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["品名型番"].Width = 300;
-            dgvRireki.Columns["品名型番"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvRireki.Columns["品名型番"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["品名型番"].Width = 300;
+            gridRireki.Columns["品名型番"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["品名型番"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["指定日在庫"].Width = 120;
-            dgvRireki.Columns["指定日在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRireki.Columns["指定日在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["指定日在庫"].Width = 120;
+            gridRireki.Columns["指定日在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            gridRireki.Columns["指定日在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["棚卸数量"].Width = 100;
-            dgvRireki.Columns["棚卸数量"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRireki.Columns["棚卸数量"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["棚卸数量"].Width = 100;
+            gridRireki.Columns["棚卸数量"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            gridRireki.Columns["棚卸数量"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["更新区分"].Width = 70;
-            dgvRireki.Columns["更新区分"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvRireki.Columns["更新区分"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["更新区分"].Width = 70;
+            gridRireki.Columns["更新区分"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            gridRireki.Columns["更新区分"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["営業所コード"].Width = 120;
-            dgvRireki.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvRireki.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["営業所コード"].Width = 120;
+            gridRireki.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvRireki.Columns["商品コード"].Width = 120;
-            dgvRireki.Columns["商品コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvRireki.Columns["商品コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridRireki.Columns["商品コード"].Width = 120;
+            gridRireki.Columns["商品コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["商品コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
 
@@ -439,7 +439,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             strEigyouName = labelSet_Eigyousho.ValueLabelText;
 
             //フォーム上のデータを白紙
-            this.delFormClear(this, dgvRireki);
+            this.delFormClear(this, gridRireki);
 
             //データ復旧
             txtYMD.Text = strTxtYMD;
@@ -449,7 +449,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             labelSet_Eigyousho.ValueLabelText = strEigyouName;
 
             //ﾗｼﾞｵﾎﾞﾀﾝのチェックを初期値
-            baseRadioButton4.Checked = true;
+            radBase4.Checked = true;
 
             labelSet_Eigyousho.Focus();
         }
@@ -502,23 +502,23 @@ namespace KATO.Form.F0140_TanaorosiInput
 
             DataTable dtView = new DataTable();
 
-            dgvRireki.Enabled = true;
+            gridRireki.Enabled = true;
 
             string strBtnJud = "0";
 
-            if (baseRadioButton1.Checked == true)
+            if (radBase1.Checked == true)
             {
                 strBtnJud = "1";
             }
-            else if (baseRadioButton2.Checked == true)
+            else if (radBase2.Checked == true)
             {
                 strBtnJud = "2";
             }
-            else if (baseRadioButton3.Checked == true)
+            else if (radBase3.Checked == true)
             {
                 strBtnJud = "3";
             }
-            else if (baseRadioButton4.Checked == true)
+            else if (radBase4.Checked == true)
             {
                 strBtnJud = "4";
             }
@@ -548,17 +548,17 @@ namespace KATO.Form.F0140_TanaorosiInput
                     dtView.Rows[cnt]["指定日在庫"] = decTanasuu.ToString();
                 }
 
-                dgvRireki.DataSource = dtView;
+                gridRireki.DataSource = dtView;
 
-                if (dgvRireki.RowCount > 0)
+                if (gridRireki.RowCount > 0)
                 {
-                    dgvRireki.Focus();
+                    gridRireki.Focus();
                 }
                 else
                 {
                     btnViewGrid.Focus();
                 }
-                lblRecords.Text = "該当件数：" + dgvRireki.RowCount.ToString();
+                lblRecords.Text = "該当件数：" + gridRireki.RowCount.ToString();
 
                 txtShouhinCD.Text = "";
 
@@ -586,7 +586,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             DataTable dtSelect = null;
 
             //選択行の商品コード取得
-            string strSelectSyouhinCD = (string)dgvRireki.CurrentRow.Cells["商品コード"].Value;
+            string strSelectSyouhinCD = (string)gridRireki.CurrentRow.Cells["商品コード"].Value;
 
             //データ渡し用
             lstString.Add(txtYMD.Text);
@@ -629,10 +629,10 @@ namespace KATO.Form.F0140_TanaorosiInput
 
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setGridSeihinDbl
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        private void setSeihinDblGrid(object sender, DataGridViewCellEventArgs e)
+        private void setGridSeihinDbl(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
@@ -734,15 +734,14 @@ namespace KATO.Form.F0140_TanaorosiInput
                 {
                     new CommonException(ex);
                 }
-
             }
         }
 
         ///<summary>
-        ///judDGVCellChanged
+        ///judGridCellChanged
         ///データグリッドビューに直接変更があった場合
         ///</summary>
-        private void judDGVCellChanged(object sender, DataGridViewCellEventArgs e)
+        private void judGridCellChanged(object sender, DataGridViewCellEventArgs e)
         {
             blnEditting = true;
         }

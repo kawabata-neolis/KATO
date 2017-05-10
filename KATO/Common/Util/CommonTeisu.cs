@@ -48,6 +48,7 @@ namespace KATO.Common.Util
         public const int FRM_TANAOROSHI_EDIT = 6;
         public const int FRM_SHOUHINLIST = 7;
         public const int FRM_TOKUISAKI = 8;
+        public const int FRM_TORIHIKIKBN = 9;
 
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;
@@ -84,6 +85,10 @@ namespace KATO.Common.Util
         public const int CALENDER_MONTH_FIRST = 1;
         public const int CALENDER_MONTH_END = 2;
 
+        //禁止文字の選択欄
+        public const string NUMBER_ONLY = @"^[0-9]+$";
+        public const string az_ONLY = @"^[a-z]+$";
+        public const string AZ_ONLY = @"^[A-Z]+$";
 
         #region テーブル対応のSQLファイル
         // 大分類

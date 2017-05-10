@@ -40,7 +40,7 @@ namespace KATO.Common.Form
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.btnGifuZaiko = new KATO.Common.Ctl.BaseButton();
             this.btnHonshaZaiko = new KATO.Common.Ctl.BaseButton();
-            this.dgvTorihiki = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridTorihiki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -51,7 +51,7 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTorihiki)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -119,11 +119,11 @@ namespace KATO.Common.Form
             this.btnHonshaZaiko.UseVisualStyleBackColor = true;
             this.btnHonshaZaiko.Click += new System.EventHandler(this.btnHonshaZaikoClick);
             // 
-            // dgvTorihiki
+            // gridTorihiki
             // 
-            this.dgvTorihiki.AllowUserToAddRows = false;
-            this.dgvTorihiki.AllowUserToResizeColumns = false;
-            this.dgvTorihiki.AllowUserToResizeRows = false;
+            this.gridTorihiki.AllowUserToAddRows = false;
+            this.gridTorihiki.AllowUserToResizeColumns = false;
+            this.gridTorihiki.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -131,8 +131,8 @@ namespace KATO.Common.Form
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTorihiki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridTorihiki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -140,11 +140,11 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTorihiki.EnableHeadersVisualStyles = false;
-            this.dgvTorihiki.Location = new System.Drawing.Point(12, 122);
-            this.dgvTorihiki.Name = "dgvTorihiki";
-            this.dgvTorihiki.ReadOnly = true;
+            this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridTorihiki.EnableHeadersVisualStyles = false;
+            this.gridTorihiki.Location = new System.Drawing.Point(12, 122);
+            this.gridTorihiki.Name = "gridTorihiki";
+            this.gridTorihiki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -152,15 +152,15 @@ namespace KATO.Common.Form
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTorihiki.RowHeadersVisible = false;
-            this.dgvTorihiki.RowTemplate.Height = 21;
-            this.dgvTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTorihiki.Size = new System.Drawing.Size(931, 434);
-            this.dgvTorihiki.StandardTab = true;
-            this.dgvTorihiki.TabIndex = 102;
-            this.dgvTorihiki.DoubleClick += new System.EventHandler(this.dgvTorihiki_DoubleClick);
-            this.dgvTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDgvToriKeyDown);
+            this.gridTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridTorihiki.RowHeadersVisible = false;
+            this.gridTorihiki.RowTemplate.Height = 21;
+            this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridTorihiki.Size = new System.Drawing.Size(931, 434);
+            this.gridTorihiki.StandardTab = true;
+            this.gridTorihiki.TabIndex = 102;
+            this.gridTorihiki.DoubleClick += new System.EventHandler(this.setGridTorihiki_DoubleClick);
+            this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridToriKeyDown);
             // 
             // txtKensaku
             // 
@@ -311,7 +311,7 @@ namespace KATO.Common.Form
             this.Controls.Add(this.btnGifuZaiko);
             this.Controls.Add(this.btnHonshaZaiko);
             this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.dgvTorihiki);
+            this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.baseLabel8);
@@ -323,7 +323,7 @@ namespace KATO.Common.Form
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTorihiki)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,7 +332,7 @@ namespace KATO.Common.Form
         #endregion
         private BaseText txtKensaku;
         private BaseLabel baseLabel8;
-        private BaseDataGridView dgvTorihiki;
+        private BaseDataGridView gridTorihiki;
         private System.Windows.Forms.Label lblRecords;
         private BaseLabel baseLabel1;
         private BaseButton btnHonshaZaiko;

@@ -61,10 +61,12 @@
   <ItemGroup>
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
+    <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
+    <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
     <Compile Include="Common\Business\EigyoushoList_B.cs" />
     <Compile Include="Common\Business\MakerList_B.cs" />
@@ -210,6 +212,12 @@
     <Compile Include="Common\Form\TokuisakiList.Designer.cs">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\TorihikikbnList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TorihikikbnList.Designer.cs">
+      <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Util\CommonException.cs" />
     <Compile Include="Common\Util\CommonTeisu.cs" />
     <Compile Include="Common\Util\DBConnective.cs">
@@ -226,11 +234,17 @@
     </Compile>
     <Compile Include="Common\Util\OpenSQL.cs" />
     <Compile Include="Common\Util\StringUtl.cs" />
-    <Compile Include="Form\JuchuInput\JuchuInput.cs">
+    <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\JuchuInput\JuchuInput.Designer.cs">
-      <DependentUpon>JuchuInput.cs</DependentUpon>
+    <Compile Include="Form\JuchuInput\JuchuInput_Test.Designer.cs">
+      <DependentUpon>JuchuInput_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1040_Torihikikbn\M1040_Torihikikbn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1040_Torihikikbn\M1040_Torihikikbn.Designer.cs">
+      <DependentUpon>M1040_Torihikikbn.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.cs">
       <SubType>Form</SubType>
@@ -396,9 +410,15 @@
       <DependentUpon>TokuisakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\JuchuInput\JuchuInput.resx">
-      <DependentUpon>JuchuInput.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Form\TorihikikbnList.resx">
+      <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
+      <DependentUpon>JuchuInput_Test.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1040_Torihikikbn\M1040_Torihikikbn.resx">
+      <DependentUpon>M1040_Torihikikbn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
       <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
@@ -472,6 +492,7 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TantoushaList_View.sql" />
@@ -482,6 +503,7 @@
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Eigyousho_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />

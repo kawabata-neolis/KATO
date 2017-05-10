@@ -34,9 +34,9 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.TantoushaGrid = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridTantousha = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            ((System.ComponentModel.ISupportInitialize)(this.TantoushaGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTantousha)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -50,11 +50,11 @@ namespace KATO.Common.Form
             this.lblRecords.TabIndex = 20;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
-            // TantoushaGrid
+            // gridTantousha
             // 
-            this.TantoushaGrid.AllowUserToAddRows = false;
-            this.TantoushaGrid.AllowUserToResizeColumns = false;
-            this.TantoushaGrid.AllowUserToResizeRows = false;
+            this.gridTantousha.AllowUserToAddRows = false;
+            this.gridTantousha.AllowUserToResizeColumns = false;
+            this.gridTantousha.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -62,8 +62,8 @@ namespace KATO.Common.Form
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TantoushaGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.TantoushaGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTantousha.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridTantousha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -71,11 +71,11 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TantoushaGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TantoushaGrid.EnableHeadersVisualStyles = false;
-            this.TantoushaGrid.Location = new System.Drawing.Point(12, 84);
-            this.TantoushaGrid.Name = "TantoushaGrid";
-            this.TantoushaGrid.ReadOnly = true;
+            this.gridTantousha.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridTantousha.EnableHeadersVisualStyles = false;
+            this.gridTantousha.Location = new System.Drawing.Point(12, 84);
+            this.gridTantousha.Name = "gridTantousha";
+            this.gridTantousha.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -83,15 +83,15 @@ namespace KATO.Common.Form
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TantoushaGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.TantoushaGrid.RowHeadersVisible = false;
-            this.TantoushaGrid.RowTemplate.Height = 21;
-            this.TantoushaGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TantoushaGrid.Size = new System.Drawing.Size(776, 451);
-            this.TantoushaGrid.StandardTab = true;
-            this.TantoushaGrid.TabIndex = 6;
-            this.TantoushaGrid.DoubleClick += new System.EventHandler(this.setTanGridDblClick);
-            this.TantoushaGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouGridKeyDown);
+            this.gridTantousha.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridTantousha.RowHeadersVisible = false;
+            this.gridTantousha.RowTemplate.Height = 21;
+            this.gridTantousha.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridTantousha.Size = new System.Drawing.Size(776, 451);
+            this.gridTantousha.StandardTab = true;
+            this.gridTantousha.TabIndex = 6;
+            this.gridTantousha.DoubleClick += new System.EventHandler(this.setGridTanDblClick);
+            this.gridTantousha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTantouKeyDown);
             // 
             // btnF12
             // 
@@ -110,13 +110,13 @@ namespace KATO.Common.Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
             this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.TantoushaGrid);
+            this.Controls.Add(this.gridTantousha);
             this.Controls.Add(this.btnF12);
             this.Name = "TantoushaList";
             this.Text = "tantousyaList";
             this.Load += new System.EventHandler(this.TantousyaList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.TantoushaGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTantousha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,7 +124,7 @@ namespace KATO.Common.Form
 
         #endregion
         private BaseButton btnF12;
-        private BaseDataGridView TantoushaGrid;
+        private BaseDataGridView gridTantousha;
         private System.Windows.Forms.Label lblRecords;
     }
 }

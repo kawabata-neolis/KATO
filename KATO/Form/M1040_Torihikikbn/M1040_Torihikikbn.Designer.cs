@@ -1,9 +1,6 @@
-﻿using KATO.Common.Ctl;
-using KATO.Common.Util;
-
-namespace KATO.Form.M1020_Maker
+﻿namespace KATO.Form.M1040_Torihikikbn
 {
-    partial class M1020_Maker
+    partial class M1040_Torihikikbn
     {
         /// <summary>
         /// Required designer variable.
@@ -32,10 +29,10 @@ namespace KATO.Form.M1020_Maker
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtMaker = new KATO.Common.Ctl.BaseText();
-            this.txtName = new KATO.Common.Ctl.BaseText();
             this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtName = new KATO.Common.Ctl.BaseText();
+            this.txtTorihikikubun = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
             // btnF12
@@ -45,10 +42,6 @@ namespace KATO.Form.M1020_Maker
             // btnF11
             // 
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF10
-            // 
-            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
@@ -86,60 +79,63 @@ namespace KATO.Form.M1020_Maker
             // 
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // txtMaker
-            // 
-            this.txtMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMaker.Location = new System.Drawing.Point(557, 60);
-            this.txtMaker.Name = "txtMaker";
-            this.txtMaker.Size = new System.Drawing.Size(31, 22);
-            this.txtMaker.TabIndex = 0;
-            this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMakerKeyDown);
-            this.txtMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
-            this.txtMaker.Leave += new System.EventHandler(this.updTxtMakerTextLeave);
-            // 
-            // txtName
-            // 
-            this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtName.Location = new System.Drawing.Point(557, 97);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(379, 22);
-            this.txtName.TabIndex = 1;
-            // 
             // lblBaseLabelName
             // 
-            this.lblBaseLabelName.AutoSize = true;
             this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(432, 100);
+            this.lblBaseLabelName.Location = new System.Drawing.Point(663, 93);
             this.lblBaseLabelName.Name = "lblBaseLabelName";
             this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabelName.TabIndex = 87;
-            this.lblBaseLabelName.Text = "メーカー名";
+            this.lblBaseLabelName.Text = "取引区分名";
             this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBaseLabelCD
             // 
             this.lblBaseLabelCD.AutoSize = true;
             this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelCD.Location = new System.Drawing.Point(432, 63);
+            this.lblBaseLabelCD.Location = new System.Drawing.Point(424, 93);
             this.lblBaseLabelCD.Name = "lblBaseLabelCD";
             this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
-            this.lblBaseLabelCD.TabIndex = 88;
-            this.lblBaseLabelCD.Text = "メーカーコード";
+            this.lblBaseLabelCD.TabIndex = 90;
+            this.lblBaseLabelCD.Text = "取引区分コード";
             this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // M1020_Maker
+            // txtName
+            // 
+            this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Katakana;
+            this.txtName.Location = new System.Drawing.Point(762, 90);
+            this.txtName.MaxLength = 24;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(222, 22);
+            this.txtName.TabIndex = 1;
+            // 
+            // txtTorihikikubun
+            // 
+            this.txtTorihikikubun.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihikikubun.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTorihikikubun.Location = new System.Drawing.Point(550, 90);
+            this.txtTorihikikubun.MaxLength = 2;
+            this.txtTorihikikubun.Name = "txtTorihikikubun";
+            this.txtTorihikikubun.Size = new System.Drawing.Size(33, 22);
+            this.txtTorihikikubun.TabIndex = 0;
+            this.txtTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyDown);
+            this.txtTorihikikubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyUp);
+            this.txtTorihikikubun.Leave += new System.EventHandler(this.updTxtToriLeave);
+            // 
+            // M1040_Torihikikbn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 828);
-            this.Controls.Add(this.lblBaseLabelCD);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblBaseLabelName);
+            this.Controls.Add(this.lblBaseLabelCD);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.txtMaker);
-            this.Name = "M1020_Maker";
-            this.Text = "M1020_Maker";
-            this.Load += new System.EventHandler(this.M_Maker_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
+            this.Controls.Add(this.txtTorihikikubun);
+            this.Name = "M1040_Torihikikbn";
+            this.Text = "M1040_Torihikikbn";
+            this.Load += new System.EventHandler(this.M1040_Torihikikubun_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikubunKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -152,10 +148,10 @@ namespace KATO.Form.M1020_Maker
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.txtMaker, 0);
+            this.Controls.SetChildIndex(this.txtTorihikikubun, 0);
             this.Controls.SetChildIndex(this.txtName, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
             this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,9 +159,9 @@ namespace KATO.Form.M1020_Maker
 
         #endregion
 
-        private BaseText txtMaker;
-        private BaseText txtName;
-        private BaseLabel lblBaseLabelName;
-        private BaseLabel lblBaseLabelCD;
+        private Common.Ctl.BaseLabel lblBaseLabelName;
+        private Common.Ctl.BaseLabel lblBaseLabelCD;
+        private Common.Ctl.BaseText txtName;
+        private Common.Ctl.BaseText txtTorihikikubun;
     }
 }

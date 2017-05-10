@@ -168,7 +168,7 @@ namespace KATO.Common.Ctl
         ///更新日：2017/3/29
         ///カラム論理名
         ///</summary>
-        public void delFormClear(Control hParent, DataGridView dgvData)
+        public void delFormClear(Control hParent, DataGridView gridData)
         {
             // hParent 内のすべてのコントロールを列挙する
             foreach (Control cControl in hParent.Controls)
@@ -176,7 +176,7 @@ namespace KATO.Common.Ctl
                 // 列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
                 if (cControl.HasChildren == true)
                 {
-                    delFormClear(cControl, dgvData);
+                    delFormClear(cControl, gridData);
                 }
                 // コントロールの型が BaseText からの派生型の場合は BaseText をクリアする
                 if (cControl is BaseText)
@@ -191,7 +191,7 @@ namespace KATO.Common.Ctl
                 // コントロールの型が BaseDataGridView からの派生型の場合は BaseDataGridView をクリアする
                 if (cControl is BaseDataGridView)
                 {
-                    dgvData.DataSource = "";
+                    gridData.DataSource = "";
                 }
                 // コントロールの型が CheckBox からの派生型の場合は CheckBox をクリアする
                 if (cControl is CheckBox)

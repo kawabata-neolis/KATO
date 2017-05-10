@@ -27,7 +27,7 @@ namespace KATO.Form.Z0000
 
         private void Z0000_Load(object sender, EventArgs e)
         {
-            this.baseMenuButton1.Focus();
+            this.btnDaibunrui.Focus();
 
             //TabControlをオーナードローする
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -76,8 +76,6 @@ namespace KATO.Form.Z0000
         {
             M1010_Daibunrui.M1010_Daibunrui daibun = new M1010_Daibunrui.M1010_Daibunrui(this);
             daibun.ShowDialog();
-            //daibun.Show();
-            //this.Hide();
         }
 
         //中分類表示
@@ -85,8 +83,6 @@ namespace KATO.Form.Z0000
         {
             M1110_Chubunrui.M1110_Chubunrui chubun = new M1110_Chubunrui.M1110_Chubunrui(this);
             chubun.ShowDialog();
-            //chubun.Show();
-            //this.Hide();
         }
 
         //メーカー表示
@@ -94,8 +90,6 @@ namespace KATO.Form.Z0000
         {
             M1020_Maker.M1020_Maker maker = new M1020_Maker.M1020_Maker(this);
             maker.ShowDialog();
-            //maker.Show();
-            //this.Hide();
         }
 
         //棚卸入力表示
@@ -103,16 +97,27 @@ namespace KATO.Form.Z0000
         {
             F0140_TanaorosiInput.F0140_TanaorosiInput tana = new F0140_TanaorosiInput.F0140_TanaorosiInput(this);
             tana.ShowDialog();
-            //tana.Show();
-            //this.Hide();
         }
+
+        //取引区分表示
+        private void baseMenuButton7_Click(object sender, EventArgs e)
+        {
+            M1040_Torihikikbn.M1040_Torihikikbn tori = new M1040_Torihikikbn.M1040_Torihikikbn(this);
+            tori.ShowDialog();
+        }
+
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)
         {
-            JuchuInput.JuchuInput juchu = new JuchuInput.JuchuInput(this);
+            JuchuInput.JuchuInput_Test juchu = new JuchuInput.JuchuInput_Test(this);
+
+            //メニュー非表示関係の残り（参考）
             //juchu.AddOwnedForm(this);
+
             juchu.ShowDialog();
+            
+            //メニュー非表示関係の残り（参考）
             //juchu.Show();
             //this.Hide();
         }

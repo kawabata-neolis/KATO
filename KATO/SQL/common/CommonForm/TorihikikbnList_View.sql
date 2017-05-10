@@ -1,0 +1,1 @@
+SELECT 取引区分コード, 取引区分名 FROM 取引区分 WHERE 削除 = 'N'

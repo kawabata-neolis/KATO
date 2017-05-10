@@ -110,7 +110,7 @@ namespace KATO.Common.Form
 
             SetUpGrid();
 
-            setViewGrid();
+            setDatagridView();
         }
 
         ///<summary>
@@ -120,7 +120,7 @@ namespace KATO.Common.Form
         private void SetUpGrid()
         {
             //列自動生成禁止
-            TantoushaGrid.AutoGenerateColumns = false;
+            gridTantousha.AutoGenerateColumns = false;
 
             //データをバインド
             DataGridViewTextBoxColumn tantoushaCD = new DataGridViewTextBoxColumn();
@@ -154,37 +154,37 @@ namespace KATO.Common.Form
             uriageMokuhyo.HeaderText = "売上目標金額";
 
             //バインドしたデータを追加
-            TantoushaGrid.Columns.Add(tantoushaCD);
-            TantoushaGrid.Columns.Add(tantoushaName);
-            TantoushaGrid.Columns.Add(eigyoushoCD);
-            TantoushaGrid.Columns.Add(chubanmoji);
-            TantoushaGrid.Columns.Add(groupCD);
-            TantoushaGrid.Columns.Add(uriageMokuhyo);
+            gridTantousha.Columns.Add(tantoushaCD);
+            gridTantousha.Columns.Add(tantoushaName);
+            gridTantousha.Columns.Add(eigyoushoCD);
+            gridTantousha.Columns.Add(chubanmoji);
+            gridTantousha.Columns.Add(groupCD);
+            gridTantousha.Columns.Add(uriageMokuhyo);
 
             //個々の幅、文章の寄せ
-            TantoushaGrid.Columns["担当者コード"].Width = 80;
-            TantoushaGrid.Columns["担当者コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TantoushaGrid.Columns["担当者コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["担当者コード"].Width = 80;
+            gridTantousha.Columns["担当者コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTantousha.Columns["担当者コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TantoushaGrid.Columns["担当者名"].Width = 200;
-            TantoushaGrid.Columns["担当者名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TantoushaGrid.Columns["担当者名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["担当者名"].Width = 200;
+            gridTantousha.Columns["担当者名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTantousha.Columns["担当者名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TantoushaGrid.Columns["営業所コード"].Width = 100;
-            TantoushaGrid.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TantoushaGrid.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["営業所コード"].Width = 100;
+            gridTantousha.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTantousha.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TantoushaGrid.Columns["注番文字"].Width = 100;
-            TantoushaGrid.Columns["注番文字"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TantoushaGrid.Columns["注番文字"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["注番文字"].Width = 100;
+            gridTantousha.Columns["注番文字"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTantousha.Columns["注番文字"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TantoushaGrid.Columns["グループコード"].Width = 100;
-            TantoushaGrid.Columns["グループコード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TantoushaGrid.Columns["グループコード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["グループコード"].Width = 100;
+            gridTantousha.Columns["グループコード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTantousha.Columns["グループコード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TantoushaGrid.Columns["年間売上目標"].Width = 150;
-            TantoushaGrid.Columns["年間売上目標"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            TantoushaGrid.Columns["年間売上目標"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTantousha.Columns["年間売上目標"].Width = 150;
+            gridTantousha.Columns["年間売上目標"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            gridTantousha.Columns["年間売上目標"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
 
@@ -192,7 +192,7 @@ namespace KATO.Common.Form
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void setViewGrid()
+        private void setDatagridView()
         {
             DataTable dtView = new DataTable();
 
@@ -219,9 +219,9 @@ namespace KATO.Common.Form
                 }
 
                 //データグリッドビュー部分
-                TantoushaGrid.DataSource = dtView;
+                gridTantousha.DataSource = dtView;
 
-                lblRecords.Text = "該当件数( " + TantoushaGrid.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridTantousha.RowCount.ToString() + "件)";
 
             }
             catch (Exception ex)
@@ -232,7 +232,7 @@ namespace KATO.Common.Form
             //件数が0の場合
             if (lblRecords.Text == "0")
             {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
@@ -297,10 +297,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///judGridTantouKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judTantouGridKeyDown(object sender, KeyEventArgs e)
+        private void judGridTantouKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -355,7 +355,7 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
@@ -365,8 +365,8 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             //選択行の担当者情報取得
-            string strSelectId = (string)TantoushaGrid.CurrentRow.Cells["担当者コード"].Value;
-            string strSelectName = (string)TantoushaGrid.CurrentRow.Cells["担当者名"].Value;
+            string strSelectId = (string)gridTantousha.CurrentRow.Cells["担当者コード"].Value;
+            string strSelectName = (string)gridTantousha.CurrentRow.Cells["担当者名"].Value;
 
             lstInt.Add(intFrmKind);
             lstString.Add(strSelectId);
@@ -410,7 +410,7 @@ namespace KATO.Common.Form
         /// CreateParams
         ///データグリッドビュー内のデータをダブルクリックしたとき
         /// </summary>
-        private void setTanGridDblClick(object sender, EventArgs e)
+        private void setGridTanDblClick(object sender, EventArgs e)
         {
             setSelectItem();
         }

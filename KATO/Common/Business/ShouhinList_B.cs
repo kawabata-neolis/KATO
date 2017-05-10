@@ -59,7 +59,7 @@ namespace KATO.Common.Business
                 ////SQLのインスタンス作成
                 //DBConnective dbconnective = new DBConnective();
 
-                //dgvTorihiki.DataSource = dbconnective.ReadSql("商品コード,dbo.f_getメーカー名(メーカーコード),dbo.f_get大分類名(大分類コード),dbo.f_get中分類名(大分類コード,中分類コード), ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'')," + "メモ, 棚番本社,棚番岐阜", "商品", strWhere, " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                //gridTorihiki.DataSource = dbconnective.ReadSql("商品コード,dbo.f_getメーカー名(メーカーコード),dbo.f_get大分類名(大分類コード),dbo.f_get中分類名(大分類コード,中分類コード), ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'')," + "メモ, 棚番本社,棚番岐阜", "商品", strWhere, " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
 
 
                 //LblRecords.Text = "該当件数（ " + grdTorihiki.rowCount + "件)";

@@ -1,6 +1,6 @@
 ﻿namespace KATO.Form.JuchuInput
 {
-    partial class JuchuInput
+    partial class JuchuInput_Test
     {
         /// <summary>
         /// Required designer variable.

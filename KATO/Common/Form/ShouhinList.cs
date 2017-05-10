@@ -103,7 +103,7 @@ namespace KATO.Common.Form
             setTextData();
 
             //DataGridViewの初期設定
-            dgvSetUp();
+            gridSetUp();
 
             //modeで判定して項目を追加
             setStart();
@@ -120,13 +120,13 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///dgvSetUp
+        ///GridSetUp
         ///DataGridView初期設定
         ///</summary>
-        private void dgvSetUp()
+        private void gridSetUp()
         {
             //列自動生成禁止
-            dgvTorihiki.AutoGenerateColumns = false;
+            gridTorihiki.AutoGenerateColumns = false;
 
             //データをバインド
             DataGridViewTextBoxColumn code = new DataGridViewTextBoxColumn();
@@ -160,39 +160,39 @@ namespace KATO.Common.Form
             memo.HeaderText = "メモ";
 
             //バインドしたデータを追加
-            dgvTorihiki.Columns.Add(code);
-            dgvTorihiki.Columns.Add(maker);
-            dgvTorihiki.Columns.Add(daibunrui);
-            dgvTorihiki.Columns.Add(chubunrui);
-            dgvTorihiki.Columns.Add(hinmei);
-            dgvTorihiki.Columns.Add(memo);
+            gridTorihiki.Columns.Add(code);
+            gridTorihiki.Columns.Add(maker);
+            gridTorihiki.Columns.Add(daibunrui);
+            gridTorihiki.Columns.Add(chubunrui);
+            gridTorihiki.Columns.Add(hinmei);
+            gridTorihiki.Columns.Add(memo);
 
-            dgvTorihiki.AutoGenerateColumns = false;
+            gridTorihiki.AutoGenerateColumns = false;
 
             //個々の幅、文章の寄せ
-            dgvTorihiki.Columns["コード"].Width = 0;
-            dgvTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["コード"].Width = 0;
+            gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvTorihiki.Columns["メーカー"].Width = 100;
-            dgvTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["メーカー"].Width = 100;
+            gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvTorihiki.Columns["大分類名"].Width = 0;
-            dgvTorihiki.Columns["大分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvTorihiki.Columns["大分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["大分類名"].Width = 0;
+            gridTorihiki.Columns["大分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["大分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvTorihiki.Columns["中分類名"].Width = 110;
-            dgvTorihiki.Columns["中分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvTorihiki.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["中分類名"].Width = 110;
+            gridTorihiki.Columns["中分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTorihiki.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvTorihiki.Columns["品名"].Width = 300;
-            dgvTorihiki.Columns["品名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvTorihiki.Columns["品名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["品名"].Width = 300;
+            gridTorihiki.Columns["品名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTorihiki.Columns["品名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            dgvTorihiki.Columns["メモ"].Width = 110;
-            dgvTorihiki.Columns["メモ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvTorihiki.Columns["メモ"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTorihiki.Columns["メモ"].Width = 110;
+            gridTorihiki.Columns["メモ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["メモ"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
         }
 
@@ -214,16 +214,16 @@ namespace KATO.Common.Form
                 tanaGifu.Name = "岐阜在庫";
                 tanaGifu.HeaderText = "岐阜在庫";
 
-                dgvTorihiki.Columns.Add(tanaHonsha);
-                dgvTorihiki.Columns.Add(tanaGifu);
+                gridTorihiki.Columns.Add(tanaHonsha);
+                gridTorihiki.Columns.Add(tanaGifu);
 
-                dgvTorihiki.Columns["棚番本社"].Width = 110;
-                dgvTorihiki.Columns["棚番本社"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvTorihiki.Columns["棚番本社"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridTorihiki.Columns["棚番本社"].Width = 110;
+                gridTorihiki.Columns["棚番本社"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridTorihiki.Columns["棚番本社"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                dgvTorihiki.Columns["棚番岐阜"].Width = 110;
-                dgvTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridTorihiki.Columns["棚番岐阜"].Width = 110;
+                gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             else
             {
@@ -237,16 +237,16 @@ namespace KATO.Common.Form
                 zaikoGifu.Name = "岐阜在庫";
                 zaikoGifu.HeaderText = "岐阜在庫";
 
-                dgvTorihiki.Columns.Add(zaikoHonsha);
-                dgvTorihiki.Columns.Add(zaikoGifu);
+                gridTorihiki.Columns.Add(zaikoHonsha);
+                gridTorihiki.Columns.Add(zaikoGifu);
 
-                dgvTorihiki.Columns["本社在庫"].Width = 110;
-                dgvTorihiki.Columns["本社在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvTorihiki.Columns["本社在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridTorihiki.Columns["本社在庫"].Width = 110;
+                gridTorihiki.Columns["本社在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridTorihiki.Columns["本社在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                dgvTorihiki.Columns["岐阜在庫"].Width = 110;
-                dgvTorihiki.Columns["岐阜在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvTorihiki.Columns["岐阜在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridTorihiki.Columns["岐阜在庫"].Width = 110;
+                gridTorihiki.Columns["岐阜在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                gridTorihiki.Columns["岐阜在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
         }
 
@@ -324,10 +324,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///judDgvToriKeyDown
+        ///judGridToriKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judDgvToriKeyDown(object sender, KeyEventArgs e)
+        private void judGridToriKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -383,12 +383,12 @@ namespace KATO.Common.Form
                     break;
             }
         }
-        
+
         ///<summary>
-        ///setTorihikiDoubleClick
+        ///setGridTorihiki_DoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        private void dgvTorihiki_DoubleClick(object sender, EventArgs e)
+        private void setGridTorihiki_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
@@ -409,15 +409,15 @@ namespace KATO.Common.Form
             }
 
             //選択行のcode取得
-            string strSelectid = (string)dgvTorihiki.CurrentRow.Cells[4].Value;
+            string strSelectid = (string)gridTorihiki.CurrentRow.Cells[4].Value;
             //選択行の商品コード取得
-            string strSelectShohinCD = (string)dgvTorihiki.CurrentRow.Cells["コード"].Value;
+            string strSelectShohinCD = (string)gridTorihiki.CurrentRow.Cells["コード"].Value;
             //選択行のメーカーコード取得
-            string strSelectMakerCD = (string)dgvTorihiki.CurrentRow.Cells["メーカー"].Value;
+            string strSelectMakerCD = (string)gridTorihiki.CurrentRow.Cells["メーカー"].Value;
             //選択行の大分類名取得
-            string strSelectDaibunName = (string)dgvTorihiki.CurrentRow.Cells["大分類名"].Value;
+            string strSelectDaibunName = (string)gridTorihiki.CurrentRow.Cells["大分類名"].Value;
             //選択行の中分類名取得
-            string strSelectChubunName = (string)dgvTorihiki.CurrentRow.Cells["中分類名"].Value;
+            string strSelectChubunName = (string)gridTorihiki.CurrentRow.Cells["中分類名"].Value;
 
             //データ渡し用
             lstInt.Add(intFrmKind);
@@ -512,10 +512,10 @@ namespace KATO.Common.Form
             txtHon.Text = "";
             txtGifu.Text = "";
 
-            dgvTorihiki.Columns.Clear();
+            gridTorihiki.Columns.Clear();
 
             //DataGridViewの初期設定
-            dgvSetUp();
+            gridSetUp();
 
             //modeで判定して項目を追加
             setStart();
@@ -538,8 +538,8 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
             List<Boolean> lstBoolean = new List<Boolean>();
 
-            dgvTorihiki.Enabled = true;
-            dgvTorihiki.DataSource = null;
+            gridTorihiki.Enabled = true;
+            gridTorihiki.DataSource = null;
             DataTable dtView = new DataTable();
 
             //データ渡し用
@@ -560,12 +560,12 @@ namespace KATO.Common.Form
             {
                 dtView = shohinlistB.setShohinView(lstInt, lstString, lstBoolean);
 
-                dgvTorihiki.DataSource = dtView;
-                this.dgvTorihiki.Columns["コード"].Visible = false;
-                this.dgvTorihiki.Columns["大分類名"].Visible = false;
+                gridTorihiki.DataSource = dtView;
+                this.gridTorihiki.Columns["コード"].Visible = false;
+                this.gridTorihiki.Columns["大分類名"].Visible = false;
 
-                lblRecords.Text = "該当件数(" + dgvTorihiki.RowCount.ToString() + "件)";
-                dgvTorihiki.Focus();
+                lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
+                gridTorihiki.Focus();
             }
             catch (Exception ex)
             {
@@ -627,7 +627,7 @@ namespace KATO.Common.Form
                 }
                 else
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
 
@@ -677,10 +677,10 @@ namespace KATO.Common.Form
             ////戻り値のDatatableを取り込む
             //shohinlistB.ZaikoClick(lstString);
 
-            //dgvTorihiki.Columns.Clear();
+            //gridTorihiki.Columns.Clear();
 
             ////DataGridViewの初期設定
-            //dgvSetUp();
+            //gridSetUp();
 
             ////modeで判定して項目を追加
             //setStart();

@@ -36,12 +36,12 @@ namespace KATO.Form.F0140_TanaorosiInput
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.dgvRireki = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridRireki = new KATO.Common.Ctl.BaseDataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.baseRadioButton3 = new KATO.Common.Ctl.BaseRadioButton();
-            this.baseRadioButton2 = new KATO.Common.Ctl.BaseRadioButton();
-            this.baseRadioButton1 = new KATO.Common.Ctl.BaseRadioButton();
-            this.baseRadioButton4 = new KATO.Common.Ctl.BaseRadioButton();
+            this.radBase3 = new KATO.Common.Ctl.BaseRadioButton();
+            this.radBase2 = new KATO.Common.Ctl.BaseRadioButton();
+            this.radBase1 = new KATO.Common.Ctl.BaseRadioButton();
+            this.radBase4 = new KATO.Common.Ctl.BaseRadioButton();
             this.baseLabel10 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btnViewGrid = new KATO.Common.Ctl.BaseButton();
             this.lblRecords = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -53,12 +53,12 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtTyoubosuu = new KATO.Common.Ctl.BaseText();
             this.txtTanasuu = new KATO.Common.Ctl.BaseText();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
-            this.baseLabel9 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel13 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel12 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelHinmei = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelTyoubosuu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelTanasuu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShouhinCD = new KATO.Common.Ctl.BaseText();
-            this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtbaseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
@@ -66,7 +66,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRireki)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -115,11 +115,11 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.baseLabel1.Text = "棚卸年月日";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dgvRireki
+            // gridRireki
             // 
-            this.dgvRireki.AllowUserToAddRows = false;
-            this.dgvRireki.AllowUserToResizeColumns = false;
-            this.dgvRireki.AllowUserToResizeRows = false;
+            this.gridRireki.AllowUserToAddRows = false;
+            this.gridRireki.AllowUserToResizeColumns = false;
+            this.gridRireki.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -127,8 +127,8 @@ namespace KATO.Form.F0140_TanaorosiInput
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvRireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridRireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -136,11 +136,11 @@ namespace KATO.Form.F0140_TanaorosiInput
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRireki.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvRireki.EnableHeadersVisualStyles = false;
-            this.dgvRireki.Location = new System.Drawing.Point(332, 35);
-            this.dgvRireki.Name = "dgvRireki";
-            this.dgvRireki.ReadOnly = true;
+            this.gridRireki.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridRireki.EnableHeadersVisualStyles = false;
+            this.gridRireki.Location = new System.Drawing.Point(332, 35);
+            this.gridRireki.Name = "gridRireki";
+            this.gridRireki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -148,23 +148,23 @@ namespace KATO.Form.F0140_TanaorosiInput
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvRireki.RowHeadersVisible = false;
-            this.dgvRireki.RowTemplate.Height = 21;
-            this.dgvRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRireki.Size = new System.Drawing.Size(1080, 631);
-            this.dgvRireki.StandardTab = true;
-            this.dgvRireki.TabIndex = 7;
-            this.dgvRireki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setSeihinDblGrid);
-            this.dgvRireki.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.judDGVCellChanged);
-            this.dgvRireki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judRirekiKeyDown);
+            this.gridRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridRireki.RowHeadersVisible = false;
+            this.gridRireki.RowTemplate.Height = 21;
+            this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridRireki.Size = new System.Drawing.Size(1080, 631);
+            this.gridRireki.StandardTab = true;
+            this.gridRireki.TabIndex = 7;
+            this.gridRireki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDbl);
+            this.gridRireki.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.judGridCellChanged);
+            this.gridRireki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judRirekiKeyDown);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.baseRadioButton3);
-            this.groupBox1.Controls.Add(this.baseRadioButton2);
-            this.groupBox1.Controls.Add(this.baseRadioButton1);
-            this.groupBox1.Controls.Add(this.baseRadioButton4);
+            this.groupBox1.Controls.Add(this.radBase3);
+            this.groupBox1.Controls.Add(this.radBase2);
+            this.groupBox1.Controls.Add(this.radBase1);
+            this.groupBox1.Controls.Add(this.radBase4);
             this.groupBox1.Controls.Add(this.baseLabel10);
             this.groupBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.groupBox1.Location = new System.Drawing.Point(12, 228);
@@ -174,69 +174,69 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出力順の選択";
             // 
-            // baseRadioButton3
+            // radBase3
             // 
-            this.baseRadioButton3.AutoSize = true;
-            this.baseRadioButton3.DisabledBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton3.DisabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton3.FocusedBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton3.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseRadioButton3.Location = new System.Drawing.Point(13, 87);
-            this.baseRadioButton3.Name = "baseRadioButton3";
-            this.baseRadioButton3.Size = new System.Drawing.Size(233, 19);
-            this.baseRadioButton3.TabIndex = 101;
-            this.baseRadioButton3.TabStop = true;
-            this.baseRadioButton3.Text = "棚番・メーカー・品名の昇順";
-            this.baseRadioButton3.UseVisualStyleBackColor = true;
+            this.radBase3.AutoSize = true;
+            this.radBase3.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.radBase3.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase3.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.radBase3.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.radBase3.Location = new System.Drawing.Point(13, 87);
+            this.radBase3.Name = "radBase3";
+            this.radBase3.Size = new System.Drawing.Size(233, 19);
+            this.radBase3.TabIndex = 101;
+            this.radBase3.TabStop = true;
+            this.radBase3.Text = "棚番・メーカー・品名の昇順";
+            this.radBase3.UseVisualStyleBackColor = true;
             // 
-            // baseRadioButton2
+            // radBase2
             // 
-            this.baseRadioButton2.AutoSize = true;
-            this.baseRadioButton2.DisabledBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton2.DisabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton2.FocusedBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseRadioButton2.Location = new System.Drawing.Point(13, 61);
-            this.baseRadioButton2.Name = "baseRadioButton2";
-            this.baseRadioButton2.Size = new System.Drawing.Size(185, 19);
-            this.baseRadioButton2.TabIndex = 100;
-            this.baseRadioButton2.TabStop = true;
-            this.baseRadioButton2.Text = "メーカー・品名の昇順";
-            this.baseRadioButton2.UseVisualStyleBackColor = true;
+            this.radBase2.AutoSize = true;
+            this.radBase2.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.radBase2.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase2.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.radBase2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.radBase2.Location = new System.Drawing.Point(13, 61);
+            this.radBase2.Name = "radBase2";
+            this.radBase2.Size = new System.Drawing.Size(185, 19);
+            this.radBase2.TabIndex = 100;
+            this.radBase2.TabStop = true;
+            this.radBase2.Text = "メーカー・品名の昇順";
+            this.radBase2.UseVisualStyleBackColor = true;
             // 
-            // baseRadioButton1
+            // radBase1
             // 
-            this.baseRadioButton1.AutoSize = true;
-            this.baseRadioButton1.DisabledBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton1.DisabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton1.FocusedBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseRadioButton1.Location = new System.Drawing.Point(13, 34);
-            this.baseRadioButton1.Name = "baseRadioButton1";
-            this.baseRadioButton1.Size = new System.Drawing.Size(105, 19);
-            this.baseRadioButton1.TabIndex = 99;
-            this.baseRadioButton1.TabStop = true;
-            this.baseRadioButton1.Text = "品名の昇順";
-            this.baseRadioButton1.UseVisualStyleBackColor = true;
+            this.radBase1.AutoSize = true;
+            this.radBase1.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.radBase1.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase1.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.radBase1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.radBase1.Location = new System.Drawing.Point(13, 34);
+            this.radBase1.Name = "radBase1";
+            this.radBase1.Size = new System.Drawing.Size(105, 19);
+            this.radBase1.TabIndex = 99;
+            this.radBase1.TabStop = true;
+            this.radBase1.Text = "品名の昇順";
+            this.radBase1.UseVisualStyleBackColor = true;
             // 
-            // baseRadioButton4
+            // radBase4
             // 
-            this.baseRadioButton4.AutoSize = true;
-            this.baseRadioButton4.DisabledBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton4.DisabledForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton4.FocusedBackColor = System.Drawing.SystemColors.Control;
-            this.baseRadioButton4.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.baseRadioButton4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseRadioButton4.Location = new System.Drawing.Point(13, 117);
-            this.baseRadioButton4.Name = "baseRadioButton4";
-            this.baseRadioButton4.Size = new System.Drawing.Size(153, 19);
-            this.baseRadioButton4.TabIndex = 98;
-            this.baseRadioButton4.TabStop = true;
-            this.baseRadioButton4.Text = "棚番・品名の昇順";
-            this.baseRadioButton4.UseVisualStyleBackColor = true;
+            this.radBase4.AutoSize = true;
+            this.radBase4.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.radBase4.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase4.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.radBase4.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.radBase4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.radBase4.Location = new System.Drawing.Point(13, 117);
+            this.radBase4.Name = "radBase4";
+            this.radBase4.Size = new System.Drawing.Size(153, 19);
+            this.radBase4.TabIndex = 98;
+            this.radBase4.TabStop = true;
+            this.radBase4.Text = "棚番・品名の昇順";
+            this.radBase4.UseVisualStyleBackColor = true;
             // 
             // baseLabel10
             // 
@@ -280,10 +280,10 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.groupBox2.Controls.Add(this.txtTyoubosuu);
             this.groupBox2.Controls.Add(this.txtTanasuu);
             this.groupBox2.Controls.Add(this.txtKensaku);
-            this.groupBox2.Controls.Add(this.baseLabel9);
-            this.groupBox2.Controls.Add(this.baseLabel13);
-            this.groupBox2.Controls.Add(this.baseLabel12);
-            this.groupBox2.Controls.Add(this.baseLabel8);
+            this.groupBox2.Controls.Add(this.lblBaseLabelHinmei);
+            this.groupBox2.Controls.Add(this.lblBaseLabelTyoubosuu);
+            this.groupBox2.Controls.Add(this.lblBaseLabelTanasuu);
+            this.groupBox2.Controls.Add(this.lblBaseLabelKensaku);
             this.groupBox2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.groupBox2.Location = new System.Drawing.Point(10, 661);
             this.groupBox2.Name = "groupBox2";
@@ -392,49 +392,49 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaorosiKeyDown);
             this.txtKensaku.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
-            // baseLabel9
+            // lblBaseLabelHinmei
             // 
-            this.baseLabel9.AutoSize = true;
-            this.baseLabel9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel9.Location = new System.Drawing.Point(19, 59);
-            this.baseLabel9.Name = "baseLabel9";
-            this.baseLabel9.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel9.TabIndex = 0;
-            this.baseLabel9.Text = "品名・型番";
-            this.baseLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelHinmei.AutoSize = true;
+            this.lblBaseLabelHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelHinmei.Location = new System.Drawing.Point(19, 59);
+            this.lblBaseLabelHinmei.Name = "lblBaseLabelHinmei";
+            this.lblBaseLabelHinmei.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelHinmei.TabIndex = 0;
+            this.lblBaseLabelHinmei.Text = "品名・型番";
+            this.lblBaseLabelHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel13
+            // lblBaseLabelTyoubosuu
             // 
-            this.baseLabel13.AutoSize = true;
-            this.baseLabel13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel13.Location = new System.Drawing.Point(672, 87);
-            this.baseLabel13.Name = "baseLabel13";
-            this.baseLabel13.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel13.TabIndex = 0;
-            this.baseLabel13.Text = "帳簿在庫数";
-            this.baseLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelTyoubosuu.AutoSize = true;
+            this.lblBaseLabelTyoubosuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelTyoubosuu.Location = new System.Drawing.Point(672, 87);
+            this.lblBaseLabelTyoubosuu.Name = "lblBaseLabelTyoubosuu";
+            this.lblBaseLabelTyoubosuu.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelTyoubosuu.TabIndex = 0;
+            this.lblBaseLabelTyoubosuu.Text = "帳簿在庫数";
+            this.lblBaseLabelTyoubosuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel12
+            // lblBaseLabelTanasuu
             // 
-            this.baseLabel12.AutoSize = true;
-            this.baseLabel12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel12.Location = new System.Drawing.Point(672, 59);
-            this.baseLabel12.Name = "baseLabel12";
-            this.baseLabel12.Size = new System.Drawing.Size(55, 15);
-            this.baseLabel12.TabIndex = 0;
-            this.baseLabel12.Text = "棚卸数";
-            this.baseLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelTanasuu.AutoSize = true;
+            this.lblBaseLabelTanasuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelTanasuu.Location = new System.Drawing.Point(672, 59);
+            this.lblBaseLabelTanasuu.Name = "lblBaseLabelTanasuu";
+            this.lblBaseLabelTanasuu.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelTanasuu.TabIndex = 0;
+            this.lblBaseLabelTanasuu.Text = "棚卸数";
+            this.lblBaseLabelTanasuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel8
+            // lblBaseLabelKensaku
             // 
-            this.baseLabel8.AutoSize = true;
-            this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel8.Location = new System.Drawing.Point(19, 30);
-            this.baseLabel8.Name = "baseLabel8";
-            this.baseLabel8.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel8.TabIndex = 0;
-            this.baseLabel8.Text = "検索文字列";
-            this.baseLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelKensaku.AutoSize = true;
+            this.lblBaseLabelKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelKensaku.Location = new System.Drawing.Point(19, 30);
+            this.lblBaseLabelKensaku.Name = "lblBaseLabelKensaku";
+            this.lblBaseLabelKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelKensaku.TabIndex = 0;
+            this.lblBaseLabelKensaku.Text = "検索文字列";
+            this.lblBaseLabelKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtShouhinCD
             // 
@@ -446,17 +446,17 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtShouhinCD.Visible = false;
             this.txtShouhinCD.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
-            // baseLabel7
+            // txtbaseLabel7
             // 
-            this.baseLabel7.AutoSize = true;
-            this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel7.Location = new System.Drawing.Point(25, 587);
-            this.baseLabel7.Name = "baseLabel7";
-            this.baseLabel7.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel7.TabIndex = 94;
-            this.baseLabel7.Text = "商品コード";
-            this.baseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.baseLabel7.Visible = false;
+            this.txtbaseLabel7.AutoSize = true;
+            this.txtbaseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtbaseLabel7.Location = new System.Drawing.Point(25, 587);
+            this.txtbaseLabel7.Name = "txtbaseLabel7";
+            this.txtbaseLabel7.Size = new System.Drawing.Size(87, 15);
+            this.txtbaseLabel7.TabIndex = 94;
+            this.txtbaseLabel7.Text = "商品コード";
+            this.txtbaseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtbaseLabel7.Visible = false;
             // 
             // txtYMD
             // 
@@ -578,11 +578,11 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.txtYMD);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.baseLabel7);
+            this.Controls.Add(this.txtbaseLabel7);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnViewGrid);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dgvRireki);
+            this.Controls.Add(this.gridRireki);
             this.Controls.Add(this.txtShouhinCD);
             this.Controls.Add(this.baseLabel1);
             this.Name = "F0140_TanaorosiInput";
@@ -603,11 +603,11 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.baseLabel1, 0);
             this.Controls.SetChildIndex(this.txtShouhinCD, 0);
-            this.Controls.SetChildIndex(this.dgvRireki, 0);
+            this.Controls.SetChildIndex(this.gridRireki, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnViewGrid, 0);
             this.Controls.SetChildIndex(this.lblRecords, 0);
-            this.Controls.SetChildIndex(this.baseLabel7, 0);
+            this.Controls.SetChildIndex(this.txtbaseLabel7, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.txtYMD, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
@@ -615,7 +615,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.SetChildIndex(this.labelSet_Eigyousho, 0);
             this.Controls.SetChildIndex(this.labelSet_Maker, 0);
             this.Controls.SetChildIndex(this.labelSet_Tanaban, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRireki)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -628,27 +628,27 @@ namespace KATO.Form.F0140_TanaorosiInput
 
         #endregion
         private BaseLabel baseLabel1;
-        private BaseDataGridView dgvRireki;
+        private BaseDataGridView gridRireki;
         private System.Windows.Forms.GroupBox groupBox1;
         private BaseButton btnViewGrid;
         private BaseLabel lblRecords;
         private System.Windows.Forms.GroupBox groupBox2;
         private BaseLabel baseLabel10;
         private BaseText txtKensaku;
-        private BaseLabel baseLabel9;
-        private BaseLabel baseLabel8;
+        private BaseLabel lblBaseLabelHinmei;
+        private BaseLabel lblBaseLabelKensaku;
         private BaseLabelGray lblDspShouhin;
-        private BaseLabel baseLabel13;
-        private BaseLabel baseLabel12;
+        private BaseLabel lblBaseLabelTyoubosuu;
+        private BaseLabel lblBaseLabelTanasuu;
         private BaseText txtTyoubosuu;
         private BaseText txtTanasuu;
         private BaseText txtShouhinCD;
-        private BaseLabel baseLabel7;
+        private BaseLabel txtbaseLabel7;
         private BaseCalendar txtYMD;
-        private BaseRadioButton baseRadioButton3;
-        private BaseRadioButton baseRadioButton2;
-        private BaseRadioButton baseRadioButton1;
-        private BaseRadioButton baseRadioButton4;
+        private BaseRadioButton radBase3;
+        private BaseRadioButton radBase2;
+        private BaseRadioButton radBase1;
+        private BaseRadioButton radBase4;
         private LabelSet_Daibunrui labelSet_Daibunrui;
         private LabelSet_Chubunrui labelSet_Chubunrui;
         private LabelSet_Eigyousho labelSet_Eigyousho;

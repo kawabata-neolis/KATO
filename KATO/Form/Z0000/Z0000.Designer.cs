@@ -30,16 +30,17 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.baseMenuButton6 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton5 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton4 = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton2 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton1 = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnChubunrui = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -123,12 +124,13 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.baseMenuButton6);
-            this.tabPage1.Controls.Add(this.baseMenuButton5);
-            this.tabPage1.Controls.Add(this.baseMenuButton4);
+            this.tabPage1.Controls.Add(this.btnTestWindow);
+            this.tabPage1.Controls.Add(this.btnTorihikikubun);
+            this.tabPage1.Controls.Add(this.btnTanaInput);
+            this.tabPage1.Controls.Add(this.btnMaker);
             this.tabPage1.Controls.Add(this.baseMenuButton3);
-            this.tabPage1.Controls.Add(this.baseMenuButton2);
-            this.tabPage1.Controls.Add(this.baseMenuButton1);
+            this.tabPage1.Controls.Add(this.btnChubunrui);
+            this.tabPage1.Controls.Add(this.btnDaibunrui);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -136,41 +138,41 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
             // 
-            // baseMenuButton6
+            // btnTestWindow
             // 
-            this.baseMenuButton6.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton6.Location = new System.Drawing.Point(23, 302);
-            this.baseMenuButton6.Name = "baseMenuButton6";
-            this.baseMenuButton6.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton6.TabIndex = 5;
-            this.baseMenuButton6.Text = "受注入力（共通部品テスト用）";
-            this.baseMenuButton6.UseVisualStyleBackColor = false;
-            this.baseMenuButton6.Click += new System.EventHandler(this.baseMenuButton6_Click);
-            this.baseMenuButton6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnTestWindow.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTestWindow.Location = new System.Drawing.Point(23, 672);
+            this.btnTestWindow.Name = "btnTestWindow";
+            this.btnTestWindow.Size = new System.Drawing.Size(280, 40);
+            this.btnTestWindow.TabIndex = 6;
+            this.btnTestWindow.Text = "受注入力（共通部品テスト用）";
+            this.btnTestWindow.UseVisualStyleBackColor = false;
+            this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
+            this.btnTestWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
-            // baseMenuButton5
+            // btnTanaInput
             // 
-            this.baseMenuButton5.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton5.Location = new System.Drawing.Point(23, 238);
-            this.baseMenuButton5.Name = "baseMenuButton5";
-            this.baseMenuButton5.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton5.TabIndex = 4;
-            this.baseMenuButton5.Text = "棚卸入力";
-            this.baseMenuButton5.UseVisualStyleBackColor = false;
-            this.baseMenuButton5.Click += new System.EventHandler(this.baseMenuButton5_Click);
-            this.baseMenuButton5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTanaInput.Location = new System.Drawing.Point(23, 238);
+            this.btnTanaInput.Name = "btnTanaInput";
+            this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
+            this.btnTanaInput.TabIndex = 4;
+            this.btnTanaInput.Text = "棚卸入力";
+            this.btnTanaInput.UseVisualStyleBackColor = false;
+            this.btnTanaInput.Click += new System.EventHandler(this.baseMenuButton5_Click);
+            this.btnTanaInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
-            // baseMenuButton4
+            // btnMaker
             // 
-            this.baseMenuButton4.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton4.Location = new System.Drawing.Point(23, 171);
-            this.baseMenuButton4.Name = "baseMenuButton4";
-            this.baseMenuButton4.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton4.TabIndex = 3;
-            this.baseMenuButton4.Text = "メーカー";
-            this.baseMenuButton4.UseVisualStyleBackColor = false;
-            this.baseMenuButton4.Click += new System.EventHandler(this.baseMenuButton4_Click);
-            this.baseMenuButton4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnMaker.BackColor = System.Drawing.Color.LightYellow;
+            this.btnMaker.Location = new System.Drawing.Point(23, 171);
+            this.btnMaker.Name = "btnMaker";
+            this.btnMaker.Size = new System.Drawing.Size(280, 40);
+            this.btnMaker.TabIndex = 3;
+            this.btnMaker.Text = "メーカー";
+            this.btnMaker.UseVisualStyleBackColor = false;
+            this.btnMaker.Click += new System.EventHandler(this.baseMenuButton4_Click);
+            this.btnMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // baseMenuButton3
             // 
@@ -182,29 +184,29 @@
             this.baseMenuButton3.Text = "中分類";
             this.baseMenuButton3.UseVisualStyleBackColor = false;
             // 
-            // baseMenuButton2
+            // btnChubunrui
             // 
-            this.baseMenuButton2.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton2.Location = new System.Drawing.Point(23, 102);
-            this.baseMenuButton2.Name = "baseMenuButton2";
-            this.baseMenuButton2.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton2.TabIndex = 2;
-            this.baseMenuButton2.Text = "中分類";
-            this.baseMenuButton2.UseVisualStyleBackColor = false;
-            this.baseMenuButton2.Click += new System.EventHandler(this.baseMenuButton2_Click);
-            this.baseMenuButton2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnChubunrui.BackColor = System.Drawing.Color.LightYellow;
+            this.btnChubunrui.Location = new System.Drawing.Point(23, 102);
+            this.btnChubunrui.Name = "btnChubunrui";
+            this.btnChubunrui.Size = new System.Drawing.Size(280, 40);
+            this.btnChubunrui.TabIndex = 2;
+            this.btnChubunrui.Text = "中分類";
+            this.btnChubunrui.UseVisualStyleBackColor = false;
+            this.btnChubunrui.Click += new System.EventHandler(this.baseMenuButton2_Click);
+            this.btnChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
-            // baseMenuButton1
+            // btnDaibunrui
             // 
-            this.baseMenuButton1.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton1.Location = new System.Drawing.Point(23, 33);
-            this.baseMenuButton1.Name = "baseMenuButton1";
-            this.baseMenuButton1.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton1.TabIndex = 1;
-            this.baseMenuButton1.Text = "大分類";
-            this.baseMenuButton1.UseVisualStyleBackColor = false;
-            this.baseMenuButton1.Click += new System.EventHandler(this.baseMenuButton1_Click);
-            this.baseMenuButton1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
+            this.btnDaibunrui.Location = new System.Drawing.Point(23, 33);
+            this.btnDaibunrui.Name = "btnDaibunrui";
+            this.btnDaibunrui.Size = new System.Drawing.Size(280, 40);
+            this.btnDaibunrui.TabIndex = 1;
+            this.btnDaibunrui.Text = "大分類";
+            this.btnDaibunrui.UseVisualStyleBackColor = false;
+            this.btnDaibunrui.Click += new System.EventHandler(this.baseMenuButton1_Click);
+            this.btnDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // tabPage2
             // 
@@ -244,6 +246,18 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // btnTorihikikubun
+            // 
+            this.btnTorihikikubun.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTorihikikubun.Location = new System.Drawing.Point(23, 310);
+            this.btnTorihikikubun.Name = "btnTorihikikubun";
+            this.btnTorihikikubun.Size = new System.Drawing.Size(280, 40);
+            this.btnTorihikikubun.TabIndex = 5;
+            this.btnTorihikikubun.Text = "取引区分";
+            this.btnTorihikikubun.UseVisualStyleBackColor = false;
+            this.btnTorihikikubun.Click += new System.EventHandler(this.baseMenuButton7_Click);
+            this.btnTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -282,11 +296,12 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private Common.Ctl.BaseMenuButton baseMenuButton2;
-        private Common.Ctl.BaseMenuButton baseMenuButton1;
-        private Common.Ctl.BaseMenuButton baseMenuButton6;
-        private Common.Ctl.BaseMenuButton baseMenuButton5;
-        private Common.Ctl.BaseMenuButton baseMenuButton4;
+        private Common.Ctl.BaseMenuButton btnChubunrui;
+        private Common.Ctl.BaseMenuButton btnDaibunrui;
+        private Common.Ctl.BaseMenuButton btnTestWindow;
+        private Common.Ctl.BaseMenuButton btnTanaInput;
+        private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton baseMenuButton3;
+        private Common.Ctl.BaseMenuButton btnTorihikikubun;
     }
 }

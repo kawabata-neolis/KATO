@@ -35,8 +35,8 @@ namespace KATO.Form.M1110_Chubunrui
             this.components = new System.ComponentModel.Container();
             this.txtChubunrui = new KATO.Common.Ctl.BaseText();
             this.txtElem = new KATO.Common.Ctl.BaseText();
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.LabelSet_Daibun = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.SuspendLayout();
             // 
@@ -109,27 +109,27 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtElem.Size = new System.Drawing.Size(228, 22);
             this.txtElem.TabIndex = 2;
             // 
-            // baseLabel2
+            // lblBaseLabelCD
             // 
-            this.baseLabel2.AutoSize = true;
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(460, 135);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(103, 15);
-            this.baseLabel2.TabIndex = 90;
-            this.baseLabel2.Text = "中分類コード";
-            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelCD.AutoSize = true;
+            this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelCD.Location = new System.Drawing.Point(460, 135);
+            this.lblBaseLabelCD.Name = "lblBaseLabelCD";
+            this.lblBaseLabelCD.Size = new System.Drawing.Size(103, 15);
+            this.lblBaseLabelCD.TabIndex = 90;
+            this.lblBaseLabelCD.Text = "中分類コード";
+            this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel3
+            // lblBaseLabelName
             // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(649, 135);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(71, 15);
-            this.baseLabel3.TabIndex = 91;
-            this.baseLabel3.Text = "中分類名";
-            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelName.AutoSize = true;
+            this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBaseLabelName.Location = new System.Drawing.Point(649, 135);
+            this.lblBaseLabelName.Name = "lblBaseLabelName";
+            this.lblBaseLabelName.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelName.TabIndex = 91;
+            this.lblBaseLabelName.Text = "中分類名";
+            this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LabelSet_Daibun
             // 
@@ -140,6 +140,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.LabelSet_Daibun.LabelName = "大分類コード";
             this.LabelSet_Daibun.Location = new System.Drawing.Point(458, 90);
             this.LabelSet_Daibun.Lschubundata = null;
+            this.LabelSet_Daibun.LsSubchubundata = null;
             this.LabelSet_Daibun.Name = "LabelSet_Daibun";
             this.LabelSet_Daibun.ShowAppendFlg = false;
             this.LabelSet_Daibun.Size = new System.Drawing.Size(496, 22);
@@ -156,8 +157,8 @@ namespace KATO.Form.M1110_Chubunrui
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
             this.Controls.Add(this.LabelSet_Daibun);
-            this.Controls.Add(this.baseLabel3);
-            this.Controls.Add(this.baseLabel2);
+            this.Controls.Add(this.lblBaseLabelName);
+            this.Controls.Add(this.lblBaseLabelCD);
             this.Controls.Add(this.txtElem);
             this.Controls.Add(this.txtChubunrui);
             this.ForeColor = System.Drawing.SystemColors.MenuText;
@@ -167,8 +168,8 @@ namespace KATO.Form.M1110_Chubunrui
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunruiKeyDown);
             this.Controls.SetChildIndex(this.txtChubunrui, 0);
             this.Controls.SetChildIndex(this.txtElem, 0);
-            this.Controls.SetChildIndex(this.baseLabel2, 0);
-            this.Controls.SetChildIndex(this.baseLabel3, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
+            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -190,8 +191,8 @@ namespace KATO.Form.M1110_Chubunrui
         #endregion
         private BaseText txtChubunrui;
         private BaseText txtElem;
-        private BaseLabel baseLabel2;
-        private BaseLabel baseLabel3;
+        private BaseLabel lblBaseLabelCD;
+        private BaseLabel lblBaseLabelName;
         private LabelSet_Daibunrui LabelSet_Daibun;
     }
 }

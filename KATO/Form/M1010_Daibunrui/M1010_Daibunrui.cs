@@ -366,12 +366,13 @@ namespace KATO.Form.M1010_Daibunrui
                     txtLabel6.Text = dtSetCd.Rows[0]["ラベル名６"].ToString();
                     txtName.Focus();
                 }
-                else
-                {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                }
+                //データの新規登録時に邪魔になるため、現段階削除予定
+                //else
+                //{
+                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //}
             }
             catch (Exception ex)
             {

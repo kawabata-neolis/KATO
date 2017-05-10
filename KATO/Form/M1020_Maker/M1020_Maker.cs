@@ -309,6 +309,8 @@ namespace KATO.Form.M1020_Maker
 
             DataTable dtSetCd;
 
+            Boolean blnGood;
+
             //文字判定
             if (txtMaker.blIsEmpty() == false)
             {
@@ -317,6 +319,21 @@ namespace KATO.Form.M1020_Maker
 
             //前後の空白を取り除く
             txtMaker.Text = txtMaker.Text.Trim();
+
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtMaker.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtMaker.Text, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.Focus();
+                return;
+            }
 
             if (txtMaker.TextLength <= 3)
             {
@@ -339,12 +356,13 @@ namespace KATO.Form.M1020_Maker
                     txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
                     txtName.Focus();
                 }
-                else
-                {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                }
+                //データの新規登録時に邪魔になるため、現段階削除予定
+                //else
+                //{
+                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //}
             }
             catch (Exception ex)
             {

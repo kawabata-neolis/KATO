@@ -10,28 +10,27 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
-using KATO.Business.M1010_Daibunrui;
-using KATO.Business.M1110_Chubunrui;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Business.M1040_Torihikikbn;
 
-namespace KATO.Form.M1110_Chubunrui
+namespace KATO.Form.M1040_Torihikikbn
 {
     ///<summary>
-    ///M1110_Chubunrui
-    ///中分類フォーム
+    ///M1040_Torihikikubun
+    ///取引区分フォーム
     ///作成者：大河内
-    ///作成日：2017/2/2
+    ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2017/2/2
+    ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class M1110_Chubunrui : BaseForm
+    public partial class M1040_Torihikikbn : BaseForm
     {
         /// <summary>
-        /// M1110_Chubunrui
+        /// M1040_Torihikikubun
         /// フォーム関係の設定
         /// </summary>
-        public M1110_Chubunrui(Control c)
+        public M1040_Torihikikbn(Control c)
         {
             if (c == null)
             {
@@ -60,13 +59,13 @@ namespace KATO.Form.M1110_Chubunrui
         }
 
         /// <summary>
-        /// M_Chubunrui_Load
+        /// M1010_Daibunrui_Load
         /// 読み込み時
         /// </summary>
-        private void M_Chubunrui_Load(object sender, EventArgs e)
+        private void M1040_Torihikikubun_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "中分類マスタ";
+            this._Title = "取引区分マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF01.Text = STR_FUNC_F1;
@@ -77,11 +76,11 @@ namespace KATO.Form.M1110_Chubunrui
             this.btnF12.Text = STR_FUNC_F12;
         }
 
-        ///<summary>
-        ///judChubunruiKeyDown
-        ///キー入力判定
-        ///</summary>
-        private void judChubunruiKeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// judTorikubunKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTorikubunKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -105,15 +104,15 @@ namespace KATO.Form.M1110_Chubunrui
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addChubunrui();
+                    this.addTorikubun();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delChubunrui();
+                    this.delTorikubun();
                     break;
                 case Keys.F4:
-                    delText();
+                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -138,22 +137,22 @@ namespace KATO.Form.M1110_Chubunrui
             }
         }
 
-        ///<summary>
-        ///judBtnClick
-        ///ボタンの反応
-        ///</summary>
+        /// <summary>
+        /// judBtnClick
+        /// ボタンの反応
+        /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    this.addChubunrui();
+                    this.addTorikubun();
                     break;
                 case STR_BTN_F03: // 削除
-                    this.delChubunrui();
+                    this.delTorikubun();
                     break;
                 case STR_BTN_F04: // 取り消し
-                    delText();
+                    this.delText();
                     break;
                 //case STR_BTN_F11: //印刷
                 //    this.XX();
@@ -164,89 +163,75 @@ namespace KATO.Form.M1110_Chubunrui
             }
         }
 
-        ///<summary>
-        ///judtxtCyokuCDKeyDown
-        ///コード入力項目でのキー入力判定
-        ///</summary>
-        private void judtxtChubunKeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// judtxtToriKeyDown
+        /// コード入力項目でのキー入力判定
+        /// </summary>
+        private void judtxtToriKeyDown(object sender, KeyEventArgs e)
         {
-            //F9を押して且つ大分類コードが記載されている状態
-            if (e.KeyCode == Keys.F9 && LabelSet_Daibun.CodeTxtText != "")
+            if (e.KeyCode == Keys.F9)
             {
-                double dblCheck;
-
-                if (double.TryParse(LabelSet_Daibun.CodeTxtText, out dblCheck))
+                TorihikikbnList torihikikbnList = new TorihikikbnList(this);
+                try
                 {
-                    LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
-                    ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
-                    try
-                    {
-                        chubunruilist.StartPosition = FormStartPosition.Manual;
-                        chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CYUBUNRUI;
-                        chubunruilist.ShowDialog();
-                    }
-                    catch (Exception ex)
-                    {
-                        new CommonException(ex);
-                    }
+                    torihikikbnList.StartPosition = FormStartPosition.Manual;
+                    torihikikbnList.intFrmKind = CommonTeisu.FRM_TORIHIKIKBN;
+                    torihikikbnList.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    return;
                 }
             }
         }
 
-
-        ///<summary>
-        ///addChubunrui
-        ///テキストボックス内のデータをDBに登録
-        ///</summary>
-        private void addChubunrui()
+        /// <summary>
+        /// addTorikubun
+        /// テキストボックス内のデータをDBに登録
+        /// </summary>
+        private void addTorikubun()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false)
+            if (txtTorihikikubun.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                LabelSet_Daibun.Focus();
+                txtTorihikikubun.Focus();
                 return;
             }
             //文字判定
-            if (txtChubunrui.blIsEmpty() == false)
+            if (txtName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtChubunrui.Focus();
-            }
-            //文字判定
-            if (txtElem.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtElem.Focus();
+                txtName.Focus();
+                return;
             }
 
             //データ渡し用
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
-            lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtElem.Text);
+            lstString.Add(txtTorihikikubun.Text);
+            lstString.Add(txtName.Text);
+
             lstString.Add(SystemInformation.UserName);
 
             //処理部に移動
-            M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
+            M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
             try
             {
-                chubunB.addChubunrui(lstString);
+                torikbnB.addTorihikikubun(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                LabelSet_Daibun.Focus();
+                txtTorihikikubun.Focus();
             }
             catch (Exception ex)
             {
@@ -254,56 +239,55 @@ namespace KATO.Form.M1110_Chubunrui
             }
         }
 
-        ///<summary>
-        ///delText
-        ///テキストボックス内の文字を削除
-        ///</summary>
+        /// <summary>
+        /// delText
+        /// テキストボックス内の文字を削除
+        /// </summary>
         private void delText()
         {
             delFormClear(this);
-            LabelSet_Daibun.Focus();
+            txtTorihikikubun.Focus();
         }
 
-        ///<summary>
-        ///delCtyubunrui
-        ///テキストボックス内のデータをDBから削除
-        ///</summary>
-        public void delChubunrui()
+        /// <summary>
+        /// delTorikubun
+        /// テキストボックス内のデータをDBから削除
+        /// </summary>
+        public void delTorikubun()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false || txtChubunrui.blIsEmpty() == false)
+            if (txtTorihikikubun.blIsEmpty() == false && txtName.blIsEmpty() == false)
             {
                 return;
             }
 
             //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //YESが押された場合
+            //NOが押された場合
             if (basemessagebox.ShowDialog() == DialogResult.No)
             {
                 return;
             }
 
             //データ渡し用
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
-            lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtElem.Text);
+            lstString.Add(txtTorihikikubun.Text);
             lstString.Add(SystemInformation.UserName);
 
-            //処理部に移動(チェック)
-            M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
+            //処理部に移動(削除)
+            M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
+
             try
             {
-                chubunB.delChubunrui(lstString);
+                torikbnB.delTorihikikubun(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                LabelSet_Daibun.Focus();
+                txtTorihikikubun.Focus();
             }
             catch (Exception ex)
             {
@@ -311,92 +295,63 @@ namespace KATO.Form.M1110_Chubunrui
             }
         }
 
-        ///<summary>
-        ///setDaibunrui
-        ///取り出したデータをテキストボックスに配置（大分類）
-        ///</summary>
-        public void setDaibunrui(DataTable dtSelectData)
+        /// <summary>
+        /// setTorikubun
+        /// 取り出したデータをテキストボックスに配置
+        /// </summary>
+        public void setTorikubun(DataTable dtSelectData)
         {
-            
-            LabelSet_Daibun.CodeTxtText = dtSelectData.Rows[0]["大分類コード"].ToString();
-            LabelSet_Daibun.ValueLabelText = dtSelectData.Rows[0]["大分類名"].ToString();
+            txtTorihikikubun.Text = dtSelectData.Rows[0]["取引区分コード"].ToString();
+            txtName.Text = dtSelectData.Rows[0]["取引区分名"].ToString();
         }
 
-        ///<summary>
-        ///setChubunrui
-        ///取り出したデータをテキストボックスに配置（中分類）
-        ///</summary>
-        public void setChubunrui(DataTable dtSelectData)
-        {
-            txtChubunrui.Text = dtSelectData.Rows[0]["中分類コード"].ToString();
-            txtElem.Text = dtSelectData.Rows[0]["中分類名"].ToString();
-        }
-
-        ///<summary>
-        ///updTxtChubunruiLeave
-        ///code入力箇所からフォーカスが外れた時（中分類）
-        ///</summary>
-        public void updTxtChubunruiLeave(object sender, EventArgs e)
+        /// <summary>
+        /// updTxtToriLeave
+        /// code入力箇所からフォーカスが外れた時
+        /// </summary>
+        public void updTxtToriLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             DataTable dtSetCd;
 
-            Boolean blnGood;
-
-            if (txtChubunrui.Text == "" || String.IsNullOrWhiteSpace(txtChubunrui.Text).Equals(true))
+            //文字判定
+            if (txtTorihikikubun.blIsEmpty() == false)
             {
                 return;
             }
 
             //前後の空白を取り除く
-            txtChubunrui.Text = txtChubunrui.Text.Trim();
+            txtTorihikikubun.Text = txtTorihikikubun.Text.Trim();
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtChubunrui.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtChubunrui.Text, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
+            if (txtTorihikikubun.TextLength == 1)
             {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                this.Focus();
-                return;
-            }
-            
-            if (txtChubunrui.TextLength == 1)
-            {
-                txtChubunrui.Text = txtChubunrui.Text.ToString().PadLeft(2, '0');
+                txtTorihikikubun.Text = txtTorihikikubun.Text.ToString().PadLeft(2, '0');
             }
 
             //データ渡し用
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
-            lstString.Add(txtChubunrui.Text);
+            lstString.Add(txtTorihikikubun.Text);
 
-            //処理部に移動
-            M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
+            M1040_Torihikikbn_B torikbn_B = new M1040_Torihikikbn_B();
 
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.updTxtChubunruiLeave(lstString);
+                dtSetCd = torikbn_B.updTxtTorikbnLeave(lstString);
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    LabelSet_Daibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
-                    txtChubunrui.Text = dtSetCd.Rows[0]["中分類コード"].ToString();
-                    txtElem.Text = dtSetCd.Rows[0]["中分類名"].ToString();
+                    txtTorihikikubun.Text = dtSetCd.Rows[0]["取引区分コード"].ToString();
+                    txtName.Text = dtSetCd.Rows[0]["取引区分名"].ToString();
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else
                 //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
+                ////メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //basemessagebox.ShowDialog();
+                //txtTorihikikubun.Focus();
                 //}
             }
             catch (Exception ex)
@@ -405,29 +360,20 @@ namespace KATO.Form.M1110_Chubunrui
             }
         }
 
-        ///<summary>
-        ///setDaibunruiListClose
-        ///DaibunruiListが閉じたらコード記入欄にフォーカス
-        ///作成者：大河内
-        ///</summary>
-        public void setDaibunruiListClose()
+        /// <summary>
+        /// setToriListClose
+        /// DaibunruiListが閉じたらコード記入欄にフォーカス
+        /// </summary>
+        public void setToriListClose()
         {
-            LabelSet_Daibun.Focus();
+            txtTorihikikubun.Focus();
         }
 
-        ///<summary>
-        ///setChubunruiListClose
-        ///ChubunruiListが閉じたらコード記入欄にフォーカス
-        ///</summary>
-        public void setChubunruiListClose()
-        {
-            txtChubunrui.Focus();
-        }
-
-        ///judtxtChubunruiKeyUp
-        ///入力項目上でのキー判定と文字数判定
-        ///</summary>
-        private void judtxtChubunruiKeyUp(object sender, KeyEventArgs e)
+        /// <summary>
+        /// judtxtToriKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtToriKeyUp(object sender, KeyEventArgs e)
         {
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
@@ -439,7 +385,7 @@ namespace KATO.Form.M1110_Chubunrui
             {
                 return;
             }
-            if (txtChubunrui.TextLength == 2)
+            if (txtTorihikikubun.TextLength == 2)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

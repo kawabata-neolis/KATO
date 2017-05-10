@@ -118,21 +118,21 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                dgvSeihin.DataSource = tanabanlistB.setDatagridView();
+                gridSeihin.DataSource = tanabanlistB.setDatagridView();
 
                 //幅の値を設定
-                dgvSeihin.Columns["棚番"].Width = 150;
-                dgvSeihin.Columns["棚番名"].Width = 150;
+                gridSeihin.Columns["棚番"].Width = 150;
+                gridSeihin.Columns["棚番名"].Width = 150;
 
                 //中央揃え
-                dgvSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
                 if (lblRecords.Text == "0")
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
@@ -246,19 +246,19 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvEigyousyoDoubleClick
+        ///setGridEigyousyoDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setdgvEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public void setGridEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///judDgvTanabanKeyDown
+        ///judGridTanabanKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judDgvTanabanKeyDown(object sender, KeyEventArgs e)
+        private void judGridTanabanKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -314,7 +314,7 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
@@ -323,8 +323,8 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //選択行の営業所コード取得
-            string strSelectid = (string)dgvSeihin.CurrentRow.Cells[0].Value;
-            string strSelectName = (string)dgvSeihin.CurrentRow.Cells[1].Value;
+            string strSelectid = (string)gridSeihin.CurrentRow.Cells[0].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value;
 
             //データ渡し用
             lstString.Add(strSelectid);

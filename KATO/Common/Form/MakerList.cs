@@ -134,22 +134,22 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                dgvSeihin.DataSource = makerlistB.setDatagridView();
+                gridSeihin.DataSource = makerlistB.setDatagridView();
 
                 //幅の値を設定
-                dgvSeihin.Columns["メーカーコード"].Width = 150;
-                dgvSeihin.Columns["メーカー名"].Width = 200;
+                gridSeihin.Columns["メーカーコード"].Width = 150;
+                gridSeihin.Columns["メーカー名"].Width = 200;
 
                 //中央揃え
-                dgvSeihin.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridSeihin.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //検索件数を表示
-                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
                 if (lblRecords.Text.Equals("0"))
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
@@ -294,11 +294,11 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                dgvSeihin.DataSource = makerlistB.setKensaku(lstInt, lstString);
+                gridSeihin.DataSource = makerlistB.setKensaku(lstInt, lstString);
 
-                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
-                dgvSeihin.Focus();
+                gridSeihin.Focus();
             }
             catch (Exception ex)
             {
@@ -307,19 +307,19 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>        
-        private void setdgvSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void setGridSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judDgvSeihinKeyDown(object sender, KeyEventArgs e)
+        private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -376,7 +376,7 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
@@ -386,8 +386,8 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             //選択行のcode取得
-            string strSelectid = (string)dgvSeihin.CurrentRow.Cells["メーカーコード"].Value;
-            string strSelectName = (string)dgvSeihin.CurrentRow.Cells["メーカー名"].Value;
+            string strSelectid = (string)gridSeihin.CurrentRow.Cells["メーカーコード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["メーカー名"].Value;
 
             //データ渡し用
             lstInt.Add(intFrmKind);

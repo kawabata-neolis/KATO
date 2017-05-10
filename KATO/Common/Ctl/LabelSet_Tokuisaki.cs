@@ -43,7 +43,7 @@ namespace KATO.Common.Ctl
 
         ///<summary>
         ///judTokuisakiKeyDown
-        ///コード入力項目でのキー入力判定（営業所）
+        ///コード入力項目でのキー入力判定
         ///</summary>
         private void judTokuisakiKeyDown(object sender, KeyEventArgs e)
         {
@@ -79,10 +79,28 @@ namespace KATO.Common.Ctl
 
             string strSQLName = null;
 
+            Boolean blnGood;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
                 this.AppendLabelText = "";
+                return;
+            }
+
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                this.ValueLabelText = "";
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.Focus();
                 return;
             }
 
@@ -135,7 +153,7 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     this.codeTxt.Focus();

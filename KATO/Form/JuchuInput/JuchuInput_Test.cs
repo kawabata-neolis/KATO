@@ -16,9 +16,9 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.JuchuInput
 {
-    public partial class JuchuInput : BaseForm
+    public partial class JuchuInput_Test : BaseForm
     {
-        public JuchuInput(Control c)
+        public JuchuInput_Test(Control c)
         {
             if (c == null)
             {

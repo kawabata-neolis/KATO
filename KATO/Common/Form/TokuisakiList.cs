@@ -120,7 +120,7 @@ namespace KATO.Common.Form
         private void SetUpGrid()
         {
             //列自動生成禁止
-            TokuisakiGrid.AutoGenerateColumns = false;
+            gridTokuisaki.AutoGenerateColumns = false;
 
             //データをバインド
             DataGridViewTextBoxColumn torihikisakiCD = new DataGridViewTextBoxColumn();
@@ -134,17 +134,17 @@ namespace KATO.Common.Form
             torihikisakiName.HeaderText = "取引先名";
 
             //バインドしたデータを追加
-            TokuisakiGrid.Columns.Add(torihikisakiCD);
-            TokuisakiGrid.Columns.Add(torihikisakiName);
+            gridTokuisaki.Columns.Add(torihikisakiCD);
+            gridTokuisaki.Columns.Add(torihikisakiName);
 
             //個々の幅、文章の寄せ
-            TokuisakiGrid.Columns["取引先コード"].Width = 100;
-            TokuisakiGrid.Columns["取引先コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TokuisakiGrid.Columns["取引先コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTokuisaki.Columns["取引先コード"].Width = 100;
+            gridTokuisaki.Columns["取引先コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTokuisaki.Columns["取引先コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            TokuisakiGrid.Columns["取引先名称"].Width = 400;
-            TokuisakiGrid.Columns["取引先名称"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TokuisakiGrid.Columns["取引先名称"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTokuisaki.Columns["取引先名称"].Width = 400;
+            gridTokuisaki.Columns["取引先名称"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTokuisaki.Columns["取引先名称"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         ///<summary>
@@ -210,9 +210,9 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// CreateParams
-        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///データグリッドビュー内のデータ選択中にキーが押されたとき
         /// </summary>
-        private void setTanGridDblClick(object sender, KeyEventArgs e)
+        private void judGridTokuiKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -270,12 +270,12 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
         {
-            if (TokuisakiGrid.Rows.Count < 1)
+            if (gridTokuisaki.Rows.Count < 1)
             {
                 return;
             }
@@ -285,8 +285,8 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             //選択行の担当者情報取得
-            string strSelectId = (string)TokuisakiGrid.CurrentRow.Cells["取引先コード"].Value;
-            string strSelectName = (string)TokuisakiGrid.CurrentRow.Cells["取引先名称"].Value;
+            string strSelectId = (string)gridTokuisaki.CurrentRow.Cells["取引先コード"].Value;
+            string strSelectName = (string)gridTokuisaki.CurrentRow.Cells["取引先名称"].Value;
 
             lstInt.Add(intFrmKind);
             lstString.Add(strSelectId);
@@ -349,11 +349,11 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                TokuisakiGrid.DataSource = tokuisakiB.setKensaku(lstInt, lstString);
+                gridTokuisaki.DataSource = tokuisakiB.setKensaku(lstInt, lstString);
 
-                lblRecords.Text = "該当件数( " + TokuisakiGrid.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridTokuisaki.RowCount.ToString() + "件)";
 
-                TokuisakiGrid.Focus();
+                gridTokuisaki.Focus();
 
             }
             catch (Exception ex)
@@ -363,6 +363,14 @@ namespace KATO.Common.Form
             }
         }
 
+        /// <summary>
+        /// CreateParams
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        /// </summary>
+        private void setTokuiGridDblClick(object sender, EventArgs e)
+        {
+            setSelectItem();
+        }
 
         /// <summary>
         /// CreateParams

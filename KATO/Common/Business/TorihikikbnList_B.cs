@@ -10,19 +10,20 @@ using KATO.Common.Util;
 using KATO.Form.M1010_Daibunrui;
 using KATO.Form.M1110_Chubunrui;
 using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.M1040_Torihikikbn;
 
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///DaibunruiList_B
-    ///大分類リストフォーム
+    ///TorihikikbnList_B
+    ///取引区分リストフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class DaibunruiList_B
+    class TorihikikbnList_B
     {
         string strSQLName = null;
 
@@ -43,7 +44,7 @@ namespace KATO.Common.Business
 
                 strSQLName = "";
 
-                strSQLName = "DaibunruiList_View";
+                strSQLName = "TorihikikbnList_View";
 
                 //データ渡し用
                 lstStringSQL.Add("Common");
@@ -77,35 +78,11 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name.Equals("M1010_Daibunrui"))
+                if (lstInt[0] == 1 && frm.Name.Equals("M1040_Torihikikbn"))
                 {
                     //データを連れてくるため、newをしないこと
-                    M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
-                    daibunrui.setDaibunruiListClose();
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 2 && frm.Name.Equals("M1110_Chubunrui"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
-                    chubunrui.setDaibunruiListClose();
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
-                {
-                    //データを連れてくるため、newをしないこと
-                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                    tanaorosiinput.setDaibunruiListClose();
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 7 && frm.Name == "ShouhinList")
-                {
-                    //データを連れてくるため、newをしないこと
-                    ShouhinList shouhinsist = (ShouhinList)frm;
-                    shouhinsist.setDaibunruiListClose();
+                    M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
+                    torihikikbn.setToriListClose();
                     break;
                 }
                 else
@@ -130,7 +107,7 @@ namespace KATO.Common.Business
                 //データ渡し用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+                strSQLName = "C_LIST_Torihikikbn_SELECT_LEAVE";
 
                 //データ渡し用
                 lstStringSQL.Add("Common");
@@ -150,20 +127,7 @@ namespace KATO.Common.Business
                 {
                     //大分類
                     case 1:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name.Equals("M1010_Daibunrui"))
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
-                                daibunrui.setDaibunrui(dtSelectData);
-                                break;
-                            }
-                        }
                         break;
-
                     //中分類
                     case 2:
                         break;
@@ -172,15 +136,18 @@ namespace KATO.Common.Business
                         break;
                     //商品リスト
                     case 7:
+                        break;
+                    //取引区分
+                    case 9:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
                             //目的のフォームを探す
-                            if (frm.Name.Equals("ShouhinList"))
+                            if (frm.Name.Equals("M1040_Torihikikbn"))
                             {
                                 //データを連れてくるため、newをしないこと
-                                ShouhinList shouhinlist = (ShouhinList)frm;
-                                shouhinlist.setDaibunrui(dtSelectData);
+                                M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
+                                torihikikbn.setTorikubun(dtSelectData);
                                 break;
                             }
                         }

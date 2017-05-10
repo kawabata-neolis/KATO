@@ -1,8 +1,6 @@
-﻿using KATO.Common.Ctl;
-
-namespace KATO.Common.Form
+﻿namespace KATO.Common.Form
 {
-    partial class TanabanList
+    partial class TorihikikbnList
     {
         /// <summary>
         /// Required designer variable.
@@ -33,11 +31,22 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.lblRecords = new System.Windows.Forms.Label();
             this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            this.lblRecords = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
             this.SuspendLayout();
+            // 
+            // lblRecords
+            // 
+            this.lblRecords.AutoSize = true;
+            this.lblRecords.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.lblRecords.Location = new System.Drawing.Point(29, 477);
+            this.lblRecords.Name = "lblRecords";
+            this.lblRecords.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblRecords.Size = new System.Drawing.Size(125, 12);
+            this.lblRecords.TabIndex = 21;
+            this.lblRecords.Text = "該当件数(ありません)";
             // 
             // gridSeihin
             // 
@@ -62,7 +71,7 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridSeihin.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSeihin.EnableHeadersVisualStyles = false;
-            this.gridSeihin.Location = new System.Drawing.Point(31, 58);
+            this.gridSeihin.Location = new System.Drawing.Point(31, 54);
             this.gridSeihin.Name = "gridSeihin";
             this.gridSeihin.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -76,11 +85,11 @@ namespace KATO.Common.Form
             this.gridSeihin.RowHeadersVisible = false;
             this.gridSeihin.RowTemplate.Height = 21;
             this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeihin.Size = new System.Drawing.Size(474, 406);
+            this.gridSeihin.Size = new System.Drawing.Size(474, 410);
             this.gridSeihin.StandardTab = true;
-            this.gridSeihin.TabIndex = 5;
-            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridEigyousyoDoubleClick);
-            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTanabanKeyDown);
+            this.gridSeihin.TabIndex = 22;
+            this.gridSeihin.DoubleClick += new System.EventHandler(this.setGridSeihinDoubleClick);
+            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // btnF12
             // 
@@ -88,33 +97,22 @@ namespace KATO.Common.Form
             this.btnF12.Location = new System.Drawing.Point(405, 12);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 7;
+            this.btnF12.TabIndex = 23;
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
-            // lblRecords
-            // 
-            this.lblRecords.AutoSize = true;
-            this.lblRecords.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
-            this.lblRecords.Location = new System.Drawing.Point(29, 477);
-            this.lblRecords.Name = "lblRecords";
-            this.lblRecords.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblRecords.Size = new System.Drawing.Size(125, 12);
-            this.lblRecords.TabIndex = 21;
-            this.lblRecords.Text = "該当件数(ありません)";
-            // 
-            // TanabanList
+            // TorihikikbnList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
-            this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.gridSeihin);
-            this.Name = "TanabanList";
-            this.Text = "TanabanList";
-            this.Load += new System.EventHandler(this.TanabanList_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanListKeyDown);
+            this.Controls.Add(this.lblRecords);
+            this.Name = "TorihikikbnList";
+            this.Text = "TorihikikbnList";
+            this.Load += new System.EventHandler(this.TorihikikbnList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,8 +120,9 @@ namespace KATO.Common.Form
         }
 
         #endregion
-        private BaseDataGridView gridSeihin;
-        private BaseButton btnF12;
+
         private System.Windows.Forms.Label lblRecords;
+        private Ctl.BaseDataGridView gridSeihin;
+        private Ctl.BaseButton btnF12;
     }
 }

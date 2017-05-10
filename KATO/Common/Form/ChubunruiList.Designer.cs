@@ -36,10 +36,10 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
-            this.dgvSeihin = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -73,11 +73,11 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.ValueLabelSize = 150;
             this.labelSet_Daibunrui.ValueLabelText = "";
             // 
-            // dgvSeihin
+            // gridSeihin
             // 
-            this.dgvSeihin.AllowUserToAddRows = false;
-            this.dgvSeihin.AllowUserToResizeColumns = false;
-            this.dgvSeihin.AllowUserToResizeRows = false;
+            this.gridSeihin.AllowUserToAddRows = false;
+            this.gridSeihin.AllowUserToResizeColumns = false;
+            this.gridSeihin.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -85,8 +85,8 @@ namespace KATO.Common.Form
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSeihin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridSeihin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -94,11 +94,11 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSeihin.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSeihin.EnableHeadersVisualStyles = false;
-            this.dgvSeihin.Location = new System.Drawing.Point(31, 83);
-            this.dgvSeihin.Name = "dgvSeihin";
-            this.dgvSeihin.ReadOnly = true;
+            this.gridSeihin.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridSeihin.EnableHeadersVisualStyles = false;
+            this.gridSeihin.Location = new System.Drawing.Point(31, 83);
+            this.gridSeihin.Name = "gridSeihin";
+            this.gridSeihin.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -106,15 +106,15 @@ namespace KATO.Common.Form
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvSeihin.RowHeadersVisible = false;
-            this.dgvSeihin.RowTemplate.Height = 21;
-            this.dgvSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSeihin.Size = new System.Drawing.Size(474, 381);
-            this.dgvSeihin.StandardTab = true;
-            this.dgvSeihin.TabIndex = 0;
-            this.dgvSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setdgvSeihinDoubleClick);
-            this.dgvSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDgvSeihinKeyDown);
+            this.gridSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridSeihin.RowHeadersVisible = false;
+            this.gridSeihin.RowTemplate.Height = 21;
+            this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridSeihin.Size = new System.Drawing.Size(474, 381);
+            this.gridSeihin.StandardTab = true;
+            this.gridSeihin.TabIndex = 0;
+            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDoubleClick);
+            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // btnF11
             // 
@@ -143,14 +143,14 @@ namespace KATO.Common.Form
             this.ClientSize = new System.Drawing.Size(535, 524);
             this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.lblRecords);
-            this.Controls.Add(this.dgvSeihin);
+            this.Controls.Add(this.gridSeihin);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
             this.Name = "ChubunruiList";
             this.Text = "ChubunruiList";
             this.Load += new System.EventHandler(this.CyokusousakiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +160,7 @@ namespace KATO.Common.Form
 
         private BaseButton btnF11;
         private BaseButton btnF12;
-        private BaseDataGridView dgvSeihin;
+        private BaseDataGridView gridSeihin;
         private System.Windows.Forms.Label lblRecords;
         private LabelSet_Daibunrui labelSet_Daibunrui;
     }

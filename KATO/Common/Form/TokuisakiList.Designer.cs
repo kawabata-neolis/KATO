@@ -38,10 +38,10 @@
             this.lblBaseLabelHuri = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTorihikisaki = new KATO.Common.Ctl.BaseText();
             this.txtHurigana = new KATO.Common.Ctl.BaseText();
-            this.TokuisakiGrid = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridTokuisaki = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            ((System.ComponentModel.ISupportInitialize)(this.TokuisakiGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -106,11 +106,11 @@
             this.txtHurigana.TabIndex = 0;
             this.txtHurigana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
             // 
-            // TokuisakiGrid
+            // gridTokuisaki
             // 
-            this.TokuisakiGrid.AllowUserToAddRows = false;
-            this.TokuisakiGrid.AllowUserToResizeColumns = false;
-            this.TokuisakiGrid.AllowUserToResizeRows = false;
+            this.gridTokuisaki.AllowUserToAddRows = false;
+            this.gridTokuisaki.AllowUserToResizeColumns = false;
+            this.gridTokuisaki.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -118,8 +118,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TokuisakiGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.TokuisakiGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridTokuisaki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -127,11 +127,11 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TokuisakiGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TokuisakiGrid.EnableHeadersVisualStyles = false;
-            this.TokuisakiGrid.Location = new System.Drawing.Point(12, 84);
-            this.TokuisakiGrid.Name = "TokuisakiGrid";
-            this.TokuisakiGrid.ReadOnly = true;
+            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridTokuisaki.EnableHeadersVisualStyles = false;
+            this.gridTokuisaki.Location = new System.Drawing.Point(12, 84);
+            this.gridTokuisaki.Name = "gridTokuisaki";
+            this.gridTokuisaki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -139,14 +139,15 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TokuisakiGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.TokuisakiGrid.RowHeadersVisible = false;
-            this.TokuisakiGrid.RowTemplate.Height = 21;
-            this.TokuisakiGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TokuisakiGrid.Size = new System.Drawing.Size(776, 451);
-            this.TokuisakiGrid.StandardTab = true;
-            this.TokuisakiGrid.TabIndex = 3;
-            this.TokuisakiGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setTanGridDblClick);
+            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridTokuisaki.RowHeadersVisible = false;
+            this.gridTokuisaki.RowTemplate.Height = 21;
+            this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridTokuisaki.Size = new System.Drawing.Size(776, 451);
+            this.gridTokuisaki.StandardTab = true;
+            this.gridTokuisaki.TabIndex = 3;
+            this.gridTokuisaki.DoubleClick += new System.EventHandler(this.setTokuiGridDblClick);
+            this.gridTokuisaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTokuiKeyDown);
             // 
             // btnF11
             // 
@@ -179,14 +180,14 @@
             this.Controls.Add(this.lblBaseLabelHuri);
             this.Controls.Add(this.txtTorihikisaki);
             this.Controls.Add(this.txtHurigana);
-            this.Controls.Add(this.TokuisakiGrid);
+            this.Controls.Add(this.gridTokuisaki);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
             this.Name = "TokuisakiList";
             this.Text = "TokuisakiList";
             this.Load += new System.EventHandler(this.TantousyaList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.TokuisakiGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,7 +196,7 @@
         #endregion
 
         private Ctl.BaseButton btnF12;
-        private Ctl.BaseDataGridView TokuisakiGrid;
+        private Ctl.BaseDataGridView gridTokuisaki;
         private Ctl.BaseText txtHurigana;
         private Ctl.BaseText txtTorihikisaki;
         private Ctl.BaseLabel lblBaseLabelHuri;

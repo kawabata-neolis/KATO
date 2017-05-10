@@ -56,7 +56,6 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
-
         }
 
         /// <summary>
@@ -122,21 +121,21 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                dgvSeihin.DataSource = daibunlistB.setDatagridView();
+                gridSeihin.DataSource = daibunlistB.setDatagridView();
 
                 //幅の値を設定
-                dgvSeihin.Columns["大分類コード"].Width = 150;
-                dgvSeihin.Columns["大分類名"].Width = 150;
+                gridSeihin.Columns["大分類コード"].Width = 150;
+                gridSeihin.Columns["大分類名"].Width = 150;
 
                 //中央揃え
-                dgvSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                lblRecords.Text = "該当件数( " + dgvSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
                 if (lblRecords.Text == "0")
                 {
-                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
@@ -248,19 +247,19 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setdgvSeihinDoubleClick(object sender, EventArgs e)
+        public void setGridSeiDblClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///judGridSeihinKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judDgvSeihinKeyDown(object sender, KeyEventArgs e)
+        private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -316,7 +315,7 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setdgvSeihinDoubleClick
+        ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
@@ -326,8 +325,8 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             //選択行の大分類コード取得
-            string strSelectId = (string)dgvSeihin.CurrentRow.Cells["大分類コード"].Value;
-            string strSelectName = (string)dgvSeihin.CurrentRow.Cells["大分類名"].Value;
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["大分類コード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["大分類名"].Value;
 
             lstInt.Add(intFrmKind);
             lstString.Add(strSelectId);

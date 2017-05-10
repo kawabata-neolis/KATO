@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace KATO.Common.Util
@@ -14,13 +15,13 @@ namespace KATO.Common.Util
         //名前修正
         public static bool blIsEmpty(string strText)
         {
-            Boolean good = true;
+            Boolean blnGood = true;
 
             if (strText == "" || String.IsNullOrWhiteSpace(strText).Equals(true))
             {
-                good = false;
+                blnGood = false;
             }
-            return (good);
+            return (blnGood);
         }
 
         //
@@ -28,31 +29,48 @@ namespace KATO.Common.Util
         //
         public static bool JudCalenderCheck(string strData)
         {
-            Boolean good = true;
+            Boolean blnGood = true;
             DateTime datiSub;
 
             if (DateTime.TryParse(strData, out datiSub) == false)
             {
-                good = false;
+                blnGood = false;
             }
-            return (good);
+            return (blnGood);
         }
 
         //
-        //禁止文字チェック（個々を呼び出す形になるのでまとめて処理できるように）(戻り値はboolean）
+        //禁止文字チェック（ファイル名に使用できない文字）
         //
-        public static bool JudBanChar(string strData)
+        public static bool JudBanChr(string strData)
         {
-            Boolean good = true;
+            Boolean blnGood = true;
 
             //ファイル名に使用できない文字を取得
             char[] invalidChars = System.IO.Path.GetInvalidFileNameChars();
 
+            //ファイル名に使用できない文字でチェック
             if (strData.IndexOfAny(invalidChars) > 0)
             {
-                good = false;
+                blnGood = false;
             }
-            return (good);
+            return (blnGood);
+        }
+
+        //
+        //禁止文字チェック（選択された禁止文字）
+        //
+        public static bool JudBanSelect(string strData, string strBanSelect)
+        {
+            Boolean blnGood = true;
+
+            //選択した禁止文字でチェック
+            Regex regex = new Regex(strBanSelect);
+            if (!regex.IsMatch(strData))
+            {
+                blnGood = false;
+            }
+            return (blnGood);
         }
     }
 }

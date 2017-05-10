@@ -7,67 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Form.F0140_TanaorosiInput;
-using KATO.Common.Util;
-using KATO.Common.Business;
-using System.Security.Permissions;
 using KATO.Common.Ctl;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Common.Business;
+using KATO.Common.Util;
+using System.Security.Permissions;
 
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///EigyoushoList
-    ///営業所リストフォーム
+    ///TorihikikbnList
+    ///取引区分リストフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class EigyoushoList : System.Windows.Forms.Form
+    public partial class TorihikikbnList : System.Windows.Forms.Form
     {
-        LabelSet_Eigyousho lblSetEigyou = null;
+        //ラベルセットが出た場合
+        //LabelSet_Daibunrui lblSetDaibun = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
         /// <summary>
-        /// DaibunruiList
+        /// TorihikikbnList
         /// フォーム関係の設定（通常のテキストボックスから）
         /// </summary>
-        public EigyoushoList(Control c)
+        public TorihikikbnList(Control c)
         {
             if (c == null)
             {
                 return;
             }
+
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
-            InitializeComponent();
-
-            //ウィンドウ位置をマニュアル
-            this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
-        }
-
-        /// <summary>
-        /// DaibunruiList
-        /// フォーム関係の設定（ラベルセットから）
-        /// </summary>
-        public EigyoushoList(Control c, LabelSet_Eigyousho lblSetEigyouSelect)
-        {
-            if (c == null)
-            {
-                return;
-            }
-            int intWindowWidth = c.Width;
-            int intWindowHeight = c.Height;
-
-            lblSetEigyou = lblSetEigyouSelect;
             InitializeComponent();
 
             //ウィンドウ位置をマニュアル
@@ -94,32 +72,51 @@ namespace KATO.Common.Form
         /// DaiBunruiList_Load
         /// 読み込み時
         /// </summary>
-        private void EigyoushoList_Load(object sender, EventArgs e)
+        private void TorihikikbnList_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "営業所リスト";
-            //列自動生成禁止
-            gridSeihin.AutoGenerateColumns = false;
-
+            this._Title = "取引区分リスト";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
-            //データをバインド
-            DataGridViewTextBoxColumn gyoshuCD = new DataGridViewTextBoxColumn();
-            gyoshuCD.DataPropertyName = "業種コード";
-            gyoshuCD.Name = "業種コード";
-            gyoshuCD.HeaderText = "業種コード";
-
-            DataGridViewTextBoxColumn gyoshuName = new DataGridViewTextBoxColumn();
-            gyoshuName.DataPropertyName = "業種名";
-            gyoshuName.Name = "業種名";
-            gyoshuName.HeaderText = "業種名";
-
-            gridSeihin.Columns.Add(gyoshuCD);
-            gridSeihin.Columns.Add(gyoshuName);
+            SetUpGrid();
 
             setDatagridView();
+        }
+
+        ///<summary>
+        ///SetUpGrid
+        ///データグリッドビューの準備
+        ///</summary>
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            gridSeihin.AutoGenerateColumns = false;
+
+            //データをバインド
+            DataGridViewTextBoxColumn tantoushaCD = new DataGridViewTextBoxColumn();
+            tantoushaCD.DataPropertyName = "取引区分コード";
+            tantoushaCD.Name = "取引区分コード";
+            tantoushaCD.HeaderText = "コード";
+
+            DataGridViewTextBoxColumn tantoushaName = new DataGridViewTextBoxColumn();
+            tantoushaName.DataPropertyName = "取引区分名";
+            tantoushaName.Name = "取引区分名";
+            tantoushaName.HeaderText = "取引区分名";
+
+            //バインドしたデータを追加
+            gridSeihin.Columns.Add(tantoushaCD);
+            gridSeihin.Columns.Add(tantoushaName);
+
+            //個々の幅、文章の寄せ
+            gridSeihin.Columns["取引区分コード"].Width = 80;
+            gridSeihin.Columns["取引区分コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridSeihin.Columns["取引区分コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            gridSeihin.Columns["取引区分名"].Width = 200;
+            gridSeihin.Columns["取引区分名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridSeihin.Columns["取引区分名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         ///<summary>
@@ -128,37 +125,37 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
-
-            //データグリッドビュー部分
-            gridSeihin.DataSource = eigyoulistB.setDatagridView();
-
-            //幅の値を設定
-            gridSeihin.Columns["業種コード"].Width = 150;
-            gridSeihin.Columns["業種名"].Width = 150;
-
-            //中央揃え
-            gridSeihin.Columns["業種名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //検索件数を表示
-            lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
-
-            //件数が0の場合
-            if (lblRecords.Text.Equals("0"))
+            TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
+            try
             {
-                //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                //データグリッドビュー部分
+                gridSeihin.DataSource = torikbnListB.setDatagridView();
+
+                //中央揃え
+                gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (lblRecords.Text == "0")
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
 
         ///<summary>
-        ///judEigyoushoListKeyDown
+        ///judDaiBunruiListKeyDown
         ///キー入力判定
         ///</summary>
-        private void judEigyoushoListKeyDown(object sender, KeyEventArgs e)
+        private void judDaiBunruiListKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -227,11 +224,12 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
-            if (lblSetEigyou != null && lstString.Count != 0)
-            {
-                lblSetEigyou.CodeTxtText = lstString[0];
-                lblSetEigyou.ValueLabelText = lstString[1];
-            }
+            //ラベルセットが出た場合
+            //if (lblSetTorikbn != null && lstString.Count != 0)
+            //{
+            //    lblSetTorikbn.CodeTxtText = lstString[0];
+            //    lblSetTorikbn.ValueLabelText = lstString[1];
+            //}
 
             this.Close();
 
@@ -242,11 +240,10 @@ namespace KATO.Common.Form
             lstInt.Add(intFrmKind);
 
             //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
+            TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                //データグリッドビュー部分
-                eigyoulistB.setEndAction(lstInt);
+                torikbnListB.setEndAction(lstInt);
             }
             catch (Exception ex)
             {
@@ -255,19 +252,19 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridEigyousyoDoubleClick
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setGridEigyousyoDoubleClick(object sender, EventArgs e)
+        public void setGridSeihinDoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///judGridEigyoushoKeyDown
+        ///setGridSeihinDoubleClick
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judGridEigyoushoKeyDown(object sender, KeyEventArgs e)
+        private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -333,19 +330,18 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             //選択行の大分類コード取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells[0].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value;
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["取引区分コード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["取引区分名"].Value;
 
-            //データ渡し用
             lstInt.Add(intFrmKind);
             lstString.Add(strSelectId);
             lstString.Add(strSelectName);
 
             //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
+            TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                eigyoulistB.setSelectItem(lstInt, lstString);
+                torikbnListB.setSelectItem(lstInt, lstString);
             }
             catch (Exception ex)
             {

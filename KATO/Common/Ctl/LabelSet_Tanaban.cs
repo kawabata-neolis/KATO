@@ -64,17 +64,33 @@ namespace KATO.Common.Ctl
         ///</summary>
         public void updTxtTanabanLeave(object sender, EventArgs e)
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
+
+            Boolean blnGood;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
 
-            DataTable dtSetCd;
+            if (blnGood == false)
+            {
+                this.ValueLabelText = "";
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
+                this.Focus();
+                return;
+            }
+            
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
