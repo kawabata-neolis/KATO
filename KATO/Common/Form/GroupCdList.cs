@@ -101,7 +101,44 @@ namespace KATO.Common.Form
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
+            SetUpGrid();
+
             setDatagridView();
+        }
+
+        ///<summary>
+        ///SetUpGrid
+        ///データグリッドビューの準備
+        ///</summary>
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            gridSeihin.AutoGenerateColumns = false;
+
+            //データをバインド
+            DataGridViewTextBoxColumn torihikisakiCD = new DataGridViewTextBoxColumn();
+            torihikisakiCD.DataPropertyName = "グループコード";
+            torihikisakiCD.Name = "グループコード";
+            torihikisakiCD.HeaderText = "コード";
+
+            DataGridViewTextBoxColumn torihikisakiName = new DataGridViewTextBoxColumn();
+            torihikisakiName.DataPropertyName = "グループ名";
+            torihikisakiName.Name = "グループ名";
+            torihikisakiName.HeaderText = "グループ名";
+
+            //バインドしたデータを追加
+            gridSeihin.Columns.Add(torihikisakiCD);
+            gridSeihin.Columns.Add(torihikisakiName);
+
+            //個々の幅、文章の寄せ
+            gridSeihin.Columns["グループコード"].Width = 100;
+            gridSeihin.Columns["グループコード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridSeihin.Columns["グループコード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            gridSeihin.Columns["グループ名"].Width = 200;
+            gridSeihin.Columns["グループ名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridSeihin.Columns["グループ名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         ///<summary>
@@ -115,10 +152,6 @@ namespace KATO.Common.Form
             {
                 //データグリッドビュー部分
                 gridSeihin.DataSource = groupcdlistB.setDatagridView();
-
-                //幅の値を設定
-                gridSeihin.Columns["大分類コード"].Width = 150;
-                gridSeihin.Columns["大分類名"].Width = 150;
 
                 //中央揃え
                 gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -197,16 +230,171 @@ namespace KATO.Common.Form
             }
         }
 
+        /// <summary>
+        /// CreateParams
+        ///データグリッドビュー内のデータ選択中にキーが押されたとき
+        /// </summary>
+        private void judGridGroupKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //ダブルクリックと同じ効果
+                    setSelectItem();
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    //戻るボタン
+                    this.btnEndClick(sender, e);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///setSelectItem
+        ///データグリッドビュー内のデータ選択後の処理
+        ///</summary>        
+        private void setSelectItem()
+        {
+            if (gridSeihin.Rows.Count < 1)
+            {
+                return;
+            }
+
+            //データ渡し用
+            List<string> lstString = new List<string>();
+            List<int> lstInt = new List<int>();
+
+            //選択行の担当者情報取得
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["グループコード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["グループ名"].Value;
+
+            lstInt.Add(intFrmKind);
+            lstString.Add(strSelectId);
+            lstString.Add(strSelectName);
+
+            //処理部に移動
+            GroupCdList_B groupcdlistB = new GroupCdList_B();
+            try
+            {
+                groupcdlistB.setSelectItem(lstInt, lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+
+            setEndAction(lstString);
+        }
+
+
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
-//ここから
             List<string> lstString = new List<string>();
-            //setEndAction(lstString);
+            setEndAction(lstString);
         }
 
+        ///<summary>
+        ///setEndAction
+        ///戻るボタンの処理
+        ///</summary>
+        private void setEndAction(List<string> lstString)
+        {
+            if (lblSetGroupCd != null && lstString.Count != 0)
+            {
+                lblSetGroupCd.CodeTxtText = lstString[0];
+                lblSetGroupCd.ValueLabelText = lstString[1];
+            }
+
+            this.Close();
+
+            //データ渡し用
+            List<int> lstInt = new List<int>();
+
+            //データ渡し用
+            lstInt.Add(intFrmKind);
+
+            //処理部に移動
+            GroupCdList_B groupcdlistB = new GroupCdList_B();
+            try
+            {
+                groupcdlistB.setEndAction(lstInt);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+        }
+
+        /// <summary>
+        /// CreateParams
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        /// </summary>
+        private void setTokuiGridDblClick(object sender, EventArgs e)
+        {
+            setSelectItem();
+        }
+
+
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>        
+        protected override CreateParams CreateParams
+        {
+            [SecurityPermission(SecurityAction.Demand,
+                Flags = SecurityPermissionFlag.UnmanagedCode)]
+            get
+            {
+                const int FRM_NOCLOSE = 0x200;
+                CreateParams cpForm = base.CreateParams;
+                cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
+
+                return cpForm;
+            }
+        }
     }
 }

@@ -52,7 +52,6 @@ namespace KATO.Common.Business
 
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
-
             }
             catch (Exception ex)
             {

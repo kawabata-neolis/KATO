@@ -32,8 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
+            this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +47,16 @@
             this.lblRecords.Size = new System.Drawing.Size(125, 12);
             this.lblRecords.TabIndex = 21;
             this.lblRecords.Text = "該当件数(ありません)";
+            // 
+            // btnF12
+            // 
+            this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnF12.Location = new System.Drawing.Point(405, 12);
+            this.btnF12.Name = "btnF12";
+            this.btnF12.Size = new System.Drawing.Size(100, 23);
+            this.btnF12.TabIndex = 23;
+            this.btnF12.UseVisualStyleBackColor = true;
+            this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
             // gridSeihin
             // 
@@ -88,15 +98,8 @@
             this.gridSeihin.Size = new System.Drawing.Size(474, 410);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 22;
-            // 
-            // btnF12
-            // 
-            this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(405, 12);
-            this.btnF12.Name = "btnF12";
-            this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 23;
-            this.btnF12.UseVisualStyleBackColor = true;
+            this.gridSeihin.DoubleClick += new System.EventHandler(this.setTokuiGridDblClick);
+            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridGroupKeyDown);
             // 
             // groupCdList
             // 
@@ -109,6 +112,7 @@
             this.Name = "groupCdList";
             this.Text = "groupCdList";
             this.Load += new System.EventHandler(this.GroupCdList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
