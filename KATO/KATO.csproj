@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
@@ -234,6 +235,12 @@
     </Compile>
     <Compile Include="Common\Util\OpenSQL.cs" />
     <Compile Include="Common\Util\StringUtl.cs" />
+    <Compile Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.Designer.cs">
+      <DependentUpon>D0360_JuchuzanKakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikikbnList.resx">
       <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.resx">
+      <DependentUpon>D0360_JuchuzanKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>

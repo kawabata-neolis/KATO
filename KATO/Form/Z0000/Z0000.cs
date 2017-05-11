@@ -122,6 +122,12 @@ namespace KATO.Form.Z0000
             //this.Hide();
         }
 
+        private void btnZanKakunin_Click(object sender, EventArgs e)
+        {
+            D0360_JuchuzanKakunin.D0360_JuchuzanKakunin zan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+            zan.ShowDialog();
+        }
+
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
         {
@@ -139,5 +145,6 @@ namespace KATO.Form.Z0000
                     break;
             }
         }
+
     }
 }

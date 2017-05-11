@@ -31,6 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
@@ -40,9 +41,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF12
@@ -150,6 +152,18 @@
             this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
             this.btnTestWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
+            // btnTorihikikubun
+            // 
+            this.btnTorihikikubun.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTorihikikubun.Location = new System.Drawing.Point(23, 310);
+            this.btnTorihikikubun.Name = "btnTorihikikubun";
+            this.btnTorihikikubun.Size = new System.Drawing.Size(280, 40);
+            this.btnTorihikikubun.TabIndex = 5;
+            this.btnTorihikikubun.Text = "取引区分";
+            this.btnTorihikikubun.UseVisualStyleBackColor = false;
+            this.btnTorihikikubun.Click += new System.EventHandler(this.baseMenuButton7_Click);
+            this.btnTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // btnTanaInput
             // 
             this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
@@ -211,6 +225,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.btnZanKakunin);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -246,17 +261,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // btnTorihikikubun
+            // btnZanKakunin
             // 
-            this.btnTorihikikubun.BackColor = System.Drawing.Color.LightYellow;
-            this.btnTorihikikubun.Location = new System.Drawing.Point(23, 310);
-            this.btnTorihikikubun.Name = "btnTorihikikubun";
-            this.btnTorihikikubun.Size = new System.Drawing.Size(280, 40);
-            this.btnTorihikikubun.TabIndex = 5;
-            this.btnTorihikikubun.Text = "取引区分";
-            this.btnTorihikikubun.UseVisualStyleBackColor = false;
-            this.btnTorihikikubun.Click += new System.EventHandler(this.baseMenuButton7_Click);
-            this.btnTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
+            this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
+            this.btnZanKakunin.Name = "btnZanKakunin";
+            this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
+            this.btnZanKakunin.TabIndex = 8;
+            this.btnZanKakunin.Text = "残確認";
+            this.btnZanKakunin.UseVisualStyleBackColor = false;
+            this.btnZanKakunin.Click += new System.EventHandler(this.btnZanKakunin_Click);
             // 
             // Z0000
             // 
@@ -283,6 +297,7 @@
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,5 +318,6 @@
         private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton baseMenuButton3;
         private Common.Ctl.BaseMenuButton btnTorihikikubun;
+        private Common.Ctl.BaseMenuButton btnZanKakunin;
     }
 }

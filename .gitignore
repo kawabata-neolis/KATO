@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/KATO/Business/D0360_JuchuzanKakunin/D0360_JuchuzanKakunin_B.cs
+/KATO/Form/D0360_JuchuzanKakunin/D0360_JuchuzanKakunin.cs
+/KATO/Form/D0360_JuchuzanKakunin/D0360_JuchuzanKakunin.Designer.cs
+/KATO/Form/D0360_JuchuzanKakunin/D0360_JuchuzanKakunin.resx
