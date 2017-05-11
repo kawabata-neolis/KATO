@@ -58,9 +58,6 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
-
                 new CommonException(ex);
                 throw (ex);
             }

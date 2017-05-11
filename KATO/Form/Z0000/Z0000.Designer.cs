@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTantousha = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
@@ -40,7 +42,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +126,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.btnTestWindow);
+            this.tabPage1.Controls.Add(this.btnTantousha);
             this.tabPage1.Controls.Add(this.btnTorihikikubun);
             this.tabPage1.Controls.Add(this.btnTanaInput);
             this.tabPage1.Controls.Add(this.btnMaker);
@@ -144,11 +146,35 @@
             this.btnTestWindow.Location = new System.Drawing.Point(23, 672);
             this.btnTestWindow.Name = "btnTestWindow";
             this.btnTestWindow.Size = new System.Drawing.Size(280, 40);
-            this.btnTestWindow.TabIndex = 6;
+            this.btnTestWindow.TabIndex = 7;
             this.btnTestWindow.Text = "受注入力（共通部品テスト用）";
             this.btnTestWindow.UseVisualStyleBackColor = false;
             this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
             this.btnTestWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnTantousha
+            // 
+            this.btnTantousha.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTantousha.Location = new System.Drawing.Point(23, 376);
+            this.btnTantousha.Name = "btnTantousha";
+            this.btnTantousha.Size = new System.Drawing.Size(280, 40);
+            this.btnTantousha.TabIndex = 6;
+            this.btnTantousha.Text = "担当者";
+            this.btnTantousha.UseVisualStyleBackColor = false;
+            this.btnTantousha.Click += new System.EventHandler(this.btnTantousha_Click);
+            this.btnTantousha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnTorihikikubun
+            // 
+            this.btnTorihikikubun.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTorihikikubun.Location = new System.Drawing.Point(23, 310);
+            this.btnTorihikikubun.Name = "btnTorihikikubun";
+            this.btnTorihikikubun.Size = new System.Drawing.Size(280, 40);
+            this.btnTorihikikubun.TabIndex = 5;
+            this.btnTorihikikubun.Text = "取引区分";
+            this.btnTorihikikubun.UseVisualStyleBackColor = false;
+            this.btnTorihikikubun.Click += new System.EventHandler(this.btnTorihikikubun_Click);
+            this.btnTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnTanaInput
             // 
@@ -159,7 +185,7 @@
             this.btnTanaInput.TabIndex = 4;
             this.btnTanaInput.Text = "棚卸入力";
             this.btnTanaInput.UseVisualStyleBackColor = false;
-            this.btnTanaInput.Click += new System.EventHandler(this.baseMenuButton5_Click);
+            this.btnTanaInput.Click += new System.EventHandler(this.btnTanaInput_Click);
             this.btnTanaInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnMaker
@@ -171,7 +197,7 @@
             this.btnMaker.TabIndex = 3;
             this.btnMaker.Text = "メーカー";
             this.btnMaker.UseVisualStyleBackColor = false;
-            this.btnMaker.Click += new System.EventHandler(this.baseMenuButton4_Click);
+            this.btnMaker.Click += new System.EventHandler(this.btnMaker_Click);
             this.btnMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // baseMenuButton3
@@ -193,7 +219,7 @@
             this.btnChubunrui.TabIndex = 2;
             this.btnChubunrui.Text = "中分類";
             this.btnChubunrui.UseVisualStyleBackColor = false;
-            this.btnChubunrui.Click += new System.EventHandler(this.baseMenuButton2_Click);
+            this.btnChubunrui.Click += new System.EventHandler(this.btnChubunrui_Click);
             this.btnChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnDaibunrui
@@ -205,7 +231,7 @@
             this.btnDaibunrui.TabIndex = 1;
             this.btnDaibunrui.Text = "大分類";
             this.btnDaibunrui.UseVisualStyleBackColor = false;
-            this.btnDaibunrui.Click += new System.EventHandler(this.baseMenuButton1_Click);
+            this.btnDaibunrui.Click += new System.EventHandler(this.btnDaibunrui_Click);
             this.btnDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // tabPage2
@@ -245,18 +271,6 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
-            // 
-            // btnTorihikikubun
-            // 
-            this.btnTorihikikubun.BackColor = System.Drawing.Color.LightYellow;
-            this.btnTorihikikubun.Location = new System.Drawing.Point(23, 310);
-            this.btnTorihikikubun.Name = "btnTorihikikubun";
-            this.btnTorihikikubun.Size = new System.Drawing.Size(280, 40);
-            this.btnTorihikikubun.TabIndex = 5;
-            this.btnTorihikikubun.Text = "取引区分";
-            this.btnTorihikikubun.UseVisualStyleBackColor = false;
-            this.btnTorihikikubun.Click += new System.EventHandler(this.baseMenuButton7_Click);
-            this.btnTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // Z0000
             // 
@@ -303,5 +317,6 @@
         private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton baseMenuButton3;
         private Common.Ctl.BaseMenuButton btnTorihikikubun;
+        private Common.Ctl.BaseMenuButton btnTantousha;
     }
 }

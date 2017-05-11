@@ -499,7 +499,7 @@
             this.labelSet_Tokuisaki1.ValueLabelSize = 200;
             this.labelSet_Tokuisaki1.ValueLabelText = "";
             // 
-            // JuchuInput
+            // JuchuInput_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -528,7 +528,7 @@
             this.Controls.Add(this.baseLabel2);
             this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.baseText1);
-            this.Name = "JuchuInput";
+            this.Name = "JuchuInput_Test";
             this.Text = "JuchuInput";
             this.Load += new System.EventHandler(this.JuchuInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judJuchuInputKeyDown);
@@ -536,18 +536,6 @@
             this.Controls.SetChildIndex(this.baseLabel1, 0);
             this.Controls.SetChildIndex(this.baseLabel2, 0);
             this.Controls.SetChildIndex(this.baseLabel3, 0);
-            this.Controls.SetChildIndex(this.btnF01, 0);
-            this.Controls.SetChildIndex(this.btnF02, 0);
-            this.Controls.SetChildIndex(this.btnF03, 0);
-            this.Controls.SetChildIndex(this.btnF04, 0);
-            this.Controls.SetChildIndex(this.btnF05, 0);
-            this.Controls.SetChildIndex(this.btnF06, 0);
-            this.Controls.SetChildIndex(this.btnF07, 0);
-            this.Controls.SetChildIndex(this.btnF08, 0);
-            this.Controls.SetChildIndex(this.btnF09, 0);
-            this.Controls.SetChildIndex(this.btnF10, 0);
-            this.Controls.SetChildIndex(this.btnF11, 0);
-            this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.baseComboBox1, 0);
             this.Controls.SetChildIndex(this.baseComboBox2, 0);
             this.Controls.SetChildIndex(this.baseLabelGray1, 0);
@@ -568,6 +556,18 @@
             this.Controls.SetChildIndex(this.labelSet_Tanaban, 0);
             this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
             this.Controls.SetChildIndex(this.labelSet_Tokuisaki1, 0);
+            this.Controls.SetChildIndex(this.btnF01, 0);
+            this.Controls.SetChildIndex(this.btnF02, 0);
+            this.Controls.SetChildIndex(this.btnF03, 0);
+            this.Controls.SetChildIndex(this.btnF04, 0);
+            this.Controls.SetChildIndex(this.btnF05, 0);
+            this.Controls.SetChildIndex(this.btnF06, 0);
+            this.Controls.SetChildIndex(this.btnF07, 0);
+            this.Controls.SetChildIndex(this.btnF08, 0);
+            this.Controls.SetChildIndex(this.btnF09, 0);
+            this.Controls.SetChildIndex(this.btnF10, 0);
+            this.Controls.SetChildIndex(this.btnF11, 0);
+            this.Controls.SetChildIndex(this.btnF12, 0);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).EndInit();
             this.ResumeLayout(false);
