@@ -1,0 +1,1 @@
+SELECT グループコード, グループ名 FROM グループ WHERE 削除 = 'N'

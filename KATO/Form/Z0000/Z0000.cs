@@ -72,40 +72,46 @@ namespace KATO.Form.Z0000
         }
 
         //大分類表示
-        private void baseMenuButton1_Click(object sender, EventArgs e)
+        private void btnDaibunrui_Click(object sender, EventArgs e)
         {
             M1010_Daibunrui.M1010_Daibunrui daibun = new M1010_Daibunrui.M1010_Daibunrui(this);
             daibun.ShowDialog();
         }
 
         //中分類表示
-        private void baseMenuButton2_Click(object sender, EventArgs e)
+        private void btnChubunrui_Click(object sender, EventArgs e)
         {
             M1110_Chubunrui.M1110_Chubunrui chubun = new M1110_Chubunrui.M1110_Chubunrui(this);
             chubun.ShowDialog();
         }
 
         //メーカー表示
-        private void baseMenuButton4_Click(object sender, EventArgs e)
+        private void btnMaker_Click(object sender, EventArgs e)
         {
             M1020_Maker.M1020_Maker maker = new M1020_Maker.M1020_Maker(this);
             maker.ShowDialog();
         }
 
         //棚卸入力表示
-        private void baseMenuButton5_Click(object sender, EventArgs e)
+        private void btnTanaInput_Click(object sender, EventArgs e)
         {
             F0140_TanaorosiInput.F0140_TanaorosiInput tana = new F0140_TanaorosiInput.F0140_TanaorosiInput(this);
             tana.ShowDialog();
         }
 
         //取引区分表示
-        private void baseMenuButton7_Click(object sender, EventArgs e)
+        private void btnTorihikikubun_Click(object sender, EventArgs e)
         {
             M1040_Torihikikbn.M1040_Torihikikbn tori = new M1040_Torihikikbn.M1040_Torihikikbn(this);
             tori.ShowDialog();
         }
 
+        //担当者表示
+        private void btnTantousha_Click(object sender, EventArgs e)
+        {
+            M1050_Tantousha.M1050_Tantousha tori = new M1050_Tantousha.M1050_Tantousha(this);
+            tori.ShowDialog();
+        }
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)

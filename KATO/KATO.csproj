@@ -66,6 +66,7 @@
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
+    <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
     <Compile Include="Common\Business\EigyoushoList_B.cs" />
@@ -182,6 +183,12 @@
     <Compile Include="Common\Ctl\LabelSet_Eigyousho.Designer.cs">
       <DependentUpon>LabelSet_Eigyousho.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_GroupCd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_GroupCd.Designer.cs">
+      <DependentUpon>LabelSet_GroupCd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\LabelSet_Maker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,6 +212,36 @@
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Tokuisaki.Designer.cs">
       <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_4btn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_4btn.Designer.cs">
+      <DependentUpon>RadSet_4btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_3btn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_3btn.Designer.cs">
+      <DependentUpon>RadSet_3btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_2btn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_2btn.Designer.cs">
+      <DependentUpon>RadSet_2btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_5btn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_5btn.Designer.cs">
+      <DependentUpon>RadSet_5btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\GroupCdList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\GroupCdList.Designer.cs">
+      <DependentUpon>GroupCdList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TokuisakiList.cs">
       <SubType>Form</SubType>
@@ -245,6 +282,12 @@
     </Compile>
     <Compile Include="Form\M1040_Torihikikbn\M1040_Torihikikbn.Designer.cs">
       <DependentUpon>M1040_Torihikikbn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1050_Tantousha\M1050_Tantousha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1050_Tantousha\M1050_Tantousha.Designer.cs">
+      <DependentUpon>M1050_Tantousha.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.cs">
       <SubType>Form</SubType>
@@ -386,6 +429,9 @@
       <DependentUpon>LabelSet_Eigyousho.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_GroupCd.resx">
+      <DependentUpon>LabelSet_GroupCd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Maker.resx">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -402,9 +448,24 @@
       <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\RadSet_4btn.resx">
+      <DependentUpon>RadSet_4btn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\RadSet_3btn.resx">
+      <DependentUpon>RadSet_3btn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\RadSet_2btn.resx">
+      <DependentUpon>RadSet_2btn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\RadSet_5btn.resx">
+      <DependentUpon>RadSet_5btn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
       <DependentUpon>ChubunruiList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\GroupCdList.resx">
+      <DependentUpon>GroupCdList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
@@ -419,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1040_Torihikikbn\M1040_Torihikikbn.resx">
       <DependentUpon>M1040_Torihikikbn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1050_Tantousha\M1050_Tantousha.resx">
+      <DependentUpon>M1050_Tantousha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
       <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
@@ -492,6 +556,7 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
@@ -499,6 +564,7 @@
     <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\MakerList_View.sql" />
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql" />
+    <Content Include="SQL\Common\C_LIST_GroupCd_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Eigyousho_SELECT_LEAVE.sql" />
