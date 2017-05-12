@@ -59,6 +59,7 @@
             this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_Tokuisaki1 = new KATO.Common.Ctl.LabelSet_Tokuisaki();
+            this.labelSet_Tokuisaki2 = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).BeginInit();
             this.SuspendLayout();
@@ -499,11 +500,30 @@
             this.labelSet_Tokuisaki1.ValueLabelSize = 200;
             this.labelSet_Tokuisaki1.ValueLabelText = "";
             // 
+            // labelSet_Tokuisaki2
+            // 
+            this.labelSet_Tokuisaki2.AppendLabelSize = 40;
+            this.labelSet_Tokuisaki2.AppendLabelText = "";
+            this.labelSet_Tokuisaki2.CodeTxtSize = 40;
+            this.labelSet_Tokuisaki2.CodeTxtText = "";
+            this.labelSet_Tokuisaki2.LabelName = "得意先コード";
+            this.labelSet_Tokuisaki2.Location = new System.Drawing.Point(476, 115);
+            this.labelSet_Tokuisaki2.Name = "labelSet_Tokuisaki2";
+            this.labelSet_Tokuisaki2.ShowAppendFlg = true;
+            this.labelSet_Tokuisaki2.Size = new System.Drawing.Size(453, 22);
+            this.labelSet_Tokuisaki2.SpaceCodeValue = 4;
+            this.labelSet_Tokuisaki2.SpaceNameCode = 4;
+            this.labelSet_Tokuisaki2.SpaceValueAppend = 20;
+            this.labelSet_Tokuisaki2.TabIndex = 106;
+            this.labelSet_Tokuisaki2.ValueLabelSize = 150;
+            this.labelSet_Tokuisaki2.ValueLabelText = "";
+            // 
             // JuchuInput_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.Controls.Add(this.labelSet_Tokuisaki2);
             this.Controls.Add(this.labelSet_Tokuisaki1);
             this.Controls.Add(this.labelSet_Tantousha);
             this.Controls.Add(this.labelSet_Tanaban);
@@ -568,6 +588,7 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.labelSet_Tokuisaki2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).EndInit();
             this.ResumeLayout(false);
@@ -601,5 +622,6 @@
         private Common.Ctl.LabelSet_Tanaban labelSet_Tanaban;
         private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;
         private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki1;
+        private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki2;
     }
 }
