@@ -173,6 +173,34 @@ namespace KATO.Common.Ctl
             }
         }
 
+        private int positionRadbtn3_X = 350;
+        public int PositionRadbtn3_X
+        {
+            get
+            {
+                return positionRadbtn3_X;
+            }
+            set
+            {
+                positionRadbtn3_X = value;
+                radbtn2.Left = positionRadbtn3_X;
+            }
+        }
+
+        private int positionRadbtn3_Y = 0;
+        public int PositionRadbtn3_Y
+        {
+            get
+            {
+                return positionRadbtn3_Y;
+            }
+            set
+            {
+                positionRadbtn3_Y = value;
+                radbtn2.Top = positionRadbtn3_Y;
+            }
+        }
+
         private int positionRadbtn4_X = 450;
         public int PositionRadbtn4_X
         {

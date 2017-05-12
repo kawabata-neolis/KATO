@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.M1050_Tantousha;
 
 namespace KATO.Common.Business
 {
@@ -72,7 +73,15 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
+                if (lstInt[0] == 4 && frm.Name.Equals("M1050_Tantousha"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1050_Tantousha tantousha = (M1050_Tantousha)frm;
+                    tantousha.setTantouListClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaoroshi = (F0140_TanaorosiInput)frm;
@@ -118,15 +127,26 @@ namespace KATO.Common.Business
 
             switch (lstInt[0])
             {
-                //現状、ラベルセットからのみなので該当なし
-
                 //大分類
                 case 1:
                     break;
                 //中分類
                 case 2:
                     break;
-
+                case 4:
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //目的のフォームを探す
+                        if (frm.Name.Equals("M1050_Tantousha"))
+                        {
+                            //データを連れてくるため、newをしないこと
+                            M1050_Tantousha tantousha = (M1050_Tantousha)frm;
+                            tantousha.setTantousha(dtSelectData);
+                            break;
+                        }
+                    }
+                    break;
                 default:
                     break;
             }

@@ -372,6 +372,15 @@ namespace KATO.Common.Form
             lstString.Add(strSelectId);
             lstString.Add(strSelectName);
 
+            TantoushaList_B tantoushaListB = new TantoushaList_B();
+            try
+            {
+                tantoushaListB.setSelectItem(lstInt, lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
             setEndAction(lstString);
         }
         
@@ -404,6 +413,16 @@ namespace KATO.Common.Form
 
             //データ渡し用
             lstInt.Add(intFrmKind);
+
+            TantoushaList_B tantoushalistB = new TantoushaList_B();
+            try
+            {
+                tantoushalistB.setEndAction(lstInt);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         /// <summary>

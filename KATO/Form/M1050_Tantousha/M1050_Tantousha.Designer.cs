@@ -29,56 +29,56 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.labelSet_Eigyousho1 = new KATO.Common.Ctl.LabelSet_Eigyousho();
-            this.labelSet_GroupCd1 = new KATO.Common.Ctl.LabelSet_GroupCd();
+            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyousho();
+            this.labelSet_GroupCd = new KATO.Common.Ctl.LabelSet_GroupCd();
             this.lblTantouCd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTantoushaCd = new KATO.Common.Ctl.BaseText();
             this.lblTantoushaName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTantoushaName = new KATO.Common.Ctl.BaseText();
             this.lblLoginID = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseText1 = new KATO.Common.Ctl.BaseText();
+            this.txtLoginID = new KATO.Common.Ctl.BaseText();
             this.lblChuban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtChuban = new KATO.Common.Ctl.BaseText();
             this.lblMokuhyou = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtMokuhyou = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
-            // labelSet_Eigyousho1
+            // labelSet_Eigyousho
             // 
-            this.labelSet_Eigyousho1.AppendLabelSize = 0;
-            this.labelSet_Eigyousho1.AppendLabelText = "";
-            this.labelSet_Eigyousho1.CodeTxtSize = 45;
-            this.labelSet_Eigyousho1.CodeTxtText = "";
-            this.labelSet_Eigyousho1.LabelName = "営業所コード";
-            this.labelSet_Eigyousho1.Location = new System.Drawing.Point(738, 195);
-            this.labelSet_Eigyousho1.Name = "labelSet_Eigyousho1";
-            this.labelSet_Eigyousho1.ShowAppendFlg = false;
-            this.labelSet_Eigyousho1.Size = new System.Drawing.Size(453, 22);
-            this.labelSet_Eigyousho1.SpaceCodeValue = 8;
-            this.labelSet_Eigyousho1.SpaceNameCode = 20;
-            this.labelSet_Eigyousho1.SpaceValueAppend = 4;
-            this.labelSet_Eigyousho1.TabIndex = 87;
-            this.labelSet_Eigyousho1.ValueLabelSize = 140;
-            this.labelSet_Eigyousho1.ValueLabelText = "";
+            this.labelSet_Eigyousho.AppendLabelSize = 0;
+            this.labelSet_Eigyousho.AppendLabelText = "";
+            this.labelSet_Eigyousho.CodeTxtSize = 45;
+            this.labelSet_Eigyousho.CodeTxtText = "";
+            this.labelSet_Eigyousho.LabelName = "営業所コード";
+            this.labelSet_Eigyousho.Location = new System.Drawing.Point(738, 195);
+            this.labelSet_Eigyousho.Name = "labelSet_Eigyousho";
+            this.labelSet_Eigyousho.ShowAppendFlg = false;
+            this.labelSet_Eigyousho.Size = new System.Drawing.Size(453, 22);
+            this.labelSet_Eigyousho.SpaceCodeValue = 8;
+            this.labelSet_Eigyousho.SpaceNameCode = 20;
+            this.labelSet_Eigyousho.SpaceValueAppend = 4;
+            this.labelSet_Eigyousho.TabIndex = 3;
+            this.labelSet_Eigyousho.ValueLabelSize = 140;
+            this.labelSet_Eigyousho.ValueLabelText = "";
             // 
-            // labelSet_GroupCd1
+            // labelSet_GroupCd
             // 
-            this.labelSet_GroupCd1.AppendLabelSize = 0;
-            this.labelSet_GroupCd1.AppendLabelText = "";
-            this.labelSet_GroupCd1.CodeTxtSize = 45;
-            this.labelSet_GroupCd1.CodeTxtText = "";
-            this.labelSet_GroupCd1.LabelName = "グループコード";
-            this.labelSet_GroupCd1.Location = new System.Drawing.Point(738, 272);
-            this.labelSet_GroupCd1.LsGroupCddata = null;
-            this.labelSet_GroupCd1.Name = "labelSet_GroupCd1";
-            this.labelSet_GroupCd1.ShowAppendFlg = false;
-            this.labelSet_GroupCd1.Size = new System.Drawing.Size(453, 22);
-            this.labelSet_GroupCd1.SpaceCodeValue = 8;
-            this.labelSet_GroupCd1.SpaceNameCode = 4;
-            this.labelSet_GroupCd1.SpaceValueAppend = 4;
-            this.labelSet_GroupCd1.TabIndex = 88;
-            this.labelSet_GroupCd1.ValueLabelSize = 140;
-            this.labelSet_GroupCd1.ValueLabelText = "";
+            this.labelSet_GroupCd.AppendLabelSize = 0;
+            this.labelSet_GroupCd.AppendLabelText = "";
+            this.labelSet_GroupCd.CodeTxtSize = 45;
+            this.labelSet_GroupCd.CodeTxtText = "";
+            this.labelSet_GroupCd.LabelName = "グループコード";
+            this.labelSet_GroupCd.Location = new System.Drawing.Point(738, 272);
+            this.labelSet_GroupCd.LsGroupCddata = null;
+            this.labelSet_GroupCd.Name = "labelSet_GroupCd";
+            this.labelSet_GroupCd.ShowAppendFlg = false;
+            this.labelSet_GroupCd.Size = new System.Drawing.Size(453, 22);
+            this.labelSet_GroupCd.SpaceCodeValue = 8;
+            this.labelSet_GroupCd.SpaceNameCode = 4;
+            this.labelSet_GroupCd.SpaceValueAppend = 4;
+            this.labelSet_GroupCd.TabIndex = 6;
+            this.labelSet_GroupCd.ValueLabelSize = 140;
+            this.labelSet_GroupCd.ValueLabelText = "";
             // 
             // lblTantouCd
             // 
@@ -97,7 +97,8 @@
             this.txtTantoushaCd.Location = new System.Drawing.Point(532, 117);
             this.txtTantoushaCd.Name = "txtTantoushaCd";
             this.txtTantoushaCd.Size = new System.Drawing.Size(48, 22);
-            this.txtTantoushaCd.TabIndex = 90;
+            this.txtTantoushaCd.TabIndex = 0;
+            this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // lblTantoushaName
             // 
@@ -116,7 +117,7 @@
             this.txtTantoushaName.Location = new System.Drawing.Point(861, 117);
             this.txtTantoushaName.Name = "txtTantoushaName";
             this.txtTantoushaName.Size = new System.Drawing.Size(144, 22);
-            this.txtTantoushaName.TabIndex = 90;
+            this.txtTantoushaName.TabIndex = 1;
             // 
             // lblLoginID
             // 
@@ -129,13 +130,13 @@
             this.lblLoginID.Text = "ログインＩＤ";
             this.lblLoginID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseText1
+            // txtLoginID
             // 
-            this.baseText1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseText1.Location = new System.Drawing.Point(861, 156);
-            this.baseText1.Name = "baseText1";
-            this.baseText1.Size = new System.Drawing.Size(179, 22);
-            this.baseText1.TabIndex = 90;
+            this.txtLoginID.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtLoginID.Location = new System.Drawing.Point(861, 156);
+            this.txtLoginID.Name = "txtLoginID";
+            this.txtLoginID.Size = new System.Drawing.Size(179, 22);
+            this.txtLoginID.TabIndex = 2;
             // 
             // lblChuban
             // 
@@ -154,7 +155,7 @@
             this.txtChuban.Location = new System.Drawing.Point(861, 233);
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(39, 22);
-            this.txtChuban.TabIndex = 90;
+            this.txtChuban.TabIndex = 5;
             // 
             // lblMokuhyou
             // 
@@ -173,7 +174,7 @@
             this.txtMokuhyou.Location = new System.Drawing.Point(861, 312);
             this.txtMokuhyou.Name = "txtMokuhyou";
             this.txtMokuhyou.Size = new System.Drawing.Size(144, 22);
-            this.txtMokuhyou.TabIndex = 90;
+            this.txtMokuhyou.TabIndex = 7;
             // 
             // M1050_Tantousha
             // 
@@ -184,16 +185,18 @@
             this.Controls.Add(this.lblMokuhyou);
             this.Controls.Add(this.txtChuban);
             this.Controls.Add(this.lblChuban);
-            this.Controls.Add(this.baseText1);
+            this.Controls.Add(this.txtLoginID);
             this.Controls.Add(this.lblLoginID);
             this.Controls.Add(this.txtTantoushaName);
             this.Controls.Add(this.lblTantoushaName);
             this.Controls.Add(this.txtTantoushaCd);
             this.Controls.Add(this.lblTantouCd);
-            this.Controls.Add(this.labelSet_GroupCd1);
-            this.Controls.Add(this.labelSet_Eigyousho1);
+            this.Controls.Add(this.labelSet_GroupCd);
+            this.Controls.Add(this.labelSet_Eigyousho);
             this.Name = "M1050_Tantousha";
             this.Text = "M1050_Tantousha";
+            this.Load += new System.EventHandler(this.M1050_Tantousha_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -206,14 +209,14 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.labelSet_Eigyousho1, 0);
-            this.Controls.SetChildIndex(this.labelSet_GroupCd1, 0);
+            this.Controls.SetChildIndex(this.labelSet_Eigyousho, 0);
+            this.Controls.SetChildIndex(this.labelSet_GroupCd, 0);
             this.Controls.SetChildIndex(this.lblTantouCd, 0);
             this.Controls.SetChildIndex(this.txtTantoushaCd, 0);
             this.Controls.SetChildIndex(this.lblTantoushaName, 0);
             this.Controls.SetChildIndex(this.txtTantoushaName, 0);
             this.Controls.SetChildIndex(this.lblLoginID, 0);
-            this.Controls.SetChildIndex(this.baseText1, 0);
+            this.Controls.SetChildIndex(this.txtLoginID, 0);
             this.Controls.SetChildIndex(this.lblChuban, 0);
             this.Controls.SetChildIndex(this.txtChuban, 0);
             this.Controls.SetChildIndex(this.lblMokuhyou, 0);
@@ -225,14 +228,14 @@
 
         #endregion
 
-        private Common.Ctl.LabelSet_Eigyousho labelSet_Eigyousho1;
-        private Common.Ctl.LabelSet_GroupCd labelSet_GroupCd1;
+        private Common.Ctl.LabelSet_Eigyousho labelSet_Eigyousho;
+        private Common.Ctl.LabelSet_GroupCd labelSet_GroupCd;
         private Common.Ctl.BaseLabel lblTantouCd;
         private Common.Ctl.BaseText txtTantoushaCd;
         private Common.Ctl.BaseLabel lblTantoushaName;
         private Common.Ctl.BaseText txtTantoushaName;
         private Common.Ctl.BaseLabel lblLoginID;
-        private Common.Ctl.BaseText baseText1;
+        private Common.Ctl.BaseText txtLoginID;
         private Common.Ctl.BaseLabel lblChuban;
         private Common.Ctl.BaseText txtChuban;
         private Common.Ctl.BaseLabel lblMokuhyou;

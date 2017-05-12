@@ -63,6 +63,7 @@
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
+    <Compile Include="Business\M1050_Tantousha\M1050_Tantousha_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
