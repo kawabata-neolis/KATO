@@ -12,13 +12,30 @@ using KATO.Common.Form;
 
 namespace KATO.Common.Ctl
 {
+    ///<summary>
+    ///LabelSet_Tanaban
+    ///ラベルセット棚番
+    ///作成者：大河内
+    ///作成日：2017/5/1
+    ///更新者：大河内
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     public partial class LabelSet_Tanaban : BaseTextLabelSet
     {
+        /// <summary>
+        /// LabelSet_Daibunrui
+        /// 読み込み時
+        /// </summary>
         public LabelSet_Tanaban()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// OnPaint
+        /// control.paintのイベント発生
+        /// </summary>
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -27,11 +44,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///judDaibunruiKeyDown
         ///コード入力項目でのキー入力判定（大分類）
-        ///作成者：大河内
-        ///作成日：2017/3/14
-        ///更新者：大河内
-        ///更新日：2017/3/14
-        ///カラム論理名
         ///</summary>
         private void judTanabanKeyDown(object sender, KeyEventArgs e)
         {
@@ -51,21 +63,17 @@ namespace KATO.Common.Ctl
                 this.Parent.Dispose();
             }
         }
-
-
+        
         ///<summary>
         ///updTxtTanabanLeave
-        ///code入力箇所からフォーカスが外れた時(テキスト処理)
-        ///作成者：大河内
-        ///作成日：2017/4/25
-        ///更新者：大河内
-        ///更新日：2017/4/25
-        ///カラム論理名
+        ///code入力箇所からフォーカスが外れた時
         ///</summary>
         public void updTxtTanabanLeave(object sender, EventArgs e)
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
+            List<string> lstStringSQL = new List<string>();
+
+            string strSQLName = null;
 
             DataTable dtSetCd;
 
@@ -94,38 +102,6 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            //データ渡し用
-            lstString.Add(this.CodeTxtText);
-
-            //処理部に移動
-            //戻り値のDatatableを取り込む
-            dtSetCd = updTxtTanabanLeave(lstString);
-
-            if (dtSetCd.Rows.Count != 0)
-            {
-                this.CodeTxtText = dtSetCd.Rows[0]["棚番"].ToString();
-                this.ValueLabelText = dtSetCd.Rows[0]["棚番名"].ToString();
-            }
-        }
-
-        ///<summary>
-        ///updTxtTanabanLeave
-        ///code入力箇所からフォーカスが外れた時(SQL処理)
-        ///作成者：大河内
-        ///作成日：2017/3/21
-        ///更新者：大河内
-        ///更新日：2017/4/7
-        ///カラム論理名
-        ///</summary>
-        public DataTable updTxtTanabanLeave(List<string> lstString)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            string strSQLName = null;
-
-            DataTable dtSetCd_B = new DataTable();
-
             strSQLName = "C_LIST_Tanaban_SELECT_LEAVE";
 
             //データ渡し用
@@ -133,26 +109,45 @@ namespace KATO.Common.Ctl
             lstStringSQL.Add(strSQLName);
 
             OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            if (strSQLInput == "")
+            try
             {
-                return (dtSetCd_B);
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["棚番"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["棚番名"].ToString();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    this.Focus();
+                    basemessagebox.ShowDialog();
+                }
+
+                return;
             }
-
-            //配列設定
-            string[] aryStr = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, aryStr);
-
-            //SQLのインスタンス作成
-
-            DBConnective dbconnective = new DBConnective();
-
-            //SQL文を直書き（＋戻り値を受け取る)
-            dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-
-            return (dtSetCd_B);
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///judtxTanabanKeyUp
@@ -189,6 +184,65 @@ namespace KATO.Common.Ctl
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        ///<summary>
+        ///codeTxt_TextChanged
+        ///入力項目に変更があった場合
+        ///</summary>
+        private void codeTxt_TextChanged(object sender, EventArgs e)
+        {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            string strSQLName = null;
+
+            DataTable dtSetCd;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.ValueLabelText = "";
+                return;
+            }
+
+            strSQLName = "C_LIST_Tanaban_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["棚番"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["棚番名"].ToString();
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
     }

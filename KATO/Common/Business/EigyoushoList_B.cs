@@ -96,10 +96,6 @@ namespace KATO.Common.Business
                     tanaorosiinput.setEigyoushoListClose();
                     break;
                 }
-                else
-                {
-                    return;
-                }
             }
         }
 

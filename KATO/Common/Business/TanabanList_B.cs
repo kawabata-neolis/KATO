@@ -102,10 +102,6 @@ namespace KATO.Common.Business
                     tanaorosiinput.setTanaListCloseEdit();
                     break;
                 }
-                else
-                {
-                    break;
-                }
             }
         }
         

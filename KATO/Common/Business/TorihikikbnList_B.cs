@@ -78,15 +78,11 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name.Equals("M1040_Torihikikbn"))
+                if (lstInt[0] == 9 && frm.Name.Equals("M1040_Torihikikbn"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
                     torihikikbn.setToriListClose();
-                    break;
-                }
-                else
-                {
                     break;
                 }
             }

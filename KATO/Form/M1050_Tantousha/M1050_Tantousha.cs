@@ -54,7 +54,7 @@ namespace KATO.Form.M1050_Tantousha
         private void M1050_Tantousha_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "大分類マスタ";
+            this._Title = "担当者マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF01.Text = STR_FUNC_F1;
@@ -66,7 +66,7 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// judDaiBunruiKeyDown
+        /// judtantoushaKeyDown
         /// キー入力判定
         /// </summary>
         private void judtantoushaKeyDown(object sender, KeyEventArgs e)
@@ -153,7 +153,7 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// judtxtDaibunruiKeyDown
+        /// judtxtTantouKeyDown
         /// コード入力項目でのキー入力判定
         /// </summary>
         private void judtxtTantouKeyDown(object sender, KeyEventArgs e)
@@ -166,6 +166,10 @@ namespace KATO.Form.M1050_Tantousha
                     tantoushalist.StartPosition = FormStartPosition.Manual;
                     tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSYA;
                     tantoushalist.ShowDialog();
+
+                    labelSet_Eigyousho.Focus();
+                    labelSet_GroupCd.Focus();
+                    txtTantoushaCd.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -176,11 +180,12 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// addDaibunrui
+        /// addTantousha
         /// テキストボックス内のデータをDBに登録
         /// </summary>
         private void addTantousha()
         {
+            
 
         }
 
@@ -195,7 +200,7 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// delDaibunrui
+        /// deTantousha
         /// テキストボックス内のデータをDBから削除
         /// </summary>
         public void deTantousha()
@@ -203,7 +208,7 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// setDaibunrui
+        /// setTantousha
         /// 取り出したデータをテキストボックスに配置
         /// </summary>
         public void setTantousha(DataTable dtSelectData)
@@ -211,9 +216,9 @@ namespace KATO.Form.M1050_Tantousha
             txtTantoushaCd.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
             txtTantoushaName.Text = dtSelectData.Rows[0]["担当者名"].ToString();
             txtLoginID.Text = dtSelectData.Rows[0]["ログインID"].ToString();
-            labelSet_Eigyousho.codeTxt.Text = dtSelectData.Rows[0]["営業所コード"].ToString();
-            txtChuban.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
-            labelSet_GroupCd.codeTxt.Text = dtSelectData.Rows[0]["グループコード"].ToString();
+            labelSet_Eigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
+            txtChuban.Text = dtSelectData.Rows[0]["注番文字"].ToString();
+            labelSet_GroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
             txtMokuhyou.Text = dtSelectData.Rows[0]["年間売上目標"].ToString();
         }
 
@@ -223,17 +228,60 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         public void updTxtTantoushaLeave(object sender, EventArgs e)
         {
-            
+            //データ渡し用
+            List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
+
+            //文字判定
+            if (txtTantoushaCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //前後の空白を取り除く
+            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
+
+            if (txtTantoushaCd.TextLength < 4)
+            {
+                txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
+            }
+
+            //データ渡し用
+            lstString.Add(txtTantoushaCd.Text);
+
+            //処理部に移動
+            M1050_Tantousha_B tantoushaB = new M1050_Tantousha_B();
+
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetCd = tantoushaB.updTxtDaibunruiLeave(lstString);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    setTantousha(dtSetCd);
+                }
+                //データの新規登録時に邪魔になるため、現段階削除予定
+                //else
+                //{
+                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //}
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         /// <summary>
         /// setTantouListClose
-        /// DaibunruiListが閉じたらコード記入欄にフォーカス
+        /// 担当者リストが閉じたらコード記入欄にフォーカス
         /// </summary>
         public void setTantouListClose()
         {
-            labelSet_Eigyousho.Focus();
-            labelSet_GroupCd.Focus();
             txtTantoushaCd.Focus();
         }
 

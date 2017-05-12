@@ -34,6 +34,7 @@
             // 
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
+            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);

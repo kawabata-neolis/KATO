@@ -15,8 +15,6 @@ using KATO.Common.Util;
 
 namespace KATO.Common.Form
 {
-    //修正中
-
     ///<summary>
     ///GroupCdList
     ///グループコードフォーム
@@ -325,8 +323,7 @@ namespace KATO.Common.Form
 
             setEndAction(lstString);
         }
-
-
+        
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき

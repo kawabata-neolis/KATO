@@ -90,7 +90,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
+                else if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -98,15 +98,11 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 7 && frm.Name == "ShouhinList")
+                else if (lstInt[0] == 7 && frm.Name.Equals("ShouhinList"))
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinsist = (ShouhinList)frm;
                     shouhinsist.setDaibunruiListClose();
-                    break;
-                }
-                else
-                {
                     break;
                 }
             }

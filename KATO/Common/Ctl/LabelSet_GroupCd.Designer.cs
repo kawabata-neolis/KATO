@@ -33,12 +33,15 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(123, 0);
+            this.codeTxt.Size = new System.Drawing.Size(40, 22);
+            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGroupCdKeyDown);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtGroupCdLeave);
             // 
             // LabelSet_GroupCd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.CodeTxtSize = 40;
             this.LabelName = "グループコード";
             this.Name = "LabelSet_GroupCd";
             this.ResumeLayout(false);

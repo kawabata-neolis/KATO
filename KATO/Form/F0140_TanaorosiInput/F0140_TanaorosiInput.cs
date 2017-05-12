@@ -614,10 +614,6 @@ namespace KATO.Form.F0140_TanaorosiInput
                 txtTanasuu.Text = decElemTanasu.ToString();
                 txtTyoubosuu.Text = decElemShitei.ToString();
 
-                labelSet_Chubunrui_Edit.Focus();
-                labelSet_Tanaban_Edit.Focus();
-                labelSet_Maker_Edit.Focus();
-                txtKensaku.Focus();
                 txtTanasuu.Focus();
 
             }

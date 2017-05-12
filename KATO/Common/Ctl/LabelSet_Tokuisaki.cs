@@ -68,7 +68,7 @@ namespace KATO.Common.Ctl
 
         ///<summary>
         ///updTxtTokuisakiLeave
-        ///code入力箇所からフォーカスが外れた時(テキスト処理)
+        ///code入力箇所からフォーカスが外れた時
         ///</summary>
         public void updTxtTokuisakiLeave(object sender, EventArgs e)
         {
@@ -195,6 +195,78 @@ namespace KATO.Common.Ctl
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        ///<summary>
+        ///codeTxt_TextChanged
+        ///入力項目に変更があった場合
+        ///</summary>
+        private void codeTxt_TextChanged(object sender, EventArgs e)
+        {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.ValueLabelText = "";
+                this.AppendLabelText = "";
+                return;
+            }
+            
+            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    string strZeikubun = "";
+
+                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
+                    {
+                        strZeikubun = "外税";
+                    }
+                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
+                    {
+                        strZeikubun = "内税";
+                    }
+
+                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.AppendLabelText = strZeikubun;
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
     }

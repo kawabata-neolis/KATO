@@ -261,6 +261,9 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
+                List<string> items = new List<string>();
+                items.Add(frm.Name);
+
                 //目的のフォームを探す
                 if (lstInt[0] == 1 && frm.Name == "M1010_Daibunrui")
                 {
@@ -290,7 +293,6 @@ namespace KATO.Common.Business
                     tanaorosiinput.setChubunListCloseEdit();
                     break;
                 }
-
                 //目的のフォームを探す
                 else if (lstInt[0] == 6 && frm.Name == "TanaorosiInput")
                 {
@@ -298,10 +300,6 @@ namespace KATO.Common.Business
                     ShouhinList shouhinlist = (ShouhinList)frm;
                     shouhinlist.setChubunruiListClose();
                     break;
-                }
-                else
-                {
-                    return;
                 }
             }
         }

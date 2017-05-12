@@ -82,10 +82,6 @@ namespace KATO.Common.Business
                     tanaoroshi.setDaibunruiListClose();
                     break;
                 }
-                else
-                {
-                    break;
-                }
             }
         }
 

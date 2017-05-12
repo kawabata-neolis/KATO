@@ -43,6 +43,54 @@
             this.txtMokuhyou = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
+            // btnF12
+            // 
+            this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF11
+            // 
+            this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF10
+            // 
+            this.btnF10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF09
+            // 
+            this.btnF09.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF08
+            // 
+            this.btnF08.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF07
+            // 
+            this.btnF07.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF06
+            // 
+            this.btnF06.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF05
+            // 
+            this.btnF05.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF04
+            // 
+            this.btnF04.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF03
+            // 
+            this.btnF03.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF02
+            // 
+            this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
+            // btnF01
+            // 
+            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            // 
             // labelSet_Eigyousho
             // 
             this.labelSet_Eigyousho.AppendLabelSize = 0;
@@ -95,10 +143,13 @@
             // 
             this.txtTantoushaCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTantoushaCd.Location = new System.Drawing.Point(532, 117);
+            this.txtTantoushaCd.MaxLength = 4;
             this.txtTantoushaCd.Name = "txtTantoushaCd";
             this.txtTantoushaCd.Size = new System.Drawing.Size(48, 22);
             this.txtTantoushaCd.TabIndex = 0;
             this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtTantoushaCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            this.txtTantoushaCd.Leave += new System.EventHandler(this.updTxtTantoushaLeave);
             // 
             // lblTantoushaName
             // 
@@ -115,6 +166,7 @@
             // 
             this.txtTantoushaName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTantoushaName.Location = new System.Drawing.Point(861, 117);
+            this.txtTantoushaName.MaxLength = 12;
             this.txtTantoushaName.Name = "txtTantoushaName";
             this.txtTantoushaName.Size = new System.Drawing.Size(144, 22);
             this.txtTantoushaName.TabIndex = 1;
@@ -134,6 +186,7 @@
             // 
             this.txtLoginID.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtLoginID.Location = new System.Drawing.Point(861, 156);
+            this.txtLoginID.MaxLength = 20;
             this.txtLoginID.Name = "txtLoginID";
             this.txtLoginID.Size = new System.Drawing.Size(179, 22);
             this.txtLoginID.TabIndex = 2;
@@ -153,6 +206,7 @@
             // 
             this.txtChuban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtChuban.Location = new System.Drawing.Point(861, 233);
+            this.txtChuban.MaxLength = 3;
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(39, 22);
             this.txtChuban.TabIndex = 5;

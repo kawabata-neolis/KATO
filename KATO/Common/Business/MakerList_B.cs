@@ -164,10 +164,6 @@ namespace KATO.Common.Business
                     shouhinlist.setMakerListClose();
                     break;
                 }
-                else
-                {
-                    break;
-                }
             }
         }
         

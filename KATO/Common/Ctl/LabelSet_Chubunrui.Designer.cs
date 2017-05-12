@@ -33,6 +33,7 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
+            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtChubunruiLeave);
@@ -42,7 +43,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.LabelName = "中分類コード";
             this.Name = "LabelSet_Chubunrui";
-            //this.ValueLabelSize = 150;
             this.ResumeLayout(false);
             this.PerformLayout();
 

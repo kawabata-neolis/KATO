@@ -33,6 +33,7 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(43, 0);
+            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxTanabanKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTanabanLeave);

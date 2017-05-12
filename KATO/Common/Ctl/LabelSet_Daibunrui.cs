@@ -175,13 +175,19 @@ namespace KATO.Common.Ctl
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSetCd = dbconnective.ReadSql(strSQLInput);
 
-                if (dtSetCd.Rows.Count == 0)
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    return;
+                    this.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["大分類名"].ToString();
                 }
-
-                this.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
-                this.ValueLabelText = dtSetCd.Rows[0]["大分類名"].ToString();
+                else
+                {
+                    this.ValueLabelText = "";
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    this.Focus();
+                }
 
                 //中分類のプロパティが空でない場合
                 if (lschubundata != null)
@@ -192,7 +198,6 @@ namespace KATO.Common.Ctl
                 {
                     lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
                 }
-
                 return;
             }
             catch (Exception ex)
@@ -231,6 +236,75 @@ namespace KATO.Common.Ctl
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        ///<summary>
+        ///codeTxt_TextChanged
+        ///入力項目に変更があった場合
+        ///</summary>
+        private void codeTxt_TextChanged(object sender, EventArgs e)
+        {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            string strSQLName = null;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.ValueLabelText = "";
+                return;
+            }
+            
+            strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["大分類名"].ToString();
+                }
+
+                //中分類のプロパティが空でない場合
+                if (lschubundata != null)
+                {
+                    lschubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+                if (lsSubchubundata != null)
+                {
+                    lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
             }
         }
     }
