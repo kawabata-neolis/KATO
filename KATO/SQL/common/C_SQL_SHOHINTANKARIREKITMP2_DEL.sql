@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-		    @0 AS 在庫年月日
-           ,@1 AS 商品コード
+		    @p0 AS 在庫年月日
+           ,@p1 AS 商品コード
     ) AS B
 ON
     (

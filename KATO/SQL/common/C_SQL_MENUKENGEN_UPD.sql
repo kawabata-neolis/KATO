@@ -2,10 +2,10 @@
 USING
     (
         SELECT
-            @0 AS 担当者コード
-           ,@1 AS ＰＧ番号
-           ,@2 AS ＰＧ名
-           ,@3 AS 権限
+            @p0 AS 担当者コード
+           ,@p1 AS ＰＧ番号
+           ,@p2 AS ＰＧ名
+           ,@p3 AS 権限
 
     ) AS B
 ON

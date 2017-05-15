@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS 商品コード
+		    @p0 AS 商品コード
     ) AS B
 ON
     (

@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-            @0 AS 見積書番号
+            @p0 AS 見積書番号
     ) AS B
 ON
     (

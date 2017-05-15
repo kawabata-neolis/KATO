@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS 取引先コード
+		    @p0 AS 取引先コード
     ) AS B
 ON
     (

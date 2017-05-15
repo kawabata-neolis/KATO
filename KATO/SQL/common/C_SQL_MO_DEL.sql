@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-		    @0 AS 年月度
-           ,@1 AS 商品コード
-           ,@2 AS 取引先コード
+		    @p0 AS 年月度
+           ,@p1 AS 商品コード
+           ,@p2 AS 取引先コード
 
     ) AS B
 ON

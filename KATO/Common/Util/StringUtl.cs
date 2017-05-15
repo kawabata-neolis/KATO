@@ -17,7 +17,7 @@ namespace KATO.Common.Util
         {
             Boolean blnGood = true;
 
-            if (strText == "" || String.IsNullOrWhiteSpace(strText).Equals(true))
+            if (String.IsNullOrWhiteSpace(strText))
             {
                 blnGood = false;
             }

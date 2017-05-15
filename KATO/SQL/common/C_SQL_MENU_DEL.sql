@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS ＰＧ番号
+		    @p0 AS ＰＧ番号
     ) AS B
 ON
     (

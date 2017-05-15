@@ -2,10 +2,10 @@
 USING
     (
         SELECT
-            @0 AS 年月日
-           ,@1 AS 営業所コード
-           ,@2 AS 商品コード
-           ,@3 AS 在庫数
+            @p0 AS 年月日
+           ,@p1 AS 営業所コード
+           ,@p2 AS 商品コード
+           ,@p3 AS 在庫数
     ) AS B
 ON
     (

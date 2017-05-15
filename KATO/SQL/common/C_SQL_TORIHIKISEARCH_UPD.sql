@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-            @0 AS 取引先コード
-           ,@1 AS 取引先名称
-           ,@2 AS カナ
+            @p0 AS 取引先コード
+           ,@p1 AS 取引先名称
+           ,@p2 AS カナ
     ) AS B
 ON
     (
