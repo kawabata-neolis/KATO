@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-		    @0 AS 伝票番号
-           ,@1 AS 処理番号
-           ,@2 AS 取引区分
+		    @p0 AS 伝票番号
+           ,@p1 AS 処理番号
+           ,@p2 AS 取引区分
     ) AS B
 ON
     (

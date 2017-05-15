@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-		    @0 AS 商品コード
-           ,@2 AS 登録日時
+		    @p0 AS 商品コード
+           ,@p2 AS 登録日時
     ) AS B
 ON
     (

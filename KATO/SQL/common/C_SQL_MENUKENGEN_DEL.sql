@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-		    @0 AS 担当者コード
-           ,@1 AS ＰＧ番号
+		    @p0 AS 担当者コード
+           ,@p1 AS ＰＧ番号
     ) AS B
 ON
     (

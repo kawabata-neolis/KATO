@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-		    @0 AS ユーザー名
-           ,@1 AS メニューＮＯ
+		    @p0 AS ユーザー名
+           ,@p1 AS メニューＮＯ
 
     ) AS B
 ON

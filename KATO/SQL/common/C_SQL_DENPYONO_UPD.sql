@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-            @0 AS テーブル名
-           ,@1 AS 最終番号
-           ,@2 AS 更新日時
+            @p0 AS テーブル名
+           ,@p1 AS 最終番号
+           ,@p2 AS 更新日時
     ) AS B
 ON
     (

@@ -2,10 +2,10 @@
 USING
     (
         SELECT
-		    @0 AS ID
-           ,@1 AS 商品コード
-           ,@2 AS 仕入単価
-           ,@3 AS 仕入日
+		    @p0 AS ID
+           ,@p1 AS 商品コード
+           ,@p2 AS 仕入単価
+           ,@p3 AS 仕入日
     ) AS B
 ON
     (

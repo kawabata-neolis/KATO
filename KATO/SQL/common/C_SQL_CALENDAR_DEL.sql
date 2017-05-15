@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-		    @0 AS カレンダＩＤ
-           ,@1 AS 年度
-           ,@2 AS 月度
+		    @p0 AS カレンダＩＤ
+           ,@p1 AS 年度
+           ,@p2 AS 月度
 
     ) AS B
 ON

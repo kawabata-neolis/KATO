@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-            @0 AS 仕入先コード
+            @p0 AS 仕入先コード
     ) AS B
 ON
     (
