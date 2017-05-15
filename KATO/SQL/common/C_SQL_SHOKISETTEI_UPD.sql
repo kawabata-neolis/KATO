@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-            @0 AS 項目名
-           ,@1 AS 設定値
-           ,@2 AS コメント
+            @p0 AS 項目名
+           ,@p1 AS 設定値
+           ,@p2 AS コメント
     ) AS B
 ON
     (

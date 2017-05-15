@@ -63,6 +63,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             gridZanList.AutoGenerateColumns = false;
 
             //データをバインド
+            #region
             DataGridViewTextBoxColumn juchubi = new DataGridViewTextBoxColumn();
             juchubi.DataPropertyName = "受注日";
             juchubi.Name = "受注日";
@@ -184,71 +185,182 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             tantosha.HeaderText = "担当者";
 
             DataGridViewTextBoxColumn hatchusha = new DataGridViewTextBoxColumn();
-            tantosha.DataPropertyName = "発注者";
-            tantosha.Name = "発注者";
-            tantosha.HeaderText = "発注者";
-
-            //バインドしたデータを追加
-            gridZanList.Columns.Add(juchubi);
-            gridZanList.Columns.Add(noki);
-            gridZanList.Columns.Add(maker);
-            gridZanList.Columns.Add(hinmei);
-            gridZanList.Columns.Add(juchusu);
-            gridZanList.Columns.Add(juchuzan);
-            gridZanList.Columns.Add(hatchuzan);
-            gridZanList.Columns.Add(uriTanka);
-            gridZanList.Columns.Add(uriKingaku);
-            gridZanList.Columns.Add(siireTanka);
-            gridZanList.Columns.Add(siireKingaku);
-            gridZanList.Columns.Add(chuban);
-            gridZanList.Columns.Add(siireGokeiKingaku);
-            gridZanList.Columns.Add(kyakusakiChuban);
-            gridZanList.Columns.Add(tokuiName);
-            gridZanList.Columns.Add(siirebi);
-            gridZanList.Columns.Add(siireName);
-            gridZanList.Columns.Add(uriagezumi);
-            gridZanList.Columns.Add(siirezumi);
-            gridZanList.Columns.Add(hatchubi);
-            gridZanList.Columns.Add(jotai);
-            gridZanList.Columns.Add(juchuNo);
-            gridZanList.Columns.Add(juchusha);
-            gridZanList.Columns.Add(tantosha);
-            gridZanList.Columns.Add(tantosha);
+            hatchusha.DataPropertyName = "発注者";
+            hatchusha.Name = "発注者";
+            hatchusha.HeaderText = "発注者";
+            #endregion
 
             //バインド、個々の幅、文章の寄せの設定
-            setColumn(juchubi,           100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(noki,              100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(maker,             100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hinmei,            100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchusu,           100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchuzan,          100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hatchuzan,         100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriTanka,          100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriKingaku,        100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireTanka,        100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireKingaku,      100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(chuban,            100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireGokeiKingaku, 100, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(kyakusakiChuban,   100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(tokuiName,         100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siirebi,           100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireName,         100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriagezumi,        100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siirezumi,         100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hatchubi,          100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(jotai,             100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchuNo,           100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchusha,          100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(tantosha,          100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(tantosha,          100, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            #region
+            setColumn(juchubi,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(noki,              130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(maker,             130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(hinmei,            130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(juchusu,           130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(juchuzan,          130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(hatchuzan,         130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(uriTanka,          130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(uriKingaku,        130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siireTanka,        130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siireKingaku,      130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(chuban,            130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siireGokeiKingaku, 130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(kyakusakiChuban,   130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(tokuiName,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siirebi,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siireName,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(uriagezumi,        130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(siirezumi,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(hatchubi,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(jotai,             130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(juchuNo,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(juchusha,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(tantosha,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(hatchusha,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            #endregion
         }
 
         private void setColumn (DataGridViewTextBoxColumn col, int intLen, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader)
         {
             gridZanList.Columns.Add(col);
-            gridZanList.Columns[col.Name].Width = 100;
-            gridZanList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
-            gridZanList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+            if (gridZanList.Columns[col.Name] != null) {
+                gridZanList.Columns[col.Name].Width = intLen;
+                gridZanList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridZanList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+            }
+        }
+
+        private void D0360_JuchuzanKakunin_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.selZanList();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    //印刷
+                    //PrintReport();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void delText()
+        {
+            //フォーム上のデータを白紙
+            this.delFormClear(this, gridZanList);
+            txtJuchuNo.Focus();
+        }
+
+        private void btnFKeys_Click(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F01: // 一覧表示
+                    this.selZanList();
+                    break;
+                case STR_BTN_F04: // 取り消し
+                    this.delText();
+                    break;
+                case STR_BTN_F09: // 印刷
+                    //this.PrintReport();
+                    break;
+                case STR_BTN_F12: // 終了
+                    this.Close();
+                    break;
+            }
+        }
+
+        private void selZanList()
+        {
+
+            string[] listParam = new string[29];
+
+            setParam(listParam, txtJuchuNo.Text, 0);
+            setParam(listParam, txtHachuNo.Text, 1);
+            setParam(listParam, txtHinmei.Text, 2);
+            setParam(listParam, txtChuban.Text, 3);
+            setParam(listParam, txtKyakuChuban.Text, 4);
+            setParam(listParam, txtJuchuNokiFrom.Text, 5);
+            setParam(listParam, txtJuchuNokiTo.Text, 6);
+            setParam(listParam, txtHatchuNokiFrom.Text, 7);
+            setParam(listParam, txtHatchuNokiTo.Text, 8);
+            setParam(listParam, txtChienFrom.Text, 9);
+            setParam(listParam, txtChienTo.Text, 10);
+            setParam(listParam, txtJuchubiFrom.Text, 11);
+            setParam(listParam, txtJuchubiTo.Text, 12);
+            setParam(listParam, txtHatchubiFrom.Text, 13);
+            setParam(listParam, txtHatchubiTo.Text, 14);
+            setParam(listParam, lsJuchusha.CodeTxtText, 15);
+            setParam(listParam, lsHatchusha.CodeTxtText, 16);
+            setParam(listParam, lsTantousha.CodeTxtText, 17);
+            setParam(listParam, lsTokuisaki.CodeTxtText, 18);
+            setParam(listParam, lsShiiresaki.CodeTxtText, 19);
+            setParam(listParam, lsDaibunrui.CodeTxtText, 20);
+            setParam(listParam, lsChubunrui.CodeTxtText, 21);
+            setParam(listParam, lsMaker.CodeTxtText, 22);
+            setParam(listParam, (rsNyukazumi.judCheckBtn()).ToString(), 23);
+            setParam(listParam, (rsJuchuShubetsu.judCheckBtn()).ToString(), 24);
+            setParam(listParam, (rsKyoten.judCheckBtn()).ToString(), 25);
+            setParam(listParam, (rsGroup.judCheckBtn()).ToString(), 26);
+            setParam(listParam, (rsSortItem.judCheckBtn()).ToString(), 27);
+            setParam(listParam, (rsSortOrder.judCheckBtn()).ToString(), 28);
+
+            D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
+            DataTable dtZanList =  bis.getZanList(listParam);
+
+        }
+
+        private void setParam(string[] lst, string prm, int idx)
+        {
+            if (prm != null && !StringUtl.blIsEmpty(prm))
+            {
+                lst[idx] = prm;
+            } else
+            {
+                lst[idx] = null;
+            }
         }
     }
 }

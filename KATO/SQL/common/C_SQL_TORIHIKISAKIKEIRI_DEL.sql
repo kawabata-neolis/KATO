@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-		    @0 AS 取引先コード
-           ,@1 AS 情報区分
-           ,@2 AS 年月日
+		    @p0 AS 取引先コード
+           ,@p1 AS 情報区分
+           ,@p2 AS 年月日
     ) AS B
 ON
     (

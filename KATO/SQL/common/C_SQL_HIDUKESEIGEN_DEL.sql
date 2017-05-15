@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-            @0 AS 画面ＮＯ
-           ,@1 AS 営業所コード
+            @p0 AS 画面ＮＯ
+           ,@p1 AS 営業所コード
     ) AS B
 ON
     (

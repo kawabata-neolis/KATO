@@ -2,9 +2,9 @@
 USING
     (
         SELECT
-		    @0 AS 仕入先コード
-           ,@1 AS 得意先コード
-           ,@2 AS 商品コード
+		    @p0 AS 仕入先コード
+           ,@p1 AS 得意先コード
+           ,@p2 AS 商品コード
     ) AS B
 ON
     (

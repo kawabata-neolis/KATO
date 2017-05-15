@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-            @0 AS ユーザー名
-           ,@1 AS ＰＧ番号
+            @p0 AS ユーザー名
+           ,@p1 AS ＰＧ番号
     ) AS B
 ON
     (

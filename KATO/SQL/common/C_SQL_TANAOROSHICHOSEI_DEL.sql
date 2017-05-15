@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS ＩＤ
+		    @p0 AS ＩＤ
     ) AS B
 ON
     (

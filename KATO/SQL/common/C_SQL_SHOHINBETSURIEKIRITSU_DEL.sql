@@ -2,8 +2,8 @@
 USING
     (
         SELECT
-		    @0 AS 得意先コード
-           ,@1 AS 商品コード
+		    @p0 AS 得意先コード
+           ,@p1 AS 商品コード
     ) AS B
 ON
     (

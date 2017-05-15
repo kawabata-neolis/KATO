@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS 項目名
+		    @p0 AS 項目名
     ) AS B
 ON
     (

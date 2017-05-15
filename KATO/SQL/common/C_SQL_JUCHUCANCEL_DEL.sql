@@ -2,7 +2,7 @@
 USING
     (
         SELECT
-		    @0 AS 管理ＮＯ
+		    @p0 AS 管理ＮＯ
     ) AS B
 ON
     (
