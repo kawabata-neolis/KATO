@@ -54,11 +54,6 @@ namespace KATO.Common.Ctl
                 tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                 tokuisakiList.ShowDialog();
             }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
             else if (e.KeyCode == Keys.F12)
             {
                 //閉じる
@@ -153,6 +148,7 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
+                    this.ValueLabelText = "";
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
@@ -188,6 +184,7 @@ namespace KATO.Common.Ctl
             }
             else
             {
+                e.Handled = true;
                 return;
             }
 

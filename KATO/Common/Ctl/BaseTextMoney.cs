@@ -22,7 +22,7 @@ namespace KATO.Common.Ctl
         string strDeciArea = "";
 
         //テキストボックス内データの「.」の位置
-        int intPeriodPosi =0;
+        int intPeriodPosi = 0;
 
         //小数点以下の桁数
         int _intDeciSet = 0;
@@ -32,8 +32,8 @@ namespace KATO.Common.Ctl
 
         //カンマ入力の可不可(他で決定）
         Boolean _blnCommaOK = true;
-
-
+        
+        //小数点以下の０パディング
         //（アクセス識別子) (型) (プロパティ名)
         public int intDeciSet
         {
@@ -50,6 +50,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        //整数の０パディング
         //（アクセス識別子) (型) (プロパティ名)
         public int intIntederSet
         {
@@ -66,6 +67,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        //カンマを許可するか否か
         //（アクセス識別子) (型) (プロパティ名)
         public Boolean blnCommaOK
         {

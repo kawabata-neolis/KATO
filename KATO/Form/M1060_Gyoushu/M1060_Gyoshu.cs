@@ -7,23 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Business.M1050_Tantousha;
 using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Business.M1060_Gyoshu;
 
-namespace KATO.Form.M1050_Tantousha
+namespace KATO.Form.M1060_Gyoushu
 {
-    public partial class M1050_Tantousha : BaseForm
+    ///<summary>
+    ///M1060_Gyoushu
+    ///業種フォーム
+    ///作成者：大河内
+    ///作成日：2017/2/2
+    ///更新者：大河内
+    ///更新日：2017/2/2
+    ///カラム論理名
+    ///</summary>
+    public partial class M1060_Gyoshu : BaseForm
     {
-
-        //コード内の無限ループを抜けるためのもの
-        Boolean blnLoopOne = true;
-
-        //修正中
-
-        public M1050_Tantousha(Control c)
+        /// <summary>
+        /// M1060_Gyoushu
+        /// フォーム関係の設定
+        /// </summary>
+        public M1060_Gyoshu(Control c)
         {
             if (c == null)
             {
@@ -52,13 +59,13 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// M1050_Tantousha_Load
+        /// M1060_Gyoushu_Load
         /// 読み込み時
         /// </summary>
-        private void M1050_Tantousha_Load(object sender, EventArgs e)
+        private void M1060_Gyoushu_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "担当者マスタ";
+            this._Title = "業種マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF01.Text = STR_FUNC_F1;
@@ -70,10 +77,10 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// judtantoushaKeyDown
+        /// judGyoushuKeyDown
         /// キー入力判定
         /// </summary>
-        private void judtantoushaKeyDown(object sender, KeyEventArgs e)
+        private void judGyoushuKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -97,12 +104,12 @@ namespace KATO.Form.M1050_Tantousha
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTantousha();
+                    this.addGyoushu();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.deTantousha();
+                    this.delGyoushu();
                     break;
                 case Keys.F4:
                     this.delText();
@@ -131,6 +138,29 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
+        /// judtxtGyoshuKeyDown
+        /// コード入力項目でのキー入力判定
+        /// </summary>
+        private void judtxtGyoshuKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                GyoshuList gyoshulist = new GyoshuList(this);
+                try
+                {
+                    gyoshulist.StartPosition = FormStartPosition.Manual;
+                    gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                    gyoshulist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
         /// judBtnClick
         /// ボタンの反応
         /// </summary>
@@ -139,10 +169,10 @@ namespace KATO.Form.M1050_Tantousha
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    this.addTantousha();
+                    this.addGyoushu();
                     break;
                 case STR_BTN_F03: // 削除
-                    this.deTantousha();
+                    this.delGyoushu();
                     break;
                 case STR_BTN_F04: // 取り消し
                     this.delText();
@@ -157,126 +187,49 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// judtxtTantouKeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
-        private void judtxtTantouKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                TantoushaList tantoushalist = new TantoushaList(this);
-                try
-                {
-                    tantoushalist.StartPosition = FormStartPosition.Manual;
-                    tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSYA;
-                    tantoushalist.ShowDialog();
-
-                    txtMokuhyou.Focus();
-                    txtTantoushaCd.Focus();
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    return;
-                }
-            }
-        }
-
-        /// <summary>
-        /// addTantousha
+        /// addGyoushu
         /// テキストボックス内のデータをDBに登録
         /// </summary>
-        private void addTantousha()
+        private void addGyoushu()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtTantoushaCd.blIsEmpty() == false)
+            if (txtGyoshu.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtTantoushaCd.Focus();
+                txtGyoshu.Focus();
                 return;
             }
             //文字判定
-            if (txtChuban.blIsEmpty() == false)
+            if (txtName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtTantoushaName.Focus();
-                return;
-            }
-            //文字判定
-            if (txtLoginID.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtLoginID.Focus();
-                return;
-            }
-            //文字判定
-            if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false )
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                labelSet_Eigyousho.Focus();
-                return;
-            }
-            //文字判定
-            if (txtChuban.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtChuban.Focus();
-                return;
-            }
-            //文字判定
-            if (StringUtl.blIsEmpty(labelSet_GroupCd.CodeTxtText) == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                labelSet_GroupCd.Focus();
-                return;
-            }
-            //文字判定
-            if (txtMokuhyou.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtMokuhyou.Focus();
+                txtName.Focus();
                 return;
             }
 
             //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
-            lstString.Add(txtTantoushaName.Text);
-            lstString.Add(txtLoginID.Text);
-            lstString.Add(labelSet_Eigyousho.CodeTxtText);
-            lstString.Add(txtChuban.Text);
-            lstString.Add(labelSet_GroupCd.CodeTxtText);
-            lstString.Add(txtMokuhyou.Text);
-            lstString.Add(SystemInformation.UserName);
+            lstString.Add(txtGyoshu.Text);
+            lstString.Add(txtName.Text);
 
-            M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
-
+            //処理部に移動
+            M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
             try
             {
-                tantouB.addTantousha(lstString);
+                gyoshuB.addGyoshu(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTantoushaCd.Focus();
+                txtGyoshu.Focus();
             }
             catch (Exception ex)
             {
@@ -291,20 +244,20 @@ namespace KATO.Form.M1050_Tantousha
         private void delText()
         {
             delFormClear(this);
-            txtTantoushaCd.Focus();
+            txtGyoshu.Focus();
         }
 
         /// <summary>
-        /// deTantousha
+        /// delGyoushu
         /// テキストボックス内のデータをDBから削除
         /// </summary>
-        public void deTantousha()
+        public void delGyoushu()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtTantoushaCd.blIsEmpty() == false && txtTantoushaCd.blIsEmpty() == false)
+            if (txtGyoshu.blIsEmpty() == false && txtName.blIsEmpty() == false)
             {
                 return;
             }
@@ -318,21 +271,21 @@ namespace KATO.Form.M1050_Tantousha
             }
 
             //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
+            lstString.Add(txtGyoshu.Text);
             lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(削除)
-            M1050_Tantousha_B daibunB = new M1050_Tantousha_B();
+            M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
 
             try
             {
-                daibunB.delDaibunrui(lstString);
+                gyoshuB.delGyoshu(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTantoushaCd.Focus();
+                txtGyoshu.Focus();
             }
             catch (Exception ex)
             {
@@ -341,75 +294,56 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// setTantousha
+        /// setGyoushu
         /// 取り出したデータをテキストボックスに配置
         /// </summary>
-        public void setTantousha(DataTable dtSelectData)
+        public void setGyoushu(DataTable dtSelectData)
         {
-            txtTantoushaCd.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
-            txtTantoushaName.Text = dtSelectData.Rows[0]["担当者名"].ToString();
-            txtLoginID.Text = dtSelectData.Rows[0]["ログインID"].ToString();
-            labelSet_Eigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
-            txtChuban.Text = dtSelectData.Rows[0]["注番文字"].ToString();
-            labelSet_GroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
-            txtMokuhyou.Text = dtSelectData.Rows[0]["年間売上目標"].ToString();
+            txtGyoshu.Text = dtSelectData.Rows[0]["業種コード"].ToString();
+            txtName.Text = dtSelectData.Rows[0]["業種名"].ToString();
         }
 
         /// <summary>
-        /// updTxtTantoushaLeave
+        /// updTxtGyoshuLeave
         /// code入力箇所からフォーカスが外れた時
         /// </summary>
-        public void updTxtTantoushaLeave(object sender, EventArgs e)
+        public void updTxtGyoshuLeave(object sender, EventArgs e)
         {
-            if (blnLoopOne == false)
-            {
-                blnLoopOne = true;
-                return;
-            }
-
             //データ渡し用
             List<string> lstString = new List<string>();
 
             DataTable dtSetCd;
 
             //文字判定
-            if (txtTantoushaCd.blIsEmpty() == false)
+            if (txtGyoshu.blIsEmpty() == false)
             {
                 return;
             }
 
             //前後の空白を取り除く
-            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
+            txtGyoshu.Text = txtGyoshu.Text.Trim();
 
-            if (txtTantoushaCd.TextLength < 4)
+            if (txtGyoshu.TextLength < 4)
             {
-                txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
+                txtGyoshu.Text = txtGyoshu.Text.ToString().PadLeft(3, '0');
             }
 
             //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
+            lstString.Add(txtGyoshu.Text);
 
             //処理部に移動
-            M1050_Tantousha_B tantoushaB = new M1050_Tantousha_B();
+            M1060_Gyoshu_B daibunB = new M1060_Gyoshu_B();
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantoushaB.updTxtDaibunruiLeave(lstString);
+                dtSetCd = daibunB.updTxtGyoshuLeave(lstString);
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    setTantousha(dtSetCd);
+                    txtGyoshu.Text = dtSetCd.Rows[0]["業種コード"].ToString();
+                    txtName.Text = dtSetCd.Rows[0]["業種名"].ToString();
+                    txtName.Focus();
                 }
-
-                Control c = this.ActiveControl;
-
-                txtMokuhyou.Focus();
-                txtTantoushaCd.Focus();
-
-                blnLoopOne = false;
-
-                c.Focus();
-
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else
                 //{
@@ -425,19 +359,19 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// setTantouListClose
-        /// 担当者リストが閉じたらコード記入欄にフォーカス
+        /// setGyoushuListClose
+        /// GyoushuListが閉じたらコード記入欄にフォーカス
         /// </summary>
-        public void setTantouListClose()
+        public void setGyoushuListClose()
         {
-            txtTantoushaCd.Focus();
+            txtGyoshu.Focus();
         }
 
         /// <summary>
-        /// judtxtTantoushaKeyUp
+        /// judtxtGyoushuKeyUp
         /// 入力項目上でのキー判定と文字数判定
         /// </summary>
-        private void judtxtTantoushaKeyUp(object sender, KeyEventArgs e)
+        private void judtxtGyoushuKeyUp(object sender, KeyEventArgs e)
         {
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
@@ -449,7 +383,7 @@ namespace KATO.Form.M1050_Tantousha
             {
                 return;
             }
-            if (txtTantoushaCd.TextLength == 4)
+            if (txtGyoshu.TextLength == 4)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

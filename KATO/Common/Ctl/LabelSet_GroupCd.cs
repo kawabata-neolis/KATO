@@ -71,11 +71,6 @@ namespace KATO.Common.Ctl
                 groupCdList groupcdlist = new groupCdList(this.Parent, this);
                 groupcdlist.Show();
             }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
             else if (e.KeyCode == Keys.F12)
             {
                 //閉じる
@@ -155,6 +150,7 @@ namespace KATO.Common.Ctl
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSetCd = dbconnective.ReadSql(strSQLInput);
 
+                //データの有無チェック
                 if (dtSetCd.Rows.Count != 0)
                 {
                     this.CodeTxtText = dtSetCd.Rows[0]["グループコード"].ToString();
@@ -162,10 +158,11 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
+                    this.ValueLabelText = "";
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    this.Focus();
                     basemessagebox.ShowDialog();
+                    this.Focus();
                 }
                 return;
             }
@@ -176,10 +173,10 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
-        ///judtxtDaibunruiKeyUp
+        ///judtxtGroupCdKeyUp
         ///入力項目上でのキー判定と文字数判定
         ///</summary>
-        private void judtxtDaibunruiKeyUp(object sender, KeyEventArgs e)
+        private void judtxtGroupCdKeyUp(object sender, KeyEventArgs e)
         {
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
@@ -198,10 +195,11 @@ namespace KATO.Common.Ctl
             }
             else
             {
+                e.Handled = true;
                 return;
             }
 
-            if (this.codeTxt.TextLength == 4)
+            if (this.CodeTxtText.Length == 4)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

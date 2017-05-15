@@ -90,11 +90,6 @@ namespace KATO.Common.Ctl
                 DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
                 daibunruiList.Show();
             }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
             else if (e.KeyCode == Keys.F12)
             {
                 //閉じる
@@ -229,6 +224,7 @@ namespace KATO.Common.Ctl
             }
             else
             {
+                e.Handled = true;
                 return;
             }
 

@@ -40,56 +40,56 @@
             this.lblChuban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtChuban = new KATO.Common.Ctl.BaseText();
             this.lblMokuhyou = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtMokuhyou = new KATO.Common.Ctl.BaseText();
+            this.txtMokuhyou = new KATO.Common.Ctl.BaseTextMoney();
             this.SuspendLayout();
             // 
             // btnF12
             // 
-            this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF11
             // 
-            this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF10
             // 
-            this.btnF10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF09
             // 
-            this.btnF09.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF09.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF08
             // 
-            this.btnF08.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF08.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF07
             // 
-            this.btnF07.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF07.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF06
             // 
-            this.btnF06.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF06.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF05
             // 
-            this.btnF05.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF05.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF04
             // 
-            this.btnF04.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF04.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF03
             // 
-            this.btnF03.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF03.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF02
             // 
-            this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // btnF01
             // 
-            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // labelSet_Eigyousho
             // 
@@ -127,6 +127,7 @@
             this.labelSet_GroupCd.TabIndex = 6;
             this.labelSet_GroupCd.ValueLabelSize = 140;
             this.labelSet_GroupCd.ValueLabelText = "";
+            this.labelSet_GroupCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // lblTantouCd
             // 
@@ -170,6 +171,7 @@
             this.txtTantoushaName.Name = "txtTantoushaName";
             this.txtTantoushaName.Size = new System.Drawing.Size(144, 22);
             this.txtTantoushaName.TabIndex = 1;
+            this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // lblLoginID
             // 
@@ -190,6 +192,7 @@
             this.txtLoginID.Name = "txtLoginID";
             this.txtLoginID.Size = new System.Drawing.Size(179, 22);
             this.txtLoginID.TabIndex = 2;
+            this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // lblChuban
             // 
@@ -210,6 +213,7 @@
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(39, 22);
             this.txtChuban.TabIndex = 5;
+            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // lblMokuhyou
             // 
@@ -224,11 +228,17 @@
             // 
             // txtMokuhyou
             // 
+            this.txtMokuhyou.blnCommaOK = true;
             this.txtMokuhyou.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMokuhyou.intDeciSet = 0;
+            this.txtMokuhyou.intIntederSet = 0;
             this.txtMokuhyou.Location = new System.Drawing.Point(861, 312);
+            this.txtMokuhyou.MaxLength = 0;
             this.txtMokuhyou.Name = "txtMokuhyou";
-            this.txtMokuhyou.Size = new System.Drawing.Size(144, 22);
+            this.txtMokuhyou.Size = new System.Drawing.Size(100, 22);
             this.txtMokuhyou.TabIndex = 7;
+            this.txtMokuhyou.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMokuhyou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
             // M1050_Tantousha
             // 
@@ -293,6 +303,6 @@
         private Common.Ctl.BaseLabel lblChuban;
         private Common.Ctl.BaseText txtChuban;
         private Common.Ctl.BaseLabel lblMokuhyou;
-        private Common.Ctl.BaseText txtMokuhyou;
+        private Common.Ctl.BaseTextMoney txtMokuhyou;
     }
 }

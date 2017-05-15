@@ -109,9 +109,17 @@ namespace KATO.Form.Z0000
         //担当者表示
         private void btnTantousha_Click(object sender, EventArgs e)
         {
-            M1050_Tantousha.M1050_Tantousha tori = new M1050_Tantousha.M1050_Tantousha(this);
-            tori.ShowDialog();
+            M1050_Tantousha.M1050_Tantousha tantou = new M1050_Tantousha.M1050_Tantousha(this);
+            tantou.ShowDialog();
         }
+
+        //業種表示
+        private void btnGyoushu_Click(object sender, EventArgs e)
+        {
+            M1060_Gyoushu.M1060_Gyoshu gyoushu = new M1060_Gyoushu.M1060_Gyoshu(this);
+            gyoushu.ShowDialog();
+        }
+
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)

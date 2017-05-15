@@ -64,11 +64,13 @@
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
     <Compile Include="Business\M1050_Tantousha\M1050_Tantousha_B.cs" />
+    <Compile Include="Business\M1060_Gyoshu\M1060_Gyoshu_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
+    <Compile Include="Common\Business\GyoshuList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
     <Compile Include="Common\Business\EigyoushoList_B.cs" />
@@ -245,6 +247,12 @@
     <Compile Include="Common\Form\GroupCdList.Designer.cs">
       <DependentUpon>GroupCdList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\GyoshuList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\GyoshuList.Designer.cs">
+      <DependentUpon>GyoshuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\TokuisakiList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +304,12 @@
     </Compile>
     <Compile Include="Form\M1050_Tantousha\M1050_Tantousha.Designer.cs">
       <DependentUpon>M1050_Tantousha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1060_Gyoushu\M1060_Gyoshu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1060_Gyoushu\M1060_Gyoshu.Designer.cs">
+      <DependentUpon>M1060_Gyoshu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.cs">
       <SubType>Form</SubType>
@@ -475,6 +489,9 @@
     <EmbeddedResource Include="Common\Form\GroupCdList.resx">
       <DependentUpon>GroupCdList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\GyoshuList.resx">
+      <DependentUpon>GyoshuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -494,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1050_Tantousha\M1050_Tantousha.resx">
       <DependentUpon>M1050_Tantousha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1060_Gyoushu\M1060_Gyoshu.resx">
+      <DependentUpon>M1060_Gyoshu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
       <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
@@ -567,6 +587,7 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
@@ -583,6 +604,7 @@
     <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Gyoshu_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql" />
     <Content Include="SQL\Common\C_SQL_CALENDAR_UPD.sql" />

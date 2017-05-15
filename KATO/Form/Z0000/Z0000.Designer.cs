@@ -31,6 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnGyoushu = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTantousha = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
@@ -39,10 +40,10 @@
             this.btnChubunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.btnTestWindow);
+            this.tabPage1.Controls.Add(this.btnGyoushu);
             this.tabPage1.Controls.Add(this.btnTantousha);
             this.tabPage1.Controls.Add(this.btnTorihikikubun);
             this.tabPage1.Controls.Add(this.btnTanaInput);
@@ -153,6 +155,18 @@
             this.btnTestWindow.UseVisualStyleBackColor = false;
             this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
             this.btnTestWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnGyoushu
+            // 
+            this.btnGyoushu.BackColor = System.Drawing.Color.LightYellow;
+            this.btnGyoushu.Location = new System.Drawing.Point(23, 439);
+            this.btnGyoushu.Name = "btnGyoushu";
+            this.btnGyoushu.Size = new System.Drawing.Size(280, 40);
+            this.btnGyoushu.TabIndex = 7;
+            this.btnGyoushu.Text = "業種";
+            this.btnGyoushu.UseVisualStyleBackColor = false;
+            this.btnGyoushu.Click += new System.EventHandler(this.btnGyoushu_Click);
+            this.btnGyoushu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnTantousha
             // 
@@ -247,6 +261,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
             // 
+            // btnZanKakunin
+            // 
+            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
+            this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
+            this.btnZanKakunin.Name = "btnZanKakunin";
+            this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
+            this.btnZanKakunin.TabIndex = 8;
+            this.btnZanKakunin.Text = "残確認";
+            this.btnZanKakunin.UseVisualStyleBackColor = false;
+            this.btnZanKakunin.Click += new System.EventHandler(this.btnZanKakunin_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
@@ -274,17 +299,6 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
-            // 
-            // btnZanKakunin
-            // 
-            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
-            this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
-            this.btnZanKakunin.Name = "btnZanKakunin";
-            this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
-            this.btnZanKakunin.TabIndex = 8;
-            this.btnZanKakunin.Text = "残確認";
-            this.btnZanKakunin.UseVisualStyleBackColor = false;
-            this.btnZanKakunin.Click += new System.EventHandler(this.btnZanKakunin_Click);
             // 
             // Z0000
             // 
@@ -334,5 +348,6 @@
         private Common.Ctl.BaseMenuButton btnTorihikikubun;
         private Common.Ctl.BaseMenuButton btnTantousha;
         private Common.Ctl.BaseMenuButton btnZanKakunin;
+        private Common.Ctl.BaseMenuButton btnGyoushu;
     }
 }
