@@ -37,59 +37,72 @@
             // 
             // btnF12
             // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF11
             // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF10
             // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             this.btnF10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF09
             // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             this.btnF09.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF08
             // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
             this.btnF08.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF07
             // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
             this.btnF07.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF06
             // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             this.btnF06.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF05
             // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             this.btnF05.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF04
             // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             this.btnF04.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF03
             // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             this.btnF03.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF02
             // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // btnF01
             // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // txtGyoshu
             // 
             this.txtGyoshu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGyoshu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtGyoshu.Location = new System.Drawing.Point(502, 109);
             this.txtGyoshu.MaxLength = 4;
             this.txtGyoshu.Name = "txtGyoshu";
-            this.txtGyoshu.Size = new System.Drawing.Size(42, 22);
+            this.txtGyoshu.Size = new System.Drawing.Size(40, 22);
             this.txtGyoshu.TabIndex = 0;
             this.txtGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoshuKeyDown);
             this.txtGyoshu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
@@ -109,12 +122,12 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtName.Location = new System.Drawing.Point(756, 109);
             this.txtName.MaxLength = 30;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(228, 22);
             this.txtName.TabIndex = 1;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoushuKeyDown);
             // 
             // lblBaseLabelName
             // 

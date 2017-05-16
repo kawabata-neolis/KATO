@@ -237,7 +237,6 @@ namespace KATO.Form.M1010_Daibunrui
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtDaibunrui.Focus();
             }
             catch (Exception ex)
             {
@@ -402,6 +401,11 @@ namespace KATO.Form.M1010_Daibunrui
             }
             //左右のシフトキー 4つ とタブ、エンター
             else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down )
             {
                 return;
             }

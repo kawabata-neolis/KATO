@@ -150,7 +150,7 @@
             this.btnTestWindow.Location = new System.Drawing.Point(23, 672);
             this.btnTestWindow.Name = "btnTestWindow";
             this.btnTestWindow.Size = new System.Drawing.Size(280, 40);
-            this.btnTestWindow.TabIndex = 7;
+            this.btnTestWindow.TabIndex = 70;
             this.btnTestWindow.Text = "受注入力（共通部品テスト用）";
             this.btnTestWindow.UseVisualStyleBackColor = false;
             this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
@@ -306,7 +306,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.tabControl1);
+            this.Location = new System.Drawing.Point(-7, 0);
             this.Name = "Z0000";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "メニュー";
             this.Load += new System.EventHandler(this.Z0000_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);

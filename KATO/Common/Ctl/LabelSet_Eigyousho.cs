@@ -53,11 +53,6 @@ namespace KATO.Common.Ctl
                 EigyoushoList daibunruiList = new EigyoushoList(this.Parent, this);
                 daibunruiList.Show();
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
 
         ///<summary>

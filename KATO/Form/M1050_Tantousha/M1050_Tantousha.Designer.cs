@@ -43,59 +43,11 @@
             this.txtMokuhyou = new KATO.Common.Ctl.BaseTextMoney();
             this.SuspendLayout();
             // 
-            // btnF12
-            // 
-            this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF11
-            // 
-            this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF10
-            // 
-            this.btnF10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF09
-            // 
-            this.btnF09.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF08
-            // 
-            this.btnF08.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF07
-            // 
-            this.btnF07.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF06
-            // 
-            this.btnF06.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF05
-            // 
-            this.btnF05.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF04
-            // 
-            this.btnF04.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF03
-            // 
-            this.btnF03.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF02
-            // 
-            this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
-            // btnF01
-            // 
-            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            // 
             // labelSet_Eigyousho
             // 
             this.labelSet_Eigyousho.AppendLabelSize = 0;
             this.labelSet_Eigyousho.AppendLabelText = "";
-            this.labelSet_Eigyousho.CodeTxtSize = 45;
+            this.labelSet_Eigyousho.CodeTxtSize = 40;
             this.labelSet_Eigyousho.CodeTxtText = "";
             this.labelSet_Eigyousho.LabelName = "営業所コード";
             this.labelSet_Eigyousho.Location = new System.Drawing.Point(738, 195);
@@ -113,8 +65,9 @@
             // 
             this.labelSet_GroupCd.AppendLabelSize = 0;
             this.labelSet_GroupCd.AppendLabelText = "";
-            this.labelSet_GroupCd.CodeTxtSize = 45;
+            this.labelSet_GroupCd.CodeTxtSize = 40;
             this.labelSet_GroupCd.CodeTxtText = "";
+            this.labelSet_GroupCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCd.LabelName = "グループコード";
             this.labelSet_GroupCd.Location = new System.Drawing.Point(738, 272);
             this.labelSet_GroupCd.LsGroupCddata = null;
@@ -143,10 +96,11 @@
             // txtTantoushaCd
             // 
             this.txtTantoushaCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoushaCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTantoushaCd.Location = new System.Drawing.Point(532, 117);
             this.txtTantoushaCd.MaxLength = 4;
             this.txtTantoushaCd.Name = "txtTantoushaCd";
-            this.txtTantoushaCd.Size = new System.Drawing.Size(48, 22);
+            this.txtTantoushaCd.Size = new System.Drawing.Size(40, 22);
             this.txtTantoushaCd.TabIndex = 0;
             this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             this.txtTantoushaCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
@@ -166,10 +120,11 @@
             // txtTantoushaName
             // 
             this.txtTantoushaName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoushaName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTantoushaName.Location = new System.Drawing.Point(861, 117);
             this.txtTantoushaName.MaxLength = 12;
             this.txtTantoushaName.Name = "txtTantoushaName";
-            this.txtTantoushaName.Size = new System.Drawing.Size(144, 22);
+            this.txtTantoushaName.Size = new System.Drawing.Size(205, 22);
             this.txtTantoushaName.TabIndex = 1;
             this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
@@ -187,10 +142,11 @@
             // txtLoginID
             // 
             this.txtLoginID.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtLoginID.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtLoginID.Location = new System.Drawing.Point(861, 156);
             this.txtLoginID.MaxLength = 20;
             this.txtLoginID.Name = "txtLoginID";
-            this.txtLoginID.Size = new System.Drawing.Size(179, 22);
+            this.txtLoginID.Size = new System.Drawing.Size(172, 22);
             this.txtLoginID.TabIndex = 2;
             this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
             // 
@@ -208,6 +164,7 @@
             // txtChuban
             // 
             this.txtChuban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtChuban.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtChuban.Location = new System.Drawing.Point(861, 233);
             this.txtChuban.MaxLength = 3;
             this.txtChuban.Name = "txtChuban";
@@ -230,12 +187,13 @@
             // 
             this.txtMokuhyou.blnCommaOK = true;
             this.txtMokuhyou.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMokuhyou.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMokuhyou.intDeciSet = 0;
             this.txtMokuhyou.intIntederSet = 0;
             this.txtMokuhyou.Location = new System.Drawing.Point(861, 312);
             this.txtMokuhyou.MaxLength = 0;
             this.txtMokuhyou.Name = "txtMokuhyou";
-            this.txtMokuhyou.Size = new System.Drawing.Size(100, 22);
+            this.txtMokuhyou.Size = new System.Drawing.Size(117, 22);
             this.txtMokuhyou.TabIndex = 7;
             this.txtMokuhyou.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMokuhyou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);

@@ -34,6 +34,7 @@
             // 
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 2;
+            this.codeTxt.Size = new System.Drawing.Size(24, 22);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaibunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
@@ -42,6 +43,7 @@
             // LabelSet_Daibunrui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.CodeTxtSize = 24;
             this.LabelName = "大分類コード";
             this.Name = "LabelSet_Daibunrui";
             this.ValueLabelSize = 150;

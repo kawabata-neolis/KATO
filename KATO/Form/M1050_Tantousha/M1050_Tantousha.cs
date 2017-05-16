@@ -372,18 +372,35 @@ namespace KATO.Form.M1050_Tantousha
 
             DataTable dtSetCd;
 
+            Boolean blnGood;
+
             //文字判定
             if (txtTantoushaCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
-
             if (txtTantoushaCd.TextLength < 4)
             {
                 txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
+            }
+
+            //前後の空白を取り除く
+            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
+
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtTantoushaCd.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtTantoushaCd.Text, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTantoushaCd.Focus();
+                return;
             }
 
             //データ渡し用
@@ -449,6 +466,12 @@ namespace KATO.Form.M1050_Tantousha
             {
                 return;
             }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
             if (txtTantoushaCd.TextLength == 4)
             {
                 //TABボタンと同じ効果

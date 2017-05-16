@@ -32,7 +32,12 @@ namespace KATO.Business.M1060_Gyoshu
             dbconnective.BeginTrans();
             try
             {
-//
+                string[] aryStr = new string[] { lstString[0], lstString[1], "N", DateTime.Now.ToString(), lstString[2], DateTime.Now.ToString(), lstString[2] };
+
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_GYOSHU_UPD, aryStr);
+
+                //コミット開始
+                dbconnective.Commit();
             }
             catch (Exception ex)
             {

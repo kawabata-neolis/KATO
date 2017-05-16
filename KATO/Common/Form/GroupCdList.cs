@@ -78,6 +78,7 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+
         /// <summary>
         /// _Title
         /// タイトルの設定
@@ -129,11 +130,11 @@ namespace KATO.Common.Form
             gridSeihin.Columns.Add(torihikisakiName);
 
             //個々の幅、文章の寄せ
-            gridSeihin.Columns["グループコード"].Width = 100;
+            gridSeihin.Columns["グループコード"].Width = 130;
             gridSeihin.Columns["グループコード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridSeihin.Columns["グループコード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridSeihin.Columns["グループ名"].Width = 200;
+            gridSeihin.Columns["グループ名"].Width = 150;
             gridSeihin.Columns["グループ名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridSeihin.Columns["グループ名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 

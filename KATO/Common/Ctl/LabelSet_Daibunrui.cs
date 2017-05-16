@@ -90,11 +90,6 @@ namespace KATO.Common.Ctl
                 DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
                 daibunruiList.Show();
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
 
         ///<summary>
@@ -141,8 +136,7 @@ namespace KATO.Common.Ctl
 
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
-
-
+            
             strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
 
             //データ渡し用

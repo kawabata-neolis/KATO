@@ -33,6 +33,8 @@
             // codeTxt
             // 
             this.codeTxt.Location = new System.Drawing.Point(43, 0);
+            this.codeTxt.MaxLength = 6;
+            this.codeTxt.Size = new System.Drawing.Size(60, 22);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxTanabanKeyUp);
@@ -41,6 +43,7 @@
             // LabelSet_Tanaban
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.CodeTxtSize = 60;
             this.LabelName = "棚番";
             this.Name = "LabelSet_Tanaban";
             this.ValueLabelSize = 150;

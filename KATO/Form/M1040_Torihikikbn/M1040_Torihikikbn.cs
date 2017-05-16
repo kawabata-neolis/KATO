@@ -316,6 +316,8 @@ namespace KATO.Form.M1040_Torihikikbn
 
             DataTable dtSetCd;
 
+            Boolean blnGood;
+
             //文字判定
             if (txtTorihikikubun.blIsEmpty() == false)
             {
@@ -330,11 +332,25 @@ namespace KATO.Form.M1040_Torihikikbn
                 txtTorihikikubun.Text = txtTorihikikubun.Text.ToString().PadLeft(2, '0');
             }
 
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtTorihikikubun.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtTorihikikubun.Text, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTorihikikubun.Focus();
+                return;
+            }
+
             //データ渡し用
             lstString.Add(txtTorihikikubun.Text);
 
-            M1040_Torihikikbn_B torikbn_B = new M1040_Torihikikbn_B();
-
+            M1040_Torihikikbn_B torikbn_B = new M1040_Torihikikbn_B();      
             try
             {
                 //戻り値のDatatableを取り込む
@@ -385,6 +401,12 @@ namespace KATO.Form.M1040_Torihikikbn
             {
                 return;
             }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
             if (txtTorihikikubun.TextLength == 2)
             {
                 //TABボタンと同じ効果

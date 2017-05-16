@@ -105,7 +105,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtDaibunrui.Location = new System.Drawing.Point(595, 97);
             this.txtDaibunrui.MaxLength = 2;
             this.txtDaibunrui.Name = "txtDaibunrui";
-            this.txtDaibunrui.Size = new System.Drawing.Size(33, 22);
+            this.txtDaibunrui.Size = new System.Drawing.Size(24, 22);
             this.txtDaibunrui.TabIndex = 0;
             this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunKeyDown);
             this.txtDaibunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
@@ -114,11 +114,11 @@ namespace KATO.Form.M1010_Daibunrui
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Katakana;
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtName.Location = new System.Drawing.Point(595, 132);
             this.txtName.MaxLength = 24;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(339, 22);
+            this.txtName.Size = new System.Drawing.Size(398, 22);
             this.txtName.TabIndex = 1;
             // 
             // txtLabel1

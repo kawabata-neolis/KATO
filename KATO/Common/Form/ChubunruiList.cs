@@ -155,8 +155,8 @@ namespace KATO.Common.Form
                 }
 
                 //幅の値を設定
-                gridSeihin.Columns["中分類コード"].Width = 150;
-                gridSeihin.Columns["中分類名"].Width = 200;
+                gridSeihin.Columns["中分類コード"].Width = 130;
+                gridSeihin.Columns["中分類名"].Width = 150;
 
                 //中央揃え
                 gridSeihin.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -168,7 +168,7 @@ namespace KATO.Common.Form
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
-                if (lblRecords.Text == "0")
+                if (gridSeihin.RowCount.ToString() == "0")
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -390,7 +390,8 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
+                new CommonException(ex);     
+                           
             }
             setEndAction(lstString);
         }

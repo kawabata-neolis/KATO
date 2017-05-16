@@ -53,11 +53,6 @@ namespace KATO.Common.Ctl
                 MakerList makerList = new MakerList(this.Parent, this);
                 makerList.Show();
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
 
 

@@ -32,6 +32,7 @@
             // 
             // codeTxt
             // 
+            this.codeTxt.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
             this.codeTxt.Size = new System.Drawing.Size(40, 22);

@@ -219,6 +219,7 @@ namespace KATO.Form.M1110_Chubunrui
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtChubunrui.Focus();
+                return;
             }
             //文字判定
             if (txtElem.blIsEmpty() == false)
@@ -227,6 +228,7 @@ namespace KATO.Form.M1110_Chubunrui
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtElem.Focus();
+                return;
             }
 
             //データ渡し用
@@ -361,10 +363,10 @@ namespace KATO.Form.M1110_Chubunrui
             if (blnGood == false)
             {
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
-                this.Focus();
+                txtChubunrui.Focus();
                 return;
             }
             
@@ -439,6 +441,12 @@ namespace KATO.Form.M1110_Chubunrui
             {
                 return;
             }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
             if (txtChubunrui.TextLength == 2)
             {
                 //TABボタンと同じ効果

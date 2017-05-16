@@ -121,8 +121,8 @@ namespace KATO.Common.Form
                 gridSeihin.DataSource = tanabanlistB.setDatagridView();
 
                 //幅の値を設定
-                gridSeihin.Columns["棚番"].Width = 150;
-                gridSeihin.Columns["棚番名"].Width = 150;
+                gridSeihin.Columns["棚番"].Width = 70;
+                gridSeihin.Columns["棚番名"].Width = 180;
 
                 //中央揃え
                 gridSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;

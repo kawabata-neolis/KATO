@@ -89,9 +89,11 @@ namespace KATO.Form.M1020_Maker
             // txtMaker
             // 
             this.txtMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMaker.Location = new System.Drawing.Point(557, 60);
+            this.txtMaker.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMaker.Location = new System.Drawing.Point(596, 97);
+            this.txtMaker.MaxLength = 3;
             this.txtMaker.Name = "txtMaker";
-            this.txtMaker.Size = new System.Drawing.Size(31, 22);
+            this.txtMaker.Size = new System.Drawing.Size(30, 22);
             this.txtMaker.TabIndex = 0;
             this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMakerKeyDown);
             this.txtMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
@@ -100,16 +102,18 @@ namespace KATO.Form.M1020_Maker
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtName.Location = new System.Drawing.Point(557, 97);
+            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtName.Location = new System.Drawing.Point(596, 134);
+            this.txtName.MaxLength = 24;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(379, 22);
+            this.txtName.Size = new System.Drawing.Size(398, 22);
             this.txtName.TabIndex = 1;
             // 
             // lblBaseLabelName
             // 
             this.lblBaseLabelName.AutoSize = true;
             this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(432, 100);
+            this.lblBaseLabelName.Location = new System.Drawing.Point(471, 137);
             this.lblBaseLabelName.Name = "lblBaseLabelName";
             this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabelName.TabIndex = 87;
@@ -120,7 +124,7 @@ namespace KATO.Form.M1020_Maker
             // 
             this.lblBaseLabelCD.AutoSize = true;
             this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelCD.Location = new System.Drawing.Point(432, 63);
+            this.lblBaseLabelCD.Location = new System.Drawing.Point(471, 100);
             this.lblBaseLabelCD.Name = "lblBaseLabelCD";
             this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
             this.lblBaseLabelCD.TabIndex = 88;

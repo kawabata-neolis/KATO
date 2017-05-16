@@ -64,6 +64,7 @@
             // codeTxt
             // 
             this.codeTxt.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.codeTxt.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.codeTxt.Location = new System.Drawing.Point(111, 0);
             this.codeTxt.Name = "codeTxt";
             this.codeTxt.Size = new System.Drawing.Size(33, 22);

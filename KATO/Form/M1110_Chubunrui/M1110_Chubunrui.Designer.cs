@@ -91,6 +91,7 @@ namespace KATO.Form.M1110_Chubunrui
             // txtChubunrui
             // 
             this.txtChubunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtChubunrui.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtChubunrui.Location = new System.Drawing.Point(566, 132);
             this.txtChubunrui.MaxLength = 2;
             this.txtChubunrui.Name = "txtChubunrui";
@@ -103,8 +104,9 @@ namespace KATO.Form.M1110_Chubunrui
             // txtElem
             // 
             this.txtElem.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtElem.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtElem.Location = new System.Drawing.Point(726, 132);
-            this.txtElem.MaxLength = 40;
+            this.txtElem.MaxLength = 24;
             this.txtElem.Name = "txtElem";
             this.txtElem.Size = new System.Drawing.Size(228, 22);
             this.txtElem.TabIndex = 2;

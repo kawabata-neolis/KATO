@@ -32,6 +32,7 @@
             // 
             // BaseTextMoney
             // 
+            this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Enter += new System.EventHandler(this.updMoneyEnter);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.updMoneyKeyPress);

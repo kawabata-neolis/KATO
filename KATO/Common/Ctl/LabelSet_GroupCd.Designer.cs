@@ -44,8 +44,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.CodeTxtSize = 40;
+            this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.LabelName = "グループコード";
             this.Name = "LabelSet_GroupCd";
+            this.Size = new System.Drawing.Size(512, 22);
             this.ResumeLayout(false);
             this.PerformLayout();
 

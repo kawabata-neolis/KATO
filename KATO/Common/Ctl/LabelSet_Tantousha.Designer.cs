@@ -34,6 +34,7 @@
             // 
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
+            this.codeTxt.Size = new System.Drawing.Size(40, 22);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
@@ -42,9 +43,10 @@
             // LabelSet_Tantousha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.CodeTxtSize = 40;
             this.LabelName = "担当者コード";
             this.Name = "LabelSet_Tantousha";
-            this.Size = new System.Drawing.Size(340, 22);
+            this.Size = new System.Drawing.Size(461, 22);
             this.ValueLabelSize = 150;
             this.ResumeLayout(false);
             this.PerformLayout();

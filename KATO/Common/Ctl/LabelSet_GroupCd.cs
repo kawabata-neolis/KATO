@@ -71,11 +71,6 @@ namespace KATO.Common.Ctl
                 groupCdList groupcdlist = new groupCdList(this.Parent, this);
                 groupcdlist.Show();
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
 
         ///<summary>

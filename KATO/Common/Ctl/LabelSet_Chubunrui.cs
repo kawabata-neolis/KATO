@@ -76,11 +76,6 @@ namespace KATO.Common.Ctl
                 ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
                 chubunruiList.Show();
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
         
         ///<summary>

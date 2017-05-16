@@ -55,11 +55,6 @@ namespace KATO.Common.Ctl
                 tantoushaList.ShowDialog();
 
             }
-            else if (e.KeyCode == Keys.F12)
-            {
-                //閉じる
-                this.Parent.Dispose();
-            }
         }
 
         ///<summary>

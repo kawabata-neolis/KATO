@@ -26,7 +26,7 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class GyoshuList : System.Windows.Forms.Form
     {
-        //作成する場合、変更
+        //セットを作成する場合、変更
         //LabelSet_Daibunrui lblSetDaibun = null;
 
         //どこのウィンドウかの判定（初期値）
@@ -55,7 +55,7 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
-        //作成する場合、変更
+        //セットを作成する場合、変更
         ///// <summary>
         ///// GyoshuList
         ///// フォーム関係の設定（ラベルセットから）
@@ -218,7 +218,7 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
-            //作成する場合変更
+            //セットを作成する場合変更
             //if (lblSetDaibun != null && lstString.Count != 0)
             //{
             //    lblSetDaibun.CodeTxtText = lstString[0];
@@ -312,9 +312,6 @@ namespace KATO.Common.Form
                     break;
             }
         }
-
-//リストからメインの動き
-//登録削除関係
 
         ///<summary>
         ///setSelectItem

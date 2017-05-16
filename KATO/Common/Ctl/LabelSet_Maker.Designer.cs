@@ -34,6 +34,7 @@
             // 
             this.codeTxt.Location = new System.Drawing.Point(75, 0);
             this.codeTxt.MaxLength = 3;
+            this.codeTxt.Size = new System.Drawing.Size(30, 22);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
@@ -42,6 +43,7 @@
             // LabelSet_Maker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.CodeTxtSize = 30;
             this.LabelName = "メーカー";
             this.Name = "LabelSet_Maker";
             this.ValueLabelSize = 150;

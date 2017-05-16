@@ -194,6 +194,7 @@
             // 
             this.money1.blnCommaOK = true;
             this.money1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.money1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.money1.intDeciSet = 4;
             this.money1.intIntederSet = 5;
             this.money1.Location = new System.Drawing.Point(778, 368);
@@ -426,6 +427,7 @@
             this.labelSet_Eigyousho.TabIndex = 0;
             this.labelSet_Eigyousho.ValueLabelSize = 150;
             this.labelSet_Eigyousho.ValueLabelText = "";
+            this.labelSet_Eigyousho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judJuchuInputKeyDown);
             // 
             // labelSet_Maker
             // 
@@ -449,7 +451,7 @@
             // 
             this.labelSet_Tanaban.AppendLabelSize = 0;
             this.labelSet_Tanaban.AppendLabelText = "";
-            this.labelSet_Tanaban.CodeTxtSize = 50;
+            this.labelSet_Tanaban.CodeTxtSize = 60;
             this.labelSet_Tanaban.CodeTxtText = "";
             this.labelSet_Tanaban.LabelName = "棚番";
             this.labelSet_Tanaban.Location = new System.Drawing.Point(12, 135);

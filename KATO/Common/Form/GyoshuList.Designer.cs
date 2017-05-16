@@ -86,6 +86,7 @@
             this.gridSeihin.Size = new System.Drawing.Size(474, 410);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 4;
+            this.gridSeihin.DoubleClick += new System.EventHandler(this.setGridSeiDblClick);
             this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // lblRecords

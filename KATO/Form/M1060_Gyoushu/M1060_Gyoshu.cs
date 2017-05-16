@@ -217,6 +217,7 @@ namespace KATO.Form.M1060_Gyoushu
             //データ渡し用
             lstString.Add(txtGyoshu.Text);
             lstString.Add(txtName.Text);
+            lstString.Add(SystemInformation.UserName);
 
             //処理部に移動
             M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
@@ -229,7 +230,6 @@ namespace KATO.Form.M1060_Gyoushu
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtGyoshu.Focus();
             }
             catch (Exception ex)
             {
@@ -314,18 +314,35 @@ namespace KATO.Form.M1060_Gyoushu
 
             DataTable dtSetCd;
 
+            Boolean blnGood;
+
             //文字判定
             if (txtGyoshu.blIsEmpty() == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtGyoshu.Text = txtGyoshu.Text.Trim();
-
             if (txtGyoshu.TextLength < 4)
             {
-                txtGyoshu.Text = txtGyoshu.Text.ToString().PadLeft(3, '0');
+                txtGyoshu.Text = txtGyoshu.Text.ToString().PadLeft(4, '0');
+            }
+
+            //前後の空白を取り除く
+            txtGyoshu.Text = txtGyoshu.Text.Trim();
+            
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtGyoshu.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtGyoshu.Text, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtGyoshu.Focus();
+                return;
             }
 
             //データ渡し用
@@ -383,6 +400,12 @@ namespace KATO.Form.M1060_Gyoushu
             {
                 return;
             }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
             if (txtGyoshu.TextLength == 4)
             {
                 //TABボタンと同じ効果
