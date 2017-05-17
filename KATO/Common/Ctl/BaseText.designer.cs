@@ -33,6 +33,7 @@
             // BaseText
             // 
             this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.TextChanged += new System.EventHandler(this.BaseText_TextChanged);
             this.Enter += new System.EventHandler(this.BaseText_Enter);
             this.Leave += new System.EventHandler(this.BaseText_Leave);
             this.ResumeLayout(false);

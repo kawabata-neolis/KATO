@@ -47,7 +47,7 @@
             this.LabelName = "担当者コード";
             this.Name = "LabelSet_Tantousha";
             this.Size = new System.Drawing.Size(461, 22);
-            this.ValueLabelSize = 150;
+            this.ValueLabelSize = 120;
             this.ResumeLayout(false);
             this.PerformLayout();
 

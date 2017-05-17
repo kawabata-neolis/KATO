@@ -48,6 +48,7 @@
             this.LabelName = "グループコード";
             this.Name = "LabelSet_GroupCd";
             this.Size = new System.Drawing.Size(512, 22);
+            this.ValueLabelSize = 120;
             this.ResumeLayout(false);
             this.PerformLayout();
 

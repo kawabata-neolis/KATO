@@ -65,12 +65,12 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.LsSubchubundata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(332, 22);
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(359, 22);
             this.labelSet_Daibunrui.SpaceCodeValue = 10;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
             this.labelSet_Daibunrui.TabIndex = 101;
-            this.labelSet_Daibunrui.ValueLabelSize = 150;
+            this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
             // 
             // gridSeihin

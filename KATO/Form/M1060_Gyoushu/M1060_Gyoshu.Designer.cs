@@ -126,7 +126,7 @@
             this.txtName.Location = new System.Drawing.Point(756, 109);
             this.txtName.MaxLength = 30;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(228, 22);
+            this.txtName.Size = new System.Drawing.Size(252, 22);
             this.txtName.TabIndex = 1;
             // 
             // lblBaseLabelName

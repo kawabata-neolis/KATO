@@ -111,7 +111,7 @@
             this.txtName.Location = new System.Drawing.Point(729, 90);
             this.txtName.MaxLength = 20;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(336, 22);
+            this.txtName.Size = new System.Drawing.Size(170, 22);
             this.txtName.TabIndex = 1;
             // 
             // txtTorihikikubun

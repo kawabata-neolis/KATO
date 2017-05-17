@@ -89,7 +89,7 @@ namespace KATO.Common.Form
             this.gridTantousha.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTantousha.Size = new System.Drawing.Size(776, 451);
             this.gridTantousha.StandardTab = true;
-            this.gridTantousha.TabIndex = 6;
+            this.gridTantousha.TabIndex = 0;
             this.gridTantousha.DoubleClick += new System.EventHandler(this.setGridTanDblClick);
             this.gridTantousha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTantouKeyDown);
             // 
@@ -99,7 +99,7 @@ namespace KATO.Common.Form
             this.btnF12.Location = new System.Drawing.Point(663, 12);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 4;
+            this.btnF12.TabIndex = 1;
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouListKeyDown);

@@ -46,7 +46,7 @@
             this.CodeTxtSize = 60;
             this.LabelName = "棚番";
             this.Name = "LabelSet_Tanaban";
-            this.ValueLabelSize = 150;
+            this.ValueLabelSize = 200;
             this.ResumeLayout(false);
             this.PerformLayout();
 

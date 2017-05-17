@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace KATO.Common.Ctl
 {
@@ -71,6 +72,21 @@ namespace KATO.Common.Ctl
                 good = false;
             }
             return (good);
+        }
+
+        //
+        //文字数制限
+        //
+        private void BaseText_TextChanged(object sender, EventArgs e)
+        {
+            int intByteLength = 0;
+            intByteLength = Encoding.GetEncoding("Shift_JIS").GetByteCount(this.Text);
+
+            if (this.MaxLength < intByteLength)
+            {
+                this.Text = this.Text.Remove(this.Text.Length -1, 1);
+                this.Select(this.Text.Length, 0);
+            }
         }
     }
 }

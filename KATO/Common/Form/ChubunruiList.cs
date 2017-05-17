@@ -124,6 +124,11 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
+            if (gridSeihin.RowCount == 0)
+            {
+                labelSet_Daibunrui.Focus();
+            }
+
         }
 
         ///<summary>
@@ -156,7 +161,7 @@ namespace KATO.Common.Form
 
                 //幅の値を設定
                 gridSeihin.Columns["中分類コード"].Width = 130;
-                gridSeihin.Columns["中分類名"].Width = 150;
+                gridSeihin.Columns["中分類名"].Width = 200;
 
                 //中央揃え
                 gridSeihin.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -166,15 +171,6 @@ namespace KATO.Common.Form
                 labelSet_Daibunrui.ValueLabelText = dtGetTable.Rows[0]["大分類名"].ToString();
 
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
-
-                //件数が0の場合
-                if (gridSeihin.RowCount.ToString() == "0")
-                {
-                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
             }
             catch (Exception ex)
             {
@@ -281,7 +277,6 @@ namespace KATO.Common.Form
             {
                 new CommonException(ex);
             }
-
         }
 
         ///<summary>
@@ -372,6 +367,11 @@ namespace KATO.Common.Form
             //データ渡し用
             List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();
+
+            if(gridSeihin.RowCount == 0)
+            {
+                return;
+            }
 
             //選択行のcode取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["中分類コード"].Value;

@@ -308,7 +308,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui_Edit.SpaceCodeValue = 4;
             this.labelSet_Chubunrui_Edit.SpaceNameCode = 4;
             this.labelSet_Chubunrui_Edit.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui_Edit.strDaibunCd = null;
             this.labelSet_Chubunrui_Edit.TabIndex = 99;
             this.labelSet_Chubunrui_Edit.ValueLabelSize = 150;
             this.labelSet_Chubunrui_Edit.ValueLabelText = "";
@@ -502,7 +501,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui.SpaceCodeValue = 10;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui.strDaibunCd = null;
             this.labelSet_Chubunrui.TabIndex = 2;
             this.labelSet_Chubunrui.ValueLabelSize = 150;
             this.labelSet_Chubunrui.ValueLabelText = "";

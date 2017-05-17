@@ -124,9 +124,10 @@
             this.txtTantoushaName.Location = new System.Drawing.Point(861, 117);
             this.txtTantoushaName.MaxLength = 12;
             this.txtTantoushaName.Name = "txtTantoushaName";
-            this.txtTantoushaName.Size = new System.Drawing.Size(205, 22);
+            this.txtTantoushaName.Size = new System.Drawing.Size(102, 22);
             this.txtTantoushaName.TabIndex = 1;
             this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtTantoushaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouNameKeyUp);
             // 
             // lblLoginID
             // 
@@ -146,9 +147,10 @@
             this.txtLoginID.Location = new System.Drawing.Point(861, 156);
             this.txtLoginID.MaxLength = 20;
             this.txtLoginID.Name = "txtLoginID";
-            this.txtLoginID.Size = new System.Drawing.Size(172, 22);
+            this.txtLoginID.Size = new System.Drawing.Size(166, 22);
             this.txtLoginID.TabIndex = 2;
             this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtLoginID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtLogInKeyUp);
             // 
             // lblChuban
             // 
@@ -171,6 +173,7 @@
             this.txtChuban.Size = new System.Drawing.Size(39, 22);
             this.txtChuban.TabIndex = 5;
             this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtChuban.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubanKeyUp);
             // 
             // lblMokuhyou
             // 

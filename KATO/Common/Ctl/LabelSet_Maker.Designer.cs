@@ -46,7 +46,7 @@
             this.CodeTxtSize = 30;
             this.LabelName = "メーカー";
             this.Name = "LabelSet_Maker";
-            this.ValueLabelSize = 150;
+            this.ValueLabelSize = 200;
             this.ResumeLayout(false);
             this.PerformLayout();
 

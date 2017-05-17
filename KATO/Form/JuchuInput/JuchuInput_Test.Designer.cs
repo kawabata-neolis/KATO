@@ -405,7 +405,6 @@
             this.labelSet_Chubunrui.SpaceCodeValue = 4;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui.strDaibunCd = null;
             this.labelSet_Chubunrui.TabIndex = 2;
             this.labelSet_Chubunrui.ValueLabelSize = 150;
             this.labelSet_Chubunrui.ValueLabelText = "";

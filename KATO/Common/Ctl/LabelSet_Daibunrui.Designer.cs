@@ -46,7 +46,8 @@
             this.CodeTxtSize = 24;
             this.LabelName = "大分類コード";
             this.Name = "LabelSet_Daibunrui";
-            this.ValueLabelSize = 150;
+            this.Size = new System.Drawing.Size(543, 22);
+            this.ValueLabelSize = 200;
             this.ResumeLayout(false);
             this.PerformLayout();
 

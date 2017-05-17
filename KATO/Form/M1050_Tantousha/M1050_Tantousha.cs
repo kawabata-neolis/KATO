@@ -19,7 +19,7 @@ namespace KATO.Form.M1050_Tantousha
     {
 
         //コード内の無限ループを抜けるためのもの
-        Boolean blnLoopOne = true;
+        public Boolean blnLoopOne = true;
 
         //修正中
 
@@ -292,6 +292,7 @@ namespace KATO.Form.M1050_Tantousha
         {
             delFormClear(this);
             txtTantoushaCd.Focus();
+            txtMokuhyou.Text = "";
         }
 
         /// <summary>
@@ -473,6 +474,93 @@ namespace KATO.Form.M1050_Tantousha
             }
 
             if (txtTantoushaCd.TextLength == 4)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
+        
+        /// <summary>
+        /// judtxtTantouNameKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtTantouNameKeyUp(object sender, KeyEventArgs e)
+        {
+            //シフトタブ 2つ
+            if (e.KeyCode == Keys.Tab && e.Shift == true)
+            {
+                return;
+            }
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
+            if (txtTantoushaName.TextLength == 12)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        /// <summary>
+        /// judtxtLogInKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtLogInKeyUp(object sender, KeyEventArgs e)
+        {
+            //シフトタブ 2つ
+            if (e.KeyCode == Keys.Tab && e.Shift == true)
+            {
+                return;
+            }
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
+            if (txtLoginID.TextLength == 20)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        /// <summary>
+        /// judtxtChubanKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtChubanKeyUp(object sender, KeyEventArgs e)
+        {
+            //シフトタブ 2つ
+            if (e.KeyCode == Keys.Tab && e.Shift == true)
+            {
+                return;
+            }
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
+            if (txtChuban.TextLength == 3)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

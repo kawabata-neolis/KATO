@@ -10,8 +10,11 @@ using System.Windows.Forms;
 
 namespace KATO.Common.Ctl
 {
-    public partial class BaseTextMoney : BaseText
+    public partial class BaseTextMoney : TextBox
     {
+        //最初のクリックかの判断
+        Boolean blnFirstClick = true;
+
         //記入の可不可
         Boolean blnEntry = true;
 
@@ -118,6 +121,22 @@ namespace KATO.Common.Ctl
         //
         private void updMoneyEnter(object sender, EventArgs e)
         {
+            //背景色をシアンにする
+            this.BackColor = Color.Cyan;
+
+            //this.SelectAll();
+            if (blnFirstClick == true && this.Text != "")
+            {
+                //全選択
+                this.SelectAll();
+
+                //クリックによる全選択を有効にする
+                this.BeginInvoke(new MethodInvoker(() => this.SelectAll()));
+
+                //二回目以降のクリックに切り替える
+                blnFirstClick = false;
+            }
+
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
 
@@ -128,6 +147,12 @@ namespace KATO.Common.Ctl
         //
         private void updMoneyLeave(object sender, EventArgs e)
         {
+            //背景色を白にする
+            this.BackColor = Color.White;
+
+            //フォーカスが外れたのでリセット
+            blnFirstClick = true;
+
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
         }
@@ -272,6 +297,20 @@ namespace KATO.Common.Ctl
                 //整数部のみを書き込み
                 this.Text = strIntArea;
             }
+        }
+        
+        //
+        //文字判定
+        //
+        public bool blIsEmpty()
+        {
+            Boolean good = true;
+
+            if (this.Text == "" || String.IsNullOrWhiteSpace(this.Text).Equals(true))
+            {
+                good = false;
+            }
+            return (good);
         }
     }
 }

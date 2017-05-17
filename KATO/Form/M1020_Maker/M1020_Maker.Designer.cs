@@ -106,7 +106,7 @@ namespace KATO.Form.M1020_Maker
             this.txtName.Location = new System.Drawing.Point(596, 134);
             this.txtName.MaxLength = 24;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(398, 22);
+            this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
             // 
             // lblBaseLabelName

@@ -95,7 +95,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtChubunrui.Location = new System.Drawing.Point(566, 132);
             this.txtChubunrui.MaxLength = 2;
             this.txtChubunrui.Name = "txtChubunrui";
-            this.txtChubunrui.Size = new System.Drawing.Size(33, 22);
+            this.txtChubunrui.Size = new System.Drawing.Size(24, 22);
             this.txtChubunrui.TabIndex = 1;
             this.txtChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunKeyDown);
             this.txtChubunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
@@ -108,7 +108,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtElem.Location = new System.Drawing.Point(726, 132);
             this.txtElem.MaxLength = 24;
             this.txtElem.Name = "txtElem";
-            this.txtElem.Size = new System.Drawing.Size(228, 22);
+            this.txtElem.Size = new System.Drawing.Size(200, 22);
             this.txtElem.TabIndex = 2;
             // 
             // lblBaseLabelCD
@@ -137,7 +137,7 @@ namespace KATO.Form.M1110_Chubunrui
             // 
             this.LabelSet_Daibun.AppendLabelSize = 0;
             this.LabelSet_Daibun.AppendLabelText = "";
-            this.LabelSet_Daibun.CodeTxtSize = 33;
+            this.LabelSet_Daibun.CodeTxtSize = 24;
             this.LabelSet_Daibun.CodeTxtText = "";
             this.LabelSet_Daibun.LabelName = "大分類コード";
             this.LabelSet_Daibun.Location = new System.Drawing.Point(458, 90);

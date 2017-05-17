@@ -118,7 +118,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtName.Location = new System.Drawing.Point(595, 132);
             this.txtName.MaxLength = 24;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(398, 22);
+            this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
             // 
             // txtLabel1
@@ -160,7 +160,7 @@ namespace KATO.Form.M1010_Daibunrui
             // txtLabel5
             // 
             this.txtLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtLabel5.Location = new System.Drawing.Point(595, 340);
+            this.txtLabel5.Location = new System.Drawing.Point(595, 342);
             this.txtLabel5.Name = "txtLabel5";
             this.txtLabel5.Size = new System.Drawing.Size(100, 22);
             this.txtLabel5.TabIndex = 6;
@@ -169,7 +169,7 @@ namespace KATO.Form.M1010_Daibunrui
             // txtLabel6
             // 
             this.txtLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtLabel6.Location = new System.Drawing.Point(595, 377);
+            this.txtLabel6.Location = new System.Drawing.Point(595, 381);
             this.txtLabel6.Name = "txtLabel6";
             this.txtLabel6.Size = new System.Drawing.Size(100, 22);
             this.txtLabel6.TabIndex = 7;
@@ -248,7 +248,7 @@ namespace KATO.Form.M1010_Daibunrui
             // 
             this.lblBaseLabel5.AutoSize = true;
             this.lblBaseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabel5.Location = new System.Drawing.Point(486, 343);
+            this.lblBaseLabel5.Location = new System.Drawing.Point(486, 345);
             this.lblBaseLabel5.Name = "lblBaseLabel5";
             this.lblBaseLabel5.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabel5.TabIndex = 91;
@@ -260,7 +260,7 @@ namespace KATO.Form.M1010_Daibunrui
             // 
             this.lblBaseLabel6.AutoSize = true;
             this.lblBaseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabel6.Location = new System.Drawing.Point(486, 380);
+            this.lblBaseLabel6.Location = new System.Drawing.Point(486, 384);
             this.lblBaseLabel6.Name = "lblBaseLabel6";
             this.lblBaseLabel6.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabel6.TabIndex = 92;
@@ -290,7 +290,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtDaibunrui);
             this.Name = "M1010_Daibunrui";
-            this.Text = "M1010_Daibunrui";
+            this.Text = "s";
             this.Load += new System.EventHandler(this.M1010_Daibunrui_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiKeyDown);
             this.Controls.SetChildIndex(this.txtDaibunrui, 0);

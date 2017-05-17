@@ -122,8 +122,8 @@ namespace KATO.Common.Form
                 gridSeihin.DataSource = gyoshulistB.setDatagridView();
 
                 //幅の値を設定
-                gridSeihin.Columns["業種コード"].Width = 100;
-                gridSeihin.Columns["業種名"].Width = 150;
+                gridSeihin.Columns["業種コード"].Width = 120;
+                gridSeihin.Columns["業種名"].Width = 250;
 
                 //中央揃え
                 gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;

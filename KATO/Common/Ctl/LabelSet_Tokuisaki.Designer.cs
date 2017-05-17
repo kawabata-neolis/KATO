@@ -32,7 +32,6 @@
             // 
             // codeTxt
             // 
-            this.codeTxt.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
             this.codeTxt.Size = new System.Drawing.Size(40, 22);
@@ -49,7 +48,8 @@
             this.LabelName = "得意先コード";
             this.Name = "LabelSet_Tokuisaki";
             this.ShowAppendFlg = true;
-            this.ValueLabelSize = 150;
+            this.Size = new System.Drawing.Size(642, 22);
+            this.ValueLabelSize = 350;
             this.ResumeLayout(false);
             this.PerformLayout();
 

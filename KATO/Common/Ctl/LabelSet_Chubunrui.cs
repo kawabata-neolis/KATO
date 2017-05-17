@@ -192,6 +192,12 @@ namespace KATO.Common.Ctl
             {
                 return;
             }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
 
             //数字入力以外は返す
             if ((Keys.D0 <= e.KeyCode && e.KeyCode <= Keys.D9) || (Keys.NumPad0 <= e.KeyCode && e.KeyCode <= Keys.NumPad9))

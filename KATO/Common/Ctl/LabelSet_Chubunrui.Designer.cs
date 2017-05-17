@@ -47,6 +47,7 @@
             this.LabelName = "中分類コード";
             this.Name = "LabelSet_Chubunrui";
             this.Size = new System.Drawing.Size(474, 22);
+            this.ValueLabelSize = 200;
             this.ResumeLayout(false);
             this.PerformLayout();
 

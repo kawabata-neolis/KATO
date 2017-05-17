@@ -598,7 +598,6 @@
             this.lsChubunrui.SpaceCodeValue = 4;
             this.lsChubunrui.SpaceNameCode = 40;
             this.lsChubunrui.SpaceValueAppend = 4;
-            this.lsChubunrui.strDaibunCd = null;
             this.lsChubunrui.TabIndex = 123;
             this.lsChubunrui.ValueLabelSize = 150;
             this.lsChubunrui.ValueLabelText = "";

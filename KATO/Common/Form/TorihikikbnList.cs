@@ -114,7 +114,7 @@ namespace KATO.Common.Form
             gridSeihin.Columns["取引区分コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridSeihin.Columns["取引区分コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridSeihin.Columns["取引区分名"].Width = 200;
+            gridSeihin.Columns["取引区分名"].Width = 180;
             gridSeihin.Columns["取引区分名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridSeihin.Columns["取引区分名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }

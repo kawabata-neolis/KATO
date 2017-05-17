@@ -46,7 +46,8 @@
             this.CodeTxtSize = 40;
             this.LabelName = "営業所コード";
             this.Name = "LabelSet_Eigyousho";
-            this.ValueLabelSize = 150;
+            this.Size = new System.Drawing.Size(624, 22);
+            this.ValueLabelSize = 250;
             this.ResumeLayout(false);
             this.PerformLayout();
 
