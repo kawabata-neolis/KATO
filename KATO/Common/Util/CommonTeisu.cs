@@ -26,6 +26,9 @@ namespace KATO.Common.Util
         public const String STR_FUNC_F11 = "F11:印刷";
         public const String STR_FUNC_F12 = "F12:終了";
 
+        public const String STR_FUNC_F10_Shohin = "F10:棚番無";
+
+
         public const String STR_BTN_F01 = "btnF01";
         public const String STR_BTN_F02 = "btnF02";
         public const String STR_BTN_F03 = "btnF03";
@@ -50,6 +53,7 @@ namespace KATO.Common.Util
         public const int FRM_TOKUISAKI = 8;
         public const int FRM_TORIHIKIKBN = 9;
         public const int FRM_GYOSHU = 10;
+        public const int FRM_SHOHIN = 11;
 
 
         //メッセージボックスアイコン
@@ -80,6 +84,7 @@ namespace KATO.Common.Util
         public const string LABEL_DEL_AFTER = "正常に削除されました。";
         public const string LABEL_DATE_ALERT = "入力された日付が正しくありません。";
         public const string LABEL_NOTDATA = "データが見つかりません。";
+        public const string LABEL_ZEROORONE = "０か１で指定してください。";
         public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
 
         //カレンダーの初期値

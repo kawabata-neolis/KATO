@@ -31,26 +31,26 @@ namespace KATO.Common.Form
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.check1 = new System.Windows.Forms.CheckBox();
+            this.chkNotToroku = new System.Windows.Forms.CheckBox();
+            this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
+            this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
+            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.btnGifuZaiko = new KATO.Common.Ctl.BaseButton();
             this.btnHonshaZaiko = new KATO.Common.Ctl.BaseButton();
             this.gridTorihiki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtGifu = new KATO.Common.Ctl.BaseText();
+            this.lblDataFree = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblGihu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblHon = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtGihu = new KATO.Common.Ctl.BaseText();
             this.txtHon = new KATO.Common.Ctl.BaseText();
-            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
-            this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
-            this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,17 +65,74 @@ namespace KATO.Common.Form
             this.lblRecords.TabIndex = 103;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
-            // check1
+            // chkNotToroku
             // 
-            this.check1.AutoSize = true;
-            this.check1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.check1.Location = new System.Drawing.Point(326, 12);
-            this.check1.Name = "check1";
-            this.check1.Size = new System.Drawing.Size(394, 19);
-            this.check1.TabIndex = 107;
-            this.check1.Text = "登録されていない棚番を使用している商品のみ表示";
-            this.check1.UseVisualStyleBackColor = true;
-            this.check1.Visible = false;
+            this.chkNotToroku.AutoSize = true;
+            this.chkNotToroku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.chkNotToroku.Location = new System.Drawing.Point(326, 12);
+            this.chkNotToroku.Name = "chkNotToroku";
+            this.chkNotToroku.Size = new System.Drawing.Size(394, 19);
+            this.chkNotToroku.TabIndex = 107;
+            this.chkNotToroku.Text = "登録されていない棚番を使用している商品のみ表示";
+            this.chkNotToroku.UseVisualStyleBackColor = true;
+            this.chkNotToroku.Visible = false;
+            // 
+            // labelSet_Maker
+            // 
+            this.labelSet_Maker.AppendLabelSize = 0;
+            this.labelSet_Maker.AppendLabelText = "";
+            this.labelSet_Maker.CodeTxtSize = 33;
+            this.labelSet_Maker.CodeTxtText = "";
+            this.labelSet_Maker.LabelName = "メーカー";
+            this.labelSet_Maker.Location = new System.Drawing.Point(12, 69);
+            this.labelSet_Maker.Name = "labelSet_Maker";
+            this.labelSet_Maker.ShowAppendFlg = false;
+            this.labelSet_Maker.Size = new System.Drawing.Size(288, 22);
+            this.labelSet_Maker.SpaceCodeValue = 4;
+            this.labelSet_Maker.SpaceNameCode = 24;
+            this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.TabIndex = 110;
+            this.labelSet_Maker.ValueLabelSize = 150;
+            this.labelSet_Maker.ValueLabelText = "";
+            // 
+            // labelSet_Chubunrui
+            // 
+            this.labelSet_Chubunrui.AppendLabelSize = 0;
+            this.labelSet_Chubunrui.AppendLabelText = "";
+            this.labelSet_Chubunrui.CodeTxtSize = 33;
+            this.labelSet_Chubunrui.CodeTxtText = "";
+            this.labelSet_Chubunrui.LabelName = "中分類";
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(12, 40);
+            this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
+            this.labelSet_Chubunrui.ShowAppendFlg = false;
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(293, 22);
+            this.labelSet_Chubunrui.SpaceCodeValue = 4;
+            this.labelSet_Chubunrui.SpaceNameCode = 40;
+            this.labelSet_Chubunrui.SpaceValueAppend = 4;
+            this.labelSet_Chubunrui.strDaibunCd = null;
+            this.labelSet_Chubunrui.TabIndex = 109;
+            this.labelSet_Chubunrui.ValueLabelSize = 150;
+            this.labelSet_Chubunrui.ValueLabelText = "";
+            // 
+            // labelSet_Daibunrui
+            // 
+            this.labelSet_Daibunrui.AppendLabelSize = 0;
+            this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.CodeTxtSize = 33;
+            this.labelSet_Daibunrui.CodeTxtText = "";
+            this.labelSet_Daibunrui.LabelName = "大分類";
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 12);
+            this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
+            this.labelSet_Daibunrui.ShowAppendFlg = false;
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(308, 22);
+            this.labelSet_Daibunrui.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui.SpaceNameCode = 40;
+            this.labelSet_Daibunrui.SpaceValueAppend = 4;
+            this.labelSet_Daibunrui.TabIndex = 108;
+            this.labelSet_Daibunrui.ValueLabelSize = 150;
+            this.labelSet_Daibunrui.ValueLabelText = "";
             // 
             // btnF11
             // 
@@ -124,35 +181,35 @@ namespace KATO.Common.Form
             this.gridTorihiki.AllowUserToAddRows = false;
             this.gridTorihiki.AllowUserToResizeColumns = false;
             this.gridTorihiki.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.gridTorihiki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridTorihiki.EnableHeadersVisualStyles = false;
             this.gridTorihiki.Location = new System.Drawing.Point(12, 122);
             this.gridTorihiki.Name = "gridTorihiki";
             this.gridTorihiki.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -171,63 +228,63 @@ namespace KATO.Common.Form
             this.txtKensaku.TabIndex = 101;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
             // 
-            // baseLabel1
+            // lblDataFree
             // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(337, 98);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(367, 15);
-            this.baseLabel1.TabIndex = 100;
-            this.baseLabel1.Text = "※ﾌﾘｰ在庫の表示は右のボタンを押してください。";
-            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDataFree.AutoSize = true;
+            this.lblDataFree.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblDataFree.Location = new System.Drawing.Point(337, 98);
+            this.lblDataFree.Name = "lblDataFree";
+            this.lblDataFree.Size = new System.Drawing.Size(367, 15);
+            this.lblDataFree.TabIndex = 100;
+            this.lblDataFree.Text = "※ﾌﾘｰ在庫の表示は右のボタンを押してください。";
+            this.lblDataFree.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel8
+            // lblKensaku
             // 
-            this.baseLabel8.AutoSize = true;
-            this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel8.Location = new System.Drawing.Point(12, 100);
-            this.baseLabel8.Name = "baseLabel8";
-            this.baseLabel8.Size = new System.Drawing.Size(87, 15);
-            this.baseLabel8.TabIndex = 100;
-            this.baseLabel8.Text = "検索文字列";
-            this.baseLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKensaku.AutoSize = true;
+            this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKensaku.Location = new System.Drawing.Point(12, 100);
+            this.lblKensaku.Name = "lblKensaku";
+            this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.TabIndex = 100;
+            this.lblKensaku.Text = "検索文字列";
+            this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel6
+            // lblGihu
             // 
-            this.baseLabel6.AutoSize = true;
-            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(712, 56);
-            this.baseLabel6.Name = "baseLabel6";
-            this.baseLabel6.Size = new System.Drawing.Size(39, 15);
-            this.baseLabel6.TabIndex = 99;
-            this.baseLabel6.Text = "岐阜";
-            this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.baseLabel6.Visible = false;
+            this.lblGihu.AutoSize = true;
+            this.lblGihu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGihu.Location = new System.Drawing.Point(712, 56);
+            this.lblGihu.Name = "lblGihu";
+            this.lblGihu.Size = new System.Drawing.Size(39, 15);
+            this.lblGihu.TabIndex = 99;
+            this.lblGihu.Text = "岐阜";
+            this.lblGihu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblGihu.Visible = false;
             // 
-            // baseLabel2
+            // lblHon
             // 
-            this.baseLabel2.AutoSize = true;
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(609, 56);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(39, 15);
-            this.baseLabel2.TabIndex = 99;
-            this.baseLabel2.Text = "本社";
-            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.baseLabel2.Visible = false;
+            this.lblHon.AutoSize = true;
+            this.lblHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHon.Location = new System.Drawing.Point(609, 56);
+            this.lblHon.Name = "lblHon";
+            this.lblHon.Size = new System.Drawing.Size(39, 15);
+            this.lblHon.TabIndex = 99;
+            this.lblHon.Text = "本社";
+            this.lblHon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHon.Visible = false;
             // 
-            // txtGifu
+            // txtGihu
             // 
-            this.txtGifu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtGifu.Location = new System.Drawing.Point(759, 52);
-            this.txtGifu.MaxLength = 2;
-            this.txtGifu.Name = "txtGifu";
-            this.txtGifu.Size = new System.Drawing.Size(32, 22);
-            this.txtGifu.TabIndex = 92;
-            this.txtGifu.Tag = "";
-            this.txtGifu.Visible = false;
-            this.txtGifu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
+            this.txtGihu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGihu.Location = new System.Drawing.Point(759, 52);
+            this.txtGihu.MaxLength = 2;
+            this.txtGihu.Name = "txtGihu";
+            this.txtGihu.Size = new System.Drawing.Size(32, 22);
+            this.txtGihu.TabIndex = 92;
+            this.txtGihu.Tag = "";
+            this.txtGihu.Visible = false;
+            this.txtGihu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
             // 
             // txtHon
             // 
@@ -240,62 +297,6 @@ namespace KATO.Common.Form
             this.txtHon.Visible = false;
             this.txtHon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
             // 
-            // labelSet_Daibunrui
-            // 
-            this.labelSet_Daibunrui.AppendLabelSize = 0;
-            this.labelSet_Daibunrui.AppendLabelText = "";
-            this.labelSet_Daibunrui.CodeTxtSize = 33;
-            this.labelSet_Daibunrui.CodeTxtText = "";
-            this.labelSet_Daibunrui.LabelName = "大分類";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 12);
-            this.labelSet_Daibunrui.Lschubundata = null;
-            this.labelSet_Daibunrui.LsSubchubundata = null;
-            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
-            this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(308, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 4;
-            this.labelSet_Daibunrui.SpaceNameCode = 20;
-            this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 108;
-            this.labelSet_Daibunrui.ValueLabelSize = 150;
-            this.labelSet_Daibunrui.ValueLabelText = "";
-            // 
-            // labelSet_Chubunrui
-            // 
-            this.labelSet_Chubunrui.AppendLabelSize = 0;
-            this.labelSet_Chubunrui.AppendLabelText = "";
-            this.labelSet_Chubunrui.CodeTxtSize = 33;
-            this.labelSet_Chubunrui.CodeTxtText = "";
-            this.labelSet_Chubunrui.LabelName = "中分類";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(12, 41);
-            this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
-            this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(293, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 4;
-            this.labelSet_Chubunrui.SpaceNameCode = 20;
-            this.labelSet_Chubunrui.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui.TabIndex = 109;
-            this.labelSet_Chubunrui.ValueLabelSize = 150;
-            this.labelSet_Chubunrui.ValueLabelText = "";
-            // 
-            // labelSet_Maker
-            // 
-            this.labelSet_Maker.AppendLabelSize = 0;
-            this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 33;
-            this.labelSet_Maker.CodeTxtText = "";
-            this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(12, 70);
-            this.labelSet_Maker.Name = "labelSet_Maker";
-            this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(288, 22);
-            this.labelSet_Maker.SpaceCodeValue = 4;
-            this.labelSet_Maker.SpaceNameCode = 4;
-            this.labelSet_Maker.SpaceValueAppend = 4;
-            this.labelSet_Maker.TabIndex = 110;
-            this.labelSet_Maker.ValueLabelSize = 150;
-            this.labelSet_Maker.ValueLabelText = "";
-            // 
             // ShouhinList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -304,7 +305,7 @@ namespace KATO.Common.Form
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);
             this.Controls.Add(this.labelSet_Daibunrui);
-            this.Controls.Add(this.check1);
+            this.Controls.Add(this.chkNotToroku);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.btnGifuZaiko);
@@ -312,11 +313,11 @@ namespace KATO.Common.Form
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.txtKensaku);
-            this.Controls.Add(this.baseLabel1);
-            this.Controls.Add(this.baseLabel8);
-            this.Controls.Add(this.baseLabel6);
-            this.Controls.Add(this.baseLabel2);
-            this.Controls.Add(this.txtGifu);
+            this.Controls.Add(this.lblDataFree);
+            this.Controls.Add(this.lblKensaku);
+            this.Controls.Add(this.lblGihu);
+            this.Controls.Add(this.lblHon);
+            this.Controls.Add(this.txtGihu);
             this.Controls.Add(this.txtHon);
             this.Name = "ShouhinList";
             this.Text = "ShouhinList";
@@ -330,19 +331,19 @@ namespace KATO.Common.Form
 
         #endregion
         private BaseText txtKensaku;
-        private BaseLabel baseLabel8;
+        private BaseLabel lblKensaku;
         private BaseDataGridView gridTorihiki;
         private System.Windows.Forms.Label lblRecords;
-        private BaseLabel baseLabel1;
+        private BaseLabel lblDataFree;
         private BaseButton btnHonshaZaiko;
         private BaseButton btnGifuZaiko;
         private BaseButton btnF11;
         private BaseButton btnF12;
-        private System.Windows.Forms.CheckBox check1;
+        private System.Windows.Forms.CheckBox chkNotToroku;
         private BaseText txtHon;
-        private BaseText txtGifu;
-        private BaseLabel baseLabel2;
-        private BaseLabel baseLabel6;
+        private BaseText txtGihu;
+        private BaseLabel lblHon;
+        private BaseLabel lblGihu;
         private LabelSet_Daibunrui labelSet_Daibunrui;
         private LabelSet_Chubunrui labelSet_Chubunrui;
         private LabelSet_Maker labelSet_Maker;

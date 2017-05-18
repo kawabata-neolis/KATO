@@ -15,7 +15,6 @@ using KATO.Business.F0140_TanaorosiInput_B;
 
 namespace KATO.Form.F0140_TanaorosiInput
 {
-
     ///<summary>
     ///F0140_TanaorosiInput
     ///棚卸入力

@@ -26,11 +26,6 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ShouhinList : System.Windows.Forms.Form
     {
-        //他画面からという判断データ
-        int mode = 0;
-
-        int gmode = 0;
-
         //前画面からメーカーコードを取り出す枠（大分類コード初期値）
         public string strYMD = "";
 
@@ -105,7 +100,7 @@ namespace KATO.Common.Form
             //DataGridViewの初期設定
             gridSetUp();
 
-            //modeで判定して項目を追加
+            //画面で判定して項目を追加
             setStart();
 
             //データ渡し用
@@ -113,10 +108,16 @@ namespace KATO.Common.Form
 
             setShohinView(lstInt);
 
-            gmode = mode;
-
             //未登録棚番を使用する場合
-            check1.Checked = false;
+            chkNotToroku.Checked = false;
+
+            if (intFrmKind == 11)
+            {
+                lblDataFree.Visible = false;
+                btnHonshaZaiko.Visible = false;
+                btnGifuZaiko.Visible = false;
+                chkNotToroku.Visible = true;
+            }
         }
 
         ///<summary>
@@ -202,17 +203,17 @@ namespace KATO.Common.Form
         ///</summary>
         private void setStart()
         {
-            if (mode == 9)
+            if (intFrmKind == 11)
             {
                 DataGridViewTextBoxColumn tanaHonsha = new DataGridViewTextBoxColumn();
-                tanaHonsha.DataPropertyName = "本社在庫";
-                tanaHonsha.Name = "本社在庫";
-                tanaHonsha.HeaderText = "本社在庫";
+                tanaHonsha.DataPropertyName = "棚番本社";
+                tanaHonsha.Name = "棚番本社";
+                tanaHonsha.HeaderText = "棚番本社";
 
                 DataGridViewTextBoxColumn tanaGifu = new DataGridViewTextBoxColumn();
-                tanaGifu.DataPropertyName = "岐阜在庫";
-                tanaGifu.Name = "岐阜在庫";
-                tanaGifu.HeaderText = "岐阜在庫";
+                tanaGifu.DataPropertyName = "棚番岐阜";
+                tanaGifu.Name = "棚番岐阜";
+                tanaGifu.HeaderText = "棚番岐阜";
 
                 gridTorihiki.Columns.Add(tanaHonsha);
                 gridTorihiki.Columns.Add(tanaGifu);
@@ -225,7 +226,7 @@ namespace KATO.Common.Form
                 gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
-            else
+            else if (intFrmKind == 5)
             {
                 DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
                 zaikoHonsha.DataPropertyName = "本社在庫";
@@ -510,7 +511,7 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
 
             txtHon.Text = "";
-            txtGifu.Text = "";
+            txtGihu.Text = "";
 
             gridTorihiki.Columns.Clear();
 
@@ -538,12 +539,17 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
             List<Boolean> lstBoolean = new List<Boolean>();
 
+            if (intFrmKind == 11)
+            {
+                chkNotToroku.Checked = true;
+            }
+
             gridTorihiki.Enabled = true;
             gridTorihiki.DataSource = null;
             DataTable dtView = new DataTable();
 
             //データ渡し用
-            lstInt.Add(gmode);
+            lstInt.Add(intFrmKind);
             lstInt.Add(lstIntMode[0]);
 
             lstString.Add(labelSet_Daibunrui.CodeTxtText);
@@ -551,9 +557,9 @@ namespace KATO.Common.Form
             lstString.Add(labelSet_Maker.CodeTxtText);
             lstString.Add(txtKensaku.Text);
             lstString.Add(txtHon.Text);
-            lstString.Add(txtGifu.Text);
+            lstString.Add(txtGihu.Text);
 
-            lstBoolean.Add(check1.Checked);
+            lstBoolean.Add(chkNotToroku.Checked);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
@@ -563,6 +569,12 @@ namespace KATO.Common.Form
                 gridTorihiki.DataSource = dtView;
                 this.gridTorihiki.Columns["コード"].Visible = false;
                 this.gridTorihiki.Columns["大分類名"].Visible = false;
+
+                if(intFrmKind == 11)
+                {
+                    //ヘッダーを含まない特定のセルの背景色を赤色にする
+                    this.gridTorihiki.Columns["棚番本社"].DefaultCellStyle.BackColor = Color.Red;
+                }
 
                 lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
                 gridTorihiki.Focus();
@@ -699,7 +711,7 @@ namespace KATO.Common.Form
             //データ渡し用
             List<int> lstInt = new List<int>();
 
-            txtGifu.Text = "1";
+            txtGihu.Text = "1";
 
             //データ渡し用
             lstInt.Add(2);

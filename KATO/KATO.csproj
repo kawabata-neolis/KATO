@@ -62,6 +62,7 @@
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
+    <Compile Include="Business\M1030_Shohin\M1030_Shohin_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
     <Compile Include="Business\M1050_Tantousha\M1050_Tantousha_B.cs" />
     <Compile Include="Business\M1060_Gyoshu\M1060_Gyoshu_B.cs" />
@@ -781,21 +782,7 @@
     <Content Include="SQL\Common\CommonForm\DaibunruiList_View.sql" />
     <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetYMD.sql" />
     <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetItem.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_DEL.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE_DELETE.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_UPDATE.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_INSERT.sql" />
-    <Content Include="SQL\M1020_Maker\M1020_Maker_SELECT_Kaburi_ADD.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_ADD.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_SELECT_Kaburi_DEL.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_UPDATE.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_INSERT.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_UPDATE_DELETE.sql" />
-    <Content Include="SQL\M1110_Chubunrui\M1110_Chubun_UPDATE_DELETE.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_INSERT.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_Kaburi_DEL.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_SELECT_Kaburi_ADD.sql" />
-    <Content Include="SQL\M1010_Daibunrui\M1010_Daibun_UPDATE.sql" />
+    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

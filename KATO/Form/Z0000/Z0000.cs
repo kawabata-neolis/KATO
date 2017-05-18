@@ -120,6 +120,13 @@ namespace KATO.Form.Z0000
             gyoushu.ShowDialog();
         }
 
+        //商品表示
+        private void btnShohin_Click(object sender, EventArgs e)
+        {
+            M1030_Shohin.M1030_Shohin shohin = new M1030_Shohin.M1030_Shohin(this);
+            shohin.ShowDialog();
+        }
+
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)
