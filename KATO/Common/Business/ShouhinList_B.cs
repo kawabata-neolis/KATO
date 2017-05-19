@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.M1030_Shohin;
 
 namespace KATO.Common.Business
 {
@@ -417,8 +418,26 @@ namespace KATO.Common.Business
                     tanaorosiinput.setShouhin(lstStringTana, lstDTTana);
                     break;
                 }
+                //目的のフォームを探す
+                else if (frm.Name == "M1030_Shohin")
+                {
+                    //データ渡し用
+                    lstStringTana.Add(lstString[2]);
+                    lstStringTana.Add(lstString[6]);
 
-                //ここから
+                    //lstDTTana.Add(dtDaibun);
+                    //lstDTTana.Add(dtChubun);
+                    //lstDTTana.Add(dtMaker);
+                    //lstDTTana.Add(dtShohinTanaID);
+                    //lstDTTana.Add(dtShohinTanaName);
+
+                    //データを連れてくるため、newをしないこと
+                    M1030_Shohin shohin = (M1030_Shohin)frm;
+                    shohin.setShouhin(lstStringTana, lstDTTana);
+                    break;
+                }
+
+
 
             }
         }

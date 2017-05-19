@@ -312,6 +312,31 @@ namespace KATO.Form.M1030_Shohin
         }
 
         /// <summary>
+        /// setShouhin
+        ///取り出したデータをテキストボックスに配置（商品リスト）
+        /// </summary>
+        public void setShouhin(List<string> lstStringShohin, List<DataTable> lstDTShohin)
+        {
+            //if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false)
+            //{
+            //    return;
+            //}
+
+            //labelSet_Daibunrui.CodeTxtText = lstDTtana[0].Rows[0]["大分類コード"].ToString();
+            //labelSet_Daibunrui.ValueLabelText = lstDTtana[0].Rows[0]["大分類名"].ToString();
+            //labelSet_Chubunrui_Edit.CodeTxtText = lstDTtana[1].Rows[0]["中分類コード"].ToString();
+            //labelSet_Chubunrui_Edit.ValueLabelText = lstDTtana[1].Rows[0]["中分類名"].ToString();
+            //labelSet_Maker_Edit.CodeTxtText = lstDTtana[2].Rows[0]["メーカーコード"].ToString();
+            //labelSet_Maker_Edit.ValueLabelText = lstDTtana[2].Rows[0]["メーカー名"].ToString();
+            //labelSet_Tanaban_Edit.CodeTxtText = lstDTtana[3].Rows[0]["棚番"].ToString();
+            //labelSet_Tanaban_Edit.ValueLabelText = lstDTtana[4].Rows[0]["棚番名"].ToString();
+            //txtTanasuu.Text = lstDTtana[3].Rows[0]["棚卸数量"].ToString();
+            //txtTyoubosuu.Text = lstDTtana[3].Rows[0]["指定日在庫"].ToString();
+            //lblDspShouhin.Text = lstStringTana[1].ToString();
+
+        }
+
+        /// <summary>
         /// judtxtShohinKeyUp
         /// 入力項目上でのキー判定と文字数判定（）
         /// </summary>
