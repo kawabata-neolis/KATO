@@ -127,6 +127,14 @@ namespace KATO.Form.Z0000
             shohin.ShowDialog();
         }
 
+        //取引先表示
+        private void btnTorihikisaki_Click(object sender, EventArgs e)
+        {
+            M1070_Torihikisaki.M1070_Torihikisaki torihiki = new M1070_Torihikisaki.M1070_Torihikisaki(this);
+            torihiki.ShowDialog();
+        }
+
+
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)

@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTorihikisaki = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnShohin = new KATO.Common.Ctl.BaseMenuButton();
             this.btnGyoushu = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTantousha = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
@@ -44,7 +46,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnShohin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.btnTestWindow);
+            this.tabPage1.Controls.Add(this.btnTorihikisaki);
             this.tabPage1.Controls.Add(this.btnShohin);
             this.tabPage1.Controls.Add(this.btnGyoushu);
             this.tabPage1.Controls.Add(this.btnTantousha);
@@ -157,6 +159,30 @@
             this.btnTestWindow.UseVisualStyleBackColor = false;
             this.btnTestWindow.Click += new System.EventHandler(this.baseMenuButton6_Click);
             this.btnTestWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnTorihikisaki
+            // 
+            this.btnTorihikisaki.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTorihikisaki.Location = new System.Drawing.Point(23, 566);
+            this.btnTorihikisaki.Name = "btnTorihikisaki";
+            this.btnTorihikisaki.Size = new System.Drawing.Size(280, 40);
+            this.btnTorihikisaki.TabIndex = 7;
+            this.btnTorihikisaki.Text = "取引先";
+            this.btnTorihikisaki.UseVisualStyleBackColor = false;
+            this.btnTorihikisaki.Click += new System.EventHandler(this.btnTorihikisaki_Click);
+            this.btnTorihikisaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnShohin
+            // 
+            this.btnShohin.BackColor = System.Drawing.Color.LightYellow;
+            this.btnShohin.Location = new System.Drawing.Point(23, 502);
+            this.btnShohin.Name = "btnShohin";
+            this.btnShohin.Size = new System.Drawing.Size(280, 40);
+            this.btnShohin.TabIndex = 7;
+            this.btnShohin.Text = "商品";
+            this.btnShohin.UseVisualStyleBackColor = false;
+            this.btnShohin.Click += new System.EventHandler(this.btnShohin_Click);
+            this.btnShohin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnGyoushu
             // 
@@ -302,18 +328,6 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // btnShohin
-            // 
-            this.btnShohin.BackColor = System.Drawing.Color.LightYellow;
-            this.btnShohin.Location = new System.Drawing.Point(23, 502);
-            this.btnShohin.Name = "btnShohin";
-            this.btnShohin.Size = new System.Drawing.Size(280, 40);
-            this.btnShohin.TabIndex = 7;
-            this.btnShohin.Text = "商品";
-            this.btnShohin.UseVisualStyleBackColor = false;
-            this.btnShohin.Click += new System.EventHandler(this.btnShohin_Click);
-            this.btnShohin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
-            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -366,5 +380,6 @@
         private Common.Ctl.BaseMenuButton btnZanKakunin;
         private Common.Ctl.BaseMenuButton btnGyoushu;
         private Common.Ctl.BaseMenuButton btnShohin;
+        private Common.Ctl.BaseMenuButton btnTorihikisaki;
     }
 }

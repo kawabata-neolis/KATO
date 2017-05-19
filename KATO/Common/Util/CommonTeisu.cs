@@ -27,6 +27,7 @@ namespace KATO.Common.Util
         public const String STR_FUNC_F12 = "F12:終了";
 
         public const String STR_FUNC_F10_Shohin = "F10:棚番無";
+        public const String STR_FUNC_F8_Torihikisaki = "F08:空番";
 
 
         public const String STR_BTN_F01 = "btnF01";
