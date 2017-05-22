@@ -91,14 +91,14 @@ namespace KATO.Common.Ctl
                 this.Focus();
                 return;
             }
+            
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
             if (this.CodeTxtText.Length <= 3)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Eigyousho_SELECT_LEAVE";
 

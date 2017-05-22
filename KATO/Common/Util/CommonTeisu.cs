@@ -55,7 +55,7 @@ namespace KATO.Common.Util
         public const int FRM_TORIHIKIKBN = 9;
         public const int FRM_GYOSHU = 10;
         public const int FRM_SHOHIN = 11;
-
+        public const int FRM_TORIHIKISAKI = 12;
 
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Form;
+using KATO.Form.M1070_Torihikisaki;
 
 namespace KATO.Common.Business
 {
@@ -58,9 +59,9 @@ namespace KATO.Common.Business
                 return (dtGetTableGrid);
 
             }
-            catch
+            catch (Exception ex)
             {
-
+                new CommonException(ex);
             }
             return (dtGetTableGrid);
         }
@@ -80,6 +81,14 @@ namespace KATO.Common.Business
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaoroshi = (F0140_TanaorosiInput)frm;
                     tanaoroshi.setDaibunruiListClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (lstInt[0] == 12 && frm.Name.Equals("M1070_Torihikisaki"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                    torihikisaki.setTokuisakiListClose();
                     break;
                 }
             }
@@ -123,7 +132,21 @@ namespace KATO.Common.Business
                 //中分類
                 case 2:
                     break;
-
+                //取引先
+                case 12:
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //目的のフォームを探す
+                        if (frm.Name.Equals("M1070_Torihikisaki"))
+                        {
+                            //データを連れてくるため、newをしないこと
+                            M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                            torihikisaki.setTorihikisaki(dtSelectData);
+                            break;
+                        }
+                    }
+                    break;
                 default:
                     break;
             }

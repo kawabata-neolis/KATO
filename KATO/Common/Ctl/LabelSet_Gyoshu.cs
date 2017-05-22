@@ -13,21 +13,21 @@ using KATO.Common.Util;
 namespace KATO.Common.Ctl
 {
     ///<summary>
-    ///LabelSet_Tokuisaki
-    ///ラベルセット得意先（取引先）
+    ///LabelSet_GyoshuCd
+    ///ラベルセット得意先（業種）
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class LabelSet_Tokuisaki : BaseTextLabelSet
+    public partial class LabelSet_Gyoshu : BaseTextLabelSet
     {
         /// <summary>
-        /// LabelSet_Tokuisaki
+        /// LabelSet_GyoshuCd
         /// 読み込み時
         /// </summary>
-        public LabelSet_Tokuisaki()
+        public LabelSet_Gyoshu()
         {
             InitializeComponent();
         }
@@ -42,25 +42,25 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
-        ///judTokuisakiKeyDown
+        ///judGyoshuKeyDown
         ///コード入力項目でのキー入力判定
         ///</summary>
-        private void judTokuisakiKeyDown(object sender, KeyEventArgs e)
+        private void judGyoshuKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F9)
             {
-                TokuisakiList tokuisakiList = new TokuisakiList(this.Parent, this);
-                tokuisakiList.StartPosition = FormStartPosition.Manual;
-                tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
-                tokuisakiList.ShowDialog();
+                GyoshuList GyoshuList = new GyoshuList(this.Parent, this);
+                GyoshuList.StartPosition = FormStartPosition.Manual;
+                GyoshuList.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                GyoshuList.ShowDialog();
             }
         }
 
         ///<summary>
-        ///updTxtTokuisakiLeave
+        ///updTxtGyoshuLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtTokuisakiLeave(object sender, EventArgs e)
+        public void updTxtGyoshuLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
@@ -97,7 +97,12 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
+            if (this.CodeTxtText.Length <= 3)
+            {
+                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+            }
+
+            strSQLName = "C_LIST_Gyoshu_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -126,20 +131,8 @@ namespace KATO.Common.Ctl
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    string strZeikubun = "";
-
-                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
-                    {
-                        strZeikubun = "外税";
-                    }
-                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
-                    {
-                        strZeikubun = "内税";
-                    }
-
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
-                    this.AppendLabelText = strZeikubun;
+                    this.CodeTxtText = dtSetCd.Rows[0]["業種コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["業種名"].ToString();
                 }
                 else
                 {
@@ -147,7 +140,7 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    this.codeTxt.Focus();
+                    this.Focus();
                 }
                 return;
             }
@@ -157,10 +150,10 @@ namespace KATO.Common.Ctl
             }
         }
 
-        ///judTokuisakiKeyUp
+        ///judGyoshuKeyUp
         ///入力項目上でのキー判定と文字数判定
         ///</summary>
-        private void judTokuisakiKeyUp(object sender, KeyEventArgs e)
+        private void judGyoshuKeyUp(object sender, KeyEventArgs e)
         {
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
@@ -215,7 +208,7 @@ namespace KATO.Common.Ctl
                 return;
             }
             
-            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
+            strSQLName = "C_LIST_Gyoshu_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -241,25 +234,6 @@ namespace KATO.Common.Ctl
 
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSetCd = dbconnective.ReadSql(strSQLInput);
-
-                if (dtSetCd.Rows.Count != 0)
-                {
-                    string strZeikubun = "";
-
-                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
-                    {
-                        strZeikubun = "外税";
-                    }
-                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
-                    {
-                        strZeikubun = "内税";
-                    }
-
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
-                    this.AppendLabelText = strZeikubun;
-                }
-                return;
             }
             catch (Exception ex)
             {

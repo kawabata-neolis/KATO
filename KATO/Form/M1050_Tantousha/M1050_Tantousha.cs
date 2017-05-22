@@ -15,14 +15,24 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1050_Tantousha
 {
+    ///<summary>
+    ///M1050_Tantousha
+    ///担当者フォーム
+    ///作成者：大河内
+    ///作成日：2017/2/2
+    ///更新者：大河内
+    ///更新日：2017/2/2
+    ///カラム論理名
+    ///</summary>
     public partial class M1050_Tantousha : BaseForm
     {
-
         //コード内の無限ループを抜けるためのもの
         public Boolean blnLoopOne = true;
-
-        //修正中
-
+        
+        /// <summary>
+        /// M1050_Tantousha
+        /// フォーム関係の設定
+        /// </summary>
         public M1050_Tantousha(Control c)
         {
             if (c == null)
@@ -266,7 +276,6 @@ namespace KATO.Form.M1050_Tantousha
             lstString.Add(SystemInformation.UserName);
 
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
-
             try
             {
                 tantouB.addTantousha(lstString);

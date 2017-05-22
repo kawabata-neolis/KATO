@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Common.Ctl;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Common.Ctl;
 using KATO.Common.Business;
 using KATO.Common.Util;
 using System.Security.Permissions;
@@ -16,26 +16,27 @@ using System.Security.Permissions;
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///TokuisakiList
-    ///得意先リスト
+    ///TorihikiCdList
+    ///取引コードリスト
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class TokuisakiList : System.Windows.Forms.Form
+    public partial class TorihikiCdList : System.Windows.Forms.Form
     {
-        LabelSet_Tokuisaki lblSetTokuisaki = null;
+        ////ラベルセット作成の場合修正
+        //LabelSet_Tokuisaki lblSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
         /// <summary>
-        /// TantoushaList
+        /// TorihikiCdList
         /// 前画面からデータ受け取り(通常テキストボックス)
         /// </summary>
-        public TokuisakiList(Control c)
+        public TorihikiCdList(Control c)
         {
             if (c == null)
             {
@@ -57,36 +58,39 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
+
+            radAgyo.Checked = true;
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)
-        /// </summary>
-        public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
-        {
-            if (c == null)
-            {
-                return;
-            }
+        ////ラベルセット作成の場合修正
+        ///// <summary>
+        ///// TokuisakiList
+        ///// 前画面からデータ受け取り(セットテキストボックス)
+        ///// </summary>
+        //public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
+        //{
+        //    if (c == null)
+        //    {
+        //        return;
+        //    }
 
-            int intWindowWidth = c.Width;
-            int intWindowHeight = c.Height;
+        //    int intWindowWidth = c.Width;
+        //    int intWindowHeight = c.Height;
 
-            lblSetTokuisaki = lblSetTokuiSelect;
-            InitializeComponent();
+        //    lblSetTokuisaki = lblSetTokuiSelect;
+        //    InitializeComponent();
 
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-            this.btnF11.Text = "F11:検索";
+        //    // フォームでもキーイベントを受け取る
+        //    this.KeyPreview = true;
+        //    this.btnF12.Text = "F12:戻る";
+        //    this.btnF11.Text = "F11:検索";
 
-            //ウィンドウ位置をマニュアル
-            this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
-        }
+        //    //ウィンドウ位置をマニュアル
+        //    this.StartPosition = FormStartPosition.Manual;
+        //    //親画面の中央を指定
+        //    this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+        //    this.Top = c.Top;
+        //}
 
         /// <summary>
         /// _Title
@@ -102,13 +106,13 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// TantousyaList_Load
+        /// TorihikiCdList_Load
         /// 初回読み込み
         /// </summary>
-        private void TantousyaList_Load(object sender, EventArgs e)
+        private void TorihikiCdList_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "取引先名";
+            this._Title = "取引コードリスト";
 
             SetUpGrid();
         }
@@ -120,38 +124,29 @@ namespace KATO.Common.Form
         private void SetUpGrid()
         {
             //列自動生成禁止
-            gridTokuisaki.AutoGenerateColumns = false;
+            gridSeihin.AutoGenerateColumns = false;
 
             //データをバインド
-            DataGridViewTextBoxColumn torihikisakiCD = new DataGridViewTextBoxColumn();
-            torihikisakiCD.DataPropertyName = "取引先コード";
-            torihikisakiCD.Name = "取引先コード";
-            torihikisakiCD.HeaderText = "コード";
-
-            DataGridViewTextBoxColumn torihikisakiName = new DataGridViewTextBoxColumn();
-            torihikisakiName.DataPropertyName = "取引先名称";
-            torihikisakiName.Name = "取引先名称";
-            torihikisakiName.HeaderText = "取引先名";
+            DataGridViewTextBoxColumn Cd = new DataGridViewTextBoxColumn();
+            Cd.DataPropertyName = "コード";
+            Cd.Name = "コード";
+            Cd.HeaderText = "コード";
 
             //バインドしたデータを追加
-            gridTokuisaki.Columns.Add(torihikisakiCD);
-            gridTokuisaki.Columns.Add(torihikisakiName);
+            gridSeihin.Columns.Add(Cd);
 
             //個々の幅、文章の寄せ
-            gridTokuisaki.Columns["取引先コード"].Width = 100;
-            gridTokuisaki.Columns["取引先コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTokuisaki.Columns["取引先コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridSeihin.Columns["コード"].Width = 100;
+            gridSeihin.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridSeihin.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridTokuisaki.Columns["取引先名称"].Width = 400;
-            gridTokuisaki.Columns["取引先名称"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTokuisaki.Columns["取引先名称"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         ///<summary>
-        ///judTantouListKeyDown
+        ///judToriListKeyDown
         ///キー入力判定
         ///</summary>
-        private void judTokuiListKeyDown(object sender, KeyEventArgs e)
+        private void judToriListKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -171,67 +166,6 @@ namespace KATO.Common.Form
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    break;
-                case Keys.F1:
-                    break;
-                case Keys.F2:
-                    break;
-                case Keys.F3:
-                    break;
-                case Keys.F4:
-                    break;
-                case Keys.F5:
-                    break;
-                case Keys.F6:
-                    break;
-                case Keys.F7:
-                    break;
-                case Keys.F8:
-                    break;
-                case Keys.F9:
-                    break;
-                case Keys.F10:
-                    break;
-                case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
-                    break;
-                case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        ///<summary>
-        ///judTokuiListTxtKeyDown
-        ///キー入力判定(テキストボックス)
-        ///</summary>
-        private void judTokuiListTxtKeyDown(object sender, KeyEventArgs e)
-        {
-            //キー入力情報によって動作を変える
-            switch (e.KeyCode)
-            {
-                case Keys.Tab:
-                    break;
-                case Keys.Left:
-                    break;
-                case Keys.Right:
-                    break;
-                case Keys.Up:
-                    break;
-                case Keys.Down:
-                    break;
-                case Keys.Delete:
-                    break;
-                case Keys.Back:
-                    break;
-                case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     break;
@@ -268,10 +202,10 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// judGridTokuiKeyDown
+        /// judGridToriKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         /// </summary>
-        private void judGridTokuiKeyDown(object sender, KeyEventArgs e)
+        private void judGridToriKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -334,35 +268,8 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            if (gridTokuisaki.Rows.Count < 1)
-            {
-                return;
-            }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-
-            //選択行の担当者情報取得
-            string strSelectId = (string)gridTokuisaki.CurrentRow.Cells["取引先コード"].Value;
-            string strSelectName = (string)gridTokuisaki.CurrentRow.Cells["取引先名称"].Value;
-
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
-
-            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
-            try
-            {
-                tokuisakilistB.setSelectItem(lstInt, lstString);
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-            }
-            setEndAction(lstString);
         }
-
 
         ///<summary>
         ///btnEndClick
@@ -380,11 +287,12 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
-            if (lblSetTokuisaki != null && lstString.Count != 0)
-            {
-                lblSetTokuisaki.CodeTxtText = lstString[0];
-                lblSetTokuisaki.ValueLabelText = lstString[1];
-            }
+            ////ラベルセット作成の場合修正
+            //if (lblSetTokuisaki != null && lstString.Count != 0)
+            //{
+            //    lblSetTokuisaki.CodeTxtText = lstString[0];
+            //    lblSetTokuisaki.ValueLabelText = lstString[1];
+            //}
 
             this.Close();
 
@@ -394,15 +302,16 @@ namespace KATO.Common.Form
             //処理部へ
             lstInt.Add(intFrmKind);
 
-            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
+            TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
-                tokuisakilistB.setEndAction(lstInt);
+                torihikilistB.setEndAction(lstInt);
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
             }
+
         }
 
         ///<summary>
@@ -412,32 +321,29 @@ namespace KATO.Common.Form
         private void btnKensakuClick(object sender, EventArgs e)
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            List<Boolean> lstBoolean = new List<Boolean>();
 
-            //データ渡し用
-            lstString.Add("");
-            lstString.Add("");
-            lstString.Add(txtTorihikisaki.Text);
-            lstString.Add(txtHurigana.Text);
-            lstString.Add("");
+            lstBoolean.Add(radAgyo.Checked);
+            lstBoolean.Add(radKagyo.Checked);
+            lstBoolean.Add(radSagyo.Checked);
+            lstBoolean.Add(radTagyo.Checked);
+            lstBoolean.Add(radNagyo.Checked);
+            lstBoolean.Add(radHagyo.Checked);
+            lstBoolean.Add(radMagyo.Checked);
+            lstBoolean.Add(radYagyo.Checked);
+            lstBoolean.Add(radRagyo.Checked);
+            lstBoolean.Add(radWagyo.Checked);
 
-            //処理部に移動
-            TokuisakiList_B tokuisakiB = new TokuisakiList_B();
+            TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
-                //データグリッドビュー部分
-                gridTokuisaki.DataSource = tokuisakiB.setKensaku(lstInt, lstString);
-
-                lblRecords.Text = "該当件数( " + gridTokuisaki.RowCount.ToString() + "件)";
-
-                gridTokuisaki.Focus();
+                //グリッドに表示されないため確認
+                gridSeihin.DataSource = torihikilistB.setKensaku(lstBoolean);
 
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
-                throw (ex);
             }
         }
 

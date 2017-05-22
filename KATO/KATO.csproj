@@ -73,6 +73,7 @@
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\GyoshuList_B.cs" />
+    <Compile Include="Common\Business\TorihikiCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
     <Compile Include="Common\Business\EigyoushoList_B.cs" />
@@ -213,6 +214,12 @@
     <Compile Include="Common\Ctl\LabelSet_Tantousha.Designer.cs">
       <DependentUpon>LabelSet_Tantousha.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Gyoshu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Gyoshu.Designer.cs">
+      <DependentUpon>LabelSet_Gyoshu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\LabelSet_Tokuisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +267,12 @@
     </Compile>
     <Compile Include="Common\Form\TokuisakiList.Designer.cs">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\TorihikiCdList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TorihikiCdList.Designer.cs">
+      <DependentUpon>TorihikiCdList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TorihikikbnList.cs">
       <SubType>Form</SubType>
@@ -480,6 +493,10 @@
       <DependentUpon>LabelSet_Tantousha.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Gyoshu.resx">
+      <DependentUpon>LabelSet_Gyoshu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tokuisaki.resx">
       <DependentUpon>LabelSet_Tokuisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -509,6 +526,9 @@
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\TorihikiCdList.resx">
+      <DependentUpon>TorihikiCdList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikikbnList.resx">
       <DependentUpon>TorihikikbnList.cs</DependentUpon>

@@ -27,7 +27,7 @@ namespace KATO.Common.Form
     public partial class GyoshuList : System.Windows.Forms.Form
     {
         //セットを作成する場合、変更
-        //LabelSet_Daibunrui lblSetDaibun = null;
+        LabelSet_Gyoshu lblSetGyoshu = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -55,30 +55,29 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
-        //セットを作成する場合、変更
-        ///// <summary>
-        ///// GyoshuList
-        ///// フォーム関係の設定（ラベルセットから）
-        ///// </summary>
-        //public GyoshuList(Control c, LabelSet_Daibunrui lblSetDaibunSelect)
-        //{
-        //    if (c == null)
-        //    {
-        //        return;
-        //    }
+        /// <summary>
+        /// GyoshuList
+        /// フォーム関係の設定（ラベルセットから）
+        /// </summary>
+        public GyoshuList(Control c, LabelSet_Gyoshu lblSetGyoshuSelect)
+        {
+            if (c == null)
+            {
+                return;
+            }
 
-        //    int intWindowWidth = c.Width;
-        //    int intWindowHeight = c.Height;
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
 
-        //    lblSetDaibun = lblSetDaibunSelect;
-        //    InitializeComponent();
+            lblSetGyoshu = lblSetGyoshuSelect;
+            InitializeComponent();
 
-        //    //ウィンドウ位置をマニュアル
-        //    this.StartPosition = FormStartPosition.Manual;
-        //    //親画面の中央を指定
-        //    this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-        //    this.Top = c.Top;
-        //}
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+        }
 
         /// <summary>
         /// _Title
@@ -219,11 +218,11 @@ namespace KATO.Common.Form
         private void setEndAction(List<string> lstString)
         {
             //セットを作成する場合変更
-            //if (lblSetDaibun != null && lstString.Count != 0)
-            //{
-            //    lblSetDaibun.CodeTxtText = lstString[0];
-            //    lblSetDaibun.ValueLabelText = lstString[1];
-            //}
+            if (lblSetGyoshu != null && lstString.Count != 0)
+            {
+                lblSetGyoshu.CodeTxtText = lstString[0];
+                lblSetGyoshu.ValueLabelText = lstString[1];
+            }
 
             this.Close();
 
@@ -234,10 +233,10 @@ namespace KATO.Common.Form
             lstInt.Add(intFrmKind);
 
             //処理部に移動
-            DaibunruiList_B daibunlistB = new DaibunruiList_B();
+            GyoshuList_B gyoshulistB = new GyoshuList_B();
             try
             {
-                daibunlistB.setEndAction(lstInt);
+                gyoshulistB.setEndAction(lstInt);
             }
             catch (Exception ex)
             {

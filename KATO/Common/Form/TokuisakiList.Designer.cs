@@ -95,7 +95,7 @@
             this.txtTorihikisaki.Name = "txtTorihikisaki";
             this.txtTorihikisaki.Size = new System.Drawing.Size(296, 22);
             this.txtTorihikisaki.TabIndex = 1;
-            this.txtTorihikisaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
+            this.txtTorihikisaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
             // txtHurigana
             // 
@@ -104,7 +104,7 @@
             this.txtHurigana.Name = "txtHurigana";
             this.txtHurigana.Size = new System.Drawing.Size(146, 22);
             this.txtHurigana.TabIndex = 0;
-            this.txtHurigana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
+            this.txtHurigana.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
             // gridTokuisaki
             // 

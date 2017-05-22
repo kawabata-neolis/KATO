@@ -166,7 +166,7 @@
             this.btnTorihikisaki.Location = new System.Drawing.Point(23, 566);
             this.btnTorihikisaki.Name = "btnTorihikisaki";
             this.btnTorihikisaki.Size = new System.Drawing.Size(280, 40);
-            this.btnTorihikisaki.TabIndex = 7;
+            this.btnTorihikisaki.TabIndex = 9;
             this.btnTorihikisaki.Text = "取引先";
             this.btnTorihikisaki.UseVisualStyleBackColor = false;
             this.btnTorihikisaki.Click += new System.EventHandler(this.btnTorihikisaki_Click);
@@ -178,7 +178,7 @@
             this.btnShohin.Location = new System.Drawing.Point(23, 502);
             this.btnShohin.Name = "btnShohin";
             this.btnShohin.Size = new System.Drawing.Size(280, 40);
-            this.btnShohin.TabIndex = 7;
+            this.btnShohin.TabIndex = 8;
             this.btnShohin.Text = "商品";
             this.btnShohin.UseVisualStyleBackColor = false;
             this.btnShohin.Click += new System.EventHandler(this.btnShohin_Click);

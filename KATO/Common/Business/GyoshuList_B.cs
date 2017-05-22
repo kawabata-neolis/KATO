@@ -71,11 +71,11 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 10 && frm.Name.Equals("M1"))
+                if (lstInt[0] == 10 && frm.Name.Equals("M1060_Gyoshu"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1060_Gyoshu gyoshu = (M1060_Gyoshu)frm;
-                    //gyoshu.setDaibunruiListClose();
+                    gyoshu.setGyoushuListClose();
                     break;
                 }
             }

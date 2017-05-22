@@ -213,7 +213,6 @@ namespace KATO.Form.M1060_Gyoushu
                 txtName.Focus();
                 return;
             }
-
             //データ渡し用
             lstString.Add(txtGyoshu.Text);
             lstString.Add(txtName.Text);
