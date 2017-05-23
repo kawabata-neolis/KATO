@@ -348,7 +348,15 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setParam(listParam, (rsSortOrder.judCheckBtn()).ToString(), 28);
 
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
-            DataTable dtZanList =  bis.getZanList(listParam);
+            try
+            {
+                DataTable dtZanList = bis.getZanList(listParam);
+                gridZanList.DataSource = dtZanList;
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 

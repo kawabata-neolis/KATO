@@ -15,11 +15,11 @@ namespace KATO.Common.Util
         //名前修正
         public static bool blIsEmpty(string strText)
         {
-            Boolean blnGood = true;
+            Boolean blnGood = false;
 
             if (String.IsNullOrWhiteSpace(strText))
             {
-                blnGood = false;
+                blnGood = true;
             }
             return (blnGood);
         }
