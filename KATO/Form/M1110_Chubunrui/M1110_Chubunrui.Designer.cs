@@ -97,7 +97,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtChubunrui.Name = "txtChubunrui";
             this.txtChubunrui.Size = new System.Drawing.Size(24, 22);
             this.txtChubunrui.TabIndex = 1;
-            this.txtChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunKeyDown);
+            this.txtChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtChuTxtKeyDown);
             this.txtChubunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
             this.txtChubunrui.Leave += new System.EventHandler(this.updTxtChubunruiLeave);
             // 
@@ -110,6 +110,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtElem.Name = "txtElem";
             this.txtElem.Size = new System.Drawing.Size(200, 22);
             this.txtElem.TabIndex = 2;
+            this.txtElem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunTxtKeyDown);
             // 
             // lblBaseLabelCD
             // 

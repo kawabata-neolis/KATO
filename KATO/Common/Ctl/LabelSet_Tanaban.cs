@@ -52,8 +52,13 @@ namespace KATO.Common.Ctl
                 TanabanList tanabanList = new TanabanList(this.Parent, this);
                 tanabanList.Show();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
-        
+
         ///<summary>
         ///updTxtTanabanLeave
         ///code入力箇所からフォーカスが外れた時

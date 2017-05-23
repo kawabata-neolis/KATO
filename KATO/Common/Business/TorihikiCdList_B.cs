@@ -21,6 +21,8 @@ namespace KATO.Common.Business
     ///</summary>
     class TorihikiCdList_B
     {
+        string strSQLName = null;
+
         /// <summary>
         /// setEndAction
         /// 終了時の処理
@@ -33,11 +35,69 @@ namespace KATO.Common.Business
                 //目的のフォームを探す
                 if (lstInt[0] == 12 && frm.Name.Equals("M1070_Torihikisaki"))
                 {
-                    //データを連れてくるため、newをしないこと
-                    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                    torihikisaki.setTorihikiCdListClose();
+                    ////データを連れてくるため、newをしないこと
+                    //M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                    //torihikisaki.setTorihikiCdListClose();
                     break;
                 }
+            }
+        }
+
+        /// <summary>
+        /// setSelectItem
+        /// 選択後の処理
+        /// </summary>
+        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        {
+            DataTable dtSelectData;
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            strSQLName = "C_LIST_TorihikisakiKensaku_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            //配列設定
+            string[] aryStr = { lstString[0] };
+
+            strSQLInput = string.Format(strSQLInput, aryStr);
+
+            dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+            switch (lstInt[0])
+            {
+                //大分類
+                case 1:
+                    break;
+                //中分類
+                case 2:
+                    break;
+                //取引先
+                case 12:
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //目的のフォームを探す
+                        if (frm.Name.Equals("M1070_Torihikisaki"))
+                        {
+                            //データを連れてくるため、newをしないこと
+                            M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                            torihikisaki.setTorihikisaki(dtSelectData);
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -109,7 +169,7 @@ namespace KATO.Common.Business
 
                 if (dtSelectMax.Rows.Count > 0)
                 {
-                    MinCode = dtSelectMax.Rows[0][0].ToString();
+                    MaxCode = dtSelectMax.Rows[0][0].ToString();
                 }
 
                 string StrWhere;
@@ -130,6 +190,9 @@ namespace KATO.Common.Business
             {
                 dbconnective.DB_Disconnect();
             }
+
+            dtGetTableGrid.Columns["取引先コード"].ColumnName = "コード";
+
             return (dtGetTableGrid);
         }
     }

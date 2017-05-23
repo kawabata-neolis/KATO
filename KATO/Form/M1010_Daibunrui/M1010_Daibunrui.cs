@@ -100,6 +100,65 @@ namespace KATO.Form.M1010_Daibunrui
                 case Keys.Back:
                     break;
                 case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    this.addDaibunrui();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delDaibunrui();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judDaiBunTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judDaiBunTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
                     break;
@@ -136,6 +195,69 @@ namespace KATO.Form.M1010_Daibunrui
                     break;
             }
         }
+
+        /// <summary>
+        /// judTxtDaiBunTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTxtDaiBunTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.addDaibunrui();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delDaibunrui();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    judtxtDaibunKeyDown(sender, e);
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
 
         /// <summary>
         /// judBtnClick
@@ -400,7 +522,7 @@ namespace KATO.Form.M1010_Daibunrui
                 return;
             }
             //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }

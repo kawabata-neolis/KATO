@@ -281,6 +281,7 @@
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(322, 22);
             this.txtKensaku.TabIndex = 3;
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // lblBaseLabelKensaku
             // 
@@ -366,6 +367,7 @@
             this.txtData6.Name = "txtData6";
             this.txtData6.Size = new System.Drawing.Size(161, 22);
             this.txtData6.TabIndex = 9;
+            this.txtData6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtData5
             // 
@@ -374,6 +376,7 @@
             this.txtData5.Name = "txtData5";
             this.txtData5.Size = new System.Drawing.Size(161, 22);
             this.txtData5.TabIndex = 8;
+            this.txtData5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtData4
             // 
@@ -382,6 +385,7 @@
             this.txtData4.Name = "txtData4";
             this.txtData4.Size = new System.Drawing.Size(161, 22);
             this.txtData4.TabIndex = 7;
+            this.txtData4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtData3
             // 
@@ -390,6 +394,7 @@
             this.txtData3.Name = "txtData3";
             this.txtData3.Size = new System.Drawing.Size(210, 22);
             this.txtData3.TabIndex = 6;
+            this.txtData3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtData2
             // 
@@ -398,6 +403,7 @@
             this.txtData2.Name = "txtData2";
             this.txtData2.Size = new System.Drawing.Size(210, 22);
             this.txtData2.TabIndex = 5;
+            this.txtData2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtData1
             // 
@@ -406,6 +412,7 @@
             this.txtData1.Name = "txtData1";
             this.txtData1.Size = new System.Drawing.Size(440, 22);
             this.txtData1.TabIndex = 4;
+            this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtHyoka
             // 
@@ -420,6 +427,7 @@
             this.txtHyoka.Size = new System.Drawing.Size(161, 22);
             this.txtHyoka.TabIndex = 13;
             this.txtHyoka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHyoka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtShire
             // 
@@ -434,6 +442,7 @@
             this.txtShire.Size = new System.Drawing.Size(161, 22);
             this.txtShire.TabIndex = 12;
             this.txtShire.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShire.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtTeika
             // 
@@ -448,6 +457,7 @@
             this.txtTeika.Size = new System.Drawing.Size(113, 22);
             this.txtTeika.TabIndex = 18;
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTeika.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtHyojun
             // 
@@ -462,6 +472,7 @@
             this.txtHyojun.Size = new System.Drawing.Size(161, 22);
             this.txtHyojun.TabIndex = 11;
             this.txtHyojun.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHyojun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtMemo
             // 
@@ -470,6 +481,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(353, 22);
             this.txtMemo.TabIndex = 17;
+            this.txtMemo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // txtZaiko
             // 
@@ -479,6 +491,7 @@
             this.txtZaiko.Name = "txtZaiko";
             this.txtZaiko.Size = new System.Drawing.Size(15, 22);
             this.txtZaiko.TabIndex = 14;
+            this.txtZaiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtZaiko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             // 
             // txtHachukbn
@@ -489,6 +502,7 @@
             this.txtHachukbn.Name = "txtHachukbn";
             this.txtHachukbn.Size = new System.Drawing.Size(15, 22);
             this.txtHachukbn.TabIndex = 10;
+            this.txtHachukbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtHachukbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             // 
             // labelSet_TanabanGihu
@@ -734,6 +748,7 @@
             this.txtHako.Size = new System.Drawing.Size(113, 22);
             this.txtHako.TabIndex = 19;
             this.txtHako.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHako.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
             // lblBaseLabelC2
             // 

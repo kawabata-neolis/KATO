@@ -104,7 +104,7 @@
             this.txtGyoshu.Name = "txtGyoshu";
             this.txtGyoshu.Size = new System.Drawing.Size(40, 22);
             this.txtGyoshu.TabIndex = 0;
-            this.txtGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoshuKeyDown);
+            this.txtGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuTxtKeyDown);
             this.txtGyoshu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             this.txtGyoshu.Leave += new System.EventHandler(this.updTxtGyoshuLeave);
             // 
@@ -152,7 +152,7 @@
             this.Name = "M1060_Gyoshu";
             this.Text = "M1060_Gyoushu";
             this.Load += new System.EventHandler(this.M1060_Gyoushu_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoushuKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuKeyDown);
             this.Controls.SetChildIndex(this.txtGyoshu, 0);
             this.Controls.SetChildIndex(this.txtName, 0);
             this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);

@@ -54,6 +54,11 @@ namespace KATO.Common.Ctl
                 tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                 tokuisakiList.ShowDialog();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
 
         ///<summary>

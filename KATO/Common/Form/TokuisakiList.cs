@@ -442,8 +442,8 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// CreateParams
-        ///データグリッドビュー内のデータをダブルクリックしたとき
+        /// setTokuiGridDblClick
+        /// データグリッドビュー内のデータをダブルクリックしたとき
         /// </summary>
         private void setTokuiGridDblClick(object sender, EventArgs e)
         {
@@ -452,7 +452,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// CreateParams
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        /// タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
         /// </summary>
         protected override CreateParams CreateParams
         {

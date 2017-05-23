@@ -54,6 +54,11 @@ namespace KATO.Common.Ctl
                 GyoshuList.intFrmKind = CommonTeisu.FRM_GYOSHU;
                 GyoshuList.ShowDialog();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
 
         ///<summary>
@@ -234,6 +239,13 @@ namespace KATO.Common.Ctl
 
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["業種コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["業種名"].ToString();
+                }
+                return;
             }
             catch (Exception ex)
             {

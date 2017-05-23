@@ -53,6 +53,11 @@ namespace KATO.Common.Ctl
                 EigyoushoList daibunruiList = new EigyoushoList(this.Parent, this);
                 daibunruiList.Show();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
 
         ///<summary>
@@ -161,7 +166,7 @@ namespace KATO.Common.Ctl
                 return;
             }
             //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }

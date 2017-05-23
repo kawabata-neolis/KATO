@@ -102,7 +102,7 @@
             this.txtTantoushaCd.Name = "txtTantoushaCd";
             this.txtTantoushaCd.Size = new System.Drawing.Size(40, 22);
             this.txtTantoushaCd.TabIndex = 0;
-            this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTantouTxtKeyDown);
             this.txtTantoushaCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
             this.txtTantoushaCd.Leave += new System.EventHandler(this.updTxtTantoushaLeave);
             // 
@@ -126,7 +126,7 @@
             this.txtTantoushaName.Name = "txtTantoushaName";
             this.txtTantoushaName.Size = new System.Drawing.Size(102, 22);
             this.txtTantoushaName.TabIndex = 1;
-            this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
             this.txtTantoushaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouNameKeyUp);
             // 
             // lblLoginID
@@ -149,7 +149,7 @@
             this.txtLoginID.Name = "txtLoginID";
             this.txtLoginID.Size = new System.Drawing.Size(166, 22);
             this.txtLoginID.TabIndex = 2;
-            this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
             this.txtLoginID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtLogInKeyUp);
             // 
             // lblChuban
@@ -199,7 +199,7 @@
             this.txtMokuhyou.Size = new System.Drawing.Size(117, 22);
             this.txtMokuhyou.TabIndex = 7;
             this.txtMokuhyou.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMokuhyou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.txtMokuhyou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
             // 
             // M1050_Tantousha
             // 
@@ -221,7 +221,7 @@
             this.Name = "M1050_Tantousha";
             this.Text = "M1050_Tantousha";
             this.Load += new System.EventHandler(this.M1050_Tantousha_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtantoushaKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

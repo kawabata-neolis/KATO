@@ -77,10 +77,69 @@ namespace KATO.Form.M1040_Torihikikbn
         }
 
         /// <summary>
-        /// judTorikubunKeyDown
+        /// judTorikbnKeyDown
         /// キー入力判定
         /// </summary>
-        private void judTorikubunKeyDown(object sender, KeyEventArgs e)
+        private void judTorikbnKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    this.addTorikubun();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delTorikubun();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judTorikbnTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTorikbnTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -123,6 +182,68 @@ namespace KATO.Form.M1040_Torihikikbn
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judTxtTorikbnTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTxtTorikbnTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.addTorikubun();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delTorikubun();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    judtxtToriKeyDown(sender, e);
                     break;
                 case Keys.F10:
                     break;

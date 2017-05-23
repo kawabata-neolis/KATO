@@ -11,6 +11,7 @@ using static KATO.Common.Util.CommonTeisu;
 using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
+using KATO.Business.M1070_Torihikisaki;
 
 namespace KATO.Form.M1070_Torihikisaki
 {
@@ -55,9 +56,6 @@ namespace KATO.Form.M1070_Torihikisaki
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
-
-            ////中分類setデータを読めるようにする
-            //labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
         }
 
         /// <summary>
@@ -77,14 +75,72 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
-
         }
 
         /// <summary>
-        /// judToririkiKeyDown
+        /// judTorihikiKeyDown
         /// キー入力判定
         /// </summary>
-        private void judToririkiKeyDown(object sender, KeyEventArgs e)
+        private void judTorihikiKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    this.addTorihiki();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delTorihiki();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judTorihikiTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTorihikiTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -143,6 +199,70 @@ namespace KATO.Form.M1070_Torihikisaki
         }
 
         /// <summary>
+        /// judTxtToriTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judTxtToriTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.addTorihiki();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delTorihiki();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    this.setAkiban();
+                    break;
+                case Keys.F9:
+                    txtCdT_KeyDown(sender, e);
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+
+        /// <summary>
         /// txtCdT_KeyDown
         /// コード入力項目でのキー入力判定
         /// </summary>
@@ -156,6 +276,9 @@ namespace KATO.Form.M1070_Torihikisaki
                     tokuisakilist.StartPosition = FormStartPosition.Manual;
                     tokuisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
                     tokuisakilist.ShowDialog();
+
+                    labelSet_Tantousha.Focus();
+                    labelSet_GyoshuCd.Focus();
 
                     txtSihon.Focus();
                     txtCdT.Focus();
@@ -203,8 +326,21 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         private void setAkiban()
         {
-            TorihikiCdList torihikicdlist = new TorihikiCdList(this);
-            torihikicdlist.ShowDialog();
+            try
+            {
+                TorihikiCdList torihikicdlist = new TorihikiCdList(this);
+                torihikicdlist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
+                torihikicdlist.ShowDialog();
+
+                txtCdT.Focus();
+
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                return;
+            }
+
         }
 
         /// <summary>
@@ -213,7 +349,248 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         private void addTorihiki()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (txtCdT.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtCdT.Focus();
+                return;
+            }
+            if (txtNameT.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtNameT.Focus();
+                return;
+            }
+            if (txtHuriT.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtHuriT.Focus();
+                return;
+            }
+            if (labelSet_Tantousha.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Tantousha.Focus();
+                return;
+            }
+            if (labelSet_GyoshuCd.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_GyoshuCd.Focus();
+                return;
+            }
+            if (txtSime.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtSime.Focus();
+                return;
+            }
+            if (txtSihatuki.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtSihatuki.Focus();
+                return;
+            }
+            if (txtSihabi.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtSihabi.Focus();
+                return;
+            }
+            if (txtShukinkbn.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtShukinkbn.Focus();
+                return;
+            }
+            if (txtSeikyuumu.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtSeikyuumu.Focus();
+                return;
+            }
+            if (txtZeikbn.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtZeikbn.Focus();
+                return;
+            }
+            if (txtKeisankbn.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtKeisankbn.Focus();
+                return;
+            }
+            if (txtZeihasu.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtZeihasu.Focus();
+                return;
+            }
+            if (txtMesai.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtMesai.Focus();
+                return;
+            }
+            if (txtSihon.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtSihon.Focus();
+                return;
+            }
+            if (txtJugyo.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtJugyo.Focus();
+                return;
+            }
+            //取引先
+            lstString.Add(txtCdT.Text);
+            lstString.Add(txtNameT.Text);
+            lstString.Add(txtHuriT.Text);
+            lstString.Add(txtYubinT.Text);
+            lstString.Add(txtJusho1T.Text);
+            lstString.Add(txtJusho2T.Text);
+            lstString.Add(txtDenwaT.Text);
+            lstString.Add(txtFAXT.Text);
+            lstString.Add(txtYubinAT.Text);
+            lstString.Add(txtJusho1AT.Text);
+            lstString.Add(txtJusho2AT.Text);
+            lstString.Add(txtDenwaAT.Text);
+            lstString.Add(txtFAXAT.Text);
+            lstString.Add(txtEmail.Text);
+            lstString.Add(txtTantoNameA.Text);
+            lstString.Add(txtBushoNameA.Text);
+            lstString.Add(txtTantoEmailA.Text);
+
+            //領収書送付先
+            lstString.Add(txtNameR.Text);
+            lstString.Add(txtYubinR.Text);
+            lstString.Add(txtJusho1R.Text);
+            lstString.Add(txtJusho2R.Text);
+            lstString.Add(txtDenwaR.Text);
+            lstString.Add(txtFAXR.Text);
+
+            //業種コード
+            lstString.Add(labelSet_GyoshuCd.codeTxt.Text);
+
+            //担当者コード
+            lstString.Add(labelSet_Tantousha.codeTxt.Text);
+
+            //請求書送付先
+            lstString.Add(txtNameS.Text);
+            lstString.Add(txtYubinS.Text);
+            lstString.Add(txtJusho1S.Text);
+            lstString.Add(txtJusho2S.Text);
+            lstString.Add(txtDenwaS.Text);
+            lstString.Add(txtFAXS.Text);
+
+            //〆関係
+            lstString.Add(txtSime.Text);
+            lstString.Add(txtSihatuki.Text);
+            lstString.Add(txtSihabi.Text);
+            lstString.Add(txtJoken.Text);
+            lstString.Add(txtShukinkbn.Text);
+            lstString.Add(txtSeikyuumu.Text);
+
+            //税金関係
+            lstString.Add(txtZeikbn.Text);
+            lstString.Add(txtKeisankbn.Text);
+            lstString.Add(txtZeihasu.Text);
+            lstString.Add(txtMesai.Text);
+
+            //会社内容関係
+            lstString.Add(txtSiha.Text);
+            lstString.Add(txtDaihyo.Text);
+            lstString.Add(txtSihon.Text);
+            lstString.Add(txtSeturitu.Text);
+            lstString.Add(txtJugyo.Text);
+            lstString.Add(txtKesan.Text);
+            lstString.Add(txtGinko.Text);
+            lstString.Add(txtSiten.Text);
+            lstString.Add(txtShubetu.Text);
+            lstString.Add(txtBango.Text);
+            lstString.Add(txtKoza.Text);
+            lstString.Add(txtToriatu.Text);
+
+            //主な取引先
+            lstString.Add(txtTorihiki1.Text);
+            lstString.Add(txtTorihiki2.Text);
+            lstString.Add(txtTorihiki3.Text);
+            lstString.Add(txtTorihiki4.Text);
+            lstString.Add(txtTorihiki5.Text);
+            lstString.Add(txtTorihiki6.Text);
+            lstString.Add(txtTorihiki7.Text);
+            lstString.Add(txtTorihiki8.Text);
+            lstString.Add(txtTorihiki9.Text);
+            lstString.Add(txtTorihiki10.Text);
+            lstString.Add(txtTorihiki11.Text);
+            lstString.Add(txtTorihiki12.Text);
+            lstString.Add(txtTorihiki13.Text);
+            lstString.Add(txtTorihiki14.Text);
+            lstString.Add(txtTorihiki15.Text);
+            lstString.Add(txtTorihiki16.Text);
+            lstString.Add(txtTorihiki17.Text);
+            lstString.Add(txtTorihiki18.Text);
+            lstString.Add(txtTorihiki19.Text);
+            lstString.Add(txtTorihiki20.Text);
+
+            //ユーザー名
+            lstString.Add(SystemInformation.UserName);
+
+            M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
+            try
+            {
+                torihikisakiB.addTorihiki(lstString);
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         /// <summary>
@@ -223,16 +600,64 @@ namespace KATO.Form.M1070_Torihikisaki
         private void delText()
         {
             delFormClear(this);
+            txtSihon.Text = "";
             txtCdT.Focus();
         }
 
         /// <summary>
-        /// delGyoushu
+        /// delTextSearch
+        /// テキストボックス内の文字を削除
+        /// </summary>
+        private void delTextSearch()
+        {
+            delFormClear(this);
+            txtSihon.Text = "";
+        }
+        
+        /// <summary>
+        /// delTorihiki
         /// テキストボックス内のデータをDBから削除
         /// </summary>
         public void delTorihiki()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (txtCdT.blIsEmpty() == false && txtCdT.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ渡し用
+            lstString.Add(txtCdT.Text);
+            lstString.Add(SystemInformation.UserName);
+
+            //処理部に移動(削除)
+            M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
+
+            try
+            {
+                torihikisakiB.delTorihiki(lstString);
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                txtCdT.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         /// <summary>
@@ -241,6 +666,8 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         public void setTorihikisaki(DataTable dtSelectData)
         {
+            delTextSearch();
+
             //取引先
             txtCdT.Text = dtSelectData.Rows[0]["取引先コード"].ToString();
             txtNameT.Text = dtSelectData.Rows[0]["取引先名称"].ToString();
@@ -352,5 +779,108 @@ namespace KATO.Form.M1070_Torihikisaki
             txtCdT.Focus();
         }
 
+        ///<summary>
+        ///txtCdT_Leave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        private void txtCdT_Leave(object sender, EventArgs e)
+        {
+            Control cActive = this.ActiveControl;
+
+            //データ渡し用
+            List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
+
+            //文字判定
+            if (txtCdT.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //前後の空白を取り除く
+            txtCdT.Text = txtCdT.Text.Trim();
+
+            if (txtCdT.TextLength == 3)
+            {
+                txtCdT.Text = txtCdT.Text.ToString().PadLeft(4, '0');
+            }
+
+            //データ渡し用
+            lstString.Add(txtCdT.Text);
+
+            //処理部に移動
+            M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
+
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(lstString);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    setTorihikisaki(dtSetCd);
+                }
+                //データの新規登録時に邪魔になるため、現段階削除予定
+                //else
+                //{
+                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //}
+
+                txtSihon.Focus();
+                cActive.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+        }
+
+        /// <summary>
+        /// judtxtTorihikiKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtTorihikiKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            //シフトタブ 2つ
+            if (e.KeyCode == Keys.Tab && e.Shift == true)
+            {
+                return;
+            }
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
+            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        /// <summary>
+        /// txt_KeyPress
+        /// 入力項目上でのキー判定
+        /// </summary>
+        private void txt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
+            }
+        }
     }
 }

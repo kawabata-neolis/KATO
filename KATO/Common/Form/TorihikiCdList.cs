@@ -124,7 +124,7 @@ namespace KATO.Common.Form
         private void SetUpGrid()
         {
             //列自動生成禁止
-            gridSeihin.AutoGenerateColumns = false;
+            gridTorihiki.AutoGenerateColumns = false;
 
             //データをバインド
             DataGridViewTextBoxColumn Cd = new DataGridViewTextBoxColumn();
@@ -133,12 +133,12 @@ namespace KATO.Common.Form
             Cd.HeaderText = "コード";
 
             //バインドしたデータを追加
-            gridSeihin.Columns.Add(Cd);
+            gridTorihiki.Columns.Add(Cd);
 
             //個々の幅、文章の寄せ
-            gridSeihin.Columns["コード"].Width = 100;
-            gridSeihin.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            gridSeihin.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridTorihiki.Columns["コード"].Width = 100;
+            gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
 
@@ -268,7 +268,31 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
+            if (gridTorihiki.Rows.Count < 1)
+            {
+                return;
+            }
 
+            //データ渡し用
+            List<string> lstString = new List<string>();
+            List<int> lstInt = new List<int>();
+
+            //選択行の担当者情報取得
+            string strSelectId = (string)gridTorihiki.CurrentRow.Cells["コード"].Value;
+
+            lstInt.Add(intFrmKind);
+            lstString.Add(strSelectId);
+
+            TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
+            try
+            {
+                torihikilistB.setSelectItem(lstInt, lstString);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+            setEndAction(lstString);
         }
 
         ///<summary>
@@ -311,7 +335,6 @@ namespace KATO.Common.Form
             {
                 new CommonException(ex);
             }
-
         }
 
         ///<summary>
@@ -334,24 +357,31 @@ namespace KATO.Common.Form
             lstBoolean.Add(radRagyo.Checked);
             lstBoolean.Add(radWagyo.Checked);
 
+            DataTable dt = new DataTable();
+
             TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
-                //グリッドに表示されないため確認
-                gridSeihin.DataSource = torihikilistB.setKensaku(lstBoolean);
+                //データグリッドビュー部分
+                gridTorihiki.DataSource = torihikilistB.setKensaku(lstBoolean);
+
+                lblRecords.Text = "該当件数( " + gridTorihiki.RowCount.ToString() + "件)";
+
+                gridTorihiki.Focus();
 
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
+                throw (ex);
             }
         }
 
         /// <summary>
-        /// CreateParams
-        ///データグリッドビュー内のデータをダブルクリックしたとき
+        /// gridTorihiki_DoubleClick
+        /// データグリッドビュー内のデータをダブルクリックしたとき
         /// </summary>
-        private void setTokuiGridDblClick(object sender, EventArgs e)
+        private void gridTorihiki_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
@@ -372,11 +402,6 @@ namespace KATO.Common.Form
 
                 return cpForm;
             }
-        }
-
-        private void gridTokuisaki_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

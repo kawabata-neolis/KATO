@@ -76,8 +76,13 @@ namespace KATO.Common.Ctl
                 ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
                 chubunruiList.Show();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
-        
+
         ///<summary>
         ///updTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時
@@ -188,7 +193,7 @@ namespace KATO.Common.Ctl
                 return;
             }
             //左右のシフトキー 4つ
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }

@@ -95,7 +95,7 @@ namespace KATO.Form.M1020_Maker
             this.txtMaker.Name = "txtMaker";
             this.txtMaker.Size = new System.Drawing.Size(30, 22);
             this.txtMaker.TabIndex = 0;
-            this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMakerKeyDown);
+            this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtMakerTxtKeyDown);
             this.txtMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
             this.txtMaker.Leave += new System.EventHandler(this.updTxtMakerTextLeave);
             // 
@@ -108,6 +108,7 @@ namespace KATO.Form.M1020_Maker
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerTxtKeyDown);
             // 
             // lblBaseLabelName
             // 

@@ -106,6 +106,66 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.Back:
                     break;
                 case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    this.addShohin();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delShohin();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    this.setKensaku();
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judShohinTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judShohinTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
                     break;

@@ -32,7 +32,6 @@ namespace KATO.Form.F0140_TanaorosiInput
         //編集中かどうかのフラグ
         Boolean blnEditting = false;
 
-
         ///<summary>
         ///F0140_TanaorosiInput
         ///棚卸入力（画面設定）
@@ -110,6 +109,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                     this.btnF01.Text = STR_FUNC_F1;
                     this.btnF04.Text = STR_FUNC_F4;
                     this.btnF12.Text = STR_FUNC_F12;
+
                 }
                 else
                 {
@@ -243,7 +243,6 @@ namespace KATO.Form.F0140_TanaorosiInput
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     this.addTanaorosi();
@@ -288,6 +287,77 @@ namespace KATO.Form.F0140_TanaorosiInput
                     break;
             }
         }
+
+        ///<summary>
+        ///judTanaTxtKeyDown
+        ///キー入力判定
+        ///</summary>
+        private void judTanaTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.addTanaorosi();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    //印刷
+                    //PrintReport();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    //クローズの前にデータ変更の破棄確認メッセージ
+                    if (blnEditting == true)
+                    {
+                        // どのボタンを選択したかを判断する
+                        if (MessageBox.Show("データが変更されています。破棄してもよろしいですか？", "終了確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            this.Close();
+                        }
+                    }
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
 
         ///<summary>
         ///judBtnClick

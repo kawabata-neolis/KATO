@@ -32,10 +32,11 @@
             // 
             // BaseCalendar
             // 
-            this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Enter += new System.EventHandler(this.updCalendarEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setCalendarKeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.setCalendarKeyPress);
+            this.Leave += new System.EventHandler(this.BaseCalendar_Leave);
             this.ResumeLayout(false);
 
         }

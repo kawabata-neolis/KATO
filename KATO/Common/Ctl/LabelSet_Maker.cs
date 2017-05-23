@@ -53,6 +53,11 @@ namespace KATO.Common.Ctl
                 MakerList makerList = new MakerList(this.Parent, this);
                 makerList.Show();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
         }
 
 

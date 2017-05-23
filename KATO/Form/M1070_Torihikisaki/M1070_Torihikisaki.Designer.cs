@@ -267,7 +267,7 @@
             this.gbTori.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbTori.Location = new System.Drawing.Point(15, 5);
             this.gbTori.Name = "gbTori";
-            this.gbTori.Size = new System.Drawing.Size(470, 462);
+            this.gbTori.Size = new System.Drawing.Size(470, 457);
             this.gbTori.TabIndex = 0;
             this.gbTori.TabStop = false;
             this.gbTori.Text = "取引先";
@@ -275,10 +275,14 @@
             // txtFAXAT
             // 
             this.txtFAXAT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtFAXAT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtFAXAT.Location = new System.Drawing.Point(303, 303);
+            this.txtFAXAT.MaxLength = 12;
             this.txtFAXAT.Name = "txtFAXAT";
-            this.txtFAXAT.Size = new System.Drawing.Size(146, 22);
+            this.txtFAXAT.Size = new System.Drawing.Size(105, 22);
             this.txtFAXAT.TabIndex = 12;
+            this.txtFAXAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtFAXAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelFAXAT
             // 
@@ -294,50 +298,74 @@
             // txtFAXT
             // 
             this.txtFAXT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtFAXT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtFAXT.Location = new System.Drawing.Point(303, 189);
+            this.txtFAXT.MaxLength = 12;
             this.txtFAXT.Name = "txtFAXT";
-            this.txtFAXT.Size = new System.Drawing.Size(146, 22);
+            this.txtFAXT.Size = new System.Drawing.Size(105, 22);
             this.txtFAXT.TabIndex = 7;
+            this.txtFAXT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtFAXT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTantoEmailA
             // 
             this.txtTantoEmailA.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoEmailA.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTantoEmailA.Location = new System.Drawing.Point(94, 419);
+            this.txtTantoEmailA.MaxLength = 40;
             this.txtTantoEmailA.Name = "txtTantoEmailA";
-            this.txtTantoEmailA.Size = new System.Drawing.Size(338, 22);
+            this.txtTantoEmailA.Size = new System.Drawing.Size(330, 22);
             this.txtTantoEmailA.TabIndex = 16;
+            this.txtTantoEmailA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTantoEmailA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtBushoNameA
             // 
             this.txtBushoNameA.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtBushoNameA.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtBushoNameA.Location = new System.Drawing.Point(94, 392);
+            this.txtBushoNameA.MaxLength = 20;
             this.txtBushoNameA.Name = "txtBushoNameA";
-            this.txtBushoNameA.Size = new System.Drawing.Size(140, 22);
+            this.txtBushoNameA.Size = new System.Drawing.Size(170, 22);
             this.txtBushoNameA.TabIndex = 15;
+            this.txtBushoNameA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtBushoNameA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTantoNameA
             // 
             this.txtTantoNameA.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoNameA.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTantoNameA.Location = new System.Drawing.Point(94, 362);
+            this.txtTantoNameA.MaxLength = 20;
             this.txtTantoNameA.Name = "txtTantoNameA";
-            this.txtTantoNameA.Size = new System.Drawing.Size(140, 22);
+            this.txtTantoNameA.Size = new System.Drawing.Size(170, 22);
             this.txtTantoNameA.TabIndex = 14;
+            this.txtTantoNameA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTantoNameA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtEmail.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtEmail.Location = new System.Drawing.Point(94, 332);
+            this.txtEmail.MaxLength = 40;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(338, 22);
+            this.txtEmail.Size = new System.Drawing.Size(330, 22);
             this.txtEmail.TabIndex = 13;
+            this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtDenwaAT
             // 
             this.txtDenwaAT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenwaAT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDenwaAT.Location = new System.Drawing.Point(94, 303);
+            this.txtDenwaAT.MaxLength = 12;
             this.txtDenwaAT.Name = "txtDenwaAT";
-            this.txtDenwaAT.Size = new System.Drawing.Size(140, 22);
+            this.txtDenwaAT.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaAT.TabIndex = 11;
+            this.txtDenwaAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtDenwaAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelFAXT
             // 
@@ -408,18 +436,26 @@
             // txtDenwaT
             // 
             this.txtDenwaT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenwaT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDenwaT.Location = new System.Drawing.Point(94, 189);
+            this.txtDenwaT.MaxLength = 12;
             this.txtDenwaT.Name = "txtDenwaT";
-            this.txtDenwaT.Size = new System.Drawing.Size(140, 22);
+            this.txtDenwaT.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaT.TabIndex = 6;
+            this.txtDenwaT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtDenwaT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtJusho2AT
             // 
             this.txtJusho2AT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho2AT.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho2AT.Location = new System.Drawing.Point(94, 275);
+            this.txtJusho2AT.MaxLength = 30;
             this.txtJusho2AT.Name = "txtJusho2AT";
-            this.txtJusho2AT.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho2AT.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2AT.TabIndex = 10;
+            this.txtJusho2AT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho2AT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelDenwaT
             // 
@@ -446,18 +482,26 @@
             // txtJusho2T
             // 
             this.txtJusho2T.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho2T.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho2T.Location = new System.Drawing.Point(94, 161);
+            this.txtJusho2T.MaxLength = 30;
             this.txtJusho2T.Name = "txtJusho2T";
-            this.txtJusho2T.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho2T.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2T.TabIndex = 5;
+            this.txtJusho2T.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho2T.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtJusho1AT
             // 
             this.txtJusho1AT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho1AT.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho1AT.Location = new System.Drawing.Point(94, 247);
+            this.txtJusho1AT.MaxLength = 30;
             this.txtJusho1AT.Name = "txtJusho1AT";
-            this.txtJusho1AT.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho1AT.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1AT.TabIndex = 9;
+            this.txtJusho1AT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho1AT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho2T
             // 
@@ -484,18 +528,26 @@
             // txtJusho1T
             // 
             this.txtJusho1T.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho1T.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho1T.Location = new System.Drawing.Point(94, 133);
+            this.txtJusho1T.MaxLength = 30;
             this.txtJusho1T.Name = "txtJusho1T";
-            this.txtJusho1T.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho1T.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1T.TabIndex = 4;
+            this.txtJusho1T.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho1T.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtYubinAT
             // 
             this.txtYubinAT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYubinAT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtYubinAT.Location = new System.Drawing.Point(94, 219);
+            this.txtYubinAT.MaxLength = 8;
             this.txtYubinAT.Name = "txtYubinAT";
-            this.txtYubinAT.Size = new System.Drawing.Size(78, 22);
+            this.txtYubinAT.Size = new System.Drawing.Size(75, 22);
             this.txtYubinAT.TabIndex = 8;
+            this.txtYubinAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtYubinAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho1T
             // 
@@ -522,10 +574,14 @@
             // txtYubinT
             // 
             this.txtYubinT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYubinT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtYubinT.Location = new System.Drawing.Point(94, 105);
+            this.txtYubinT.MaxLength = 8;
             this.txtYubinT.Name = "txtYubinT";
-            this.txtYubinT.Size = new System.Drawing.Size(78, 22);
+            this.txtYubinT.Size = new System.Drawing.Size(75, 22);
             this.txtYubinT.TabIndex = 3;
+            this.txtYubinT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtYubinT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelYubinT
             // 
@@ -541,10 +597,14 @@
             // txtHuriT
             // 
             this.txtHuriT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtHuriT.ImeMode = System.Windows.Forms.ImeMode.KatakanaHalf;
             this.txtHuriT.Location = new System.Drawing.Point(94, 77);
+            this.txtHuriT.MaxLength = 20;
             this.txtHuriT.Name = "txtHuriT";
-            this.txtHuriT.Size = new System.Drawing.Size(223, 22);
+            this.txtHuriT.Size = new System.Drawing.Size(170, 22);
             this.txtHuriT.TabIndex = 2;
+            this.txtHuriT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtHuriT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelHuriT
             // 
@@ -560,10 +620,14 @@
             // txtNameT
             // 
             this.txtNameT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNameT.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtNameT.Location = new System.Drawing.Point(94, 49);
+            this.txtNameT.MaxLength = 40;
             this.txtNameT.Name = "txtNameT";
-            this.txtNameT.Size = new System.Drawing.Size(355, 22);
+            this.txtNameT.Size = new System.Drawing.Size(330, 22);
             this.txtNameT.TabIndex = 1;
+            this.txtNameT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtNameT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelNameT
             // 
@@ -579,11 +643,15 @@
             // txtCdT
             // 
             this.txtCdT.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtCdT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtCdT.Location = new System.Drawing.Point(94, 21);
+            this.txtCdT.MaxLength = 4;
             this.txtCdT.Name = "txtCdT";
-            this.txtCdT.Size = new System.Drawing.Size(48, 22);
+            this.txtCdT.Size = new System.Drawing.Size(40, 22);
             this.txtCdT.TabIndex = 0;
-            this.txtCdT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCdT_KeyDown);
+            this.txtCdT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtToriTxtKeyDown);
+            this.txtCdT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
+            this.txtCdT.Leave += new System.EventHandler(this.txtCdT_Leave);
             // 
             // gbRyoshu
             // 
@@ -600,7 +668,7 @@
             this.gbRyoshu.Controls.Add(this.lblBaseLabelYubinR);
             this.gbRyoshu.Controls.Add(this.lblBaseLabelNameR);
             this.gbRyoshu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbRyoshu.Location = new System.Drawing.Point(15, 468);
+            this.gbRyoshu.Location = new System.Drawing.Point(15, 463);
             this.gbRyoshu.Name = "gbRyoshu";
             this.gbRyoshu.Size = new System.Drawing.Size(470, 178);
             this.gbRyoshu.TabIndex = 1;
@@ -610,10 +678,14 @@
             // txtFAXR
             // 
             this.txtFAXR.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtFAXR.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtFAXR.Location = new System.Drawing.Point(303, 139);
+            this.txtFAXR.MaxLength = 12;
             this.txtFAXR.Name = "txtFAXR";
-            this.txtFAXR.Size = new System.Drawing.Size(146, 22);
+            this.txtFAXR.Size = new System.Drawing.Size(105, 22);
             this.txtFAXR.TabIndex = 5;
+            this.txtFAXR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtFAXR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // baseLabel5
             // 
@@ -629,10 +701,14 @@
             // txtDenwaR
             // 
             this.txtDenwaR.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenwaR.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDenwaR.Location = new System.Drawing.Point(94, 139);
+            this.txtDenwaR.MaxLength = 12;
             this.txtDenwaR.Name = "txtDenwaR";
-            this.txtDenwaR.Size = new System.Drawing.Size(140, 22);
+            this.txtDenwaR.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaR.TabIndex = 4;
+            this.txtDenwaR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtDenwaR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelDenwaR
             // 
@@ -648,10 +724,14 @@
             // txtJusho2R
             // 
             this.txtJusho2R.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho2R.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho2R.Location = new System.Drawing.Point(94, 110);
+            this.txtJusho2R.MaxLength = 30;
             this.txtJusho2R.Name = "txtJusho2R";
-            this.txtJusho2R.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho2R.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2R.TabIndex = 3;
+            this.txtJusho2R.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho2R.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho2R
             // 
@@ -667,10 +747,14 @@
             // txtJusho1R
             // 
             this.txtJusho1R.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho1R.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho1R.Location = new System.Drawing.Point(94, 82);
+            this.txtJusho1R.MaxLength = 30;
             this.txtJusho1R.Name = "txtJusho1R";
-            this.txtJusho1R.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho1R.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1R.TabIndex = 2;
+            this.txtJusho1R.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho1R.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho1R
             // 
@@ -686,18 +770,26 @@
             // txtYubinR
             // 
             this.txtYubinR.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYubinR.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtYubinR.Location = new System.Drawing.Point(94, 54);
+            this.txtYubinR.MaxLength = 8;
             this.txtYubinR.Name = "txtYubinR";
-            this.txtYubinR.Size = new System.Drawing.Size(78, 22);
+            this.txtYubinR.Size = new System.Drawing.Size(75, 22);
             this.txtYubinR.TabIndex = 1;
+            this.txtYubinR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtYubinR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtNameR
             // 
             this.txtNameR.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNameR.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtNameR.Location = new System.Drawing.Point(94, 24);
+            this.txtNameR.MaxLength = 40;
             this.txtNameR.Name = "txtNameR";
-            this.txtNameR.Size = new System.Drawing.Size(355, 22);
+            this.txtNameR.Size = new System.Drawing.Size(330, 22);
             this.txtNameR.TabIndex = 0;
+            this.txtNameR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtNameR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelYubinR
             // 
@@ -756,7 +848,7 @@
             this.gbSeikyu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbSeikyu.Location = new System.Drawing.Point(505, 5);
             this.gbSeikyu.Name = "gbSeikyu";
-            this.gbSeikyu.Size = new System.Drawing.Size(470, 178);
+            this.gbSeikyu.Size = new System.Drawing.Size(470, 173);
             this.gbSeikyu.TabIndex = 4;
             this.gbSeikyu.TabStop = false;
             this.gbSeikyu.Text = "請求書送付先";
@@ -764,10 +856,14 @@
             // txtFAXS
             // 
             this.txtFAXS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtFAXS.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtFAXS.Location = new System.Drawing.Point(303, 139);
+            this.txtFAXS.MaxLength = 12;
             this.txtFAXS.Name = "txtFAXS";
-            this.txtFAXS.Size = new System.Drawing.Size(146, 22);
+            this.txtFAXS.Size = new System.Drawing.Size(105, 22);
             this.txtFAXS.TabIndex = 5;
+            this.txtFAXS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtFAXS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // baseLabel1
             // 
@@ -783,10 +879,14 @@
             // txtDenwaS
             // 
             this.txtDenwaS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenwaS.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDenwaS.Location = new System.Drawing.Point(94, 139);
+            this.txtDenwaS.MaxLength = 12;
             this.txtDenwaS.Name = "txtDenwaS";
-            this.txtDenwaS.Size = new System.Drawing.Size(140, 22);
+            this.txtDenwaS.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaS.TabIndex = 4;
+            this.txtDenwaS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtDenwaS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelDenwaS
             // 
@@ -802,10 +902,14 @@
             // txtJusho2S
             // 
             this.txtJusho2S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho2S.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho2S.Location = new System.Drawing.Point(94, 110);
+            this.txtJusho2S.MaxLength = 30;
             this.txtJusho2S.Name = "txtJusho2S";
-            this.txtJusho2S.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho2S.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2S.TabIndex = 3;
+            this.txtJusho2S.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho2S.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho2S
             // 
@@ -821,10 +925,14 @@
             // txtJusho1S
             // 
             this.txtJusho1S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho1S.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJusho1S.Location = new System.Drawing.Point(94, 82);
+            this.txtJusho1S.MaxLength = 30;
             this.txtJusho1S.Name = "txtJusho1S";
-            this.txtJusho1S.Size = new System.Drawing.Size(284, 22);
+            this.txtJusho1S.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1S.TabIndex = 2;
+            this.txtJusho1S.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJusho1S.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelJusho1S
             // 
@@ -840,18 +948,26 @@
             // txtYubinS
             // 
             this.txtYubinS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYubinS.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtYubinS.Location = new System.Drawing.Point(94, 54);
+            this.txtYubinS.MaxLength = 8;
             this.txtYubinS.Name = "txtYubinS";
-            this.txtYubinS.Size = new System.Drawing.Size(78, 22);
+            this.txtYubinS.Size = new System.Drawing.Size(75, 22);
             this.txtYubinS.TabIndex = 1;
+            this.txtYubinS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtYubinS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtNameS
             // 
             this.txtNameS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNameS.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtNameS.Location = new System.Drawing.Point(94, 24);
+            this.txtNameS.MaxLength = 40;
             this.txtNameS.Name = "txtNameS";
-            this.txtNameS.Size = new System.Drawing.Size(355, 22);
+            this.txtNameS.Size = new System.Drawing.Size(330, 22);
             this.txtNameS.TabIndex = 0;
+            this.txtNameS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtNameS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelYubinS
             // 
@@ -890,19 +1006,23 @@
             this.gbSime.Controls.Add(this.lblBaseLabelJoken);
             this.gbSime.Controls.Add(this.lblBaseLabelSime);
             this.gbSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSime.Location = new System.Drawing.Point(505, 184);
+            this.gbSime.Location = new System.Drawing.Point(505, 178);
             this.gbSime.Name = "gbSime";
-            this.gbSime.Size = new System.Drawing.Size(470, 123);
+            this.gbSime.Size = new System.Drawing.Size(470, 120);
             this.gbSime.TabIndex = 5;
             this.gbSime.TabStop = false;
             // 
             // txtSihabi
             // 
             this.txtSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSihabi.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSihabi.Location = new System.Drawing.Point(336, 24);
+            this.txtSihabi.MaxLength = 2;
             this.txtSihabi.Name = "txtSihabi";
-            this.txtSihabi.Size = new System.Drawing.Size(48, 22);
+            this.txtSihabi.Size = new System.Drawing.Size(24, 22);
             this.txtSihabi.TabIndex = 2;
+            this.txtSihabi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSihabi.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelSihabi
             // 
@@ -918,10 +1038,14 @@
             // txtSihatuki
             // 
             this.txtSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSihatuki.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSihatuki.Location = new System.Drawing.Point(218, 24);
+            this.txtSihatuki.MaxLength = 2;
             this.txtSihatuki.Name = "txtSihatuki";
-            this.txtSihatuki.Size = new System.Drawing.Size(48, 22);
+            this.txtSihatuki.Size = new System.Drawing.Size(24, 22);
             this.txtSihatuki.TabIndex = 1;
+            this.txtSihatuki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSihatuki.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelSihatuki
             // 
@@ -937,26 +1061,38 @@
             // txtSeikyuumu
             // 
             this.txtSeikyuumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSeikyuumu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSeikyuumu.Location = new System.Drawing.Point(233, 85);
+            this.txtSeikyuumu.MaxLength = 4;
             this.txtSeikyuumu.Name = "txtSeikyuumu";
-            this.txtSeikyuumu.Size = new System.Drawing.Size(30, 22);
+            this.txtSeikyuumu.Size = new System.Drawing.Size(24, 22);
             this.txtSeikyuumu.TabIndex = 5;
+            this.txtSeikyuumu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSeikyuumu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtShukinkbn
             // 
             this.txtShukinkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShukinkbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShukinkbn.Location = new System.Drawing.Point(94, 85);
+            this.txtShukinkbn.MaxLength = 4;
             this.txtShukinkbn.Name = "txtShukinkbn";
-            this.txtShukinkbn.Size = new System.Drawing.Size(30, 22);
+            this.txtShukinkbn.Size = new System.Drawing.Size(24, 22);
             this.txtShukinkbn.TabIndex = 4;
+            this.txtShukinkbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtShukinkbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtJoken
             // 
             this.txtJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJoken.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtJoken.Location = new System.Drawing.Point(94, 54);
+            this.txtJoken.MaxLength = 40;
             this.txtJoken.Name = "txtJoken";
-            this.txtJoken.Size = new System.Drawing.Size(370, 22);
+            this.txtJoken.Size = new System.Drawing.Size(330, 22);
             this.txtJoken.TabIndex = 3;
+            this.txtJoken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJoken.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelSeikyuumu
             // 
@@ -972,10 +1108,14 @@
             // txtSime
             // 
             this.txtSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSime.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSime.Location = new System.Drawing.Point(94, 24);
+            this.txtSime.MaxLength = 2;
             this.txtSime.Name = "txtSime";
-            this.txtSime.Size = new System.Drawing.Size(30, 22);
+            this.txtSime.Size = new System.Drawing.Size(24, 22);
             this.txtSime.TabIndex = 0;
+            this.txtSime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSime.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelShukbn
             // 
@@ -1037,9 +1177,9 @@
             this.gbKaisha.Controls.Add(this.lblBaseLabelDaihyo);
             this.gbKaisha.Controls.Add(this.lblBaseLabelSiha);
             this.gbKaisha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbKaisha.Location = new System.Drawing.Point(505, 308);
+            this.gbKaisha.Location = new System.Drawing.Point(505, 299);
             this.gbKaisha.Name = "gbKaisha";
-            this.gbKaisha.Size = new System.Drawing.Size(748, 215);
+            this.gbKaisha.Size = new System.Drawing.Size(914, 215);
             this.gbKaisha.TabIndex = 7;
             this.gbKaisha.TabStop = false;
             // 
@@ -1050,42 +1190,56 @@
             this.txtSihon.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSihon.intDeciSet = 0;
             this.txtSihon.intIntederSet = 0;
-            this.txtSihon.Location = new System.Drawing.Point(340, 54);
+            this.txtSihon.Location = new System.Drawing.Point(337, 54);
             this.txtSihon.MaxLength = 0;
             this.txtSihon.Name = "txtSihon";
-            this.txtSihon.Size = new System.Drawing.Size(144, 22);
+            this.txtSihon.Size = new System.Drawing.Size(170, 22);
             this.txtSihon.TabIndex = 2;
             this.txtSihon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSihon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSihon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
+            this.txtSihon.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtSeturitu
             // 
             this.txtSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSeturitu.Location = new System.Drawing.Point(545, 54);
+            this.txtSeturitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSeturitu.Location = new System.Drawing.Point(566, 54);
+            this.txtSeturitu.MaxLength = 20;
             this.txtSeturitu.Name = "txtSeturitu";
-            this.txtSeturitu.Size = new System.Drawing.Size(174, 22);
+            this.txtSeturitu.Size = new System.Drawing.Size(170, 22);
             this.txtSeturitu.TabIndex = 3;
+            this.txtSeturitu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSeturitu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtBango
             // 
             this.txtBango.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBango.Location = new System.Drawing.Point(589, 116);
+            this.txtBango.Location = new System.Drawing.Point(665, 116);
+            this.txtBango.MaxLength = 7;
             this.txtBango.Name = "txtBango";
-            this.txtBango.Size = new System.Drawing.Size(80, 22);
+            this.txtBango.Size = new System.Drawing.Size(65, 22);
             this.txtBango.TabIndex = 9;
+            this.txtBango.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtBango.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtShubetu
             // 
             this.txtShubetu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShubetu.Location = new System.Drawing.Point(445, 116);
+            this.txtShubetu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtShubetu.Location = new System.Drawing.Point(559, 116);
+            this.txtShubetu.MaxLength = 6;
             this.txtShubetu.Name = "txtShubetu";
-            this.txtShubetu.Size = new System.Drawing.Size(80, 22);
+            this.txtShubetu.Size = new System.Drawing.Size(55, 22);
             this.txtShubetu.TabIndex = 8;
+            this.txtShubetu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtShubetu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelBango
             // 
             this.lblBaseLabelBango.AutoSize = true;
             this.lblBaseLabelBango.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelBango.Location = new System.Drawing.Point(537, 119);
+            this.lblBaseLabelBango.Location = new System.Drawing.Point(620, 119);
             this.lblBaseLabelBango.Name = "lblBaseLabelBango";
             this.lblBaseLabelBango.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelBango.TabIndex = 96;
@@ -1095,16 +1249,20 @@
             // txtSiten
             // 
             this.txtSiten.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSiten.Location = new System.Drawing.Point(298, 116);
+            this.txtSiten.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtSiten.Location = new System.Drawing.Point(338, 116);
+            this.txtSiten.MaxLength = 20;
             this.txtSiten.Name = "txtSiten";
-            this.txtSiten.Size = new System.Drawing.Size(80, 22);
+            this.txtSiten.Size = new System.Drawing.Size(170, 22);
             this.txtSiten.TabIndex = 7;
+            this.txtSiten.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSiten.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelShubetu
             // 
             this.lblBaseLabelShubetu.AutoSize = true;
             this.lblBaseLabelShubetu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelShubetu.Location = new System.Drawing.Point(393, 119);
+            this.lblBaseLabelShubetu.Location = new System.Drawing.Point(514, 119);
             this.lblBaseLabelShubetu.Name = "lblBaseLabelShubetu";
             this.lblBaseLabelShubetu.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelShubetu.TabIndex = 96;
@@ -1115,7 +1273,7 @@
             // 
             this.lblBaseLabelSiten.AutoSize = true;
             this.lblBaseLabelSiten.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSiten.Location = new System.Drawing.Point(237, 119);
+            this.lblBaseLabelSiten.Location = new System.Drawing.Point(277, 119);
             this.lblBaseLabelSiten.Name = "lblBaseLabelSiten";
             this.lblBaseLabelSiten.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSiten.TabIndex = 96;
@@ -1126,7 +1284,7 @@
             // 
             this.lblBaseLabelSeturitu.AutoSize = true;
             this.lblBaseLabelSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(500, 57);
+            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(522, 57);
             this.lblBaseLabelSeturitu.Name = "lblBaseLabelSeturitu";
             this.lblBaseLabelSeturitu.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelSeturitu.TabIndex = 96;
@@ -1137,7 +1295,7 @@
             // 
             this.lblBaseLabelSihon.AutoSize = true;
             this.lblBaseLabelSihon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSihon.Location = new System.Drawing.Point(279, 57);
+            this.lblBaseLabelSihon.Location = new System.Drawing.Point(277, 57);
             this.lblBaseLabelSihon.Name = "lblBaseLabelSihon";
             this.lblBaseLabelSihon.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSihon.TabIndex = 96;
@@ -1147,50 +1305,74 @@
             // txtKesan
             // 
             this.txtKesan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKesan.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtKesan.Location = new System.Drawing.Point(298, 85);
+            this.txtKesan.MaxLength = 20;
             this.txtKesan.Name = "txtKesan";
-            this.txtKesan.Size = new System.Drawing.Size(91, 22);
+            this.txtKesan.Size = new System.Drawing.Size(170, 22);
             this.txtKesan.TabIndex = 5;
+            this.txtKesan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtKesan.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtToriatu
             // 
             this.txtToriatu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtToriatu.Location = new System.Drawing.Point(93, 179);
+            this.txtToriatu.MaxLength = 100;
             this.txtToriatu.Name = "txtToriatu";
-            this.txtToriatu.Size = new System.Drawing.Size(603, 22);
+            this.txtToriatu.Size = new System.Drawing.Size(810, 22);
             this.txtToriatu.TabIndex = 11;
+            this.txtToriatu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtToriatu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtKoza
             // 
             this.txtKoza.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKoza.Location = new System.Drawing.Point(94, 147);
+            this.txtKoza.MaxLength = 50;
             this.txtKoza.Name = "txtKoza";
-            this.txtKoza.Size = new System.Drawing.Size(397, 22);
+            this.txtKoza.Size = new System.Drawing.Size(410, 22);
             this.txtKoza.TabIndex = 10;
+            this.txtKoza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtKoza.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtGinko
             // 
             this.txtGinko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGinko.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtGinko.Location = new System.Drawing.Point(94, 116);
+            this.txtGinko.MaxLength = 20;
             this.txtGinko.Name = "txtGinko";
-            this.txtGinko.Size = new System.Drawing.Size(140, 22);
+            this.txtGinko.Size = new System.Drawing.Size(170, 22);
             this.txtGinko.TabIndex = 6;
+            this.txtGinko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtGinko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtJugyo
             // 
             this.txtJugyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJugyo.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtJugyo.Location = new System.Drawing.Point(94, 85);
+            this.txtJugyo.MaxLength = 15;
             this.txtJugyo.Name = "txtJugyo";
-            this.txtJugyo.Size = new System.Drawing.Size(78, 22);
+            this.txtJugyo.Size = new System.Drawing.Size(130, 22);
             this.txtJugyo.TabIndex = 4;
+            this.txtJugyo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtJugyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtJugyo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
+            this.txtJugyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtDaihyo
             // 
             this.txtDaihyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDaihyo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtDaihyo.Location = new System.Drawing.Point(94, 54);
+            this.txtDaihyo.MaxLength = 20;
             this.txtDaihyo.Name = "txtDaihyo";
-            this.txtDaihyo.Size = new System.Drawing.Size(172, 22);
+            this.txtDaihyo.Size = new System.Drawing.Size(170, 22);
             this.txtDaihyo.TabIndex = 1;
+            this.txtDaihyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtDaihyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelKesan
             // 
@@ -1228,10 +1410,14 @@
             // txtSiha
             // 
             this.txtSiha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSiha.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtSiha.Location = new System.Drawing.Point(94, 24);
+            this.txtSiha.MaxLength = 40;
             this.txtSiha.Name = "txtSiha";
-            this.txtSiha.Size = new System.Drawing.Size(390, 22);
+            this.txtSiha.Size = new System.Drawing.Size(330, 22);
             this.txtSiha.TabIndex = 0;
+            this.txtSiha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSiha.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelGinko
             // 
@@ -1300,9 +1486,9 @@
             this.gbTorihiki.Controls.Add(this.txtTorihiki1);
             this.gbTorihiki.Controls.Add(this.txtTorihiki6);
             this.gbTorihiki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbTorihiki.Location = new System.Drawing.Point(505, 522);
+            this.gbTorihiki.Location = new System.Drawing.Point(505, 515);
             this.gbTorihiki.Name = "gbTorihiki";
-            this.gbTorihiki.Size = new System.Drawing.Size(404, 257);
+            this.gbTorihiki.Size = new System.Drawing.Size(863, 262);
             this.gbTorihiki.TabIndex = 8;
             this.gbTorihiki.TabStop = false;
             this.gbTorihiki.Text = "主な取引先";
@@ -1310,162 +1496,243 @@
             // txtTorihiki20
             // 
             this.txtTorihiki20.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki20.Location = new System.Drawing.Point(208, 228);
+            this.txtTorihiki20.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki20.Location = new System.Drawing.Point(438, 228);
+            this.txtTorihiki20.MaxLength = 50;
             this.txtTorihiki20.Name = "txtTorihiki20";
-            this.txtTorihiki20.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki20.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki20.TabIndex = 19;
+            this.txtTorihiki20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki20.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki19
             // 
             this.txtTorihiki19.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki19.Location = new System.Drawing.Point(208, 205);
+            this.txtTorihiki19.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki19.Location = new System.Drawing.Point(438, 205);
+            this.txtTorihiki19.MaxLength = 50;
             this.txtTorihiki19.Name = "txtTorihiki19";
-            this.txtTorihiki19.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki19.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki19.TabIndex = 18;
+            this.txtTorihiki19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki19.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki10
             // 
             this.txtTorihiki10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki10.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki10.Location = new System.Drawing.Point(16, 228);
+            this.txtTorihiki10.MaxLength = 50;
             this.txtTorihiki10.Name = "txtTorihiki10";
-            this.txtTorihiki10.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki10.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki10.TabIndex = 9;
+            this.txtTorihiki10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki15
             // 
             this.txtTorihiki15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki15.Location = new System.Drawing.Point(208, 113);
+            this.txtTorihiki15.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki15.Location = new System.Drawing.Point(438, 113);
+            this.txtTorihiki15.MaxLength = 50;
             this.txtTorihiki15.Name = "txtTorihiki15";
-            this.txtTorihiki15.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki15.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki15.TabIndex = 14;
+            this.txtTorihiki15.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki15.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki9
             // 
             this.txtTorihiki9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki9.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki9.Location = new System.Drawing.Point(16, 205);
+            this.txtTorihiki9.MaxLength = 50;
             this.txtTorihiki9.Name = "txtTorihiki9";
-            this.txtTorihiki9.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki9.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki9.TabIndex = 8;
+            this.txtTorihiki9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki14
             // 
             this.txtTorihiki14.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki14.Location = new System.Drawing.Point(208, 90);
+            this.txtTorihiki14.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki14.Location = new System.Drawing.Point(438, 90);
+            this.txtTorihiki14.MaxLength = 50;
             this.txtTorihiki14.Name = "txtTorihiki14";
-            this.txtTorihiki14.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki14.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki14.TabIndex = 13;
+            this.txtTorihiki14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki14.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki5
             // 
             this.txtTorihiki5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki5.Location = new System.Drawing.Point(16, 113);
+            this.txtTorihiki5.MaxLength = 50;
             this.txtTorihiki5.Name = "txtTorihiki5";
-            this.txtTorihiki5.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki5.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki5.TabIndex = 4;
+            this.txtTorihiki5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki18
             // 
             this.txtTorihiki18.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki18.Location = new System.Drawing.Point(208, 182);
+            this.txtTorihiki18.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki18.Location = new System.Drawing.Point(438, 182);
+            this.txtTorihiki18.MaxLength = 50;
             this.txtTorihiki18.Name = "txtTorihiki18";
-            this.txtTorihiki18.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki18.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki18.TabIndex = 17;
+            this.txtTorihiki18.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki18.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki4
             // 
             this.txtTorihiki4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki4.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki4.Location = new System.Drawing.Point(16, 90);
+            this.txtTorihiki4.MaxLength = 50;
             this.txtTorihiki4.Name = "txtTorihiki4";
-            this.txtTorihiki4.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki4.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki4.TabIndex = 3;
+            this.txtTorihiki4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki13
             // 
             this.txtTorihiki13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki13.Location = new System.Drawing.Point(208, 67);
+            this.txtTorihiki13.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki13.Location = new System.Drawing.Point(438, 67);
+            this.txtTorihiki13.MaxLength = 50;
             this.txtTorihiki13.Name = "txtTorihiki13";
-            this.txtTorihiki13.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki13.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki13.TabIndex = 12;
+            this.txtTorihiki13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki13.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki8
             // 
             this.txtTorihiki8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki8.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki8.Location = new System.Drawing.Point(16, 182);
+            this.txtTorihiki8.MaxLength = 50;
             this.txtTorihiki8.Name = "txtTorihiki8";
-            this.txtTorihiki8.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki8.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki8.TabIndex = 7;
+            this.txtTorihiki8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki12
             // 
             this.txtTorihiki12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki12.Location = new System.Drawing.Point(208, 44);
+            this.txtTorihiki12.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki12.Location = new System.Drawing.Point(438, 44);
+            this.txtTorihiki12.MaxLength = 50;
             this.txtTorihiki12.Name = "txtTorihiki12";
-            this.txtTorihiki12.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki12.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki12.TabIndex = 11;
+            this.txtTorihiki12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki12.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki3
             // 
             this.txtTorihiki3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki3.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki3.Location = new System.Drawing.Point(16, 67);
+            this.txtTorihiki3.MaxLength = 50;
             this.txtTorihiki3.Name = "txtTorihiki3";
-            this.txtTorihiki3.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki3.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki3.TabIndex = 2;
+            this.txtTorihiki3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki17
             // 
             this.txtTorihiki17.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki17.Location = new System.Drawing.Point(208, 159);
+            this.txtTorihiki17.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki17.Location = new System.Drawing.Point(438, 159);
+            this.txtTorihiki17.MaxLength = 50;
             this.txtTorihiki17.Name = "txtTorihiki17";
-            this.txtTorihiki17.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki17.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki17.TabIndex = 16;
+            this.txtTorihiki17.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki17.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki2
             // 
             this.txtTorihiki2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki2.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki2.Location = new System.Drawing.Point(16, 44);
+            this.txtTorihiki2.MaxLength = 50;
             this.txtTorihiki2.Name = "txtTorihiki2";
-            this.txtTorihiki2.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki2.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki2.TabIndex = 1;
+            this.txtTorihiki2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki11
             // 
             this.txtTorihiki11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki11.Location = new System.Drawing.Point(208, 21);
+            this.txtTorihiki11.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki11.Location = new System.Drawing.Point(438, 21);
+            this.txtTorihiki11.MaxLength = 50;
             this.txtTorihiki11.Name = "txtTorihiki11";
-            this.txtTorihiki11.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki11.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki11.TabIndex = 10;
+            this.txtTorihiki11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki11.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki7
             // 
             this.txtTorihiki7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki7.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki7.Location = new System.Drawing.Point(16, 159);
+            this.txtTorihiki7.MaxLength = 50;
             this.txtTorihiki7.Name = "txtTorihiki7";
-            this.txtTorihiki7.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki7.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki7.TabIndex = 6;
+            this.txtTorihiki7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki16
             // 
             this.txtTorihiki16.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihiki16.Location = new System.Drawing.Point(208, 136);
+            this.txtTorihiki16.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihiki16.Location = new System.Drawing.Point(438, 136);
+            this.txtTorihiki16.MaxLength = 50;
             this.txtTorihiki16.Name = "txtTorihiki16";
-            this.txtTorihiki16.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki16.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki16.TabIndex = 15;
+            this.txtTorihiki16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki16.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki1
             // 
             this.txtTorihiki1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki1.HideSelection = false;
+            this.txtTorihiki1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki1.Location = new System.Drawing.Point(16, 21);
+            this.txtTorihiki1.MaxLength = 50;
             this.txtTorihiki1.Name = "txtTorihiki1";
-            this.txtTorihiki1.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki1.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki1.TabIndex = 0;
+            this.txtTorihiki1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtTorihiki6
             // 
             this.txtTorihiki6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihiki6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTorihiki6.Location = new System.Drawing.Point(16, 136);
+            this.txtTorihiki6.MaxLength = 50;
             this.txtTorihiki6.Name = "txtTorihiki6";
-            this.txtTorihiki6.Size = new System.Drawing.Size(181, 22);
+            this.txtTorihiki6.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki6.TabIndex = 5;
+            this.txtTorihiki6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtTorihiki6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // gbSohusaki
             // 
@@ -1478,9 +1745,9 @@
             this.gbSohusaki.Controls.Add(this.lblBaseLabelKeisankbn);
             this.gbSohusaki.Controls.Add(this.lblBaseLabelZeikbn);
             this.gbSohusaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSohusaki.Location = new System.Drawing.Point(988, 160);
+            this.gbSohusaki.Location = new System.Drawing.Point(995, 152);
             this.gbSohusaki.Name = "gbSohusaki";
-            this.gbSohusaki.Size = new System.Drawing.Size(211, 146);
+            this.gbSohusaki.Size = new System.Drawing.Size(169, 146);
             this.gbSohusaki.TabIndex = 6;
             this.gbSohusaki.TabStop = false;
             this.gbSohusaki.Text = "消費税";
@@ -1488,10 +1755,14 @@
             // txtMesai
             // 
             this.txtMesai.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMesai.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMesai.Location = new System.Drawing.Point(137, 110);
+            this.txtMesai.MaxLength = 1;
             this.txtMesai.Name = "txtMesai";
-            this.txtMesai.Size = new System.Drawing.Size(20, 22);
+            this.txtMesai.Size = new System.Drawing.Size(12, 22);
             this.txtMesai.TabIndex = 3;
+            this.txtMesai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtMesai.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelMesai
             // 
@@ -1507,10 +1778,14 @@
             // txtZeihasu
             // 
             this.txtZeihasu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtZeihasu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtZeihasu.Location = new System.Drawing.Point(137, 82);
+            this.txtZeihasu.MaxLength = 1;
             this.txtZeihasu.Name = "txtZeihasu";
-            this.txtZeihasu.Size = new System.Drawing.Size(20, 22);
+            this.txtZeihasu.Size = new System.Drawing.Size(12, 22);
             this.txtZeihasu.TabIndex = 2;
+            this.txtZeihasu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtZeihasu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelZeihasu
             // 
@@ -1526,18 +1801,26 @@
             // txtKeisankbn
             // 
             this.txtKeisankbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKeisankbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKeisankbn.Location = new System.Drawing.Point(137, 54);
+            this.txtKeisankbn.MaxLength = 1;
             this.txtKeisankbn.Name = "txtKeisankbn";
-            this.txtKeisankbn.Size = new System.Drawing.Size(20, 22);
+            this.txtKeisankbn.Size = new System.Drawing.Size(12, 22);
             this.txtKeisankbn.TabIndex = 1;
+            this.txtKeisankbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtKeisankbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtZeikbn
             // 
             this.txtZeikbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtZeikbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtZeikbn.Location = new System.Drawing.Point(137, 24);
+            this.txtZeikbn.MaxLength = 1;
             this.txtZeikbn.Name = "txtZeikbn";
-            this.txtZeikbn.Size = new System.Drawing.Size(20, 22);
+            this.txtZeikbn.Size = new System.Drawing.Size(12, 22);
             this.txtZeikbn.TabIndex = 0;
+            this.txtZeikbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtZeikbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblBaseLabelKeisankbn
             // 
@@ -1576,7 +1859,7 @@
             this.labelSet_GyoshuCd.SpaceNameCode = 20;
             this.labelSet_GyoshuCd.SpaceValueAppend = 4;
             this.labelSet_GyoshuCd.TabIndex = 3;
-            this.labelSet_GyoshuCd.ValueLabelSize = 200;
+            this.labelSet_GyoshuCd.ValueLabelSize = 120;
             this.labelSet_GyoshuCd.ValueLabelText = "";
             // 
             // M1070_Torihikisaki
@@ -1596,7 +1879,7 @@
             this.Name = "M1070_Torihikisaki";
             this.Text = "M1070_Torihikisaki";
             this.Load += new System.EventHandler(this.M1070_Torihikisaki_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judToririkiKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

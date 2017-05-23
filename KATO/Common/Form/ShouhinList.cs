@@ -312,15 +312,63 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setMoveOrder
-        ///form内のエンターによるタブオーダー機能
+        ///judTokuiListTxtKeyDown
+        ///キー入力判定(テキストボックス)
         ///</summary>
-        private void setMoveOrder(object sender, KeyEventArgs e)
+        private void judTokuiListTxtKeyDown(object sender, KeyEventArgs e)
         {
-            //F1キーが押されたか調べる
-            if (e.KeyData == Keys.Enter)
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
             {
-                SendKeys.Send("{TAB}");
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    //検索ボタン
+                    this.btnKensakuClick(sender, e);
+                    break;
+                case Keys.F12:
+                    //戻るボタン
+                    this.btnEndClick(sender, e);
+                    break;
+
+                default:
+                    break;
             }
         }
 

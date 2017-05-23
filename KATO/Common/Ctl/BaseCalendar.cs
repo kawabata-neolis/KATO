@@ -340,5 +340,28 @@ namespace KATO.Common.Ctl
                 e.Handled = true;
             }
         }
+
+        //
+        //別の場所にフォーカス移動された時(始まり)
+        //
+        private void BaseCalendar_Leave(object sender, EventArgs e)
+        {
+            Boolean blnDateJud;
+
+            blnDateJud = this.updCalendarLeave(this.Text);
+
+            if (blnDateJud == false)
+            {
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                this.Focus();
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }

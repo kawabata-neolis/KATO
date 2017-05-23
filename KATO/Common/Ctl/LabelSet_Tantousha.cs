@@ -53,7 +53,11 @@ namespace KATO.Common.Ctl
                 tantoushaList.StartPosition = FormStartPosition.Manual;
                 tantoushaList.intFrmKind = CommonTeisu.FRM_TANTOUSYA;
                 tantoushaList.ShowDialog();
-
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
             }
         }
 
@@ -94,14 +98,14 @@ namespace KATO.Common.Ctl
                 return;
             }
 
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
             if (this.CodeTxtText.Length <= 3)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-
+            
             strSQLName = "C_LIST_Tantousha_SELECT_LEAVE";
 
             //データ渡し用
@@ -162,7 +166,7 @@ namespace KATO.Common.Ctl
                 return;
             }
             //左右のシフトキー 4つ
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }

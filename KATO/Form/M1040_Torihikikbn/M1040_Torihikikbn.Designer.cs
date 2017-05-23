@@ -113,6 +113,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 22);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikbnTxtKeyDown);
             // 
             // txtTorihikikubun
             // 
@@ -123,7 +124,7 @@
             this.txtTorihikikubun.Name = "txtTorihikikubun";
             this.txtTorihikikubun.Size = new System.Drawing.Size(24, 22);
             this.txtTorihikikubun.TabIndex = 0;
-            this.txtTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyDown);
+            this.txtTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTorikbnTxtKeyDown);
             this.txtTorihikikubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyUp);
             this.txtTorihikikubun.Leave += new System.EventHandler(this.updTxtToriLeave);
             // 
@@ -139,7 +140,7 @@
             this.Name = "M1040_Torihikikbn";
             this.Text = "M1040_Torihikikbn";
             this.Load += new System.EventHandler(this.M1040_Torihikikubun_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikubunKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikbnKeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

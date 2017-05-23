@@ -120,6 +120,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel1
             // 
@@ -129,6 +130,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel1.Size = new System.Drawing.Size(100, 22);
             this.txtLabel1.TabIndex = 2;
             this.txtLabel1.Visible = false;
+            this.txtLabel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel2
             // 
@@ -138,6 +140,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel2.Size = new System.Drawing.Size(100, 22);
             this.txtLabel2.TabIndex = 3;
             this.txtLabel2.Visible = false;
+            this.txtLabel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel3
             // 
@@ -147,6 +150,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel3.Size = new System.Drawing.Size(100, 22);
             this.txtLabel3.TabIndex = 4;
             this.txtLabel3.Visible = false;
+            this.txtLabel3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel4
             // 
@@ -156,6 +160,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel4.Size = new System.Drawing.Size(100, 22);
             this.txtLabel4.TabIndex = 5;
             this.txtLabel4.Visible = false;
+            this.txtLabel4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel5
             // 
@@ -165,6 +170,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel5.Size = new System.Drawing.Size(100, 22);
             this.txtLabel5.TabIndex = 6;
             this.txtLabel5.Visible = false;
+            this.txtLabel5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // txtLabel6
             // 
@@ -174,6 +180,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtLabel6.Size = new System.Drawing.Size(100, 22);
             this.txtLabel6.TabIndex = 7;
             this.txtLabel6.Visible = false;
+            this.txtLabel6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
             // 
             // lblBaseLabelCD
             // 

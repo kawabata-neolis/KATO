@@ -645,6 +645,7 @@
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Gyoshu_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql" />
     <Content Include="SQL\Common\C_SQL_CALENDAR_UPD.sql" />

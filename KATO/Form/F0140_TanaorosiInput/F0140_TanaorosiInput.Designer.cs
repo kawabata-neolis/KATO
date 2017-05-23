@@ -308,6 +308,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui_Edit.SpaceCodeValue = 4;
             this.labelSet_Chubunrui_Edit.SpaceNameCode = 4;
             this.labelSet_Chubunrui_Edit.SpaceValueAppend = 4;
+            this.labelSet_Chubunrui_Edit.strDaibunCd = null;
             this.labelSet_Chubunrui_Edit.TabIndex = 99;
             this.labelSet_Chubunrui_Edit.ValueLabelSize = 150;
             this.labelSet_Chubunrui_Edit.ValueLabelText = "";
@@ -379,7 +380,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtTanasuu.Name = "txtTanasuu";
             this.txtTanasuu.Size = new System.Drawing.Size(163, 22);
             this.txtTanasuu.TabIndex = 1;
-            this.txtTanasuu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaorosiKeyDown);
+            this.txtTanasuu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaTxtKeyDown);
             // 
             // txtKensaku
             // 
@@ -388,7 +389,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(186, 22);
             this.txtKensaku.TabIndex = 0;
-            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaorosiKeyDown);
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaTxtKeyDown);
             this.txtKensaku.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
             // lblBaseLabelHinmei
@@ -501,6 +502,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Chubunrui.SpaceCodeValue = 10;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
+            this.labelSet_Chubunrui.strDaibunCd = null;
             this.labelSet_Chubunrui.TabIndex = 2;
             this.labelSet_Chubunrui.ValueLabelSize = 150;
             this.labelSet_Chubunrui.ValueLabelText = "";
