@@ -102,6 +102,11 @@
             this.lblBaseLabelSeikyuumu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtSime = new KATO.Common.Ctl.BaseText();
             this.lblBaseLabelShukbn = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel9 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel11 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel10 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBaseLabelJoken = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBaseLabelSime = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbKaisha = new System.Windows.Forms.GroupBox();
@@ -158,6 +163,10 @@
             this.txtKeisankbn = new KATO.Common.Ctl.BaseText();
             this.txtZeikbn = new KATO.Common.Ctl.BaseText();
             this.lblBaseLabelKeisankbn = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBaseLabelZeikbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_GyoshuCd = new KATO.Common.Ctl.LabelSet_Gyoshu();
             this.gbTori.SuspendLayout();
@@ -880,7 +889,7 @@
             // 
             this.txtFAXS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtFAXS.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtFAXS.Location = new System.Drawing.Point(303, 139);
+            this.txtFAXS.Location = new System.Drawing.Point(303, 135);
             this.txtFAXS.MaxLength = 12;
             this.txtFAXS.Name = "txtFAXS";
             this.txtFAXS.Size = new System.Drawing.Size(105, 22);
@@ -892,7 +901,7 @@
             // 
             this.baseLabel1.AutoSize = true;
             this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(242, 142);
+            this.baseLabel1.Location = new System.Drawing.Point(242, 138);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(55, 15);
             this.baseLabel1.strToolTip = null;
@@ -904,7 +913,7 @@
             // 
             this.txtDenwaS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDenwaS.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtDenwaS.Location = new System.Drawing.Point(94, 139);
+            this.txtDenwaS.Location = new System.Drawing.Point(94, 135);
             this.txtDenwaS.MaxLength = 12;
             this.txtDenwaS.Name = "txtDenwaS";
             this.txtDenwaS.Size = new System.Drawing.Size(105, 22);
@@ -916,7 +925,7 @@
             // 
             this.lblBaseLabelDenwaS.AutoSize = true;
             this.lblBaseLabelDenwaS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelDenwaS.Location = new System.Drawing.Point(18, 142);
+            this.lblBaseLabelDenwaS.Location = new System.Drawing.Point(18, 138);
             this.lblBaseLabelDenwaS.Name = "lblBaseLabelDenwaS";
             this.lblBaseLabelDenwaS.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelDenwaS.strToolTip = null;
@@ -928,7 +937,7 @@
             // 
             this.txtJusho2S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJusho2S.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho2S.Location = new System.Drawing.Point(94, 110);
+            this.txtJusho2S.Location = new System.Drawing.Point(94, 106);
             this.txtJusho2S.MaxLength = 30;
             this.txtJusho2S.Name = "txtJusho2S";
             this.txtJusho2S.Size = new System.Drawing.Size(250, 22);
@@ -940,7 +949,7 @@
             // 
             this.lblBaseLabelJusho2S.AutoSize = true;
             this.lblBaseLabelJusho2S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelJusho2S.Location = new System.Drawing.Point(18, 113);
+            this.lblBaseLabelJusho2S.Location = new System.Drawing.Point(18, 109);
             this.lblBaseLabelJusho2S.Name = "lblBaseLabelJusho2S";
             this.lblBaseLabelJusho2S.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelJusho2S.strToolTip = null;
@@ -952,7 +961,7 @@
             // 
             this.txtJusho1S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJusho1S.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho1S.Location = new System.Drawing.Point(94, 82);
+            this.txtJusho1S.Location = new System.Drawing.Point(94, 78);
             this.txtJusho1S.MaxLength = 30;
             this.txtJusho1S.Name = "txtJusho1S";
             this.txtJusho1S.Size = new System.Drawing.Size(250, 22);
@@ -964,7 +973,7 @@
             // 
             this.lblBaseLabelJusho1S.AutoSize = true;
             this.lblBaseLabelJusho1S.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelJusho1S.Location = new System.Drawing.Point(18, 85);
+            this.lblBaseLabelJusho1S.Location = new System.Drawing.Point(18, 81);
             this.lblBaseLabelJusho1S.Name = "lblBaseLabelJusho1S";
             this.lblBaseLabelJusho1S.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelJusho1S.strToolTip = null;
@@ -976,7 +985,7 @@
             // 
             this.txtYubinS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYubinS.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtYubinS.Location = new System.Drawing.Point(94, 54);
+            this.txtYubinS.Location = new System.Drawing.Point(94, 50);
             this.txtYubinS.MaxLength = 8;
             this.txtYubinS.Name = "txtYubinS";
             this.txtYubinS.Size = new System.Drawing.Size(75, 22);
@@ -988,7 +997,7 @@
             // 
             this.txtNameS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtNameS.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtNameS.Location = new System.Drawing.Point(94, 24);
+            this.txtNameS.Location = new System.Drawing.Point(94, 20);
             this.txtNameS.MaxLength = 40;
             this.txtNameS.Name = "txtNameS";
             this.txtNameS.Size = new System.Drawing.Size(330, 22);
@@ -1000,7 +1009,7 @@
             // 
             this.lblBaseLabelYubinS.AutoSize = true;
             this.lblBaseLabelYubinS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelYubinS.Location = new System.Drawing.Point(18, 57);
+            this.lblBaseLabelYubinS.Location = new System.Drawing.Point(18, 53);
             this.lblBaseLabelYubinS.Name = "lblBaseLabelYubinS";
             this.lblBaseLabelYubinS.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelYubinS.strToolTip = null;
@@ -1012,7 +1021,7 @@
             // 
             this.lblBaseLabelNameS.AutoSize = true;
             this.lblBaseLabelNameS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelNameS.Location = new System.Drawing.Point(18, 27);
+            this.lblBaseLabelNameS.Location = new System.Drawing.Point(18, 23);
             this.lblBaseLabelNameS.Name = "lblBaseLabelNameS";
             this.lblBaseLabelNameS.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelNameS.strToolTip = null;
@@ -1032,12 +1041,17 @@
             this.gbSime.Controls.Add(this.lblBaseLabelSeikyuumu);
             this.gbSime.Controls.Add(this.txtSime);
             this.gbSime.Controls.Add(this.lblBaseLabelShukbn);
+            this.gbSime.Controls.Add(this.baseLabel8);
+            this.gbSime.Controls.Add(this.baseLabel9);
+            this.gbSime.Controls.Add(this.baseLabel11);
+            this.gbSime.Controls.Add(this.baseLabel10);
+            this.gbSime.Controls.Add(this.baseLabel7);
             this.gbSime.Controls.Add(this.lblBaseLabelJoken);
             this.gbSime.Controls.Add(this.lblBaseLabelSime);
             this.gbSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSime.Location = new System.Drawing.Point(505, 178);
+            this.gbSime.Location = new System.Drawing.Point(505, 180);
             this.gbSime.Name = "gbSime";
-            this.gbSime.Size = new System.Drawing.Size(470, 120);
+            this.gbSime.Size = new System.Drawing.Size(470, 130);
             this.gbSime.TabIndex = 5;
             this.gbSime.TabStop = false;
             // 
@@ -1045,7 +1059,7 @@
             // 
             this.txtSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihabi.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSihabi.Location = new System.Drawing.Point(336, 24);
+            this.txtSihabi.Location = new System.Drawing.Point(394, 13);
             this.txtSihabi.MaxLength = 2;
             this.txtSihabi.Name = "txtSihabi";
             this.txtSihabi.Size = new System.Drawing.Size(24, 22);
@@ -1057,7 +1071,7 @@
             // 
             this.lblBaseLabelSihabi.AutoSize = true;
             this.lblBaseLabelSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSihabi.Location = new System.Drawing.Point(279, 27);
+            this.lblBaseLabelSihabi.Location = new System.Drawing.Point(337, 16);
             this.lblBaseLabelSihabi.Name = "lblBaseLabelSihabi";
             this.lblBaseLabelSihabi.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSihabi.strToolTip = "月末払いは３１";
@@ -1069,7 +1083,7 @@
             // 
             this.txtSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihatuki.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSihatuki.Location = new System.Drawing.Point(218, 24);
+            this.txtSihatuki.Location = new System.Drawing.Point(218, 13);
             this.txtSihatuki.MaxLength = 2;
             this.txtSihatuki.Name = "txtSihatuki";
             this.txtSihatuki.Size = new System.Drawing.Size(24, 22);
@@ -1081,7 +1095,7 @@
             // 
             this.lblBaseLabelSihatuki.AutoSize = true;
             this.lblBaseLabelSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSihatuki.Location = new System.Drawing.Point(141, 27);
+            this.lblBaseLabelSihatuki.Location = new System.Drawing.Point(141, 16);
             this.lblBaseLabelSihatuki.Name = "lblBaseLabelSihatuki";
             this.lblBaseLabelSihatuki.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelSihatuki.strToolTip = "当月：０　翌月：１　翌々月：２";
@@ -1093,7 +1107,7 @@
             // 
             this.txtSeikyuumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSeikyuumu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSeikyuumu.Location = new System.Drawing.Point(233, 85);
+            this.txtSeikyuumu.Location = new System.Drawing.Point(233, 84);
             this.txtSeikyuumu.MaxLength = 4;
             this.txtSeikyuumu.Name = "txtSeikyuumu";
             this.txtSeikyuumu.Size = new System.Drawing.Size(24, 22);
@@ -1105,7 +1119,7 @@
             // 
             this.txtShukinkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShukinkbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtShukinkbn.Location = new System.Drawing.Point(94, 85);
+            this.txtShukinkbn.Location = new System.Drawing.Point(94, 84);
             this.txtShukinkbn.MaxLength = 4;
             this.txtShukinkbn.Name = "txtShukinkbn";
             this.txtShukinkbn.Size = new System.Drawing.Size(24, 22);
@@ -1117,7 +1131,7 @@
             // 
             this.txtJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJoken.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJoken.Location = new System.Drawing.Point(94, 54);
+            this.txtJoken.Location = new System.Drawing.Point(94, 57);
             this.txtJoken.MaxLength = 40;
             this.txtJoken.Name = "txtJoken";
             this.txtJoken.Size = new System.Drawing.Size(330, 22);
@@ -1129,7 +1143,7 @@
             // 
             this.lblBaseLabelSeikyuumu.AutoSize = true;
             this.lblBaseLabelSeikyuumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSeikyuumu.Location = new System.Drawing.Point(142, 88);
+            this.lblBaseLabelSeikyuumu.Location = new System.Drawing.Point(142, 87);
             this.lblBaseLabelSeikyuumu.Name = "lblBaseLabelSeikyuumu";
             this.lblBaseLabelSeikyuumu.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabelSeikyuumu.strToolTip = "０：無　１：有";
@@ -1141,7 +1155,7 @@
             // 
             this.txtSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSime.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSime.Location = new System.Drawing.Point(94, 24);
+            this.txtSime.Location = new System.Drawing.Point(94, 13);
             this.txtSime.MaxLength = 2;
             this.txtSime.Name = "txtSime";
             this.txtSime.Size = new System.Drawing.Size(24, 22);
@@ -1153,7 +1167,7 @@
             // 
             this.lblBaseLabelShukbn.AutoSize = true;
             this.lblBaseLabelShukbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelShukbn.Location = new System.Drawing.Point(18, 88);
+            this.lblBaseLabelShukbn.Location = new System.Drawing.Point(18, 87);
             this.lblBaseLabelShukbn.Name = "lblBaseLabelShukbn";
             this.lblBaseLabelShukbn.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelShukbn.strToolTip = "０：無　１：有";
@@ -1161,11 +1175,71 @@
             this.lblBaseLabelShukbn.Text = "集金区分";
             this.lblBaseLabelShukbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // baseLabel8
+            // 
+            this.baseLabel8.AutoSize = true;
+            this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel8.Location = new System.Drawing.Point(143, 37);
+            this.baseLabel8.Name = "baseLabel8";
+            this.baseLabel8.Size = new System.Drawing.Size(179, 12);
+            this.baseLabel8.strToolTip = "";
+            this.baseLabel8.TabIndex = 90;
+            this.baseLabel8.Text = "(0：当月　1：翌月　2：翌々月)";
+            this.baseLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel9
+            // 
+            this.baseLabel9.AutoSize = true;
+            this.baseLabel9.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel9.Location = new System.Drawing.Point(338, 37);
+            this.baseLabel9.Name = "baseLabel9";
+            this.baseLabel9.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel9.strToolTip = "";
+            this.baseLabel9.TabIndex = 90;
+            this.baseLabel9.Text = "(月末絞は31)";
+            this.baseLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel11
+            // 
+            this.baseLabel11.AutoSize = true;
+            this.baseLabel11.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel11.Location = new System.Drawing.Point(143, 108);
+            this.baseLabel11.Name = "baseLabel11";
+            this.baseLabel11.Size = new System.Drawing.Size(89, 12);
+            this.baseLabel11.strToolTip = "";
+            this.baseLabel11.TabIndex = 90;
+            this.baseLabel11.Text = "(0：無　1：有)";
+            this.baseLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel10
+            // 
+            this.baseLabel10.AutoSize = true;
+            this.baseLabel10.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel10.Location = new System.Drawing.Point(19, 108);
+            this.baseLabel10.Name = "baseLabel10";
+            this.baseLabel10.Size = new System.Drawing.Size(89, 12);
+            this.baseLabel10.strToolTip = "";
+            this.baseLabel10.TabIndex = 90;
+            this.baseLabel10.Text = "(0：無　1：有)";
+            this.baseLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel7
+            // 
+            this.baseLabel7.AutoSize = true;
+            this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel7.Location = new System.Drawing.Point(18, 37);
+            this.baseLabel7.Name = "baseLabel7";
+            this.baseLabel7.Size = new System.Drawing.Size(77, 12);
+            this.baseLabel7.strToolTip = "";
+            this.baseLabel7.TabIndex = 90;
+            this.baseLabel7.Text = "(月末絞は31)";
+            this.baseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lblBaseLabelJoken
             // 
             this.lblBaseLabelJoken.AutoSize = true;
             this.lblBaseLabelJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelJoken.Location = new System.Drawing.Point(18, 57);
+            this.lblBaseLabelJoken.Location = new System.Drawing.Point(18, 60);
             this.lblBaseLabelJoken.Name = "lblBaseLabelJoken";
             this.lblBaseLabelJoken.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelJoken.strToolTip = null;
@@ -1177,7 +1251,7 @@
             // 
             this.lblBaseLabelSime.AutoSize = true;
             this.lblBaseLabelSime.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSime.Location = new System.Drawing.Point(18, 27);
+            this.lblBaseLabelSime.Location = new System.Drawing.Point(18, 16);
             this.lblBaseLabelSime.Name = "lblBaseLabelSime";
             this.lblBaseLabelSime.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSime.strToolTip = "月末絞は３１";
@@ -1213,9 +1287,9 @@
             this.gbKaisha.Controls.Add(this.lblBaseLabelDaihyo);
             this.gbKaisha.Controls.Add(this.lblBaseLabelSiha);
             this.gbKaisha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbKaisha.Location = new System.Drawing.Point(505, 299);
+            this.gbKaisha.Location = new System.Drawing.Point(505, 311);
             this.gbKaisha.Name = "gbKaisha";
-            this.gbKaisha.Size = new System.Drawing.Size(914, 215);
+            this.gbKaisha.Size = new System.Drawing.Size(914, 203);
             this.gbKaisha.TabIndex = 7;
             this.gbKaisha.TabStop = false;
             // 
@@ -1226,7 +1300,7 @@
             this.txtSihon.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSihon.intDeciSet = 0;
             this.txtSihon.intIntederSet = 0;
-            this.txtSihon.Location = new System.Drawing.Point(337, 54);
+            this.txtSihon.Location = new System.Drawing.Point(337, 46);
             this.txtSihon.MaxLength = 12;
             this.txtSihon.Name = "txtSihon";
             this.txtSihon.Size = new System.Drawing.Size(130, 22);
@@ -1240,7 +1314,7 @@
             // 
             this.txtSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSeturitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSeturitu.Location = new System.Drawing.Point(559, 54);
+            this.txtSeturitu.Location = new System.Drawing.Point(559, 46);
             this.txtSeturitu.MaxLength = 20;
             this.txtSeturitu.Name = "txtSeturitu";
             this.txtSeturitu.Size = new System.Drawing.Size(170, 22);
@@ -1251,7 +1325,7 @@
             // txtBango
             // 
             this.txtBango.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBango.Location = new System.Drawing.Point(665, 116);
+            this.txtBango.Location = new System.Drawing.Point(665, 108);
             this.txtBango.MaxLength = 7;
             this.txtBango.Name = "txtBango";
             this.txtBango.Size = new System.Drawing.Size(65, 22);
@@ -1263,7 +1337,7 @@
             // 
             this.txtShubetu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShubetu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtShubetu.Location = new System.Drawing.Point(559, 116);
+            this.txtShubetu.Location = new System.Drawing.Point(559, 108);
             this.txtShubetu.MaxLength = 6;
             this.txtShubetu.Name = "txtShubetu";
             this.txtShubetu.Size = new System.Drawing.Size(55, 22);
@@ -1275,7 +1349,7 @@
             // 
             this.lblBaseLabelBango.AutoSize = true;
             this.lblBaseLabelBango.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelBango.Location = new System.Drawing.Point(620, 119);
+            this.lblBaseLabelBango.Location = new System.Drawing.Point(620, 111);
             this.lblBaseLabelBango.Name = "lblBaseLabelBango";
             this.lblBaseLabelBango.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelBango.strToolTip = null;
@@ -1287,7 +1361,7 @@
             // 
             this.txtSiten.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSiten.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtSiten.Location = new System.Drawing.Point(338, 116);
+            this.txtSiten.Location = new System.Drawing.Point(338, 108);
             this.txtSiten.MaxLength = 20;
             this.txtSiten.Name = "txtSiten";
             this.txtSiten.Size = new System.Drawing.Size(170, 22);
@@ -1299,7 +1373,7 @@
             // 
             this.lblBaseLabelShubetu.AutoSize = true;
             this.lblBaseLabelShubetu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelShubetu.Location = new System.Drawing.Point(514, 119);
+            this.lblBaseLabelShubetu.Location = new System.Drawing.Point(514, 111);
             this.lblBaseLabelShubetu.Name = "lblBaseLabelShubetu";
             this.lblBaseLabelShubetu.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelShubetu.strToolTip = null;
@@ -1311,7 +1385,7 @@
             // 
             this.lblBaseLabelSiten.AutoSize = true;
             this.lblBaseLabelSiten.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSiten.Location = new System.Drawing.Point(277, 119);
+            this.lblBaseLabelSiten.Location = new System.Drawing.Point(277, 111);
             this.lblBaseLabelSiten.Name = "lblBaseLabelSiten";
             this.lblBaseLabelSiten.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSiten.strToolTip = null;
@@ -1323,7 +1397,7 @@
             // 
             this.lblBaseLabelSeturitu.AutoSize = true;
             this.lblBaseLabelSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(515, 57);
+            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(515, 49);
             this.lblBaseLabelSeturitu.Name = "lblBaseLabelSeturitu";
             this.lblBaseLabelSeturitu.Size = new System.Drawing.Size(39, 15);
             this.lblBaseLabelSeturitu.strToolTip = null;
@@ -1335,7 +1409,7 @@
             // 
             this.lblBaseLabelSihon.AutoSize = true;
             this.lblBaseLabelSihon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSihon.Location = new System.Drawing.Point(277, 57);
+            this.lblBaseLabelSihon.Location = new System.Drawing.Point(277, 49);
             this.lblBaseLabelSihon.Name = "lblBaseLabelSihon";
             this.lblBaseLabelSihon.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelSihon.strToolTip = null;
@@ -1347,7 +1421,7 @@
             // 
             this.txtKesan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKesan.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtKesan.Location = new System.Drawing.Point(298, 85);
+            this.txtKesan.Location = new System.Drawing.Point(298, 77);
             this.txtKesan.MaxLength = 20;
             this.txtKesan.Name = "txtKesan";
             this.txtKesan.Size = new System.Drawing.Size(170, 22);
@@ -1358,7 +1432,7 @@
             // txtToriatu
             // 
             this.txtToriatu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtToriatu.Location = new System.Drawing.Point(93, 179);
+            this.txtToriatu.Location = new System.Drawing.Point(93, 171);
             this.txtToriatu.MaxLength = 100;
             this.txtToriatu.Name = "txtToriatu";
             this.txtToriatu.Size = new System.Drawing.Size(810, 22);
@@ -1369,7 +1443,7 @@
             // txtKoza
             // 
             this.txtKoza.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKoza.Location = new System.Drawing.Point(94, 147);
+            this.txtKoza.Location = new System.Drawing.Point(94, 139);
             this.txtKoza.MaxLength = 50;
             this.txtKoza.Name = "txtKoza";
             this.txtKoza.Size = new System.Drawing.Size(410, 22);
@@ -1381,7 +1455,7 @@
             // 
             this.txtGinko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtGinko.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtGinko.Location = new System.Drawing.Point(94, 116);
+            this.txtGinko.Location = new System.Drawing.Point(94, 108);
             this.txtGinko.MaxLength = 20;
             this.txtGinko.Name = "txtGinko";
             this.txtGinko.Size = new System.Drawing.Size(170, 22);
@@ -1393,7 +1467,7 @@
             // 
             this.txtJugyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJugyo.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJugyo.Location = new System.Drawing.Point(94, 85);
+            this.txtJugyo.Location = new System.Drawing.Point(94, 77);
             this.txtJugyo.MaxLength = 15;
             this.txtJugyo.Name = "txtJugyo";
             this.txtJugyo.Size = new System.Drawing.Size(130, 22);
@@ -1407,7 +1481,7 @@
             // 
             this.txtDaihyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDaihyo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtDaihyo.Location = new System.Drawing.Point(94, 54);
+            this.txtDaihyo.Location = new System.Drawing.Point(94, 46);
             this.txtDaihyo.MaxLength = 20;
             this.txtDaihyo.Name = "txtDaihyo";
             this.txtDaihyo.Size = new System.Drawing.Size(170, 22);
@@ -1419,7 +1493,7 @@
             // 
             this.lblBaseLabelKesan.AutoSize = true;
             this.lblBaseLabelKesan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelKesan.Location = new System.Drawing.Point(237, 88);
+            this.lblBaseLabelKesan.Location = new System.Drawing.Point(237, 80);
             this.lblBaseLabelKesan.Name = "lblBaseLabelKesan";
             this.lblBaseLabelKesan.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelKesan.strToolTip = null;
@@ -1431,7 +1505,7 @@
             // 
             this.lblBaseLabelTorihiki.AutoSize = true;
             this.lblBaseLabelTorihiki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelTorihiki.Location = new System.Drawing.Point(17, 182);
+            this.lblBaseLabelTorihiki.Location = new System.Drawing.Point(17, 174);
             this.lblBaseLabelTorihiki.Name = "lblBaseLabelTorihiki";
             this.lblBaseLabelTorihiki.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelTorihiki.strToolTip = null;
@@ -1443,7 +1517,7 @@
             // 
             this.lblBaseLabelKoza.AutoSize = true;
             this.lblBaseLabelKoza.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelKoza.Location = new System.Drawing.Point(18, 150);
+            this.lblBaseLabelKoza.Location = new System.Drawing.Point(18, 142);
             this.lblBaseLabelKoza.Name = "lblBaseLabelKoza";
             this.lblBaseLabelKoza.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelKoza.strToolTip = null;
@@ -1455,7 +1529,7 @@
             // 
             this.txtSiha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSiha.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtSiha.Location = new System.Drawing.Point(94, 24);
+            this.txtSiha.Location = new System.Drawing.Point(94, 16);
             this.txtSiha.MaxLength = 40;
             this.txtSiha.Name = "txtSiha";
             this.txtSiha.Size = new System.Drawing.Size(330, 22);
@@ -1467,7 +1541,7 @@
             // 
             this.lblBaseLabelGinko.AutoSize = true;
             this.lblBaseLabelGinko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelGinko.Location = new System.Drawing.Point(18, 119);
+            this.lblBaseLabelGinko.Location = new System.Drawing.Point(18, 111);
             this.lblBaseLabelGinko.Name = "lblBaseLabelGinko";
             this.lblBaseLabelGinko.Size = new System.Drawing.Size(55, 15);
             this.lblBaseLabelGinko.strToolTip = null;
@@ -1479,7 +1553,7 @@
             // 
             this.lblBaseLabelJugyo.AutoSize = true;
             this.lblBaseLabelJugyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelJugyo.Location = new System.Drawing.Point(18, 88);
+            this.lblBaseLabelJugyo.Location = new System.Drawing.Point(18, 80);
             this.lblBaseLabelJugyo.Name = "lblBaseLabelJugyo";
             this.lblBaseLabelJugyo.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelJugyo.strToolTip = null;
@@ -1491,7 +1565,7 @@
             // 
             this.lblBaseLabelDaihyo.AutoSize = true;
             this.lblBaseLabelDaihyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelDaihyo.Location = new System.Drawing.Point(18, 57);
+            this.lblBaseLabelDaihyo.Location = new System.Drawing.Point(18, 49);
             this.lblBaseLabelDaihyo.Name = "lblBaseLabelDaihyo";
             this.lblBaseLabelDaihyo.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelDaihyo.strToolTip = null;
@@ -1503,7 +1577,7 @@
             // 
             this.lblBaseLabelSiha.AutoSize = true;
             this.lblBaseLabelSiha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSiha.Location = new System.Drawing.Point(18, 27);
+            this.lblBaseLabelSiha.Location = new System.Drawing.Point(18, 19);
             this.lblBaseLabelSiha.Name = "lblBaseLabelSiha";
             this.lblBaseLabelSiha.Size = new System.Drawing.Size(71, 15);
             this.lblBaseLabelSiha.strToolTip = null;
@@ -1791,11 +1865,15 @@
             this.gbSohusaki.Controls.Add(this.txtKeisankbn);
             this.gbSohusaki.Controls.Add(this.txtZeikbn);
             this.gbSohusaki.Controls.Add(this.lblBaseLabelKeisankbn);
+            this.gbSohusaki.Controls.Add(this.baseLabel6);
+            this.gbSohusaki.Controls.Add(this.baseLabel4);
+            this.gbSohusaki.Controls.Add(this.baseLabel3);
+            this.gbSohusaki.Controls.Add(this.baseLabel2);
             this.gbSohusaki.Controls.Add(this.lblBaseLabelZeikbn);
             this.gbSohusaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbSohusaki.Location = new System.Drawing.Point(995, 152);
+            this.gbSohusaki.Location = new System.Drawing.Point(997, 74);
             this.gbSohusaki.Name = "gbSohusaki";
-            this.gbSohusaki.Size = new System.Drawing.Size(169, 146);
+            this.gbSohusaki.Size = new System.Drawing.Size(253, 236);
             this.gbSohusaki.TabIndex = 6;
             this.gbSohusaki.TabStop = false;
             this.gbSohusaki.Text = "消費税";
@@ -1804,10 +1882,10 @@
             // 
             this.txtMesai.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtMesai.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtMesai.Location = new System.Drawing.Point(137, 110);
+            this.txtMesai.Location = new System.Drawing.Point(137, 184);
             this.txtMesai.MaxLength = 1;
             this.txtMesai.Name = "txtMesai";
-            this.txtMesai.Size = new System.Drawing.Size(12, 22);
+            this.txtMesai.Size = new System.Drawing.Size(15, 22);
             this.txtMesai.TabIndex = 3;
             this.txtMesai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtMesai.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1816,7 +1894,7 @@
             // 
             this.lblBaseLabelMesai.AutoSize = true;
             this.lblBaseLabelMesai.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelMesai.Location = new System.Drawing.Point(18, 113);
+            this.lblBaseLabelMesai.Location = new System.Drawing.Point(18, 187);
             this.lblBaseLabelMesai.Name = "lblBaseLabelMesai";
             this.lblBaseLabelMesai.Size = new System.Drawing.Size(103, 15);
             this.lblBaseLabelMesai.strToolTip = "０：切捨て　１：四捨五入　２：切上";
@@ -1828,10 +1906,10 @@
             // 
             this.txtZeihasu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtZeihasu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtZeihasu.Location = new System.Drawing.Point(137, 82);
+            this.txtZeihasu.Location = new System.Drawing.Point(137, 131);
             this.txtZeihasu.MaxLength = 1;
             this.txtZeihasu.Name = "txtZeihasu";
-            this.txtZeihasu.Size = new System.Drawing.Size(12, 22);
+            this.txtZeihasu.Size = new System.Drawing.Size(15, 22);
             this.txtZeihasu.TabIndex = 2;
             this.txtZeihasu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtZeihasu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1840,7 +1918,7 @@
             // 
             this.lblBaseLabelZeihasu.AutoSize = true;
             this.lblBaseLabelZeihasu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelZeihasu.Location = new System.Drawing.Point(18, 85);
+            this.lblBaseLabelZeihasu.Location = new System.Drawing.Point(18, 134);
             this.lblBaseLabelZeihasu.Name = "lblBaseLabelZeihasu";
             this.lblBaseLabelZeihasu.Size = new System.Drawing.Size(119, 15);
             this.lblBaseLabelZeihasu.strToolTip = "０：切捨て　１：四捨五入　２：切上";
@@ -1852,10 +1930,10 @@
             // 
             this.txtKeisankbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKeisankbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKeisankbn.Location = new System.Drawing.Point(137, 54);
+            this.txtKeisankbn.Location = new System.Drawing.Point(137, 79);
             this.txtKeisankbn.MaxLength = 1;
             this.txtKeisankbn.Name = "txtKeisankbn";
-            this.txtKeisankbn.Size = new System.Drawing.Size(12, 22);
+            this.txtKeisankbn.Size = new System.Drawing.Size(15, 22);
             this.txtKeisankbn.TabIndex = 1;
             this.txtKeisankbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtKeisankbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1867,7 +1945,7 @@
             this.txtZeikbn.Location = new System.Drawing.Point(137, 24);
             this.txtZeikbn.MaxLength = 1;
             this.txtZeikbn.Name = "txtZeikbn";
-            this.txtZeikbn.Size = new System.Drawing.Size(12, 22);
+            this.txtZeikbn.Size = new System.Drawing.Size(15, 22);
             this.txtZeikbn.TabIndex = 0;
             this.txtZeikbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtZeikbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1876,13 +1954,61 @@
             // 
             this.lblBaseLabelKeisankbn.AutoSize = true;
             this.lblBaseLabelKeisankbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelKeisankbn.Location = new System.Drawing.Point(18, 57);
+            this.lblBaseLabelKeisankbn.Location = new System.Drawing.Point(18, 82);
             this.lblBaseLabelKeisankbn.Name = "lblBaseLabelKeisankbn";
             this.lblBaseLabelKeisankbn.Size = new System.Drawing.Size(87, 15);
             this.lblBaseLabelKeisankbn.strToolTip = "０：行　１：伝票　２：請求";
             this.lblBaseLabelKeisankbn.TabIndex = 90;
             this.lblBaseLabelKeisankbn.Text = "税計算区分";
             this.lblBaseLabelKeisankbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel6
+            // 
+            this.baseLabel6.AutoSize = true;
+            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel6.Location = new System.Drawing.Point(18, 208);
+            this.baseLabel6.Name = "baseLabel6";
+            this.baseLabel6.Size = new System.Drawing.Size(203, 12);
+            this.baseLabel6.strToolTip = "";
+            this.baseLabel6.TabIndex = 90;
+            this.baseLabel6.Text = "(0：切捨て　1：四捨五入　2：切上)";
+            this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel4
+            // 
+            this.baseLabel4.AutoSize = true;
+            this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel4.Location = new System.Drawing.Point(18, 155);
+            this.baseLabel4.Name = "baseLabel4";
+            this.baseLabel4.Size = new System.Drawing.Size(203, 12);
+            this.baseLabel4.strToolTip = "";
+            this.baseLabel4.TabIndex = 90;
+            this.baseLabel4.Text = "(0：切捨て　1：四捨五入　2：切上)";
+            this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel3
+            // 
+            this.baseLabel3.AutoSize = true;
+            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel3.Location = new System.Drawing.Point(19, 103);
+            this.baseLabel3.Name = "baseLabel3";
+            this.baseLabel3.Size = new System.Drawing.Size(203, 12);
+            this.baseLabel3.strToolTip = "";
+            this.baseLabel3.TabIndex = 90;
+            this.baseLabel3.Text = "(0：行      1：伝票      2：請求)";
+            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel2
+            // 
+            this.baseLabel2.AutoSize = true;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel2.Location = new System.Drawing.Point(19, 48);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(125, 12);
+            this.baseLabel2.strToolTip = "";
+            this.baseLabel2.TabIndex = 90;
+            this.baseLabel2.Text = "(0：外税    1：内税)";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblBaseLabelZeikbn
             // 
@@ -2105,5 +2231,14 @@
         private Common.Ctl.BaseTextMoney txtSihon;
         private Common.Ctl.BaseText txtSeturitu;
         private Common.Ctl.LabelSet_Gyoshu labelSet_GyoshuCd;
+        private Common.Ctl.BaseLabel baseLabel6;
+        private Common.Ctl.BaseLabel baseLabel4;
+        private Common.Ctl.BaseLabel baseLabel3;
+        private Common.Ctl.BaseLabel baseLabel2;
+        private Common.Ctl.BaseLabel baseLabel8;
+        private Common.Ctl.BaseLabel baseLabel9;
+        private Common.Ctl.BaseLabel baseLabel7;
+        private Common.Ctl.BaseLabel baseLabel11;
+        private Common.Ctl.BaseLabel baseLabel10;
     }
 }

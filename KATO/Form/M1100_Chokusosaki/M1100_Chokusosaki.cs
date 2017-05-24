@@ -220,43 +220,6 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void addChokusosaki()
         {
-
-        }
-
-        ///<summary>
-        ///delText
-        ///テキストボックス内の文字を削除、ボタンの機能を消す
-        ///</summary>
-        private void delText()
-        {
-            delFormClear(this);
-            labelSet_Tokuisaki.Focus();
-        }
-
-        ///<summary>
-        ///delChokusosaki
-        ///テキストボックス内のデータをDBから削除
-        ///</summary>
-        public void delChokusosaki()
-        {
-
-        }
-
-        ///<summary>
-        ///setChokusoCode
-        ///取り出したデータをテキストボックスに配置
-        ///</summary>
-        public void setChokusoCode(DataTable dtSelectData)
-        {
-
-        }
-
-        ///<summary>
-        ///updTxtChokuTxtLeave
-        ///code入力箇所からフォーカスが外れた時
-        ///</summary>
-        public void updTxtChokuTxtLeave(object sender, EventArgs e)
-        {
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -304,6 +267,93 @@ namespace KATO.Form.M1100_Chokusosaki
                 ////テキストボックスを白紙にする
                 //delText();
 
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+        }
+
+        ///<summary>
+        ///delText
+        ///テキストボックス内の文字を削除、ボタンの機能を消す
+        ///</summary>
+        private void delText()
+        {
+            delFormClear(this);
+            labelSet_Tokuisaki.Focus();
+        }
+
+        ///<summary>
+        ///delChokusosaki
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
+        public void delChokusosaki()
+        {
+
+        }
+
+        ///<summary>
+        ///setChokusoCode
+        ///取り出したデータをテキストボックスに配置
+        ///</summary>
+        public void setChokusoCode(DataTable dtSelectData)
+        {
+
+        }
+
+        ///<summary>
+        ///updTxtChokuTxtLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public void updTxtChokuTxtLeave(object sender, EventArgs e)
+        {
+            Control cActive = this.ActiveControl;
+
+            //データ渡し用
+            List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
+
+            //文字判定
+            if (txtChokusoCd.blIsEmpty() == false || labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //前後の空白を取り除く
+            txtChokusoCd.Text = txtChokusoCd.Text.Trim();
+
+            if (txtChokusoCd.TextLength < 4)
+            {
+                txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
+            }
+
+            //データ渡し用
+            lstString.Add(labelSet_Tokuisaki.CodeTxtText);
+            lstString.Add(txtChokusoCd.Text);
+
+            //処理部に移動
+            M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
+
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstString);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    //setEigyoshoCode(dtSetCd);
+                }
+                //データの新規登録時に邪魔になるため、現段階削除予定
+                //else
+                //{
+                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //}
+
+                cActive.Focus();
             }
             catch (Exception ex)
             {
