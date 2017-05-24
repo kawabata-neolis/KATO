@@ -134,7 +134,13 @@ namespace KATO.Form.Z0000
             torihiki.ShowDialog();
         }
 
-
+        //営業所表示
+        private void btnEigyosho_Click(object sender, EventArgs e)
+        {
+            M1090_Eigyosho.M1090_Eigyosho eigyosho = new M1090_Eigyosho.M1090_Eigyosho(this);
+            eigyosho.ShowDialog();
+        }
+        
 
         //受注入力（共通部品テスト用）表示
         private void baseMenuButton6_Click(object sender, EventArgs e)
@@ -174,6 +180,5 @@ namespace KATO.Form.Z0000
                     break;
             }
         }
-
     }
 }

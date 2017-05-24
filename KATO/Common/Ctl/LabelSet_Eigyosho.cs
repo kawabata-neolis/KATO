@@ -22,13 +22,13 @@ namespace KATO.Common.Ctl
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class LabelSet_Eigyousho : BaseTextLabelSet
+    public partial class LabelSet_Eigyosho : BaseTextLabelSet
     {
         /// <summary>
         /// LabelSet_Daibunrui
         /// 読み込み時
         /// </summary>
-        public LabelSet_Eigyousho()
+        public LabelSet_Eigyosho()
         {
             InitializeComponent();
         }
@@ -50,7 +50,7 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                EigyoushoList daibunruiList = new EigyoushoList(this.Parent, this);
+                EigyoshoList daibunruiList = new EigyoshoList(this.Parent, this);
                 daibunruiList.Show();
             }
             else if (e.KeyCode == Keys.Enter)
@@ -105,7 +105,7 @@ namespace KATO.Common.Ctl
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
-            strSQLName = "C_LIST_Eigyousho_SELECT_LEAVE";
+            strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -206,7 +206,7 @@ namespace KATO.Common.Ctl
 
             string strSQLName = null;
 
-            strSQLName = "C_LIST_Eigyousho_SELECT_LEAVE";
+            strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");

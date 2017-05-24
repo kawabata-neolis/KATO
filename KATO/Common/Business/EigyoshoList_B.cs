@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using KATO.Common.Util;
 using System.Windows.Forms;
 using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.M1090_Eigyosho;
 
 namespace KATO.Common.Business
 {
@@ -19,7 +20,7 @@ namespace KATO.Common.Business
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class EigyoushoList_B
+    class EigyoshoList_B
     {
         string strSQLName = null;
 
@@ -96,6 +97,14 @@ namespace KATO.Common.Business
                     tanaorosiinput.setEigyoushoListClose();
                     break;
                 }
+                //目的のフォームを探す
+                else if (lstInt[0] == 13 && frm.Name == "M1090_Eigyosho")
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1090_Eigyosho eigyosho = (M1090_Eigyosho)frm;
+                    eigyosho.setEigyoListClose();
+                    break;
+                }
             }
         }
 
@@ -114,7 +123,7 @@ namespace KATO.Common.Business
                 //データ渡し用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "C_LIST_Eigyousho_SELECT_LEAVE";
+                strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
 
                 //データ渡し用
                 lstStringSQL.Add("Common");
@@ -142,6 +151,21 @@ namespace KATO.Common.Business
                         break;
                     //棚番
                     case 5:
+                        break;
+                    //営業所
+                    case 13:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1090_Eigyosho"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1090_Eigyosho eigyo = (M1090_Eigyosho)frm;
+                                eigyo.setEigyoshoCode(dtSelectData);
+                                break;
+                            }
+                        }
                         break;
 
                     default:

@@ -35,7 +35,7 @@ WHEN NOT MATCHED THEN
     VALUES
     (
 	    B.営業所コード
-       ,B.業種名
+       ,B.営業所名
        ,B.削除
        ,B.登録日時
        ,B.登録ユーザー名

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyousho();
+            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.labelSet_GroupCd = new KATO.Common.Ctl.LabelSet_GroupCd();
             this.lblTantouCd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTantoushaCd = new KATO.Common.Ctl.BaseText();
@@ -253,7 +253,7 @@
 
         #endregion
 
-        private Common.Ctl.LabelSet_Eigyousho labelSet_Eigyousho;
+        private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyousho;
         private Common.Ctl.LabelSet_GroupCd labelSet_GroupCd;
         private Common.Ctl.BaseLabel lblTantouCd;
         private Common.Ctl.BaseText txtTantoushaCd;

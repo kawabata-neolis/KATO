@@ -54,7 +54,7 @@
             this.baseCalendar1 = new KATO.Common.Ctl.BaseCalendar();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
-            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyousho();
+            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
@@ -610,7 +610,7 @@
         private Common.Ctl.BaseCalendar baseCalendar1;
         private Common.Ctl.LabelSet_Daibunrui labelSet_Daibunrui;
         private Common.Ctl.LabelSet_Chubunrui labelSet_Chubunrui;
-        private Common.Ctl.LabelSet_Eigyousho labelSet_Eigyousho;
+        private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyousho;
         private Common.Ctl.LabelSet_Maker labelSet_Maker;
         private Common.Ctl.LabelSet_Tanaban labelSet_Tanaban;
         private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;

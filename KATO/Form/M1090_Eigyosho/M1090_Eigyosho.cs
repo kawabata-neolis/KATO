@@ -10,27 +10,27 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
-using KATO.Business.M1020_Maker_B;
+using KATO.Business.M1090_Eigyosho;
 using static KATO.Common.Util.CommonTeisu;
 
-namespace KATO.Form.M1020_Maker
+namespace KATO.Form.M1090_Eigyosho
 {
     ///<summary>
-    ///M1020_Maker
-    ///メーカーフォーム
+    ///M1090_Eigyosho
+    ///営業所フォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class M1020_Maker : BaseForm
+    public partial class M1090_Eigyosho : BaseForm
     {
         /// <summary>
-        /// M1020_Maker
+        /// M1090_Eigyosho
         /// フォーム関係の設定
         /// </summary>
-        public M1020_Maker(Control c)
+        public M1090_Eigyosho(Control c)
         {
             if (c == null)
             {
@@ -59,13 +59,13 @@ namespace KATO.Form.M1020_Maker
         }
 
         /// <summary>
-        /// M_Maker_Load
+        /// M1090_Eigyosho_Load
         /// 読み込み時
         /// </summary>
-        private void M_Maker_Load(object sender, EventArgs e)
+        private void M1090_Eigyosho_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "メーカーマスタ";
+            this._Title = "営業所マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
@@ -78,10 +78,10 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///judMakerKeyDown
+        ///M1090_Eigyosho_KeyDown
         ///キー入力判定
         ///</summary>
-        private void judMakerKeyDown(object sender, KeyEventArgs e)
+        private void M1090_Eigyosho_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -103,7 +103,7 @@ namespace KATO.Form.M1020_Maker
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    this.addMaker();
+                    this.addEigyosho();
                     break;
                 case Keys.F2:
                     break;
@@ -137,10 +137,10 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///judMakerTxtKeyDown
+        ///judEigyoTxtKeyDown
         ///キー入力判定
         ///</summary>
-        private void judMakerTxtKeyDown(object sender, KeyEventArgs e)
+        private void judEigyoTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -164,15 +164,12 @@ namespace KATO.Form.M1020_Maker
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addMaker();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delMaker();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -198,10 +195,10 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///judTxtMakerTxtKeyDown
+        ///judTxtEigyTxtKeyDown
         ///キー入力判定
         ///</summary>
-        private void judTxtMakerTxtKeyDown(object sender, KeyEventArgs e)
+        private void txtEigyoshoCd_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -225,15 +222,12 @@ namespace KATO.Form.M1020_Maker
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addMaker();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delMaker();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -244,7 +238,7 @@ namespace KATO.Form.M1020_Maker
                 case Keys.F8:
                     break;
                 case Keys.F9:
-                    txtMakerKeyDown(sender, e);
+                    txtEigyoKeyDown(sender, e);
                     break;
                 case Keys.F10:
                     break;
@@ -268,7 +262,7 @@ namespace KATO.Form.M1020_Maker
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    this.addMaker();
+                    this.addEigyosho();
                     break;
                 case STR_BTN_F03: // 削除
                     this.delMaker();
@@ -286,18 +280,18 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///txtMakerKeyDown
+        ///txtEigyoKeyDown
         ///キー入力判定
         ///</summary>
-        private void txtMakerKeyDown(object sender, KeyEventArgs e)
+        private void txtEigyoKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F9)
             {
-                MakerList makerlist = new MakerList(this);
+                EigyoshoList eigyoshoList = new EigyoshoList(this);
                 try
                 {
-                    makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
-                    makerlist.Show();
+                    eigyoshoList.intFrmKind = CommonTeisu.FRM_EIGYOSHO;
+                    eigyoshoList.Show();
                 }
                 catch (Exception ex)
                 {
@@ -308,53 +302,49 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///addMaker
+        ///addEigyosho
         ///テキストボックス内のデータをDBに登録
         ///</summary>
-        private void addMaker()
+        private void addEigyosho()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtMaker.blIsEmpty() == false)
+            if (txtEigyoshoCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtMaker.Focus();
+                txtEigyoshoCd.Focus();
                 return;
             }
-            //文字判定
-            if (txtName.blIsEmpty() == false)
+            if (txtEigyoshoName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtName.Focus();
+                txtEigyoshoName.Focus();
                 return;
             }
+            //営業所
+            lstString.Add(txtEigyoshoCd.Text);
+            lstString.Add(txtEigyoshoName.Text);
 
-            //データ渡し用
-            lstString.Add(txtMaker.Text);
-            lstString.Add(txtName.Text);
+            //ユーザー名
             lstString.Add(SystemInformation.UserName);
 
-            //処理部に移動
-            M1020_Maker_B makerB = new M1020_Maker_B();
-
+            M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
             try
             {
-
-                //戻り値のDatatableを取り込む
-                makerB.addMaker(lstString);
+                eigyoshoB.addEigyosho(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtMaker.Focus();
+
             }
             catch (Exception ex)
             {
@@ -369,7 +359,7 @@ namespace KATO.Form.M1020_Maker
         private void delText()
         {
             delFormClear(this);
-            txtMaker.Focus();
+            txtEigyoshoCd.Focus();
         }
 
         ///<summary>
@@ -382,7 +372,7 @@ namespace KATO.Form.M1020_Maker
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtMaker.blIsEmpty() == false)
+            if (txtEigyoshoCd.blIsEmpty() == false)
             {
                 return;
             }
@@ -396,22 +386,21 @@ namespace KATO.Form.M1020_Maker
             }
 
             //データ渡し用
-            lstString.Add(txtMaker.Text);
+            lstString.Add(txtEigyoshoCd.Text);
             lstString.Add(SystemInformation.UserName);
 
-            //処理部に移動
-            M1020_Maker_B makerb = new M1020_Maker_B();
+            //処理部に移動(削除)
+            M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
 
             try
             {
-                //戻り値のDatatableを取り込む
-                makerb.delMaker(lstString);
+                eigyoshoB.delEighosho(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtMaker.Focus();
+                txtEigyoshoCd.Focus();
             }
             catch (Exception ex)
             {
@@ -420,72 +409,57 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///setMakerCode
+        ///setEigyoshoCode
         ///取り出したデータをテキストボックスに配置
         ///</summary>
-        public void setMakerCode(DataTable dtSelectData)
+        public void setEigyoshoCode(DataTable dtSelectData)
         {
-            txtMaker.Text = dtSelectData.Rows[0]["メーカーコード"].ToString();
-            txtName.Text = dtSelectData.Rows[0]["メーカー名"].ToString();
+            txtEigyoshoCd.Text = dtSelectData.Rows[0]["営業所コード"].ToString();
+            txtEigyoshoName.Text = dtSelectData.Rows[0]["営業所名"].ToString();
+
         }
 
         ///<summary>
-        ///updTxtMakerTextLeave
+        ///updTxtEigyoTextLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtMakerTextLeave(object sender, EventArgs e)
+        public void updTxtEigyoTextLeave(object sender, EventArgs e)
         {
+            Control cActive = this.ActiveControl;
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
             DataTable dtSetCd;
 
-            Boolean blnGood;
-
             //文字判定
-            if (txtMaker.blIsEmpty() == false)
+            if (txtEigyoshoCd.blIsEmpty() == false)
             {
                 return;
             }
 
             //前後の空白を取り除く
-            txtMaker.Text = txtMaker.Text.Trim();
+            txtEigyoshoCd.Text = txtEigyoshoCd.Text.Trim();
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtMaker.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtMaker.Text, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
+            if (txtEigyoshoCd.TextLength < 4)
             {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtMaker.Focus();
-                return;
-            }
-
-            if (txtMaker.TextLength <= 3)
-            {
-                txtMaker.Text = txtMaker.Text.ToString().PadLeft(3, '0');
+                txtEigyoshoCd.Text = txtEigyoshoCd.Text.ToString().PadLeft(4, '0');
             }
 
             //データ渡し用
-            lstString.Add(txtMaker.Text);
+            lstString.Add(txtEigyoshoCd.Text);
 
             //処理部に移動
-            M1020_Maker_B makerB = new M1020_Maker_B();
+            M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
+
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = makerB.updTxtMakerTextLeave(lstString);
+                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(lstString);
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    txtMaker.Text = dtSetCd.Rows[0]["メーカーコード"].ToString();
-                    txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
-                    txtName.Focus();
+                    setEigyoshoCode(dtSetCd);
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else
@@ -494,6 +468,8 @@ namespace KATO.Form.M1020_Maker
                 //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 //    basemessagebox.ShowDialog();
                 //}
+
+                cActive.Focus();
             }
             catch (Exception ex)
             {
@@ -501,28 +477,30 @@ namespace KATO.Form.M1020_Maker
             }
         }
 
-
         ///<summary>
-        ///setMakerListClose
+        ///setEigyoListClose
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setMakerListClose()
+        public void setEigyoListClose()
         {
-            txtMaker.Focus();
+            txtEigyoshoCd.Focus();
         }
 
-        ///judtxtMakerKeyUp
-        ///入力項目上でのキー判定と文字数判定
-        ///</summary>
-        private void judtxtMakerKeyUp(object sender, KeyEventArgs e)
+        /// <summary>
+        /// judtxtEigyoKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtEigyoKeyUp(object sender, KeyEventArgs e)
         {
+            Control cActiveBefore = this.ActiveControl;
+
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
             {
                 return;
             }
             //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }
@@ -532,7 +510,8 @@ namespace KATO.Form.M1020_Maker
                 return;
             }
 
-            if (txtMaker.TextLength == 3)
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
+            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

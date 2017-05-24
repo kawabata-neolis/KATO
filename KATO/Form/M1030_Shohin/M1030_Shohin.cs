@@ -77,7 +77,7 @@ namespace KATO.Form.M1030_Shohin
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
-            this.btnF10.Text = STR_FUNC_F10_Shohin;
+            this.btnF10.Text = STR_FUNC_F10_SHOHIN;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
         }

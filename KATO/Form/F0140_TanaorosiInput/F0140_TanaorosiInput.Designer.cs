@@ -62,7 +62,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
-            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyousho();
+            this.labelSet_Eigyousho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
@@ -651,7 +651,7 @@ namespace KATO.Form.F0140_TanaorosiInput
         private BaseRadioButton radBase4;
         private LabelSet_Daibunrui labelSet_Daibunrui;
         private LabelSet_Chubunrui labelSet_Chubunrui;
-        private LabelSet_Eigyousho labelSet_Eigyousho;
+        private LabelSet_Eigyosho labelSet_Eigyousho;
         private LabelSet_Maker labelSet_Maker;
         private LabelSet_Tanaban labelSet_Tanaban;
         private LabelSet_Chubunrui labelSet_Chubunrui_Edit;

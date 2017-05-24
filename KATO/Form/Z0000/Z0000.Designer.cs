@@ -33,8 +33,8 @@
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTorihikisaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnShohin = new KATO.Common.Ctl.BaseMenuButton();
-            this.btnGyoushu = new KATO.Common.Ctl.BaseMenuButton();
-            this.btnTantousha = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnGyoshu = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTantosha = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTorihikikubun = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
@@ -46,6 +46,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -133,13 +134,14 @@
             this.tabPage1.Controls.Add(this.btnTestWindow);
             this.tabPage1.Controls.Add(this.btnTorihikisaki);
             this.tabPage1.Controls.Add(this.btnShohin);
-            this.tabPage1.Controls.Add(this.btnGyoushu);
-            this.tabPage1.Controls.Add(this.btnTantousha);
+            this.tabPage1.Controls.Add(this.btnGyoshu);
+            this.tabPage1.Controls.Add(this.btnTantosha);
             this.tabPage1.Controls.Add(this.btnTorihikikubun);
             this.tabPage1.Controls.Add(this.btnTanaInput);
             this.tabPage1.Controls.Add(this.btnMaker);
             this.tabPage1.Controls.Add(this.baseMenuButton3);
             this.tabPage1.Controls.Add(this.btnChubunrui);
+            this.tabPage1.Controls.Add(this.btnEigyosho);
             this.tabPage1.Controls.Add(this.btnDaibunrui);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
@@ -184,29 +186,29 @@
             this.btnShohin.Click += new System.EventHandler(this.btnShohin_Click);
             this.btnShohin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
-            // btnGyoushu
+            // btnGyoshu
             // 
-            this.btnGyoushu.BackColor = System.Drawing.Color.LightYellow;
-            this.btnGyoushu.Location = new System.Drawing.Point(23, 439);
-            this.btnGyoushu.Name = "btnGyoushu";
-            this.btnGyoushu.Size = new System.Drawing.Size(280, 40);
-            this.btnGyoushu.TabIndex = 7;
-            this.btnGyoushu.Text = "業種";
-            this.btnGyoushu.UseVisualStyleBackColor = false;
-            this.btnGyoushu.Click += new System.EventHandler(this.btnGyoushu_Click);
-            this.btnGyoushu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnGyoshu.BackColor = System.Drawing.Color.LightYellow;
+            this.btnGyoshu.Location = new System.Drawing.Point(23, 439);
+            this.btnGyoshu.Name = "btnGyoshu";
+            this.btnGyoshu.Size = new System.Drawing.Size(280, 40);
+            this.btnGyoshu.TabIndex = 7;
+            this.btnGyoshu.Text = "業種";
+            this.btnGyoshu.UseVisualStyleBackColor = false;
+            this.btnGyoshu.Click += new System.EventHandler(this.btnGyoushu_Click);
+            this.btnGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
-            // btnTantousha
+            // btnTantosha
             // 
-            this.btnTantousha.BackColor = System.Drawing.Color.LightYellow;
-            this.btnTantousha.Location = new System.Drawing.Point(23, 376);
-            this.btnTantousha.Name = "btnTantousha";
-            this.btnTantousha.Size = new System.Drawing.Size(280, 40);
-            this.btnTantousha.TabIndex = 6;
-            this.btnTantousha.Text = "担当者";
-            this.btnTantousha.UseVisualStyleBackColor = false;
-            this.btnTantousha.Click += new System.EventHandler(this.btnTantousha_Click);
-            this.btnTantousha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnTantosha.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTantosha.Location = new System.Drawing.Point(23, 376);
+            this.btnTantosha.Name = "btnTantosha";
+            this.btnTantosha.Size = new System.Drawing.Size(280, 40);
+            this.btnTantosha.TabIndex = 6;
+            this.btnTantosha.Text = "担当者";
+            this.btnTantosha.UseVisualStyleBackColor = false;
+            this.btnTantosha.Click += new System.EventHandler(this.btnTantousha_Click);
+            this.btnTantosha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnTorihikikubun
             // 
@@ -328,6 +330,18 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // btnEigyosho
+            // 
+            this.btnEigyosho.BackColor = System.Drawing.Color.LightYellow;
+            this.btnEigyosho.Location = new System.Drawing.Point(326, 33);
+            this.btnEigyosho.Name = "btnEigyosho";
+            this.btnEigyosho.Size = new System.Drawing.Size(280, 40);
+            this.btnEigyosho.TabIndex = 1;
+            this.btnEigyosho.Text = "営業所";
+            this.btnEigyosho.UseVisualStyleBackColor = false;
+            this.btnEigyosho.Click += new System.EventHandler(this.btnEigyosho_Click);
+            this.btnEigyosho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -376,10 +390,11 @@
         private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton baseMenuButton3;
         private Common.Ctl.BaseMenuButton btnTorihikikubun;
-        private Common.Ctl.BaseMenuButton btnTantousha;
+        private Common.Ctl.BaseMenuButton btnTantosha;
         private Common.Ctl.BaseMenuButton btnZanKakunin;
-        private Common.Ctl.BaseMenuButton btnGyoushu;
+        private Common.Ctl.BaseMenuButton btnGyoshu;
         private Common.Ctl.BaseMenuButton btnShohin;
         private Common.Ctl.BaseMenuButton btnTorihikisaki;
+        private Common.Ctl.BaseMenuButton btnEigyosho;
     }
 }

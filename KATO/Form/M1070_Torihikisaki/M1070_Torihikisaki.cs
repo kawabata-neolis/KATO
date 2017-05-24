@@ -71,7 +71,7 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF01.Text = STR_FUNC_F1;
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
-            this.btnF08.Text = STR_FUNC_F8_Torihikisaki;
+            this.btnF08.Text = STR_FUNC_F8_TORIHIKISAKI;
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
@@ -308,7 +308,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case STR_BTN_F04: // 取り消し
                     this.delText();
                     break;
-                case STR_BTN_F08: // 取り消し
+                case STR_BTN_F08: // 未割当の番号検索
                     this.delText();
                     break;
                 //case STR_BTN_F11: //印刷
@@ -624,7 +624,7 @@ namespace KATO.Form.M1070_Torihikisaki
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtCdT.blIsEmpty() == false && txtCdT.blIsEmpty() == false)
+            if (txtCdT.blIsEmpty() == false)
             {
                 return;
             }

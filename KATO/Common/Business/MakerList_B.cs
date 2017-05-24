@@ -137,7 +137,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1020_Maker maker = (M1020_Maker)frm;
-                    maker.setmakerListClose();
+                    maker.setMakerListClose();
                     break;
                 }
                 //目的のフォームを探す

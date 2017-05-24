@@ -3,7 +3,7 @@ using KATO.Common.Ctl;
 
 namespace KATO.Common.Form
 {
-    partial class EigyoushoList
+    partial class EigyoshoList
     {
         /// <summary>
         /// Required designer variable.

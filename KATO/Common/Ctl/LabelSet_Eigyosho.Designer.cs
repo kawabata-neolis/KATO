@@ -1,6 +1,6 @@
 ﻿namespace KATO.Common.Ctl
 {
-    partial class LabelSet_Eigyousho
+    partial class LabelSet_Eigyosho
     {
         /// <summary>
         /// 必要なデザイナー変数です。

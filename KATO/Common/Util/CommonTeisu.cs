@@ -26,8 +26,8 @@ namespace KATO.Common.Util
         public const String STR_FUNC_F11 = "F11:印刷";
         public const String STR_FUNC_F12 = "F12:終了";
 
-        public const String STR_FUNC_F10_Shohin = "F10:棚番無";
-        public const String STR_FUNC_F8_Torihikisaki = "F8:空番";
+        public const String STR_FUNC_F10_SHOHIN = "F10:棚番無";
+        public const String STR_FUNC_F8_TORIHIKISAKI = "F8:空番";
 
 
         public const String STR_BTN_F01 = "btnF01";
@@ -56,6 +56,7 @@ namespace KATO.Common.Util
         public const int FRM_GYOSHU = 10;
         public const int FRM_SHOHIN = 11;
         public const int FRM_TORIHIKISAKI = 12;
+        public const int FRM_EIGYOSHO = 13;
 
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;

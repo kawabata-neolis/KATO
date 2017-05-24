@@ -25,9 +25,9 @@ namespace KATO.Common.Form
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class EigyoushoList : System.Windows.Forms.Form
+    public partial class EigyoshoList : System.Windows.Forms.Form
     {
-        LabelSet_Eigyousho lblSetEigyou = null;
+        LabelSet_Eigyosho lblSetEigyou = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -36,7 +36,7 @@ namespace KATO.Common.Form
         /// DaibunruiList
         /// フォーム関係の設定（通常のテキストボックスから）
         /// </summary>
-        public EigyoushoList(Control c)
+        public EigyoshoList(Control c)
         {
             if (c == null)
             {
@@ -58,7 +58,7 @@ namespace KATO.Common.Form
         /// DaibunruiList
         /// フォーム関係の設定（ラベルセットから）
         /// </summary>
-        public EigyoushoList(Control c, LabelSet_Eigyousho lblSetEigyouSelect)
+        public EigyoshoList(Control c, LabelSet_Eigyosho lblSetEigyouSelect)
         {
             if (c == null)
             {
@@ -129,7 +129,7 @@ namespace KATO.Common.Form
         private void setDatagridView()
         {
             //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
+            EigyoshoList_B eigyoulistB = new EigyoshoList_B();
 
             //データグリッドビュー部分
             gridSeihin.DataSource = eigyoulistB.setDatagridView();
@@ -242,7 +242,7 @@ namespace KATO.Common.Form
             lstInt.Add(intFrmKind);
 
             //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
+            EigyoshoList_B eigyoulistB = new EigyoshoList_B();
             try
             {
                 //データグリッドビュー部分
@@ -342,7 +342,7 @@ namespace KATO.Common.Form
             lstString.Add(strSelectName);
 
             //処理部に移動
-            EigyoushoList_B eigyoulistB = new EigyoushoList_B();
+            EigyoshoList_B eigyoulistB = new EigyoshoList_B();
             try
             {
                 eigyoulistB.setSelectItem(lstInt, lstString);
