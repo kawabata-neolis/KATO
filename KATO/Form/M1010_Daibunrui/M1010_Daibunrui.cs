@@ -163,15 +163,12 @@ namespace KATO.Form.M1010_Daibunrui
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addDaibunrui();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delDaibunrui();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -197,10 +194,10 @@ namespace KATO.Form.M1010_Daibunrui
         }
 
         /// <summary>
-        /// judTxtDaiBunTxtKeyDown
+        /// judTxtDaiTxtKeyDown
         /// キー入力判定
         /// </summary>
-        private void judTxtDaiBunTxtKeyDown(object sender, KeyEventArgs e)
+        private void judTxtDaiTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -224,15 +221,12 @@ namespace KATO.Form.M1010_Daibunrui
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addDaibunrui();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delDaibunrui();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -274,6 +268,9 @@ namespace KATO.Form.M1010_Daibunrui
                     this.delDaibunrui();
                     break;
                 case STR_BTN_F04: // 取り消し
+                    this.delText();
+                    break;
+                case STR_BTN_F09: // 大分類リスト
                     this.delText();
                     break;
                 //case STR_BTN_F11: //印刷
@@ -445,6 +442,8 @@ namespace KATO.Form.M1010_Daibunrui
         /// </summary>
         public void updTxtDaibunruiLeave(object sender, EventArgs e)
         {
+            Control cActive = this.ActiveControl;
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -494,6 +493,8 @@ namespace KATO.Form.M1010_Daibunrui
                 //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 //    basemessagebox.ShowDialog();
                 //}
+
+                cActive.Focus();
             }
             catch (Exception ex)
             {
@@ -516,6 +517,8 @@ namespace KATO.Form.M1010_Daibunrui
         /// </summary>
         private void judtxtDaibunruiKeyUp(object sender, KeyEventArgs e)
         {
+            Control cActiveBefore = this.ActiveControl;
+
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
             {
@@ -527,11 +530,13 @@ namespace KATO.Form.M1010_Daibunrui
                 return;
             }
             //キーボードの方向キー4つ
-            else if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down )
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
             {
                 return;
             }
-            if (txtDaibunrui.TextLength == 2)
+
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
+            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

@@ -420,10 +420,10 @@ namespace KATO.Form.M1090_Eigyosho
         }
 
         ///<summary>
-        ///updTxtEigyoTextLeave
+        ///updTxtEigyoTxtLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtEigyoTextLeave(object sender, EventArgs e)
+        public void updTxtEigyoTxtLeave(object sender, EventArgs e)
         {
             Control cActive = this.ActiveControl;
 

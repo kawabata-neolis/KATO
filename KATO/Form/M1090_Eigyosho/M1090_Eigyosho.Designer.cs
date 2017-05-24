@@ -94,7 +94,7 @@
             this.txtEigyoshoCd.TabIndex = 0;
             this.txtEigyoshoCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEigyoshoCd_KeyDown);
             this.txtEigyoshoCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtEigyoKeyUp);
-            this.txtEigyoshoCd.Leave += new System.EventHandler(this.updTxtEigyoTextLeave);
+            this.txtEigyoshoCd.Leave += new System.EventHandler(this.updTxtEigyoTxtLeave);
             // 
             // txtEigyoshoName
             // 

@@ -68,6 +68,7 @@
     <Compile Include="Business\M1060_Gyoshu\M1060_Gyoshu_B.cs" />
     <Compile Include="Business\M1070_Torihikisaki\M1070_Torihikisaki_B.cs" />
     <Compile Include="Business\M1090_Eigyosho\M1090_Eigyosho_B.cs" />
+    <Compile Include="Business\M1100_Chokusosaki\M1100_Chokusosaki_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
@@ -345,6 +346,12 @@
     <Compile Include="Form\M1090_Eigyosho\M1090_Eigyosho.Designer.cs">
       <DependentUpon>M1090_Eigyosho.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1100_Chokusosaki\M1100_Chokusosaki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1100_Chokusosaki\M1100_Chokusosaki.Designer.cs">
+      <DependentUpon>M1100_Chokusosaki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\M1110_Chubunrui\M1110_Chubunrui.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -565,6 +572,9 @@
     <EmbeddedResource Include="Form\M1090_Eigyosho\M1090_Eigyosho.resx">
       <DependentUpon>M1090_Eigyosho.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1100_Chokusosaki\M1100_Chokusosaki.resx">
+      <DependentUpon>M1100_Chokusosaki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\M1110_Chubunrui\M1110_Chubunrui.resx">
       <DependentUpon>M1110_Chubunrui.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -650,6 +660,7 @@
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Eigyosho_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Chokusosaki_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />

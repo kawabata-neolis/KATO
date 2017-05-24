@@ -107,7 +107,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtDaibunrui.Name = "txtDaibunrui";
             this.txtDaibunrui.Size = new System.Drawing.Size(24, 22);
             this.txtDaibunrui.TabIndex = 0;
-            this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunKeyDown);
+            this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtDaiTxtKeyDown);
             this.txtDaibunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
             this.txtDaibunrui.Leave += new System.EventHandler(this.updTxtDaibunruiLeave);
             // 
@@ -121,6 +121,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunTxtKeyDown);
+            this.txtName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
             // 
             // txtLabel1
             // 

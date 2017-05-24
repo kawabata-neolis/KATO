@@ -43,6 +43,54 @@
             this.txtMokuhyou = new KATO.Common.Ctl.BaseTextMoney();
             this.SuspendLayout();
             // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // labelSet_Eigyousho
             // 
             this.labelSet_Eigyousho.AppendLabelSize = 0;
@@ -127,7 +175,7 @@
             this.txtTantoushaName.Size = new System.Drawing.Size(102, 22);
             this.txtTantoushaName.TabIndex = 1;
             this.txtTantoushaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
-            this.txtTantoushaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouNameKeyUp);
+            this.txtTantoushaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
             // 
             // lblLoginID
             // 
@@ -150,7 +198,7 @@
             this.txtLoginID.Size = new System.Drawing.Size(166, 22);
             this.txtLoginID.TabIndex = 2;
             this.txtLoginID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
-            this.txtLoginID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtLogInKeyUp);
+            this.txtLoginID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
             // 
             // lblChuban
             // 
@@ -170,10 +218,10 @@
             this.txtChuban.Location = new System.Drawing.Point(861, 233);
             this.txtChuban.MaxLength = 3;
             this.txtChuban.Name = "txtChuban";
-            this.txtChuban.Size = new System.Drawing.Size(39, 22);
+            this.txtChuban.Size = new System.Drawing.Size(30, 22);
             this.txtChuban.TabIndex = 5;
-            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
-            this.txtChuban.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubanKeyUp);
+            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtChuban.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
             // 
             // lblMokuhyou
             // 

@@ -163,15 +163,12 @@ namespace KATO.Form.M1040_Torihikikbn
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTorikubun();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delTorikubun();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -224,12 +221,10 @@ namespace KATO.Form.M1040_Torihikikbn
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTorikubun();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delTorikubun();
                     break;
                 case Keys.F4:
                     this.delText();

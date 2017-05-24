@@ -111,6 +111,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtElem.Size = new System.Drawing.Size(200, 22);
             this.txtElem.TabIndex = 2;
             this.txtElem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunTxtKeyDown);
+            this.txtElem.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
             // 
             // lblBaseLabelCD
             // 

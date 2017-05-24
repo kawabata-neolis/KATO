@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // BaseLabel
@@ -35,9 +37,10 @@
             this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ResumeLayout(false);
-
         }
 
         #endregion
+
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -270,11 +270,11 @@ namespace KATO.Common.Ctl
             //カンマを許可する場合
             if (_blnCommaOK == true)
             {
-                int intdata = 0;
-                if (int.TryParse(strIntArea, out intdata))
+                Int64 intdata = 0;
+                if (Int64.TryParse(strIntArea, out intdata))
                 {
-                    intdata = int.Parse(strIntArea);
-                    strIntArea = string.Format("{0:#,##0}", intdata);
+                    intdata = Int64.Parse(strIntArea);
+                    strIntArea = string.Format("{0:#,0}", intdata);
                 }
             }
 

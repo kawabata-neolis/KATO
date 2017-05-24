@@ -224,6 +224,7 @@
             this.lblBaseLabelCdT.Location = new System.Drawing.Point(18, 24);
             this.lblBaseLabelCdT.Name = "lblBaseLabelCdT";
             this.lblBaseLabelCdT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelCdT.strToolTip = null;
             this.lblBaseLabelCdT.TabIndex = 87;
             this.lblBaseLabelCdT.Text = "コード";
             this.lblBaseLabelCdT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -291,6 +292,7 @@
             this.lblBaseLabelFAXAT.Location = new System.Drawing.Point(242, 306);
             this.lblBaseLabelFAXAT.Name = "lblBaseLabelFAXAT";
             this.lblBaseLabelFAXAT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelFAXAT.strToolTip = null;
             this.lblBaseLabelFAXAT.TabIndex = 87;
             this.lblBaseLabelFAXAT.Text = "ＦＡＸ";
             this.lblBaseLabelFAXAT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -374,6 +376,7 @@
             this.lblBaseLabelFAXT.Location = new System.Drawing.Point(242, 192);
             this.lblBaseLabelFAXT.Name = "lblBaseLabelFAXT";
             this.lblBaseLabelFAXT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelFAXT.strToolTip = null;
             this.lblBaseLabelFAXT.TabIndex = 87;
             this.lblBaseLabelFAXT.Text = "ＦＡＸ";
             this.lblBaseLabelFAXT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -385,6 +388,7 @@
             this.lblBaseLabelTantoEmailT.Location = new System.Drawing.Point(18, 422);
             this.lblBaseLabelTantoEmailT.Name = "lblBaseLabelTantoEmailT";
             this.lblBaseLabelTantoEmailT.Size = new System.Drawing.Size(79, 15);
+            this.lblBaseLabelTantoEmailT.strToolTip = null;
             this.lblBaseLabelTantoEmailT.TabIndex = 87;
             this.lblBaseLabelTantoEmailT.Text = "担当Email";
             this.lblBaseLabelTantoEmailT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -396,6 +400,7 @@
             this.lblBaseLabelBushoNameT.Location = new System.Drawing.Point(18, 395);
             this.lblBaseLabelBushoNameT.Name = "lblBaseLabelBushoNameT";
             this.lblBaseLabelBushoNameT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelBushoNameT.strToolTip = null;
             this.lblBaseLabelBushoNameT.TabIndex = 87;
             this.lblBaseLabelBushoNameT.Text = "部署名";
             this.lblBaseLabelBushoNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -407,6 +412,7 @@
             this.lblBaseLabelTantoNameT.Location = new System.Drawing.Point(18, 365);
             this.lblBaseLabelTantoNameT.Name = "lblBaseLabelTantoNameT";
             this.lblBaseLabelTantoNameT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelTantoNameT.strToolTip = null;
             this.lblBaseLabelTantoNameT.TabIndex = 87;
             this.lblBaseLabelTantoNameT.Text = "担当者名";
             this.lblBaseLabelTantoNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -418,6 +424,7 @@
             this.lblBaseLabelEmailT.Location = new System.Drawing.Point(18, 335);
             this.lblBaseLabelEmailT.Name = "lblBaseLabelEmailT";
             this.lblBaseLabelEmailT.Size = new System.Drawing.Size(63, 15);
+            this.lblBaseLabelEmailT.strToolTip = null;
             this.lblBaseLabelEmailT.TabIndex = 87;
             this.lblBaseLabelEmailT.Text = "Eメール";
             this.lblBaseLabelEmailT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -429,6 +436,7 @@
             this.lblBaseLabelDenwaAT.Location = new System.Drawing.Point(18, 306);
             this.lblBaseLabelDenwaAT.Name = "lblBaseLabelDenwaAT";
             this.lblBaseLabelDenwaAT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelDenwaAT.strToolTip = null;
             this.lblBaseLabelDenwaAT.TabIndex = 87;
             this.lblBaseLabelDenwaAT.Text = "電話番号";
             this.lblBaseLabelDenwaAT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -464,6 +472,7 @@
             this.lblBaseLabelDenwaT.Location = new System.Drawing.Point(18, 192);
             this.lblBaseLabelDenwaT.Name = "lblBaseLabelDenwaT";
             this.lblBaseLabelDenwaT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelDenwaT.strToolTip = null;
             this.lblBaseLabelDenwaT.TabIndex = 87;
             this.lblBaseLabelDenwaT.Text = "電話番号";
             this.lblBaseLabelDenwaT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -475,6 +484,7 @@
             this.lblBaseLabelJusho2AT.Location = new System.Drawing.Point(18, 278);
             this.lblBaseLabelJusho2AT.Name = "lblBaseLabelJusho2AT";
             this.lblBaseLabelJusho2AT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho2AT.strToolTip = null;
             this.lblBaseLabelJusho2AT.TabIndex = 87;
             this.lblBaseLabelJusho2AT.Text = "住所２";
             this.lblBaseLabelJusho2AT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -510,6 +520,7 @@
             this.lblBaseLabelJusho2T.Location = new System.Drawing.Point(18, 164);
             this.lblBaseLabelJusho2T.Name = "lblBaseLabelJusho2T";
             this.lblBaseLabelJusho2T.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho2T.strToolTip = null;
             this.lblBaseLabelJusho2T.TabIndex = 87;
             this.lblBaseLabelJusho2T.Text = "住所２";
             this.lblBaseLabelJusho2T.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -521,6 +532,7 @@
             this.lblBaseLabelJusho1AT.Location = new System.Drawing.Point(18, 250);
             this.lblBaseLabelJusho1AT.Name = "lblBaseLabelJusho1AT";
             this.lblBaseLabelJusho1AT.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho1AT.strToolTip = null;
             this.lblBaseLabelJusho1AT.TabIndex = 87;
             this.lblBaseLabelJusho1AT.Text = "住所１";
             this.lblBaseLabelJusho1AT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -556,6 +568,7 @@
             this.lblBaseLabelJusho1T.Location = new System.Drawing.Point(18, 136);
             this.lblBaseLabelJusho1T.Name = "lblBaseLabelJusho1T";
             this.lblBaseLabelJusho1T.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho1T.strToolTip = null;
             this.lblBaseLabelJusho1T.TabIndex = 87;
             this.lblBaseLabelJusho1T.Text = "住所１";
             this.lblBaseLabelJusho1T.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -567,6 +580,7 @@
             this.lblBaseLabelYubinAT.Location = new System.Drawing.Point(18, 222);
             this.lblBaseLabelYubinAT.Name = "lblBaseLabelYubinAT";
             this.lblBaseLabelYubinAT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelYubinAT.strToolTip = null;
             this.lblBaseLabelYubinAT.TabIndex = 87;
             this.lblBaseLabelYubinAT.Text = "郵便番号";
             this.lblBaseLabelYubinAT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -590,6 +604,7 @@
             this.lblBaseLabelYubinT.Location = new System.Drawing.Point(18, 108);
             this.lblBaseLabelYubinT.Name = "lblBaseLabelYubinT";
             this.lblBaseLabelYubinT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelYubinT.strToolTip = null;
             this.lblBaseLabelYubinT.TabIndex = 87;
             this.lblBaseLabelYubinT.Text = "郵便番号";
             this.lblBaseLabelYubinT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -613,6 +628,7 @@
             this.lblBaseLabelHuriT.Location = new System.Drawing.Point(18, 80);
             this.lblBaseLabelHuriT.Name = "lblBaseLabelHuriT";
             this.lblBaseLabelHuriT.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelHuriT.strToolTip = null;
             this.lblBaseLabelHuriT.TabIndex = 87;
             this.lblBaseLabelHuriT.Text = "フリガナ";
             this.lblBaseLabelHuriT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -636,6 +652,7 @@
             this.lblBaseLabelNameT.Location = new System.Drawing.Point(18, 52);
             this.lblBaseLabelNameT.Name = "lblBaseLabelNameT";
             this.lblBaseLabelNameT.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelNameT.strToolTip = null;
             this.lblBaseLabelNameT.TabIndex = 87;
             this.lblBaseLabelNameT.Text = "名称";
             this.lblBaseLabelNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -694,6 +711,7 @@
             this.baseLabel5.Location = new System.Drawing.Point(242, 142);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(55, 15);
+            this.baseLabel5.strToolTip = null;
             this.baseLabel5.TabIndex = 96;
             this.baseLabel5.Text = "ＦＡＸ";
             this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -717,6 +735,7 @@
             this.lblBaseLabelDenwaR.Location = new System.Drawing.Point(18, 142);
             this.lblBaseLabelDenwaR.Name = "lblBaseLabelDenwaR";
             this.lblBaseLabelDenwaR.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelDenwaR.strToolTip = null;
             this.lblBaseLabelDenwaR.TabIndex = 97;
             this.lblBaseLabelDenwaR.Text = "電話番号";
             this.lblBaseLabelDenwaR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -740,6 +759,7 @@
             this.lblBaseLabelJusho2R.Location = new System.Drawing.Point(18, 113);
             this.lblBaseLabelJusho2R.Name = "lblBaseLabelJusho2R";
             this.lblBaseLabelJusho2R.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho2R.strToolTip = null;
             this.lblBaseLabelJusho2R.TabIndex = 92;
             this.lblBaseLabelJusho2R.Text = "住所２";
             this.lblBaseLabelJusho2R.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -763,6 +783,7 @@
             this.lblBaseLabelJusho1R.Location = new System.Drawing.Point(18, 85);
             this.lblBaseLabelJusho1R.Name = "lblBaseLabelJusho1R";
             this.lblBaseLabelJusho1R.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho1R.strToolTip = null;
             this.lblBaseLabelJusho1R.TabIndex = 93;
             this.lblBaseLabelJusho1R.Text = "住所１";
             this.lblBaseLabelJusho1R.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -798,6 +819,7 @@
             this.lblBaseLabelYubinR.Location = new System.Drawing.Point(18, 57);
             this.lblBaseLabelYubinR.Name = "lblBaseLabelYubinR";
             this.lblBaseLabelYubinR.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelYubinR.strToolTip = null;
             this.lblBaseLabelYubinR.TabIndex = 90;
             this.lblBaseLabelYubinR.Text = "郵便番号";
             this.lblBaseLabelYubinR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -809,6 +831,7 @@
             this.lblBaseLabelNameR.Location = new System.Drawing.Point(18, 27);
             this.lblBaseLabelNameR.Name = "lblBaseLabelNameR";
             this.lblBaseLabelNameR.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelNameR.strToolTip = null;
             this.lblBaseLabelNameR.TabIndex = 90;
             this.lblBaseLabelNameR.Text = "名称";
             this.lblBaseLabelNameR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -872,6 +895,7 @@
             this.baseLabel1.Location = new System.Drawing.Point(242, 142);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(55, 15);
+            this.baseLabel1.strToolTip = null;
             this.baseLabel1.TabIndex = 96;
             this.baseLabel1.Text = "ＦＡＸ";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -895,6 +919,7 @@
             this.lblBaseLabelDenwaS.Location = new System.Drawing.Point(18, 142);
             this.lblBaseLabelDenwaS.Name = "lblBaseLabelDenwaS";
             this.lblBaseLabelDenwaS.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelDenwaS.strToolTip = null;
             this.lblBaseLabelDenwaS.TabIndex = 97;
             this.lblBaseLabelDenwaS.Text = "電話番号";
             this.lblBaseLabelDenwaS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -918,6 +943,7 @@
             this.lblBaseLabelJusho2S.Location = new System.Drawing.Point(18, 113);
             this.lblBaseLabelJusho2S.Name = "lblBaseLabelJusho2S";
             this.lblBaseLabelJusho2S.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho2S.strToolTip = null;
             this.lblBaseLabelJusho2S.TabIndex = 92;
             this.lblBaseLabelJusho2S.Text = "住所２";
             this.lblBaseLabelJusho2S.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -941,6 +967,7 @@
             this.lblBaseLabelJusho1S.Location = new System.Drawing.Point(18, 85);
             this.lblBaseLabelJusho1S.Name = "lblBaseLabelJusho1S";
             this.lblBaseLabelJusho1S.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelJusho1S.strToolTip = null;
             this.lblBaseLabelJusho1S.TabIndex = 93;
             this.lblBaseLabelJusho1S.Text = "住所１";
             this.lblBaseLabelJusho1S.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -976,6 +1003,7 @@
             this.lblBaseLabelYubinS.Location = new System.Drawing.Point(18, 57);
             this.lblBaseLabelYubinS.Name = "lblBaseLabelYubinS";
             this.lblBaseLabelYubinS.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelYubinS.strToolTip = null;
             this.lblBaseLabelYubinS.TabIndex = 90;
             this.lblBaseLabelYubinS.Text = "郵便番号";
             this.lblBaseLabelYubinS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -987,6 +1015,7 @@
             this.lblBaseLabelNameS.Location = new System.Drawing.Point(18, 27);
             this.lblBaseLabelNameS.Name = "lblBaseLabelNameS";
             this.lblBaseLabelNameS.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelNameS.strToolTip = null;
             this.lblBaseLabelNameS.TabIndex = 90;
             this.lblBaseLabelNameS.Text = "名称";
             this.lblBaseLabelNameS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1031,6 +1060,7 @@
             this.lblBaseLabelSihabi.Location = new System.Drawing.Point(279, 27);
             this.lblBaseLabelSihabi.Name = "lblBaseLabelSihabi";
             this.lblBaseLabelSihabi.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelSihabi.strToolTip = "月末払いは３１";
             this.lblBaseLabelSihabi.TabIndex = 96;
             this.lblBaseLabelSihabi.Text = "支払日";
             this.lblBaseLabelSihabi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1054,6 +1084,7 @@
             this.lblBaseLabelSihatuki.Location = new System.Drawing.Point(141, 27);
             this.lblBaseLabelSihatuki.Name = "lblBaseLabelSihatuki";
             this.lblBaseLabelSihatuki.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelSihatuki.strToolTip = "当月：０　翌月：１　翌々月：２";
             this.lblBaseLabelSihatuki.TabIndex = 96;
             this.lblBaseLabelSihatuki.Text = "支払月数";
             this.lblBaseLabelSihatuki.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1101,6 +1132,7 @@
             this.lblBaseLabelSeikyuumu.Location = new System.Drawing.Point(142, 88);
             this.lblBaseLabelSeikyuumu.Name = "lblBaseLabelSeikyuumu";
             this.lblBaseLabelSeikyuumu.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelSeikyuumu.strToolTip = "０：無　１：有";
             this.lblBaseLabelSeikyuumu.TabIndex = 90;
             this.lblBaseLabelSeikyuumu.Text = "請求書有無";
             this.lblBaseLabelSeikyuumu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1124,6 +1156,7 @@
             this.lblBaseLabelShukbn.Location = new System.Drawing.Point(18, 88);
             this.lblBaseLabelShukbn.Name = "lblBaseLabelShukbn";
             this.lblBaseLabelShukbn.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelShukbn.strToolTip = "０：無　１：有";
             this.lblBaseLabelShukbn.TabIndex = 90;
             this.lblBaseLabelShukbn.Text = "集金区分";
             this.lblBaseLabelShukbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1135,6 +1168,7 @@
             this.lblBaseLabelJoken.Location = new System.Drawing.Point(18, 57);
             this.lblBaseLabelJoken.Name = "lblBaseLabelJoken";
             this.lblBaseLabelJoken.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelJoken.strToolTip = null;
             this.lblBaseLabelJoken.TabIndex = 90;
             this.lblBaseLabelJoken.Text = "支払条件";
             this.lblBaseLabelJoken.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1146,9 +1180,11 @@
             this.lblBaseLabelSime.Location = new System.Drawing.Point(18, 27);
             this.lblBaseLabelSime.Name = "lblBaseLabelSime";
             this.lblBaseLabelSime.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelSime.strToolTip = "月末絞は３１";
             this.lblBaseLabelSime.TabIndex = 90;
             this.lblBaseLabelSime.Text = "締切日";
             this.lblBaseLabelSime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBaseLabelSime.MouseHover += new System.EventHandler(this.lblBaseLabelSime_MouseHover);
             // 
             // gbKaisha
             // 
@@ -1191,9 +1227,9 @@
             this.txtSihon.intDeciSet = 0;
             this.txtSihon.intIntederSet = 0;
             this.txtSihon.Location = new System.Drawing.Point(337, 54);
-            this.txtSihon.MaxLength = 0;
+            this.txtSihon.MaxLength = 12;
             this.txtSihon.Name = "txtSihon";
-            this.txtSihon.Size = new System.Drawing.Size(170, 22);
+            this.txtSihon.Size = new System.Drawing.Size(130, 22);
             this.txtSihon.TabIndex = 2;
             this.txtSihon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSihon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
@@ -1204,7 +1240,7 @@
             // 
             this.txtSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSeturitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSeturitu.Location = new System.Drawing.Point(566, 54);
+            this.txtSeturitu.Location = new System.Drawing.Point(559, 54);
             this.txtSeturitu.MaxLength = 20;
             this.txtSeturitu.Name = "txtSeturitu";
             this.txtSeturitu.Size = new System.Drawing.Size(170, 22);
@@ -1242,6 +1278,7 @@
             this.lblBaseLabelBango.Location = new System.Drawing.Point(620, 119);
             this.lblBaseLabelBango.Name = "lblBaseLabelBango";
             this.lblBaseLabelBango.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelBango.strToolTip = null;
             this.lblBaseLabelBango.TabIndex = 96;
             this.lblBaseLabelBango.Text = "番号";
             this.lblBaseLabelBango.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1265,6 +1302,7 @@
             this.lblBaseLabelShubetu.Location = new System.Drawing.Point(514, 119);
             this.lblBaseLabelShubetu.Name = "lblBaseLabelShubetu";
             this.lblBaseLabelShubetu.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelShubetu.strToolTip = null;
             this.lblBaseLabelShubetu.TabIndex = 96;
             this.lblBaseLabelShubetu.Text = "種別";
             this.lblBaseLabelShubetu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1276,6 +1314,7 @@
             this.lblBaseLabelSiten.Location = new System.Drawing.Point(277, 119);
             this.lblBaseLabelSiten.Name = "lblBaseLabelSiten";
             this.lblBaseLabelSiten.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelSiten.strToolTip = null;
             this.lblBaseLabelSiten.TabIndex = 96;
             this.lblBaseLabelSiten.Text = "支店名";
             this.lblBaseLabelSiten.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1284,9 +1323,10 @@
             // 
             this.lblBaseLabelSeturitu.AutoSize = true;
             this.lblBaseLabelSeturitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(522, 57);
+            this.lblBaseLabelSeturitu.Location = new System.Drawing.Point(515, 57);
             this.lblBaseLabelSeturitu.Name = "lblBaseLabelSeturitu";
             this.lblBaseLabelSeturitu.Size = new System.Drawing.Size(39, 15);
+            this.lblBaseLabelSeturitu.strToolTip = null;
             this.lblBaseLabelSeturitu.TabIndex = 96;
             this.lblBaseLabelSeturitu.Text = "設立";
             this.lblBaseLabelSeturitu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1298,6 +1338,7 @@
             this.lblBaseLabelSihon.Location = new System.Drawing.Point(277, 57);
             this.lblBaseLabelSihon.Name = "lblBaseLabelSihon";
             this.lblBaseLabelSihon.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelSihon.strToolTip = null;
             this.lblBaseLabelSihon.TabIndex = 96;
             this.lblBaseLabelSihon.Text = "資本金";
             this.lblBaseLabelSihon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1381,6 +1422,7 @@
             this.lblBaseLabelKesan.Location = new System.Drawing.Point(237, 88);
             this.lblBaseLabelKesan.Name = "lblBaseLabelKesan";
             this.lblBaseLabelKesan.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelKesan.strToolTip = null;
             this.lblBaseLabelKesan.TabIndex = 90;
             this.lblBaseLabelKesan.Text = "決算日";
             this.lblBaseLabelKesan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1392,6 +1434,7 @@
             this.lblBaseLabelTorihiki.Location = new System.Drawing.Point(17, 182);
             this.lblBaseLabelTorihiki.Name = "lblBaseLabelTorihiki";
             this.lblBaseLabelTorihiki.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelTorihiki.strToolTip = null;
             this.lblBaseLabelTorihiki.TabIndex = 90;
             this.lblBaseLabelTorihiki.Text = "取扱品目";
             this.lblBaseLabelTorihiki.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1403,6 +1446,7 @@
             this.lblBaseLabelKoza.Location = new System.Drawing.Point(18, 150);
             this.lblBaseLabelKoza.Name = "lblBaseLabelKoza";
             this.lblBaseLabelKoza.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelKoza.strToolTip = null;
             this.lblBaseLabelKoza.TabIndex = 90;
             this.lblBaseLabelKoza.Text = "口座名義";
             this.lblBaseLabelKoza.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1426,6 +1470,7 @@
             this.lblBaseLabelGinko.Location = new System.Drawing.Point(18, 119);
             this.lblBaseLabelGinko.Name = "lblBaseLabelGinko";
             this.lblBaseLabelGinko.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelGinko.strToolTip = null;
             this.lblBaseLabelGinko.TabIndex = 90;
             this.lblBaseLabelGinko.Text = "銀行名";
             this.lblBaseLabelGinko.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1437,6 +1482,7 @@
             this.lblBaseLabelJugyo.Location = new System.Drawing.Point(18, 88);
             this.lblBaseLabelJugyo.Name = "lblBaseLabelJugyo";
             this.lblBaseLabelJugyo.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelJugyo.strToolTip = null;
             this.lblBaseLabelJugyo.TabIndex = 90;
             this.lblBaseLabelJugyo.Text = "従業員数";
             this.lblBaseLabelJugyo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1448,6 +1494,7 @@
             this.lblBaseLabelDaihyo.Location = new System.Drawing.Point(18, 57);
             this.lblBaseLabelDaihyo.Name = "lblBaseLabelDaihyo";
             this.lblBaseLabelDaihyo.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelDaihyo.strToolTip = null;
             this.lblBaseLabelDaihyo.TabIndex = 90;
             this.lblBaseLabelDaihyo.Text = "代表者名";
             this.lblBaseLabelDaihyo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1459,6 +1506,7 @@
             this.lblBaseLabelSiha.Location = new System.Drawing.Point(18, 27);
             this.lblBaseLabelSiha.Name = "lblBaseLabelSiha";
             this.lblBaseLabelSiha.Size = new System.Drawing.Size(71, 15);
+            this.lblBaseLabelSiha.strToolTip = null;
             this.lblBaseLabelSiha.TabIndex = 90;
             this.lblBaseLabelSiha.Text = "変則支払";
             this.lblBaseLabelSiha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1771,6 +1819,7 @@
             this.lblBaseLabelMesai.Location = new System.Drawing.Point(18, 113);
             this.lblBaseLabelMesai.Name = "lblBaseLabelMesai";
             this.lblBaseLabelMesai.Size = new System.Drawing.Size(103, 15);
+            this.lblBaseLabelMesai.strToolTip = "０：切捨て　１：四捨五入　２：切上";
             this.lblBaseLabelMesai.TabIndex = 92;
             this.lblBaseLabelMesai.Text = "明細端数区分";
             this.lblBaseLabelMesai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1794,6 +1843,7 @@
             this.lblBaseLabelZeihasu.Location = new System.Drawing.Point(18, 85);
             this.lblBaseLabelZeihasu.Name = "lblBaseLabelZeihasu";
             this.lblBaseLabelZeihasu.Size = new System.Drawing.Size(119, 15);
+            this.lblBaseLabelZeihasu.strToolTip = "０：切捨て　１：四捨五入　２：切上";
             this.lblBaseLabelZeihasu.TabIndex = 93;
             this.lblBaseLabelZeihasu.Text = "税端数計算区分";
             this.lblBaseLabelZeihasu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1829,6 +1879,7 @@
             this.lblBaseLabelKeisankbn.Location = new System.Drawing.Point(18, 57);
             this.lblBaseLabelKeisankbn.Name = "lblBaseLabelKeisankbn";
             this.lblBaseLabelKeisankbn.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelKeisankbn.strToolTip = "０：行　１：伝票　２：請求";
             this.lblBaseLabelKeisankbn.TabIndex = 90;
             this.lblBaseLabelKeisankbn.Text = "税計算区分";
             this.lblBaseLabelKeisankbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1840,6 +1891,7 @@
             this.lblBaseLabelZeikbn.Location = new System.Drawing.Point(18, 27);
             this.lblBaseLabelZeikbn.Name = "lblBaseLabelZeikbn";
             this.lblBaseLabelZeikbn.Size = new System.Drawing.Size(55, 15);
+            this.lblBaseLabelZeikbn.strToolTip = "０：外税　１：内税";
             this.lblBaseLabelZeikbn.TabIndex = 90;
             this.lblBaseLabelZeikbn.Text = "税区分";
             this.lblBaseLabelZeikbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

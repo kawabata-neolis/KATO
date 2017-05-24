@@ -75,6 +75,13 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            //ToolTip tooltip = new ToolTip(this.components);
+            //tooltip.ShowAlways = true;
+            ////Help.ShowPopup(this, "こんにちは。", Control.MousePosition);
+            //tooltip.SetToolTip(lblBaseLabelSime, "あれです");
+
+            //lblBaseLabelSime.setToolTip("あれ");
         }
 
         /// <summary>
@@ -120,6 +127,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F7:
                     break;
                 case Keys.F8:
+                    this.setAkiban();
                     break;
                 case Keys.F9:
                     break;
@@ -164,15 +172,12 @@ namespace KATO.Form.M1070_Torihikisaki
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTorihiki();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delTorihiki();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -181,7 +186,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    this.setAkiban();
                     break;
                 case Keys.F9:
                     break;
@@ -226,15 +230,12 @@ namespace KATO.Form.M1070_Torihikisaki
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTorihiki();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delTorihiki();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -243,7 +244,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    this.setAkiban();
                     break;
                 case Keys.F9:
                     txtCdT_KeyDown(sender, e);
@@ -801,7 +801,7 @@ namespace KATO.Form.M1070_Torihikisaki
             //前後の空白を取り除く
             txtCdT.Text = txtCdT.Text.Trim();
 
-            if (txtCdT.TextLength == 3)
+            if (txtCdT.TextLength < 4)
             {
                 txtCdT.Text = txtCdT.Text.ToString().PadLeft(4, '0');
             }
@@ -881,6 +881,14 @@ namespace KATO.Form.M1070_Torihikisaki
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        /// lblBaseLabelSime_MouseHover
+        /// 入力項目上でのキー判定
+        /// </summary>
+        private void lblBaseLabelSime_MouseHover(object sender, EventArgs e)
+        {
         }
     }
 }

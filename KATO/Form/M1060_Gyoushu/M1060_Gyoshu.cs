@@ -163,15 +163,12 @@ namespace KATO.Form.M1060_Gyoushu
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addGyoushu();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delGyoushu();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -197,25 +194,61 @@ namespace KATO.Form.M1060_Gyoushu
         }
 
         /// <summary>
-        /// judtxtGyoshuKeyDown
-        /// コード入力項目でのキー入力判定
+        /// judTxtGyoTxtKeyDown
+        /// キー入力判定
         /// </summary>
-        private void judtxtGyoshuKeyDown(object sender, KeyEventArgs e)
+        private void judTxtGyoTxtKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F9)
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
             {
-                GyoshuList gyoshulist = new GyoshuList(this);
-                try
-                {
-                    gyoshulist.StartPosition = FormStartPosition.Manual;
-                    gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
-                    gyoshulist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    return;
-                }
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    judtxtGyoshuKeyDown(sender, e);
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -242,6 +275,29 @@ namespace KATO.Form.M1060_Gyoushu
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
+            }
+        }
+
+        /// <summary>
+        /// judtxtGyoshuKeyDown
+        /// コード入力項目でのキー入力判定
+        /// </summary>
+        private void judtxtGyoshuKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                GyoshuList gyoshulist = new GyoshuList(this);
+                try
+                {
+                    gyoshulist.StartPosition = FormStartPosition.Manual;
+                    gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                    gyoshulist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    return;
+                }
             }
         }
 
@@ -367,6 +423,8 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         public void updTxtGyoshuLeave(object sender, EventArgs e)
         {
+            Control cActive = this.ActiveControl;
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -426,6 +484,8 @@ namespace KATO.Form.M1060_Gyoushu
                 //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 //    basemessagebox.ShowDialog();
                 //}
+
+                cActive.Focus();
             }
             catch (Exception ex)
             {
@@ -448,13 +508,15 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         private void judtxtGyoushuKeyUp(object sender, KeyEventArgs e)
         {
+            Control cActiveBefore = this.ActiveControl;
+
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
             {
                 return;
             }
             //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
             {
                 return;
             }
@@ -464,7 +526,8 @@ namespace KATO.Form.M1060_Gyoushu
                 return;
             }
 
-            if (txtGyoshu.TextLength == 4)
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
+            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

@@ -104,7 +104,7 @@
             this.txtGyoshu.Name = "txtGyoshu";
             this.txtGyoshu.Size = new System.Drawing.Size(40, 22);
             this.txtGyoshu.TabIndex = 0;
-            this.txtGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuTxtKeyDown);
+            this.txtGyoshu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtGyoTxtKeyDown);
             this.txtGyoshu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             this.txtGyoshu.Leave += new System.EventHandler(this.updTxtGyoshuLeave);
             // 
@@ -128,6 +128,8 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(252, 22);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuTxtKeyDown);
+            this.txtName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
             // lblBaseLabelName
             // 

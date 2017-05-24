@@ -40,13 +40,14 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChubunrui = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -141,6 +142,7 @@
             this.tabPage1.Controls.Add(this.btnMaker);
             this.tabPage1.Controls.Add(this.baseMenuButton3);
             this.tabPage1.Controls.Add(this.btnChubunrui);
+            this.tabPage1.Controls.Add(this.btnChokusosaki);
             this.tabPage1.Controls.Add(this.btnEigyosho);
             this.tabPage1.Controls.Add(this.btnDaibunrui);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -268,6 +270,18 @@
             this.btnChubunrui.Click += new System.EventHandler(this.btnChubunrui_Click);
             this.btnChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
+            // btnEigyosho
+            // 
+            this.btnEigyosho.BackColor = System.Drawing.Color.LightYellow;
+            this.btnEigyosho.Location = new System.Drawing.Point(326, 33);
+            this.btnEigyosho.Name = "btnEigyosho";
+            this.btnEigyosho.Size = new System.Drawing.Size(280, 40);
+            this.btnEigyosho.TabIndex = 1;
+            this.btnEigyosho.Text = "営業所";
+            this.btnEigyosho.UseVisualStyleBackColor = false;
+            this.btnEigyosho.Click += new System.EventHandler(this.btnEigyosho_Click);
+            this.btnEigyosho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // btnDaibunrui
             // 
             this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
@@ -330,17 +344,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // btnEigyosho
+            // btnChokusosaki
             // 
-            this.btnEigyosho.BackColor = System.Drawing.Color.LightYellow;
-            this.btnEigyosho.Location = new System.Drawing.Point(326, 33);
-            this.btnEigyosho.Name = "btnEigyosho";
-            this.btnEigyosho.Size = new System.Drawing.Size(280, 40);
-            this.btnEigyosho.TabIndex = 1;
-            this.btnEigyosho.Text = "営業所";
-            this.btnEigyosho.UseVisualStyleBackColor = false;
-            this.btnEigyosho.Click += new System.EventHandler(this.btnEigyosho_Click);
-            this.btnEigyosho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnChokusosaki.BackColor = System.Drawing.Color.LightYellow;
+            this.btnChokusosaki.Location = new System.Drawing.Point(326, 102);
+            this.btnChokusosaki.Name = "btnChokusosaki";
+            this.btnChokusosaki.Size = new System.Drawing.Size(280, 40);
+            this.btnChokusosaki.TabIndex = 1;
+            this.btnChokusosaki.Text = "直送先";
+            this.btnChokusosaki.UseVisualStyleBackColor = false;
+            this.btnChokusosaki.Click += new System.EventHandler(this.btnChokusosaki_Click);
+            this.btnChokusosaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // Z0000
             // 
@@ -396,5 +410,6 @@
         private Common.Ctl.BaseMenuButton btnShohin;
         private Common.Ctl.BaseMenuButton btnTorihikisaki;
         private Common.Ctl.BaseMenuButton btnEigyosho;
+        private Common.Ctl.BaseMenuButton btnChokusosaki;
     }
 }

@@ -164,15 +164,12 @@ namespace KATO.Form.M1020_Maker
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addMaker();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delMaker();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -225,15 +222,12 @@ namespace KATO.Form.M1020_Maker
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addMaker();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delMaker();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -435,6 +429,8 @@ namespace KATO.Form.M1020_Maker
         ///</summary>
         public void updTxtMakerTextLeave(object sender, EventArgs e)
         {
+            Control cActive = this.ActiveControl;
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -494,6 +490,8 @@ namespace KATO.Form.M1020_Maker
                 //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 //    basemessagebox.ShowDialog();
                 //}
+
+                cActive.Focus();
             }
             catch (Exception ex)
             {
