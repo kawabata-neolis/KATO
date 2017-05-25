@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static KATO.Common.Util.StringUtl;
 
 namespace KATO.Common.Ctl
 {
@@ -86,6 +87,23 @@ namespace KATO.Common.Ctl
             }
         }
 
+        int intshishagonyu;
+        //四捨五入をするか否か（0が否、１以上が小数点第何位か）
+        //（アクセス識別子) (型) (プロパティ名)
+        public int intShishagonyu
+        {
+            get
+            {
+                //プロパティデータにデータを入れる場合
+                return this.intshishagonyu;
+            }
+            set
+            {
+                //プロパティデータからデータを取り出す場合
+                this.intshishagonyu = value;
+            }
+        }
+        
         private void setTextLength()
         {
             //小数点以下を扱う場合
@@ -100,8 +118,7 @@ namespace KATO.Common.Ctl
                 this.MaxLength = this._intIntegerSet;
             }
         }
-
-
+        
         public BaseTextMoney()
         {
             InitializeComponent();
@@ -137,6 +154,16 @@ namespace KATO.Common.Ctl
                 blnFirstClick = false;
             }
 
+            if (this.Text == "")
+            {
+                return;
+            }
+
+//テストから
+            
+            //四捨五入
+            this.Text = updShishagonyu(this.Text, intshishagonyu);
+
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
 
@@ -152,6 +179,13 @@ namespace KATO.Common.Ctl
 
             //フォーカスが外れたのでリセット
             blnFirstClick = true;
+
+            if (this.Text == "")
+            {
+                return;
+            }
+
+            //四捨五入
 
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();

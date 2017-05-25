@@ -194,24 +194,8 @@ namespace KATO.Common.Business
 
                 switch (lstInt[0])
                 {
-                    //大分類
-                    case 1:
-                        MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                    //中分類
-                    case 2:
-                        break;
-                    //棚卸入力（表示）
-                    case 5:
-                        break;
-                    //棚卸入力（編集）
-                    case 6:
-                        break;
-                    //棚卸入力（商品リスト）
-                    case 7:
-                        break;
                     //直送先
-                    case 14:
+                    case CommonTeisu.FRM_CHOKUSOSAKI:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
@@ -253,7 +237,7 @@ namespace KATO.Common.Business
                 List<string> items = new List<string>();
                 items.Add(frm.Name);
                 //目的のフォームを探す
-                if (lstInt[0] == 14 && frm.Name == "M1100_Chokusosaki")
+                if (lstInt[0] == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "M1100_Chokusosaki")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinlist = (ShouhinList)frm;

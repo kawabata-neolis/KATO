@@ -80,17 +80,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name.Equals("M1010_Daibunrui"))
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 2 && frm.Name.Equals("M1110_Chubunrui"))
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
+                if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -98,7 +88,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 13 && frm.Name == "M1090_Eigyosho")
+                else if (lstInt[0] == CommonTeisu.FRM_EIGYOSHO && frm.Name == "M1090_Eigyosho")
                 {
                     //データを連れてくるため、newをしないこと
                     M1090_Eigyosho eigyosho = (M1090_Eigyosho)frm;
@@ -143,17 +133,8 @@ namespace KATO.Common.Business
                 //通常テキストボックスの場合に使用する
                 switch (lstInt[0])
                 {
-                    //大分類
-                    case 1:
-                        break;
-                    //中分類
-                    case 2:
-                        break;
-                    //棚番
-                    case 5:
-                        break;
                     //営業所
-                    case 13:
+                    case CommonTeisu.FRM_EIGYOSHO:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {

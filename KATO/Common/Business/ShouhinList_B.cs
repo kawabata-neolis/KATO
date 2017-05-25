@@ -197,7 +197,7 @@ namespace KATO.Common.Business
             //どこのDBを参照するか
             switch (lstint[0])
             {
-                case 1://大分類
+                case CommonTeisu.FRM_DAIBUNRUI://大分類
 
                     if (lstString[0] == "")
                     {
@@ -232,7 +232,7 @@ namespace KATO.Common.Business
                     //SQL文を直書き（＋戻り値を受け取る)
                     dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
-                case 2://中分類
+                case CommonTeisu.FRM_CHUBUNRUI://中分類
                     if (lstString[1] == "")
                     {
                         lstString[1] = "";
@@ -266,7 +266,7 @@ namespace KATO.Common.Business
                     //SQL文を直書き（＋戻り値を受け取る)
                     dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
-                case 3://メーカー
+                case CommonTeisu.FRM_MAKER://メーカー
                     if (lstString[2] == "")
                     {
                         lstString[2] = "";
@@ -436,9 +436,6 @@ namespace KATO.Common.Business
                     shohin.setShouhin(lstStringTana, lstDTTana);
                     break;
                 }
-
-
-
             }
         }
 
@@ -456,21 +453,23 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
+                ////目的のフォームを探す
+                //if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
+                //{
+                //    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    break;
+                //}
+                ////目的のフォームを探す
+                //else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
+                //{
+                //    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    break;
+                //}
+
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
+                if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                }
-                //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
-                {
-                    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                }
-                //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "F0140_TanaorosiInput")
-                {
+//要修正
                 }
             }
         }

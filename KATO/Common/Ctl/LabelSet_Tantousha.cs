@@ -51,7 +51,7 @@ namespace KATO.Common.Ctl
             {
                 TantoushaList tantoushaList = new TantoushaList(this.Parent, this);
                 tantoushaList.StartPosition = FormStartPosition.Manual;
-                tantoushaList.intFrmKind = CommonTeisu.FRM_TANTOUSYA;
+                tantoushaList.intFrmKind = CommonTeisu.FRM_TANTOUSHA;
                 tantoushaList.ShowDialog();
             }
             else if (e.KeyCode == Keys.Enter)

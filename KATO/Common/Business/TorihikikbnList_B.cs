@@ -78,7 +78,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 9 && frm.Name.Equals("M1040_Torihikikbn"))
+                if (lstInt[0] == CommonTeisu.FRM_TORIHIKIKBN && frm.Name.Equals("M1040_Torihikikbn"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
@@ -121,20 +121,8 @@ namespace KATO.Common.Business
 
                 switch (lstInt[0])
                 {
-                    //大分類
-                    case 1:
-                        break;
-                    //中分類
-                    case 2:
-                        break;
-                    //棚番
-                    case 5:
-                        break;
-                    //商品リスト
-                    case 7:
-                        break;
                     //取引区分
-                    case 9:
+                    case CommonTeisu.FRM_TORIHIKIKBN:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {

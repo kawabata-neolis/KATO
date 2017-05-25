@@ -80,14 +80,6 @@ namespace KATO.Common.Business
                     tantousha.setTantouListClose();
                     break;
                 }
-                //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    F0140_TanaorosiInput tanaoroshi = (F0140_TanaorosiInput)frm;
-                    tanaoroshi.setDaibunruiListClose();
-                    break;
-                }
             }
         }
 
@@ -123,13 +115,7 @@ namespace KATO.Common.Business
 
             switch (lstInt[0])
             {
-                //大分類
-                case 1:
-                    break;
-                //中分類
-                case 2:
-                    break;
-                case 4:
+                case CommonTeisu.FRM_TANTOUSHA:
                     //全てのフォームの中から
                     foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                     {

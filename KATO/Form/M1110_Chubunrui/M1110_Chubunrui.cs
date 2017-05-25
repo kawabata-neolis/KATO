@@ -299,7 +299,7 @@ namespace KATO.Form.M1110_Chubunrui
                     try
                     {
                         chubunruilist.StartPosition = FormStartPosition.Manual;
-                        chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CYUBUNRUI;
+                        chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
                         chubunruilist.ShowDialog();
                     }
                     catch (Exception ex)

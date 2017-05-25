@@ -293,7 +293,7 @@ namespace KATO.Form.M1050_Tantousha
                 try
                 {
                     tantoushalist.StartPosition = FormStartPosition.Manual;
-                    tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSYA;
+                    tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSHA;
                     tantoushalist.ShowDialog();
 
                     txtMokuhyou.Focus();

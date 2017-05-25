@@ -78,17 +78,17 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
+                if (intFrmKind == CommonTeisu.FRM_DAIBUNRUI && frm.Name.Equals("M1010_Daibunrui"))
                 {
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
+                else if (intFrmKind == CommonTeisu.FRM_CHUBUNRUI && frm.Name.Equals("M1110_Chubunrui"))
                 {
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 5 && frm.Name == "F0140_TanaorosiInput")
+                else if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -96,7 +96,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 6 && frm.Name == "F0140_TanaorosiInput")
+                else if (intFrmKind == CommonTeisu.FRM_TANAOROSHI_EDIT && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -104,7 +104,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (intFrmKind == 15 && frm.Name == "M1120_Tanaban")
+                else if (intFrmKind == CommonTeisu.FRM_TANABAN && frm.Name == "M1120_Tanaban")
                 {
                     //データを連れてくるため、newをしないこと
                     M1120_Tanaban tanaban = (M1120_Tanaban)frm;
@@ -148,7 +148,7 @@ namespace KATO.Common.Business
                 //通常テキストボックスの場合に使用する
                 switch (intFrmKind)
                 {
-                    case 15:
+                    case CommonTeisu.FRM_TANABAN:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {

@@ -123,17 +123,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name == "M1010_Daibunrui")
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 2 && frm.Name == "M1110_Chubunrui")
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 3 && frm.Name == "M1020_Maker")
+                if (lstInt[0] == CommonTeisu.FRM_MAKER && frm.Name == "M1020_Maker")
                 {
                     //データを連れてくるため、newをしないこと
                     M1020_Maker maker = (M1020_Maker)frm;
@@ -141,7 +131,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
+                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -149,7 +139,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 6 && frm.Name == "F0140_TanaorosiInput")
+                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI_EDIT && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -157,7 +147,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 7 && frm.Name == "ShouhinList")
+                else if (lstInt[0] == CommonTeisu.FRM_SHOUHINLIST && frm.Name == "ShouhinList")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinlist = (ShouhinList)frm;
@@ -201,15 +191,8 @@ namespace KATO.Common.Business
 
                 switch (lstInt[0])
                 {
-                    //大分類
-                    case 1:
-                        break;
-                    //中分類
-                    case 2:
-                        break;
-
                     //メーカー
-                    case 3:
+                    case CommonTeisu.FRM_MAKER:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
@@ -223,11 +206,8 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
+                    //商品リスト
+                    case CommonTeisu.FRM_SHOUHINLIST:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {

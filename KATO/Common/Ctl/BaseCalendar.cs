@@ -352,8 +352,27 @@ namespace KATO.Common.Ctl
 
             if (blnDateJud == false)
             {
+                Control c = this;
+
+                c = Parent;
+
+                while (true)
+                {
+                    //継承元がBaseFormかFormなら
+                    if (c is BaseForm || c is System.Windows.Forms.Form)
+                    {
+                        break;
+                    }
+                    else if (this.Parent == null)
+                    {
+                        return;
+                    }
+
+                    c = c.Parent;
+                }
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                BaseMessageBox basemessagebox = new BaseMessageBox(c, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 this.Focus();
                 return;

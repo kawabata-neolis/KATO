@@ -44,21 +44,22 @@ namespace KATO.Common.Util
         public const String STR_BTN_F12 = "btnF12";
 
         //ウィンドウ判定
-        public const int FRM_DAIBUNRUI = 1;
-        public const int FRM_CYUBUNRUI = 2;
-        public const int FRM_MAKER = 3;
-        public const int FRM_TANTOUSYA = 4;
-        public const int FRM_TANAOROSHI = 5;
-        public const int FRM_TANAOROSHI_EDIT = 6;
-        public const int FRM_SHOUHINLIST = 7;
-        public const int FRM_TOKUISAKI = 8;
-        public const int FRM_TORIHIKIKBN = 9;
-        public const int FRM_GYOSHU = 10;
-        public const int FRM_SHOHIN = 11;
-        public const int FRM_TORIHIKISAKI = 12;
-        public const int FRM_EIGYOSHO = 13;
-        public const int FRM_CHOKUSOSAKI = 14;
-        public const int FRM_TANABAN = 15;
+        public const int FRM_DAIBUNRUI = 1010;
+        public const int FRM_MAKER = 1020;
+        public const int FRM_SHOHIN = 1030;
+        public const int FRM_SHOUHINLIST = 1031;
+        public const int FRM_TORIHIKIKBN = 1040;
+        public const int FRM_TANTOUSHA = 1050;
+        public const int FRM_GYOSHU = 1060;
+        public const int FRM_TORIHIKISAKI = 1070;
+        public const int FRM_TOKUISAKI = 10701;
+        public const int FRM_EIGYOSHO = 1090;
+        public const int FRM_CHOKUSOSAKI = 1100;
+        public const int FRM_TANABAN = 1120;
+        public const int FRM_SHOHIZEIRITU = 1130;
+        public const int FRM_TANAOROSHI = 0140;
+        public const int FRM_TANAOROSHI_EDIT = 01401;
+        public const int FRM_CHUBUNRUI = 1110;
 
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;

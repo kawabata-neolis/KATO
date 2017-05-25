@@ -196,12 +196,8 @@ namespace KATO.Common.Business
 
                 switch (lstInt[0])
                 {
-                    //大分類
-                    case 1:
-                        MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
                     //中分類
-                    case 2:
+                    case CommonTeisu.FRM_CHUBUNRUI:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
@@ -215,14 +211,8 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                    //棚卸入力（表示）
-                    case 5:
-                        break;
-                    //棚卸入力（編集）
-                    case 6:
-                        break;
                     //棚卸入力（商品リスト）
-                    case 7:
+                    case CommonTeisu.FRM_SHOUHINLIST:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
@@ -265,12 +255,7 @@ namespace KATO.Common.Business
                 items.Add(frm.Name);
 
                 //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name == "M1010_Daibunrui")
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 2 && frm.Name == "M1110_Chubunrui")
+                if (lstInt[0] == CommonTeisu.FRM_CHUBUNRUI && frm.Name == "M1110_Chubunrui")
                 {
                     //データを連れてくるため、newをしないこと
                     M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
@@ -278,7 +263,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 5 && frm.Name == "F0140_TanaorosiInput")
+                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -286,7 +271,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 6 && frm.Name == "F0140_TanaorosiInput")
+                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI_EDIT && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
@@ -294,7 +279,7 @@ namespace KATO.Common.Business
                     break;
                 }
                 //目的のフォームを探す
-                else if (lstInt[0] == 6 && frm.Name == "TanaorosiInput")
+                else if (lstInt[0] == CommonTeisu.FRM_SHOUHINLIST && frm.Name == "ShouhinList")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinlist = (ShouhinList)frm;

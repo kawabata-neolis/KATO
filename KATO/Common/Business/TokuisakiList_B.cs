@@ -76,15 +76,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == 5 && frm.Name.Equals("F0140_TanaorosiInput"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    F0140_TanaorosiInput tanaoroshi = (F0140_TanaorosiInput)frm;
-                    tanaoroshi.setDaibunruiListClose();
-                    break;
-                }
-                //目的のフォームを探す
-                else if (lstInt[0] == 12 && frm.Name.Equals("M1070_Torihikisaki"))
+                if (lstInt[0] == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
@@ -126,14 +118,8 @@ namespace KATO.Common.Business
 
             switch (lstInt[0])
             {
-                //大分類
-                case 1:
-                    break;
-                //中分類
-                case 2:
-                    break;
                 //取引先
-                case 12:
+                case CommonTeisu.FRM_TORIHIKISAKI:
                     //全てのフォームの中から
                     foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                     {
