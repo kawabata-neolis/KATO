@@ -1,13 +1,13 @@
-﻿MERGE INTO [KATO].[dbo].取引区分 AS A
+﻿MERGE INTO [KATO].[dbo].棚番 AS A
 USING
     (
         SELECT
-		    @p0  AS 取引区分コード
+		    @p0  AS 棚番
 
     ) AS B
 ON
     (
-        A.取引区分コード = B.取引区分コード
+        A.棚番 = B.棚番
     )
 WHEN MATCHED THEN
     DELETE

@@ -72,6 +72,7 @@
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
+    <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
@@ -419,6 +420,12 @@
     <Compile Include="Common\Form\TantoushaList.Designer.cs">
       <DependentUpon>TantoushaList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1120_Tanaban\M1120_Tanaban.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1120_Tanaban\M1120_Tanaban.Designer.cs">
+      <DependentUpon>M1120_Tanaban.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -625,6 +632,9 @@
     <EmbeddedResource Include="Common\Form\TantoushaList.resx">
       <DependentUpon>TantoushaList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1120_Tanaban\M1120_Tanaban.resx">
+      <DependentUpon>M1120_Tanaban.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>

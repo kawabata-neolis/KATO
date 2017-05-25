@@ -14,7 +14,6 @@ using KATO.Common.Business;
 using System.Security.Permissions;
 using static KATO.Common.Util.CommonTeisu;
 
-
 namespace KATO.Common.Form
 {
     ///<summary>
@@ -122,7 +121,7 @@ namespace KATO.Common.Form
 
                 //幅の値を設定
                 gridSeihin.Columns["棚番"].Width = 70;
-                gridSeihin.Columns["棚番名"].Width = 180;
+                gridSeihin.Columns["棚番名"].Width = 200;
 
                 //中央揃え
                 gridSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -334,7 +333,7 @@ namespace KATO.Common.Form
             TanabanList_B tanabanlistB = new TanabanList_B();
             try
             {
-                tanabanlistB.setSelectItem(intFrmKind, strSelectid);
+                tanabanlistB.setSelectItem(intFrmKind, lstString);
 
                 setEndAction(lstString);
             }

@@ -1,5 +1,6 @@
 ﻿using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.M1120_Tanaban;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -102,6 +103,14 @@ namespace KATO.Common.Business
                     tanaorosiinput.setTanaListCloseEdit();
                     break;
                 }
+                //目的のフォームを探す
+                else if (intFrmKind == 15 && frm.Name == "M1120_Tanaban")
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1120_Tanaban tanaban = (M1120_Tanaban)frm;
+                    tanaban.setTanabanListClose();
+                    break;
+                }
             }
         }
         
@@ -109,28 +118,49 @@ namespace KATO.Common.Business
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(int intFrmKind, string strSelectid)
+        public void setSelectItem(int intFrmKind, List<string> lstString)
         {
+            DataTable dtSelectData;
+
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //データ渡し用
+                List<string> lstStringSQL = new List<string>();
+
+                strSQLName = "C_LIST_Tanaban_SELECT_LEAVE";
+
+                //データ渡し用
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add(strSQLName);
+
+                OpenSQL opensql = new OpenSQL();
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                //配列設定
+                string[] aryStr = { lstString[0] };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                dtSelectData = dbconnective.ReadSql(strSQLInput);
+
                 //通常テキストボックスの場合に使用する
                 switch (intFrmKind)
                 {
-                    //現状、ラベルセットからのみなので該当なし
-
-                    //大分類
-                    case 1:
-                        break;
-                    //中分類
-                    case 2:
-                        break;
-                    //棚番
-                    case 5:
-                        break;
-                    //棚番(編集)
-                    case 6:
+                    case 15:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1120_Tanaban"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1120_Tanaban tanaban = (M1120_Tanaban)frm;
+                                tanaban.setTanabanCd(dtSelectData);
+                                break;
+                            }
+                        }
                         break;
                     default:
                         break;

@@ -40,6 +40,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChubunrui = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnTanaban = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
@@ -142,6 +143,7 @@
             this.tabPage1.Controls.Add(this.btnMaker);
             this.tabPage1.Controls.Add(this.baseMenuButton3);
             this.tabPage1.Controls.Add(this.btnChubunrui);
+            this.tabPage1.Controls.Add(this.btnTanaban);
             this.tabPage1.Controls.Add(this.btnChokusosaki);
             this.tabPage1.Controls.Add(this.btnEigyosho);
             this.tabPage1.Controls.Add(this.btnDaibunrui);
@@ -269,6 +271,18 @@
             this.btnChubunrui.UseVisualStyleBackColor = false;
             this.btnChubunrui.Click += new System.EventHandler(this.btnChubunrui_Click);
             this.btnChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
+            // btnTanaban
+            // 
+            this.btnTanaban.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTanaban.Location = new System.Drawing.Point(326, 171);
+            this.btnTanaban.Name = "btnTanaban";
+            this.btnTanaban.Size = new System.Drawing.Size(280, 40);
+            this.btnTanaban.TabIndex = 12;
+            this.btnTanaban.Text = "棚番";
+            this.btnTanaban.UseVisualStyleBackColor = false;
+            this.btnTanaban.Click += new System.EventHandler(this.btnTanaban_Click);
+            this.btnTanaban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // btnChokusosaki
             // 
@@ -411,5 +425,6 @@
         private Common.Ctl.BaseMenuButton btnTorihikisaki;
         private Common.Ctl.BaseMenuButton btnEigyosho;
         private Common.Ctl.BaseMenuButton btnChokusosaki;
+        private Common.Ctl.BaseMenuButton btnTanaban;
     }
 }
