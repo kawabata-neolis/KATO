@@ -25,7 +25,32 @@ namespace KATO.Business.M1100_Chokusosaki
         ///</summary>
         public void addChokusosaki(List<string> lstString)
         {
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
 
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], "N", DateTime.Now.ToString(), lstString[3], DateTime.Now.ToString(), lstString[3] };
+
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_UPD, aryStr);
+
+                //コミット開始
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
         }
 
         ///<summary>
@@ -34,7 +59,35 @@ namespace KATO.Business.M1100_Chokusosaki
         ///</summary>
         public void delChokusosaki(List<string> lstString)
         {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
 
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                string[] aryStr = new string[] { lstString[0], lstString[1] };
+
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_DEL, aryStr);
+
+                //コミット開始
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
         }
 
         ///<summary>

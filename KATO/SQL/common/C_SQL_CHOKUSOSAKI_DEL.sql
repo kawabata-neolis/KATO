@@ -1,15 +1,15 @@
-﻿MERGE INTO [KATO].[dbo].[中分類] AS A
+﻿MERGE INTO [KATO].[dbo].[直送先] AS A
 USING
     (
         SELECT
-		    @p0  AS 大分類コード
-           ,@p1  AS 中分類コード
+		    @p0  AS 得意先コード
+           ,@p1  AS 直送先コード
 
     ) AS B
 ON
     (
-        A.大分類コード = B.大分類コード
-	AND A.中分類コード = B.中分類コード
+        A.得意先コード = B.得意先コード
+	AND A.直送先コード = B.直送先コード
     )
 WHEN MATCHED THEN
     DELETE

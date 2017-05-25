@@ -363,9 +363,17 @@ namespace KATO.Form.M1110_Chubunrui
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
+
+                string strTokuiSub = "";
+                strTokuiSub = LabelSet_Daibun.CodeTxtText;
+
                 //テキストボックスを白紙にする
                 delText();
+
+                LabelSet_Daibun.CodeTxtText = strTokuiSub;
                 LabelSet_Daibun.Focus();
+                txtChubunrui.Focus();
+
             }
             catch (Exception ex)
             {
@@ -409,8 +417,6 @@ namespace KATO.Form.M1110_Chubunrui
             //データ渡し用
             lstString.Add(LabelSet_Daibun.CodeTxtText);
             lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtElem.Text);
-            lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(チェック)
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
@@ -420,9 +426,17 @@ namespace KATO.Form.M1110_Chubunrui
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
+
+                string strTokuiSub = "";
+                strTokuiSub = LabelSet_Daibun.CodeTxtText;
+
                 //テキストボックスを白紙にする
                 delText();
+
+                LabelSet_Daibun.CodeTxtText = strTokuiSub;
                 LabelSet_Daibun.Focus();
+                txtChubunrui.Focus();
+
             }
             catch (Exception ex)
             {

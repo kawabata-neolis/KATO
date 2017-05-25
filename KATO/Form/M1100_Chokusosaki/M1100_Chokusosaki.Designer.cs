@@ -44,6 +44,54 @@
             this.txtDenwa = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // labelSet_Tokuisaki
             // 
             this.labelSet_Tokuisaki.AppendLabelSize = 40;
@@ -59,7 +107,7 @@
             this.labelSet_Tokuisaki.SpaceNameCode = 4;
             this.labelSet_Tokuisaki.SpaceValueAppend = 4;
             this.labelSet_Tokuisaki.TabIndex = 0;
-            this.labelSet_Tokuisaki.ValueLabelSize = 350;
+            this.labelSet_Tokuisaki.ValueLabelSize = 330;
             this.labelSet_Tokuisaki.ValueLabelText = "";
             // 
             // txtChokusoCd
@@ -71,6 +119,7 @@
             this.txtChokusoCd.Name = "txtChokusoCd";
             this.txtChokusoCd.Size = new System.Drawing.Size(40, 22);
             this.txtChokusoCd.TabIndex = 1;
+            this.txtChokusoCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtChoTxtKeyDown);
             this.txtChokusoCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             this.txtChokusoCd.Leave += new System.EventHandler(this.updTxtChokuTxtLeave);
             // 
@@ -81,6 +130,7 @@
             this.lblChokusoCd.Location = new System.Drawing.Point(391, 148);
             this.lblChokusoCd.Name = "lblChokusoCd";
             this.lblChokusoCd.Size = new System.Drawing.Size(103, 15);
+            this.lblChokusoCd.strToolTip = null;
             this.lblChokusoCd.TabIndex = 89;
             this.lblChokusoCd.Text = "直送先コード";
             this.lblChokusoCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,6 +142,7 @@
             this.lblChokusoName.Location = new System.Drawing.Point(555, 148);
             this.lblChokusoName.Name = "lblChokusoName";
             this.lblChokusoName.Size = new System.Drawing.Size(87, 15);
+            this.lblChokusoName.strToolTip = null;
             this.lblChokusoName.TabIndex = 89;
             this.lblChokusoName.Text = "直送先名称";
             this.lblChokusoName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,9 +151,10 @@
             // 
             this.lblYubin.AutoSize = true;
             this.lblYubin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblYubin.Location = new System.Drawing.Point(555, 175);
+            this.lblYubin.Location = new System.Drawing.Point(555, 177);
             this.lblYubin.Name = "lblYubin";
             this.lblYubin.Size = new System.Drawing.Size(71, 15);
+            this.lblYubin.strToolTip = null;
             this.lblYubin.TabIndex = 89;
             this.lblYubin.Text = "郵便番号";
             this.lblYubin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,9 +163,10 @@
             // 
             this.lblJusho1.AutoSize = true;
             this.lblJusho1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJusho1.Location = new System.Drawing.Point(555, 201);
+            this.lblJusho1.Location = new System.Drawing.Point(555, 205);
             this.lblJusho1.Name = "lblJusho1";
             this.lblJusho1.Size = new System.Drawing.Size(55, 15);
+            this.lblJusho1.strToolTip = null;
             this.lblJusho1.TabIndex = 89;
             this.lblJusho1.Text = "住所１";
             this.lblJusho1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,9 +175,10 @@
             // 
             this.lblJusho2.AutoSize = true;
             this.lblJusho2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJusho2.Location = new System.Drawing.Point(555, 227);
+            this.lblJusho2.Location = new System.Drawing.Point(555, 233);
             this.lblJusho2.Name = "lblJusho2";
             this.lblJusho2.Size = new System.Drawing.Size(55, 15);
+            this.lblJusho2.strToolTip = null;
             this.lblJusho2.TabIndex = 89;
             this.lblJusho2.Text = "住所２";
             this.lblJusho2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,9 +187,10 @@
             // 
             this.lblDenwa.AutoSize = true;
             this.lblDenwa.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDenwa.Location = new System.Drawing.Point(555, 254);
+            this.lblDenwa.Location = new System.Drawing.Point(555, 262);
             this.lblDenwa.Name = "lblDenwa";
             this.lblDenwa.Size = new System.Drawing.Size(71, 15);
+            this.lblDenwa.strToolTip = null;
             this.lblDenwa.TabIndex = 89;
             this.lblDenwa.Text = "電話番号";
             this.lblDenwa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,50 +204,55 @@
             this.txtChokusoName.Name = "txtChokusoName";
             this.txtChokusoName.Size = new System.Drawing.Size(250, 22);
             this.txtChokusoName.TabIndex = 2;
+            this.txtChokusoName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtChokusoName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
             // txtYubin
             // 
             this.txtYubin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYubin.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtYubin.Location = new System.Drawing.Point(648, 172);
+            this.txtYubin.Location = new System.Drawing.Point(648, 174);
             this.txtYubin.MaxLength = 8;
             this.txtYubin.Name = "txtYubin";
             this.txtYubin.Size = new System.Drawing.Size(75, 22);
             this.txtYubin.TabIndex = 3;
+            this.txtYubin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtYubin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
             // txtJusho1
             // 
             this.txtJusho1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJusho1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho1.Location = new System.Drawing.Point(648, 198);
+            this.txtJusho1.Location = new System.Drawing.Point(648, 202);
             this.txtJusho1.MaxLength = 30;
             this.txtJusho1.Name = "txtJusho1";
             this.txtJusho1.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1.TabIndex = 4;
+            this.txtJusho1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtJusho1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
             // txtJusho2
             // 
             this.txtJusho2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJusho2.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho2.Location = new System.Drawing.Point(648, 224);
+            this.txtJusho2.Location = new System.Drawing.Point(648, 230);
             this.txtJusho2.MaxLength = 30;
             this.txtJusho2.Name = "txtJusho2";
             this.txtJusho2.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2.TabIndex = 5;
+            this.txtJusho2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtJusho2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
             // txtDenwa
             // 
             this.txtDenwa.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDenwa.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtDenwa.Location = new System.Drawing.Point(648, 251);
+            this.txtDenwa.Location = new System.Drawing.Point(648, 259);
             this.txtDenwa.MaxLength = 12;
             this.txtDenwa.Name = "txtDenwa";
             this.txtDenwa.Size = new System.Drawing.Size(105, 22);
             this.txtDenwa.TabIndex = 6;
+            this.txtDenwa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtDenwa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
             // M1100_Chokusosaki

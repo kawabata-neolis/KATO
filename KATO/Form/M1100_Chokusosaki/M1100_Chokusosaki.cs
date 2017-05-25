@@ -136,9 +136,122 @@ namespace KATO.Form.M1100_Chokusosaki
             }
         }
 
-        //テキスト用
+        ///<summary>
+        ///judChokuTxtKeyDown
+        ///キー入力判定
+        ///</summary>
+        private void judChokuTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
 
-        //リスト付きテキスト用
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///judTxtChoTxtKeyDown
+        ///キー入力判定
+        ///</summary>
+        private void judTxtChoTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    txtChokusoKeyDown(sender, e);
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         ///<summary>
         ///judBtnClick
@@ -167,27 +280,52 @@ namespace KATO.Form.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///txtTokuisakiKeyDown
+        ///txtChokusoKeyDown
         ///キー入力判定
         ///</summary>
-        private void txtTokuisakiKeyDown(object sender, KeyEventArgs e)
+        private void txtChokusoKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F9)
+            if (e.KeyCode == Keys.F9 && labelSet_Tokuisaki.CodeTxtText != "")
             {
-                TokuisakiList tokuisakilist = new TokuisakiList(this);
+                string strTokuisaki = "";
+
+                strTokuisaki = labelSet_Tokuisaki.CodeTxtText;
+
+                ChokusosakiList chokusosakilist = new ChokusosakiList(this, strTokuisaki);
                 try
                 {
-                    tokuisakilist.StartPosition = FormStartPosition.Manual;
-                    tokuisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-                    tokuisakilist.ShowDialog();
-                    
+                    chokusosakilist.StartPosition = FormStartPosition.Manual;
+                    chokusosakilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHOKUSOSAKI;
+                    chokusosakilist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
                     new CommonException(ex);
-                    return;
                 }
             }
+
+            //if (e.KeyCode == Keys.F9 && labelSet_Tokuisaki.CodeTxtText != "")
+            //{
+            //    double dblCheck;
+            //    if (double.TryParse(labelSet_Tokuisaki.CodeTxtText, out dblCheck))
+            //    {
+            //        //LabelSet_Tokuisaki lblSetTokuiSelect = new LabelSet_Tokuisaki();
+            //        //ChokusosakiList chokusosakilist = new ChokusosakiList(this, lblSetTokuiSelect, labelSet_Tokuisaki.CodeTxtText);
+            //        //try
+            //        //{
+            //        //    chokusosakilist.StartPosition = FormStartPosition.Manual;
+            //        //    chokusosakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
+            //        //    chokusosakilist.ShowDialog();
+
+            //        //}
+            //        //catch (Exception ex)
+            //        //{
+            //        //    new CommonException(ex);
+            //        //    return;
+            //        //}
+
+            //    }
+            //}
         }
 
         /////<summary>
@@ -204,7 +342,7 @@ namespace KATO.Form.M1100_Chokusosaki
         //            tokuisakilist.StartPosition = FormStartPosition.Manual;
         //            tokuisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
         //            tokuisakilist.ShowDialog();
-                    
+
         //        }
         //        catch (Exception ex)
         //        {
@@ -224,7 +362,7 @@ namespace KATO.Form.M1100_Chokusosaki
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
+            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -248,10 +386,15 @@ namespace KATO.Form.M1100_Chokusosaki
                 txtChokusoName.Focus();
                 return;
             }
+
             //取引先
             lstString.Add(labelSet_Tokuisaki.codeTxt.Text);
             lstString.Add(txtChokusoCd.Text);
             lstString.Add(txtChokusoName.Text);
+            lstString.Add(txtYubin.Text);
+            lstString.Add(txtJusho1.Text);
+            lstString.Add(txtJusho2.Text);
+            lstString.Add(txtDenwa.Text);
 
             //ユーザー名
             lstString.Add(SystemInformation.UserName);
@@ -259,13 +402,21 @@ namespace KATO.Form.M1100_Chokusosaki
             M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
             try
             {
-                //chokusosakiB.(lstString);
+                chokusosakiB.addChokusosaki(lstString);
 
-                ////メッセージボックスの処理、登録完了のウィンドウ（OK）
-                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                //basemessagebox.ShowDialog();
-                ////テキストボックスを白紙にする
-                //delText();
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                string strTokuiSub = "";
+                strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
+
+                //テキストボックスを白紙にする
+                delText();
+
+                labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
+                labelSet_Tokuisaki.Focus();
+                txtChokusoCd.Focus();
 
             }
             catch (Exception ex)
@@ -290,7 +441,51 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void delChokusosaki()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ渡し用
+            lstString.Add(labelSet_Tokuisaki.CodeTxtText);
+            lstString.Add(txtChokusoCd.Text);
+
+            //処理部に移動(削除)
+            M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
+
+            try
+            {
+                chokusosakiB.delChokusosaki(lstString);
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                string strTokuiSub = "";
+                strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
+
+                //テキストボックスを白紙にする
+                delText();
+
+                labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
+                labelSet_Tokuisaki.Focus();
+                txtChokusoCd.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///<summary>
@@ -299,7 +494,12 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void setChokusoCode(DataTable dtSelectData)
         {
-
+            txtChokusoCd.Text = dtSelectData.Rows[0]["直送先コード"].ToString();
+            txtChokusoName.Text = dtSelectData.Rows[0]["直送先名"].ToString();
+            txtYubin.Text = dtSelectData.Rows[0]["郵便番号"].ToString();
+            txtJusho1.Text = dtSelectData.Rows[0]["住所１"].ToString();
+            txtJusho2.Text = dtSelectData.Rows[0]["住所２"].ToString();
+            txtDenwa.Text = dtSelectData.Rows[0]["電話番号"].ToString();
         }
 
         ///<summary>
@@ -343,7 +543,12 @@ namespace KATO.Form.M1100_Chokusosaki
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    //setEigyoshoCode(dtSetCd);
+                    txtChokusoCd.Text = dtSetCd.Rows[0]["直送先コード"].ToString();
+                    txtChokusoName.Text = dtSetCd.Rows[0]["直送先名"].ToString();
+                    txtYubin.Text = dtSetCd.Rows[0]["郵便番号"].ToString();
+                    txtJusho1.Text = dtSetCd.Rows[0]["住所１"].ToString();
+                    txtJusho2.Text = dtSetCd.Rows[0]["住所２"].ToString();
+                    txtDenwa.Text = dtSetCd.Rows[0]["電話番号"].ToString();
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else

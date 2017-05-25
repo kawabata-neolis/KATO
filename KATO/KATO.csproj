@@ -72,6 +72,7 @@
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
+    <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\GyoshuList_B.cs" />
@@ -251,6 +252,12 @@
     </Compile>
     <Compile Include="Common\Ctl\RadSet_5btn.Designer.cs">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\ChokusosakiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ChokusosakiList.Designer.cs">
+      <DependentUpon>ChokusosakiList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\GroupCdList.cs">
       <SubType>Form</SubType>
@@ -527,6 +534,10 @@
     <EmbeddedResource Include="Common\Ctl\RadSet_5btn.resx">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ChokusosakiList.resx">
+      <DependentUpon>ChokusosakiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
       <DependentUpon>ChubunruiList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -647,6 +658,7 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
