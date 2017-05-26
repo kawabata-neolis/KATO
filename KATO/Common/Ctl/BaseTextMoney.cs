@@ -19,12 +19,6 @@ namespace KATO.Common.Ctl
         //記入の可不可
         Boolean blnEntry = true;
 
-        //整数部
-        string strIntArea = "";
-
-        //小数点以下部
-        string strDeciArea = "";
-
         //テキストボックス内データの「.」の位置
         int intPeriodPosi = 0;
 
@@ -158,9 +152,7 @@ namespace KATO.Common.Ctl
             {
                 return;
             }
-
-//テストから
-            
+          
             //四捨五入
             this.Text = updShishagonyu(this.Text, intshishagonyu);
 
@@ -186,6 +178,7 @@ namespace KATO.Common.Ctl
             }
 
             //四捨五入
+            this.Text = updShishagonyu(this.Text, intshishagonyu);
 
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
@@ -257,6 +250,12 @@ namespace KATO.Common.Ctl
         //
         public void updPriceMethod()
         {
+            //整数部
+            string strIntArea = "";
+
+            //小数点以下部
+            string strDeciArea = "";
+
             //テキストボックス内が空の場合スルー
             if (this.Text == "")
             {

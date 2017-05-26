@@ -158,7 +158,7 @@ namespace KATO.Form.Z0000
         //消費税率表示
         private void btnShohizeiritu_Click(object sender, EventArgs e)
         {
-            M1130_Shohizeiritu.M1130_Shohizeiritu shohizeiritu = new M1130_Shohizeiritu.M1130_Shohizeiritu(this);
+            M1130_Shohizeiritsu.M1130_Shohizeiritsu shohizeiritu = new M1130_Shohizeiritsu.M1130_Shohizeiritsu(this);
             shohizeiritu.ShowDialog();
         }
 

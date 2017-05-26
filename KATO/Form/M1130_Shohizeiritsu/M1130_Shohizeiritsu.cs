@@ -10,13 +10,13 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
-using KATO.Business.M1130_Shohizeiritu;
+using KATO.Business.M1130_Shohizeiritsu;
 using static KATO.Common.Util.CommonTeisu;
 
-namespace KATO.Form.M1130_Shohizeiritu
+namespace KATO.Form.M1130_Shohizeiritsu
 {
     ///<summary>
-    ///M1130_Shohizeiritu
+    ///M1130_Shohizeiritsu
     ///消費税率フォーム
     ///作成者：大河内
     ///作成日：2017/5/1
@@ -24,13 +24,13 @@ namespace KATO.Form.M1130_Shohizeiritu
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class M1130_Shohizeiritu : BaseForm
+    public partial class M1130_Shohizeiritsu : BaseForm
     {
         /// <summary>
         /// M1130_Shohizeiritu
         /// フォーム関係の設定
         /// </summary>
-        public M1130_Shohizeiritu(Control c)
+        public M1130_Shohizeiritsu(Control c)
         {
             if (c == null)
             {
@@ -59,10 +59,10 @@ namespace KATO.Form.M1130_Shohizeiritu
         }
 
         /// <summary>
-        /// M1130_Shohizeiritu_Load
+        /// M1130_Shohizeiritsu_Load
         /// 読み込み時
         /// </summary>
-        private void M1130_Shohizeiritu_Load(object sender, EventArgs e)
+        private void M1130_Shohizeiritsu_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "消費税率マスタ";
@@ -78,10 +78,10 @@ namespace KATO.Form.M1130_Shohizeiritu
         }
 
         ///<summary>
-        ///M1130_Shohizeiritu_KeyDown
+        ///M1130_Shohizeiritsu_KeyDown
         ///キー入力判定
         ///</summary>
-        private void M1130_Shohizeiritu_KeyDown(object sender, KeyEventArgs e)
+        private void M1130_Shohizeiritsu_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -103,12 +103,12 @@ namespace KATO.Form.M1130_Shohizeiritu
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    this.addShohizeiritu();
+                    this.addShohizeiritsu();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delShohizeiritu();
+                    this.delShohizeiritsu();
                     break;
                 case Keys.F4:
                     this.delText();
@@ -180,6 +180,7 @@ namespace KATO.Form.M1130_Shohizeiritu
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    txtShohizeiKeyDown(sender, e);
                     break;
                 case Keys.F10:
                     break;
@@ -195,10 +196,10 @@ namespace KATO.Form.M1130_Shohizeiritu
         }
 
         ///<summary>
-        ///baseTextMoney_TextChanged
+        ///txtShohizeiritsu_KeyDown
         ///キー入力判定
         ///</summary>
-        private void txtShohizeiritu_KeyDown(object sender, KeyEventArgs e)
+        private void txtShohizeiritsu_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -262,10 +263,10 @@ namespace KATO.Form.M1130_Shohizeiritu
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    this.addShohizeiritu();
+                    this.addShohizeiritsu();
                     break;
                 case STR_BTN_F03: // 削除
-                    this.delShohizeiritu();
+                    this.delShohizeiritsu();
                     break;
                 case STR_BTN_F04: // 取り消し
                     this.delText();
@@ -287,17 +288,17 @@ namespace KATO.Form.M1130_Shohizeiritu
         {
             if (e.KeyCode == Keys.F9)
             {
-                //TanabanList tanabanlist = new TanabanList(this);
-                //try
-                //{
-                //    tanabanlist.intFrmKind = CommonTeisu.FRM_TANABAN;
-                //    tanabanlist.ShowDialog();
-                //}
-                //catch (Exception ex)
-                //{
-                //    new CommonException(ex);
-                //    return;
-                //}
+                ShohizeiritsuList shohizeiritsulist = new ShohizeiritsuList(this);
+                try
+                {
+                    shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITU;
+                    shohizeiritsulist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    return;
+                }
             }
         }
 
@@ -305,9 +306,58 @@ namespace KATO.Form.M1130_Shohizeiritu
         ///addShohizeiritu
         ///テキストボックス内のデータをDBに登録
         ///</summary>
-        private void addShohizeiritu()
+        private void addShohizeiritsu()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (txtTekiyoYMD.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtTekiyoYMD.Focus();
+                return;
+            }
+            if (txtShohizeiritu.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtShohizeiritu.Focus();
+                return;
+            }
+
+            //入力項目が規定通りになるように一度フォーカスを外す
+            Control cActiveBefore = this.ActiveControl;
+            //内部的に別フォーカスにしたい
+            this.SelectNextControl(this.ActiveControl, true, true, true, true);
+
+            //営業所
+            lstString.Add(txtTekiyoYMD.Text);
+            lstString.Add(txtShohizeiritu.Text);
+
+            //ユーザー名
+            lstString.Add(SystemInformation.UserName);
+
+            M1130_Shohizeiritsu_B shohizeiritsuB = new M1130_Shohizeiritsu_B();
+            try
+            {
+                shohizeiritsuB.addShohizeiritsu(lstString);
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                txtShohizeiritu.Text = "";
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+            cActiveBefore.Focus();
         }
 
         ///<summary>
@@ -317,57 +367,65 @@ namespace KATO.Form.M1130_Shohizeiritu
         private void delText()
         {
             delFormClear(this);
-            //txtTanabanCd.Focus();
+
+            txtTekiyoYMD.Focus();
         }
 
         ///<summary>
         ///delShohizeiritu
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delShohizeiritu()
+        public void delShohizeiritsu()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (txtTekiyoYMD.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ渡し用
+            lstString.Add(txtTekiyoYMD.Text);
+            lstString.Add(SystemInformation.UserName);
+
+            //処理部に移動(削除)
+            M1130_Shohizeiritsu_B shohizeiritsuB = new M1130_Shohizeiritsu_B();
+
+            try
+            {
+                shohizeiritsuB.delShohizeiritsu(lstString);
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                txtShohizeiritu.Text = "";
+                txtTekiyoYMD.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         ///<summary>
         ///setShohizeiritu
         ///取り出したデータをテキストボックスに配置
         ///</summary>
-        public void setShohizeiritu(DataTable dtSelectData)
+        public void setShohizeiritsu(DataTable dtSelectData)
         {
             txtTekiyoYMD.Text = dtSelectData.Rows[0]["適用開始年月日"].ToString();
             txtShohizeiritu.Text = dtSelectData.Rows[0]["消費税率"].ToString();
-
-            //txtShohizeiritu.Text = 
-
-            //int intZeroPosi = txtShohizeiritu.Text.LastIndexOf('0');
-
-            ////ピリオドの位置の確保
-            //int intPeriodPosi = this.Text.IndexOf('.');
-
-            //string strIntArea = "";
-
-            //string strDeciArea = "";
-
-            ////ピリオドがない場合
-            //if (intPeriodPosi == -1)
-            //{
-            //    strIntArea = txtShohizeiritu.Text;
-            //}
-            //else
-            //{
-            //    //整数部のみを取り出す
-            //    strIntArea = this.Text.Substring(0, intPeriodPosi);
-
-            //    //小数点以下部のみを取り出す
-            //    strDeciArea = this.Text.Substring(intPeriodPosi + 1);
-            //}
-
-
-            //for (int intcnt = 0; intcnt < txtShohizeiritu.TextLength; intcnt++ )
-            //{
-
-            //}
         }
 
         ///<summary>
@@ -396,7 +454,7 @@ namespace KATO.Form.M1130_Shohizeiritu
             lstString.Add(txtTekiyoYMD.Text);
 
             //処理部に移動
-            M1130_Shohizeiritu_B shohizeirituB = new M1130_Shohizeiritu_B();
+            M1130_Shohizeiritsu_B shohizeirituB = new M1130_Shohizeiritsu_B();
 
             try
             {
@@ -405,7 +463,7 @@ namespace KATO.Form.M1130_Shohizeiritu
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    setShohizeiritu(dtSetCd);
+                    setShohizeiritsu(dtSetCd);
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else
@@ -429,7 +487,7 @@ namespace KATO.Form.M1130_Shohizeiritu
         ///</summary>
         public void setShohizeiListClose()
         {
-            //txtTanabanCd.Focus();
+            txtTekiyoYMD.Focus();
         }
 
         /// <summary>

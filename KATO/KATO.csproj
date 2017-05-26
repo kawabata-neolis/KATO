@@ -73,11 +73,12 @@
     <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
-    <Compile Include="Business\M1130_Shohizeiritu\M1130_Shohizeiritu_B.cs" />
+    <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\GyoshuList_B.cs" />
+    <Compile Include="Common\Business\ShohizeiritsuList_B.cs" />
     <Compile Include="Common\Business\TorihikiCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
@@ -273,11 +274,11 @@
     <Compile Include="Common\Form\GyoshuList.Designer.cs">
       <DependentUpon>GyoshuList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Form\ShohizeirituList.cs">
+    <Compile Include="Common\Form\ShohizeiritsuList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\Form\ShohizeirituList.Designer.cs">
-      <DependentUpon>ShohizeirituList.cs</DependentUpon>
+    <Compile Include="Common\Form\ShohizeiritsuList.Designer.cs">
+      <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TokuisakiList.cs">
       <SubType>Form</SubType>
@@ -433,11 +434,11 @@
     <Compile Include="Form\M1120_Tanaban\M1120_Tanaban.Designer.cs">
       <DependentUpon>M1120_Tanaban.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\M1130_Shohizeiritu\M1130_Shohizeiritu.cs">
+    <Compile Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\M1130_Shohizeiritu\M1130_Shohizeiritu.Designer.cs">
-      <DependentUpon>M1130_Shohizeiritu.cs</DependentUpon>
+    <Compile Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.Designer.cs">
+      <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
@@ -568,6 +569,9 @@
     <EmbeddedResource Include="Common\Form\GyoshuList.resx">
       <DependentUpon>GyoshuList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShohizeiritsuList.resx">
+      <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -649,8 +653,8 @@
     <EmbeddedResource Include="Form\M1120_Tanaban\M1120_Tanaban.resx">
       <DependentUpon>M1120_Tanaban.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\M1130_Shohizeiritu\M1130_Shohizeiritu.resx">
-      <DependentUpon>M1130_Shohizeiritu.cs</DependentUpon>
+    <EmbeddedResource Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.resx">
+      <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>
@@ -687,6 +691,7 @@
     <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\ShohizeiritsuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
@@ -704,7 +709,7 @@
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Gyoshu_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Shohizeiritu_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Shohizeiritsu_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql" />

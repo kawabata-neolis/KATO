@@ -1,6 +1,6 @@
-﻿namespace KATO.Form.M1130_Shohizeiritu
+﻿namespace KATO.Form.M1130_Shohizeiritsu
 {
-    partial class M1130_Shohizeiritu
+    partial class M1130_Shohizeiritsu
     {
         /// <summary>
         /// Required designer variable.
@@ -90,13 +90,14 @@
             this.txtShohizeiritu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShohizeiritu.intDeciSet = 1;
             this.txtShohizeiritu.intIntederSet = 0;
+            this.txtShohizeiritu.intShishagonyu = 1;
             this.txtShohizeiritu.Location = new System.Drawing.Point(241, 162);
             this.txtShohizeiritu.MaxLength = 17;
             this.txtShohizeiritu.Name = "txtShohizeiritu";
             this.txtShohizeiritu.Size = new System.Drawing.Size(100, 22);
             this.txtShohizeiritu.TabIndex = 1;
             this.txtShohizeiritu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShohizeiritu_KeyDown);
+            this.txtShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShohizeiritsu_KeyDown);
             // 
             // txtTekiyoYMD
             // 
@@ -145,8 +146,8 @@
             this.Controls.Add(this.txtShohizeiritu);
             this.Name = "M1130_Shohizeiritu";
             this.Text = "M1130_Shohizeiritu";
-            this.Load += new System.EventHandler(this.M1130_Shohizeiritu_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1130_Shohizeiritu_KeyDown);
+            this.Load += new System.EventHandler(this.M1130_Shohizeiritsu_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1130_Shohizeiritsu_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

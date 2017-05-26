@@ -205,6 +205,7 @@ namespace KATO.Common.Form
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
                 {
+                    
                     decimal decTyoubosuu = Math.Floor(decimal.Parse(dtView.Rows[cnt]["年間売上目標"].ToString()));
                     dtView.Rows[cnt]["年間売上目標"] = decTyoubosuu.ToString();
 
