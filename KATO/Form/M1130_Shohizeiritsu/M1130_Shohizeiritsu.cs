@@ -239,7 +239,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 case Keys.F8:
                     break;
                 case Keys.F9:
-                    txtShohizeiKeyDown(sender, e);
                     break;
                 case Keys.F10:
                     break;
@@ -291,7 +290,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 ShohizeiritsuList shohizeiritsulist = new ShohizeiritsuList(this);
                 try
                 {
-                    shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITU;
+                    shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITSU;
                     shohizeiritsulist.ShowDialog();
                 }
                 catch (Exception ex)
@@ -367,6 +366,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
         private void delText()
         {
             delFormClear(this);
+            txtShohizeiritu.Text = "";
 
             txtTekiyoYMD.Focus();
         }
@@ -396,6 +396,9 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
             //データ渡し用
             lstString.Add(txtTekiyoYMD.Text);
+            lstString.Add(txtShohizeiritu.Text);
+
+            //ユーザー名
             lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(削除)
@@ -460,6 +463,9 @@ namespace KATO.Form.M1130_Shohizeiritsu
             {
                 //戻り値のDatatableを取り込む
                 dtSetCd = shohizeirituB.updTxtShohizeiLeave(lstString);
+
+                //空白に
+                txtShohizeiritu.Text = "";
 
                 if (dtSetCd.Rows.Count != 0)
                 {

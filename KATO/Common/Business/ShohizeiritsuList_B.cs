@@ -27,7 +27,7 @@ namespace KATO.Common.Business
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable setDatagridView(Boolean blnAll)
         {
             DataTable dtGetTableGrid = new DataTable();
 
@@ -40,7 +40,16 @@ namespace KATO.Common.Business
 
                 strSQLName = "";
 
-                strSQLName = "ShohizeiritsuList_View";
+                //削除されているもの以外
+                if (blnAll == false)
+                {
+                    strSQLName = "ShohizeiritsuList_View";
+                }
+                //全て
+                else{
+                    strSQLName = "ShohizeiritsuListAll_View";
+                }
+
 
                 //データ渡し用
                 lstStringSQL.Add("Common");
@@ -77,7 +86,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == CommonTeisu.FRM_SHOHIZEIRITU && frm.Name.Equals("M1130_Shohizeiritsu"))
+                if (intFrmKind == CommonTeisu.FRM_SHOHIZEIRITSU && frm.Name.Equals("M1130_Shohizeiritsu"))
                 {
                     break;
                 }
@@ -114,11 +123,43 @@ namespace KATO.Common.Business
                 strSQLInput = string.Format(strSQLInput, aryStr);
 
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
+                
+                DateTime dateSelect;
+
+                string strSelect;                
+
+                strSelect = dtSelectData.Rows[0]["適用開始年月日"].ToString();
+
+                dateSelect = DateTime.Parse(strSelect);
+
+                string strSelectMonth = "";
+
+                //月データ
+                strSelectMonth = strSelectMonth = dateSelect.Month.ToString();
+
+                if (strSelectMonth.Length == 1)
+                {
+                    strSelectMonth = dateSelect.Month.ToString().PadLeft(2, '0');
+                }
+
+                string strSelectDay = "";
+
+                //日付データ
+                strSelectDay = dateSelect.Day.ToString();
+
+                if (strSelectDay.Length == 1)
+                {
+                    strSelectDay = dateSelect.Day.ToString().PadLeft(2, '0');
+                }
+
+                dtSelectData.Rows[0]["適用開始年月日"] = (dateSelect.Year + "/" + strSelectMonth + "/" + strSelectDay).ToString();
+
+                dtSelectData.Rows[0]["消費税率"] = StringUtl.updShishagonyu(dtSelectData.Rows[0]["消費税率"].ToString(), 1);
 
                 //通常テキストボックスの場合に使用する
                 switch (intFrmKind)
                 {
-                    case CommonTeisu.FRM_TANABAN:
+                    case CommonTeisu.FRM_SHOHIZEIRITSU:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {

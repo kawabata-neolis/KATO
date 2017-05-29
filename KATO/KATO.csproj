@@ -691,6 +691,7 @@
     <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
+    <Content Include="SQL\Common\CommonForm\ShohizeiritsuListAll_View.sql" />
     <Content Include="SQL\Common\CommonForm\ShohizeiritsuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
     <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />

@@ -135,7 +135,7 @@
             this.lblShohizeiritu.Text = "消費税率";
             this.lblShohizeiritu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // M1130_Shohizeiritu
+            // M1130_Shohizeiritsu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -144,8 +144,8 @@
             this.Controls.Add(this.lblTekiyoYMD);
             this.Controls.Add(this.txtTekiyoYMD);
             this.Controls.Add(this.txtShohizeiritu);
-            this.Name = "M1130_Shohizeiritu";
-            this.Text = "M1130_Shohizeiritu";
+            this.Name = "M1130_Shohizeiritsu";
+            this.Text = "M1130_Shohizeiritsu";
             this.Load += new System.EventHandler(this.M1130_Shohizeiritsu_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1130_Shohizeiritsu_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);

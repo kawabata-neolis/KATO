@@ -20,6 +20,7 @@ WHEN MATCHED THEN
     SET
 	    適用開始年月日 = B.適用開始年月日
 	   ,消費税率       = B.消費税率
+	   ,削除       　　= B.削除
 	   ,更新日時       = B.更新日時
 	   ,更新ユーザー名 = B.更新ユーザー名
 WHEN NOT MATCHED THEN

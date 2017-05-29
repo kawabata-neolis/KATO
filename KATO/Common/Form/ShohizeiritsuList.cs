@@ -81,14 +81,16 @@ namespace KATO.Common.Form
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
-            setDatagridView();
+            Boolean blnAll = false;
+
+            setDatagridView(blnAll);
         }
 
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void setDatagridView()
+        private void setDatagridView(Boolean blnAll)
         {
             //処理部に移動
             ShohizeiritsuList_B shohizeiritsulistB = new ShohizeiritsuList_B();
@@ -96,7 +98,7 @@ namespace KATO.Common.Form
             {
                 DataTable dtView;
 
-                dtView = shohizeiritsulistB.setDatagridView();
+                dtView = shohizeiritsulistB.setDatagridView(blnAll);
 
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
@@ -307,18 +309,39 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-                        
-            //選択行の営業所コード取得
-//datetimeのままの長さの場合、エクセプションが飛ぶ
-            string strSelectid = gridSeihin.CurrentRow.Cells[0].Value.ToString();
-            //string strSelectid = (string)gridSeihin.CurrentRow.Cells[0].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value.ToString();
-            //string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value;
+            string strSelectMonth = "";
+
+            string strSelectDay = "";
 
             //データ渡し用
-            lstString.Add(strSelectid);
+            List<string> lstString = new List<string>();
+
+            DateTime dateSelect;
+
+            dateSelect  =  (DateTime)gridSeihin.CurrentRow.Cells[0].Value;
+
+            //月データ
+            strSelectMonth = dateSelect.Month.ToString();
+
+            if (strSelectMonth.Length == 1)
+            {
+                strSelectMonth = dateSelect.Month.ToString().PadLeft(2, '0');
+            }
+
+            //日付データ
+            strSelectDay = dateSelect.Month.ToString();
+
+            if(strSelectDay.Length == 1)
+            {
+                strSelectDay = dateSelect.Day.ToString().PadLeft(2, '0');
+            }
+
+            string strSelectDate = (dateSelect.Year +"/"+ strSelectMonth + "/"+ strSelectDay).ToString();
+
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value.ToString();
+
+            //データ渡し用
+            lstString.Add(strSelectDate);
             lstString.Add(strSelectName);
 
             //処理部に移動
@@ -332,6 +355,25 @@ namespace KATO.Common.Form
             catch (Exception ex)
             {
                 new CommonException(ex);
+            }
+        }
+
+        ///<summary>
+        ///chkSakujoData_CheckedChanged
+        ///チェックボックスに変更があった場合
+        ///</summary>        
+        private void chkSakujoData_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSakujoData.Checked == true)
+            {
+                Boolean blnAll = true;
+
+                setDatagridView(blnAll);
+            }
+            else{
+                Boolean blnAll = false;
+
+                setDatagridView(blnAll);
             }
         }
 

@@ -56,7 +56,7 @@ namespace KATO.Common.Util
         public const int FRM_EIGYOSHO = 1090;
         public const int FRM_CHOKUSOSAKI = 1100;
         public const int FRM_TANABAN = 1120;
-        public const int FRM_SHOHIZEIRITU = 1130;
+        public const int FRM_SHOHIZEIRITSU = 1130;
         public const int FRM_TANAOROSHI = 0140;
         public const int FRM_TANAOROSHI_EDIT = 01401;
         public const int FRM_CHUBUNRUI = 1110;

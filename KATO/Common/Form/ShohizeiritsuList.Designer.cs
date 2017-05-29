@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
+            this.chkSakujoData = new System.Windows.Forms.CheckBox();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
@@ -48,6 +49,18 @@
             this.lblRecords.TabIndex = 22;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
+            // chkSakujoData
+            // 
+            this.chkSakujoData.AutoSize = true;
+            this.chkSakujoData.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.chkSakujoData.Location = new System.Drawing.Point(31, 16);
+            this.chkSakujoData.Name = "chkSakujoData";
+            this.chkSakujoData.Size = new System.Drawing.Size(170, 19);
+            this.chkSakujoData.TabIndex = 23;
+            this.chkSakujoData.Text = "削除済みも表示する";
+            this.chkSakujoData.UseVisualStyleBackColor = true;
+            this.chkSakujoData.CheckedChanged += new System.EventHandler(this.chkSakujoData_CheckedChanged);
+            // 
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -56,6 +69,7 @@
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 8;
             this.btnF12.UseVisualStyleBackColor = true;
+            this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
             // gridSeihin
             // 
@@ -105,6 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
+            this.Controls.Add(this.chkSakujoData);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.gridSeihin);
@@ -123,5 +138,6 @@
         private Ctl.BaseDataGridView gridSeihin;
         private Ctl.BaseButton btnF12;
         private System.Windows.Forms.Label lblRecords;
+        private System.Windows.Forms.CheckBox chkSakujoData;
     }
 }
