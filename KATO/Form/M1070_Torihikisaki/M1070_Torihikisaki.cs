@@ -621,7 +621,10 @@ namespace KATO.Form.M1070_Torihikisaki
         public void delTorihiki()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
 
             //文字判定
             if (txtCdT.blIsEmpty() == false)
@@ -629,23 +632,123 @@ namespace KATO.Form.M1070_Torihikisaki
                 return;
             }
 
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtCdT.Text);
-            lstString.Add(SystemInformation.UserName);
-
             //処理部に移動(削除)
             M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
 
             try
             {
+                lstStringLoad.Add(txtCdT.Text);
+
+                //戻り値のDatatableを取り込む
+                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+                
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(txtCdT.Text);
+                lstString.Add(txtNameT.Text);
+                lstString.Add(txtHuriT.Text);
+                lstString.Add(txtYubinT.Text);
+                lstString.Add(txtJusho1T.Text);
+                lstString.Add(txtJusho2T.Text);
+                lstString.Add(txtDenwaT.Text);
+                lstString.Add(txtFAXT.Text);
+                lstString.Add(txtYubinAT.Text);
+                lstString.Add(txtJusho1AT.Text);
+                lstString.Add(txtJusho2AT.Text);
+                lstString.Add(txtDenwaAT.Text);
+                lstString.Add(txtFAXAT.Text);
+                lstString.Add(txtEmail.Text);
+                lstString.Add(txtTantoNameA.Text);
+                lstString.Add(txtBushoNameA.Text);
+                lstString.Add(txtTantoEmailA.Text);
+
+                //領収書送付先
+                lstString.Add(txtNameR.Text);
+                lstString.Add(txtYubinR.Text);
+                lstString.Add(txtJusho1R.Text);
+                lstString.Add(txtJusho2R.Text);
+                lstString.Add(txtDenwaR.Text);
+                lstString.Add(txtFAXR.Text);
+
+                //業種コード
+                lstString.Add(labelSet_GyoshuCd.codeTxt.Text);
+
+                //担当者コード
+                lstString.Add(labelSet_Tantousha.codeTxt.Text);
+
+                //請求書送付先
+                lstString.Add(txtNameS.Text);
+                lstString.Add(txtYubinS.Text);
+                lstString.Add(txtJusho1S.Text);
+                lstString.Add(txtJusho2S.Text);
+                lstString.Add(txtDenwaS.Text);
+                lstString.Add(txtFAXS.Text);
+
+                //〆関係
+                lstString.Add(txtSime.Text);
+                lstString.Add(txtSihatuki.Text);
+                lstString.Add(txtSihabi.Text);
+                lstString.Add(txtJoken.Text);
+                lstString.Add(txtShukinkbn.Text);
+                lstString.Add(txtSeikyuumu.Text);
+
+                //税金関係
+                lstString.Add(txtZeikbn.Text);
+                lstString.Add(txtKeisankbn.Text);
+                lstString.Add(txtZeihasu.Text);
+                lstString.Add(txtMesai.Text);
+
+                //会社内容関係
+                lstString.Add(txtSiha.Text);
+                lstString.Add(txtDaihyo.Text);
+                lstString.Add(txtSihon.Text);
+                lstString.Add(txtSeturitu.Text);
+                lstString.Add(txtJugyo.Text);
+                lstString.Add(txtKesan.Text);
+                lstString.Add(txtGinko.Text);
+                lstString.Add(txtSiten.Text);
+                lstString.Add(txtShubetu.Text);
+                lstString.Add(txtBango.Text);
+                lstString.Add(txtKoza.Text);
+                lstString.Add(txtToriatu.Text);
+
+                //主な取引先
+                lstString.Add(txtTorihiki1.Text);
+                lstString.Add(txtTorihiki2.Text);
+                lstString.Add(txtTorihiki3.Text);
+                lstString.Add(txtTorihiki4.Text);
+                lstString.Add(txtTorihiki5.Text);
+                lstString.Add(txtTorihiki6.Text);
+                lstString.Add(txtTorihiki7.Text);
+                lstString.Add(txtTorihiki8.Text);
+                lstString.Add(txtTorihiki9.Text);
+                lstString.Add(txtTorihiki10.Text);
+                lstString.Add(txtTorihiki11.Text);
+                lstString.Add(txtTorihiki12.Text);
+                lstString.Add(txtTorihiki13.Text);
+                lstString.Add(txtTorihiki14.Text);
+                lstString.Add(txtTorihiki15.Text);
+                lstString.Add(txtTorihiki16.Text);
+                lstString.Add(txtTorihiki17.Text);
+                lstString.Add(txtTorihiki18.Text);
+                lstString.Add(txtTorihiki19.Text);
+                lstString.Add(txtTorihiki20.Text);
+
+                //ユーザー名
+                lstString.Add(SystemInformation.UserName);
+
                 torihikisakiB.delTorihiki(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);

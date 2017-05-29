@@ -137,7 +137,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
         }
 
         ///<summary>
-        ///baseCalendar1_TextChanged
+        ///txtTekiyoYMD_KeyDown
         ///キー入力判定
         ///</summary>
         private void txtTekiyoYMD_KeyDown(object sender, KeyEventArgs e)
@@ -333,7 +333,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
             //内部的に別フォーカスにしたい
             this.SelectNextControl(this.ActiveControl, true, true, true, true);
 
-            //営業所
+            //消費税率
             lstString.Add(txtTekiyoYMD.Text);
             lstString.Add(txtShohizeiritu.Text);
 
@@ -504,28 +504,8 @@ namespace KATO.Form.M1130_Shohizeiritsu
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
 
     }

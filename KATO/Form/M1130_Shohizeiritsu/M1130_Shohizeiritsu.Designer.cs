@@ -94,10 +94,11 @@
             this.txtShohizeiritu.Location = new System.Drawing.Point(241, 162);
             this.txtShohizeiritu.MaxLength = 17;
             this.txtShohizeiritu.Name = "txtShohizeiritu";
-            this.txtShohizeiritu.Size = new System.Drawing.Size(100, 22);
+            this.txtShohizeiritu.Size = new System.Drawing.Size(150, 22);
             this.txtShohizeiritu.TabIndex = 1;
             this.txtShohizeiritu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShohizeiritsu_KeyDown);
+            this.txtShohizeiritu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohizeiKeyUp);
             // 
             // txtTekiyoYMD
             // 
@@ -105,10 +106,11 @@
             this.txtTekiyoYMD.Location = new System.Drawing.Point(241, 112);
             this.txtTekiyoYMD.MaxLength = 10;
             this.txtTekiyoYMD.Name = "txtTekiyoYMD";
-            this.txtTekiyoYMD.Size = new System.Drawing.Size(100, 22);
+            this.txtTekiyoYMD.Size = new System.Drawing.Size(92, 22);
             this.txtTekiyoYMD.TabIndex = 0;
             this.txtTekiyoYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTekiyoYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyoYMD_KeyDown);
+            this.txtTekiyoYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohizeiKeyUp);
             this.txtTekiyoYMD.Leave += new System.EventHandler(this.txtTekiyoYMD_Leave);
             // 
             // lblTekiyoYMD

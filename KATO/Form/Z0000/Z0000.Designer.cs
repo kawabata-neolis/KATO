@@ -40,6 +40,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton3 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChubunrui = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnShohizeiritu = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaban = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
@@ -49,7 +50,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnShohizeiritu = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnGroup = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -144,6 +145,7 @@
             this.tabPage1.Controls.Add(this.btnMaker);
             this.tabPage1.Controls.Add(this.baseMenuButton3);
             this.tabPage1.Controls.Add(this.btnChubunrui);
+            this.tabPage1.Controls.Add(this.btnGroup);
             this.tabPage1.Controls.Add(this.btnShohizeiritu);
             this.tabPage1.Controls.Add(this.btnTanaban);
             this.tabPage1.Controls.Add(this.btnChokusosaki);
@@ -274,6 +276,18 @@
             this.btnChubunrui.Click += new System.EventHandler(this.btnChubunrui_Click);
             this.btnChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
+            // btnShohizeiritu
+            // 
+            this.btnShohizeiritu.BackColor = System.Drawing.Color.LightYellow;
+            this.btnShohizeiritu.Location = new System.Drawing.Point(326, 238);
+            this.btnShohizeiritu.Name = "btnShohizeiritu";
+            this.btnShohizeiritu.Size = new System.Drawing.Size(280, 40);
+            this.btnShohizeiritu.TabIndex = 13;
+            this.btnShohizeiritu.Text = "消費税率";
+            this.btnShohizeiritu.UseVisualStyleBackColor = false;
+            this.btnShohizeiritu.Click += new System.EventHandler(this.btnShohizeiritu_Click);
+            this.btnShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // btnTanaban
             // 
             this.btnTanaban.BackColor = System.Drawing.Color.LightYellow;
@@ -372,17 +386,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // btnShohizeiritu
+            // btnGroup
             // 
-            this.btnShohizeiritu.BackColor = System.Drawing.Color.LightYellow;
-            this.btnShohizeiritu.Location = new System.Drawing.Point(326, 238);
-            this.btnShohizeiritu.Name = "btnShohizeiritu";
-            this.btnShohizeiritu.Size = new System.Drawing.Size(280, 40);
-            this.btnShohizeiritu.TabIndex = 12;
-            this.btnShohizeiritu.Text = "消費税率";
-            this.btnShohizeiritu.UseVisualStyleBackColor = false;
-            this.btnShohizeiritu.Click += new System.EventHandler(this.btnShohizeiritu_Click);
-            this.btnShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.btnGroup.BackColor = System.Drawing.Color.LightYellow;
+            this.btnGroup.Location = new System.Drawing.Point(326, 310);
+            this.btnGroup.Name = "btnGroup";
+            this.btnGroup.Size = new System.Drawing.Size(280, 40);
+            this.btnGroup.TabIndex = 14;
+            this.btnGroup.Text = "グループマスタ";
+            this.btnGroup.UseVisualStyleBackColor = false;
+            this.btnGroup.Click += new System.EventHandler(this.btnGroup_Click);
+            this.btnGroup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // Z0000
             // 
@@ -441,5 +455,6 @@
         private Common.Ctl.BaseMenuButton btnChokusosaki;
         private Common.Ctl.BaseMenuButton btnTanaban;
         private Common.Ctl.BaseMenuButton btnShohizeiritu;
+        private Common.Ctl.BaseMenuButton btnGroup;
     }
 }

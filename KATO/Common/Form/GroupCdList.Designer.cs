@@ -1,6 +1,6 @@
 ﻿namespace KATO.Common.Form
 {
-    partial class groupCdList
+    partial class GroupCdList
     {
         /// <summary>
         /// Required designer variable.

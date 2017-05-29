@@ -1,10 +1,10 @@
-﻿using KATO.Common.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KATO.Common.Util;
 
 namespace KATO.Business.M1130_Shohizeiritsu
 {

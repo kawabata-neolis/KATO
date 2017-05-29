@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtName = new KATO.Common.Ctl.BaseText();
-            this.txtTorihikikubun = new KATO.Common.Ctl.BaseText();
+            this.txtTorihikikubunName = new KATO.Common.Ctl.BaseText();
+            this.txtTorihikikubunCd = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
             // btnF12
@@ -89,6 +89,7 @@
             this.lblBaseLabelName.Location = new System.Drawing.Point(630, 93);
             this.lblBaseLabelName.Name = "lblBaseLabelName";
             this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelName.strToolTip = null;
             this.lblBaseLabelName.TabIndex = 87;
             this.lblBaseLabelName.Text = "取引区分名";
             this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,33 +101,34 @@
             this.lblBaseLabelCD.Location = new System.Drawing.Point(391, 93);
             this.lblBaseLabelCD.Name = "lblBaseLabelCD";
             this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
+            this.lblBaseLabelCD.strToolTip = null;
             this.lblBaseLabelCD.TabIndex = 90;
             this.lblBaseLabelCD.Text = "取引区分コード";
             this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtName
+            // txtTorihikikubunName
             // 
-            this.txtName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtName.Location = new System.Drawing.Point(729, 90);
-            this.txtName.MaxLength = 20;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(170, 22);
-            this.txtName.TabIndex = 1;
-            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikbnTxtKeyDown);
+            this.txtTorihikikubunName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihikikubunName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtTorihikikubunName.Location = new System.Drawing.Point(729, 90);
+            this.txtTorihikikubunName.MaxLength = 20;
+            this.txtTorihikikubunName.Name = "txtTorihikikubunName";
+            this.txtTorihikikubunName.Size = new System.Drawing.Size(170, 22);
+            this.txtTorihikikubunName.TabIndex = 1;
+            this.txtTorihikikubunName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikbnTxtKeyDown);
             // 
-            // txtTorihikikubun
+            // txtTorihikikubunCd
             // 
-            this.txtTorihikikubun.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihikikubun.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtTorihikikubun.Location = new System.Drawing.Point(517, 90);
-            this.txtTorihikikubun.MaxLength = 2;
-            this.txtTorihikikubun.Name = "txtTorihikikubun";
-            this.txtTorihikikubun.Size = new System.Drawing.Size(24, 22);
-            this.txtTorihikikubun.TabIndex = 0;
-            this.txtTorihikikubun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTorikbnTxtKeyDown);
-            this.txtTorihikikubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyUp);
-            this.txtTorihikikubun.Leave += new System.EventHandler(this.updTxtToriLeave);
+            this.txtTorihikikubunCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTorihikikubunCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTorihikikubunCd.Location = new System.Drawing.Point(517, 90);
+            this.txtTorihikikubunCd.MaxLength = 2;
+            this.txtTorihikikubunCd.Name = "txtTorihikikubunCd";
+            this.txtTorihikikubunCd.Size = new System.Drawing.Size(24, 22);
+            this.txtTorihikikubunCd.TabIndex = 0;
+            this.txtTorihikikubunCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTorikbnTxtKeyDown);
+            this.txtTorihikikubunCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyUp);
+            this.txtTorihikikubunCd.Leave += new System.EventHandler(this.updTxtToriLeave);
             // 
             // M1040_Torihikikbn
             // 
@@ -135,8 +137,8 @@
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblBaseLabelName);
             this.Controls.Add(this.lblBaseLabelCD);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.txtTorihikikubun);
+            this.Controls.Add(this.txtTorihikikubunName);
+            this.Controls.Add(this.txtTorihikikubunCd);
             this.Name = "M1040_Torihikikbn";
             this.Text = "M1040_Torihikikbn";
             this.Load += new System.EventHandler(this.M1040_Torihikikubun_Load);
@@ -153,8 +155,8 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.txtTorihikikubun, 0);
-            this.Controls.SetChildIndex(this.txtName, 0);
+            this.Controls.SetChildIndex(this.txtTorihikikubunCd, 0);
+            this.Controls.SetChildIndex(this.txtTorihikikubunName, 0);
             this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
             this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
             this.ResumeLayout(false);
@@ -166,7 +168,7 @@
 
         private Common.Ctl.BaseLabel lblBaseLabelName;
         private Common.Ctl.BaseLabel lblBaseLabelCD;
-        private Common.Ctl.BaseText txtName;
-        private Common.Ctl.BaseText txtTorihikikubun;
+        private Common.Ctl.BaseText txtTorihikikubunName;
+        private Common.Ctl.BaseText txtTorihikikubunCd;
     }
 }

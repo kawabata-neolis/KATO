@@ -6,24 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KATO.Business.M1040_Torihikikbn
+namespace KATO.Business.M1200_Group
 {
     ///<summary>
-    ///M1040_Torihikikubun_B
-    ///取引区分の処理部
+    ///M1200_Group_B
+    ///グループマスタフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class M1040_Torihikikbn_B
+    class M1200_Group_B
     {
         ///<summary>
-        ///addDaibunrui
+        ///addGroup
         ///テキストボックス内のデータをDBに登録
         ///</summary>
-        public void addTorihikikubun(List<string> lstString)
+        public void addGroup(List<string> lstString)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -39,14 +39,13 @@ namespace KATO.Business.M1040_Torihikikbn
                     DateTime.Now.ToString(),
                     lstString[2],
                     DateTime.Now.ToString(),
-                    lstString[2] };
+                    lstString[2]
+                };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKIKBN_UPD, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_GROUP_UPD, aryStr);
 
-                //コミット開始
                 dbconnective.Commit();
             }
-
             catch (Exception ex)
             {
                 //ロールバック開始
@@ -62,10 +61,10 @@ namespace KATO.Business.M1040_Torihikikbn
         }
 
         ///<summary>
-        ///delDaibunrui
+        ///delGroup
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delTorihikikubun(List<string> lstString)
+        public void delGroup(List<string> lstString)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -81,12 +80,13 @@ namespace KATO.Business.M1040_Torihikikbn
                     DateTime.Now.ToString(),
                     lstString[2],
                     DateTime.Now.ToString(),
-                    lstString[2] };
+                    lstString[2]
+                };
 
-                    dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKIKBN_UPD, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_GROUP_UPD, aryStr);
 
-                    //コミット開始
-                    dbconnective.Commit();
+                //コミット開始
+                dbconnective.Commit();
             }
             catch (Exception ex)
             {
@@ -103,17 +103,17 @@ namespace KATO.Business.M1040_Torihikikbn
         }
 
         ///<summary>
-        ///updTxtTorikbnLeave
+        ///updTxtGroupLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTorikbnLeave(List<string> lstString)
+        public DataTable updTxtGroupLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
 
             string strSQLName = null;
 
-            strSQLName = "C_LIST_Torihikikbn_SELECT_LEAVE";
+            strSQLName = "C_LIST_GroupCd_SELECT_LEAVE";
 
             //データ渡し用
             stringSQLAry.Add("Common");

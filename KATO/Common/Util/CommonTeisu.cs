@@ -60,6 +60,7 @@ namespace KATO.Common.Util
         public const int FRM_TANAOROSHI = 0140;
         public const int FRM_TANAOROSHI_EDIT = 01401;
         public const int FRM_CHUBUNRUI = 1110;
+        public const int FRM_GROUP = 1200;
 
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;

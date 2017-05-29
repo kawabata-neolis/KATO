@@ -373,7 +373,10 @@ namespace KATO.Form.M1020_Maker
         public void delMaker()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
 
             //文字判定
             if (txtMaker.blIsEmpty() == false)
@@ -381,25 +384,36 @@ namespace KATO.Form.M1020_Maker
                 return;
             }
 
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtMaker.Text);
-            lstString.Add(SystemInformation.UserName);
-
             //処理部に移動
-            M1020_Maker_B makerb = new M1020_Maker_B();
+            M1020_Maker_B makerB = new M1020_Maker_B();
 
             try
             {
+                lstStringLoad.Add(txtMaker.Text);
+
                 //戻り値のDatatableを取り込む
-                makerb.delMaker(lstString);
+                dtSetCd = makerB.updTxtMakerTextLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(txtMaker.Text);
+                lstString.Add(txtName.Text);
+                lstString.Add(SystemInformation.UserName);
+
+                //戻り値のDatatableを取り込む
+                makerB.delMaker(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -498,8 +512,7 @@ namespace KATO.Form.M1020_Maker
                 new CommonException(ex);
             }
         }
-
-
+        
         ///<summary>
         ///setMakerListClose
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
@@ -514,27 +527,10 @@ namespace KATO.Form.M1020_Maker
         ///</summary>
         private void judtxtMakerKeyUp(object sender, KeyEventArgs e)
         {
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
+            Control cActiveBefore = this.ActiveControl;
 
-            if (txtMaker.TextLength == 3)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

@@ -442,31 +442,54 @@ namespace KATO.Form.M1100_Chokusosaki
         public void delChokusosaki()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
 
             //文字判定
             if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
             {
                 return;
             }
-
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(labelSet_Tokuisaki.CodeTxtText);
-            lstString.Add(txtChokusoCd.Text);
-
+            
             //処理部に移動(削除)
             M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
 
             try
             {
+                //データ渡し用
+                lstStringLoad.Add(labelSet_Tokuisaki.CodeTxtText);
+                lstStringLoad.Add(txtChokusoCd.Text);
+
+                //戻り値のDatatableを取り込む
+                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(labelSet_Tokuisaki.codeTxt.Text);
+                lstString.Add(txtChokusoCd.Text);
+                lstString.Add(txtChokusoName.Text);
+                lstString.Add(txtYubin.Text);
+                lstString.Add(txtJusho1.Text);
+                lstString.Add(txtJusho2.Text);
+                lstString.Add(txtDenwa.Text);
+
+                //ユーザー名
+                lstString.Add(SystemInformation.UserName);
+
                 chokusosakiB.delChokusosaki(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -572,7 +595,7 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void setTokuiListClose()
         {
-
+            labelSet_Tokuisaki.Focus();
         }
 
         ///<summary>
@@ -581,7 +604,7 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void setChokuListClose()
         {
-
+            txtChokusoCd.Focus();
         }
         
         /// <summary>
@@ -592,28 +615,8 @@ namespace KATO.Form.M1100_Chokusosaki
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

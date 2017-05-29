@@ -91,9 +91,9 @@ namespace KATO.Form.M1020_Maker
             this.txtMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtMaker.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMaker.Location = new System.Drawing.Point(596, 97);
-            this.txtMaker.MaxLength = 3;
+            this.txtMaker.MaxLength = 4;
             this.txtMaker.Name = "txtMaker";
-            this.txtMaker.Size = new System.Drawing.Size(30, 22);
+            this.txtMaker.Size = new System.Drawing.Size(40, 22);
             this.txtMaker.TabIndex = 0;
             this.txtMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtMakerTxtKeyDown);
             this.txtMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
@@ -117,6 +117,7 @@ namespace KATO.Form.M1020_Maker
             this.lblBaseLabelName.Location = new System.Drawing.Point(471, 137);
             this.lblBaseLabelName.Name = "lblBaseLabelName";
             this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
+            this.lblBaseLabelName.strToolTip = null;
             this.lblBaseLabelName.TabIndex = 87;
             this.lblBaseLabelName.Text = "メーカー名";
             this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -128,6 +129,7 @@ namespace KATO.Form.M1020_Maker
             this.lblBaseLabelCD.Location = new System.Drawing.Point(471, 100);
             this.lblBaseLabelCD.Name = "lblBaseLabelCD";
             this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
+            this.lblBaseLabelCD.strToolTip = null;
             this.lblBaseLabelCD.TabIndex = 88;
             this.lblBaseLabelCD.Text = "メーカーコード";
             this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

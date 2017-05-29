@@ -398,6 +398,13 @@ namespace KATO.Form.M1010_Daibunrui
 
             //データ渡し用
             lstString.Add(txtDaibunrui.Text);
+            lstString.Add(txtName.Text);
+            lstString.Add(txtLabel1.Text);
+            lstString.Add(txtLabel2.Text);
+            lstString.Add(txtLabel3.Text);
+            lstString.Add(txtLabel4.Text);
+            lstString.Add(txtLabel5.Text);
+            lstString.Add(txtLabel6.Text);
             lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(削除)
@@ -519,28 +526,8 @@ namespace KATO.Form.M1010_Daibunrui
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

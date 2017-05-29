@@ -32,7 +32,20 @@ namespace KATO.Business.M1100_Chokusosaki
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], "N", DateTime.Now.ToString(), lstString[3], DateTime.Now.ToString(), lstString[3] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[7],
+                    DateTime.Now.ToString(),
+                    lstString[7]
+                };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_UPD, aryStr);
 
@@ -69,9 +82,22 @@ namespace KATO.Business.M1100_Chokusosaki
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    "Y",
+                    DateTime.Now.ToString(),
+                    lstString[7],
+                    DateTime.Now.ToString(),
+                    lstString[7]
+                };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_DEL, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();

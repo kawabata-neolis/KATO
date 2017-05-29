@@ -74,6 +74,7 @@
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
+    <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
@@ -440,6 +441,12 @@
     <Compile Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.Designer.cs">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1200_Group\M1200_Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1200_Group\M1200_Group.Designer.cs">
+      <DependentUpon>M1200_Group.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -655,6 +662,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.resx">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1200_Group\M1200_Group.resx">
+      <DependentUpon>M1200_Group.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>

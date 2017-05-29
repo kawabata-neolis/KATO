@@ -88,5 +88,36 @@ namespace KATO.Common.Ctl
                 this.Select(this.Text.Length, 0);
             }
         }
+
+        //
+        //KeyUp()
+        //
+        public void judKeyUp(Control cActiveBefore, KeyEventArgs e)
+        {
+            //シフトタブ 2つ
+            if (e.KeyCode == Keys.Tab && e.Shift == true)
+            {
+                return;
+            }
+            //左右のシフトキー 4つ とタブ、エンター
+            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
+            {
+                return;
+            }
+            //キーボードの方向キー4つ
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                return;
+            }
+
+//ファンクションキーにも対応すること
+
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールには不可能）
+            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

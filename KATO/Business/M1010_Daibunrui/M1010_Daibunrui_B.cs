@@ -39,7 +39,21 @@ namespace KATO.Business.M1010_Daibunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], lstString[7], "N", DateTime.Now.ToString(), lstString[8], DateTime.Now.ToString(), lstString[8] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    lstString[7],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[8],
+                    DateTime.Now.ToString(),
+                    lstString[8]
+                };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_UPD, aryStr);
 
@@ -74,9 +88,23 @@ namespace KATO.Business.M1010_Daibunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    lstString[7],
+                    "Y",
+                    DateTime.Now.ToString(),
+                    lstString[8],
+                    DateTime.Now.ToString(),
+                    lstString[8]
+                };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_DEL, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_DAIBUNRUI_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();

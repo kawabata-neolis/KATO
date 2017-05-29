@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using System.Windows.Forms;
+using KATO.Form.M1200_Group;
 
 namespace KATO.Common.Business
 {
@@ -71,19 +72,18 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                ////テキストボックスでの処理がある場合使用（要修正）
-                ////目的のフォームを探す
-                //if (lstInt[0] == 1 && frm.Name.Equals("M1010_Daibunrui"))
-                //{
-                //    //データを連れてくるため、newをしないこと
-                //    M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
-                //    daibunrui.setDaibunruiListClose();
-                //    break;
-                //}
-                //else
-                //{
-                //    break;
-                //}
+                //目的のフォームを探す
+                if (lstInt[0] == 1 && frm.Name.Equals("M1200_Group"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1200_Group group = (M1200_Group)frm;
+                    group.setGroupListClose();
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
         }
         
@@ -120,22 +120,20 @@ namespace KATO.Common.Business
 
                 switch (lstInt[0])
                 {
-                    //////テキストボックスでの処理がある場合使用（要修正）
-                    ////大分類
-                    //case 1:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name.Equals("M1010_Daibunrui"))
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
-                    //            daibunrui.setDaibunrui(dtSelectData);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
+                    case CommonTeisu.FRM_GROUP:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1200_Group"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1200_Group group = (M1200_Group)frm;
+                                group.setGroup(dtSelectData);
+                                break;
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }

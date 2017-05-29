@@ -398,7 +398,10 @@ namespace KATO.Form.M1110_Chubunrui
         public void delChubunrui()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
 
             //文字判定
             if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false || txtChubunrui.blIsEmpty() == false)
@@ -406,22 +409,35 @@ namespace KATO.Form.M1110_Chubunrui
                 return;
             }
 
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //YESが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
-            lstString.Add(txtChubunrui.Text);
-
             //処理部に移動(チェック)
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
             try
             {
+                lstStringLoad.Add(LabelSet_Daibun.CodeTxtText);
+                lstStringLoad.Add(txtChubunrui.Text);
+
+                //戻り値のDatatableを取り込む
+                dtSetCd = chubunB.updTxtChubunruiLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //YESが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(LabelSet_Daibun.CodeTxtText);
+                lstString.Add(txtChubunrui.Text);
+                lstString.Add(txtElem.Text);
+                lstString.Add(SystemInformation.UserName);
+
                 chubunB.delChubunrui(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -564,28 +580,8 @@ namespace KATO.Form.M1110_Chubunrui
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

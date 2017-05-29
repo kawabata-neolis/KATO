@@ -34,7 +34,15 @@ namespace KATO.Business.M1110_Chubunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], "N", DateTime.Now.ToString(), lstString[3], DateTime.Now.ToString(), lstString[3] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[3],
+                    DateTime.Now.ToString(),
+                    lstString[3] };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
 
@@ -61,9 +69,6 @@ namespace KATO.Business.M1110_Chubunrui
         ///</summary>
         public void delChubunrui(List<string> lstString)
         {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
@@ -71,9 +76,17 @@ namespace KATO.Business.M1110_Chubunrui
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1]};
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    "Y",
+                    DateTime.Now.ToString(),
+                    lstString[3],
+                    DateTime.Now.ToString(),
+                    lstString[3] };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_DEL, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();

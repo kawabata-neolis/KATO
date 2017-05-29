@@ -24,7 +24,7 @@ namespace KATO.Common.Form
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class groupCdList : System.Windows.Forms.Form
+    public partial class GroupCdList : System.Windows.Forms.Form
     {
         LabelSet_GroupCd lblSetGroupCd = null;
 
@@ -35,7 +35,7 @@ namespace KATO.Common.Form
         ///GroupCdList
         /// フォーム関係の設定（通常のテキストボックスから）
         ///</summary>
-        public groupCdList(Control c)
+        public GroupCdList(Control c)
         {
             if (c == null)
             {
@@ -58,7 +58,7 @@ namespace KATO.Common.Form
         /// DaibunruiList
         /// フォーム関係の設定（ラベルセットから）
         /// </summary>
-        public groupCdList(Control c, LabelSet_GroupCd lblSetGroupCdSelect)
+        public GroupCdList(Control c, LabelSet_GroupCd lblSetGroupCdSelect)
         {
             if (c == null)
             {

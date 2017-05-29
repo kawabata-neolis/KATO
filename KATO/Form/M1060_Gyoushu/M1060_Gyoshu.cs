@@ -311,26 +311,26 @@ namespace KATO.Form.M1060_Gyoushu
             List<string> lstString = new List<string>();
 
             //文字判定
-            if (txtGyoshu.blIsEmpty() == false)
+            if (txtGyoshuCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtGyoshu.Focus();
+                txtGyoshuCd.Focus();
                 return;
             }
             //文字判定
-            if (txtName.blIsEmpty() == false)
+            if (txtGyoshuName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtName.Focus();
+                txtGyoshuName.Focus();
                 return;
             }
             //データ渡し用
-            lstString.Add(txtGyoshu.Text);
-            lstString.Add(txtName.Text);
+            lstString.Add(txtGyoshuCd.Text);
+            lstString.Add(txtGyoshuName.Text);
             lstString.Add(SystemInformation.UserName);
 
             //処理部に移動
@@ -358,7 +358,7 @@ namespace KATO.Form.M1060_Gyoushu
         private void delText()
         {
             delFormClear(this);
-            txtGyoshu.Focus();
+            txtGyoshuCd.Focus();
         }
 
         /// <summary>
@@ -368,38 +368,52 @@ namespace KATO.Form.M1060_Gyoushu
         public void delGyoushu()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
 
+            DataTable dtSetCd;
+
             //文字判定
-            if (txtGyoshu.blIsEmpty() == false && txtName.blIsEmpty() == false)
+            if (txtGyoshuCd.blIsEmpty() == false && txtGyoshuName.blIsEmpty() == false)
             {
                 return;
             }
-
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtGyoshu.Text);
-            lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(削除)
             M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
 
             try
             {
+                lstStringLoad.Add(txtGyoshuCd.Text);
+
+                //戻り値のDatatableを取り込む
+                dtSetCd = gyoshuB.updTxtGyoshuLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(txtGyoshuCd.Text);
+                lstString.Add(txtGyoshuName.Text);
+                lstString.Add(SystemInformation.UserName);
+
                 gyoshuB.delGyoshu(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtGyoshu.Focus();
+                txtGyoshuCd.Focus();
             }
             catch (Exception ex)
             {
@@ -413,8 +427,8 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         public void setGyoushu(DataTable dtSelectData)
         {
-            txtGyoshu.Text = dtSelectData.Rows[0]["業種コード"].ToString();
-            txtName.Text = dtSelectData.Rows[0]["業種名"].ToString();
+            txtGyoshuCd.Text = dtSelectData.Rows[0]["業種コード"].ToString();
+            txtGyoshuName.Text = dtSelectData.Rows[0]["業種名"].ToString();
         }
 
         /// <summary>
@@ -433,23 +447,23 @@ namespace KATO.Form.M1060_Gyoushu
             Boolean blnGood;
 
             //文字判定
-            if (txtGyoshu.blIsEmpty() == false)
+            if (txtGyoshuCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            if (txtGyoshu.TextLength < 4)
+            if (txtGyoshuCd.TextLength < 4)
             {
-                txtGyoshu.Text = txtGyoshu.Text.ToString().PadLeft(4, '0');
+                txtGyoshuCd.Text = txtGyoshuCd.Text.ToString().PadLeft(4, '0');
             }
 
             //前後の空白を取り除く
-            txtGyoshu.Text = txtGyoshu.Text.Trim();
+            txtGyoshuCd.Text = txtGyoshuCd.Text.Trim();
             
             //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtGyoshu.Text);
+            blnGood = StringUtl.JudBanChr(txtGyoshuCd.Text);
             //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtGyoshu.Text, CommonTeisu.NUMBER_ONLY);
+            blnGood = StringUtl.JudBanSelect(txtGyoshuCd.Text, CommonTeisu.NUMBER_ONLY);
 
             if (blnGood == false)
             {
@@ -457,12 +471,12 @@ namespace KATO.Form.M1060_Gyoushu
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
-                txtGyoshu.Focus();
+                txtGyoshuCd.Focus();
                 return;
             }
 
             //データ渡し用
-            lstString.Add(txtGyoshu.Text);
+            lstString.Add(txtGyoshuCd.Text);
 
             //処理部に移動
             M1060_Gyoshu_B daibunB = new M1060_Gyoshu_B();
@@ -473,9 +487,9 @@ namespace KATO.Form.M1060_Gyoushu
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    txtGyoshu.Text = dtSetCd.Rows[0]["業種コード"].ToString();
-                    txtName.Text = dtSetCd.Rows[0]["業種名"].ToString();
-                    txtName.Focus();
+                    txtGyoshuCd.Text = dtSetCd.Rows[0]["業種コード"].ToString();
+                    txtGyoshuName.Text = dtSetCd.Rows[0]["業種名"].ToString();
+                    txtGyoshuName.Focus();
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else
@@ -499,7 +513,7 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         public void setGyoushuListClose()
         {
-            txtGyoshu.Focus();
+            txtGyoshuCd.Focus();
         }
 
         /// <summary>
@@ -510,28 +524,8 @@ namespace KATO.Form.M1060_Gyoushu
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

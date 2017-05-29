@@ -34,7 +34,15 @@ namespace KATO.Business.M1020_Maker_B
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1], "N", DateTime.Now.ToString(), lstString[2], DateTime.Now.ToString(), lstString[2] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[2],
+                    DateTime.Now.ToString(),
+                    lstString[2]
+                };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_UPD, aryStr);
 
@@ -67,9 +75,17 @@ namespace KATO.Business.M1020_Maker_B
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    "Y",
+                    DateTime.Now.ToString(),
+                    lstString[2],
+                    DateTime.Now.ToString(),
+                    lstString[2]
+                };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_DEL, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_MAKER_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();
