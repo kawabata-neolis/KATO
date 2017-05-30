@@ -315,7 +315,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         private void selZanList()
         {
 
-            string[] listParam = new string[29];
+            string[] listParam = new string[30];
 
             setParam(listParam, txtJuchuNo.Text, 0);
             setParam(listParam, txtHachuNo.Text, 1);
@@ -346,6 +346,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setParam(listParam, (rsGroup.judCheckBtn()).ToString(), 26);
             setParam(listParam, (rsSortItem.judCheckBtn()).ToString(), 27);
             setParam(listParam, (rsSortOrder.judCheckBtn()).ToString(), 28);
+            setParam(listParam, (rsSearchKind.judCheckBtn()).ToString(), 29);
 
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try
@@ -362,7 +363,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
         private void setParam(string[] lst, string prm, int idx)
         {
-            if (prm != null && !StringUtl.blIsEmpty(prm))
+            if (prm != null && StringUtl.blIsEmpty(prm))
             {
                 lst[idx] = prm;
             } else

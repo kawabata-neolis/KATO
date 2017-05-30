@@ -74,6 +74,14 @@ namespace KATO.Common.Util
         public const int BTN_YESNO = 2;
         public const int BTN_YESNOCANCEL = 3;
 
+        // グループ(ラジオボタン選択値)
+        public const int GROUP_RADIO_ALL     = 0;
+        public const int GROUP_RADIO_KYOUTSU = 1;
+        public const int GROUP_RADIO_1       = 2;
+        public const int GROUP_RADIO_2       = 3;
+        public const int GROUP_RADIO_3       = 4;
+
+
         //メッセージボックス題名
         public const string TEXT_TOUROKU = "登録";
         public const string TEXT_INPUT = "入力項目";
