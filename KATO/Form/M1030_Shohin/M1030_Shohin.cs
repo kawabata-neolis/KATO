@@ -259,33 +259,33 @@ namespace KATO.Form.M1030_Shohin
 
                 if (dtCset.Rows[0]["ラベル名１"].ToString() != "")
                 {
-                    lblBaseLabelC1.Text = dtCset.Rows[0]["ラベル名１"].ToString();
-                    lblBaseLabelC1.Visible = true;
+                    lblC1.Text = dtCset.Rows[0]["ラベル名１"].ToString();
+                    lblC1.Visible = true;
                 }
                 if (dtCset.Rows[0]["ラベル名２"].ToString() != "")
                 {
-                    lblBaseLabelC2.Text = dtCset.Rows[0]["ラベル名２"].ToString();
-                    lblBaseLabelC2.Visible = true;
+                    lblC2.Text = dtCset.Rows[0]["ラベル名２"].ToString();
+                    lblC2.Visible = true;
                 }
                 if (dtCset.Rows[0]["ラベル名３"].ToString() != "")
                 {
-                    lblBaseLabelC3.Text = dtCset.Rows[0]["ラベル名３"].ToString();
-                    lblBaseLabelC3.Visible = true;
+                    lblC3.Text = dtCset.Rows[0]["ラベル名３"].ToString();
+                    lblC3.Visible = true;
                 }
                 if (dtCset.Rows[0]["ラベル名４"].ToString() != "")
                 {
-                    lblBaseLabelC4.Text = dtCset.Rows[0]["ラベル名４"].ToString();
-                    lblBaseLabelC4.Visible = true;
+                    lblC4.Text = dtCset.Rows[0]["ラベル名４"].ToString();
+                    lblC4.Visible = true;
                 }
                 if (dtCset.Rows[0]["ラベル名５"].ToString() != "")
                 {
-                    lblBaseLabelC5.Text = dtCset.Rows[0]["ラベル名５"].ToString();
-                    lblBaseLabelC5.Visible = true;
+                    lblC5.Text = dtCset.Rows[0]["ラベル名５"].ToString();
+                    lblC5.Visible = true;
                 }
                 if (dtCset.Rows[0]["ラベル名６"].ToString() != "")
                 {
-                    lblBaseLabelC6.Text = dtCset.Rows[0]["ラベル名６"].ToString();
-                    lblBaseLabelC6.Visible = true;
+                    lblC6.Text = dtCset.Rows[0]["ラベル名６"].ToString();
+                    lblC6.Visible = true;
                 }
             }
             catch (Exception ex)

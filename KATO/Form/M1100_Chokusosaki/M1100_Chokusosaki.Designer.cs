@@ -42,6 +42,8 @@
             this.txtJusho1 = new KATO.Common.Ctl.BaseText();
             this.txtJusho2 = new KATO.Common.Ctl.BaseText();
             this.txtDenwa = new KATO.Common.Ctl.BaseText();
+            this.txtBushoName = new KATO.Common.Ctl.BaseText();
+            this.lblBushoName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF12
@@ -255,17 +257,43 @@
             this.txtDenwa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
             this.txtDenwa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
             // 
+            // txtBushoName
+            // 
+            this.txtBushoName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtBushoName.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtBushoName.Location = new System.Drawing.Point(648, 287);
+            this.txtBushoName.MaxLength = 30;
+            this.txtBushoName.Name = "txtBushoName";
+            this.txtBushoName.Size = new System.Drawing.Size(250, 22);
+            this.txtBushoName.TabIndex = 7;
+            this.txtBushoName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChokuTxtKeyDown);
+            this.txtBushoName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChokuKeyUp);
+            // 
+            // lblBushoName
+            // 
+            this.lblBushoName.AutoSize = true;
+            this.lblBushoName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBushoName.Location = new System.Drawing.Point(555, 290);
+            this.lblBushoName.Name = "lblBushoName";
+            this.lblBushoName.Size = new System.Drawing.Size(55, 15);
+            this.lblBushoName.strToolTip = null;
+            this.lblBushoName.TabIndex = 89;
+            this.lblBushoName.Text = "部署名";
+            this.lblBushoName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1100_Chokusosaki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblBushoName);
             this.Controls.Add(this.lblDenwa);
             this.Controls.Add(this.lblJusho2);
             this.Controls.Add(this.lblJusho1);
             this.Controls.Add(this.lblYubin);
             this.Controls.Add(this.lblChokusoName);
             this.Controls.Add(this.lblChokusoCd);
+            this.Controls.Add(this.txtBushoName);
             this.Controls.Add(this.txtDenwa);
             this.Controls.Add(this.txtJusho2);
             this.Controls.Add(this.txtJusho1);
@@ -296,12 +324,14 @@
             this.Controls.SetChildIndex(this.txtJusho1, 0);
             this.Controls.SetChildIndex(this.txtJusho2, 0);
             this.Controls.SetChildIndex(this.txtDenwa, 0);
+            this.Controls.SetChildIndex(this.txtBushoName, 0);
             this.Controls.SetChildIndex(this.lblChokusoCd, 0);
             this.Controls.SetChildIndex(this.lblChokusoName, 0);
             this.Controls.SetChildIndex(this.lblYubin, 0);
             this.Controls.SetChildIndex(this.lblJusho1, 0);
             this.Controls.SetChildIndex(this.lblJusho2, 0);
             this.Controls.SetChildIndex(this.lblDenwa, 0);
+            this.Controls.SetChildIndex(this.lblBushoName, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +352,7 @@
         private Common.Ctl.BaseText txtJusho1;
         private Common.Ctl.BaseText txtJusho2;
         private Common.Ctl.BaseText txtDenwa;
+        private Common.Ctl.BaseText txtBushoName;
+        private Common.Ctl.BaseLabel lblBushoName;
     }
 }

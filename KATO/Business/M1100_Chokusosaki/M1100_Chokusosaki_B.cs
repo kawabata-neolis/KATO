@@ -40,11 +40,12 @@ namespace KATO.Business.M1100_Chokusosaki
                     lstString[4],
                     lstString[5],
                     lstString[6],
+                    lstString[7],
                     "N",
                     DateTime.Now.ToString(),
-                    lstString[7],
+                    lstString[8],
                     DateTime.Now.ToString(),
-                    lstString[7]
+                    lstString[8]
                 };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_UPD, aryStr);
@@ -90,11 +91,12 @@ namespace KATO.Business.M1100_Chokusosaki
                     lstString[4],
                     lstString[5],
                     lstString[6],
+                    lstString[7],
                     "Y",
                     DateTime.Now.ToString(),
-                    lstString[7],
+                    lstString[8],
                     DateTime.Now.ToString(),
-                    lstString[7]
+                    lstString[8]
                 };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHOKUSOSAKI_UPD, aryStr);

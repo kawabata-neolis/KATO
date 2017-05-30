@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTorihikikubunName = new KATO.Common.Ctl.BaseText();
             this.txtTorihikikubunCd = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
@@ -83,28 +83,28 @@
             // 
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // lblBaseLabelName
+            // lblName
             // 
-            this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(630, 93);
-            this.lblBaseLabelName.Name = "lblBaseLabelName";
-            this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelName.strToolTip = null;
-            this.lblBaseLabelName.TabIndex = 87;
-            this.lblBaseLabelName.Text = "取引区分名";
-            this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblName.Location = new System.Drawing.Point(630, 93);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(87, 15);
+            this.lblName.strToolTip = null;
+            this.lblName.TabIndex = 87;
+            this.lblName.Text = "取引区分名";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBaseLabelCD
+            // lblCD
             // 
-            this.lblBaseLabelCD.AutoSize = true;
-            this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelCD.Location = new System.Drawing.Point(391, 93);
-            this.lblBaseLabelCD.Name = "lblBaseLabelCD";
-            this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
-            this.lblBaseLabelCD.strToolTip = null;
-            this.lblBaseLabelCD.TabIndex = 90;
-            this.lblBaseLabelCD.Text = "取引区分コード";
-            this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCD.AutoSize = true;
+            this.lblCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblCD.Location = new System.Drawing.Point(391, 93);
+            this.lblCD.Name = "lblCD";
+            this.lblCD.Size = new System.Drawing.Size(119, 15);
+            this.lblCD.strToolTip = null;
+            this.lblCD.TabIndex = 90;
+            this.lblCD.Text = "取引区分コード";
+            this.lblCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTorihikikubunName
             // 
@@ -135,8 +135,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
-            this.Controls.Add(this.lblBaseLabelName);
-            this.Controls.Add(this.lblBaseLabelCD);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblCD);
             this.Controls.Add(this.txtTorihikikubunName);
             this.Controls.Add(this.txtTorihikikubunCd);
             this.Name = "M1040_Torihikikbn";
@@ -157,8 +157,8 @@
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.txtTorihikikubunCd, 0);
             this.Controls.SetChildIndex(this.txtTorihikikubunName, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
+            this.Controls.SetChildIndex(this.lblCD, 0);
+            this.Controls.SetChildIndex(this.lblName, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,8 +166,8 @@
 
         #endregion
 
-        private Common.Ctl.BaseLabel lblBaseLabelName;
-        private Common.Ctl.BaseLabel lblBaseLabelCD;
+        private Common.Ctl.BaseLabel lblName;
+        private Common.Ctl.BaseLabel lblCD;
         private Common.Ctl.BaseText txtTorihikikubunName;
         private Common.Ctl.BaseText txtTorihikikubunCd;
     }

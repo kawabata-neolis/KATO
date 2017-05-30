@@ -426,34 +426,52 @@ namespace KATO.Form.M1050_Tantousha
         public void deTantousha()
         {
             //データ渡し用
+            List<string> lstStringLoad = new List<string>();
             List<string> lstString = new List<string>();
+
+            DataTable dtSetCd;
 
             //文字判定
             if (txtTantoushaCd.blIsEmpty() == false && txtTantoushaCd.blIsEmpty() == false)
             {
                 return;
             }
-//
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
-            lstString.Add(SystemInformation.UserName);
 
             //処理部に移動(削除)
-            M1050_Tantousha_B daibunB = new M1050_Tantousha_B();
+            M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
 
             try
             {
-                daibunB.delDaibunrui(lstString);
+                lstStringLoad.Add(txtTantoushaCd.Text);
 
-//
+                //戻り値のDatatableを取り込む
+                dtSetCd = tantouB.updTxtTantoshaLeave(lstStringLoad);
+
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //データ渡し用
+                lstString.Add(txtTantoushaCd.Text);
+                lstString.Add(txtTantoushaName.Text);
+                lstString.Add(txtLoginID.Text);
+                lstString.Add(labelSet_Eigyousho.CodeTxtText);
+                lstString.Add(txtChuban.Text);
+                lstString.Add(labelSet_GroupCd.CodeTxtText);
+                lstString.Add(txtMokuhyou.Text);
+                lstString.Add(SystemInformation.UserName);
+
+                tantouB.delTantosha(lstString);
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -534,11 +552,11 @@ namespace KATO.Form.M1050_Tantousha
             lstString.Add(txtTantoushaCd.Text);
 
             //処理部に移動
-            M1050_Tantousha_B tantoushaB = new M1050_Tantousha_B();
+            M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantoushaB.updTxtDaibunruiLeave(lstString);
+                dtSetCd = tantouB.updTxtTantoshaLeave(lstString);
 
                 if (dtSetCd.Rows.Count != 0)
                 {

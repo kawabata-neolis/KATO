@@ -78,12 +78,13 @@ namespace KATO.Common.Form
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKensaku.Location = new System.Drawing.Point(138, 44);
+            this.txtKensaku.Location = new System.Drawing.Point(36, 70);
             this.txtKensaku.MaxLength = 50;
             this.txtKensaku.Name = "txtKensaku";
-            this.txtKensaku.Size = new System.Drawing.Size(164, 22);
+            this.txtKensaku.Size = new System.Drawing.Size(410, 22);
             this.txtKensaku.TabIndex = 1;
-            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setMoveOrder);
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
+            this.txtKensaku.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtKensaku_KeyUp);
             // 
             // baseLabel2
             // 
@@ -92,6 +93,7 @@ namespace KATO.Common.Form
             this.baseLabel2.Location = new System.Drawing.Point(33, 47);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(87, 15);
+            this.baseLabel2.strToolTip = null;
             this.baseLabel2.TabIndex = 101;
             this.baseLabel2.Text = "検索文字列";
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,7 +121,7 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridSeihin.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSeihin.EnableHeadersVisualStyles = false;
-            this.gridSeihin.Location = new System.Drawing.Point(31, 86);
+            this.gridSeihin.Location = new System.Drawing.Point(31, 110);
             this.gridSeihin.Name = "gridSeihin";
             this.gridSeihin.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -133,7 +135,7 @@ namespace KATO.Common.Form
             this.gridSeihin.RowHeadersVisible = false;
             this.gridSeihin.RowTemplate.Height = 21;
             this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeihin.Size = new System.Drawing.Size(474, 378);
+            this.gridSeihin.Size = new System.Drawing.Size(474, 354);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 3;
             this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDoubleClick);

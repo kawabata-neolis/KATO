@@ -16,7 +16,7 @@ using System.Security.Permissions;
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///TokuisakiList
+    ///TorihikisakiList
     ///得意先リスト
     ///作成者：大河内
     ///作成日：2017/5/1
@@ -24,7 +24,7 @@ namespace KATO.Common.Form
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class TokuisakiList : System.Windows.Forms.Form
+    public partial class TorihikisakiList : System.Windows.Forms.Form
     {
         LabelSet_Tokuisaki lblSetTokuisaki = null;
 
@@ -35,7 +35,7 @@ namespace KATO.Common.Form
         /// TantoushaList
         /// 前画面からデータ受け取り(通常テキストボックス)
         /// </summary>
-        public TokuisakiList(Control c)
+        public TorihikisakiList(Control c)
         {
             if (c == null)
             {
@@ -63,7 +63,7 @@ namespace KATO.Common.Form
         /// TokuisakiList
         /// 前画面からデータ受け取り(セットテキストボックス)
         /// </summary>
-        public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
+        public TorihikisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
         {
             if (c == null)
             {
@@ -351,7 +351,7 @@ namespace KATO.Common.Form
             lstString.Add(strSelectId);
             lstString.Add(strSelectName);
 
-            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
+            TorihikisakiList_B tokuisakilistB = new TorihikisakiList_B();
             try
             {
                 tokuisakilistB.setSelectItem(lstInt, lstString);
@@ -394,7 +394,7 @@ namespace KATO.Common.Form
             //処理部へ
             lstInt.Add(intFrmKind);
 
-            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
+            TorihikisakiList_B tokuisakilistB = new TorihikisakiList_B();
             try
             {
                 tokuisakilistB.setEndAction(lstInt);
@@ -423,7 +423,7 @@ namespace KATO.Common.Form
             lstString.Add("");
 
             //処理部に移動
-            TokuisakiList_B tokuisakiB = new TokuisakiList_B();
+            TorihikisakiList_B tokuisakiB = new TorihikisakiList_B();
             try
             {
                 //データグリッドビュー部分
@@ -468,9 +468,16 @@ namespace KATO.Common.Form
             }
         }
 
-        private void gridTokuisaki_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// txtTorihikisaki_KeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void txtTorihikisaki_KeyUp(object sender, KeyEventArgs e)
         {
+            Control cActiveBefore = this.ActiveControl;
 
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

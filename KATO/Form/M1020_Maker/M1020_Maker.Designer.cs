@@ -34,8 +34,8 @@ namespace KATO.Form.M1020_Maker
             this.components = new System.ComponentModel.Container();
             this.txtMaker = new KATO.Common.Ctl.BaseText();
             this.txtName = new KATO.Common.Ctl.BaseText();
-            this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF12
@@ -110,37 +110,37 @@ namespace KATO.Form.M1020_Maker
             this.txtName.TabIndex = 1;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerTxtKeyDown);
             // 
-            // lblBaseLabelName
+            // lblName
             // 
-            this.lblBaseLabelName.AutoSize = true;
-            this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(471, 137);
-            this.lblBaseLabelName.Name = "lblBaseLabelName";
-            this.lblBaseLabelName.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelName.strToolTip = null;
-            this.lblBaseLabelName.TabIndex = 87;
-            this.lblBaseLabelName.Text = "メーカー名";
-            this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblName.Location = new System.Drawing.Point(471, 137);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(87, 15);
+            this.lblName.strToolTip = null;
+            this.lblName.TabIndex = 87;
+            this.lblName.Text = "メーカー名";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBaseLabelCD
+            // lblCD
             // 
-            this.lblBaseLabelCD.AutoSize = true;
-            this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelCD.Location = new System.Drawing.Point(471, 100);
-            this.lblBaseLabelCD.Name = "lblBaseLabelCD";
-            this.lblBaseLabelCD.Size = new System.Drawing.Size(119, 15);
-            this.lblBaseLabelCD.strToolTip = null;
-            this.lblBaseLabelCD.TabIndex = 88;
-            this.lblBaseLabelCD.Text = "メーカーコード";
-            this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCD.AutoSize = true;
+            this.lblCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblCD.Location = new System.Drawing.Point(471, 100);
+            this.lblCD.Name = "lblCD";
+            this.lblCD.Size = new System.Drawing.Size(119, 15);
+            this.lblCD.strToolTip = null;
+            this.lblCD.TabIndex = 88;
+            this.lblCD.Text = "メーカーコード";
+            this.lblCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // M1020_Maker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
-            this.Controls.Add(this.lblBaseLabelCD);
-            this.Controls.Add(this.lblBaseLabelName);
+            this.Controls.Add(this.lblCD);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtMaker);
             this.Name = "M1020_Maker";
@@ -161,8 +161,8 @@ namespace KATO.Form.M1020_Maker
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.txtMaker, 0);
             this.Controls.SetChildIndex(this.txtName, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
+            this.Controls.SetChildIndex(this.lblName, 0);
+            this.Controls.SetChildIndex(this.lblCD, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,7 +172,7 @@ namespace KATO.Form.M1020_Maker
 
         private BaseText txtMaker;
         private BaseText txtName;
-        private BaseLabel lblBaseLabelName;
-        private BaseLabel lblBaseLabelCD;
+        private BaseLabel lblName;
+        private BaseLabel lblCD;
     }
 }

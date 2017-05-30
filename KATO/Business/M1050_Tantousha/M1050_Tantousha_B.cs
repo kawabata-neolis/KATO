@@ -32,7 +32,20 @@ namespace KATO.Business.M1050_Tantousha
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5], lstString[6], "N", DateTime.Now.ToString(), lstString[7], DateTime.Now.ToString(), lstString[7] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[7],
+                    DateTime.Now.ToString(),
+                    lstString[7]
+                };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TANTOSHA_UPD, aryStr);
 
@@ -54,10 +67,10 @@ namespace KATO.Business.M1050_Tantousha
         }
 
         ///<summary>
-        ///delDaibunrui
+        ///delTantosha
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delDaibunrui(List<string> lstString)
+        public void delTantosha(List<string> lstString)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -66,9 +79,22 @@ namespace KATO.Business.M1050_Tantousha
             dbconnective.BeginTrans();
             try
             {
-                string[] aryStr = new string[] { lstString[0] };
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    "Y",
+                    DateTime.Now.ToString(),
+                    lstString[7],
+                    DateTime.Now.ToString(),
+                    lstString[7]
+                };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TANTOSHA_DEL, aryStr);
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TANTOSHA_UPD, aryStr);
 
                 //コミット開始
                 dbconnective.Commit();
@@ -88,10 +114,10 @@ namespace KATO.Business.M1050_Tantousha
         }
 
         ///<summary>
-        ///updTxtDaibunruiLeave
+        ///updTxtTantoshaLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public System.Data.DataTable updTxtDaibunruiLeave(List<string> lstString)
+        public System.Data.DataTable updTxtTantoshaLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();

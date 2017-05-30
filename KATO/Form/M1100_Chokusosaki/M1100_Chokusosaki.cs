@@ -303,54 +303,7 @@ namespace KATO.Form.M1100_Chokusosaki
                     new CommonException(ex);
                 }
             }
-
-            //if (e.KeyCode == Keys.F9 && labelSet_Tokuisaki.CodeTxtText != "")
-            //{
-            //    double dblCheck;
-            //    if (double.TryParse(labelSet_Tokuisaki.CodeTxtText, out dblCheck))
-            //    {
-            //        //LabelSet_Tokuisaki lblSetTokuiSelect = new LabelSet_Tokuisaki();
-            //        //ChokusosakiList chokusosakilist = new ChokusosakiList(this, lblSetTokuiSelect, labelSet_Tokuisaki.CodeTxtText);
-            //        //try
-            //        //{
-            //        //    chokusosakilist.StartPosition = FormStartPosition.Manual;
-            //        //    chokusosakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-            //        //    chokusosakilist.ShowDialog();
-
-            //        //}
-            //        //catch (Exception ex)
-            //        //{
-            //        //    new CommonException(ex);
-            //        //    return;
-            //        //}
-
-            //    }
-            //}
         }
-
-        /////<summary>
-        /////txtTokuisakiKeyDown
-        /////キー入力判定
-        /////</summary>
-        //private void txtKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.F9)
-        //    {
-        //        TokuisakiList tokuisakilist = new TokuisakiList(this);
-        //        try
-        //        {
-        //            tokuisakilist.StartPosition = FormStartPosition.Manual;
-        //            tokuisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-        //            tokuisakilist.ShowDialog();
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            new CommonException(ex);
-        //            return;
-        //        }
-        //    }
-        //}
 
         ///<summary>
         ///addChokusosaki
@@ -395,6 +348,7 @@ namespace KATO.Form.M1100_Chokusosaki
             lstString.Add(txtJusho1.Text);
             lstString.Add(txtJusho2.Text);
             lstString.Add(txtDenwa.Text);
+            lstString.Add(txtBushoName.Text);
 
             //ユーザー名
             lstString.Add(SystemInformation.UserName);
@@ -486,6 +440,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 lstString.Add(txtJusho1.Text);
                 lstString.Add(txtJusho2.Text);
                 lstString.Add(txtDenwa.Text);
+                lstString.Add(txtBushoName.Text);
 
                 //ユーザー名
                 lstString.Add(SystemInformation.UserName);
@@ -572,6 +527,7 @@ namespace KATO.Form.M1100_Chokusosaki
                     txtJusho1.Text = dtSetCd.Rows[0]["住所１"].ToString();
                     txtJusho2.Text = dtSetCd.Rows[0]["住所２"].ToString();
                     txtDenwa.Text = dtSetCd.Rows[0]["電話番号"].ToString();
+                    txtBushoName.Text = dtSetCd.Rows[0]["部署名"].ToString();
                 }
                 //データの新規登録時に邪魔になるため、現段階削除予定
                 //else

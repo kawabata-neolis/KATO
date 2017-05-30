@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.txtGyoshuCd = new KATO.Common.Ctl.BaseText();
-            this.lblBaseLabelCD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtGyoshuName = new KATO.Common.Ctl.BaseText();
-            this.lblBaseLabelName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF12
@@ -108,17 +108,17 @@
             this.txtGyoshuCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             this.txtGyoshuCd.Leave += new System.EventHandler(this.updTxtGyoshuLeave);
             // 
-            // lblBaseLabelCD
+            // lblCD
             // 
-            this.lblBaseLabelCD.AutoSize = true;
-            this.lblBaseLabelCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelCD.Location = new System.Drawing.Point(388, 112);
-            this.lblBaseLabelCD.Name = "lblBaseLabelCD";
-            this.lblBaseLabelCD.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelCD.strToolTip = null;
-            this.lblBaseLabelCD.TabIndex = 88;
-            this.lblBaseLabelCD.Text = "業種コード";
-            this.lblBaseLabelCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCD.AutoSize = true;
+            this.lblCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblCD.Location = new System.Drawing.Point(388, 112);
+            this.lblCD.Name = "lblCD";
+            this.lblCD.Size = new System.Drawing.Size(87, 15);
+            this.lblCD.strToolTip = null;
+            this.lblCD.TabIndex = 88;
+            this.lblCD.Text = "業種コード";
+            this.lblCD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtGyoshuName
             // 
@@ -132,25 +132,25 @@
             this.txtGyoshuName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuTxtKeyDown);
             this.txtGyoshuName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
-            // lblBaseLabelName
+            // lblName
             // 
-            this.lblBaseLabelName.AutoSize = true;
-            this.lblBaseLabelName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelName.Location = new System.Drawing.Point(656, 112);
-            this.lblBaseLabelName.Name = "lblBaseLabelName";
-            this.lblBaseLabelName.Size = new System.Drawing.Size(55, 15);
-            this.lblBaseLabelName.strToolTip = null;
-            this.lblBaseLabelName.TabIndex = 88;
-            this.lblBaseLabelName.Text = "業種名";
-            this.lblBaseLabelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblName.Location = new System.Drawing.Point(656, 112);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(55, 15);
+            this.lblName.strToolTip = null;
+            this.lblName.TabIndex = 88;
+            this.lblName.Text = "業種名";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // M1060_Gyoshu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
-            this.Controls.Add(this.lblBaseLabelName);
-            this.Controls.Add(this.lblBaseLabelCD);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblCD);
             this.Controls.Add(this.txtGyoshuName);
             this.Controls.Add(this.txtGyoshuCd);
             this.Name = "M1060_Gyoshu";
@@ -159,8 +159,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuKeyDown);
             this.Controls.SetChildIndex(this.txtGyoshuCd, 0);
             this.Controls.SetChildIndex(this.txtGyoshuName, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelCD, 0);
-            this.Controls.SetChildIndex(this.lblBaseLabelName, 0);
+            this.Controls.SetChildIndex(this.lblCD, 0);
+            this.Controls.SetChildIndex(this.lblName, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -181,8 +181,8 @@
         #endregion
 
         private Common.Ctl.BaseText txtGyoshuCd;
-        private Common.Ctl.BaseLabel lblBaseLabelCD;
+        private Common.Ctl.BaseLabel lblCD;
         private Common.Ctl.BaseText txtGyoshuName;
-        private Common.Ctl.BaseLabel lblBaseLabelName;
+        private Common.Ctl.BaseLabel lblName;
     }
 }

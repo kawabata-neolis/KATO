@@ -106,11 +106,13 @@ namespace KATO.Business.M1070_Torihikisaki
                     lstString[70],
                     lstString[71],
                     lstString[72],
+                    lstString[73],
+                    lstString[74],
                     "N",
                     DateTime.Now.ToString(),
-                    lstString[73],
+                    lstString[75],
                     DateTime.Now.ToString(),
-                    lstString[73]
+                    lstString[75]
                 };
                 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);
@@ -218,11 +220,13 @@ namespace KATO.Business.M1070_Torihikisaki
                     lstString[70],
                     lstString[71],
                     lstString[72],
+                    lstString[73],
+                    lstString[74],
                     "Y",
                     DateTime.Now.ToString(),
-                    lstString[73],
+                    lstString[75],
                     DateTime.Now.ToString(),
-                    lstString[73]
+                    lstString[75]
                 };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);

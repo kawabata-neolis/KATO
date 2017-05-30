@@ -87,7 +87,7 @@
     <Compile Include="Common\Business\MakerList_B.cs" />
     <Compile Include="Common\Business\ShouhinList_B.cs" />
     <Compile Include="Common\Business\TanabanList_B.cs" />
-    <Compile Include="Common\Business\TokuisakiList_B.cs" />
+    <Compile Include="Common\Business\TorihikisakiList_B.cs" />
     <Compile Include="Common\Business\TantoushaList_B.cs" />
     <Compile Include="Common\Ctl\BaseButton.cs">
       <SubType>Component</SubType>
@@ -281,11 +281,11 @@
     <Compile Include="Common\Form\ShohizeiritsuList.Designer.cs">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Form\TokuisakiList.cs">
+    <Compile Include="Common\Form\TorihikisakiList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Common\Form\TokuisakiList.Designer.cs">
-      <DependentUpon>TokuisakiList.cs</DependentUpon>
+    <Compile Include="Common\Form\TorihikisakiList.Designer.cs">
+      <DependentUpon>TorihikisakiList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TorihikiCdList.cs">
       <SubType>Form</SubType>
@@ -579,8 +579,8 @@
     <EmbeddedResource Include="Common\Form\ShohizeiritsuList.resx">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
-      <DependentUpon>TokuisakiList.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Form\TorihikisakiList.resx">
+      <DependentUpon>TorihikisakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikiCdList.resx">

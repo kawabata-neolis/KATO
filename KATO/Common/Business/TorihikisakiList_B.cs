@@ -13,7 +13,7 @@ using KATO.Form.M1070_Torihikisaki;
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///TokuisakiList_B
+    ///TorihikisakiList_B
     ///得意先リスト（処理部）
     ///作成者：大河内
     ///作成日：2017/5/1
@@ -21,7 +21,7 @@ namespace KATO.Common.Business
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class TokuisakiList_B
+    class TorihikisakiList_B
     {
         string strSQLName = null;
 

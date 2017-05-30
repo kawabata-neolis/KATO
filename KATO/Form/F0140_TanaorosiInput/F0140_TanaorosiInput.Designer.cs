@@ -53,10 +53,10 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtTyoubosuu = new KATO.Common.Ctl.BaseText();
             this.txtTanasuu = new KATO.Common.Ctl.BaseText();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
-            this.lblBaseLabelHinmei = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblBaseLabelTyoubosuu = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblBaseLabelTanasuu = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblBaseLabelKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblHinmei = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTyoubosuu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTanasuu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShouhinCD = new KATO.Common.Ctl.BaseText();
             this.txtbaseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
@@ -280,10 +280,10 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.groupBox2.Controls.Add(this.txtTyoubosuu);
             this.groupBox2.Controls.Add(this.txtTanasuu);
             this.groupBox2.Controls.Add(this.txtKensaku);
-            this.groupBox2.Controls.Add(this.lblBaseLabelHinmei);
-            this.groupBox2.Controls.Add(this.lblBaseLabelTyoubosuu);
-            this.groupBox2.Controls.Add(this.lblBaseLabelTanasuu);
-            this.groupBox2.Controls.Add(this.lblBaseLabelKensaku);
+            this.groupBox2.Controls.Add(this.lblHinmei);
+            this.groupBox2.Controls.Add(this.lblTyoubosuu);
+            this.groupBox2.Controls.Add(this.lblTanasuu);
+            this.groupBox2.Controls.Add(this.lblKensaku);
             this.groupBox2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.groupBox2.Location = new System.Drawing.Point(10, 661);
             this.groupBox2.Name = "groupBox2";
@@ -392,49 +392,49 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaTxtKeyDown);
             this.txtKensaku.Leave += new System.EventHandler(this.updTxtKensakuLeave);
             // 
-            // lblBaseLabelHinmei
+            // lblHinmei
             // 
-            this.lblBaseLabelHinmei.AutoSize = true;
-            this.lblBaseLabelHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelHinmei.Location = new System.Drawing.Point(19, 59);
-            this.lblBaseLabelHinmei.Name = "lblBaseLabelHinmei";
-            this.lblBaseLabelHinmei.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelHinmei.TabIndex = 0;
-            this.lblBaseLabelHinmei.Text = "品名・型番";
-            this.lblBaseLabelHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHinmei.AutoSize = true;
+            this.lblHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHinmei.Location = new System.Drawing.Point(19, 59);
+            this.lblHinmei.Name = "lblHinmei";
+            this.lblHinmei.Size = new System.Drawing.Size(87, 15);
+            this.lblHinmei.TabIndex = 0;
+            this.lblHinmei.Text = "品名・型番";
+            this.lblHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBaseLabelTyoubosuu
+            // lblTyoubosuu
             // 
-            this.lblBaseLabelTyoubosuu.AutoSize = true;
-            this.lblBaseLabelTyoubosuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelTyoubosuu.Location = new System.Drawing.Point(672, 87);
-            this.lblBaseLabelTyoubosuu.Name = "lblBaseLabelTyoubosuu";
-            this.lblBaseLabelTyoubosuu.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelTyoubosuu.TabIndex = 0;
-            this.lblBaseLabelTyoubosuu.Text = "帳簿在庫数";
-            this.lblBaseLabelTyoubosuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTyoubosuu.AutoSize = true;
+            this.lblTyoubosuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTyoubosuu.Location = new System.Drawing.Point(672, 87);
+            this.lblTyoubosuu.Name = "lblTyoubosuu";
+            this.lblTyoubosuu.Size = new System.Drawing.Size(87, 15);
+            this.lblTyoubosuu.TabIndex = 0;
+            this.lblTyoubosuu.Text = "帳簿在庫数";
+            this.lblTyoubosuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBaseLabelTanasuu
+            // lblTanasuu
             // 
-            this.lblBaseLabelTanasuu.AutoSize = true;
-            this.lblBaseLabelTanasuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelTanasuu.Location = new System.Drawing.Point(672, 59);
-            this.lblBaseLabelTanasuu.Name = "lblBaseLabelTanasuu";
-            this.lblBaseLabelTanasuu.Size = new System.Drawing.Size(55, 15);
-            this.lblBaseLabelTanasuu.TabIndex = 0;
-            this.lblBaseLabelTanasuu.Text = "棚卸数";
-            this.lblBaseLabelTanasuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTanasuu.AutoSize = true;
+            this.lblTanasuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTanasuu.Location = new System.Drawing.Point(672, 59);
+            this.lblTanasuu.Name = "lblTanasuu";
+            this.lblTanasuu.Size = new System.Drawing.Size(55, 15);
+            this.lblTanasuu.TabIndex = 0;
+            this.lblTanasuu.Text = "棚卸数";
+            this.lblTanasuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblBaseLabelKensaku
+            // lblKensaku
             // 
-            this.lblBaseLabelKensaku.AutoSize = true;
-            this.lblBaseLabelKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBaseLabelKensaku.Location = new System.Drawing.Point(19, 30);
-            this.lblBaseLabelKensaku.Name = "lblBaseLabelKensaku";
-            this.lblBaseLabelKensaku.Size = new System.Drawing.Size(87, 15);
-            this.lblBaseLabelKensaku.TabIndex = 0;
-            this.lblBaseLabelKensaku.Text = "検索文字列";
-            this.lblBaseLabelKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKensaku.AutoSize = true;
+            this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKensaku.Location = new System.Drawing.Point(19, 30);
+            this.lblKensaku.Name = "lblKensaku";
+            this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.TabIndex = 0;
+            this.lblKensaku.Text = "検索文字列";
+            this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtShouhinCD
             // 
@@ -635,11 +635,11 @@ namespace KATO.Form.F0140_TanaorosiInput
         private System.Windows.Forms.GroupBox groupBox2;
         private BaseLabel baseLabel10;
         private BaseText txtKensaku;
-        private BaseLabel lblBaseLabelHinmei;
-        private BaseLabel lblBaseLabelKensaku;
+        private BaseLabel lblHinmei;
+        private BaseLabel lblKensaku;
         private BaseLabelGray lblDspShouhin;
-        private BaseLabel lblBaseLabelTyoubosuu;
-        private BaseLabel lblBaseLabelTanasuu;
+        private BaseLabel lblTyoubosuu;
+        private BaseLabel lblTanasuu;
         private BaseText txtTyoubosuu;
         private BaseText txtTanasuu;
         private BaseText txtShouhinCD;

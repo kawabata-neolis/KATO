@@ -76,12 +76,12 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //ToolTip tooltip = new ToolTip(this.components);
-            //tooltip.ShowAlways = true;
-            ////Help.ShowPopup(this, "こんにちは。", Control.MousePosition);
-            //tooltip.SetToolTip(lblBaseLabelSime, "あれです");
-
-            //lblBaseLabelSime.setToolTip("あれ");
+            //コンボボックス内データの追加
+            cmbNonyu.Items.Add("配達");
+            cmbNonyu.Items.Add("発送");
+            cmbNonyu.Items.Add("直送");
+            cmbNonyu.Items.Add("代引き");
+            cmbNonyu.Items.Add("来店");
         }
 
         /// <summary>
@@ -270,12 +270,12 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             if (e.KeyCode == Keys.F9)
             {
-                TokuisakiList tokuisakilist = new TokuisakiList(this);
+                TorihikisakiList torihikisakilist = new TorihikisakiList(this);
                 try
                 {
-                    tokuisakilist.StartPosition = FormStartPosition.Manual;
-                    tokuisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-                    tokuisakilist.ShowDialog();
+                    torihikisakilist.StartPosition = FormStartPosition.Manual;
+                    torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
+                    torihikisakilist.ShowDialog();
 
                     labelSet_Tantousha.Focus();
                     labelSet_GyoshuCd.Focus();
@@ -572,6 +572,11 @@ namespace KATO.Form.M1070_Torihikisaki
             lstString.Add(txtTorihiki19.Text);
             lstString.Add(txtTorihiki20.Text);
 
+            //納入方法
+            lstString.Add(cmbNonyu.Text);
+            //業務担当者
+            lstString.Add(txtGyotan.Text);
+
             //ユーザー名
             lstString.Add(SystemInformation.UserName);
 
@@ -746,6 +751,11 @@ namespace KATO.Form.M1070_Torihikisaki
                 lstString.Add(txtTorihiki19.Text);
                 lstString.Add(txtTorihiki20.Text);
 
+                //納入方法
+                lstString.Add(cmbNonyu.Text);
+                //業務担当者
+                lstString.Add(txtGyotan.Text);
+
                 //ユーザー名
                 lstString.Add(SystemInformation.UserName);
 
@@ -862,6 +872,9 @@ namespace KATO.Form.M1070_Torihikisaki
             txtTorihiki19.Text = dtSelectData.Rows[0]["主な取引先１９"].ToString();
             txtTorihiki20.Text = dtSelectData.Rows[0]["主な取引先２０"].ToString();
 
+            cmbNonyu.Text = dtSelectData.Rows[0]["納入方法"].ToString();
+            txtGyotan.Text = dtSelectData.Rows[0]["業務担当者コード"].ToString();
+
         }
 
         /// <summary>
@@ -949,6 +962,18 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             Control cActiveBefore = this.ActiveControl;
 
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        /// <summary>
+        /// judtxtTorihikiKeyUp
+        /// 入力項目上でのキー判定と文字数判定(コンボボックス用)
+        /// </summary>
+        private void cmbNonyu_KeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
             {
@@ -965,8 +990,10 @@ namespace KATO.Form.M1070_Torihikisaki
                 return;
             }
 
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールを使用していると不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
+            //ファンクションキーにも対応すること
+
+            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールには不可能）
+            if (cActiveBefore.Text.Length == ((ComboBox)cActiveBefore).MaxLength)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
@@ -984,14 +1011,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
             }
-        }
-
-        /// <summary>
-        /// lblBaseLabelSime_MouseHover
-        /// 入力項目上でのキー判定
-        /// </summary>
-        private void lblBaseLabelSime_MouseHover(object sender, EventArgs e)
-        {
         }
     }
 }

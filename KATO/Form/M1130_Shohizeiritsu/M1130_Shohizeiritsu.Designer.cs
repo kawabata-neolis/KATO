@@ -92,9 +92,9 @@
             this.txtShohizeiritu.intIntederSet = 0;
             this.txtShohizeiritu.intShishagonyu = 1;
             this.txtShohizeiritu.Location = new System.Drawing.Point(241, 162);
-            this.txtShohizeiritu.MaxLength = 17;
+            this.txtShohizeiritu.MaxLength = 3;
             this.txtShohizeiritu.Name = "txtShohizeiritu";
-            this.txtShohizeiritu.Size = new System.Drawing.Size(150, 22);
+            this.txtShohizeiritu.Size = new System.Drawing.Size(50, 22);
             this.txtShohizeiritu.TabIndex = 1;
             this.txtShohizeiritu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShohizeiritu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShohizeiritsu_KeyDown);

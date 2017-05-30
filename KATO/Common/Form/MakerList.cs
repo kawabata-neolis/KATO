@@ -222,19 +222,6 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setMoveOrder
-        ///form内のエンターによるタブオーダー機能
-        ///</summary>
-        private void setMoveOrder(object sender, KeyEventArgs e)
-        {
-            //エンターキーが押されたか調べる
-            if (e.KeyData == Keys.Enter)
-            {
-                SendKeys.Send("{TAB}");
-            }
-        }
-
-        ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
@@ -313,6 +300,67 @@ namespace KATO.Common.Form
         private void setGridSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
+        }
+
+        ///<summary>
+        ///judTokuiListTxtKeyDown
+        ///キー入力判定(テキストボックス)
+        ///</summary>
+        private void judTokuiListTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    //検索ボタン
+                    this.btnKensakuClick(sender, e);
+                    break;
+                case Keys.F12:
+                    //戻るボタン
+                    this.btnEndClick(sender, e);
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         ///<summary>
@@ -423,6 +471,20 @@ namespace KATO.Common.Form
 
                 return cpForm;
             }
+        }
+
+
+        /// <summary>
+        /// txtKensaku_KeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void txtKensaku_KeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+
         }
     }
 }

@@ -206,38 +206,11 @@ namespace KATO.Common.Ctl
         ///入力項目上でのキー判定と文字数判定
         ///</summary>
         private void judtxtDaibunruiKeyUp(object sender, KeyEventArgs e)
-        { 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
+        {
+            Control cActiveBefore = this.ActiveControl;
 
-            //数字入力以外は返す
-            if ((Keys.D0 <= e.KeyCode && e.KeyCode <= Keys.D9) || (Keys.NumPad0 <= e.KeyCode && e.KeyCode <= Keys.NumPad9))
-            {
-            }
-            else
-            {
-                e.Handled = true;
-                return;
-            }
-
-            if (this.codeTxt.TextLength == 2)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
 
         ///<summary>
