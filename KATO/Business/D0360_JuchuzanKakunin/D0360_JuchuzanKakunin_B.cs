@@ -116,6 +116,15 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 }
             }
 
+            if (StringUtl.blIsEmpty(listParam[26]))
+            {
+                int intGroup = int.Parse(listParam[26]);
+                if (int.Parse(listParam[26]) != CommonTeisu.GROUP_RADIO_ALL)
+                {
+                    strQuery += "   AND dbo.f_get受注番号から加工区分(a.受注番号) = '0'";
+                }
+            }
+
 
             #region
             //strQuery += " UNION ";

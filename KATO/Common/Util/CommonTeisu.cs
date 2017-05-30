@@ -81,6 +81,14 @@ namespace KATO.Common.Util
         public const int GROUP_RADIO_2       = 3;
         public const int GROUP_RADIO_3       = 4;
 
+        public readonly string[] LIST_GROUP =
+        {
+             ""
+            ,"0001"
+            ,"0002"
+            ,"0003"
+            ,"0004"
+        };
 
         //メッセージボックス題名
         public const string TEXT_TOUROKU = "登録";
@@ -608,6 +616,8 @@ namespace KATO.Common.Util
             ,SqlDbType.NChar
             ,SqlDbType.NChar
             ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.Char
             ,SqlDbType.Char
             ,SqlDbType.DateTime
             ,SqlDbType.NChar
