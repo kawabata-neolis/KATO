@@ -205,6 +205,69 @@ namespace KATO.Form.M1030_Shohin
         }
 
         /// <summary>
+        /// judShohinTxtKeyDown
+        /// キー入力判定
+        /// </summary>
+        private void judKenKataTxtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    this.addShohin();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    this.delShohin();
+                    break;
+                case Keys.F4:
+                    this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    this.setShohinList();
+                    break;
+                case Keys.F10:
+                    this.setKensaku();
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// judBtnClick
         /// ボタンの反応
         /// </summary>
@@ -234,64 +297,29 @@ namespace KATO.Form.M1030_Shohin
         }
 
         /// <summary>
-        /// labelSet_Daibunrui_Leave
-        /// C1からC2のラベルを表示
+        /// setShohinList
+        /// 商品リストに移動
         /// </summary>
-        private void labelSet_Daibunrui_Leave(object sender, EventArgs e)
+        private void setShohinList()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            DataTable dtCset = new DataTable();
-
-            if (labelSet_Daibunrui.CodeTxtText == "")
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(labelSet_Daibunrui.CodeTxtText);
-
-            M1030_Shohin_B shohinB = new M1030_Shohin_B();
+            ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
-                dtCset = shohinB.labelSet_Daibunrui_Leave(lstString);
 
-                if (dtCset.Rows[0]["ラベル名１"].ToString() != "")
-                {
-                    lblC1.Text = dtCset.Rows[0]["ラベル名１"].ToString();
-                    lblC1.Visible = true;
-                }
-                if (dtCset.Rows[0]["ラベル名２"].ToString() != "")
-                {
-                    lblC2.Text = dtCset.Rows[0]["ラベル名２"].ToString();
-                    lblC2.Visible = true;
-                }
-                if (dtCset.Rows[0]["ラベル名３"].ToString() != "")
-                {
-                    lblC3.Text = dtCset.Rows[0]["ラベル名３"].ToString();
-                    lblC3.Visible = true;
-                }
-                if (dtCset.Rows[0]["ラベル名４"].ToString() != "")
-                {
-                    lblC4.Text = dtCset.Rows[0]["ラベル名４"].ToString();
-                    lblC4.Visible = true;
-                }
-                if (dtCset.Rows[0]["ラベル名５"].ToString() != "")
-                {
-                    lblC5.Text = dtCset.Rows[0]["ラベル名５"].ToString();
-                    lblC5.Visible = true;
-                }
-                if (dtCset.Rows[0]["ラベル名６"].ToString() != "")
-                {
-                    lblC6.Text = dtCset.Rows[0]["ラベル名６"].ToString();
-                    lblC6.Visible = true;
-                }
+                shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                shouhinlist.strYMD = "";
+                shouhinlist.strEigyoushoCode = "";
+                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
+                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
+                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
+                shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.ShowDialog();
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
             }
+
         }
 
         /// <summary>
@@ -446,5 +474,6 @@ namespace KATO.Form.M1030_Shohin
                 }
             }
         }
+
     }
 }

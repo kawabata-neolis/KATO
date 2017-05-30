@@ -69,6 +69,9 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
+
+            //中分類setデータを読めるようにする
+            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
         }
 
         /// <summary>

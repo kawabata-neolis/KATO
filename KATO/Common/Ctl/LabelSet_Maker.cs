@@ -98,9 +98,9 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            if (this.CodeTxtText.Length <= 2)
+            if (this.CodeTxtText.Length <= 3)
             {
-                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(3, '0');
+                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
             //前後の空白を取り除く
