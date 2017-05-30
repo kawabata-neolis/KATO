@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblJuchuNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtJuchuNo = new KATO.Common.Ctl.BaseText();
             this.txtHachuNo = new KATO.Common.Ctl.BaseText();
@@ -609,7 +609,7 @@
             this.lsDaibunrui.Name = "lsDaibunrui";
             this.lsDaibunrui.ShowAppendFlg = false;
             this.lsDaibunrui.Size = new System.Drawing.Size(289, 22);
-            this.lsDaibunrui.SpaceCodeValue = 4;
+            this.lsDaibunrui.SpaceCodeValue = 13;
             this.lsDaibunrui.SpaceNameCode = 40;
             this.lsDaibunrui.SpaceValueAppend = 4;
             this.lsDaibunrui.TabIndex = 122;
@@ -627,7 +627,7 @@
             this.lsChubunrui.Name = "lsChubunrui";
             this.lsChubunrui.ShowAppendFlg = false;
             this.lsChubunrui.Size = new System.Drawing.Size(289, 22);
-            this.lsChubunrui.SpaceCodeValue = 4;
+            this.lsChubunrui.SpaceCodeValue = 13;
             this.lsChubunrui.SpaceNameCode = 40;
             this.lsChubunrui.SpaceValueAppend = 4;
             this.lsChubunrui.strDaibunCd = null;
@@ -639,7 +639,7 @@
             // 
             this.lsMaker.AppendLabelSize = 0;
             this.lsMaker.AppendLabelText = "";
-            this.lsMaker.CodeTxtSize = 33;
+            this.lsMaker.CodeTxtSize = 42;
             this.lsMaker.CodeTxtText = "";
             this.lsMaker.LabelName = "メーカー";
             this.lsMaker.Location = new System.Drawing.Point(10, 177);
@@ -658,35 +658,35 @@
             this.gridZanList.AllowUserToAddRows = false;
             this.gridZanList.AllowUserToResizeColumns = false;
             this.gridZanList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridZanList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridZanList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridZanList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridZanList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridZanList.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridZanList.EnableHeadersVisualStyles = false;
             this.gridZanList.Location = new System.Drawing.Point(6, 296);
             this.gridZanList.Name = "gridZanList";
             this.gridZanList.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridZanList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridZanList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridZanList.RowHeadersVisible = false;
             this.gridZanList.RowTemplate.Height = 21;
             this.gridZanList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -742,6 +742,7 @@
             this.rsKyoten.Radbtn3Text = "岐阜";
             this.rsKyoten.Size = new System.Drawing.Size(240, 22);
             this.rsKyoten.TabIndex = 132;
+            this.rsKyoten.Visible = false;
             // 
             // rsJuchuShubetsu
             // 
@@ -780,7 +781,7 @@
             // 
             this.rsGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rsGroup.LabelTitle = "グループ";
-            this.rsGroup.Location = new System.Drawing.Point(687, 177);
+            this.rsGroup.Location = new System.Drawing.Point(687, 121);
             this.rsGroup.Name = "rsGroup";
             this.rsGroup.PositionLabelTitle_X = 3;
             this.rsGroup.PositionLabelTitle_Y = 3;

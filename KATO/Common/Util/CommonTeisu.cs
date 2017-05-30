@@ -81,7 +81,7 @@ namespace KATO.Common.Util
         public const int GROUP_RADIO_2       = 3;
         public const int GROUP_RADIO_3       = 4;
 
-        public readonly string[] LIST_GROUP =
+        public static readonly string[] LIST_GROUP =
         {
              ""
             ,"0001"
