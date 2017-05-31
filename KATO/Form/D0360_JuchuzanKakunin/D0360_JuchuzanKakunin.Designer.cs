@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblJuchuNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtJuchuNo = new KATO.Common.Ctl.BaseText();
             this.txtHachuNo = new KATO.Common.Ctl.BaseText();
@@ -87,6 +87,10 @@
             this.rectSort = new System.Windows.Forms.Label();
             this.rsSearchKind = new KATO.Common.Ctl.RadSet_3btn();
             this.object_5a3a17df_6aa0_435c_affd_100058ffcf84 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtGokeiUriage = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtGokeiGenka = new KATO.Common.Ctl.BaseTextMoney();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lsJuchusha.SuspendLayout();
             this.lsTantousha.SuspendLayout();
             this.lsShiiresaki.SuspendLayout();
@@ -98,50 +102,62 @@
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 41;
             this.btnF12.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 40;
             this.btnF11.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF10
             // 
+            this.btnF10.TabIndex = 39;
             this.btnF10.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF09
             // 
+            this.btnF09.TabIndex = 38;
             this.btnF09.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF08
             // 
+            this.btnF08.TabIndex = 37;
             this.btnF08.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF07
             // 
+            this.btnF07.TabIndex = 36;
             this.btnF07.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF06
             // 
+            this.btnF06.TabIndex = 35;
             this.btnF06.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF05
             // 
+            this.btnF05.TabIndex = 34;
             this.btnF05.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 33;
             this.btnF04.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF03
             // 
+            this.btnF03.TabIndex = 32;
             this.btnF03.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF02
             // 
+            this.btnF02.TabIndex = 31;
             this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 30;
             this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // lblJuchuNo
@@ -162,7 +178,7 @@
             this.txtJuchuNo.Location = new System.Drawing.Point(105, 9);
             this.txtJuchuNo.Name = "txtJuchuNo";
             this.txtJuchuNo.Size = new System.Drawing.Size(121, 22);
-            this.txtJuchuNo.TabIndex = 88;
+            this.txtJuchuNo.TabIndex = 0;
             // 
             // txtHachuNo
             // 
@@ -170,7 +186,7 @@
             this.txtHachuNo.Location = new System.Drawing.Point(105, 37);
             this.txtHachuNo.Name = "txtHachuNo";
             this.txtHachuNo.Size = new System.Drawing.Size(121, 22);
-            this.txtHachuNo.TabIndex = 90;
+            this.txtHachuNo.TabIndex = 7;
             // 
             // lblHatchuNo
             // 
@@ -190,7 +206,7 @@
             this.txtHinmei.Location = new System.Drawing.Point(105, 65);
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(329, 22);
-            this.txtHinmei.TabIndex = 92;
+            this.txtHinmei.TabIndex = 14;
             // 
             // lblHinban
             // 
@@ -210,7 +226,7 @@
             this.txtChuban.Location = new System.Drawing.Point(105, 93);
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(329, 22);
-            this.txtChuban.TabIndex = 94;
+            this.txtChuban.TabIndex = 18;
             // 
             // lblChuban
             // 
@@ -230,7 +246,7 @@
             this.txtKyakuChuban.Location = new System.Drawing.Point(619, 93);
             this.txtKyakuChuban.Name = "txtKyakuChuban";
             this.txtKyakuChuban.Size = new System.Drawing.Size(329, 22);
-            this.txtKyakuChuban.TabIndex = 96;
+            this.txtKyakuChuban.TabIndex = 19;
             // 
             // lblKyakuChuban
             // 
@@ -262,7 +278,7 @@
             this.txtJuchuNokiFrom.Location = new System.Drawing.Point(619, 9);
             this.txtJuchuNokiFrom.Name = "txtJuchuNokiFrom";
             this.txtJuchuNokiFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchuNokiFrom.TabIndex = 98;
+            this.txtJuchuNokiFrom.TabIndex = 3;
             this.txtJuchuNokiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan2
@@ -283,7 +299,7 @@
             this.txtJuchuNokiTo.Location = new System.Drawing.Point(754, 9);
             this.txtJuchuNokiTo.Name = "txtJuchuNokiTo";
             this.txtJuchuNokiTo.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchuNokiTo.TabIndex = 100;
+            this.txtJuchuNokiTo.TabIndex = 4;
             this.txtJuchuNokiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHatchuNokiTo
@@ -292,7 +308,7 @@
             this.txtHatchuNokiTo.Location = new System.Drawing.Point(754, 37);
             this.txtHatchuNokiTo.Name = "txtHatchuNokiTo";
             this.txtHatchuNokiTo.Size = new System.Drawing.Size(100, 22);
-            this.txtHatchuNokiTo.TabIndex = 104;
+            this.txtHatchuNokiTo.TabIndex = 11;
             this.txtHatchuNokiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan4
@@ -313,7 +329,7 @@
             this.txtHatchuNokiFrom.Location = new System.Drawing.Point(619, 37);
             this.txtHatchuNokiFrom.Name = "txtHatchuNokiFrom";
             this.txtHatchuNokiFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtHatchuNokiFrom.TabIndex = 102;
+            this.txtHatchuNokiFrom.TabIndex = 10;
             this.txtHatchuNokiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHatchuNoki
@@ -334,7 +350,7 @@
             this.txtChienTo.Location = new System.Drawing.Point(754, 65);
             this.txtChienTo.Name = "txtChienTo";
             this.txtChienTo.Size = new System.Drawing.Size(100, 22);
-            this.txtChienTo.TabIndex = 108;
+            this.txtChienTo.TabIndex = 16;
             this.txtChienTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan5
@@ -355,7 +371,7 @@
             this.txtChienFrom.Location = new System.Drawing.Point(619, 65);
             this.txtChienFrom.Name = "txtChienFrom";
             this.txtChienFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtChienFrom.TabIndex = 106;
+            this.txtChienFrom.TabIndex = 15;
             this.txtChienFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblChien
@@ -376,7 +392,7 @@
             this.txtHatchubiTo.Location = new System.Drawing.Point(432, 37);
             this.txtHatchubiTo.Name = "txtHatchubiTo";
             this.txtHatchubiTo.Size = new System.Drawing.Size(100, 22);
-            this.txtHatchubiTo.TabIndex = 116;
+            this.txtHatchubiTo.TabIndex = 9;
             this.txtHatchubiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan3
@@ -397,7 +413,7 @@
             this.txtHatchubiFrom.Location = new System.Drawing.Point(297, 37);
             this.txtHatchubiFrom.Name = "txtHatchubiFrom";
             this.txtHatchubiFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtHatchubiFrom.TabIndex = 114;
+            this.txtHatchubiFrom.TabIndex = 8;
             this.txtHatchubiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHatchubi
@@ -418,7 +434,7 @@
             this.txtJuchubiTo.Location = new System.Drawing.Point(432, 9);
             this.txtJuchubiTo.Name = "txtJuchubiTo";
             this.txtJuchubiTo.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchubiTo.TabIndex = 112;
+            this.txtJuchubiTo.TabIndex = 2;
             this.txtJuchubiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan1
@@ -439,7 +455,7 @@
             this.txtJuchubiFrom.Location = new System.Drawing.Point(297, 9);
             this.txtJuchubiFrom.Name = "txtJuchubiFrom";
             this.txtJuchubiFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchubiFrom.TabIndex = 110;
+            this.txtJuchubiFrom.TabIndex = 1;
             this.txtJuchubiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblJuchubi
@@ -468,7 +484,7 @@
             this.lsHatchusha.SpaceCodeValue = 4;
             this.lsHatchusha.SpaceNameCode = 4;
             this.lsHatchusha.SpaceValueAppend = 4;
-            this.lsHatchusha.TabIndex = 117;
+            this.lsHatchusha.TabIndex = 12;
             this.lsHatchusha.ValueLabelSize = 150;
             this.lsHatchusha.ValueLabelText = "";
             // 
@@ -487,7 +503,7 @@
             this.lsJuchusha.SpaceCodeValue = 4;
             this.lsJuchusha.SpaceNameCode = 4;
             this.lsJuchusha.SpaceValueAppend = 4;
-            this.lsJuchusha.TabIndex = 118;
+            this.lsJuchusha.TabIndex = 5;
             this.lsJuchusha.ValueLabelSize = 150;
             this.lsJuchusha.ValueLabelText = "";
             // 
@@ -519,7 +535,7 @@
             this.lsTantousha.SpaceCodeValue = 4;
             this.lsTantousha.SpaceNameCode = 4;
             this.lsTantousha.SpaceValueAppend = 4;
-            this.lsTantousha.TabIndex = 119;
+            this.lsTantousha.TabIndex = 17;
             this.lsTantousha.ValueLabelSize = 150;
             this.lsTantousha.ValueLabelText = "";
             // 
@@ -561,7 +577,7 @@
             this.lsTokuisaki.SpaceCodeValue = 4;
             this.lsTokuisaki.SpaceNameCode = 4;
             this.lsTokuisaki.SpaceValueAppend = 20;
-            this.lsTokuisaki.TabIndex = 120;
+            this.lsTokuisaki.TabIndex = 6;
             this.lsTokuisaki.ValueLabelSize = 200;
             this.lsTokuisaki.ValueLabelText = "";
             // 
@@ -580,7 +596,7 @@
             this.lsShiiresaki.SpaceCodeValue = 4;
             this.lsShiiresaki.SpaceNameCode = 4;
             this.lsShiiresaki.SpaceValueAppend = 20;
-            this.lsShiiresaki.TabIndex = 121;
+            this.lsShiiresaki.TabIndex = 13;
             this.lsShiiresaki.ValueLabelSize = 200;
             this.lsShiiresaki.ValueLabelText = "";
             // 
@@ -612,7 +628,7 @@
             this.lsDaibunrui.SpaceCodeValue = 13;
             this.lsDaibunrui.SpaceNameCode = 40;
             this.lsDaibunrui.SpaceValueAppend = 4;
-            this.lsDaibunrui.TabIndex = 122;
+            this.lsDaibunrui.TabIndex = 20;
             this.lsDaibunrui.ValueLabelSize = 150;
             this.lsDaibunrui.ValueLabelText = "";
             // 
@@ -631,7 +647,7 @@
             this.lsChubunrui.SpaceNameCode = 40;
             this.lsChubunrui.SpaceValueAppend = 4;
             this.lsChubunrui.strDaibunCd = null;
-            this.lsChubunrui.TabIndex = 123;
+            this.lsChubunrui.TabIndex = 21;
             this.lsChubunrui.ValueLabelSize = 150;
             this.lsChubunrui.ValueLabelText = "";
             // 
@@ -649,7 +665,7 @@
             this.lsMaker.SpaceCodeValue = 4;
             this.lsMaker.SpaceNameCode = 24;
             this.lsMaker.SpaceValueAppend = 4;
-            this.lsMaker.TabIndex = 124;
+            this.lsMaker.TabIndex = 22;
             this.lsMaker.ValueLabelSize = 150;
             this.lsMaker.ValueLabelText = "";
             // 
@@ -658,41 +674,42 @@
             this.gridZanList.AllowUserToAddRows = false;
             this.gridZanList.AllowUserToResizeColumns = false;
             this.gridZanList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridZanList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridZanList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridZanList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridZanList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridZanList.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridZanList.EnableHeadersVisualStyles = false;
             this.gridZanList.Location = new System.Drawing.Point(6, 296);
             this.gridZanList.Name = "gridZanList";
             this.gridZanList.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridZanList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridZanList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridZanList.RowHeadersVisible = false;
             this.gridZanList.RowTemplate.Height = 21;
             this.gridZanList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridZanList.Size = new System.Drawing.Size(1408, 481);
+            this.gridZanList.Size = new System.Drawing.Size(1408, 451);
             this.gridZanList.StandardTab = true;
             this.gridZanList.TabIndex = 128;
+            this.gridZanList.TabStop = false;
             // 
             // lblSort
             // 
@@ -721,7 +738,7 @@
             this.rsNyukazumi.Radbtn1Text = "済";
             this.rsNyukazumi.Radbtn2Text = "未";
             this.rsNyukazumi.Size = new System.Drawing.Size(146, 22);
-            this.rsNyukazumi.TabIndex = 131;
+            this.rsNyukazumi.TabIndex = 25;
             // 
             // rsKyoten
             // 
@@ -741,7 +758,7 @@
             this.rsKyoten.Radbtn2Text = "本社";
             this.rsKyoten.Radbtn3Text = "岐阜";
             this.rsKyoten.Size = new System.Drawing.Size(240, 22);
-            this.rsKyoten.TabIndex = 132;
+            this.rsKyoten.TabIndex = 27;
             this.rsKyoten.Visible = false;
             // 
             // rsJuchuShubetsu
@@ -763,7 +780,7 @@
             this.rsJuchuShubetsu.Radbtn2Text = "通常受注";
             this.rsJuchuShubetsu.Radbtn3Text = "加工品受注";
             this.rsJuchuShubetsu.Size = new System.Drawing.Size(351, 22);
-            this.rsJuchuShubetsu.TabIndex = 133;
+            this.rsJuchuShubetsu.TabIndex = 26;
             // 
             // lblTitle
             // 
@@ -801,7 +818,7 @@
             this.rsGroup.Radbtn4Text = "２";
             this.rsGroup.Radbtn5Text = "３";
             this.rsGroup.Size = new System.Drawing.Size(365, 22);
-            this.rsGroup.TabIndex = 134;
+            this.rsGroup.TabIndex = 24;
             // 
             // rsSortItem
             // 
@@ -823,7 +840,7 @@
             this.rsSortItem.Radbtn3Text = "納期";
             this.rsSortItem.Radbtn4Text = "注番";
             this.rsSortItem.Size = new System.Drawing.Size(276, 20);
-            this.rsSortItem.TabIndex = 0;
+            this.rsSortItem.TabIndex = 28;
             // 
             // rsSortOrder
             // 
@@ -840,7 +857,7 @@
             this.rsSortOrder.Radbtn1Text = "Ａ－Ｚ";
             this.rsSortOrder.Radbtn2Text = "Ｚ－Ａ";
             this.rsSortOrder.Size = new System.Drawing.Size(153, 22);
-            this.rsSortOrder.TabIndex = 135;
+            this.rsSortOrder.TabIndex = 29;
             // 
             // object_36572e75_39cd_4a90_a7ca_3e43cec858cf
             // 
@@ -881,7 +898,7 @@
             this.rsSearchKind.Radbtn2Text = "受注残";
             this.rsSearchKind.Radbtn3Text = "発注残";
             this.rsSearchKind.Size = new System.Drawing.Size(275, 22);
-            this.rsSearchKind.TabIndex = 137;
+            this.rsSearchKind.TabIndex = 23;
             // 
             // object_5a3a17df_6aa0_435c_affd_100058ffcf84
             // 
@@ -894,11 +911,73 @@
             this.object_5a3a17df_6aa0_435c_affd_100058ffcf84.TabIndex = 3;
             this.object_5a3a17df_6aa0_435c_affd_100058ffcf84.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtGokeiUriage
+            // 
+            this.txtGokeiUriage.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGokeiUriage.blnCommaOK = true;
+            this.txtGokeiUriage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGokeiUriage.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtGokeiUriage.intDeciSet = 0;
+            this.txtGokeiUriage.intIntederSet = 0;
+            this.txtGokeiUriage.intShishagonyu = 0;
+            this.txtGokeiUriage.Location = new System.Drawing.Point(991, 755);
+            this.txtGokeiUriage.MaxLength = 0;
+            this.txtGokeiUriage.Name = "txtGokeiUriage";
+            this.txtGokeiUriage.ReadOnly = true;
+            this.txtGokeiUriage.Size = new System.Drawing.Size(163, 22);
+            this.txtGokeiUriage.TabIndex = 138;
+            this.txtGokeiUriage.TabStop = false;
+            this.txtGokeiUriage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtGokeiGenka
+            // 
+            this.txtGokeiGenka.blnCommaOK = true;
+            this.txtGokeiGenka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGokeiGenka.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtGokeiGenka.intDeciSet = 0;
+            this.txtGokeiGenka.intIntederSet = 0;
+            this.txtGokeiGenka.intShishagonyu = 0;
+            this.txtGokeiGenka.Location = new System.Drawing.Point(1245, 755);
+            this.txtGokeiGenka.MaxLength = 0;
+            this.txtGokeiGenka.Name = "txtGokeiGenka";
+            this.txtGokeiGenka.Size = new System.Drawing.Size(159, 22);
+            this.txtGokeiGenka.TabIndex = 139;
+            this.txtGokeiGenka.TabStop = false;
+            this.txtGokeiGenka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(1168, 758);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 140;
+            this.baseLabel1.Text = "原価金額";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel2
+            // 
+            this.baseLabel2.AutoSize = true;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel2.Location = new System.Drawing.Point(914, 758);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel2.strToolTip = null;
+            this.baseLabel2.TabIndex = 141;
+            this.baseLabel2.Text = "売上金額";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // D0360_JuchuzanKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.baseLabel2);
+            this.Controls.Add(this.baseLabel1);
+            this.Controls.Add(this.txtGokeiGenka);
+            this.Controls.Add(this.txtGokeiUriage);
             this.Controls.Add(this.rsSearchKind);
             this.Controls.Add(this.rsSortOrder);
             this.Controls.Add(this.rsSortItem);
@@ -1012,6 +1091,10 @@
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.rsSortOrder, 0);
             this.Controls.SetChildIndex(this.rsSearchKind, 0);
+            this.Controls.SetChildIndex(this.txtGokeiUriage, 0);
+            this.Controls.SetChildIndex(this.txtGokeiGenka, 0);
+            this.Controls.SetChildIndex(this.baseLabel1, 0);
+            this.Controls.SetChildIndex(this.baseLabel2, 0);
             this.lsJuchusha.ResumeLayout(false);
             this.lsJuchusha.PerformLayout();
             this.lsTantousha.ResumeLayout(false);
@@ -1087,5 +1170,9 @@
         private System.Windows.Forms.Label rectSort;
         private Common.Ctl.RadSet_3btn rsSearchKind;
         private Common.Ctl.BaseLabel object_5a3a17df_6aa0_435c_affd_100058ffcf84;
+        private Common.Ctl.BaseTextMoney txtGokeiUriage;
+        private Common.Ctl.BaseTextMoney txtGokeiGenka;
+        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseLabel baseLabel2;
     }
 }

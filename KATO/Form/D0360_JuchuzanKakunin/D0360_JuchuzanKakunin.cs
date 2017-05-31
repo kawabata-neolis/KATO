@@ -192,41 +192,46 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             //バインド、個々の幅、文章の寄せの設定
             #region
-            setColumn(juchubi,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(noki,              130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(maker,             130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hinmei,            130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchusu,           130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchuzan,          130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hatchuzan,         130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriTanka,          130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriKingaku,        130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireTanka,        130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireKingaku,      130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(chuban,            130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireGokeiKingaku, 130, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(kyakusakiChuban,   130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(tokuiName,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siirebi,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siireName,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(uriagezumi,        130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(siirezumi,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hatchubi,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(jotai,             130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchuNo,           130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(juchusha,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(tantosha,          130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
-            setColumn(hatchusha,         130, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter);
+            setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
+            setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   90);
+            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(hinmei,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
+            setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
+            setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
+            setColumn(hatchuzan,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
+            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0,.#", 100);
+            setColumn(uriKingaku,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
+            setColumn(siireTanka,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0,.#", 100);
+            setColumn(siireKingaku,      DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
+            setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
+            setColumn(siireGokeiKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  140);
+            setColumn(kyakusakiChuban,   DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
+            setColumn(tokuiName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(siirebi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
+            setColumn(siireName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(uriagezumi,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
+            setColumn(siirezumi,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
+            setColumn(hatchubi,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
+            setColumn(jotai,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   90);
+            setColumn(juchuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
+            setColumn(juchusha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
+            setColumn(tantosha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
+            setColumn(hatchusha,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
             #endregion
         }
 
-        private void setColumn (DataGridViewTextBoxColumn col, int intLen, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader)
+        private void setColumn (DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
             gridZanList.Columns.Add(col);
             if (gridZanList.Columns[col.Name] != null) {
                 gridZanList.Columns[col.Name].Width = intLen;
                 gridZanList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
                 gridZanList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridZanList.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
             }
         }
 
@@ -353,6 +358,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 DataTable dtZanList = bis.getZanList(listParam);
                 gridZanList.DataSource = dtZanList;
+
+                if (dtZanList != null && dtZanList.Rows.Count > 0)
+                {
+                    Control cNow = this.ActiveControl;
+                    txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
+                    txtGokeiUriage.Focus();
+                    txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入単価)", null)).ToString();
+                    txtGokeiGenka.Focus();
+                    cNow.Focus();
+                }
 
             } catch (Exception ex)
             {
