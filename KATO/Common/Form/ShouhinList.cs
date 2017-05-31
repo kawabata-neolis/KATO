@@ -45,6 +45,8 @@ namespace KATO.Common.Form
         //DB参照の場所を判断（テキストボックスから）
         int intDBjud = 0;
 
+        Boolean blnZaikoKensaku = true;
+
         /// <summary>
         /// ShouhinList
         /// フォーム関係の設定（通常のテキストボックスから）
@@ -72,6 +74,9 @@ namespace KATO.Common.Form
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            //未登録棚番を使用する場合
+            chkNotToroku.Checked = false;
         }
 
         /// <summary>
@@ -111,16 +116,13 @@ namespace KATO.Common.Form
 
             setShohinView(lstInt);
 
-            //未登録棚番を使用する場合
-            chkNotToroku.Checked = false;
-
-            if (intFrmKind == 11)
-            {
-                lblDataFree.Visible = false;
-                btnHonshaZaiko.Visible = false;
-                btnGifuZaiko.Visible = false;
-                chkNotToroku.Visible = true;
-            }
+            //if (intFrmKind == 11)
+            //{
+            //    lblDataFree.Visible = false;
+            //    btnHonshaZaiko.Visible = false;
+            //    btnGifuZaiko.Visible = false;
+            //    chkNotToroku.Visible = true;
+            //}
         }
 
         ///<summary>
@@ -178,7 +180,7 @@ namespace KATO.Common.Form
             gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridTorihiki.Columns["メーカー"].Width = 100;
+            gridTorihiki.Columns["メーカー"].Width = 150;
             gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -206,7 +208,7 @@ namespace KATO.Common.Form
         ///</summary>
         private void setStart()
         {
-            if (intFrmKind == 11)
+            if (intFrmKind == CommonTeisu.FRM_SHOHIN_TANA)
             {
                 DataGridViewTextBoxColumn tanaHonsha = new DataGridViewTextBoxColumn();
                 tanaHonsha.DataPropertyName = "棚番本社";
@@ -228,8 +230,16 @@ namespace KATO.Common.Form
                 gridTorihiki.Columns["棚番岐阜"].Width = 110;
                 gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                chkNotToroku.Visible = true;
+                chkNotToroku.Checked = true;
+                lblDataFree.Visible = false;
+                btnHonshaZaiko.Visible = false;
+                btnGifuZaiko.Visible = false;
+
+                blnZaikoKensaku = false;
             }
-            else if (intFrmKind == 5)
+            else if (intFrmKind == CommonTeisu.FRM_SHOHIN || intFrmKind == CommonTeisu.FRM_TANAOROSHI)
             {
                 DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
                 zaikoHonsha.DataPropertyName = "本社在庫";
@@ -566,11 +576,11 @@ namespace KATO.Common.Form
 
             gridTorihiki.Columns.Clear();
 
-            //DataGridViewの初期設定
-            gridSetUp();
+            ////DataGridViewの初期設定
+            //gridSetUp();
 
-            //modeで判定して項目を追加
-            setStart();
+            ////modeで判定して項目を追加
+            //setStart();
 
             //データ渡し用
             lstInt.Add(0);
@@ -589,11 +599,6 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();
             List<Boolean> lstBoolean = new List<Boolean>();
-
-            if (intFrmKind == 11)
-            {
-                chkNotToroku.Checked = true;
-            }
 
             gridTorihiki.Enabled = true;
             gridTorihiki.DataSource = null;
@@ -615,17 +620,36 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                dtView = shohinlistB.setShohinView(lstInt, lstString, lstBoolean);
+                dtView = shohinlistB.setShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
+                
+                //在庫数の小数点以下を削除
+                DataColumnCollection columns = dtView.Columns;
+
+                if (columns.Contains("本社在庫"))
+                {
+                    //指定日在庫、棚卸数量の小数点切り下げ
+                    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+                    {
+                        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["本社在庫"].ToString()));
+                        dtView.Rows[cnt]["本社在庫"] = decHonsha.ToString();
+                        //ヘッダーを含まない特定のセルの背景色を赤色にする
+                        this.gridTorihiki.Columns["本社在庫"].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+
+                if (columns.Contains("岐阜在庫"))
+                {
+                    //指定日在庫、棚卸数量の小数点切り下げ
+                    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+                    {
+                        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["岐阜在庫"].ToString()));
+                        dtView.Rows[cnt]["岐阜在庫"] = decHonsha.ToString();
+                    }
+                }
 
                 gridTorihiki.DataSource = dtView;
                 this.gridTorihiki.Columns["コード"].Visible = false;
                 this.gridTorihiki.Columns["大分類名"].Visible = false;
-
-                if(intFrmKind == 11)
-                {
-                    //ヘッダーを含まない特定のセルの背景色を赤色にする
-                    this.gridTorihiki.Columns["棚番本社"].DefaultCellStyle.BackColor = Color.Red;
-                }
 
                 lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
                 gridTorihiki.Focus();
@@ -841,6 +865,7 @@ namespace KATO.Common.Form
         {
             labelSet_Maker.Focus();
         }
+
 
         ///<summary>
         ///txtDaibunruiLieave

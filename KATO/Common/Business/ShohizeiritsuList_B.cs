@@ -135,7 +135,7 @@ namespace KATO.Common.Business
                 string strSelectMonth = "";
 
                 //月データ
-                strSelectMonth = strSelectMonth = dateSelect.Month.ToString();
+                strSelectMonth = dateSelect.Month.ToString();
 
                 if (strSelectMonth.Length == 1)
                 {

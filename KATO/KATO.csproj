@@ -710,12 +710,16 @@
     <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\MakerList_View.sql" />
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql" />
+    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE_NAME.sql" />
+    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql" />
     <Content Include="SQL\Common\C_LIST_GroupCd_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Eigyosho_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Chokusosaki_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE_NAME.sql" />
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />

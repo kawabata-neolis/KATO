@@ -78,17 +78,7 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (intFrmKind == CommonTeisu.FRM_DAIBUNRUI && frm.Name.Equals("M1010_Daibunrui"))
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_CHUBUNRUI && frm.Name.Equals("M1110_Chubunrui"))
-                {
-                    break;
-                }
-                //目的のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
+                if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;

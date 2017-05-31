@@ -775,6 +775,16 @@ namespace KATO.Form.F0140_TanaorosiInput
         }
 
         ///<summary>
+        ///setShohinClose
+        ///TanabanListが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void setShohinClose()
+        {
+//修正の可能性あり（フォーカス追加）
+            txtTanasuu.Focus();
+        }
+
+        ///<summary>
         ///updTxtKensakuLeave
         //検索ウィンドウか別テキストボックスに移動
         ///</summary>

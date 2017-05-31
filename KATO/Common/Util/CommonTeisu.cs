@@ -47,6 +47,7 @@ namespace KATO.Common.Util
         public const int FRM_DAIBUNRUI = 1010;
         public const int FRM_MAKER = 1020;
         public const int FRM_SHOHIN = 1030;
+        public const int FRM_SHOHIN_TANA = 10301;
         public const int FRM_SHOUHINLIST = 1031;
         public const int FRM_TORIHIKIKBN = 1040;
         public const int FRM_TANTOUSHA = 1050;
