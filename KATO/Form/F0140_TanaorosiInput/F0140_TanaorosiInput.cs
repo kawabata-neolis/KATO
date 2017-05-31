@@ -792,7 +792,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                     shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
                     shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                     shouhinlist.strKensaku = txtKensaku.Text;
-                    shouhinlist.Show();
+                    shouhinlist.ShowDialog();
 
                 }
                 catch (Exception ex)

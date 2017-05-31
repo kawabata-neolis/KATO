@@ -175,6 +175,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(15, 15);
+            this.lblTitle.strToolTip = null;
             this.lblTitle.TabIndex = 6;
             this.lblTitle.Text = " ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,14 +184,14 @@
             // 
             this.labelSet_Maker.AppendLabelSize = 0;
             this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 30;
+            this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.Controls.Add(this.nameLabel);
             this.labelSet_Maker.LabelName = "メーカー";
             this.labelSet_Maker.Location = new System.Drawing.Point(36, 144);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(416, 22);
+            this.labelSet_Maker.Size = new System.Drawing.Size(363, 22);
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 36;
             this.labelSet_Maker.SpaceValueAppend = 4;
@@ -205,6 +206,7 @@
             this.nameLabel.Location = new System.Drawing.Point(2, 3);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(71, 15);
+            this.nameLabel.strToolTip = null;
             this.nameLabel.TabIndex = 0;
             this.nameLabel.Text = "メーカー";
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -220,8 +222,8 @@
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(36, 115);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(416, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 10;
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(363, 22);
+            this.labelSet_Chubunrui.SpaceCodeValue = 20;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
@@ -236,6 +238,7 @@
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.Location = new System.Drawing.Point(2, 3);
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.Name = "object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577";
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.Size = new System.Drawing.Size(103, 15);
+            this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.strToolTip = null;
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.TabIndex = 0;
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.Text = "中分類コード";
             this.object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,14 +256,13 @@
             this.labelSet_Daibunrui.LsSubchubundata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(416, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 10;
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(363, 22);
+            this.labelSet_Daibunrui.SpaceCodeValue = 20;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
             this.labelSet_Daibunrui.TabIndex = 0;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
-            this.labelSet_Daibunrui.Leave += new System.EventHandler(this.labelSet_Daibunrui_Leave);
             // 
             // object_a1a44746_4090_422c_9959_b045440f4307
             // 
@@ -269,6 +271,7 @@
             this.object_a1a44746_4090_422c_9959_b045440f4307.Location = new System.Drawing.Point(2, 3);
             this.object_a1a44746_4090_422c_9959_b045440f4307.Name = "object_a1a44746_4090_422c_9959_b045440f4307";
             this.object_a1a44746_4090_422c_9959_b045440f4307.Size = new System.Drawing.Size(103, 15);
+            this.object_a1a44746_4090_422c_9959_b045440f4307.strToolTip = null;
             this.object_a1a44746_4090_422c_9959_b045440f4307.TabIndex = 0;
             this.object_a1a44746_4090_422c_9959_b045440f4307.Text = "大分類コード";
             this.object_a1a44746_4090_422c_9959_b045440f4307.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -277,19 +280,20 @@
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtKensaku.Location = new System.Drawing.Point(143, 199);
+            this.txtKensaku.Location = new System.Drawing.Point(143, 195);
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(322, 22);
             this.txtKensaku.TabIndex = 3;
-            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKenKataTxtKeyDown);
             // 
             // lblKensaku
             // 
             this.lblKensaku.AutoSize = true;
             this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKensaku.Location = new System.Drawing.Point(38, 202);
+            this.lblKensaku.Location = new System.Drawing.Point(38, 198);
             this.lblKensaku.Name = "lblKensaku";
             this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.strToolTip = null;
             this.lblKensaku.TabIndex = 99;
             this.lblKensaku.Text = "検索文字列";
             this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -301,6 +305,7 @@
             this.lblText2.Location = new System.Drawing.Point(355, 46);
             this.lblText2.Name = "lblText2";
             this.lblText2.Size = new System.Drawing.Size(263, 15);
+            this.lblText2.strToolTip = null;
             this.lblText2.TabIndex = 101;
             this.lblText2.Text = "「新規登録」を選択してください。";
             this.lblText2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,6 +317,7 @@
             this.lblText1.Location = new System.Drawing.Point(355, 27);
             this.lblText1.Name = "lblText1";
             this.lblText1.Size = new System.Drawing.Size(375, 15);
+            this.lblText1.strToolTip = null;
             this.lblText1.TabIndex = 100;
             this.lblText1.Text = "※型番を一部変更して新規として登録する場合は、";
             this.lblText1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -346,6 +352,7 @@
             this.lblShohinCd.Location = new System.Drawing.Point(408, 88);
             this.lblShohinCd.Name = "lblShohinCd";
             this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
+            this.lblShohinCd.strToolTip = null;
             this.lblShohinCd.TabIndex = 103;
             this.lblShohinCd.Text = "商品コード";
             this.lblShohinCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -421,6 +428,7 @@
             this.txtHyoka.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHyoka.intDeciSet = 2;
             this.txtHyoka.intIntederSet = 0;
+            this.txtHyoka.intShishagonyu = 0;
             this.txtHyoka.Location = new System.Drawing.Point(143, 491);
             this.txtHyoka.MaxLength = 3;
             this.txtHyoka.Name = "txtHyoka";
@@ -436,6 +444,7 @@
             this.txtShire.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShire.intDeciSet = 2;
             this.txtShire.intIntederSet = 0;
+            this.txtShire.intShishagonyu = 0;
             this.txtShire.Location = new System.Drawing.Point(143, 462);
             this.txtShire.MaxLength = 3;
             this.txtShire.Name = "txtShire";
@@ -451,6 +460,7 @@
             this.txtTeika.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTeika.intDeciSet = 2;
             this.txtTeika.intIntederSet = 0;
+            this.txtTeika.intShishagonyu = 0;
             this.txtTeika.Location = new System.Drawing.Point(426, 434);
             this.txtTeika.MaxLength = 3;
             this.txtTeika.Name = "txtTeika";
@@ -466,6 +476,7 @@
             this.txtHyojun.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHyojun.intDeciSet = 2;
             this.txtHyojun.intIntederSet = 0;
+            this.txtHyojun.intShishagonyu = 0;
             this.txtHyojun.Location = new System.Drawing.Point(143, 434);
             this.txtHyojun.MaxLength = 3;
             this.txtHyojun.Name = "txtHyojun";
@@ -533,6 +544,7 @@
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.Location = new System.Drawing.Point(2, 3);
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.Name = "object_b5e58df5_5c06_48fb_be83_f7b312adb3ed";
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.Size = new System.Drawing.Size(71, 15);
+            this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.strToolTip = null;
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.TabIndex = 0;
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.Text = "棚番岐阜";
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -544,6 +556,7 @@
             this.baseLabel2.Location = new System.Drawing.Point(2, 3);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel2.strToolTip = null;
             this.baseLabel2.TabIndex = 0;
             this.baseLabel2.Text = "棚番岐阜";
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -555,6 +568,7 @@
             this.baseLabel1.Location = new System.Drawing.Point(2, 3);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel1.strToolTip = null;
             this.baseLabel1.TabIndex = 0;
             this.baseLabel1.Text = "棚番";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -585,6 +599,7 @@
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.Location = new System.Drawing.Point(2, 3);
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.Name = "object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349";
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.Size = new System.Drawing.Size(71, 15);
+            this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.strToolTip = null;
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.TabIndex = 0;
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.Text = "棚番本社";
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -596,6 +611,7 @@
             this.baseLabel3.Location = new System.Drawing.Point(38, 623);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel3.strToolTip = null;
             this.baseLabel3.TabIndex = 122;
             this.baseLabel3.Text = "メモ";
             this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -607,6 +623,7 @@
             this.lblZaikoData.Location = new System.Drawing.Point(170, 524);
             this.lblZaikoData.Name = "lblZaikoData";
             this.lblZaikoData.Size = new System.Drawing.Size(199, 15);
+            this.lblZaikoData.strToolTip = null;
             this.lblZaikoData.TabIndex = 123;
             this.lblZaikoData.Text = "（０：する　１：しない）";
             this.lblZaikoData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -618,6 +635,7 @@
             this.lblZaikokbn.Location = new System.Drawing.Point(38, 524);
             this.lblZaikokbn.Name = "lblZaikokbn";
             this.lblZaikokbn.Size = new System.Drawing.Size(103, 15);
+            this.lblZaikokbn.strToolTip = null;
             this.lblZaikokbn.TabIndex = 124;
             this.lblZaikokbn.Text = "在庫管理区分";
             this.lblZaikokbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -629,6 +647,7 @@
             this.lblHyoka.Location = new System.Drawing.Point(38, 494);
             this.lblHyoka.Name = "lblHyoka";
             this.lblHyoka.Size = new System.Drawing.Size(71, 15);
+            this.lblHyoka.strToolTip = null;
             this.lblHyoka.TabIndex = 125;
             this.lblHyoka.Text = "評価単価";
             this.lblHyoka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -640,6 +659,7 @@
             this.lblShire.Location = new System.Drawing.Point(38, 465);
             this.lblShire.Name = "lblShire";
             this.lblShire.Size = new System.Drawing.Size(71, 15);
+            this.lblShire.strToolTip = null;
             this.lblShire.TabIndex = 126;
             this.lblShire.Text = "仕入単価";
             this.lblShire.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -651,6 +671,7 @@
             this.lblHyojun.Location = new System.Drawing.Point(38, 437);
             this.lblHyojun.Name = "lblHyojun";
             this.lblHyojun.Size = new System.Drawing.Size(71, 15);
+            this.lblHyojun.strToolTip = null;
             this.lblHyojun.TabIndex = 127;
             this.lblHyojun.Text = "標準売価";
             this.lblHyojun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -662,6 +683,7 @@
             this.lblHako.Location = new System.Drawing.Point(344, 465);
             this.lblHako.Name = "lblHako";
             this.lblHako.Size = new System.Drawing.Size(55, 15);
+            this.lblHako.strToolTip = null;
             this.lblHako.TabIndex = 128;
             this.lblHako.Text = "箱入数";
             this.lblHako.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -673,6 +695,7 @@
             this.lblTeika.Location = new System.Drawing.Point(344, 437);
             this.lblTeika.Name = "lblTeika";
             this.lblTeika.Size = new System.Drawing.Size(39, 15);
+            this.lblTeika.strToolTip = null;
             this.lblTeika.TabIndex = 129;
             this.lblTeika.Text = "定価";
             this.lblTeika.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -684,6 +707,7 @@
             this.lblHachuData.Location = new System.Drawing.Point(173, 408);
             this.lblHachuData.Name = "lblHachuData";
             this.lblHachuData.Size = new System.Drawing.Size(263, 15);
+            this.lblHachuData.strToolTip = null;
             this.lblHachuData.TabIndex = 121;
             this.lblHachuData.Text = "(Y：受注数≠受注数は不可　N：可)";
             this.lblHachuData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -695,6 +719,7 @@
             this.lblHachukbn.Location = new System.Drawing.Point(38, 408);
             this.lblHachukbn.Name = "lblHachukbn";
             this.lblHachukbn.Size = new System.Drawing.Size(71, 15);
+            this.lblHachukbn.strToolTip = null;
             this.lblHachukbn.TabIndex = 130;
             this.lblHachukbn.Text = "発注区分";
             this.lblHachukbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -719,6 +744,7 @@
             this.lblToroku.Location = new System.Drawing.Point(1203, 649);
             this.lblToroku.Name = "lblToroku";
             this.lblToroku.Size = new System.Drawing.Size(55, 15);
+            this.lblToroku.strToolTip = null;
             this.lblToroku.TabIndex = 131;
             this.lblToroku.Text = "登録日";
             this.lblToroku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -727,11 +753,12 @@
             // 
             this.lblC1.AutoSize = true;
             this.lblC1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC1.Location = new System.Drawing.Point(235, 291);
+            this.lblC1.Location = new System.Drawing.Point(225, 291);
             this.lblC1.Name = "lblC1";
-            this.lblC1.Size = new System.Drawing.Size(23, 15);
+            this.lblC1.Size = new System.Drawing.Size(39, 15);
+            this.lblC1.strToolTip = null;
             this.lblC1.TabIndex = 99;
-            this.lblC1.Text = "C1";
+            this.lblC1.Text = "型式";
             this.lblC1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC1.Visible = false;
             // 
@@ -742,6 +769,7 @@
             this.txtHako.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHako.intDeciSet = 0;
             this.txtHako.intIntederSet = 0;
+            this.txtHako.intShishagonyu = 0;
             this.txtHako.Location = new System.Drawing.Point(426, 462);
             this.txtHako.MaxLength = 0;
             this.txtHako.Name = "txtHako";
@@ -754,11 +782,12 @@
             // 
             this.lblC2.AutoSize = true;
             this.lblC2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC2.Location = new System.Drawing.Point(562, 291);
+            this.lblC2.Location = new System.Drawing.Point(547, 291);
             this.lblC2.Name = "lblC2";
-            this.lblC2.Size = new System.Drawing.Size(23, 15);
+            this.lblC2.Size = new System.Drawing.Size(55, 15);
+            this.lblC2.strToolTip = null;
             this.lblC2.TabIndex = 99;
-            this.lblC2.Text = "C2";
+            this.lblC2.Text = "副番１";
             this.lblC2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC2.Visible = false;
             // 
@@ -766,11 +795,12 @@
             // 
             this.lblC3.AutoSize = true;
             this.lblC3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC3.Location = new System.Drawing.Point(781, 291);
+            this.lblC3.Location = new System.Drawing.Point(766, 291);
             this.lblC3.Name = "lblC3";
-            this.lblC3.Size = new System.Drawing.Size(23, 15);
+            this.lblC3.Size = new System.Drawing.Size(55, 15);
+            this.lblC3.strToolTip = null;
             this.lblC3.TabIndex = 99;
-            this.lblC3.Text = "C3";
+            this.lblC3.Text = "副番２";
             this.lblC3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC3.Visible = false;
             // 
@@ -778,11 +808,12 @@
             // 
             this.lblC4.AutoSize = true;
             this.lblC4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC4.Location = new System.Drawing.Point(971, 291);
+            this.lblC4.Location = new System.Drawing.Point(956, 291);
             this.lblC4.Name = "lblC4";
-            this.lblC4.Size = new System.Drawing.Size(23, 15);
+            this.lblC4.Size = new System.Drawing.Size(55, 15);
+            this.lblC4.strToolTip = null;
             this.lblC4.TabIndex = 99;
-            this.lblC4.Text = "C4";
+            this.lblC4.Text = "副番３";
             this.lblC4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC4.Visible = false;
             // 
@@ -790,11 +821,12 @@
             // 
             this.lblC5.AutoSize = true;
             this.lblC5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC5.Location = new System.Drawing.Point(1137, 291);
+            this.lblC5.Location = new System.Drawing.Point(1122, 291);
             this.lblC5.Name = "lblC5";
-            this.lblC5.Size = new System.Drawing.Size(23, 15);
+            this.lblC5.Size = new System.Drawing.Size(55, 15);
+            this.lblC5.strToolTip = null;
             this.lblC5.TabIndex = 99;
-            this.lblC5.Text = "C5";
+            this.lblC5.Text = "副番４";
             this.lblC5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC5.Visible = false;
             // 
@@ -802,11 +834,12 @@
             // 
             this.lblC6.AutoSize = true;
             this.lblC6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblC6.Location = new System.Drawing.Point(1303, 291);
+            this.lblC6.Location = new System.Drawing.Point(1288, 291);
             this.lblC6.Name = "lblC6";
-            this.lblC6.Size = new System.Drawing.Size(23, 15);
+            this.lblC6.Size = new System.Drawing.Size(55, 15);
+            this.lblC6.strToolTip = null;
             this.lblC6.TabIndex = 99;
-            this.lblC6.Text = "C6";
+            this.lblC6.Text = "副番５";
             this.lblC6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblC6.Visible = false;
             // 

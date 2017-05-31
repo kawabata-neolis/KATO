@@ -81,7 +81,7 @@ namespace KATO.Common.Util
         /// <param name="sqlStr">SQLクエリ</param>
         /// <returns>取得したデータ(DataTable)</returns>
         public DataTable ReadSql(string sqlStr)
-        {
+            {
             //DataTable retDt = null;
             DataTable retDt = new DataTable();
             Boolean isConnect = false;
