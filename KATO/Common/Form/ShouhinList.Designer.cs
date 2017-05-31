@@ -81,7 +81,7 @@ namespace KATO.Common.Form
             // 
             this.labelSet_Maker.AppendLabelSize = 0;
             this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 33;
+            this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
             this.labelSet_Maker.Location = new System.Drawing.Point(12, 69);
@@ -100,14 +100,14 @@ namespace KATO.Common.Form
             // 
             this.labelSet_Chubunrui.AppendLabelSize = 0;
             this.labelSet_Chubunrui.AppendLabelText = "";
-            this.labelSet_Chubunrui.CodeTxtSize = 33;
+            this.labelSet_Chubunrui.CodeTxtSize = 24;
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.LabelName = "中分類";
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(12, 40);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
             this.labelSet_Chubunrui.Size = new System.Drawing.Size(293, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 4;
+            this.labelSet_Chubunrui.SpaceCodeValue = 18;
             this.labelSet_Chubunrui.SpaceNameCode = 40;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
@@ -120,7 +120,7 @@ namespace KATO.Common.Form
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
             this.labelSet_Daibunrui.AppendLabelText = "";
-            this.labelSet_Daibunrui.CodeTxtSize = 33;
+            this.labelSet_Daibunrui.CodeTxtSize = 24;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 12);
@@ -129,7 +129,7 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(308, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui.SpaceCodeValue = 18;
             this.labelSet_Daibunrui.SpaceNameCode = 40;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
             this.labelSet_Daibunrui.TabIndex = 108;
@@ -238,6 +238,7 @@ namespace KATO.Common.Form
             this.lblDataFree.Location = new System.Drawing.Point(337, 98);
             this.lblDataFree.Name = "lblDataFree";
             this.lblDataFree.Size = new System.Drawing.Size(367, 15);
+            this.lblDataFree.strToolTip = null;
             this.lblDataFree.TabIndex = 100;
             this.lblDataFree.Text = "※ﾌﾘｰ在庫の表示は右のボタンを押してください。";
             this.lblDataFree.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,6 +250,7 @@ namespace KATO.Common.Form
             this.lblKensaku.Location = new System.Drawing.Point(12, 100);
             this.lblKensaku.Name = "lblKensaku";
             this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.strToolTip = null;
             this.lblKensaku.TabIndex = 100;
             this.lblKensaku.Text = "検索文字列";
             this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -260,6 +262,7 @@ namespace KATO.Common.Form
             this.lblGihu.Location = new System.Drawing.Point(712, 56);
             this.lblGihu.Name = "lblGihu";
             this.lblGihu.Size = new System.Drawing.Size(39, 15);
+            this.lblGihu.strToolTip = null;
             this.lblGihu.TabIndex = 99;
             this.lblGihu.Text = "岐阜";
             this.lblGihu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -272,6 +275,7 @@ namespace KATO.Common.Form
             this.lblHon.Location = new System.Drawing.Point(609, 56);
             this.lblHon.Name = "lblHon";
             this.lblHon.Size = new System.Drawing.Size(39, 15);
+            this.lblHon.strToolTip = null;
             this.lblHon.TabIndex = 99;
             this.lblHon.Text = "本社";
             this.lblHon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

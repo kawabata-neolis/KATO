@@ -178,7 +178,7 @@ namespace KATO.Common.Form
             gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridTorihiki.Columns["メーカー"].Width = 100;
+            gridTorihiki.Columns["メーカー"].Width = 150;
             gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -229,7 +229,7 @@ namespace KATO.Common.Form
                 gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
-            else if (intFrmKind == 5)
+            else if (intFrmKind == CommonTeisu.FRM_SHOHIN)
             {
                 DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
                 zaikoHonsha.DataPropertyName = "本社在庫";
@@ -590,10 +590,10 @@ namespace KATO.Common.Form
             List<int> lstInt = new List<int>();
             List<Boolean> lstBoolean = new List<Boolean>();
 
-            if (intFrmKind == 11)
-            {
-                chkNotToroku.Checked = true;
-            }
+            //if (intFrmKind == CommonTeisu.FRM_SHOHIN)
+            //{
+            //    chkNotToroku.Checked = true;
+            //}
 
             gridTorihiki.Enabled = true;
             gridTorihiki.DataSource = null;
@@ -621,7 +621,7 @@ namespace KATO.Common.Form
                 this.gridTorihiki.Columns["コード"].Visible = false;
                 this.gridTorihiki.Columns["大分類名"].Visible = false;
 
-                if(intFrmKind == 11)
+                if(intFrmKind == CommonTeisu.FRM_SHOHIN)
                 {
                     //ヘッダーを含まない特定のセルの背景色を赤色にする
                     this.gridTorihiki.Columns["棚番本社"].DefaultCellStyle.BackColor = Color.Red;
@@ -841,6 +841,7 @@ namespace KATO.Common.Form
         {
             labelSet_Maker.Focus();
         }
+
 
         ///<summary>
         ///txtDaibunruiLieave

@@ -363,7 +363,14 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                 shouhinlist.strKensaku = txtKensaku.Text;
                 shouhinlist.ShowDialog();
-
+                
+                txtHyojun.Focus();
+                //this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                txtShire.Focus();
+                //txtHyoka.Focus();
+                //txtTatene.Focus();
+                //txtTeika.Focus();
+                //txtData1.Focus();
             }
             catch (Exception ex)
             {
@@ -403,25 +410,53 @@ namespace KATO.Form.M1030_Shohin
         /// setShouhin
         ///取り出したデータをテキストボックスに配置（商品リスト）
         /// </summary>
-        public void setShouhin(List<string> lstStringShohin, List<DataTable> lstDTShohin)
+        public void setShouhin(DataTable dtShohin)
         {
-            //if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false)
-            //{
-            //    return;
-            //}
+            delFormClear(this);
 
-            //labelSet_Daibunrui.CodeTxtText = lstDTtana[0].Rows[0]["大分類コード"].ToString();
-            //labelSet_Daibunrui.ValueLabelText = lstDTtana[0].Rows[0]["大分類名"].ToString();
-            //labelSet_Chubunrui_Edit.CodeTxtText = lstDTtana[1].Rows[0]["中分類コード"].ToString();
-            //labelSet_Chubunrui_Edit.ValueLabelText = lstDTtana[1].Rows[0]["中分類名"].ToString();
-            //labelSet_Maker_Edit.CodeTxtText = lstDTtana[2].Rows[0]["メーカーコード"].ToString();
-            //labelSet_Maker_Edit.ValueLabelText = lstDTtana[2].Rows[0]["メーカー名"].ToString();
-            //labelSet_Tanaban_Edit.CodeTxtText = lstDTtana[3].Rows[0]["棚番"].ToString();
-            //labelSet_Tanaban_Edit.ValueLabelText = lstDTtana[4].Rows[0]["棚番名"].ToString();
-            //txtTanasuu.Text = lstDTtana[3].Rows[0]["棚卸数量"].ToString();
-            //txtTyoubosuu.Text = lstDTtana[3].Rows[0]["指定日在庫"].ToString();
-            //lblDspShouhin.Text = lstStringTana[1].ToString();
+            labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
+            labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
+            labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
+            txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
 
+            txtData1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
+            txtData2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
+            txtData3.Text = dtShohin.Rows[0]["Ｃ３"].ToString();
+            txtData4.Text = dtShohin.Rows[0]["Ｃ４"].ToString();
+            txtData5.Text = dtShohin.Rows[0]["Ｃ５"].ToString();
+            txtData6.Text = dtShohin.Rows[0]["Ｃ６"].ToString();
+            txtHachukbn.Text = dtShohin.Rows[0]["発注区分"].ToString();
+            txtHyojun.Text = dtShohin.Rows[0]["標準売価"].ToString();
+            txtShire.Text = dtShohin.Rows[0]["仕入単価"].ToString();
+            txtHyoka.Text = dtShohin.Rows[0]["評価単価"].ToString();
+            txtTatene.Text = dtShohin.Rows[0]["建値仕入単価"].ToString();
+            txtZaiko.Text = dtShohin.Rows[0]["在庫管理区分"].ToString();
+            labelSet_TanabanHonsha.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
+            labelSet_TanabanGihu.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
+            txtMemo.Text = dtShohin.Rows[0]["メモ"].ToString();
+            txtTeika.Text = dtShohin.Rows[0]["定価"].ToString();
+            txtHako.Text = dtShohin.Rows[0]["箱入数"].ToString();
+
+            lblGrayShohin.Text =
+                labelSet_Maker.CodeTxtText + " " +
+                labelSet_Daibunrui.CodeTxtText + " " +
+                labelSet_Chubunrui.CodeTxtText + " " +
+                txtData1.Text + " " +
+                txtData2.Text + " " +
+                txtData3.Text + " " +
+                txtData4.Text + " " +
+                txtData5.Text + " " +
+                txtData6.Text + " ";
+
+        }
+
+        ///<summary>
+        ///setShohinClose
+        ///TanabanListが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void setShohinClose()
+        {
+            txtData1.Focus();
         }
 
         /// <summary>
@@ -475,5 +510,16 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
+        /// <summary>
+        /// txtMemo_KeyDown
+        /// エンターでの改行で5行以上いった場合動作を止める
+        /// </summary>
+        private void txtMemo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtMemo.Lines.Length > 5)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
