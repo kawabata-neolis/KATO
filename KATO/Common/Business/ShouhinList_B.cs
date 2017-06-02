@@ -32,23 +32,23 @@ namespace KATO.Common.Business
         {
             string strWhere = "";
 
-            strWhere = "WHERE 削除 = 'N'";
+            strWhere = "WHERE a.削除 = 'N'";
 
             if (lstString[0] != "")
             {
-                strWhere = strWhere + " AND 大分類コード='" + lstString[0] + "'";
+                strWhere = strWhere + " AND a.大分類コード='" + lstString[0] + "'";
             }
             if (lstString[1] != "")
             {
-                strWhere = strWhere + " AND 中分類コード='" + lstString[1] + "'";
+                strWhere = strWhere + " AND a.中分類コード='" + lstString[1] + "'";
             }
             if (lstString[2] != "")
             {
-                strWhere = strWhere + " AND メーカーコード='" + lstString[2] + "'";
+                strWhere = strWhere + " AND a.メーカーコード='" + lstString[2] + "'";
             }
             if (lstString[3] != "")
             {
-                strWhere = strWhere + " AND REPLACE(( ISNULL(Ｃ１,'') + ISNULL(Ｃ２,'') + ISNULL(Ｃ３,'') + ISNULL(Ｃ４,'') + ISNULL(Ｃ５,'') + ISNULL(Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
+                strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
             }
             if (lstBoolean[0] == true)
             {
@@ -57,6 +57,7 @@ namespace KATO.Common.Business
                 strWhere = strWhere + " OR ((SELECT 棚番名 FROM 棚番 WHERE a.棚番岐阜=棚番.棚番)  IS NULL)";
                 strWhere = strWhere + " )";
             }
+            //ウィンドウで動きを変える
 
             if (lstString[4] == "" && lstString[5] == "" && blnZaikoKensaku == true)
             {
@@ -105,18 +106,23 @@ namespace KATO.Common.Business
                         dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, a.棚番本社 AS 棚番本社, a.棚番岐阜 AS 棚番岐阜 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
                         break;
 
-                    //case 0:
-                    //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                    //    break;
-                    //case 1:
-                    //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0001', 商品コード, '2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                    //    break;
-                    //case 2:
-                    //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                    //    break;
-                    //case 3:
-                    //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31'), dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                    //    break;
+                        //case 0:
+                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //    break;
+                        //case 1:
+                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0001', 商品コード, '2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //    break;
+                        //case 2:
+                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //    break;
+                        //case 3:
+                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31'), dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
             }
             return (dtView);
         }
@@ -145,7 +151,7 @@ namespace KATO.Common.Business
                     if (lstString[0] == "")
                     {
                         lstString[0] = "";
-                        return(dtSetData);
+                        return (dtSetData);
                     }
                     else if (lstString[0].Length == 1)
                     {
@@ -165,7 +171,7 @@ namespace KATO.Common.Business
                     string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                     //配列設定
-                    string[] aryStr = { lstString[0]};
+                    string[] aryStr = { lstString[0] };
 
                     strSQLInput = string.Format(strSQLInput, aryStr);
 
@@ -179,7 +185,7 @@ namespace KATO.Common.Business
                     if (lstString[1] == "")
                     {
                         lstString[1] = "";
-                        return(dtSetData);
+                        return (dtSetData);
                     }
                     else if (lstString[1].Length == 1)
                     {
@@ -213,7 +219,7 @@ namespace KATO.Common.Business
                     if (lstString[2] == "")
                     {
                         lstString[2] = "";
-                        return(dtSetData);
+                        return (dtSetData);
                     }
                     else if (lstString[2].Length <= 2)
                     {
@@ -244,7 +250,7 @@ namespace KATO.Common.Business
                     dtSetData = dbconnective.ReadSql(strSQLInput);
                     break;
                 default:
-                    return(dtSetData);
+                    return (dtSetData);
             }
             return (dtSetData);
         }
@@ -256,12 +262,13 @@ namespace KATO.Common.Business
         public void setSelectItem(List<int> lstInt, List<string> lstString)
         {
             List<string> lstStringItem = new List<string>();
-            
+
             List<DataTable> lstDTTana = new List<DataTable>();
 
             DataTable dtMaker = new DataTable();
             DataTable dtDaibun = new DataTable();
             DataTable dtChubun = new DataTable();
+            DataTable dtShohin = new DataTable();
 
             DataTable dtShohinTanaID = new DataTable();
             DataTable dtShohinTanaIDMAX = new DataTable();
@@ -273,10 +280,12 @@ namespace KATO.Common.Business
             string strSQLNameM = null;
             string strSQLNameD = null;
             string strSQLNameC = null;
+            string strSQLNameS = null;
 
-            strSQLNameM = "C_LIST_Maker_SELECT_LEAVE";
-            strSQLNameD = "C_LIST_Daibun_SELECT_LEAVE";
-            strSQLNameC = "C_LIST_Chubun_SELECT_LEAVE";
+            strSQLNameM = "C_LIST_Maker_SELECT_LEAVE_NAME";
+            strSQLNameD = "C_LIST_Daibun_SELECT_LEAVE_NAME";
+            strSQLNameC = "C_LIST_Chubun_SELECT_LEAVE_NAME";
+            strSQLNameS = "C_LIST_Shohin_SELECT_LEAVE";
 
             //配列設定
             string[] aryStr = { lstString[3] };
@@ -293,6 +302,7 @@ namespace KATO.Common.Business
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+
             dtMaker = dbconnective.ReadSql(strSQLInput);
 
             //大分類の処理
@@ -305,11 +315,13 @@ namespace KATO.Common.Business
 
             strSQLInput = null;
 
+            opensql = new OpenSQL();
             strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
             strSQLInput = string.Format(strSQLInput, aryStrD);
 
             dtDaibun = dbconnective.ReadSql(strSQLInput);
-            
+
             //中分類の処理
             lstStringSQL = new List<string>();
 
@@ -364,19 +376,22 @@ namespace KATO.Common.Business
                 //目的のフォームを探す
                 if (frm.Name == "F0140_TanaorosiInput")
                 {
-                    //データ渡し用
-                    lstStringTana.Add(lstString[2]);
-                    lstStringTana.Add(lstString[6]);
 
-                    lstDTTana.Add(dtDaibun);
-                    lstDTTana.Add(dtChubun);
-                    lstDTTana.Add(dtMaker);
-                    lstDTTana.Add(dtShohinTanaID);
-                    lstDTTana.Add(dtShohinTanaName);
+                    //dtSeihinで補えるはず
+
+                    ////データ渡し用
+                    //lstStringTana.Add(lstString[2]);
+                    //lstStringTana.Add(lstString[6]);
+
+                    //lstDTTana.Add(dtDaibun);
+                    //lstDTTana.Add(dtChubun);
+                    //lstDTTana.Add(dtMaker);
+                    //lstDTTana.Add(dtShohinTanaID);
+                    //lstDTTana.Add(dtShohinTanaName);
 
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                    tanaorosiinput.setShouhin(lstStringTana, lstDTTana);
+                    tanaorosiinput.setShouhin(lstStringItem, lstDTTana);
                     break;
                 }
                 //目的のフォームを探す
@@ -384,7 +399,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1030_Shohin shohin = (M1030_Shohin)frm;
-                    shohin.setShouhin(lstStringTana, lstDTTana);
+                    shohin.setShouhin(dtShohin);
                     break;
                 }
             }
@@ -404,23 +419,21 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                ////目的のフォームを探す
-                //if (intFrmKind == 1 && frm.Name.Equals("M1010_Daibunrui"))
-                //{
-                //    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    break;
-                //}
-                ////目的のフォームを探す
-                //else if (intFrmKind == 2 && frm.Name.Equals("M1110_Chubunrui"))
-                //{
-                //    MessageBox.Show("移動前のウィンドウが違います。（大分類）", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    break;
-                //}
-
                 //目的のフォームを探す
                 if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
-//要修正
+                    //データを連れてくるため、newをしないこと
+                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
+                    tanaorosiinput.setShohinClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_SHOHIN && frm.Name == "M1030_Shohin")
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1030_Shohin shohin = (M1030_Shohin)frm;
+                    shohin.setShohinClose();
+                    break;
                 }
             }
         }
