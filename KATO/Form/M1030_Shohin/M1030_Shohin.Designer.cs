@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbRadio = new System.Windows.Forms.GroupBox();
-            this.radSet_2btn = new KATO.Common.Ctl.RadSet_2btn();
+            this.radSet_2btn_Toroku = new KATO.Common.Ctl.RadSet_2btn();
             this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -65,7 +65,7 @@
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_TanabanHonsha = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblMemo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblZaikoData = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblZaikokbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHyoka = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -86,8 +86,10 @@
             this.lblTatene = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTatene = new KATO.Common.Ctl.BaseTextMoney();
             this.lblHachuData = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtComment = new KATO.Common.Ctl.BaseText();
+            this.lblComment = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbRadio.SuspendLayout();
-            this.radSet_2btn.SuspendLayout();
+            this.radSet_2btn_Toroku.SuspendLayout();
             this.labelSet_Maker.SuspendLayout();
             this.labelSet_Chubunrui.SuspendLayout();
             this.labelSet_Daibunrui.SuspendLayout();
@@ -146,29 +148,29 @@
             // 
             // gbRadio
             // 
-            this.gbRadio.Controls.Add(this.radSet_2btn);
+            this.gbRadio.Controls.Add(this.radSet_2btn_Toroku);
             this.gbRadio.Location = new System.Drawing.Point(41, 15);
             this.gbRadio.Name = "gbRadio";
             this.gbRadio.Size = new System.Drawing.Size(272, 53);
             this.gbRadio.TabIndex = 87;
             this.gbRadio.TabStop = false;
             // 
-            // radSet_2btn
+            // radSet_2btn_Toroku
             // 
-            this.radSet_2btn.Controls.Add(this.lblTitle);
-            this.radSet_2btn.LabelTitle = " ";
-            this.radSet_2btn.Location = new System.Drawing.Point(8, 20);
-            this.radSet_2btn.Name = "radSet_2btn";
-            this.radSet_2btn.PositionLabelTitle_X = 0;
-            this.radSet_2btn.PositionLabelTitle_Y = 0;
-            this.radSet_2btn.PositionRadbtn1_X = 20;
-            this.radSet_2btn.PositionRadbtn1_Y = 0;
-            this.radSet_2btn.PositionRadbtn2_X = 150;
-            this.radSet_2btn.PositionRadbtn2_Y = 0;
-            this.radSet_2btn.Radbtn1Text = "新規登録";
-            this.radSet_2btn.Radbtn2Text = "修正登録";
-            this.radSet_2btn.Size = new System.Drawing.Size(255, 25);
-            this.radSet_2btn.TabIndex = 87;
+            this.radSet_2btn_Toroku.Controls.Add(this.lblTitle);
+            this.radSet_2btn_Toroku.LabelTitle = " ";
+            this.radSet_2btn_Toroku.Location = new System.Drawing.Point(8, 20);
+            this.radSet_2btn_Toroku.Name = "radSet_2btn_Toroku";
+            this.radSet_2btn_Toroku.PositionLabelTitle_X = 0;
+            this.radSet_2btn_Toroku.PositionLabelTitle_Y = 0;
+            this.radSet_2btn_Toroku.PositionRadbtn1_X = 20;
+            this.radSet_2btn_Toroku.PositionRadbtn1_Y = 0;
+            this.radSet_2btn_Toroku.PositionRadbtn2_X = 150;
+            this.radSet_2btn_Toroku.PositionRadbtn2_Y = 0;
+            this.radSet_2btn_Toroku.Radbtn1Text = "新規登録";
+            this.radSet_2btn_Toroku.Radbtn2Text = "修正登録";
+            this.radSet_2btn_Toroku.Size = new System.Drawing.Size(255, 25);
+            this.radSet_2btn_Toroku.TabIndex = 87;
             // 
             // lblTitle
             // 
@@ -378,6 +380,7 @@
             this.txtData6.Size = new System.Drawing.Size(161, 22);
             this.txtData6.TabIndex = 9;
             this.txtData6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData6.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData5
             // 
@@ -387,6 +390,7 @@
             this.txtData5.Size = new System.Drawing.Size(161, 22);
             this.txtData5.TabIndex = 8;
             this.txtData5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData5.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData4
             // 
@@ -396,6 +400,7 @@
             this.txtData4.Size = new System.Drawing.Size(161, 22);
             this.txtData4.TabIndex = 7;
             this.txtData4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData4.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData3
             // 
@@ -405,6 +410,7 @@
             this.txtData3.Size = new System.Drawing.Size(210, 22);
             this.txtData3.TabIndex = 6;
             this.txtData3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData3.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData2
             // 
@@ -414,6 +420,7 @@
             this.txtData2.Size = new System.Drawing.Size(210, 22);
             this.txtData2.TabIndex = 5;
             this.txtData2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData2.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData1
             // 
@@ -423,6 +430,7 @@
             this.txtData1.Size = new System.Drawing.Size(440, 22);
             this.txtData1.TabIndex = 4;
             this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData1.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtHyoka
             // 
@@ -468,7 +476,7 @@
             this.txtTeika.MaxLength = 3;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(113, 22);
-            this.txtTeika.TabIndex = 19;
+            this.txtTeika.TabIndex = 20;
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTeika.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
@@ -493,10 +501,9 @@
             this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtMemo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtMemo.Location = new System.Drawing.Point(143, 652);
-            this.txtMemo.MaxLength = 500;
-            this.txtMemo.Multiline = true;
+            this.txtMemo.MaxLength = 100;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(815, 90);
+            this.txtMemo.Size = new System.Drawing.Size(815, 22);
             this.txtMemo.TabIndex = 18;
             this.txtMemo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMemo_KeyDown);
             this.txtMemo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
@@ -611,17 +618,17 @@
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.Text = "棚番本社";
             this.object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel3
+            // lblMemo
             // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(38, 655);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(39, 15);
-            this.baseLabel3.strToolTip = null;
-            this.baseLabel3.TabIndex = 122;
-            this.baseLabel3.Text = "メモ";
-            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMemo.AutoSize = true;
+            this.lblMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMemo.Location = new System.Drawing.Point(38, 655);
+            this.lblMemo.Name = "lblMemo";
+            this.lblMemo.Size = new System.Drawing.Size(39, 15);
+            this.lblMemo.strToolTip = null;
+            this.lblMemo.TabIndex = 122;
+            this.lblMemo.Text = "メモ";
+            this.lblMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblZaikoData
             // 
@@ -728,7 +735,7 @@
             this.lblGrayToroku.Location = new System.Drawing.Point(1274, 645);
             this.lblGrayToroku.Name = "lblGrayToroku";
             this.lblGrayToroku.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblGrayToroku.Size = new System.Drawing.Size(124, 22);
+            this.lblGrayToroku.Size = new System.Drawing.Size(90, 22);
             this.lblGrayToroku.TabIndex = 132;
             this.lblGrayToroku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -768,7 +775,7 @@
             this.txtHako.MaxLength = 0;
             this.txtHako.Name = "txtHako";
             this.txtHako.Size = new System.Drawing.Size(113, 22);
-            this.txtHako.TabIndex = 20;
+            this.txtHako.TabIndex = 21;
             this.txtHako.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHako.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             // 
@@ -873,6 +880,31 @@
             this.lblHachuData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblHachuData.Visible = false;
             // 
+            // txtComment
+            // 
+            this.txtComment.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtComment.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtComment.Location = new System.Drawing.Point(143, 683);
+            this.txtComment.MaxLength = 500;
+            this.txtComment.Multiline = true;
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(815, 90);
+            this.txtComment.TabIndex = 19;
+            this.txtComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMemo_KeyDown);
+            this.txtComment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            // 
+            // lblComment
+            // 
+            this.lblComment.AutoSize = true;
+            this.lblComment.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblComment.Location = new System.Drawing.Point(38, 686);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(71, 15);
+            this.lblComment.strToolTip = null;
+            this.lblComment.TabIndex = 122;
+            this.lblComment.Text = "コメント";
+            this.lblComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1030_Shohin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -886,12 +918,14 @@
             this.Controls.Add(this.txtHako);
             this.Controls.Add(this.txtTeika);
             this.Controls.Add(this.txtHyojun);
+            this.Controls.Add(this.txtComment);
             this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.txtZaiko);
             this.Controls.Add(this.txtHachukbn);
             this.Controls.Add(this.labelSet_TanabanGihu);
             this.Controls.Add(this.labelSet_TanabanHonsha);
-            this.Controls.Add(this.baseLabel3);
+            this.Controls.Add(this.lblComment);
+            this.Controls.Add(this.lblMemo);
             this.Controls.Add(this.lblZaikoData);
             this.Controls.Add(this.lblTatene);
             this.Controls.Add(this.lblZaikokbn);
@@ -962,12 +996,14 @@
             this.Controls.SetChildIndex(this.lblZaikokbn, 0);
             this.Controls.SetChildIndex(this.lblTatene, 0);
             this.Controls.SetChildIndex(this.lblZaikoData, 0);
-            this.Controls.SetChildIndex(this.baseLabel3, 0);
+            this.Controls.SetChildIndex(this.lblMemo, 0);
+            this.Controls.SetChildIndex(this.lblComment, 0);
             this.Controls.SetChildIndex(this.labelSet_TanabanHonsha, 0);
             this.Controls.SetChildIndex(this.labelSet_TanabanGihu, 0);
             this.Controls.SetChildIndex(this.txtHachukbn, 0);
             this.Controls.SetChildIndex(this.txtZaiko, 0);
             this.Controls.SetChildIndex(this.txtMemo, 0);
+            this.Controls.SetChildIndex(this.txtComment, 0);
             this.Controls.SetChildIndex(this.txtHyojun, 0);
             this.Controls.SetChildIndex(this.txtTeika, 0);
             this.Controls.SetChildIndex(this.txtHako, 0);
@@ -989,8 +1025,8 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.gbRadio.ResumeLayout(false);
-            this.radSet_2btn.ResumeLayout(false);
-            this.radSet_2btn.PerformLayout();
+            this.radSet_2btn_Toroku.ResumeLayout(false);
+            this.radSet_2btn_Toroku.PerformLayout();
             this.labelSet_Maker.ResumeLayout(false);
             this.labelSet_Maker.PerformLayout();
             this.labelSet_Chubunrui.ResumeLayout(false);
@@ -1010,7 +1046,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbRadio;
-        private Common.Ctl.RadSet_2btn radSet_2btn;
+        private Common.Ctl.RadSet_2btn radSet_2btn_Toroku;
         private Common.Ctl.BaseLabel lblTitle;
         private Common.Ctl.LabelSet_Maker labelSet_Maker;
         private Common.Ctl.BaseLabel nameLabel;
@@ -1045,7 +1081,7 @@
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.LabelSet_Tanaban labelSet_TanabanHonsha;
         private Common.Ctl.BaseLabel object_11d7ee1b_1cd7_4bfa_9d2c_728092c50349;
-        private Common.Ctl.BaseLabel baseLabel3;
+        private Common.Ctl.BaseLabel lblMemo;
         private Common.Ctl.BaseLabel lblZaikoData;
         private Common.Ctl.BaseLabel lblZaikokbn;
         private Common.Ctl.BaseLabel lblHyoka;
@@ -1066,5 +1102,7 @@
         private Common.Ctl.BaseLabel lblTatene;
         private Common.Ctl.BaseTextMoney txtTatene;
         private Common.Ctl.BaseLabel lblHachuData;
+        private Common.Ctl.BaseText txtComment;
+        private Common.Ctl.BaseLabel lblComment;
     }
 }

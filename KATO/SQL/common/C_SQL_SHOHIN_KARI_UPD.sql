@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].商品 AS A
+﻿MERGE INTO [KATO].[dbo].仮商品 AS A
 USING
     (
         SELECT

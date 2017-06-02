@@ -85,39 +85,32 @@ namespace KATO.Common.Business
             {
                 switch (lstInt[1])
                 {
+                    //通常表示
                     case 0:
-                        if (lstInt[0] == CommonTeisu.FRM_SHOHIN)
-                        {
-                            dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード, a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名, a.メモ AS メモ FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        }
-                        else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI)
-                        {
-                            dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
 
-                        }
+                        dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード, a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名, a.メモ AS メモ FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        
+                        //if (lstInt[0] == CommonTeisu.FRM_SHOHIN)
+                        //{
+                        //    dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード, a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名, a.メモ AS メモ FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //}
+                        //else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI)
+                        //{
+                        //    dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード, a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名, a.メモ AS メモ FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
+                        //}
                         break;
+                    //本社在庫の表示
                     case 1:
                         dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, dbo.f_get指定日のフリー在庫数Ｂ('0001', a.商品コード, '2050/12/31') AS 本社在庫 , '' AS 岐阜在庫 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
                         break;
+                    //岐阜在庫の表示
                     case 2:
                         dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, '' AS 本社在庫 , dbo.f_get指定日のフリー在庫数Ｂ('0002',a.商品コード,'2050/12/31') AS 岐阜在庫 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
                         break;
+                    //棚番の表示
                     case 3:
                         dtView = dbconnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, a.棚番本社 AS 棚番本社, a.棚番岐阜 AS 棚番岐阜 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
                         break;
-
-                        //case 0:
-                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        //    break;
-                        //case 1:
-                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0001', 商品コード, '2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        //    break;
-                        //case 2:
-                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        //    break;
-                        //case 3:
-                        //    dtView = dbconnective.ReadSql("SELECT 商品コード コード,dbo.f_getメーカー名(メーカーコード) メーカー,dbo.f_get大分類名(大分類コード) 大分類名,dbo.f_get中分類名(大分類コード,中分類コード) 中分類名, ISNULL(Ｃ１,'')+' ' +ISNULL(Ｃ２,'')+' ' +ISNULL(Ｃ３,'')+' ' +ISNULL(Ｃ４,'')+' ' +ISNULL(Ｃ５,'')+' ' +ISNULL(Ｃ６,'') 品名,メモ メモ, dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31'), dbo.f_get指定日のフリー在庫数Ｂ('0002',商品コード,'2050/12/31') FROM 商品 " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        //    break;
                 }
             }
             catch (Exception ex)

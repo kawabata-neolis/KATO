@@ -14,7 +14,6 @@ using KATO.Business.M1030_Shohin;
 using KATO.Business.F0140_TanaorosiInput_B;
 using static KATO.Common.Util.CommonTeisu;
 
-
 namespace KATO.Form.M1030_Shohin
 {
     ///<summary>
@@ -28,6 +27,9 @@ namespace KATO.Form.M1030_Shohin
     ///</summary>
     public partial class M1030_Shohin : BaseForm
     {
+        //管理者かどうかの判定
+        Boolean blnKanri;
+
         /// <summary>
         /// M1030_Shohin
         /// フォーム関係の設定
@@ -71,10 +73,29 @@ namespace KATO.Form.M1030_Shohin
         {
             this.Show();
             this._Title = "業種マスタ";
+
+            //登録か仮登録かの判定（仮）
+            if (SystemInformation.UserName == "admin")
+            {
+                this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
+                blnKanri = false;
+            }
+            else
+            {
+                this.btnF01.Text = STR_FUNC_F1;
+                blnKanri = true;
+            }
+
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
-            this.btnF01.Text = STR_FUNC_F1;
+
             this.btnF03.Text = STR_FUNC_F3;
+
+            if (blnKanri == false)
+            {
+                this.btnF03.Enabled = false;
+            }
+
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF10.Text = STR_FUNC_F10_SHOHIN;
@@ -170,15 +191,12 @@ namespace KATO.Form.M1030_Shohin
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addShohin();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delShohin();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -231,15 +249,12 @@ namespace KATO.Form.M1030_Shohin
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addShohin();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    this.delShohin();
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -311,12 +326,18 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                 shouhinlist.strKensaku = txtKensaku.Text;
                 shouhinlist.ShowDialog();
+
+                txtHyojun.Focus();
+                txtShire.Focus();
+                txtHyoka.Focus();
+                txtTatene.Focus();
+                txtTeika.Focus();
+                txtData1.Focus();
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
             }
-
         }
 
         /// <summary>
@@ -341,55 +362,6 @@ namespace KATO.Form.M1030_Shohin
             {
                 new CommonException(ex);
             }
-            
-            //string strKensaku = "";
-
-            //string strYMD = "";
-
-            //DataTable dtYMD = new DataTable();
-
-            //if (txtKensaku.TextLength > 0)
-            //{
-            //    strKensaku = txtKensaku.Text;
-            //}
-
-            //try
-            //{
-            //    F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();
-            //    dtYMD = tanaorosiinputB.setYMD();
-
-            //    if (dtYMD.Rows.Count != 0)
-            //    {
-            //        strYMD = dtYMD.Rows[0]["最新棚卸年月日"].ToString();
-            //    }
-            //    else
-            //    {
-            //        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-            //        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //        basemessagebox.ShowDialog();
-            //    }
-            //    ShouhinList shouhinlist = new ShouhinList(this);
-            //    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
-            //    shouhinlist.strYMD = strYMD;
-            //    shouhinlist.strEigyoushoCode = "";
-            //    shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-            //    shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-            //    shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-            //    shouhinlist.strKensaku = txtKensaku.Text;
-            //    shouhinlist.ShowDialog();
-
-            //    txtHyojun.Focus();
-            //    //this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            //    txtShire.Focus();
-            //    //txtHyoka.Focus();
-            //    //txtTatene.Focus();
-            //    //txtTeika.Focus();
-            //    //txtData1.Focus();
-            //}
-            //catch (Exception ex)
-            //{
-            //    new CommonException(ex);
-            //}
         }
 
         /// <summary>
@@ -398,7 +370,175 @@ namespace KATO.Form.M1030_Shohin
         /// </summary>
         private void addShohin()
         {
+            //データ渡し用
+            List<string> lstString = new List<string>();
 
+            //文字判定
+            if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Daibunrui.Focus();
+                return;
+            }
+            if (labelSet_Chubunrui.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Chubunrui.Focus();
+                return;
+            }
+            if (labelSet_Maker.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Maker.Focus();
+                return;
+            }
+            if (txtData1.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtData1.Focus();
+                return;
+            }
+            if (txtHachukbn.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtHachukbn.Focus();
+                return;
+            }
+            if (txtHyojun.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtHyojun.Focus();
+                return;
+            }
+            if (txtShire.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtShire.Focus();
+                return;
+            }
+            if (txtHyoka.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtHyoka.Focus();
+                return;
+            }
+            if (txtTatene.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtTatene.Focus();
+                return;
+            }
+            if (txtZaiko.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtZaiko.Focus();
+                return;
+            }
+            if (labelSet_TanabanHonsha.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_TanabanHonsha.Focus();
+                return;
+            }
+            if (labelSet_TanabanGihu.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_TanabanGihu.Focus();
+                return;
+            }
+            if (txtTeika.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtTeika.Focus();
+                return;
+            }
+            if (txtHako.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtHako.Focus();
+                return;
+            }
+
+            M1030_Shohin_B shohinB = new M1030_Shohin_B();
+
+            lstString.Add(txtShohinCd.Text);
+            lstString.Add(labelSet_Maker.CodeTxtText);
+            lstString.Add(labelSet_Daibunrui.CodeTxtText);
+            lstString.Add(labelSet_Chubunrui.CodeTxtText);
+            lstString.Add(txtData1.Text);
+            lstString.Add(txtData2.Text);
+            lstString.Add(txtData3.Text);
+            lstString.Add(txtData4.Text);
+            lstString.Add(txtData5.Text);
+            lstString.Add(txtData6.Text);
+            lstString.Add(txtHachukbn.Text);
+            lstString.Add(txtHyojun.Text);
+            lstString.Add(txtShire.Text);
+            lstString.Add(txtZaiko.Text);
+            lstString.Add(labelSet_TanabanHonsha.CodeTxtText);
+            lstString.Add(labelSet_TanabanGihu.CodeTxtText);
+            lstString.Add(txtMemo.Text);
+            lstString.Add(txtHyoka.Text);
+            lstString.Add(txtTeika.Text);
+            lstString.Add(txtHako.Text);
+            lstString.Add(txtTatene.Text);
+            lstString.Add(txtComment.Text);
+
+            //ユーザー名
+            lstString.Add(SystemInformation.UserName);
+
+            try
+            {
+                //新規登録
+                if (radSet_2btn_Toroku.radbtn0.Checked == true)
+                {
+                    shohinB.updShohinNew(lstString, blnKanri);
+                }
+                //修正登録
+                else
+                {
+                    shohinB.addShohin(lstString, blnKanri);
+                }
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                labelSet_Daibunrui.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
         }
 
         /// <summary>
@@ -408,7 +548,14 @@ namespace KATO.Form.M1030_Shohin
         private void delText()
         {
             delFormClear(this);
+            txtHyojun.Text = "";
+            txtShire.Text = "";
+            txtHyoka.Text = "";
+            txtTatene.Text = "";
+            txtTeika.Text = "";
+            txtHako.Text = "";
             labelSet_Daibunrui.Focus();
+            radSet_2btn_Toroku.radbtn0.Checked = true;
         }
 
         /// <summary>
@@ -417,6 +564,71 @@ namespace KATO.Form.M1030_Shohin
         /// </summary>
         public void delShohin()
         {
+            if (blnKanri == false)
+            {
+                return;
+            }
+
+            //データ渡し用
+            List<string> lstString = new List<string>();
+
+            //文字判定
+            if (txtShohinCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            M1030_Shohin_B shohinB = new M1030_Shohin_B();
+
+            lstString.Add(txtShohinCd.Text);
+            lstString.Add(labelSet_Maker.CodeTxtText);
+            lstString.Add(labelSet_Daibunrui.CodeTxtText);
+            lstString.Add(labelSet_Chubunrui.CodeTxtText);
+            lstString.Add(txtData1.Text);
+            lstString.Add(txtData2.Text);
+            lstString.Add(txtData3.Text);
+            lstString.Add(txtData4.Text);
+            lstString.Add(txtData5.Text);
+            lstString.Add(txtData6.Text);
+            lstString.Add(txtHachukbn.Text);
+            lstString.Add(txtHyojun.Text);
+            lstString.Add(txtShire.Text);
+            lstString.Add(txtZaiko.Text);
+            lstString.Add(labelSet_TanabanHonsha.CodeTxtText);
+            lstString.Add(labelSet_TanabanGihu.CodeTxtText);
+            lstString.Add(txtMemo.Text);
+            lstString.Add(txtHyoka.Text);
+            lstString.Add(txtTeika.Text);
+            lstString.Add(txtHako.Text);
+            lstString.Add(txtTatene.Text);
+            lstString.Add(txtComment.Text);
+
+            //ユーザー名
+            lstString.Add(SystemInformation.UserName);
+
+            try
+            {
+                shohinB.delShohin(lstString, blnKanri);
+
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                //テキストボックスを白紙にする
+                delText();
+                labelSet_Daibunrui.Focus();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
 
         }
 
@@ -426,12 +638,6 @@ namespace KATO.Form.M1030_Shohin
         /// </summary>
         public void setShouhin(DataTable dtShohin)
         {
-            //登録日時修正用
-            string strDatedata;
-            DateTime dateSelect;
-            string strSelectMonth;
-            string strSelectDay;
-
             delFormClear(this);
 
             labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
@@ -456,6 +662,7 @@ namespace KATO.Form.M1030_Shohin
             txtMemo.Text = dtShohin.Rows[0]["メモ"].ToString();
             txtTeika.Text = dtShohin.Rows[0]["定価"].ToString();
             txtHako.Text = dtShohin.Rows[0]["箱入数"].ToString();
+            txtComment.Text = dtShohin.Rows[0]["コメント"].ToString();
 
             lblGrayShohin.Text =
                 labelSet_Maker.CodeTxtText + " " +
@@ -469,6 +676,8 @@ namespace KATO.Form.M1030_Shohin
                 txtData6.Text + " ";
 
             lblGrayToroku.Text = ((DateTime)dtShohin.Rows[0]["登録日時"]).ToString("yyyy/MM/dd");
+
+            radSet_2btn_Toroku.radbtn1.Checked = true;
         }
 
         ///<summary>
@@ -541,6 +750,24 @@ namespace KATO.Form.M1030_Shohin
             {
                 e.Handled = true;
             }
+        }
+
+        ///<summary>
+        ///updCtxtLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        private void updCtxtLeave(object sender, EventArgs e)
+        {
+            lblGrayShohin.Text =
+                labelSet_Maker.CodeTxtText + " " +
+                labelSet_Daibunrui.CodeTxtText + " " +
+                labelSet_Chubunrui.CodeTxtText + " " +
+                txtData1.Text + " " +
+                txtData2.Text + " " +
+                txtData3.Text + " " +
+                txtData4.Text + " " +
+                txtData5.Text + " " +
+                txtData6.Text + " ";
         }
     }
 }

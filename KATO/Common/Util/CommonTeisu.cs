@@ -28,7 +28,7 @@ namespace KATO.Common.Util
 
         public const String STR_FUNC_F10_SHOHIN = "F10:棚番無";
         public const String STR_FUNC_F8_TORIHIKISAKI = "F8:空番";
-
+        public const String STR_FUNC_F1_KARITOROKU = "F1:仮登録";
 
         public const String STR_BTN_F01 = "btnF01";
         public const String STR_BTN_F02 = "btnF02";
@@ -133,6 +133,8 @@ namespace KATO.Common.Util
         // 商品                                             
         public const string C_SQL_SHOHIN_UPD = "C_SQL_SHOHIN_UPD";
         public const string C_SQL_SHOHIN_DEL = "C_SQL_SHOHIN_DEL";
+        // 商品                                             
+        public const string C_SQL_SHOHIN_KARI_UPD = "C_SQL_SHOHIN_KARI_UPD";
         // 会社条件                                         
         public const string C_SQL_KAISHAJOKEN_UPD = "C_SQL_KAISHAJOKEN_UPD";
         public const string C_SQL_KAISHAJOKEN_DEL = "C_SQL_KAISHAJOKEN_DEL";
@@ -447,6 +449,8 @@ namespace KATO.Common.Util
             ,SqlDbType.Money
             ,SqlDbType.Money
             ,SqlDbType.Money
+            ,SqlDbType.Money
+            ,SqlDbType.NChar
             ,SqlDbType.Char
             ,SqlDbType.DateTime
             ,SqlDbType.NChar
@@ -456,6 +460,39 @@ namespace KATO.Common.Util
         public static readonly SqlDbType[] P_C_SQL_SHOHIN_DEL =
         {
             SqlDbType.Char
+        };
+        #endregion
+
+        #region 仮商品
+        public static readonly SqlDbType[] P_C_SQL_SHOHIN_KARI_UPD =
+        {
+            SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.NChar
+            ,SqlDbType.Char
+            ,SqlDbType.Money
+            ,SqlDbType.Money
+            ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.NChar
+            ,SqlDbType.Money
+            ,SqlDbType.Money
+            ,SqlDbType.Money
+            ,SqlDbType.Money
+            ,SqlDbType.NChar
+            ,SqlDbType.Char
+            ,SqlDbType.DateTime
+            ,SqlDbType.NChar
+            ,SqlDbType.DateTime
+            ,SqlDbType.NChar
         };
         #endregion
 
@@ -2369,6 +2406,7 @@ namespace KATO.Common.Util
            ,{ C_SQL_MAKER_UPD,                  P_C_SQL_MAKER_UPD }
            ,{ C_SQL_MAKER_DEL,                  P_C_SQL_MAKER_DEL }
            ,{ C_SQL_SHOHIN_UPD,                 P_C_SQL_SHOHIN_UPD }
+           ,{ C_SQL_SHOHIN_KARI_UPD,            P_C_SQL_SHOHIN_KARI_UPD}
            ,{ C_SQL_SHOHIN_DEL,                 P_C_SQL_SHOHIN_DEL }
            ,{ C_SQL_KAISHAJOKEN_UPD,            P_C_SQL_KAISHAJOKEN_UPD }
            ,{ C_SQL_KAISHAJOKEN_DEL,            P_C_SQL_KAISHAJOKEN_DEL }

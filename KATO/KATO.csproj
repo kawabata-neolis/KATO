@@ -719,6 +719,8 @@
     <Content Include="SQL\Common\C_LIST_Chokusosaki_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE_NAME.sql" />
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql" />
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_MAXCd.sql" />
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
@@ -810,6 +812,7 @@
     <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_DEL.sql" />
     <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_UPD.sql" />
     <Content Include="SQL\Common\C_SQL_SHOHIN_DEL.sql" />
+    <Content Include="SQL\Common\C_SQL_SHOHIN_KARI_UPD.sql" />
     <Content Include="SQL\Common\C_SQL_SHOHIN_UPD.sql" />
     <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_DEL.sql" />
     <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_UPD.sql" />

@@ -576,11 +576,11 @@ namespace KATO.Common.Form
 
             gridTorihiki.Columns.Clear();
 
-            ////DataGridViewの初期設定
-            //gridSetUp();
+            //DataGridViewの初期設定
+            gridSetUp();
 
-            ////modeで判定して項目を追加
-            //setStart();
+            //modeで判定して項目を追加
+            setStart();
 
             //データ渡し用
             lstInt.Add(0);
