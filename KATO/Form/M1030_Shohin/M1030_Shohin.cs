@@ -74,7 +74,7 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "業種マスタ";
 
-            //登録か仮登録かの判定（仮）
+//登録か仮登録かの判定（仮）
             if (SystemInformation.UserName == "admin")
             {
                 this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
@@ -525,6 +525,14 @@ namespace KATO.Form.M1030_Shohin
                 //修正登録
                 else
                 {
+                    //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                    BaseMessageBox basemessageboxUwagaki = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, lblGrayShohin.Text + "\r\n" + CommonTeisu.LABEL_TOUROKU_UWAGAKi, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_EXCLAMATION);
+                    //NOが押された場合
+                    if (basemessageboxUwagaki.ShowDialog() == DialogResult.No)
+                    {
+                        return;
+                    }
+
                     shohinB.addShohin(lstString, blnKanri);
                 }
 
@@ -629,7 +637,6 @@ namespace KATO.Form.M1030_Shohin
             {
                 new CommonException(ex);
             }
-
         }
 
         /// <summary>

@@ -505,7 +505,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(815, 22);
             this.txtMemo.TabIndex = 18;
-            this.txtMemo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMemo_KeyDown);
+            this.txtMemo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtMemo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             // 
             // txtZaiko

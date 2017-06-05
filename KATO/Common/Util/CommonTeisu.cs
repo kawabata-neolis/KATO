@@ -108,6 +108,7 @@ namespace KATO.Common.Util
         public const string LABEL_DATE_ALERT = "入力された日付が正しくありません。";
         public const string LABEL_NOTDATA = "データが見つかりません。";
         public const string LABEL_ZEROORONE = "０か１で指定してください。";
+        public const string LABEL_TOUROKU_UWAGAKi = "に上書きしますか？";
         public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
 
         //カレンダーの初期値

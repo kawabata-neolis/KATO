@@ -62,60 +62,51 @@ namespace KATO.Business.M1030_Shohin
 
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                char chrCd = ' ';
+                char chrNewCdHead = ' ';
+                string strNewCdOther = "";
 
+                //中身が空
                 if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
                 {
                     strNewCd = "00001";
                     lstString[0] = strNewCd.ToString();
                 }
+                //中身がある
+                else
+                {
+                    chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
 
-                ////全て数字の場合
-                //else if (dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0] <= '9' || '0' <= dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0])
-                //{
+                    strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
 
-                //    intNewCd = int.Parse(dtSetCd_B.Rows[0]["最新コード"].ToString());
+                    //先頭以外が9999の場合
+                    if (strNewCdOther == "9999")
+                    {
+                        strNewCdOther = "0001";
 
-                //    intNewCd = intNewCd + 1;
+                        //先頭が9の場合
+                        if (chrNewCdHead == '9')
+                        {
 
-                //    if (intNewCd > 99999)
-                //    {
-                //        //数値部分のみ取り出す
-                //        strNewCd = "0000";
+                            chrNewCdHead = 'A';
+                        }
+                        else
+                        {
+                            //アスキーコード取得、加算
+                            int intASCII = chrNewCdHead;
+                            intASCII = intASCII + 1;
+                            chrNewCdHead = (char)intASCII;
+                        }
+                        lstString[0] = chrNewCdHead + strNewCdOther;
+                    }
+                    else
+                    {
+                        intNewCd = int.Parse(strNewCdOther.Substring(1));
 
-                //        chrCd = 'A';
+                        intNewCd = intNewCd + 1;
 
-                //        lstString[0] = chrCd.ToString() + strNewCd.ToString();
-
-                //    }
-                //    else
-                //    {
-                //        lstString[0] = strNewCd.ToString().PadLeft(5, '0');
-                //    }
-                //}
-                ////頭文字がアルファベットの場合
-                //else
-                //{
-                //    chrCd = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
-
-                //    intNewCd = int.Parse(dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1));
-
-                //    intNewCd = intNewCd + 1;
-
-                //    if (intNewCd > 9999)
-                //    {
-                //        //数値部分のみ取り出す
-                //        strNewCd = "0001";
-
-                //        //アスキーコード取得、加算
-                //        int intASCII = chrCd;
-                //        intASCII = intASCII + 1;
-
-                //        chrCd = (char)intASCII;
-                //    }
-                //    lstString[0] = chrCd.ToString() + strNewCd.ToString();
-                //}
-
+                        lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
+                    }
+                }
                 addShohin(lstString, blnKanri);
             }
             catch (Exception ex)
