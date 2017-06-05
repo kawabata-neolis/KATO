@@ -239,7 +239,7 @@ namespace KATO.Common.Form
 
                 blnZaikoKensaku = false;
             }
-            else if (intFrmKind == CommonTeisu.FRM_SHOHIN || intFrmKind == CommonTeisu.FRM_TANAOROSHI)
+            else if (intFrmKind == CommonTeisu.FRM_SHOHIN || intFrmKind == CommonTeisu.FRM_TANAOROSHI || intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN)
             {
                 DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
                 zaikoHonsha.DataPropertyName = "本社在庫";

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
 using KATO.Form.M1030_Shohin;
+using KATO.Form.D0380_ShohinMotochoKakunin;
 
 namespace KATO.Common.Business
 {
@@ -288,113 +289,152 @@ namespace KATO.Common.Business
             lstStringSQL.Add("Common");
             lstStringSQL.Add(strSQLNameM);
 
-            OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            strSQLInput = string.Format(strSQLInput, aryStr);
-
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
-            dtMaker = dbconnective.ReadSql(strSQLInput);
-
-            //大分類の処理
-            lstStringSQL = new List<string>();
-
-            string[] aryStrD = { lstString[4] };
-
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLNameD);
-
-            strSQLInput = null;
-
-            opensql = new OpenSQL();
-            strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            strSQLInput = string.Format(strSQLInput, aryStrD);
-
-            dtDaibun = dbconnective.ReadSql(strSQLInput);
-
-            //中分類の処理
-            lstStringSQL = new List<string>();
-
-            string[] aryStrC = { lstString[5] };
-
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLNameC);
-
-            strSQLInput = null;
-
-            strSQLInput = opensql.setOpenSQL(lstStringSQL);
-            strSQLInput = string.Format(strSQLInput, aryStrC);
-
-            dtChubun = dbconnective.ReadSql(strSQLInput);
-
-            //商品の処理
-            lstStringSQL = new List<string>();
-
-            string[] aryStrS = { lstString[2] };
-
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLNameS);
-
-            strSQLInput = null;
-
-            strSQLInput = opensql.setOpenSQL(lstStringSQL);
-            strSQLInput = string.Format(strSQLInput, aryStrS);
-
-            dtShohin = dbconnective.ReadSql(strSQLInput);
-
-            //加工
-            //指定日在庫、棚卸数量の小数点切りすて
-            for (int cnt = 0; cnt < dtShohin.Rows.Count; cnt++)
+            try
             {
-                decimal decTyoubosuu = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["標準売価"].ToString()));
-                dtShohin.Rows[cnt]["標準売価"] = decTyoubosuu.ToString();
-                decimal decTanasuu = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["仕入単価"].ToString()));
-                dtShohin.Rows[cnt]["仕入単価"] = decTanasuu.ToString();
-                decimal decHyoka = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["評価単価"].ToString()));
-                dtShohin.Rows[cnt]["評価単価"] = decHyoka.ToString();
-                decimal decTeka = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["定価"].ToString()));
-                dtShohin.Rows[cnt]["定価"] = decTeka.ToString();
-                decimal decHako = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["箱入数"].ToString()));
-                dtShohin.Rows[cnt]["箱入数"] = decHako.ToString();
-                decimal decTatene = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["建値仕入単価"].ToString()));
-                dtShohin.Rows[cnt]["建値仕入単価"] = decTatene.ToString();
+                OpenSQL opensql = new OpenSQL();
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                dtMaker = dbconnective.ReadSql(strSQLInput);
+
+                //大分類の処理
+                lstStringSQL = new List<string>();
+
+                string[] aryStrD = { lstString[4] };
+
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add(strSQLNameD);
+
+                strSQLInput = null;
+
+                opensql = new OpenSQL();
+                strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                strSQLInput = string.Format(strSQLInput, aryStrD);
+
+                dtDaibun = dbconnective.ReadSql(strSQLInput);
+
+                //中分類の処理
+                lstStringSQL = new List<string>();
+
+                string[] aryStrC = { lstString[5] };
+
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add(strSQLNameC);
+
+                strSQLInput = null;
+
+                strSQLInput = opensql.setOpenSQL(lstStringSQL);
+                strSQLInput = string.Format(strSQLInput, aryStrC);
+
+                dtChubun = dbconnective.ReadSql(strSQLInput);
+
+                //商品の処理
+                lstStringSQL = new List<string>();
+
+                string[] aryStrS = { lstString[2] };
+
+                lstStringSQL.Add("Common");
+                lstStringSQL.Add(strSQLNameS);
+
+                strSQLInput = null;
+
+                strSQLInput = opensql.setOpenSQL(lstStringSQL);
+                strSQLInput = string.Format(strSQLInput, aryStrS);
+
+                dtShohin = dbconnective.ReadSql(strSQLInput);
+
+                //加工
+                //指定日在庫、棚卸数量の小数点切りすて
+                for (int cnt = 0; cnt < dtShohin.Rows.Count; cnt++)
+                {
+                    decimal decTyoubosuu = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["標準売価"].ToString()));
+                    dtShohin.Rows[cnt]["標準売価"] = decTyoubosuu.ToString();
+                    decimal decTanasuu = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["仕入単価"].ToString()));
+                    dtShohin.Rows[cnt]["仕入単価"] = decTanasuu.ToString();
+                    decimal decHyoka = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["評価単価"].ToString()));
+                    dtShohin.Rows[cnt]["評価単価"] = decHyoka.ToString();
+                    decimal decTeka = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["定価"].ToString()));
+                    dtShohin.Rows[cnt]["定価"] = decTeka.ToString();
+                    decimal decHako = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["箱入数"].ToString()));
+                    dtShohin.Rows[cnt]["箱入数"] = decHako.ToString();
+                    decimal decTatene = Math.Floor(decimal.Parse(dtShohin.Rows[cnt]["建値仕入単価"].ToString()));
+                    dtShohin.Rows[cnt]["建値仕入単価"] = decTatene.ToString();
+                }
+
+                switch (lstInt[0])
+                {
+                    //棚卸入力
+                    case CommonTeisu.FRM_TANAOROSHI:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "F0140_TanaorosiInput")
+                            {
+
+                                //dtSeihinで補えるはず
+
+                                ////データ渡し用
+                                //lstStringTana.Add(lstString[2]);
+                                //lstStringTana.Add(lstString[6]);
+
+                                //lstDTTana.Add(dtDaibun);
+                                //lstDTTana.Add(dtChubun);
+                                //lstDTTana.Add(dtMaker);
+                                //lstDTTana.Add(dtShohinTanaID);
+                                //lstDTTana.Add(dtShohinTanaName);
+
+                                //データを連れてくるため、newをしないこと
+                                F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
+                                tanaorosiinput.setShouhin(lstStringItem, lstDTTana);
+                                break;
+                            }
+                        }
+                        break;
+                    case CommonTeisu.FRM_SHOHIN:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "M1030_Shohin")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1030_Shohin shohin = (M1030_Shohin)frm;
+                                shohin.setShouhin(dtShohin);
+                                break;
+                            }
+                        }
+                        break;
+                    case CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "D0380_ShohinMotochoKakunin")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
+                                shohinmotochokakunin.setShouhin(dtShohin);
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            //全てのフォームの中から
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+            catch (Exception ex)
             {
-                //目的のフォームを探す
-                if (frm.Name == "F0140_TanaorosiInput")
-                {
-
-                    //dtSeihinで補えるはず
-
-                    ////データ渡し用
-                    //lstStringTana.Add(lstString[2]);
-                    //lstStringTana.Add(lstString[6]);
-
-                    //lstDTTana.Add(dtDaibun);
-                    //lstDTTana.Add(dtChubun);
-                    //lstDTTana.Add(dtMaker);
-                    //lstDTTana.Add(dtShohinTanaID);
-                    //lstDTTana.Add(dtShohinTanaName);
-
-                    //データを連れてくるため、newをしないこと
-                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                    tanaorosiinput.setShouhin(lstStringItem, lstDTTana);
-                    break;
-                }
-                //目的のフォームを探す
-                else if (frm.Name == "M1030_Shohin")
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1030_Shohin shohin = (M1030_Shohin)frm;
-                    shohin.setShouhin(dtShohin);
-                    break;
-                }
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
             }
         }
 
@@ -428,6 +468,15 @@ namespace KATO.Common.Business
                     shohin.setShohinClose();
                     break;
                 }
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN && frm.Name == "D0380_ShohinMotochoKakunin")
+                {
+                    //データを連れてくるため、newをしないこと
+                    D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
+                    shohinmotochokakunin.setShohinClose();
+                    break;
+                }
+
             }
         }
     }

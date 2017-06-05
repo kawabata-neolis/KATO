@@ -45,6 +45,7 @@ namespace KATO.Common.Util
         public const String STR_BTN_F12 = "btnF12";
 
         //ウィンドウ判定
+        public const int FRM_SHOHINMOTOCHOKAKUNIN = 0380;
         public const int FRM_DAIBUNRUI = 1010;
         public const int FRM_MAKER = 1020;
         public const int FRM_SHOHIN = 1030;

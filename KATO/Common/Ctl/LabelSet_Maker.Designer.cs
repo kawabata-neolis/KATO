@@ -34,7 +34,7 @@
             // 
             this.codeTxt.Location = new System.Drawing.Point(75, 0);
             this.codeTxt.MaxLength = 4;
-            this.codeTxt.Size = new System.Drawing.Size(30, 22);
+            this.codeTxt.Size = new System.Drawing.Size(40, 22);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);

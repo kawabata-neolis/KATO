@@ -684,7 +684,7 @@ namespace KATO.Form.M1030_Shohin
 
         ///<summary>
         ///setShohinClose
-        ///TanabanListが閉じたらコード記入欄にフォーカス
+        ///setShohinListが閉じたらコード記入欄にフォーカス
         ///</summary>
         public void setShohinClose()
         {
