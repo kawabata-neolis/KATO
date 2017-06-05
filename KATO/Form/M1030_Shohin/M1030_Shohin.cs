@@ -11,7 +11,6 @@ using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using KATO.Business.M1030_Shohin;
-using KATO.Business.F0140_TanaorosiInput_B;
 using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1030_Shohin
@@ -30,10 +29,6 @@ namespace KATO.Form.M1030_Shohin
         //管理者かどうかの判定
         Boolean blnKanri;
 
-        /// <summary>
-        /// M1030_Shohin
-        /// フォーム関係の設定
-        /// </summary>
         public M1030_Shohin(Control c)
         {
             if (c == null)
@@ -72,7 +67,7 @@ namespace KATO.Form.M1030_Shohin
         private void M1030_Shohin_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "業種マスタ";
+            this._Title = "商品マスター";
 
 //登録か仮登録かの判定（仮）
             if (SystemInformation.UserName == "admin")

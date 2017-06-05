@@ -1,6 +1,6 @@
 ﻿namespace KATO.Common.Ctl
 {
-    partial class LabelSet_Daibunrui
+    partial class BaseCalendarYM
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -30,27 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // codeTxt
+            // BaseCalendarYM
             // 
-            this.codeTxt.Location = new System.Drawing.Point(107, 0);
-            this.codeTxt.MaxLength = 2;
-            this.codeTxt.Size = new System.Drawing.Size(24, 22);
-            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
-            this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaibunruiKeyDown);
-            this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.updTxtDaibunruiLeave);
-            // 
-            // LabelSet_Daibunrui
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CodeTxtSize = 24;
-            this.LabelName = "大分類コード";
-            this.Name = "LabelSet_Daibunrui";
-            this.Size = new System.Drawing.Size(543, 22);
-            this.ValueLabelSize = 200;
+            this.Size = new System.Drawing.Size(65, 22);
+            this.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Enter += new System.EventHandler(this.updCalendarEnter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setCalendarKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.setCalendarKeyPress);
+            this.Leave += new System.EventHandler(this.BaseCalendar_Leave);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

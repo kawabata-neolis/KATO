@@ -178,10 +178,17 @@ namespace KATO.Form.Z0000
             //juchu.AddOwnedForm(this);
 
             juchu.ShowDialog();
-            
+
             //メニュー非表示関係の残り（参考）
             //juchu.Show();
             //this.Hide();
+        }
+
+        //商品元帳確認
+        private void btnShohinMotochoKakunin_Click(object sender, EventArgs e)
+        {
+            D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmotoshokakunin = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
+            shohinmotoshokakunin.ShowDialog();
         }
 
         private void btnZanKakunin_Click(object sender, EventArgs e)

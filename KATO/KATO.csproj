@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
+    <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1030_Shohin\M1030_Shohin_B.cs" />
@@ -94,6 +95,12 @@
     </Compile>
     <Compile Include="Common\Ctl\BaseButton.Designer.cs">
       <DependentUpon>BaseButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseCalendarYM.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\BaseCalendarYM.designer.cs">
+      <DependentUpon>BaseCalendarYM.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Ctl\BaseCheckBox.cs">
       <SubType>Component</SubType>
@@ -321,6 +328,12 @@
     <Compile Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.Designer.cs">
       <DependentUpon>D0360_JuchuzanKakunin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin.Designer.cs">
+      <DependentUpon>D0380_ShohinMotochoKakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +472,10 @@
       <DependentUpon>BaseButton.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\BaseCalendarYM.resx">
+      <DependentUpon>BaseCalendarYM.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseCheckBox.resx">
       <DependentUpon>BaseCheckBox.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -591,6 +608,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.resx">
       <DependentUpon>D0360_JuchuzanKakunin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0380_ShohinMotochoKakunin\D0380_Shohinmotochokakunin.resx">
+      <DependentUpon>D0380_ShohinMotochoKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>
