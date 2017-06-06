@@ -76,7 +76,6 @@
             this.lsMaker = new KATO.Common.Ctl.LabelSet_Maker();
             this.gridZanList = new KATO.Common.Ctl.BaseDataGridView();
             this.lblSort = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.rsNyukazumi = new KATO.Common.Ctl.RadSet_2btn();
             this.rsKyoten = new KATO.Common.Ctl.RadSet_3btn();
             this.rsJuchuShubetsu = new KATO.Common.Ctl.RadSet_3btn();
             this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -91,6 +90,8 @@
             this.txtGokeiGenka = new KATO.Common.Ctl.BaseTextMoney();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.rsNyukazumi = new KATO.Common.Ctl.RadSet_3btn();
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lsJuchusha.SuspendLayout();
             this.lsTantousha.SuspendLayout();
             this.lsShiiresaki.SuspendLayout();
@@ -98,6 +99,7 @@
             this.rsJuchuShubetsu.SuspendLayout();
             this.rsSortOrder.SuspendLayout();
             this.rsSearchKind.SuspendLayout();
+            this.rsNyukazumi.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF12
@@ -567,7 +569,7 @@
             // 
             this.lsTokuisaki.AppendLabelSize = 40;
             this.lsTokuisaki.AppendLabelText = "";
-            this.lsTokuisaki.CodeTxtSize = 33;
+            this.lsTokuisaki.CodeTxtSize = 39;
             this.lsTokuisaki.CodeTxtText = "";
             this.lsTokuisaki.LabelName = "得意先";
             this.lsTokuisaki.Location = new System.Drawing.Point(1121, 9);
@@ -585,7 +587,7 @@
             // 
             this.lsShiiresaki.AppendLabelSize = 40;
             this.lsShiiresaki.AppendLabelText = "";
-            this.lsShiiresaki.CodeTxtSize = 33;
+            this.lsShiiresaki.CodeTxtSize = 39;
             this.lsShiiresaki.CodeTxtText = "";
             this.lsShiiresaki.Controls.Add(this.object_17ec1a19_74bf_4208_895a_c635553e2d63);
             this.lsShiiresaki.LabelName = "仕入先";
@@ -616,6 +618,7 @@
             // 
             this.lsDaibunrui.AppendLabelSize = 0;
             this.lsDaibunrui.AppendLabelText = "";
+            this.lsDaibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.lsDaibunrui.CodeTxtSize = 33;
             this.lsDaibunrui.CodeTxtText = "";
             this.lsDaibunrui.LabelName = "大分類";
@@ -723,23 +726,6 @@
             this.lblSort.Text = "並び順";
             this.lblSort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // rsNyukazumi
-            // 
-            this.rsNyukazumi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rsNyukazumi.LabelTitle = "入荷";
-            this.rsNyukazumi.Location = new System.Drawing.Point(403, 149);
-            this.rsNyukazumi.Name = "rsNyukazumi";
-            this.rsNyukazumi.PositionLabelTitle_X = 3;
-            this.rsNyukazumi.PositionLabelTitle_Y = 3;
-            this.rsNyukazumi.PositionRadbtn1_X = 56;
-            this.rsNyukazumi.PositionRadbtn1_Y = 1;
-            this.rsNyukazumi.PositionRadbtn2_X = 103;
-            this.rsNyukazumi.PositionRadbtn2_Y = 1;
-            this.rsNyukazumi.Radbtn1Text = "済";
-            this.rsNyukazumi.Radbtn2Text = "未";
-            this.rsNyukazumi.Size = new System.Drawing.Size(146, 22);
-            this.rsNyukazumi.TabIndex = 25;
-            // 
             // rsKyoten
             // 
             this.rsKyoten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -748,16 +734,16 @@
             this.rsKyoten.Name = "rsKyoten";
             this.rsKyoten.PositionLabelTitle_X = 3;
             this.rsKyoten.PositionLabelTitle_Y = 3;
-            this.rsKyoten.PositionRadbtn1_X = 56;
+            this.rsKyoten.PositionRadbtn1_X = 70;
             this.rsKyoten.PositionRadbtn1_Y = 1;
-            this.rsKyoten.PositionRadbtn2_X = 119;
+            this.rsKyoten.PositionRadbtn2_X = 133;
             this.rsKyoten.PositionRadbtn2_Y = 1;
-            this.rsKyoten.PositionRadbtn3_X = 182;
+            this.rsKyoten.PositionRadbtn3_X = 197;
             this.rsKyoten.PositionRadbtn3_Y = 1;
             this.rsKyoten.Radbtn1Text = "両方";
             this.rsKyoten.Radbtn2Text = "本社";
             this.rsKyoten.Radbtn3Text = "岐阜";
-            this.rsKyoten.Size = new System.Drawing.Size(240, 22);
+            this.rsKyoten.Size = new System.Drawing.Size(260, 22);
             this.rsKyoten.TabIndex = 27;
             this.rsKyoten.Visible = false;
             // 
@@ -766,7 +752,7 @@
             this.rsJuchuShubetsu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rsJuchuShubetsu.Controls.Add(this.lblTitle);
             this.rsJuchuShubetsu.LabelTitle = "受注種別";
-            this.rsJuchuShubetsu.Location = new System.Drawing.Point(687, 149);
+            this.rsJuchuShubetsu.Location = new System.Drawing.Point(705, 146);
             this.rsJuchuShubetsu.Name = "rsJuchuShubetsu";
             this.rsJuchuShubetsu.PositionLabelTitle_X = 3;
             this.rsJuchuShubetsu.PositionLabelTitle_Y = 3;
@@ -798,7 +784,7 @@
             // 
             this.rsGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rsGroup.LabelTitle = "グループ";
-            this.rsGroup.Location = new System.Drawing.Point(687, 121);
+            this.rsGroup.Location = new System.Drawing.Point(705, 121);
             this.rsGroup.Name = "rsGroup";
             this.rsGroup.PositionLabelTitle_X = 3;
             this.rsGroup.PositionLabelTitle_Y = 3;
@@ -888,16 +874,16 @@
             this.rsSearchKind.Name = "rsSearchKind";
             this.rsSearchKind.PositionLabelTitle_X = 3;
             this.rsSearchKind.PositionLabelTitle_Y = 3;
-            this.rsSearchKind.PositionRadbtn1_X = 56;
+            this.rsSearchKind.PositionRadbtn1_X = 70;
             this.rsSearchKind.PositionRadbtn1_Y = 1;
-            this.rsSearchKind.PositionRadbtn2_X = 119;
+            this.rsSearchKind.PositionRadbtn2_X = 133;
             this.rsSearchKind.PositionRadbtn2_Y = 1;
-            this.rsSearchKind.PositionRadbtn3_X = 200;
+            this.rsSearchKind.PositionRadbtn3_X = 214;
             this.rsSearchKind.PositionRadbtn3_Y = 1;
             this.rsSearchKind.Radbtn1Text = "両方";
             this.rsSearchKind.Radbtn2Text = "受注残";
             this.rsSearchKind.Radbtn3Text = "発注残";
-            this.rsSearchKind.Size = new System.Drawing.Size(275, 22);
+            this.rsSearchKind.Size = new System.Drawing.Size(292, 22);
             this.rsSearchKind.TabIndex = 23;
             // 
             // object_5a3a17df_6aa0_435c_affd_100058ffcf84
@@ -969,11 +955,45 @@
             this.baseLabel2.Text = "売上金額";
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // rsNyukazumi
+            // 
+            this.rsNyukazumi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rsNyukazumi.Controls.Add(this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e);
+            this.rsNyukazumi.LabelTitle = "入荷済";
+            this.rsNyukazumi.Location = new System.Drawing.Point(403, 149);
+            this.rsNyukazumi.Name = "rsNyukazumi";
+            this.rsNyukazumi.PositionLabelTitle_X = 3;
+            this.rsNyukazumi.PositionLabelTitle_Y = 3;
+            this.rsNyukazumi.PositionRadbtn1_X = 70;
+            this.rsNyukazumi.PositionRadbtn1_Y = 1;
+            this.rsNyukazumi.PositionRadbtn2_X = 133;
+            this.rsNyukazumi.PositionRadbtn2_Y = 1;
+            this.rsNyukazumi.PositionRadbtn3_X = 182;
+            this.rsNyukazumi.PositionRadbtn3_Y = 1;
+            this.rsNyukazumi.Radbtn1Text = "両方";
+            this.rsNyukazumi.Radbtn2Text = "済";
+            this.rsNyukazumi.Radbtn3Text = "未";
+            this.rsNyukazumi.Size = new System.Drawing.Size(225, 22);
+            this.rsNyukazumi.TabIndex = 142;
+            // 
+            // object_794f754e_fa0d_4a9d_8270_8caab00a1b3e
+            // 
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.AutoSize = true;
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.Location = new System.Drawing.Point(3, 3);
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.Name = "object_794f754e_fa0d_4a9d_8270_8caab00a1b3e";
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.Size = new System.Drawing.Size(39, 15);
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.strToolTip = null;
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.TabIndex = 3;
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.Text = "拠点";
+            this.object_794f754e_fa0d_4a9d_8270_8caab00a1b3e.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // D0360_JuchuzanKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.rsNyukazumi);
             this.Controls.Add(this.baseLabel2);
             this.Controls.Add(this.baseLabel1);
             this.Controls.Add(this.txtGokeiGenka);
@@ -984,7 +1004,6 @@
             this.Controls.Add(this.rsGroup);
             this.Controls.Add(this.rsJuchuShubetsu);
             this.Controls.Add(this.rsKyoten);
-            this.Controls.Add(this.rsNyukazumi);
             this.Controls.Add(this.lblSort);
             this.Controls.Add(this.gridZanList);
             this.Controls.Add(this.lsMaker);
@@ -1072,7 +1091,6 @@
             this.Controls.SetChildIndex(this.lsMaker, 0);
             this.Controls.SetChildIndex(this.gridZanList, 0);
             this.Controls.SetChildIndex(this.lblSort, 0);
-            this.Controls.SetChildIndex(this.rsNyukazumi, 0);
             this.Controls.SetChildIndex(this.rsKyoten, 0);
             this.Controls.SetChildIndex(this.rsJuchuShubetsu, 0);
             this.Controls.SetChildIndex(this.rsGroup, 0);
@@ -1095,6 +1113,7 @@
             this.Controls.SetChildIndex(this.txtGokeiGenka, 0);
             this.Controls.SetChildIndex(this.baseLabel1, 0);
             this.Controls.SetChildIndex(this.baseLabel2, 0);
+            this.Controls.SetChildIndex(this.rsNyukazumi, 0);
             this.lsJuchusha.ResumeLayout(false);
             this.lsJuchusha.PerformLayout();
             this.lsTantousha.ResumeLayout(false);
@@ -1108,6 +1127,8 @@
             this.rsSortOrder.PerformLayout();
             this.rsSearchKind.ResumeLayout(false);
             this.rsSearchKind.PerformLayout();
+            this.rsNyukazumi.ResumeLayout(false);
+            this.rsNyukazumi.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1159,7 +1180,6 @@
         private Common.Ctl.LabelSet_Maker lsMaker;
         private Common.Ctl.BaseDataGridView gridZanList;
         private Common.Ctl.BaseLabel lblSort;
-        private Common.Ctl.RadSet_2btn rsNyukazumi;
         private Common.Ctl.RadSet_3btn rsKyoten;
         private Common.Ctl.RadSet_3btn rsJuchuShubetsu;
         private Common.Ctl.BaseLabel lblTitle;
@@ -1174,5 +1194,7 @@
         private Common.Ctl.BaseTextMoney txtGokeiGenka;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel baseLabel2;
+        private Common.Ctl.RadSet_3btn rsNyukazumi;
+        private Common.Ctl.BaseLabel object_794f754e_fa0d_4a9d_8270_8caab00a1b3e;
     }
 }

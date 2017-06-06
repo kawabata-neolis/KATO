@@ -177,20 +177,20 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
                 strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
                 strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, ''))";
-                strQuery += "      ,0 AS 受注数";
-                strQuery += "      ,0 AS 受注残";
+                strQuery += "      ,'' AS 受注数";
+                strQuery += "      ,'' AS 受注残";
                 strQuery += "      ,(a.発注数量 - a.仕入済数量) AS 発注残";
-                strQuery += "      ,0 AS 売上単価";
-                strQuery += "      ,0 AS 売上金額";
-                strQuery += "      ,0 AS 仕入単価";
-                strQuery += "      ,0  AS 仕入金額";
+                strQuery += "      ,'' AS 売上単価";
+                strQuery += "      ,'' AS 売上金額";
+                strQuery += "      ,'' AS 仕入単価";
+                strQuery += "      ,'' AS 仕入金額";
                 strQuery += "      ,a.注番";
-                strQuery += "      ,0 AS 仕入合計金額";
+                strQuery += "      ,'' AS 仕入合計金額";
                 strQuery += "      ,'' AS 客先注番";
                 strQuery += "      ,'' AS 得意先名";
                 strQuery += "      ,'' AS 仕入日";
                 strQuery += "      ,a.仕入先名称 AS 仕入先名";
-                strQuery += "      ,0 AS 売上済";
+                strQuery += "      ,'' AS 売上済";
                 strQuery += "      ,a.仕入済数量 AS 仕入済";
                 strQuery += "      ,a.発注年月日 AS 発注日";
                 strQuery += "      ,dbo.f_get受注番号_発注状態(a.受注番号) AS 状態";
@@ -201,7 +201,122 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
                 strQuery += "  FROM 発注 a";
 
-                strQuery += " WHERE 発注番号 = 1";
+                strQuery += " WHERE a.削除 = 'N'";
+                strQuery += "   AND a.発注数量 <> 0 ";
+                strQuery += "   AND ((a.仕入済数量 = 0) OR (abs(a.仕入済数量) < abs(a.発注数量))) ";
+                strQuery += "   AND a.仕入先コード <> '7777'";
+                strQuery += "   AND a.仕入先コード <> '9999'";
+
+                if (StringUtl.blIsEmpty(listParam[1]))
+                {
+                    strQuery += "   AND a.発注番号 = '" + listParam[1] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[20]))
+                {
+                    strQuery += "   AND a.大分類コード = '" + listParam[20] + "'";
+                }
+                if (StringUtl.blIsEmpty(listParam[21]))
+                {
+                    strQuery += "   AND a.中分類コード = '" + listParam[21] + "'";
+                }
+                if (StringUtl.blIsEmpty(listParam[22]))
+                {
+                    strQuery += "   AND a.メーカーコード = '" + listParam[22] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[16]))
+                {
+                    strQuery += "   AND a.発注者コード = '" + listParam[16] + "'";
+                }
+                if (StringUtl.blIsEmpty(listParam[19]))
+                {
+                    strQuery += "   AND a.仕入先コード = '" + listParam[19] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[0]))
+                {
+                    strQuery += "   AND a.受注番号 = '" + listParam[0] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[13]))
+                {
+                    strQuery += "   AND a.発注年月日 >= '" + listParam[13] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[14]))
+                {
+                    strQuery += "   AND a.発注年月日 <= '" + listParam[14] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[7]))
+                {
+                    strQuery += "   AND a.納期 >= '" + listParam[7] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[8]))
+                {
+                    strQuery += "   AND a.納期 <= '" + listParam[8] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[9]))
+                {
+                    strQuery += "   AND a.納期 >= '" + listParam[9] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[10]))
+                {
+                    strQuery += "   AND a.納期 <= '" + listParam[10] + "'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[25]))
+                {
+                    if (int.Parse(listParam[25]) == 1)
+                    {
+                        strQuery += "   AND a.営業所コード = '0001'";
+                    }
+                    else if (int.Parse(listParam[25]) == 2)
+                    {
+                        strQuery += "   AND a.営業所コード = '0002'";
+                    }
+                }
+
+                if (StringUtl.blIsEmpty(listParam[2]))
+                {
+                    strQuery += "   AND (dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ１, ''), ' ', '')";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ２, ''), ' ', '')";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ３, ''), ' ', '')";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ３, ''), ' ', '')";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ３, ''), ' ', '')";
+                    strQuery += "       +  REPLACE(ISNULL(a.Ｃ６, ''), ' ', '')) LIKE '%" + listParam[2].Replace(" ", "") + "%' ";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[3]))
+                {
+                    strQuery += "   AND RTRIM(dbo.f_get注番文字FROM担当者(a.発注者コード)) + CAST(発注番号 AS varchar(8)) LIKE '%" + listParam[3] + "%'";
+                }
+
+                if (StringUtl.blIsEmpty(listParam[24]))
+                {
+                    if (int.Parse(listParam[24]) == 1)
+                    {
+                        strQuery += "   AND a.加工区分 = '0'";
+                    }
+                    else if (int.Parse(listParam[24]) == 2)
+                    {
+                        strQuery += "   AND a.加工区分 = '1'";
+                    }
+                }
+
+                if (StringUtl.blIsEmpty(listParam[26]))
+                {
+                    int intGroup = int.Parse(listParam[26]);
+                    if (intGroup != CommonTeisu.GROUP_RADIO_ALL)
+                    {
+                        strQuery += "   AND dbo.f_getグループコード(a.発注者コード) = '" + CommonTeisu.LIST_GROUP[intGroup] + "'";
+                    }
+                }
             }
 
             strQuery += " ORDER BY " + listSortItem[int.Parse(listParam[27])] + listSortOrder[int.Parse(listParam[28])];
@@ -552,7 +667,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
             DataTable dtRet = null;
 
-            if (int.Parse(listParam[23]) == 0)
+            if (int.Parse(listParam[23]) == 1)
             {
                 var drs = dtZanList.AsEnumerable()
                   .Where(x => x["状態"].ToString() == "入荷済")
@@ -562,7 +677,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 {
                     dtRet = drs.CopyToDataTable();
                 }
-            } else
+            } else if (int.Parse(listParam[23]) == 2)
             {
                 var drs = dtZanList.AsEnumerable()
                   .Where(x => x["状態"].ToString() != "入荷済")
@@ -572,6 +687,9 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 {
                     dtRet = drs.CopyToDataTable();
                 }
+            } else
+            {
+                dtRet = dtZanList;
             }
 
             return dtRet;

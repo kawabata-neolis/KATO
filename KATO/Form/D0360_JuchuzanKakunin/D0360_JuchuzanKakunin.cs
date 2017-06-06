@@ -362,10 +362,24 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 if (dtZanList != null && dtZanList.Rows.Count > 0)
                 {
                     Control cNow = this.ActiveControl;
-                    txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
-                    txtGokeiUriage.Focus();
-                    txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入単価)", null)).ToString();
-                    txtGokeiGenka.Focus();
+
+                    int rowsCnt = gridZanList.RowCount;
+
+                    for(int i = 0; i < rowsCnt; i++)
+                    {
+                        if (gridZanList.Rows[i].Cells["状態"].Value != null && (String)gridZanList.Rows[i].Cells["状態"].Value == "入荷済")
+                        {
+                            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Blue;
+                        }
+                    }
+
+                    if (rsSearchKind.judCheckBtn() != 2)
+                    {
+                        txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
+                        txtGokeiUriage.Focus();
+                        txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入単価)", null)).ToString();
+                        txtGokeiGenka.Focus();
+                    }
                     cNow.Focus();
                 }
 
