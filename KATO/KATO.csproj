@@ -732,6 +732,8 @@
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql" />
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE_NAME.sql" />
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql" />
+    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoFalse.sql" />
+    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoTrue.sql" />
     <Content Include="SQL\Common\C_LIST_GroupCd_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />

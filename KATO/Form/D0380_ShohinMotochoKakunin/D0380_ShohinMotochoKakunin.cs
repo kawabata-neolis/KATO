@@ -11,6 +11,7 @@ using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Business.D0380_ShohinMotochoKakunin;
 
 namespace KATO.Form.D0380_ShohinMotochoKakunin
 {
@@ -84,28 +85,6 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
             txtCalendarYMopen.setUp(0);
             txtCalendarYMclose.setUp(0);
-
-            //商品コードは機能なし
-            txtShohinCd.Enabled = false;
-            txtShohinCd.BackColor = Color.White;
-
-            //在庫関係は機能なし
-            txtHonZenZaiko.Enabled = false;
-            txtHonZenZaiko.BackColor = Color.White;
-            txtHonNyuko.Enabled = false;
-            txtHonNyuko.BackColor = Color.White;
-            txtHonShuko.Enabled = false;
-            txtHonShuko.BackColor = Color.White;
-            txtHonGenzaiko.Enabled = false;
-            txtHonGenzaiko.BackColor = Color.White;
-            txtGihuZenZaiko.Enabled = false;
-            txtGihuZenZaiko.BackColor = Color.White;
-            txtGihuNyuko.Enabled = false;
-            txtGihuNyuko.BackColor = Color.White;
-            txtGihuShuko.Enabled = false;
-            txtGihuShuko.BackColor = Color.White;
-            txtGihuGenzaiko.Enabled = false;
-            txtGihuGenzaiko.BackColor = Color.White;
             
             //DataGridViewの初期設定
             SetUpGrid();
@@ -452,12 +431,42 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
             lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
             lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-            lblGrayShohin.Text = dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
+            lblGrayShohin.Text = labelSet_Maker.ValueLabelText + " " +
+                                 labelSet_Chubunrui.ValueLabelText + " " +
+                                 dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ２"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ３"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ４"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ５"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ６"].ToString();
+        }
+
+        /// <summary>
+        /// setZaiko
+        ///取り出したデータをテキストボックスに配置（在庫関係リスト）
+        /// </summary>
+        public void setZaiko(List<string> lstString)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            txtHonZenZaiko.Text = lstString[0];
+            txtGihuZenZaiko.Text = lstString[1];
+            txtHonNyuko.Text = lstString[2];
+            txtGihuNyuko.Text = lstString[3];
+            txtHonShuko.Text = lstString[4];
+            txtGihuShuko.Text = lstString[5];
+            txtHonGenzaiko.Text = lstString[6];
+            txtGihuGenzaiko.Text = lstString[7];
+
+            txtHonZenZaiko.Focus();
+            txtGihuZenZaiko.Focus();
+            txtHonNyuko.Focus();
+            txtGihuNyuko.Focus();
+            txtHonShuko.Focus();
+            txtGihuShuko.Focus();
+            txtHonGenzaiko.Focus();
+            txtGihuGenzaiko.Focus();
+            cActiveBefore.Focus();
         }
 
         ///<summary>
@@ -475,36 +484,11 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         /// </summary>
         private void updShohinMotoCho()
         {
-            string strSelect;
-            string strFrom;
-            string strWhere;
-            string strOder;
-            string strSQL;
+            //データ渡し用
+            List<string> lstString = new List<string>();
+            List<string> lstStringSet = new List<string>();
 
-            System.DateTime dateStratYMD;
-            System.DateTime dateEndYMD;
-
-            System.DateTime dateZenYMD;
-
-            decimal decWSu1;
-            decimal decWSu2;
-            decimal decWSu3;
-            decimal decWSu1_2;
-            decimal decWSu2_2;
-            decimal decWSu3_2;
-
-            decimal decNyukoSu1;
-            decimal decNyukoSu2;
-            decimal decNyukoSu1_2;
-            decimal decNyukoSu2_2;
-
-            decimal decNyukoSu3;
-            decimal decNyukoSu3_2;
-
-            decimal decNyukoSu4;
-            decimal decNyukoSu4_2;
-
-            DataTable dtView;
+            DataTable dtSetText;
 
             if (lblGrayShohin.Text == "" || txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
             {
@@ -513,273 +497,27 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 basemessagebox.ShowDialog();
                 return;
             }
-          
-            string strEigyosyo1;
-            string strEigyosyo2;
 
-            strEigyosyo1 = "0001";
-            strEigyosyo2 = "0002";
-
-
-
-            //dateStratYMD = (System.DateTime)VB6.Format(txtYMS.data, "yyyy/mm") + "/01";
-            dateStratYMD =  DateTime.Parse(txtCalendarYMopen.Text + "/01");
-
-            //dateEndYMD = (System.DateTime)VB6.Format(txtYME.data, "yyyy/mm") + "/01";
-            dateEndYMD = DateTime.Parse(txtCalendarYMclose.Text + "/01");
-
-            ////dateEndYMD = DateAdd(Microsoft.VisualBasic.DateInterval.Day, -1, DateAdd(Microsoft.VisualBasic.DateInterval.Month, 1, dateEndYMD));
-            //dateEndYMD = DateAdd(Microsoft.VisualBasic.DateInterval.Day, -1, DateAdd(Microsoft.VisualBasic.DateInterval.Month, 1, dateEndYMD));
-
-            ////dateZenYMD = DateAdd(Microsoft.VisualBasic.DateInterval.Day, -1, dateStratYMD);
-            //dateZenYMD = DateAdd(Microsoft.VisualBasic.DateInterval.Day, -1, dateStratYMD);
-
-            //SQL用に移動
-            DBConnective dbconnective = new DBConnective();
+            D0380_ShohinMotochoKakunin_B shohinmotochokakuninB = new D0380_ShohinMotochoKakunin_B();
             try
             {
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定日の在庫数( '" + Eigyosyo1 + "','" + lblGrayShohin.Text + "','" + dateZenYMD + "')";
+                lstString.Add(txtShohinCd.Text);
+                lstString.Add(labelSet_Eigyosho.CodeTxtText);
+                lstString.Add(txtCalendarYMopen.Text);
+                lstString.Add(txtCalendarYMclose.Text);
 
-//
+                lstStringSet = shohinmotochokakuninB.setTextBox(lstString);
+                //データ配置
+                setZaiko(lstStringSet);
 
-//dateZenYMDの意味の調査
+//SQL関係のメソッドをビジネスに作成
 
-                //dtView = dbconnective.ReadSql("SELECT dbo.f_get指定日の在庫数( '" + strEigyosyo1 + "','" + lblGrayShohin.Text + "','" + dateZenYMD + "')");
+                //string strSelect;
+                //string strFrom;
+                //string strWhere;
+                //string strOder;
 
-                //if (dtView.Rows.Count > 0)
-                //{
-
-                //}
-//
-
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    txtZenZan.data = rs.Fields(0);
-                //}
-                //else
-                //{
-                //    txtZenZan.data = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定日の在庫数( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateZenYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    txtZenZan2.data = rs.Fields(0);
-                //}
-                //else
-                //{
-                //    txtZenZan2.data = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_仕入数量_仕入明細( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu1 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu1 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_仕入数量_仕入明細( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu1_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu1_2 = 0;
-                //}
-
-
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_移動入数_倉庫間移動( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu2 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_移動入数_倉庫間移動( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu2_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu2_2 = 0;
-                //}
-
-
-                ////2005.11.09
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_棚卸調整数_棚卸調整( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu3 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu3 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_棚卸調整数_棚卸調整( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu3_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu3_2 = 0;
-                //}
-
-                ////2006.02.14 出庫明細の入庫数
-                ////2006.8.5   入庫行は表示のみで数量は０
-                ////                   ↓
-                ////2006.8.27  入庫を２種類にして、取引区分４４は在庫増なし、４２は在庫増あり
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_入庫数量_出庫明細( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu4 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu4 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_入庫数量_出庫明細( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decNyukoSu4_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decNyukoSu4_2 = 0;
-                //}
-
-
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_売上数量_売上明細( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu1 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu1 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_売上数量_売上明細( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu1_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu1_2 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_出庫数量_出庫明細( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu2 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_出庫数量_出庫明細( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu2_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu2_2 = 0;
-                //}
-
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_移動出数_倉庫間移動( '" + Eigyosyo1 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu3 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu3 = 0;
-                //}
-
-                //strSQL = "";
-                //strSQL = "SELECT dbo.f_get指定期間_移動出数_倉庫間移動( '" + Eigyosyo2 + "','" + txtSyohinCD.data + "','" + dateStratYMD + "','" + dateEndYMD + "')";
-                //rs = new ADODB.Recordset();
-                //rs = gCon.Execute(strSQL, , ADODB.CommandTypeEnum.adCmdText);
-                //if (rs.RecordCount > 0)
-                //{
-                //    decWSu3_2 = rs.Fields(0).Value;
-                //}
-                //else
-                //{
-                //    decWSu3_2 = 0;
-                //}
-
-
-                //txtNyuuko.data = decNyukoSu1 + decNyukoSu2 + decNyukoSu3 + decNyukoSu4;
-                //txtNyuuko2.data = decNyukoSu1_2 + decNyukoSu2_2 + decNyukoSu3_2 + decNyukoSu4_2;
-
-                //txtSyukko.data = decWSu1 + decWSu2 + decWSu3;
-                //txtSyukko2.data = wSu1_2 + decWSu2_2 + decWSu3_2;
-
-                //txtZandaka.data = txtZenZan.data + txtNyuuko.data - txtSyukko.data;
-                //txtZandaka2.data = txtZenZan2.data + txtNyuuko2.data - txtSyukko2.data;
+                //string strDateStart;
 
                 //strSelect = "";
                 //strSelect = strSelect + "伝票年月日,伝票番号,行番号,取引区分名,";
@@ -845,6 +583,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 //        grdTorihiki.cellData(8, i) = grdTorihiki.cellData(8, i - 1) + (double)PutIsNull(grdTorihiki.cellData(6, i), 0) - (double)PutIsNull(grdTorihiki.cellData(7, i), 0);
                 //    }
                 //}
+
             }
             catch (Exception ex)
             {
@@ -866,7 +605,17 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         {
             string strkensakuopen = txtCalendarYMopen.Text;
             string strkensakuclose = txtCalendarYMclose.Text;
+
             delFormClear(this, gridSeihin);
+            txtHonZenZaiko.Clear();
+            txtGihuZenZaiko.Clear();
+            txtHonNyuko.Clear();
+            txtGihuNyuko.Clear();
+            txtHonShuko.Clear();
+            txtGihuShuko.Clear();
+            txtHonGenzaiko.Clear();
+            txtGihuGenzaiko.Clear();
+
             txtCalendarYMopen.Text = strkensakuopen;
             txtCalendarYMclose.Text = strkensakuclose;
         }
