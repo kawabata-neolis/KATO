@@ -109,6 +109,7 @@ namespace KATO.Form.M1020_Maker
             this.txtName.Size = new System.Drawing.Size(200, 22);
             this.txtName.TabIndex = 1;
             this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerTxtKeyDown);
+            this.txtName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMakerKeyUp);
             // 
             // lblName
             // 

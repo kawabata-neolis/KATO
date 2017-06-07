@@ -50,8 +50,16 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                MakerList makerList = new MakerList(this.Parent, this);
-                makerList.Show();
+                if (this.Parent is GroupBox)
+                {
+                    MakerList makerList = new MakerList(this.Parent.Parent, this);
+                    makerList.Show();
+                }
+                else
+                {
+                    MakerList makerList = new MakerList(this.Parent, this);
+                    makerList.Show();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

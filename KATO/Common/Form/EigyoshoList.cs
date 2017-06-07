@@ -136,7 +136,7 @@ namespace KATO.Common.Form
 
             //幅の値を設定
             gridSeihin.Columns["業種コード"].Width = 150;
-            gridSeihin.Columns["業種名"].Width = 150;
+            gridSeihin.Columns["業種名"].Width = 250;
 
             //中央揃え
             gridSeihin.Columns["業種名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;

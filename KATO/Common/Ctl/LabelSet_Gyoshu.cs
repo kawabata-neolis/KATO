@@ -49,10 +49,20 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                GyoshuList GyoshuList = new GyoshuList(this.Parent, this);
-                GyoshuList.StartPosition = FormStartPosition.Manual;
-                GyoshuList.intFrmKind = CommonTeisu.FRM_GYOSHU;
-                GyoshuList.ShowDialog();
+                if (this.Parent is GroupBox)
+                {
+                    GyoshuList GyoshuList = new GyoshuList(this.Parent.Parent, this);
+                    GyoshuList.StartPosition = FormStartPosition.Manual;
+                    GyoshuList.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                    GyoshuList.ShowDialog();
+                }
+                else
+                {
+                    GyoshuList GyoshuList = new GyoshuList(this.Parent, this);
+                    GyoshuList.StartPosition = FormStartPosition.Manual;
+                    GyoshuList.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                    GyoshuList.ShowDialog();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

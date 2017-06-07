@@ -69,7 +69,7 @@ namespace KATO.Common.Form
             // 
             this.chkNotToroku.AutoSize = true;
             this.chkNotToroku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.chkNotToroku.Location = new System.Drawing.Point(326, 12);
+            this.chkNotToroku.Location = new System.Drawing.Point(370, 14);
             this.chkNotToroku.Name = "chkNotToroku";
             this.chkNotToroku.Size = new System.Drawing.Size(394, 19);
             this.chkNotToroku.TabIndex = 107;
@@ -84,15 +84,15 @@ namespace KATO.Common.Form
             this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(12, 69);
+            this.labelSet_Maker.Location = new System.Drawing.Point(12, 68);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(288, 22);
+            this.labelSet_Maker.Size = new System.Drawing.Size(350, 22);
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 24;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.TabIndex = 110;
-            this.labelSet_Maker.ValueLabelSize = 150;
+            this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
             this.labelSet_Maker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
@@ -106,13 +106,13 @@ namespace KATO.Common.Form
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(12, 40);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(293, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 18;
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(350, 22);
+            this.labelSet_Chubunrui.SpaceCodeValue = 20;
             this.labelSet_Chubunrui.SpaceNameCode = 40;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
             this.labelSet_Chubunrui.TabIndex = 109;
-            this.labelSet_Chubunrui.ValueLabelSize = 150;
+            this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
             this.labelSet_Chubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
@@ -120,6 +120,7 @@ namespace KATO.Common.Form
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
             this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.labelSet_Daibunrui.CodeTxtSize = 24;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類";
@@ -128,12 +129,12 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.LsSubchubundata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(308, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 18;
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(350, 22);
+            this.labelSet_Daibunrui.SpaceCodeValue = 20;
             this.labelSet_Daibunrui.SpaceNameCode = 40;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
             this.labelSet_Daibunrui.TabIndex = 108;
-            this.labelSet_Daibunrui.ValueLabelSize = 150;
+            this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
             this.labelSet_Daibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
@@ -225,7 +226,7 @@ namespace KATO.Common.Form
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKensaku.Location = new System.Drawing.Point(106, 97);
+            this.txtKensaku.Location = new System.Drawing.Point(106, 96);
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(199, 22);
             this.txtKensaku.TabIndex = 101;
@@ -247,7 +248,7 @@ namespace KATO.Common.Form
             // 
             this.lblKensaku.AutoSize = true;
             this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKensaku.Location = new System.Drawing.Point(12, 100);
+            this.lblKensaku.Location = new System.Drawing.Point(12, 99);
             this.lblKensaku.Name = "lblKensaku";
             this.lblKensaku.Size = new System.Drawing.Size(87, 15);
             this.lblKensaku.strToolTip = null;

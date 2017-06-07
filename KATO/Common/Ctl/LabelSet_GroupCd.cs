@@ -68,8 +68,16 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                GroupCdList groupcdlist = new GroupCdList(this.Parent, this);
-                groupcdlist.ShowDialog();
+                if (this.Parent is GroupBox)
+                {
+                    GroupCdList groupcdlist = new GroupCdList(this.Parent.Parent, this);
+                    groupcdlist.ShowDialog();
+                }
+                else
+                {
+                    GroupCdList groupcdlist = new GroupCdList(this.Parent, this);
+                    groupcdlist.ShowDialog();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

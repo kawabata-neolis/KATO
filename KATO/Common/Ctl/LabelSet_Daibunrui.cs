@@ -87,8 +87,16 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
-                daibunruiList.Show();
+                if (this.Parent is GroupBox)
+                {
+                    DaibunruiList daibunruiList = new DaibunruiList(this.Parent.Parent, this);
+                    daibunruiList.Show();
+                }
+                else
+                {
+                    DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
+                    daibunruiList.Show();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

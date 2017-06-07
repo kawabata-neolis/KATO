@@ -49,10 +49,20 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this);
-                torihikisakiList.StartPosition = FormStartPosition.Manual;
-                torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
-                torihikisakiList.ShowDialog();
+                if (this.Parent is GroupBox)
+                {
+                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent.Parent, this);
+                    torihikisakiList.StartPosition = FormStartPosition.Manual;
+                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    torihikisakiList.ShowDialog();
+                }
+                else
+                {
+                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this);
+                    torihikisakiList.StartPosition = FormStartPosition.Manual;
+                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    torihikisakiList.ShowDialog();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

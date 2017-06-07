@@ -49,8 +49,16 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                TanabanList tanabanList = new TanabanList(this.Parent, this);
-                tanabanList.Show();
+                if (this.Parent is GroupBox)
+                {
+                    TanabanList tanabanList = new TanabanList(this.Parent.Parent, this);
+                    tanabanList.Show();
+                }
+                else
+                {
+                    TanabanList tanabanList = new TanabanList(this.Parent, this);
+                    tanabanList.Show();
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {

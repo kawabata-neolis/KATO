@@ -101,23 +101,23 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
             //データをバインド
             DataGridViewTextBoxColumn hizuke = new DataGridViewTextBoxColumn();
-            hizuke.DataPropertyName = "日付";
-            hizuke.Name = "日付";
+            hizuke.DataPropertyName = "伝票年月日";
+            hizuke.Name = "伝票年月日";
             hizuke.HeaderText = "日付";
 
             DataGridViewTextBoxColumn denpyo = new DataGridViewTextBoxColumn();
-            denpyo.DataPropertyName = "伝票No";
-            denpyo.Name = "伝票No";
+            denpyo.DataPropertyName = "伝票番号";
+            denpyo.Name = "伝票番号";
             denpyo.HeaderText = "伝票No";
 
             DataGridViewTextBoxColumn kbn = new DataGridViewTextBoxColumn();
-            kbn.DataPropertyName = "区分";
-            kbn.Name = "区分";
+            kbn.DataPropertyName = "取引区分名";
+            kbn.Name = "取引区分名";
             kbn.HeaderText = "区分";
 
             DataGridViewTextBoxColumn tekiyo = new DataGridViewTextBoxColumn();
-            tekiyo.DataPropertyName = "摘要";
-            tekiyo.Name = "摘要";
+            tekiyo.DataPropertyName = "名前";
+            tekiyo.Name = "名前";
             tekiyo.HeaderText = "摘　　　要";
 
             DataGridViewTextBoxColumn nyuko = new DataGridViewTextBoxColumn();
@@ -140,48 +140,36 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             tanka.Name = "単価";
             tanka.HeaderText = "単価";
 
-            //バインドしたデータを追加
-            gridSeihin.Columns.Add(hizuke);
-            gridSeihin.Columns.Add(denpyo);
-            gridSeihin.Columns.Add(kbn);
-            gridSeihin.Columns.Add(tekiyo);
-            gridSeihin.Columns.Add(nyuko);
-            gridSeihin.Columns.Add(shuko);
-            gridSeihin.Columns.Add(zaiko);
-            gridSeihin.Columns.Add(tanka);
-
             //個々の幅、文章の寄せ
-            gridSeihin.Columns["日付"].Width = 100;
-            gridSeihin.Columns["日付"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridSeihin.Columns["日付"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            setColumn(hizuke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(denpyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumn(kbn, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(tekiyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 580);
+            setColumn(nyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(shuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(zaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
 
-            gridSeihin.Columns["伝票No"].Width = 120;
-            gridSeihin.Columns["伝票No"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridSeihin.Columns["伝票No"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
 
-            gridSeihin.Columns["区分"].Width = 120;
-            gridSeihin.Columns["区分"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridSeihin.Columns["区分"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        ///<summary>
+        ///setColumn
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridSeihin.Columns.Add(col);
+            if (gridSeihin.Columns[col.Name] != null)
+            {
+                gridSeihin.Columns[col.Name].Width = intLen;
+                gridSeihin.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridSeihin.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
-            gridSeihin.Columns["摘要"].Width = 550;
-            gridSeihin.Columns["摘要"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridSeihin.Columns["摘要"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridSeihin.Columns["入庫数"].Width = 120;
-            gridSeihin.Columns["入庫数"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridSeihin.Columns["入庫数"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridSeihin.Columns["出庫数"].Width = 120;
-            gridSeihin.Columns["出庫数"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridSeihin.Columns["出庫数"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridSeihin.Columns["在庫数"].Width = 120;
-            gridSeihin.Columns["在庫数"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridSeihin.Columns["在庫数"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridSeihin.Columns["単価"].Width = 120;
-            gridSeihin.Columns["単価"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridSeihin.Columns["単価"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (fmt != null)
+                {
+                    gridSeihin.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
         }
 
         /// <summary>
@@ -210,7 +198,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    this.updShohinMotoCho();
+                    this.setShohinMotoCho();
                     break;
                 case Keys.F2:
                     break;
@@ -367,15 +355,12 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         {
             switch (((Button)sender).Name)
             {
-                case STR_BTN_F01: // 登録
-                    this.updShohinMotoCho();
+                case STR_BTN_F01: // 表示
+                    this.setShohinMotoCho();
                     break;
                 case STR_BTN_F04: // 取り消し
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
@@ -421,7 +406,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
         /// <summary>
         /// setShouhin
-        ///取り出したデータをテキストボックスに配置（商品リスト）
+        /// 取り出したデータをテキストボックスに配置（商品リスト）
         /// </summary>
         public void setShouhin(DataTable dtShohin)
         {
@@ -431,7 +416,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
             lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
             lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-            lblGrayShohin.Text = labelSet_Maker.ValueLabelText + " " +
+            lblGrayShohin.Text = labelSet_Maker.ValueLabelText +
                                  labelSet_Chubunrui.ValueLabelText + " " +
                                  dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
                                  dtShohin.Rows[0]["Ｃ２"].ToString() + " " +
@@ -443,7 +428,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
         /// <summary>
         /// setZaiko
-        ///取り出したデータをテキストボックスに配置（在庫関係リスト）
+        /// 取り出したデータをテキストボックスに配置（在庫関係リスト）
         /// </summary>
         public void setZaiko(List<string> lstString)
         {
@@ -469,26 +454,26 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             cActiveBefore.Focus();
         }
 
-        ///<summary>
-        ///setShohinClose
-        ///setShohinListが閉じたらコード記入欄にフォーカス
-        ///</summary>
+        /// <summary>
+        /// setShohinClose
+        /// setShohinListが閉じたらコード記入欄にフォーカス
+        /// </summary>
         public void setShohinClose()
         {
             txtKensaku.Focus();
         }
 
         /// <summary>
-        /// updShohinMotoCho
+        /// setShohinMotoCho
         /// データグリッドビューにデータを表示
         /// </summary>
-        private void updShohinMotoCho()
+        private void setShohinMotoCho()
         {
             //データ渡し用
             List<string> lstString = new List<string>();
             List<string> lstStringSet = new List<string>();
 
-            DataTable dtSetText;
+            DataTable dtSetView;
 
             if (lblGrayShohin.Text == "" || txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
             {
@@ -507,82 +492,14 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 lstString.Add(txtCalendarYMclose.Text);
 
                 lstStringSet = shohinmotochokakuninB.setTextBox(lstString);
-                //データ配置
+                //データ配置（textbox）
                 setZaiko(lstStringSet);
 
-//SQL関係のメソッドをビジネスに作成
-
-                //string strSelect;
-                //string strFrom;
-                //string strWhere;
-                //string strOder;
-
-                //string strDateStart;
-
-                //strSelect = "";
-                //strSelect = strSelect + "伝票年月日,伝票番号,行番号,取引区分名,";
-                //strSelect = strSelect + "名前,入庫数,出庫数,0,";
-                //strSelect = strSelect + "取引区分,単価";
-
-                //strFrom = " 商品在庫元帳_VIEW";
-
-                //strWhere = " 商品コード = '" + txtSyohinCD.data + "'";
-
-                ////2005.09.19
-                //if (!txtEigyousyo.isEmpty)
-                //{
-                //    strWhere = strWhere + " AND 倉庫 = '" + txtEigyousyo.data + "'";
-                //}
-
-                //strWhere = strWhere + " AND 伝票年月日 >='" + dateStratYMD + "'";
-                //strWhere = strWhere + " AND 伝票年月日 <='" + dateEndYMD + "'";
-
-
-                //strOder = " ORDER BY 伝票年月日,表示順,伝票番号,行番号 ";
-
-                //grdTorihiki.Visible = false;
-
-                //grdTorihiki.showSQLSelect(strSelect, strFrom, strWhere, strOder);
-
-                //int i;
-                //int j;
-                //int pre;
-                //object preYMD;
-                //pre = 0;
-                ////UPGRADE_WARNING: Null/IsNull() の使用が見つかりました。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="2EED02CB-5C0E-4DC1-AE94-4FAA3A30F51A"' をクリックしてください。
-                ////UPGRADE_WARNING: オブジェクト preYMD の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //preYMD = System.DBNull.Value;
-
-                //for (i = 1; i <= grdTorihiki.rowCount; i++)
-                //{
-                //    if (i == 1)
-                //    {
-                //        if (txtEigyousyo.data == "0001")
-                //        {
-                //            //UPGRADE_WARNING: UserControl メソッド grdTorihiki.cellData には新しい動作が含まれます。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト PutIsNull() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト PutIsNull(txtZenZan.data, 0) の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト grdTorihiki.cellData() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            grdTorihiki.cellData(8, i) = PutIsNull((txtZenZan.data), 0) + (double)PutIsNull(grdTorihiki.cellData(6, i), 0) - (double)PutIsNull(grdTorihiki.cellData(7, i), 0);
-                //        }
-                //        else
-                //        {
-                //            //UPGRADE_WARNING: UserControl メソッド grdTorihiki.cellData には新しい動作が含まれます。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト PutIsNull() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト PutIsNull(txtZenZan2.data, 0) の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            //UPGRADE_WARNING: オブジェクト grdTorihiki.cellData() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //            grdTorihiki.cellData(8, i) = PutIsNull((txtZenZan2.data), 0) + (double)PutIsNull(grdTorihiki.cellData(6, i), 0) - (double)PutIsNull(grdTorihiki.cellData(7, i), 0);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        //UPGRADE_WARNING: UserControl メソッド grdTorihiki.cellData には新しい動作が含まれます。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6BA9B8D2-2A32-4B6E-8D36-44949974A5B4"' をクリックしてください。
-                //        //UPGRADE_WARNING: オブジェクト PutIsNull() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //        //UPGRADE_WARNING: オブジェクト grdTorihiki.cellData(8, i - 1) の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //        //UPGRADE_WARNING: オブジェクト grdTorihiki.cellData() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-                //        grdTorihiki.cellData(8, i) = grdTorihiki.cellData(8, i - 1) + (double)PutIsNull(grdTorihiki.cellData(6, i), 0) - (double)PutIsNull(grdTorihiki.cellData(7, i), 0);
-                //    }
-                //}
+                lstString.Add(txtHonZenZaiko.Text);
+                lstString.Add(txtGihuZenZaiko.Text);
+                dtSetView = shohinmotochokakuninB.setViewGrid(lstString);
+                //データ配置（datagridview)
+                gridSeihin.DataSource = dtSetView;
 
             }
             catch (Exception ex)
@@ -590,11 +507,6 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 ex.ToString();
             }
             return;
-
-
-            gridSeihin.Visible = true;
-            gridSeihin.Focus();
-
         }
 
         /// <summary>

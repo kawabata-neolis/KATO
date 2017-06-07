@@ -73,8 +73,18 @@ namespace KATO.Common.Ctl
                 {
                     return;
                 }
-                ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
-                chubunruiList.Show();
+
+                if (this.Parent is GroupBox)
+                {
+                    ChubunruiList chubunruiList = new ChubunruiList(this.Parent.Parent, this, strdaibunCd);
+                    chubunruiList.Show();
+                }
+                else
+                {
+                    ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
+                    chubunruiList.Show();
+
+                }
             }
             else if (e.KeyCode == Keys.Enter)
             {
