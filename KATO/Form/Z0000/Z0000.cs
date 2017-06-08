@@ -191,6 +191,13 @@ namespace KATO.Form.Z0000
             shohinmotoshokakunin.ShowDialog();
         }
 
+        //発注入力
+        private void btnHachuInput_Click(object sender, EventArgs e)
+        {
+            A0100_HachuInput.A0100_HachuInput hachuinput = new A0100_HachuInput.A0100_HachuInput(this);
+            hachuinput.ShowDialog();
+        }
+
         private void btnZanKakunin_Click(object sender, EventArgs e)
         {
             D0360_JuchuzanKakunin.D0360_JuchuzanKakunin zan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
