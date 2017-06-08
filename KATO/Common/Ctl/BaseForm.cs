@@ -32,13 +32,18 @@ namespace KATO.Common.Ctl
             }
         }
 
-        private string Title;
+        private string Title = "";
         public string _Title
         {
             set
             {
                 String[] aryTitle = new string[]{value};
                 this.Text = string.Format(STR_TITLE, aryTitle);
+                Title = this.Text;
+            }
+            get
+            {
+                return Title;
             }
         }
 

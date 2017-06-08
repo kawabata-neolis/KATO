@@ -17,6 +17,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 {
     public partial class D0360_JuchuzanKakunin : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public D0360_JuchuzanKakunin(Control c)
         {
             if (c == null)
@@ -24,6 +26,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 return;
             }
 
+            this._Title = "残確認";
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -258,6 +261,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.selZanList();
                     break;
                 case Keys.F2:

@@ -39,6 +39,10 @@
     <Reference Include="ExcelControls">
       <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\ExcelControls.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NewProgramUpdate">
       <HintPath>..\..\0214deci001\0214deci001\suntsu_master\suntsu\DLL\NewProgramUpdate.dll</HintPath>
     </Reference>
@@ -320,6 +324,7 @@
     <Compile Include="Common\Form\ChubunruiList.Designer.cs">
       <DependentUpon>ChubunruiList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Util\LogUtil.cs" />
     <Compile Include="Common\Util\OpenSQL.cs" />
     <Compile Include="Common\Util\StringUtl.cs" />
     <Compile Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.cs">
@@ -699,6 +704,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -718,6 +724,9 @@
     <Folder Include="Work\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Log4net.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
     <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />

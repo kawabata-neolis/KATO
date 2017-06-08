@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <log4net>
+    <appender name="InfoLogDailyAppender" type="log4net.Appender.RollingFileAppender">
+      <!-- ファイル名は日付ごと グローバル変数名で設定したフォルダのLogs￥Info_yyyyMMdd.logで出力-->
+      <param name="File" value=".\log\KATO_" />
+      <param name="DatePattern" value='yyyyMMdd".log"' />
+      <param name="RollingStyle" value="date" />
+      <param name="StaticLogFileName" value="false" />
+
+      <Encoding value="UTF-8"/>
+
+      <AppendToFile value="true" />
+
+      <filter type="log4net.Filter.LevelRangeFilter">
+        <param name="LevelMax" value="Error" />
+        <param name="LevelMin" value="Debug" />
+      </filter>
+
+      <layout type="log4net.Layout.PatternLayout">
+        <ConversionPattern value="%date&#x9;[%-5level]&#x9;%message%n" />
+      </layout>
+    </appender>
+     
+    <root>
+      <appender-ref ref="InfoLogDailyAppender" />
+    </root>
+  </log4net>
+</configuration>
