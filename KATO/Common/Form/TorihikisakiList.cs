@@ -27,6 +27,7 @@ namespace KATO.Common.Form
     public partial class TorihikisakiList : System.Windows.Forms.Form
     {
         LabelSet_Tokuisaki lblSetTokuisaki = null;
+        TextSet_Tokuisaki txtSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -87,6 +88,36 @@ namespace KATO.Common.Form
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
         }
+
+        /// <summary>
+        /// TokuisakiList
+        /// 前画面からデータ受け取り(セットテキストボックス)
+        /// </summary>
+        public TorihikisakiList(Control c, TextSet_Tokuisaki txtSetTokuiSelect)
+        {
+            if (c == null)
+            {
+                return;
+            }
+
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            txtSetTokuisaki = txtSetTokuiSelect;
+            InitializeComponent();
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+            this.btnF12.Text = "F12:戻る";
+            this.btnF11.Text = "F11:検索";
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
+            this.Top = c.Top;
+        }
+
 
         /// <summary>
         /// _Title
@@ -384,6 +415,11 @@ namespace KATO.Common.Form
             {
                 lblSetTokuisaki.CodeTxtText = lstString[0];
                 lblSetTokuisaki.ValueLabelText = lstString[1];
+            }
+            else if (txtSetTokuisaki != null && lstString.Count != 0)
+            {
+                txtSetTokuisaki.CodeTxtText = lstString[0];
+                txtSetTokuisaki.valueTextText = lstString[1];
             }
 
             this.Close();

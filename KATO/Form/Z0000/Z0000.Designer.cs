@@ -51,6 +51,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnHachuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -136,6 +137,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnHachuInput);
             this.tabPage1.Controls.Add(this.btnTestWindow);
             this.tabPage1.Controls.Add(this.btnTanaInput);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -159,7 +161,7 @@
             // 
             // btnTanaInput
             // 
-            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTanaInput.BackColor = System.Drawing.Color.Cyan;
             this.btnTanaInput.Location = new System.Drawing.Point(23, 33);
             this.btnTanaInput.Name = "btnTanaInput";
             this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
@@ -194,7 +196,7 @@
             // 
             // btnZanKakunin
             // 
-            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
+            this.btnZanKakunin.BackColor = System.Drawing.Color.LightYellow;
             this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
             this.btnZanKakunin.Name = "btnZanKakunin";
             this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
@@ -386,6 +388,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // btnHachuInput
+            // 
+            this.btnHachuInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnHachuInput.Location = new System.Drawing.Point(23, 94);
+            this.btnHachuInput.Name = "btnHachuInput";
+            this.btnHachuInput.Size = new System.Drawing.Size(280, 40);
+            this.btnHachuInput.TabIndex = 71;
+            this.btnHachuInput.Text = "発注入力";
+            this.btnHachuInput.UseVisualStyleBackColor = false;
+            this.btnHachuInput.Click += new System.EventHandler(this.btnHachuInput_Click);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -445,5 +458,6 @@
         private Common.Ctl.BaseMenuButton btnChubunrui;
         private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton btnShohinMotochoKakunin;
+        private Common.Ctl.BaseMenuButton btnHachuInput;
     }
 }

@@ -26,10 +26,11 @@ namespace KATO.Common.Util
         public const String STR_FUNC_F11 = "F11:印刷";
         public const String STR_FUNC_F12 = "F12:終了";
 
-        public const String STR_FUNC_F10_SHOHIN = "F10:棚番無";
-        public const String STR_FUNC_F8_TORIHIKISAKI = "F8:空番";
         public const String STR_FUNC_F1_KARITOROKU = "F1:仮登録";
         public const String STR_FUNC_F1_HYOJII = "F1:表示";
+        public const String STR_FUNC_F8_KARABAN = "F8:空番";
+        public const String STR_FUNC_F8_RIREKI = "F8:履歴";
+        public const String STR_FUNC_F10_SHOHIN = "F10:棚番無";
 
         public const String STR_BTN_F01 = "btnF01";
         public const String STR_BTN_F02 = "btnF02";
