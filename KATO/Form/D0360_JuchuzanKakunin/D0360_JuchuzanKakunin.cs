@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Ctl;
-using KATO.Common.Form;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.D0360_JuchuzanKakunin;
@@ -19,8 +13,13 @@ namespace KATO.Form.D0360_JuchuzanKakunin
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        ///<summary>
+        ///D0360_JuchuzanKakunin
+        ///フォーム初期設定
+        ///</summary>
         public D0360_JuchuzanKakunin(Control c)
         {
+            // 引数のコントロールが無い場合は画面を開かない
             if (c == null)
             {
                 return;
@@ -32,9 +31,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //フォームの最大化・最小化を禁止
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
             //最大サイズと最小サイズを現在のサイズに設定する
@@ -51,6 +49,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             lsDaibunrui.Lschubundata = lsChubunrui;
         }
 
+        ///<summary>
+        ///JuchuzanKakunin_Load
+        ///フォームロード
+        ///</summary>
         private void JuchuzanKakunin_Load(object sender, EventArgs e)
         {
             SetUpGrid();
@@ -223,6 +225,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             #endregion
         }
 
+        ///<summary>
+        ///setColumn
+        ///Grid列設定
+        ///</summary>
         private void setColumn (DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
             gridZanList.Columns.Add(col);
@@ -238,6 +244,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             }
         }
 
+        ///<summary>
+        ///D0360_JuchuzanKakunin_KeyDown
+        ///キー押下処理
+        ///</summary>
         private void D0360_JuchuzanKakunin_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -269,6 +279,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case Keys.F3:
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -296,6 +307,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             }
         }
 
+        ///<summary>
+        ///delText
+        ///入力内容クリア
+        ///</summary>
         private void delText()
         {
             //フォーム上のデータを白紙
@@ -303,6 +318,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             txtJuchuNo.Focus();
         }
 
+        ///<summary>
+        ///D0360_JuchuzanKakunin_KeyDown
+        ///ボタン押下処理
+        ///</summary>
         private void btnFKeys_Click(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -326,11 +345,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             }
         }
 
+        //<summary>
+        ///selZanList
+        ///残一覧検索実行
+        ///</summary>
         private void selZanList()
         {
 
             string[] listParam = new string[30];
 
+            // パラメータ設定
             setParam(listParam, txtJuchuNo.Text, 0);
             setParam(listParam, txtHachuNo.Text, 1);
             setParam(listParam, txtHinmei.Text, 2);
@@ -365,6 +389,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try
             {
+                // 検索実行
                 DataTable dtZanList = bis.getZanList(listParam);
                 gridZanList.DataSource = dtZanList;
 
@@ -374,7 +399,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
                     int rowsCnt = gridZanList.RowCount;
 
-                    for(int i = 0; i < rowsCnt; i++)
+                    // 入荷済の行はフォントカラーを変更
+                    for (int i = 0; i < rowsCnt; i++)
                     {
                         if (gridZanList.Rows[i].Cells["状態"].Value != null && (String)gridZanList.Rows[i].Cells["状態"].Value == "入荷済")
                         {
@@ -382,6 +408,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                         }
                     }
 
+                    // 受注残が検索された場合は単価合計を算出
                     if (rsSearchKind.judCheckBtn() != 2)
                     {
                         txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
@@ -394,9 +421,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             } catch (Exception ex)
             {
+                CommonException cex = new CommonException(ex);
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void setParam(string[] lst, string prm, int idx)
