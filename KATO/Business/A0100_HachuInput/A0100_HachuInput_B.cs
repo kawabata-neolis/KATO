@@ -20,10 +20,59 @@ namespace KATO.Business.A0100_HachuInput_B
     class A0100_HachuInput_B
     {
         ///<summary>
-        ///textSet_Tokuisaki_Leave
+        ///setHachuGrid
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable textSet_Tokuisaki_Leave(List<string> lstString)
+        public DataTable setHachuGrid(List<string> lstString)
+        {
+            //データ渡し用
+            List<string> stringSQLAry = new List<string>();
+
+            string strSQLName = null;
+
+            strSQLName = "C_LIST_HachuInput_SELECT_GRID";
+
+            //データ渡し用
+            stringSQLAry.Add("Common");
+            stringSQLAry.Add(strSQLName);
+
+            DataTable dtSetCd_B = new DataTable();
+            OpenSQL opensql = new OpenSQL();
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //配列設定
+                string[] aryStr = { lstString[0] };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///setHachuLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public DataTable setHachuLeave(string strHachuban)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
@@ -49,7 +98,7 @@ namespace KATO.Business.A0100_HachuInput_B
                 }
 
                 //配列設定
-                string[] aryStr = { lstString[0] };
+                string[] aryStr = { strHachuban };
 
                 strSQLInput = string.Format(strSQLInput, aryStr);
 

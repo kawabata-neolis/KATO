@@ -112,6 +112,12 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
+            if (this.CodeTxtText.Length < 4)
+            {
+                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+            }
+
+
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
 
             //データ渡し用

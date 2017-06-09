@@ -663,6 +663,8 @@
             this.gridHachu.Size = new System.Drawing.Size(1340, 275);
             this.gridHachu.StandardTab = true;
             this.gridHachu.TabIndex = 0;
+            this.gridHachu.DoubleClick += new System.EventHandler(this.gridHachu_DoubleClick);
+            this.gridHachu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridHachu_KeyDown);
             // 
             // A0100_HachuInput
             // 

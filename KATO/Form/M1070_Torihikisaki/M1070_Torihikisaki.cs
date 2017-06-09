@@ -26,6 +26,8 @@ namespace KATO.Form.M1070_Torihikisaki
     ///</summary>
     public partial class M1070_Torihikisaki : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// M1070_Torihikisaki
         /// フォーム関係の設定
@@ -110,14 +112,17 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTorihiki();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delTorihiki();
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -127,6 +132,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F7:
                     break;
                 case Keys.F8:
+                    logger.Info(LogUtil.getMessage(this._Title, "空番実行"));
                     this.setAkiban();
                     break;
                 case Keys.F9:
@@ -136,6 +142,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -194,6 +201,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -246,6 +254,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     txtCdT_KeyDown(sender, e);
                     break;
                 case Keys.F10:
@@ -253,7 +262,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:

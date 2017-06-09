@@ -111,7 +111,7 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (this.CodeTxtText.Length <= 3)
+            if (this.CodeTxtText.Length < 4)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }

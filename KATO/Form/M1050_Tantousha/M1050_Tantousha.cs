@@ -26,6 +26,8 @@ namespace KATO.Form.M1050_Tantousha
     ///</summary>
     public partial class M1050_Tantousha : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //コード内の無限ループを抜けるためのもの
         public Boolean blnLoopOne = true;
         
@@ -105,14 +107,17 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTantousha();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.deTantousha();
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -130,6 +135,7 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -188,7 +194,6 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -240,6 +245,7 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     judtxtTantouKeyDown(sender, e);
                     break;
                 case Keys.F10:
@@ -247,7 +253,6 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -264,18 +269,22 @@ namespace KATO.Form.M1050_Tantousha
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTantousha();
                     break;
                 case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.deTantousha();
                     break;
-                case STR_BTN_F04: // 取り消し
+                case STR_BTN_F04: // 取消
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 //case STR_BTN_F11: //印刷
                 //    this.XX();
                 //    break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

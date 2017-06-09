@@ -26,6 +26,8 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ShouhinList : System.Windows.Forms.Form
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //前画面からメーカーコードを取り出す枠（大分類コード初期値）
         public string strYMD = "";
 
@@ -46,6 +48,21 @@ namespace KATO.Common.Form
         int intDBjud = 0;
 
         Boolean blnZaikoKensaku = true;
+
+        private string Title = "";
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+                Title = this.Text;
+            }
+            get
+            {
+                return Title;
+            }
+        }
 
         /// <summary>
         /// ShouhinList
@@ -77,19 +94,6 @@ namespace KATO.Common.Form
 
             //未登録棚番を使用する場合
             chkNotToroku.Checked = false;
-        }
-
-        /// <summary>
-        /// _Title
-        /// タイトルの設定
-        /// </summary>
-        public string _Title
-        {
-            set
-            {
-                String[] aryTitle = new string[] { value };
-                this.Text = string.Format(STR_TITLE, aryTitle);
-            }
         }
 
         /// <summary>
@@ -312,10 +316,12 @@ namespace KATO.Common.Form
                     break;
                 case Keys.F11:
                     //検索ボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
                     this.btnEndClick(sender, e);
                     break;
 
@@ -372,12 +378,8 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
 
                 default:
@@ -433,12 +435,8 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
 
                 default:
@@ -549,6 +547,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction()
         {
+            logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
+
             this.Close();
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
@@ -569,6 +569,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
+            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+
             List<int> lstInt = new List<int>();
 
             txtHon.Text = "";

@@ -32,6 +32,23 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private string Title = "";
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+                Title = this.Text;
+            }
+            get
+            {
+                return Title;
+            }
+        }
+
         /// <summary>
         /// TanabanList
         /// フォーム関係の設定（通常のテキストボックスから）
@@ -75,19 +92,6 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
-        }
-
-        /// <summary>
-        /// _Title
-        /// タイトルの設定
-        /// </summary>
-        public string _Title
-        {
-            set
-            {
-                String[] aryTitle = new string[] { value };
-                this.Text = string.Format(STR_TITLE, aryTitle);
-            }
         }
 
         /// <summary>
@@ -194,63 +198,13 @@ namespace KATO.Common.Form
                     break;
                 case Keys.F12:
                     //戻るボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
                     this.btnEndClick(sender, e);
                     break;
 
                 default:
                     break;
             }
-        }
-
-        ///<summary>
-        ///btnEndClick
-        ///戻るボタンを押したとき
-        ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
-        {
-            List<string> lstString = new List<string>();
-            setEndAction(lstString);
-        }
-
-        ///<summary>
-        ///setEndAction
-        ///戻るボタンの処理
-        ///</summary>
-        private void setEndAction(List<string> lstString)
-        {
-            if (lblSetTanaban != null && lstString.Count != 0)
-            {
-                lblSetTanaban.CodeTxtText = lstString[0];
-                lblSetTanaban.ValueLabelText = lstString[1];
-            }
-
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            this.Close();
-
-            //処理部に移動
-            TanabanList_B tanabanlistB = new TanabanList_B();
-            try
-            {
-                tanabanlistB.setEndAction(intFrmKind);
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-            }
-        }
-
-        ///<summary>
-        ///setGridEigyousyoDoubleClick
-        ///データグリッドビュー内のデータをダブルクリックしたとき
-        ///</summary>
-        public void setGridEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            setSelectItem();
         }
 
         ///<summary>
@@ -303,13 +257,64 @@ namespace KATO.Common.Form
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
 
                 default:
                     break;
             }
+        }
+
+        ///<summary>
+        ///btnEndClick
+        ///戻るボタンを押したとき
+        ///</summary>
+        private void btnEndClick(object sender, EventArgs e)
+        {
+            logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
+
+            List<string> lstString = new List<string>();
+            setEndAction(lstString);
+        }
+
+        ///<summary>
+        ///setEndAction
+        ///戻るボタンの処理
+        ///</summary>
+        private void setEndAction(List<string> lstString)
+        {
+            if (lblSetTanaban != null && lstString.Count != 0)
+            {
+                lblSetTanaban.CodeTxtText = lstString[0];
+                lblSetTanaban.ValueLabelText = lstString[1];
+            }
+
+            //データ渡し用
+            List<int> lstInt = new List<int>();
+
+            //データ渡し用
+            lstInt.Add(intFrmKind);
+
+            this.Close();
+
+            //処理部に移動
+            TanabanList_B tanabanlistB = new TanabanList_B();
+            try
+            {
+                tanabanlistB.setEndAction(intFrmKind);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+        }
+
+        ///<summary>
+        ///setGridEigyousyoDoubleClick
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///</summary>
+        public void setGridEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            setSelectItem();
         }
 
         ///<summary>

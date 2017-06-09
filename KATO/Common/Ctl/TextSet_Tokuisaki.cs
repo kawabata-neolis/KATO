@@ -112,6 +112,11 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
+            if (this.CodeTxtText.Length < 4)
+            {
+                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+            }
+
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
 
             //データ渡し用
@@ -196,13 +201,34 @@ namespace KATO.Common.Ctl
 
             string strSQLName = null;
 
+            Boolean blnGood;
+
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.valueTextText = "";
                 this.AppendLabelText = "";
                 return;
             }
-            
+
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                this.valueTextText = "";
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.Focus();
+                return;
+            }
+
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
 
             //データ渡し用

@@ -26,6 +26,8 @@ namespace KATO.Form.A0100_HachuInput
     ///</summary>
     public partial class A0100_HachuInput : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// A0100_HachuInput
         /// フォーム関係の設定
@@ -82,6 +84,7 @@ namespace KATO.Form.A0100_HachuInput
             this.btnF12.Text = STR_FUNC_F12;
 
             txtHachuYMD.Text = DateTime.Today.ToString();
+            labelSet_Tantousha.CodeTxtText = "0022";
 
             SetUpGrid();
         }
@@ -107,13 +110,13 @@ namespace KATO.Form.A0100_HachuInput
             chuban.HeaderText = "注番";
 
             DataGridViewTextBoxColumn maker = new DataGridViewTextBoxColumn();
-            maker.DataPropertyName = "メーカー";
-            maker.Name = "メーカー";
+            maker.DataPropertyName = "メーカー名";
+            maker.Name = "メーカー名";
             maker.HeaderText = "メーカー";
 
             DataGridViewTextBoxColumn chubun = new DataGridViewTextBoxColumn();
-            chubun.DataPropertyName = "中分類";
-            chubun.Name = "中分類";
+            chubun.DataPropertyName = "中分類名";
+            chubun.Name = "中分類名";
             chubun.HeaderText = "中分類";
 
             DataGridViewTextBoxColumn kataban = new DataGridViewTextBoxColumn();
@@ -140,6 +143,7 @@ namespace KATO.Form.A0100_HachuInput
             setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.#", 150);
             setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
 
+            gridHachu.Columns[0].Visible = false;
         }
 
         ///<summary>
@@ -188,15 +192,78 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addHachu();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delHachu();
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    this.setRireki();
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///judGridSeihinKeyDown
+        ///データグリッドビュー内のデータ選択中にキーが押されたとき
+        ///</summary>        
+        private void gridHachu_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //ダブルクリックと同じ効果
+                    setSelectItem();
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
                     break;
                 case Keys.F5:
                     break;
@@ -207,13 +274,14 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F8:
                     break;
                 case Keys.F9:
-                    this.setRireki();
                     break;
                 case Keys.F10:
                     break;
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    //戻るボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
                     this.Close();
                     break;
 
@@ -231,15 +299,19 @@ namespace KATO.Form.A0100_HachuInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addHachu();
                     break;
                 case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delHachu();
                     break;
                 case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case STR_BTN_F08: // 履歴
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
                     this.setRireki();
                     break;
                 //case STR_BTN_F11: //印刷
@@ -269,7 +341,6 @@ namespace KATO.Form.A0100_HachuInput
                 labelSet_Daibunrui.Focus();
                 return;
             }
-
         }
 
         /// <summary>
@@ -329,13 +400,51 @@ namespace KATO.Form.A0100_HachuInput
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = hachuB.textSet_Tokuisaki_Leave(lstString);
+                dtSetCd = hachuB.setHachuGrid(lstString);
 
                 if (dtSetCd.Rows.Count != 0)
                 {
                     gridHachu.DataSource = dtSetCd;
                 }
 
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+            }
+        }
+
+        /// <summary>
+        /// judtxtDaibunruiKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void gridHachu_DoubleClick(object sender, EventArgs e)
+        {
+            setSelectItem();
+        }
+
+        /// <summary>
+        /// setSelectItem
+        /// データグリッドビュー内のデータが選択された時
+        /// </summary>
+        private void setSelectItem()
+        {
+            txtHachuban.Text = (string)gridHachu.CurrentRow.Cells["発注番号"].Value.ToString();
+
+            DataTable dtSetCd;
+
+            //処理部に移動
+            A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
+
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetCd = hachuB.setHachuLeave(txtHachuban.Text);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    //gridHachu.DataSource = dtSetCd;
+                }
             }
             catch (Exception ex)
             {

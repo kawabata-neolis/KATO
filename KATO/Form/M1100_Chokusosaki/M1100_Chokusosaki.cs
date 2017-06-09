@@ -26,6 +26,8 @@ namespace KATO.Form.M1100_Chokusosaki
     ///</summary>
     public partial class M1100_Chokusosaki : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// M1100_Chokusosaki
         /// フォーム関係の設定
@@ -103,14 +105,17 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addChokusosaki();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delChokusosaki();
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -128,6 +133,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -186,7 +192,6 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -238,6 +243,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     txtChokusoKeyDown(sender, e);
                     break;
                 case Keys.F10:
@@ -245,7 +251,6 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -262,18 +267,22 @@ namespace KATO.Form.M1100_Chokusosaki
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addChokusosaki();
                     break;
                 case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delChokusosaki();
                     break;
                 case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 //case STR_BTN_F11: //印刷
                 //    this.XX();
                 //    break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

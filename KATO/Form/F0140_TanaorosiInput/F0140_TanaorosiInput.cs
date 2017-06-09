@@ -26,6 +26,8 @@ namespace KATO.Form.F0140_TanaorosiInput
     ///</summary>
     public partial class F0140_TanaorosiInput : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //大分類コードの確保(text上のを使うと書き換えていた場合に異なるデータを参照するから)
         string strDaibunruiCD;
 
@@ -245,6 +247,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTanaorosi();
                     break;
                 case Keys.F2:
@@ -280,6 +283,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                             this.Close();
                         }
                     }
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -315,14 +319,12 @@ namespace KATO.Form.F0140_TanaorosiInput
                     SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
-                    this.addTanaorosi();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
                     break;
                 case Keys.F4:
-                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -341,16 +343,6 @@ namespace KATO.Form.F0140_TanaorosiInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    //クローズの前にデータ変更の破棄確認メッセージ
-                    if (blnEditting == true)
-                    {
-                        // どのボタンを選択したかを判断する
-                        if (MessageBox.Show("データが変更されています。破棄してもよろしいですか？", "終了確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            this.Close();
-                        }
-                    }
-                    this.Close();
                     break;
 
                 default:
@@ -368,12 +360,15 @@ namespace KATO.Form.F0140_TanaorosiInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTanaorosi();
                     break;
-                case STR_BTN_F04: // 取り消し
+                case STR_BTN_F04: // 取消
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

@@ -26,11 +26,28 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class TorihikisakiList : System.Windows.Forms.Form
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         LabelSet_Tokuisaki lblSetTokuisaki = null;
         TextSet_Tokuisaki txtSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
+
+        private string Title = "";
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+                Title = this.Text;
+            }
+            get
+            {
+                return Title;
+            }
+        }
 
         /// <summary>
         /// TantoushaList
@@ -116,20 +133,6 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
             this.Top = c.Top;
-        }
-
-
-        /// <summary>
-        /// _Title
-        /// タイトルプロパティを決める
-        /// </summary>
-        public string _Title
-        {
-            set
-            {
-                String[] aryTitle = new string[] { value };
-                this.Text = string.Format(STR_TITLE, aryTitle);
-            }
         }
 
         /// <summary>
@@ -225,10 +228,12 @@ namespace KATO.Common.Form
                     break;
                 case Keys.F11:
                     //検索ボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
                     //戻るボタン
+                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
                     this.btnEndClick(sender, e);
                     break;
 
@@ -285,12 +290,8 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
 
                 default:
@@ -346,12 +347,8 @@ namespace KATO.Common.Form
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //検索ボタン
-                    this.btnKensakuClick(sender, e);
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
 
                 default:
@@ -401,6 +398,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnEndClick(object sender, EventArgs e)
         {
+            logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
+
             List<string> lstString = new List<string>();
             setEndAction(lstString);
         }
@@ -447,6 +446,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
+            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+
             //データ渡し用
             List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();

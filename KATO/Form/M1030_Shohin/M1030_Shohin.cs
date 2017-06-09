@@ -26,9 +26,15 @@ namespace KATO.Form.M1030_Shohin
     ///</summary>
     public partial class M1030_Shohin : BaseForm
     {
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //管理者かどうかの判定
         Boolean blnKanri;
 
+        /// <summary>
+        /// M1030_Shohin
+        /// フォーム関係の設定
+        /// </summary>
         public M1030_Shohin(Control c)
         {
             if (c == null)
@@ -124,14 +130,17 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addShohin();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delShohin();
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -145,11 +154,13 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.F9:
                     break;
                 case Keys.F10:
+                    logger.Info(LogUtil.getMessage(this._Title, "本棚無実行"));
                     this.setShohinListTana();
                     break;
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -208,7 +219,6 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -260,6 +270,7 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.setShohinList();
                     break;
                 case Keys.F10:
@@ -267,7 +278,6 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    this.Close();
                     break;
 
                 default:
@@ -284,21 +294,26 @@ namespace KATO.Form.M1030_Shohin
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addShohin();
                     break;
                 case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delShohin();
                     break;
-                case STR_BTN_F04: // 取り消し
+                case STR_BTN_F04: // 取消
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case STR_BTN_F10: // 棚番無
+                    logger.Info(LogUtil.getMessage(this._Title, "本棚無実行"));
                     this.setShohinListTana();
                     break;
                 //case STR_BTN_F11: //印刷
                 //    this.XX();
                 //    break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }
