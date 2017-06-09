@@ -13,7 +13,8 @@ namespace KATO.Common.Util
         public CommonException(Exception e)
         {
             logger.Info(LogUtil.getMessage(e.Source, "例外処理が発生"));
-            logger.Debug(LogUtil.getMessage(e.Source, e.Message));
+            logger.Error(LogUtil.getMessage(e.Source, e.Message));
+            logger.Debug(LogUtil.getMessage(e.Source, e.StackTrace));
         }
     }
 }

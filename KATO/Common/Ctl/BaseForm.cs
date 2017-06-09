@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Form.Z0000;
 
 namespace KATO.Common.Ctl
 {
     public partial class BaseForm : System.Windows.Forms.Form
     {
-        //private System.Text.RegularExpressions.Regex _regex = new System.Text.RegularExpressions.Regex("^ +$");
         private int intMsgCnt = -1;
 
         private const string defaultMessage = "　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　";
+        // ステータスバー用メッセージ
         private string StatusMessage = "";
         public string _StatusMessage
         {
@@ -32,6 +25,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        // 画面タイトル
         private string Title = "";
         public string _Title
         {
@@ -47,6 +41,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        // 大分類（退避用）
         private String strKeepDaibunrui;
         public String StrKeepDaibunrui
         {
@@ -60,6 +55,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        // 中分類（退避用）
         private String strKeepChubunrui;
         public String StrKeepChubunrui
         {
@@ -73,6 +69,7 @@ namespace KATO.Common.Ctl
             }
         }
 
+        // サブ画面表示用コンボボックス表示フラグ
         private Boolean showSubWinCmbFlg = false;
         public Boolean ShowSubWinCmbFlg
         {
@@ -87,7 +84,7 @@ namespace KATO.Common.Ctl
             }
         }
 
-        // テスト用
+        // テスト用文字列
         private List<String> strMgsList = new List<String>();
 
         public BaseForm()
@@ -97,7 +94,7 @@ namespace KATO.Common.Ctl
             lblStatusMessage.Text = "";
             lblStatusUser.Text = Environment.UserName;
 
-            // テスト用
+            // テスト用（後日削除）
             strMgsList.Add("拙者親方と申すは、御立会の内に御存知の御方も御座りましょうが、御江戸を発って二十里上方、相州小田原一色町を御過ぎなされて、青物町を上りへ御出でなさるれば、欄干橋虎屋藤右衛門、只今では剃髪致して圓斎と名乗りまする。");
             strMgsList.Add("元朝より大晦日まで御手に入れまする此の薬は、昔、珍の国の唐人外郎と云う人、我が朝へ来たり。");
             strMgsList.Add("帝へ参内の折から此の薬を深く込め置き、用うる時は一粒ずつ冠の隙間より取り出だす。");
@@ -108,6 +105,10 @@ namespace KATO.Common.Ctl
             strMgsList.Add("イヤ最前より家名の自慢ばかり申しても、御存知無い方には正真の胡椒の丸呑み、白河夜船、されば一粒食べ掛けて、その気味合いを御目に掛けましょう。先ず此の薬を斯様に一粒舌の上に乗せまして、腹内へ納めますると、イヤどうも言えぬわ、胃・心・肺・肝が健やかに成りて、薫風喉より来たり、口中微涼を生ずるが如し。魚・鳥・茸・麺類の食い合わせ、その他万病即効在る事神の如し。");
         }
 
+        /// <summary>
+        /// timer1_Tick
+        /// タイマーイベント
+        /// </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (strMgsList.Count == 0)
@@ -131,25 +132,20 @@ namespace KATO.Common.Ctl
             lblStatusMessage.Text = (lblStatusMessage.Text).Remove(0, 1);
         }
 
-        //
-        // クローズメソッド
-        //
+        /// <summary>
+        /// timer1_Tick
+        /// クローズメソッド
+        /// </summary>
         private void BaseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer1.Dispose();
-            //if (this.Text == "メニュー")
-            //{
-            //    Application.Exit();
-            //}
-            //else
-            //{
-            //    this.Dispose();
-            //    Z0000 z0000 = new Z0000();
-            //    z0000.Show();
-            //}
         }
 
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        // 
+        /// <summary>
+        /// CreateParams
+        /// タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        /// </summary>
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
@@ -167,11 +163,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///delFormClear
         ///フォーム上の項目を初期化(DataGridViewがある場合)
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         public void delFormClear(Control hParent, DataGridView gridData)
         {
@@ -217,11 +208,6 @@ namespace KATO.Common.Ctl
         ///<summary>
         ///delFormClear
         ///フォーム上の項目を初期化(DataGridViewがない場合)
-        ///作成者：大河内
-        ///作成日：2017/3/29
-        ///更新者：大河内
-        ///更新日：2017/3/29
-        ///カラム論理名
         ///</summary>
         public void delFormClear(Control hParent)
         {
@@ -261,6 +247,10 @@ namespace KATO.Common.Ctl
             }
         }
 
+        ///<summary>
+        ///BaseForm_Load
+        ///フォームロード
+        ///</summary>
         private void BaseForm_Load(object sender, EventArgs e)
         {
 
