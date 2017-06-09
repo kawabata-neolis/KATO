@@ -27,15 +27,15 @@ namespace KATO.Common.Util
                 //フォルダ直下の場合とフォルダ分けした先にある場合
                 if (lstStringSQL.Count == 1)
                 {
-                    BaseFilePath = "../../SQL/" + lstStringSQL[0] + ".sql";
+                    BaseFilePath = "./SQL/" + lstStringSQL[0] + ".sql";
                 }
                 else if (lstStringSQL.Count == 2)
                 {
-                    BaseFilePath = "../../SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + ".sql";
+                    BaseFilePath = "./SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + ".sql";
                 }
                 else if (lstStringSQL.Count == 3)
                 {
-                    BaseFilePath = "../../SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + "/" + lstStringSQL[2] + ".sql";
+                    BaseFilePath = "./SQL/" + lstStringSQL[0] + "/" + lstStringSQL[1] + "/" + lstStringSQL[2] + ".sql";
                 }
 
                 //UTF - 8

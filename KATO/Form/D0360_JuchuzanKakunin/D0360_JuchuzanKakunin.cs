@@ -288,6 +288,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
                 default:
@@ -307,15 +308,19 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 一覧表示
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.selZanList();
                     break;
                 case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case STR_BTN_F09: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                     //this.PrintReport();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

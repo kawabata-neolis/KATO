@@ -757,209 +757,612 @@
     <Content Include="Log4net.Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\ShohizeiritsuListAll_View.sql" />
-    <Content Include="SQL\Common\CommonForm\ShohizeiritsuList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\TanabanList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\TantoushaList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\MakerList_View.sql" />
-    <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql" />
-    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_GRID.sql" />
-    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE_NAME.sql" />
-    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql" />
-    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoFalse.sql" />
-    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoTrue.sql" />
-    <Content Include="SQL\Common\C_LIST_GroupCd_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Eigyosho_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Chokusosaki_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE_NAME.sql" />
-    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql" />
-    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_MAXCd.sql" />
-    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Gyoshu_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Shohizeiritsu_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql" />
-    <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_CALENDAR_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_DENPYONO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_DENPYONO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_EIGYOSHO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_EIGYOSHO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_GROUP_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_GROUP_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_GYOSHU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_GYOSHU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_HACHU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_HACHU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHU0_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHU0_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_JUCHU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_KARIKAKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_KARIKAKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MAKER_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MAKER_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MENUKENGEN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MENUKENGEN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MENU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MENU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_MYMENU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_MYMENU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_NYUKIN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_NYUKIN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIHARAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIHARAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHIN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHIN_KARI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHIN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANABAN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANABAN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TANTOSHA_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TANTOSHA_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_UNCHIN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_UNCHIN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKODATA_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKODATA_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKO_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZAIKO_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_UPD.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_DEL.sql" />
-    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_UPD.sql" />
-    <Content Include="SQL\JuchuInput_DataGridView.sql" />
-    <Content Include="SQL\JuchuInput_Chubun_SELECT_LEAVE.sql" />
-    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetDataGridView.sql" />
-    <Content Include="SQL\Common\CommonForm\DaibunruiList_View.sql" />
-    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetYMD.sql" />
-    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetItem.sql" />
-    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql" />
+    <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\GyoshuList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\GroupCdList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\ShohizeiritsuListAll_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\ShohizeiritsuList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\TanabanList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\TokuisakiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\TantoushaList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\ChubunruiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\MakerList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE_NAME.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoFalse.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoTrue.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_GroupCd_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Eigyosho_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Chokusosaki_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE_NAME.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_MAXCd.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Tanaban_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Tantousha_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Gyoshu_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohizeiritsu_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CALENDAR_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CALENDAR_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CHOKUSOSAKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_CHUBUNRUI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_DAIBUNRUI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_DENPYONO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_DENPYONO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_EIGYOSHO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_EIGYOSHO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_GROUP_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_GROUP_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_GYOSHU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_GYOSHU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HACHU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HACHU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HENPINNEBIKIURISHONIN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_HIDUKESEIGEN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_INSATSUSETTEI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHU0_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHU0_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHUCANCEL_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_JUCHU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KAISHAJOKEN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KARIKAKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KARIKAKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMISIIREMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_KENSHUZUMIURIAGEMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MAKER_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MAKER_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MENUKENGEN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MENUKENGEN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MENU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MENU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIHEAD_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAIKARAOKE_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MITSUMORIMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MYMENU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_MYMENU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_NYUKIN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_NYUKIN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SEIKYURIREKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIHARAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIHARAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIREHEAD_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIREMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHIIRESAKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINBETSURIEKIRITSU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINBUNRUIRIEKIRITSU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINHYOKATANKARIREKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINSHIIRERIREKITMP_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP2_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKITMP_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINTANKARIREKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHINURIAGERIREKITMP_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHIN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHIN_KARI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHIN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOHIZEIRITSU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHOKISETTEI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOHEAD_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOIRAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SHUKKOMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_SOKOKANIDOU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANABAN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANABAN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHICHOSEI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANCHOSEI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANDESU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANIRISU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANNYUKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHIIRE_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANSHUKKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKEISANURIAGE_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANAOROSHIKINYU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANTOSHA_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TANTOSHA_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TOKUTEIMUKESAKITANKA_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKIKBN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKIKEIRI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISAKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_TORIHIKISEARCH_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_UNCHIN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_UNCHIN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEDELSHONIN_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEHEAD_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_URIAGEMEISAI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKODATA_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKODATA_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUDESU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOIDOUIRISU_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKONYUKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHIRE_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOSHUKKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOTANAOROSHI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKOURIAGE_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKO_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZAIKO_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENARARIJISSEKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENSHIREJISSEKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_DEL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_UPD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\JuchuInput_DataGridView.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\JuchuInput_Chubun_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetDataGridView.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\DaibunruiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetYMD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetItem.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
