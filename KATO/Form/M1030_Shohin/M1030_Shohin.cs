@@ -76,7 +76,7 @@ namespace KATO.Form.M1030_Shohin
             this._Title = "商品マスター";
 
 //登録か仮登録かの判定（仮）
-            if (SystemInformation.UserName == "admin")
+            if (SystemInformation.UserName != "admin")
             {
                 this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
                 blnKanri = false;

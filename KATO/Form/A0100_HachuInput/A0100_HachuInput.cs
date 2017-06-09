@@ -443,7 +443,8 @@ namespace KATO.Form.A0100_HachuInput
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    //gridHachu.DataSource = dtSetCd;
+                    labelSet_Daibunrui.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+
                 }
             }
             catch (Exception ex)

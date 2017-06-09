@@ -793,6 +793,9 @@
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_GRID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
