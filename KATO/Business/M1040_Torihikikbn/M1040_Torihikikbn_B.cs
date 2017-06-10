@@ -106,18 +106,14 @@ namespace KATO.Business.M1040_Torihikikbn
         ///updTxtTorikbnLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTorikbnLeave(List<string> lstString)
+        public DataTable updTxtTorikbnLeave(string strTorihikikbn)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
 
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_Torihikikbn_SELECT_LEAVE";
-
             //データ渡し用
             stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            stringSQLAry.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
 
             DataTable dtSetCd_B = new DataTable();
             OpenSQL opensql = new OpenSQL();
@@ -131,10 +127,7 @@ namespace KATO.Business.M1040_Torihikikbn
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, strTorihikikbn);
 
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 

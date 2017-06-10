@@ -134,6 +134,8 @@ namespace KATO.Form.M1200_Group
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.Close();
                     break;
 
                 default:

@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
-using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.M1040_Torihikikbn;
+using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1040_Torihikikbn
 {
@@ -26,6 +26,7 @@ namespace KATO.Form.M1040_Torihikikbn
     ///</summary>
     public partial class M1040_Torihikikbn : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -34,22 +35,23 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         public M1040_Torihikikbn(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -80,7 +82,7 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// judTorikbnKeyDown
-        /// キー入力判定
+        /// キー入力判定（画面全般）
         /// </summary>
         private void judTorikbnKeyDown(object sender, KeyEventArgs e)
         {
@@ -143,7 +145,7 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// judTorikbnTxtKeyDown
-        /// キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         /// </summary>
         private void judTorikbnTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -200,7 +202,7 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// judTxtTorikbnTxtKeyDown
-        /// キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         /// </summary>
         private void judTxtTorikbnTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -259,10 +261,11 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// judBtnClick
-        /// ボタンの反応
+        ///ファンクションボタンの反応
         /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
+            //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
@@ -277,9 +280,6 @@ namespace KATO.Form.M1040_Torihikikbn
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -293,17 +293,21 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         private void judtxtToriKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //大分類リストのインスタンス生成
                 TorihikikbnList torihikikbnList = new TorihikikbnList(this);
                 try
                 {
+                    //大分類リストの表示、画面IDを渡す
                     torihikikbnList.StartPosition = FormStartPosition.Manual;
                     torihikikbnList.intFrmKind = CommonTeisu.FRM_TORIHIKIKBN;
                     torihikikbnList.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -317,9 +321,9 @@ namespace KATO.Form.M1040_Torihikikbn
         private void addTorikubun()
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
+            List<string> lstTorihikikbnData = new List<string>();
 
-            //文字判定
+            //文字判定（取引区分コード）
             if (txtTorihikikubunCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -328,7 +332,7 @@ namespace KATO.Form.M1040_Torihikikbn
                 txtTorihikikubunCd.Focus();
                 return;
             }
-            //文字判定
+            //文字判定（取引区分名）
             if (txtTorihikikubunName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -338,16 +342,17 @@ namespace KATO.Form.M1040_Torihikikbn
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(txtTorihikikubunCd.Text);
-            lstString.Add(txtTorihikikubunName.Text);
-            lstString.Add(SystemInformation.UserName);
+            //登録情報を入れる（取引区分コード、取引区分名、ユーザー名）
+            lstTorihikikbnData.Add(txtTorihikikubunCd.Text);
+            lstTorihikikbnData.Add(txtTorihikikubunName.Text);
+            lstTorihikikbnData.Add(SystemInformation.UserName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
             try
             {
-                torikbnB.addTorihikikubun(lstString);
+                //登録
+                torikbnB.addTorihikikubun(lstTorihikikbnData);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -358,7 +363,9 @@ namespace KATO.Form.M1040_Torihikikbn
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -368,6 +375,7 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtTorihikikubunCd.Focus();
         }
@@ -378,9 +386,8 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         public void delTorikubun()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstTorihikikbn = new List<string>();
 
             DataTable dtSetCd;
 
@@ -390,16 +397,14 @@ namespace KATO.Form.M1040_Torihikikbn
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層に移動（削除）
             M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
-
             try
             {
-                lstStringLoad.Add(txtTorihikikubunCd.Text);
+                //ビジネス層、検索ロジックに移動
+                dtSetCd = torikbnB.updTxtTorikbnLeave(txtTorihikikubunCd.Text);
 
-                //戻り値のDatatableを取り込む
-                dtSetCd = torikbnB.updTxtTorikbnLeave(lstStringLoad);
-
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -413,12 +418,13 @@ namespace KATO.Form.M1040_Torihikikbn
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtTorihikikubunCd.Text);
-                lstString.Add(txtTorihikikubunName.Text);
-                lstString.Add(SystemInformation.UserName);
+                //削除情報を入れる（取引区分CD、取引区分名、ユーザー名）
+                lstTorihikikbn.Add(txtTorihikikubunCd.Text);
+                lstTorihikikbn.Add(txtTorihikikubunName.Text);
+                lstTorihikikbn.Add(SystemInformation.UserName);
 
-                torikbnB.delTorihikikubun(lstString);
+                //ビジネス層、削除ロジックに移動
+                torikbnB.delTorihikikubun(lstTorihikikbn);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -428,7 +434,9 @@ namespace KATO.Form.M1040_Torihikikbn
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -451,9 +459,11 @@ namespace KATO.Form.M1040_Torihikikbn
             //データ渡し用
             List<string> lstString = new List<string>();
 
+            //検索時に取り出し先
             DataTable dtSetCd;
 
-            Boolean blnGood;
+            //文字チェック用
+            bool blGood;
 
             //文字判定
             if (txtTorihikikubunCd.blIsEmpty() == false)
@@ -464,17 +474,19 @@ namespace KATO.Form.M1040_Torihikikbn
             //前後の空白を取り除く
             txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.Trim();
 
+            //文字数が足りなかった場合0パティング
             if (txtTorihikikubunCd.TextLength == 1)
             {
                 txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.ToString().PadLeft(2, '0');
             }
 
             //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtTorihikikubunCd.Text);
+            blGood = StringUtl.JudBanChr(txtTorihikikubunCd.Text);
             //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtTorihikikubunCd.Text, CommonTeisu.NUMBER_ONLY);
+            blGood = StringUtl.JudBanSelect(txtTorihikikubunCd.Text, CommonTeisu.NUMBER_ONLY);
 
-            if (blnGood == false)
+            //文字チェックが通らなかった場合
+            if (blGood == false)
             {
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -484,28 +496,17 @@ namespace KATO.Form.M1040_Torihikikbn
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(txtTorihikikubunCd.Text);
-
             M1040_Torihikikbn_B torikbn_B = new M1040_Torihikikbn_B();      
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = torikbn_B.updTxtTorikbnLeave(lstString);
+                dtSetCd = torikbn_B.updTxtTorikbnLeave(txtTorihikikubunCd.Text);
 
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTorihikikubunCd.Text = dtSetCd.Rows[0]["取引区分コード"].ToString();
                     txtTorihikikubunName.Text = dtSetCd.Rows[0]["取引区分名"].ToString();
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                ////メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //basemessagebox.ShowDialog();
-                //txtTorihikikubun.Focus();
-                //}
             }
             catch (Exception ex)
             {

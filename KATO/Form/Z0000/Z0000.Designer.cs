@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnHachuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -51,7 +52,6 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnHachuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,6 +146,17 @@
             this.tabPage1.Size = new System.Drawing.Size(1392, 737);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
+            // 
+            // btnHachuInput
+            // 
+            this.btnHachuInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnHachuInput.Location = new System.Drawing.Point(23, 94);
+            this.btnHachuInput.Name = "btnHachuInput";
+            this.btnHachuInput.Size = new System.Drawing.Size(280, 40);
+            this.btnHachuInput.TabIndex = 71;
+            this.btnHachuInput.Text = "発注入力";
+            this.btnHachuInput.UseVisualStyleBackColor = false;
+            this.btnHachuInput.Click += new System.EventHandler(this.btnHachuInput_Click);
             // 
             // btnTestWindow
             // 
@@ -387,17 +398,6 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
-            // 
-            // btnHachuInput
-            // 
-            this.btnHachuInput.BackColor = System.Drawing.Color.LightYellow;
-            this.btnHachuInput.Location = new System.Drawing.Point(23, 94);
-            this.btnHachuInput.Name = "btnHachuInput";
-            this.btnHachuInput.Size = new System.Drawing.Size(280, 40);
-            this.btnHachuInput.TabIndex = 71;
-            this.btnHachuInput.Text = "発注入力";
-            this.btnHachuInput.UseVisualStyleBackColor = false;
-            this.btnHachuInput.Click += new System.EventHandler(this.btnHachuInput_Click);
             // 
             // Z0000
             // 

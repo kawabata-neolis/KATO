@@ -26,30 +26,32 @@ namespace KATO.Form.M1010_Daibunrui
     ///</summary>
     public partial class M1010_Daibunrui : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1010_Daibunrui
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1010_Daibunrui(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1010_Daibunrui
 
         /// <summary>
         /// M1010_Daibunrui_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1010_Daibunrui_Load(object sender, EventArgs e)
         {
@@ -80,7 +82,7 @@ namespace KATO.Form.M1010_Daibunrui
 
         /// <summary>
         /// judDaiBunruiKeyDown
-        /// キー入力判定
+        /// キー入力判定（画面全般）
         /// </summary>
         private void judDaiBunruiKeyDown(object sender, KeyEventArgs e)
         {
@@ -143,7 +145,7 @@ namespace KATO.Form.M1010_Daibunrui
 
         /// <summary>
         /// judDaiBunTxtKeyDown
-        /// キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         /// </summary>
         private void judDaiBunTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -198,10 +200,10 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// judTxtDaiTxtKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judTxtDaiTxtKeyDown
+        ///キー入力判定（検索ありテキストボックス）
+        ///</summary>
         private void judTxtDaiTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -258,12 +260,13 @@ namespace KATO.Form.M1010_Daibunrui
         }
 
 
-        /// <summary>
-        /// judBtnClick
-        /// ボタンの反応
-        /// </summary>
+        ///<summary>
+        ///judBtnClick
+        ///ファンクションボタンの反応
+        ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
+            //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
@@ -274,13 +277,10 @@ namespace KATO.Form.M1010_Daibunrui
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                     this.delDaibunrui();
                     break;
-                case STR_BTN_F04: // 取り消し
+                case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -288,39 +288,43 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// judtxtDaibunruiKeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
+        ///<summary>
+        ///judtxtDaibunruiKeyDown
+        ///ファンクションキー入力判定
+        ///</summary>
         private void judtxtDaibunKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //大分類リストのインスタンス生成
                 DaibunruiList daibunruiList = new DaibunruiList(this);
                 try
                 {
+                    //大分類リストの表示、画面IDを渡す
                     daibunruiList.StartPosition = FormStartPosition.Manual;
                     daibunruiList.intFrmKind = CommonTeisu.FRM_DAIBUNRUI;
                     daibunruiList.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
             }
         }
 
-        /// <summary>
-        /// addDaibunrui
-        /// テキストボックス内のデータをDBに登録
-        /// </summary>
+        ///<summary>
+        ///addDaibunrui
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
         private void addDaibunrui()
         {
-            //データ渡し用
+            //記入情報登録用
             List<string> lstString = new List<string>();
 
-            //文字判定
+            //文字判定（大分類コード）
             if (txtDaibunrui.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -329,7 +333,7 @@ namespace KATO.Form.M1010_Daibunrui
                 txtDaibunrui.Focus();
                 return;
             }
-            //文字判定
+            //文字判定（大分類名）
             if (txtName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -339,7 +343,7 @@ namespace KATO.Form.M1010_Daibunrui
                 return;
             }
 
-            //データ渡し用
+            //登録情報を入れる（大分類コード、大分類名、ラべル１～６、ユーザー名）
             lstString.Add(txtDaibunrui.Text);
             lstString.Add(txtName.Text);
             lstString.Add(txtLabel1.Text);
@@ -350,11 +354,11 @@ namespace KATO.Form.M1010_Daibunrui
             lstString.Add(txtLabel6.Text);
             lstString.Add(SystemInformation.UserName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
-
             try
             {
+                //登録
                 daibunB.addDaibunrui(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
@@ -362,19 +366,23 @@ namespace KATO.Form.M1010_Daibunrui
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
+                txtDaibunrui.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
         /// <summary>
         /// delText
-        /// テキストボックス内の文字を削除
+        ///テキストボックス等の入力情報を白紙にする
         /// </summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtDaibunrui.Focus();
         }
@@ -385,40 +393,52 @@ namespace KATO.Form.M1010_Daibunrui
         /// </summary>
         public void delDaibunrui()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstDaibunData = new List<string>();
 
-            //文字判定
-            if (txtDaibunrui.blIsEmpty() == false && txtName.blIsEmpty() == false)
+            //検索時のデータ取り出し先
+            DataTable dtSetCd;
+
+            //空文字判定（大分類コード）
+            if (txtDaibunrui.blIsEmpty() == false)
             {
                 return;
             }
 
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtDaibunrui.Text);
-            lstString.Add(txtName.Text);
-            lstString.Add(txtLabel1.Text);
-            lstString.Add(txtLabel2.Text);
-            lstString.Add(txtLabel3.Text);
-            lstString.Add(txtLabel4.Text);
-            lstString.Add(txtLabel5.Text);
-            lstString.Add(txtLabel6.Text);
-            lstString.Add(SystemInformation.UserName);
-
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
-
             try
             {
-                daibunB.delDaibunrui(lstString);
+                //検索
+                dtSetCd = daibunB.updTxtDaibunruiLeave(txtDaibunrui.Text);
+
+                //検索結果にデータが存在しなければ終了
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //削除情報を入れる（大分類CD、大分類名、ラベル１～６、ユーザー名）
+                lstDaibunData.Add(txtDaibunrui.Text);
+                lstDaibunData.Add(txtName.Text);
+                lstDaibunData.Add(txtLabel1.Text);
+                lstDaibunData.Add(txtLabel2.Text);
+                lstDaibunData.Add(txtLabel3.Text);
+                lstDaibunData.Add(txtLabel4.Text);
+                lstDaibunData.Add(txtLabel5.Text);
+                lstDaibunData.Add(txtLabel6.Text);
+                lstDaibunData.Add(SystemInformation.UserName);
+
+                //ビジネス層、削除ロジックに移動
+                daibunB.delDaibunrui(lstDaibunData);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -428,7 +448,9 @@ namespace KATO.Form.M1010_Daibunrui
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -455,14 +477,16 @@ namespace KATO.Form.M1010_Daibunrui
         /// </summary>
         public void updTxtDaibunruiLeave(object sender, EventArgs e)
         {
+            //フォーカス位置の確保
             Control cActive = this.ActiveControl;
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //検索時のデータ取り出し先
+            DataTable dtSetCd = null;
 
-            DataTable dtSetCd;
+            //文字チェック用
+            bool blGood;
 
-            //文字判定
+            //空文字判定
             if (txtDaibunrui.blIsEmpty() == false)
             {
                 return;
@@ -471,22 +495,36 @@ namespace KATO.Form.M1010_Daibunrui
             //前後の空白を取り除く
             txtDaibunrui.Text = txtDaibunrui.Text.Trim();
 
+            //文字数が足りなかった場合0パティング
             if (txtDaibunrui.TextLength == 1)
             {
                 txtDaibunrui.Text = txtDaibunrui.Text.ToString().PadLeft(2, '0');
             }
 
-            //データ渡し用
-            lstString.Add(txtDaibunrui.Text);
+            //禁止文字チェック
+            blGood = StringUtl.JudBanChr(txtDaibunrui.Text);
+            //数字のみを許可する
+            blGood = StringUtl.JudBanSelect(txtDaibunrui.Text, CommonTeisu.NUMBER_ONLY);
 
-            //処理部に移動
+            //文字チェックが通らなかった場合
+            if (blGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDaibunrui.Focus();
+                return;
+            }
+
+            //ビジネス層、検索ロジックに移動
             M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = daibunB.updTxtDaibunruiLeave(lstString);
+                dtSetCd = daibunB.updTxtDaibunruiLeave(txtDaibunrui.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtDaibunrui.Text = dtSetCd.Rows[0]["大分類コード"].ToString();
@@ -499,19 +537,13 @@ namespace KATO.Form.M1010_Daibunrui
                     txtLabel6.Text = dtSetCd.Rows[0]["ラベル名６"].ToString();
                     txtName.Focus();
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
                 cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

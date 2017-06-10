@@ -63,7 +63,7 @@ namespace KATO.Form.M1030_Shohin
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 
             //中分類setデータを読めるようにする
-            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+   //登録か仮         labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
-//登録か仮登録かの判定（仮）
+    //登録かの判定（仮）
             if (SystemInformation.UserName != "admin")
             {
                 this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
