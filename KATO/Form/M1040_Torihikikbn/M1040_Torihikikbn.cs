@@ -31,7 +31,7 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// M1040_Torihikikubun
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1040_Torihikikbn(Control c)
         {
@@ -64,7 +64,7 @@ namespace KATO.Form.M1040_Torihikikbn
 
         /// <summary>
         /// M1010_Daibunrui_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1040_Torihikikubun_Load(object sender, EventArgs e)
         {
@@ -296,11 +296,11 @@ namespace KATO.Form.M1040_Torihikikbn
             //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
-                //大分類リストのインスタンス生成
+                //取引区分リストのインスタンス生成
                 TorihikikbnList torihikikbnList = new TorihikikbnList(this);
                 try
                 {
-                    //大分類リストの表示、画面IDを渡す
+                    //取引区分リストの表示、画面IDを渡す
                     torihikikbnList.StartPosition = FormStartPosition.Manual;
                     torihikikbnList.intFrmKind = CommonTeisu.FRM_TORIHIKIKBN;
                     torihikikbnList.ShowDialog();
@@ -320,7 +320,7 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         private void addTorikubun()
         {
-            //データ渡し用
+            //記入情報登録用
             List<string> lstTorihikikbnData = new List<string>();
 
             //文字判定（取引区分コード）
@@ -389,15 +389,16 @@ namespace KATO.Form.M1040_Torihikikbn
             //記入情報削除用
             List<string> lstTorihikikbn = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字判定（取引区分コード、取引区分名）
             if (txtTorihikikubunCd.blIsEmpty() == false && txtTorihikikubunName.blIsEmpty() == false)
             {
                 return;
             }
 
-            //ビジネス層に移動（削除）
+            //ビジネス層のインスタンス生成
             M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
             try
             {
@@ -459,21 +460,21 @@ namespace KATO.Form.M1040_Torihikikbn
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            //検索時に取り出し先
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
             //文字チェック用
             bool blGood;
 
-            //文字判定
+            //前後の空白を取り除く
+            txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.Trim();
+
+            //空文字判定
             if (txtTorihikikubunCd.blIsEmpty() == false)
             {
                 return;
             }
-
-            //前後の空白を取り除く
-            txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.Trim();
-
+            
             //文字数が足りなかった場合0パティング
             if (txtTorihikikubunCd.TextLength == 1)
             {
@@ -496,12 +497,14 @@ namespace KATO.Form.M1040_Torihikikbn
                 return;
             }
 
+            //ビジネス層のインスタンス生成
             M1040_Torihikikbn_B torikbn_B = new M1040_Torihikikbn_B();      
             try
             {
                 //戻り値のDatatableを取り込む
                 dtSetCd = torikbn_B.updTxtTorikbnLeave(txtTorihikikubunCd.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTorihikikubunCd.Text = dtSetCd.Rows[0]["取引区分コード"].ToString();
@@ -510,7 +513,9 @@ namespace KATO.Form.M1040_Torihikikbn
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

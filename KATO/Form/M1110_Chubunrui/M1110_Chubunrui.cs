@@ -27,30 +27,32 @@ namespace KATO.Form.M1110_Chubunrui
     ///</summary>
     public partial class M1110_Chubunrui : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1110_Chubunrui
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1110_Chubunrui(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -63,7 +65,7 @@ namespace KATO.Form.M1110_Chubunrui
 
         /// <summary>
         /// M_Chubunrui_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M_Chubunrui_Load(object sender, EventArgs e)
         {
@@ -81,7 +83,7 @@ namespace KATO.Form.M1110_Chubunrui
 
         ///<summary>
         ///judChubunruiKeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void judChubunruiKeyDown(object sender, KeyEventArgs e)
         {
@@ -144,7 +146,7 @@ namespace KATO.Form.M1110_Chubunrui
 
         ///<summary>
         ///judChubunTxtKeyDown
-        ///キー入力判定
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void judChubunTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +203,7 @@ namespace KATO.Form.M1110_Chubunrui
 
         ///<summary>
         ///judTxtChuTxtKeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void judTxtChuTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -261,7 +263,7 @@ namespace KATO.Form.M1110_Chubunrui
 
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -279,9 +281,6 @@ namespace KATO.Form.M1110_Chubunrui
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -295,40 +294,42 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         private void judtxtChubunKeyDown(object sender, KeyEventArgs e)
         {
-            //F9を押して且つ大分類コードが記載されている状態
+            //F9を押して且つ大分類コードが記載されている場合
             if (e.KeyCode == Keys.F9 && LabelSet_Daibun.CodeTxtText != "")
             {
-                double dblCheck;
-
-                if (double.TryParse(LabelSet_Daibun.CodeTxtText, out dblCheck))
+                //ラベルセットである情報を渡すためにインスタンス生成
+                LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
+                //中分類リストのインスタンス生成
+                ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
+                try
                 {
-                    LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
-                    ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
-                    try
-                    {
-                        chubunruilist.StartPosition = FormStartPosition.Manual;
-                        chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
-                        chubunruilist.ShowDialog();
-                    }
-                    catch (Exception ex)
-                    {
-                        new CommonException(ex);
-                    }
+                    //中分類リストの表示、画面IDを渡す
+                    chubunruilist.StartPosition = FormStartPosition.Manual;
+                    chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
+                    chubunruilist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    return;
                 }
             }
         }
-
-
+        
         ///<summary>
         ///addChubunrui
         ///テキストボックス内のデータをDBに登録
         ///</summary>
         private void addChubunrui()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstChubunrui = new List<string>();
 
-            //文字判定
+            //取消メソッド起動前に、残す項目を確保用
+            string strTokuiSub = "";
+
+            //文字判定（大分類コード）
             if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -337,7 +338,7 @@ namespace KATO.Form.M1110_Chubunrui
                 LabelSet_Daibun.Focus();
                 return;
             }
-            //文字判定
+            //文字判定（中分類コード）
             if (txtChubunrui.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -346,7 +347,7 @@ namespace KATO.Form.M1110_Chubunrui
                 txtChubunrui.Focus();
                 return;
             }
-            //文字判定
+            //文字判定（中分類名）
             if (txtElem.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -356,36 +357,37 @@ namespace KATO.Form.M1110_Chubunrui
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
-            lstString.Add(txtChubunrui.Text);
-            lstString.Add(txtElem.Text);
-            lstString.Add(SystemInformation.UserName);
+            //登録情報を入れる（大分類コード、中分類コード、中分類名、ユーザー名）
+            lstChubunrui.Add(LabelSet_Daibun.CodeTxtText);
+            lstChubunrui.Add(txtChubunrui.Text);
+            lstChubunrui.Add(txtElem.Text);
+            lstChubunrui.Add(SystemInformation.UserName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
             try
             {
-                chubunB.addChubunrui(lstString);
+                //登録
+                chubunB.addChubunrui(lstChubunrui);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
-                string strTokuiSub = "";
+                //取消メソッド起動前に、残す項目を確保
                 strTokuiSub = LabelSet_Daibun.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-
                 LabelSet_Daibun.CodeTxtText = strTokuiSub;
                 LabelSet_Daibun.Focus();
                 txtChubunrui.Focus();
-
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -395,6 +397,7 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             LabelSet_Daibun.Focus();
         }
@@ -405,28 +408,35 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         public void delChubunrui()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報のデータの存在確認用
+            List<string> lstChubunruiLoad = new List<string>();
+            //記入情報削除用
+            List<string> lstChubunrui = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //空文字判定（大部類コード、中分類コード）
             if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false || txtChubunrui.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(チェック)
+            //ビジネス層のインスタンス生成
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
             try
             {
-                lstStringLoad.Add(LabelSet_Daibun.CodeTxtText);
-                lstStringLoad.Add(txtChubunrui.Text);
+                //データの存在確認を検索する情報を入れる
+                lstChubunruiLoad.Add(LabelSet_Daibun.CodeTxtText);
+                lstChubunruiLoad.Add(txtChubunrui.Text);
 
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.updTxtChubunruiLeave(lstStringLoad);
+                dtSetCd = chubunB.updTxtChubunruiLeave(lstChubunruiLoad);
 
+                //取消メソッド起動前に、残す項目を確保用
+                string strTokuiSub = "";
+
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -439,24 +449,25 @@ namespace KATO.Form.M1110_Chubunrui
                 {
                     return;
                 }
+                
+                //削除情報を入れる（大分類コード、中分類コード、中分類名、ユーザー名）
+                lstChubunrui.Add(LabelSet_Daibun.CodeTxtText);
+                lstChubunrui.Add(txtChubunrui.Text);
+                lstChubunrui.Add(txtElem.Text);
+                lstChubunrui.Add(SystemInformation.UserName);
 
-                //データ渡し用
-                lstString.Add(LabelSet_Daibun.CodeTxtText);
-                lstString.Add(txtChubunrui.Text);
-                lstString.Add(txtElem.Text);
-                lstString.Add(SystemInformation.UserName);
+                //ビジネス層、削除ロジックに移動
+                chubunB.delChubunrui(lstChubunrui);
 
-                chubunB.delChubunrui(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
-                string strTokuiSub = "";
+                //取消メソッド起動前に、残す項目を確保
                 strTokuiSub = LabelSet_Daibun.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-
                 LabelSet_Daibun.CodeTxtText = strTokuiSub;
                 LabelSet_Daibun.Focus();
                 txtChubunrui.Focus();
@@ -464,7 +475,9 @@ namespace KATO.Form.M1110_Chubunrui
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -498,23 +511,33 @@ namespace KATO.Form.M1110_Chubunrui
             //データ渡し用
             List<string> lstString = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
+            //文字チェック用
             Boolean blnGood;
 
-            if (txtChubunrui.Text == "" || String.IsNullOrWhiteSpace(txtChubunrui.Text).Equals(true))
+            //前後の空白を取り除く
+            txtChubunrui.Text = txtChubunrui.Text.Trim();
+
+            //空文字判定（中分類コード）
+            if (StringUtl.blIsEmpty(txtChubunrui.Text) == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtChubunrui.Text = txtChubunrui.Text.Trim();
+            //文字数が足りなかった場合0パティング
+            if (txtChubunrui.TextLength == 1)
+            {
+                txtChubunrui.Text = txtChubunrui.Text.ToString().PadLeft(2, '0');
+            }
 
             //禁止文字チェック
             blnGood = StringUtl.JudBanChr(txtChubunrui.Text);
             //数字のみを許可する
             blnGood = StringUtl.JudBanSelect(txtChubunrui.Text, CommonTeisu.NUMBER_ONLY);
 
+            //文字チェックが通らなかった場合
             if (blnGood == false)
             {
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
@@ -524,41 +547,31 @@ namespace KATO.Form.M1110_Chubunrui
                 txtChubunrui.Focus();
                 return;
             }
-            
-            if (txtChubunrui.TextLength == 1)
-            {
-                txtChubunrui.Text = txtChubunrui.Text.ToString().PadLeft(2, '0');
-            }
 
-            //データ渡し用
+            //データの存在確認を検索する情報を入れる
             lstString.Add(LabelSet_Daibun.CodeTxtText);
             lstString.Add(txtChubunrui.Text);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
                 dtSetCd = chubunB.updTxtChubunruiLeave(lstString);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     LabelSet_Daibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
                     txtChubunrui.Text = dtSetCd.Rows[0]["中分類コード"].ToString();
                     txtElem.Text = dtSetCd.Rows[0]["中分類名"].ToString();
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

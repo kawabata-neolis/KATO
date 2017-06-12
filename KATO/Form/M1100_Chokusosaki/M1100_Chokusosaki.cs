@@ -26,6 +26,7 @@ namespace KATO.Form.M1100_Chokusosaki
     ///</summary>
     public partial class M1100_Chokusosaki : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -34,22 +35,23 @@ namespace KATO.Form.M1100_Chokusosaki
         /// </summary>
         public M1100_Chokusosaki(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         /// <summary>
         /// M1100_Chokusosaki_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1100_Chokusosaki_Load(object sender, EventArgs e)
         {
@@ -81,7 +83,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///M1090_Eigyosho_KeyDown
-        ///キー入力判定
+        /// キー入力判定（画面全般）
         ///</summary>
         private void M1100_Chokusosaki_KeyDown(object sender, KeyEventArgs e)
         {
@@ -144,7 +146,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///judChokuTxtKeyDown
-        ///キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         ///</summary>
         private void judChokuTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +203,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///judTxtChoTxtKeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void judTxtChoTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -244,7 +246,7 @@ namespace KATO.Form.M1100_Chokusosaki
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    txtChokusoKeyDown(sender, e);
+                    judtxtChokuKeyDown(sender, e);
                     break;
                 case Keys.F10:
                     break;
@@ -260,10 +262,11 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
+            //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
@@ -278,9 +281,6 @@ namespace KATO.Form.M1100_Chokusosaki
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -289,27 +289,28 @@ namespace KATO.Form.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///txtChokusoKeyDown
+        ///judtxtChokuKeyDown
         ///キー入力判定
         ///</summary>
-        private void txtChokusoKeyDown(object sender, KeyEventArgs e)
+        private void judtxtChokuKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押されて且つ得意先コードが入力されている場合
             if (e.KeyCode == Keys.F9 && labelSet_Tokuisaki.CodeTxtText != "")
             {
-                string strTokuisaki = "";
-
-                strTokuisaki = labelSet_Tokuisaki.CodeTxtText;
-
-                ChokusosakiList chokusosakilist = new ChokusosakiList(this, strTokuisaki);
+                //直送先リストのインスタンス生成
+                ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Tokuisaki.CodeTxtText);
                 try
                 {
+                    //直送先リストの表示、画面IDを渡す
                     chokusosakilist.StartPosition = FormStartPosition.Manual;
                     chokusosakilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHOKUSOSAKI;
                     chokusosakilist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
+                    return;
                 }
             }
         }
@@ -320,10 +321,13 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void addChokusosaki()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstChokusosaki = new List<string>();
 
-            //文字判定
+            //取消メソッド起動前に、残す項目を確保用
+            string strTokuiSub = "";
+
+            //空文字判定（得意先コード）
             if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -332,6 +336,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 labelSet_Tokuisaki.Focus();
                 return;
             }
+            //空文字判定（得意先コード）
             if (txtChokusoCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -340,6 +345,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 txtChokusoCd.Focus();
                 return;
             }
+            //空文字判定（直送先名）
             if (txtChokusoName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -349,42 +355,41 @@ namespace KATO.Form.M1100_Chokusosaki
                 return;
             }
 
-            //取引先
-            lstString.Add(labelSet_Tokuisaki.codeTxt.Text);
-            lstString.Add(txtChokusoCd.Text);
-            lstString.Add(txtChokusoName.Text);
-            lstString.Add(txtYubin.Text);
-            lstString.Add(txtJusho1.Text);
-            lstString.Add(txtJusho2.Text);
-            lstString.Add(txtDenwa.Text);
-            lstString.Add(txtBushoName.Text);
-
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
+            //登録情報を入れる（得意先コード、直送先コード、直送先名、郵便番号、住所１、住所２、電話番号、部署名、ユーザー名）
+            lstChokusosaki.Add(labelSet_Tokuisaki.codeTxt.Text);
+            lstChokusosaki.Add(txtChokusoCd.Text);
+            lstChokusosaki.Add(txtChokusoName.Text);
+            lstChokusosaki.Add(txtYubin.Text);
+            lstChokusosaki.Add(txtJusho1.Text);
+            lstChokusosaki.Add(txtJusho2.Text);
+            lstChokusosaki.Add(txtDenwa.Text);
+            lstChokusosaki.Add(txtBushoName.Text);
+            lstChokusosaki.Add(SystemInformation.UserName);
 
             M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
             try
             {
-                chokusosakiB.addChokusosaki(lstString);
+                //登録
+                chokusosakiB.addChokusosaki(lstChokusosaki);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
-                string strTokuiSub = "";
+                //取消メソッド起動前に、残す項目を確保
                 strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-
                 labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
                 labelSet_Tokuisaki.Focus();
                 txtChokusoCd.Focus();
-
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -394,6 +399,7 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             labelSet_Tokuisaki.Focus();
         }
@@ -404,30 +410,35 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void delChokusosaki()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報のデータの存在確認用
+            List<string> lstChokusosakiLoad = new List<string>();
+            //記入情報削除用
+            List<string> lstChokusosaki = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //取消メソッド起動前に、残す項目を確保用
+            string strTokuiSub = "";
+
+            //空文字判定（得意先コード、直送先コード）
             if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
             {
                 return;
             }
-            
-            //処理部に移動(削除)
-            M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
 
+            //ビジネス層のインスタンス生成
+            M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
             try
             {
-                //データ渡し用
-                lstStringLoad.Add(labelSet_Tokuisaki.CodeTxtText);
-                lstStringLoad.Add(txtChokusoCd.Text);
+                //データの存在確認を検索する情報を入れる
+                lstChokusosakiLoad.Add(labelSet_Tokuisaki.CodeTxtText);
+                lstChokusosakiLoad.Add(txtChokusoCd.Text);
 
                 //戻り値のDatatableを取り込む
-                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstStringLoad);
+                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstChokusosakiLoad);
 
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -441,37 +452,38 @@ namespace KATO.Form.M1100_Chokusosaki
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(labelSet_Tokuisaki.codeTxt.Text);
-                lstString.Add(txtChokusoCd.Text);
-                lstString.Add(txtChokusoName.Text);
-                lstString.Add(txtYubin.Text);
-                lstString.Add(txtJusho1.Text);
-                lstString.Add(txtJusho2.Text);
-                lstString.Add(txtDenwa.Text);
-                lstString.Add(txtBushoName.Text);
+                //削除情報を入れる（得意先コード、直送先コード、直送先名、郵便番号、住所１、住所２、電話番号、部署名、ユーザー名）
+                lstChokusosaki.Add(labelSet_Tokuisaki.codeTxt.Text);
+                lstChokusosaki.Add(txtChokusoCd.Text);
+                lstChokusosaki.Add(txtChokusoName.Text);
+                lstChokusosaki.Add(txtYubin.Text);
+                lstChokusosaki.Add(txtJusho1.Text);
+                lstChokusosaki.Add(txtJusho2.Text);
+                lstChokusosaki.Add(txtDenwa.Text);
+                lstChokusosaki.Add(txtBushoName.Text);
+                lstChokusosaki.Add(SystemInformation.UserName);
 
-                //ユーザー名
-                lstString.Add(SystemInformation.UserName);
+                //ビジネス層、削除ロジックに移動
+                chokusosakiB.delChokusosaki(lstChokusosaki);
 
-                chokusosakiB.delChokusosaki(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
-                string strTokuiSub = "";
+                //取消メソッド起動前に、残す項目を確保
                 strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-
                 labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
                 labelSet_Tokuisaki.Focus();
                 txtChokusoCd.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -495,39 +507,60 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void updTxtChokuTxtLeave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
             //データ渡し用
-            List<string> lstString = new List<string>();
+            List<string> lstChokusosaki = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
-            if (txtChokusoCd.blIsEmpty() == false || labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
-            {
-                return;
-            }
+            //文字チェック用
+            Boolean blnGood;
 
             //前後の空白を取り除く
             txtChokusoCd.Text = txtChokusoCd.Text.Trim();
 
+            //空文字判定（得意先コード、直送先コード）
+            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //文字数が足りなかった場合0パティング
             if (txtChokusoCd.TextLength < 4)
             {
                 txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(labelSet_Tokuisaki.CodeTxtText);
-            lstString.Add(txtChokusoCd.Text);
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(labelSet_Tokuisaki.CodeTxtText);
+            blnGood = StringUtl.JudBanChr(txtChokusoCd.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(labelSet_Tokuisaki.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            blnGood = StringUtl.JudBanSelect(txtChokusoCd.Text, CommonTeisu.NUMBER_ONLY);
 
-            //処理部に移動
+            //文字チェックが通らなかった場合
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_Tokuisaki.Focus();
+                return;
+            }
+
+            //データの存在確認を検索する情報を入れる
+            lstChokusosaki.Add(labelSet_Tokuisaki.CodeTxtText);
+            lstChokusosaki.Add(txtChokusoCd.Text);
+
+            //ビジネス層のインスタンス生成
             M1100_Chokusosaki_B chokusosakiB = new M1100_Chokusosaki_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstString);
+                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstChokusosaki);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtChokusoCd.Text = dtSetCd.Rows[0]["直送先コード"].ToString();
@@ -538,19 +571,12 @@ namespace KATO.Form.M1100_Chokusosaki
                     txtDenwa.Text = dtSetCd.Rows[0]["電話番号"].ToString();
                     txtBushoName.Text = dtSetCd.Rows[0]["部署名"].ToString();
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

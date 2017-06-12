@@ -26,33 +26,35 @@ namespace KATO.Form.M1050_Tantousha
     ///</summary>
     public partial class M1050_Tantousha : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //コード内の無限ループを抜けるためのもの
         public Boolean blnLoopOne = true;
-        
-        /// <summary>
-        /// M1050_Tantousha
-        /// フォーム関係の設定
-        /// </summary>
+
+        ///<summary>
+        ///M1050_Tantousha
+        ///フォームの初期設定
+        ///</summary>
         public M1050_Tantousha(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -63,9 +65,9 @@ namespace KATO.Form.M1050_Tantousha
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1050_Tantousha_Load
-        /// 読み込み時
+        ///<summary>
+        ///M1050_Tantousha_Load
+        ///画面レイアウト設定
         /// </summary>
         private void M1050_Tantousha_Load(object sender, EventArgs e)
         {
@@ -81,10 +83,10 @@ namespace KATO.Form.M1050_Tantousha
             this.btnF12.Text = STR_FUNC_F12;
         }
 
-        /// <summary>
-        /// judTantoushaKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judTantoushaKeyDown
+        ///キー入力判定（画面全般）
+        ///</summary>
         private void judTantoushaKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -144,10 +146,10 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// judTantouTxtKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judTantouTxtKeyDown
+        ///キー入力判定（無機能テキストボックス）
+        ///</summary>
         private void judTantouTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -202,9 +204,9 @@ namespace KATO.Form.M1050_Tantousha
         }
 
         /// <summary>
-        /// judTxtTantouTxtKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///judTxtTantouTxtKeyDown
+        ///キー入力判定（検索ありテキストボックス）
+        ///</summary>
         private void judTxtTantouTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -260,10 +262,10 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// judBtnClick
-        /// ボタンの反応
-        /// </summary>
+        ///<summary>
+        ///judBtnClick
+        ///ファンクションボタンの反応
+        ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -280,9 +282,6 @@ namespace KATO.Form.M1050_Tantousha
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -296,11 +295,14 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         private void judtxtTantouKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //担当者リストのインスタンス生成
                 TantoushaList tantoushalist = new TantoushaList(this);
                 try
                 {
+                    //担当者区分リストの表示、画面IDを渡す
                     tantoushalist.StartPosition = FormStartPosition.Manual;
                     tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSHA;
                     tantoushalist.ShowDialog();
@@ -310,6 +312,7 @@ namespace KATO.Form.M1050_Tantousha
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -322,10 +325,10 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         private void addTantousha()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstTantousha = new List<string>();
 
-            //文字判定
+            //空文字判定（担当者コード）
             if (txtTantoushaCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -334,7 +337,7 @@ namespace KATO.Form.M1050_Tantousha
                 txtTantoushaCd.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（担当者名）
             if (txtTantoushaName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -343,7 +346,7 @@ namespace KATO.Form.M1050_Tantousha
                 txtTantoushaName.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（ログインID）
             if (txtLoginID.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -352,7 +355,7 @@ namespace KATO.Form.M1050_Tantousha
                 txtLoginID.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（営業所コード）
             if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false )
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -361,7 +364,7 @@ namespace KATO.Form.M1050_Tantousha
                 labelSet_Eigyousho.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（注番）
             if (txtChuban.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -370,7 +373,7 @@ namespace KATO.Form.M1050_Tantousha
                 txtChuban.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（グループコード）
             if (StringUtl.blIsEmpty(labelSet_GroupCd.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -379,7 +382,7 @@ namespace KATO.Form.M1050_Tantousha
                 labelSet_GroupCd.Focus();
                 return;
             }
-            //文字判定
+            //空文字判定（目標金額）
             if (txtMokuhyou.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -389,20 +392,22 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
-            lstString.Add(txtTantoushaName.Text);
-            lstString.Add(txtLoginID.Text);
-            lstString.Add(labelSet_Eigyousho.CodeTxtText);
-            lstString.Add(txtChuban.Text);
-            lstString.Add(labelSet_GroupCd.CodeTxtText);
-            lstString.Add(txtMokuhyou.Text);
-            lstString.Add(SystemInformation.UserName);
+            //登録情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、ユーザー名）
+            lstTantousha.Add(txtTantoushaCd.Text);
+            lstTantousha.Add(txtTantoushaName.Text);
+            lstTantousha.Add(txtLoginID.Text);
+            lstTantousha.Add(labelSet_Eigyousho.CodeTxtText);
+            lstTantousha.Add(txtChuban.Text);
+            lstTantousha.Add(labelSet_GroupCd.CodeTxtText);
+            lstTantousha.Add(txtMokuhyou.Text);
+            lstTantousha.Add(SystemInformation.UserName);
 
+            //ビジネス層のインスタンス生成
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
             try
             {
-                tantouB.addTantousha(lstString);
+                //登録
+                tantouB.addTantousha(lstTantousha);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -413,7 +418,9 @@ namespace KATO.Form.M1050_Tantousha
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -423,6 +430,7 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtTantoushaCd.Focus();
             txtMokuhyou.Text = "";
@@ -434,28 +442,26 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         public void deTantousha()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstTantousha = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
-            if (txtTantoushaCd.blIsEmpty() == false && txtTantoushaCd.blIsEmpty() == false)
+            //空文字判定（担当者コード）
+            if (txtTantoushaCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
-
             try
             {
-                lstStringLoad.Add(txtTantoushaCd.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantouB.updTxtTantoshaLeave(lstStringLoad);
+                dtSetCd = tantouB.updTxtTantoshaLeave(txtTantoushaCd.Text);
 
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -469,17 +475,18 @@ namespace KATO.Form.M1050_Tantousha
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtTantoushaCd.Text);
-                lstString.Add(txtTantoushaName.Text);
-                lstString.Add(txtLoginID.Text);
-                lstString.Add(labelSet_Eigyousho.CodeTxtText);
-                lstString.Add(txtChuban.Text);
-                lstString.Add(labelSet_GroupCd.CodeTxtText);
-                lstString.Add(txtMokuhyou.Text);
-                lstString.Add(SystemInformation.UserName);
+                //削除情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、ユーザー名）
+                lstTantousha.Add(txtTantoushaCd.Text);
+                lstTantousha.Add(txtTantoushaName.Text);
+                lstTantousha.Add(txtLoginID.Text);
+                lstTantousha.Add(labelSet_Eigyousho.CodeTxtText);
+                lstTantousha.Add(txtChuban.Text);
+                lstTantousha.Add(labelSet_GroupCd.CodeTxtText);
+                lstTantousha.Add(txtMokuhyou.Text);
+                lstTantousha.Add(SystemInformation.UserName);
 
-                tantouB.delTantosha(lstString);
+                //ビジネス層、削除ロジックに移動
+                tantouB.delTantosha(lstTantousha);
 
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -490,7 +497,9 @@ namespace KATO.Form.M1050_Tantousha
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -515,38 +524,40 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         public void updTxtTantoushaLeave(object sender, EventArgs e)
         {
+            //無限ループさせないようにする
             if (blnLoopOne == false)
             {
                 blnLoopOne = true;
                 return;
             }
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
+            //文字チェック用
             Boolean blnGood;
 
-            //文字判定
+            //前後の空白を取り除く
+            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
+
+            //空文字判定
             if (txtTantoushaCd.blIsEmpty() == false)
             {
                 return;
             }
 
+            //文字数が足りなかった場合0パティング
             if (txtTantoushaCd.TextLength < 4)
             {
                 txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
             }
-
-            //前後の空白を取り除く
-            txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
-
+            
             //禁止文字チェック
             blnGood = StringUtl.JudBanChr(txtTantoushaCd.Text);
             //数字のみを許可する
             blnGood = StringUtl.JudBanSelect(txtTantoushaCd.Text, CommonTeisu.NUMBER_ONLY);
 
+            //文字チェックが通らなかった場合
             if (blnGood == false)
             {
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
@@ -557,41 +568,37 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(txtTantoushaCd.Text);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantouB.updTxtTantoshaLeave(lstString);
+                dtSetCd = tantouB.updTxtTantoshaLeave(txtTantoushaCd.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTantousha(dtSetCd);
                 }
 
+                //フォーカス位置の確保
                 Control c = this.ActiveControl;
 
+                //金額の表示をさせるため、一度対象にフォーカスさせる
                 txtMokuhyou.Focus();
                 txtTantoushaCd.Focus();
 
+                //１回分のループ完了
                 blnLoopOne = false;
 
+                //元のフォーカス位置に移動
                 c.Focus();
-
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

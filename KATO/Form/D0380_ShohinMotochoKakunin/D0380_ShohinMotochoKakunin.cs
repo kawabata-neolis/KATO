@@ -393,9 +393,11 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         ///</summary>
         private void setShohinList()
         {
+            //商品リストのインスタンス生成
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
+                //商品リストの表示、画面IDを渡す
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN;
                 shouhinlist.strYMD = "";
                 shouhinlist.strEigyoushoCode = "";
@@ -407,7 +409,9 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -439,6 +443,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         /// </summary>
         public void setZaiko(List<string> lstString)
         {
+            //フォーカス位置の確保
             Control cActiveBefore = this.ActiveControl;
 
             txtHonZenZaiko.Text = lstString[0];
@@ -450,6 +455,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             txtHonGenzaiko.Text = lstString[6];
             txtGihuGenzaiko.Text = lstString[7];
 
+            //金額の表示をさせるため、一度対象にフォーカスさせる
             txtHonZenZaiko.Focus();
             txtGihuZenZaiko.Focus();
             txtHonNyuko.Focus();
@@ -458,6 +464,8 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             txtGihuShuko.Focus();
             txtHonGenzaiko.Focus();
             txtGihuGenzaiko.Focus();
+
+            //元のフォーカス位置に移動
             cActiveBefore.Focus();
         }
 
@@ -477,11 +485,13 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         private void setShohinMotoCho()
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<string> lstStringSet = new List<string>();
+            List<string> lstShohinLoad = new List<string>();
+            List<string> lstShohinGrid = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetView;
 
+            //空文字判定（品名型番表示、検索開始、検索終了）
             if (lblGrayShohin.Text == "" || txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -490,28 +500,37 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 return;
             }
 
+            //ビジネス層のインスタンス生成
             D0380_ShohinMotochoKakunin_B shohinmotochokakuninB = new D0380_ShohinMotochoKakunin_B();
             try
             {
-                lstString.Add(txtShohinCd.Text);
-                lstString.Add(labelSet_Eigyosho.CodeTxtText);
-                lstString.Add(txtCalendarYMopen.Text);
-                lstString.Add(txtCalendarYMclose.Text);
+                //データの存在確認を検索する情報を入れる
+                lstShohinLoad.Add(txtShohinCd.Text);
+                lstShohinLoad.Add(labelSet_Eigyosho.CodeTxtText);
+                lstShohinLoad.Add(txtCalendarYMopen.Text);
+                lstShohinLoad.Add(txtCalendarYMclose.Text);
 
-                lstStringSet = shohinmotochokakuninB.setTextBox(lstString);
-                //データ配置（textbox）
-                setZaiko(lstStringSet);
+                //ビジネス層、テキストボックス表示用ロジックに移動
+                lstShohinGrid = shohinmotochokakuninB.setTextBox(lstShohinLoad);
 
-                lstString.Add(txtHonZenZaiko.Text);
-                lstString.Add(txtGihuZenZaiko.Text);
-                dtSetView = shohinmotochokakuninB.setViewGrid(lstString);
+                //データ配置（textbox系）
+                setZaiko(lstShohinGrid);
+
+                //データグリッドビュー表示用の情報を入れる
+                lstShohinGrid.Add(txtHonZenZaiko.Text);
+                lstShohinGrid.Add(txtGihuZenZaiko.Text);
+
+                //ビジネス層、データグリッドビュー表示用ロジックに移動
+                dtSetView = shohinmotochokakuninB.setViewGrid(lstShohinGrid);
+
                 //データ配置（datagridview)
                 gridSeihin.DataSource = dtSetView;
-
             }
             catch (Exception ex)
             {
-                ex.ToString();
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
             return;
         }
@@ -522,9 +541,11 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         /// </summary>
         private void delText()
         {
+            //削除するデータ以外を確保
             string strkensakuopen = txtCalendarYMopen.Text;
             string strkensakuclose = txtCalendarYMclose.Text;
 
+            //画面の項目内を白紙にする
             delFormClear(this, gridSeihin);
             txtHonZenZaiko.Clear();
             txtGihuZenZaiko.Clear();

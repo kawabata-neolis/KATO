@@ -1,16 +1,16 @@
-﻿using KATO.Common.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KATO.Common.Util;
 
 namespace KATO.Business.M1050_Tantousha
 {
     ///<summary>
     ///M1050_Tantousha_B
-    ///担当者の処理部
+    ///担当者のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -47,6 +47,7 @@ namespace KATO.Business.M1050_Tantousha
                     lstString[7]
                 };
 
+                //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TANTOSHA_UPD, aryStr);
 
                 //コミット開始
@@ -56,12 +57,11 @@ namespace KATO.Business.M1050_Tantousha
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -94,6 +94,7 @@ namespace KATO.Business.M1050_Tantousha
                     lstString[7]
                 };
 
+                //SQL接続、削除
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TANTOSHA_UPD, aryStr);
 
                 //コミット開始
@@ -103,12 +104,11 @@ namespace KATO.Business.M1050_Tantousha
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -117,47 +117,49 @@ namespace KATO.Business.M1050_Tantousha
         ///updTxtTantoshaLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public System.Data.DataTable updTxtTantoshaLeave(List<string> lstString)
+        public DataTable updTxtTantoshaLeave(string strTantousha)
         {
             //データ渡し用
-            List<string> stringSQLAry = new List<string>();
-
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_Tantousha_SELECT_LEAVE";
+            List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Tantousha_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTantousha);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
+                //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

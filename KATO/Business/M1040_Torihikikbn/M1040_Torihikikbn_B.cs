@@ -10,7 +10,7 @@ namespace KATO.Business.M1040_Torihikikbn
 {
     ///<summary>
     ///M1040_Torihikikubun_B
-    ///取引区分の処理部
+    ///取引区分のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -41,6 +41,7 @@ namespace KATO.Business.M1040_Torihikikbn
                     DateTime.Now.ToString(),
                     lstString[2] };
 
+                //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKIKBN_UPD, aryStr);
 
                 //コミット開始
@@ -51,12 +52,11 @@ namespace KATO.Business.M1040_Torihikikbn
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -81,23 +81,24 @@ namespace KATO.Business.M1040_Torihikikbn
                     DateTime.Now.ToString(),
                     lstString[2],
                     DateTime.Now.ToString(),
-                    lstString[2] };
+                    lstString[2]
+                };
 
-                    dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKIKBN_UPD, aryStr);
+                //SQL接続、削除
+                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKIKBN_UPD, aryStr);
 
-                    //コミット開始
-                    dbconnective.Commit();
+                //コミット開始
+                dbconnective.Commit();
             }
             catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -109,37 +110,46 @@ namespace KATO.Business.M1040_Torihikikbn
         public DataTable updTxtTorikbnLeave(string strTorihikikbn)
         {
             //データ渡し用
-            List<string> stringSQLAry = new List<string>();
+            List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            stringSQLAry.Add("Common");
-            stringSQLAry.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
+                //SQLファイルと該当コードでフォーマット
                 strSQLInput = string.Format(strSQLInput, strTorihikikbn);
 
+                //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

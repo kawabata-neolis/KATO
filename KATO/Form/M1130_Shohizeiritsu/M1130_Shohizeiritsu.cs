@@ -26,30 +26,32 @@ namespace KATO.Form.M1130_Shohizeiritsu
     ///</summary>
     public partial class M1130_Shohizeiritsu : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1130_Shohizeiritu
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1130_Shohizeiritsu(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         /// <summary>
         /// M1130_Shohizeiritsu_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1130_Shohizeiritsu_Load(object sender, EventArgs e)
         {
@@ -81,7 +83,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         ///<summary>
         ///M1130_Shohizeiritsu_KeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void M1130_Shohizeiritsu_KeyDown(object sender, KeyEventArgs e)
         {
@@ -144,7 +146,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         ///<summary>
         ///txtShohizeiritsu_KeyDown
-        ///キー入力判定
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void txtShohizeiritsu_KeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +203,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         ///<summary>
         ///txtTekiyoYMD_KeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void txtTekiyoYMD_KeyDown(object sender, KeyEventArgs e)
         {
@@ -260,7 +262,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -278,9 +280,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -290,20 +289,25 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
         ///<summary>
         ///txtShohizeiKeyDown
-        ///キー入力判定
+        /// コード入力項目でのキー入力判定
         ///</summary>
         private void txtShohizeiKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //担当者リストのインスタンス生成
                 ShohizeiritsuList shohizeiritsulist = new ShohizeiritsuList(this);
                 try
                 {
+                    //担当者区分リストの表示、画面IDを渡す
+                    shohizeiritsulist.StartPosition = FormStartPosition.Manual;
                     shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITSU;
                     shohizeiritsulist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -316,10 +320,10 @@ namespace KATO.Form.M1130_Shohizeiritsu
         ///</summary>
         private void addShohizeiritsu()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstShohizei = new List<string>();
 
-            //文字判定
+            //空文字判定（年月日）
             if (txtTekiyoYMD.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -328,6 +332,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 txtTekiyoYMD.Focus();
                 return;
             }
+            //空文字判定（消費税率）
             if (txtShohizeiritu.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -342,17 +347,17 @@ namespace KATO.Form.M1130_Shohizeiritsu
             //内部的に別フォーカスにしたい
             this.SelectNextControl(this.ActiveControl, true, true, true, true);
 
-            //消費税率
-            lstString.Add(txtTekiyoYMD.Text);
-            lstString.Add(txtShohizeiritu.Text);
+            //登録情報を入れる（年月日、消費税率、ユーザー名）
+            lstShohizei.Add(txtTekiyoYMD.Text);
+            lstShohizei.Add(txtShohizeiritu.Text);
+            lstShohizei.Add(SystemInformation.UserName);
 
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
-
+            //ビジネス層のインスタンス生成
             M1130_Shohizeiritsu_B shohizeiritsuB = new M1130_Shohizeiritsu_B();
             try
             {
-                shohizeiritsuB.addShohizeiritsu(lstString);
+                //登録
+                shohizeiritsuB.addShohizeiritsu(lstShohizei);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -363,14 +368,15 @@ namespace KATO.Form.M1130_Shohizeiritsu
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            cActiveBefore.Focus();
         }
 
         ///<summary>
         ///delText
-        ///テキストボックス内の文字を削除、ボタンの機能を消す
+        ///テキストボックス内の文字を削除
         ///</summary>
         private void delText()
         {
@@ -386,8 +392,11 @@ namespace KATO.Form.M1130_Shohizeiritsu
         ///</summary>
         public void delShohizeiritsu()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstShohizei = new List<string>();
+
+            //検索時のデータ取り出し先
+            DataTable dtSetCd;
 
             //文字判定
             if (txtTekiyoYMD.blIsEmpty() == false)
@@ -395,27 +404,35 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 return;
             }
 
-            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-            //データ渡し用
-            lstString.Add(txtTekiyoYMD.Text);
-            lstString.Add(txtShohizeiritu.Text);
-
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
-
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1130_Shohizeiritsu_B shohizeiritsuB = new M1130_Shohizeiritsu_B();
-
             try
             {
-                shohizeiritsuB.delShohizeiritsu(lstString);
+                //戻り値のDatatableを取り込む
+                dtSetCd = shohizeiritsuB.updTxtShohizeiLeave(txtTekiyoYMD.Text);
+
+                //検索結果にデータが存在しなければ終了
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    return;
+                }
+                
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //削除情報を入れる（年月日、消費税率、ユーザー名）
+                lstShohizei.Add(txtTekiyoYMD.Text);
+                lstShohizei.Add(txtShohizeiritu.Text);
+                lstShohizei.Add(SystemInformation.UserName);
+
+                //ビジネス層、削除ロジックに移動
+                shohizeiritsuB.delShohizeiritsu(lstShohizei);
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -426,7 +443,9 @@ namespace KATO.Form.M1130_Shohizeiritsu
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -446,53 +465,39 @@ namespace KATO.Form.M1130_Shohizeiritsu
         ///</summary>
         private void txtTekiyoYMD_Leave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字チェック用
+            Boolean blnGood;
+
+            //前後の空白を取り除く
+            txtTekiyoYMD.Text = txtTekiyoYMD.Text.Trim();
+
+            //空文字判定
             if (txtTekiyoYMD.blIsEmpty() == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtTekiyoYMD.Text = txtTekiyoYMD.Text.Trim();
-
-            //データ渡し用
-            lstString.Add(txtTekiyoYMD.Text);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1130_Shohizeiritsu_B shohizeirituB = new M1130_Shohizeiritsu_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = shohizeirituB.updTxtShohizeiLeave(lstString);
+                dtSetCd = shohizeirituB.updTxtShohizeiLeave(txtTekiyoYMD.Text);
 
-                //空白に
-                txtShohizeiritu.Text = "";
-
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setShohizeiritsu(dtSetCd);
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -516,6 +521,5 @@ namespace KATO.Form.M1130_Shohizeiritsu
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
         }
-
     }
 }

@@ -12,7 +12,7 @@ namespace KATO.Business.M1110_Chubunrui
 {
     ///<summary>
     ///M1110_Chubunrui_B
-    ///中分類フォーム
+    ///中分類のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -44,6 +44,7 @@ namespace KATO.Business.M1110_Chubunrui
                     DateTime.Now.ToString(),
                     lstString[3] };
 
+                //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
 
                 //コミット開始
@@ -53,8 +54,6 @@ namespace KATO.Business.M1110_Chubunrui
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
@@ -86,6 +85,7 @@ namespace KATO.Business.M1110_Chubunrui
                     DateTime.Now.ToString(),
                     lstString[3] };
 
+                //SQL接続、削除
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
 
                 //コミット開始
@@ -95,12 +95,11 @@ namespace KATO.Business.M1110_Chubunrui
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -114,38 +113,39 @@ namespace KATO.Business.M1110_Chubunrui
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
-
             //データ渡し用s
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Chubun_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0], lstString[1] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1]);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
+                //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally

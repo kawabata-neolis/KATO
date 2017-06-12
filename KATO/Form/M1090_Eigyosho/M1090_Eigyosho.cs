@@ -26,30 +26,32 @@ namespace KATO.Form.M1090_Eigyosho
     ///</summary>
     public partial class M1090_Eigyosho : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1090_Eigyosho
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1090_Eigyosho(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         /// <summary>
         /// M1090_Eigyosho_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1090_Eigyosho_Load(object sender, EventArgs e)
         {
@@ -81,7 +83,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///M1090_Eigyosho_KeyDown
-        ///キー入力判定
+        /// キー入力判定（画面全般）
         ///</summary>
         private void M1090_Eigyosho_KeyDown(object sender, KeyEventArgs e)
         {
@@ -112,7 +114,7 @@ namespace KATO.Form.M1090_Eigyosho
                     break;
                 case Keys.F3:
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delMaker();
+                    this.delEigyosho();
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -144,7 +146,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///judEigyoTxtKeyDown
-        ///キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         ///</summary>
         private void judEigyoTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +203,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///judTxtEigyTxtKeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void txtEigyoshoCd_KeyDown(object sender, KeyEventArgs e)
         {
@@ -260,7 +262,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -272,15 +274,12 @@ namespace KATO.Form.M1090_Eigyosho
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delMaker();
+                    this.delEigyosho();
                     break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -290,20 +289,25 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///txtEigyoKeyDown
-        ///キー入力判定
+        /// コード入力項目でのキー入力判定
         ///</summary>
         private void txtEigyoKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //営業所リストのインスタンス生成
                 EigyoshoList eigyoshoList = new EigyoshoList(this);
                 try
                 {
+                    //担当者区分リストの表示、画面IDを渡す
+                    eigyoshoList.StartPosition = FormStartPosition.Manual;
                     eigyoshoList.intFrmKind = CommonTeisu.FRM_EIGYOSHO;
                     eigyoshoList.Show();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -317,7 +321,7 @@ namespace KATO.Form.M1090_Eigyosho
         private void addEigyosho()
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
+            List<string> lstEigyosho = new List<string>();
 
             //文字判定
             if (txtEigyoshoCd.blIsEmpty() == false)
@@ -336,37 +340,40 @@ namespace KATO.Form.M1090_Eigyosho
                 txtEigyoshoName.Focus();
                 return;
             }
-            //営業所
-            lstString.Add(txtEigyoshoCd.Text);
-            lstString.Add(txtEigyoshoName.Text);
 
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
+            //登録情報を入れる（営業所コード、営業所名、ユーザー名）
+            lstEigyosho.Add(txtEigyoshoCd.Text);
+            lstEigyosho.Add(txtEigyoshoName.Text);
+            lstEigyosho.Add(SystemInformation.UserName);
 
+            //ビジネス層のインスタンス生成
             M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
             try
             {
-                eigyoshoB.addEigyosho(lstString);
+                //登録
+                eigyoshoB.addEigyosho(lstEigyosho);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
         ///<summary>
         ///delText
-        ///テキストボックス内の文字を削除、ボタンの機能を消す
+        /// テキストボックス内の文字を削除
         ///</summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtEigyoshoCd.Focus();
         }
@@ -375,29 +382,26 @@ namespace KATO.Form.M1090_Eigyosho
         ///delMaker
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delMaker()
+        public void delEigyosho()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstEigyosho = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字判定（営業所コード）
             if (txtEigyoshoCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
-
             try
             {
-                lstStringLoad.Add(txtEigyoshoCd.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(lstStringLoad);
+                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(txtEigyoshoCd.Text);
 
                 if (dtSetCd.Rows.Count == 0)
                 {
@@ -412,11 +416,13 @@ namespace KATO.Form.M1090_Eigyosho
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtEigyoshoCd.Text);
-                lstString.Add(SystemInformation.UserName);
+                //削除情報を入れる（営業所コード、営業所名、ユーザー名）
+                lstEigyosho.Add(txtEigyoshoCd.Text);
+                lstEigyosho.Add(SystemInformation.UserName);
 
-                eigyoshoB.delEighosho(lstString);
+                //ビジネス層、削除ロジックに移動
+                eigyoshoB.delEighosho(lstEigyosho);
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -426,7 +432,9 @@ namespace KATO.Form.M1090_Eigyosho
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -447,12 +455,14 @@ namespace KATO.Form.M1090_Eigyosho
         ///</summary>
         public void updTxtEigyoTxtLeave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
+
+            //文字チェック用
+            Boolean blnGood;
+
+            //前後の空白を取り除く
+            txtEigyoshoCd.Text = txtEigyoshoCd.Text.Trim();
 
             //文字判定
             if (txtEigyoshoCd.blIsEmpty() == false)
@@ -460,42 +470,46 @@ namespace KATO.Form.M1090_Eigyosho
                 return;
             }
 
-            //前後の空白を取り除く
-            txtEigyoshoCd.Text = txtEigyoshoCd.Text.Trim();
-
+            //文字数が足りなかった場合0パティング
             if (txtEigyoshoCd.TextLength < 4)
             {
                 txtEigyoshoCd.Text = txtEigyoshoCd.Text.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(txtEigyoshoCd.Text);
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtEigyoshoCd.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtEigyoshoCd.Text, CommonTeisu.NUMBER_ONLY);
 
-            //処理部に移動
+            //文字チェックが通らなかった場合
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtEigyoshoCd.Focus();
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
             M1090_Eigyosho_B eigyoshoB = new M1090_Eigyosho_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(lstString);
+                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(txtEigyoshoCd.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setEigyoshoCode(dtSetCd);
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

@@ -486,14 +486,14 @@ namespace KATO.Form.M1010_Daibunrui
             //文字チェック用
             bool blGood;
 
+            //前後の空白を取り除く
+            txtDaibunrui.Text = txtDaibunrui.Text.Trim();
+
             //空文字判定
             if (txtDaibunrui.blIsEmpty() == false)
             {
                 return;
             }
-
-            //前後の空白を取り除く
-            txtDaibunrui.Text = txtDaibunrui.Text.Trim();
 
             //文字数が足りなかった場合0パティング
             if (txtDaibunrui.TextLength == 1)

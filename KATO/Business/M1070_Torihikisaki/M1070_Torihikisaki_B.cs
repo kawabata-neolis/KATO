@@ -1,16 +1,16 @@
-﻿using KATO.Common.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KATO.Common.Util;
 
 namespace KATO.Business.M1070_Torihikisaki
 {
     ///<summary>
     ///M1070_Torihikisaki_B
-    ///取引先フォーム
+    ///取引先のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -114,21 +114,22 @@ namespace KATO.Business.M1070_Torihikisaki
                     DateTime.Now.ToString(),
                     lstString[75]
                 };
-                
+
+                //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);
-            
+
+                //コミット開始
                 dbconnective.Commit();
             }
             catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -229,6 +230,7 @@ namespace KATO.Business.M1070_Torihikisaki
                     lstString[75]
                 };
 
+                //SQL接続、削除
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_TORIHIKISAKI_UPD, aryStr);
 
                 //コミット開始
@@ -238,12 +240,12 @@ namespace KATO.Business.M1070_Torihikisaki
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
                 new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -252,47 +254,49 @@ namespace KATO.Business.M1070_Torihikisaki
         ///updTxtTorihikiCdLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTorihikiCdLeave(List<string> lstString)
+        public DataTable updTxtTorihikiCdLeave(string strTorihikiCD)
         {
             //データ渡し用
-            List<string> stringSQLAry = new List<string>();
-
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
+            List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTorihikiCD);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
-                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strTorihikiCD);
 
                 return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

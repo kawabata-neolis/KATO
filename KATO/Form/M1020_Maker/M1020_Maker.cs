@@ -467,15 +467,14 @@ namespace KATO.Form.M1020_Maker
             //文字チェック用
             bool blGood;
 
+            //前後の空白を取り除く
+            txtMaker.Text = txtMaker.Text.Trim();
+
             //空文字判定
             if (txtMaker.blIsEmpty() == false)
             {
                 return;
             }
-
-            //前後の空白を取り除く
-            txtMaker.Text = txtMaker.Text.Trim();
-
             //文字数が足りなかった場合0パティング
             if (txtMaker.TextLength < 4)
             {

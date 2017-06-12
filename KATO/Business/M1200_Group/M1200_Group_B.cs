@@ -106,36 +106,38 @@ namespace KATO.Business.M1200_Group
         ///updTxtGroupLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtGroupLeave(List<string> lstString)
+        public DataTable updTxtGroupLeave(string strGrouop)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
 
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_GroupCd_SELECT_LEAVE";
-
             //データ渡し用
             stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            stringSQLAry.Add("C_LIST_GroupCd_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(stringSQLAry);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strGrouop);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
+                //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
@@ -147,6 +149,7 @@ namespace KATO.Business.M1200_Group
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

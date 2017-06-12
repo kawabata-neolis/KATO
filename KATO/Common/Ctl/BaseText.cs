@@ -110,10 +110,13 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-//ファンクションキーにも対応すること
+//ファンクションキーにも対応すること（各画面で使用しているボタン以外はスルーさせる）
 
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールには不可能）
-            if (cActiveBefore.Text.Length == ((TextBox)cActiveBefore).MaxLength)
+            //文字コードを使用
+            int intByteCnt =　Encoding.GetEncoding("Shift_JIS").GetByteCount(cActiveBefore.Text);
+
+            //文字コードと最大入力数を比較
+            if (intByteCnt >= ((TextBox)cActiveBefore).MaxLength)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");

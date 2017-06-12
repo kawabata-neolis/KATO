@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
-using KATO.Business.M1130_Shohizeiritsu;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.M1200_Group;
 
@@ -27,30 +26,32 @@ namespace KATO.Form.M1200_Group
     ///</summary>
     public partial class M1200_Group : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1200_Group
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1200_Group(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -82,7 +83,7 @@ namespace KATO.Form.M1200_Group
 
         ///<summary>
         ///M1200_Group_KeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void M1200_Group_KeyDown(object sender, KeyEventArgs e)
         {
@@ -145,7 +146,7 @@ namespace KATO.Form.M1200_Group
 
         ///<summary>
         ///txtName_KeyDown
-        ///キー入力判定
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void txtName_KeyDown(object sender, KeyEventArgs e)
         {
@@ -202,7 +203,7 @@ namespace KATO.Form.M1200_Group
 
         ///<summary>
         ///txtTorihikikubun_KeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void txtTorihikikubun_KeyDown(object sender, KeyEventArgs e)
         {
@@ -261,7 +262,7 @@ namespace KATO.Form.M1200_Group
 
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -279,9 +280,6 @@ namespace KATO.Form.M1200_Group
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -291,20 +289,25 @@ namespace KATO.Form.M1200_Group
 
         ///<summary>
         ///txtShohizeiKeyDown
-        ///キー入力判定
+        ///コード入力項目でのキー入力判定
         ///</summary>
         private void txtGroupKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //担当者リストのインスタンス生成
                 GroupCdList groupcdlist = new GroupCdList(this);
                 try
                 {
+                    //担当者区分リストの表示、画面IDを渡す
+                    groupcdlist.StartPosition = FormStartPosition.Manual;
                     groupcdlist.intFrmKind = CommonTeisu.FRM_GROUP;
                     groupcdlist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -317,10 +320,10 @@ namespace KATO.Form.M1200_Group
         ///</summary>
         private void addGroup()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstGroup = new List<string>();
 
-            //文字判定
+            //空文字判定（グループID）
             if (txtGroupId.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -329,6 +332,7 @@ namespace KATO.Form.M1200_Group
                 txtGroupId.Focus();
                 return;
             }
+            //空文字判定（グループ名）
             if (txtGroupName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -338,17 +342,17 @@ namespace KATO.Form.M1200_Group
                 return;
             }
 
-            //グループ
-            lstString.Add(txtGroupId.Text);
-            lstString.Add(txtGroupName.Text);
+            //登録情報を入れる（グループID、グループ名、ユーザー名）
+            lstGroup.Add(txtGroupId.Text);
+            lstGroup.Add(txtGroupName.Text);
+            lstGroup.Add(SystemInformation.UserName);
 
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
-
+            //ビジネス層のインスタンス生成
             M1200_Group_B groupB = new M1200_Group_B();
             try
             {
-                groupB.addGroup(lstString);
+                //登録
+                groupB.addGroup(lstGroup);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -356,12 +360,14 @@ namespace KATO.Form.M1200_Group
                 //テキストボックスを白紙にする
                 delText();
                 txtGroupId.Text = "";
+                txtGroupId.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            txtGroupId.Focus();
         }
 
         ///<summary>
@@ -370,6 +376,7 @@ namespace KATO.Form.M1200_Group
         ///</summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtGroupId.Focus();
         }
@@ -380,30 +387,26 @@ namespace KATO.Form.M1200_Group
         ///</summary>
         public void delGroup()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstGroup = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //空文字判定（グループコード）
             if (txtGroupId.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動
-            M1200_Group_B GroupB = new M1200_Group_B();
+            //ビジネス層のインスタンス生成
+            M1200_Group_B groupB = new M1200_Group_B();
             try
             {
-                lstStringLoad.Add(txtGroupId.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = GroupB.updTxtGroupLeave(lstStringLoad);
+                dtSetCd = groupB.updTxtGroupLeave(txtGroupId.Text);
 
-                //空白に
-                txtGroupName.Text = "";
-
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -417,17 +420,13 @@ namespace KATO.Form.M1200_Group
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtGroupId.Text);
-                lstString.Add(txtGroupName.Text);
+                //削除情報を入れる（グループコード、グループ名、ユーザー名）
+                lstGroup.Add(txtGroupId.Text);
+                lstGroup.Add(txtGroupName.Text);
+                lstGroup.Add(SystemInformation.UserName);
 
-                //ユーザー名
-                lstString.Add(SystemInformation.UserName);
-
-                //処理部に移動(削除)
-                M1200_Group_B groupB = new M1200_Group_B();
-
-                groupB.delGroup(lstString);
+                //ビジネス層、削除ロジックに移動
+                groupB.delGroup(lstGroup);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -437,9 +436,11 @@ namespace KATO.Form.M1200_Group
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            
+
         }
 
         ///<summary>
@@ -458,12 +459,14 @@ namespace KATO.Form.M1200_Group
         ///</summary>
         private void txtGroupId_Leave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
+
+            //文字チェック用
+            Boolean blnGood;
+
+            //前後の空白を取り除く
+            txtGroupId.Text = txtGroupId.Text.Trim();
 
             //文字判定
             if (txtGroupId.blIsEmpty() == false)
@@ -471,45 +474,46 @@ namespace KATO.Form.M1200_Group
                 return;
             }
 
-            //前後の空白を取り除く
-            txtGroupId.Text = txtGroupId.Text.Trim();
-            
+            //文字数が足りなかった場合0パティング
             if (txtGroupId.TextLength < 4)
             {
                 txtGroupId.Text = txtGroupId.Text.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(txtGroupId.Text);
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtGroupId.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtGroupId.Text, CommonTeisu.NUMBER_ONLY);
 
-            //処理部に移動
-            M1200_Group_B GroupB = new M1200_Group_B();
+            //文字チェックが通らなかった場合
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
+                txtGroupId.Focus();
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
+            M1200_Group_B groupB = new M1200_Group_B();
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = GroupB.updTxtGroupLeave(lstString);
+                dtSetCd = groupB.updTxtGroupLeave(txtGroupId.Text);
 
-                //空白に
-                txtGroupName.Text = "";
-
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setGroup(dtSetCd);
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

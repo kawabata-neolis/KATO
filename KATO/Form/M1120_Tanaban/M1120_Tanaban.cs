@@ -26,30 +26,33 @@ namespace KATO.Form.M1120_Tanaban
     ///</summary>
     public partial class M1120_Tanaban : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1120_Tanaban
-        /// フォーム関係の設定
-        /// </summary>
+        ///<summary>
+        ///M1120_Tanaban
+        ///フォームの初期設定
+        ///</summary>
         public M1120_Tanaban(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -61,9 +64,9 @@ namespace KATO.Form.M1120_Tanaban
         }
 
         /// <summary>
-        /// M1090_Eigyosho_Load
-        /// 読み込み時
-        /// </summary>
+        ///M1090_Eigyosho_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1120_Tanaban_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -81,7 +84,7 @@ namespace KATO.Form.M1120_Tanaban
 
         ///<summary>
         ///M1120_Tanaban_KeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void M1120_Tanaban_KeyDown(object sender, KeyEventArgs e)
         {
@@ -144,7 +147,7 @@ namespace KATO.Form.M1120_Tanaban
 
         ///<summary>
         ///txtTanabanName_KeyDown
-        ///キー入力判定
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void txtTanabanName_KeyDown(object sender, KeyEventArgs e)
         {
@@ -201,7 +204,7 @@ namespace KATO.Form.M1120_Tanaban
 
         ///<summary>
         ///txtTanabanCd_KeyDown
-        ///キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         ///</summary>
         private void txtTanabanCd_KeyDown(object sender, KeyEventArgs e)
         {
@@ -257,10 +260,10 @@ namespace KATO.Form.M1120_Tanaban
                     break;
             }
         }
-        
+
         ///<summary>
         ///judBtnClick
-        ///ボタンの反応
+        ///ファンクションボタンの反応
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -278,9 +281,6 @@ namespace KATO.Form.M1120_Tanaban
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -290,20 +290,24 @@ namespace KATO.Form.M1120_Tanaban
 
         ///<summary>
         ///txtTanabanKeyDown
-        ///キー入力判定
+        ///コード入力項目でのキー入力判定
         ///</summary>
         private void txtTanabanKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //担当者リストのインスタンス生成
                 TanabanList tanabanlist = new TanabanList(this);
                 try
                 {
+                    //担当者区分リストの表示、画面IDを渡す
                     tanabanlist.intFrmKind = CommonTeisu.FRM_TANABAN;
                     tanabanlist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -319,7 +323,7 @@ namespace KATO.Form.M1120_Tanaban
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            //文字判定
+            //空文字判定（棚番コード）
             if (txtTanabanCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -328,6 +332,7 @@ namespace KATO.Form.M1120_Tanaban
                 txtTanabanCd.Focus();
                 return;
             }
+            //空文字判定（棚番名）
             if (txtTanabanName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -336,16 +341,17 @@ namespace KATO.Form.M1120_Tanaban
                 txtTanabanName.Focus();
                 return;
             }
-            //営業所
+
+            //登録情報を入れる（棚番コード、棚番名、ユーザー名）
             lstString.Add(txtTanabanCd.Text);
             lstString.Add(txtTanabanName.Text);
-
-            //ユーザー名
             lstString.Add(SystemInformation.UserName);
 
+            //ビジネス層のインスタンス生成
             M1120_Tanaban_B tanabanB = new M1120_Tanaban_B();
             try
             {
+                //登録
                 tanabanB.addTanaban(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
@@ -353,11 +359,13 @@ namespace KATO.Form.M1120_Tanaban
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-
+                txtTanabanCd.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -367,6 +375,7 @@ namespace KATO.Form.M1120_Tanaban
         ///</summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtTanabanCd.Focus();
         }
@@ -377,28 +386,26 @@ namespace KATO.Form.M1120_Tanaban
         ///</summary>
         public void delTanaban()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstTanaban = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字判定（棚番コード、棚番名）
             if (txtTanabanCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1120_Tanaban_B tanabanB = new M1120_Tanaban_B();
-
             try
             {
-                lstStringLoad.Add(txtTanabanCd.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = tanabanB.updTxtTanabanCdLeave(lstStringLoad);
+                dtSetCd = tanabanB.updTxtTanabanCdLeave(txtTanabanCd.Text);
 
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -413,10 +420,12 @@ namespace KATO.Form.M1120_Tanaban
                 }
 
                 //データ渡し用
-                lstString.Add(txtTanabanCd.Text);
-                lstString.Add(SystemInformation.UserName);
+                lstTanaban.Add(txtTanabanCd.Text);
+                lstTanaban.Add(SystemInformation.UserName);
 
-                tanabanB.delTanaban(lstString);
+                //ビジネス層、削除ロジックに移動
+                tanabanB.delTanaban(lstTanaban);
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -426,7 +435,9 @@ namespace KATO.Form.M1120_Tanaban
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -447,50 +458,55 @@ namespace KATO.Form.M1120_Tanaban
         ///</summary>
         private void txtTanabanCd_Leave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先        
             DataTable dtSetCd;
 
-            //文字判定
+            //文字チェック用
+            Boolean blnGood;
+
+            //前後の空白を取り除く
+            txtTanabanCd.Text = txtTanabanCd.Text.Trim();
+
+            //空文字判定
             if (txtTanabanCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtTanabanCd.Text = txtTanabanCd.Text.Trim();
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtTanabanCd.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtTanabanCd.Text, CommonTeisu.NUMBER_ONLY);
 
-            //データ渡し用
-            lstString.Add(txtTanabanCd.Text);
+            //文字チェックが通らなかった場合
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-            //処理部に移動
+                txtTanabanCd.Focus();
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
             M1120_Tanaban_B tanabanB = new M1120_Tanaban_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tanabanB.updTxtTanabanCdLeave(lstString);
+                dtSetCd = tanabanB.updTxtTanabanCdLeave(txtTanabanCd.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTanabanCd(dtSetCd);
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
-
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

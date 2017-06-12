@@ -26,30 +26,32 @@ namespace KATO.Form.M1060_Gyoushu
     ///</summary>
     public partial class M1060_Gyoshu : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1060_Gyoushu
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1060_Gyoshu(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1060_Gyoushu
 
         /// <summary>
         /// M1060_Gyoushu_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1060_Gyoushu_Load(object sender, EventArgs e)
         {
@@ -80,7 +82,7 @@ namespace KATO.Form.M1060_Gyoushu
 
         /// <summary>
         /// judGyoshuKeyDown
-        /// キー入力判定
+        /// キー入力判定（画面全般）
         /// </summary>
         private void judGyoshuKeyDown(object sender, KeyEventArgs e)
         {
@@ -143,7 +145,7 @@ namespace KATO.Form.M1060_Gyoushu
 
         /// <summary>
         /// judGyoshuTxtKeyDown
-        /// キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         /// </summary>
         private void judGyoshuTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -200,7 +202,7 @@ namespace KATO.Form.M1060_Gyoushu
 
         /// <summary>
         /// judTxtGyoTxtKeyDown
-        /// キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         /// </summary>
         private void judTxtGyoTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -259,7 +261,7 @@ namespace KATO.Form.M1060_Gyoushu
 
         /// <summary>
         /// judBtnClick
-        /// ボタンの反応
+        ///ファンクションボタンの反応
         /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -277,9 +279,6 @@ namespace KATO.Form.M1060_Gyoushu
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -293,17 +292,21 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         private void judtxtGyoshuKeyDown(object sender, KeyEventArgs e)
         {
+            //F9キーが押された場合
             if (e.KeyCode == Keys.F9)
             {
+                //業種リストのインスタンス生成
                 GyoshuList gyoshulist = new GyoshuList(this);
                 try
                 {
+                    //業種リストの表示、画面IDを渡す
                     gyoshulist.StartPosition = FormStartPosition.Manual;
                     gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
                     gyoshulist.ShowDialog();
                 }
                 catch (Exception ex)
                 {
+                    //エラーロギング
                     new CommonException(ex);
                     return;
                 }
@@ -316,10 +319,10 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         private void addGyoushu()
         {
-            //データ渡し用
+            //記入情報登録用
             List<string> lstString = new List<string>();
 
-            //文字判定
+            //文字判定（業種コード）
             if (txtGyoshuCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -328,7 +331,7 @@ namespace KATO.Form.M1060_Gyoushu
                 txtGyoshuCd.Focus();
                 return;
             }
-            //文字判定
+            //文字判定（業種名）
             if (txtGyoshuName.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -337,15 +340,17 @@ namespace KATO.Form.M1060_Gyoushu
                 txtGyoshuName.Focus();
                 return;
             }
-            //データ渡し用
+
+            //登録情報を入れる（業種コード、業種名、ユーザー名）、
             lstString.Add(txtGyoshuCd.Text);
             lstString.Add(txtGyoshuName.Text);
             lstString.Add(SystemInformation.UserName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
             try
             {
+                //登録
                 gyoshuB.addGyoshu(lstString);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
@@ -356,7 +361,9 @@ namespace KATO.Form.M1060_Gyoushu
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -366,6 +373,7 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         private void delText()
         {
+            //画面の項目内を白紙にする
             delFormClear(this);
             txtGyoshuCd.Focus();
         }
@@ -377,27 +385,25 @@ namespace KATO.Form.M1060_Gyoushu
         public void delGyoushu()
         {
             //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            List<string> lstGyoushu = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字判定（業種コード、業種名）
             if (txtGyoshuCd.blIsEmpty() == false && txtGyoshuName.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1060_Gyoshu_B gyoshuB = new M1060_Gyoshu_B();
-
             try
             {
-                lstStringLoad.Add(txtGyoshuCd.Text);
+                //ビジネス層、検索ロジックに移動
+                dtSetCd = gyoshuB.updTxtGyoshuLeave(txtGyoshuCd.Text);
 
-                //戻り値のDatatableを取り込む
-                dtSetCd = gyoshuB.updTxtGyoshuLeave(lstStringLoad);
-
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -411,12 +417,14 @@ namespace KATO.Form.M1060_Gyoushu
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtGyoshuCd.Text);
-                lstString.Add(txtGyoshuName.Text);
-                lstString.Add(SystemInformation.UserName);
+                //削除情報を入れる（業種コード、業種名、ユーザー名）
+                lstGyoushu.Add(txtGyoshuCd.Text);
+                lstGyoushu.Add(txtGyoshuName.Text);
+                lstGyoushu.Add(SystemInformation.UserName);
 
-                gyoshuB.delGyoshu(lstString);
+                //ビジネス層、削除ロジックに移動
+                gyoshuB.delGyoshu(lstGyoushu);
+
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -426,7 +434,9 @@ namespace KATO.Form.M1060_Gyoushu
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -446,34 +456,33 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         public void updTxtGyoshuLeave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
+            //文字チェック用
             Boolean blnGood;
 
-            //文字判定
+            //前後の空白を取り除く
+            txtGyoshuCd.Text = txtGyoshuCd.Text.Trim();
+
+            //空文字判定
             if (txtGyoshuCd.blIsEmpty() == false)
             {
                 return;
             }
 
+            //文字数が足りなかった場合0パティング
             if (txtGyoshuCd.TextLength < 4)
             {
                 txtGyoshuCd.Text = txtGyoshuCd.Text.ToString().PadLeft(4, '0');
             }
-
-            //前後の空白を取り除く
-            txtGyoshuCd.Text = txtGyoshuCd.Text.Trim();
             
             //禁止文字チェック
             blnGood = StringUtl.JudBanChr(txtGyoshuCd.Text);
             //数字のみを許可する
             blnGood = StringUtl.JudBanSelect(txtGyoshuCd.Text, CommonTeisu.NUMBER_ONLY);
 
+            //文字チェックが通らなかった場合
             if (blnGood == false)
             {
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
@@ -484,35 +493,27 @@ namespace KATO.Form.M1060_Gyoushu
                 return;
             }
 
-            //データ渡し用
-            lstString.Add(txtGyoshuCd.Text);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             M1060_Gyoshu_B daibunB = new M1060_Gyoshu_B();
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = daibunB.updTxtGyoshuLeave(lstString);
+                dtSetCd = daibunB.updTxtGyoshuLeave(txtGyoshuCd.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtGyoshuCd.Text = dtSetCd.Rows[0]["業種コード"].ToString();
                     txtGyoshuName.Text = dtSetCd.Rows[0]["業種名"].ToString();
                     txtGyoshuName.Focus();
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
 
-                cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

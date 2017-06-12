@@ -26,30 +26,32 @@ namespace KATO.Form.M1070_Torihikisaki
     ///</summary>
     public partial class M1070_Torihikisaki : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// M1070_Torihikisaki
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1070_Torihikisaki(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -62,7 +64,7 @@ namespace KATO.Form.M1070_Torihikisaki
 
         /// <summary>
         /// M1070_Torihikisaki_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1070_Torihikisaki_Load(object sender, EventArgs e)
         {
@@ -88,7 +90,7 @@ namespace KATO.Form.M1070_Torihikisaki
 
         /// <summary>
         /// judTorihikiKeyDown
-        /// キー入力判定
+        /// キー入力判定（画面全般）
         /// </summary>
         private void judTorihikiKeyDown(object sender, KeyEventArgs e)
         {
@@ -153,7 +155,7 @@ namespace KATO.Form.M1070_Torihikisaki
 
         /// <summary>
         /// judTorihikiTxtKeyDown
-        /// キー入力判定
+        /// キー入力判定（無機能テキストボックス）
         /// </summary>
         private void judTorihikiTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -212,7 +214,7 @@ namespace KATO.Form.M1070_Torihikisaki
 
         /// <summary>
         /// judTxtToriTxtKeyDown
-        /// キー入力判定
+        ///キー入力判定（検索ありテキストボックス）
         /// </summary>
         private void judTxtToriTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -269,39 +271,9 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-
-        /// <summary>
-        /// txtCdT_KeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
-        private void txtCdT_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                TorihikisakiList torihikisakilist = new TorihikisakiList(this);
-                try
-                {
-                    torihikisakilist.StartPosition = FormStartPosition.Manual;
-                    torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-                    torihikisakilist.ShowDialog();
-
-                    labelSet_Tantousha.Focus();
-                    labelSet_GyoshuCd.Focus();
-
-                    txtSihon.Focus();
-                    txtCdT.Focus();
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    return;
-                }
-            }
-        }
-
         /// <summary>
         /// judBtnClick
-        /// ボタンの反応
+        ///ファンクションボタンの反応
         /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -319,9 +291,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 case STR_BTN_F08: // 未割当の番号検索
                     this.delText();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
@@ -329,14 +298,49 @@ namespace KATO.Form.M1070_Torihikisaki
         }
 
         /// <summary>
+        /// txtCdT_KeyDown
+        /// コード入力項目でのキー入力判定
+        /// </summary>
+        private void txtCdT_KeyDown(object sender, KeyEventArgs e)
+        {
+            //F9キーが押された場合
+            if (e.KeyCode == Keys.F9)
+            {
+                //取引先リストのインスタンス生成
+                TorihikisakiList torihikisakilist = new TorihikisakiList(this);
+                try
+                {
+                    //取引先リストの表示、画面IDを渡す
+                    torihikisakilist.StartPosition = FormStartPosition.Manual;
+                    torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
+                    torihikisakilist.ShowDialog();
+                    
+                    labelSet_Tantousha.Focus();
+                    labelSet_GyoshuCd.Focus();
+                    txtSihon.Focus();
+                    txtCdT.Focus();
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    return;
+                }
+            }
+        }
+
+
+        /// <summary>
         /// setAkiban
-        /// ボタンの反応
+        /// 空番ボタン、キーの反応
         /// </summary>
         private void setAkiban()
         {
+            //取引先リストのインスタンス生成
+            TorihikiCdList torihikicdlist = new TorihikiCdList(this);
             try
             {
-                TorihikiCdList torihikicdlist = new TorihikiCdList(this);
+                //取引先リストの表示、画面IDを渡す
                 torihikicdlist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
                 torihikicdlist.ShowDialog();
 
@@ -345,6 +349,7 @@ namespace KATO.Form.M1070_Torihikisaki
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
                 return;
             }
@@ -357,10 +362,10 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         private void addTorihiki()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //記入情報登録用
+            List<string> lstTorihikisaki = new List<string>();
 
-            //文字判定
+            //文字判定（取引先コード）
             if (txtCdT.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -369,6 +374,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtCdT.Focus();
                 return;
             }
+            //文字判定（取引先名）
             if (txtNameT.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -377,6 +383,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtNameT.Focus();
                 return;
             }
+            //文字判定（フリガナ）
             if (txtHuriT.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -385,6 +392,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtHuriT.Focus();
                 return;
             }
+            //文字判定（担当者コード）
             if (labelSet_Tantousha.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -393,6 +401,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 labelSet_Tantousha.Focus();
                 return;
             }
+            //文字判定（業種コード）
             if (labelSet_GyoshuCd.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -401,6 +410,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 labelSet_GyoshuCd.Focus();
                 return;
             }
+            //文字判定（締切日）
             if (txtSime.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -409,6 +419,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtSime.Focus();
                 return;
             }
+            //文字判定（支払月数）
             if (txtSihatuki.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -417,6 +428,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtSihatuki.Focus();
                 return;
             }
+            //文字判定（支払日）
             if (txtSihabi.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -425,6 +437,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtSihabi.Focus();
                 return;
             }
+            //文字判定（集金区分）
             if (txtShukinkbn.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -433,6 +446,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtShukinkbn.Focus();
                 return;
             }
+            //文字判定（請求書有無）
             if (txtSeikyuumu.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -441,6 +455,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtSeikyuumu.Focus();
                 return;
             }
+            //文字判定（税区分）
             if (txtZeikbn.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -449,6 +464,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtZeikbn.Focus();
                 return;
             }
+            //文字判定（税計算区分）
             if (txtKeisankbn.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -457,6 +473,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtKeisankbn.Focus();
                 return;
             }
+            //文字判定（税は数計算区分）
             if (txtZeihasu.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -465,6 +482,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtZeihasu.Focus();
                 return;
             }
+            //文字判定（明細端数区分）
             if (txtMesai.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -473,6 +491,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtMesai.Focus();
                 return;
             }
+            //文字判定（資本金）
             if (txtSihon.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -481,6 +500,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtSihon.Focus();
                 return;
             }
+            //文字判定（従業員数）
             if (txtJugyo.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -489,109 +509,112 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtJugyo.Focus();
                 return;
             }
+            //登録情報を入れる（多いため割愛部分あり）
             //取引先
-            lstString.Add(txtCdT.Text);
-            lstString.Add(txtNameT.Text);
-            lstString.Add(txtHuriT.Text);
-            lstString.Add(txtYubinT.Text);
-            lstString.Add(txtJusho1T.Text);
-            lstString.Add(txtJusho2T.Text);
-            lstString.Add(txtDenwaT.Text);
-            lstString.Add(txtFAXT.Text);
-            lstString.Add(txtYubinAT.Text);
-            lstString.Add(txtJusho1AT.Text);
-            lstString.Add(txtJusho2AT.Text);
-            lstString.Add(txtDenwaAT.Text);
-            lstString.Add(txtFAXAT.Text);
-            lstString.Add(txtEmail.Text);
-            lstString.Add(txtTantoNameA.Text);
-            lstString.Add(txtBushoNameA.Text);
-            lstString.Add(txtTantoEmailA.Text);
+            lstTorihikisaki.Add(txtCdT.Text);
+            lstTorihikisaki.Add(txtNameT.Text);
+            lstTorihikisaki.Add(txtHuriT.Text);
+            lstTorihikisaki.Add(txtYubinT.Text);
+            lstTorihikisaki.Add(txtJusho1T.Text);
+            lstTorihikisaki.Add(txtJusho2T.Text);
+            lstTorihikisaki.Add(txtDenwaT.Text);
+            lstTorihikisaki.Add(txtFAXT.Text);
+            lstTorihikisaki.Add(txtYubinAT.Text);
+            lstTorihikisaki.Add(txtJusho1AT.Text);
+            lstTorihikisaki.Add(txtJusho2AT.Text);
+            lstTorihikisaki.Add(txtDenwaAT.Text);
+            lstTorihikisaki.Add(txtFAXAT.Text);
+            lstTorihikisaki.Add(txtEmail.Text);
+            lstTorihikisaki.Add(txtTantoNameA.Text);
+            lstTorihikisaki.Add(txtBushoNameA.Text);
+            lstTorihikisaki.Add(txtTantoEmailA.Text);
 
             //領収書送付先
-            lstString.Add(txtNameR.Text);
-            lstString.Add(txtYubinR.Text);
-            lstString.Add(txtJusho1R.Text);
-            lstString.Add(txtJusho2R.Text);
-            lstString.Add(txtDenwaR.Text);
-            lstString.Add(txtFAXR.Text);
+            lstTorihikisaki.Add(txtNameR.Text);
+            lstTorihikisaki.Add(txtYubinR.Text);
+            lstTorihikisaki.Add(txtJusho1R.Text);
+            lstTorihikisaki.Add(txtJusho2R.Text);
+            lstTorihikisaki.Add(txtDenwaR.Text);
+            lstTorihikisaki.Add(txtFAXR.Text);
 
             //業種コード
-            lstString.Add(labelSet_GyoshuCd.codeTxt.Text);
+            lstTorihikisaki.Add(labelSet_GyoshuCd.codeTxt.Text);
 
             //担当者コード
-            lstString.Add(labelSet_Tantousha.codeTxt.Text);
+            lstTorihikisaki.Add(labelSet_Tantousha.codeTxt.Text);
 
             //請求書送付先
-            lstString.Add(txtNameS.Text);
-            lstString.Add(txtYubinS.Text);
-            lstString.Add(txtJusho1S.Text);
-            lstString.Add(txtJusho2S.Text);
-            lstString.Add(txtDenwaS.Text);
-            lstString.Add(txtFAXS.Text);
+            lstTorihikisaki.Add(txtNameS.Text);
+            lstTorihikisaki.Add(txtYubinS.Text);
+            lstTorihikisaki.Add(txtJusho1S.Text);
+            lstTorihikisaki.Add(txtJusho2S.Text);
+            lstTorihikisaki.Add(txtDenwaS.Text);
+            lstTorihikisaki.Add(txtFAXS.Text);
 
             //〆関係
-            lstString.Add(txtSime.Text);
-            lstString.Add(txtSihatuki.Text);
-            lstString.Add(txtSihabi.Text);
-            lstString.Add(txtJoken.Text);
-            lstString.Add(txtShukinkbn.Text);
-            lstString.Add(txtSeikyuumu.Text);
+            lstTorihikisaki.Add(txtSime.Text);
+            lstTorihikisaki.Add(txtSihatuki.Text);
+            lstTorihikisaki.Add(txtSihabi.Text);
+            lstTorihikisaki.Add(txtJoken.Text);
+            lstTorihikisaki.Add(txtShukinkbn.Text);
+            lstTorihikisaki.Add(txtSeikyuumu.Text);
 
             //税金関係
-            lstString.Add(txtZeikbn.Text);
-            lstString.Add(txtKeisankbn.Text);
-            lstString.Add(txtZeihasu.Text);
-            lstString.Add(txtMesai.Text);
+            lstTorihikisaki.Add(txtZeikbn.Text);
+            lstTorihikisaki.Add(txtKeisankbn.Text);
+            lstTorihikisaki.Add(txtZeihasu.Text);
+            lstTorihikisaki.Add(txtMesai.Text);
 
             //会社内容関係
-            lstString.Add(txtSiha.Text);
-            lstString.Add(txtDaihyo.Text);
-            lstString.Add(txtSihon.Text);
-            lstString.Add(txtSeturitu.Text);
-            lstString.Add(txtJugyo.Text);
-            lstString.Add(txtKesan.Text);
-            lstString.Add(txtGinko.Text);
-            lstString.Add(txtSiten.Text);
-            lstString.Add(txtShubetu.Text);
-            lstString.Add(txtBango.Text);
-            lstString.Add(txtKoza.Text);
-            lstString.Add(txtToriatu.Text);
+            lstTorihikisaki.Add(txtSiha.Text);
+            lstTorihikisaki.Add(txtDaihyo.Text);
+            lstTorihikisaki.Add(txtSihon.Text);
+            lstTorihikisaki.Add(txtSeturitu.Text);
+            lstTorihikisaki.Add(txtJugyo.Text);
+            lstTorihikisaki.Add(txtKesan.Text);
+            lstTorihikisaki.Add(txtGinko.Text);
+            lstTorihikisaki.Add(txtSiten.Text);
+            lstTorihikisaki.Add(txtShubetu.Text);
+            lstTorihikisaki.Add(txtBango.Text);
+            lstTorihikisaki.Add(txtKoza.Text);
+            lstTorihikisaki.Add(txtToriatu.Text);
 
             //主な取引先
-            lstString.Add(txtTorihiki1.Text);
-            lstString.Add(txtTorihiki2.Text);
-            lstString.Add(txtTorihiki3.Text);
-            lstString.Add(txtTorihiki4.Text);
-            lstString.Add(txtTorihiki5.Text);
-            lstString.Add(txtTorihiki6.Text);
-            lstString.Add(txtTorihiki7.Text);
-            lstString.Add(txtTorihiki8.Text);
-            lstString.Add(txtTorihiki9.Text);
-            lstString.Add(txtTorihiki10.Text);
-            lstString.Add(txtTorihiki11.Text);
-            lstString.Add(txtTorihiki12.Text);
-            lstString.Add(txtTorihiki13.Text);
-            lstString.Add(txtTorihiki14.Text);
-            lstString.Add(txtTorihiki15.Text);
-            lstString.Add(txtTorihiki16.Text);
-            lstString.Add(txtTorihiki17.Text);
-            lstString.Add(txtTorihiki18.Text);
-            lstString.Add(txtTorihiki19.Text);
-            lstString.Add(txtTorihiki20.Text);
+            lstTorihikisaki.Add(txtTorihiki1.Text);
+            lstTorihikisaki.Add(txtTorihiki2.Text);
+            lstTorihikisaki.Add(txtTorihiki3.Text);
+            lstTorihikisaki.Add(txtTorihiki4.Text);
+            lstTorihikisaki.Add(txtTorihiki5.Text);
+            lstTorihikisaki.Add(txtTorihiki6.Text);
+            lstTorihikisaki.Add(txtTorihiki7.Text);
+            lstTorihikisaki.Add(txtTorihiki8.Text);
+            lstTorihikisaki.Add(txtTorihiki9.Text);
+            lstTorihikisaki.Add(txtTorihiki10.Text);
+            lstTorihikisaki.Add(txtTorihiki11.Text);
+            lstTorihikisaki.Add(txtTorihiki12.Text);
+            lstTorihikisaki.Add(txtTorihiki13.Text);
+            lstTorihikisaki.Add(txtTorihiki14.Text);
+            lstTorihikisaki.Add(txtTorihiki15.Text);
+            lstTorihikisaki.Add(txtTorihiki16.Text);
+            lstTorihikisaki.Add(txtTorihiki17.Text);
+            lstTorihikisaki.Add(txtTorihiki18.Text);
+            lstTorihikisaki.Add(txtTorihiki19.Text);
+            lstTorihikisaki.Add(txtTorihiki20.Text);
 
             //納入方法
-            lstString.Add(cmbNonyu.Text);
+            lstTorihikisaki.Add(cmbNonyu.Text);
             //業務担当者
-            lstString.Add(txtGyotan.Text);
+            lstTorihikisaki.Add(txtGyotan.Text);
 
             //ユーザー名
-            lstString.Add(SystemInformation.UserName);
+            lstTorihikisaki.Add(SystemInformation.UserName);
 
+            //ビジネス層のインスタンス生成
             M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
             try
             {
-                torihikisakiB.addTorihiki(lstString);
+                //登録
+                torihikisakiB.addTorihiki(lstTorihikisaki);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -602,7 +625,9 @@ namespace KATO.Form.M1070_Torihikisaki
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -616,16 +641,6 @@ namespace KATO.Form.M1070_Torihikisaki
             txtSihon.Text = "";
             txtCdT.Focus();
         }
-
-        /// <summary>
-        /// delTextSearch
-        /// テキストボックス内の文字を削除
-        /// </summary>
-        private void delTextSearch()
-        {
-            delFormClear(this);
-            txtSihon.Text = "";
-        }
         
         /// <summary>
         /// delTorihiki
@@ -633,28 +648,26 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         public void delTorihiki()
         {
-            //データ渡し用
-            List<string> lstStringLoad = new List<string>();
-            List<string> lstString = new List<string>();
+            //記入情報削除用
+            List<string> lstTorihikisaki = new List<string>();
 
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字判定（取引先コード）
             if (txtCdT.blIsEmpty() == false)
             {
                 return;
             }
 
-            //処理部に移動(削除)
+            //ビジネス層のインスタンス生成
             M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
-
             try
             {
-                lstStringLoad.Add(txtCdT.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(lstStringLoad);
+                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(txtCdT.Text);
 
+                //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
                 {
                     return;
@@ -668,106 +681,107 @@ namespace KATO.Form.M1070_Torihikisaki
                     return;
                 }
 
-                //データ渡し用
-                lstString.Add(txtCdT.Text);
-                lstString.Add(txtNameT.Text);
-                lstString.Add(txtHuriT.Text);
-                lstString.Add(txtYubinT.Text);
-                lstString.Add(txtJusho1T.Text);
-                lstString.Add(txtJusho2T.Text);
-                lstString.Add(txtDenwaT.Text);
-                lstString.Add(txtFAXT.Text);
-                lstString.Add(txtYubinAT.Text);
-                lstString.Add(txtJusho1AT.Text);
-                lstString.Add(txtJusho2AT.Text);
-                lstString.Add(txtDenwaAT.Text);
-                lstString.Add(txtFAXAT.Text);
-                lstString.Add(txtEmail.Text);
-                lstString.Add(txtTantoNameA.Text);
-                lstString.Add(txtBushoNameA.Text);
-                lstString.Add(txtTantoEmailA.Text);
+                //削除情報を入れる（多いため割愛部分あり）
+                //取引先
+                lstTorihikisaki.Add(txtCdT.Text);
+                lstTorihikisaki.Add(txtNameT.Text);
+                lstTorihikisaki.Add(txtHuriT.Text);
+                lstTorihikisaki.Add(txtYubinT.Text);
+                lstTorihikisaki.Add(txtJusho1T.Text);
+                lstTorihikisaki.Add(txtJusho2T.Text);
+                lstTorihikisaki.Add(txtDenwaT.Text);
+                lstTorihikisaki.Add(txtFAXT.Text);
+                lstTorihikisaki.Add(txtYubinAT.Text);
+                lstTorihikisaki.Add(txtJusho1AT.Text);
+                lstTorihikisaki.Add(txtJusho2AT.Text);
+                lstTorihikisaki.Add(txtDenwaAT.Text);
+                lstTorihikisaki.Add(txtFAXAT.Text);
+                lstTorihikisaki.Add(txtEmail.Text);
+                lstTorihikisaki.Add(txtTantoNameA.Text);
+                lstTorihikisaki.Add(txtBushoNameA.Text);
+                lstTorihikisaki.Add(txtTantoEmailA.Text);
 
                 //領収書送付先
-                lstString.Add(txtNameR.Text);
-                lstString.Add(txtYubinR.Text);
-                lstString.Add(txtJusho1R.Text);
-                lstString.Add(txtJusho2R.Text);
-                lstString.Add(txtDenwaR.Text);
-                lstString.Add(txtFAXR.Text);
+                lstTorihikisaki.Add(txtNameR.Text);
+                lstTorihikisaki.Add(txtYubinR.Text);
+                lstTorihikisaki.Add(txtJusho1R.Text);
+                lstTorihikisaki.Add(txtJusho2R.Text);
+                lstTorihikisaki.Add(txtDenwaR.Text);
+                lstTorihikisaki.Add(txtFAXR.Text);
 
                 //業種コード
-                lstString.Add(labelSet_GyoshuCd.codeTxt.Text);
+                lstTorihikisaki.Add(labelSet_GyoshuCd.codeTxt.Text);
 
                 //担当者コード
-                lstString.Add(labelSet_Tantousha.codeTxt.Text);
+                lstTorihikisaki.Add(labelSet_Tantousha.codeTxt.Text);
 
                 //請求書送付先
-                lstString.Add(txtNameS.Text);
-                lstString.Add(txtYubinS.Text);
-                lstString.Add(txtJusho1S.Text);
-                lstString.Add(txtJusho2S.Text);
-                lstString.Add(txtDenwaS.Text);
-                lstString.Add(txtFAXS.Text);
+                lstTorihikisaki.Add(txtNameS.Text);
+                lstTorihikisaki.Add(txtYubinS.Text);
+                lstTorihikisaki.Add(txtJusho1S.Text);
+                lstTorihikisaki.Add(txtJusho2S.Text);
+                lstTorihikisaki.Add(txtDenwaS.Text);
+                lstTorihikisaki.Add(txtFAXS.Text);
 
                 //〆関係
-                lstString.Add(txtSime.Text);
-                lstString.Add(txtSihatuki.Text);
-                lstString.Add(txtSihabi.Text);
-                lstString.Add(txtJoken.Text);
-                lstString.Add(txtShukinkbn.Text);
-                lstString.Add(txtSeikyuumu.Text);
+                lstTorihikisaki.Add(txtSime.Text);
+                lstTorihikisaki.Add(txtSihatuki.Text);
+                lstTorihikisaki.Add(txtSihabi.Text);
+                lstTorihikisaki.Add(txtJoken.Text);
+                lstTorihikisaki.Add(txtShukinkbn.Text);
+                lstTorihikisaki.Add(txtSeikyuumu.Text);
 
                 //税金関係
-                lstString.Add(txtZeikbn.Text);
-                lstString.Add(txtKeisankbn.Text);
-                lstString.Add(txtZeihasu.Text);
-                lstString.Add(txtMesai.Text);
+                lstTorihikisaki.Add(txtZeikbn.Text);
+                lstTorihikisaki.Add(txtKeisankbn.Text);
+                lstTorihikisaki.Add(txtZeihasu.Text);
+                lstTorihikisaki.Add(txtMesai.Text);
 
                 //会社内容関係
-                lstString.Add(txtSiha.Text);
-                lstString.Add(txtDaihyo.Text);
-                lstString.Add(txtSihon.Text);
-                lstString.Add(txtSeturitu.Text);
-                lstString.Add(txtJugyo.Text);
-                lstString.Add(txtKesan.Text);
-                lstString.Add(txtGinko.Text);
-                lstString.Add(txtSiten.Text);
-                lstString.Add(txtShubetu.Text);
-                lstString.Add(txtBango.Text);
-                lstString.Add(txtKoza.Text);
-                lstString.Add(txtToriatu.Text);
+                lstTorihikisaki.Add(txtSiha.Text);
+                lstTorihikisaki.Add(txtDaihyo.Text);
+                lstTorihikisaki.Add(txtSihon.Text);
+                lstTorihikisaki.Add(txtSeturitu.Text);
+                lstTorihikisaki.Add(txtJugyo.Text);
+                lstTorihikisaki.Add(txtKesan.Text);
+                lstTorihikisaki.Add(txtGinko.Text);
+                lstTorihikisaki.Add(txtSiten.Text);
+                lstTorihikisaki.Add(txtShubetu.Text);
+                lstTorihikisaki.Add(txtBango.Text);
+                lstTorihikisaki.Add(txtKoza.Text);
+                lstTorihikisaki.Add(txtToriatu.Text);
 
                 //主な取引先
-                lstString.Add(txtTorihiki1.Text);
-                lstString.Add(txtTorihiki2.Text);
-                lstString.Add(txtTorihiki3.Text);
-                lstString.Add(txtTorihiki4.Text);
-                lstString.Add(txtTorihiki5.Text);
-                lstString.Add(txtTorihiki6.Text);
-                lstString.Add(txtTorihiki7.Text);
-                lstString.Add(txtTorihiki8.Text);
-                lstString.Add(txtTorihiki9.Text);
-                lstString.Add(txtTorihiki10.Text);
-                lstString.Add(txtTorihiki11.Text);
-                lstString.Add(txtTorihiki12.Text);
-                lstString.Add(txtTorihiki13.Text);
-                lstString.Add(txtTorihiki14.Text);
-                lstString.Add(txtTorihiki15.Text);
-                lstString.Add(txtTorihiki16.Text);
-                lstString.Add(txtTorihiki17.Text);
-                lstString.Add(txtTorihiki18.Text);
-                lstString.Add(txtTorihiki19.Text);
-                lstString.Add(txtTorihiki20.Text);
+                lstTorihikisaki.Add(txtTorihiki1.Text);
+                lstTorihikisaki.Add(txtTorihiki2.Text);
+                lstTorihikisaki.Add(txtTorihiki3.Text);
+                lstTorihikisaki.Add(txtTorihiki4.Text);
+                lstTorihikisaki.Add(txtTorihiki5.Text);
+                lstTorihikisaki.Add(txtTorihiki6.Text);
+                lstTorihikisaki.Add(txtTorihiki7.Text);
+                lstTorihikisaki.Add(txtTorihiki8.Text);
+                lstTorihikisaki.Add(txtTorihiki9.Text);
+                lstTorihikisaki.Add(txtTorihiki10.Text);
+                lstTorihikisaki.Add(txtTorihiki11.Text);
+                lstTorihikisaki.Add(txtTorihiki12.Text);
+                lstTorihikisaki.Add(txtTorihiki13.Text);
+                lstTorihikisaki.Add(txtTorihiki14.Text);
+                lstTorihikisaki.Add(txtTorihiki15.Text);
+                lstTorihikisaki.Add(txtTorihiki16.Text);
+                lstTorihikisaki.Add(txtTorihiki17.Text);
+                lstTorihikisaki.Add(txtTorihiki18.Text);
+                lstTorihikisaki.Add(txtTorihiki19.Text);
+                lstTorihikisaki.Add(txtTorihiki20.Text);
 
                 //納入方法
-                lstString.Add(cmbNonyu.Text);
+                lstTorihikisaki.Add(cmbNonyu.Text);
                 //業務担当者
-                lstString.Add(txtGyotan.Text);
+                lstTorihikisaki.Add(txtGyotan.Text);
 
                 //ユーザー名
-                lstString.Add(SystemInformation.UserName);
+                lstTorihikisaki.Add(SystemInformation.UserName);
 
-                torihikisakiB.delTorihiki(lstString);
+                torihikisakiB.delTorihiki(lstTorihikisaki);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -787,7 +801,9 @@ namespace KATO.Form.M1070_Torihikisaki
         /// </summary>
         public void setTorihikisaki(DataTable dtSelectData)
         {
-            delTextSearch();
+            //表示項目をリセット
+            delFormClear(this);
+            txtSihon.Text = "";
 
             //取引先
             txtCdT.Text = dtSelectData.Rows[0]["取引先コード"].ToString();
@@ -880,14 +896,16 @@ namespace KATO.Form.M1070_Torihikisaki
             txtTorihiki19.Text = dtSelectData.Rows[0]["主な取引先１９"].ToString();
             txtTorihiki20.Text = dtSelectData.Rows[0]["主な取引先２０"].ToString();
 
+            //納入方法
             cmbNonyu.Text = dtSelectData.Rows[0]["納入方法"].ToString();
+            //業務担当者
             txtGyotan.Text = dtSelectData.Rows[0]["業務担当者コード"].ToString();
 
         }
 
         /// <summary>
         /// setTokuisakiListClose
-        /// GyoushuListが閉じたらコード記入欄にフォーカス
+        /// 得意先リストが閉じたらコード記入欄にフォーカス
         /// </summary>
         public void setTokuisakiListClose()
         {
@@ -909,56 +927,68 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void txtCdT_Leave(object sender, EventArgs e)
         {
-            Control cActive = this.ActiveControl;
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字判定
+            //文字チェック用
+            Boolean blnGood;
+
+            //前後の空白を取り除く
+            txtCdT.Text = txtCdT.Text.Trim();
+
+            //空文字判定
             if (txtCdT.blIsEmpty() == false)
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            txtCdT.Text = txtCdT.Text.Trim();
-
+            //文字数が足りなかった場合0パティング
             if (txtCdT.TextLength < 4)
             {
                 txtCdT.Text = txtCdT.Text.ToString().PadLeft(4, '0');
             }
 
-            //データ渡し用
-            lstString.Add(txtCdT.Text);
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtCdT.Text);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtCdT.Text, CommonTeisu.NUMBER_ONLY);
 
-            //処理部に移動
+            //文字チェックが通らなかった場合
+            if (blnGood == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCdT.Focus();
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
             M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(lstString);
+                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(txtCdT.Text);
 
+                //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTorihikisaki(dtSetCd);
                 }
-                //データの新規登録時に邪魔になるため、現段階削除予定
-                //else
-                //{
-                //    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-                //}
 
+                //フォーカス位置の確保
+                Control cActive = this.ActiveControl;
+
+                //金額の表示をさせるため、一度対象にフォーカスさせる
                 txtSihon.Focus();
                 cActive.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -975,37 +1005,19 @@ namespace KATO.Form.M1070_Torihikisaki
         }
 
         /// <summary>
-        /// judtxtTorihikiKeyUp
+        /// cmbNonyu_KeyUp
         /// 入力項目上でのキー判定と文字数判定(コンボボックス用)
         /// </summary>
         private void cmbNonyu_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;
 
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter || e.KeyCode == Keys.F12)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
+            //ベーステキストのインスタンス生成
+            BaseText basetext = new BaseText();
 
-            //ファンクションキーにも対応すること
+            //キー判定、文字数判定
+            basetext.judKeyUp(cActiveBefore, e);
 
-            //変換して扱う（これは該当がテキストボックスのみ場合は可能、他のツールには不可能）
-            if (cActiveBefore.Text.Length == ((ComboBox)cActiveBefore).MaxLength)
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
         }
 
         /// <summary>

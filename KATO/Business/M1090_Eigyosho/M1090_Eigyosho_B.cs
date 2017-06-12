@@ -1,16 +1,16 @@
-﻿using KATO.Common.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KATO.Common.Util;
 
 namespace KATO.Business.M1090_Eigyosho
 {
     ///<summary>
     ///M1090_Eigyosho_B
-    ///営業所フォーム
+    ///営業所のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
@@ -42,20 +42,22 @@ namespace KATO.Business.M1090_Eigyosho
                     lstString[2]
                 };
 
+                //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_EIGYOSHO_UPD, aryStr);
 
+                //コミット開始
                 dbconnective.Commit();
             }
             catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
                 new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -83,6 +85,7 @@ namespace KATO.Business.M1090_Eigyosho
                     lstString[2]
                 };
 
+                //SQL接続、削除
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_EIGYOSHO_UPD, aryStr);
 
                 //コミット開始
@@ -92,12 +95,12 @@ namespace KATO.Business.M1090_Eigyosho
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
                 new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -106,47 +109,49 @@ namespace KATO.Business.M1090_Eigyosho
         ///updTxtEigyoCdLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtEigyoCdLeave(List<string> lstString)
+        public DataTable updTxtEigyoCdLeave(string strEigyosho)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();
 
-            string strSQLName = null;
-
-            strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
-
             //データ渡し用
             stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            stringSQLAry.Add("C_LIST_Eigyosho_SELECT_LEAVE");
 
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
             OpenSQL opensql = new OpenSQL();
+            
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(stringSQLAry);
 
+                //パスがなければ返す
                 if (strSQLInput == "")
                 {
                     return (dtSetCd_B);
                 }
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strEigyosho);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
+                //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
