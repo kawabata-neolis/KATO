@@ -100,7 +100,7 @@ namespace KATO.Business.M1030_Shohin
                     }
                     else
                     {
-                        intNewCd = int.Parse(strNewCdOther.Substring(1));
+                        intNewCd = int.Parse(strNewCdOther.ToString());
 
                         intNewCd = intNewCd + 1;
 

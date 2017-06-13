@@ -28,8 +28,10 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ChubunruiList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //中分類コードの確保（セット系用）
         LabelSet_Chubunrui lblSetChubun = null;
 
         //大分類コードの確保
@@ -38,6 +40,7 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -55,15 +58,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// ChubunruiList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public ChubunruiList(Control c, string strdaibunCd)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -84,18 +89,21 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// ChubunruiList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public ChubunruiList(Control c, LabelSet_Chubunrui lblSetChubunSelect, string strdaibunCD)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetChubun = lblSetChubunSelect;
 
             InitializeComponent();
@@ -115,7 +123,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// CyokusousakiList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void CyokusousakiList_Load(object sender, EventArgs e)
         {
@@ -128,6 +136,7 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
+            //データない場合、フォーカス位置を変える
             if (gridSeihin.RowCount == 0)
             {
                 labelSet_Daibunrui.Focus();
@@ -141,27 +150,17 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //大分類テキストボックスに入れる用
             DataTable dtGetTable;
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            //データ渡し用
-            lstString.Add(labelSet_Daibunrui.CodeTxtText);
-
-            //処理部に移動
+            //データグリッドビュー部分
             ChubunruiList_B chubunlistB = new ChubunruiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = chubunlistB.setDatagridView(lstString);
+                gridSeihin.DataSource = chubunlistB.setDatagridView(labelSet_Daibunrui.CodeTxtText);
                 //テキストボックス部分
-                dtGetTable = chubunlistB.setText(lstString);
-
-                if (dtGetTable.Rows.Count == 0)
-                {
-                    return;
-                }
+                dtGetTable = chubunlistB.setText(labelSet_Daibunrui.CodeTxtText);
 
                 //幅の値を設定
                 gridSeihin.Columns["中分類コード"].Width = 130;
@@ -251,35 +250,35 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
-            List<string> lstString = new List<string>();
-            setEndAction(lstString);
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
+            List<string> lstSelectData = new List<string>();
+
+            //戻るボタンの処理
+            setEndAction(lstSelectData);
         }
 
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectData)
         {
-            if (lblSetChubun != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetChubun != null && lstSelectData.Count != 0)
             {
-                lblSetChubun.CodeTxtText = lstString[0];
-                lblSetChubun.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetChubun.CodeTxtText = lstSelectData[0];
+                lblSetChubun.ValueLabelText = lstSelectData[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             ChubunruiList_B chubunListB = new ChubunruiList_B();
             try
             {
-                chubunListB.setEndAction(lstInt);
+                //画面終了処理
+                chubunListB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -373,36 +372,36 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-
-            if(gridSeihin.RowCount == 0)
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
             {
                 return;
             }
+
+            //データ渡し用
+            List<string> lstSelectData = new List<string>();
 
             //選択行のcode取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["中分類コード"].Value;
             string strSelectName = (string)gridSeihin.CurrentRow.Cells["中分類名"].Value;
 
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            //検索情報を入れる
+            lstSelectData.Add(strSelectId);
+            lstSelectData.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             ChubunruiList_B chubunListB = new ChubunruiList_B();
             try
             {
-                chubunListB.setSelectItem(lstInt, lstString, strdaibunCDsub);
+                //データグリッドビュー内のデータ選択後の処理
+                chubunListB.setSelectItem(intFrmKind, strSelectId, strdaibunCDsub);
             }
             catch (Exception ex)
             {
                 new CommonException(ex);     
                            
             }
-            setEndAction(lstString);
+            setEndAction(lstSelectData);
         }
 
         ///<summary>

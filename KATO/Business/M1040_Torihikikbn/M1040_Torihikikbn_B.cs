@@ -109,10 +109,10 @@ namespace KATO.Business.M1040_Torihikikbn
         ///</summary>
         public DataTable updTxtTorikbnLeave(string strTorihikikbn)
         {
-            //データ渡し用
+            //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
-            //データ渡し用
+            //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
             lstSQL.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
 

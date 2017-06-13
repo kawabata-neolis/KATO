@@ -27,13 +27,16 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class EigyoshoList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //営業所コードの確保（セット系用）
         LabelSet_Eigyosho lblSetEigyou = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,14 +54,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public EigyoshoList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -73,18 +79,23 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public EigyoshoList(Control c, LabelSet_Eigyosho lblSetEigyouSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetEigyou = lblSetEigyouSelect;
+
             InitializeComponent();
 
             //ウィンドウ位置をマニュアル
@@ -96,7 +107,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaiBunruiList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void EigyoushoList_Load(object sender, EventArgs e)
         {
@@ -107,6 +118,7 @@ namespace KATO.Common.Form
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
+
             this.btnF12.Text = "F12:戻る";
 
             //データをバインド
@@ -115,14 +127,17 @@ namespace KATO.Common.Form
             gyoshuCD.Name = "業種コード";
             gyoshuCD.HeaderText = "業種コード";
 
+            //データをバインド
             DataGridViewTextBoxColumn gyoshuName = new DataGridViewTextBoxColumn();
             gyoshuName.DataPropertyName = "業種名";
             gyoshuName.Name = "業種名";
             gyoshuName.HeaderText = "業種名";
-
+            
+            //データグリッドビューにカラムデータを追加
             gridSeihin.Columns.Add(gyoshuCD);
             gridSeihin.Columns.Add(gyoshuName);
 
+            //データグリッドビュー表示
             setDatagridView();
         }
 
@@ -132,28 +147,36 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             EigyoshoList_B eigyoulistB = new EigyoshoList_B();
-
-            //データグリッドビュー部分
-            gridSeihin.DataSource = eigyoulistB.setDatagridView();
-
-            //幅の値を設定
-            gridSeihin.Columns["業種コード"].Width = 150;
-            gridSeihin.Columns["業種名"].Width = 250;
-
-            //中央揃え
-            gridSeihin.Columns["業種名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //検索件数を表示
-            lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
-
-            //件数が0の場合
-            if (lblRecords.Text.Equals("0"))
+            try
             {
-                //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
+                //データグリッドビュー部分
+                gridSeihin.DataSource = eigyoulistB.setDatagridView();
+
+                //幅の値を設定
+                gridSeihin.Columns["業種コード"].Width = 150;
+                gridSeihin.Columns["業種名"].Width = 250;
+
+                //中央揃え
+                gridSeihin.Columns["業種名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                //検索件数を表示
+                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (lblRecords.Text.Equals("0"))
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
                 return;
             }
         }
@@ -224,7 +247,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -234,30 +260,28 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
+            //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetEigyou != null && lstString.Count != 0)
             {
+                //セットの中に検索結果データを入れる
                 lblSetEigyou.CodeTxtText = lstString[0];
                 lblSetEigyou.ValueLabelText = lstString[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             EigyoshoList_B eigyoulistB = new EigyoshoList_B();
             try
             {
-                //データグリッドビュー部分
-                eigyoulistB.setEndAction(lstInt);
+                //画面終了処理
+                eigyoulistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -335,30 +359,37 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-
-            //選択行の大分類コード取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells[0].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value;
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
+            {
+                return;
+            }
 
             //データ渡し用
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            List<string> lstSelectData = new List<string>();
 
-            //処理部に移動
+            //選択行の大分類情報取得
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["大分類コード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["大分類名"].Value;
+
+            //検索情報を入れる
+            lstSelectData.Add(strSelectId);
+            lstSelectData.Add(strSelectName);
+
+            //ビジネス層のインスタンス生成
             EigyoshoList_B eigyoulistB = new EigyoshoList_B();
             try
             {
-                eigyoulistB.setSelectItem(lstInt, lstString);
+                //データグリッドビュー内のデータ選択後の処理
+                eigyoulistB.setSelectItem(intFrmKind, strSelectId);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            setEndAction(lstString);
+            setEndAction(lstSelectData);
         }
 
         ///<summary>

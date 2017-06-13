@@ -22,33 +22,31 @@ namespace KATO.Common.Business
     ///</summary>
     class GroupCdList_B
     {
-        string strSQLName = null;
-
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
         public DataTable setDatagridView()
         {
+            //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
 
-            //SQL用に移動
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
+                //SQLファイルのパスとファイル名を入れる用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "";
-
-                strSQLName = "GroupCdList_View";
-
-                //データ渡し用
+                //SQLファイルのパスとファイル名を追加
                 lstStringSQL.Add("Common");
                 lstStringSQL.Add("CommonForm");
-                lstStringSQL.Add(strSQLName);
+                lstStringSQL.Add("GroupCdList_View");
 
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
                 //検索データを表示
@@ -57,8 +55,14 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
+                //ロールバック開始
+                dbconnective.Rollback();
                 throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
             }
             return (dtGetTableGrid);
         }
@@ -67,13 +71,13 @@ namespace KATO.Common.Business
         ///setEndAction
         ///元の画面に戻る
         ///</summary>
-        public void setEndAction(List<int> lstInt)
+        public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //目的のフォームを探す
-                if (lstInt[0] == 1 && frm.Name.Equals("M1200_Group"))
+                //グループのフォームを探す
+                if (intFrmKind == 1 && frm.Name.Equals("M1200_Group"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1200_Group group = (M1200_Group)frm;
@@ -91,40 +95,49 @@ namespace KATO.Common.Business
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        public void setSelectItem(int intFrmKind, string strSelectId)
         {
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
+                //SQLファイルのパスとファイル名を入れる用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "C_LIST_GroupCd_SELECT_LEAVE";
-
-                //データ渡し用
+                //SQLファイルのパスとファイル名を追加
                 lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
+                lstStringSQL.Add("C_LIST_GroupCd_SELECT_LEAVE");
 
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strSelectId);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
 
+                //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                switch (lstInt[0])
+                //移動元フォームの検索
+                switch (intFrmKind)
                 {
+                    //グループ
                     case CommonTeisu.FRM_GROUP:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //目的のフォームを探す
+                            //グループマスタのフォームを探す
                             if (frm.Name.Equals("M1200_Group"))
                             {
                                 //データを連れてくるため、newをしないこと
@@ -140,11 +153,11 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

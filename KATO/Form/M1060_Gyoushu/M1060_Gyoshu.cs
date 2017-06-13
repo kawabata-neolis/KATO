@@ -384,7 +384,7 @@ namespace KATO.Form.M1060_Gyoushu
         /// </summary>
         public void delGyoushu()
         {
-            //データ渡し用
+            //記入情報削除用
             List<string> lstGyoushu = new List<string>();
 
             //検索時のデータ取り出し先

@@ -119,10 +119,10 @@ namespace KATO.Business.M1050_Tantousha
         ///</summary>
         public DataTable updTxtTantoshaLeave(string strTantousha)
         {
-            //データ渡し用
+            //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
-            //データ渡し用
+            //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
             lstSQL.Add("C_LIST_Tantousha_SELECT_LEAVE");
 

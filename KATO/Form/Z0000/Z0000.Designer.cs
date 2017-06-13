@@ -52,6 +52,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.txtChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -172,7 +173,7 @@
             // 
             // btnTanaInput
             // 
-            this.btnTanaInput.BackColor = System.Drawing.Color.Cyan;
+            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
             this.btnTanaInput.Location = new System.Drawing.Point(23, 33);
             this.btnTanaInput.Name = "btnTanaInput";
             this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
@@ -230,6 +231,7 @@
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage4.Controls.Add(this.btnChokusosaki);
+            this.tabPage4.Controls.Add(this.txtChokusosaki);
             this.tabPage4.Controls.Add(this.btnEigyosho);
             this.tabPage4.Controls.Add(this.btnTanaban);
             this.tabPage4.Controls.Add(this.btnShohizeiritu);
@@ -399,6 +401,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // txtChokusosaki
+            // 
+            this.txtChokusosaki.BackColor = System.Drawing.Color.LightYellow;
+            this.txtChokusosaki.Location = new System.Drawing.Point(342, 94);
+            this.txtChokusosaki.Name = "txtChokusosaki";
+            this.txtChokusosaki.Size = new System.Drawing.Size(280, 40);
+            this.txtChokusosaki.TabIndex = 103;
+            this.txtChokusosaki.Text = "直送先";
+            this.txtChokusosaki.UseVisualStyleBackColor = false;
+            this.txtChokusosaki.Click += new System.EventHandler(this.btnChokusosaki_Click);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -459,5 +472,6 @@
         private Common.Ctl.BaseMenuButton btnMaker;
         private Common.Ctl.BaseMenuButton btnShohinMotochoKakunin;
         private Common.Ctl.BaseMenuButton btnHachuInput;
+        private Common.Ctl.BaseMenuButton txtChokusosaki;
     }
 }

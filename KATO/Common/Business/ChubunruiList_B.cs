@@ -30,44 +30,42 @@ namespace KATO.Common.Business
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView(List<string> lstString)
+        public DataTable setDatagridView(string strDaibun)
         {
+            //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
 
             //SQL用に移動
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
 
-                strSQLName = "";
+                //SQLファイルのパスとファイル名を追加
+                lstSQL.Add("Common");
+                lstSQL.Add("CommonForm");
+                lstSQL.Add("ChubunruiList_View");
 
-                strSQLName = "ChubunruiList_View";
-
-                //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add("CommonForm");
-                lstStringSQL.Add(strSQLName);
-
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strDaibun);
 
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
             return (dtGetTableGrid);
@@ -76,86 +74,41 @@ namespace KATO.Common.Business
         ///<summary>
         ///setDatagridView
         ///テキストボックスに記述
-        public DataTable setText(List<string> lstString)
+        public DataTable setText(string strDaibun)
         {
+            //テキストボックスに入れる用
             DataTable dtGetTableTxt = new DataTable();
 
-            //SQL用に移動
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
-
-                strSQLName = "";
-
-                strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
 
                 //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
+                lstSQL.Add("Common");
+                lstSQL.Add("C_LIST_Daibun_SELECT_LEAVE");
 
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strDaibun);
 
-                //該当する大分類コードと名前を確保
+                //SQL接続後、該当データを取得
                 dtGetTableTxt = dbconnective.ReadSql(strSQLInput);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
-                dbconnective.DB_Disconnect();
-            }
-            return (dtGetTableTxt);
-        }
-
-        ///<summary>
-        ///setName
-        ///大分類名を記述
-        ///</summary>
-        public DataTable setName(List<string> lstString)
-        {
-            DataTable dtGetTableTxt = new DataTable();
-
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-            try
-            {
-                strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
-
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
-
-                //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
-
-                OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-                //配列設定
-                string[] aryStr = { lstString[0] };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
-                dtGetTableTxt = dbconnective.ReadSql(strSQLInput);
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                throw (ex);
-            }
-            finally
-            {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
             return (dtGetTableTxt);
@@ -163,38 +116,38 @@ namespace KATO.Common.Business
 
         ///<summary>
         ///setSelectItem
-        ///各画面へのデータ渡し
+        ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void setSelectItem(List<int> lstInt, List<string> lstString, string strdaibunCDsub)
+        public void setSelectItem(int intFrmKind, string strChubunCd, string strdaibunCDsub)
         {
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
 
-                strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
+                //SQLファイルのパスとファイル名を追加
+                lstSQL.Add("Common");
+                lstSQL.Add("C_LIST_Chubun_SELECT_LEAVE");
 
-                //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
-
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { strdaibunCDsub, lstString[0] };
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strdaibunCDsub, strChubunCd);
 
-                //SQL文を直書き（＋戻り値を受け取る)
+                //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                switch (lstInt[0])
+                //移動元フォームの検索
+                switch (intFrmKind)
                 {
                     //中分類
                     case CommonTeisu.FRM_CHUBUNRUI:
@@ -233,11 +186,11 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
@@ -246,7 +199,7 @@ namespace KATO.Common.Business
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(List<int> lstInt)
+        public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -254,32 +207,32 @@ namespace KATO.Common.Business
                 List<string> items = new List<string>();
                 items.Add(frm.Name);
 
-                //目的のフォームを探す
-                if (lstInt[0] == CommonTeisu.FRM_CHUBUNRUI && frm.Name == "M1110_Chubunrui")
+                //中分類フォームを探す
+                if (intFrmKind == CommonTeisu.FRM_CHUBUNRUI && frm.Name == "M1110_Chubunrui")
                 {
                     //データを連れてくるため、newをしないこと
                     M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
                     chubunrui.setChubunruiListClose();
                     break;
                 }
-                //目的のフォームを探す
-                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
+                //棚卸入力フォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setChubunruiListClose();
                     break;
                 }
-                //目的のフォームを探す
-                else if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI_EDIT && frm.Name == "F0140_TanaorosiInput")
+                //棚卸入力（修正側）のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_TANAOROSHI_EDIT && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setChubunListCloseEdit();
                     break;
                 }
-                //目的のフォームを探す
-                else if (lstInt[0] == CommonTeisu.FRM_SHOUHINLIST && frm.Name == "ShouhinList")
+                //商品リストのフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_SHOUHINLIST && frm.Name == "ShouhinList")
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinlist = (ShouhinList)frm;

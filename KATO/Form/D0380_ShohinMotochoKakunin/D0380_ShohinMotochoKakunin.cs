@@ -484,8 +484,9 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         /// </summary>
         private void setShohinMotoCho()
         {
-            //データ渡し用
+            //データ検索用
             List<string> lstShohinLoad = new List<string>();
+            //グリッドビュー表示用
             List<string> lstShohinGrid = new List<string>();
 
             //検索時のデータ取り出し先

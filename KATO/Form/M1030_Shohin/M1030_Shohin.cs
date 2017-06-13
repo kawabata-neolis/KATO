@@ -63,7 +63,7 @@ namespace KATO.Form.M1030_Shohin
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 
             //中分類setデータを読めるようにする
-   //登録か仮         labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
         }
 
         /// <summary>

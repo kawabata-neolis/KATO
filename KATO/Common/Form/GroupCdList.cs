@@ -26,13 +26,16 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class GroupCdList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //グループコードの確保（セット系用）
         LabelSet_GroupCd lblSetGroupCd = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -50,15 +53,17 @@ namespace KATO.Common.Form
 
         ///<summary>
         ///GroupCdList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        ///フォームの初期設定（通常のテキストボックスから）
         ///</summary>
         public GroupCdList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -73,19 +78,23 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public GroupCdList(Control c, LabelSet_GroupCd lblSetGroupCdSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetGroupCd = lblSetGroupCdSelect;
+
             InitializeComponent();
 
             //ウィンドウ位置をマニュアル
@@ -95,6 +104,10 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
+        /// <summary>
+        /// GroupCdList_Load
+        /// 画面レイアウト設定
+        /// </summary>
         private void GroupCdList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -103,8 +116,10 @@ namespace KATO.Common.Form
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
+            //データグリッドビューの準備
             SetUpGrid();
 
+            //データグリッドビュー表示
             setDatagridView();
         }
 
@@ -149,6 +164,7 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //ビジネス層のインスタンス生成
             GroupCdList_B groupcdlistB = new GroupCdList_B();
             try
             {
@@ -171,7 +187,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -296,35 +314,38 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            if (gridSeihin.Rows.Count < 1)
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
             {
                 return;
             }
 
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            List<string> lstSelectData = new List<string>();
 
-            //選択行の担当者情報取得
+            //選択行のグループ情報取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["グループコード"].Value;
             string strSelectName = (string)gridSeihin.CurrentRow.Cells["グループ名"].Value;
 
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            //検索情報を入れる
+            lstSelectData.Add(strSelectId);
+            lstSelectData.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             GroupCdList_B groupcdlistB = new GroupCdList_B();
             try
             {
-                groupcdlistB.setSelectItem(lstInt, lstString);
+                //データグリッドビュー内のデータ選択後の処理
+                groupcdlistB.setSelectItem(intFrmKind, strSelectId);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
 
-            setEndAction(lstString);
+            setEndAction(lstSelectData);
         }
         
         ///<summary>
@@ -335,7 +356,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -343,31 +367,30 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectData)
         {
-            if (lblSetGroupCd != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetGroupCd != null && lstSelectData.Count != 0)
             {
-                lblSetGroupCd.CodeTxtText = lstString[0];
-                lblSetGroupCd.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetGroupCd.CodeTxtText = lstSelectData[0];
+                lblSetGroupCd.ValueLabelText = lstSelectData[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             GroupCdList_B groupcdlistB = new GroupCdList_B();
             try
             {
-                groupcdlistB.setEndAction(lstInt);
+                //画面終了処理
+                groupcdlistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

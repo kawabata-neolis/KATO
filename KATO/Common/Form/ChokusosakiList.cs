@@ -27,10 +27,8 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ChokusosakiList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        //ラベルセット作成後修正
-        //LabelSet_Chubunrui lblSetChubun = null;
 
         //得意先コードの確保
         string strTokuiCdsub = null;
@@ -38,6 +36,7 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //画面タイトル設定
         private string Title = "";
         public string _Title
         {
@@ -55,15 +54,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// ChubunruiList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public ChokusosakiList(Control c, string strTokuisakiCd)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -72,7 +73,7 @@ namespace KATO.Common.Form
             //テキストボックスに入れる
             labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
 
-            //大分類コードの確保
+            //得意先コードの確保
             strTokuiCdsub = strTokuisakiCd;
 
             //ウィンドウ位置をマニュアル
@@ -82,41 +83,9 @@ namespace KATO.Common.Form
             this.Top = c.Top;
         }
 
-        //ラベルセット作成後修正
-        ///// <summary>
-        ///// ChokusosakiList
-        ///// フォーム関係の設定（ラベルセットから）
-        ///// </summary>
-        //public ChokusosakiList(Control c, LabelSet_Chubunrui lblSetChubunSelect, string strdaibunCD)
-        //{
-        //    if (c == null)
-        //    {
-        //        return;
-        //    }
-
-        //    int intWindowWidth = c.Width;
-        //    int intWindowHeight = c.Height;
-
-        //    lblSetChubun = lblSetChubunSelect;
-
-        //    InitializeComponent();
-
-        //    //テキストボックスに入れる
-        //    labelSet_Tokuisaki.CodeTxtText = strdaibunCD;
-
-        //    //大分類コードの確保
-        //    strdaibunCDsub = strdaibunCD;
-
-        //    //ウィンドウ位置をマニュアル
-        //    this.StartPosition = FormStartPosition.Manual;
-        //    //親画面の中央を指定
-        //    this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-        //    this.Top = c.Top;
-        //}
-
         /// <summary>
         /// ChokusosakiList_Load
-        /// 読み込み時
+        ///画面レイアウト設定
         /// </summary>
         private void CyokusousakiList_Load(object sender, EventArgs e)
         {
@@ -129,6 +98,7 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
+            //グリッドの中身がない場合の初期フォーカス位置の変更
             if (gridChoku.RowCount == 0)
             {
                 labelSet_Tokuisaki.Focus();
@@ -141,22 +111,19 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //検索時のデータ取り出し先
             DataTable dtGetTable;
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
-            //データ渡し用
-            lstString.Add(labelSet_Tokuisaki.CodeTxtText);
-
+            //ビジネス層のインスタンス生成
             ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridChoku.DataSource = chokusosakilistB.setDatagridView(lstString);
+                gridChoku.DataSource = chokusosakilistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
                 //テキストボックス部分
-                dtGetTable = chokusosakilistB.setText(lstString);
+                dtGetTable = chokusosakilistB.setText(labelSet_Tokuisaki.CodeTxtText);
 
+                //Datatable内のデータが存在しない場合
                 if (dtGetTable.Rows.Count == 0)
                 {
                     return;
@@ -172,50 +139,21 @@ namespace KATO.Common.Form
                 //大分類コードと名前を表示
                 labelSet_Tokuisaki.CodeTxtText = dtGetTable.Rows[0]["得意先コード"].ToString();
 
+                //表示数を記載
                 lblRecords.Text = "該当件数( " + gridChoku.RowCount.ToString() + "件)";
 
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-
-
-            ////処理部に移動
-            //ChubunruiList_B chubunlistB = new ChubunruiList_B();
-            //try
-            //{
-            //    //データグリッドビュー部分
-            //    gridChoku.DataSource = chubunlistB.setDatagridView(lstString);
-            //    //テキストボックス部分
-            //    dtGetTable = chubunlistB.setText(lstString);
-
-            //    if (dtGetTable.Rows.Count == 0)
-            //    {
-            //        return;
-            //    }
-
-            //    //幅の値を設定
-            //    gridChoku.Columns["直送先コード"].Width = 130;
-            //    gridChoku.Columns["直送先名"].Width = 200;
-
-            //    //中央揃え
-            //    gridChoku.Columns["直送先名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //    //大分類コードと名前を表示
-            //    labelSet_Tokuisaki.CodeTxtText = dtGetTable.Rows[0]["得意先コード"].ToString();
-
-            //    lblRecords.Text = "該当件数( " + gridChoku.RowCount.ToString() + "件)";
-            //}
-            //catch (Exception ex)
-            //{
-            //    new CommonException(ex);
-            //}
         }
 
         ///<summary>
         ///judDaiBunruiListKeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void judDaiBunruiListKeyDown(object sender, KeyEventArgs e)
         {
@@ -281,41 +219,29 @@ namespace KATO.Common.Form
         private void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-
-            List<string> lstString = new List<string>();
-            setEndAction(lstString);
+            setEndAction();
         }
 
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction()
         {
-            //ラベルセット作成後修正
-            //if (lblSetChubun != null && lstString.Count != 0)
-            //{
-            //    lblSetChubun.CodeTxtText = lstString[0];
-            //    lblSetChubun.ValueLabelText = lstString[1];
-            //}
-
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
-            ChubunruiList_B chubunListB = new ChubunruiList_B();
+            //ビジネス層のインスタンス生成
+            ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
-                chubunListB.setEndAction(lstInt);
+                //ビジネス層、移動元フォームに移動するロジックに移動
+                chokusosakilistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -339,10 +265,10 @@ namespace KATO.Common.Form
         {
             setSelectItem();
         }
-        
+
         ///<summary>
         ///setGridSeihinDoubleClick
-        ///データグリッドビュー内のデータ選択中にキーが押されたとき
+        ///キー入力判定（グリッドビュー内）
         ///</summary>        
         private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
         {
@@ -407,35 +333,26 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-
-            if(gridChoku.RowCount == 0)
+            //検索結果にデータが存在しなければ終了
+            if (gridChoku.RowCount == 0)
             {
                 return;
             }
 
-            //選択行のcode取得
-            string strSelectId = (string)gridChoku.CurrentRow.Cells["直送先コード"].Value;
-            string strSelectName = (string)gridChoku.CurrentRow.Cells["直送先名"].Value;
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
-                chokusosakilistB.setSelectItem(lstInt, lstString, strTokuiCdsub);
+                //ビジネス層、検索ロジックに移動
+                chokusosakilistB.setSelectItem(intFrmKind, (string)gridChoku.CurrentRow.Cells["直送先コード"].Value, strTokuiCdsub);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);                                
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
-            setEndAction(lstString);
+            setEndAction();
         }
 
         ///<summary>

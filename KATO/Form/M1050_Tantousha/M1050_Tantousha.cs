@@ -68,7 +68,7 @@ namespace KATO.Form.M1050_Tantousha
         ///<summary>
         ///M1050_Tantousha_Load
         ///画面レイアウト設定
-        /// </summary>
+        ///</summary>
         private void M1050_Tantousha_Load(object sender, EventArgs e)
         {
             this.Show();

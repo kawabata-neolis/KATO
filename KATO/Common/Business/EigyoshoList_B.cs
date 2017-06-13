@@ -22,40 +22,40 @@ namespace KATO.Common.Business
     ///</summary>
     class EigyoshoList_B
     {
-        string strSQLName = null;
-
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
         public DataTable setDatagridView()
         {
+            //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
 
-            //SQL用に移動
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
+                //SQLファイルのパスとファイル名を入れる用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "";
-
-                strSQLName = "EigyoushoList_View";
-
-                //データ渡し用
+                //SQLファイルのパスとファイル名を追加
                 lstStringSQL.Add("Common");
                 lstStringSQL.Add("CommonForm");
-                lstStringSQL.Add(strSQLName);
+                lstStringSQL.Add("EigyoushoList_View");
 
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
+                //SQLファイルと該当コードでフォーマット
                 strSQLInput = string.Format(strSQLInput);
 
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
 
+                //column名の変更をすることで、gridviewに表示出来るようにする
                 dtGetTableGrid.Columns["営業所コード"].ColumnName = "業種コード";
                 dtGetTableGrid.Columns["営業所名"].ColumnName = "業種名";
             }
@@ -63,9 +63,12 @@ namespace KATO.Common.Business
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
             }
             return (dtGetTableGrid);
         }
@@ -74,21 +77,21 @@ namespace KATO.Common.Business
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(List<int> lstInt)
+        public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //目的のフォームを探す
-                if (lstInt[0] == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
+                //棚卸入力のフォームを探す
+                if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
                     F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
                     tanaorosiinput.setEigyoushoListClose();
                     break;
                 }
-                //目的のフォームを探す
-                else if (lstInt[0] == CommonTeisu.FRM_EIGYOSHO && frm.Name == "M1090_Eigyosho")
+                //営業所のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_EIGYOSHO && frm.Name == "M1090_Eigyosho")
                 {
                     //データを連れてくるため、newをしないこと
                     M1090_Eigyosho eigyosho = (M1090_Eigyosho)frm;
@@ -102,43 +105,49 @@ namespace KATO.Common.Business
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        public void setSelectItem(int intFrmKind, string strSelectId)
         {
+            //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
+                //SQLファイルのパスとファイル名を入れる用
                 List<string> lstStringSQL = new List<string>();
 
-                strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
-
-                //データ渡し用
+                //SQLファイルのパスとファイル名を追加
                 lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
+                lstStringSQL.Add("C_LIST_Eigyosho_SELECT_LEAVE");
 
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
                 string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strSelectId);
+                
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
-                //SQL文を直書き（＋戻り値を受け取る)
+                //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                //通常テキストボックスの場合に使用する
-                switch (lstInt[0])
+                //移動元フォームの検索
+                switch (intFrmKind)
                 {
                     //営業所
                     case CommonTeisu.FRM_EIGYOSHO:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //目的のフォームを探す
+                            //営業所のフォームを探す
                             if (frm.Name.Equals("M1090_Eigyosho"))
                             {
                                 //データを連れてくるため、newをしないこと
@@ -155,11 +164,12 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
             }
         }
     }

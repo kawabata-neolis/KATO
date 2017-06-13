@@ -30,13 +30,16 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class DaibunruiList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //大分類コードの確保（セット系用）
         LabelSet_Daibunrui lblSetDaibun = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -54,15 +57,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public DaibunruiList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -77,19 +82,23 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public DaibunruiList(Control c, LabelSet_Daibunrui lblSetDaibunSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetDaibun = lblSetDaibunSelect;
+
             InitializeComponent();
 
             //ウィンドウ位置をマニュアル
@@ -101,7 +110,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaiBunruiList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void DaiBunruiList_Load(object sender, EventArgs e)
         {
@@ -111,6 +120,7 @@ namespace KATO.Common.Form
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
+            //データグリッドビュー表示
             setDatagridView();
         }
 
@@ -120,7 +130,7 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
             try
             {
@@ -137,7 +147,7 @@ namespace KATO.Common.Form
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
-                if (lblRecords.Text == "0")
+                if (gridSeihin.RowCount == 0)
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -147,13 +157,15 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
         ///<summary>
         ///judDaiBunruiListKeyDown
-        ///キー入力判定
+        ///キー入力判定（画面全般）
         ///</summary>
         private void judDaiBunruiListKeyDown(object sender, KeyEventArgs e)
         {
@@ -217,35 +229,35 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
-            List<string> lstString = new List<string>();
-            setEndAction(lstString);
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
+            List<string> lstSelectData = new List<string>();
+
+            //戻るボタンの処理
+            setEndAction(lstSelectData);
         }
 
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectData)
         {
-            if (lblSetDaibun != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetDaibun != null && lstSelectData.Count != 0)
             {
-                lblSetDaibun.CodeTxtText = lstString[0];
-                lblSetDaibun.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetDaibun.CodeTxtText = lstSelectData[0];
+                lblSetDaibun.ValueLabelText = lstSelectData[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
             try
             {
-                daibunlistB.setEndAction(lstInt);
+                //画面終了処理
+                daibunlistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -328,29 +340,35 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
+            {
+                return;
+            }
+
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            List<string> lstSelectData = new List<string>();
 
             //選択行の大分類コード取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["大分類コード"].Value;
             string strSelectName = (string)gridSeihin.CurrentRow.Cells["大分類名"].Value;
 
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            //検索情報を入れる
+            lstSelectData.Add(strSelectId);
+            lstSelectData.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             DaibunruiList_B daibunListB = new DaibunruiList_B();
             try
             {
-                daibunListB.setSelectItem(lstInt, lstString);
+                //データグリッドビュー内のデータ選択後の処理
+                daibunListB.setSelectItem(intFrmKind, strSelectId);
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
             }
-            setEndAction(lstString);
+            setEndAction(lstSelectData);
         }
 
         ///<summary>
