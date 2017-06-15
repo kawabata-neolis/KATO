@@ -27,13 +27,16 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class TanabanList : System.Windows.Forms.Form
     {
+        //ロギングの設定
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        //メーカーコードの確保（セット系用）
         LabelSet_Tanaban lblSetTanaban = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
-        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,14 +54,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// TanabanList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public TanabanList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -67,20 +73,23 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// TanabanList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public TanabanList(Control c, LabelSet_Tanaban lblSetTanabanSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -90,13 +99,13 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// TanabanList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void TanabanList_Load(object sender, EventArgs e)
         {
@@ -116,21 +125,21 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             TanabanList_B tanabanlistB = new TanabanList_B();
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = tanabanlistB.setDatagridView();
+                gridTanaban.DataSource = tanabanlistB.setDatagridView();
 
                 //幅の値を設定
-                gridSeihin.Columns["棚番"].Width = 70;
-                gridSeihin.Columns["棚番名"].Width = 200;
+                gridTanaban.Columns["棚番"].Width = 70;
+                gridTanaban.Columns["棚番名"].Width = 200;
 
                 //中央揃え
-                gridSeihin.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridTanaban.Columns["棚番名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridTanaban.RowCount.ToString() + "件)";
 
                 //件数が0の場合
                 if (lblRecords.Text == "0")
@@ -140,11 +149,12 @@ namespace KATO.Common.Form
                     basemessagebox.ShowDialog();
                     return;
                 }
-
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -272,7 +282,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -282,29 +295,28 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
+            //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetTanaban != null && lstString.Count != 0)
             {
+                //セットの中に検索結果データを入れる
                 lblSetTanaban.CodeTxtText = lstString[0];
                 lblSetTanaban.ValueLabelText = lstString[1];
             }
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
             this.Close();
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             TanabanList_B tanabanlistB = new TanabanList_B();
             try
             {
+                //画面終了処理
                 tanabanlistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -323,28 +335,37 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
+            //検索結果にデータが存在しなければ終了
+            if (gridTanaban.RowCount == 0)
+            {
+                return;
+            }
+
+            //選択行の棚番情報
             List<string> lstString = new List<string>();
 
-            //選択行の営業所コード取得
-            string strSelectid = (string)gridSeihin.CurrentRow.Cells[0].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value;
+            //選択行の棚番情報取得
+            string strSelectid = (string)gridTanaban.CurrentRow.Cells[0].Value;
+            string strSelectName = (string)gridTanaban.CurrentRow.Cells[1].Value;
 
-            //データ渡し用
+            //検索情報を入れる
             lstString.Add(strSelectid);
             lstString.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             TanabanList_B tanabanlistB = new TanabanList_B();
             try
             {
+                //ビジネス層、検索ロジックに移動
                 tanabanlistB.setSelectItem(intFrmKind, lstString);
 
                 setEndAction(lstString);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

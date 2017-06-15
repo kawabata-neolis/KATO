@@ -26,14 +26,13 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class TorihikiCdList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        ////ラベルセット作成の場合修正
-        //LabelSet_Tokuisaki lblSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,72 +50,45 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// TorihikiCdList
-        /// 前画面からデータ受け取り(通常テキストボックス)
+        /// フォームの初期設定(通常テキストボックス)
         /// </summary>
         public TorihikiCdList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
-
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-            this.btnF11.Text = "F11:検索";
-
+            
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
 
             radAgyo.Checked = true;
         }
 
-        ////ラベルセット作成の場合修正
-        ///// <summary>
-        ///// TokuisakiList
-        ///// 前画面からデータ受け取り(セットテキストボックス)
-        ///// </summary>
-        //public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
-        //{
-        //    if (c == null)
-        //    {
-        //        return;
-        //    }
-
-        //    int intWindowWidth = c.Width;
-        //    int intWindowHeight = c.Height;
-
-        //    lblSetTokuisaki = lblSetTokuiSelect;
-        //    InitializeComponent();
-
-        //    // フォームでもキーイベントを受け取る
-        //    this.KeyPreview = true;
-        //    this.btnF12.Text = "F12:戻る";
-        //    this.btnF11.Text = "F11:検索";
-
-        //    //ウィンドウ位置をマニュアル
-        //    this.StartPosition = FormStartPosition.Manual;
-        //    //親画面の中央を指定
-        //    this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-        //    this.Top = c.Top;
-        //}
-
         /// <summary>
         /// TorihikiCdList_Load
-        /// 初回読み込み
+        /// 画面レイアウト設定
         /// </summary>
         private void TorihikiCdList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "取引コードリスト";
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+
+            this.btnF12.Text = "F12:戻る";
+            this.btnF11.Text = "F11:検索";
 
             SetUpGrid();
         }
@@ -270,31 +242,35 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            if (gridTorihiki.Rows.Count < 1)
+            //検索結果にデータが存在しなければ終了
+            if (gridTorihiki.Rows.Count == 0)
             {
                 return;
             }
 
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            List<string> lstSelectID = new List<string>();
 
             //選択行の担当者情報取得
             string strSelectId = (string)gridTorihiki.CurrentRow.Cells["コード"].Value;
 
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
+            //担当者情報を入れる
+            lstSelectID.Add(strSelectId);
 
+            //ビジネス層のインスタンス生成
             TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
-                torihikilistB.setSelectItem(lstInt, lstString);
+                //ビジネス層、検索ロジックに移動
+                torihikilistB.setSelectItem(intFrmKind, strSelectId);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            setEndAction(lstString);
+            setEndAction(lstSelectID);
         }
 
         ///<summary>
@@ -304,7 +280,11 @@ namespace KATO.Common.Form
         private void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
+
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -312,31 +292,22 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectCd)
         {
-            ////ラベルセット作成の場合修正
-            //if (lblSetTokuisaki != null && lstString.Count != 0)
-            //{
-            //    lblSetTokuisaki.CodeTxtText = lstString[0];
-            //    lblSetTokuisaki.ValueLabelText = lstString[1];
-            //}
-
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //処理部へ
-            lstInt.Add(intFrmKind);
-
+            //ビジネス層のインスタンス生成
             TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
-                torihikilistB.setEndAction(lstInt);
+                //画面終了処理
+                torihikilistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -348,9 +319,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //データ渡し用
+            //記入情報検索用
             List<Boolean> lstBoolean = new List<Boolean>();
 
+            //画面の取引コード検索情報取得
             lstBoolean.Add(radAgyo.Checked);
             lstBoolean.Add(radKagyo.Checked);
             lstBoolean.Add(radSagyo.Checked);
@@ -362,14 +334,14 @@ namespace KATO.Common.Form
             lstBoolean.Add(radRagyo.Checked);
             lstBoolean.Add(radWagyo.Checked);
 
-            DataTable dt = new DataTable();
-
+            //ビジネス層のインスタンス生成
             TorihikiCdList_B torihikilistB = new TorihikiCdList_B();
             try
             {
                 //データグリッドビュー部分
                 gridTorihiki.DataSource = torihikilistB.setKensaku(lstBoolean);
 
+                //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTorihiki.RowCount.ToString() + "件)";
 
                 gridTorihiki.Focus();
@@ -377,8 +349,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
-                throw (ex);
+                return;
             }
         }
 

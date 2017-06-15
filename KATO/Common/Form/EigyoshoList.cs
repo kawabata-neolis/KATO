@@ -73,8 +73,8 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace KATO.Common.Form
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
-                if (lblRecords.Text.Equals("0"))
+                if (gridSeihin.RowCount == 0)
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -365,7 +365,7 @@ namespace KATO.Common.Form
                 return;
             }
 
-            //データ渡し用
+            //選択行の検索情報取得用
             List<string> lstSelectData = new List<string>();
 
             //選択行の大分類情報取得
@@ -382,6 +382,8 @@ namespace KATO.Common.Form
             {
                 //データグリッドビュー内のデータ選択後の処理
                 eigyoulistB.setSelectItem(intFrmKind, strSelectId);
+
+                setEndAction(lstSelectData);
             }
             catch (Exception ex)
             {
@@ -389,7 +391,6 @@ namespace KATO.Common.Form
                 new CommonException(ex);
                 return;
             }
-            setEndAction(lstSelectData);
         }
 
         ///<summary>

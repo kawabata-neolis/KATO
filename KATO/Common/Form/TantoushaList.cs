@@ -26,13 +26,16 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class TantoushaList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //メーカーコードの確保（セット系用）
         LabelSet_Tantousha lblSetTantousha = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -50,71 +53,76 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// TantoushaList
-        /// 前画面からデータ受け取り(通常テキストボックス)
+        /// フォームの初期設定(通常テキストボックス)
         /// </summary>
         public TantoushaList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 130;
         }
 
         /// <summary>
         /// TantoushaList
-        /// 前画面からデータ受け取り(セットテキストボックス)
+        /// フォームの初期設定(セットテキストボックス)
         /// </summary>
         public TantoushaList(Control c, LabelSet_Tantousha lblSetTantouSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetTantousha = lblSetTantouSelect;
+
             InitializeComponent();
-
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-
+            
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 130;
         }
 
         /// <summary>
         /// TantousyaList_Load
-        /// 初回読み込み
+        /// 画面レイアウト設定
         /// </summary>
         private void TantousyaList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "担当者リスト";
 
+            //データグリッドビューの準備
             SetUpGrid();
 
+            //データグリッドビュー表示
             setDatagridView();
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+
+            this.btnF12.Text = "F12:戻る";
         }
 
         ///<summary>
@@ -198,12 +206,14 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //取得したデータの編集を行う用
             DataTable dtView = new DataTable();
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             TantoushaList_B daibunlistB = new TantoushaList_B();
             try
             {
+                //検索データを取得
                 dtView = daibunlistB.setViewGrid();
 
                 //目標売上を整数型に
@@ -213,33 +223,37 @@ namespace KATO.Common.Form
                     decimal decTyoubosuu = Math.Floor(decimal.Parse(dtView.Rows[cnt]["年間売上目標"].ToString()));
                     dtView.Rows[cnt]["年間売上目標"] = decTyoubosuu.ToString();
 
+                    //営業所コードが0001の場合
                     if (dtView.Rows[cnt]["営業所コード"].ToString() == "0001")
                     {
                         dtView.Rows[cnt]["営業所コード"] = "本社";
                     }
+                    //営業所コードが0002の場合
                     else if (dtView.Rows[cnt]["営業所コード"].ToString() == "0002")
                     {
                         dtView.Rows[cnt]["営業所コード"] = "岐阜";
                     }
                 }
 
-                //データグリッドビュー部分
+                //データグリッドビューに表示
                 gridTantousha.DataSource = dtView;
 
+                //検索件数を表示
                 lblRecords.Text = "該当件数( " + gridTantousha.RowCount.ToString() + "件)";
 
+                //件数が0の場合
+                if (gridTantousha.RowCount == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
-            }
-
-            //件数が0の場合
-            if (lblRecords.Text == "0")
-            {
-                //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -364,28 +378,38 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            //検索結果にデータが存在しなければ終了
+            if (gridTantousha.RowCount == 0)
+            {
+                return;
+            }
+
+            //選択行の担当者情報
+            List<string> lstSelectId = new List<string>();
 
             //選択行の担当者情報取得
             string strSelectId = (string)gridTantousha.CurrentRow.Cells["担当者コード"].Value;
             string strSelectName = (string)gridTantousha.CurrentRow.Cells["担当者名"].Value;
 
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            //検索情報を入れる
+            lstSelectId.Add(strSelectId);
+            lstSelectId.Add(strSelectName);
 
+            //ビジネス層のインスタンス生成
             TantoushaList_B tantoushaListB = new TantoushaList_B();
             try
             {
-                tantoushaListB.setSelectItem(lstInt, lstString);
+                //ビジネス層、検索ロジックに移動
+                tantoushaListB.setSelectItem(intFrmKind, strSelectId);
+
+                setEndAction(lstSelectId);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            setEndAction(lstString);
         }
         
         ///<summary>
@@ -396,7 +420,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -404,30 +431,30 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectCd)
         {
-            if (lblSetTantousha != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetTantousha != null && lstSelectCd.Count != 0)
             {
-                lblSetTantousha.CodeTxtText = lstString[0];
-                lblSetTantousha.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetTantousha.CodeTxtText = lstSelectCd[0];
+                lblSetTantousha.ValueLabelText = lstSelectCd[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
+            //ビジネス層のインスタンス生成
             TantoushaList_B tantoushalistB = new TantoushaList_B();
             try
             {
-                tantoushalistB.setEndAction(lstInt);
+                //画面終了処理
+                tantoushalistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 

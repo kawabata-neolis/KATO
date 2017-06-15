@@ -25,60 +25,66 @@ namespace KATO.Common.Business
     ///</summary>
     class TorihikikbnList_B
     {
-        string strSQLName = null;
-
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
         public DataTable setDatagridView()
         {
+            //データ渡し用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("CommonForm");
+            lstSQL.Add("TorihikikbnList_View");
+
+            //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
 
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
             //SQL用に移動
-            DBConnective dbconnective = new DBConnective();
+            DBConnective dbConnective = new DBConnective();
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                strSQLName = "";
-
-                strSQLName = "TorihikikbnList_View";
-
-                //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add("CommonForm");
-                lstStringSQL.Add(strSQLName);
-
-                OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtGetTableGrid);
+                }
 
                 //検索データを表示
-                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+                dtGetTableGrid = dbConnective.ReadSql(strSQLInput);
+
+                return (dtGetTableGrid);
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
-            return (dtGetTableGrid);
+            finally
+            {
+                //トランザクション終了
+                dbConnective.DB_Disconnect();
+            }
         }
 
         ///<summary>
         ///setEndAction
-        ///元の画面に戻る
+        ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(List<int> lstInt)
+        public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //目的のフォームを探す
-                if (lstInt[0] == CommonTeisu.FRM_TORIHIKIKBN && frm.Name.Equals("M1040_Torihikikbn"))
+                if (intFrmKind == CommonTeisu.FRM_TORIHIKIKBN && frm.Name.Equals("M1040_Torihikikbn"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
@@ -92,41 +98,49 @@ namespace KATO.Common.Business
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        public void setSelectItem(int intFrmKind, string lstSelectId)
         {
+            //検索データの受け取り用
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //データ渡し用
-                List<string> lstStringSQL = new List<string>();
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
 
-                strSQLName = "C_LIST_Torihikikbn_SELECT_LEAVE";
+                //SQLファイルのパスとファイル名を追加
+                lstSQL.Add("Common");
+                lstSQL.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
 
-                //データ渡し用
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLName);
-
+                //SQL発行
                 OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                //配列設定
-                string[] aryStr = { lstString[0] };
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, lstSelectId);
 
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                switch (lstInt[0])
+                //移動元フォームの検索
+                switch (intFrmKind)
                 {
                     //取引区分
                     case CommonTeisu.FRM_TORIHIKIKBN:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //目的のフォームを探す
+                            //取引区分フォームを探す
                             if (frm.Name.Equals("M1040_Torihikikbn"))
                             {
                                 //データを連れてくるため、newをしないこと
@@ -142,11 +156,11 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }

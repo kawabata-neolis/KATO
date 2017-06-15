@@ -35,6 +35,7 @@
             this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TextChanged += new System.EventHandler(this.BaseTextMoney_TextChanged);
             this.Enter += new System.EventHandler(this.updMoneyEnter);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.updMoneyKeyPress);
             this.Leave += new System.EventHandler(this.updMoneyLeave);

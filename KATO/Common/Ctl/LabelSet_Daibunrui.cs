@@ -28,7 +28,7 @@ namespace KATO.Common.Ctl
         LabelSet_Chubunrui lschubundata;
 
         /// <summary>
-        /// strDaibunCd
+        /// Lschubundata
         /// プロパティの設定（データ確保）
         /// </summary>
         public LabelSet_Chubunrui Lschubundata
@@ -46,7 +46,7 @@ namespace KATO.Common.Ctl
         LabelSet_Chubunrui lsSubchubundata;
 
         /// <summary>
-        /// strDaibunCd
+        /// LsSubchubundata
         /// プロパティの設定（データ確保、補助）
         /// </summary>
         public LabelSet_Chubunrui LsSubchubundata
@@ -58,6 +58,43 @@ namespace KATO.Common.Ctl
             set
             {
                 this.lsSubchubundata = value;
+            }
+        }
+
+        //他のformでもメーカーsetデータを見れるようにするためのもの
+        LabelSet_Maker lsmakerdata;
+
+        /// <summary>
+        /// Lsmakerdata
+        /// プロパティの設定（データ確保）
+        /// </summary>
+        public LabelSet_Maker Lsmakerdata
+        {
+            get
+            {
+                return this.lsmakerdata;
+            }
+            set
+            {
+                this.lsmakerdata = value;
+            }
+        }
+
+        LabelSet_Maker lsSubmakerdata;
+
+        /// <summary>
+        /// LsSubmakerdata
+        /// プロパティの設定（データ確保、補助）
+        /// </summary>
+        public LabelSet_Maker LsSubmakerdata
+        {
+            get
+            {
+                return this.lsSubmakerdata;
+            }
+            set
+            {
+                this.lsSubmakerdata = value;
             }
         }
 
@@ -117,8 +154,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            string strSQLName = null;
-
             Boolean blnGood;
 
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
@@ -151,11 +186,9 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
             
-            strSQLName = "C_LIST_Daibun_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Daibun_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -167,10 +200,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
 
-                //配列設定
-                string[] aryStr = { this.CodeTxtText };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();
@@ -201,6 +231,17 @@ namespace KATO.Common.Ctl
                 {
                     lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
                 }
+
+                //メーカーのプロパティが空でない場合
+                if (lsmakerdata != null)
+                {
+                    lsmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+                if (lsSubmakerdata != null)
+                {
+                    lsSubmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+
                 return;
             }
             catch (Exception ex)
@@ -282,6 +323,17 @@ namespace KATO.Common.Ctl
                 {
                     lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
                 }
+
+                //メーカーのプロパティが空でない場合
+                if (lsmakerdata != null)
+                {
+                    lsmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+                if (lsSubmakerdata != null)
+                {
+                    lsSubmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                }
+
                 return;
             }
             catch (Exception ex)

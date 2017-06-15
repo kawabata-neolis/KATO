@@ -24,8 +24,27 @@ namespace KATO.Common.Ctl
     ///</summary>
     public partial class LabelSet_Maker : BaseTextLabelSet
     {
+        //大分類コード確保用
+        string strdaibunCd;
+
         /// <summary>
-        /// LabelSet_Daibunrui
+        /// strDaibunCd
+        /// プロパティの設定（大分類コード）
+        /// </summary>
+        public string strDaibunCd
+        {
+            get
+            {
+                return this.strdaibunCd;
+            }
+            set
+            {
+                this.strdaibunCd = value;
+            }
+        }
+
+        /// <summary>
+        /// LabelSet_Maker
         /// 読み込み時
         /// </summary>
         public LabelSet_Maker()
@@ -52,12 +71,12 @@ namespace KATO.Common.Ctl
             {
                 if (this.Parent is GroupBox)
                 {
-                    MakerList makerList = new MakerList(this.Parent.Parent, this);
+                    MakerList makerList = new MakerList(this.Parent.Parent, this, strDaibunCd);
                     makerList.Show();
                 }
                 else
                 {
-                    MakerList makerList = new MakerList(this.Parent, this);
+                    MakerList makerList = new MakerList(this.Parent, this, strDaibunCd);
                     makerList.Show();
                 }
             }
@@ -79,8 +98,6 @@ namespace KATO.Common.Ctl
             List<string> lstStringSQL = new List<string>();
 
             DataTable dtSetCd;
-
-            string strSQLName = null;
 
             Boolean blnGood;
 
@@ -114,11 +131,9 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            strSQLName = "C_LIST_Maker_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Maker_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -130,10 +145,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
 
-                //配列設定
-                string[] aryStr = { this.CodeTxtText };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();

@@ -21,19 +21,17 @@ namespace KATO.Common.Business
     ///</summary>
     class TorihikiCdList_B
     {
-        string strSQLName = null;
-
         /// <summary>
         /// setEndAction
         /// 終了時の処理
         /// </summary>
-        public void setEndAction(List<int> lstInt)
+        public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //目的のフォームを探す
-                if (lstInt[0] == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
+                //取引先のフォームを探す
+                if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
@@ -45,53 +43,72 @@ namespace KATO.Common.Business
 
         /// <summary>
         /// setSelectItem
-        /// 選択後の処理
+        /// データグリッドビュー内のデータ選択後の処理
         /// </summary>
-        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        public void setSelectItem(int intFrmKind, string strSelectId)
         {
+            //検索データの受け取り用
             DataTable dtSelectData;
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-            strSQLName = "C_LIST_TorihikisakiKensaku_SELECT_LEAVE";
-
-            //データ渡し用
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
-
-            OpenSQL opensql = new OpenSQL();
-            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-            //配列設定
-            string[] aryStr = { lstString[0] };
-
-            strSQLInput = string.Format(strSQLInput, aryStr);
-
-            dtSelectData = dbconnective.ReadSql(strSQLInput);
-
-            switch (lstInt[0])
+            try
             {
-                //取引先
-                case CommonTeisu.FRM_TORIHIKISAKI:
-                    //全てのフォームの中から
-                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    {
-                        //目的のフォームを探す
-                        if (frm.Name.Equals("M1070_Torihikisaki"))
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
+
+                //SQLファイルのパスとファイル名を追加
+                lstSQL.Add("Common");
+                lstSQL.Add("C_LIST_TorihikisakiKensaku_SELECT_LEAVE");
+
+                //SQL発行
+                OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strSelectId);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQL接続後、該当データを取得
+                dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+                //移動元フォームの検索
+                switch (intFrmKind)
+                {
+                    //取引先
+                    case CommonTeisu.FRM_TORIHIKISAKI:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //データを連れてくるため、newをしないこと
-                            M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                            torihikisaki.setTorihikisaki(dtSelectData);
-                            break;
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1070_Torihikisaki"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                                torihikisaki.setTorihikisakiCd(dtSelectData);
+                                break;
+                            }
                         }
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
             }
         }
 
@@ -101,17 +118,21 @@ namespace KATO.Common.Business
         ///</summary>
         public DataTable setKensaku(List<Boolean> lstBoolean)
         {
+            //データグリッドビューに表示する用
             DataTable dtGetTableGrid = new DataTable();
 
+            //選ばれたデータの最小値を入れる用
             DataTable dtSelectMin = new DataTable();
+
+            //選ばれたデータの最大値を入れる用
             DataTable dtSelectMax = new DataTable();
-
-
+            
             string strSQL;
             string kana = "ｱ";
             string MinCode;
             string MaxCode;
 
+            //各ボタンが押されているかどうかの判定
             if (lstBoolean[0] == true)
               kana = "ｱ";
             if (lstBoolean[1] == true)
@@ -140,32 +161,37 @@ namespace KATO.Common.Business
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //該当データの最小値を取得
                 strSQL = "";
-                //strSQL = strSQL + " 取引先コード検索_PROC ";
                 strSQL = strSQL + " SELECT MIN(取引先コード) ";
                 strSQL = strSQL + " FROM 取引先コード検索";
                 strSQL = strSQL + " WHERE カナ LIKE '" + kana + "%'";
 
+                //検索データを取得
                 dtSelectMin = dbconnective.ReadSql(strSQL);
 
+                //検索結果が１件以上あった場合
                 if (dtSelectMin.Rows.Count > 0)
                 {
                     MinCode = dtSelectMin.Rows[0][0].ToString();
                 }
 
+                //該当データの最大値を取得
                 strSQL = "";
-                //strSQL = strSQL + " 取引先コード検索_PROC ";
                 strSQL = strSQL + " SELECT MAX(取引先コード) ";
                 strSQL = strSQL + " FROM 取引先コード検索";
                 strSQL = strSQL + " WHERE カナ LIKE '" + kana + "%'";
 
+                //検索データを取得
                 dtSelectMax = dbconnective.ReadSql(strSQL);
 
+                //検索結果が１件以上あった場合
                 if (dtSelectMax.Rows.Count > 0)
                 {
                     MaxCode = dtSelectMax.Rows[0][0].ToString();
                 }
 
+                //検索内で使用していない取引コードを取得を
                 string StrWhere;
                 StrWhere = "";
                 StrWhere = StrWhere + " 取引先コード >= '" + MinCode + "'";
@@ -173,21 +199,22 @@ namespace KATO.Common.Business
                 StrWhere = StrWhere + " AND 取引先名称 is NULL  ";
                 StrWhere = " SELECT 取引先コード FROM 取引先コード検索 WHERE " + StrWhere + "ORDER BY 取引先コード ASC";
 
+                //検索データを取得
                 dtGetTableGrid = dbconnective.ReadSql(StrWhere);
+
+                //カラム名の修正
+                dtGetTableGrid.Columns["取引先コード"].ColumnName = "コード";
+
+                return (dtGetTableGrid);
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
                 dbconnective.DB_Disconnect();
             }
-
-            dtGetTableGrid.Columns["取引先コード"].ColumnName = "コード";
-
-            return (dtGetTableGrid);
         }
     }
 }

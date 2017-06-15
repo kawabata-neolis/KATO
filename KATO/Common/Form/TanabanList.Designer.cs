@@ -33,17 +33,17 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridTanaban = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.lblRecords = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTanaban)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridSeihin
+            // gridTanaban
             // 
-            this.gridSeihin.AllowUserToAddRows = false;
-            this.gridSeihin.AllowUserToResizeColumns = false;
-            this.gridSeihin.AllowUserToResizeRows = false;
+            this.gridTanaban.AllowUserToAddRows = false;
+            this.gridTanaban.AllowUserToResizeColumns = false;
+            this.gridTanaban.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -51,8 +51,8 @@ namespace KATO.Common.Form
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridSeihin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridTanaban.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridTanaban.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -60,11 +60,11 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSeihin.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridSeihin.EnableHeadersVisualStyles = false;
-            this.gridSeihin.Location = new System.Drawing.Point(31, 58);
-            this.gridSeihin.Name = "gridSeihin";
-            this.gridSeihin.ReadOnly = true;
+            this.gridTanaban.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridTanaban.EnableHeadersVisualStyles = false;
+            this.gridTanaban.Location = new System.Drawing.Point(31, 58);
+            this.gridTanaban.Name = "gridTanaban";
+            this.gridTanaban.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -72,15 +72,15 @@ namespace KATO.Common.Form
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridSeihin.RowHeadersVisible = false;
-            this.gridSeihin.RowTemplate.Height = 21;
-            this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeihin.Size = new System.Drawing.Size(474, 406);
-            this.gridSeihin.StandardTab = true;
-            this.gridSeihin.TabIndex = 5;
-            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridEigyousyoDoubleClick);
-            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTanabanKeyDown);
+            this.gridTanaban.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridTanaban.RowHeadersVisible = false;
+            this.gridTanaban.RowTemplate.Height = 21;
+            this.gridTanaban.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridTanaban.Size = new System.Drawing.Size(474, 406);
+            this.gridTanaban.StandardTab = true;
+            this.gridTanaban.TabIndex = 5;
+            this.gridTanaban.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridEigyousyoDoubleClick);
+            this.gridTanaban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTanabanKeyDown);
             // 
             // btnF12
             // 
@@ -110,19 +110,19 @@ namespace KATO.Common.Form
             this.ClientSize = new System.Drawing.Size(535, 524);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnF12);
-            this.Controls.Add(this.gridSeihin);
+            this.Controls.Add(this.gridTanaban);
             this.Name = "TanabanList";
             this.Text = "TanabanList";
             this.Load += new System.EventHandler(this.TanabanList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTanaban)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private BaseDataGridView gridSeihin;
+        private BaseDataGridView gridTanaban;
         private BaseButton btnF12;
         private System.Windows.Forms.Label lblRecords;
     }

@@ -79,8 +79,8 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -345,6 +345,8 @@ namespace KATO.Common.Form
             {
                 //ビジネス層、検索ロジックに移動
                 chokusosakilistB.setSelectItem(intFrmKind, (string)gridChoku.CurrentRow.Cells["直送先コード"].Value, strTokuiCdsub);
+
+                setEndAction();
             }
             catch (Exception ex)
             {
@@ -352,7 +354,6 @@ namespace KATO.Common.Form
                 new CommonException(ex);
                 return;
             }
-            setEndAction();
         }
 
         ///<summary>

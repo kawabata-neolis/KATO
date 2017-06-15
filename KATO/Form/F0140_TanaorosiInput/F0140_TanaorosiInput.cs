@@ -68,6 +68,11 @@ namespace KATO.Form.F0140_TanaorosiInput
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
             labelSet_Daibunrui.LsSubchubundata = labelSet_Chubunrui_Edit;
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+            labelSet_Daibunrui.LsSubmakerdata = labelSet_Maker_Edit;
+
         }
 
         ///<summary>
@@ -814,6 +819,15 @@ namespace KATO.Form.F0140_TanaorosiInput
         private void judGridCellChanged(object sender, DataGridViewCellEventArgs e)
         {
             blnEditting = true;
+        }
+
+        ///<summary>
+        ///updDaibun
+        ///リスト内の大分類が変更されたのを反映
+        ///</summary>
+        public void updDaibun(string strDaibun)
+        {
+            labelSet_Daibunrui.CodeTxtText = strDaibun;
         }
     }
 }

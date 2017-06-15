@@ -16,6 +16,9 @@ using KATO.Common.Ctl;
 using KATO.Common.Business;
 using System.Security.Permissions;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Form.M1030_Shohin;
+using KATO.Form.D0380_ShohinMotochoKakunin;
+using KATO.Form.A0100_HachuInput;
 
 namespace KATO.Common.Form
 {
@@ -30,16 +33,22 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class MakerList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //メーカーコードの確保（セット系用）
         LabelSet_Maker lblSetMaker = null;
 
-        //前画面からメーカーコードを取り出す枠（初期値）
-        public string strDaibunruiCode = "";
+        ////大分類コードの確保（セット系用）
+        //LabelSet_Daibunrui lblSetDaibun = new LabelSet_Daibunrui();
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //大分類コードの予備データ
+        string strSubDaibunCd;
+
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -57,40 +66,46 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// MakerList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public MakerList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
-            // フォームでもキーイベントを受け取る
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// MakerList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public MakerList(Control c, LabelSet_Maker lblSetMakerSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetMaker = lblSetMakerSelect;
 
             InitializeComponent();
@@ -98,23 +113,55 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
+        }
+
+        /// <summary>
+        /// MakerList
+        /// フォームの初期設定（ラベルセットから）（大分類コードを付ける場合）
+        /// </summary>
+        public MakerList(Control c, LabelSet_Maker lblSetMakerSelect, string strdaibunCD)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保（メーカー）
+            lblSetMaker = lblSetMakerSelect;
+
+            ////ラベルセットデータの確保（大分類）
+            //lblSetDaibun.CodeTxtText = strdaibunCD;
+
+            InitializeComponent();
+
+            //テキストボックスに入れる
+            labelSet_Daibunrui.CodeTxtText = strdaibunCD;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// MakerList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void MakerList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "メーカーリスト";
 
-            //テキストボックスに入れる
-            labelSet_Daibunrui1.CodeTxtText = strDaibunruiCode;
-
-            if(labelSet_Daibunrui1.CodeTxtText.Length > 0)
+            //大分類がすでに入力されていた場合検索
+            if(labelSet_Daibunrui.CodeTxtText.Length > 0)
             {
                 btnKensakuClick(sender, e);
             }
@@ -122,9 +169,19 @@ namespace KATO.Common.Form
             {
                 setDatagridView();
             }
+
+            // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
+
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
+
+            //大分類コードが記入されている場合
+            if (labelSet_Daibunrui.CodeTxtText != "")
+            {
+                setDatagridView();
+                setKensaku();
+            }
         }
 
         ///<summary>
@@ -133,25 +190,25 @@ namespace KATO.Common.Form
         ///</summary>
         public void setDatagridView()
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             MakerList_B makerlistB = new MakerList_B();
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = makerlistB.setDatagridView();
+                gridMaker.DataSource = makerlistB.setDatagridView();
 
                 //幅の値を設定
-                gridSeihin.Columns["メーカーコード"].Width = 150;
-                gridSeihin.Columns["メーカー名"].Width = 200;
+                gridMaker.Columns["メーカーコード"].Width = 150;
+                gridMaker.Columns["メーカー名"].Width = 200;
 
                 //中央揃え
-                gridSeihin.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridMaker.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //検索件数を表示
-                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
 
                 //件数が0の場合
-                if (lblRecords.Text.Equals("0"))
+                if (gridMaker.RowCount == 0)
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -161,7 +218,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -235,7 +294,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -243,30 +305,68 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectId)
         {
-            if (lblSetMaker != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetMaker != null && lstSelectId.Count != 0)
             {
-                lblSetMaker.CodeTxtText = lstString[0];
-                lblSetMaker.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetMaker.CodeTxtText = lstSelectId[0];
+                lblSetMaker.ValueLabelText = lstSelectId[1];
+
+                //全てのフォームの中から
+                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                {
+                    //商品のフォームを探す
+                    if (frm.Name == "M1030_Shohin")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        M1030_Shohin shohinHome = (M1030_Shohin)frm;
+                        shohinHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //棚卸入力のフォームを探す
+                    if (frm.Name == "F0140_TanaorosiInput")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
+                        tanaHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //商品元帳確認のフォームを探す
+                    if (frm.Name == "D0380_ShohinMotochoKakunin")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
+                        shohinmotoHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //発注入力のフォームを探す
+                    if (frm.Name == "A0100_HachuInput")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
+                        hachuHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+
+                }
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
+            //ビジネス層のインスタンス生成
             MakerList_B makerlistB = new MakerList_B();
             try
             {
-                makerlistB.setEndAction(lstInt);
+                //画面終了処理
+                makerlistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -276,30 +376,44 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
+            setKensaku();
+        }
+
+        ///<summary>
+        ///setKensaku
+        ///検索の処理
+        ///</summary>
+        private void setKensaku()
+        {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            //記入情報検索用
+            List<string> lstSearch = new List<string>();
 
-            //データ渡し用
-            lstString.Add(labelSet_Daibunrui1.CodeTxtText);
-            lstString.Add(txtKensaku.Text);
+            //画面の業種検索情報取得
+            lstSearch.Add(labelSet_Daibunrui.CodeTxtText);
+            lstSearch.Add(txtKensaku.Text);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             MakerList_B makerlistB = new MakerList_B();
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = makerlistB.setKensaku(lstInt, lstString);
+                gridMaker.DataSource = makerlistB.setKensaku(lstSearch);
 
-                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+                //表示数を記載
+                lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
 
-                gridSeihin.Focus();
+                //予備の大分類コードに保持
+                strSubDaibunCd = labelSet_Daibunrui.CodeTxtText;
+
+                gridMaker.Focus();
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -439,29 +553,37 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            //検索結果にデータが存在しなければ終了
+            if (gridMaker.RowCount == 0)
+            {
+                return;
+            }
 
-            //選択行のcode取得
-            string strSelectid = (string)gridSeihin.CurrentRow.Cells["メーカーコード"].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells["メーカー名"].Value;
+            //選択行のメーカー情報
+            List<string> lstSelectId = new List<string>();
 
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectid);
-            lstString.Add(strSelectName);
+            //選択行のメーカー情報取得
+            string strSelectid = (string)gridMaker.CurrentRow.Cells["メーカーコード"].Value;
+            string strSelectName = (string)gridMaker.CurrentRow.Cells["メーカー名"].Value;
 
+            //検索情報を入れる
+            lstSelectId.Add(strSelectid);
+            lstSelectId.Add(strSelectName);
+
+            //ビジネス層のインスタンス生成
             MakerList_B makerlistB = new MakerList_B();
             try
             {
-                makerlistB.setSelectItem(lstInt, lstString);
+                //ビジネス層、検索ロジックに移動
+                makerlistB.setSelectItem(intFrmKind, strSelectid);
 
-                setEndAction(lstString);
+                setEndAction(lstSelectId);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -483,7 +605,6 @@ namespace KATO.Common.Form
             }
         }
 
-
         /// <summary>
         /// txtKensaku_KeyUp
         /// 入力項目上でのキー判定と文字数判定
@@ -494,7 +615,6 @@ namespace KATO.Common.Form
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
-
         }
     }
 }

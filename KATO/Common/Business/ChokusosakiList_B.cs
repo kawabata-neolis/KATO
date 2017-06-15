@@ -30,8 +30,8 @@ namespace KATO.Common.Business
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
-            
-            //SQL用に移動
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
@@ -116,10 +116,10 @@ namespace KATO.Common.Business
         ///</summary>
         public void setSelectItem(int intFrmKind, string strChokusoCd, string strTokuiCdsub)
         {
-            //データ渡し用
+            //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
-            //データ渡し用
+            //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
             lstSQL.Add("C_LIST_Chokusosaki_SELECT_LEAVE");
 
@@ -129,7 +129,7 @@ namespace KATO.Common.Business
             //SQL発行
             OpenSQL opensql = new OpenSQL();
 
-            //SQLのインスタンス作成
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
@@ -191,7 +191,7 @@ namespace KATO.Common.Business
             //全てのフォームの中から移動元フォームの検索
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //目的のフォームを探す
+                //直送先のフォームを探す
                 if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "M1100_Chokusosaki")
                 {
                     //データを連れてくるため、newをしないこと

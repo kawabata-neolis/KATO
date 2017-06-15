@@ -61,6 +61,10 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+
         }
 
         /// <summary>
@@ -559,6 +563,15 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
             txtCalendarYMopen.Text = strkensakuopen;
             txtCalendarYMclose.Text = strkensakuclose;
+        }
+
+        ///<summary>
+        ///updDaibun
+        ///リスト内の大分類が変更されたのを反映
+        ///</summary>
+        public void updDaibun(string strDaibun)
+        {
+            labelSet_Daibunrui.CodeTxtText = strDaibun;
         }
     }
 }

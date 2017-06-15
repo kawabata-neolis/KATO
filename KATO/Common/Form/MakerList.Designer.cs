@@ -36,13 +36,13 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.labelSet_Daibunrui1 = new KATO.Common.Ctl.LabelSet_Daibunrui();
+            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
+            this.gridMaker = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMaker)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -55,25 +55,26 @@ namespace KATO.Common.Form
             this.lblRecords.TabIndex = 105;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
-            // labelSet_Daibunrui1
+            // labelSet_Daibunrui
             // 
-            this.labelSet_Daibunrui1.AppendLabelSize = 0;
-            this.labelSet_Daibunrui1.AppendLabelText = "";
-            this.labelSet_Daibunrui1.CodeTxtSize = 33;
-            this.labelSet_Daibunrui1.CodeTxtText = "";
-            this.labelSet_Daibunrui1.LabelName = "大分類コード";
-            this.labelSet_Daibunrui1.Location = new System.Drawing.Point(31, 14);
-            this.labelSet_Daibunrui1.Lschubundata = null;
-            this.labelSet_Daibunrui1.LsSubchubundata = null;
-            this.labelSet_Daibunrui1.Name = "labelSet_Daibunrui1";
-            this.labelSet_Daibunrui1.ShowAppendFlg = false;
-            this.labelSet_Daibunrui1.Size = new System.Drawing.Size(309, 22);
-            this.labelSet_Daibunrui1.SpaceCodeValue = 4;
-            this.labelSet_Daibunrui1.SpaceNameCode = 4;
-            this.labelSet_Daibunrui1.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui1.TabIndex = 0;
-            this.labelSet_Daibunrui1.ValueLabelSize = 150;
-            this.labelSet_Daibunrui1.ValueLabelText = "";
+            this.labelSet_Daibunrui.AppendLabelSize = 0;
+            this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.labelSet_Daibunrui.CodeTxtSize = 33;
+            this.labelSet_Daibunrui.CodeTxtText = "";
+            this.labelSet_Daibunrui.LabelName = "大分類コード";
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(31, 14);
+            this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
+            this.labelSet_Daibunrui.ShowAppendFlg = false;
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(309, 22);
+            this.labelSet_Daibunrui.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui.SpaceNameCode = 4;
+            this.labelSet_Daibunrui.SpaceValueAppend = 4;
+            this.labelSet_Daibunrui.TabIndex = 0;
+            this.labelSet_Daibunrui.ValueLabelSize = 150;
+            this.labelSet_Daibunrui.ValueLabelText = "";
             // 
             // txtKensaku
             // 
@@ -98,11 +99,11 @@ namespace KATO.Common.Form
             this.baseLabel2.Text = "検索文字列";
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // gridSeihin
+            // gridMaker
             // 
-            this.gridSeihin.AllowUserToAddRows = false;
-            this.gridSeihin.AllowUserToResizeColumns = false;
-            this.gridSeihin.AllowUserToResizeRows = false;
+            this.gridMaker.AllowUserToAddRows = false;
+            this.gridMaker.AllowUserToResizeColumns = false;
+            this.gridMaker.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -110,8 +111,8 @@ namespace KATO.Common.Form
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeihin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridSeihin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridMaker.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridMaker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -119,11 +120,11 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSeihin.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridSeihin.EnableHeadersVisualStyles = false;
-            this.gridSeihin.Location = new System.Drawing.Point(31, 110);
-            this.gridSeihin.Name = "gridSeihin";
-            this.gridSeihin.ReadOnly = true;
+            this.gridMaker.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridMaker.EnableHeadersVisualStyles = false;
+            this.gridMaker.Location = new System.Drawing.Point(31, 110);
+            this.gridMaker.Name = "gridMaker";
+            this.gridMaker.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -131,15 +132,15 @@ namespace KATO.Common.Form
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeihin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridSeihin.RowHeadersVisible = false;
-            this.gridSeihin.RowTemplate.Height = 21;
-            this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeihin.Size = new System.Drawing.Size(474, 354);
-            this.gridSeihin.StandardTab = true;
-            this.gridSeihin.TabIndex = 3;
-            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDoubleClick);
-            this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
+            this.gridMaker.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridMaker.RowHeadersVisible = false;
+            this.gridMaker.RowTemplate.Height = 21;
+            this.gridMaker.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridMaker.Size = new System.Drawing.Size(474, 354);
+            this.gridMaker.StandardTab = true;
+            this.gridMaker.TabIndex = 3;
+            this.gridMaker.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDoubleClick);
+            this.gridMaker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // btnF11
             // 
@@ -166,18 +167,18 @@ namespace KATO.Common.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
-            this.Controls.Add(this.labelSet_Daibunrui1);
+            this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.baseLabel2);
-            this.Controls.Add(this.gridSeihin);
+            this.Controls.Add(this.gridMaker);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
             this.Name = "MakerList";
             this.Text = "MakerList";
             this.Load += new System.EventHandler(this.MakerList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judMakerListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMaker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,12 +186,12 @@ namespace KATO.Common.Form
 
         #endregion
 
-        private BaseDataGridView gridSeihin;
+        private BaseDataGridView gridMaker;
         private BaseButton btnF11;
         private BaseButton btnF12;
         private BaseLabel baseLabel2;
         private BaseText txtKensaku;
         private System.Windows.Forms.Label lblRecords;
-        private LabelSet_Daibunrui labelSet_Daibunrui1;
+        private LabelSet_Daibunrui labelSet_Daibunrui;
     }
 }

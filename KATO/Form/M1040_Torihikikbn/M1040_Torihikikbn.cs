@@ -457,9 +457,6 @@ namespace KATO.Form.M1040_Torihikikbn
         /// </summary>
         public void updTxtToriLeave(object sender, EventArgs e)
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 

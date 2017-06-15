@@ -28,6 +28,9 @@ namespace KATO.Common.Ctl
         //整数の桁数
         int _intIntegerSet = 0;
 
+        //変動があった時のデータの確保
+        public string strDataSub = null;
+
         //カンマ入力の可不可(他で決定）
         Boolean _blnCommaOK = true;
         
@@ -344,6 +347,14 @@ namespace KATO.Common.Ctl
                 good = false;
             }
             return (good);
+        }
+
+        //
+        //テキストの変更があったときに確保する
+        //
+        private void BaseTextMoney_TextChanged(object sender, EventArgs e)
+        {
+            strDataSub = this.Text;
         }
     }
 }

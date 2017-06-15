@@ -39,6 +39,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
+            this.txtChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaban = new KATO.Common.Ctl.BaseMenuButton();
             this.btnShohizeiritu = new KATO.Common.Ctl.BaseMenuButton();
@@ -52,7 +53,6 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.txtChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -260,6 +260,17 @@
             this.btnChokusosaki.Text = "直送先";
             this.btnChokusosaki.UseVisualStyleBackColor = false;
             // 
+            // txtChokusosaki
+            // 
+            this.txtChokusosaki.BackColor = System.Drawing.Color.LightYellow;
+            this.txtChokusosaki.Location = new System.Drawing.Point(342, 94);
+            this.txtChokusosaki.Name = "txtChokusosaki";
+            this.txtChokusosaki.Size = new System.Drawing.Size(280, 40);
+            this.txtChokusosaki.TabIndex = 104;
+            this.txtChokusosaki.Text = "直送先";
+            this.txtChokusosaki.UseVisualStyleBackColor = false;
+            this.txtChokusosaki.Click += new System.EventHandler(this.btnChokusosaki_Click);
+            // 
             // btnEigyosho
             // 
             this.btnEigyosho.BackColor = System.Drawing.Color.LightYellow;
@@ -400,17 +411,6 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
-            // 
-            // txtChokusosaki
-            // 
-            this.txtChokusosaki.BackColor = System.Drawing.Color.LightYellow;
-            this.txtChokusosaki.Location = new System.Drawing.Point(342, 94);
-            this.txtChokusosaki.Name = "txtChokusosaki";
-            this.txtChokusosaki.Size = new System.Drawing.Size(280, 40);
-            this.txtChokusosaki.TabIndex = 103;
-            this.txtChokusosaki.Text = "直送先";
-            this.txtChokusosaki.UseVisualStyleBackColor = false;
-            this.txtChokusosaki.Click += new System.EventHandler(this.btnChokusosaki_Click);
             // 
             // Z0000
             // 

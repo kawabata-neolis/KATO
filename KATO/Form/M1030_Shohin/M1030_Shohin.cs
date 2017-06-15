@@ -26,6 +26,7 @@ namespace KATO.Form.M1030_Shohin
     ///</summary>
     public partial class M1030_Shohin : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //管理者かどうかの判定
@@ -33,15 +34,17 @@ namespace KATO.Form.M1030_Shohin
 
         /// <summary>
         /// M1030_Shohin
-        /// フォーム関係の設定
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public M1030_Shohin(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -64,11 +67,14 @@ namespace KATO.Form.M1030_Shohin
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
         /// <summary>
         /// M1030_Shohin_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void M1030_Shohin_Load(object sender, EventArgs e)
         {
@@ -102,6 +108,9 @@ namespace KATO.Form.M1030_Shohin
             this.btnF10.Text = STR_FUNC_F10_SHOHIN;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            //発注区分の非表示のため固定値設定
+            txtHachukbn.Text = "Y";
         }
 
         /// <summary>
@@ -309,9 +318,6 @@ namespace KATO.Form.M1030_Shohin
                     logger.Info(LogUtil.getMessage(this._Title, "本棚無実行"));
                     this.setShohinListTana();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -347,6 +353,7 @@ namespace KATO.Form.M1030_Shohin
             catch (Exception ex)
             {
                 new CommonException(ex);
+
             }
         }
 
@@ -371,6 +378,7 @@ namespace KATO.Form.M1030_Shohin
             catch (Exception ex)
             {
                 new CommonException(ex);
+
             }
         }
 
@@ -510,16 +518,16 @@ namespace KATO.Form.M1030_Shohin
             lstString.Add(txtData5.Text);
             lstString.Add(txtData6.Text);
             lstString.Add(txtHachukbn.Text);
-            lstString.Add(txtHyojun.Text);
-            lstString.Add(txtShire.Text);
+            lstString.Add(txtHyojun.strDataSub);
+            lstString.Add(txtShire.strDataSub);
             lstString.Add(txtZaiko.Text);
             lstString.Add(labelSet_TanabanHonsha.CodeTxtText);
             lstString.Add(labelSet_TanabanGihu.CodeTxtText);
             lstString.Add(txtMemo.Text);
             lstString.Add(txtHyoka.Text);
-            lstString.Add(txtTeika.Text);
-            lstString.Add(txtHako.Text);
-            lstString.Add(txtTatene.Text);
+            lstString.Add(txtTeika.strDataSub);
+            lstString.Add(txtHako.strDataSub);
+            lstString.Add(txtTatene.strDataSub);
             lstString.Add(txtComment.Text);
 
             //ユーザー名
@@ -617,16 +625,16 @@ namespace KATO.Form.M1030_Shohin
             lstString.Add(txtData5.Text);
             lstString.Add(txtData6.Text);
             lstString.Add(txtHachukbn.Text);
-            lstString.Add(txtHyojun.Text);
-            lstString.Add(txtShire.Text);
+            lstString.Add(txtHyojun.strDataSub);
+            lstString.Add(txtShire.strDataSub);
             lstString.Add(txtZaiko.Text);
             lstString.Add(labelSet_TanabanHonsha.CodeTxtText);
             lstString.Add(labelSet_TanabanGihu.CodeTxtText);
             lstString.Add(txtMemo.Text);
             lstString.Add(txtHyoka.Text);
-            lstString.Add(txtTeika.Text);
-            lstString.Add(txtHako.Text);
-            lstString.Add(txtTatene.Text);
+            lstString.Add(txtTeika.strDataSub);
+            lstString.Add(txtHako.strDataSub);
+            lstString.Add(txtTatene.strDataSub);
             lstString.Add(txtComment.Text);
 
             //ユーザー名
@@ -755,6 +763,12 @@ namespace KATO.Form.M1030_Shohin
                     SendKeys.Send("{TAB}");
                 }
             }
+
+            //入力項目上でのキー判定と文字数判定
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
 
         /// <summary>
@@ -785,6 +799,15 @@ namespace KATO.Form.M1030_Shohin
                 txtData4.Text + " " +
                 txtData5.Text + " " +
                 txtData6.Text + " ";
+        }
+
+        ///<summary>
+        ///updDaibun
+        ///リスト内の大分類が変更されたのを反映
+        ///</summary>
+        public void updDaibun(string strDaibun)
+        {
+            labelSet_Daibunrui.CodeTxtText = strDaibun;
         }
     }
 }

@@ -100,6 +100,7 @@ namespace KATO.Common.Util
         public const string TEXT_DEL = "削除";
         public const string TEXT_VIEW = "表示";
         public const string TEXT_TEST = "テスト";
+        public const string TEXT_ERROR = "エラー";
 
         //メッセージボックス内容物
         public const string LABEL_TOUROKU = "正常に登録されました";
@@ -113,6 +114,7 @@ namespace KATO.Common.Util
         public const string LABEL_ZEROORONE = "０か１で指定してください。";
         public const string LABEL_TOUROKU_UWAGAKi = "に上書きしますか？";
         public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
+        public const string LABEL_ERROR_MESSAGE = "システムエラーが起きました。管理者に連絡してください。";
 
         //カレンダーの初期値
         public const int CALENDER_TODAY = 0;

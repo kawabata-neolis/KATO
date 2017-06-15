@@ -14,6 +14,9 @@ using KATO.Form.M1110_Chubunrui;
 using static KATO.Common.Util.CommonTeisu;
 using System.Security.Permissions;
 using KATO.Common.Ctl;
+using KATO.Form.M1030_Shohin;
+using KATO.Form.D0380_ShohinMotochoKakunin;
+using KATO.Form.A0100_HachuInput;
 
 namespace KATO.Common.Form
 {
@@ -35,7 +38,7 @@ namespace KATO.Common.Form
         LabelSet_Chubunrui lblSetChubun = null;
 
         //大分類コードの確保
-        string strdaibunCDsub = null;
+        string strSubDaibunCd = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -78,13 +81,13 @@ namespace KATO.Common.Form
             labelSet_Daibunrui.CodeTxtText = strdaibunCd;
 
             //大分類コードの確保
-            strdaibunCDsub = strdaibunCd;
+            strSubDaibunCd = strdaibunCd;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -112,13 +115,13 @@ namespace KATO.Common.Form
             labelSet_Daibunrui.CodeTxtText = strdaibunCD;
 
             //大分類コードの確保
-            strdaibunCDsub = strdaibunCD;
+            strSubDaibunCd = strdaibunCD;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -174,6 +177,9 @@ namespace KATO.Common.Form
                 labelSet_Daibunrui.ValueLabelText = dtGetTable.Rows[0]["大分類名"].ToString();
 
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+
+                //予備の大分類コードに保持
+                strSubDaibunCd = labelSet_Daibunrui.CodeTxtText;
             }
             catch (Exception ex)
             {
@@ -269,6 +275,44 @@ namespace KATO.Common.Form
                 //セットの中に検索結果データを入れる
                 lblSetChubun.CodeTxtText = lstSelectData[0];
                 lblSetChubun.ValueLabelText = lstSelectData[1];
+
+                //全てのフォームの中から
+                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                {
+                    //商品のフォームを探す
+                    if (frm.Name == "M1030_Shohin")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        M1030_Shohin shohinHome = (M1030_Shohin)frm;
+                        shohinHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //棚卸入力のフォームを探す
+                    if (frm.Name == "F0140_TanaorosiInput")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
+                        tanaHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //商品元帳確認のフォームを探す
+                    if (frm.Name == "D0380_ShohinMotochoKakunin")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
+                        shohinmotoHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                    //発注入力のフォームを探す
+                    if (frm.Name == "A0100_HachuInput")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
+                        hachuHome.updDaibun(strSubDaibunCd);
+                        break;
+                    }
+                }
+
             }
 
             this.Close();
@@ -394,7 +438,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                chubunListB.setSelectItem(intFrmKind, strSelectId, strdaibunCDsub);
+                chubunListB.setSelectItem(intFrmKind, strSelectId, strSubDaibunCd);
             }
             catch (Exception ex)
             {

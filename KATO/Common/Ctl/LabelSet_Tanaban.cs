@@ -76,8 +76,6 @@ namespace KATO.Common.Ctl
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            string strSQLName = null;
-
             DataTable dtSetCd;
 
             Boolean blnGood;
@@ -105,11 +103,9 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            strSQLName = "C_LIST_Tanaban_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Tanaban_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -121,10 +117,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
 
-                //配列設定
-                string[] aryStr = { this.CodeTxtText };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();

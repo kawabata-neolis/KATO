@@ -26,6 +26,7 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class GyoshuList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //セットを作成する場合、変更
@@ -34,6 +35,7 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,15 +53,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// GyoshuList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public GyoshuList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -68,37 +72,41 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// GyoshuList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（ラベルセットから）
         /// </summary>
         public GyoshuList(Control c, LabelSet_Gyoshu lblSetGyoshuSelect)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
+            //ラベルセットデータの確保
             lblSetGyoshu = lblSetGyoshuSelect;
+
             InitializeComponent();
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// GyoshuList_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void GyoshuList_Load(object sender, EventArgs e)
         {
@@ -117,7 +125,7 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             GyoshuList_B gyoshulistB = new GyoshuList_B();
             try
             {
@@ -144,7 +152,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -214,7 +224,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -222,32 +235,30 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectId)
         {
-            //セットを作成する場合変更
-            if (lblSetGyoshu != null && lstString.Count != 0)
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetGyoshu != null && lstSelectId.Count != 0)
             {
-                lblSetGyoshu.CodeTxtText = lstString[0];
-                lblSetGyoshu.ValueLabelText = lstString[1];
+                //セットの中に検索結果データを入れる
+                lblSetGyoshu.CodeTxtText = lstSelectId[0];
+                lblSetGyoshu.ValueLabelText = lstSelectId[1];
             }
 
             this.Close();
 
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             GyoshuList_B gyoshulistB = new GyoshuList_B();
             try
             {
-                gyoshulistB.setEndAction(lstInt);
+                //画面終了処理
+                gyoshulistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -310,10 +321,7 @@ namespace KATO.Common.Form
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    this.btnEndClick(sender, e);
                     break;
-
                 default:
                     break;
             }
@@ -325,29 +333,38 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
+            {
+                return;
+            }
 
-            //選択行の大分類コード取得
+            //選択行の業種情報
+            List<string> lstString = new List<string>();
+
+            //選択行の業種情報取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["業種コード"].Value;
             string strSelectName = (string)gridSeihin.CurrentRow.Cells["業種名"].Value;
 
-            lstInt.Add(intFrmKind);
+            //検索情報を入れる
             lstString.Add(strSelectId);
             lstString.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             GyoshuList_B gyoshulistB = new GyoshuList_B();
             try
             {
-                gyoshulistB.setSelectItem(lstInt, lstString);
+                //データグリッドビュー内のデータ選択後の処理
+                gyoshulistB.setSelectItem(intFrmKind, strSelectId);
+
+                setEndAction(lstString);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
-            setEndAction(lstString);
         }
 
         ///<summary>

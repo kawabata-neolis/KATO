@@ -104,8 +104,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            string strSQLName = null;
-
             Boolean blnGood;
 
             if (this.strdaibunCd == null)
@@ -143,11 +141,9 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Chubun_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -188,6 +184,9 @@ namespace KATO.Common.Ctl
             catch (Exception ex)
             {
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
         }
 

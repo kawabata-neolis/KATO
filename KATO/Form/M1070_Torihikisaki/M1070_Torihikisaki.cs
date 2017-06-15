@@ -900,7 +900,20 @@ namespace KATO.Form.M1070_Torihikisaki
             cmbNonyu.Text = dtSelectData.Rows[0]["納入方法"].ToString();
             //業務担当者
             txtGyotan.Text = dtSelectData.Rows[0]["業務担当者コード"].ToString();
+        }
 
+        /// <summary>
+        /// setTorihikisakiCd
+        /// 取り出したデータをテキストボックスに配置（空番）
+        /// </summary>
+        public void setTorihikisakiCd(DataTable dtSelectData)
+        {
+            //表示項目をリセット
+            delFormClear(this);
+            txtSihon.Text = "";
+
+            //取引先
+            txtCdT.Text = dtSelectData.Rows[0]["取引先コード"].ToString();
         }
 
         /// <summary>

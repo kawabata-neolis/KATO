@@ -79,8 +79,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            string strSQLName = null;
-
             Boolean blnGood;
 
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
@@ -113,11 +111,9 @@ namespace KATO.Common.Ctl
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
-            strSQLName = "C_LIST_Eigyosho_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Eigyosho_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -129,10 +125,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
 
-                //配列設定
-                string[] aryStr = { this.CodeTxtText };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();

@@ -26,14 +26,13 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class TorihikikbnList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        //ラベルセットが出た場合
-        //LabelSet_Daibunrui lblSetDaibun = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,15 +50,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// TorihikikbnList
-        /// フォーム関係の設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常のテキストボックスから）
         /// </summary>
         public TorihikikbnList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -68,8 +69,8 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
@@ -84,8 +85,10 @@ namespace KATO.Common.Form
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
+            //データグリッドビューの準備
             SetUpGrid();
 
+            //データグリッドビュー表示
             setDatagridView();
         }
 
@@ -129,15 +132,17 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //ビジネス層のインスタンス生成
             TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                //データグリッドビュー部分
+                //データグリッドビューに表示
                 gridSeihin.DataSource = torikbnListB.setDatagridView();
 
                 //中央揃え
                 gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                //検索件数を表示
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
@@ -151,7 +156,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -278,7 +285,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -286,32 +296,21 @@ namespace KATO.Common.Form
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void setEndAction(List<string> lstSelectCd)
         {
-            //ラベルセットが出た場合
-            //if (lblSetTorikbn != null && lstString.Count != 0)
-            //{
-            //    lblSetTorikbn.CodeTxtText = lstString[0];
-            //    lblSetTorikbn.ValueLabelText = lstString[1];
-            //}
-
             this.Close();
-
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
 
             //処理部に移動
             TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                torikbnListB.setEndAction(lstInt);
+                torikbnListB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -331,28 +330,28 @@ namespace KATO.Common.Form
         private void setSelectItem()
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
+            List<string> lstSelectId = new List<string>();
 
-            //選択行の大分類コード取得
+            //選択行の取引区分取得
             string strSelectId = (string)gridSeihin.CurrentRow.Cells["取引区分コード"].Value;
             string strSelectName = (string)gridSeihin.CurrentRow.Cells["取引区分名"].Value;
 
-            lstInt.Add(intFrmKind);
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            //検索情報を入れる
+            lstSelectId.Add(strSelectId);
+            lstSelectId.Add(strSelectName);
 
             //処理部に移動
             TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                torikbnListB.setSelectItem(lstInt, lstString);
+                torikbnListB.setSelectItem(intFrmKind, strSelectId);
+
+                setEndAction(lstSelectId);
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
             }
-            setEndAction(lstString);
         }
 
         ///<summary>

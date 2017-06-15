@@ -61,6 +61,10 @@ namespace KATO.Form.A0100_HachuInput
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+
         }
 
         /// <summary>
@@ -463,6 +467,15 @@ namespace KATO.Form.A0100_HachuInput
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///updDaibun
+        ///リスト内の大分類が変更されたのを反映
+        ///</summary>
+        public void updDaibun(string strDaibun)
+        {
+            labelSet_Daibunrui.CodeTxtText = strDaibun;
         }
     }
 }

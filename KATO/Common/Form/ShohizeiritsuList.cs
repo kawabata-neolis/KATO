@@ -27,14 +27,13 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ShohizeiritsuList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        //ラベルセットが出た場合
-        //LabelSet_Tanaban lblSetTanaban = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //フォームタイトル設定
         private string Title = "";
         public string _Title
         {
@@ -52,14 +51,17 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// ShohizeiritsuList
-        /// フォーム関係の設定（ラベルセットから）
+        /// フォームの初期設定（通常テキストボックスから）
         /// </summary>
         public ShohizeiritsuList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
+
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -68,13 +70,13 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2 - 200;
-            this.Top = c.Top;
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
         }
 
         /// <summary>
         /// ShohizeiritsuList_Load
-        /// 読み込み時
+        /// レイアウト設定
         /// </summary>
         private void ShohizeiritsuList_Load(object sender, EventArgs e)
         {
@@ -96,12 +98,14 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView(Boolean blnAll)
         {
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             ShohizeiritsuList_B shohizeiritsulistB = new ShohizeiritsuList_B();
             try
             {
+                //データの変換を行うためのデータテーブル
                 DataTable dtView;
 
+                //検索結果を取り込む
                 dtView = shohizeiritsulistB.setDatagridView(blnAll);
 
                 //目標売上を整数型に
@@ -122,6 +126,7 @@ namespace KATO.Common.Form
                 gridSeihin.Columns["適用開始年月日"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 gridSeihin.Columns["消費税率"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                //検索件数を表示
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //件数が0の場合
@@ -135,7 +140,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -205,7 +212,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
+            //戻るボタンの処理に行くために必要（直接も戻る動作のため中身無し）
             List<string> lstString = new List<string>();
+
+            //戻るボタンの処理
             setEndAction(lstString);
         }
 
@@ -215,21 +225,9 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstString)
         {
-            //if (lblSetTanaban != null && lstString.Count != 0)
-            //{
-            //    lblSetTanaban.CodeTxtText = lstString[0];
-            //    lblSetTanaban.ValueLabelText = lstString[1];
-            //}
-
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
             this.Close();
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             TanabanList_B tanabanlistB = new TanabanList_B();
             try
             {
@@ -237,7 +235,9 @@ namespace KATO.Common.Form
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -316,52 +316,69 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
+            //データグリッドビューにデータが存在しなければ終了
+            if (gridSeihin.RowCount == 0)
+            {
+                return;
+            }
+
+            //選択された月用
             string strSelectMonth = "";
 
+            //選択された日付用
             string strSelectDay = "";
 
-            //データ渡し用
-            List<string> lstString = new List<string>();
+            //選択行の検索情報取得用
+            List<string> lstSelectData = new List<string>();
 
+            //検索データ用
             DateTime dateSelect;
 
-            dateSelect  =  (DateTime)gridSeihin.CurrentRow.Cells[0].Value;
+            //検索データを取り込む
+            dateSelect =  (DateTime)gridSeihin.CurrentRow.Cells[0].Value;
 
-            //月データ
+            //月データを入れる
             strSelectMonth = dateSelect.Month.ToString();
 
+            //文字数が1だった場合、0パディング
             if (strSelectMonth.Length == 1)
             {
                 strSelectMonth = dateSelect.Month.ToString().PadLeft(2, '0');
             }
 
-            //日付データ
+            //日付データを入れる
             strSelectDay = dateSelect.Month.ToString();
 
-            if(strSelectDay.Length == 1)
+            //文字数が1だった場合、0パディング
+            if (strSelectDay.Length == 1)
             {
                 strSelectDay = dateSelect.Day.ToString().PadLeft(2, '0');
             }
 
+            //日付データを取得
             string strSelectDate = (dateSelect.Year +"/"+ strSelectMonth + "/"+ strSelectDay).ToString();
 
+            //名前データを取得
             string strSelectName = (string)gridSeihin.CurrentRow.Cells[1].Value.ToString();
 
-            //データ渡し用
-            lstString.Add(strSelectDate);
-            lstString.Add(strSelectName);
+            //検索するデータの取得
+            lstSelectData.Add(strSelectDate);
+            lstSelectData.Add(strSelectName);
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             ShohizeiritsuList_B shohizeilistB = new ShohizeiritsuList_B();
             try
             {
-                shohizeilistB.setSelectItem(intFrmKind, lstString);
+                //データグリッドビュー内のデータ選択後の処理
+                shohizeilistB.setSelectItem(intFrmKind, strSelectDate);
 
-                setEndAction(lstString);
+                setEndAction(lstSelectData);
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                return;
             }
         }
 
@@ -371,13 +388,15 @@ namespace KATO.Common.Form
         ///</summary>        
         private void chkSakujoData_CheckedChanged(object sender, EventArgs e)
         {
+            //削除込みも含む場合
             if (chkSakujoData.Checked == true)
             {
                 Boolean blnAll = true;
 
                 setDatagridView(blnAll);
             }
-            else{
+            else
+            {
                 Boolean blnAll = false;
 
                 setDatagridView(blnAll);
