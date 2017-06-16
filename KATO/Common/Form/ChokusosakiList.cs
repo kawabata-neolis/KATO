@@ -111,23 +111,12 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
-            //検索時のデータ取り出し先
-            DataTable dtGetTable;
-
             //ビジネス層のインスタンス生成
             ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
                 //データグリッドビュー部分
                 gridChoku.DataSource = chokusosakilistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
-                //テキストボックス部分
-                dtGetTable = chokusosakilistB.setText(labelSet_Tokuisaki.CodeTxtText);
-
-                //Datatable内のデータが存在しない場合
-                if (dtGetTable.Rows.Count == 0)
-                {
-                    return;
-                }
 
                 //幅の値を設定
                 gridChoku.Columns["直送先コード"].Width = 130;
@@ -135,9 +124,6 @@ namespace KATO.Common.Form
 
                 //中央揃え
                 gridChoku.Columns["直送先名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                //大分類コードと名前を表示
-                labelSet_Tokuisaki.CodeTxtText = dtGetTable.Rows[0]["得意先コード"].ToString();
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridChoku.RowCount.ToString() + "件)";
@@ -147,6 +133,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -241,6 +230,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -254,6 +246,9 @@ namespace KATO.Common.Form
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
             setDatagridView();
+
+            strTokuiCdsub = labelSet_Tokuisaki.CodeTxtText;
+
             gridChoku.Focus();
         }
 
@@ -352,6 +347,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }

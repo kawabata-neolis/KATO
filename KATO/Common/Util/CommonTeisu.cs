@@ -79,11 +79,11 @@ namespace KATO.Common.Util
         public const int BTN_YESNOCANCEL = 3;
 
         // グループ(ラジオボタン選択値)
-        public const int GROUP_RADIO_ALL     = 0;
+        public const int GROUP_RADIO_ALL = 0;
         public const int GROUP_RADIO_KYOUTSU = 1;
-        public const int GROUP_RADIO_1       = 2;
-        public const int GROUP_RADIO_2       = 3;
-        public const int GROUP_RADIO_3       = 4;
+        public const int GROUP_RADIO_1 = 2;
+        public const int GROUP_RADIO_2 = 3;
+        public const int GROUP_RADIO_3 = 4;
 
         public static readonly string[] LIST_GROUP =
         {
@@ -113,8 +113,12 @@ namespace KATO.Common.Util
         public const string LABEL_NOTDATA = "データが見つかりません。";
         public const string LABEL_ZEROORONE = "０か１で指定してください。";
         public const string LABEL_TOUROKU_UWAGAKi = "に上書きしますか？";
-        public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
+        public const string LABEL_HACHU_JUCHUNO_SHUSEI = "受注伝票があります。受注入力で修正してください。";
+        public const string LABEL_HACHU_JUCHUNO_JUCHUDEL = "受注伝票より削除処理してください。";
+        public const string LABEL_HACHU_JUCHUNO_NOTDEL = "すでに仕入済みです。削除できません。";
         public const string LABEL_ERROR_MESSAGE = "システムエラーが起きました。管理者に連絡してください。";
+
+        public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
 
         //カレンダーの初期値
         public const int CALENDER_TODAY = 0;
@@ -555,6 +559,9 @@ namespace KATO.Common.Util
             ,SqlDbType.Char
             ,SqlDbType.Char
             ,SqlDbType.Money
+            ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.Char
             ,SqlDbType.Char
             ,SqlDbType.DateTime
             ,SqlDbType.NChar

@@ -57,7 +57,6 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
@@ -96,8 +95,6 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-
-                new CommonException(ex);
                 throw (ex);
             }
             finally

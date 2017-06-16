@@ -68,49 +68,6 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setDatagridView
-        ///テキストボックスに記述
-        public DataTable setText(string strSetText)
-        {
-            //データグリッドビューを入れる用
-            DataTable dtGetTableTxt = new DataTable();
-
-            //接続用クラスのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-            try
-            {
-                //データ渡し用
-                List<string> lstSQL = new List<string>();
-
-                //データ渡し用
-                lstSQL.Add("Common");
-                lstSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
-
-                //SQL発行
-                OpenSQL opensql = new OpenSQL();
-
-                //SQLファイルと該当コードでフォーマット
-                string strSQLInput = opensql.setOpenSQL(lstSQL);
-
-                //SQLファイルのパス取得
-                strSQLInput = string.Format(strSQLInput, strSetText);
-
-                //該当する大分類コードと名前を確保
-                dtGetTableTxt = dbconnective.ReadSql(strSQLInput);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
-                //トランザクション終了
-                dbconnective.DB_Disconnect();
-            }
-            return (dtGetTableTxt);
-        }
-
-        ///<summary>
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
@@ -195,8 +152,8 @@ namespace KATO.Common.Business
                 if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "M1100_Chokusosaki")
                 {
                     //データを連れてくるため、newをしないこと
-                    ShouhinList shouhinlist = (ShouhinList)frm;
-                    shouhinlist.setChubunruiListClose();
+                    M1100_Chokusosaki chokusosaki = (M1100_Chokusosaki)frm;
+                    chokusosaki.setChokuListClose();
                     break;
                 }
             }

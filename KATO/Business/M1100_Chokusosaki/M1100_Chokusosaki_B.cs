@@ -122,10 +122,10 @@ namespace KATO.Business.M1100_Chokusosaki
         ///</summary>
         public DataTable updTxtChokusoLeave(List<string> lstString)
         {
-            //データ渡し用
+            //SQLファイルのパスとファイル名を入れる用
             List<string> lstStringSQL = new List<string>();
 
-            //データ渡し用
+            //SQLファイルのパスとファイル名を追加
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_Chokusosaki_SELECT_LEAVE");
 
@@ -158,7 +158,6 @@ namespace KATO.Business.M1100_Chokusosaki
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
                 throw (ex);
             }
             finally
