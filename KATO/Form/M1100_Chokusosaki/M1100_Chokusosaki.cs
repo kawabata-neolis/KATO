@@ -31,7 +31,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         /// <summary>
         /// M1100_Chokusosaki
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public M1100_Chokusosaki(Control c)
         {
@@ -308,8 +308,11 @@ namespace KATO.Form.M1100_Chokusosaki
                 }
                 catch (Exception ex)
                 {
-                    //エラーロギング
+                    //データロギング
                     new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                     return;
                 }
             }
@@ -387,8 +390,11 @@ namespace KATO.Form.M1100_Chokusosaki
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -481,8 +487,11 @@ namespace KATO.Form.M1100_Chokusosaki
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -574,8 +583,11 @@ namespace KATO.Form.M1100_Chokusosaki
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }

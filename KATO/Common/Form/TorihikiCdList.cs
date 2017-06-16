@@ -263,14 +263,17 @@ namespace KATO.Common.Form
             {
                 //ビジネス層、検索ロジックに移動
                 torihikilistB.setSelectItem(intFrmKind, strSelectId);
+                setEndAction(lstSelectID);
             }
             catch (Exception ex)
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
-            setEndAction(lstSelectID);
         }
 
         ///<summary>
@@ -307,6 +310,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -351,6 +357,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }

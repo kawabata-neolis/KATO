@@ -307,8 +307,11 @@ namespace KATO.Form.M1090_Eigyosho
                 }
                 catch (Exception ex)
                 {
-                    //エラーロギング
+                    //データロギング
                     new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                     return;
                 }
             }
@@ -361,8 +364,11 @@ namespace KATO.Form.M1090_Eigyosho
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -432,8 +438,11 @@ namespace KATO.Form.M1090_Eigyosho
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -507,8 +516,11 @@ namespace KATO.Form.M1090_Eigyosho
             }
             catch (Exception ex)
             {
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }

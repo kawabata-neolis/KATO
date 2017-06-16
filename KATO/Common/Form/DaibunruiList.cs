@@ -159,6 +159,9 @@ namespace KATO.Common.Form
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
@@ -262,6 +265,10 @@ namespace KATO.Common.Form
             catch (Exception ex)
             {
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -363,12 +370,16 @@ namespace KATO.Common.Form
             {
                 //データグリッドビュー内のデータ選択後の処理
                 daibunListB.setSelectItem(intFrmKind, strSelectId);
+                setEndAction(lstSelectData);
             }
             catch (Exception ex)
             {
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
-            setEndAction(lstSelectData);
         }
 
         ///<summary>

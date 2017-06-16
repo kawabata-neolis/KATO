@@ -26,30 +26,32 @@ namespace KATO.Form.A0100_HachuInput
     ///</summary>
     public partial class A0100_HachuInput : BaseForm
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// A0100_HachuInput
-        /// フォーム関係の設定
+        /// フォームの初期設定
         /// </summary>
         public A0100_HachuInput(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
             }
 
+            //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
+            //最大化最小化不可
             this.MaximizeBox = false;
-            //フォームが最小化されないようにする
             this.MinimizeBox = false;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
+            //画面サイズを固定
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
 
@@ -64,17 +66,16 @@ namespace KATO.Form.A0100_HachuInput
 
             //メーカーsetデータを読めるようにする
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
-
         }
 
         /// <summary>
         /// A0100_HachuInput_Load
-        /// 読み込み時
+        /// 画面レイアウト設定
         /// </summary>
         private void A0100_HachuInput_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "商品マスター";
+            this._Title = "発注入力";
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
@@ -84,7 +85,6 @@ namespace KATO.Form.A0100_HachuInput
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF08.Text = STR_FUNC_F8_RIREKI;
             this.btnF09.Text = STR_FUNC_F9;
-            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             txtHachuYMD.Text = DateTime.Today.ToString();
@@ -140,12 +140,12 @@ namespace KATO.Form.A0100_HachuInput
 
             //個々の幅、文章の寄せ
             setColumn(hachuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
-            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
+            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
             setColumn(chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 600);
-            setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.#", 150);
-            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.#", 130);
+            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
 
             gridHachu.Columns[0].Visible = false;
         }
@@ -156,6 +156,7 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
+            //column設定
             gridHachu.Columns.Add(col);
             if (gridHachu.Columns[col.Name] != null)
             {
@@ -318,9 +319,6 @@ namespace KATO.Form.A0100_HachuInput
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
                     this.setRireki();
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
@@ -354,8 +352,6 @@ namespace KATO.Form.A0100_HachuInput
         private void delText()
         {
             delFormClear(this,gridHachu);
-
-
         }
 
         /// <summary>
@@ -364,7 +360,64 @@ namespace KATO.Form.A0100_HachuInput
         /// </summary>
         public void delHachu()
         {
+            //受注番号が記入されている場合
+            if (txtJuchuban.Text != "")
+            {
+                //検索時のデータ取り出し先(受注検出時)
+                DataTable dtSetCdJuchuNo;
 
+                //検索時のデータ取り出し先(発注検出時)
+                DataTable dtSetCdHachuNo;
+
+                //ビジネス層のインスタンス生成
+                A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
+                try
+                {
+                    //戻り値のDatatableを取り込む（該当DBで受注番号を検索）
+                    dtSetCdJuchuNo = hachuB.setJuchuNoCheck(txtJuchuban.Text);
+
+                    //１件以上データがある場合
+                    if (dtSetCdJuchuNo.Rows.Count > 0)
+                    {
+                        //受注番号があるので、受注伝票に誘導のコメント（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHUNO_JUCHUDEL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+
+                    //戻り値のDatatableを取り込む（該当DBで発注番号を検索）
+                    dtSetCdHachuNo = hachuB.setHachuNoCheck(txtHachuban.Text);
+
+                    //仕入済数量が0以上の場合
+                    if (int.Parse(dtSetCdHachuNo.Rows[0]["仕入済数量"].ToString()) > 0)
+                    {
+                        //既に仕入済みのため、削除できないとメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHUNO_NOTDEL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+
+                    //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                    BaseMessageBox basemessageboxSa = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                    //NOが押された場合
+                    if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    //削除工程
+                    hachuB.delHachu(txtHachuban.Text, SystemInformation.UserName);
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -378,43 +431,42 @@ namespace KATO.Form.A0100_HachuInput
 
         /// <summary>
         /// textSet_Tokuisaki_Leave
-        /// 得意先コードから離れた場合
+        /// 仕入先コードから離れた場合
         /// </summary>
         private void textSet_Tokuisaki_Leave(object sender, EventArgs e)
         {
-            //データ渡し用
-            List<string> lstString = new List<string>();
-
+            //検索時のデータ取り出し先
             DataTable dtSetCd;
 
+            //前後の空白を取り除く
+            textSet_Tokuisaki.CodeTxtText = textSet_Tokuisaki.CodeTxtText.Trim();
+
+            //取引先コードが記入されていない場合
             if (textSet_Tokuisaki.CodeTxtText == "")
             {
                 return;
             }
 
-            //前後の空白を取り除く
-            textSet_Tokuisaki.CodeTxtText = textSet_Tokuisaki.CodeTxtText.Trim();
-
-            //データ渡し用
-            lstString.Add(textSet_Tokuisaki.CodeTxtText);
-
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = hachuB.setHachuGrid(lstString);
+                dtSetCd = hachuB.setHachuGrid(textSet_Tokuisaki.CodeTxtText);
 
-                if (dtSetCd.Rows.Count != 0)
+                //１件以上データがある場合
+                if (dtSetCd.Rows.Count > 0)
                 {
                     gridHachu.DataSource = dtSetCd;
                 }
-
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
         }
 
@@ -433,27 +485,70 @@ namespace KATO.Form.A0100_HachuInput
         /// </summary>
         private void setSelectItem()
         {
+            //選択されたデータの"発注番号"を取得
             txtHachuban.Text = (string)gridHachu.CurrentRow.Cells["発注番号"].Value.ToString();
 
+            //検索時のデータ取り出し先(グリッド全体)
             DataTable dtSetCd;
+            //検索時のデータ取り出し先(受注検出時)
+            DataTable dtSetCdJuchuNo;
 
-            //処理部に移動
+            //ビジネス層のインスタンス生成
             A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
-
             try
             {
                 //戻り値のDatatableを取り込む
                 dtSetCd = hachuB.setHachuLeave(txtHachuban.Text);
 
+                //１件以上データがある場合
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    labelSet_Daibunrui.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    //受注番号が1以上の場合
+                    if (int.Parse(dtSetCd.Rows[0]["受注番号"].ToString()) > 0)
+                    {
+                        //戻り値のDatatableを取り込む
+                        dtSetCdJuchuNo = hachuB.setJuchuNoCheck(dtSetCd.Rows[0]["受注番号"].ToString());
 
+                        //１件以上データがある場合
+                        if (dtSetCdJuchuNo.Rows.Count > 0)
+                        {
+                            //受注番号があるので、受注入力に誘導のコメント（OK）
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHUNO_SHUSEI, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                            txtHachuban.Clear();
+                            txtHachuban.Focus();
+                            return;
+                        }
+                    }
+
+                    labelSet_Daibunrui.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    labelSet_Chubunrui.CodeTxtText = dtSetCd.Rows[0]["中分類コード"].ToString();
+                    labelSet_Maker.CodeTxtText = dtSetCd.Rows[0]["メーカーコード"].ToString();
+                    txtHinmei.Text = dtSetCd.Rows[0]["Ｃ１"].ToString();
+                    txtJuchuban.Text = dtSetCd.Rows[0]["受注番号"].ToString();
+                    txtHachuban.Text = dtSetCd.Rows[0]["発注番号"].ToString();
+                    txtHachusu.Text = dtSetCd.Rows[0]["発注数量"].ToString();
+                    cmbHachutan.Text = dtSetCd.Rows[0]["発注単価"].ToString();
+                    txtNoki.Text = dtSetCd.Rows[0]["納期"].ToString();
+                    txtChuban.Text = dtSetCd.Rows[0]["注番"].ToString();
+
+                    //フォーカス位置の確保
+                    Control cActive = this.ActiveControl;
+
+                    //フォーカスを当てて中身を適切なものに置き換える必要がある
+                    txtHachusu.Focus();
+
+                    cActive.Focus();
                 }
             }
             catch (Exception ex)
             {
+                //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

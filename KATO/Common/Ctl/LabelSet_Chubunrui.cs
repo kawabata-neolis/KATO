@@ -125,12 +125,22 @@ namespace KATO.Common.Ctl
             if (blnGood == false)
             {
                 this.ValueLabelText = "";
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
 
-                this.Focus();
-                return;
+                //グループボックス内にいる場合
+                if (this.Parent is GroupBox)
+                {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
             
             if (this.CodeTxtText.Length == 1)
@@ -174,19 +184,42 @@ namespace KATO.Common.Ctl
                 else
                 {
                     this.ValueLabelText = "";
-                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    this.Focus();
+
+                    //グループボックス内にいる場合
+                    if (this.Parent is GroupBox)
+                    {
+                        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                    else
+                    {
+                        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
                 }
                 return;
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
+                //グループボックス内にいる場合
+                if (this.Parent is GroupBox)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
         }
 
@@ -259,11 +292,26 @@ namespace KATO.Common.Ctl
                     this.CodeTxtText = dtSetCd.Rows[0]["中分類コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["中分類名"].ToString();
                 }
+
                 return;
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
+                //グループボックス内にいる場合
+                if (this.Parent is GroupBox)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
         }
     }

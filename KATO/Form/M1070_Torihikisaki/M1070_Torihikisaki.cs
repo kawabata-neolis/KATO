@@ -1013,8 +1013,11 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             Control cActiveBefore = this.ActiveControl;
 
+        	//ベーステキストのインスタンス生成
             BaseText basetext = new BaseText();
-            basetext.judKeyUp(cActiveBefore, e);
+            
+            //キー判定、文字数判定
+        	basetext.judKeyUp(cActiveBefore, e);
         }
 
         /// <summary>
