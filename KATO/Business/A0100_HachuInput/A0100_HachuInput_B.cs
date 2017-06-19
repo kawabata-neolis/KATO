@@ -256,5 +256,57 @@ namespace KATO.Business.A0100_HachuInput_B
                 dbconnective.DB_Disconnect();
             }
         }
+
+
+        ///<summary>
+        ///setJuchuRenkei
+        ///受注連携の場合のチェック
+        ///</summary>
+        public DataTable setJuchuRenkei(string strJuchuban)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_HachuInput_JuchuRenkei");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strJuchuban);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }
