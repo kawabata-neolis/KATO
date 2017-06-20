@@ -85,7 +85,8 @@ namespace KATO.Business.F0140_TanaorosiInput_B
                 strSQLInput = null;
 
                 strSQLInput = "棚卸入力更新_PROC '" + lstString[0] + "','" + lstString[1] + "','" + lstString[2] + "','" + lstString[3] + "','" + lstString[4] + "', 'ADMIN'";
-                dbconnective.RunSql(strSQLInput);
+
+                //dbconnective.execSProcR(strSQLInput);
 
                 //コミット開始
                 dbconnective.Commit();

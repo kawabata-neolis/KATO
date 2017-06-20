@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblHachuYMD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtHachuYMD = new KATO.Common.Ctl.BaseCalendar();
             this.lblHachuban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtHachuban = new KATO.Common.Ctl.BaseText();
-            this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.labelSet_Hachusha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_Eigyosho1 = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.textSet_Tokuisaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
             this.gbHachuData = new System.Windows.Forms.GroupBox();
+            this.txtHachusu = new KATO.Common.Ctl.BaseTextMoney();
             this.txtData6 = new KATO.Common.Ctl.BaseText();
             this.txtData5 = new KATO.Common.Ctl.BaseText();
             this.txtData4 = new KATO.Common.Ctl.BaseText();
@@ -58,21 +59,26 @@
             this.lblHachusu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblJuchuban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHinmei = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblShohinCd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtKakeritsu = new KATO.Common.Ctl.BaseText();
             this.txtChuban = new KATO.Common.Ctl.BaseText();
             this.txtJuchuban = new KATO.Common.Ctl.BaseText();
             this.txtHinmei = new KATO.Common.Ctl.BaseText();
+            this.txtShohinCd = new KATO.Common.Ctl.BaseText();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridHachu = new KATO.Common.Ctl.BaseDataGridView();
-            this.txtHachusu = new KATO.Common.Ctl.BaseTextMoney();
+            this.labelSet_Tantosha = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTantosha = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbHachuData.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridHachu)).BeginInit();
+            this.labelSet_Tantosha.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF12
@@ -170,23 +176,23 @@
             this.txtHachuban.TabIndex = 1;
             this.txtHachuban.TabStop = false;
             // 
-            // labelSet_Tantousha
+            // labelSet_Hachusha
             // 
-            this.labelSet_Tantousha.AppendLabelSize = 0;
-            this.labelSet_Tantousha.AppendLabelText = "";
-            this.labelSet_Tantousha.CodeTxtSize = 40;
-            this.labelSet_Tantousha.CodeTxtText = "";
-            this.labelSet_Tantousha.LabelName = "発注者コード";
-            this.labelSet_Tantousha.Location = new System.Drawing.Point(521, 15);
-            this.labelSet_Tantousha.Name = "labelSet_Tantousha";
-            this.labelSet_Tantousha.ShowAppendFlg = false;
-            this.labelSet_Tantousha.Size = new System.Drawing.Size(302, 22);
-            this.labelSet_Tantousha.SpaceCodeValue = 4;
-            this.labelSet_Tantousha.SpaceNameCode = 4;
-            this.labelSet_Tantousha.SpaceValueAppend = 4;
-            this.labelSet_Tantousha.TabIndex = 2;
-            this.labelSet_Tantousha.ValueLabelSize = 120;
-            this.labelSet_Tantousha.ValueLabelText = "";
+            this.labelSet_Hachusha.AppendLabelSize = 0;
+            this.labelSet_Hachusha.AppendLabelText = "";
+            this.labelSet_Hachusha.CodeTxtSize = 40;
+            this.labelSet_Hachusha.CodeTxtText = "";
+            this.labelSet_Hachusha.LabelName = "発注者コード";
+            this.labelSet_Hachusha.Location = new System.Drawing.Point(521, 15);
+            this.labelSet_Hachusha.Name = "labelSet_Hachusha";
+            this.labelSet_Hachusha.ShowAppendFlg = false;
+            this.labelSet_Hachusha.Size = new System.Drawing.Size(302, 22);
+            this.labelSet_Hachusha.SpaceCodeValue = 4;
+            this.labelSet_Hachusha.SpaceNameCode = 4;
+            this.labelSet_Hachusha.SpaceValueAppend = 4;
+            this.labelSet_Hachusha.TabIndex = 2;
+            this.labelSet_Hachusha.ValueLabelSize = 120;
+            this.labelSet_Hachusha.ValueLabelText = "";
             // 
             // labelSet_Eigyosho1
             // 
@@ -213,12 +219,12 @@
             this.textSet_Tokuisaki.AppendLabelText = "";
             this.textSet_Tokuisaki.CodeTxtSize = 40;
             this.textSet_Tokuisaki.CodeTxtText = "";
-            this.textSet_Tokuisaki.LabelName = "得意先コード";
+            this.textSet_Tokuisaki.LabelName = "仕入先コード";
             this.textSet_Tokuisaki.Location = new System.Drawing.Point(17, 49);
             this.textSet_Tokuisaki.Name = "textSet_Tokuisaki";
             this.textSet_Tokuisaki.ReadOnlyANDTabStopFlg = true;
             this.textSet_Tokuisaki.ShowAppendFlg = false;
-            this.textSet_Tokuisaki.Size = new System.Drawing.Size(522, 22);
+            this.textSet_Tokuisaki.Size = new System.Drawing.Size(507, 22);
             this.textSet_Tokuisaki.SpaceCodeValue = 4;
             this.textSet_Tokuisaki.SpaceNameCode = 4;
             this.textSet_Tokuisaki.SpaceValueAppend = 4;
@@ -248,11 +254,13 @@
             this.gbHachuData.Controls.Add(this.lblHachusu);
             this.gbHachuData.Controls.Add(this.lblJuchuban);
             this.gbHachuData.Controls.Add(this.lblHinmei);
+            this.gbHachuData.Controls.Add(this.lblShohinCd);
             this.gbHachuData.Controls.Add(this.lblKensaku);
             this.gbHachuData.Controls.Add(this.txtKakeritsu);
             this.gbHachuData.Controls.Add(this.txtChuban);
             this.gbHachuData.Controls.Add(this.txtJuchuban);
             this.gbHachuData.Controls.Add(this.txtHinmei);
+            this.gbHachuData.Controls.Add(this.txtShohinCd);
             this.gbHachuData.Controls.Add(this.txtKensaku);
             this.gbHachuData.Controls.Add(this.labelSet_Maker);
             this.gbHachuData.Controls.Add(this.labelSet_Chubunrui);
@@ -264,6 +272,21 @@
             this.gbHachuData.TabIndex = 4;
             this.gbHachuData.TabStop = false;
             this.gbHachuData.Text = "今回発注内容";
+            // 
+            // txtHachusu
+            // 
+            this.txtHachusu.blnCommaOK = true;
+            this.txtHachusu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtHachusu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtHachusu.intDeciSet = 0;
+            this.txtHachusu.intIntederSet = 0;
+            this.txtHachusu.intShishagonyu = 0;
+            this.txtHachusu.Location = new System.Drawing.Point(104, 168);
+            this.txtHachusu.MaxLength = 6;
+            this.txtHachusu.Name = "txtHachusu";
+            this.txtHachusu.Size = new System.Drawing.Size(50, 22);
+            this.txtHachusu.TabIndex = 6;
+            this.txtHachusu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtData6
             // 
@@ -476,6 +499,19 @@
             this.lblHinmei.Text = "品名";
             this.lblHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblShohinCd
+            // 
+            this.lblShohinCd.AutoSize = true;
+            this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShohinCd.Location = new System.Drawing.Point(371, 29);
+            this.lblShohinCd.Name = "lblShohinCd";
+            this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
+            this.lblShohinCd.strToolTip = null;
+            this.lblShohinCd.TabIndex = 4;
+            this.lblShohinCd.Text = "商品コード";
+            this.lblShohinCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShohinCd.Visible = false;
+            // 
             // lblKensaku
             // 
             this.lblKensaku.AutoSize = true;
@@ -530,6 +566,17 @@
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(490, 22);
             this.txtHinmei.TabIndex = 4;
+            // 
+            // txtShohinCd
+            // 
+            this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShohinCd.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtShohinCd.Location = new System.Drawing.Point(464, 26);
+            this.txtShohinCd.MaxLength = 40;
+            this.txtShohinCd.Name = "txtShohinCd";
+            this.txtShohinCd.Size = new System.Drawing.Size(330, 22);
+            this.txtShohinCd.TabIndex = 3;
+            this.txtShohinCd.Visible = false;
             // 
             // txtKensaku
             // 
@@ -621,35 +668,35 @@
             this.gridHachu.AllowUserToAddRows = false;
             this.gridHachu.AllowUserToResizeColumns = false;
             this.gridHachu.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridHachu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridHachu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.gridHachu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridHachu.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridHachu.DefaultCellStyle = dataGridViewCellStyle11;
             this.gridHachu.EnableHeadersVisualStyles = false;
             this.gridHachu.Location = new System.Drawing.Point(18, 28);
             this.gridHachu.Name = "gridHachu";
             this.gridHachu.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridHachu.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridHachu.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.gridHachu.RowHeadersVisible = false;
             this.gridHachu.RowTemplate.Height = 21;
             this.gridHachu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -659,20 +706,50 @@
             this.gridHachu.DoubleClick += new System.EventHandler(this.gridHachu_DoubleClick);
             this.gridHachu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridHachu_KeyDown);
             // 
-            // txtHachusu
+            // labelSet_Tantosha
             // 
-            this.txtHachusu.blnCommaOK = true;
-            this.txtHachusu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHachusu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtHachusu.intDeciSet = 0;
-            this.txtHachusu.intIntederSet = 0;
-            this.txtHachusu.intShishagonyu = 0;
-            this.txtHachusu.Location = new System.Drawing.Point(104, 168);
-            this.txtHachusu.MaxLength = 6;
-            this.txtHachusu.Name = "txtHachusu";
-            this.txtHachusu.Size = new System.Drawing.Size(50, 22);
-            this.txtHachusu.TabIndex = 6;
-            this.txtHachusu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelSet_Tantosha.AppendLabelSize = 0;
+            this.labelSet_Tantosha.AppendLabelText = "";
+            this.labelSet_Tantosha.CodeTxtSize = 40;
+            this.labelSet_Tantosha.CodeTxtText = "";
+            this.labelSet_Tantosha.Controls.Add(this.lblTantosha);
+            this.labelSet_Tantosha.Controls.Add(this.nameLabel);
+            this.labelSet_Tantosha.LabelName = "発注者コード";
+            this.labelSet_Tantosha.Location = new System.Drawing.Point(521, 49);
+            this.labelSet_Tantosha.Name = "labelSet_Tantosha";
+            this.labelSet_Tantosha.ShowAppendFlg = false;
+            this.labelSet_Tantosha.Size = new System.Drawing.Size(302, 22);
+            this.labelSet_Tantosha.SpaceCodeValue = 4;
+            this.labelSet_Tantosha.SpaceNameCode = 4;
+            this.labelSet_Tantosha.SpaceValueAppend = 4;
+            this.labelSet_Tantosha.TabIndex = 2;
+            this.labelSet_Tantosha.ValueLabelSize = 120;
+            this.labelSet_Tantosha.ValueLabelText = "";
+            this.labelSet_Tantosha.Visible = false;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(103, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "発注者コード";
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTantosha
+            // 
+            this.lblTantosha.AutoSize = true;
+            this.lblTantosha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTantosha.Location = new System.Drawing.Point(2, 3);
+            this.lblTantosha.Name = "lblTantosha";
+            this.lblTantosha.Size = new System.Drawing.Size(103, 15);
+            this.lblTantosha.strToolTip = null;
+            this.lblTantosha.TabIndex = 0;
+            this.lblTantosha.Text = "担当者コード";
+            this.lblTantosha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // A0100_HachuInput
             // 
@@ -683,7 +760,8 @@
             this.Controls.Add(this.gbHachuData);
             this.Controls.Add(this.textSet_Tokuisaki);
             this.Controls.Add(this.labelSet_Eigyosho1);
-            this.Controls.Add(this.labelSet_Tantousha);
+            this.Controls.Add(this.labelSet_Tantosha);
+            this.Controls.Add(this.labelSet_Hachusha);
             this.Controls.Add(this.txtHachuban);
             this.Controls.Add(this.txtHachuYMD);
             this.Controls.Add(this.lblHachuban);
@@ -708,7 +786,8 @@
             this.Controls.SetChildIndex(this.lblHachuban, 0);
             this.Controls.SetChildIndex(this.txtHachuYMD, 0);
             this.Controls.SetChildIndex(this.txtHachuban, 0);
-            this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
+            this.Controls.SetChildIndex(this.labelSet_Hachusha, 0);
+            this.Controls.SetChildIndex(this.labelSet_Tantosha, 0);
             this.Controls.SetChildIndex(this.labelSet_Eigyosho1, 0);
             this.Controls.SetChildIndex(this.textSet_Tokuisaki, 0);
             this.Controls.SetChildIndex(this.gbHachuData, 0);
@@ -717,6 +796,8 @@
             this.gbHachuData.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridHachu)).EndInit();
+            this.labelSet_Tantosha.ResumeLayout(false);
+            this.labelSet_Tantosha.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -728,7 +809,7 @@
         private Common.Ctl.BaseCalendar txtHachuYMD;
         private Common.Ctl.BaseLabel lblHachuban;
         private Common.Ctl.BaseText txtHachuban;
-        private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;
+        private Common.Ctl.LabelSet_Tantousha labelSet_Hachusha;
         private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho1;
         private Common.Ctl.TextSet_Tokuisaki textSet_Tokuisaki;
         private System.Windows.Forms.GroupBox gbHachuData;
@@ -762,5 +843,10 @@
         private Common.Ctl.BaseDataGridView gridHachu;
         private Common.Ctl.BaseText txtKakeritsu;
         private Common.Ctl.BaseTextMoney txtHachusu;
+        private Common.Ctl.BaseLabel lblShohinCd;
+        private Common.Ctl.BaseText txtShohinCd;
+        private Common.Ctl.LabelSet_Tantousha labelSet_Tantosha;
+        private Common.Ctl.BaseLabel lblTantosha;
+        private Common.Ctl.BaseLabel nameLabel;
     }
 }

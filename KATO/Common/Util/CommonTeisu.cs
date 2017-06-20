@@ -116,8 +116,11 @@ namespace KATO.Common.Util
         public const string LABEL_HACHU_JUCHUNO_SHUSEI = "受注伝票があります。受注入力で修正してください。";
         public const string LABEL_HACHU_JUCHUNO_JUCHUDEL = "受注伝票より削除処理してください。";
         public const string LABEL_HACHU_JUCHUNO_NOTDEL = "すでに仕入済みです。削除できません。";
-        public const string LABEL_ERROR_MESSAGE = "システムエラーが起きました。管理者に連絡してください。";
+        public const string LABEL_HACHU_JUCHURENKEI = "(発注数量＋在庫使用数) が受注数量を超えています。";
+        public const string LABEL_HACHU_1111 = "仕入先コード（１１１１）の場合は返品は不可です。";
+        public const string LABEL_HACHU_2222 = "仕入先コード（２２２２）の場合は返品は不可です。";
 
+        public const string LABEL_ERROR_MESSAGE = "システムエラーが起きました。管理者に連絡してください。";
         public const string LABEL_TEST_ALERT = "未完成のため表示できません。（テスト）";
 
         //カレンダーの初期値

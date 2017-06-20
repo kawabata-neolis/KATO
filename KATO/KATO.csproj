@@ -854,6 +854,9 @@
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_HachuInput_JuchuRenkei.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
