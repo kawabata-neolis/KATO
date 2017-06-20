@@ -308,5 +308,47 @@ namespace KATO.Business.A0100_HachuInput_B
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///setNewDenpyo
+        ///伝票番号テーブルから新規伝票番号を得る
+        ///</summary>
+        public string setNewDenpyo(string strTableName)
+        {
+            string strNewDenpyo = null;
+            object dummy = 0;
+            int returnval = 0;
+            string strSQL = null;
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //strSQL = "get伝票番号_PROC '" + 1 + "','" + returnval + "','" + strTableName + "','" + dummy + "'";
+                //strSQL = "get伝票番号_PROC '" + strTableName + "'," + returnval + "";
+                //strSQL = "get伝票番号_PROC '" + returnval + "','" + strTableName + "'";
+                //strSQL = "get伝票番号_PROC " + 1 + ",'" + returnval + "','" + strTableName + "'";
+
+                //dbconnective.execSProcR("get伝票番号_PROC ", 1, returnval, strTableName,dummy);
+
+                //コミット開始
+                dbconnective.Commit();
+                return(returnval.ToString());
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+
+        }
     }
 }

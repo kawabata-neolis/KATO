@@ -415,24 +415,24 @@ namespace KATO.Form.A0100_HachuInput
                 txtNoki.Focus();
                 return;
             }
-            //文字判定(注番)
-            if (txtChuban.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtChuban.Focus();
-                return;
-            }
-            //文字判定(型番)
-            if (txtData1.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtData1.Focus();
-                return;
-            }
+            ////文字判定(注番)
+            //if (txtChuban.blIsEmpty() == false)
+            //{
+            //    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    txtChuban.Focus();
+            //    return;
+            //}
+            ////文字判定(型番)
+            //if (txtData1.blIsEmpty() == false)
+            //{
+            //    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    txtData1.Focus();
+            //    return;
+            //}
 
             lstString.Add(txtHachuYMD.Text);
             lstString.Add(labelSet_Hachusha.CodeTxtText);
@@ -479,9 +479,7 @@ namespace KATO.Form.A0100_HachuInput
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHURENKEI, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         return;
-                    }
-
-                    
+                    }                    
                 }
                 catch (Exception ex)
                 {
@@ -521,21 +519,26 @@ namespace KATO.Form.A0100_HachuInput
                 }
             }
 
-            //不明点
-            //if (txtDenno.isEmpty)
-            //{
-            //    Denno = GetDenpyoNo("発注番号");
-            //}
-            //else
-            //{
-            //    //UPGRADE_WARNING: オブジェクト txtDenno.data の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-            //    Denno = txtDenno.data;
-            //}
-
-            //if (txt)
-            //{
-
-            //}
+            //発注番号がない場合、伝票番号テーブルから新規伝票番号を得る
+            if (txtHachuban.blIsEmpty() == false)
+            {
+                //ビジネス層のインスタンス生成
+                A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
+                try
+                {
+                    //新規番号を記入
+                    txtHachuban.Text =  hachuB.setNewDenpyo("発注番号");
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }                
+            }
 
             //商品コードが空だった場合
             if (txtShohinCd.blIsEmpty() == false)
@@ -543,13 +546,61 @@ namespace KATO.Form.A0100_HachuInput
                 txtShohinCd.Text = "88888";
             }
 
-//ここから
+            //ここから
             //if (strC1 == "" | IsDbNull(strC1) | txtSyohinCD.data == "88888")
             //{
             //    //UPGRADE_WARNING: オブジェクト txtKataban.data の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
             //    //UPGRADE_WARNING: オブジェクト strC1 の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
             //    strC1 = txtKataban.data;
             //}
+
+            //型番１に記入がないまたは、商品コードが88888の場合
+            if (txtData1.blIsEmpty() == true || txtShohinCd.Text == "88888")
+            {
+                //商品コードを型番１に記入
+                txtData1.Text = txtShohinCd.Text;
+            }
+            //受注番号に記入がない場合
+            if (txtJuchuban.blIsEmpty() == true)
+            {
+                //0を入れる
+                txtJuchuban.Text = "0";
+            }
+
+            
+            //JucyuKin = Fix(txtSiireTanka.data * txtSu.data);
+
+            //theErr = execSProc("発注更新_PROC", txtCD.data, txtYMD.data, Denno, txtJyucyuTantou.data, txtEigyosho.data, txtJyucyuTantou.data, JyucyuNo, 0, 0,
+            //SyohinCD, txtMaker.data, txtDaiBunrui.data, txtCyuBunrui.data, strC1, strC2, strC3, strC4, strC5, strC6,
+            //txtSu.data, txtSiireTanka.data, JucyuKin, txtNouki.data, 0, txtCyuuban.data, "0", txtTname.data, gSysInfo.UserID);
+
+            //if (theErr != noErr)
+            //    goto Err_Proc;
+
+        //    gCon.CommitTrans();
+        //    //2005.05.25    msgAlert "正常に登録されました" & vbCrLf & "注番：" & Left(gSysInfo.UserID, 3) & CStr(DenNo), "登録"
+        //    //2005.06.03    msgAlert "正常に登録されました" & vbCrLf & "注番：" & Left(gSysInfo.UserID, 4) & CStr(DenNo), "登録"
+        //    string msgStr;
+        //    msgStr = GetCyubanName((txtJyucyuTantou.data));
+        //    msgAlert("正常に登録されました" + vbCrLf + "注番：" + RTrim(msgStr) + (string)Denno, "登録");
+
+        //    //2005.07.18    Call Torikesi
+        //    Torikesi2();
+
+        //    txtCD.setFocus();
+
+        //    Tsuika = true;
+
+        //    return;
+
+        //Err_Proc:
+        //    msgError("追加処理でエラーが発生しました。");
+        //    // ERROR: Not supported in C#: OnErrorStatement
+
+        //    if (gCon.Errors.Count > 0)
+        //        gCon.RollbackTrans();
+        //    Tsuika = false;
+
         }
 
         /// <summary>
