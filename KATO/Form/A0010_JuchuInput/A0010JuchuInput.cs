@@ -194,5 +194,10 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
         }
+
+        private void txtSearchStr_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -204,6 +204,12 @@ namespace KATO.Form.Z0000
             zan.ShowDialog();
         }
 
+        private void btnJuchuInput_Click(object sender, EventArgs e)
+        {
+            A0010_JuchuInput.A0010JuchuInput juchuinput = new A0010_JuchuInput.A0010JuchuInput(this);
+            juchuinput.ShowDialog();
+        }
+
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
         {
@@ -221,5 +227,6 @@ namespace KATO.Form.Z0000
                     break;
             }
         }
+
     }
 }

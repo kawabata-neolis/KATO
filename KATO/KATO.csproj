@@ -356,6 +356,12 @@
     <Compile Include="Common\Util\LogUtil.cs" />
     <Compile Include="Common\Util\OpenSQL.cs" />
     <Compile Include="Common\Util\StringUtl.cs" />
+    <Compile Include="Form\A0010_JuchuInput\A0010JuchuInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0010_JuchuInput\A0010JuchuInput.designer.cs">
+      <DependentUpon>A0010JuchuInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -653,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikikbnList.resx">
       <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0010_JuchuInput\A0010JuchuInput.resx">
+      <DependentUpon>A0010JuchuInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>

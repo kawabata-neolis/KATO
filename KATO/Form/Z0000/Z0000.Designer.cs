@@ -53,6 +53,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnJuchuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,6 +139,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnJuchuInput);
             this.tabPage1.Controls.Add(this.btnHachuInput);
             this.tabPage1.Controls.Add(this.btnTestWindow);
             this.tabPage1.Controls.Add(this.btnTanaInput);
@@ -173,7 +175,7 @@
             // 
             // btnTanaInput
             // 
-            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTanaInput.BackColor = System.Drawing.Color.Cyan;
             this.btnTanaInput.Location = new System.Drawing.Point(23, 33);
             this.btnTanaInput.Name = "btnTanaInput";
             this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
@@ -412,6 +414,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // btnJuchuInput
+            // 
+            this.btnJuchuInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnJuchuInput.Location = new System.Drawing.Point(23, 157);
+            this.btnJuchuInput.Name = "btnJuchuInput";
+            this.btnJuchuInput.Size = new System.Drawing.Size(280, 40);
+            this.btnJuchuInput.TabIndex = 72;
+            this.btnJuchuInput.Text = "受注入力";
+            this.btnJuchuInput.UseVisualStyleBackColor = false;
+            this.btnJuchuInput.Click += new System.EventHandler(this.btnJuchuInput_Click);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -473,5 +486,6 @@
         private Common.Ctl.BaseMenuButton btnShohinMotochoKakunin;
         private Common.Ctl.BaseMenuButton btnHachuInput;
         private Common.Ctl.BaseMenuButton txtChokusosaki;
+        private Common.Ctl.BaseMenuButton btnJuchuInput;
     }
 }
