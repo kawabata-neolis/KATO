@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KATO.Common.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,9 @@ namespace KATO.Form.A0010_JuchuInput
 {
     public partial class A0010JuchuInput : KATO.Common.Ctl.BaseForm
     {
+        //ロギングの設定
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public A0010JuchuInput(Control c)
         {
             if (c == null)
@@ -195,8 +199,113 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        /// <summary>
+        /// A0100_HachuInput_KeyDown
+        /// キー入力判定
+        /// </summary>
+        private void A0010_JuchuInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    break;
+                case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    //this.addHachu();
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delFormClear(this);
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.setRireki();
+                    break;
+                case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// judBtnClick
+        /// ボタンの反応
+        /// </summary>
+        private void judBtnClick(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    //this.addHachu();
+                    break;
+                case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    //this.delHachu();
+                    break;
+                case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delFormClear(this);
+                    break;
+                case STR_BTN_F08: // 履歴
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.setRireki();
+                    break;
+                case STR_BTN_F09: // 履歴
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    //this.setRireki();
+                    break;
+                case STR_BTN_F12: // 終了
+                    this.Close();
+                    break;
+            }
+        }
+
+
+        //
+        // 検索文字列フォーカスアウト時
+        //
         private void txtSearchStr_Leave(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtSearchStr.Text))
+            {
+                return;
+            }
 
         }
     }

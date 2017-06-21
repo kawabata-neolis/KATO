@@ -210,6 +210,21 @@ namespace KATO.Form.Z0000
             juchuinput.ShowDialog();
         }
 
+        // 分類別仕入推移表
+        private void btnSiireSuiiHyo_Click(object sender, EventArgs e)
+        {
+            C0480_SiireSuiiHyo.C0480_SiireSuiiHyo siireHyo = new C0480_SiireSuiiHyo.C0480_SiireSuiiHyo(this);
+            siireHyo.ShowDialog();
+        }
+
+        // 分類別売上推移表
+        private void btnUriageSuiiHyo_Click(object sender, EventArgs e)
+        {
+            C0490_UriageSuiiHyo.C0490_UriageSuiiHyo uriHyo = new C0490_UriageSuiiHyo.C0490_UriageSuiiHyo(this);
+            uriHyo.ShowDialog();
+        }
+
+
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
         {
