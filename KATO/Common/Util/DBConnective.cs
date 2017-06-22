@@ -146,7 +146,41 @@ namespace KATO.Common.Util
             }
         }
 
-        public void RunSqlCommon(String strSqlName, String[] prms)
+        /// <summary>
+        /// SQLクエリを実行します。(PROC用(戻り値無し))
+        /// </summary>
+        /// <param name="sqlStr">SQLクエリ</param>
+        /// <param name="cmdType">コマンドタイプ</param>
+        public void RunSql(string sqlStr, CommandType cmdType, List<string> lstTableName, List<string> lstDataName)
+        {
+            Boolean isConnect = false;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect();
+                isConnect = true;
+            }
+
+            //UPDATE INSERT DELETE 用            
+            CM.CommandType = cmdType;
+            CM.CommandText = sqlStr;
+
+            //各該当データをPROCに適用
+            for(int cnt = 0; cnt < lstTableName.Count; cnt++)
+            {
+                CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+            }
+
+            CM.ExecuteNonQuery();
+
+            if (isConnect != true)
+            {
+                this.DB_Disconnect();
+            }
+        }
+
+
+    public void RunSqlCommon(String strSqlName, String[] prms)
         {
             Boolean isConnect = false;
 
