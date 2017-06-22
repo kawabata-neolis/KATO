@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnJuchuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnHachuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
@@ -53,6 +54,8 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnUriageSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnSiireSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,6 +141,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnJuchuInput);
             this.tabPage1.Controls.Add(this.btnHachuInput);
             this.tabPage1.Controls.Add(this.btnTestWindow);
             this.tabPage1.Controls.Add(this.btnTanaInput);
@@ -147,6 +151,17 @@
             this.tabPage1.Size = new System.Drawing.Size(1392, 737);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
+            // 
+            // btnJuchuInput
+            // 
+            this.btnJuchuInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnJuchuInput.Location = new System.Drawing.Point(23, 157);
+            this.btnJuchuInput.Name = "btnJuchuInput";
+            this.btnJuchuInput.Size = new System.Drawing.Size(280, 40);
+            this.btnJuchuInput.TabIndex = 72;
+            this.btnJuchuInput.Text = "受注入力";
+            this.btnJuchuInput.UseVisualStyleBackColor = false;
+            this.btnJuchuInput.Click += new System.EventHandler(this.btnJuchuInput_Click);
             // 
             // btnHachuInput
             // 
@@ -173,7 +188,7 @@
             // 
             // btnTanaInput
             // 
-            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTanaInput.BackColor = System.Drawing.Color.Cyan;
             this.btnTanaInput.Location = new System.Drawing.Point(23, 33);
             this.btnTanaInput.Name = "btnTanaInput";
             this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
@@ -186,6 +201,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.btnSiireSuiiHyo);
+            this.tabPage2.Controls.Add(this.btnUriageSuiiHyo);
             this.tabPage2.Controls.Add(this.btnShohinMotochoKakunin);
             this.tabPage2.Controls.Add(this.btnZanKakunin);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
@@ -208,7 +225,7 @@
             // 
             // btnZanKakunin
             // 
-            this.btnZanKakunin.BackColor = System.Drawing.Color.LightYellow;
+            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
             this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
             this.btnZanKakunin.Name = "btnZanKakunin";
             this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
@@ -394,7 +411,7 @@
             // 
             // btnDaibunrui
             // 
-            this.btnDaibunrui.BackColor = System.Drawing.Color.Cyan;
+            this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
             this.btnDaibunrui.Location = new System.Drawing.Point(23, 33);
             this.btnDaibunrui.Name = "btnDaibunrui";
             this.btnDaibunrui.Size = new System.Drawing.Size(280, 40);
@@ -411,6 +428,28 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
+            // 
+            // btnUriageSuiiHyo
+            // 
+            this.btnUriageSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
+            this.btnUriageSuiiHyo.Location = new System.Drawing.Point(23, 231);
+            this.btnUriageSuiiHyo.Name = "btnUriageSuiiHyo";
+            this.btnUriageSuiiHyo.Size = new System.Drawing.Size(280, 40);
+            this.btnUriageSuiiHyo.TabIndex = 105;
+            this.btnUriageSuiiHyo.Text = "分類別売上推移表";
+            this.btnUriageSuiiHyo.UseVisualStyleBackColor = false;
+            this.btnUriageSuiiHyo.Click += new System.EventHandler(this.btnUriageSuiiHyo_Click);
+            // 
+            // btnSiireSuiiHyo
+            // 
+            this.btnSiireSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
+            this.btnSiireSuiiHyo.Location = new System.Drawing.Point(23, 165);
+            this.btnSiireSuiiHyo.Name = "btnSiireSuiiHyo";
+            this.btnSiireSuiiHyo.Size = new System.Drawing.Size(280, 40);
+            this.btnSiireSuiiHyo.TabIndex = 106;
+            this.btnSiireSuiiHyo.Text = "分類別仕入推移表";
+            this.btnSiireSuiiHyo.UseVisualStyleBackColor = false;
+            this.btnSiireSuiiHyo.Click += new System.EventHandler(this.btnSiireSuiiHyo_Click);
             // 
             // Z0000
             // 
@@ -473,5 +512,8 @@
         private Common.Ctl.BaseMenuButton btnShohinMotochoKakunin;
         private Common.Ctl.BaseMenuButton btnHachuInput;
         private Common.Ctl.BaseMenuButton txtChokusosaki;
+        private Common.Ctl.BaseMenuButton btnJuchuInput;
+        private Common.Ctl.BaseMenuButton btnSiireSuiiHyo;
+        private Common.Ctl.BaseMenuButton btnUriageSuiiHyo;
     }
 }
