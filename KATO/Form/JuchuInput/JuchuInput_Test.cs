@@ -267,5 +267,172 @@ namespace KATO.Form.JuchuInput
                 return;
             }
         }
+
+        //入金
+        private void baseText2_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    this.setNyukinList();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///setNyukinList
+        ///入金リストに移動
+        ///</summary>
+        private void setNyukinList()
+        {
+            NyukinList nyukinlist = new NyukinList(this);
+            try
+            {
+                //商品リストの表示、画面IDを渡す
+                nyukinlist.intFrmKind = CommonTeisu.FRM_TEST;
+                nyukinlist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// setDenpyo
+        /// 取り出したデータをテキストボックスに配置
+        /// </summary>
+        public void setDenpyo(DataTable dtSelectData)
+        {
+            txtNyukin.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
+        }
+
+        //支払
+        private void baseText3_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    this.setShiharaiList();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///setShiharaiList
+        ///支払リストに移動
+        ///</summary>
+        private void setShiharaiList()
+        {
+            //NyukinList nyukinlist = new NyukinList(this);
+            //try
+            //{
+            //    //商品リストの表示、画面IDを渡す
+            //    nyukinlist.intFrmKind = CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN;
+            //    nyukinlist.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    //エラーロギング
+            //    new CommonException(ex);
+            //    //例外発生メッセージ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return;
+            //}
+        }
     }
 }

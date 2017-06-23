@@ -66,6 +66,8 @@ namespace KATO.Common.Util
         public const int FRM_CHUBUNRUI = 1110;
         public const int FRM_GROUP = 1200;
 
+        public const int FRM_TEST = 9999;
+
         //メッセージボックスアイコン
         public const int DIAG_INFOMATION = 0;
         public const int DIAG_ERROR = 1;

@@ -13,21 +13,21 @@ using KATO.Common.Util;
 namespace KATO.Common.Ctl
 {
     ///<summary>
-    ///LabelSet_Tokuisaki
-    ///ラベルセット得意先（取引先）
+    ///LabelSet_Torihikikbn
+    ///ラベルセット得意先（取引区分）
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class LabelSet_Tokuisaki : BaseTextLabelSet
+    public partial class LabelSet_Torihikikbn : BaseTextLabelSet
     {
         /// <summary>
         /// LabelSet_Tokuisaki
         /// 読み込み時
         /// </summary>
-        public LabelSet_Tokuisaki()
+        public LabelSet_Torihikikbn()
         {
             InitializeComponent();
         }
@@ -49,31 +49,19 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                //親画面がグループボックスの場合
                 if (this.Parent is GroupBox)
                 {
-                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent.Parent, this);
-                    torihikisakiList.StartPosition = FormStartPosition.Manual;
-                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
-                    torihikisakiList.ShowDialog();
-                }
-                //親画面がBaseFormの場合
-                else if (this.Parent is BaseForm)
-                {
-                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this);
-                    torihikisakiList.StartPosition = FormStartPosition.Manual;
-                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
-                    torihikisakiList.ShowDialog();
+                    TorihikikbnList torihikikbnList = new TorihikikbnList(this.Parent.Parent, this);
+                    torihikikbnList.StartPosition = FormStartPosition.Manual;
+                    torihikikbnList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    torihikikbnList.ShowDialog();
                 }
                 else
                 {
-
-                    object obj = new object();
-
-                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this, obj);
-                    torihikisakiList.StartPosition = FormStartPosition.Manual;
-                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
-                    torihikisakiList.ShowDialog();
+                    TorihikikbnList torihikikbnList = new TorihikikbnList(this.Parent, this);
+                    torihikikbnList.StartPosition = FormStartPosition.Manual;
+                    torihikikbnList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    torihikikbnList.ShowDialog();
                 }
             }
             else if (e.KeyCode == Keys.Enter)
@@ -93,6 +81,8 @@ namespace KATO.Common.Ctl
             List<string> lstStringSQL = new List<string>();
 
             DataTable dtSetCd;
+
+            string strSQLName = null;
 
             Boolean blnGood;
 
@@ -132,14 +122,14 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (this.CodeTxtText.Length < 4)
+            if (this.CodeTxtText.Length < 2)
             {
-                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(2, '0');
             }
 
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+            lstStringSQL.Add("C_LIST_Torihikikbn_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -159,24 +149,7 @@ namespace KATO.Common.Ctl
                 //SQL文を直書き（＋戻り値を受け取る)
                 dtSetCd = dbconnective.ReadSql(strSQLInput);
 
-                if (dtSetCd.Rows.Count != 0)
-                {
-                    string strZeikubun = "";
-
-                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
-                    {
-                        strZeikubun = "外税";
-                    }
-                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
-                    {
-                        strZeikubun = "内税";
-                    }
-
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
-                    this.AppendLabelText = strZeikubun;
-                }
-                else
+                if (dtSetCd.Rows.Count == 0)
                 {
                     this.ValueLabelText = "";
 
@@ -252,7 +225,7 @@ namespace KATO.Common.Ctl
                 return;
             }
             
-            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
+            strSQLName = "C_LIST_Torihikikbn_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -283,17 +256,8 @@ namespace KATO.Common.Ctl
                 {
                     string strZeikubun = "";
 
-                    if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "0" || dtSetCd.Rows[0]["消費税計算区分"].ToString() == "2")
-                    {
-                        strZeikubun = "外税";
-                    }
-                    else if (dtSetCd.Rows[0]["消費税計算区分"].ToString() == "1")
-                    {
-                        strZeikubun = "内税";
-                    }
-
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.CodeTxtText = dtSetCd.Rows[0]["取引区分コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["取引区分名"].ToString();
                     this.AppendLabelText = strZeikubun;
                 }
                 return;

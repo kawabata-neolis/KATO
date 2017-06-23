@@ -60,6 +60,11 @@
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_Tokuisaki1 = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.baseCalendar2 = new KATO.Common.Ctl.BaseCalendar();
+            this.labelSet_Torihikikbn1 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtNyukin = new KATO.Common.Ctl.BaseText();
+            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtShiharai = new KATO.Common.Ctl.BaseText();
+            this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).BeginInit();
             this.SuspendLayout();
@@ -129,6 +134,7 @@
             this.baseLabel1.Location = new System.Drawing.Point(18, 371);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel1.strToolTip = null;
             this.baseLabel1.TabIndex = 86;
             this.baseLabel1.Text = "受注番号";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -140,6 +146,7 @@
             this.baseLabel2.Location = new System.Drawing.Point(215, 370);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel2.strToolTip = null;
             this.baseLabel2.TabIndex = 86;
             this.baseLabel2.Text = "受注単価";
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -151,6 +158,7 @@
             this.baseLabel3.Location = new System.Drawing.Point(508, 370);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel3.strToolTip = null;
             this.baseLabel3.TabIndex = 88;
             this.baseLabel3.Text = "仕入単価";
             this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -198,6 +206,7 @@
             this.money1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.money1.intDeciSet = 4;
             this.money1.intIntederSet = 5;
+            this.money1.intShishagonyu = 0;
             this.money1.Location = new System.Drawing.Point(778, 368);
             this.money1.MaxLength = 10;
             this.money1.Name = "money1";
@@ -324,6 +333,7 @@
             this.baseLabel4.Location = new System.Drawing.Point(599, 473);
             this.baseLabel4.Name = "baseLabel4";
             this.baseLabel4.Size = new System.Drawing.Size(71, 15);
+            this.baseLabel4.strToolTip = null;
             this.baseLabel4.TabIndex = 105;
             this.baseLabel4.Text = "編集可能";
             this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -335,6 +345,7 @@
             this.baseLabel5.Location = new System.Drawing.Point(43, 473);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(87, 15);
+            this.baseLabel5.strToolTip = null;
             this.baseLabel5.TabIndex = 105;
             this.baseLabel5.Text = "編集不可能";
             this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -376,12 +387,15 @@
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
             this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.labelSet_Daibunrui.CodeTxtSize = 33;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 44);
             this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(453, 22);
@@ -444,6 +458,7 @@
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 36;
             this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 3;
             this.labelSet_Maker.ValueLabelSize = 150;
             this.labelSet_Maker.ValueLabelText = "";
@@ -511,11 +526,76 @@
             this.baseCalendar2.TabIndex = 106;
             this.baseCalendar2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // labelSet_Torihikikbn1
+            // 
+            this.labelSet_Torihikikbn1.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn1.AppendLabelText = "";
+            this.labelSet_Torihikikbn1.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn1.CodeTxtText = "";
+            this.labelSet_Torihikikbn1.LabelName = "得意先コード";
+            this.labelSet_Torihikikbn1.Location = new System.Drawing.Point(398, 72);
+            this.labelSet_Torihikikbn1.Name = "labelSet_Torihikikbn1";
+            this.labelSet_Torihikikbn1.ShowAppendFlg = true;
+            this.labelSet_Torihikikbn1.Size = new System.Drawing.Size(642, 22);
+            this.labelSet_Torihikikbn1.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn1.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn1.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn1.TabIndex = 107;
+            this.labelSet_Torihikikbn1.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn1.ValueLabelText = "";
+            // 
+            // txtNyukin
+            // 
+            this.txtNyukin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNyukin.Location = new System.Drawing.Point(611, 144);
+            this.txtNyukin.Name = "txtNyukin";
+            this.txtNyukin.Size = new System.Drawing.Size(100, 22);
+            this.txtNyukin.TabIndex = 108;
+            this.txtNyukin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseText2_KeyDown);
+            // 
+            // baseLabel6
+            // 
+            this.baseLabel6.AutoSize = true;
+            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel6.Location = new System.Drawing.Point(554, 147);
+            this.baseLabel6.Name = "baseLabel6";
+            this.baseLabel6.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel6.strToolTip = null;
+            this.baseLabel6.TabIndex = 109;
+            this.baseLabel6.Text = "入金";
+            this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtShiharai
+            // 
+            this.txtShiharai.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai.Location = new System.Drawing.Point(611, 191);
+            this.txtShiharai.Name = "txtShiharai";
+            this.txtShiharai.Size = new System.Drawing.Size(100, 22);
+            this.txtShiharai.TabIndex = 108;
+            this.txtShiharai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseText3_KeyDown);
+            // 
+            // baseLabel7
+            // 
+            this.baseLabel7.AutoSize = true;
+            this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel7.Location = new System.Drawing.Point(554, 194);
+            this.baseLabel7.Name = "baseLabel7";
+            this.baseLabel7.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel7.strToolTip = null;
+            this.baseLabel7.TabIndex = 109;
+            this.baseLabel7.Text = "支払";
+            this.baseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // JuchuInput_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.Controls.Add(this.baseLabel7);
+            this.Controls.Add(this.txtShiharai);
+            this.Controls.Add(this.baseLabel6);
+            this.Controls.Add(this.txtNyukin);
+            this.Controls.Add(this.labelSet_Torihikikbn1);
             this.Controls.Add(this.baseCalendar2);
             this.Controls.Add(this.labelSet_Tokuisaki1);
             this.Controls.Add(this.labelSet_Tantousha);
@@ -582,6 +662,11 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.baseCalendar2, 0);
+            this.Controls.SetChildIndex(this.labelSet_Torihikikbn1, 0);
+            this.Controls.SetChildIndex(this.txtNyukin, 0);
+            this.Controls.SetChildIndex(this.baseLabel6, 0);
+            this.Controls.SetChildIndex(this.txtShiharai, 0);
+            this.Controls.SetChildIndex(this.baseLabel7, 0);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).EndInit();
             this.ResumeLayout(false);
@@ -616,5 +701,10 @@
         private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;
         private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki1;
         private Common.Ctl.BaseCalendar baseCalendar2;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn1;
+        private Common.Ctl.BaseText txtNyukin;
+        private Common.Ctl.BaseLabel baseLabel6;
+        private Common.Ctl.BaseText txtShiharai;
+        private Common.Ctl.BaseLabel baseLabel7;
     }
 }

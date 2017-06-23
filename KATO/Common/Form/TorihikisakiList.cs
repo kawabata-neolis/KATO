@@ -117,6 +117,39 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// TokuisakiList
+        /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）（リスト画面から）
+        /// </summary>
+        public TorihikisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect, object obj)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            lblSetTokuisaki = lblSetTokuiSelect;
+
+            InitializeComponent();
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+            this.btnF12.Text = "F12:戻る";
+            this.btnF11.Text = "F11:検索";
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 20;
+        }
+
+        /// <summary>
+        /// TokuisakiList
         /// 前画面からデータ受け取り(セットテキストボックス)（テキスト型）
         /// </summary>
         public TorihikisakiList(Control c, TextSet_Tokuisaki txtSetTokuiSelect)
