@@ -313,42 +313,153 @@ namespace KATO.Business.A0100_HachuInput_B
         ///setNewDenpyo
         ///伝票番号テーブルから新規伝票番号を得る
         ///</summary>
-        public string setNewDenpyo(string strTableName)
+        public DataTable setNewDenpyo(string strTableName)
         {
-            string strNewDenpyo = null;
-            object dummy = 0;
-            int returnval = 0;
-            string strSQL = null;
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
 
-            //SQLのインスタンス作成
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_HachuInput_Denpyo_UPDATE_SELECT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
-            //トランザクション開始
-            dbconnective.BeginTrans();
             try
             {
-                //strSQL = "get伝票番号_PROC '" + 1 + "','" + returnval + "','" + strTableName + "','" + dummy + "'";
-                //strSQL = "get伝票番号_PROC '" + strTableName + "'," + returnval + "";
-                //strSQL = "get伝票番号_PROC '" + returnval + "','" + strTableName + "'";
-                //strSQL = "get伝票番号_PROC " + 1 + ",'" + returnval + "','" + strTableName + "'";
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                //dbconnective.execSProcR("get伝票番号_PROC ", 1, returnval, strTableName,dummy);
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
 
-                //コミット開始
-                dbconnective.Commit();
-                return(returnval.ToString());
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTableName);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
                 throw (ex);
             }
             finally
             {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
+        }
 
+        ///<summary>
+        ///setTanka
+        ///発注テーブルから、過去５か月間に使用した単価を５つ取得
+        ///</summary>
+        public DataTable setTanka(string strTableName)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Hachu_SELECT_Tanka");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTableName);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///setShohin
+        ///商品DBの取得
+        ///</summary>
+        public DataTable setShohin(string strShohinCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Shohin_SELECT_LEAVE");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strShohinCd);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
     }
 }

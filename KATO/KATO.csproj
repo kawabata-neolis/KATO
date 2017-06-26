@@ -132,6 +132,7 @@
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
+    <Compile Include="Common\Business\NyukinList_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
@@ -296,6 +297,12 @@
     <Compile Include="Common\Ctl\LabelSet_Gyoshu.Designer.cs">
       <DependentUpon>LabelSet_Gyoshu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Torihikikbn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Torihikikbn.Designer.cs">
+      <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\TextSet_Tokuisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -331,6 +338,12 @@
     </Compile>
     <Compile Include="Common\Ctl\RadSet_5btn.Designer.cs">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\NyukinList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\NyukinList.Designer.cs">
+      <DependentUpon>NyukinList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\ChokusosakiList.cs">
       <SubType>Form</SubType>
@@ -684,6 +697,10 @@
       <DependentUpon>LabelSet_Gyoshu.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikikbn.resx">
+      <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\TextSet_Tokuisaki.resx">
       <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -703,6 +720,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_5btn.resx">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\NyukinList.resx">
+      <DependentUpon>NyukinList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChokusosakiList.resx">
       <DependentUpon>ChokusosakiList.cs</DependentUpon>
@@ -871,6 +892,9 @@
     <Content Include="Log4net.Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\NyukinList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\ChokusosakiList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -905,6 +929,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_NyukinList_SELECT_Denpyo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_NyukinList_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Hachu_SELECT_Tanka.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Hachu_SELECT_LEAVE.sql">
@@ -977,6 +1010,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohizeiritsu_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_HachuInput_Denpyo_UPDATE_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql">

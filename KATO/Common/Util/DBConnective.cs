@@ -69,7 +69,6 @@ namespace KATO.Common.Util
                 CON.Dispose();
                 CON = null;
             }
-
         }
 
         #endregion
@@ -146,6 +145,80 @@ namespace KATO.Common.Util
             }
         }
 
+        /// <summary>
+        /// SQLクエリを実行します。(PROC用(戻り値無し))
+        /// </summary>
+        /// <param name="sqlStr">SQLクエリ</param>
+        /// <param name="cmdType">コマンドタイプ</param>
+        public void RunSql(string sqlStr, CommandType cmdType, List<string> lstTableName, List<string> lstDataName)
+        {
+            Boolean isConnect = false;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect();
+                isConnect = true;
+            }
+
+            //UPDATE INSERT DELETE 用            
+            CM.CommandType = cmdType;
+            CM.CommandText = sqlStr;
+
+            //各該当データをPROCに適用
+            for(int cnt = 0; cnt < lstTableName.Count; cnt++)
+            {
+                CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+            }
+
+            CM.ExecuteNonQuery();
+
+            if (isConnect)
+            {
+                this.DB_Disconnect();
+            }
+        }
+
+        /// <summary>
+        /// SQLクエリを実行します。(PROC用(戻り値あり))
+        /// </summary>
+        /// <param name="sqlStr">SQLクエリ</param>
+        /// <param name="cmdType">コマンドタイプ</param>
+        public string RunSqlRe(string sqlStr, CommandType cmdType, List<string> lstTableName, List<string> lstDataName)
+        {
+            Boolean isConnect = false;
+
+            string strResult = null;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect();
+                isConnect = true;
+            }
+
+            //UPDATE INSERT DELETE 用            
+            CM.CommandType = cmdType;
+            CM.CommandText = sqlStr;
+
+            //各該当データをPROCに適用
+            for (int cnt = 0; cnt < lstTableName.Count; cnt++)
+            {
+                CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+                CM.Parameters.Add("@RetValue", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            }
+
+            CM.ExecuteNonQuery();
+
+            strResult = CM.Parameters["@RetValue"].Value.ToString();
+
+            if (isConnect)
+            {
+                this.DB_Disconnect();
+            }
+
+            return (strResult);
+        }
+
+
         public void RunSqlCommon(String strSqlName, String[] prms)
         {
             Boolean isConnect = false;
@@ -219,132 +292,6 @@ namespace KATO.Common.Util
                 throw ex;
             }
         }
-
-        ////#execSProcR() --- ストアドプロシージャをパラメータ付きで実行する（カーソル無し＆戻り値付き）
-        ////UPGRADE_WARNING: ParamArray param が ByRef から ByVal に変更されました。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="93C6A0DC-8C99-429A-8696-35FC4DCEFCCC"' をクリックしてください。
-        //public int execSProcR(string strSpName, short outputNO, object outputVal, params object[] param)
-        //{
-        //    // ERROR: Not supported in C#: OnErrorStatement
-
-        //    //ADODB.Command gCmd;
-        //    //ADODB.Parameter prm;
-        //    short paraCount;
-        //    short i;
-
-        //    //gLog.writeLog("SQL: execSProcR Start... [Timer=" + VB.Timer() + "])");
-
-        //    //gCmd = new ADODB.Command();
-        //    //gCmd.let_ActiveConnection(gCon);
-        //    //gCmd.CommandText = strSpName;
-        //    //gCmd.CommandType = ADODB.CommandTypeEnum.adCmdStoredProc;
-        //    //gCmd.CommandTimeout = 0;
-
-        //    paraCount = short.Parse(param.ToString());
-
-        //    if (paraCount >= 0)
-        //    {
-
-        //        for (i = 0; i <= paraCount; i++)
-        //        {
-
-        //            //prm = new ADODB.Parameter();
-        //            if (i == outputNO)
-        //            {
-        //                prm.Direction = ADODB.ParameterDirectionEnum.adParamReturnValue;
-        //            }
-        //            else
-        //            {
-        //                prm.Direction = ADODB.ParameterDirectionEnum.adParamInput;
-        //            }
-
-        //            //UPGRADE_WARNING: TypeName に新しい動作が指定されています。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"' をクリックしてください。
-        //            if (TypeName(param(i)) == "Long" | TypeName(param(i)) == "Integer")
-        //            {
-        //                // Integer
-        //                prm.Type = ADODB.DataTypeEnum.adInteger;
-        //                //UPGRADE_WARNING: オブジェクト param() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //                prm.Value = param(i);
-        //                //UPGRADE_WARNING: TypeName に新しい動作が指定されています。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"' をクリックしてください。
-        //            }
-        //            else if (TypeName(param(i)) == "Number" | TypeName(param(i)) == "Double")
-        //            {
-        //                // Double
-        //                prm.Type = ADODB.DataTypeEnum.adDouble;
-        //                //UPGRADE_WARNING: オブジェクト param() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //                prm.Value = param(i);
-        //                //UPGRADE_WARNING: TypeName に新しい動作が指定されています。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"' をクリックしてください。
-        //            }
-        //            else if (TypeName(param(i)) == "Date")
-        //            {
-        //                // Date
-        //                prm.Type = ADODB.DataTypeEnum.adDate;
-        //                //UPGRADE_WARNING: オブジェクト param() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //                prm.Value = param(i);
-        //                //UPGRADE_WARNING: TypeName に新しい動作が指定されています。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="9B7D5ADD-D8FE-4819-A36C-6DEDAF088CC7"' をクリックしてください。
-        //            }
-        //            else if (TypeName(param(i)) == "Currency")
-        //            {
-        //                // Currency
-        //                prm.Type = ADODB.DataTypeEnum.adCurrency;
-        //                //UPGRADE_WARNING: オブジェクト param() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //                prm.Value = param(i);
-        //            }
-        //            else
-        //            {
-        //                // Others ( String etc... )
-        //                prm.Type = ADODB.DataTypeEnum.adChar;
-        //                //UPGRADE_WARNING: Null/IsNull() の使用が見つかりました。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="2EED02CB-5C0E-4DC1-AE94-4FAA3A30F51A"' をクリックしてください。
-        //                if (IsDbNull(param(i)))
-        //                {
-        //                    prm.SIZE = 1;
-        //                    //UPGRADE_WARNING: Null/IsNull() の使用が見つかりました。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="2EED02CB-5C0E-4DC1-AE94-4FAA3A30F51A"' をクリックしてください。
-        //                    prm.Value = System.DBNull.Value;
-        //                }
-        //                else
-        //                {
-        //                    //UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-        //                    prm.SIZE = LenB(param(i));
-        //                    //UPGRADE_WARNING: オブジェクト param() の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //                    prm.Value = param(i);
-        //                }
-        //            }
-
-        //            gCmd.Parameters.Append(prm);
-
-        //        }
-        //    }
-
-        //    gCmd.Execute(, , ADODB.CommandTypeEnum.adCmdStoredProc);
-
-        //    if (gCon.Errors.Count > 0)
-        //        goto Err_Proc;
-
-
-        //    //UPGRADE_WARNING: オブジェクト outputVal の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v90/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-        //    outputVal = gCmd.Parameters(outputNO).Value;
-        //    execSProcR = 0;
-
-        //    gLog.writeLog("SQL: execSProcR Finish...[Timer=" + VB.Timer() + "])");
-
-        //    return;
-
-        //Err_Proc:
-        //    //    On Error Resume Next
-        //    if (Err.Number > 0)
-        //    {
-        //        msgError("execSProc Error");
-        //        gLog.writeLog("execSProc Error!!" + Err.Number + " : " + Err.Description);
-        //        execSProcR = Err.Number;
-        //    }
-        //    if (gCon.Errors.Count > 0)
-        //    {
-        //        msgError("execSProc Error");
-        //        gLog.writeLog("execSProc Error!!(Conn)" + gCon.Errors.Item(0).Number + " : " + gCon.Errors.Item(0).Description);
-        //        execSProcR = gCon.Errors.Item(0).Number;
-        //    }
-
-
-        //}
 
         /// <summary>
         /// ロールバックします。
