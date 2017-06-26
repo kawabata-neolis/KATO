@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0481_SiireSuiiHyoLevel2_B.cs" />

@@ -757,12 +757,9 @@ namespace KATO.Business.C0480_SiireSuiiHyo
 
             try
             {
-
-                // excelのインスタンス生成
-                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
-                IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
-                IXLWorksheet headersheet = worksheet;   // ヘッダーシート
-                IXLWorksheet currentsheet = worksheet;  // 処理中シート
+                string strHeader = "";
+                string strNow = DateTime.Now.ToString("yyyy/mm/dd hh:mm:ss");
+                string strSpace = "           ";
 
                 //Linqで必要なデータをselect
                 var outDataAll = dtSiireSuiiList.AsEnumerable()
@@ -804,29 +801,6 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 decKingaku[10] = outDataAll.Select(gokei => gokei.kingaku11).Sum();
                 decKingaku[11] = outDataAll.Select(gokei => gokei.kingaku12).Sum();
                 decKingaku[12] = outDataAll.Select(gokei => gokei.kingakuGoukei).Sum();
-
-                // リストをデータテーブルに変換
-                DataTable dtChkList = this.ConvertToDataTable(outDataAll);
-
-                int maxRowCnt = dtChkList.Rows.Count;
-                int maxColCnt = dtChkList.Columns.Count;
-                int pageCnt = 0;    // ページ(シート枚数)カウント
-                int rowCnt = 1;     // datatable処理行カウント
-                int xlsRowCnt = 1;  // Excel出力行カウント     1から5に変更すること
-                int maxPage = 0;    // 最大ページ数
-
-                // ページ数計算
-                double page = 1.0 * maxRowCnt / 30;
-                double decimalpart = page % 1;
-                if (decimalpart != 0)
-                {
-                    // 小数点以下が0でない場合、+1
-                    maxPage = (int)Math.Floor(page) + 1;
-                }
-                else
-                {
-                    maxPage = (int)page;
-                }
 
                 // 担当者計
                 var tantoGoukei = from tbl in dtSiireSuiiList.AsEnumerable()
@@ -953,7 +927,36 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     decKingakuEigyo[cnt, 12] = eigyoGoukei.ElementAt(cnt).kingakuGoukei;
                 }
 
+                // リストをデータテーブルに変換
+                DataTable dtChkList = this.ConvertToDataTable(outDataAll);
+
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
+                IXLWorksheet headersheet = worksheet;   // ヘッダーシート
+                IXLWorksheet currentsheet = worksheet;  // 処理中シート
+
+                int maxRowCnt = dtChkList.Rows.Count;
+                int maxColCnt = dtChkList.Columns.Count;
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int rowCnt = 1;     // datatable処理行カウント
+                int xlsRowCnt = 4;  // Excel出力行カウント（開始は出力行）
+                int maxPage = 0;    // 最大ページ数
+
+                // ページ数計算
                 maxRowCnt += tantoGoukei.Count() + groupGoukei.Count() + eigyoGoukei.Count();
+                double page = 1.0 * maxRowCnt / 30;
+                double decimalpart = page % 1;
+                if (decimalpart != 0)
+                {
+                    // 小数点以下が0でない場合、+1
+                    maxPage = (int)Math.Floor(page) + 1;
+                }
+                else
+                {
+                    maxPage = (int)page;
+                }
+
                 int tantoCnt = 0;
                 int tantoRowCnt = 0;
                 int groupCnt = 0;
@@ -970,37 +973,45 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     {
                         pageCnt++;
 
+                        // フォント、フォントサイズの指定
+                        //headersheet.Range("A3", "P1000").Style.Font.FontName = "ＭＳ 明朝";
+                        //headersheet.Range("A3", "P1000").Style.Font.FontSize = 9;
+
                         // タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");
                         titleCell.Value = "分類別仕入推移表";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        titleCell.Style.Font.FontSize = 14;
                         headersheet.Range("A1", "P1").Merge();
 
                         // 単位出力（P3のセル、右揃え）
-                        IXLCell unitCell = headersheet.Cell("P3");
+                        IXLCell unitCell = headersheet.Cell("P2");
                         unitCell.Value = "（単位：千円）";
                         unitCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
 
                         System.DateTime dateStartYMD = DateTime.Parse(strStartYM + "/01");
 
                         // ヘッダー出力（3行目のセル）
-                        headersheet.Cell("A4").Value = "コード";
-                        headersheet.Cell("B4").Value = "仕入先名";
-                        headersheet.Cell("C4").Value = "分類名";
-                        headersheet.Cell("D4").Value = dateStartYMD.AddMonths(0);  // 金額１
-                        headersheet.Cell("D4").Style.DateFormat.Format = "M月";
-                        headersheet.Cell("E4").Value = dateStartYMD.AddMonths(1);
-                        headersheet.Cell("F4").Value = dateStartYMD.AddMonths(2);
-                        headersheet.Cell("G4").Value = dateStartYMD.AddMonths(3);
-                        headersheet.Cell("H4").Value = dateStartYMD.AddMonths(4);
-                        headersheet.Cell("I4").Value = dateStartYMD.AddMonths(5);
-                        headersheet.Cell("J4").Value = dateStartYMD.AddMonths(6);
-                        headersheet.Cell("K4").Value = dateStartYMD.AddMonths(7);
-                        headersheet.Cell("L4").Value = dateStartYMD.AddMonths(8);
-                        headersheet.Cell("M4").Value = dateStartYMD.AddMonths(9);
-                        headersheet.Cell("N4").Value = dateStartYMD.AddMonths(10);
-                        headersheet.Cell("O4").Value = dateStartYMD.AddMonths(11);
-                        headersheet.Cell("P4").Value = "合計";  // 金額合計
+                        headersheet.Cell("A3").Value = "コード";
+                        headersheet.Cell("B3").Value = "仕入先名";
+                        headersheet.Cell("C3").Value = "分類名";
+                        headersheet.Cell("D3").Value = dateStartYMD.AddMonths(0);
+                        headersheet.Cell("E3").Value = dateStartYMD.AddMonths(1);
+                        headersheet.Cell("F3").Value = dateStartYMD.AddMonths(2);
+                        headersheet.Cell("G3").Value = dateStartYMD.AddMonths(3);
+                        headersheet.Cell("H3").Value = dateStartYMD.AddMonths(4);
+                        headersheet.Cell("I3").Value = dateStartYMD.AddMonths(5);
+                        headersheet.Cell("J3").Value = dateStartYMD.AddMonths(6);
+                        headersheet.Cell("K3").Value = dateStartYMD.AddMonths(7);
+                        headersheet.Cell("L3").Value = dateStartYMD.AddMonths(8);
+                        headersheet.Cell("M3").Value = dateStartYMD.AddMonths(9);
+                        headersheet.Cell("N3").Value = dateStartYMD.AddMonths(10);
+                        headersheet.Cell("O3").Value = dateStartYMD.AddMonths(11);
+                        headersheet.Cell("P3").Value = "合計";
+
+                        // 各月
+                        headersheet.Range("D3", "O3").Style.DateFormat.Format = "M月";
+                        headersheet.Range("D3", "O3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // セルの周囲に罫線を引く
                         headersheet.Range("A4", "P4").Style
@@ -1009,27 +1020,38 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-                        // 印刷体裁（横、印刷範囲）
-                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                        // 列幅の指定
+                        headersheet.Column(1).Width = 8;
+                        headersheet.Column(2).Width = 20;
+                        headersheet.Column(3).Width = 20;
+                        for (int cnt = 4; cnt < 19; cnt++)
+                        {
+                            headersheet.Column(cnt).Width = 8;
+                        }
+                        headersheet.Column(16).Width = 10;
+
+                        // 印刷体裁（B4横、印刷範囲）
                         headersheet.PageSetup.PaperSize = XLPaperSize.B4Paper;
+                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
 
                         // ヘッダーシートからコピー
                         headersheet.CopyTo("Page1");
                         currentsheet = workbook.Worksheet(2);
 
-                        // ページ数出力（P2のセル）
-                        currentsheet.Cell("P2").Value = "'" + pageCnt.ToString() + " / " + maxPage.ToString();
+                        // ヘッダー部の指定（日付とページ数出力）
+                        strHeader = strNow + strSpace + pageCnt.ToString() + " / " + maxPage.ToString();
+                        currentsheet.PageSetup.Header.Right.AddText(strHeader);
 
                     }
 
                     // 営業所名出力
                     if (eigyoRowCnt == 0)
                     {
-                        currentsheet.Cell(xlsRowCnt + 4, 1).Value = drSiireSuii[0];
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 16).Merge();
+                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireSuii[0];
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Merge();
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1041,11 +1063,11 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     // グループ名出力
                     if (groupRowCnt == 0)
                     {
-                        currentsheet.Cell(xlsRowCnt + 4, 1).Value = drSiireSuii[1];
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 16).Merge();
+                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireSuii[1];
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Merge();
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1057,11 +1079,11 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     // 担当者名出力
                     if (tantoRowCnt == 0)
                     {
-                        currentsheet.Cell(xlsRowCnt + 4, 1).Value = drSiireSuii[2];
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 16).Merge();
+                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireSuii[2];
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Merge();
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1080,7 +1102,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                         {
                             // 3桁毎に","を挿入する
                             str = string.Format("{0:#,0}", decimal.Parse(str));
-                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 4, colCnt - 3 + 1);
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, colCnt - 3 + 1);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                             kingakuCell.Value = str;
                         }
@@ -1091,21 +1113,21 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                             // 最初の行の場合 or 前行の仕入先コードが現在の仕入先コードが同じでない場合
                             if (!drSiireSuii[3].ToString().Equals(strSiireCode))
                             {
-                                currentsheet.Cell(xlsRowCnt + 4, colCnt - 3 + 1).Value = str;
+                                currentsheet.Cell(xlsRowCnt, colCnt - 3 + 1).Value = str;
                                 colCnt++;
-                                currentsheet.Cell(xlsRowCnt + 4, colCnt - 3 + 1).Value = drSiireSuii[4].ToString();
+                                currentsheet.Cell(xlsRowCnt, colCnt - 3 + 1).Value = drSiireSuii[4].ToString();
                                 strSiireCode = drSiireSuii[3].ToString();
                             }
                         }
                         else
                         {
-                            currentsheet.Cell(xlsRowCnt + 4, colCnt - 3 + 1).Value = str;
+                            currentsheet.Cell(xlsRowCnt, colCnt - 3 + 1).Value = str;
                         }
 
                     }
 
                     // 1行分のセルの周囲に罫線を引く
-                    currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                    currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                 .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                 .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                 .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1118,14 +1140,15 @@ namespace KATO.Business.C0480_SiireSuiiHyo
 
                         if (pageCnt <= maxPage)
                         {
-                            xlsRowCnt = 0;  // 0から4に変更すること
+                            xlsRowCnt = 3;
 
                             // ヘッダーシートからコピー
                             headersheet.CopyTo("Page" + pageCnt.ToString());
                             currentsheet = workbook.Worksheet(pageCnt + 1);
 
-                            // ページ数出力（P2のセル）
-                            currentsheet.Cell("P2").Value = "'" + pageCnt.ToString() + " / " + maxPage.ToString();
+                            // ヘッダー部の指定（日付とページ数出力）
+                            strHeader = strNow + strSpace + pageCnt.ToString() + " / " + maxPage.ToString();
+                            currentsheet.PageSetup.Header.Right.AddText(strHeader);
 
                         }
                     }
@@ -1136,21 +1159,21 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     {
                         xlsRowCnt++;
                         // セル結合、中央揃え
-                        IXLCell tantocell = currentsheet.Cell(xlsRowCnt + 4, 1);
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 2).Merge();
+                        IXLCell tantocell = currentsheet.Cell(xlsRowCnt, 1);
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 2).Merge();
                         tantocell.Value = "■■　担当者計　■■";
                         tantocell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // 金額セルの処理（3桁毎に","を挿入する）
                         for (int intCount = 0; intCount < 13; intCount++)
                         {
-                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 4, intCount + 4);
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, intCount);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                             kingakuCell.Value = string.Format("{0:#,0}", decKingakuTanto[tantoCnt, intCount]); 
                         }
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1167,21 +1190,21 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     {
                         xlsRowCnt++;
                         // セル結合、中央揃え
-                        IXLCell groupcell = currentsheet.Cell(xlsRowCnt + 4, 1);
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 2).Merge();
+                        IXLCell groupcell = currentsheet.Cell(xlsRowCnt, 1);
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 2).Merge();
                         groupcell.Value = "■■　グループ計　■■";
                         groupcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // 金額セルの処理（3桁毎に","を挿入する）
                         for (int intCount = 0; intCount < 13; intCount++)
                         {
-                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 4, intCount + 4);
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, intCount);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                             kingakuCell.Value = string.Format("{0:#,0}", decKingakuGroup[groupCnt, intCount]);
                         }
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1198,21 +1221,21 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     {
                         xlsRowCnt++;
                         // セル結合、中央揃え
-                        IXLCell eigyocell = currentsheet.Cell(xlsRowCnt + 4, 1);
-                        currentsheet.Range(xlsRowCnt + 4, 1, xlsRowCnt + 4, 2).Merge();
+                        IXLCell eigyocell = currentsheet.Cell(xlsRowCnt, 1);
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 2).Merge();
                         eigyocell.Value = "■■　営業所計　■■";
                         eigyocell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // 金額セルの処理（3桁毎に","を挿入する）
                         for (int intCount = 0; intCount < 13; intCount++)
                         {
-                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 4, intCount + 4);
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, intCount);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                             kingakuCell.Value = string.Format("{0:#,0}", decKingakuEigyo[eigyoCnt, intCount]);
                         }
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 4, 1), (currentsheet.Cell(xlsRowCnt + 4, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt, 1), (currentsheet.Cell(xlsRowCnt, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1227,22 +1250,21 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     if (maxRowCnt == rowCnt)
                     {
                         // セル結合、中央揃え
-                        IXLCell sumcell = currentsheet.Cell(xlsRowCnt + 5, 1);
-                        currentsheet.Range(xlsRowCnt + 5, 1, xlsRowCnt + 5, 2).Merge();
+                        IXLCell sumcell = currentsheet.Cell(xlsRowCnt + 1, 1);
+                        currentsheet.Range(xlsRowCnt + 1, 1, xlsRowCnt + 1, 2).Merge();
                         sumcell.Value = "■■　合　　計　■■";
                         sumcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // 金額セルの処理（3桁毎に","を挿入する）
                         for (int cnt = 0; cnt < 13; cnt++)
                         {
-                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 5, cnt + 4);
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 1, cnt);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                            kingakuCell.Value = decKingaku[cnt].ToString("#,0");
-                            //kingakuCell.Value = string.Format("{0:#,0}", decKingaku[cnt]);
+                            kingakuCell.Value = string.Format("{0:#,0}", decKingaku[cnt]);
                         }
 
                         // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 5, 1), (currentsheet.Cell(xlsRowCnt + 5, 16))).Style
+                        currentsheet.Range(currentsheet.Cell(xlsRowCnt + 1, 1), (currentsheet.Cell(xlsRowCnt + 1, 16))).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -1269,8 +1291,8 @@ namespace KATO.Business.C0480_SiireSuiiHyo
             }
             catch (Exception ex)
             {
-                // エラーロギング
                 new CommonException(ex);
+                //throw ex;
                 return;
             }
             finally
@@ -1354,8 +1376,8 @@ namespace KATO.Business.C0480_SiireSuiiHyo
             }
             catch (Exception ex)
             {
-                // エラーロギング
                 new CommonException(ex);
+                throw ex;
             }
                 return;
         }
@@ -1420,6 +1442,12 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     // リーダーを閉じる
                     reader.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+                throw ex;
             }
             finally
             {
