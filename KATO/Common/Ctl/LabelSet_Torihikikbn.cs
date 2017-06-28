@@ -69,6 +69,22 @@ namespace KATO.Common.Ctl
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
             }
+
+            //入金入力、支払入力の場合
+            //if (this.Parent.Name == "B0040_NyukinInput" || this.Parent.Name == "B0060_ShiharaiInput")
+            if (this.Parent.Name == "JuchuInput_Test")
+                {
+                if (e.KeyCode == Keys.Up)
+                {
+                    //SendKeys.SendWait("^{TAB}");
+                    this.SelectNextControl(this.ActiveControl, false, true, true, true);
+                }
+                else if (e.KeyCode == Keys.Down)
+                {
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                }
+            }
         }
 
         ///<summary>

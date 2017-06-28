@@ -118,11 +118,11 @@ namespace KATO.Common.Ctl
         //
         private void BaseComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ////parentが発注入力の場合(やり方不明)
-            //if (this.Parent.Name == "XXX")
-            //{
-
-            //}
+            //parentが発注入力の場合
+            if (this.Parent.Parent.Name == "A0100_HachuInput")
+            {
+                this.Text = this.SelectedItem.ToString().Split(':')[0];
+            }
 
             ////単価と年月日のみを分けて、単価のみをテキストに記載
             //this.Text = this.SelectedIndex.ToString().Split(':', StringSplitOptions.RemoveEmptyEntries);

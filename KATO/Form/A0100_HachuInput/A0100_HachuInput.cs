@@ -954,8 +954,7 @@ namespace KATO.Form.A0100_HachuInput
                         //条件付き単価の行数分
                         for (int cnt = 0; cnt < dtSetTanka.Rows.Count; cnt++)
                         {
-
-                            cmbHachutan.Items.Add(dtSetTanka.Rows[cnt]["発注単価"] + ":" + dtSetTanka.Rows[cnt]["日時"]);
+                            cmbHachutan.Items.Add(((decimal)dtSetTanka.Rows[cnt]["発注単価"]).ToString("#,#") + ":" + (((DateTime)dtSetTanka.Rows[cnt]["日時"]).Year.ToString()).Substring(2) + "/" + ((DateTime)dtSetTanka.Rows[cnt]["日時"]).Month + "/" + ((DateTime)dtSetTanka.Rows[cnt]["日時"]).Day);
                         }
                     }
 
@@ -964,8 +963,8 @@ namespace KATO.Form.A0100_HachuInput
                     labelSet_Hachusha.CodeTxtText = dtSetCd.Rows[0]["発注者コード"].ToString();
                     textSet_Tokuisaki.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
                     txtShohinCd.Text = dtSetCd.Rows[0]["商品コード"].ToString();
-                    txtHachusu.Text = dtSetCd.Rows[0]["発注数量"].ToString();
-                    cmbHachutan.Text = dtSetCd.Rows[0]["発注単価"].ToString();
+                    txtHachusu.Text = ((decimal)dtSetCd.Rows[0]["発注数量"]).ToString("#,#");
+                    cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,#");
                     txtNoki.Text = dtSetCd.Rows[0]["納期"].ToString();
                     txtChuban.Text = dtSetCd.Rows[0]["注番"].ToString();
 
@@ -994,13 +993,6 @@ namespace KATO.Form.A0100_HachuInput
                                    + ((TextBox)txtData4).Text.Trim() + " "
                                    + ((TextBox)txtData5).Text.Trim() + " "
                                    + ((TextBox)txtData6).Text.Trim() + " ";
-
-
-                    //フォーカス位置の確保
-                    Control cActive = this.ActiveControl;
-
-                    //フォーカスを当てて中身を適切なものに置き換える必要がある
-                    txtHachusu.Focus();
 
                     txtHachusu.Enabled = true;
                     cmbHachutan.Enabled = true;
@@ -1036,11 +1028,6 @@ namespace KATO.Form.A0100_HachuInput
 
                     //棚番、大分類、中分類、メーカー、商品情報の取得、記入
                     setShohin();
-
-                    //データグリッドビュー表示のために一度フォーカスを当てる
-                    textSet_Tokuisaki.Focus();
-
-                    cActive.Focus();
                 }
             }
             catch (Exception ex)
