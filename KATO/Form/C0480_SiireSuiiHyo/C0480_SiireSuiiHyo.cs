@@ -360,12 +360,12 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         {
             System.DateTime dateYMopen;
 
-            // ここにDateTimeに変更した際にフォーカスを戻す処理を入れる
-
-
             // 期間終了の日付設定
-            dateYMopen = DateTime.Parse(txtCalendarYMopen.Text + "/01");
-            txtCalendarYMclose.Text = dateYMopen.AddMonths(11).ToString().Substring(0, 10);
+            //dateYMopen = DateTime.Parse(txtCalendarYMopen.Text + "/01");
+            if (DateTime.TryParse(txtCalendarYMopen.Text + "/01", out dateYMopen))
+            {
+                txtCalendarYMclose.Text = dateYMopen.AddMonths(11).ToString().Substring(0, 10);
+            }
 
             // 期間以外のテキストボックスをクリアにする
             delText();
@@ -394,6 +394,19 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         private void txtCalendarYMcloseKeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+            return;
+        }
+
+        /// <summary>
+        /// txtCalendar_KeyDown
+        /// 期間終了のKeyDownイベント
+        /// </summary>
+        private void txtCalendarYMcloseKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                e.Handled = true;
+            }
             return;
         }
 
@@ -593,6 +606,11 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             {
                 // エラーロギング
                 new CommonException(ex);
+
+                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 return;
             }
 

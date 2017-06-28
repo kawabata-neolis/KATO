@@ -354,6 +354,7 @@
             this.txtCalendarYMclose.TabIndex = 101;
             this.txtCalendarYMclose.TabStop = false;
             this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCalendarYMclose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCalendarYMcloseKeyDown);
             this.txtCalendarYMclose.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalendarYMcloseKeyPress);
             // 
             // txtCalendarYMopen
