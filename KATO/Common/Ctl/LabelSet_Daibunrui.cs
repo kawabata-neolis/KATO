@@ -124,14 +124,25 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
+                //親画面がグループボックスの場合
                 if (this.Parent is GroupBox)
                 {
                     DaibunruiList daibunruiList = new DaibunruiList(this.Parent.Parent, this);
                     daibunruiList.Show();
                 }
-                else
+                //親画面がBaseFormの場合
+                else if (this.Parent is BaseForm)
                 {
                     DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
+                    daibunruiList.Show();
+                }
+                //親画面がLIST画面の場合
+                else
+                {
+                    //他と判別させるために空のオブジェクトを作成する
+                    object obj = new object();
+
+                    DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this, obj);
                     daibunruiList.Show();
                 }
             }

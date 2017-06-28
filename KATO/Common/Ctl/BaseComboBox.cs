@@ -121,11 +121,12 @@ namespace KATO.Common.Ctl
             //parentが発注入力の場合
             if (this.Parent.Parent.Name == "A0100_HachuInput")
             {
-                this.Text = this.SelectedItem.ToString().Split(':')[0];
-            }
+                //string[] strMoney = this.SelectedItem.ToString().Split(':');
+                //this.Text = strMoney[0].ToString();
 
-            ////単価と年月日のみを分けて、単価のみをテキストに記載
-            //this.Text = this.SelectedIndex.ToString().Split(':', StringSplitOptions.RemoveEmptyEntries);
+
+                this.Text = "";
+            }
         }
     }
 }

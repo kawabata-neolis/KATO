@@ -304,6 +304,12 @@
     <Compile Include="Common\Ctl\LabelSet_Torihikikbn.Designer.cs">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\RadSet_6btn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\RadSet_6btn.Designer.cs">
+      <DependentUpon>RadSet_6btn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\TextSet_Tokuisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -712,6 +718,9 @@
     <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikikbn.resx">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\RadSet_6btn.resx">
+      <DependentUpon>RadSet_6btn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\TextSet_Tokuisaki.resx">
       <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>

@@ -2041,7 +2041,7 @@
             this.labelSet_GyoshuCd.SpaceNameCode = 56;
             this.labelSet_GyoshuCd.SpaceValueAppend = 4;
             this.labelSet_GyoshuCd.TabIndex = 4;
-            this.labelSet_GyoshuCd.ValueLabelSize = 120;
+            this.labelSet_GyoshuCd.ValueLabelSize = 160;
             this.labelSet_GyoshuCd.ValueLabelText = "";
             // 
             // cmbNonyu

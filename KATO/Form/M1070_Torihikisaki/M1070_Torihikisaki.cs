@@ -863,7 +863,7 @@ namespace KATO.Form.M1070_Torihikisaki
             //会社内容関係
             txtSiha.Text = dtSelectData.Rows[0]["変則支払条件"].ToString();
             txtDaihyo.Text = dtSelectData.Rows[0]["取引先代表者名"].ToString();
-            txtSihon.Text = dtSelectData.Rows[0]["取引先資本金"].ToString();
+            txtSihon.Text = ((decimal)dtSelectData.Rows[0]["取引先資本金"]).ToString("#,#");
             txtSeturitu.Text = dtSelectData.Rows[0]["設立年月日"].ToString();
             txtJugyo.Text = dtSelectData.Rows[0]["従業員数"].ToString();
             txtKesan.Text = dtSelectData.Rows[0]["決算日"].ToString();
@@ -989,13 +989,6 @@ namespace KATO.Form.M1070_Torihikisaki
                 {
                     setTorihikisaki(dtSetCd);
                 }
-
-                //フォーカス位置の確保
-                Control cActive = this.ActiveControl;
-
-                //金額の表示をさせるため、一度対象にフォーカスさせる
-                txtSihon.Focus();
-                cActive.Focus();
             }
             catch (Exception ex)
             {

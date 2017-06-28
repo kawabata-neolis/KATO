@@ -57,7 +57,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォームの初期設定（通常のテキストボックスから）
+        /// フォームの初期設定（通常テキストボックス）
         /// </summary>
         public DaibunruiList(Control c)
         {
@@ -82,7 +82,7 @@ namespace KATO.Common.Form
 
         /// <summary>
         /// DaibunruiList
-        /// フォームの初期設定（ラベルセットから）
+        /// フォームの初期設定（セットテキストボックス）
         /// </summary>
         public DaibunruiList(Control c, LabelSet_Daibunrui lblSetDaibunSelect)
         {
@@ -106,6 +106,34 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
+        }
+
+        /// <summary>
+        /// DaibunruiList
+        /// フォームの初期設定（セットテキストボックス）（LIST画面から）
+        /// </summary>
+        public DaibunruiList(Control c, LabelSet_Daibunrui lblSetDaibunSelect, object obj)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            lblSetDaibun = lblSetDaibunSelect;
+
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 30;
         }
 
         /// <summary>

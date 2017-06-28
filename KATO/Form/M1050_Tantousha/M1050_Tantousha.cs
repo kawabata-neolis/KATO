@@ -29,9 +29,6 @@ namespace KATO.Form.M1050_Tantousha
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //コード内の無限ループを抜けるためのもの
-        public Boolean blnLoopOne = true;
-
         ///<summary>
         ///M1050_Tantousha
         ///フォームの初期設定
@@ -521,7 +518,7 @@ namespace KATO.Form.M1050_Tantousha
             labelSet_Eigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
             txtChuban.Text = dtSelectData.Rows[0]["注番文字"].ToString();
             labelSet_GroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
-            txtMokuhyou.Text = dtSelectData.Rows[0]["年間売上目標"].ToString();
+            txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,#");
         }
 
         /// <summary>
@@ -530,13 +527,6 @@ namespace KATO.Form.M1050_Tantousha
         /// </summary>
         public void updTxtTantoushaLeave(object sender, EventArgs e)
         {
-            //無限ループさせないようにする
-            if (blnLoopOne == false)
-            {
-                blnLoopOne = true;
-                return;
-            }
-
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
@@ -586,19 +576,6 @@ namespace KATO.Form.M1050_Tantousha
                 {
                     setTantousha(dtSetCd);
                 }
-
-                //フォーカス位置の確保
-                Control c = this.ActiveControl;
-
-                //金額の表示をさせるため、一度対象にフォーカスさせる
-                txtMokuhyou.Focus();
-                txtTantoushaCd.Focus();
-
-                //１回分のループ完了
-                blnLoopOne = false;
-
-                //元のフォーカス位置に移動
-                c.Focus();
             }
             catch (Exception ex)
             {

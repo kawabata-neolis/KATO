@@ -286,7 +286,7 @@ namespace KATO.Business.M1070_Torihikisaki
                 strSQLInput = string.Format(strSQLInput, strTorihikiCD);
 
                 //SQL接続後、該当データを取得
-                dtSetCd_B = dbconnective.ReadSql(strTorihikiCD);
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 return (dtSetCd_B);
             }
