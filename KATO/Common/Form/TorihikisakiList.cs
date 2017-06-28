@@ -145,7 +145,7 @@ namespace KATO.Common.Form
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 20;
+            this.Top = c.Top + 30;
         }
 
         /// <summary>

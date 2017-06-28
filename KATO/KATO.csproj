@@ -131,6 +131,7 @@
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
+    <Compile Include="Common\Business\ShiharaiList_B.cs" />
     <Compile Include="Common\Business\NyukinList_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
@@ -338,6 +339,12 @@
     <Compile Include="Common\Ctl\RadSet_5btn.Designer.cs">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\BaseComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Form\BaseComboBox.Designer.cs">
+      <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\NyukinList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +368,12 @@
     </Compile>
     <Compile Include="Common\Form\GyoshuList.Designer.cs">
       <DependentUpon>GyoshuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\ShiharaiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ShiharaiList.Designer.cs">
+      <DependentUpon>ShiharaiList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\ShohizeiritsuList.cs">
       <SubType>Form</SubType>
@@ -611,7 +624,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseComboBox.resx">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseDataGridViewEdit.resx">
       <DependentUpon>BaseDataGridViewEdit.cs</DependentUpon>
@@ -720,6 +732,9 @@
     <EmbeddedResource Include="Common\Ctl\RadSet_5btn.resx">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\BaseComboBox.resx">
+      <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\NyukinList.resx">
       <DependentUpon>NyukinList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -737,6 +752,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\GyoshuList.resx">
       <DependentUpon>GyoshuList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShiharaiList.resx">
+      <DependentUpon>ShiharaiList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ShohizeiritsuList.resx">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
@@ -891,6 +909,9 @@
     <Content Include="Log4net.Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\ShiharaiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\NyukinList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -928,6 +949,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_ShiharaiList_SELECT_Denpyo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_ShiharaiList_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_NyukinList_SELECT_Denpyo.sql">

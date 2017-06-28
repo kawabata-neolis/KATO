@@ -389,12 +389,10 @@
             // 
             this.cmbHachutan.blnBlankFlg = false;
             this.cmbHachutan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.cmbHachutan.FormattingEnabled = true;
-            this.cmbHachutan.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.cmbHachutan.Location = new System.Drawing.Point(270, 168);
+            this.cmbHachutan.Location = new System.Drawing.Point(265, 168);
             this.cmbHachutan.Name = "cmbHachutan";
             this.cmbHachutan.Size = new System.Drawing.Size(121, 23);
-            this.cmbHachutan.TabIndex = 7;
+            this.cmbHachutan.TabIndex = 105;
             // 
             // lblHachutan
             // 
@@ -586,7 +584,7 @@
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
             this.labelSet_Maker.Location = new System.Drawing.Point(20, 85);
-            this.labelSet_Maker.Margin = new System.Windows.Forms.Padding(4);
+            this.labelSet_Maker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
             this.labelSet_Maker.Size = new System.Drawing.Size(343, 22);
@@ -606,7 +604,7 @@
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.LabelName = "中分類";
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(20, 56);
-            this.labelSet_Chubunrui.Margin = new System.Windows.Forms.Padding(4);
+            this.labelSet_Chubunrui.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
             this.labelSet_Chubunrui.Size = new System.Drawing.Size(343, 22);
@@ -631,7 +629,7 @@
             this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
             this.labelSet_Daibunrui.LsSubmakerdata = null;
-            this.labelSet_Daibunrui.Margin = new System.Windows.Forms.Padding(4);
+            this.labelSet_Daibunrui.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(343, 22);

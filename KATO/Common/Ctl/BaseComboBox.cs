@@ -112,5 +112,20 @@ namespace KATO.Common.Ctl
 
             return (blnNull);
         }
+
+        //
+        //コンボボックスのリストを選択後
+        //
+        private void BaseComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ////parentが発注入力の場合(やり方不明)
+            //if (this.Parent.Name == "XXX")
+            //{
+
+            //}
+
+            ////単価と年月日のみを分けて、単価のみをテキストに記載
+            //this.Text = this.SelectedIndex.ToString().Split(':', StringSplitOptions.RemoveEmptyEntries);
+        }
     }
 }

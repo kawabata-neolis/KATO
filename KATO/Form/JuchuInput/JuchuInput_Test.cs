@@ -347,15 +347,6 @@ namespace KATO.Form.JuchuInput
             }
         }
 
-        /// <summary>
-        /// setDenpyo
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
-        public void setDenpyo(DataTable dtSelectData)
-        {
-            txtNyukin.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
-        }
-
         //支払
         private void baseText3_KeyDown(object sender, KeyEventArgs e)
         {
@@ -417,22 +408,58 @@ namespace KATO.Form.JuchuInput
         ///</summary>
         private void setShiharaiList()
         {
-            //NyukinList nyukinlist = new NyukinList(this);
-            //try
-            //{
-            //    //商品リストの表示、画面IDを渡す
-            //    nyukinlist.intFrmKind = CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN;
-            //    nyukinlist.ShowDialog();
-            //}
-            //catch (Exception ex)
-            //{
-            //    //エラーロギング
-            //    new CommonException(ex);
-            //    //例外発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
-            //    return;
-            //}
+            ShiharaiList shiharailist = new ShiharaiList(this);
+            try
+            {
+                //商品リストの表示、画面IDを渡す
+                shiharailist.intFrmKind = CommonTeisu.FRM_TEST;
+                shiharailist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// setNyukinDenpyo
+        /// 取り出したデータをテキストボックスに配置
+        /// </summary>
+        public void setNyukinDenpyo(DataTable dtSelectData)
+        {
+            txtNyukin.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
+        }
+
+        ///<summary>
+        ///setNyukinListClose
+        ///setNyukinListCloseが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void setNyukinListClose()
+        {
+            txtNyukin.Focus();
+        }
+
+        /// <summary>
+        /// setShiharaiDenpyo
+        /// 取り出したデータをテキストボックスに配置
+        /// </summary>
+        public void setShiharaiDenpyo(DataTable dtSelectData)
+        {
+            txtShiharai.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
+        }
+
+        ///<summary>
+        ///setShiharaiListClose
+        ///setShiharaiListCloseが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void setShiharaiListClose()
+        {
+            txtShiharai.Focus();
         }
     }
 }

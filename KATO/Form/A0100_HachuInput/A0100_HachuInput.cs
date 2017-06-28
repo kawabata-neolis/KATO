@@ -782,12 +782,6 @@ namespace KATO.Form.A0100_HachuInput
         /// </summary>
         private void setSelectItem()
         {
-            //発注番号が記入されていない場合
-            if (txtHachuban.Text == "")
-            {
-                return;
-            }
-
             //コンボボックスの中身初期化
             cmbHachutan.Items.Clear();
 
@@ -960,7 +954,8 @@ namespace KATO.Form.A0100_HachuInput
                         //条件付き単価の行数分
                         for (int cnt = 0; cnt < dtSetTanka.Rows.Count; cnt++)
                         {
-                            cmbHachutan.Items.Add(dtSetTanka.Rows[cnt]["発注単価"]);
+
+                            cmbHachutan.Items.Add(dtSetTanka.Rows[cnt]["発注単価"] + ":" + dtSetTanka.Rows[cnt]["日時"]);
                         }
                     }
 

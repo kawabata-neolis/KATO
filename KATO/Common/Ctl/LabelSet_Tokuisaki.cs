@@ -65,9 +65,10 @@ namespace KATO.Common.Ctl
                     torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     torihikisakiList.ShowDialog();
                 }
+                //親画面がLIST画面の場合
                 else
                 {
-
+                    //他と判別させるために空のオブジェクトを作成する
                     object obj = new object();
 
                     TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this, obj);

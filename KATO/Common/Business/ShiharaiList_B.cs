@@ -13,7 +13,7 @@ using KATO.Form.JuchuInput;
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///NyukinList_B
+    ///ShiharaiList_B
     ///中分類リストフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
@@ -21,7 +21,7 @@ namespace KATO.Common.Business
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class NyukinList_B
+    class ShiharaiList_B
     {
         ///<summary>
         ///setDatagridView
@@ -51,7 +51,7 @@ namespace KATO.Common.Business
                     //SQLファイルのパスとファイル名を追加
                     lstSQL.Add("Common");
                     lstSQL.Add("CommonForm");
-                    lstSQL.Add("NyukinList_View");
+                    lstSQL.Add("ShiharaiList_View");
 
                     //SQL発行
                     OpenSQL opensql = new OpenSQL();
@@ -66,7 +66,7 @@ namespace KATO.Common.Business
                 {
                     //SQLファイルのパスとファイル名を追加
                     lstSQL.Add("Common");
-                    lstSQL.Add("C_LIST_NyukinList_SELECT");
+                    lstSQL.Add("C_LIST_ShiharaiList_SELECT");
 
                     //SQL発行
                     OpenSQL opensql = new OpenSQL();
@@ -104,7 +104,7 @@ namespace KATO.Common.Business
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_NyukinList_SELECT_Denpyo");
+            lstSQL.Add("C_LIST_ShiharaiList_SELECT_Denpyo");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData = new DataTable();
@@ -144,14 +144,14 @@ namespace KATO.Common.Business
                             {
                                 //データを連れてくるため、newをしないこと
                                 JuchuInput_Test test = (JuchuInput_Test)frm;
-                                test.setNyukinDenpyo(dtSelectData);
+                                test.setShiharaiDenpyo(dtSelectData);
                                 break;
                             }
                         }
                         break;
-
+                        
                     //取得したコードを元のフォームに送るメソッド
-                    ////直送先のフォームを探す
+                    ////入金リストのフォームを探す
                     //if (frm.Name == "M1100_Chokusosaki")
                     //{
                     //    //データを連れてくるため、newをしないこと
@@ -190,10 +190,9 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     JuchuInput_Test test = (JuchuInput_Test)frm;
-                    test.setNyukinListClose();
+                    test.setShiharaiListClose();
                 }
 
-                //元画面の指定した場所にフォーカスを当てる処理
                 ////直送先のフォームを探す
                 //if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "M1100_Chokusosaki")
                 //{

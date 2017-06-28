@@ -16,15 +16,15 @@ using KATO.Common.Ctl;
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///NyukinList
-    ///入金リストフォーム
+    ///ShiharaiList
+    ///支払リストフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class NyukinList : System.Windows.Forms.Form
+    public partial class ShiharaiList : System.Windows.Forms.Form
     {
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -51,11 +51,11 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// NyukinList
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
-        public NyukinList(Control c)
+        ///<summary>
+        ///ShiharaiList
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
+        public ShiharaiList(Control c)
         {
             //画面データが解放されていた時の対策
             if (c == null)
@@ -77,13 +77,13 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///NyukinList_Load
+        ///ShiharaiList_Load
         ///画面レイアウト設定
         ///</summary>
-        private void NyukinList_Load(object sender, EventArgs e)
+        private void ShiharaiList_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "入金リスト";
+            this._Title = "支払リスト";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF11.Text = "F11:検索";
@@ -103,19 +103,19 @@ namespace KATO.Common.Form
 
             //データをバインド
             DataGridViewTextBoxColumn YMD = new DataGridViewTextBoxColumn();
-            YMD.DataPropertyName = "入金年月日";
-            YMD.Name = "入金年月日";
+            YMD.DataPropertyName = "支払年月日";
+            YMD.Name = "支払年月日";
             YMD.HeaderText = "年月日";
 
-            DataGridViewTextBoxColumn tokuisaki = new DataGridViewTextBoxColumn();
-            tokuisaki.DataPropertyName = "得意先名";
-            tokuisaki.Name = "得意先名";
-            tokuisaki.HeaderText = "得意先";
+            DataGridViewTextBoxColumn shiresaki = new DataGridViewTextBoxColumn();
+            shiresaki.DataPropertyName = "仕入先名";
+            shiresaki.Name = "仕入先名";
+            shiresaki.HeaderText = "仕入先名";
 
-            DataGridViewTextBoxColumn nyukin = new DataGridViewTextBoxColumn();
-            nyukin.DataPropertyName = "入金額";
-            nyukin.Name = "入金額";
-            nyukin.HeaderText = "入金額";
+            DataGridViewTextBoxColumn shiharai = new DataGridViewTextBoxColumn();
+            shiharai.DataPropertyName = "支払額";
+            shiharai.Name = "支払額";
+            shiharai.HeaderText = "支払額";
 
             DataGridViewTextBoxColumn denpyo = new DataGridViewTextBoxColumn();
             denpyo.DataPropertyName = "伝票番号";
@@ -124,9 +124,12 @@ namespace KATO.Common.Form
 
             //個々の幅、文章の寄せ
             setColumn(YMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumn(nyukin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumn(denpyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(shiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumn(shiharai, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumn(denpyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+
+            //伝票番号の列を非表示にする
+            gridTokui.Columns["伝票番号"].Visible = false;
         }
 
         ///<summary>
@@ -157,11 +160,11 @@ namespace KATO.Common.Form
         private void setDatagridView()
         {
             //ビジネス層のインスタンス生成
-            NyukinList_B nyukinlistB = new NyukinList_B();
+            ShiharaiList_B shiharailistB = new ShiharaiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = nyukinlistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridTokui.DataSource = shiharailistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -179,10 +182,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///NyukinList_KeyDown
+        ///ShiharaiList_KeyDown
         ///キー入力判定（画面全般）
         ///</summary>
-        private void NyukinList_KeyDown(object sender, KeyEventArgs e)
+        private void ShiharaiList_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -258,11 +261,11 @@ namespace KATO.Common.Form
             this.Close();
 
             //ビジネス層のインスタンス生成
-            NyukinList_B nyukinlistB = new NyukinList_B();
+            ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
                 //ビジネス層、移動元フォームに移動するロジックに移動
-                nyukinlistB.setEndAction(intFrmKind);
+                chokusosakilistB.setEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -291,71 +294,14 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///gridTokui_DoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>        
-        private void gridChoku_DoubleClick(object sender, EventArgs e)
+        private void gridTokui_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
 
-        ///<summary>
-        ///setSelectItem
-        ///データグリッドビュー内のデータ選択後の処理
-        ///</summary>        
-        private void setSelectItem()
-        {
-            //取引コードを入れる用
-            DataTable dtTorihikiCd = new DataTable();
-
-            //検索結果にデータが存在しなければ終了
-            if (gridTokui.RowCount == 0)
-            {
-                return;
-            }
-
-            //ビジネス層のインスタンス生成
-            NyukinList_B nyukinkistB = new NyukinList_B();
-            try
-            {
-                //ビジネス層、検索ロジックに移動
-                nyukinkistB.setSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
-
-                setEndAction();
-            }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
-        }
-
-        ///<summary>
-        ///CreateParams
-        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
-        ///</summary>        
-        protected override CreateParams CreateParams
-        {
-            [SecurityPermission(SecurityAction.Demand,
-                Flags = SecurityPermissionFlag.UnmanagedCode)]
-            get
-            {
-                const int FRM_NOCLOSE = 0x200;
-                CreateParams cpForm = base.CreateParams;
-                cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
-
-                return cpForm;
-            }
-        }
-
-        ///<summary>
-        ///setGridSeihinDoubleClick
-        ///キー入力判定（グリッドビュー内）
-        ///</summary>        
         private void gridTokui_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -410,6 +356,59 @@ namespace KATO.Common.Form
 
                 default:
                     break;
+            }
+        }
+
+        ///<summary>
+        ///setSelectItem
+        ///データグリッドビュー内のデータ選択後の処理
+        ///</summary>        
+        private void setSelectItem()
+        {
+            //取引コードを入れる用
+            DataTable dtTorihikiCd = new DataTable();
+
+            //検索結果にデータが存在しなければ終了
+            if (gridTokui.RowCount == 0)
+            {
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
+            ShiharaiList_B shiharailistB = new ShiharaiList_B();
+            try
+            {
+                //ビジネス層、検索ロジックに移動
+                shiharailistB.setSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
+
+                setEndAction();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>        
+        protected override CreateParams CreateParams
+        {
+            [SecurityPermission(SecurityAction.Demand,
+                Flags = SecurityPermissionFlag.UnmanagedCode)]
+            get
+            {
+                const int FRM_NOCLOSE = 0x200;
+                CreateParams cpForm = base.CreateParams;
+                cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
+
+                return cpForm;
             }
         }
     }
