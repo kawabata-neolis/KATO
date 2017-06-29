@@ -388,63 +388,6 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///judGridToriKeyDown
-        ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        ///</summary>        
-        private void judGridToriKeyDown(object sender, KeyEventArgs e)
-        {
-            //キー入力情報によって動作を変える
-            switch (e.KeyCode)
-            {
-                case Keys.Tab:
-                    break;
-                case Keys.Left:
-                    break;
-                case Keys.Right:
-                    break;
-                case Keys.Up:
-                    break;
-                case Keys.Down:
-                    break;
-                case Keys.Delete:
-                    break;
-                case Keys.Back:
-                    break;
-                case Keys.Enter:
-                    //ダブルクリックと同じ効果
-                    setSelectItem();
-                    break;
-                case Keys.F1:
-                    break;
-                case Keys.F2:
-                    break;
-                case Keys.F3:
-                    break;
-                case Keys.F4:
-                    break;
-                case Keys.F5:
-                    break;
-                case Keys.F6:
-                    break;
-                case Keys.F7:
-                    break;
-                case Keys.F8:
-                    break;
-                case Keys.F9:
-                    break;
-                case Keys.F10:
-                    break;
-                case Keys.F11:
-                    break;
-                case Keys.F12:
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        ///<summary>
         ///setGridTorihiki_DoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>

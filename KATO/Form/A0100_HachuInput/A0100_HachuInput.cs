@@ -954,6 +954,12 @@ namespace KATO.Form.A0100_HachuInput
                         //条件付き単価の行数分
                         for (int cnt = 0; cnt < dtSetTanka.Rows.Count; cnt++)
                         {
+                            //テキストボックス表示用の0行目
+                            if (cnt == 0)
+                            {
+                                cmbHachutan.Items.Add("");
+                            }
+
                             cmbHachutan.Items.Add(((decimal)dtSetTanka.Rows[cnt]["発注単価"]).ToString("#,#") + ":" + (((DateTime)dtSetTanka.Rows[cnt]["日時"]).Year.ToString()).Substring(2) + "/" + ((DateTime)dtSetTanka.Rows[cnt]["日時"]).Month + "/" + ((DateTime)dtSetTanka.Rows[cnt]["日時"]).Day);
                         }
                     }
@@ -1039,6 +1045,20 @@ namespace KATO.Form.A0100_HachuInput
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        private void cmbHachutan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbHachutan.Text = "";
+            cmbHachutan.DisplayMember = "";
+
+        }
+
+        private void cmbHachutan_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbHachutan.Text = "";
+            cmbHachutan.DisplayMember = "";
+
         }
     }
 }

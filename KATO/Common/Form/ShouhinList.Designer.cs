@@ -221,7 +221,7 @@ namespace KATO.Common.Form
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 102;
             this.gridTorihiki.DoubleClick += new System.EventHandler(this.setGridTorihiki_DoubleClick);
-            this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridToriKeyDown);
+            this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
             // txtKensaku
             // 
