@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblKikan = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSpan = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Eigyosho1 = new KATO.Common.Ctl.LabelSet_Eigyosho();
@@ -57,22 +57,55 @@
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 999;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 999;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.TabIndex = 999;
             // 
             // btnF09
             // 
+            this.btnF09.TabIndex = 999;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.TabIndex = 999;
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabIndex = 999;
+            // 
+            // btnF06
+            // 
+            this.btnF06.TabIndex = 999;
+            // 
+            // btnF05
+            // 
+            this.btnF05.TabIndex = 999;
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 999;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.TabIndex = 999;
+            // 
+            // btnF02
+            // 
+            this.btnF02.TabIndex = 999;
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 999;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblKikan
@@ -113,7 +146,7 @@
             this.labelSet_Eigyosho1.SpaceCodeValue = 4;
             this.labelSet_Eigyosho1.SpaceNameCode = 4;
             this.labelSet_Eigyosho1.SpaceValueAppend = 4;
-            this.labelSet_Eigyosho1.TabIndex = 5;
+            this.labelSet_Eigyosho1.TabIndex = 3;
             this.labelSet_Eigyosho1.ValueLabelSize = 250;
             this.labelSet_Eigyosho1.ValueLabelText = "";
             // 
@@ -133,7 +166,7 @@
             this.labelSet_GroupCd1.SpaceCodeValue = 4;
             this.labelSet_GroupCd1.SpaceNameCode = 4;
             this.labelSet_GroupCd1.SpaceValueAppend = 4;
-            this.labelSet_GroupCd1.TabIndex = 8;
+            this.labelSet_GroupCd1.TabIndex = 4;
             this.labelSet_GroupCd1.ValueLabelSize = 120;
             this.labelSet_GroupCd1.ValueLabelText = "";
             // 
@@ -151,7 +184,7 @@
             this.labelSet_Tantousha1.SpaceCodeValue = 4;
             this.labelSet_Tantousha1.SpaceNameCode = 4;
             this.labelSet_Tantousha1.SpaceValueAppend = 4;
-            this.labelSet_Tantousha1.TabIndex = 6;
+            this.labelSet_Tantousha1.TabIndex = 5;
             this.labelSet_Tantousha1.ValueLabelSize = 120;
             this.labelSet_Tantousha1.ValueLabelText = "";
             // 
@@ -171,7 +204,7 @@
             this.lsJuchusha.SpaceCodeValue = 4;
             this.lsJuchusha.SpaceNameCode = 4;
             this.lsJuchusha.SpaceValueAppend = 4;
-            this.lsJuchusha.TabIndex = 9;
+            this.lsJuchusha.TabIndex = 6;
             this.lsJuchusha.ValueLabelSize = 150;
             this.lsJuchusha.ValueLabelText = "";
             // 
@@ -216,7 +249,7 @@
             this.labelSet_Daibunrui1.SpaceCodeValue = 4;
             this.labelSet_Daibunrui1.SpaceNameCode = 4;
             this.labelSet_Daibunrui1.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui1.TabIndex = 4;
+            this.labelSet_Daibunrui1.TabIndex = 7;
             this.labelSet_Daibunrui1.ValueLabelSize = 200;
             this.labelSet_Daibunrui1.ValueLabelText = "";
             // 
@@ -235,7 +268,7 @@
             this.labelSet_Chubunrui1.SpaceNameCode = 4;
             this.labelSet_Chubunrui1.SpaceValueAppend = 4;
             this.labelSet_Chubunrui1.strDaibunCd = null;
-            this.labelSet_Chubunrui1.TabIndex = 7;
+            this.labelSet_Chubunrui1.TabIndex = 8;
             this.labelSet_Chubunrui1.ValueLabelSize = 200;
             this.labelSet_Chubunrui1.ValueLabelText = "";
             // 
@@ -253,7 +286,7 @@
             this.labelSet_Maker1.SpaceCodeValue = 4;
             this.labelSet_Maker1.SpaceNameCode = 4;
             this.labelSet_Maker1.SpaceValueAppend = 4;
-            this.labelSet_Maker1.TabIndex = 10;
+            this.labelSet_Maker1.TabIndex = 9;
             this.labelSet_Maker1.ValueLabelSize = 200;
             this.labelSet_Maker1.ValueLabelText = "";
             // 
@@ -263,36 +296,36 @@
             this.gridUriageSuii.AllowUserToDeleteRows = false;
             this.gridUriageSuii.AllowUserToResizeColumns = false;
             this.gridUriageSuii.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUriageSuii.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUriageSuii.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridUriageSuii.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridUriageSuii.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridUriageSuii.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridUriageSuii.EnableHeadersVisualStyles = false;
             this.gridUriageSuii.Location = new System.Drawing.Point(16, 124);
             this.gridUriageSuii.MultiSelect = false;
             this.gridUriageSuii.Name = "gridUriageSuii";
             this.gridUriageSuii.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUriageSuii.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUriageSuii.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridUriageSuii.RowHeadersVisible = false;
             this.gridUriageSuii.RowTemplate.Height = 21;
             this.gridUriageSuii.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -321,7 +354,7 @@
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.ReadOnly = true;
             this.txtCalendarYMclose.Size = new System.Drawing.Size(96, 22);
-            this.txtCalendarYMclose.TabIndex = 1;
+            this.txtCalendarYMclose.TabIndex = 999;
             this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // labelSet_TokuisakiStart
@@ -338,7 +371,7 @@
             this.labelSet_TokuisakiStart.SpaceCodeValue = 4;
             this.labelSet_TokuisakiStart.SpaceNameCode = 4;
             this.labelSet_TokuisakiStart.SpaceValueAppend = 0;
-            this.labelSet_TokuisakiStart.TabIndex = 2;
+            this.labelSet_TokuisakiStart.TabIndex = 1;
             this.labelSet_TokuisakiStart.ValueLabelSize = 0;
             this.labelSet_TokuisakiStart.ValueLabelText = "";
             // 
@@ -358,7 +391,7 @@
             this.labelSet_TokuisakiEnd.SpaceCodeValue = 4;
             this.labelSet_TokuisakiEnd.SpaceNameCode = 8;
             this.labelSet_TokuisakiEnd.SpaceValueAppend = 0;
-            this.labelSet_TokuisakiEnd.TabIndex = 3;
+            this.labelSet_TokuisakiEnd.TabIndex = 2;
             this.labelSet_TokuisakiEnd.ValueLabelSize = 0;
             this.labelSet_TokuisakiEnd.ValueLabelText = "";
             // 
@@ -389,7 +422,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1379, 758);
+            this.ClientSize = new System.Drawing.Size(1362, 741);
             this.Controls.Add(this.labelSet_TokuisakiEnd);
             this.Controls.Add(this.labelSet_TokuisakiStart);
             this.Controls.Add(this.txtCalendarYMclose);

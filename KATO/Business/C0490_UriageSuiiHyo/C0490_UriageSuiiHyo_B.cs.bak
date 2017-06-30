@@ -675,21 +675,19 @@ namespace KATO.Business.C0490_UriageSuiiHyo
             try
             {
                 string strHeader = "";
-                string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                string strNow = DateTime.Now.ToString("yyyy/mm/dd hh:mm:ss");
                 string strSpace = "       ";
                 string strComputerName = System.Windows.Forms.SystemInformation.ComputerName;
 
                 // excelのインスタンス生成
                 XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
-
-                // ワークブックのデフォルトフォント、フォントサイズの指定
+                //ブックのフォント、フォントサイズのデフォルトを設定する。
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
-                XLWorkbook.DefaultStyle.Font.FontSize = 9;
+                //XLWorkbook.DefaultStyle.Font.FontSize = 20;
 
                 IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
                 IXLWorksheet headersheet = worksheet;   // ヘッダーシート
                 IXLWorksheet currentsheet = worksheet;  // 処理中シート
-
 
                 //Linqで必要なデータをselect
                 var outDataAll = dtSiireSuiiList.AsEnumerable()
@@ -896,6 +894,10 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                     if (rowCnt == 1)
                     {
                         pageCnt++;
+
+                        // フォント、フォントサイズの指定
+                        headersheet.Range("A1", "P5000").Style.Font.FontName = "ＭＳ 明朝";
+                        headersheet.Range("A1", "P5000").Style.Font.FontSize = 9;
 
                         // タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");

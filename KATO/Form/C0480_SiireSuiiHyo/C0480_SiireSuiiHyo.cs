@@ -566,6 +566,9 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         /// </summary>
         private void printReport()
         {
+
+            // 【印刷用ダイアログ】
+
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 

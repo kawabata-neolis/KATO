@@ -115,7 +115,7 @@
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.Controls.Add(this.nameLabel);
             this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(629, 125);
+            this.labelSet_Maker.Location = new System.Drawing.Point(686, 125);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
             this.labelSet_Maker.Size = new System.Drawing.Size(289, 22);
@@ -146,7 +146,7 @@
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.Controls.Add(this.object_179be864_96a0_44e6_b582_ce12765960b7);
             this.labelSet_Chubunrui.LabelName = "中分類";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(323, 125);
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(351, 128);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
             this.labelSet_Chubunrui.Size = new System.Drawing.Size(289, 22);
@@ -213,7 +213,7 @@
             this.labelSet_Juchusha.Controls.Add(this.object_a2a5b292_0ee4_417a_bec5_2817f8f97f00);
             this.labelSet_Juchusha.Controls.Add(this.baseLabel1);
             this.labelSet_Juchusha.LabelName = "受注者";
-            this.labelSet_Juchusha.Location = new System.Drawing.Point(738, 87);
+            this.labelSet_Juchusha.Location = new System.Drawing.Point(686, 87);
             this.labelSet_Juchusha.Name = "labelSet_Juchusha";
             this.labelSet_Juchusha.ShowAppendFlg = false;
             this.labelSet_Juchusha.Size = new System.Drawing.Size(251, 22);
@@ -256,7 +256,7 @@
             this.labelSet_GroupCd.CodeTxtText = "";
             this.labelSet_GroupCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCd.LabelName = "グループコード";
-            this.labelSet_GroupCd.Location = new System.Drawing.Point(738, 50);
+            this.labelSet_GroupCd.Location = new System.Drawing.Point(686, 51);
             this.labelSet_GroupCd.LsGroupCddata = null;
             this.labelSet_GroupCd.Name = "labelSet_GroupCd";
             this.labelSet_GroupCd.ShowAppendFlg = false;
@@ -276,11 +276,11 @@
             this.labelSet_Eigyosho.CodeTxtText = "";
             this.labelSet_Eigyosho.Controls.Add(this.object_753ef5f7_863b_4f5e_8576_3834e8a9b099);
             this.labelSet_Eigyosho.LabelName = "営業所コード";
-            this.labelSet_Eigyosho.Location = new System.Drawing.Point(313, 50);
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(351, 50);
             this.labelSet_Eigyosho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
             this.labelSet_Eigyosho.ShowAppendFlg = false;
-            this.labelSet_Eigyosho.Size = new System.Drawing.Size(419, 22);
+            this.labelSet_Eigyosho.Size = new System.Drawing.Size(289, 22);
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 4;
             this.labelSet_Eigyosho.SpaceValueAppend = 5;
@@ -347,7 +347,7 @@
             // 
             this.txtCalendarYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCalendarYMclose.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtCalendarYMclose.Location = new System.Drawing.Point(191, 51);
+            this.txtCalendarYMclose.Location = new System.Drawing.Point(220, 51);
             this.txtCalendarYMclose.MaxLength = 7;
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
@@ -361,7 +361,7 @@
             // 
             this.txtCalendarYMopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCalendarYMopen.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtCalendarYMopen.Location = new System.Drawing.Point(86, 51);
+            this.txtCalendarYMopen.Location = new System.Drawing.Point(98, 51);
             this.txtCalendarYMopen.MaxLength = 7;
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
@@ -373,7 +373,7 @@
             // 
             this.lblaida1.AutoSize = true;
             this.lblaida1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblaida1.Location = new System.Drawing.Point(159, 54);
+            this.lblaida1.Location = new System.Drawing.Point(182, 54);
             this.lblaida1.Name = "lblaida1";
             this.lblaida1.Size = new System.Drawing.Size(23, 15);
             this.lblaida1.strToolTip = null;
@@ -385,7 +385,7 @@
             // 
             this.lblKikan.AutoSize = true;
             this.lblKikan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKikan.Location = new System.Drawing.Point(14, 54);
+            this.lblKikan.Location = new System.Drawing.Point(19, 54);
             this.lblKikan.Name = "lblKikan";
             this.lblKikan.Size = new System.Drawing.Size(39, 15);
             this.lblKikan.strToolTip = null;
@@ -400,7 +400,7 @@
             this.labelSet_TokuisakiStart.CodeTxtSize = 40;
             this.labelSet_TokuisakiStart.CodeTxtText = "";
             this.labelSet_TokuisakiStart.LabelName = "仕入先コード";
-            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(12, 87);
+            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(17, 87);
             this.labelSet_TokuisakiStart.Name = "labelSet_TokuisakiStart";
             this.labelSet_TokuisakiStart.ShowAppendFlg = false;
             this.labelSet_TokuisakiStart.Size = new System.Drawing.Size(156, 22);
