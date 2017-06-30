@@ -793,67 +793,6 @@ namespace KATO.Form.A0100_HachuInput
         }
 
         /// <summary>
-        /// setShohin
-        /// データグリッドビュー内のデータが選択された時（商品コードがある場合）
-        /// </summary>
-        private void setShohin()
-        {
-            //商品の摘出データを入れる用
-            DataTable dtShohin;
-
-            //商品コードがある場合
-            if (txtShohinCd.Text != "")
-            {
-                //blNLOCKがfalseの場合
-                if (blNLOCK == false)
-                {
-                    return;
-                }
-
-                //ビジネス層のインスタンス生成
-                A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
-                try
-                {
-                    //商品の検索
-                    dtShohin = hachuB.setShohin(txtShohinCd.Text);
-
-                    //摘出した商品データが一つ以上ある場合
-                    if (dtShohin.Rows.Count != 0)
-                    {
-                        labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
-                        labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-                        labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
-                        txtData1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
-                        txtData2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
-                        txtData3.Text = dtShohin.Rows[0]["Ｃ３"].ToString();
-                        txtData4.Text = dtShohin.Rows[0]["Ｃ４"].ToString();
-                        txtData5.Text = dtShohin.Rows[0]["Ｃ５"].ToString();
-                        txtData6.Text = dtShohin.Rows[0]["Ｃ６"].ToString();
-
-                        txtHinmei.Text = ((TextBox)txtData1).Text.Trim() + " "
-                                        + ((TextBox)txtData2).Text.Trim() + " "
-                                        + ((TextBox)txtData3).Text.Trim() + " "
-                                        + ((TextBox)txtData4).Text.Trim() + " "
-                                        + ((TextBox)txtData5).Text.Trim() + " "
-                                        + ((TextBox)txtData6).Text.Trim() + " ";
-                        
-                        lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
-                        lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-        }
-
-        /// <summary>
         /// judtxtDaibunruiKeyUp
         /// 入力項目上でのキー判定と文字数判定
         /// </summary>
@@ -914,8 +853,8 @@ namespace KATO.Form.A0100_HachuInput
             DataTable dtSetCdJuchuNo;
             //検索時のデータ取り出し先(単価検出時)
             DataTable dtSetTanka;
-
-            blNLOCK = true;
+            //検索時のデータ取り出し先(商品)
+            DataTable dtSetShohin;
 
             //ビジネス層のインスタンス生成
             A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
@@ -1030,10 +969,24 @@ namespace KATO.Form.A0100_HachuInput
                         txtHinmei.Enabled = false;
                     }
 
-                    blNLOCK = false;
+                    //商品コードがある場合
+                    if (txtShohinCd.Text != "")
+                    {
+                        //商品
+                        dtSetShohin = hachuB.setShohin(txtShohinCd.Text);
 
-                    //棚番、大分類、中分類、メーカー、商品情報の取得、記入
-                    setShohin();
+                        //発注単価のピリオド取り
+                        decimal decHachu = decimal.Parse(dtSetCd.Rows[0]["発注単価"].ToString().Split('.')[0]);
+
+                        //定価のピリオド取り
+                        decimal decTeika = decimal.Parse(dtSetShohin.Rows[0]["定価"].ToString().Split('.')[0]);
+
+                        //規定の計算で掛け率を記入
+                        txtKakeritsu.Text = ((decimal)(decHachu / decTeika) * 100).ToString("#.0");
+
+                        lblGrayTanaHon.Text = dtSetShohin.Rows[0]["棚番本社"].ToString();
+                        lblGrayTanaGihu.Text = dtSetShohin.Rows[0]["棚番岐阜"].ToString();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1045,20 +998,6 @@ namespace KATO.Form.A0100_HachuInput
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        private void cmbHachutan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbHachutan.Text = "";
-            cmbHachutan.DisplayMember = "";
-
-        }
-
-        private void cmbHachutan_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            cmbHachutan.Text = "";
-            cmbHachutan.DisplayMember = "";
-
         }
     }
 }

@@ -57,9 +57,9 @@
             this.lblStatusHeader,
             this.lblStatusMessage,
             this.lblStatusUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 804);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 806);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1424, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1419, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -237,6 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblSubWinSHow);
             this.Controls.Add(this.cmbSubWinShow);

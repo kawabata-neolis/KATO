@@ -21,9 +21,6 @@ namespace KATO.Common.Ctl
         //コンボボックスのリスト一部表示用
         string strMoney = null;
 
-        //KeyDown時に方向キーの場合true
-        bool blHoukouKey = false;
-
         //方向キーのどこを押したか用
         int intHoukou = 0;
 
@@ -130,36 +127,9 @@ namespace KATO.Common.Ctl
         //
         private void BaseComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ////方向キーが入力されていた場合
-            //if (blHoukouKey == true)
-            //{
-            //    return;
-            //}
-
             //parentが発注入力の場合
             if (this.Parent.Parent.Name == "A0100_HachuInput")
             {
-                //↑キー
-                if (intHoukou == 1)
-                {
-                    //リストの下限を下回る場合
-                    if (intSelectBefore -1 < 0)
-                    {
-                        return;
-                    }
-                    this.SelectedIndex = intSelectBefore - 1;
-                }
-                //↓キー
-                else if(intHoukou == 2)
-                {
-                    //リストの上限を超える場合
-                    if (intSelectBefore + 1 >= this.Items.Count -1)
-                    {
-                        return;
-                    }
-                    this.SelectedIndex = intSelectBefore + 1;
-                }
-
                 //選んだアイテムがある場合
                 if (this.SelectedItem != null)
                 {
@@ -169,89 +139,10 @@ namespace KATO.Common.Ctl
                     //インデックスを変更して、選択元データを読み取らないようにする
                     this.Items[0] = strMoney;
 
-                    //元のフォーカス位置の確保
-                    intSelectBefore = this.SelectedIndex;
-
                     //インデックスを変更して、選択元データを読み取らないようにする
                     this.SelectedIndex = 0;
-
-                    this.DisplayMember = strMoney;
-                    this.Text = strMoney;
                 }
-                else
-                {
-                    //this.Text = strMoney;
-                }
-                intHoukou = 0;
-                blHoukouKey = false;
             }
-        }
-
-        //
-        //キー入力判定
-        //
-        private void BaseComboBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            //キー入力情報によって動作を変える
-            switch (e.KeyCode)
-            {
-                case Keys.Tab:
-                    break;
-                case Keys.Left:
-                    break;
-                case Keys.Right:
-                    break;
-                case Keys.Up:
-                    intHoukou = 1;
-                    blHoukouKey = true;
-                    BaseComboBox_SelectionChangeCommitted(sender, e);
-                    break;
-                case Keys.Down:
-                    intHoukou = 2;
-                    blHoukouKey = true;
-                    break;
-                case Keys.Delete:
-                    break;
-                case Keys.Back:
-                    break;
-                case Keys.Enter:
-                    break;
-                case Keys.F1:
-                    break;
-                case Keys.F2:
-                    break;
-                case Keys.F3:
-                    break;
-                case Keys.F4:
-                    break;
-                case Keys.F5:
-                    break;
-                case Keys.F6:
-                    break;
-                case Keys.F7:
-                    break;
-                case Keys.F8:
-                    break;
-                case Keys.F9:
-                    break;
-                case Keys.F10:
-                    break;
-                case Keys.F11:
-                    break;
-                case Keys.F12:
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        //
-        //クリック判定
-        //
-        private void BaseComboBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            blHoukouKey = false;
         }
     }
 }

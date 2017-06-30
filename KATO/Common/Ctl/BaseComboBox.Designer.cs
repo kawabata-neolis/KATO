@@ -34,11 +34,10 @@
             // 
             this.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Size = new System.Drawing.Size(121, 20);
             this.SelectionChangeCommitted += new System.EventHandler(this.BaseComboBox_SelectionChangeCommitted);
             this.Enter += new System.EventHandler(this.BaseText_Enter);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BaseComboBox_KeyDown);
             this.Leave += new System.EventHandler(this.BaseText_Leave);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BaseComboBox_MouseClick);
             this.ResumeLayout(false);
 
         }
