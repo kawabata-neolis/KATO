@@ -109,6 +109,8 @@
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
+    <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
+    <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0481_SiireSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0482_SiireSuiiHyoLevel3_B.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
+    <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Common\Business\ShiharaiList_B.cs" />
     <Compile Include="Common\Business\NyukinList_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
@@ -435,6 +438,18 @@
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.Designer.cs">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.designer.cs">
+      <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.designer.cs">
+      <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -608,6 +623,12 @@
     </Compile>
     <Compile Include="Form\M1200_Group\M1200_Group.Designer.cs">
       <DependentUpon>M1200_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.designer.cs">
+      <DependentUpon>M1220_SyohinBunruiRiekiritsu.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
@@ -785,6 +806,12 @@
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
+      <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.resx">
+      <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.resx">
       <DependentUpon>C0480_SiireSuiiHyo.cs</DependentUpon>
     </EmbeddedResource>
@@ -882,6 +909,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1200_Group\M1200_Group.resx">
       <DependentUpon>M1200_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.resx">
+      <DependentUpon>M1220_SyohinBunruiRiekiritsu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>

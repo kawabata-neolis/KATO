@@ -520,6 +520,8 @@ namespace KATO.Form.C0490_UriageSuiiHyo
         /// </summary>
         private void printReport()
         {
+            //【プリントダイアログの表示】
+
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
@@ -555,6 +557,9 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
                 // PDF作成
                 uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                //印刷完了メッセージ
+                MessageBox.Show("PDF出力が完了しました。");
 
             }
             catch (Exception ex)

@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Business.A0010_JuchuInput;
+using KATO.Common.Ctl;
 
 namespace KATO.Form.A0010_JuchuInput
 {
@@ -231,6 +233,8 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delJuchu();
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -261,6 +265,116 @@ namespace KATO.Form.A0010_JuchuInput
                     break;
             }
         }
+
+        /// <summary>
+        /// delJuchu
+        /// 受注削除
+        /// </summary>
+        private void delJuchu()
+        {
+            String strJuchuNo = txtJuchuNo.Text;
+            int uriageSu = 0;
+
+            // デッドストック管理Noが未入力の場合は処理しない
+            if (string.IsNullOrWhiteSpace(strJuchuNo))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "削除する伝票を呼び出してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+
+            try
+            {
+                // 売上済がある場合、削除不可
+                uriageSu = juchuB.getUriagezumisuryo(strJuchuNo);
+                if (uriageSu > 0)
+                {
+                    BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに売上済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessageboxEr.ShowDialog();
+                    return;
+                }
+                // 仕入済がある場合、削除不可
+                if (juchuB.getShiirezumisuryo(strJuchuNo) > 0)
+                {
+                    BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessageboxEr.ShowDialog();
+                    return;
+                }
+                // 在庫移動処理済の場合、削除不可
+                if (uriageSu != 0)
+                {
+                    if ((juchuB.getZaikoHikiateFlg(strJuchuNo)).Equals("1"))
+                    {
+                        BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessageboxEr.ShowDialog();
+                        return;
+                    }
+                }
+
+                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                //削除
+                juchuB.delJuchu(strJuchuNo, lblStatusUser.Text);
+
+                // デッドストック在庫を使用していた場合は、再度デッドストックとして戻す
+                if (!String.IsNullOrWhiteSpace(txtDeadStockNo.Text))
+                {
+                    juchuB.restoreDeadStock(txtDeadStockNo.Text);
+                }
+
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                this.delFormClear(this);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            return;
+        }
+
+        private void gridJuchuZanMeisai_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtJuchuYMD.Enabled = true;
+            lsJuchusha.Enabled = true;
+            txtJuchuNo.Enabled = true;
+            tsTokuisaki.Enabled = true;
+            txtSearchStr.Enabled = true;
+            txtJuchuSuryo.Enabled = true;
+            cbJuchuTanka.Enabled = true;
+            cbSiireTanka.Enabled = true;
+            txtHatchushiji.Enabled = true;
+            txtHonshaShukko.Enabled = true;
+            txtGihuShukko.Enabled = true;
+            txtHatchusu.Enabled = true;
+            txtChuban.Enabled = true;
+            tsShiiresaki.Enabled = true;
+            txtShiireTanto.Enabled = true;
+            txtShiireChuban.Enabled = true;
+
+            lsDaibunrui.Enabled = false;
+            lsChubunrui.Enabled = false;
+            lsMaker.Enabled = false;
+
+            txtJuchuNo.Text = "";
+            txtHatchuNo.Text = "";
+
+            var a = gridJuchuZanMeisai.CurrentRow.Cells[1];
+
+
+        }
+
 
         /// <summary>
         /// judBtnClick
@@ -308,5 +422,6 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
         }
+
     }
 }
