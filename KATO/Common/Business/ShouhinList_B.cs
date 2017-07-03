@@ -9,6 +9,7 @@ using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
 using KATO.Form.M1030_Shohin;
 using KATO.Form.D0380_ShohinMotochoKakunin;
+using KATO.Form.A0010_JuchuInput;
 
 namespace KATO.Common.Business
 {
@@ -423,6 +424,20 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
+                    case CommonTeisu.FRM_JUCHUINPUT:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "A0010_JuchuInput")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
+                                juchuInput.setShouhin(dtShohin);
+                                break;
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -474,6 +489,14 @@ namespace KATO.Common.Business
                     //データを連れてくるため、newをしないこと
                     D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
                     shohinmotochokakunin.setShohinClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_JUCHUINPUT && frm.Name == "A0010_JuchuInput")
+                {
+                    //データを連れてくるため、newをしないこと
+                    A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
+                    juchuInput.setShohinClose();
                     break;
                 }
 
