@@ -206,7 +206,7 @@ namespace KATO.Form.Z0000
 
         private void btnJuchuInput_Click(object sender, EventArgs e)
         {
-            A0010_JuchuInput.A0010JuchuInput juchuinput = new A0010_JuchuInput.A0010JuchuInput(this);
+            A0010_JuchuInput.A0010_JuchuInput juchuinput = new A0010_JuchuInput.A0010_JuchuInput(this);
             juchuinput.ShowDialog();
         }
 

@@ -9,7 +9,7 @@ using KATO.Common.Util;
 using KATO.Form.F0140_TanaorosiInput;
 using KATO.Form.M1030_Shohin;
 using KATO.Form.D0380_ShohinMotochoKakunin;
-using KATO.Form.A0100_HachuInput;
+using KATO.Form.A0010_JuchuInput;
 
 namespace KATO.Common.Business
 {
@@ -424,16 +424,16 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                    case CommonTeisu.FRM_HACHUINPUT:
+                    case CommonTeisu.FRM_JUCHUINPUT:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
                             //目的のフォームを探す
-                            if (frm.Name == "A0100_HachuInput")
+                            if (frm.Name == "A0010_JuchuInput")
                             {
                                 //データを連れてくるため、newをしないこと
-                                A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                                hachuinput.setShouhin(dtShohin);
+                                A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
+                                juchuInput.setShouhin(dtShohin);
                                 break;
                             }
                         }
@@ -456,13 +456,18 @@ namespace KATO.Common.Business
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
+        ///作成者：大河内
+        ///作成日：2017/3/23
+        ///更新者：大河内
+        ///更新日：2017/4/11
+        ///カラム論理名
         ///</summary>
         public void setEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //棚卸入力フォームを探す
+                //目的のフォームを探す
                 if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
                 {
                     //データを連れてくるため、newをしないこと
@@ -470,7 +475,7 @@ namespace KATO.Common.Business
                     tanaorosiinput.setShohinClose();
                     break;
                 }
-                //商品フォームを探す
+                //目的のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_SHOHIN && frm.Name == "M1030_Shohin")
                 {
                     //データを連れてくるため、newをしないこと
@@ -478,7 +483,7 @@ namespace KATO.Common.Business
                     shohin.setShohinClose();
                     break;
                 }
-                //商品元帳確認フォームを探す
+                //目的のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN && frm.Name == "D0380_ShohinMotochoKakunin")
                 {
                     //データを連れてくるため、newをしないこと
@@ -486,12 +491,12 @@ namespace KATO.Common.Business
                     shohinmotochokakunin.setShohinClose();
                     break;
                 }
-                //発注入力のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_HACHUINPUT && frm.Name == "A0100_HachuInput")
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_JUCHUINPUT && frm.Name == "A0010_JuchuInput")
                 {
                     //データを連れてくるため、newをしないこと
-                    A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                    hachuinput.setShohinClose();
+                    A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
+                    juchuInput.setShohinClose();
                     break;
                 }
 

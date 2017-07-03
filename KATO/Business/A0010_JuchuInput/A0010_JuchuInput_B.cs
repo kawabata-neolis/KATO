@@ -54,7 +54,7 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null && dtSuryo.Rows.Count > 0)
             {
-                retSuryo = dtSuryo.Rows[0].Field<int>("仕入済数量");
+                retSuryo = (int)dtSuryo.Rows[0]["仕入済数量"];
             }
 
             return retSuryo;
@@ -79,7 +79,7 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtFlg != null && dtFlg.Rows.Count > 0)
             {
-                retFlg = dtFlg.Rows[0].Field<string>("在庫引当フラグ");
+                retFlg = dtFlg.Rows[0]["在庫引当フラグ"].ToString();
             }
 
             return retFlg;
@@ -120,6 +120,116 @@ namespace KATO.Business.A0010_JuchuInput
             {
                 throw ex;
             }
+        }
+
+        public bool judKakohinJuchu (string strJuchuNo)
+        {
+            bool retFlg = false;
+            DataTable dtFlg = null;
+            string strQuery = "SELECT 受注番号 FROM 発注 WHERE 受注番号 =" + strJuchuNo + " AND 削除='N' AND 加工区分='1'";
+
+            try
+            {
+                DBConnective dbCon = new DBConnective();
+                dtFlg = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (dtFlg != null && dtFlg.Rows.Count > 0)
+            {
+                retFlg = true;
+            }
+            else
+            {
+                strQuery = "SELECT 受注番号 FROM 出庫明細 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
+
+                try
+                {
+                    DBConnective dbCon = new DBConnective();
+                    dtFlg = dbCon.ReadSql(strQuery);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                if (dtFlg != null && dtFlg.Rows.Count > 0)
+                {
+                    retFlg = true;
+                }
+            }
+
+            return retFlg;
+        }
+        public DataTable getJuchuNoInfo(string strJuchuNo)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT 受注年月日";
+            strQuery += "      ,受注者コード";
+            strQuery += "      ,得意先コード";
+            strQuery += "      ,大分類コード";
+            strQuery += "      ,中分類コード";
+            strQuery += "      ,メーカーコード";
+            strQuery += "      ,Ｃ１";
+            strQuery += "      ,Ｃ２";
+            strQuery += "      ,Ｃ３";
+            strQuery += "      ,Ｃ４";
+            strQuery += "      ,Ｃ５";
+            strQuery += "      ,Ｃ６";
+            strQuery += "      ,受注数量";
+            strQuery += "      ,受注単価";
+            strQuery += "      ,仕入単価";
+            strQuery += "      ,納期";
+            strQuery += "      ,注番";
+            strQuery += "      ,営業所コード";
+            strQuery += "      ,担当者コード";
+            strQuery += "      ,得意先名称";
+            strQuery += "      ,発注指示区分";
+            strQuery += "      ,商品コード";
+            strQuery += "      ,本社出庫数";
+            strQuery += "      ,岐阜出庫数";
+            strQuery += "      ,出荷指示区分";
+            strQuery += "      ,在庫引当フラグ";
+            strQuery += "      ,売上フラグ";
+            strQuery += "      ,売上済数量";
+            strQuery += "  FROM 受注";
+            strQuery += " WHERE 受注番号 = " + strJuchuNo;
+            strQuery += "   AND 削除     = 'N'";
+
+            try
+            {
+                DBConnective dbCon = new DBConnective();
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getHatchuNoInfo(string strJuchuNo)
+        {
+            DataTable dtNo = null;
+
+            string strQuery = "SELECT 発注番号, 仕入済数量 FROM 発注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
+
+            try
+            {
+                DBConnective dbCon = new DBConnective();
+                dtNo = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtNo;
         }
     }
 }

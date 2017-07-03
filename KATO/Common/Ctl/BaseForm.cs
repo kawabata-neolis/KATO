@@ -8,6 +8,9 @@ namespace KATO.Common.Ctl
 {
     public partial class BaseForm : System.Windows.Forms.Form
     {
+        protected bool adminUserFlg = false;
+        protected bool powerUserFlg = false;
+
         private int intMsgCnt = -1;
 
         private const string defaultMessage = "　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　";
