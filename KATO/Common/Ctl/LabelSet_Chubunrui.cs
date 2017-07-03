@@ -69,16 +69,19 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
+                //大分類の値がない場合
                 if (this.strdaibunCd == null)
                 {
                     return;
                 }
 
+                //親画面がグループボックスの場合
                 if (this.Parent is GroupBox)
                 {
                     ChubunruiList chubunruiList = new ChubunruiList(this.Parent.Parent, this, strdaibunCd);
                     chubunruiList.Show();
                 }
+                //親画面がBaseFormの場合
                 else
                 {
                     ChubunruiList chubunruiList = new ChubunruiList(this.Parent, this, strdaibunCd);
@@ -312,6 +315,23 @@ namespace KATO.Common.Ctl
                     basemessagebox.ShowDialog();
                     return;
                 }
+            }
+        }
+
+        ///<summary>
+        ///LabelSet_Chubunrui_EnabledChanged
+        ///Enabledが変更になった場合と解除
+        ///</summary>
+        private void LabelSet_Chubunrui_EnabledChanged(object sender, EventArgs e)
+        {
+            //EnabledがFalseになった場合
+            if (this.Enabled == false)
+            {
+                this.codeTxt.BackColor = SystemColors.Control;
+            }
+            else
+            {
+                this.codeTxt.BackColor = Color.White;
             }
         }
     }

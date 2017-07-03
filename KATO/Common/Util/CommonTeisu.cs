@@ -65,6 +65,7 @@ namespace KATO.Common.Util
         public const int FRM_TANAOROSHI_EDIT = 01401;
         public const int FRM_CHUBUNRUI = 1110;
         public const int FRM_GROUP = 1200;
+        public const int FRM_HACHUINPUT = 0100;
 
         public const int FRM_TEST = 9999;
 

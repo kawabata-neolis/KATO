@@ -35,17 +35,18 @@
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
             this.codeTxt.Size = new System.Drawing.Size(40, 22);
+            this.codeTxt.EnabledChanged += new System.EventHandler(this.codeTxt_EnabledChanged);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judEigyoushoKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judEigyousyoKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtEigyoushoLeave);
             // 
-            // LabelSet_Eigyousho
+            // LabelSet_Eigyosho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.CodeTxtSize = 40;
             this.LabelName = "営業所コード";
-            this.Name = "LabelSet_Eigyousho";
+            this.Name = "LabelSet_Eigyosho";
             this.Size = new System.Drawing.Size(624, 22);
             this.ValueLabelSize = 250;
             this.ResumeLayout(false);

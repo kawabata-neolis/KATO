@@ -1,7 +1,4 @@
-﻿using KATO.Common.Form;
-using KATO.Common.Util;
-using KATO.Common.Ctl;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KATO.Common.Form;
+using KATO.Common.Util;
+using KATO.Common.Ctl;
 
 namespace KATO.Common.Ctl
 {
@@ -301,6 +301,24 @@ namespace KATO.Common.Ctl
                     basemessagebox.ShowDialog();
                     return;
                 }
+            }
+        }
+
+        ///<summary>
+        ///LabelSet_Daibunrui_EnabledChanged
+        ///Enabledが変更になった場合と解除
+        ///</summary>
+        private void LabelSet_Maker_EnabledChanged(object sender, EventArgs e)
+        {
+            //EnabledがFalseになった場合
+            if (this.Enabled == false)
+            {
+                this.codeTxt.BackColor = SystemColors.Control;
+
+            }
+            else
+            {
+                this.codeTxt.BackColor = Color.White;
             }
         }
     }

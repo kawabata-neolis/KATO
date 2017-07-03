@@ -415,5 +415,35 @@ namespace KATO.Common.Ctl
                 }
             }
         }
+
+        ///<summary>
+        ///codeTxt_ReadOnlyChanged
+        ///ReadOnlyになった場合と解除
+        ///</summary>
+        private void codeTxt_ReadOnlyChanged(object sender, EventArgs e)
+        {
+            //ReadOnlyになった場合
+            if (this.codeTxt.ReadOnly == true)
+            {
+                this.codeTxt.BackColor = Color.Gray;
+            }
+        }
+
+        ///<summary>
+        ///LabelSet_Daibunrui_EnabledChanged
+        ///Enabledが変更になった場合と解除
+        ///</summary>
+        private void LabelSet_Daibunrui_EnabledChanged(object sender, EventArgs e)
+        {
+            //EnabledがFalseになった場合
+            if (this.Enabled == false)
+            {
+                this.codeTxt.BackColor = SystemColors.Control;
+            }
+            else
+            {
+                this.codeTxt.BackColor = Color.White;
+            }
+        }
     }
 }

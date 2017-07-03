@@ -35,18 +35,19 @@
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
             this.codeTxt.Size = new System.Drawing.Size(40, 22);
+            this.codeTxt.EnabledChanged += new System.EventHandler(this.codeTxt_EnabledChanged);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
             // 
-            // LabelSet_Tokuisaki
+            // TextSet_Tokuisaki
             // 
             this.AppendLabelSize = 40;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.CodeTxtSize = 40;
             this.LabelName = "得意先コード";
-            this.Name = "LabelSet_Tokuisaki";
+            this.Name = "TextSet_Tokuisaki";
             this.ShowAppendFlg = true;
             this.Size = new System.Drawing.Size(642, 22);
             this.ValueTextSize = 350;

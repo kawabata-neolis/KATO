@@ -48,6 +48,7 @@
             this.Name = "LabelSet_Chubunrui";
             this.Size = new System.Drawing.Size(474, 22);
             this.ValueLabelSize = 200;
+            this.EnabledChanged += new System.EventHandler(this.LabelSet_Chubunrui_EnabledChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 

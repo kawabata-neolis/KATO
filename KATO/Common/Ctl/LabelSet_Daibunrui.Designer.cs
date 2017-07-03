@@ -35,6 +35,7 @@
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 2;
             this.codeTxt.Size = new System.Drawing.Size(24, 22);
+            this.codeTxt.ReadOnlyChanged += new System.EventHandler(this.codeTxt_ReadOnlyChanged);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaibunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
@@ -49,6 +50,7 @@
             this.Name = "LabelSet_Daibunrui";
             this.Size = new System.Drawing.Size(543, 22);
             this.ValueLabelSize = 200;
+            this.EnabledChanged += new System.EventHandler(this.LabelSet_Daibunrui_EnabledChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
