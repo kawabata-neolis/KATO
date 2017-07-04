@@ -119,6 +119,9 @@
     <Compile Include="Business\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3_B.cs" />
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
+    <Compile Include="Business\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400_B.cs" />
+    <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
+    <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1030_Shohin\M1030_Shohin_B.cs" />
@@ -133,7 +136,9 @@
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
+    <Compile Include="Business\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka_B.cs" />
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
+    <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Common\Business\ShiharaiList_B.cs" />
     <Compile Include="Common\Business\NyukinList_B.cs" />
@@ -524,6 +529,24 @@
     <Compile Include="Form\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin.Designer.cs">
       <DependentUpon>D0380_ShohinMotochoKakunin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400.Designer.cs">
+      <DependentUpon>D0680_UriageJissekiKakuninAS400.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.Designer.cs">
+      <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.Designer.cs">
+      <DependentUpon>G0920_HidukeSeigen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -644,11 +667,23 @@
     <Compile Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.Designer.cs">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka.Designer.cs">
+      <DependentUpon>M1160_TokuteimukesakiTanka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\M1200_Group\M1200_Group.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\M1200_Group\M1200_Group.Designer.cs">
       <DependentUpon>M1200_Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei.Designer.cs">
+      <DependentUpon>M1210_ShohinbetsuRiekiritsuSettei.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.cs">
       <SubType>Form</SubType>
@@ -889,6 +924,15 @@
     <EmbeddedResource Include="Form\D0380_ShohinMotochoKakunin\D0380_Shohinmotochokakunin.resx">
       <DependentUpon>D0380_ShohinMotochoKakunin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400.resx">
+      <DependentUpon>D0680_UriageJissekiKakuninAS400.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.resx">
+      <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.resx">
+      <DependentUpon>G0920_HidukeSeigen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -960,8 +1004,14 @@
     <EmbeddedResource Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.resx">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka.resx">
+      <DependentUpon>M1160_TokuteimukesakiTanka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\M1200_Group\M1200_Group.resx">
       <DependentUpon>M1200_Group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei.resx">
+      <DependentUpon>M1210_ShohinbetsuRiekiritsuSettei.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.resx">
       <DependentUpon>M1220_SyohinBunruiRiekiritsu.cs</DependentUpon>

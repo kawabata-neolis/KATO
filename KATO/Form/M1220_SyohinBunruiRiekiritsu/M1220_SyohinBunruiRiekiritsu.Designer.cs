@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridRiekiritsu = new KATO.Common.Ctl.BaseDataGridView();
             this.bgSerach = new System.Windows.Forms.GroupBox();
+            this.lblSerach = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btnSerach = new KATO.Common.Ctl.BaseButton();
             this.labelSet_MakerS = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_ChubunruiS = new KATO.Common.Ctl.LabelSet_Chubunrui();
@@ -41,6 +42,7 @@
             this.labelSet_TantoushaS = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_TokuisakiS = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.bgSort = new System.Windows.Forms.GroupBox();
+            this.lblSort = new KATO.Common.Ctl.BaseLabel(this.components);
             this.radSortItem = new KATO.Common.Ctl.RadSet_6btn();
             this.radSortOrder = new KATO.Common.Ctl.RadSet_2btn();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
@@ -59,8 +61,6 @@
             this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblId = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtId = new KATO.Common.Ctl.BaseText();
-            this.lblSerach = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblSort = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridRiekiritsu)).BeginInit();
             this.bgSerach.SuspendLayout();
             this.bgSort.SuspendLayout();
@@ -71,40 +71,88 @@
             this.radSetting.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // gridRiekiritsu
             // 
             this.gridRiekiritsu.AllowUserToAddRows = false;
             this.gridRiekiritsu.AllowUserToResizeColumns = false;
             this.gridRiekiritsu.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRiekiritsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRiekiritsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridRiekiritsu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridRiekiritsu.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRiekiritsu.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridRiekiritsu.EnableHeadersVisualStyles = false;
             this.gridRiekiritsu.Location = new System.Drawing.Point(12, 216);
             this.gridRiekiritsu.Name = "gridRiekiritsu";
             this.gridRiekiritsu.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRiekiritsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRiekiritsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridRiekiritsu.RowHeadersVisible = false;
             this.gridRiekiritsu.RowTemplate.Height = 21;
             this.gridRiekiritsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -129,13 +177,25 @@
             this.bgSerach.TabIndex = 89;
             this.bgSerach.TabStop = false;
             // 
+            // lblSerach
+            // 
+            this.lblSerach.AutoSize = true;
+            this.lblSerach.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblSerach.Location = new System.Drawing.Point(6, 0);
+            this.lblSerach.Name = "lblSerach";
+            this.lblSerach.Size = new System.Drawing.Size(71, 15);
+            this.lblSerach.strToolTip = null;
+            this.lblSerach.TabIndex = 106;
+            this.lblSerach.Text = "検索条件";
+            this.lblSerach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // btnSerach
             // 
             this.btnSerach.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btnSerach.Location = new System.Drawing.Point(412, 134);
             this.btnSerach.Name = "btnSerach";
             this.btnSerach.Size = new System.Drawing.Size(100, 23);
-            this.btnSerach.TabIndex = 105;
+            this.btnSerach.TabIndex = 6;
             this.btnSerach.Text = "検索";
             this.btnSerach.UseVisualStyleBackColor = true;
             this.btnSerach.Click += new System.EventHandler(this.btnSerach_Click);
@@ -155,7 +215,7 @@
             this.labelSet_MakerS.SpaceNameCode = 4;
             this.labelSet_MakerS.SpaceValueAppend = 4;
             this.labelSet_MakerS.strDaibunCd = null;
-            this.labelSet_MakerS.TabIndex = 104;
+            this.labelSet_MakerS.TabIndex = 5;
             this.labelSet_MakerS.ValueLabelSize = 200;
             this.labelSet_MakerS.ValueLabelText = "";
             // 
@@ -174,7 +234,7 @@
             this.labelSet_ChubunruiS.SpaceNameCode = 4;
             this.labelSet_ChubunruiS.SpaceValueAppend = 4;
             this.labelSet_ChubunruiS.strDaibunCd = null;
-            this.labelSet_ChubunruiS.TabIndex = 103;
+            this.labelSet_ChubunruiS.TabIndex = 4;
             this.labelSet_ChubunruiS.ValueLabelSize = 200;
             this.labelSet_ChubunruiS.ValueLabelText = "";
             // 
@@ -197,7 +257,7 @@
             this.labelSet_DaibunruiS.SpaceCodeValue = 4;
             this.labelSet_DaibunruiS.SpaceNameCode = 4;
             this.labelSet_DaibunruiS.SpaceValueAppend = 4;
-            this.labelSet_DaibunruiS.TabIndex = 102;
+            this.labelSet_DaibunruiS.TabIndex = 3;
             this.labelSet_DaibunruiS.ValueLabelSize = 200;
             this.labelSet_DaibunruiS.ValueLabelText = "";
             // 
@@ -215,7 +275,7 @@
             this.labelSet_TantoushaS.SpaceCodeValue = 4;
             this.labelSet_TantoushaS.SpaceNameCode = 4;
             this.labelSet_TantoushaS.SpaceValueAppend = 4;
-            this.labelSet_TantoushaS.TabIndex = 101;
+            this.labelSet_TantoushaS.TabIndex = 2;
             this.labelSet_TantoushaS.ValueLabelSize = 120;
             this.labelSet_TantoushaS.ValueLabelText = "";
             // 
@@ -233,7 +293,7 @@
             this.labelSet_TokuisakiS.SpaceCodeValue = 4;
             this.labelSet_TokuisakiS.SpaceNameCode = 4;
             this.labelSet_TokuisakiS.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiS.TabIndex = 100;
+            this.labelSet_TokuisakiS.TabIndex = 1;
             this.labelSet_TokuisakiS.ValueLabelSize = 350;
             this.labelSet_TokuisakiS.ValueLabelText = "";
             // 
@@ -247,6 +307,18 @@
             this.bgSort.Size = new System.Drawing.Size(439, 128);
             this.bgSort.TabIndex = 90;
             this.bgSort.TabStop = false;
+            // 
+            // lblSort
+            // 
+            this.lblSort.AutoSize = true;
+            this.lblSort.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblSort.Location = new System.Drawing.Point(6, 0);
+            this.lblSort.Name = "lblSort";
+            this.lblSort.Size = new System.Drawing.Size(103, 15);
+            this.lblSort.strToolTip = null;
+            this.lblSort.TabIndex = 106;
+            this.lblSort.Text = "並び順の指定";
+            this.lblSort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radSortItem
             // 
@@ -310,7 +382,7 @@
             this.labelSet_Maker.SpaceNameCode = 4;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
-            this.labelSet_Maker.TabIndex = 113;
+            this.labelSet_Maker.TabIndex = 10;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
             // 
@@ -342,7 +414,7 @@
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
-            this.labelSet_Chubunrui.TabIndex = 112;
+            this.labelSet_Chubunrui.TabIndex = 9;
             this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
             // 
@@ -378,7 +450,7 @@
             this.labelSet_Daibunrui.SpaceCodeValue = 4;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 111;
+            this.labelSet_Daibunrui.TabIndex = 8;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
             // 
@@ -409,7 +481,7 @@
             this.labelSet_Tokuisaki.SpaceCodeValue = 4;
             this.labelSet_Tokuisaki.SpaceNameCode = 4;
             this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 110;
+            this.labelSet_Tokuisaki.TabIndex = 7;
             this.labelSet_Tokuisaki.ValueLabelSize = 350;
             this.labelSet_Tokuisaki.ValueLabelText = "";
             // 
@@ -444,7 +516,7 @@
             this.txtRitsu.MaxLength = 3;
             this.txtRitsu.Name = "txtRitsu";
             this.txtRitsu.Size = new System.Drawing.Size(30, 22);
-            this.txtRitsu.TabIndex = 114;
+            this.txtRitsu.TabIndex = 11;
             this.txtRitsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblKakeritsu
@@ -466,7 +538,7 @@
             this.txtKakeritsu.MaxLength = 3;
             this.txtKakeritsu.Name = "txtKakeritsu";
             this.txtKakeritsu.Size = new System.Drawing.Size(30, 22);
-            this.txtKakeritsu.TabIndex = 115;
+            this.txtKakeritsu.TabIndex = 12;
             this.txtKakeritsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // radSetting
@@ -484,7 +556,7 @@
             this.radSetting.Radbtn1Text = "設定";
             this.radSetting.Radbtn2Text = "解除";
             this.radSetting.Size = new System.Drawing.Size(201, 19);
-            this.radSetting.TabIndex = 116;
+            this.radSetting.TabIndex = 13;
             // 
             // lblTitle
             // 
@@ -519,30 +591,6 @@
             this.txtId.TabIndex = 97;
             this.txtId.TabStop = false;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblSerach
-            // 
-            this.lblSerach.AutoSize = true;
-            this.lblSerach.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSerach.Location = new System.Drawing.Point(6, 0);
-            this.lblSerach.Name = "lblSerach";
-            this.lblSerach.Size = new System.Drawing.Size(71, 15);
-            this.lblSerach.strToolTip = null;
-            this.lblSerach.TabIndex = 106;
-            this.lblSerach.Text = "検索条件";
-            this.lblSerach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSort
-            // 
-            this.lblSort.AutoSize = true;
-            this.lblSort.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSort.Location = new System.Drawing.Point(6, 0);
-            this.lblSort.Name = "lblSort";
-            this.lblSort.Size = new System.Drawing.Size(103, 15);
-            this.lblSort.strToolTip = null;
-            this.lblSort.TabIndex = 106;
-            this.lblSort.Text = "並び順の指定";
-            this.lblSort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // M1220_SyohinBunruiRiekiritsu
             // 

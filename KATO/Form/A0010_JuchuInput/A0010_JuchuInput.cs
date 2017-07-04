@@ -765,7 +765,19 @@ namespace KATO.Form.A0010_JuchuInput
                         tsShiiresaki.Enabled = true;
                         txtShiireChuban.Enabled = true;
                     }
+
+                    if (!lsDaibunrui.CodeTxtText.Equals("28"))
+                    {
+                        if (string.IsNullOrWhiteSpace(txtJuchuSuryo.Text) && int.Parse(txtJuchuSuryo.Text) == 0)
+                        {
+                            cbSiireTanka.Enabled = false;
+                        }
+                    }
                 }
+
+                lockFlg = false;
+
+                execZaikoDisp();
             }
             catch (Exception ex)
             {
@@ -774,6 +786,11 @@ namespace KATO.Form.A0010_JuchuInput
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        private void execZaikoDisp()
+        {
+
         }
     }
 }

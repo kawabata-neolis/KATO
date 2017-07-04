@@ -83,7 +83,7 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             this.btnF01.Text = STR_FUNC_F1;
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
-            this.btnF06.Text = "売上実績";
+            this.btnF06.Text = "F6:売上実績";
             this.btnF12.Text = STR_FUNC_F12;
 
             // 初期表示

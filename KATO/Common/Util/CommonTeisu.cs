@@ -67,6 +67,8 @@ namespace KATO.Common.Util
         public const int FRM_GROUP = 1200;
         public const int FRM_JUCHUINPUT = 0010;
         public const int FRM_HACHUINPUT = 0100;
+        public const int FRM_SHOHINBETSURIEKIRITSUSETTEI = 1210;
+        public const int FRM_TOKUTEIMUKESAKITANKA = 1160;
 
         public const int FRM_TEST = 9999;
 
