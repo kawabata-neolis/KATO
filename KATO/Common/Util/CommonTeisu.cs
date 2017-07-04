@@ -91,6 +91,12 @@ namespace KATO.Common.Util
         public const int GROUP_RADIO_2 = 3;
         public const int GROUP_RADIO_3 = 4;
 
+        // 印刷
+        public const int ACTION_PRINT   = 0;
+        public const int ACTION_PREVIEW = 1;
+        public const int ACTION_CANCEL  = 2;
+
+
         public static readonly string[] LIST_GROUP =
         {
              ""
