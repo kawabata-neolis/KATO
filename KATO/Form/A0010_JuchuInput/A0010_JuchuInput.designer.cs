@@ -83,7 +83,7 @@
             this.txtHonshaShukko = new KATO.Common.Ctl.BaseTextMoney();
             this.txtGihuShukko = new KATO.Common.Ctl.BaseTextMoney();
             this.txtHatchusu = new KATO.Common.Ctl.BaseTextMoney();
-            this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
+            this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.lblGrayTanaHon = new KATO.Common.Ctl.BaseLabelGray();
             this.lblGrayTanaSub = new KATO.Common.Ctl.BaseLabelGray();
             this.txtKinSiireTanka = new KATO.Common.Ctl.BaseTextMoney();
@@ -93,7 +93,7 @@
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtHatchuNo = new KATO.Common.Ctl.BaseText();
             this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.tsShiiresaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
+            this.tsShiiresaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.txtShiireNoki = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShiireChuban = new KATO.Common.Ctl.BaseText();
@@ -1385,7 +1385,7 @@
         private Common.Ctl.BaseTextMoney txtHonshaShukko;
         private Common.Ctl.BaseTextMoney txtGihuShukko;
         private Common.Ctl.BaseTextMoney txtHatchusu;
-        private Common.Ctl.TextSet_Tokuisaki tsTokuisaki;
+        private Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
         private Common.Ctl.BaseLabelGray lblGrayTanaHon;
         private Common.Ctl.BaseLabelGray lblGrayTanaSub;
         private Common.Ctl.BaseTextMoney txtKinSiireTanka;
@@ -1395,7 +1395,7 @@
         private Common.Ctl.BaseLabel baseLabel2;
         private Common.Ctl.BaseText txtHatchuNo;
         private Common.Ctl.BaseLabel baseLabel3;
-        private Common.Ctl.TextSet_Tokuisaki tsShiiresaki;
+        private Common.Ctl.TextSet_Torihikisaki tsShiiresaki;
         private Common.Ctl.BaseCalendar txtShiireNoki;
         private Common.Ctl.BaseLabel baseLabel4;
         private Common.Ctl.BaseText txtShiireChuban;

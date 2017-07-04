@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,42 +13,34 @@ using KATO.Common.Util;
 namespace KATO.Common.Ctl
 {
     ///<summary>
-    ///TextSet_Tokuisaki
-    ///ラベルセット得意先（取引先）
+    ///LabelSet_Torihikisaki
+    ///ラベルセット取引先
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class TextSet_Tokuisaki : BaseTextTextSet
+    public partial class LabelSet_Torihikisaki : BaseTextLabelSet
     {
         /// <summary>
-        /// LabelSet_Tokuisaki
+        /// LabelSet_Torihikisaki
         /// 読み込み時
         /// </summary>
-        public TextSet_Tokuisaki()
+        public LabelSet_Torihikisaki()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// OnPaint
-        /// control.paintのイベント発生
-        /// </summary>
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            base.OnPaint(pe);
-        }
-
         ///<summary>
-        ///judTokuisakiKeyDown
+        ///codeTxt_KeyDown
         ///コード入力項目でのキー入力判定
         ///</summary>
-        private void judTokuisakiKeyDown(object sender, KeyEventArgs e)
+        private void codeTxt_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F9)
             {
+                //親画面がグループボックスの場合
                 if (this.Parent is GroupBox)
                 {
                     TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent.Parent, this);
@@ -56,9 +48,21 @@ namespace KATO.Common.Ctl
                     torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     torihikisakiList.ShowDialog();
                 }
-                else
+                //親画面がBaseFormの場合
+                else if (this.Parent is BaseForm)
                 {
                     TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this);
+                    torihikisakiList.StartPosition = FormStartPosition.Manual;
+                    torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    torihikisakiList.ShowDialog();
+                }
+                //親画面がLIST画面の場合
+                else
+                {
+                    //他と判別させるために空のオブジェクトを作成する
+                    object obj = new object();
+
+                    TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this, obj);
                     torihikisakiList.StartPosition = FormStartPosition.Manual;
                     torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     torihikisakiList.ShowDialog();
@@ -72,23 +76,21 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
-        ///updTxtTokuisakiLeave
+        ///codeTxt_Leave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtTokuisakiLeave(object sender, EventArgs e)
+        private void codeTxt_Leave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
             DataTable dtSetCd;
 
-            string strSQLName = null;
-
             Boolean blnGood;
 
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
-                this.valueTextText = "";
+                this.ValueLabelText = "";
                 this.AppendLabelText = "";
                 return;
             }
@@ -100,7 +102,7 @@ namespace KATO.Common.Ctl
 
             if (blnGood == false)
             {
-                this.valueTextText = "";
+                this.ValueLabelText = "";
 
                 //グループボックス内にいる場合
                 if (this.Parent is GroupBox)
@@ -127,11 +129,9 @@ namespace KATO.Common.Ctl
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
 
-            strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -143,10 +143,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
 
-                //配列設定
-                string[] aryStr = { this.CodeTxtText };
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();
@@ -168,12 +165,12 @@ namespace KATO.Common.Ctl
                     }
 
                     this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.valueTextText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
                     this.AppendLabelText = strZeikubun;
                 }
                 else
                 {
-                    this.valueTextText = "";
+                    this.ValueLabelText = "";
 
                     //グループボックス内にいる場合
                     if (this.Parent is GroupBox)
@@ -216,10 +213,10 @@ namespace KATO.Common.Ctl
             }
         }
 
-        ///judTokuisakiKeyUp
+        ///codeTxt_KeyUp
         ///入力項目上でのキー判定と文字数判定
         ///</summary>
-        private void judTokuisakiKeyUp(object sender, KeyEventArgs e)
+        private void codeTxt_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;
 
@@ -240,43 +237,12 @@ namespace KATO.Common.Ctl
 
             string strSQLName = null;
 
-            Boolean blnGood;
-
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
-                this.valueTextText = "";
+                this.ValueLabelText = "";
                 this.AppendLabelText = "";
                 return;
             }
-
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
-            {
-                this.valueTextText = "";
-
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
-                {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-                else
-                {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
 
@@ -319,7 +285,7 @@ namespace KATO.Common.Ctl
                     }
 
                     this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.valueTextText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
                     this.AppendLabelText = strZeikubun;
                 }
                 return;
@@ -348,10 +314,10 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
-        ///codeTxt_EnabledChanged
+        ///LabelSet_Torihikisaki_EnabledChanged
         ///Enabledが変更になった場合と解除
         ///</summary>
-        private void codeTxt_EnabledChanged(object sender, EventArgs e)
+        private void LabelSet_Torihikisaki_EnabledChanged(object sender, EventArgs e)
         {
             //EnabledがFalseになった場合
             if (this.Enabled == false)

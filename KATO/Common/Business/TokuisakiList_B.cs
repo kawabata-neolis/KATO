@@ -4,24 +4,22 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using KATO.Common.Form;
-using KATO.Form.M1070_Torihikisaki;
 using KATO.Common.Util;
-using KATO.Form.F0140_TanaorosiInput;
+using System.Windows.Forms;
 
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///TorihikisakiList_B
-    ///取引先リスト（処理部）
+    ///TokuisakiList_B
+    ///得意先リスト（処理部）
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class TorihikisakiList_B
+    class TokuisakiList_B
     {
         /// <summary>
         /// setViewGrid
@@ -81,14 +79,15 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //取引先のフォームを探す
-                if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                    torihikisaki.setTokuisakiListClose();
-                    break;
-                }
+                //例
+                ////取引先のフォームを探す
+                //if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
+                //{
+                //    //データを連れてくるため、newをしないこと
+                //    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                //    torihikisaki.setTokuisakiListClose();
+                //    break;
+                //}
             }
         }
 
@@ -133,21 +132,22 @@ namespace KATO.Common.Business
                 //移動元フォームの検索
                 switch (intFrmKind)
                 {
-                    //取引先
-                    case CommonTeisu.FRM_TORIHIKISAKI:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name.Equals("M1070_Torihikisaki"))
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                                torihikisaki.setTorihikisaki(dtSelectData);
-                                break;
-                            }
-                        }
-                        break;
+                    //例
+                    ////取引先
+                    //case CommonTeisu.FRM_TORIHIKISAKI:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name.Equals("M1070_Torihikisaki"))
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                    //            torihikisaki.setTorihikisaki(dtSelectData);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
                     default:
                         break;
                 }
@@ -167,7 +167,7 @@ namespace KATO.Common.Business
         ///setKensaku
         ///検索時の処理
         ///</summary>
-        public DataTable setKensaku(List<string> lstSelectData)
+        public DataTable setKensaku(string  strSelectData)
         {
             //検索データの受け取り用
             DataTable dtGetTableGrid = new DataTable();
@@ -179,32 +179,10 @@ namespace KATO.Common.Business
             DBConnective dbConnective = new DBConnective();
             try
             {
-                strWhere = "WHERE a.削除 = 'N'";
-
                 //業種コードが存在するか
-                if (lstSelectData[0] != "")
+                if (strSelectData != "")
                 {
-                    strWhere = strWhere + " AND 業種コード ='" + lstSelectData[0] + "'";
-                }
-                //営業担当者が存在するか
-                if (lstSelectData[1] != "")
-                {
-                    strWhere = strWhere + " AND 営業担当者 ='" + lstSelectData[1] + "'";
-                }
-                //取引先名称が存在するか
-                if (lstSelectData[2] != "")
-                {
-                    strWhere = strWhere + " AND 取引先名称 LIKE '%" + lstSelectData[2] + "%'";
-                }
-                //カナが存在するか
-                if (lstSelectData[3] != "")
-                {
-                    strWhere = strWhere + " AND カナ LIKE '%" + lstSelectData[3] + "%'";
-                }
-                //電話番号が存在するか
-                if (lstSelectData[4] != "")
-                {
-                    strWhere = strWhere + " AND 電話番号 LIKE '" + lstSelectData[4] + "%'";
+                    strWhere = strWhere + " WHERE 業種コード ='" + strSelectData + "'";
                 }
 
                 //検索データを表示

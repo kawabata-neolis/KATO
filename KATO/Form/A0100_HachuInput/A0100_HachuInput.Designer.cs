@@ -38,7 +38,7 @@
             this.txtHachuban = new KATO.Common.Ctl.BaseText();
             this.labelSet_Hachusha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_Eigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
-            this.textSet_Tokuisaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
+            this.textSet_Tokuisaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.gbHachuData = new System.Windows.Forms.GroupBox();
             this.txtHachusu = new KATO.Common.Ctl.BaseTextMoney();
             this.txtData6 = new KATO.Common.Ctl.BaseText();
@@ -809,7 +809,7 @@
         private Common.Ctl.BaseText txtHachuban;
         private Common.Ctl.LabelSet_Tantousha labelSet_Hachusha;
         private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho;
-        private Common.Ctl.TextSet_Tokuisaki textSet_Tokuisaki;
+        private Common.Ctl.TextSet_Torihikisaki textSet_Tokuisaki;
         private System.Windows.Forms.GroupBox gbHachuData;
         private System.Windows.Forms.GroupBox gbhachuZan;
         private Common.Ctl.LabelSet_Maker labelSet_Maker;

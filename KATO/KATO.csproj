@@ -141,7 +141,9 @@
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\GyoshuList_B.cs" />
+    <Compile Include="Common\Business\ShiresakiList_B.cs" />
     <Compile Include="Common\Business\ShohizeiritsuList_B.cs" />
+    <Compile Include="Common\Business\TokuisakiList_B.cs" />
     <Compile Include="Common\Business\TorihikiCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\DaibunruiList_B.cs" />
@@ -283,6 +285,12 @@
     <Compile Include="Common\Ctl\LabelSet_Maker.Designer.cs">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Shiresaki.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Shiresaki.Designer.cs">
+      <DependentUpon>LabelSet_Shiresaki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\LabelSet_Tanaban.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -307,17 +315,23 @@
     <Compile Include="Common\Ctl\LabelSet_Torihikikbn.Designer.cs">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Torihikisaki.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Torihikisaki.Designer.cs">
+      <DependentUpon>LabelSet_Torihikisaki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\RadSet_6btn.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Common\Ctl\RadSet_6btn.Designer.cs">
       <DependentUpon>RadSet_6btn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Ctl\TextSet_Tokuisaki.cs">
+    <Compile Include="Common\Ctl\TextSet_Torihikisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Common\Ctl\TextSet_Tokuisaki.Designer.cs">
-      <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>
+    <Compile Include="Common\Ctl\TextSet_Torihikisaki.Designer.cs">
+      <DependentUpon>TextSet_Torihikisaki.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Tokuisaki.cs">
       <SubType>UserControl</SubType>
@@ -385,11 +399,23 @@
     <Compile Include="Common\Form\ShiharaiList.Designer.cs">
       <DependentUpon>ShiharaiList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\ShiresakiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ShiresakiList.Designer.cs">
+      <DependentUpon>ShiresakiList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\ShohizeiritsuList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Common\Form\ShohizeiritsuList.Designer.cs">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\TokuisakiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\TokuisakiList.Designer.cs">
+      <DependentUpon>TokuisakiList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TorihikisakiList.cs">
       <SubType>Form</SubType>
@@ -652,6 +678,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseComboBox.resx">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\BaseDataGridViewEdit.resx">
       <DependentUpon>BaseDataGridViewEdit.cs</DependentUpon>
@@ -719,9 +746,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_GroupCd.resx">
       <DependentUpon>LabelSet_GroupCd.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Maker.resx">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Shiresaki.resx">
+      <DependentUpon>LabelSet_Shiresaki.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tanaban.resx">
@@ -740,11 +772,16 @@
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikisaki.resx">
+      <DependentUpon>LabelSet_Torihikisaki.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_6btn.resx">
       <DependentUpon>RadSet_6btn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Ctl\TextSet_Tokuisaki.resx">
-      <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>
+    <EmbeddedResource Include="Common\Ctl\TextSet_Torihikisaki.resx">
+      <DependentUpon>TextSet_Torihikisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Tokuisaki.resx">
@@ -753,18 +790,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_4btn.resx">
       <DependentUpon>RadSet_4btn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_3btn.resx">
       <DependentUpon>RadSet_3btn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_2btn.resx">
       <DependentUpon>RadSet_2btn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\RadSet_5btn.resx">
       <DependentUpon>RadSet_5btn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\BaseComboBox.resx">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\NyukinList.resx">
       <DependentUpon>NyukinList.cs</DependentUpon>
@@ -780,15 +822,26 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\GroupCdList.resx">
       <DependentUpon>GroupCdList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\GyoshuList.resx">
       <DependentUpon>GyoshuList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ShiharaiList.resx">
       <DependentUpon>ShiharaiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShiresakiList.resx">
+      <DependentUpon>ShiresakiList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ShohizeiritsuList.resx">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
+      <DependentUpon>TokuisakiList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikisakiList.resx">
       <DependentUpon>TorihikisakiList.cs</DependentUpon>
@@ -970,6 +1023,9 @@
     <Content Include="SQL\Common\CommonForm\ShohizeiritsuList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\ShiresakiList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\TorihikikbnList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1082,6 +1138,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shiresaki_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT_LEAVE.sql">
