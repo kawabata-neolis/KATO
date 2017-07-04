@@ -1,13 +1,13 @@
 ﻿namespace KATO.Common.Ctl
 {
-    partial class TextSet_Tokuisaki
+    partial class LabelSet_Shiresaki
     {
-        /// <summary>
+        /// <summary> 
         /// 必要なデザイナー変数です。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// 使用中のリソースをすべてクリーンアップします。
         /// </summary>
         /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
@@ -22,7 +22,7 @@
 
         #region コンポーネント デザイナーで生成されたコード
 
-        /// <summary>
+        /// <summary> 
         /// デザイナー サポートに必要なメソッドです。このメソッドの内容を 
         /// コード エディターで変更しないでください。
         /// </summary>
@@ -37,20 +37,19 @@
             this.codeTxt.Size = new System.Drawing.Size(40, 22);
             this.codeTxt.EnabledChanged += new System.EventHandler(this.codeTxt_EnabledChanged);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
-            this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyDown);
-            this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyUp);
-            this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
+            this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.codeTxt_KeyDown);
+            this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.codeTxt_KeyUp);
+            this.codeTxt.Leave += new System.EventHandler(this.codeTxt_Leave);
             // 
-            // TextSet_Tokuisaki
+            // LabelSet_Shiresaki
             // 
-            this.AppendLabelSize = 40;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CodeTxtSize = 40;
-            this.LabelName = "得意先コード";
-            this.Name = "TextSet_Tokuisaki";
-            this.ShowAppendFlg = true;
-            this.Size = new System.Drawing.Size(642, 22);
-            this.ValueTextSize = 350;
+            this.LabelName = "仕入先コード";
+            this.Name = "LabelSet_Shiresaki";
+            this.Size = new System.Drawing.Size(594, 22);
+            this.ValueLabelSize = 300;
             this.ResumeLayout(false);
             this.PerformLayout();
 

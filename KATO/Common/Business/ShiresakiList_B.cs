@@ -4,24 +4,22 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using KATO.Common.Form;
-using KATO.Form.M1070_Torihikisaki;
 using KATO.Common.Util;
-using KATO.Form.F0140_TanaorosiInput;
+using System.Windows.Forms;
 
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///TorihikisakiList_B
-    ///取引先リスト（処理部）
+    ///ShiresakiList_B
+    ///仕入先リスト（処理部）
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    class TorihikisakiList_B
+    class ShiresakiList_B
     {
         /// <summary>
         /// setViewGrid
@@ -35,7 +33,7 @@ namespace KATO.Common.Business
             //データ渡し用
             lstStringSQL.Add("Common");
             lstStringSQL.Add("CommonForm");
-            lstStringSQL.Add("TokuisakiList_View");
+            lstStringSQL.Add("ShiresakiList_View");
 
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -81,14 +79,15 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //取引先のフォームを探す
-                if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                    torihikisaki.setTokuisakiListClose();
-                    break;
-                }
+                //例
+                ////取引先のフォームを探す
+                //if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
+                //{
+                //    //データを連れてくるため、newをしないこと
+                //    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                //    torihikisaki.setTokuisakiListClose();
+                //    break;
+                //}
             }
         }
 
@@ -110,7 +109,7 @@ namespace KATO.Common.Business
 
                 //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("Common");
-                lstSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+                lstSQL.Add("C_LIST_Shiresaki_SELECT_LEAVE");
 
                 //SQL発行
                 OpenSQL opensql = new OpenSQL();
@@ -133,21 +132,23 @@ namespace KATO.Common.Business
                 //移動元フォームの検索
                 switch (intFrmKind)
                 {
-                    //取引先
-                    case CommonTeisu.FRM_TORIHIKISAKI:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name.Equals("M1070_Torihikisaki"))
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                                torihikisaki.setTorihikisaki(dtSelectData);
-                                break;
-                            }
-                        }
-                        break;
+                    //例
+                    //仕入先
+                    //case CommonTeisu.FRM_TORIHIKISAKI:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                            //例
+                            ////目的のフォームを探す
+                            //if (frm.Name.Equals("M1070_Torihikisaki"))
+                            //{
+                            //    //データを連れてくるため、newをしないこと
+                            //    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                            //    torihikisaki.setTorihikisaki(dtSelectData);
+                            //    break;
+                            //}
+                        //}
+                        //break;
                     default:
                         break;
                 }
@@ -179,36 +180,27 @@ namespace KATO.Common.Business
             DBConnective dbConnective = new DBConnective();
             try
             {
-                strWhere = "WHERE a.削除 = 'N'";
+                strWhere = "";
 
                 //業種コードが存在するか
                 if (lstSelectData[0] != "")
                 {
-                    strWhere = strWhere + " AND 業種コード ='" + lstSelectData[0] + "'";
+                    strWhere = strWhere + " WHERE 仕入先名 LIKE '%" + lstSelectData[0] + "%'";
+
+                    ////フリガナが存在するか
+                    //if (lstSelectData[1] != "")
+                    //{
+                    //    strWhere = strWhere + " AND カナ LIKE '" + lstSelectData[1] + "%'";
+                    //}
                 }
-                //営業担当者が存在するか
-                if (lstSelectData[1] != "")
-                {
-                    strWhere = strWhere + " AND 営業担当者 ='" + lstSelectData[1] + "'";
-                }
-                //取引先名称が存在するか
-                if (lstSelectData[2] != "")
-                {
-                    strWhere = strWhere + " AND 取引先名称 LIKE '%" + lstSelectData[2] + "%'";
-                }
-                //カナが存在するか
-                if (lstSelectData[3] != "")
-                {
-                    strWhere = strWhere + " AND カナ LIKE '%" + lstSelectData[3] + "%'";
-                }
-                //電話番号が存在するか
-                if (lstSelectData[4] != "")
-                {
-                    strWhere = strWhere + " AND 電話番号 LIKE '" + lstSelectData[4] + "%'";
-                }
+                ////フリガナが存在するか
+                //else if (lstSelectData[1] != "")
+                //{
+                //    strWhere = strWhere + " WHERE カナ LIKE '" + lstSelectData[1] + "%'";
+                //}
 
                 //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.取引先コード, a.取引先名称 FROM 取引先 a " + strWhere + " ORDER BY a.取引先コード ASC");
+                dtGetTableGrid = dbConnective.ReadSql("SELECT 仕入先コード, 仕入先名 FROM AS400仕入先名_VIEW " + strWhere + " ORDER BY 仕入先コード ASC");
 
                 return (dtGetTableGrid);
             }
@@ -222,5 +214,6 @@ namespace KATO.Common.Business
                 dbConnective.DB_Disconnect();
             }
         }
+
     }
 }

@@ -16,7 +16,7 @@ using System.Security.Permissions;
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///TorihikisakiList
+    ///TokuisakiList
     ///得意先リスト
     ///作成者：大河内
     ///作成日：2017/5/1
@@ -24,14 +24,13 @@ namespace KATO.Common.Form
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class TorihikisakiList : System.Windows.Forms.Form
+    public partial class TokuisakiList : System.Windows.Forms.Form
     {
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //得意先のラベルセットとテキストセットを確保する用
-        LabelSet_Torihikisaki lblSetTorihikisaki = null;
-        TextSet_Torihikisaki txtSetTokuisaki = null;
+        LabelSet_Tokuisaki lblSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -53,10 +52,10 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// TantoushaList
+        /// TokuisakiList
         /// 前画面からデータ受け取り(通常テキストボックス)
         /// </summary>
-        public TorihikisakiList(Control c)
+        public TokuisakiList(Control c)
         {
             //フォームタイトル設定
             if (c == null)
@@ -86,7 +85,7 @@ namespace KATO.Common.Form
         /// TokuisakiList
         /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）
         /// </summary>
-        public TorihikisakiList(Control c, LabelSet_Torihikisaki lblSetTorihikiSelect)
+        public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
         {
             //画面データが解放されていた時の対策
             if (c == null)
@@ -99,7 +98,7 @@ namespace KATO.Common.Form
             int intWindowHeight = c.Height;
 
             //ラベルセットデータの確保
-            lblSetTorihikisaki = lblSetTorihikiSelect;
+            lblSetTokuisaki = lblSetTokuiSelect;
 
             InitializeComponent();
 
@@ -116,120 +115,66 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）（リスト画面から）
-        /// </summary>
-        public TorihikisakiList(Control c, LabelSet_Torihikisaki lblSetTorihikiSelect, object obj)
-        {
-            //画面データが解放されていた時の対策
-            if (c == null)
-            {
-                return;
-            }
-
-            //画面位置の指定
-            int intWindowWidth = c.Width;
-            int intWindowHeight = c.Height;
-
-            //ラベルセットデータの確保
-            lblSetTorihikisaki = lblSetTorihikiSelect;
-
-            InitializeComponent();
-
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-            this.btnF11.Text = "F11:検索";
-
-            //ウィンドウ位置をマニュアル
-            this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 30;
-        }
-
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（テキスト型）
-        /// </summary>
-        public TorihikisakiList(Control c, TextSet_Torihikisaki txtSetTokuiSelect)
-        {
-            //画面データが解放されていた時の対策
-            if (c == null)
-            {
-                return;
-            }
-
-            //画面位置の指定
-            int intWindowWidth = c.Width;
-            int intWindowHeight = c.Height;
-
-            //テキストセットデータの確保
-            txtSetTokuisaki = txtSetTokuiSelect;
-
-            InitializeComponent();
-
-            // フォームでもキーイベントを受け取る
-            this.KeyPreview = true;
-            this.btnF12.Text = "F12:戻る";
-            this.btnF11.Text = "F11:検索";
-
-            //ウィンドウ位置をマニュアル
-            this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 150;
-        }
-
-        /// <summary>
-        /// TantousyaList_Load
+        /// TokuisakiList_Load
         /// 画面レイアウト設定
         /// </summary>
-        private void TantousyaList_Load(object sender, EventArgs e)
+        private void TokuisakiList_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "取引先名";
+            this._Title = "得意先名";
 
             //データグリッドビューの準備
             SetUpGrid();
         }
 
         ///<summary>
-        ///SetUpGrid
-        ///データグリッドビューの準備
+        ///GridSetUp
+        ///DataGridView初期設定
         ///</summary>
         private void SetUpGrid()
         {
             //列自動生成禁止
-            gridTorihikisaki.AutoGenerateColumns = false;
+            gridShiresaki.AutoGenerateColumns = false;
 
             //データをバインド
-            DataGridViewTextBoxColumn torihikisakiCD = new DataGridViewTextBoxColumn();
-            torihikisakiCD.DataPropertyName = "取引先コード";
-            torihikisakiCD.Name = "取引先コード";
-            torihikisakiCD.HeaderText = "コード";
+            DataGridViewTextBoxColumn shireCd = new DataGridViewTextBoxColumn();
+            shireCd.DataPropertyName = "得意先コード";
+            shireCd.Name = "得意先コード";
+            shireCd.HeaderText = "コード";
 
-            DataGridViewTextBoxColumn torihikisakiName = new DataGridViewTextBoxColumn();
-            torihikisakiName.DataPropertyName = "取引先名称";
-            torihikisakiName.Name = "取引先名称";
-            torihikisakiName.HeaderText = "取引先名";
-
-            //バインドしたデータを追加
-            gridTorihikisaki.Columns.Add(torihikisakiCD);
-            gridTorihikisaki.Columns.Add(torihikisakiName);
+            DataGridViewTextBoxColumn shireName = new DataGridViewTextBoxColumn();
+            shireName.DataPropertyName = "得意先名";
+            shireName.Name = "得意先名";
+            shireName.HeaderText = "得意先名";
 
             //個々の幅、文章の寄せ
-            gridTorihikisaki.Columns["取引先コード"].Width = 100;
-            gridTorihikisaki.Columns["取引先コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTorihikisaki.Columns["取引先コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTorihikisaki.Columns["取引先名称"].Width = 400;
-            gridTorihikisaki.Columns["取引先名称"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTorihikisaki.Columns["取引先名称"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            setColumn(shireCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(shireName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
         }
 
         ///<summary>
-        ///judTantouListKeyDown
+        ///setColumn
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            //column設定
+            gridShiresaki.Columns.Add(col);
+            if (gridShiresaki.Columns[col.Name] != null)
+            {
+                gridShiresaki.Columns[col.Name].Width = intLen;
+                gridShiresaki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridShiresaki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridShiresaki.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
+        ///<summary>
+        ///judTokuiListKeyDown
         ///キー入力判定
         ///</summary>
         private void judTokuiListKeyDown(object sender, KeyEventArgs e)
@@ -290,10 +235,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///judTokuiListTxtKeyDown
+        ///judTokuiTxtKeyDown
         ///キー入力判定(テキストボックス)
         ///</summary>
-        private void judTokuiListTxtKeyDown(object sender, KeyEventArgs e)
+        private void judTokuiTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -410,7 +355,7 @@ namespace KATO.Common.Form
         private void setSelectItem()
         {
             //検索結果にデータが存在しなければ終了
-            if (gridTorihikisaki.RowCount == 0)
+            if (gridShiresaki.RowCount == 0)
             {
                 return;
             }
@@ -419,19 +364,19 @@ namespace KATO.Common.Form
             List<string> lstSelectData = new List<string>();
 
             //選択行の担当者情報取得
-            string strSelectId = (string)gridTorihikisaki.CurrentRow.Cells["取引先コード"].Value;
-            string strSelectName = (string)gridTorihikisaki.CurrentRow.Cells["取引先名称"].Value;
+            string strSelectId = (string)gridShiresaki.CurrentRow.Cells["得意先コード"].Value;
+            string strSelectName = (string)gridShiresaki.CurrentRow.Cells["仕入先名"].Value;
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);
             lstSelectData.Add(strSelectName);
 
             //ビジネス層のインスタンス生成
-            TorihikisakiList_B tokuisakilistB = new TorihikisakiList_B();
+            ShiresakiList_B shiresakilistB = new ShiresakiList_B();
             try
             {
                 //ビジネス層、検索ロジックに移動
-                tokuisakilistB.setSelectItem(intFrmKind, strSelectId);
+                shiresakilistB.setSelectItem(intFrmKind, strSelectId);
 
                 setEndAction(lstSelectData);
             }
@@ -445,7 +390,7 @@ namespace KATO.Common.Form
                 return;
             }
         }
-
+        
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
@@ -468,24 +413,17 @@ namespace KATO.Common.Form
         private void setEndAction(List<string> lstSelectData)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合(ラベルセットの場合)
-            if (lblSetTorihikisaki != null && lstSelectData.Count != 0)
+            if (lblSetTokuisaki != null && lstSelectData.Count != 0)
             {
                 //セットの中に検索結果データを入れる
-                lblSetTorihikisaki.CodeTxtText = lstSelectData[0];
-                lblSetTorihikisaki.ValueLabelText = lstSelectData[1];
-            }
-            //(テキストセットの場合)
-            else if (txtSetTokuisaki != null && lstSelectData.Count != 0)
-            {
-                //セットの中に検索結果データを入れる
-                txtSetTokuisaki.CodeTxtText = lstSelectData[0];
-                txtSetTokuisaki.valueTextText = lstSelectData[1];
+                lblSetTokuisaki.CodeTxtText = lstSelectData[0];
+                lblSetTokuisaki.ValueLabelText = lstSelectData[1];
             }
 
             this.Close();
 
             //ビジネス層のインスタンス生成
-            TorihikisakiList_B tokuisakilistB = new TorihikisakiList_B();
+            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
             try
             {
                 //画面終了処理
@@ -513,24 +451,17 @@ namespace KATO.Common.Form
             //記入情報検索用
             List<string> lstSelectData = new List<string>();
 
-            //画面の取引先検索情報取得
-            lstSelectData.Add("");
-            lstSelectData.Add("");
-            lstSelectData.Add(txtTorihikisaki.Text);
-            lstSelectData.Add(txtHurigana.Text);
-            lstSelectData.Add("");
-
             //ビジネス層のインスタンス生成
-            TorihikisakiList_B tokuisakiB = new TorihikisakiList_B();
+            TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridTorihikisaki.DataSource = tokuisakiB.setKensaku(lstSelectData);
+                gridShiresaki.DataSource = tokuisakilistB.setKensaku(txtTokuisaki.Text);
 
                 //表示数を記載
-                lblRecords.Text = "該当件数( " + gridTorihikisaki.RowCount.ToString() + "件)";
+                lblRecords.Text = "該当件数( " + gridShiresaki.RowCount.ToString() + "件)";
 
-                gridTorihikisaki.Focus();
+                gridShiresaki.Focus();
 
             }
             catch (Exception ex)
@@ -545,10 +476,10 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// setTokuiGridDblClick
+        /// setShireGridDblClick
         /// データグリッドビュー内のデータをダブルクリックしたとき
         /// </summary>
-        private void setTokuiGridDblClick(object sender, EventArgs e)
+        private void setShireGridDblClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
@@ -572,10 +503,10 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// txtTorihikisaki_KeyUp
+        /// txtTokuisaki_KeyUp
         /// 入力項目上でのキー判定と文字数判定
         /// </summary>
-        private void txtTorihikisaki_KeyUp(object sender, KeyEventArgs e)
+        private void txtTokuisaki_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;
 
