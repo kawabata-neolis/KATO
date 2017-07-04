@@ -243,5 +243,10 @@ namespace KATO.Form.Z0000
             }
         }
 
+        private void baseMenuButton1_Click(object sender, EventArgs e)
+        {
+            Common.Form.PrintForm pf = new Common.Form.PrintForm(this);
+            pf.ShowDialog();
+        }
     }
 }

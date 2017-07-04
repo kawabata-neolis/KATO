@@ -35,6 +35,8 @@
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnSiireSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnUriageSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
             this.btnShohinMotochoKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -54,8 +56,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnUriageSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
-            this.btnSiireSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
+            this.baseMenuButton1 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -141,6 +142,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.baseMenuButton1);
             this.tabPage1.Controls.Add(this.btnJuchuInput);
             this.tabPage1.Controls.Add(this.btnHachuInput);
             this.tabPage1.Controls.Add(this.btnTestWindow);
@@ -211,6 +213,28 @@
             this.tabPage2.Size = new System.Drawing.Size(1392, 737);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
+            // 
+            // btnSiireSuiiHyo
+            // 
+            this.btnSiireSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
+            this.btnSiireSuiiHyo.Location = new System.Drawing.Point(23, 165);
+            this.btnSiireSuiiHyo.Name = "btnSiireSuiiHyo";
+            this.btnSiireSuiiHyo.Size = new System.Drawing.Size(280, 40);
+            this.btnSiireSuiiHyo.TabIndex = 106;
+            this.btnSiireSuiiHyo.Text = "分類別仕入推移表";
+            this.btnSiireSuiiHyo.UseVisualStyleBackColor = false;
+            this.btnSiireSuiiHyo.Click += new System.EventHandler(this.btnSiireSuiiHyo_Click);
+            // 
+            // btnUriageSuiiHyo
+            // 
+            this.btnUriageSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
+            this.btnUriageSuiiHyo.Location = new System.Drawing.Point(23, 231);
+            this.btnUriageSuiiHyo.Name = "btnUriageSuiiHyo";
+            this.btnUriageSuiiHyo.Size = new System.Drawing.Size(280, 40);
+            this.btnUriageSuiiHyo.TabIndex = 105;
+            this.btnUriageSuiiHyo.Text = "分類別売上推移表";
+            this.btnUriageSuiiHyo.UseVisualStyleBackColor = false;
+            this.btnUriageSuiiHyo.Click += new System.EventHandler(this.btnUriageSuiiHyo_Click);
             // 
             // btnShohinMotochoKakunin
             // 
@@ -429,27 +453,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // btnUriageSuiiHyo
+            // baseMenuButton1
             // 
-            this.btnUriageSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
-            this.btnUriageSuiiHyo.Location = new System.Drawing.Point(23, 231);
-            this.btnUriageSuiiHyo.Name = "btnUriageSuiiHyo";
-            this.btnUriageSuiiHyo.Size = new System.Drawing.Size(280, 40);
-            this.btnUriageSuiiHyo.TabIndex = 105;
-            this.btnUriageSuiiHyo.Text = "分類別売上推移表";
-            this.btnUriageSuiiHyo.UseVisualStyleBackColor = false;
-            this.btnUriageSuiiHyo.Click += new System.EventHandler(this.btnUriageSuiiHyo_Click);
-            // 
-            // btnSiireSuiiHyo
-            // 
-            this.btnSiireSuiiHyo.BackColor = System.Drawing.Color.LightYellow;
-            this.btnSiireSuiiHyo.Location = new System.Drawing.Point(23, 165);
-            this.btnSiireSuiiHyo.Name = "btnSiireSuiiHyo";
-            this.btnSiireSuiiHyo.Size = new System.Drawing.Size(280, 40);
-            this.btnSiireSuiiHyo.TabIndex = 106;
-            this.btnSiireSuiiHyo.Text = "分類別仕入推移表";
-            this.btnSiireSuiiHyo.UseVisualStyleBackColor = false;
-            this.btnSiireSuiiHyo.Click += new System.EventHandler(this.btnSiireSuiiHyo_Click);
+            this.baseMenuButton1.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton1.Location = new System.Drawing.Point(317, 672);
+            this.baseMenuButton1.Name = "baseMenuButton1";
+            this.baseMenuButton1.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton1.TabIndex = 73;
+            this.baseMenuButton1.Text = "印刷ダイアログテスト";
+            this.baseMenuButton1.UseVisualStyleBackColor = false;
+            this.baseMenuButton1.Click += new System.EventHandler(this.baseMenuButton1_Click);
             // 
             // Z0000
             // 
@@ -515,5 +528,6 @@
         private Common.Ctl.BaseMenuButton btnJuchuInput;
         private Common.Ctl.BaseMenuButton btnSiireSuiiHyo;
         private Common.Ctl.BaseMenuButton btnUriageSuiiHyo;
+        private Common.Ctl.BaseMenuButton baseMenuButton1;
     }
 }
