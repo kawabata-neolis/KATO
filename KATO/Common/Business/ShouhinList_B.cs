@@ -11,6 +11,8 @@ using KATO.Form.M1030_Shohin;
 using KATO.Form.D0380_ShohinMotochoKakunin;
 using KATO.Form.A0010_JuchuInput;
 using KATO.Form.A0100_HachuInput;
+using KATO.Form.M1210_ShohinbetsuRiekiritsuSettei;
+using KATO.Form.M1160_TokuteimukesakiTanka;
 
 namespace KATO.Common.Business
 {
@@ -453,6 +455,34 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
+                    case CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
+                                shohinbetsuriekiritsusettei.setShouhin(dtShohin);
+                                break;
+                            }
+                        }
+                        break;
+                    case CommonTeisu.FRM_TOKUTEIMUKESAKITANKA:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "M1160_TokuteimukesakiTanka")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
+                                tokuteimukesakitanka.setShouhin(dtShohin);
+                                break;
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -520,6 +550,22 @@ namespace KATO.Common.Business
                     //データを連れてくるため、newをしないこと
                     A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
                     hachuinput.setShohinClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI && frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
+                    shohinbetsuriekiritsusettei.setShohinClose();
+                    break;
+                }
+                //目的のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_TOKUTEIMUKESAKITANKA && frm.Name == "M1160_TokuteimukesakiTanka")
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
+                    tokuteimukesakitanka.setShohinClose();
                     break;
                 }
             }
