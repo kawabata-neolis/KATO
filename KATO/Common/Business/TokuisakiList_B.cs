@@ -182,11 +182,11 @@ namespace KATO.Common.Business
                 //業種コードが存在するか
                 if (strSelectData != "")
                 {
-                    strWhere = strWhere + " WHERE 業種コード ='" + strSelectData + "'";
+                    strWhere = strWhere + " WHERE 得意先名 LIKE '%" + strSelectData + "%'";
                 }
 
                 //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.取引先コード, a.取引先名称 FROM 取引先 a " + strWhere + " ORDER BY a.取引先コード ASC");
+                dtGetTableGrid = dbConnective.ReadSql("SELECT a.得意先コード, a.得意先名 FROM AS400得意先名_VIEW a " + strWhere + " ORDER BY a.得意先コード ASC");
 
                 return (dtGetTableGrid);
             }

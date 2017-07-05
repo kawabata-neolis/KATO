@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.AcroPDFLib">
-      <HintPath>..\packages\AxInterop.AcroPDFLib.dll</HintPath>
+      <HintPath>\\Desktop-1svoi91\共有\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.86.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.86.0\lib\net40\ClosedXML.dll</HintPath>
@@ -68,7 +68,7 @@
     <Reference Include="Interop.AcroPDFLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\packages\Interop.AcroPDFLib.dll</HintPath>
+      <HintPath>\\Desktop-1svoi91\共有\Interop.AcroPDFLib.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
@@ -117,6 +117,7 @@
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
+    <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
@@ -482,6 +483,12 @@
     </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.Designer.cs">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.Designer.cs">
+      <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.cs">
       <SubType>Form</SubType>
@@ -911,6 +918,9 @@
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.resx">
+      <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1062,6 +1072,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />
   </ItemGroup>
@@ -1147,6 +1158,9 @@
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_ShiresakiAS400_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\C_LIST_ShohinMotochoKakunin_SELECT_VIEW_EigyoFalse.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1184,6 +1198,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_TokuisakiAS400_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Tokuisaki_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Torihikikbn_SELECT_LEAVE.sql">

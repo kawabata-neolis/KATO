@@ -225,6 +225,13 @@ namespace KATO.Form.Z0000
             uriHyo.ShowDialog();
         }
 
+        // 発注数変更
+        private void btnHachusuhenko_Click(object sender, EventArgs e)
+        {
+            A0470_Hachusuhenko.A0470_Hachusuhenko hachusuhenko = new A0470_Hachusuhenko.A0470_Hachusuhenko(this);
+            hachusuhenko.ShowDialog();
+        }
+
 
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
@@ -261,5 +268,6 @@ namespace KATO.Form.Z0000
             }
             pf.Dispose();
         }
+
     }
 }

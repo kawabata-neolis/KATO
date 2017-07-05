@@ -417,10 +417,31 @@ namespace KATO.Common.Form
 
             //データ渡し用
             List<string> lstSelectData = new List<string>();
+            
+            string strSelectId = null;
+            string strSelectName = null;
 
-            //選択行の担当者情報取得
-            string strSelectId = (string)gridTorihikisaki.CurrentRow.Cells["取引先コード"].Value;
-            string strSelectName = (string)gridTorihikisaki.CurrentRow.Cells["取引先名称"].Value;
+            int intSelectRow = 0;
+            int intSelectColumn = 0;
+
+            //何行目かを確保
+            intSelectRow = gridTorihikisaki.CurrentCell.RowIndex;
+            intSelectColumn = gridTorihikisaki.CurrentCell.ColumnIndex;
+
+            //datagridviewをdatatable化
+            DataTable dtSelect = (DataTable)gridTorihikisaki.DataSource;
+
+            //選択した得意先コードの確保
+            strSelectId = dtSelect.Rows[intSelectRow]["取引先コード"].ToString();
+
+            //選択した得意先コードが存在しない場合
+            if (strSelectId == "")
+            {
+                return;
+            }
+
+            //選択した得意先名の確保
+            strSelectName = dtSelect.Rows[intSelectRow]["取引先名称"].ToString();
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);

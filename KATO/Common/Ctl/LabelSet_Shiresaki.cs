@@ -113,14 +113,9 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (this.CodeTxtText.Length < 4)
-            {
-                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
-            }
-
             //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add("C_LIST_Shiresaki_SELECT_LEAVE");
+            lstStringSQL.Add("C_LIST_ShiresakiAS400_SELECT_LEAVE");
 
             OpenSQL opensql = new OpenSQL();
             try
@@ -142,11 +137,8 @@ namespace KATO.Common.Ctl
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    string strZeikubun = "";
-
                     this.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["仕入先名称"].ToString();
-                    this.AppendLabelText = strZeikubun;
+                    this.ValueLabelText = dtSetCd.Rows[0]["仕入先名"].ToString();
                 }
                 else
                 {
@@ -224,7 +216,7 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            strSQLName = "C_LIST_Shiresaki_SELECT_LEAVE";
+            strSQLName = "C_LIST_ShiresakiAS400_SELECT_LEAVE";
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -253,11 +245,8 @@ namespace KATO.Common.Ctl
 
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    string strZeikubun = "";
-
                     this.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["仕入先名称"].ToString();
-                    this.AppendLabelText = strZeikubun;
+                    this.ValueLabelText = dtSetCd.Rows[0]["仕入先名"].ToString();
                 }
                 return;
             }

@@ -68,6 +68,7 @@
             this.labelSet_Torihikikbn2 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.labelSet_Torihikisaki1 = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.labelSet_Shiresaki1 = new KATO.Common.Ctl.LabelSet_Shiresaki();
+            this.labelSet_Tokuisaki2 = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).BeginInit();
             this.SuspendLayout();
@@ -645,11 +646,30 @@
             this.labelSet_Shiresaki1.ValueLabelSize = 300;
             this.labelSet_Shiresaki1.ValueLabelText = "";
             // 
+            // labelSet_Tokuisaki2
+            // 
+            this.labelSet_Tokuisaki2.AppendLabelSize = 40;
+            this.labelSet_Tokuisaki2.AppendLabelText = "";
+            this.labelSet_Tokuisaki2.CodeTxtSize = 40;
+            this.labelSet_Tokuisaki2.CodeTxtText = "";
+            this.labelSet_Tokuisaki2.LabelName = "得意先コード";
+            this.labelSet_Tokuisaki2.Location = new System.Drawing.Point(12, 306);
+            this.labelSet_Tokuisaki2.Name = "labelSet_Tokuisaki2";
+            this.labelSet_Tokuisaki2.ShowAppendFlg = true;
+            this.labelSet_Tokuisaki2.Size = new System.Drawing.Size(642, 22);
+            this.labelSet_Tokuisaki2.SpaceCodeValue = 4;
+            this.labelSet_Tokuisaki2.SpaceNameCode = 4;
+            this.labelSet_Tokuisaki2.SpaceValueAppend = 4;
+            this.labelSet_Tokuisaki2.TabIndex = 113;
+            this.labelSet_Tokuisaki2.ValueLabelSize = 350;
+            this.labelSet_Tokuisaki2.ValueLabelText = "";
+            // 
             // JuchuInput_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.Controls.Add(this.labelSet_Tokuisaki2);
             this.Controls.Add(this.labelSet_Shiresaki1);
             this.Controls.Add(this.labelSet_Torihikisaki1);
             this.Controls.Add(this.labelSet_Torihikikbn2);
@@ -732,6 +752,7 @@
             this.Controls.SetChildIndex(this.labelSet_Torihikikbn2, 0);
             this.Controls.SetChildIndex(this.labelSet_Torihikisaki1, 0);
             this.Controls.SetChildIndex(this.labelSet_Shiresaki1, 0);
+            this.Controls.SetChildIndex(this.labelSet_Tokuisaki2, 0);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridViewEdit1)).EndInit();
             this.ResumeLayout(false);
@@ -774,5 +795,6 @@
         private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn2;
         private Common.Ctl.LabelSet_Torihikisaki labelSet_Torihikisaki1;
         private Common.Ctl.LabelSet_Shiresaki labelSet_Shiresaki1;
+        private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki2;
     }
 }
