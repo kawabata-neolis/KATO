@@ -30,9 +30,6 @@ namespace KATO.Form.A0100_HachuInput
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //ロック
-        bool blNLOCK;
-
         ///<summary>
         ///A0100_HachuInput
         ///フォームの初期設定

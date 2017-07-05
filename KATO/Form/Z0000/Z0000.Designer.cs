@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.baseMenuButton1 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnJuchuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnHachuInput = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
@@ -56,7 +57,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.baseMenuButton1 = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnHachusuhenko = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -154,6 +155,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
             // 
+            // baseMenuButton1
+            // 
+            this.baseMenuButton1.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton1.Location = new System.Drawing.Point(317, 672);
+            this.baseMenuButton1.Name = "baseMenuButton1";
+            this.baseMenuButton1.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton1.TabIndex = 73;
+            this.baseMenuButton1.Text = "印刷ダイアログテスト";
+            this.baseMenuButton1.UseVisualStyleBackColor = false;
+            this.baseMenuButton1.Click += new System.EventHandler(this.baseMenuButton1_Click);
+            // 
             // btnJuchuInput
             // 
             this.btnJuchuInput.BackColor = System.Drawing.Color.LightYellow;
@@ -203,6 +215,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.btnHachusuhenko);
             this.tabPage2.Controls.Add(this.btnSiireSuiiHyo);
             this.tabPage2.Controls.Add(this.btnUriageSuiiHyo);
             this.tabPage2.Controls.Add(this.btnShohinMotochoKakunin);
@@ -453,16 +466,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // baseMenuButton1
+            // btnHachusuhenko
             // 
-            this.baseMenuButton1.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton1.Location = new System.Drawing.Point(317, 672);
-            this.baseMenuButton1.Name = "baseMenuButton1";
-            this.baseMenuButton1.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton1.TabIndex = 73;
-            this.baseMenuButton1.Text = "印刷ダイアログテスト";
-            this.baseMenuButton1.UseVisualStyleBackColor = false;
-            this.baseMenuButton1.Click += new System.EventHandler(this.baseMenuButton1_Click);
+            this.btnHachusuhenko.BackColor = System.Drawing.Color.LightYellow;
+            this.btnHachusuhenko.Location = new System.Drawing.Point(23, 292);
+            this.btnHachusuhenko.Name = "btnHachusuhenko";
+            this.btnHachusuhenko.Size = new System.Drawing.Size(280, 40);
+            this.btnHachusuhenko.TabIndex = 107;
+            this.btnHachusuhenko.Text = "発注数変更";
+            this.btnHachusuhenko.UseVisualStyleBackColor = false;
+            this.btnHachusuhenko.Click += new System.EventHandler(this.btnHachusuhenko_Click);
             // 
             // Z0000
             // 
@@ -529,5 +542,6 @@
         private Common.Ctl.BaseMenuButton btnSiireSuiiHyo;
         private Common.Ctl.BaseMenuButton btnUriageSuiiHyo;
         private Common.Ctl.BaseMenuButton baseMenuButton1;
+        private Common.Ctl.BaseMenuButton btnHachusuhenko;
     }
 }
