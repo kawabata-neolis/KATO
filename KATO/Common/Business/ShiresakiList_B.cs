@@ -186,18 +186,7 @@ namespace KATO.Common.Business
                 if (lstSelectData[0] != "")
                 {
                     strWhere = strWhere + " WHERE 仕入先名 LIKE '%" + lstSelectData[0] + "%'";
-
-                    ////フリガナが存在するか
-                    //if (lstSelectData[1] != "")
-                    //{
-                    //    strWhere = strWhere + " AND カナ LIKE '" + lstSelectData[1] + "%'";
-                    //}
                 }
-                ////フリガナが存在するか
-                //else if (lstSelectData[1] != "")
-                //{
-                //    strWhere = strWhere + " WHERE カナ LIKE '" + lstSelectData[1] + "%'";
-                //}
 
                 //検索データを表示
                 dtGetTableGrid = dbConnective.ReadSql("SELECT 仕入先コード, 仕入先名 FROM AS400仕入先名_VIEW " + strWhere + " ORDER BY 仕入先コード ASC");

@@ -1,0 +1,3 @@
+SELECT * 
+FROM AS400得意先名_VIEW
+WHERE 得意先コード= '{0}'
