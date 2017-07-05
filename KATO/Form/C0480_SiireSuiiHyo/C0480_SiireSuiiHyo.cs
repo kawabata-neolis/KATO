@@ -602,11 +602,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                 DataTable dtSiireSuiiList = siiresuiihyoB.getSiireSuiiList(lstSearchItem, "print");
 
                 // PDF作成
-                String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
-
-                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                pf.ShowDialog();
-                pf.Dispose();
+                siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
 
             }
             catch (Exception ex)

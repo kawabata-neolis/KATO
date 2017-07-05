@@ -16,7 +16,6 @@ using System.Security.Permissions;
 
 namespace KATO.Form.Z0000
 {
-
     public partial class Z0000 : BaseForm
     {
         public Z0000()
@@ -244,22 +243,10 @@ namespace KATO.Form.Z0000
             }
         }
 
-        //
-        // テスト用
-        // 印刷テスト
         private void baseMenuButton1_Click(object sender, EventArgs e)
         {
-            Common.Form.PrintForm pf = new Common.Form.PrintForm(this, @"G:\test.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
-            try
-            {
-                pf.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, ex.Message + "\r\n" + ex.StackTrace, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-            }
-            pf.Dispose();
+            Common.Form.PrintForm pf = new Common.Form.PrintForm(this);
+            pf.ShowDialog();
         }
     }
 }
