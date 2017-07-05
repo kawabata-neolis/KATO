@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
 
+using Ghostscript.NET.Processor;
+
 namespace KATO.Common.Form
 {
     public partial class PrintForm : System.Windows.Forms.Form
@@ -29,7 +31,12 @@ namespace KATO.Common.Form
             }
         }
 
-        public PrintForm(Control c)
+        private string stPath;
+        private string stSize;
+        private bool tateFlg;
+        private string[] lstSize;
+
+        public PrintForm(Control c, String path, string size, bool tate)
         {
             InitializeComponent();
 
@@ -48,6 +55,10 @@ namespace KATO.Common.Form
                 intIdx++;
             }
             rdPage0.Checked = true;
+            stPath = path;
+            stSize = size;
+            tateFlg = tate;
+            lstSize = CommonTeisu.paramSize[stSize];
         }
 
         private void prtList_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,6 +69,7 @@ namespace KATO.Common.Form
         private void btnPrint_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PRINT;
+            execPrint();
             this.Close();
         }
 
@@ -75,33 +87,52 @@ namespace KATO.Common.Form
 
         public void execPrint()
         {
-            // ブラウザコントロールの作成
-            AxAcroPDFLib.AxAcroPDF pdfOcx = new AxAcroPDFLib.AxAcroPDF();
-            // フォームにコントロールを追加
-            this.Controls.Add(pdfOcx);
 
-            // 注意！！
-            // フォームへコントロール追加後に非表示にしないと例外発生
-            pdfOcx.Visible = false;       // 非表示にする
+            using (GhostscriptProcessor processor = new GhostscriptProcessor())
+            {
+                if (rdPage1.Checked)
+                {
+                    stSize = CommonTeisu.SIZE_B5;
+                }
+                else if (rdPage2.Checked)
+                {
+                    stSize = CommonTeisu.SIZE_A4;
+                }
+                if (rdPage3.Checked)
+                {
+                    stSize = CommonTeisu.SIZE_B4;
+                }
+                lstSize = CommonTeisu.paramSize[stSize];
 
 
+                List<string> switches = new List<string>();
+                switches.Add("-empty");
+                switches.Add("-dPrinted");
+                switches.Add("-dBATCH");
+                switches.Add("-dNOPAUSE");
+                switches.Add("-dNOSAFER");
+                switches.Add("-dNumCopies=1"); //部数
+                switches.Add("-sDEVICE=mswinpr2");
+                if (tateFlg)
+                {
+                    switches.Add("-sPAPERSIZE=" + stSize);
+                }
+                else
+                {
+                    //横指定A4
+                    switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
+                    switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
+                }
+                //両面印刷
+                //switches.Add("-dDuplex");//TrueON,false=off
+                //switches.Add("-dTumble=true");//True=短辺綴じ false=長辺綴じ
+                switches.Add("-dPDFFitPage");
+                switches.Add("-sOutputFile=%printer%" + txtPrt.Text);
+                switches.Add("-f");
+                switches.Add(stPath);
+                processor.StartProcessing(switches.ToArray(), null);
+            }
 
-            // 印刷設定
-            pd.DefaultPageSettings.Landscape = true; // 用紙横向
-
-
-
-            // PDF ファイルの読み込み
-            pdfOcx.LoadFile(@"E:\test1.pdf");
-
-            // 以下のコードでもOK（URL指定でも多分OK）
-            //pdfOcx.src = @"E:\test1.pdf";
-
-            pdfOcx.printAll();        // 問答無用で全ページ印刷(デフォルトプリンタ)
-
-            //pdfOcx.printPages(1, 2);  // 印刷範囲を指定して印刷(デフォルトプリンタ)
-
-            //pdfOcx.printWithDialog(); // 印刷ダイアログを出力
         }
 
 

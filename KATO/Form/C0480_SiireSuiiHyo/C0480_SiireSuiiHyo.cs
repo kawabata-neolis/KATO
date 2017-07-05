@@ -69,7 +69,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         private void C0480_SiireSuiiHyo_Load(object sender, EventArgs e)
         {
             System.DateTime dateYMclose;
-            
+
             this.Show();
             this._Title = "分類別仕入推移表";
 
@@ -89,7 +89,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             txtCalendarYMclose.setUp(0);
             dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
             txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
-            
+
             // DataGridViewの初期設定
             SetUpGrid();
         }
@@ -140,7 +140,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             bunruiName.DataPropertyName = "分類名";
             bunruiName.Name = "分類名";
             bunruiName.HeaderText = "分類名";
-            
+
             dateYMopen = DateTime.Parse(txtCalendarYMopen.Text + "/01");
 
             DataGridViewTextBoxColumn month1 = new DataGridViewTextBoxColumn();
@@ -423,7 +423,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             List<string> lstSearchItem = new List<string>();
 
             // 空文字判定（期間開始、期間終了、仕入先コード開始、仕入先コード終了）
-            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false || 
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false ||
                 labelSet_TokuisakiStart.CodeTxtText.Equals("") || labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -602,7 +602,11 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                 DataTable dtSiireSuiiList = siiresuiihyoB.getSiireSuiiList(lstSearchItem, "print");
 
                 // PDF作成
-                siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
+                pf.ShowDialog();
+                pf.Dispose();
 
             }
             catch (Exception ex)

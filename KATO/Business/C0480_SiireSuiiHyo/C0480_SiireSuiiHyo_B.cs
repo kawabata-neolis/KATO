@@ -750,7 +750,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
         /// <param name="dtSiireSuiiList">
         ///     仕入推移表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public void dbToPdf(DataTable dtSiireSuiiList, string strStartYM)
+        public string dbToPdf(DataTable dtSiireSuiiList, string strStartYM)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -1047,7 +1047,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                         currentsheet = workbook.Worksheet(2);
 
                         // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace + 
+                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
                             pageCnt.ToString() + " / " + maxPage.ToString();
                         currentsheet.PageSetup.Header.Right.AddText(strHeader);
 
@@ -1237,7 +1237,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                         {
                             IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, cnt + 4);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                            kingakuCell.Value = string.Format("{0:#,0}", decKingakuTanto[tantoCnt, cnt]); 
+                            kingakuCell.Value = string.Format("{0:#,0}", decKingakuTanto[tantoCnt, cnt]);
                         }
 
                         // 1行分のセルの周囲に罫線を引く
@@ -1405,7 +1405,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 workbook.Dispose();
 
                 // PDF化の処理
-                createPdf(strOutXlsFile, strDateTime);
+                return createPdf(strOutXlsFile, strDateTime);
 
             }
             catch (Exception ex)
@@ -1452,10 +1452,11 @@ namespace KATO.Business.C0480_SiireSuiiHyo
         /// <param name="strDateTime">日時</param>
         /// </summary>
         /// -----------------------------------------------------------------------------
-        private void createPdf(string strInXlsFile, string strDateTime)
+        private string createPdf(string strInXlsFile, string strDateTime)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
+            string strJoinPdfFile;
 
             try
             {
@@ -1511,7 +1512,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 }
 
                 // 結合PDFオブジェクト
-                string strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
+                strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
 
                 // PDFファイル数が0でなければ結合
                 if (filesMax != 0)
@@ -1525,7 +1526,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 new CommonException(ex);
                 throw ex;
             }
-                return;
+            return strJoinPdfFile;
         }
 
 

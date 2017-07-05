@@ -92,9 +92,30 @@ namespace KATO.Common.Util
         public const int GROUP_RADIO_3 = 4;
 
         // 印刷
-        public const int ACTION_PRINT   = 0;
+        public const int ACTION_PRINT = 0;
         public const int ACTION_PREVIEW = 1;
-        public const int ACTION_CANCEL  = 2;
+        public const int ACTION_CANCEL = 2;
+        public const string SIZE_A4 = "a4";
+        public const string SIZE_B4 = "b4";
+        public const string SIZE_B5 = "b5";
+        //public static readonly string[] PARAM_A4 = { "297", "210" };
+        public static readonly string[] PARAM_A4 = { "842", "595" };
+        public static readonly string[] PARAM_B4 = { "1032", "729" };
+        public static readonly string[] PARAM_B5 = { "729", "516" };
+        public static Dictionary<String, string[]> paramSize = new Dictionary<string, string[]>()
+        {
+            {SIZE_A4, PARAM_A4}
+           ,{SIZE_B4, PARAM_B4}
+           ,{SIZE_B5, PARAM_B5}
+        };
+        public static bool TATE = true;
+        public static bool YOKO = false;
+        public static Dictionary<bool, string> muki = new Dictionary<bool, string>()
+        {
+            {TATE, "縦"}
+           ,{YOKO, "横"}
+        };
+
 
 
         public static readonly string[] LIST_GROUP =
