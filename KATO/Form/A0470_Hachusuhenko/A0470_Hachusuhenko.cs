@@ -459,6 +459,11 @@ namespace KATO.Form.A0470_Hachusuhenko
 
         }
 
+        private void gbHachu_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         ///<summary>
         ///radSet_2btn_Hachuzan_Click
         ///受注残選択肢をチェックした場合

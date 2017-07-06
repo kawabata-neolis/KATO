@@ -22,55 +22,6 @@ namespace KATO.Common.Business
     class ShiresakiList_B
     {
         /// <summary>
-        /// setViewGrid
-        /// 読み込み時の処理
-        /// </summary>
-        public DataTable setViewGrid()
-        {
-            //SQLファイルのパスとファイル名を入れる用
-            List<string> lstStringSQL = new List<string>();
-
-            //データ渡し用
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add("CommonForm");
-            lstStringSQL.Add("ShiresakiList_View");
-
-            //データグリッドビューを入れる用
-            DataTable dtGetTableGrid = new DataTable();
-
-            //SQL発行
-            OpenSQL opensql = new OpenSQL();
-
-            //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
-            try
-            {
-                //SQLファイルのパス取得
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-                //パスがなければ返す
-                if (strSQLInput == "")
-                {
-                    return (dtGetTableGrid);
-                }
-
-                //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql(strSQLInput);
-
-                return (dtGetTableGrid);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
-                //トランザクション終了
-                dbConnective.DB_Disconnect();
-            }
-        }
-
-        /// <summary>
         /// setEndAction
         /// 戻るボタンの処理
         /// </summary>
@@ -109,7 +60,7 @@ namespace KATO.Common.Business
 
                 //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("Common");
-                lstSQL.Add("C_LIST_Shiresaki_SELECT_LEAVE");
+                lstSQL.Add("C_LIST_ShiresakiAS400_SELECT_LEAVE");
 
                 //SQL発行
                 OpenSQL opensql = new OpenSQL();
