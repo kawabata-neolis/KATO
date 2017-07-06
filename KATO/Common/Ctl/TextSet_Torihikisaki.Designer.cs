@@ -41,13 +41,13 @@
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
             // 
-            // TextSet_Tokuisaki
+            // TextSet_Torihikisaki
             // 
             this.AppendLabelSize = 40;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.CodeTxtSize = 40;
-            this.LabelName = "得意先コード";
-            this.Name = "TextSet_Tokuisaki";
+            this.LabelName = "取引先コード";
+            this.Name = "TextSet_Torihikisaki";
             this.ShowAppendFlg = true;
             this.Size = new System.Drawing.Size(642, 22);
             this.ValueTextSize = 350;

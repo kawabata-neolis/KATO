@@ -240,6 +240,7 @@
             this.gbHachu.Size = new System.Drawing.Size(395, 32);
             this.gbHachu.TabIndex = 96;
             this.gbHachu.TabStop = false;
+            this.gbHachu.Enter += new System.EventHandler(this.gbHachu_Enter);
             // 
             // gridHachusuhenko
             // 
@@ -421,7 +422,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1475, 826);
+            this.ClientSize = new System.Drawing.Size(1492, 826);
             this.Controls.Add(this.txtHachukin);
             this.Controls.Add(this.txtShiresu);
             this.Controls.Add(this.txtTanka);

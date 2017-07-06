@@ -46,13 +46,10 @@
             this.gridUriageSuii = new KATO.Common.Ctl.BaseDataGridView();
             this.txtCalendarYMopen = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtCalendarYMclose = new KATO.Common.Ctl.BaseCalendarYM();
-            this.labelSet_TokuisakiStart = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.labelSet_TokuisakiEnd = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.labelSet_TokuisakiStart = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.labelSet_TokuisakiEnd = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.lsJuchusha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageSuii)).BeginInit();
-            this.labelSet_TokuisakiEnd.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF12
@@ -242,7 +239,9 @@
             this.labelSet_Daibunrui1.LabelName = "大分類コード";
             this.labelSet_Daibunrui1.Location = new System.Drawing.Point(13, 82);
             this.labelSet_Daibunrui1.Lschubundata = null;
+            this.labelSet_Daibunrui1.Lsmakerdata = null;
             this.labelSet_Daibunrui1.LsSubchubundata = null;
+            this.labelSet_Daibunrui1.LsSubmakerdata = null;
             this.labelSet_Daibunrui1.Name = "labelSet_Daibunrui1";
             this.labelSet_Daibunrui1.ShowAppendFlg = false;
             this.labelSet_Daibunrui1.Size = new System.Drawing.Size(277, 22);
@@ -286,6 +285,7 @@
             this.labelSet_Maker1.SpaceCodeValue = 4;
             this.labelSet_Maker1.SpaceNameCode = 4;
             this.labelSet_Maker1.SpaceValueAppend = 4;
+            this.labelSet_Maker1.strDaibunCd = null;
             this.labelSet_Maker1.TabIndex = 9;
             this.labelSet_Maker1.ValueLabelSize = 200;
             this.labelSet_Maker1.ValueLabelText = "";
@@ -359,64 +359,39 @@
             // 
             // labelSet_TokuisakiStart
             // 
-            this.labelSet_TokuisakiStart.AppendLabelSize = 40;
+            this.labelSet_TokuisakiStart.AppendLabelSize = 0;
             this.labelSet_TokuisakiStart.AppendLabelText = "";
             this.labelSet_TokuisakiStart.CodeTxtSize = 40;
             this.labelSet_TokuisakiStart.CodeTxtText = "";
             this.labelSet_TokuisakiStart.LabelName = "得意先コード";
-            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(16, 54);
+            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(12, 53);
             this.labelSet_TokuisakiStart.Name = "labelSet_TokuisakiStart";
-            this.labelSet_TokuisakiStart.ShowAppendFlg = true;
-            this.labelSet_TokuisakiStart.Size = new System.Drawing.Size(148, 22);
+            this.labelSet_TokuisakiStart.ShowAppendFlg = false;
+            this.labelSet_TokuisakiStart.Size = new System.Drawing.Size(159, 22);
             this.labelSet_TokuisakiStart.SpaceCodeValue = 4;
             this.labelSet_TokuisakiStart.SpaceNameCode = 4;
-            this.labelSet_TokuisakiStart.SpaceValueAppend = 0;
+            this.labelSet_TokuisakiStart.SpaceValueAppend = 4;
             this.labelSet_TokuisakiStart.TabIndex = 1;
             this.labelSet_TokuisakiStart.ValueLabelSize = 0;
             this.labelSet_TokuisakiStart.ValueLabelText = "";
             // 
             // labelSet_TokuisakiEnd
             // 
-            this.labelSet_TokuisakiEnd.AppendLabelSize = 40;
+            this.labelSet_TokuisakiEnd.AppendLabelSize = 0;
             this.labelSet_TokuisakiEnd.AppendLabelText = "";
             this.labelSet_TokuisakiEnd.CodeTxtSize = 40;
             this.labelSet_TokuisakiEnd.CodeTxtText = "";
-            this.labelSet_TokuisakiEnd.Controls.Add(this.baseLabel2);
-            this.labelSet_TokuisakiEnd.Controls.Add(this.object_dd63fa84_f17e_4d86_9efe_89770990b04e);
             this.labelSet_TokuisakiEnd.LabelName = "～";
-            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(175, 54);
+            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(164, 53);
             this.labelSet_TokuisakiEnd.Name = "labelSet_TokuisakiEnd";
-            this.labelSet_TokuisakiEnd.ShowAppendFlg = true;
-            this.labelSet_TokuisakiEnd.Size = new System.Drawing.Size(73, 22);
+            this.labelSet_TokuisakiEnd.ShowAppendFlg = false;
+            this.labelSet_TokuisakiEnd.Size = new System.Drawing.Size(84, 22);
             this.labelSet_TokuisakiEnd.SpaceCodeValue = 4;
-            this.labelSet_TokuisakiEnd.SpaceNameCode = 8;
-            this.labelSet_TokuisakiEnd.SpaceValueAppend = 0;
+            this.labelSet_TokuisakiEnd.SpaceNameCode = 4;
+            this.labelSet_TokuisakiEnd.SpaceValueAppend = 4;
             this.labelSet_TokuisakiEnd.TabIndex = 2;
             this.labelSet_TokuisakiEnd.ValueLabelSize = 0;
             this.labelSet_TokuisakiEnd.ValueLabelText = "";
-            // 
-            // baseLabel2
-            // 
-            this.baseLabel2.AutoSize = true;
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(2, 3);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(23, 15);
-            this.baseLabel2.strToolTip = null;
-            this.baseLabel2.TabIndex = 0;
-            this.baseLabel2.Text = "～";
-            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // object_dd63fa84_f17e_4d86_9efe_89770990b04e
-            // 
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.AutoSize = true;
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.Location = new System.Drawing.Point(2, 3);
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.Name = "object_dd63fa84_f17e_4d86_9efe_89770990b04e";
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.Size = new System.Drawing.Size(0, 15);
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.strToolTip = null;
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.TabIndex = 0;
-            this.object_dd63fa84_f17e_4d86_9efe_89770990b04e.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // C0490_UriageSuiiHyo
             // 
@@ -453,8 +428,6 @@
             this.Controls.SetChildIndex(this.gridUriageSuii, 0);
             this.Controls.SetChildIndex(this.txtCalendarYMopen, 0);
             this.Controls.SetChildIndex(this.txtCalendarYMclose, 0);
-            this.Controls.SetChildIndex(this.labelSet_TokuisakiStart, 0);
-            this.Controls.SetChildIndex(this.labelSet_TokuisakiEnd, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -467,11 +440,11 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.labelSet_TokuisakiStart, 0);
+            this.Controls.SetChildIndex(this.labelSet_TokuisakiEnd, 0);
             this.lsJuchusha.ResumeLayout(false);
             this.lsJuchusha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageSuii)).EndInit();
-            this.labelSet_TokuisakiEnd.ResumeLayout(false);
-            this.labelSet_TokuisakiEnd.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,9 +466,7 @@
         private Common.Ctl.BaseDataGridView gridUriageSuii;
         private Common.Ctl.BaseCalendarYM txtCalendarYMopen;
         private Common.Ctl.BaseCalendarYM txtCalendarYMclose;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_TokuisakiStart;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_TokuisakiEnd;
-        private Common.Ctl.BaseLabel baseLabel2;
-        private Common.Ctl.BaseLabel object_dd63fa84_f17e_4d86_9efe_89770990b04e;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiStart;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiEnd;
     }
 }

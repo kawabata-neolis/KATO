@@ -41,6 +41,7 @@
             this.lblTitle.Location = new System.Drawing.Point(-3, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(87, 15);
+            this.lblTitle.strToolTip = null;
             this.lblTitle.TabIndex = 6;
             this.lblTitle.Text = "グループ名";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
