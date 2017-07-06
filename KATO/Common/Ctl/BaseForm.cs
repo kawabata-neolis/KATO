@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
@@ -263,6 +264,16 @@ namespace KATO.Common.Ctl
         private void BaseForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Enter(object sender, EventArgs e)
+        {
+            ((Button)sender).BackColor = Color.Cyan;
+        }
+
+        private void btn_Leave(object sender, EventArgs e)
+        {
+            ((Button)sender).BackColor = SystemColors.Control;
         }
     }
 }

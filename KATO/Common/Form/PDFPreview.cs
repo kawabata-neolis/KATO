@@ -12,6 +12,9 @@ namespace KATO.Common.Form
 {
     public partial class PDFPreview : System.Windows.Forms.Form
     {
+        private int oldWidth;
+        private int oldHeight;
+
         public PDFPreview(Control c, string path)
         {
             InitializeComponent();
@@ -28,6 +31,10 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = 0;
+
+            oldWidth = this.Width;
+            oldHeight = this.Height;
+
         }
 
         private void PDFPreview_KeyDown(object sender, KeyEventArgs e)
@@ -44,6 +51,15 @@ namespace KATO.Common.Form
             {
                 this.Close();
             }
+        }
+
+        private void PDFPreview_Resize(object sender, EventArgs e)
+        {
+            axAcroPDF1.Width += this.Width - oldWidth;
+            axAcroPDF1.Height += this.Height - oldHeight;
+
+            oldWidth = this.Width;
+            oldHeight = this.Height;
         }
     }
 }

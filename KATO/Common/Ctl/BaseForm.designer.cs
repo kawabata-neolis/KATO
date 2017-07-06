@@ -83,7 +83,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblStatusMessage.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
             this.lblStatusMessage.Name = "lblStatusMessage";
-            this.lblStatusMessage.Size = new System.Drawing.Size(1189, 17);
+            this.lblStatusMessage.Size = new System.Drawing.Size(1344, 17);
             this.lblStatusMessage.Spring = true;
             this.lblStatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -106,6 +106,8 @@
             this.btnF12.Size = new System.Drawing.Size(117, 23);
             this.btnF12.TabIndex = 84;
             this.btnF12.UseVisualStyleBackColor = true;
+            this.btnF12.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF12.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF11
             // 
@@ -115,6 +117,8 @@
             this.btnF11.Size = new System.Drawing.Size(117, 23);
             this.btnF11.TabIndex = 83;
             this.btnF11.UseVisualStyleBackColor = true;
+            this.btnF11.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF11.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF10
             // 
@@ -124,6 +128,8 @@
             this.btnF10.Size = new System.Drawing.Size(117, 23);
             this.btnF10.TabIndex = 82;
             this.btnF10.UseVisualStyleBackColor = true;
+            this.btnF10.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF10.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF09
             // 
@@ -133,6 +139,8 @@
             this.btnF09.Size = new System.Drawing.Size(117, 23);
             this.btnF09.TabIndex = 81;
             this.btnF09.UseVisualStyleBackColor = true;
+            this.btnF09.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF09.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF08
             // 
@@ -142,6 +150,8 @@
             this.btnF08.Size = new System.Drawing.Size(117, 23);
             this.btnF08.TabIndex = 80;
             this.btnF08.UseVisualStyleBackColor = true;
+            this.btnF08.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF08.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF07
             // 
@@ -151,6 +161,8 @@
             this.btnF07.Size = new System.Drawing.Size(117, 23);
             this.btnF07.TabIndex = 79;
             this.btnF07.UseVisualStyleBackColor = true;
+            this.btnF07.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF07.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF06
             // 
@@ -160,6 +172,8 @@
             this.btnF06.Size = new System.Drawing.Size(117, 23);
             this.btnF06.TabIndex = 78;
             this.btnF06.UseVisualStyleBackColor = true;
+            this.btnF06.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF06.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF05
             // 
@@ -169,6 +183,8 @@
             this.btnF05.Size = new System.Drawing.Size(117, 23);
             this.btnF05.TabIndex = 77;
             this.btnF05.UseVisualStyleBackColor = true;
+            this.btnF05.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF05.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF04
             // 
@@ -178,6 +194,8 @@
             this.btnF04.Size = new System.Drawing.Size(117, 23);
             this.btnF04.TabIndex = 76;
             this.btnF04.UseVisualStyleBackColor = true;
+            this.btnF04.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF04.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF03
             // 
@@ -187,6 +205,8 @@
             this.btnF03.Size = new System.Drawing.Size(117, 23);
             this.btnF03.TabIndex = 75;
             this.btnF03.UseVisualStyleBackColor = true;
+            this.btnF03.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF03.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF02
             // 
@@ -196,6 +216,8 @@
             this.btnF02.Size = new System.Drawing.Size(117, 23);
             this.btnF02.TabIndex = 74;
             this.btnF02.UseVisualStyleBackColor = true;
+            this.btnF02.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF02.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // btnF01
             // 
@@ -205,6 +227,8 @@
             this.btnF01.Size = new System.Drawing.Size(117, 23);
             this.btnF01.TabIndex = 73;
             this.btnF01.UseVisualStyleBackColor = true;
+            this.btnF01.Enter += new System.EventHandler(this.btn_Enter);
+            this.btnF01.Leave += new System.EventHandler(this.btn_Leave);
             // 
             // timer1
             // 
@@ -235,8 +259,7 @@
             // 
             // BaseForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblSubWinSHow);

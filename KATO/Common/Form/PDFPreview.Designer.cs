@@ -39,7 +39,7 @@
             this.axAcroPDF1.Location = new System.Drawing.Point(0, 0);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(849, 826);
+            this.axAcroPDF1.Size = new System.Drawing.Size(1049, 826);
             this.axAcroPDF1.TabIndex = 0;
             this.axAcroPDF1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.axAcroPDF1_PreviewKeyDown);
             // 
@@ -48,12 +48,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(849, 826);
+            this.ClientSize = new System.Drawing.Size(1049, 826);
             this.Controls.Add(this.axAcroPDF1);
             this.KeyPreview = true;
             this.Name = "PDFPreview";
             this.Text = "プレビュー";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PDFPreview_KeyDown);
+            this.Resize += new System.EventHandler(this.PDFPreview_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
 
