@@ -69,7 +69,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         private void C0480_SiireSuiiHyo_Load(object sender, EventArgs e)
         {
             System.DateTime dateYMclose;
-
+            
             this.Show();
             this._Title = "分類別仕入推移表";
 
@@ -89,7 +89,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             txtCalendarYMclose.setUp(0);
             dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
             txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
-
+            
             // DataGridViewの初期設定
             SetUpGrid();
         }
@@ -140,7 +140,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             bunruiName.DataPropertyName = "分類名";
             bunruiName.Name = "分類名";
             bunruiName.HeaderText = "分類名";
-
+            
             dateYMopen = DateTime.Parse(txtCalendarYMopen.Text + "/01");
 
             DataGridViewTextBoxColumn month1 = new DataGridViewTextBoxColumn();
@@ -360,29 +360,28 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         {
             System.DateTime dateYMopen;
 
-            // 期間終了の日付設定
-            //dateYMopen = DateTime.Parse(txtCalendarYMopen.Text + "/01");
-            if (DateTime.TryParse(txtCalendarYMopen.Text + "/01", out dateYMopen))
-            {
-                txtCalendarYMclose.Text = dateYMopen.AddMonths(11).ToString().Substring(0, 10);
-            }
-
             // 期間以外のテキストボックスをクリアにする
             delText();
 
-            // ヘッダー部分（月）の変更
-            gridSiireSuii.Columns[2].HeaderText = dateYMopen.AddMonths(0).ToString("M月");
-            gridSiireSuii.Columns[3].HeaderText = dateYMopen.AddMonths(1).ToString("M月");
-            gridSiireSuii.Columns[4].HeaderText = dateYMopen.AddMonths(2).ToString("M月");
-            gridSiireSuii.Columns[5].HeaderText = dateYMopen.AddMonths(3).ToString("M月");
-            gridSiireSuii.Columns[6].HeaderText = dateYMopen.AddMonths(4).ToString("M月");
-            gridSiireSuii.Columns[7].HeaderText = dateYMopen.AddMonths(5).ToString("M月");
-            gridSiireSuii.Columns[8].HeaderText = dateYMopen.AddMonths(6).ToString("M月");
-            gridSiireSuii.Columns[9].HeaderText = dateYMopen.AddMonths(7).ToString("M月");
-            gridSiireSuii.Columns[10].HeaderText = dateYMopen.AddMonths(8).ToString("M月");
-            gridSiireSuii.Columns[11].HeaderText = dateYMopen.AddMonths(9).ToString("M月");
-            gridSiireSuii.Columns[12].HeaderText = dateYMopen.AddMonths(10).ToString("M月");
-            gridSiireSuii.Columns[13].HeaderText = dateYMopen.AddMonths(11).ToString("M月");
+            // 期間終了の日付設定
+            if (DateTime.TryParse(txtCalendarYMopen.Text + "/01", out dateYMopen))
+            {
+                txtCalendarYMclose.Text = dateYMopen.AddMonths(11).ToString().Substring(0, 10);
+
+                // ヘッダー部分（月）の変更
+                gridSiireSuii.Columns[2].HeaderText = dateYMopen.AddMonths(0).ToString("M月");
+                gridSiireSuii.Columns[3].HeaderText = dateYMopen.AddMonths(1).ToString("M月");
+                gridSiireSuii.Columns[4].HeaderText = dateYMopen.AddMonths(2).ToString("M月");
+                gridSiireSuii.Columns[5].HeaderText = dateYMopen.AddMonths(3).ToString("M月");
+                gridSiireSuii.Columns[6].HeaderText = dateYMopen.AddMonths(4).ToString("M月");
+                gridSiireSuii.Columns[7].HeaderText = dateYMopen.AddMonths(5).ToString("M月");
+                gridSiireSuii.Columns[8].HeaderText = dateYMopen.AddMonths(6).ToString("M月");
+                gridSiireSuii.Columns[9].HeaderText = dateYMopen.AddMonths(7).ToString("M月");
+                gridSiireSuii.Columns[10].HeaderText = dateYMopen.AddMonths(8).ToString("M月");
+                gridSiireSuii.Columns[11].HeaderText = dateYMopen.AddMonths(9).ToString("M月");
+                gridSiireSuii.Columns[12].HeaderText = dateYMopen.AddMonths(10).ToString("M月");
+                gridSiireSuii.Columns[13].HeaderText = dateYMopen.AddMonths(11).ToString("M月");
+            }
 
             return;
         }
@@ -423,7 +422,7 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             List<string> lstSearchItem = new List<string>();
 
             // 空文字判定（期間開始、期間終了、仕入先コード開始、仕入先コード終了）
-            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false ||
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false || 
                 labelSet_TokuisakiStart.CodeTxtText.Equals("") || labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -546,20 +545,6 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             txtCalendarYMclose.Text = strkikanclose;
         }
 
-
-
-        /// <summary>
-        /// setGoukei
-        /// 【予定】最下行の合計を行う（金額１～金額１２、金額合計の計算）外出しにする場合に記述
-        /// </summary>
-        private DataRow setGoukei(DataTable dtSiireSuiiList)
-        {
-            DataRow drGoukei = dtSiireSuiiList.NewRow();
-
-            return drGoukei;
-        }
-
-
         /// <summary>
         /// printReport
         /// PDFを出力する
@@ -601,13 +586,24 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                 // 検索実行（印刷用）
                 DataTable dtSiireSuiiList = siiresuiihyoB.getSiireSuiiList(lstSearchItem, "print");
 
-                // PDF作成
-                String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                if (dtSiireSuiiList.Rows.Count > 0)
+                {
+                    // PDF作成
+                    String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
 
-                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                pf.ShowDialog();
-                pf.Dispose();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
+                    pf.ShowDialog();
+                    pf.Dispose();
 
+                    // PDF出力完了メッセージ
+                    MessageBox.Show(this, "PDF出力完了");
+                }
+                else
+                {
+                    // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                }
             }
             catch (Exception ex)
             {

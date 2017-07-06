@@ -122,7 +122,8 @@
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 24;
             this.labelSet_Maker.SpaceValueAppend = 4;
-            this.labelSet_Maker.TabIndex = 109;
+            this.labelSet_Maker.strDaibunCd = null;
+            this.labelSet_Maker.TabIndex = 10;
             this.labelSet_Maker.ValueLabelSize = 150;
             this.labelSet_Maker.ValueLabelText = "";
             // 
@@ -154,7 +155,7 @@
             this.labelSet_Chubunrui.SpaceNameCode = 40;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
-            this.labelSet_Chubunrui.TabIndex = 108;
+            this.labelSet_Chubunrui.TabIndex = 9;
             this.labelSet_Chubunrui.ValueLabelSize = 150;
             this.labelSet_Chubunrui.ValueLabelText = "";
             // 
@@ -181,14 +182,16 @@
             this.labelSet_Daibunrui.LabelName = "大分類";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(17, 125);
             this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(289, 22);
             this.labelSet_Daibunrui.SpaceCodeValue = 13;
             this.labelSet_Daibunrui.SpaceNameCode = 40;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 107;
+            this.labelSet_Daibunrui.TabIndex = 8;
             this.labelSet_Daibunrui.ValueLabelSize = 150;
             this.labelSet_Daibunrui.ValueLabelText = "";
             // 
@@ -220,7 +223,7 @@
             this.labelSet_Juchusha.SpaceCodeValue = 4;
             this.labelSet_Juchusha.SpaceNameCode = 4;
             this.labelSet_Juchusha.SpaceValueAppend = 4;
-            this.labelSet_Juchusha.TabIndex = 106;
+            this.labelSet_Juchusha.TabIndex = 7;
             this.labelSet_Juchusha.ValueLabelSize = 150;
             this.labelSet_Juchusha.ValueLabelText = "";
             // 
@@ -264,7 +267,7 @@
             this.labelSet_GroupCd.SpaceCodeValue = 4;
             this.labelSet_GroupCd.SpaceNameCode = 4;
             this.labelSet_GroupCd.SpaceValueAppend = 4;
-            this.labelSet_GroupCd.TabIndex = 105;
+            this.labelSet_GroupCd.TabIndex = 6;
             this.labelSet_GroupCd.ValueLabelSize = 120;
             this.labelSet_GroupCd.ValueLabelText = "";
             // 
@@ -284,7 +287,7 @@
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 4;
             this.labelSet_Eigyosho.SpaceValueAppend = 5;
-            this.labelSet_Eigyosho.TabIndex = 104;
+            this.labelSet_Eigyosho.TabIndex = 5;
             this.labelSet_Eigyosho.ValueLabelSize = 250;
             this.labelSet_Eigyosho.ValueLabelText = "";
             // 
@@ -351,7 +354,7 @@
             this.txtCalendarYMclose.MaxLength = 7;
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
-            this.txtCalendarYMclose.TabIndex = 101;
+            this.txtCalendarYMclose.TabIndex = 2;
             this.txtCalendarYMclose.TabStop = false;
             this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMclose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCalendarYMcloseKeyDown);
@@ -365,7 +368,7 @@
             this.txtCalendarYMopen.MaxLength = 7;
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
-            this.txtCalendarYMopen.TabIndex = 100;
+            this.txtCalendarYMopen.TabIndex = 1;
             this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMopen.Leave += new System.EventHandler(this.updTxtCalendarLeave);
             // 
@@ -407,7 +410,7 @@
             this.labelSet_TokuisakiStart.SpaceCodeValue = 4;
             this.labelSet_TokuisakiStart.SpaceNameCode = 4;
             this.labelSet_TokuisakiStart.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiStart.TabIndex = 102;
+            this.labelSet_TokuisakiStart.TabIndex = 3;
             this.labelSet_TokuisakiStart.ValueLabelSize = 0;
             this.labelSet_TokuisakiStart.ValueLabelText = "";
             // 
@@ -425,7 +428,7 @@
             this.labelSet_TokuisakiEnd.SpaceCodeValue = 4;
             this.labelSet_TokuisakiEnd.SpaceNameCode = 4;
             this.labelSet_TokuisakiEnd.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiEnd.TabIndex = 103;
+            this.labelSet_TokuisakiEnd.TabIndex = 4;
             this.labelSet_TokuisakiEnd.ValueLabelSize = 0;
             this.labelSet_TokuisakiEnd.ValueLabelText = "";
             // 
@@ -433,7 +436,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
+            this.ClientSize = new System.Drawing.Size(1354, 733);
             this.Controls.Add(this.labelSet_TokuisakiEnd);
             this.Controls.Add(this.labelSet_TokuisakiStart);
             this.Controls.Add(this.txtCalendarYMclose);
@@ -462,6 +465,8 @@
             this.Controls.SetChildIndex(this.lblaida1, 0);
             this.Controls.SetChildIndex(this.txtCalendarYMopen, 0);
             this.Controls.SetChildIndex(this.txtCalendarYMclose, 0);
+            this.Controls.SetChildIndex(this.labelSet_TokuisakiStart, 0);
+            this.Controls.SetChildIndex(this.labelSet_TokuisakiEnd, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -474,8 +479,6 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.labelSet_TokuisakiStart, 0);
-            this.Controls.SetChildIndex(this.labelSet_TokuisakiEnd, 0);
             this.labelSet_Maker.ResumeLayout(false);
             this.labelSet_Maker.PerformLayout();
             this.labelSet_Chubunrui.ResumeLayout(false);

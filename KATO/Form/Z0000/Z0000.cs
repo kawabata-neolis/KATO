@@ -256,7 +256,7 @@ namespace KATO.Form.Z0000
         // 印刷テスト
         private void baseMenuButton1_Click(object sender, EventArgs e)
         {
-            Common.Form.PrintForm pf = new Common.Form.PrintForm(this, @"G:\test.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+            Common.Form.PrintForm pf = new Common.Form.PrintForm(this, @"G:\aaa.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
             try
             {
                 pf.ShowDialog();

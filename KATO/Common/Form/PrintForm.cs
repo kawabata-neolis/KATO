@@ -87,6 +87,58 @@ namespace KATO.Common.Form
 
         public void execPrint()
         {
+            #region テスト用 (pdf -> pdf)
+            //
+            //using (GhostscriptProcessor processor = new GhostscriptProcessor())
+            //{
+            //    if (rdPage1.Checked)
+            //    {
+            //        stSize = CommonTeisu.SIZE_B5;
+            //    }
+            //    else if (rdPage2.Checked)
+            //    {
+            //        stSize = CommonTeisu.SIZE_A4;
+            //    }
+            //    if (rdPage3.Checked)
+            //    {
+            //        stSize = CommonTeisu.SIZE_B4;
+            //    }
+            //    lstSize = CommonTeisu.paramSize[stSize];
+
+
+            //    List<string> switches = new List<string>();
+            //    switches.Add("-empty");
+            //    switches.Add("-dPrinted");
+            //    switches.Add("-dBATCH");
+            //    switches.Add("-dNOPAUSE");
+            //    switches.Add("-dNOSAFER");
+            //    switches.Add("-dNumCopies=1"); //部数
+            //    switches.Add("-sDEVICE=pdfwrite");
+            //    switches.Add("-sOutputFile=" + @"G:\bbb.pdf");
+            //    //switches.Add("-r600");
+            //    if (tateFlg)
+            //    {
+            //        switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);
+            //        switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[0]);
+            //        //switches.Add("-sPAPERSIZE=" + stSize);
+            //        //switches.Add("-g" + lstSize[1] + "x" + lstSize[0]);
+            //    }
+            //    else
+            //    {
+            //        //横指定A4
+            //        switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
+            //        switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
+            //        //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
+            //    }
+            //    //両面印刷
+            //    //switches.Add("-dDuplex");//TrueON,false=off
+            //    //switches.Add("-dTumble=true");//True=短辺綴じ false=長辺綴じ
+            //    switches.Add("-dFitPage");
+            //    switches.Add("-f");
+            //    switches.Add(stPath);
+            //    processor.StartProcessing(switches.ToArray(), null);
+            //}
+            #endregion
 
             using (GhostscriptProcessor processor = new GhostscriptProcessor())
             {
@@ -113,21 +165,25 @@ namespace KATO.Common.Form
                 switches.Add("-dNOSAFER");
                 switches.Add("-dNumCopies=1"); //部数
                 switches.Add("-sDEVICE=mswinpr2");
+                switches.Add("-sOutputFile=%printer%" + txtPrt.Text);
                 if (tateFlg)
                 {
-                    switches.Add("-sPAPERSIZE=" + stSize);
+                    switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);
+                    switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[0]);
+                    //switches.Add("-sPAPERSIZE=" + stSize);
+                    //switches.Add("-g" + lstSize[1] + "x" + lstSize[0]);
                 }
                 else
                 {
                     //横指定A4
                     switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
                     switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
+                    //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
                 }
                 //両面印刷
                 //switches.Add("-dDuplex");//TrueON,false=off
                 //switches.Add("-dTumble=true");//True=短辺綴じ false=長辺綴じ
-                switches.Add("-dPDFFitPage");
-                switches.Add("-sOutputFile=%printer%" + txtPrt.Text);
+                switches.Add("-dFitPage");
                 switches.Add("-f");
                 switches.Add(stPath);
                 processor.StartProcessing(switches.ToArray(), null);
