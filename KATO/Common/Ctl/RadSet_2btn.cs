@@ -136,11 +136,26 @@ namespace KATO.Common.Ctl
             }
         }
 
+        private int intjudbtn = 0;
+        public int intJudBtn
+        {
+            get
+            {
+                return positionRadbtn2_Y;
+            }
+            set
+            {
+                intjudbtn = value;
+            }
+        }
+
+
         public RadSet_2btn()
         {
             InitializeComponent();
             radbtn0.Checked = true;
         }
+
 
         public int judCheckBtn()
         {
@@ -168,6 +183,16 @@ namespace KATO.Common.Ctl
                 //閉じる
                 this.Parent.Dispose();
             }
+        }
+
+        private void radbtn0_CheckedChanged(object sender, EventArgs e)
+        {
+            intjudbtn = 0;
+        }
+
+        private void radbtn1_CheckedChanged(object sender, EventArgs e)
+        {
+            intjudbtn = 1;
         }
     }
 }
