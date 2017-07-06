@@ -762,12 +762,12 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 string strSpace = "       ";
                 string strComputerName = System.Windows.Forms.SystemInformation.ComputerName;
 
-                // excelのインスタンス生成
-                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
-
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
                 XLWorkbook.DefaultStyle.Font.FontSize = 9;
+
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
 
                 IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
                 IXLWorksheet headersheet = worksheet;   // ヘッダーシート
@@ -1047,7 +1047,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                         currentsheet = workbook.Worksheet(2);
 
                         // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
+                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace + 
                             pageCnt.ToString() + " / " + maxPage.ToString();
                         currentsheet.PageSetup.Header.Right.AddText(strHeader);
 
@@ -1237,7 +1237,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                         {
                             IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, cnt + 4);
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                            kingakuCell.Value = string.Format("{0:#,0}", decKingakuTanto[tantoCnt, cnt]);
+                            kingakuCell.Value = string.Format("{0:#,0}", decKingakuTanto[tantoCnt, cnt]); 
                         }
 
                         // 1行分のセルの周囲に罫線を引く
@@ -1526,7 +1526,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 new CommonException(ex);
                 throw ex;
             }
-            return strJoinPdfFile;
+                return strJoinPdfFile;
         }
 
 
