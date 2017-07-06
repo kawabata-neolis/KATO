@@ -124,6 +124,7 @@ namespace KATO.Common.Ctl
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
 
+            //4文字以下の場合0パティング
             if (this.CodeTxtText.Length < 4)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
@@ -241,6 +242,12 @@ namespace KATO.Common.Ctl
             {
                 this.ValueLabelText = "";
                 this.AppendLabelText = "";
+                return;
+            }
+
+            //文字数が4以下の場合
+            if (this.CodeTxtText.Length < 4)
+            {
                 return;
             }
 

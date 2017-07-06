@@ -179,23 +179,23 @@ namespace KATO.Form.A0470_Hachusuhenko
             juchuban.HeaderText = "受注番号";
 
             //個々の幅、文章の寄せ
-            setColumn(hachubi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(hachubi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
             setColumn(hatsu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(himeikatashiki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumn(suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 70);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
+            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
             setColumn(shohinCd, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(shirezumi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(shirezumi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0", 80);
             setColumn(hachusha, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(hikiatesaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(shiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(chubangamen, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumn(hikiatesaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(shiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(chubangamen, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
             setColumn(c1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(juchuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(juchuban, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
 
             //「発」「商品コード」「Ｃ１」のカラムを非表示
             gridHachusuhenko.Columns[1].Visible = false;
@@ -392,6 +392,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                 return;
             }
             
+            //グリッド表示のデータ渡し用
             List<string> lstStrSQL = new List<string>();
 
             //ビジネス層のインスタンス生成
@@ -439,9 +440,10 @@ namespace KATO.Form.A0470_Hachusuhenko
                 //注番
                 lstStrSQL.Add(txtChuban.Text);
 
-                hachusuhenkoB.setHachusuhenkoGrid(lstStrSQL);
+                //gridHachusuhenko.Visible = false;
 
-                gridHachusuhenko.Visible = false;
+                gridHachusuhenko.DataSource = hachusuhenkoB.setHachusuhenkoGrid(lstStrSQL);
+
 
             }
             catch (Exception ex)
@@ -456,5 +458,12 @@ namespace KATO.Form.A0470_Hachusuhenko
 
 
         }
+
+        ///<summary>
+        ///radSet_2btn_Hachuzan_Click
+        ///受注残選択肢をチェックした場合
+        ///</summary>
+
+
     }
 }
