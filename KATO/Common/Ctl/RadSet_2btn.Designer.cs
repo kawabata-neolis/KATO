@@ -29,22 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.radbtn1 = new System.Windows.Forms.RadioButton();
             this.radbtn0 = new System.Windows.Forms.RadioButton();
+            this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTitle.Location = new System.Drawing.Point(-3, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(87, 15);
-            this.lblTitle.strToolTip = null;
-            this.lblTitle.TabIndex = 6;
-            this.lblTitle.Text = "グループ名";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radbtn1
             // 
@@ -57,6 +45,7 @@
             this.radbtn1.TabStop = true;
             this.radbtn1.Text = "選択肢２";
             this.radbtn1.UseVisualStyleBackColor = true;
+            this.radbtn1.CheckedChanged += new System.EventHandler(this.radbtn1_CheckedChanged);
             this.radbtn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadSet_2btn_KeyDown);
             // 
             // radbtn0
@@ -70,7 +59,20 @@
             this.radbtn0.TabStop = true;
             this.radbtn0.Text = "選択肢１";
             this.radbtn0.UseVisualStyleBackColor = true;
+            this.radbtn0.CheckedChanged += new System.EventHandler(this.radbtn0_CheckedChanged);
             this.radbtn0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RadSet_2btn_KeyDown);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTitle.Location = new System.Drawing.Point(-3, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(87, 15);
+            this.lblTitle.strToolTip = null;
+            this.lblTitle.TabIndex = 6;
+            this.lblTitle.Text = "グループ名";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // RadSet_2btn
             // 

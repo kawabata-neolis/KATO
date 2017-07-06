@@ -29,6 +29,9 @@ namespace KATO.Form.A0470_Hachusuhenko
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //受注残ボタンの位置確保
+        int intJudBtn = 0;
+
         ///<summary>
         ///A0100_HachuInput
         ///フォームの初期設定
@@ -259,7 +262,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    //this.delText();
+                    this.delText();
                     break;
                 case Keys.F5:
                     logger.Info(LogUtil.getMessage(this._Title, "選択実行"));
@@ -346,36 +349,6 @@ namespace KATO.Form.A0470_Hachusuhenko
         }
 
         ///<summary>
-        ///judBtnClick
-        ///ボタンの反応
-        ///</summary>
-        private void judBtnClick(object sender, EventArgs e)
-        {
-            switch (((Button)sender).Name)
-            {
-                case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
-                    this.setHachusuhenko();
-                    break;
-                case STR_BTN_F04: // 取り消し
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    //this.delText();
-                    break;
-                case STR_BTN_F05: // 選択
-                    logger.Info(LogUtil.getMessage(this._Title, "選択実行"));
-                    //this.setRireki();
-                    break;
-                case STR_BTN_F08: // 更新
-                    logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
-                    //this.setRireki();
-                    break;
-                case STR_BTN_F12: // 終了
-                    this.Close();
-                    break;
-            }
-        }
-
-        ///<summary>
         ///setHachusuhenko
         ///該当データの表示
         ///</summary>
@@ -425,9 +398,10 @@ namespace KATO.Form.A0470_Hachusuhenko
                 }
 
                 //発注残ボタンセットの「発注残をすべて」にチェックがある場合
-                if (radSet_2btn_Hachuzan.radbtn0.Checked)
+                if (radHachuZan0.Checked == true)
                 {
                     lstStrSQL.Add("0");
+
                 }
                 //発注残で仕入済数あり
                 else
@@ -445,6 +419,35 @@ namespace KATO.Form.A0470_Hachusuhenko
                 gridHachusuhenko.DataSource = hachusuhenkoB.setHachusuhenkoGrid(lstStrSQL);
 
 
+                int intCnt;
+                int intCntB;
+
+                int intKin = 0;
+
+                for (intCnt= 0; intCnt < gridHachusuhenko.RowCount; intCnt++)
+                {
+                    intKin = intKin + Convert.ToInt32(gridHachusuhenko.Rows[intCnt].Cells[8].Value);
+
+                    if (Convert.ToInt32(gridHachusuhenko.Rows[intCnt].Cells[6].Value) < 0)
+                    {
+                        for (intCntB = 0; intCntB < gridHachusuhenko.RowCount; intCntB++)
+                        {
+                            gridHachusuhenko.Columns[intCntB].DefaultCellStyle.ForeColor = Color.Red;
+                        }
+                    }
+                }
+                txtHachukin.Text = string.Format("{0:#,#}", intKin);
+                //txtHachukin.DataBindings[intKin].FormatString = "0:#,#";
+
+                //グリッドビューに一行以上ある場合
+                if (gridHachusuhenko.RowCount >  0)
+                {
+                    gridHachusuhenko.Focus();
+                }
+                else
+                {
+                    labelSet_Torihikisaki.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -455,20 +458,128 @@ namespace KATO.Form.A0470_Hachusuhenko
                 basemessagebox.ShowDialog();
                 return;
             }
-
-
         }
 
-        private void gbHachu_Enter(object sender, EventArgs e)
+        ///<summary>
+        ///radioButton_CheckedChanged
+        ///受注残選択肢をチェックした場合
+        ///</summary>
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            setHachusuhenko();
+        }
+
+        ///<summary>
+        ///gridHachusuhenko_CellDoubleClick
+        ///データグリッドビュー上でダブルクリックした場合
+        ///</summary>
+        private void gridHachusuhenko_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            setDataSelect();
+        }
+
+        ///<summary>
+        ///gridHachusuhenko_KeyDown
+        ///データグリッドビュー上でキーを押した場合
+        ///</summary>
+        private void gridHachusuhenko_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    setDataSelect();
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///setDataSelect
+        ///データグリッドビューで選んだデータを表示
+        ///</summary>
+        private void setDataSelect()
         {
 
         }
 
         ///<summary>
-        ///radSet_2btn_Hachuzan_Click
-        ///受注残選択肢をチェックした場合
+        ///delText
+        ///テキストボックスとグリッドビューの内容を削除
         ///</summary>
+        private void delText()
+        {
+            delFormClear(this, gridHachusuhenko);
 
+        }
 
+        ///<summary>
+        ///judBtnClick
+        ///ボタンの反応
+        ///</summary>
+        private void judBtnClick(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F01: // 表示
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    this.setHachusuhenko();
+                    break;
+                case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delText();
+                    break;
+                //case STR_BTN_F08: // 履歴
+                //    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                //    this.setRireki();
+                //    break;
+                case STR_BTN_F12: // 終了
+                    this.Close();
+                    break;
+            }
+        }
     }
 }
+
+//ボタン設定とデータをテキストボックスに表示
