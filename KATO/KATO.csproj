@@ -403,6 +403,12 @@
     <Compile Include="Common\Form\GyoshuList.Designer.cs">
       <DependentUpon>GyoshuList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\PDFPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\PDFPreview.Designer.cs">
+      <DependentUpon>PDFPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\PrintForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -879,6 +885,9 @@
     <EmbeddedResource Include="Common\Form\GyoshuList.resx">
       <DependentUpon>GyoshuList.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\PDFPreview.resx">
+      <DependentUpon>PDFPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\PrintForm.resx">
       <DependentUpon>PrintForm.cs</DependentUpon>
@@ -1745,6 +1754,25 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

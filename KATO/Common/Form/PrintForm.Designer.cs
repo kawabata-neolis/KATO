@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtPrt = new KATO.Common.Ctl.BaseText();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.prtList = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new KATO.Common.Ctl.BaseButton();
+            this.btnPrint = new KATO.Common.Ctl.BaseButton();
+            this.btnPreview = new KATO.Common.Ctl.BaseButton();
             this.lblPage = new KATO.Common.Ctl.BaseLabelGray();
             this.rdPage3 = new KATO.Common.Ctl.BaseRadioButton();
             this.rdPage2 = new KATO.Common.Ctl.BaseRadioButton();
             this.rdPage1 = new KATO.Common.Ctl.BaseRadioButton();
             this.rdPage0 = new KATO.Common.Ctl.BaseRadioButton();
-            this.btnCancel = new KATO.Common.Ctl.BaseButton();
-            this.btnPrint = new KATO.Common.Ctl.BaseButton();
-            this.btnPreview = new KATO.Common.Ctl.BaseButton();
             this.btnPrt = new KATO.Common.Ctl.BaseButton();
+            this.txtPrt = new KATO.Common.Ctl.BaseText();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -57,17 +57,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "使用するプリンタ";
-            // 
-            // txtPrt
-            // 
-            this.txtPrt.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPrt.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtPrt.Location = new System.Drawing.Point(8, 21);
-            this.txtPrt.Name = "txtPrt";
-            this.txtPrt.ReadOnly = true;
-            this.txtPrt.Size = new System.Drawing.Size(279, 22);
-            this.txtPrt.TabIndex = 0;
-            this.txtPrt.TabStop = false;
             // 
             // groupBox2
             // 
@@ -106,6 +95,39 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "出力用紙";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnCancel.Location = new System.Drawing.Point(223, 260);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(95, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "キャンセル";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.baseButton3_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnPrint.Location = new System.Drawing.Point(122, 260);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(95, 23);
+            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Text = "一括印刷";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnPreview.Location = new System.Drawing.Point(21, 260);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(95, 23);
+            this.btnPreview.TabIndex = 4;
+            this.btnPreview.Text = "プレビュー";
+            this.btnPreview.UseVisualStyleBackColor = true;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
+            // 
             // lblPage
             // 
             this.lblPage.AutoEllipsis = true;
@@ -117,7 +139,6 @@
             this.lblPage.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblPage.Size = new System.Drawing.Size(80, 22);
             this.lblPage.TabIndex = 99;
-            this.lblPage.Text = "B4横";
             this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rdPage3
@@ -184,39 +205,6 @@
             this.rdPage0.Text = "原稿サイズ";
             this.rdPage0.UseVisualStyleBackColor = true;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnCancel.Location = new System.Drawing.Point(223, 260);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(95, 23);
-            this.btnCancel.TabIndex = 6;
-            this.btnCancel.Text = "キャンセル";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.baseButton3_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnPrint.Location = new System.Drawing.Point(122, 260);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(95, 23);
-            this.btnPrint.TabIndex = 5;
-            this.btnPrint.Text = "一括印刷";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnPreview
-            // 
-            this.btnPreview.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnPreview.Location = new System.Drawing.Point(21, 260);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(95, 23);
-            this.btnPreview.TabIndex = 4;
-            this.btnPreview.Text = "プレビュー";
-            this.btnPreview.UseVisualStyleBackColor = true;
-            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
-            // 
             // btnPrt
             // 
             this.btnPrt.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -226,6 +214,18 @@
             this.btnPrt.TabIndex = 1;
             this.btnPrt.Text = "他のプリンタ";
             this.btnPrt.UseVisualStyleBackColor = true;
+            this.btnPrt.Click += new System.EventHandler(this.btnPrt_Click);
+            // 
+            // txtPrt
+            // 
+            this.txtPrt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPrt.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtPrt.Location = new System.Drawing.Point(8, 21);
+            this.txtPrt.Name = "txtPrt";
+            this.txtPrt.ReadOnly = true;
+            this.txtPrt.Size = new System.Drawing.Size(279, 22);
+            this.txtPrt.TabIndex = 0;
+            this.txtPrt.TabStop = false;
             // 
             // PrintForm
             // 
@@ -239,8 +239,10 @@
             this.Controls.Add(this.btnPrt);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.KeyPreview = true;
             this.Name = "PrintForm";
             this.Text = "PrintForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrintForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
