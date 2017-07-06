@@ -59,6 +59,19 @@ namespace KATO.Common.Form
             stSize = size;
             tateFlg = tate;
             lstSize = CommonTeisu.paramSize[stSize];
+            lblPage.Text = stSize.ToUpper() + CommonTeisu.muki[tateFlg];
+            
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
+
+            groupBox2.Visible = false;
         }
 
         private void prtList_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,7 +89,9 @@ namespace KATO.Common.Form
         private void btnPreview_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PREVIEW;
-            this.Close();
+            PDFPreview pv = new PDFPreview(this, stPath);
+            pv.ShowDialog();
+            pv.Dispose();
         }
 
         private void baseButton3_Click(object sender, EventArgs e)
@@ -191,6 +206,32 @@ namespace KATO.Common.Form
 
         }
 
+        private void btnPrt_Click(object sender, EventArgs e)
+        {
+            groupBox2.Visible = true;
 
+            PrinterSettings.StringCollection oPrinter;
+            oPrinter = PrinterSettings.InstalledPrinters;
+
+            int intIdx = 0;
+            foreach (string item in oPrinter)
+            {
+                prtList.Items.Add(item);
+                if (item.Equals(pd.PrinterSettings.PrinterName))
+                {
+                    prtList.SelectedIndex = intIdx;
+                }
+                intIdx++;
+            }
+
+        }
+
+        private void PrintForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F12)
+            {
+                this.Close();
+            }
+        }
     }
 }
