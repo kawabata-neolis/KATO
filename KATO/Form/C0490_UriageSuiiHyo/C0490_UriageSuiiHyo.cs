@@ -43,14 +43,16 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             InitializeComponent();
 
-            //フォームが最大化されないようにする
-            this.MaximizeBox = false;
-            //フォームが最小化されないようにする
-            this.MinimizeBox = false;
+            this.WindowState = FormWindowState.Maximized;
 
-            //最大サイズと最小サイズを現在のサイズに設定する
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
+            ////フォームが最大化されないようにする
+            //this.MaximizeBox = false;
+            ////フォームが最小化されないようにする
+            //this.MinimizeBox = false;
+
+            ////最大サイズと最小サイズを現在のサイズに設定する
+            //this.MaximumSize = this.Size;
+            //this.MinimumSize = this.Size;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
@@ -556,7 +558,11 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 DataTable dtSiireSuiiList = uriagesuiihyoB.getUriageSuiiList(lstSearchItem, "print");
 
                 // PDF作成
-                uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
+                pf.ShowDialog();
+                pf.Dispose();
 
                 //印刷完了メッセージ
                 MessageBox.Show("PDF出力が完了しました。");

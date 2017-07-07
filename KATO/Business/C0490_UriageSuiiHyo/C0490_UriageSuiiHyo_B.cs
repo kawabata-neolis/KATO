@@ -667,7 +667,7 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         /// <param name="dtSiireSuiiList">
         ///     仕入推移表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public void dbToPdf(DataTable dtSiireSuiiList, string strStartYM)
+        public string dbToPdf(DataTable dtSiireSuiiList, string strStartYM)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -1322,7 +1322,7 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                 workbook.Dispose();
 
                 // PDF化の処理
-                createPdf(strOutXlsFile, strDateTime);
+                return createPdf(strOutXlsFile, strDateTime);
 
             }
             catch (Exception ex)
@@ -1369,10 +1369,12 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         /// <param name="strDateTime">日時</param>
         /// </summary>
         /// -----------------------------------------------------------------------------
-        private void createPdf(string strInXlsFile, string strDateTime)
+        private string createPdf(string strInXlsFile, string strDateTime)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
+
+            string strJoinPdfFile;
 
             try
             {
@@ -1428,7 +1430,7 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                 }
 
                 // 結合PDFオブジェクト
-                string strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
+                strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
 
                 // PDFファイル数が0でなければ結合
                 if (filesMax != 0)
@@ -1442,7 +1444,7 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                 new CommonException(ex);
                 throw ex;
             }
-                return;
+                return strJoinPdfFile;
         }
 
 
