@@ -43,14 +43,16 @@ namespace KATO.Form.C0480_SiireSuiiHyo
 
             InitializeComponent();
 
-            // フォームが最大化されないようにする
-            this.MaximizeBox = false;
-            // フォームが最小化されないようにする
-            this.MinimizeBox = false;
+            this.WindowState = FormWindowState.Maximized;
 
-            // 最大サイズと最小サイズを現在のサイズに設定する
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
+            //// フォームが最大化されないようにする
+            //this.MaximizeBox = false;
+            //// フォームが最小化されないようにする
+            //this.MinimizeBox = false;
+
+            //// 最大サイズと最小サイズを現在のサイズに設定する
+            //this.MaximumSize = this.Size;
+            //this.MinimumSize = this.Size;
 
             // ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
