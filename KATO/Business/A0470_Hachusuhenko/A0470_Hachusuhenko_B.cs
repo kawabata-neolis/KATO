@@ -160,5 +160,53 @@ namespace KATO.Business.A0470_Hachusuhenko
             }
 
         }
+
+        ///<summary>
+        ///updKoushin
+        ///データの更新
+        ///</summary>
+        public void updKoushin(string strHachusu, string strHachuID)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Hachusuhenko_UPDATE");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strHachusu, strHachuID);
+
+                //SQL接続後、該当データを取得
+                dbconnective.RunSql(strSQLInput);
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }

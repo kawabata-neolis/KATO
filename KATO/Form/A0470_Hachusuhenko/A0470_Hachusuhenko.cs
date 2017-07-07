@@ -29,8 +29,8 @@ namespace KATO.Form.A0470_Hachusuhenko
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //受注残ボタンの位置確保
-        int intJudBtn = 0;
+        //更新用発注番号の確保
+        string strHachuID;
 
         ///<summary>
         ///A0100_HachuInput
@@ -83,6 +83,8 @@ namespace KATO.Form.A0470_Hachusuhenko
             this.btnF08.Text = "F8:更新";
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
+
+            radSet_3btn_Basho.radbtn2.Checked = true;
             SetUpGrid();
         }
 
@@ -274,7 +276,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
-                    //this.setRireki();
+                    this.updKoshin();
                     break;
                 case Keys.F9:
                     break;
@@ -437,7 +439,6 @@ namespace KATO.Form.A0470_Hachusuhenko
                     }
                 }
                 txtHachukin.Text = string.Format("{0:#,#}", intKin);
-                //txtHachukin.DataBindings[intKin].FormatString = "0:#,#";
 
                 //グリッドビューに一行以上ある場合
                 if (gridHachusuhenko.RowCount >  0)
@@ -513,6 +514,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                 case Keys.F4:
                     break;
                 case Keys.F5:
+                    setDataSelect();
                     break;
                 case Keys.F6:
                     break;
@@ -541,7 +543,27 @@ namespace KATO.Form.A0470_Hachusuhenko
         ///</summary>
         private void setDataSelect()
         {
+            //グリッドビューに一行以上ない場合
+            if (gridHachusuhenko.RowCount < 1)
+            {
+                return;
+            }
 
+            //選択行の品名・型番取得
+            txtHinmei_Katashiki.Text = (string)gridHachusuhenko.CurrentRow.Cells["品名・型式"].Value;
+            txtHachusu.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["数量"].Value);
+            txtShiresu.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["仕入済"].Value);
+            txtTanka.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["単価"].Value);
+
+            strHachuID = (string)gridHachusuhenko.CurrentRow.Cells["発"].Value.ToString();
+
+            //空だった場合0に置き換える
+            if (txtShiresu.Text == "")
+            {
+                txtShiresu.Text = "0";
+            }
+
+            txtHachusu.Focus();
         }
 
         ///<summary>
@@ -552,6 +574,7 @@ namespace KATO.Form.A0470_Hachusuhenko
         {
             delFormClear(this, gridHachusuhenko);
 
+            labelSet_Tantousha.Focus();
         }
 
         ///<summary>
@@ -563,23 +586,76 @@ namespace KATO.Form.A0470_Hachusuhenko
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 表示
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.setHachusuhenko();
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                //case STR_BTN_F08: // 履歴
-                //    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                //    this.setRireki();
-                //    break;
+                case STR_BTN_F05: // 選択
+                    logger.Info(LogUtil.getMessage(this._Title, "選択実行"));
+                    setDataSelect();
+                    break;
+                case STR_BTN_F08: // 更新
+                    logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
+                    updKoshin();
+                    break;
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
             }
         }
+
+        ///<summary>
+        ///updKoshin
+        ///データの更新
+        ///</summary>
+        private void updKoshin()
+        {
+            //前後の空白を取り除く
+            txtHachusu.Text = txtHachusu.Text.Trim();
+            
+            //発注数が空白の場合
+            if (txtHachusu.Text == "")
+            {
+                return;
+            }
+
+            //発注数が仕入数以下の場合
+            if (int.Parse(txtHachusu.Text) < int.Parse(txtShiresu.Text))
+            {
+                //発注数が仕入数以下の場合のメッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "発注数は仕入数以上を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
+            A0470_Hachusuhenko_B hachusuhenkoB = new A0470_Hachusuhenko_B();
+            try
+            {
+                hachusuhenkoB.updKoushin(txtHachusu.Text, strHachuID);
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                //下部のみ取消動作
+                txtHinmei_Katashiki.Clear();
+                txtHachusu.Clear();
+                txtShiresu.Clear();
+                txtTanka.Clear();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
     }
 }
-
-//ボタン設定とデータをテキストボックスに表示

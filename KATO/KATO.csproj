@@ -1229,6 +1229,9 @@
     <Content Include="SQL\Common\C_LIST_HachuInput_Denpyo_UPDATE_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_Hachusuhenko_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -63,6 +63,56 @@
             this.gbBasho.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabIndex = 100;
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.TabIndex = 101;
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // labelSet_Tantousha
             // 
             this.labelSet_Tantousha.AppendLabelSize = 0;
@@ -247,17 +297,18 @@
             this.gridHachusuhenko.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridHachusuhenko.Size = new System.Drawing.Size(1390, 569);
             this.gridHachusuhenko.StandardTab = true;
-            this.gridHachusuhenko.TabIndex = 97;
-            this.gridHachusuhenko.TabStop = false;
+            this.gridHachusuhenko.TabIndex = 78;
             this.gridHachusuhenko.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridHachusuhenko_CellDoubleClick);
             this.gridHachusuhenko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridHachusuhenko_KeyDown);
             // 
             // txtHinmei_Katashiki
             // 
+            this.txtHinmei_Katashiki.BackColor = System.Drawing.SystemColors.Window;
             this.txtHinmei_Katashiki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtHinmei_Katashiki.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtHinmei_Katashiki.Location = new System.Drawing.Point(122, 692);
             this.txtHinmei_Katashiki.Name = "txtHinmei_Katashiki";
+            this.txtHinmei_Katashiki.ReadOnly = true;
             this.txtHinmei_Katashiki.Size = new System.Drawing.Size(288, 22);
             this.txtHinmei_Katashiki.TabIndex = 99;
             this.txtHinmei_Katashiki.TabStop = false;
@@ -286,12 +337,12 @@
             this.txtHachusu.MaxLength = 0;
             this.txtHachusu.Name = "txtHachusu";
             this.txtHachusu.Size = new System.Drawing.Size(100, 22);
-            this.txtHachusu.TabIndex = 100;
-            this.txtHachusu.TabStop = false;
+            this.txtHachusu.TabIndex = 79;
             this.txtHachusu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTanka
             // 
+            this.txtTanka.BackColor = System.Drawing.SystemColors.Window;
             this.txtTanka.blnCommaOK = true;
             this.txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTanka.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -301,6 +352,7 @@
             this.txtTanka.Location = new System.Drawing.Point(122, 753);
             this.txtTanka.MaxLength = 0;
             this.txtTanka.Name = "txtTanka";
+            this.txtTanka.ReadOnly = true;
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
             this.txtTanka.TabIndex = 100;
             this.txtTanka.TabStop = false;
@@ -344,6 +396,7 @@
             // 
             // txtShiresu
             // 
+            this.txtShiresu.BackColor = System.Drawing.SystemColors.Window;
             this.txtShiresu.blnCommaOK = true;
             this.txtShiresu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShiresu.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -353,6 +406,7 @@
             this.txtShiresu.Location = new System.Drawing.Point(515, 726);
             this.txtShiresu.MaxLength = 0;
             this.txtShiresu.Name = "txtShiresu";
+            this.txtShiresu.ReadOnly = true;
             this.txtShiresu.Size = new System.Drawing.Size(100, 22);
             this.txtShiresu.TabIndex = 100;
             this.txtShiresu.TabStop = false;
@@ -372,6 +426,7 @@
             // 
             // txtHachukin
             // 
+            this.txtHachukin.BackColor = System.Drawing.SystemColors.Window;
             this.txtHachukin.blnCommaOK = true;
             this.txtHachukin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtHachukin.ImeMode = System.Windows.Forms.ImeMode.Disable;
@@ -381,6 +436,7 @@
             this.txtHachukin.Location = new System.Drawing.Point(1283, 692);
             this.txtHachukin.MaxLength = 0;
             this.txtHachukin.Name = "txtHachukin";
+            this.txtHachukin.ReadOnly = true;
             this.txtHachukin.Size = new System.Drawing.Size(100, 22);
             this.txtHachukin.TabIndex = 100;
             this.txtHachukin.TabStop = false;
@@ -389,13 +445,11 @@
             // radHachuZan0
             // 
             this.radHachuZan0.AutoSize = true;
-            this.radHachuZan0.Checked = true;
             this.radHachuZan0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.radHachuZan0.Location = new System.Drawing.Point(9, 8);
             this.radHachuZan0.Name = "radHachuZan0";
             this.radHachuZan0.Size = new System.Drawing.Size(137, 19);
             this.radHachuZan0.TabIndex = 101;
-            this.radHachuZan0.TabStop = true;
             this.radHachuZan0.Text = "発注残をすべて";
             this.radHachuZan0.UseVisualStyleBackColor = true;
             this.radHachuZan0.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
@@ -403,11 +457,13 @@
             // radHachuZan1
             // 
             this.radHachuZan1.AutoSize = true;
+            this.radHachuZan1.Checked = true;
             this.radHachuZan1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.radHachuZan1.Location = new System.Drawing.Point(152, 8);
             this.radHachuZan1.Name = "radHachuZan1";
             this.radHachuZan1.Size = new System.Drawing.Size(185, 19);
             this.radHachuZan1.TabIndex = 102;
+            this.radHachuZan1.TabStop = true;
             this.radHachuZan1.Text = "発注残で仕入済数あり";
             this.radHachuZan1.UseVisualStyleBackColor = true;
             this.radHachuZan1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
