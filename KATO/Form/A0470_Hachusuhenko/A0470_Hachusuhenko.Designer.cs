@@ -231,7 +231,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridHachusuhenko.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridHachusuhenko.EnableHeadersVisualStyles = false;
-            this.gridHachusuhenko.Location = new System.Drawing.Point(22, 112);
+            this.gridHachusuhenko.Location = new System.Drawing.Point(15, 112);
             this.gridHachusuhenko.Name = "gridHachusuhenko";
             this.gridHachusuhenko.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -435,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1560, 826);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.gbBasho);
             this.Controls.Add(this.gbHachuzan);
             this.Controls.Add(this.txtHachukin);

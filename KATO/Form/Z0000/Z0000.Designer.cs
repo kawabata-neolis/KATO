@@ -36,6 +36,7 @@
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnHachusuhenko = new KATO.Common.Ctl.BaseMenuButton();
             this.btnSiireSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
             this.btnUriageSuiiHyo = new KATO.Common.Ctl.BaseMenuButton();
             this.btnShohinMotochoKakunin = new KATO.Common.Ctl.BaseMenuButton();
@@ -57,7 +58,6 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnHachusuhenko = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -226,6 +226,17 @@
             this.tabPage2.Size = new System.Drawing.Size(1392, 737);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
+            // 
+            // btnHachusuhenko
+            // 
+            this.btnHachusuhenko.BackColor = System.Drawing.Color.LightYellow;
+            this.btnHachusuhenko.Location = new System.Drawing.Point(23, 292);
+            this.btnHachusuhenko.Name = "btnHachusuhenko";
+            this.btnHachusuhenko.Size = new System.Drawing.Size(280, 40);
+            this.btnHachusuhenko.TabIndex = 107;
+            this.btnHachusuhenko.Text = "発注数変更";
+            this.btnHachusuhenko.UseVisualStyleBackColor = false;
+            this.btnHachusuhenko.Click += new System.EventHandler(this.btnHachusuhenko_Click);
             // 
             // btnSiireSuiiHyo
             // 
@@ -465,17 +476,6 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
-            // 
-            // btnHachusuhenko
-            // 
-            this.btnHachusuhenko.BackColor = System.Drawing.Color.LightYellow;
-            this.btnHachusuhenko.Location = new System.Drawing.Point(23, 292);
-            this.btnHachusuhenko.Name = "btnHachusuhenko";
-            this.btnHachusuhenko.Size = new System.Drawing.Size(280, 40);
-            this.btnHachusuhenko.TabIndex = 107;
-            this.btnHachusuhenko.Text = "発注数変更";
-            this.btnHachusuhenko.UseVisualStyleBackColor = false;
-            this.btnHachusuhenko.Click += new System.EventHandler(this.btnHachusuhenko_Click);
             // 
             // Z0000
             // 
