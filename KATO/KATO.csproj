@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
+    <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
@@ -479,6 +480,18 @@
     </Compile>
     <Compile Include="Form\A0010_JuchuInput\A0010_JuchuInput.designer.cs">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0030_ShireInput\A0030_ShireInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0030_ShireInput\A0030_ShireInput.Designer.cs">
+      <DependentUpon>A0030_ShireInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0030_ShireInput\BaseViewDataGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\A0030_ShireInput\BaseViewDataGroup.Designer.cs">
+      <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
@@ -919,6 +932,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0010_JuchuInput\A0010_JuchuInput.resx">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0030_ShireInput\A0030_ShireInput.resx">
+      <DependentUpon>A0030_ShireInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0030_ShireInput\BaseViewDataGroup.resx">
+      <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>

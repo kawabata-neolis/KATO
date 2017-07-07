@@ -232,6 +232,13 @@ namespace KATO.Form.Z0000
             hachusuhenko.ShowDialog();
         }
 
+        // 発注数変更
+        private void btnShireInput_Click(object sender, EventArgs e)
+        {
+            A0030_ShireInput.A0030_ShireInput shireinput = new A0030_ShireInput.A0030_ShireInput(this);
+            shireinput.ShowDialog();
+        }
+
 
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
@@ -268,6 +275,5 @@ namespace KATO.Form.Z0000
             }
             pf.Dispose();
         }
-
     }
 }

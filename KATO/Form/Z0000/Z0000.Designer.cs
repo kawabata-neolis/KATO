@@ -58,6 +58,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnShireInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -144,6 +145,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.baseMenuButton1);
+            this.tabPage1.Controls.Add(this.btnShireInput);
             this.tabPage1.Controls.Add(this.btnJuchuInput);
             this.tabPage1.Controls.Add(this.btnHachuInput);
             this.tabPage1.Controls.Add(this.btnTestWindow);
@@ -477,6 +479,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
+            // btnShireInput
+            // 
+            this.btnShireInput.BackColor = System.Drawing.Color.LightYellow;
+            this.btnShireInput.Location = new System.Drawing.Point(23, 215);
+            this.btnShireInput.Name = "btnShireInput";
+            this.btnShireInput.Size = new System.Drawing.Size(280, 40);
+            this.btnShireInput.TabIndex = 72;
+            this.btnShireInput.Text = "仕入入力";
+            this.btnShireInput.UseVisualStyleBackColor = false;
+            this.btnShireInput.Click += new System.EventHandler(this.btnShireInput_Click);
+            // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -543,5 +556,6 @@
         private Common.Ctl.BaseMenuButton btnUriageSuiiHyo;
         private Common.Ctl.BaseMenuButton baseMenuButton1;
         private Common.Ctl.BaseMenuButton btnHachusuhenko;
+        private Common.Ctl.BaseMenuButton btnShireInput;
     }
 }
