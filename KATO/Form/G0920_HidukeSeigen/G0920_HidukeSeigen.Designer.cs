@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 733);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblGamenName);
             this.Controls.Add(this.txtGamenNo);
             this.Controls.Add(this.lblGamenNo);

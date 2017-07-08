@@ -571,10 +571,6 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
                 lstSearchItem.Add(labelSet_ChubunruiS.CodeTxtText);
                 lstSearchItem.Add(labelSet_MakerS.CodeTxtText);
 
-                // 並び順のデータをリストに格納
-                lstSerachOrder.Add(radSortItem.judCheckBtn().ToString());
-                lstSerachOrder.Add(radSortOrder.judCheckBtn().ToString());
-
                 // 検索実行
                 DataTable dtRiekiritsuBList = riekiritsuB.getRiekiritsuList(lstSearchItem, lstSerachOrder);
 

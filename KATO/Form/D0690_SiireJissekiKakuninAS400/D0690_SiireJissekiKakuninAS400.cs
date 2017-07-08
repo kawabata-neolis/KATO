@@ -78,7 +78,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             this.btnF12.Text = STR_FUNC_F12;
 
             // 初期表示
-            labelSet_Siiresaki1.Focus();
+            labelSet_Shiiresaki.Focus();
 
             // 伝票年月日の設定
             txtCalendarYMDEnd.Text = "2005/04/30";
@@ -87,53 +87,6 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
 
             // DataGridViewの初期設定
             SetUpGrid();
-        }
-
-        /// <summary>
-        /// D0690_SiireJissekiKakuninAS400_FormClosed
-        /// 閉じる時
-        /// </summary>
-        private void D0690_SiireJissekiKakuninAS400_FormClosed(Object sender, FormClosedEventArgs e)
-        {
-            // 受注入力フォームから呼ばれた場合
-            if (this.intFrm == 0010)
-            {
-                // 全てのフォームの中から移動元フォームの検索
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                {
-                    // 直送先のフォームを探す
-                    // 【受注入力フォームに変更すること、画面IDとフォーム名】
-                    if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "A0010JuchuInput")
-                    {
-                        // データを連れてくるため、newをしないこと
-                        // 【受注入力フォームに変更すること】
-                        // 【受注入力フォームに「setSiireJissekiKakuninClose()」を実装すること】戻った時のフォーカスの位置
-                        //A0010_JuchuInput.A0010JuchuInput juchuInput = (A0010_JuchuInput.A0010JuchuInput)frm;
-                        //juchuInput.setSiireJissekiKakuninClose();
-                        break;
-                    }
-                }
-            }
-
-            // 売上入力フォームから呼ばれた場合
-            if (this.intFrm == 0020)
-            {
-                // 全てのフォームの中から移動元フォームの検索
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                {
-                    // 直送先のフォームを探す
-                    // 【売上入力フォームに変更すること、画面IDとフォーム名】
-                    if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "A0010JuchuInput")
-                    {
-                        // データを連れてくるため、newをしないこと
-                        // 【売上入力フォームに変更すること】
-                        // 【売上入力フォームに「setSiireJissekiKakuninClose()」を実装すること】戻った時のフォーカスの位置
-                        //A0010_JuchuInput.A0010JuchuInput uriageInput = (A0010_JuchuInput.A0010JuchuInput)frm;
-                        //uriageInput.setSiireJissekiKakuninClose();
-                        break;
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -321,8 +274,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             txtCalendarYMDStart.Text = strKikanStart;
             txtCalendarYMDEnd.Text = strKikanEnd;
 
-            // ■暫定【仕入先コードにフォーカスする処理】
-            labelSet_Siiresaki1.Focus();
+            labelSet_Shiiresaki.Focus();
         }
 
 
@@ -336,8 +288,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             List<string> lstItem = new List<string>();
 
             // 空文字判定（仕入先コード、型番、備考、伝票年月日）
-            //■暫定【仕入先コードに値が入っていない場合】
-            if (labelSet_Siiresaki1.CodeTxtText.Equals("")  && txtKataban.Text.Equals("") && txtBikou.Text.Equals("") && 
+            if (labelSet_Shiiresaki.CodeTxtText.Equals("")  && txtKataban.Text.Equals("") && txtBikou.Text.Equals("") && 
                 txtCalendarYMDStart.Text.Equals("") && txtCalendarYMDEnd.Text.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -352,7 +303,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             try
             {
                 // 検索するデータをリストに格納
-                lstItem.Add(labelSet_Siiresaki1.CodeTxtText);  // ■暫定【仕入先コード】
+                lstItem.Add(labelSet_Shiiresaki.CodeTxtText);
                 lstItem.Add(txtCalendarYMDStart.Text);
                 lstItem.Add(txtCalendarYMDEnd.Text);
                 lstItem.Add(txtKataban.Text);

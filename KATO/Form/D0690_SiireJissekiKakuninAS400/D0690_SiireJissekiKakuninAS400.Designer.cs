@@ -41,8 +41,7 @@
             this.lblBikou = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou = new KATO.Common.Ctl.BaseText();
             this.gridSiireJisseki = new KATO.Common.Ctl.BaseDataGridView();
-            this.labelSet_Siiresaki1 = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.labelSet_Shiiresaki = new KATO.Common.Ctl.LabelSet_Shiresaki();
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,47 +216,34 @@
             this.gridSiireJisseki.RowHeadersVisible = false;
             this.gridSiireJisseki.RowTemplate.Height = 21;
             this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireJisseki.Size = new System.Drawing.Size(1330, 587);
+            this.gridSiireJisseki.Size = new System.Drawing.Size(1400, 587);
             this.gridSiireJisseki.StandardTab = true;
             this.gridSiireJisseki.TabIndex = 110;
             // 
-            // labelSet_Siiresaki1
+            // labelSet_Shiiresaki
             // 
-            this.labelSet_Siiresaki1.AppendLabelSize = 40;
-            this.labelSet_Siiresaki1.AppendLabelText = "";
-            this.labelSet_Siiresaki1.CodeTxtSize = 40;
-            this.labelSet_Siiresaki1.CodeTxtText = "";
-            this.labelSet_Siiresaki1.LabelName = "仕入先コード";
-            this.labelSet_Siiresaki1.Location = new System.Drawing.Point(98, 40);
-            this.labelSet_Siiresaki1.Name = "labelSet_Siiresaki1";
-            this.labelSet_Siiresaki1.ShowAppendFlg = false;
-            this.labelSet_Siiresaki1.Size = new System.Drawing.Size(516, 22);
-            this.labelSet_Siiresaki1.SpaceCodeValue = 4;
-            this.labelSet_Siiresaki1.SpaceNameCode = 4;
-            this.labelSet_Siiresaki1.SpaceValueAppend = 4;
-            this.labelSet_Siiresaki1.TabIndex = 1;
-            this.labelSet_Siiresaki1.ValueLabelSize = 350;
-            this.labelSet_Siiresaki1.ValueLabelText = "";
-            // 
-            // baseLabel1
-            // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(64, 20);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(223, 15);
-            this.baseLabel1.strToolTip = null;
-            this.baseLabel1.TabIndex = 111;
-            this.baseLabel1.Text = "【暫定】AS400用に置き換える";
-            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelSet_Shiiresaki.AppendLabelSize = 0;
+            this.labelSet_Shiiresaki.AppendLabelText = "";
+            this.labelSet_Shiiresaki.CodeTxtSize = 40;
+            this.labelSet_Shiiresaki.CodeTxtText = "";
+            this.labelSet_Shiiresaki.LabelName = "仕入先コード";
+            this.labelSet_Shiiresaki.Location = new System.Drawing.Point(98, 43);
+            this.labelSet_Shiiresaki.Name = "labelSet_Shiiresaki";
+            this.labelSet_Shiiresaki.ShowAppendFlg = false;
+            this.labelSet_Shiiresaki.Size = new System.Drawing.Size(471, 22);
+            this.labelSet_Shiiresaki.SpaceCodeValue = 4;
+            this.labelSet_Shiiresaki.SpaceNameCode = 4;
+            this.labelSet_Shiiresaki.SpaceValueAppend = 4;
+            this.labelSet_Shiiresaki.TabIndex = 1;
+            this.labelSet_Shiiresaki.ValueLabelSize = 300;
+            this.labelSet_Shiiresaki.ValueLabelText = "";
             // 
             // D0690_SiireJissekiKakuninAS400
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 750);
-            this.Controls.Add(this.baseLabel1);
-            this.Controls.Add(this.labelSet_Siiresaki1);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Shiiresaki);
             this.Controls.Add(this.gridSiireJisseki);
             this.Controls.Add(this.txtBikou);
             this.Controls.Add(this.lblBikou);
@@ -269,7 +255,6 @@
             this.Controls.Add(this.lblKikan);
             this.Name = "D0690_SiireJissekiKakuninAS400";
             this.Text = "D0690_SiireJissekiKakuninAS400";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.D0690_SiireJissekiKakuninAS400_FormClosed);
             this.Load += new System.EventHandler(this.D0690_SiireJissekiKakuninAS400_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0690_SiireJissekiKakuninAS400_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
@@ -293,8 +278,7 @@
             this.Controls.SetChildIndex(this.lblBikou, 0);
             this.Controls.SetChildIndex(this.txtBikou, 0);
             this.Controls.SetChildIndex(this.gridSiireJisseki, 0);
-            this.Controls.SetChildIndex(this.labelSet_Siiresaki1, 0);
-            this.Controls.SetChildIndex(this.baseLabel1, 0);
+            this.Controls.SetChildIndex(this.labelSet_Shiiresaki, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -311,7 +295,6 @@
         private Common.Ctl.BaseLabel lblBikou;
         private Common.Ctl.BaseText txtBikou;
         private Common.Ctl.BaseDataGridView gridSiireJisseki;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_Siiresaki1;
-        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.LabelSet_Shiresaki labelSet_Shiiresaki;
     }
 }
