@@ -197,10 +197,11 @@ namespace KATO.Form.A0010_JuchuInput
         private void setColumn(Common.Ctl.BaseDataGridView gr, DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
             gr.Columns.Add(col);
-            if (gridZaiko.Columns[col.Name] != null)
+            if (gr.Columns[col.Name] != null)
             {
                 gr.Columns[col.Name].Width = intLen;
                 gr.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gr.Columns[col.Name].HeaderCell.Style.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
                 gr.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
                 if (fmt != null)
