@@ -52,54 +52,55 @@ namespace KATO.Form.M1010_Daibunrui
             // 
             // btnF12
             // 
-            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
             // 
-            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF09
             // 
-            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
-            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
-            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
-            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF01
             // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // txtDaibunrui
             // 
+
             this.txtDaibunrui.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDaibunrui.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtDaibunrui.Location = new System.Drawing.Point(595, 97);
@@ -109,7 +110,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtDaibunrui.TabIndex = 0;
             this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtDaiTxtKeyDown);
             this.txtDaibunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
-            this.txtDaibunrui.Leave += new System.EventHandler(this.updTxtDaibunruiLeave);
+            this.txtDaibunrui.Leave += new System.EventHandler(this.getTxtDaibunruiLeave);
             // 
             // txtName
             // 

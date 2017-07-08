@@ -89,6 +89,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             labelSet_Eigyosho.Focus();
             labelSet_Daibunrui.Focus();
 
+            //カレンダー関係の初期設定（当日）
             txtCalendarYMopen.setUp(0);
             txtCalendarYMclose.setUp(0);
             
@@ -453,27 +454,37 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             //フォーカス位置の確保
             Control cActiveBefore = this.ActiveControl;
 
-            txtHonZenZaiko.Text = lstString[0];
-            txtGihuZenZaiko.Text = lstString[1];
-            txtHonNyuko.Text = lstString[2];
-            txtGihuNyuko.Text = lstString[3];
-            txtHonShuko.Text = lstString[4];
-            txtGihuShuko.Text = lstString[5];
-            txtHonGenzaiko.Text = lstString[6];
-            txtGihuGenzaiko.Text = lstString[7];
+            txtHonZenZaiko.Text = string.Format("{0:#,#}", lstString[0]);
+            txtGihuZenZaiko.Text = string.Format("{0:#,#}", lstString[1]);
+            txtHonNyuko.Text = string.Format("{0:#,#}", lstString[2]);
+            txtGihuNyuko.Text = string.Format("{0:#,#}", lstString[3]);
+            txtHonShuko.Text = string.Format("{0:#,#}", lstString[4]);
+            txtGihuShuko.Text = string.Format("{0:#,#}", lstString[5]);
+            txtHonGenzaiko.Text = string.Format("{0:#,#}", lstString[6]);
+            txtGihuGenzaiko.Text = string.Format("{0:#,#}", lstString[7]);
 
-            //金額の表示をさせるため、一度対象にフォーカスさせる
-            txtHonZenZaiko.Focus();
-            txtGihuZenZaiko.Focus();
-            txtHonNyuko.Focus();
-            txtGihuNyuko.Focus();
-            txtHonShuko.Focus();
-            txtGihuShuko.Focus();
-            txtHonGenzaiko.Focus();
-            txtGihuGenzaiko.Focus();
 
-            //元のフォーカス位置に移動
-            cActiveBefore.Focus();
+            //txtHonZenZaiko.Text = lstString[0];
+            //txtGihuZenZaiko.Text = lstString[1];
+            //txtHonNyuko.Text = lstString[2];
+            //txtGihuNyuko.Text = lstString[3];
+            //txtHonShuko.Text = lstString[4];
+            //txtGihuShuko.Text = lstString[5];
+            //txtHonGenzaiko.Text = lstString[6];
+            //txtGihuGenzaiko.Text = lstString[7];
+
+            ////金額の表示をさせるため、一度対象にフォーカスさせる
+            //txtHonZenZaiko.Focus();
+            //txtGihuZenZaiko.Focus();
+            //txtHonNyuko.Focus();
+            //txtGihuNyuko.Focus();
+            //txtHonShuko.Focus();
+            //txtGihuShuko.Focus();
+            //txtHonGenzaiko.Focus();
+            //txtGihuGenzaiko.Focus();
+
+            ////元のフォーカス位置に移動
+            //cActiveBefore.Focus();
         }
 
         /// <summary>
@@ -529,7 +540,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 lstShohinGrid.Add(txtGihuZenZaiko.Text);
 
                 //ビジネス層、データグリッドビュー表示用ロジックに移動
-                dtSetView = shohinmotochokakuninB.setViewGrid(lstShohinGrid);
+                dtSetView = shohinmotochokakuninB.setViewGrid(lstShohinLoad);
 
                 //データ配置（datagridview)
                 gridSeihin.DataSource = dtSetView;
@@ -575,7 +586,7 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         ///updDaibun
         ///リスト内の大分類が変更されたのを反映
         ///</summary>
-        public void updDaibun(string strDaibun)
+        public void setDaibun(string strDaibun)
         {
             labelSet_Daibunrui.CodeTxtText = strDaibun;
         }

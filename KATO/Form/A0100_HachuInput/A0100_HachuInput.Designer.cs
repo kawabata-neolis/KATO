@@ -82,51 +82,51 @@
             // 
             // btnF12
             // 
-            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
             // 
-            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF09
             // 
-            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
-            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
-            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
-            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF01
             // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // lblHachuYMD
             // 

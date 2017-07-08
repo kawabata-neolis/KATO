@@ -20,10 +20,10 @@ namespace KATO.Business.A0100_HachuInput_B
     class A0100_HachuInput_B
     {
         ///<summary>
-        ///setHachuGrid
+        ///getHachuGrid
         ///取引先コードから離れた時、グリッドに記載
         ///</summary>
-        public DataTable setHachuGrid(string strHachuGrid)
+        public DataTable getHachuGrid(string strHachuGrid)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -71,10 +71,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setHachuLeave
+        ///getHachuLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable setHachuLeave(string strHachuban)
+        public DataTable getHachuLeave(string strHachuban)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -122,10 +122,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setJuchuNoCheck
+        ///getJuchuNoCheck
         ///受注テーブルで受注番号を検索する
         ///</summary>
-        public DataTable setJuchuNoCheck(string strJuchuban)
+        public DataTable getJuchuNoCheck(string strJuchuban)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -173,10 +173,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setHachuNoCheck
+        ///getHachuNoCheck
         ///発注テーブルで発注番号を検索する
         ///</summary>
-        public DataTable setHachuNoCheck(string strHachuban)
+        public DataTable getHachuNoCheck(string strHachuban)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -259,10 +259,10 @@ namespace KATO.Business.A0100_HachuInput_B
 
 
         ///<summary>
-        ///setJuchuRenkei
+        ///getJuchuRenkei
         ///受注連携の場合のチェック
         ///</summary>
-        public DataTable setJuchuRenkei(string strJuchuban)
+        public DataTable getJuchuRenkei(string strJuchuban)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -310,10 +310,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setNewDenpyo
+        ///getNewDenpyo
         ///伝票番号テーブルから新規伝票番号を得る
         ///</summary>
-        public DataTable setNewDenpyo(string strTableName)
+        public DataTable getNewDenpyo(string strTableName)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -361,10 +361,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setTanka
+        ///getTanka
         ///発注テーブルから、過去５か月間に使用した単価を５つ取得
         ///</summary>
-        public DataTable setTanka(string strTableName)
+        public DataTable getTanka(string strTableName)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -412,10 +412,10 @@ namespace KATO.Business.A0100_HachuInput_B
         }
 
         ///<summary>
-        ///setShohin
+        ///getShohin
         ///商品DBの取得
         ///</summary>
-        public DataTable setShohin(string strShohinCd)
+        public DataTable getShohin(string strShohinCd)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -459,6 +459,31 @@ namespace KATO.Business.A0100_HachuInput_B
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///addHachuInput
+        ///データの追加
+        ///</summary>
+        public void addHachuInput(List<string> lstStringData, List<string> lstStringTanblename)
+        {
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //プロシージャ（戻り値なし）用のメソッドに投げる
+                dbconnective.RunSql("発注更新_PROC", CommandType.StoredProcedure, lstStringData, lstStringTanblename);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch
+            {
+                throw;
             }
         }
     }

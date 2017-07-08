@@ -99,7 +99,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtChubunrui.TabIndex = 1;
             this.txtChubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtChuTxtKeyDown);
             this.txtChubunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);
-            this.txtChubunrui.Leave += new System.EventHandler(this.updTxtChubunruiLeave);
+            this.txtChubunrui.Leave += new System.EventHandler(this.setTxtChubunruiLeave);
             // 
             // txtElem
             // 

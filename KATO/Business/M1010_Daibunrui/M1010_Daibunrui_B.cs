@@ -121,10 +121,10 @@ namespace KATO.Business.M1010_Daibunrui
         }
 
         ///<summary>
-        ///updTxtDaibunruiLeave
+        ///getTxtDaibunruiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtDaibunruiLeave(string strDaibunCD)
+        public DataTable getTxtDaibunruiLeave(string strDaibunCD)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();

@@ -549,7 +549,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                    hachuinput.setShohinClose();
+                    hachuinput.closeShohinList();
                     break;
                 }
                 //目的のフォームを探す
@@ -560,7 +560,7 @@ namespace KATO.Common.Business
                     shohinbetsuriekiritsusettei.setShohinClose();
                     break;
                 }
-                //目的のフォームを探す
+                //特定向け先単価のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_TOKUTEIMUKESAKITANKA && frm.Name == "M1160_TokuteimukesakiTanka")
                 {
                     //データを連れてくるため、newをしないこと

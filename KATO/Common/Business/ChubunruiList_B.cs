@@ -24,13 +24,11 @@ namespace KATO.Common.Business
     ///</summary>
     class ChubunruiList_B
     {
-        string strSQLName = null;
-
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView(string strDaibun)
+        public DataTable getDatagridView(string strDaibun)
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -74,7 +72,7 @@ namespace KATO.Common.Business
         ///<summary>
         ///setDatagridView
         ///テキストボックスに記述
-        public DataTable setText(string strDaibun)
+        public DataTable getText(string strDaibun)
         {
             //テキストボックスに入れる用
             DataTable dtGetTableTxt = new DataTable();
@@ -115,10 +113,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void setSelectItem(int intFrmKind, string strChubunCd, string strdaibunCDsub)
+        public void getSelectItem(int intFrmKind, string strChubunCd, string strdaibunCDsub)
         {
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;
@@ -174,7 +172,7 @@ namespace KATO.Common.Business
                             {
                                 //データを連れてくるため、newをしないこと
                                 ShouhinList shouhinlist = (ShouhinList)frm;
-                                shouhinlist.setCyubunrui(dtSelectData);
+                                shouhinlist.setChubunrui(dtSelectData);
                                 break;
                             }
                         }
@@ -196,23 +194,20 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                List<string> items = new List<string>();
-                items.Add(frm.Name);
-
                 //中分類フォームを探す
                 if (intFrmKind == CommonTeisu.FRM_CHUBUNRUI && frm.Name == "M1110_Chubunrui")
                 {
                     //データを連れてくるため、newをしないこと
                     M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
-                    chubunrui.setChubunruiListClose();
+                    chubunrui.GetContainerControl();
                     break;
                 }
                 //棚卸入力フォームを探す

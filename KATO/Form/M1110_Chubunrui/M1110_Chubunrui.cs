@@ -509,10 +509,10 @@ namespace KATO.Form.M1110_Chubunrui
         }
 
         ///<summary>
-        ///updTxtChubunruiLeave
+        ///setTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時（中分類）
         ///</summary>
-        public void updTxtChubunruiLeave(object sender, EventArgs e)
+        public void setTxtChubunruiLeave(object sender, EventArgs e)
         {
             //データ渡し用
             List<string> lstString = new List<string>();
@@ -585,20 +585,20 @@ namespace KATO.Form.M1110_Chubunrui
         }
 
         ///<summary>
-        ///setDaibunruiListClose
+        ///closeDaibunruiList
         ///DaibunruiListが閉じたらコード記入欄にフォーカス
         ///作成者：大河内
         ///</summary>
-        public void setDaibunruiListClose()
+        public void closeDaibunruiList()
         {
             LabelSet_Daibun.Focus();
         }
 
         ///<summary>
-        ///setChubunruiListClose
+        ///closeChubunruiList
         ///ChubunruiListが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setChubunruiListClose()
+        public void closeChubunruiList()
         {
             txtChubunrui.Focus();
         }
@@ -608,9 +608,13 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         private void judtxtChubunruiKeyUp(object sender, KeyEventArgs e)
         {
+            //フォーカスの確保
             Control cActiveBefore = this.ActiveControl;
 
+            //ベーステキストのインスタンス生成
             BaseText basetext = new BaseText();
+
+            //キーアップされた時の判断処理
             basetext.judKeyUp(cActiveBefore, e);
         }
     }

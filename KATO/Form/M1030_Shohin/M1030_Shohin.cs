@@ -823,7 +823,7 @@ namespace KATO.Form.M1030_Shohin
         ///updDaibun
         ///リスト内の大分類が変更されたのを反映
         ///</summary>
-        public void updDaibun(string strDaibun)
+        public void setDaibun(string strDaibun)
         {
             labelSet_Daibunrui.CodeTxtText = strDaibun;
         }

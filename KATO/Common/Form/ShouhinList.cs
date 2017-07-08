@@ -787,7 +787,7 @@ namespace KATO.Common.Form
         ///setCyubunrui
         ///取り出したデータをテキストボックスに配置（中分類）
         ///</summary>
-        public void setCyubunrui(DataTable dtSelectData)
+        public void setChubunrui(DataTable dtSelectData)
         {
             labelSet_Chubunrui.CodeTxtText = dtSelectData.Rows[0]["中分類コード"].ToString();
             labelSet_Chubunrui.ValueLabelText = dtSelectData.Rows[0]["中分類名"].ToString();

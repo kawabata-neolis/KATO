@@ -245,7 +245,7 @@ namespace KATO.Form.M1010_Daibunrui
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtDaibunKeyDown(sender, e);
+                    showDaibunList();
                     break;
                 case Keys.F10:
                     break;
@@ -261,10 +261,10 @@ namespace KATO.Form.M1010_Daibunrui
 
 
         ///<summary>
-        ///judBtnClick
+        ///judFuncBtnClick
         ///ファンクションボタンの反応
         ///</summary>
-        private void judBtnClick(object sender, EventArgs e)
+        private void judFuncBtnClick(object sender, EventArgs e)
         {
             //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
@@ -289,29 +289,25 @@ namespace KATO.Form.M1010_Daibunrui
         }
 
         ///<summary>
-        ///judtxtDaibunruiKeyDown
-        ///ファンクションキー入力判定
+        ///showDaibunList
+        ///大分類リストの表示
         ///</summary>
-        private void judtxtDaibunKeyDown(object sender, KeyEventArgs e)
+        private void showDaibunList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //大分類リストのインスタンス生成
+            DaibunruiList daibunruiList = new DaibunruiList(this);
+            try
             {
-                //大分類リストのインスタンス生成
-                DaibunruiList daibunruiList = new DaibunruiList(this);
-                try
-                {
-                    //大分類リストの表示、画面IDを渡す
-                    daibunruiList.StartPosition = FormStartPosition.Manual;
-                    daibunruiList.intFrmKind = CommonTeisu.FRM_DAIBUNRUI;
-                    daibunruiList.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                //大分類リストの表示、画面IDを渡す
+                daibunruiList.StartPosition = FormStartPosition.Manual;
+                daibunruiList.intFrmKind = CommonTeisu.FRM_DAIBUNRUI;
+                daibunruiList.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
 
@@ -413,7 +409,7 @@ namespace KATO.Form.M1010_Daibunrui
             try
             {
                 //検索
-                dtSetCd = daibunB.updTxtDaibunruiLeave(txtDaibunrui.Text);
+                dtSetCd = daibunB.getTxtDaibunruiLeave(txtDaibunrui.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -478,10 +474,10 @@ namespace KATO.Form.M1010_Daibunrui
 
 
         /// <summary>
-        /// updTxtDaibunruiLeave
+        /// getTxtDaibunruiLeave
         /// code入力箇所からフォーカスが外れた時
         /// </summary>
-        public void updTxtDaibunruiLeave(object sender, EventArgs e)
+        public void getTxtDaibunruiLeave(object sender, EventArgs e)
         {
             //フォーカス位置の確保
             Control cActive = this.ActiveControl;
@@ -528,7 +524,7 @@ namespace KATO.Form.M1010_Daibunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = daibunB.updTxtDaibunruiLeave(txtDaibunrui.Text);
+                dtSetCd = daibunB.getTxtDaibunruiLeave(txtDaibunrui.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -557,10 +553,10 @@ namespace KATO.Form.M1010_Daibunrui
         }
 
         /// <summary>
-        /// setDaibunruiListClose
+        /// closeDaibunruiList
         /// DaibunruiListが閉じたらコード記入欄にフォーカス
         /// </summary>
-        public void setDaibunruiListClose()
+        public void closeDaibunruiList()
         {
             txtDaibunrui.Focus();
         }

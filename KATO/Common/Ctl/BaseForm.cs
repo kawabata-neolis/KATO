@@ -235,6 +235,12 @@ namespace KATO.Common.Ctl
                 {
                     cControl.Text = string.Empty;
                 }
+                // コントロールの型が BaseTextMoney からの派生型の場合は BaseTextMoney をクリアする
+                if (cControl is BaseTextMoney)
+                {
+                    cControl.Text = string.Empty;
+                }
+
                 // コントロールの型が BaseLabelGray からの派生型の場合は BaseLabelGray をクリアする
                 if (cControl is BaseLabelGray)
                 {

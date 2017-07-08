@@ -87,7 +87,7 @@ namespace KATO.Common.Form
         /// ChokusosakiList_Load
         ///画面レイアウト設定
         /// </summary>
-        private void CyokusousakiList_Load(object sender, EventArgs e)
+        private void ChokusosakiList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "直送先リスト";
@@ -96,7 +96,8 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            setDatagridView();
+            //データグリッドビューに表示
+            getDatagridView();
 
             //グリッドの中身がない場合の初期フォーカス位置の変更
             if (gridChoku.RowCount == 0)
@@ -106,17 +107,17 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void setDatagridView()
+        private void getDatagridView()
         {
             //ビジネス層のインスタンス生成
             ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridChoku.DataSource = chokusosakilistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridChoku.DataSource = chokusosakilistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
 
                 //幅の値を設定
                 gridChoku.Columns["直送先コード"].Width = 130;
@@ -208,14 +209,14 @@ namespace KATO.Common.Form
         private void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-            setEndAction();
+            EndAction();
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction()
+        private void EndAction()
         {
             this.Close();
 
@@ -224,7 +225,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、移動元フォームに移動するロジックに移動
-                chokusosakilistB.setEndAction(intFrmKind);
+                chokusosakilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -245,8 +246,10 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            setDatagridView();
+            //データグリッドビューに表示
+            getDatagridView();
 
+            //得意先コードを確保
             strTokuiCdsub = labelSet_Tokuisaki.CodeTxtText;
 
             gridChoku.Focus();
@@ -258,11 +261,11 @@ namespace KATO.Common.Form
         ///</summary>        
         private void gridChoku_DoubleClick(object sender, EventArgs e)
         {
-            setSelectItem();
+            getSelectItem();
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///judGridSeihinKeyDown
         ///キー入力判定（グリッドビュー内）
         ///</summary>        
         private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
@@ -286,7 +289,7 @@ namespace KATO.Common.Form
                     break;
                 case Keys.Enter:
                     //ダブルクリックと同じ効果
-                    setSelectItem();
+                    getSelectItem();
                     break;
                 case Keys.F1:
                     break;
@@ -323,10 +326,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        private void setSelectItem()
+        private void getSelectItem()
         {
             //検索結果にデータが存在しなければ終了
             if (gridChoku.RowCount == 0)
@@ -339,9 +342,9 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                chokusosakilistB.setSelectItem(intFrmKind, (string)gridChoku.CurrentRow.Cells["直送先コード"].Value, strTokuiCdsub);
+                chokusosakilistB.getSelectItem(intFrmKind, (string)gridChoku.CurrentRow.Cells["直送先コード"].Value, strTokuiCdsub);
 
-                setEndAction();
+                EndAction();
             }
             catch (Exception ex)
             {

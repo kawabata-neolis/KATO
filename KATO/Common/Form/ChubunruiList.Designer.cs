@@ -57,12 +57,15 @@ namespace KATO.Common.Form
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
             this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.labelSet_Daibunrui.CodeTxtSize = 33;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(40, 24);
             this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(359, 22);
@@ -113,7 +116,7 @@ namespace KATO.Common.Form
             this.gridSeihin.Size = new System.Drawing.Size(474, 381);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 0;
-            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridSeihinDoubleClick);
+            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSeihin_CellDoubleClick);
             this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // btnF11
@@ -148,7 +151,7 @@ namespace KATO.Common.Form
             this.Controls.Add(this.btnF12);
             this.Name = "ChubunruiList";
             this.Text = "ChubunruiList";
-            this.Load += new System.EventHandler(this.CyokusousakiList_Load);
+            this.Load += new System.EventHandler(this.ChubunruiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);

@@ -23,10 +23,10 @@ namespace KATO.Common.Business
     class ChokusosakiList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView(string strSetGrid)
+        public DataTable getDatagridView(string strSetGrid)
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -68,10 +68,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void setSelectItem(int intFrmKind, string strChokusoCd, string strTokuiCdsub)
+        public void getSelectItem(int intFrmKind, string strChokusoCd, string strTokuiCdsub)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -140,10 +140,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrm)
+        public void FormMove(int intFrm)
         {
             //全てのフォームの中から移動元フォームの検索
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)

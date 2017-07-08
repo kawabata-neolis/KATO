@@ -149,14 +149,14 @@ namespace KATO.Common.Form
             this.btnF12.Text = "F12:戻る";
 
             //データグリッドビュー表示
-            setDatagridView();
+            getDatagridView();
         }
 
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void setDatagridView()
+        private void getDatagridView()
         {
             //ビジネス層のインスタンス生成
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
@@ -264,14 +264,14 @@ namespace KATO.Common.Form
             List<string> lstSelectData = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstSelectData);
+            EndAction(lstSelectData);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectData)
+        private void EndAction(List<string> lstSelectData)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetDaibun != null && lstSelectData.Count != 0)
@@ -288,7 +288,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                daibunlistB.setEndAction(intFrmKind);
+                daibunlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -301,12 +301,12 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///GridSeihinDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setGridSeiDblClick(object sender, EventArgs e)
+        public void GridSeiDblClick(object sender, EventArgs e)
         {
-            setSelectItem();
+            getSelectItem();
         }
 
         ///<summary>
@@ -334,7 +334,7 @@ namespace KATO.Common.Form
                     break;
                 case Keys.Enter:
                     //ダブルクリックと同じ効果
-                    setSelectItem();
+                    getSelectItem();
                     break;
                 case Keys.F1:
                     break;
@@ -370,10 +370,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        private void setSelectItem()
+        private void getSelectItem()
         {
             //データグリッドビューにデータが存在しなければ終了
             if (gridSeihin.RowCount == 0)
@@ -397,8 +397,8 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                daibunListB.setSelectItem(intFrmKind, strSelectId);
-                setEndAction(lstSelectData);
+                daibunListB.getSelectItem(intFrmKind, strSelectId);
+                EndAction(lstSelectData);
             }
             catch (Exception ex)
             {

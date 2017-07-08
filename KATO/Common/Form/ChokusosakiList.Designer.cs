@@ -146,7 +146,7 @@ namespace KATO.Common.Form
             this.Controls.Add(this.btnF12);
             this.Name = "ChokusosakiList";
             this.Text = "ChokusosakiList";
-            this.Load += new System.EventHandler(this.CyokusousakiList_Load);
+            this.Load += new System.EventHandler(this.ChokusosakiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridChoku)).EndInit();
             this.ResumeLayout(false);

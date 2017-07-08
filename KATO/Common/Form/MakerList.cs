@@ -325,7 +325,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         M1030_Shohin shohinHome = (M1030_Shohin)frm;
-                        shohinHome.updDaibun(strSubDaibunCd);
+                        shohinHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //棚卸入力のフォームを探す
@@ -333,7 +333,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
-                        tanaHome.updDaibun(strSubDaibunCd);
+                        tanaHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //商品元帳確認のフォームを探す
@@ -341,7 +341,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
-                        shohinmotoHome.updDaibun(strSubDaibunCd);
+                        shohinmotoHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //発注入力のフォームを探す
@@ -349,7 +349,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
-                        hachuHome.updDaibun(strSubDaibunCd);
+                        hachuHome.setDaibun(strSubDaibunCd);
                         break;
                     }
 

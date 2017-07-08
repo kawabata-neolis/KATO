@@ -265,7 +265,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、移動元フォームに移動するロジックに移動
-                chokusosakilistB.setEndAction(intFrmKind);
+                chokusosakilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {

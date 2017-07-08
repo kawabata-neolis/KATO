@@ -125,10 +125,10 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// CyokusousakiList_Load
+        /// ChubunruiList_Load
         /// 画面レイアウト設定
         /// </summary>
-        private void CyokusousakiList_Load(object sender, EventArgs e)
+        private void ChubunruiList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "中分類リスト";
@@ -137,21 +137,20 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            setDatagridView();
+            getDatagridView();
 
             //データない場合、フォーカス位置を変える
             if (gridSeihin.RowCount == 0)
             {
                 labelSet_Daibunrui.Focus();
             }
-
         }
-
+        
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void setDatagridView()
+        private void getDatagridView()
         {
             //大分類テキストボックスに入れる用
             DataTable dtGetTable;
@@ -161,9 +160,9 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = chubunlistB.setDatagridView(labelSet_Daibunrui.CodeTxtText);
+                gridSeihin.DataSource = chubunlistB.getDatagridView(labelSet_Daibunrui.CodeTxtText);
                 //テキストボックス部分
-                dtGetTable = chubunlistB.setText(labelSet_Daibunrui.CodeTxtText);
+                dtGetTable = chubunlistB.getText(labelSet_Daibunrui.CodeTxtText);
 
                 //幅の値を設定
                 gridSeihin.Columns["中分類コード"].Width = 130;
@@ -264,14 +263,14 @@ namespace KATO.Common.Form
             List<string> lstSelectData = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstSelectData);
+            EndAction(lstSelectData);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectData)
+        private void EndAction(List<string> lstSelectData)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetChubun != null && lstSelectData.Count != 0)
@@ -288,7 +287,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         M1030_Shohin shohinHome = (M1030_Shohin)frm;
-                        shohinHome.updDaibun(strSubDaibunCd);
+                        shohinHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //棚卸入力のフォームを探す
@@ -296,7 +295,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
-                        tanaHome.updDaibun(strSubDaibunCd);
+                        tanaHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //商品元帳確認のフォームを探す
@@ -304,7 +303,7 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
-                        shohinmotoHome.updDaibun(strSubDaibunCd);
+                        shohinmotoHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                     //発注入力のフォームを探す
@@ -312,11 +311,10 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
-                        hachuHome.updDaibun(strSubDaibunCd);
+                        hachuHome.setDaibun(strSubDaibunCd);
                         break;
                     }
                 }
-
             }
 
             this.Close();
@@ -326,7 +324,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                chubunListB.setEndAction(intFrmKind);
+                chubunListB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -345,20 +343,21 @@ namespace KATO.Common.Form
         private void btnKensakuClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-            setDatagridView();
+            getDatagridView();
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///gridSeihin_CellDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>        
-        private void setGridSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void gridSeihin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            setSelectItem();
+            getSelectItem();
+
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///judGridSeihinKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
         private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
@@ -382,7 +381,7 @@ namespace KATO.Common.Form
                     break;
                 case Keys.Enter:
                     //ダブルクリックと同じ効果
-                    setSelectItem();
+                    getSelectItem();
                     break;
                 case Keys.F1:
                     break;
@@ -419,10 +418,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        private void setSelectItem()
+        private void getSelectItem()
         {
             //データグリッドビューにデータが存在しなければ終了
             if (gridSeihin.RowCount == 0)
@@ -446,7 +445,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                chubunListB.setSelectItem(intFrmKind, strSelectId, strSubDaibunCd);
+                chubunListB.getSelectItem(intFrmKind, strSelectId, strSubDaibunCd);
             }
             catch (Exception ex)
             {
@@ -456,7 +455,7 @@ namespace KATO.Common.Form
                 basemessagebox.ShowDialog();
                 return;
             }
-            setEndAction(lstSelectData);
+            EndAction(lstSelectData);
         }
 
         ///<summary>

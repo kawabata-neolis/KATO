@@ -67,10 +67,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -80,7 +80,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1010_Daibunrui daibunrui = (M1010_Daibunrui)frm;
-                    daibunrui.setDaibunruiListClose();
+                    daibunrui.closeDaibunruiList();
                     break;
                 }
                 //中分類のフォームを探す
@@ -88,7 +88,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
-                    chubunrui.setDaibunruiListClose();
+                    chubunrui.closeDaibunruiList();
                     break;
                 }
                 //棚卸入力のフォームを探す
@@ -111,10 +111,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;

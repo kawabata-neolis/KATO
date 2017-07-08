@@ -92,55 +92,61 @@ namespace KATO.Form.A0100_HachuInput
             labelSet_Hachusha.CodeTxtText = "0022";
             txtTanto.Text = "0022";
             labelSet_Eigyosho.CodeTxtText = "0001";
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridHachu.AutoGenerateColumns = false;
 
-            //データをバインド
+            //カラム名の指定
             DataGridViewTextBoxColumn hachuban = new DataGridViewTextBoxColumn();
             hachuban.DataPropertyName = "発注番号";
             hachuban.Name = "発注番号";
             hachuban.HeaderText = "発注番号";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
             chuban.DataPropertyName = "注番";
             chuban.Name = "注番";
             chuban.HeaderText = "注番";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn maker = new DataGridViewTextBoxColumn();
             maker.DataPropertyName = "メーカー名";
             maker.Name = "メーカー名";
             maker.HeaderText = "メーカー";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn chubun = new DataGridViewTextBoxColumn();
             chubun.DataPropertyName = "中分類名";
             chubun.Name = "中分類名";
             chubun.HeaderText = "中分類";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn kataban = new DataGridViewTextBoxColumn();
             kataban.DataPropertyName = "型番";
             kataban.Name = "型番";
             kataban.HeaderText = "型　　番";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn hachusu = new DataGridViewTextBoxColumn();
             hachusu.DataPropertyName = "発注数量";
             hachusu.Name = "発注数量";
             hachusu.HeaderText = "発注数量";
 
+            //カラム名の指定
             DataGridViewTextBoxColumn noki = new DataGridViewTextBoxColumn();
             noki.DataPropertyName = "納期";
             noki.Name = "納期";
             noki.HeaderText = "納期";
 
-            //個々の幅、文章の寄せ
+            //各カラムのバインド（文章の寄せ、カラム名の位置、フォーマット指定、横幅サイズ）
             setColumn(hachuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
@@ -160,14 +166,21 @@ namespace KATO.Form.A0100_HachuInput
         {
             //column設定
             gridHachu.Columns.Add(col);
+
+            //カラム名が空でない場合
             if (gridHachu.Columns[col.Name] != null)
             {
+                //横幅サイズの決定
                 gridHachu.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
                 gridHachu.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
                 gridHachu.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
+                //フォーマットが指定されていた場合
                 if (fmt != null)
                 {
+                    //フォーマットを指定
                     gridHachu.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
@@ -220,7 +233,7 @@ namespace KATO.Form.A0100_HachuInput
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.setRireki();
+                    this.showRireki();
                     break;
                 case Keys.F9:
                     break;
@@ -339,7 +352,7 @@ namespace KATO.Form.A0100_HachuInput
                     break;
                 case Keys.F9:
                     //商品リスト移動メソッド
-                    updKensaku();
+                    showShohinList();
                     break;
                 case Keys.F10:
                     break;
@@ -380,7 +393,7 @@ namespace KATO.Form.A0100_HachuInput
                     //DataGridViewの次の列に移動しないようにする
                     e.Handled = true;
                     //ダブルクリックと同じ効果
-                    setSelectItem();
+                    getSelectItem();
                     break;
                 case Keys.F1:
                     break;
@@ -416,10 +429,40 @@ namespace KATO.Form.A0100_HachuInput
         }
 
         ///<summary>
-        ///judBtnClick
-        ///ボタンの反応
+        ///judFuncBtnClick
+        ///ファンクションボタンの反応
         ///</summary>
-        private void updKensaku()
+        private void judFuncBtnClick(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    this.addHachu();
+                    break;
+                case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delHachu();
+                    break;
+                case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delText();
+                    break;
+                case STR_BTN_F08: // 履歴
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    this.showRireki();
+                    break;
+                case STR_BTN_F12: // 終了
+                    this.Close();
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///showShohinList
+        ///商品リストの実行
+        ///</summary>
+        private void showShohinList()
         {
             //検索文字列に何か記入されている場合
             if (txtKensaku.TextLength > 0)
@@ -449,39 +492,10 @@ namespace KATO.Form.A0100_HachuInput
             }
         }
 
-        ///<summary>
-        ///judBtnClick
-        ///ボタンの反応
-        ///</summary>
-        private void judBtnClick(object sender, EventArgs e)
-        {
-            switch (((Button)sender).Name)
-            {
-                case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addHachu();
-                    break;
-                case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delHachu();
-                    break;
-                case STR_BTN_F04: // 取り消し
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
-                    break;
-                case STR_BTN_F08: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.setRireki();
-                    break;
-                case STR_BTN_F12: // 終了
-                    this.Close();
-                    break;
-            }
-        }
 
         ///<summary>
         ///addHachu
-        ///テキストボックス内のデータをDBに登録
+        ///テキストボックス内のデータをDBに登録または更新
         ///</summary>
         private void addHachu()
         {
@@ -587,7 +601,7 @@ namespace KATO.Form.A0100_HachuInput
                 try
                 {
                     //戻り値のDatatableを取り込む（該当DBで受注番号を検索）
-                    dtSetJuchurenkei = hachuB.setJuchuRenkei(txtJuchuban.Text);
+                    dtSetJuchurenkei = hachuB.getJuchuRenkei(txtJuchuban.Text);
 
                     //１件以上データがある場合
                     if (dtSetJuchurenkei.Rows.Count > 0)
@@ -617,26 +631,13 @@ namespace KATO.Form.A0100_HachuInput
                 }
             }
 
-            //仕入先コードが本社の場合
-            if (textSet_Tokuisaki.CodeTxtText == "1111")
+            //仕入先コードが本社か岐阜の場合
+            if (textSet_Tokuisaki.CodeTxtText == "1111" || textSet_Tokuisaki.CodeTxtText == "2222")
             {
-                //0より小さい数値の場合
+                //発注数が0より小さい数値の場合
                 if (int.Parse(txtHachusu.Text) < 0)
                 {
-                    //仕入先コード1111は返品不可というメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHURENKEI, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-
-            //仕入先コードが岐阜の場合
-            if (textSet_Tokuisaki.CodeTxtText == "2222")
-            {
-                //0より小さい数値の場合
-                if (int.Parse(txtHachusu.Text) < 0)
-                {
-                    //仕入先コード2222は返品不可というメッセージ（OK）
+                    //仕入先コード1111か2222は返品不可というメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHURENKEI, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
@@ -651,7 +652,7 @@ namespace KATO.Form.A0100_HachuInput
                 try
                 {
                     //新規番号を取得                    
-                    txtHachuban.Text = (hachuB.setNewDenpyo("発注番号")).Rows[0]["最終番号"].ToString();
+                    txtHachuban.Text = (hachuB.getNewDenpyo("発注番号")).Rows[0]["最終番号"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -664,7 +665,11 @@ namespace KATO.Form.A0100_HachuInput
                 }                
             }
 
-            decimal JucyuKin;
+            //受注金額の確保
+            decimal decJucyuKin;
+
+            //発注単価の確保
+            string strTanka;
 
             //商品コードが空だった場合
             if (txtShohinCd.blIsEmpty() == false)
@@ -686,14 +691,14 @@ namespace KATO.Form.A0100_HachuInput
                 txtJuchuban.Text = "0";
             }
 
+            //カンマ除去
+            strTanka = cmbHachutan.Text.Replace(",", "");
+
+            //整数のみ取得
+            int intData = int.Parse(strTanka.Split('.')[0]);
+
             //受注金の計算
-            JucyuKin = (int.Parse(cmbHachutan.Text.Split('.')[0]) * (int.Parse(txtHachusu.Text)));
-
-            //SQL用に移動
-            DBConnective dbconnective = new DBConnective();
-
-            //トランザクション開始
-            dbconnective.BeginTrans();
+            decJucyuKin = (intData * (int.Parse(txtHachusu.Text)));
             try
             {
                 //PROCに必要なテーブル名の追加
@@ -718,7 +723,7 @@ namespace KATO.Form.A0100_HachuInput
                 lstData.Add(txtData6.Text);					    //Ｃ６
                 lstData.Add(txtHachusu.Text);					//発注数量
                 lstData.Add(cmbHachutan.Text);					//発注単価
-                lstData.Add(JucyuKin.ToString());				//発注金額
+                lstData.Add(decJucyuKin.ToString());		    //発注金額
                 lstData.Add(txtNoki.Text);						//納期
                 lstData.Add("0");								//発注フラグ
                 lstData.Add(txtChuban.Text);					//注番
@@ -756,18 +761,19 @@ namespace KATO.Form.A0100_HachuInput
                 lstTableName.Add("@仕入先名称");	            //仕入先名称
                 lstTableName.Add("@ユーザー名");            	//ユーザー名
 
-                //プロシージャ（戻り値なし）用のメソッドに投げる
-                dbconnective.RunSql("発注更新_PROC", CommandType.StoredProcedure, lstData, lstTableName);
+                //ビジネス層のインスタンス生成(発注入力)
+                A0100_HachuInput_B hachuinputB = new A0100_HachuInput_B();
 
-                //コミット
-                dbconnective.Commit();
-
+                //データの追加または更新
+                hachuinputB.addHachuInput(lstData, lstTableName);
+                
                 //ビジネス層のインスタンス生成(担当者マスター)
                 M1050_Tantousha_B tantoshaB = new M1050_Tantousha_B();
 
                 //担当者のデータを取り出す
                 DataTable dtTantosha = tantoshaB.updTxtTantoshaLeave(txtTanto.Text);
 
+                //取得した注番文字を入れる用
                 string strChubanMoji = null;
 
                 //注番文字を取得
@@ -805,9 +811,8 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void delText()
         {
+            //画面上のクリア
             delFormClear(this,gridHachu);
-
-            txtHachusu.Clear();
 
             //コンボボックスの中身初期化
             cmbHachutan.Items.Clear();
@@ -819,6 +824,7 @@ namespace KATO.Form.A0100_HachuInput
             txtHinmei.Enabled = true;
             lblHinmei.Enabled = true;
 
+            //今日の日付を記入
             txtHachuYMD.Text = DateTime.Today.ToString();
 
             txtHachuYMD.Focus();
@@ -844,7 +850,7 @@ namespace KATO.Form.A0100_HachuInput
                 try
                 {
                     //戻り値のDatatableを取り込む（該当DBで受注番号を検索）
-                    dtSetCdJuchuNo = hachuB.setJuchuNoCheck(txtJuchuban.Text);
+                    dtSetCdJuchuNo = hachuB.getJuchuNoCheck(txtJuchuban.Text);
 
                     //１件以上データがある場合
                     if (dtSetCdJuchuNo.Rows.Count > 0)
@@ -856,7 +862,7 @@ namespace KATO.Form.A0100_HachuInput
                     }
 
                     //戻り値のDatatableを取り込む（該当DBで発注番号を検索）
-                    dtSetCdHachuNo = hachuB.setHachuNoCheck(txtHachuban.Text);
+                    dtSetCdHachuNo = hachuB.getHachuNoCheck(txtHachuban.Text);
 
                     //仕入済数量が0以上の場合
                     if (int.Parse(dtSetCdHachuNo.Rows[0]["仕入済数量"].ToString()) > 0)
@@ -906,19 +912,19 @@ namespace KATO.Form.A0100_HachuInput
         }
 
         ///<summary>
-        ///setShohinClose
+        ///closeShohinList
         ///ShohinListが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setShohinClose()
+        public void closeShohinList()
         {
             txtHachusu.Focus();
         }
 
         ///<summary>
-        ///setRireki
+        ///showRireki
         ///仕入実績確認を表示
         ///</summary>
-        public void setRireki()
+        public void showRireki()
         {
 
         }
@@ -946,11 +952,12 @@ namespace KATO.Form.A0100_HachuInput
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = hachuB.setHachuGrid(textSet_Tokuisaki.CodeTxtText);
+                dtSetCd = hachuB.getHachuGrid(textSet_Tokuisaki.CodeTxtText);
 
                 //１件以上データがある場合
                 if (dtSetCd.Rows.Count > 0)
                 {
+                    //データグリッドビューに表示
                     gridHachu.DataSource = dtSetCd;
                 }
             }
@@ -969,16 +976,16 @@ namespace KATO.Form.A0100_HachuInput
         ///入力項目上でのキー判定と文字数判定
         ///</summary>
         private void gridHachu_DoubleClick(object sender, EventArgs e)
-        {            
+        {
             //データグリッドビュー上での共通処理
-            setSelectItem();
+            getSelectItem();
         }
 
         ///<summary>
         ///setSelectItem
         ///データグリッドビュー上での共通処理
         ///</summary>
-        private void setSelectItem()
+        private void getSelectItem()
         {
             //コンボボックスの中身初期化
             cmbHachutan.Items.Clear();
@@ -993,7 +1000,7 @@ namespace KATO.Form.A0100_HachuInput
             txtHachuban.Text = (string)gridHachu.CurrentRow.Cells["発注番号"].Value.ToString();
 
             //データの表示
-            setView();
+            getView();
         }
 
         ///<summary>
@@ -1002,18 +1009,22 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void judtxtHachuKeyUp(object sender, KeyEventArgs e)
         {
+            //フォーカスの確保
             Control cActiveBefore = this.ActiveControl;
 
+            //ベーステキストのインスタンス生成
             BaseText basetext = new BaseText();
+            //キーアップされた時の判断処理
             basetext.judKeyUp(cActiveBefore, e);
         }
 
         ///<summary>
-        ///updDaibun
+        ///setDaibun
         ///リスト内の大分類が変更されたのを反映
         ///</summary>
-        public void updDaibun(string strDaibun)
+        public void setDaibun(string strDaibun)
         {
+            //テキストボックスに記入
             labelSet_Daibunrui.CodeTxtText = strDaibun;
         }
 
@@ -1023,6 +1034,7 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void labelSet_Hachusha_Leave(object sender, EventArgs e)
         {
+            //担当者コードテキストに確保
             txtTanto.Text = labelSet_Hachusha.CodeTxtText;
         }
 
@@ -1042,21 +1054,23 @@ namespace KATO.Form.A0100_HachuInput
             txtJuchuban.Clear();
 
             //データの表示
-            setView();
+            getView();
 
+            //フォーカス位置確保
             Control c = this.ActiveControl;
 
+            //フォーカスを当ててから離してデータの表示
             textSet_Tokuisaki.Focus();
 
+            //確保したフォーカス位置に移動
             c.Focus();
-
         }
 
         ///<summary>
-        ///setView
+        ///getView
         ///データの表示
         ///</summary>
-        private void setView()
+        private void getView()
         {
             //検索時のデータ取り出し先(グリッド全体)
             DataTable dtSetCd;
@@ -1072,7 +1086,7 @@ namespace KATO.Form.A0100_HachuInput
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = hachuB.setHachuLeave(txtHachuban.Text);
+                dtSetCd = hachuB.getHachuLeave(txtHachuban.Text);
 
                 //１件以上データがある場合
                 if (dtSetCd.Rows.Count != 0)
@@ -1081,7 +1095,7 @@ namespace KATO.Form.A0100_HachuInput
                     if (int.Parse(dtSetCd.Rows[0]["受注番号"].ToString()) > 0)
                     {
                         //戻り値のDatatableを取り込む
-                        dtSetCdJuchuNo = hachuB.setJuchuNoCheck(dtSetCd.Rows[0]["受注番号"].ToString());
+                        dtSetCdJuchuNo = hachuB.getHachuNoCheck(dtSetCd.Rows[0]["受注番号"].ToString());
 
                         //１件以上データがある場合
                         if (dtSetCdJuchuNo.Rows.Count > 0)
@@ -1096,7 +1110,7 @@ namespace KATO.Form.A0100_HachuInput
                     }
 
                     //戻り値のDatatableを取り込む
-                    dtSetTanka = hachuB.setTanka(dtSetCd.Rows[0]["商品コード"].ToString());
+                    dtSetTanka = hachuB.getTanka(dtSetCd.Rows[0]["商品コード"].ToString());
 
                     //条件付き単価が１件以上ある場合
                     if (dtSetTanka.Rows.Count != 0)
@@ -1170,6 +1184,7 @@ namespace KATO.Form.A0100_HachuInput
                     cmbHachutan.Enabled = true;
                     txtNoki.Enabled = true;
 
+                    //商品コードが88888の場合
                     if (txtShohinCd.Text == "88888")
                     {
                         //受注番号がない場合
@@ -1203,7 +1218,7 @@ namespace KATO.Form.A0100_HachuInput
                     if (txtShohinCd.Text != "")
                     {
                         //商品
-                        dtSetShohin = hachuB.setShohin(txtShohinCd.Text);
+                        dtSetShohin = hachuB.getShohin(txtShohinCd.Text);
 
                         //発注単価のピリオド取り
                         decimal decHachu = decimal.Parse(dtSetCd.Rows[0]["発注単価"].ToString().Split('.')[0]);
@@ -1211,8 +1226,17 @@ namespace KATO.Form.A0100_HachuInput
                         //定価のピリオド取り
                         decimal decTeika = decimal.Parse(dtSetShohin.Rows[0]["定価"].ToString().Split('.')[0]);
 
-                        //規定の計算で掛け率を記入
-                        txtKakeritsu.Text = ((decimal)(decHachu / decTeika) * 100).ToString("#.0");
+                        //定価が0以下の場合
+                        if (decTeika < 1)
+                        {
+                            //掛け率0.0
+                            txtKakeritsu.Text = "0.0";
+                        }
+                        else
+                        {
+                            //規定の計算で掛け率を記入
+                            txtKakeritsu.Text = ((decimal)(decHachu / decTeika) * 100).ToString("#.0");
+                        }
 
                         lblGrayTanaHon.Text = dtSetShohin.Rows[0]["棚番本社"].ToString();
                         lblGrayTanaGihu.Text = dtSetShohin.Rows[0]["棚番岐阜"].ToString();
@@ -1236,11 +1260,16 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void cmbHachutan_Leave(object sender, EventArgs e)
         {
+            //前後の空白を取り除く
+            cmbHachutan.Text = cmbHachutan.Text.Trim();
+
+            //発注単価の記入がない場合
             if (cmbHachutan.Text == "")
             {
                 return;
             }
 
+            //ダブル型に変換できるか試す用
             double dblData;
 
             //double型に変換できれば
