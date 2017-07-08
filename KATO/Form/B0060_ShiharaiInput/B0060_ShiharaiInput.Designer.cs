@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
-            this.labelSet_Siiresaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
+            this.labelSet_Siiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.txtDenpyoYMD = new KATO.Common.Ctl.BaseCalendar();
             this.lblYM = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -1653,7 +1653,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 733);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.gbSiharaiInput);
             this.Controls.Add(this.labelSet_Eigyosho);
             this.Controls.Add(this.txtDenpyoNo);
@@ -1714,7 +1714,7 @@
         #endregion
 
         private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_Siiresaki;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_Siiresaki;
         private Common.Ctl.BaseCalendar txtDenpyoYMD;
         private Common.Ctl.BaseLabel lblYM;
         private Common.Ctl.BaseLabel baseLabel1;

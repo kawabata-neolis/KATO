@@ -32,13 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridSiireSuii = new KATO.Common.Ctl.BaseDataGridView();
-            this.backFormButton = new KATO.Common.Ctl.BaseButton();
+            this.btnF12 = new KATO.Common.Ctl.BaseButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireSuii)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnF12
-            // 
-            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // gridSiireSuii
             // 
@@ -79,57 +75,41 @@
             this.gridSiireSuii.RowHeadersVisible = false;
             this.gridSiireSuii.RowTemplate.Height = 21;
             this.gridSiireSuii.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireSuii.Size = new System.Drawing.Size(1323, 672);
+            this.gridSiireSuii.Size = new System.Drawing.Size(1400, 672);
             this.gridSiireSuii.StandardTab = true;
             this.gridSiireSuii.TabIndex = 130;
             this.gridSiireSuii.TabStop = false;
             this.gridSiireSuii.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridSiireSuii_CellMouseDoubleClick);
             // 
-            // backFormButton
+            // btnF12
             // 
-            this.backFormButton.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.backFormButton.Location = new System.Drawing.Point(1107, 49);
-            this.backFormButton.Name = "backFormButton";
-            this.backFormButton.Size = new System.Drawing.Size(117, 30);
-            this.backFormButton.TabIndex = 131;
-            this.backFormButton.Text = "戻る(F12)";
-            this.backFormButton.UseVisualStyleBackColor = true;
-            this.backFormButton.Click += new System.EventHandler(this.backFormButton_Click);
+            this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnF12.Location = new System.Drawing.Point(1107, 49);
+            this.btnF12.Name = "btnF12";
+            this.btnF12.Size = new System.Drawing.Size(117, 30);
+            this.btnF12.TabIndex = 131;
+            this.btnF12.UseVisualStyleBackColor = true;
+            this.btnF12.Click += new System.EventHandler(this.backFormButton_Click);
             // 
             // C0481_SiireSuiiHyoLevel2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 733);
-            this.Controls.Add(this.backFormButton);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.btnF12);
             this.Controls.Add(this.gridSiireSuii);
             this.Name = "C0481_SiireSuiiHyoLevel2";
             this.Text = "C0481_SiireSuiiHyoLevel2";
             this.Load += new System.EventHandler(this.C0480_SiireSuiiHyoLevel2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0481_SiireSuiiHyo_KeyDown);
-            this.Controls.SetChildIndex(this.btnF01, 0);
-            this.Controls.SetChildIndex(this.btnF02, 0);
-            this.Controls.SetChildIndex(this.btnF03, 0);
-            this.Controls.SetChildIndex(this.btnF04, 0);
-            this.Controls.SetChildIndex(this.btnF05, 0);
-            this.Controls.SetChildIndex(this.btnF06, 0);
-            this.Controls.SetChildIndex(this.btnF07, 0);
-            this.Controls.SetChildIndex(this.btnF08, 0);
-            this.Controls.SetChildIndex(this.btnF09, 0);
-            this.Controls.SetChildIndex(this.btnF10, 0);
-            this.Controls.SetChildIndex(this.btnF11, 0);
-            this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.gridSiireSuii, 0);
-            this.Controls.SetChildIndex(this.backFormButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireSuii)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private Common.Ctl.BaseDataGridView gridSiireSuii;
-        private Common.Ctl.BaseButton backFormButton;
+        private Common.Ctl.BaseButton btnF12;
     }
 }

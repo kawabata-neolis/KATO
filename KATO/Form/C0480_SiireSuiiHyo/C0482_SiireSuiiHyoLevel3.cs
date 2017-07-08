@@ -15,11 +15,27 @@ using KATO.Business.C0480_SiireSuiiHyo;
 
 namespace KATO.Form.C0482_SiireSuiiHyo
 {
-    public partial class C0482_SiireSuiiHyoLevel3 : BaseForm
+    public partial class C0482_SiireSuiiHyoLevel3 : System.Windows.Forms.Form
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private List<string> lstString; // 仕入推移表レベル２から値を受け取るリスト
+
+        // フォームタイトル設定
+        private string Title = "";
+        public string _Title
+        {
+            set
+            {
+                String[] aryTitle = new string[] { value };
+                this.Text = string.Format(STR_TITLE, aryTitle);
+                Title = this.Text;
+            }
+            get
+            {
+                return Title;
+            }
+        }
 
         /// <summary>
         /// C0492_SiireSuiiHyoLevel3
@@ -67,7 +83,7 @@ namespace KATO.Form.C0482_SiireSuiiHyo
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
-            this.btnF12.Text = STR_FUNC_F12;
+            this.btnF12.Text = "F12:戻る";
 
             // DataGridViewの初期設定
             SetUpGrid();

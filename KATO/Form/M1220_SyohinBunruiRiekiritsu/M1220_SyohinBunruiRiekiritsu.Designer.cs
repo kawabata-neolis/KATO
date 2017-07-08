@@ -40,18 +40,14 @@
             this.labelSet_ChubunruiS = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_DaibunruiS = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_TantoushaS = new KATO.Common.Ctl.LabelSet_Tantousha();
-            this.labelSet_TokuisakiS = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.bgSort = new System.Windows.Forms.GroupBox();
-            this.lblSort = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.radSortItem = new KATO.Common.Ctl.RadSet_6btn();
-            this.radSortOrder = new KATO.Common.Ctl.RadSet_2btn();
+            this.labelSet_TokuisakiS = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.object_2680d006_852d_4dd9_bdcc_dfd1dc8aaa92 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.object_78231d7f_9a3f_4c98_a5cb_e04fb41f5601 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
+            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.object_a104912b_94e8_4c43_8287_fc0ac5bd51ec = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblRitsu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtRitsu = new KATO.Common.Ctl.BaseText();
@@ -63,7 +59,6 @@
             this.txtId = new KATO.Common.Ctl.BaseText();
             ((System.ComponentModel.ISupportInitialize)(this.gridRiekiritsu)).BeginInit();
             this.bgSerach.SuspendLayout();
-            this.bgSort.SuspendLayout();
             this.labelSet_Maker.SuspendLayout();
             this.labelSet_Chubunrui.SuspendLayout();
             this.labelSet_Daibunrui.SuspendLayout();
@@ -156,7 +151,7 @@
             this.gridRiekiritsu.RowHeadersVisible = false;
             this.gridRiekiritsu.RowTemplate.Height = 21;
             this.gridRiekiritsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRiekiritsu.Size = new System.Drawing.Size(1330, 252);
+            this.gridRiekiritsu.Size = new System.Drawing.Size(1400, 252);
             this.gridRiekiritsu.StandardTab = true;
             this.gridRiekiritsu.TabIndex = 87;
             this.gridRiekiritsu.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridRiekiritsu_CellMouseClick);
@@ -296,75 +291,6 @@
             this.labelSet_TokuisakiS.TabIndex = 1;
             this.labelSet_TokuisakiS.ValueLabelSize = 350;
             this.labelSet_TokuisakiS.ValueLabelText = "";
-            // 
-            // bgSort
-            // 
-            this.bgSort.Controls.Add(this.lblSort);
-            this.bgSort.Controls.Add(this.radSortItem);
-            this.bgSort.Controls.Add(this.radSortOrder);
-            this.bgSort.Location = new System.Drawing.Point(586, 24);
-            this.bgSort.Name = "bgSort";
-            this.bgSort.Size = new System.Drawing.Size(439, 128);
-            this.bgSort.TabIndex = 90;
-            this.bgSort.TabStop = false;
-            // 
-            // lblSort
-            // 
-            this.lblSort.AutoSize = true;
-            this.lblSort.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSort.Location = new System.Drawing.Point(6, 0);
-            this.lblSort.Name = "lblSort";
-            this.lblSort.Size = new System.Drawing.Size(103, 15);
-            this.lblSort.strToolTip = null;
-            this.lblSort.TabIndex = 106;
-            this.lblSort.Text = "並び順の指定";
-            this.lblSort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // radSortItem
-            // 
-            this.radSortItem.LabelTitle = "";
-            this.radSortItem.Location = new System.Drawing.Point(20, 21);
-            this.radSortItem.Name = "radSortItem";
-            this.radSortItem.PositionLabelTitle_X = 0;
-            this.radSortItem.PositionLabelTitle_Y = 0;
-            this.radSortItem.PositionRadbtn1_X = 0;
-            this.radSortItem.PositionRadbtn1_Y = 0;
-            this.radSortItem.PositionRadbtn2_X = 100;
-            this.radSortItem.PositionRadbtn2_Y = 0;
-            this.radSortItem.PositionRadbtn3_X = 200;
-            this.radSortItem.PositionRadbtn3_Y = 0;
-            this.radSortItem.PositionRadbtn4_X = 300;
-            this.radSortItem.PositionRadbtn4_Y = 0;
-            this.radSortItem.PositionRadbtn5_X = 0;
-            this.radSortItem.PositionRadbtn5_Y = 20;
-            this.radSortItem.PositionRadbtn6_X = 100;
-            this.radSortItem.PositionRadbtn6_Y = 20;
-            this.radSortItem.Radbtn1Text = "得意先";
-            this.radSortItem.Radbtn2Text = "大分類";
-            this.radSortItem.Radbtn3Text = "中分類";
-            this.radSortItem.Radbtn4Text = "メーカー";
-            this.radSortItem.Radbtn5Text = "利益率";
-            this.radSortItem.Radbtn6Text = "掛率";
-            this.radSortItem.Size = new System.Drawing.Size(398, 55);
-            this.radSortItem.TabIndex = 1;
-            this.radSortItem.TabStop = false;
-            // 
-            // radSortOrder
-            // 
-            this.radSortOrder.LabelTitle = "";
-            this.radSortOrder.Location = new System.Drawing.Point(20, 82);
-            this.radSortOrder.Name = "radSortOrder";
-            this.radSortOrder.PositionLabelTitle_X = 0;
-            this.radSortOrder.PositionLabelTitle_Y = 0;
-            this.radSortOrder.PositionRadbtn1_X = 0;
-            this.radSortOrder.PositionRadbtn1_Y = 0;
-            this.radSortOrder.PositionRadbtn2_X = 100;
-            this.radSortOrder.PositionRadbtn2_Y = 0;
-            this.radSortOrder.Radbtn1Text = "Ａ－Ｚ";
-            this.radSortOrder.Radbtn2Text = "Ｚ－Ａ";
-            this.radSortOrder.Size = new System.Drawing.Size(201, 28);
-            this.radSortOrder.TabIndex = 0;
-            this.radSortOrder.TabStop = false;
             // 
             // labelSet_Maker
             // 
@@ -596,7 +522,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 733);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.radSetting);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtKakeritsu);
@@ -608,7 +534,6 @@
             this.Controls.Add(this.labelSet_Chubunrui);
             this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.labelSet_Tokuisaki);
-            this.Controls.Add(this.bgSort);
             this.Controls.Add(this.bgSerach);
             this.Controls.Add(this.gridRiekiritsu);
             this.Name = "M1220_SyohinBunruiRiekiritsu";
@@ -617,7 +542,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1220_SyohinBunruiRiekiritsu_KeyDown);
             this.Controls.SetChildIndex(this.gridRiekiritsu, 0);
             this.Controls.SetChildIndex(this.bgSerach, 0);
-            this.Controls.SetChildIndex(this.bgSort, 0);
             this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
@@ -644,8 +568,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridRiekiritsu)).EndInit();
             this.bgSerach.ResumeLayout(false);
             this.bgSerach.PerformLayout();
-            this.bgSort.ResumeLayout(false);
-            this.bgSort.PerformLayout();
             this.labelSet_Maker.ResumeLayout(false);
             this.labelSet_Maker.PerformLayout();
             this.labelSet_Chubunrui.ResumeLayout(false);
@@ -669,9 +591,7 @@
         private Common.Ctl.LabelSet_Chubunrui labelSet_ChubunruiS;
         private Common.Ctl.LabelSet_Daibunrui labelSet_DaibunruiS;
         private Common.Ctl.LabelSet_Tantousha labelSet_TantoushaS;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_TokuisakiS;
-        private System.Windows.Forms.GroupBox bgSort;
-        private Common.Ctl.RadSet_2btn radSortOrder;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiS;
         private Common.Ctl.BaseButton btnSerach;
         private Common.Ctl.LabelSet_Maker labelSet_Maker;
         private Common.Ctl.BaseLabel nameLabel;
@@ -679,7 +599,7 @@
         private Common.Ctl.BaseLabel object_2680d006_852d_4dd9_bdcc_dfd1dc8aaa92;
         private Common.Ctl.LabelSet_Daibunrui labelSet_Daibunrui;
         private Common.Ctl.BaseLabel object_78231d7f_9a3f_4c98_a5cb_e04fb41f5601;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_Tokuisaki;
         private Common.Ctl.BaseLabel object_a104912b_94e8_4c43_8287_fc0ac5bd51ec;
         private Common.Ctl.BaseLabel lblRitsu;
         private Common.Ctl.BaseText txtRitsu;
@@ -689,8 +609,6 @@
         private Common.Ctl.BaseLabel lblTitle;
         private Common.Ctl.BaseLabel lblId;
         private Common.Ctl.BaseText txtId;
-        private Common.Ctl.RadSet_6btn radSortItem;
         private Common.Ctl.BaseLabel lblSerach;
-        private Common.Ctl.BaseLabel lblSort;
     }
 }

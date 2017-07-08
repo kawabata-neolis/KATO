@@ -113,7 +113,9 @@
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
     <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
+    <Compile Include="Business\A0090_SiireCheakPrint\A0090_SiireCheakPrint_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
+    <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Business\C0490_UriageSuiiHyo\C0490_UriageSuiiHyo_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0491_UriageSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3_B.cs" />
+    <Compile Include="Business\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_B.cs" />
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
     <Compile Include="Business\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400_B.cs" />
@@ -146,6 +149,7 @@
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
+    <Compile Include="Common\Business\KakouGenkaList_B.cs" />
     <Compile Include="Common\Business\ShiharaiList_B.cs" />
     <Compile Include="Common\Business\NyukinList_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
@@ -380,6 +384,12 @@
     <Compile Include="Common\Form\BaseComboBox.Designer.cs">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\KakouGenkaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\KakouGenkaList.Designer.cs">
+      <DependentUpon>KakouGenkaList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\NyukinList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,11 +503,23 @@
     <Compile Include="Form\A0030_ShireInput\BaseViewDataGroup.Designer.cs">
       <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.Designer.cs">
+      <DependentUpon>A0090_SiireCheakPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.Designer.cs">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0150_UriageCheckPrint\A0150_UriageCheckPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0150_UriageCheckPrint\A0150_UriageCheckPrint.Designer.cs">
+      <DependentUpon>A0150_UriageCheckPrint.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.cs">
       <SubType>Form</SubType>
@@ -552,6 +574,12 @@
     </Compile>
     <Compile Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.designer.cs">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.designer.cs">
+      <DependentUpon>D0320_SiireJissekiKakunin.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.cs">
       <SubType>Form</SubType>
@@ -879,6 +907,9 @@
       <DependentUpon>BaseComboBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\KakouGenkaList.resx">
+      <DependentUpon>KakouGenkaList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\NyukinList.resx">
       <DependentUpon>NyukinList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -939,8 +970,14 @@
     <EmbeddedResource Include="Form\A0030_ShireInput\BaseViewDataGroup.resx">
       <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.resx">
+      <DependentUpon>A0090_SiireCheakPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0150_UriageCheckPrint\A0150_UriageCheckPrint.resx">
+      <DependentUpon>A0150_UriageCheckPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.resx">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
@@ -968,6 +1005,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.resx">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.resx">
+      <DependentUpon>D0320_SiireJissekiKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin.resx">
       <DependentUpon>D0360_JuchuzanKakunin.cs</DependentUpon>
@@ -1102,6 +1142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Log4net.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\CommonForm\KakouGenkaList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\ShiharaiList_View.sql">
