@@ -536,8 +536,8 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 setZaiko(lstShohinGrid);
 
                 //データグリッドビュー表示用の情報を入れる
-                lstShohinGrid.Add(txtHonZenZaiko.Text);
-                lstShohinGrid.Add(txtGihuZenZaiko.Text);
+                lstShohinLoad.Add(txtHonZenZaiko.Text);
+                lstShohinLoad.Add(txtGihuZenZaiko.Text);
 
                 //ビジネス層、データグリッドビュー表示用ロジックに移動
                 dtSetView = shohinmotochokakuninB.setViewGrid(lstShohinLoad);
