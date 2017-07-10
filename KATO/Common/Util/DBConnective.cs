@@ -268,6 +268,52 @@ namespace KATO.Common.Util
             return (strResult);
         }
 
+        public DataTable RunSqlReDT(string sqlStr, CommandType cmdType, List<string> lstTableName, List<string> lstDataName, String strRet)
+        {
+            Boolean isConnect = false;
+
+            DataTable strResult = null;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect();
+                isConnect = true;
+            }
+
+            //UPDATE INSERT DELETE 用            
+            CM.CommandType = cmdType;
+            CM.CommandText = sqlStr;
+
+            //各該当データをPROCに適用
+            for (int cnt = 0; cnt < lstTableName.Count; cnt++)
+            {
+                CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+            }
+            CM.Parameters.Add(strRet.Substring(1), SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            //using (var sdr = CM.ExecuteReader())
+            //{
+            //    if (sdr.HasRows)
+            //    {
+            //        while (sdr.Read()) {
+            //            strResult = (sdr[strRet.Substring(1)]).ToString();
+            //        }
+            //    }
+            //}
+            SqlDataReader sdr = CM.ExecuteReader();
+
+            strResult.Load(sdr);
+
+            sdr.Close();
+
+            if (isConnect)
+            {
+                this.DB_Disconnect();
+            }
+
+            return (strResult);
+        }
+
         public void RunSqlCommon(String strSqlName, String[] prms)
         {
             Boolean isConnect = false;

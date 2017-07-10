@@ -125,6 +125,7 @@
     <Compile Include="Business\C0490_UriageSuiiHyo\C0490_UriageSuiiHyo_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0491_UriageSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3_B.cs" />
+    <Compile Include="Business\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_B.cs" />
     <Compile Include="Business\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_B.cs" />
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
@@ -575,6 +576,12 @@
     <Compile Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.designer.cs">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.Designer.cs">
+      <DependentUpon>D0310_UriageJissekiKakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1005,6 +1012,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.resx">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.resx">
+      <DependentUpon>D0310_UriageJissekiKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.resx">
       <DependentUpon>D0320_SiireJissekiKakunin.cs</DependentUpon>

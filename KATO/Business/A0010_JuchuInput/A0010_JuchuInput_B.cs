@@ -231,5 +231,33 @@ namespace KATO.Business.A0010_JuchuInput
 
             return dtNo;
         }
+
+        public DataTable getHatchuData(string strHatchuNo)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT 発注数量";
+            strQuery += "      ,仕入先コード";
+            strQuery += "      ,納期";
+            strQuery += "      ,注番";
+            strQuery += "      ,担当者コード";
+            strQuery += "      ,仕入先名称";
+            strQuery += "  FROM 発注";
+            strQuery += " WHERE 発注番号 = " + strHatchuNo;
+            strQuery += "   AND 削除     = 'N'";
+
+            try
+            {
+                DBConnective dbCon = new DBConnective();
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
     }
 }

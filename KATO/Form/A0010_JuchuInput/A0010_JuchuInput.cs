@@ -789,9 +789,57 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        private void txtJuchuNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                //
+                if (tsTokuisaki.CodeTxtText == null || string.IsNullOrWhiteSpace(tsTokuisaki.CodeTxtText))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "取引先コードを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuZan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, tsTokuisaki.CodeTxtText);
+                juchuZan.ShowDialog();
+            }
+        }
+
+        private void txtHatchuNo_TextChanged(object sender, EventArgs e)
+        {
+            if (txtHatchuNo.Text == null || string.IsNullOrWhiteSpace(txtHatchuNo.Text))
+            {
+                return;
+            }
+
+            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+            try {
+                DataTable dtHatchu = juchuB.getHatchuData(txtHatchuNo.Text);
+
+                if (dtHatchu != null && dtHatchu.Rows.Count > 0)
+                {
+                    txtHatchusu.Text = dtHatchu.Rows[0]["発注数量"].ToString();
+                    tsShiiresaki.CodeTxtText = dtHatchu.Rows[0]["仕入先コード"].ToString();
+                    txtShiireNoki.Text = dtHatchu.Rows[0]["納期"].ToString();
+                    txtShiireChuban.Text = dtHatchu.Rows[0]["注番"].ToString();
+                    txtShiireTanto.Text = dtHatchu.Rows[0]["担当者コード"].ToString();
+                    tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
+                }
+
+            } catch (Exception ex)
+            {
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
         private void execZaikoDisp()
         {
 
         }
+
     }
 }
