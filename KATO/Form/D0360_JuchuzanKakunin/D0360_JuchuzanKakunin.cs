@@ -49,6 +49,41 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             lsDaibunrui.Lschubundata = lsChubunrui;
         }
 
+        public D0360_JuchuzanKakunin(Control c, string stTokuisaki)
+        {
+            // 引数のコントロールが無い場合は画面を開かない
+            if (c == null)
+            {
+                return;
+            }
+
+            this._Title = "残確認";
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            InitializeComponent();
+
+            //フォームの最大化・最小化を禁止
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            //最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //中分類setデータを読めるようにする
+            lsDaibunrui.Lschubundata = lsChubunrui;
+
+            this.lsTokuisaki.CodeTxtText = stTokuisaki;
+            this.selZanList();
+        }
+
         ///<summary>
         ///JuchuzanKakunin_Load
         ///フォームロード
