@@ -21,10 +21,10 @@ namespace KATO.Common.Business
     ///</summary>
     class TokuisakiList_B
     {
-        /// <summary>
-        /// setViewGrid
-        /// 読み込み時の処理
-        /// </summary>
+        ///<summary>
+        ///setViewGrid
+        ///読み込み時の処理
+        ///</summary>
         public DataTable setViewGrid()
         {
             //SQLファイルのパスとファイル名を入れる用
@@ -70,11 +70,11 @@ namespace KATO.Common.Business
             }
         }
 
-        /// <summary>
-        /// setEndAction
-        /// 戻るボタンの処理
-        /// </summary>
-        public void setEndAction(int intFrmKind)
+        ///<summary>
+        ///getEndAction
+        ///戻るボタンの処理
+        ///</summary>
+        public void getEndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -91,11 +91,11 @@ namespace KATO.Common.Business
             }
         }
 
-        /// <summary>
-        /// setSelectItem
-        /// データグリッドビュー内のデータ選択後の処理
-        /// </summary>
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        ///<summary>
+        ///getSelectItem
+        ///データグリッドビュー内のデータ選択後の処理
+        ///</summary>
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //検索データの受け取り用
             DataTable dtSelectData;
@@ -164,10 +164,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setKensaku
+        ///getKensaku
         ///検索時の処理
         ///</summary>
-        public DataTable setKensaku(string  strSelectData)
+        public DataTable getKensaku(string  strSelectData)
         {
             //検索データの受け取り用
             DataTable dtGetTableGrid = new DataTable();

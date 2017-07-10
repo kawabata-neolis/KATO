@@ -30,10 +30,10 @@ namespace KATO.Common.Business
         string strSQLName = null;
 
         ///<summary>
-        ///setShohinView
+        ///getShohinView
         ///検索データを記入
         ///</summary>
-        public DataTable setShohinView(List<int> lstInt, List<string> lstString, List<Boolean> lstBoolean, Boolean blnZaikoKensaku)
+        public DataTable getShohinView(List<int> lstInt, List<string> lstString, List<Boolean> lstBoolean, Boolean blnZaikoKensaku)
         {
             string strWhere = "";
 
@@ -126,10 +126,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setLabel
+        ///getLabel
         ///textboxのデータをlabelに記入
         ///</summary>
-        public DataTable setLabel(List<string> lstString, List<int> lstint)
+        public DataTable getLabel(List<string> lstString, List<int> lstint)
         {
             //SQL出力後のデータテーブル
             DataTable dtSetData = null;
@@ -254,10 +254,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///各画面へのデータ渡し
         ///</summary>
-        public void setSelectItem(List<int> lstInt, List<string> lstString)
+        public void getSelectItem(List<int> lstInt, List<string> lstString)
         {
             List<string> lstStringItem = new List<string>();
 
@@ -499,15 +499,11 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
-        ///作成者：大河内
-        ///作成日：2017/3/23
-        ///更新者：大河内
-        ///更新日：2017/4/11
         ///カラム論理名
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -525,7 +521,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1030_Shohin shohin = (M1030_Shohin)frm;
-                    shohin.setShohinClose();
+                    shohin.closeShohinList();
                     break;
                 }
                 //商品元帳確認フォームを探す

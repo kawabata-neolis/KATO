@@ -130,7 +130,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = gyoshulistB.setDatagridView();
+                gridSeihin.DataSource = gyoshulistB.getDatagridView();
 
                 //幅の値を設定
                 gridSeihin.Columns["業種コード"].Width = 120;
@@ -231,14 +231,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectId)
+        private void EndAction(List<string> lstSelectId)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetGyoshu != null && lstSelectId.Count != 0)
@@ -255,7 +255,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                gyoshulistB.setEndAction(intFrmKind);
+                gyoshulistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -269,10 +269,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///gridSeihin_DoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setGridSeiDblClick(object sender, EventArgs e)
+        private void gridSeihin_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
@@ -361,9 +361,9 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                gyoshulistB.setSelectItem(intFrmKind, strSelectId);
+                gyoshulistB.getSelectItem(intFrmKind, strSelectId);
 
-                setEndAction(lstString);
+                EndAction(lstString);
             }
             catch (Exception ex)
             {

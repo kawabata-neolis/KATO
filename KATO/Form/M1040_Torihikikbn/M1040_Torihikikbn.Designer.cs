@@ -128,7 +128,7 @@
             this.txtTorihikikubunCd.TabIndex = 0;
             this.txtTorihikikubunCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTorikbnTxtKeyDown);
             this.txtTorihikikubunCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtToriKeyUp);
-            this.txtTorihikikubunCd.Leave += new System.EventHandler(this.updTxtToriLeave);
+            this.txtTorihikikubunCd.Leave += new System.EventHandler(this.setTxtToriLeave);
             // 
             // M1040_Torihikikbn
             // 

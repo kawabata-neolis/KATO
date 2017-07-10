@@ -32,10 +32,10 @@ namespace KATO.Form.M1030_Shohin
         //管理者かどうかの判定
         Boolean blnKanri;
 
-        /// <summary>
-        /// M1030_Shohin
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
+        ///<summary>
+        ///M1030_Shohin
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
         public M1030_Shohin(Control c)
         {
             //画面データが解放されていた時の対策
@@ -72,10 +72,10 @@ namespace KATO.Form.M1030_Shohin
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
-        /// <summary>
-        /// M1030_Shohin_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1030_Shohin_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1030_Shohin_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -113,10 +113,10 @@ namespace KATO.Form.M1030_Shohin
             txtHachukbn.Text = "Y";
         }
 
-        /// <summary>
-        /// judShohinKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judShohinKeyDown
+        ///キー入力判定
+        ///</summary>
         private void judShohinKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -164,7 +164,7 @@ namespace KATO.Form.M1030_Shohin
                     break;
                 case Keys.F10:
                     logger.Info(LogUtil.getMessage(this._Title, "本棚無実行"));
-                    this.setShohinListTana();
+                    this.showShohinListTana();
                     break;
                 case Keys.F11:
                     break;
@@ -178,10 +178,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// judShohinTxtKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judShohinTxtKeyDown
+        ///キー入力判定
+        ///</summary>
         private void judShohinTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -235,10 +235,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// judShohinTxtKeyDown
-        /// キー入力判定
-        /// </summary>
+        ///<summary>
+        ///judShohinTxtKeyDown
+        ///キー入力判定
+        ///</summary>
         private void judKenKataTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -280,7 +280,7 @@ namespace KATO.Form.M1030_Shohin
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    this.setShohinList();
+                    this.showShohinList();
                     break;
                 case Keys.F10:
                     break;
@@ -294,10 +294,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// judBtnClick
-        /// ボタンの反応
-        /// </summary>
+        ///<summary>
+        ///judBtnClick
+        ///ボタンの反応
+        ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -316,7 +316,7 @@ namespace KATO.Form.M1030_Shohin
                     break;
                 case STR_BTN_F10: // 棚番無
                     logger.Info(LogUtil.getMessage(this._Title, "本棚無実行"));
-                    this.setShohinListTana();
+                    this.showShohinListTana();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -325,11 +325,11 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// setShohinList
-        /// 商品リストに移動
-        /// </summary>
-        private void setShohinList()
+        ///<summary>
+        ///showtShohinList
+        ///商品リストに移動
+        ///</summary>
+        private void showShohinList()
         {
             ShouhinList shouhinlist = new ShouhinList(this);
             try
@@ -361,11 +361,11 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// setShohinListTana
-        /// 商品リストに移動(棚番）
-        /// </summary>
-        private void setShohinListTana()
+        ///<summary>
+        ///showShohinListTana
+        ///商品リストに移動(棚番）
+        ///</summary>
+        private void showShohinListTana()
         {
             ShouhinList shouhinlist = new ShouhinList(this);
             try
@@ -390,10 +390,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// addShohin
-        /// テキストボックス内のデータをDBに登録
-        /// </summary>
+        ///<summary>
+        ///addShohin
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
         private void addShohin()
         {
             //データ渡し用
@@ -580,10 +580,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// delText
-        /// テキストボックス内の文字を削除
-        /// </summary>
+        ///<summary>
+        ///delText
+        ///テキストボックス内の文字を削除
+        ///</summary>
         private void delText()
         {
             delFormClear(this);
@@ -597,10 +597,10 @@ namespace KATO.Form.M1030_Shohin
             radSet_2btn_Toroku.radbtn0.Checked = true;
         }
 
-        /// <summary>
-        /// delShohin
-        /// テキストボックス内のデータをDBから削除
-        /// </summary>
+        ///<summary>
+        ///delShohin
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
         public void delShohin()
         {
             if (blnKanri == false)
@@ -675,10 +675,10 @@ namespace KATO.Form.M1030_Shohin
             }
         }
 
-        /// <summary>
-        /// setShouhin
+        ///<summary>
+        ///setShouhin
         ///取り出したデータをテキストボックスに配置（商品リスト）
-        /// </summary>
+        ///</summary>
         public void setShouhin(DataTable dtShohin)
         {
             delFormClear(this);
@@ -724,18 +724,18 @@ namespace KATO.Form.M1030_Shohin
         }
 
         ///<summary>
-        ///setShohinClose
+        ///closeShohinList
         ///setShohinListが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setShohinClose()
+        public void closeShohinList()
         {
             txtData1.Focus();
         }
 
-        /// <summary>
-        /// judtxtShohinKeyUp
-        /// 入力項目上でのキー判定と文字数判定（）
-        /// </summary>
+        ///<summary>
+        ///judtxtShohinKeyUp
+        ///入力項目上でのキー判定と文字数判定（）
+        ///</summary>
         private void judtxtShohinKeyUp(object sender, KeyEventArgs e)
         {
             //シフトタブ 2つ
@@ -789,10 +789,10 @@ namespace KATO.Form.M1030_Shohin
             basetext.judKeyUp(cActiveBefore, e);
         }
 
-        /// <summary>
-        /// txtMemo_KeyDown
-        /// エンターでの改行で5行以上いった場合動作を止める
-        /// </summary>
+        ///<summary>
+        ///txtMemo_KeyDown
+        ///エンターでの改行で5行以上いった場合動作を止める
+        ///</summary>
         private void txtMemo_KeyDown(object sender, KeyEventArgs e)
         {
             if (txtMemo.Lines.Length > 5)

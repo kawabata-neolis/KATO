@@ -29,8 +29,8 @@ namespace KATO.Form.M1100_Chokusosaki
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1100_Chokusosaki
+        ///<summary>
+        ///M1100_Chokusosaki
         /// フォームの初期設定
         /// </summary>
         public M1100_Chokusosaki(Control c)

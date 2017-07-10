@@ -29,10 +29,10 @@ namespace KATO.Form.M1090_Eigyosho
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1090_Eigyosho
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1090_Eigyosho
+        ///フォームの初期設定
+        ///</summary>
         public M1090_Eigyosho(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1090_Eigyosho
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1090_Eigyosho_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1090_Eigyosho_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1090_Eigyosho_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -83,7 +83,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///M1090_Eigyosho_KeyDown
-        /// キー入力判定（画面全般）
+        ///キー入力判定（画面全般）
         ///</summary>
         private void M1090_Eigyosho_KeyDown(object sender, KeyEventArgs e)
         {
@@ -146,7 +146,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///judEigyoTxtKeyDown
-        /// キー入力判定（無機能テキストボックス）
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void judEigyoTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -289,31 +289,27 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///txtEigyoKeyDown
-        /// コード入力項目でのキー入力判定
+        ///コード入力項目でのキー入力判定
         ///</summary>
         private void txtEigyoKeyDown(object sender, KeyEventArgs e)
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //営業所リストのインスタンス生成
+            EigyoshoList eigyoshoList = new EigyoshoList(this);
+            try
             {
-                //営業所リストのインスタンス生成
-                EigyoshoList eigyoshoList = new EigyoshoList(this);
-                try
-                {
-                    //担当者区分リストの表示、画面IDを渡す
-                    eigyoshoList.StartPosition = FormStartPosition.Manual;
-                    eigyoshoList.intFrmKind = CommonTeisu.FRM_EIGYOSHO;
-                    eigyoshoList.Show();
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //担当者区分リストの表示、画面IDを渡す
+                eigyoshoList.StartPosition = FormStartPosition.Manual;
+                eigyoshoList.intFrmKind = CommonTeisu.FRM_EIGYOSHO;
+                eigyoshoList.Show();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -375,7 +371,7 @@ namespace KATO.Form.M1090_Eigyosho
 
         ///<summary>
         ///delText
-        /// テキストボックス内の文字を削除
+        ///テキストボックス内の文字を削除
         ///</summary>
         private void delText()
         {
@@ -407,7 +403,7 @@ namespace KATO.Form.M1090_Eigyosho
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(txtEigyoshoCd.Text);
+                dtSetCd = eigyoshoB.getTxtEigyoCdLeave(txtEigyoshoCd.Text);
 
                 if (dtSetCd.Rows.Count == 0)
                 {
@@ -459,10 +455,10 @@ namespace KATO.Form.M1090_Eigyosho
         }
 
         ///<summary>
-        ///updTxtEigyoTxtLeave
+        ///setTxtEigyoTxtLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtEigyoTxtLeave(object sender, EventArgs e)
+        public void setTxtEigyoTxtLeave(object sender, EventArgs e)
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
@@ -506,7 +502,7 @@ namespace KATO.Form.M1090_Eigyosho
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = eigyoshoB.updTxtEigyoCdLeave(txtEigyoshoCd.Text);
+                dtSetCd = eigyoshoB.getTxtEigyoCdLeave(txtEigyoshoCd.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -526,10 +522,10 @@ namespace KATO.Form.M1090_Eigyosho
         }
 
         ///<summary>
-        ///setEigyoListClose
+        ///CloseEigyoList
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setEigyoListClose()
+        public void CloseEigyoList()
         {
             txtEigyoshoCd.Focus();
         }

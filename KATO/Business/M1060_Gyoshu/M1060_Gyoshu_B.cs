@@ -104,10 +104,10 @@ namespace KATO.Business.M1060_Gyoshu
         }
 
         ///<summary>
-        ///updTxtGyoushuLeave
+        ///getTxtGyoshuLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtGyoshuLeave(string strGyoshu)
+        public DataTable getTxtGyoshuLeave(string strGyoshu)
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();

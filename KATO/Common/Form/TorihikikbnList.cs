@@ -51,10 +51,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TorihikikbnList
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
+        ///<summary>
+        ///TorihikikbnList
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
         public TorihikikbnList(Control c)
         {
             //画面データが解放されていた時の対策
@@ -76,10 +76,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TorihikikbnList
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
+        ///<summary>
+        ///TorihikikbnList
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
         public TorihikikbnList(Control c, LabelSet_Torihikikbn lblSetTorikbnSelect)
         {
             //画面データが解放されていた時の対策
@@ -104,10 +104,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// DaiBunruiList_Load
-        /// 読み込み時
-        /// </summary>
+        ///<summary>
+        ///DaiBunruiList_Load
+        ///読み込み時
+        ///</summary>
         private void TorihikikbnList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -117,17 +117,17 @@ namespace KATO.Common.Form
             this.btnF12.Text = "F12:戻る";
 
             //データグリッドビューの準備
-            SetUpGrid();
+            setupGrid();
 
             //データグリッドビュー表示
             setDatagridView();
         }
 
         ///<summary>
-        ///SetUpGrid
+        ///setupGrid
         ///データグリッドビューの準備
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridSeihin.AutoGenerateColumns = false;
@@ -168,7 +168,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビューに表示
-                gridSeihin.DataSource = torikbnListB.setDatagridView();
+                gridSeihin.DataSource = torikbnListB.getDatagridView();
 
                 //中央揃え
                 gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -346,7 +346,7 @@ namespace KATO.Common.Form
             TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                torikbnListB.setEndAction(intFrmKind);
+                torikbnListB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -360,10 +360,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///gridSeihin_CellDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setGridSeihinDoubleClick(object sender, EventArgs e)
+        private void gridSeihin_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
@@ -395,7 +395,7 @@ namespace KATO.Common.Form
             TorihikikbnList_B torikbnListB = new TorihikikbnList_B();
             try
             {
-                torikbnListB.setSelectItem(intFrmKind, strSelectId);
+                torikbnListB.getSelectItem(intFrmKind, strSelectId);
 
                 setEndAction(lstSelectId);
             }

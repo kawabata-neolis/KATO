@@ -23,10 +23,10 @@ namespace KATO.Common.Business
     class TanabanList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable getDatagridView()
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -66,10 +66,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -100,12 +100,12 @@ namespace KATO.Common.Business
                 }
             }
         }
-        
+
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(int intFrmKind, List<string> lstString)
+        public void getSelectItem(int intFrmKind, List<string> lstString)
         {
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;

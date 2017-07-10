@@ -104,10 +104,10 @@ namespace KATO.Business.M1020_Maker_B
         }
 
         ///<summary>
-        ///updTxtMakerTextLeave
+        ///getTxtMakerTextLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtMakerTextLeave(string strMakerCD)
+        public DataTable getTxtMakerTextLeave(string strMakerCD)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();

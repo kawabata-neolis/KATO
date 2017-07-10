@@ -24,16 +24,13 @@ namespace KATO.Common.Business
     class ShiharaiList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView(string strSetGrid)
+        public DataTable getDatagridView(string strSetGrid)
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
-
-            //f_get取引先名称実行後のデータ用
-            DataTable dtTorihikiName = null;
 
             //フォーマットするもの用
             string strSQLInput;
@@ -94,10 +91,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void setSelectItem(int intFrmKind, string strDenpyo)
+        public void getSelectItem(int intFrmKind, string strDenpyo)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -149,17 +146,6 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                        
-                    //取得したコードを元のフォームに送るメソッド
-                    ////入金リストのフォームを探す
-                    //if (frm.Name == "M1100_Chokusosaki")
-                    //{
-                    //    //データを連れてくるため、newをしないこと
-                    //    M1100_Chokusosaki chokusosaki = (M1100_Chokusosaki)frm;
-                    //    chokusosaki.setChokusoCode(dtSelectData);
-                    //    break;
-                    //}
-                    //
 
                     default:
                         break;
@@ -177,10 +163,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrm)
+        public void FormMove(int intFrm)
         {
             //全てのフォームの中から移動元フォームの検索
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -192,15 +178,6 @@ namespace KATO.Common.Business
                     JuchuInput_Test test = (JuchuInput_Test)frm;
                     test.setShiharaiListClose();
                 }
-
-                ////直送先のフォームを探す
-                //if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "M1100_Chokusosaki")
-                //{
-                //    //データを連れてくるため、newをしないこと
-                //    M1100_Chokusosaki chokusosaki = (M1100_Chokusosaki)frm;
-                //    chokusosaki.setChokuListClose();
-                //    break;
-                //}
             }
         }
     }

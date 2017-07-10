@@ -72,10 +72,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void EndAction(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -93,7 +93,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1090_Eigyosho eigyosho = (M1090_Eigyosho)frm;
-                    eigyosho.setEigyoListClose();
+                    eigyosho.CloseEigyoList();
                     break;
                 }
             }

@@ -128,7 +128,7 @@
             this.labelSet_GroupCd.TabIndex = 6;
             this.labelSet_GroupCd.ValueLabelSize = 140;
             this.labelSet_GroupCd.ValueLabelText = "";
-            this.labelSet_GroupCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtTantouKeyDown);
+            this.labelSet_GroupCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setTxtTantoushaLeave);
             // 
             // lblTantouCd
             // 
@@ -152,7 +152,7 @@
             this.txtTantoushaCd.TabIndex = 0;
             this.txtTantoushaCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTantouTxtKeyDown);
             this.txtTantoushaCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
-            this.txtTantoushaCd.Leave += new System.EventHandler(this.updTxtTantoushaLeave);
+            this.txtTantoushaCd.Leave += new System.EventHandler(this.setTxtTantoushaLeave);
             // 
             // lblTantoushaName
             // 

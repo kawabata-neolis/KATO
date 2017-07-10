@@ -22,11 +22,11 @@ namespace KATO.Common.Business
     ///</summary>
     class TantoushaList_B
     {
-        /// <summary>
-        /// setViewGrid
-        /// 読み込み時の処理
-        /// </summary>
-        public DataTable setViewGrid()
+        ///<summary>
+        ///getViewGrid
+        ///読み込み時の処理
+        ///</summary>
+        public DataTable getViewGrid()
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -71,11 +71,11 @@ namespace KATO.Common.Business
             }
         }
 
-        /// <summary>
-        /// setEndAction
-        /// 戻るボタンの処理
-        /// </summary>
-        public void setEndAction(int intFrmKind)
+        ///<summary>
+        ///FormMove
+        ///戻るボタンの処理
+        ///</summary>
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -85,17 +85,17 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1050_Tantousha tantousha = (M1050_Tantousha)frm;
-                    tantousha.setTantouListClose();
+                    tantousha.CloseTantoshaList();
                     break;
                 }
             }
         }
 
-        /// <summary>
-        /// setSelectItem
-        /// データグリッドビュー内のデータ選択後の処理
-        /// </summary>
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        ///<summary>
+        ///getSelectItem
+        ///データグリッドビュー内のデータ選択後の処理
+        ///</summary>
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //検索データの受け取り用
             DataTable dtSelectData;

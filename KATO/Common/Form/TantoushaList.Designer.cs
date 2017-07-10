@@ -90,7 +90,7 @@ namespace KATO.Common.Form
             this.gridTantousha.Size = new System.Drawing.Size(776, 451);
             this.gridTantousha.StandardTab = true;
             this.gridTantousha.TabIndex = 0;
-            this.gridTantousha.DoubleClick += new System.EventHandler(this.setGridTanDblClick);
+            this.gridTantousha.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTantousha_CellDoubleClick);
             this.gridTantousha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTantouKeyDown);
             // 
             // btnF12

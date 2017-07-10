@@ -52,10 +52,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TantoushaList
-        /// 前画面からデータ受け取り(通常テキストボックス)
-        /// </summary>
+        ///<summary>
+        ///TantoushaList
+        ///前画面からデータ受け取り(通常テキストボックス)
+        ///</summary>
         public TorihikisakiList(Control c)
         {
             //フォームタイトル設定
@@ -82,10 +82,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）
+        ///</summary>
         public TorihikisakiList(Control c, LabelSet_Torihikisaki lblSetTorihikiSelect)
         {
             //画面データが解放されていた時の対策
@@ -115,10 +115,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）（リスト画面から）
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）（リスト画面から）
+        ///</summary>
         public TorihikisakiList(Control c, LabelSet_Torihikisaki lblSetTorihikiSelect, object obj)
         {
             //画面データが解放されていた時の対策
@@ -148,10 +148,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 30;
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（テキスト型）
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(セットテキストボックス)（テキスト型）
+        ///</summary>
         public TorihikisakiList(Control c, TextSet_Torihikisaki txtSetTokuiSelect)
         {
             //画面データが解放されていた時の対策
@@ -181,24 +181,24 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TantousyaList_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///TantousyaList_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void TantousyaList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "取引先名";
 
             //データグリッドビューの準備
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
         ///SetUpGrid
         ///データグリッドビューの準備
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridTorihikisaki.AutoGenerateColumns = false;
@@ -346,10 +346,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// judGridTokuiKeyDown
+        ///<summary>
+        ///judGridTokuiKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        /// </summary>
+        ///</summary>
         private void judGridTokuiKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -452,7 +452,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                tokuisakilistB.setSelectItem(intFrmKind, strSelectId);
+                tokuisakilistB.getSelectItem(intFrmKind, strSelectId);
 
                 setEndAction(lstSelectData);
             }
@@ -510,7 +510,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tokuisakilistB.setEndAction(intFrmKind);
+                tokuisakilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -546,7 +546,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTorihikisaki.DataSource = tokuisakiB.setKensaku(lstSelectData);
+                gridTorihikisaki.DataSource = tokuisakiB.getKensaku(lstSelectData);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTorihikisaki.RowCount.ToString() + "件)";
@@ -565,19 +565,19 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// setTokuiGridDblClick
-        /// データグリッドビュー内のデータをダブルクリックしたとき
-        /// </summary>
-        private void setTokuiGridDblClick(object sender, EventArgs e)
+        ///<summary>
+        ///gridTorihikisaki_CellDoubleClick
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///</summary>
+        private void gridTorihikisaki_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
-        /// <summary>
-        /// CreateParams
-        /// タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
-        /// </summary>
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
@@ -592,10 +592,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// txtTorihikisaki_KeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///txtTorihikisaki_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void txtTorihikisaki_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

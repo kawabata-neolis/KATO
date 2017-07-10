@@ -117,22 +117,22 @@ namespace KATO.Common.Form
             this.btnF12.Text = "F12:戻る";
 
             //データグリッドビューの準備
-            SetUpGrid();
+            setupGrid();
 
             //データグリッドビュー表示
             setDatagridView();
         }
 
         ///<summary>
-        ///SetUpGrid
+        ///setupGrid
         ///データグリッドビューの準備
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridSeihin.AutoGenerateColumns = false;
 
-            //データをバインド
+            //カラム名を指定
             DataGridViewTextBoxColumn torihikisakiCD = new DataGridViewTextBoxColumn();
             torihikisakiCD.DataPropertyName = "グループコード";
             torihikisakiCD.Name = "グループコード";
@@ -143,7 +143,7 @@ namespace KATO.Common.Form
             torihikisakiName.Name = "グループ名";
             torihikisakiName.HeaderText = "グループ名";
 
-            //バインドしたデータを追加
+            //データを追加
             gridSeihin.Columns.Add(torihikisakiCD);
             gridSeihin.Columns.Add(torihikisakiName);
 
@@ -169,7 +169,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = groupcdlistB.setDatagridView();
+                gridSeihin.DataSource = groupcdlistB.getDatagridView();
 
                 //中央揃え
                 gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -339,7 +339,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                groupcdlistB.setSelectItem(intFrmKind, strSelectId);
+                groupcdlistB.getSelectItem(intFrmKind, strSelectId);
             }
             catch (Exception ex)
             {
@@ -351,7 +351,7 @@ namespace KATO.Common.Form
                 return;
             }
 
-            setEndAction(lstSelectData);
+            EndAction(lstSelectData);
         }
         
         ///<summary>
@@ -366,14 +366,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectData)
+        private void EndAction(List<string> lstSelectData)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetGroupCd != null && lstSelectData.Count != 0)
@@ -390,7 +390,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                groupcdlistB.setEndAction(intFrmKind);
+                groupcdlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -404,14 +404,14 @@ namespace KATO.Common.Form
         }
 
         /// <summary>
-        /// CreateParams
-        ///データグリッドビュー内のデータをダブルクリックしたとき
+        /// gridSeihin_DoubleClick
+        /// データグリッドビュー内のデータをダブルクリックしたとき
         /// </summary>
-        private void setTokuiGridDblClick(object sender, EventArgs e)
+        private void gridSeihin_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
-        
+
         ///<summary>
         ///CreateParams
         ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効

@@ -149,21 +149,21 @@ namespace KATO.Common.Form
             this.btnF12.Text = "F12:戻る";
 
             //データグリッドビュー表示
-            getDatagridView();
+            setDatagridView();
         }
 
         ///<summary>
-        ///getDatagridView
+        ///setDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void getDatagridView()
+        private void setDatagridView()
         {
             //ビジネス層のインスタンス生成
             DaibunruiList_B daibunlistB = new DaibunruiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = daibunlistB.setDatagridView();
+                gridSeihin.DataSource = daibunlistB.getDatagridView();
 
                 //幅の値を設定
                 gridSeihin.Columns["大分類コード"].Width = 130;
@@ -306,7 +306,7 @@ namespace KATO.Common.Form
         ///</summary>
         public void GridSeiDblClick(object sender, EventArgs e)
         {
-            getSelectItem();
+            setSelectItem();
         }
 
         ///<summary>
@@ -334,7 +334,7 @@ namespace KATO.Common.Form
                     break;
                 case Keys.Enter:
                     //ダブルクリックと同じ効果
-                    getSelectItem();
+                    setSelectItem();
                     break;
                 case Keys.F1:
                     break;
@@ -373,7 +373,7 @@ namespace KATO.Common.Form
         ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        private void getSelectItem()
+        private void setSelectItem()
         {
             //データグリッドビューにデータが存在しなければ終了
             if (gridSeihin.RowCount == 0)

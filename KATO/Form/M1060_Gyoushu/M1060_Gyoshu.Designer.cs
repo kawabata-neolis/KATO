@@ -106,7 +106,7 @@
             this.txtGyoshuCd.TabIndex = 0;
             this.txtGyoshuCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtGyoTxtKeyDown);
             this.txtGyoshuCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
-            this.txtGyoshuCd.Leave += new System.EventHandler(this.updTxtGyoshuLeave);
+            this.txtGyoshuCd.Leave += new System.EventHandler(this.setTxtGyoshuLeave);
             // 
             // lblCD
             // 

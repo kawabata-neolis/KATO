@@ -25,10 +25,10 @@ namespace KATO.Common.Business
     class DaibunruiList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable getDatagridView()
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();

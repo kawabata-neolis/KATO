@@ -23,11 +23,11 @@ namespace KATO.Common.Business
     ///</summary>
     class TorihikisakiList_B
     {
-        /// <summary>
-        /// setEndAction
-        /// 戻るボタンの処理
-        /// </summary>
-        public void setEndAction(int intFrmKind)
+        ///<summary>
+        ///FormMove
+        ///戻るボタンの処理
+        ///</summary>
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -43,11 +43,11 @@ namespace KATO.Common.Business
             }
         }
 
-        /// <summary>
-        /// setSelectItem
-        /// データグリッドビュー内のデータ選択後の処理
-        /// </summary>
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        ///<summary>
+        ///getSelectItem
+        ///データグリッドビュー内のデータ選択後の処理
+        ///</summary>
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //検索データの受け取り用
             DataTable dtSelectData;
@@ -115,10 +115,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setKensaku
+        ///getKensaku
         ///検索時の処理
         ///</summary>
-        public DataTable setKensaku(List<string> lstSelectData)
+        public DataTable getKensaku(List<string> lstSelectData)
         {
             //検索データの受け取り用
             DataTable dtGetTableGrid = new DataTable();

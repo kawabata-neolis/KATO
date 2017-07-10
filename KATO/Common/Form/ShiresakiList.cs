@@ -124,14 +124,14 @@ namespace KATO.Common.Form
             this._Title = "仕入先名";
 
             //データグリッドビューの準備
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridShiresaki.AutoGenerateColumns = false;
@@ -160,14 +160,21 @@ namespace KATO.Common.Form
         {
             //column設定
             gridShiresaki.Columns.Add(col);
+
+            //カラム名が空でない場合
             if (gridShiresaki.Columns[col.Name] != null)
             {
+                //横幅サイズの決定
                 gridShiresaki.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
                 gridShiresaki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
                 gridShiresaki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
+                //フォーマットが指定されていた場合
                 if (fmt != null)
                 {
+                    //フォーマットを指定
                     gridShiresaki.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
@@ -398,7 +405,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                shiresakilistB.setSelectItem(intFrmKind, strSelectId);
+                shiresakilistB.getSelectItem(intFrmKind, strSelectId);
 
                 setEndAction(lstSelectData);
             }
@@ -449,7 +456,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                shiresakilistB.setEndAction(intFrmKind);
+                shiresakilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -482,7 +489,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridShiresaki.DataSource = shiresakilistB.setKensaku(lstSelectData);
+                gridShiresaki.DataSource = shiresakilistB.getKensaku(lstSelectData);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridShiresaki.RowCount.ToString() + "件)";

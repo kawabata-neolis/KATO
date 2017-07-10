@@ -49,10 +49,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// ShohizeiritsuList
-        /// フォームの初期設定（通常テキストボックスから）
-        /// </summary>
+        ///<summary>
+        ///ShohizeiritsuList
+        ///フォームの初期設定（通常テキストボックスから）
+        ///</summary>
         public ShohizeiritsuList(Control c)
         {
             //画面データが解放されていた時の対策
@@ -74,10 +74,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// ShohizeiritsuList_Load
-        /// レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///ShohizeiritsuList_Load
+        ///レイアウト設定
+        ///</summary>
         private void ShohizeiritsuList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -106,7 +106,7 @@ namespace KATO.Common.Form
                 DataTable dtView;
 
                 //検索結果を取り込む
-                dtView = shohizeiritsulistB.setDatagridView(blnAll);
+                dtView = shohizeiritsulistB.getDatagridView(blnAll);
 
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
@@ -231,10 +231,10 @@ namespace KATO.Common.Form
             this.Close();
 
             //ビジネス層のインスタンス生成
-            TanabanList_B tanabanlistB = new TanabanList_B();
+            ShohizeiritsuList_B shohizeilistB = new ShohizeiritsuList_B();
             try
             {
-                tanabanlistB.setEndAction(intFrmKind);
+                shohizeilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -376,7 +376,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー内のデータ選択後の処理
-                shohizeilistB.setSelectItem(intFrmKind, strSelectDate);
+                shohizeilistB.getSelectItem(intFrmKind, strSelectDate);
 
                 setEndAction(lstSelectData);
             }

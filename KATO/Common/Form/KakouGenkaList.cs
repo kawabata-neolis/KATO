@@ -274,7 +274,7 @@ namespace KATO.Common.Form
             try
             {
                 // 検索実行
-                DataTable dtKakouGenkaList = kakouB.setDatagridView(this.strJuchuNo);
+                DataTable dtKakouGenkaList = kakouB.getDatagridView(this.strJuchuNo);
 
                 // データテーブルからデータグリッドへセット
                 gridJuchu.DataSource = dtKakouGenkaList;

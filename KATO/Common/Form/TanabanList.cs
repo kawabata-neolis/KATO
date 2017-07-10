@@ -52,10 +52,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TanabanList
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
+        ///<summary>
+        ///TanabanList
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
         public TanabanList(Control c)
         {
             //画面データが解放されていた時の対策
@@ -77,10 +77,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TanabanList
-        /// フォームの初期設定（ラベルセットから）
-        /// </summary>
+        ///<summary>
+        ///TanabanList
+        ///フォームの初期設定（ラベルセットから）
+        ///</summary>
         public TanabanList(Control c, LabelSet_Tanaban lblSetTanabanSelect)
         {
             //画面データが解放されていた時の対策
@@ -103,10 +103,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TanabanList_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///TanabanList_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void TanabanList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -130,7 +130,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTanaban.DataSource = tanabanlistB.setDatagridView();
+                gridTanaban.DataSource = tanabanlistB.getDatagridView();
 
                 //幅の値を設定
                 gridTanaban.Columns["棚番"].Width = 70;
@@ -313,7 +313,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tanabanlistB.setEndAction(intFrmKind);
+                tanabanlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -327,16 +327,16 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setGridEigyousyoDoubleClick
+        ///gridTanaban_CellDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        public void setGridEigyousyoDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void gridTanaban_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///setGridSeihinDoubleClick
+        ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
         private void setSelectItem()
@@ -363,7 +363,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                tanabanlistB.setSelectItem(intFrmKind, lstString);
+                tanabanlistB.getSelectItem(intFrmKind, lstString);
 
                 setEndAction(lstString);
             }

@@ -26,19 +26,25 @@ namespace KATO.Common.Form
     ///</summary>
     public partial class ShouhinList : System.Windows.Forms.Form
     {
+        //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //前画面からメーカーコードを取り出す枠（大分類コード初期値）
+        //前画面から年月日を取り出す枠（年月日初期値）
         public string strYMD = "";
 
+        //前画面から営業所コードを取り出す枠（営業所コード初期値）
         public string strEigyoushoCode = "";
 
+        //前画面から大分類コードを取り出す枠（大分類コード初期値）
         public string strDaibunruiCode = "";
 
+        //前画面から中分類コードを取り出す枠（中分類コード初期値）
         public string strChubunruiCode = "";
 
+        //前画面からメーカーコードを取り出す枠（メーカーコード初期値）
         public string strMakerCode = "";
 
+        //前画面から検索コードを取り出す枠（検索コード初期値）
         public string strKensaku = "";
         
         //どこのウィンドウかの判定（初期値）
@@ -70,6 +76,7 @@ namespace KATO.Common.Form
         /// </summary>
         public ShouhinList(Control c)
         {
+            //画面データが解放されていた時の対策
             if (c == null)
             {
                 return;
@@ -110,30 +117,22 @@ namespace KATO.Common.Form
             setTextData();
 
             //DataGridViewの初期設定
-            gridSetUp();
+            setupGrid();
 
             //画面で判定して項目を追加
-            setStart();
+            setupStart();
 
             //データ渡し用
             lstInt.Add(0);
 
             setShohinView(lstInt);
-
-            //if (intFrmKind == 11)
-            //{
-            //    lblDataFree.Visible = false;
-            //    btnHonshaZaiko.Visible = false;
-            //    btnGifuZaiko.Visible = false;
-            //    chkNotToroku.Visible = true;
-            //}
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void gridSetUp()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridTorihiki.AutoGenerateColumns = false;
@@ -207,10 +206,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///setStart
+        ///setupStart
         ///DataGridView初期設定続き
         ///</summary>
-        private void setStart()
+        private void setupStart()
         {
             if (intFrmKind == CommonTeisu.FRM_SHOHIN_TANA)
             {
@@ -439,7 +438,7 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                shohinlistB.setSelectItem(lstInt, lstString);
+                shohinlistB.getSelectItem(lstInt, lstString);
             }
             catch (Exception ex)
             {
@@ -504,7 +503,7 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                shohinlistB.setEndAction(intFrmKind);
+                shohinlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -533,10 +532,10 @@ namespace KATO.Common.Form
             gridTorihiki.Columns.Clear();
 
             //DataGridViewの初期設定
-            gridSetUp();
+            setupGrid();
 
             //modeで判定して項目を追加
-            setStart();
+            setupStart();
 
             //データ渡し用
             lstInt.Add(0);
@@ -576,7 +575,7 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                dtView = shohinlistB.setShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
+                dtView = shohinlistB.getShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
                 
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
@@ -642,7 +641,7 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                dtSetData = shohinlistB.setLabel(lstString, lstInt);
+                dtSetData = shohinlistB.getLabel(lstString, lstInt);
 
                 //テキストボックスが空白のままの場合
                 if (dtSetData == null)
@@ -731,7 +730,7 @@ namespace KATO.Common.Form
             //gridTorihiki.Columns.Clear();
 
             ////DataGridViewの初期設定
-            //gridSetUp();
+            //setupGrid();
 
             ////modeで判定して項目を追加
             //setStart();

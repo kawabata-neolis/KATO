@@ -771,7 +771,7 @@ namespace KATO.Form.A0100_HachuInput
                 M1050_Tantousha_B tantoshaB = new M1050_Tantousha_B();
 
                 //担当者のデータを取り出す
-                DataTable dtTantosha = tantoshaB.updTxtTantoshaLeave(txtTanto.Text);
+                DataTable dtTantosha = tantoshaB.getTxtTantoshaLeave(txtTanto.Text);
 
                 //取得した注番文字を入れる用
                 string strChubanMoji = null;

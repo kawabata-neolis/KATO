@@ -51,10 +51,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TantoushaList
-        /// フォームの初期設定(通常テキストボックス)
-        /// </summary>
+        ///<summary>
+        ///TantoushaList
+        ///フォームの初期設定(通常テキストボックス)
+        ///</summary>
         public TantoushaList(Control c)
         {
             //画面データが解放されていた時の対策
@@ -76,10 +76,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 130;
         }
 
-        /// <summary>
-        /// TantoushaList
-        /// フォームの初期設定(セットテキストボックス)
-        /// </summary>
+        ///<summary>
+        ///TantoushaList
+        ///フォームの初期設定(セットテキストボックス)
+        ///</summary>
         public TantoushaList(Control c, LabelSet_Tantousha lblSetTantouSelect)
         {
             //画面データが解放されていた時の対策
@@ -104,10 +104,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 130;
         }
 
-        /// <summary>
-        /// TantousyaList_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///TantousyaList_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void TantousyaList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -198,8 +198,7 @@ namespace KATO.Common.Form
             gridTantousha.Columns["年間売上目標"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             gridTantousha.Columns["年間売上目標"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
-
-
+        
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示
@@ -214,7 +213,7 @@ namespace KATO.Common.Form
             try
             {
                 //検索データを取得
-                dtView = daibunlistB.setViewGrid();
+                dtView = daibunlistB.getViewGrid();
 
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
@@ -403,7 +402,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                tantoushaListB.setSelectItem(intFrmKind, strSelectId);
+                tantoushaListB.getSelectItem(intFrmKind, strSelectId);
 
                 setEndAction(lstSelectId);
             }
@@ -454,7 +453,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tantoushalistB.setEndAction(intFrmKind);
+                tantoushalistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -467,18 +466,18 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// CreateParams
+        ///<summary>
+        ///gridTantousha_CellDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
-        /// </summary>
-        private void setGridTanDblClick(object sender, EventArgs e)
+        ///</summary>
+        private void gridTantousha_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
-        /// <summary>
-        /// CreateParams
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
         /// </summary>
         protected override CreateParams CreateParams
         {

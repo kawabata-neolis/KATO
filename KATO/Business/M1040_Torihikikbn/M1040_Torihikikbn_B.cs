@@ -20,10 +20,10 @@ namespace KATO.Business.M1040_Torihikikbn
     class M1040_Torihikikbn_B
     {
         ///<summary>
-        ///addDaibunrui
+        ///addTorihikikbn
         ///テキストボックス内のデータをDBに登録
         ///</summary>
-        public void addTorihikikubun(List<string> lstString)
+        public void addTorihikikbn(List<string> lstString)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -62,10 +62,10 @@ namespace KATO.Business.M1040_Torihikikbn
         }
 
         ///<summary>
-        ///delDaibunrui
+        ///delTorihikikbn
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delTorihikikubun(List<string> lstString)
+        public void delTorihikikbn(List<string> lstString)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -104,10 +104,10 @@ namespace KATO.Business.M1040_Torihikikbn
         }
 
         ///<summary>
-        ///updTxtTorikbnLeave
+        ///getTxtTorikbnLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTorikbnLeave(string strTorihikikbn)
+        public DataTable getTxtTorikbnLeave(string strTorihikikbn)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();

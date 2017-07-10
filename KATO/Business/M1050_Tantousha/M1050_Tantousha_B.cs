@@ -120,10 +120,10 @@ namespace KATO.Business.M1050_Tantousha
         }
 
         ///<summary>
-        ///updTxtTantoshaLeave
+        ///getTxtTantoshaLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTantoshaLeave(string strTantousha)
+        public DataTable getTxtTantoshaLeave(string strTantousha)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();

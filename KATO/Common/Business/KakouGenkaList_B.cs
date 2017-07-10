@@ -19,10 +19,10 @@ namespace KATO.Common.Business
     class KakouGenkaList_B
     {
         /// <summary>
-        /// setDatagridView
+        /// getDatagridView
         /// データグリッドビュー表示
         /// </summary>
-        public DataTable setDatagridView(string strSetGrid)
+        public DataTable getDatagridView(string strSetGrid)
         {
             // データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();

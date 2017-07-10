@@ -29,10 +29,10 @@ namespace KATO.Form.M1070_Torihikisaki
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1070_Torihikisaki
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1070_Torihikisaki
+        ///フォームの初期設定
+        ///</summary>
         public M1070_Torihikisaki(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1070_Torihikisaki
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1070_Torihikisaki_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1070_Torihikisaki_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1070_Torihikisaki_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -88,10 +88,10 @@ namespace KATO.Form.M1070_Torihikisaki
             cmbNonyu.Items.Add("来店");
         }
 
-        /// <summary>
-        /// judTorihikiKeyDown
-        /// キー入力判定（画面全般）
-        /// </summary>
+        ///<summary>
+        ///judTorihikiKeyDown
+        ///キー入力判定（画面全般）
+        ///</summary>
         private void judTorihikiKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -135,7 +135,7 @@ namespace KATO.Form.M1070_Torihikisaki
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "空番実行"));
-                    this.setAkiban();
+                    this.showTorihikicdList();
                     break;
                 case Keys.F9:
                     break;
@@ -153,10 +153,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// judTorihikiTxtKeyDown
-        /// キー入力判定（無機能テキストボックス）
-        /// </summary>
+        ///<summary>
+        ///judTorihikiTxtKeyDown
+        ///キー入力判定（無機能テキストボックス）
+        ///</summary>
         private void judTorihikiTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -212,10 +212,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// judTxtToriTxtKeyDown
+        ///<summary>
+        ///judTxtToriTxtKeyDown
         ///キー入力判定（検索ありテキストボックス）
-        /// </summary>
+        ///</summary>
         private void judTxtToriTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -271,10 +271,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// judBtnClick
+        ///<summary>
+        ///judBtnClick
         ///ファンクションボタンの反応
-        /// </summary>
+        ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -297,44 +297,39 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// txtCdT_KeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
+        ///<summary>
+        ///txtCdT_KeyDown
+        ///コード入力項目でのキー入力判定
+        ///</summary>
         private void txtCdT_KeyDown(object sender, KeyEventArgs e)
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //取引先リストのインスタンス生成
+            TorihikisakiList torihikisakilist = new TorihikisakiList(this);
+            try
             {
-                //取引先リストのインスタンス生成
-                TorihikisakiList torihikisakilist = new TorihikisakiList(this);
-                try
-                {
-                    //取引先リストの表示、画面IDを渡す
-                    torihikisakilist.StartPosition = FormStartPosition.Manual;
-                    torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
-                    torihikisakilist.ShowDialog();
-                    
-                    labelSet_Tantousha.Focus();
-                    labelSet_GyoshuCd.Focus();
-                    txtSihon.Focus();
-                    txtCdT.Focus();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                //取引先リストの表示、画面IDを渡す
+                torihikisakilist.StartPosition = FormStartPosition.Manual;
+                torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;
+                torihikisakilist.ShowDialog();
+
+                labelSet_Tantousha.Focus();
+                labelSet_GyoshuCd.Focus();
+                txtSihon.Focus();
+                txtCdT.Focus();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
 
-
-        /// <summary>
-        /// setAkiban
-        /// 空番ボタン、キーの反応
-        /// </summary>
-        private void setAkiban()
+        ///<summary>
+        ///showTorihikicdList
+        ///空番ボタン、キーの反応
+        ///</summary>
+        private void showTorihikicdList()
         {
             //取引先リストのインスタンス生成
             TorihikiCdList torihikicdlist = new TorihikiCdList(this);
@@ -356,10 +351,10 @@ namespace KATO.Form.M1070_Torihikisaki
 
         }
 
-        /// <summary>
-        /// addGyoushu
-        /// テキストボックス内のデータをDBに登録
-        /// </summary>
+        ///<summary>
+        ///addGyoushu
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
         private void addTorihiki()
         {
             //記入情報登録用
@@ -631,10 +626,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// delText
-        /// テキストボックス内の文字を削除
-        /// </summary>
+        ///<summary>
+        ///delText
+        ///テキストボックス内の文字を削除
+        ///</summary>
         private void delText()
         {
             delFormClear(this);
@@ -642,10 +637,10 @@ namespace KATO.Form.M1070_Torihikisaki
             txtCdT.Focus();
         }
         
-        /// <summary>
-        /// delTorihiki
-        /// テキストボックス内のデータをDBから削除
-        /// </summary>
+        ///<summary>
+        ///delTorihiki
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
         public void delTorihiki()
         {
             //記入情報削除用
@@ -665,7 +660,7 @@ namespace KATO.Form.M1070_Torihikisaki
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(txtCdT.Text);
+                dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(txtCdT.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -795,10 +790,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// setTorihikisaki
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
+        ///<summary>
+        ///setTorihikisaki
+        ///取り出したデータをテキストボックスに配置
+        ///</summary>
         public void setTorihikisaki(DataTable dtSelectData)
         {
             //表示項目をリセット
@@ -902,10 +897,10 @@ namespace KATO.Form.M1070_Torihikisaki
             txtGyotan.Text = dtSelectData.Rows[0]["業務担当者コード"].ToString();
         }
 
-        /// <summary>
-        /// setTorihikisakiCd
-        /// 取り出したデータをテキストボックスに配置（空番）
-        /// </summary>
+        ///<summary>
+        ///setTorihikisakiCd
+        ///取り出したデータをテキストボックスに配置（空番）
+        ///</summary>
         public void setTorihikisakiCd(DataTable dtSelectData)
         {
             //表示項目をリセット
@@ -916,19 +911,19 @@ namespace KATO.Form.M1070_Torihikisaki
             txtCdT.Text = dtSelectData.Rows[0]["取引先コード"].ToString();
         }
 
-        /// <summary>
-        /// setTokuisakiListClose
-        /// 得意先リストが閉じたらコード記入欄にフォーカス
-        /// </summary>
+        ///<summary>
+        ///setTokuisakiListClose
+        ///得意先リストが閉じたらコード記入欄にフォーカス
+        ///</summary>
         public void setTokuisakiListClose()
         {
             txtCdT.Focus();
         }
 
-        /// <summary>
-        /// setTorihikiCdListClose
-        /// 担当者リストが閉じたらコード記入欄にフォーカス
-        /// </summary>
+        ///<summary>
+        ///setTorihikiCdListClose
+        ///担当者リストが閉じたらコード記入欄にフォーカス
+        ///</summary>
         public void setTorihikiCdListClose()
         {
             txtCdT.Focus();
@@ -982,7 +977,7 @@ namespace KATO.Form.M1070_Torihikisaki
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = torihikisakiB.updTxtTorihikiCdLeave(txtCdT.Text);
+                dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(txtCdT.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -998,10 +993,10 @@ namespace KATO.Form.M1070_Torihikisaki
             }
         }
 
-        /// <summary>
-        /// judtxtTorihikiKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtTorihikiKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtTorihikiKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;
@@ -1013,10 +1008,10 @@ namespace KATO.Form.M1070_Torihikisaki
         	basetext.judKeyUp(cActiveBefore, e);
         }
 
-        /// <summary>
-        /// cmbNonyu_KeyUp
-        /// 入力項目上でのキー判定と文字数判定(コンボボックス用)
-        /// </summary>
+        ///<summary>
+        ///cmbNonyu_KeyUp
+        ///入力項目上でのキー判定と文字数判定(コンボボックス用)
+        ///</summary>
         private void cmbNonyu_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;
@@ -1029,10 +1024,10 @@ namespace KATO.Form.M1070_Torihikisaki
 
         }
 
-        /// <summary>
-        /// txt_KeyPress
-        /// 入力項目上でのキー判定
-        /// </summary>
+        ///<summary>
+        ///txt_KeyPress
+        ///入力項目上でのキー判定
+        ///</summary>
         private void txt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')

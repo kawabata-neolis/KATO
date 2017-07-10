@@ -89,14 +89,14 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridTokui.AutoGenerateColumns = false;
@@ -137,14 +137,20 @@ namespace KATO.Common.Form
         {
             //column設定
             gridTokui.Columns.Add(col);
+            //カラム名が空でない場合
             if (gridTokui.Columns[col.Name] != null)
             {
+                //横幅サイズの決定
                 gridTokui.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
                 gridTokui.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
                 gridTokui.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
+                //フォーマットが指定されていた場合
                 if (fmt != null)
                 {
+                    //フォーマットを指定
                     gridTokui.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
@@ -161,7 +167,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = nyukinlistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridTokui.DataSource = nyukinlistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -262,7 +268,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、移動元フォームに移動するロジックに移動
-                nyukinlistB.setEndAction(intFrmKind);
+                nyukinlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -319,7 +325,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                nyukinkistB.setSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
+                nyukinkistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
 
                 setEndAction();
             }

@@ -23,10 +23,10 @@ namespace KATO.Common.Business
     class GroupCdList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable getDatagridView()
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -66,10 +66,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///元の画面に戻る
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -88,12 +88,12 @@ namespace KATO.Common.Business
                 }
             }
         }
-        
+
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSelectData;

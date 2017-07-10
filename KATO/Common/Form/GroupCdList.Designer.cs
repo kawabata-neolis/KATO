@@ -98,10 +98,10 @@
             this.gridSeihin.Size = new System.Drawing.Size(474, 410);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 22;
-            this.gridSeihin.DoubleClick += new System.EventHandler(this.setTokuiGridDblClick);
+            this.gridSeihin.DoubleClick += new System.EventHandler(this.gridSeihin_DoubleClick);
             this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridGroupKeyDown);
             // 
-            // groupCdList
+            // GroupCdList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,7 +109,7 @@
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.gridSeihin);
             this.Controls.Add(this.lblRecords);
-            this.Name = "groupCdList";
+            this.Name = "GroupCdList";
             this.Text = "groupCdList";
             this.Load += new System.EventHandler(this.GroupCdList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);

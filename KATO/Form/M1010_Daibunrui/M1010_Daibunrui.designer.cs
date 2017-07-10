@@ -110,7 +110,7 @@ namespace KATO.Form.M1010_Daibunrui
             this.txtDaibunrui.TabIndex = 0;
             this.txtDaibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtDaiTxtKeyDown);
             this.txtDaibunrui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
-            this.txtDaibunrui.Leave += new System.EventHandler(this.getTxtDaibunruiLeave);
+            this.txtDaibunrui.Leave += new System.EventHandler(this.setTxtDaibunruiLeave);
             // 
             // txtName
             // 

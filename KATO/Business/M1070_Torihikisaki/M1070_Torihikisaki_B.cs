@@ -251,10 +251,10 @@ namespace KATO.Business.M1070_Torihikisaki
         }
 
         ///<summary>
-        ///updTxtTorihikiCdLeave
+        ///getTxtTorihikiCdLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTorihikiCdLeave(string strTorihikiCD)
+        public DataTable getTxtTorihikiCdLeave(string strTorihikiCD)
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();

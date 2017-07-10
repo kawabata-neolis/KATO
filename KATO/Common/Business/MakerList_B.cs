@@ -26,10 +26,10 @@ namespace KATO.Common.Business
     class MakerList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable getDatagridView()
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -75,10 +75,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setDatagridView
+        ///getKensaku
         ///検索
         ///</summary>
-        public DataTable setKensaku(List<string> lstSearch)
+        public DataTable getKensaku(List<string> lstSearch)
         {
             //データグリッドビューを入れる用
             DataTable dtGetTableGrid = new DataTable();
@@ -122,10 +122,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setDatagridView
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -135,7 +135,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1020_Maker maker = (M1020_Maker)frm;
-                    maker.setMakerListClose();
+                    maker.closeMakerList();
                     break;
                 }
                 //棚卸入力のフォームを探す
@@ -166,10 +166,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void setSelectItem(int intFrmKind, string strSelectId)
+        public void getSelectItem(int intFrmKind, string strSelectId)
         {
             //検索データの受け取り用
             DataTable dtSelectData;

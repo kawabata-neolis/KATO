@@ -106,10 +106,10 @@ namespace KATO.Business.M1090_Eigyosho
         }
 
         ///<summary>
-        ///updTxtEigyoCdLeave
+        ///getTxtEigyoCdLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtEigyoCdLeave(string strEigyosho)
+        public DataTable getTxtEigyoCdLeave(string strEigyosho)
         {
             //データ渡し用
             List<string> stringSQLAry = new List<string>();

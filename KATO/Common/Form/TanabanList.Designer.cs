@@ -79,7 +79,7 @@ namespace KATO.Common.Form
             this.gridTanaban.Size = new System.Drawing.Size(474, 406);
             this.gridTanaban.StandardTab = true;
             this.gridTanaban.TabIndex = 5;
-            this.gridTanaban.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.setGridEigyousyoDoubleClick);
+            this.gridTanaban.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTanaban_CellDoubleClick);
             this.gridTanaban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTanabanKeyDown);
             // 
             // btnF12

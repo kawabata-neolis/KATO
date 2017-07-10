@@ -89,14 +89,14 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridTokui.AutoGenerateColumns = false;
@@ -140,14 +140,21 @@ namespace KATO.Common.Form
         {
             //column設定
             gridTokui.Columns.Add(col);
+
+            //カラム名が空でない場合
             if (gridTokui.Columns[col.Name] != null)
             {
+                //横幅サイズの決定
                 gridTokui.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
                 gridTokui.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
                 gridTokui.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
+                //フォーマットが指定されていた場合
                 if (fmt != null)
                 {
+                    //フォーマットを指定
                     gridTokui.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
@@ -164,7 +171,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = shiharailistB.setDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridTokui.DataSource = shiharailistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -249,14 +256,14 @@ namespace KATO.Common.Form
         private void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-            setEndAction();
+            EndAction();
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction()
+        private void EndAction()
         {
             this.Close();
 
@@ -302,6 +309,10 @@ namespace KATO.Common.Form
             setSelectItem();
         }
 
+        ///<summary>
+        ///gridTokui_KeyDown
+        ///データグリッドビュー内のデータ選択中にキーが押されたとき
+        ///</summary>
         private void gridTokui_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -379,9 +390,9 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                shiharailistB.setSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
+                shiharailistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
 
-                setEndAction();
+                EndAction();
             }
             catch (Exception ex)
             {

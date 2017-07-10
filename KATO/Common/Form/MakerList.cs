@@ -39,9 +39,6 @@ namespace KATO.Common.Form
         //メーカーコードの確保（セット系用）
         LabelSet_Maker lblSetMaker = null;
 
-        ////大分類コードの確保（セット系用）
-        //LabelSet_Daibunrui lblSetDaibun = new LabelSet_Daibunrui();
-
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
@@ -136,9 +133,6 @@ namespace KATO.Common.Form
             //ラベルセットデータの確保（メーカー）
             lblSetMaker = lblSetMakerSelect;
 
-            ////ラベルセットデータの確保（大分類）
-            //lblSetDaibun.CodeTxtText = strdaibunCD;
-
             InitializeComponent();
 
             //テキストボックスに入れる
@@ -195,7 +189,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridMaker.DataSource = makerlistB.setDatagridView();
+                gridMaker.DataSource = makerlistB.getDatagridView();
 
                 //幅の値を設定
                 gridMaker.Columns["メーカーコード"].Width = 150;
@@ -301,14 +295,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectId)
+        private void EndAction(List<string> lstSelectId)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetMaker != null && lstSelectId.Count != 0)
@@ -363,7 +357,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                makerlistB.setEndAction(intFrmKind);
+                makerlistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -405,7 +399,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridMaker.DataSource = makerlistB.setKensaku(lstSearch);
+                gridMaker.DataSource = makerlistB.getKensaku(lstSearch);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
@@ -584,9 +578,9 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                makerlistB.setSelectItem(intFrmKind, strSelectid);
+                makerlistB.getSelectItem(intFrmKind, strSelectid);
 
-                setEndAction(lstSelectId);
+                EndAction(lstSelectId);
             }
             catch (Exception ex)
             {

@@ -88,7 +88,7 @@
             this.gridSeihin.Size = new System.Drawing.Size(474, 410);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 22;
-            this.gridSeihin.DoubleClick += new System.EventHandler(this.setGridSeihinDoubleClick);
+            this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSeihin_CellDoubleClick);
             this.gridSeihin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridSeihinKeyDown);
             // 
             // btnF12

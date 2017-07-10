@@ -26,10 +26,10 @@ namespace KATO.Common.Business
     class TorihikikbnList_B
     {
         ///<summary>
-        ///setDatagridView
+        ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        public DataTable setDatagridView()
+        public DataTable getDatagridView()
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();
@@ -75,10 +75,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///setEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void setEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -88,17 +88,17 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1040_Torihikikbn torihikikbn = (M1040_Torihikikbn)frm;
-                    torihikikbn.setToriListClose();
+                    torihikikbn.closeTorikbnList();
                     break;
                 }
             }
         }
 
         ///<summary>
-        ///setSelectItem
+        ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>        
-        public void setSelectItem(int intFrmKind, string lstSelectId)
+        public void getSelectItem(int intFrmKind, string lstSelectId)
         {
             //検索データの受け取り用
             DataTable dtSelectData;

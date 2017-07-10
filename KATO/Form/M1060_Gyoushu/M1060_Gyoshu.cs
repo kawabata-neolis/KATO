@@ -29,10 +29,10 @@ namespace KATO.Form.M1060_Gyoushu
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1060_Gyoushu
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1060_Gyoushu
+        ///フォームの初期設定
+        ///</summary>
         public M1060_Gyoshu(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1060_Gyoushu
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1060_Gyoushu_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1060_Gyoushu_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1060_Gyoushu_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -80,10 +80,10 @@ namespace KATO.Form.M1060_Gyoushu
             this.btnF12.Text = STR_FUNC_F12;
         }
 
-        /// <summary>
-        /// judGyoshuKeyDown
-        /// キー入力判定（画面全般）
-        /// </summary>
+        ///<summary>
+        ///judGyoshuKeyDown
+        ///キー入力判定（画面全般）
+        ///</summary>
         private void judGyoshuKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -143,10 +143,10 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// judGyoshuTxtKeyDown
-        /// キー入力判定（無機能テキストボックス）
-        /// </summary>
+        ///<summary>
+        ///judGyoshuTxtKeyDown
+        ///キー入力判定（無機能テキストボックス）
+        ///</summary>
         private void judGyoshuTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -200,10 +200,10 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// judTxtGyoTxtKeyDown
+        ///<summary>
+        ///judTxtGyoTxtKeyDown
         ///キー入力判定（検索ありテキストボックス）
-        /// </summary>
+        ///</summary>
         private void judTxtGyoTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -245,7 +245,7 @@ namespace KATO.Form.M1060_Gyoushu
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtGyoshuKeyDown(sender, e);
+                    shoGyoshuList();
                     break;
                 case Keys.F10:
                     break;
@@ -259,10 +259,10 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// judBtnClick
+        ///<summary>
+        ///judBtnClick
         ///ファンクションボタンの反応
-        /// </summary>
+        ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -286,40 +286,36 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// judtxtGyoshuKeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
-        private void judtxtGyoshuKeyDown(object sender, KeyEventArgs e)
+        ///<summary>
+        ///shoGyoshuLists
+        ///コード入力項目でのキー入力判定
+        ///</summary>
+        private void shoGyoshuList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //業種リストのインスタンス生成
+            GyoshuList gyoshulist = new GyoshuList(this);
+            try
             {
-                //業種リストのインスタンス生成
-                GyoshuList gyoshulist = new GyoshuList(this);
-                try
-                {
-                    //業種リストの表示、画面IDを渡す
-                    gyoshulist.StartPosition = FormStartPosition.Manual;
-                    gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
-                    gyoshulist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //業種リストの表示、画面IDを渡す
+                gyoshulist.StartPosition = FormStartPosition.Manual;
+                gyoshulist.intFrmKind = CommonTeisu.FRM_GYOSHU;
+                gyoshulist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
-        /// <summary>
-        /// addGyoushu
-        /// テキストボックス内のデータをDBに登録
-        /// </summary>
+        ///<summary>
+        ///addGyoushu
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
         private void addGyoushu()
         {
             //記入情報登録用
@@ -373,10 +369,10 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// delText
-        /// テキストボックス内の文字を削除
-        /// </summary>
+        ///<summary>
+        ///delText
+        ///テキストボックス内の文字を削除
+        ///</summary>
         private void delText()
         {
             //画面の項目内を白紙にする
@@ -384,10 +380,10 @@ namespace KATO.Form.M1060_Gyoushu
             txtGyoshuCd.Focus();
         }
 
-        /// <summary>
-        /// delGyoushu
-        /// テキストボックス内のデータをDBから削除
-        /// </summary>
+        ///<summary>
+        ///delGyoushu
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
         public void delGyoushu()
         {
             //記入情報削除用
@@ -407,7 +403,7 @@ namespace KATO.Form.M1060_Gyoushu
             try
             {
                 //ビジネス層、検索ロジックに移動
-                dtSetCd = gyoshuB.updTxtGyoshuLeave(txtGyoshuCd.Text);
+                dtSetCd = gyoshuB.getTxtGyoshuLeave(txtGyoshuCd.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -449,21 +445,21 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// setGyoushu
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
+        ///<summary>
+        ///setGyoushu
+        ///取り出したデータをテキストボックスに配置
+        ///</summary>
         public void setGyoushu(DataTable dtSelectData)
         {
             txtGyoshuCd.Text = dtSelectData.Rows[0]["業種コード"].ToString();
             txtGyoshuName.Text = dtSelectData.Rows[0]["業種名"].ToString();
         }
 
-        /// <summary>
-        /// updTxtGyoshuLeave
-        /// code入力箇所からフォーカスが外れた時
-        /// </summary>
-        public void updTxtGyoshuLeave(object sender, EventArgs e)
+        ///<summary>
+        ///setTxtGyoshuLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public void setTxtGyoshuLeave(object sender, EventArgs e)
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
@@ -507,7 +503,7 @@ namespace KATO.Form.M1060_Gyoushu
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = daibunB.updTxtGyoshuLeave(txtGyoshuCd.Text);
+                dtSetCd = daibunB.getTxtGyoshuLeave(txtGyoshuCd.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -529,19 +525,19 @@ namespace KATO.Form.M1060_Gyoushu
             }
         }
 
-        /// <summary>
-        /// setGyoushuListClose
-        /// GyoushuListが閉じたらコード記入欄にフォーカス
-        /// </summary>
+        ///<summary>
+        ///setGyoushuListClose
+        ///GyoushuListが閉じたらコード記入欄にフォーカス
+        ///</summary>
         public void setGyoushuListClose()
         {
             txtGyoshuCd.Focus();
         }
 
-        /// <summary>
-        /// judtxtGyoushuKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtGyoushuKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtGyoushuKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

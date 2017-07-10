@@ -254,14 +254,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstString)
+        private void EndAction(List<string> lstString)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetEigyou != null && lstString.Count != 0)
@@ -278,7 +278,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                eigyoulistB.setEndAction(intFrmKind);
+                eigyoulistB.EndAction(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -389,7 +389,7 @@ namespace KATO.Common.Form
                 //データグリッドビュー内のデータ選択後の処理
                 eigyoulistB.setSelectItem(intFrmKind, strSelectId);
 
-                setEndAction(lstSelectData);
+                EndAction(lstSelectData);
             }
             catch (Exception ex)
             {

@@ -51,10 +51,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(通常テキストボックス)
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(通常テキストボックス)
+        ///</summary>
         public TokuisakiList(Control c)
         {
             //フォームタイトル設定
@@ -81,10 +81,10 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TokuisakiList
-        /// 前画面からデータ受け取り(セットテキストボックス)（ラベル型）
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）
+        ///</summary>
         public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
         {
             //画面データが解放されていた時の対策
@@ -114,24 +114,24 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// TokuisakiList_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///TokuisakiList_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void TokuisakiList_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "得意先名";
 
             //データグリッドビューの準備
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
-        ///GridSetUp
+        ///setupGrid
         ///DataGridView初期設定
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridShiresaki.AutoGenerateColumns = false;
@@ -397,9 +397,9 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                shiresakilistB.setSelectItem(intFrmKind, strSelectId);
+                shiresakilistB.getSelectItem(intFrmKind, strSelectId);
 
-                setEndAction(lstSelectData);
+                EndAction(lstSelectData);
             }
             catch (Exception ex)
             {
@@ -424,14 +424,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectData)
+        private void EndAction(List<string> lstSelectData)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合(ラベルセットの場合)
             if (lblSetTokuisaki != null && lstSelectData.Count != 0)
@@ -448,7 +448,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tokuisakilistB.setEndAction(intFrmKind);
+                tokuisakilistB.getEndAction(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -477,7 +477,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridShiresaki.DataSource = tokuisakilistB.setKensaku(txtTokuisaki.Text);
+                gridShiresaki.DataSource = tokuisakilistB.getKensaku(txtTokuisaki.Text);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridShiresaki.RowCount.ToString() + "件)";
@@ -496,19 +496,19 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// setShireGridDblClick
-        /// データグリッドビュー内のデータをダブルクリックしたとき
-        /// </summary>
-        private void setShireGridDblClick(object sender, EventArgs e)
+        ///<summary>
+        ///gridShiresaki_CellDoubleClick
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///</summary>
+        private void gridShiresaki_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
-        /// <summary>
-        /// CreateParams
-        /// タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
-        /// </summary>
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
@@ -523,10 +523,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// txtTokuisaki_KeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///txtTokuisaki_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void txtTokuisaki_KeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

@@ -200,7 +200,7 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
+        ///<summary>
         ///judTxtTantouTxtKeyDown
         ///キー入力判定（検索ありテキストボックス）
         ///</summary>
@@ -245,7 +245,7 @@ namespace KATO.Form.M1050_Tantousha
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtTantouKeyDown(sender, e);
+                    showTantoushaList();
                     break;
                 case Keys.F10:
                     break;
@@ -286,40 +286,36 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// judtxtTantouKeyDown
-        /// コード入力項目でのキー入力判定
-        /// </summary>
-        private void judtxtTantouKeyDown(object sender, KeyEventArgs e)
+        ///<summary>
+        ///showTantoushaList
+        ///コード入力項目でのキー入力判定
+        ///</summary>
+        private void showTantoushaList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //担当者リストのインスタンス生成
+            TantoushaList tantoushalist = new TantoushaList(this);
+            try
             {
-                //担当者リストのインスタンス生成
-                TantoushaList tantoushalist = new TantoushaList(this);
-                try
-                {
-                    //担当者区分リストの表示、画面IDを渡す
-                    tantoushalist.StartPosition = FormStartPosition.Manual;
-                    tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSHA;
-                    tantoushalist.ShowDialog();
+                //担当者区分リストの表示、画面IDを渡す
+                tantoushalist.StartPosition = FormStartPosition.Manual;
+                tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOUSHA;
+                tantoushalist.ShowDialog();
 
-                    txtMokuhyou.Focus();
-                    txtTantoushaCd.Focus();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                txtMokuhyou.Focus();
+                txtTantoushaCd.Focus();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
 
-        /// <summary>
-        /// addTantousha
-        /// テキストボックス内のデータをDBに登録
-        /// </summary>
+        ///<summary>
+        ///addTantousha
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
         private void addTantousha()
         {
             //記入情報登録用
@@ -424,10 +420,10 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// delText
-        /// テキストボックス内の文字を削除
-        /// </summary>
+        ///<summary>
+        ///delText
+        ///テキストボックス内の文字を削除
+        ///</summary>
         private void delText()
         {
             //画面の項目内を白紙にする
@@ -436,10 +432,10 @@ namespace KATO.Form.M1050_Tantousha
             txtMokuhyou.Text = "";
         }
 
-        /// <summary>
-        /// deTantousha
-        /// テキストボックス内のデータをDBから削除
-        /// </summary>
+        ///<summary>
+        ///deTantousha
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
         public void deTantousha()
         {
             //記入情報削除用
@@ -459,7 +455,7 @@ namespace KATO.Form.M1050_Tantousha
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantouB.updTxtTantoshaLeave(txtTantoushaCd.Text);
+                dtSetCd = tantouB.getTxtTantoshaLeave(txtTantoushaCd.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -506,10 +502,10 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// setTantousha
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
+        ///<summary>
+        ///setTantousha
+        ///取り出したデータをテキストボックスに配置
+        ///</summary>
         public void setTantousha(DataTable dtSelectData)
         {
             txtTantoushaCd.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
@@ -521,11 +517,11 @@ namespace KATO.Form.M1050_Tantousha
             txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,#");
         }
 
-        /// <summary>
-        /// updTxtTantoushaLeave
-        /// code入力箇所からフォーカスが外れた時
-        /// </summary>
-        public void updTxtTantoushaLeave(object sender, EventArgs e)
+        ///<summary>
+        ///setTxtTantoushaLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public void setTxtTantoushaLeave(object sender, EventArgs e)
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
@@ -569,7 +565,7 @@ namespace KATO.Form.M1050_Tantousha
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tantouB.updTxtTantoshaLeave(txtTantoushaCd.Text);
+                dtSetCd = tantouB.getTxtTantoshaLeave(txtTantoushaCd.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -588,19 +584,19 @@ namespace KATO.Form.M1050_Tantousha
             }
         }
 
-        /// <summary>
-        /// setTantouListClose
-        /// 担当者リストが閉じたらコード記入欄にフォーカス
-        /// </summary>
-        public void setTantouListClose()
+        ///<summary>
+        ///CloseTantoshaList
+        ///担当者リストが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void CloseTantoshaList()
         {
             txtTantoushaCd.Focus();
         }
 
-        /// <summary>
-        /// judtxtTantoushaKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtTantoushaKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtTantoushaKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

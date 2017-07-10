@@ -81,7 +81,7 @@
             this.gridShiresaki.Size = new System.Drawing.Size(776, 451);
             this.gridShiresaki.StandardTab = true;
             this.gridShiresaki.TabIndex = 96;
-            this.gridShiresaki.DoubleClick += new System.EventHandler(this.setShireGridDblClick);
+            this.gridShiresaki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridShiresaki_CellDoubleClick);
             this.gridShiresaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGridTokuiKeyDown);
             // 
             // btnF11

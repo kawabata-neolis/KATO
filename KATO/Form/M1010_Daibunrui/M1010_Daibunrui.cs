@@ -29,10 +29,10 @@ namespace KATO.Form.M1010_Daibunrui
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1010_Daibunrui
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1010_Daibunrui
+        ///フォームの初期設定
+        ///</summary>
         public M1010_Daibunrui(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1010_Daibunrui
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1010_Daibunrui_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1010_Daibunrui_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1010_Daibunrui_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -80,10 +80,10 @@ namespace KATO.Form.M1010_Daibunrui
             this.btnF12.Text = STR_FUNC_F12;
         }
 
-        /// <summary>
-        /// judDaiBunruiKeyDown
-        /// キー入力判定（画面全般）
-        /// </summary>
+        ///<summary>
+        ///judDaiBunruiKeyDown
+        ///キー入力判定（画面全般）
+        ///</summary>
         private void judDaiBunruiKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -143,10 +143,10 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// judDaiBunTxtKeyDown
-        /// キー入力判定（無機能テキストボックス）
-        /// </summary>
+        ///<summary>
+        ///judDaiBunTxtKeyDown
+        ///キー入力判定（無機能テキストボックス）
+        ///</summary>
         private void judDaiBunTxtKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -375,10 +375,10 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// delText
+        ///<summary>
+        ///delText
         ///テキストボックス等の入力情報を白紙にする
-        /// </summary>
+        ///</summary>
         private void delText()
         {
             //画面の項目内を白紙にする
@@ -386,10 +386,10 @@ namespace KATO.Form.M1010_Daibunrui
             txtDaibunrui.Focus();
         }
 
-        /// <summary>
-        /// delDaibunrui
-        /// テキストボックス内のデータをDBから削除
-        /// </summary>
+        ///<summary>
+        ///delDaibunrui
+        ///テキストボックス内のデータをDBから削除
+        ///</summary>
         public void delDaibunrui()
         {
             //記入情報削除用
@@ -456,10 +456,10 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// setDaibunrui
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
+        ///<summary>
+        ///setDaibunrui
+        ///取り出したデータをテキストボックスに配置
+        ///</summary>
         public void setDaibunrui(DataTable dtSelectData)
         {
             txtDaibunrui.Text = dtSelectData.Rows[0]["大分類コード"].ToString();
@@ -473,11 +473,11 @@ namespace KATO.Form.M1010_Daibunrui
         }
 
 
-        /// <summary>
-        /// getTxtDaibunruiLeave
-        /// code入力箇所からフォーカスが外れた時
-        /// </summary>
-        public void getTxtDaibunruiLeave(object sender, EventArgs e)
+        ///<summary>
+        ///setTxtDaibunruiLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public void setTxtDaibunruiLeave(object sender, EventArgs e)
         {
             //フォーカス位置の確保
             Control cActive = this.ActiveControl;
@@ -552,19 +552,19 @@ namespace KATO.Form.M1010_Daibunrui
             }
         }
 
-        /// <summary>
-        /// closeDaibunruiList
-        /// DaibunruiListが閉じたらコード記入欄にフォーカス
-        /// </summary>
+        ///<summary>
+        ///closeDaibunruiList
+        ///DaibunruiListが閉じたらコード記入欄にフォーカス
+        ///</summary>
         public void closeDaibunruiList()
         {
             txtDaibunrui.Focus();
         }
 
-        /// <summary>
-        /// judtxtDaibunruiKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtDaibunruiKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtDaibunruiKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

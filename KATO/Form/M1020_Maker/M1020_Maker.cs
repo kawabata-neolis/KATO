@@ -29,10 +29,10 @@ namespace KATO.Form.M1020_Maker
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1020_Maker
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1020_Maker
+        ///フォームの初期設定
+        ///</summary>
         public M1020_Maker(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1020_Maker
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M_Maker_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M_Maker_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M_Maker_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -246,7 +246,7 @@ namespace KATO.Form.M1020_Maker
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtMakerKeyDown(sender, e);
+                    showMakerList();
                     break;
                 case Keys.F10:
                     break;
@@ -289,29 +289,25 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///txtMakerKeyDown
-        ///ファンクションキー入力判定
+        ///showMakerList
+        ///メーカーリストの表示
         ///</summary>
-        private void judtxtMakerKeyDown(object sender, KeyEventArgs e)
+        private void showMakerList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //メーカーリストのインスタンス生成
+            MakerList makerlist = new MakerList(this);
+            try
             {
-                //メーカーリストのインスタンス生成
-                MakerList makerlist = new MakerList(this);
-                try
-                {
-                    //メーカーリストの表示、画面IDを渡す
-                    makerlist.StartPosition = FormStartPosition.Manual;
-                    makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
-                    makerlist.Show();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                //メーカーリストの表示、画面IDを渡す
+                makerlist.StartPosition = FormStartPosition.Manual;
+                makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
+                makerlist.Show();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
 
@@ -407,7 +403,7 @@ namespace KATO.Form.M1020_Maker
             try
             {
                 //検索
-                dtSetCd = makerB.updTxtMakerTextLeave(txtMaker.Text);
+                dtSetCd = makerB.getTxtMakerTextLeave(txtMaker.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -459,10 +455,10 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///updTxtMakerTextLeave
+        ///setTxtMakerTextLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtMakerTextLeave(object sender, EventArgs e)
+        public void setTxtMakerTextLeave(object sender, EventArgs e)
         {
             //フォーカス位置の確保
             Control cActive = this.ActiveControl;
@@ -508,7 +504,7 @@ namespace KATO.Form.M1020_Maker
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = makerB.updTxtMakerTextLeave(txtMaker.Text);
+                dtSetCd = makerB.getTxtMakerTextLeave(txtMaker.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -529,12 +525,12 @@ namespace KATO.Form.M1020_Maker
                 return;
             }
         }
-        
+
         ///<summary>
-        ///setMakerListClose
+        ///closeMakerList
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setMakerListClose()
+        public void closeMakerList()
         {
             txtMaker.Focus();
         }

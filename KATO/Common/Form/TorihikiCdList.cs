@@ -48,10 +48,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// TorihikiCdList
-        /// フォームの初期設定(通常テキストボックス)
-        /// </summary>
+        ///<summary>
+        ///TorihikiCdList
+        ///フォームの初期設定(通常テキストボックス)
+        ///</summary>
         public TorihikiCdList(Control c)
         {
             //画面データが解放されていた時の対策
@@ -75,10 +75,10 @@ namespace KATO.Common.Form
             radAgyo.Checked = true;
         }
 
-        /// <summary>
-        /// TorihikiCdList_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///TorihikiCdList_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void TorihikiCdList_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -90,25 +90,25 @@ namespace KATO.Common.Form
             this.btnF12.Text = "F12:戻る";
             this.btnF11.Text = "F11:検索";
 
-            SetUpGrid();
+            setupGrid();
         }
 
         ///<summary>
         ///SetUpGrid
         ///データグリッドビューの準備
         ///</summary>
-        private void SetUpGrid()
+        private void setupGrid()
         {
             //列自動生成禁止
             gridTorihiki.AutoGenerateColumns = false;
 
-            //データをバインド
+            //カラム情報の設定
             DataGridViewTextBoxColumn Cd = new DataGridViewTextBoxColumn();
             Cd.DataPropertyName = "コード";
             Cd.Name = "コード";
             Cd.HeaderText = "コード";
 
-            //バインドしたデータを追加
+            //カラム情報を追加
             gridTorihiki.Columns.Add(Cd);
 
             //個々の幅、文章の寄せ
@@ -179,10 +179,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// judGridToriKeyDown
+        ///<summary>
+        ///judGridToriKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        /// </summary>
+        ///</summary>
         private void judGridToriKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -262,8 +262,8 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                torihikilistB.setSelectItem(intFrmKind, strSelectId);
-                setEndAction(lstSelectID);
+                torihikilistB.getSelectItem(intFrmKind, strSelectId);
+                EndAction(lstSelectID);
             }
             catch (Exception ex)
             {
@@ -288,14 +288,14 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            setEndAction(lstString);
+            EndAction(lstString);
         }
 
         ///<summary>
-        ///setEndAction
+        ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction(List<string> lstSelectCd)
+        private void EndAction(List<string> lstSelectCd)
         {
             this.Close();
 
@@ -304,7 +304,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                torihikilistB.setEndAction(intFrmKind);
+                torihikilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -345,7 +345,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTorihiki.DataSource = torihikilistB.setKensaku(lstBoolean);
+                gridTorihiki.DataSource = torihikilistB.getKensaku(lstBoolean);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTorihiki.RowCount.ToString() + "件)";
@@ -364,19 +364,19 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// gridTorihiki_DoubleClick
-        /// データグリッドビュー内のデータをダブルクリックしたとき
-        /// </summary>
+        ///<summary>
+        ///gridTorihiki_DoubleClick
+        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///</summary>
         private void gridTorihiki_DoubleClick(object sender, EventArgs e)
         {
             setSelectItem();
         }
 
-        /// <summary>
-        /// CreateParams
-        // タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
-        /// </summary>
+        ///<summary>
+        ///CreateParams
+        ///タイトルバーの閉じるボタン、コントロールボックスの「閉じる」、Alt + F4 を無効
+        ///</summary>
         protected override CreateParams CreateParams
         {
             [SecurityPermission(SecurityAction.Demand,
