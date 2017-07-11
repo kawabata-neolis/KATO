@@ -29,10 +29,10 @@ namespace KATO.Form.M1130_Shohizeiritsu
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1130_Shohizeiritu
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1130_Shohizeiritu
+        ///フォームの初期設定
+        ///</summary>
         public M1130_Shohizeiritsu(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1130_Shohizeiritsu
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1130_Shohizeiritsu_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1130_Shohizeiritsu_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1130_Shohizeiritsu_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -246,7 +246,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    txtShohizeiKeyDown(sender, e);
+                    showShohizeiList();
                     break;
                 case Keys.F10:
                     break;
@@ -288,29 +288,25 @@ namespace KATO.Form.M1130_Shohizeiritsu
         }
 
         ///<summary>
-        ///txtShohizeiKeyDown
+        ///showShohizeiList
         /// コード入力項目でのキー入力判定
         ///</summary>
-        private void txtShohizeiKeyDown(object sender, KeyEventArgs e)
+        private void showShohizeiList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //担当者リストのインスタンス生成
+            ShohizeiritsuList shohizeiritsulist = new ShohizeiritsuList(this);
+            try
             {
-                //担当者リストのインスタンス生成
-                ShohizeiritsuList shohizeiritsulist = new ShohizeiritsuList(this);
-                try
-                {
-                    //担当者区分リストの表示、画面IDを渡す
-                    shohizeiritsulist.StartPosition = FormStartPosition.Manual;
-                    shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITSU;
-                    shohizeiritsulist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                //担当者区分リストの表示、画面IDを渡す
+                shohizeiritsulist.StartPosition = FormStartPosition.Manual;
+                shohizeiritsulist.intFrmKind = CommonTeisu.FRM_SHOHIZEIRITSU;
+                shohizeiritsulist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
 
@@ -412,7 +408,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = shohizeiritsuB.updTxtShohizeiLeave(txtTekiyoYMD.Text);
+                dtSetCd = shohizeiritsuB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -491,7 +487,7 @@ namespace KATO.Form.M1130_Shohizeiritsu
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = shohizeirituB.updTxtShohizeiLeave(txtTekiyoYMD.Text);
+                dtSetCd = shohizeirituB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)

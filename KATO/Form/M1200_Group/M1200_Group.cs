@@ -246,7 +246,7 @@ namespace KATO.Form.M1200_Group
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    txtGroupKeyDown(sender, e);
+                    showGroupList();
                     break;
                 case Keys.F10:
                     break;
@@ -288,32 +288,28 @@ namespace KATO.Form.M1200_Group
         }
 
         ///<summary>
-        ///txtShohizeiKeyDown
+        ///showGroupList
         ///コード入力項目でのキー入力判定
         ///</summary>
-        private void txtGroupKeyDown(object sender, KeyEventArgs e)
+        private void showGroupList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //担当者リストのインスタンス生成
+            GroupCdList groupcdlist = new GroupCdList(this);
+            try
             {
-                //担当者リストのインスタンス生成
-                GroupCdList groupcdlist = new GroupCdList(this);
-                try
-                {
-                    //担当者区分リストの表示、画面IDを渡す
-                    groupcdlist.StartPosition = FormStartPosition.Manual;
-                    groupcdlist.intFrmKind = CommonTeisu.FRM_GROUP;
-                    groupcdlist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //担当者区分リストの表示、画面IDを渡す
+                groupcdlist.StartPosition = FormStartPosition.Manual;
+                groupcdlist.intFrmKind = CommonTeisu.FRM_GROUP;
+                groupcdlist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

@@ -247,7 +247,7 @@ namespace KATO.Form.M1120_Tanaban
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    txtTanabanKeyDown(sender, e);
+                    showTanabanList();
                     break;
                 case Keys.F10:
                     break;
@@ -289,31 +289,27 @@ namespace KATO.Form.M1120_Tanaban
         }
 
         ///<summary>
-        ///txtTanabanKeyDown
+        ///showTanabanList
         ///コード入力項目でのキー入力判定
         ///</summary>
-        private void txtTanabanKeyDown(object sender, KeyEventArgs e)
+        private void showTanabanList()
         {
-            //F9キーが押された場合
-            if (e.KeyCode == Keys.F9)
+            //担当者リストのインスタンス生成
+            TanabanList tanabanlist = new TanabanList(this);
+            try
             {
-                //担当者リストのインスタンス生成
-                TanabanList tanabanlist = new TanabanList(this);
-                try
-                {
-                    //担当者区分リストの表示、画面IDを渡す
-                    tanabanlist.intFrmKind = CommonTeisu.FRM_TANABAN;
-                    tanabanlist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //担当者区分リストの表示、画面IDを渡す
+                tanabanlist.intFrmKind = CommonTeisu.FRM_TANABAN;
+                tanabanlist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -409,7 +405,7 @@ namespace KATO.Form.M1120_Tanaban
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tanabanB.updTxtTanabanCdLeave(txtTanabanCd.Text);
+                dtSetCd = tanabanB.getTxtTanabanCdLeave(txtTanabanCd.Text);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -503,7 +499,7 @@ namespace KATO.Form.M1120_Tanaban
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = tanabanB.updTxtTanabanCdLeave(txtTanabanCd.Text);
+                dtSetCd = tanabanB.getTxtTanabanCdLeave(txtTanabanCd.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -531,10 +527,10 @@ namespace KATO.Form.M1120_Tanaban
             txtTanabanCd.Focus();
         }
 
-        /// <summary>
-        /// judtxtTanabanKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtTanabanKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtTanabanKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

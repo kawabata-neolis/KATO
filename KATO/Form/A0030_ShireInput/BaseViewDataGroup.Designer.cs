@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.labelSet_Eigyosho1 = new KATO.Common.Ctl.LabelSet_Eigyosho();
+            this.labelSet_Eigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.txtTokuisaki = new KATO.Common.Ctl.BaseTextMoney();
             this.txtMasterTanka = new KATO.Common.Ctl.BaseTextMoney();
             this.txtChokinTanka = new KATO.Common.Ctl.BaseTextMoney();
@@ -46,23 +46,23 @@
             this.txtNo = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
-            // labelSet_Eigyosho1
+            // labelSet_Eigyosho
             // 
-            this.labelSet_Eigyosho1.AppendLabelSize = 0;
-            this.labelSet_Eigyosho1.AppendLabelText = "";
-            this.labelSet_Eigyosho1.CodeTxtSize = 40;
-            this.labelSet_Eigyosho1.CodeTxtText = "";
-            this.labelSet_Eigyosho1.LabelName = "倉庫番号";
-            this.labelSet_Eigyosho1.Location = new System.Drawing.Point(140, 46);
-            this.labelSet_Eigyosho1.Name = "labelSet_Eigyosho1";
-            this.labelSet_Eigyosho1.ShowAppendFlg = false;
-            this.labelSet_Eigyosho1.Size = new System.Drawing.Size(216, 22);
-            this.labelSet_Eigyosho1.SpaceCodeValue = 4;
-            this.labelSet_Eigyosho1.SpaceNameCode = 4;
-            this.labelSet_Eigyosho1.SpaceValueAppend = 4;
-            this.labelSet_Eigyosho1.TabIndex = 4;
-            this.labelSet_Eigyosho1.ValueLabelSize = 80;
-            this.labelSet_Eigyosho1.ValueLabelText = "";
+            this.labelSet_Eigyosho.AppendLabelSize = 0;
+            this.labelSet_Eigyosho.AppendLabelText = "";
+            this.labelSet_Eigyosho.CodeTxtSize = 40;
+            this.labelSet_Eigyosho.CodeTxtText = "";
+            this.labelSet_Eigyosho.LabelName = "倉庫番号";
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(140, 46);
+            this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
+            this.labelSet_Eigyosho.ShowAppendFlg = false;
+            this.labelSet_Eigyosho.Size = new System.Drawing.Size(216, 22);
+            this.labelSet_Eigyosho.SpaceCodeValue = 4;
+            this.labelSet_Eigyosho.SpaceNameCode = 4;
+            this.labelSet_Eigyosho.SpaceValueAppend = 4;
+            this.labelSet_Eigyosho.TabIndex = 7;
+            this.labelSet_Eigyosho.ValueLabelSize = 80;
+            this.labelSet_Eigyosho.ValueLabelText = "";
             // 
             // txtTokuisaki
             // 
@@ -76,7 +76,9 @@
             this.txtTokuisaki.MaxLength = 0;
             this.txtTokuisaki.Name = "txtTokuisaki";
             this.txtTokuisaki.Size = new System.Drawing.Size(380, 22);
-            this.txtTokuisaki.TabIndex = 3;
+            this.txtTokuisaki.TabIndex = 12;
+            this.txtTokuisaki.TabStop = false;
+            this.txtTokuisaki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtMasterTanka
             // 
@@ -92,7 +94,7 @@
             this.txtMasterTanka.Name = "txtMasterTanka";
             this.txtMasterTanka.ReadOnly = true;
             this.txtMasterTanka.Size = new System.Drawing.Size(150, 22);
-            this.txtMasterTanka.TabIndex = 3;
+            this.txtMasterTanka.TabIndex = 11;
             this.txtMasterTanka.TabStop = false;
             this.txtMasterTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -110,7 +112,7 @@
             this.txtChokinTanka.Name = "txtChokinTanka";
             this.txtChokinTanka.ReadOnly = true;
             this.txtChokinTanka.Size = new System.Drawing.Size(150, 22);
-            this.txtChokinTanka.TabIndex = 3;
+            this.txtChokinTanka.TabIndex = 10;
             this.txtChokinTanka.TabStop = false;
             this.txtChokinTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -128,7 +130,7 @@
             this.txtShireritsu.Name = "txtShireritsu";
             this.txtShireritsu.ReadOnly = true;
             this.txtShireritsu.Size = new System.Drawing.Size(36, 22);
-            this.txtShireritsu.TabIndex = 3;
+            this.txtShireritsu.TabIndex = 9;
             this.txtShireritsu.TabStop = false;
             this.txtShireritsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -158,7 +160,7 @@
             this.txtTeka.Name = "txtTeka";
             this.txtTeka.ReadOnly = true;
             this.txtTeka.Size = new System.Drawing.Size(151, 22);
-            this.txtTeka.TabIndex = 3;
+            this.txtTeka.TabIndex = 8;
             this.txtTeka.TabStop = false;
             this.txtTeka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -181,7 +183,7 @@
             this.txtBiko.Location = new System.Drawing.Point(1004, 13);
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(380, 22);
-            this.txtBiko.TabIndex = 0;
+            this.txtBiko.TabIndex = 6;
             // 
             // txtKin
             // 
@@ -192,7 +194,7 @@
             this.txtKin.Name = "txtKin";
             this.txtKin.ReadOnly = true;
             this.txtKin.Size = new System.Drawing.Size(150, 22);
-            this.txtKin.TabIndex = 0;
+            this.txtKin.TabIndex = 5;
             this.txtKin.TabStop = false;
             // 
             // txtTanka
@@ -202,7 +204,7 @@
             this.txtTanka.Location = new System.Drawing.Point(693, 13);
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(150, 22);
-            this.txtTanka.TabIndex = 0;
+            this.txtTanka.TabIndex = 4;
             // 
             // txtSu
             // 
@@ -211,7 +213,7 @@
             this.txtSu.Location = new System.Drawing.Point(575, 13);
             this.txtSu.Name = "txtSu";
             this.txtSu.Size = new System.Drawing.Size(113, 22);
-            this.txtSu.TabIndex = 0;
+            this.txtSu.TabIndex = 3;
             // 
             // txtHin
             // 
@@ -222,8 +224,7 @@
             this.txtHin.Name = "txtHin";
             this.txtHin.ReadOnly = true;
             this.txtHin.Size = new System.Drawing.Size(428, 22);
-            this.txtHin.TabIndex = 0;
-            this.txtHin.TabStop = false;
+            this.txtHin.TabIndex = 2;
             // 
             // txtChumonNo
             // 
@@ -232,7 +233,7 @@
             this.txtChumonNo.Location = new System.Drawing.Point(38, 13);
             this.txtChumonNo.Name = "txtChumonNo";
             this.txtChumonNo.Size = new System.Drawing.Size(100, 22);
-            this.txtChumonNo.TabIndex = 0;
+            this.txtChumonNo.TabIndex = 1;
             // 
             // txtNo
             // 
@@ -251,7 +252,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.labelSet_Eigyosho1);
+            this.Controls.Add(this.labelSet_Eigyosho);
             this.Controls.Add(this.txtTokuisaki);
             this.Controls.Add(this.txtMasterTanka);
             this.Controls.Add(this.txtChokinTanka);
@@ -289,6 +290,6 @@
         private Common.Ctl.BaseTextMoney txtChokinTanka;
         private Common.Ctl.BaseTextMoney txtMasterTanka;
         private Common.Ctl.BaseTextMoney txtTokuisaki;
-        private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho1;
+        private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho;
     }
 }

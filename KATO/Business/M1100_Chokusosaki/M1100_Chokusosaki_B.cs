@@ -117,10 +117,10 @@ namespace KATO.Business.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///updTxtChokusoLeave
+        ///setTxtChokusoLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtChokusoLeave(List<string> lstString)
+        public DataTable setTxtChokusoLeave(List<string> lstString)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstStringSQL = new List<string>();

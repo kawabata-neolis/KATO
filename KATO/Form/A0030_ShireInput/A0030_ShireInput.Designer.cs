@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtYubinKensaku = new KATO.Common.Ctl.BaseText();
+            this.txtYubinView = new KATO.Common.Ctl.BaseText();
             this.lblYubinKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtlJusho1Kensaku = new KATO.Common.Ctl.BaseText();
+            this.txtJusho1View = new KATO.Common.Ctl.BaseText();
             this.lblJusho1Kensaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtlJusho2Kensaku = new KATO.Common.Ctl.BaseText();
+            this.txtJusho2View = new KATO.Common.Ctl.BaseText();
             this.lblJusho2Kensaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtShiresakiKensaku = new KATO.Common.Ctl.BaseText();
+            this.txtShireNameView = new KATO.Common.Ctl.BaseText();
             this.lbShiresakiKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Torihikikbn = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.txtCD = new KATO.Common.Ctl.BaseText();
             this.txtDenpyoNo = new KATO.Common.Ctl.BaseText();
-            this.baseCalendar = new KATO.Common.Ctl.BaseCalendar();
+            this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
             this.lblTorihikikbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblTantosha = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -63,15 +63,6 @@
             this.panelKensaku = new System.Windows.Forms.Panel();
             this.lblTekiyo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTekiyo = new KATO.Common.Ctl.BaseText();
-            this.panelInput = new System.Windows.Forms.Panel();
-            this.txtShireNameInput = new KATO.Common.Ctl.BaseText();
-            this.txtYubinInput = new KATO.Common.Ctl.BaseText();
-            this.lblYubinInput = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtJusho1Input = new KATO.Common.Ctl.BaseText();
-            this.lblJusho1Input = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtJusho2Input = new KATO.Common.Ctl.BaseText();
-            this.lblJusho2Input = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblShireNameInput = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGokei = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShohizei = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSogokei = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -105,45 +96,44 @@
             this.baseLabel25 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel26 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel27 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseViewDataGroup1 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
-            this.baseViewDataGroup2 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.gbData1 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.gbData2 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
             this.lblTeka = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShireritsu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel10 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel9 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseViewDataGroup3 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.gbData3 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
             this.baseLabel15 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel14 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel13 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel12 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel17 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel16 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseViewDataGroup4 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.gbData4 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
             this.baseLabel24 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel23 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel22 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel21 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel20 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel19 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseViewDataGroup5 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.gbData5 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
             this.panelView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelKensaku.SuspendLayout();
-            this.panelInput.SuspendLayout();
-            this.baseViewDataGroup3.SuspendLayout();
-            this.baseViewDataGroup4.SuspendLayout();
-            this.baseViewDataGroup5.SuspendLayout();
+            this.gbData3.SuspendLayout();
+            this.gbData4.SuspendLayout();
+            this.gbData5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtYubinKensaku
+            // txtYubinView
             // 
-            this.txtYubinKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYubinKensaku.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtYubinKensaku.Location = new System.Drawing.Point(124, 19);
-            this.txtYubinKensaku.MaxLength = 8;
-            this.txtYubinKensaku.Name = "txtYubinKensaku";
-            this.txtYubinKensaku.Size = new System.Drawing.Size(100, 22);
-            this.txtYubinKensaku.TabIndex = 1;
+            this.txtYubinView.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYubinView.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtYubinView.Location = new System.Drawing.Point(124, 19);
+            this.txtYubinView.MaxLength = 8;
+            this.txtYubinView.Name = "txtYubinView";
+            this.txtYubinView.Size = new System.Drawing.Size(100, 22);
+            this.txtYubinView.TabIndex = 9;
             // 
             // lblYubinKensaku
             // 
@@ -157,15 +147,15 @@
             this.lblYubinKensaku.Text = "郵便番号";
             this.lblYubinKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtlJusho1Kensaku
+            // txtJusho1View
             // 
-            this.txtlJusho1Kensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtlJusho1Kensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtlJusho1Kensaku.Location = new System.Drawing.Point(124, 49);
-            this.txtlJusho1Kensaku.MaxLength = 30;
-            this.txtlJusho1Kensaku.Name = "txtlJusho1Kensaku";
-            this.txtlJusho1Kensaku.Size = new System.Drawing.Size(250, 22);
-            this.txtlJusho1Kensaku.TabIndex = 2;
+            this.txtJusho1View.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho1View.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtJusho1View.Location = new System.Drawing.Point(124, 49);
+            this.txtJusho1View.MaxLength = 30;
+            this.txtJusho1View.Name = "txtJusho1View";
+            this.txtJusho1View.Size = new System.Drawing.Size(250, 22);
+            this.txtJusho1View.TabIndex = 10;
             // 
             // lblJusho1Kensaku
             // 
@@ -179,15 +169,15 @@
             this.lblJusho1Kensaku.Text = "住所１";
             this.lblJusho1Kensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtlJusho2Kensaku
+            // txtJusho2View
             // 
-            this.txtlJusho2Kensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtlJusho2Kensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtlJusho2Kensaku.Location = new System.Drawing.Point(124, 79);
-            this.txtlJusho2Kensaku.MaxLength = 30;
-            this.txtlJusho2Kensaku.Name = "txtlJusho2Kensaku";
-            this.txtlJusho2Kensaku.Size = new System.Drawing.Size(250, 22);
-            this.txtlJusho2Kensaku.TabIndex = 3;
+            this.txtJusho2View.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJusho2View.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtJusho2View.Location = new System.Drawing.Point(124, 79);
+            this.txtJusho2View.MaxLength = 30;
+            this.txtJusho2View.Name = "txtJusho2View";
+            this.txtJusho2View.Size = new System.Drawing.Size(250, 22);
+            this.txtJusho2View.TabIndex = 11;
             // 
             // lblJusho2Kensaku
             // 
@@ -201,15 +191,16 @@
             this.lblJusho2Kensaku.Text = "住所２";
             this.lblJusho2Kensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtShiresakiKensaku
+            // txtShireNameView
             // 
-            this.txtShiresakiKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShiresakiKensaku.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtShiresakiKensaku.Location = new System.Drawing.Point(124, 109);
-            this.txtShiresakiKensaku.MaxLength = 30;
-            this.txtShiresakiKensaku.Name = "txtShiresakiKensaku";
-            this.txtShiresakiKensaku.Size = new System.Drawing.Size(250, 22);
-            this.txtShiresakiKensaku.TabIndex = 4;
+            this.txtShireNameView.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShireNameView.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShireNameView.Location = new System.Drawing.Point(124, 109);
+            this.txtShireNameView.MaxLength = 30;
+            this.txtShireNameView.Name = "txtShireNameView";
+            this.txtShireNameView.Size = new System.Drawing.Size(250, 22);
+            this.txtShireNameView.TabIndex = 12;
+            this.txtShireNameView.TabStop = false;
             // 
             // lbShiresakiKensaku
             // 
@@ -237,7 +228,7 @@
             this.labelSet_Torihikikbn.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn.SpaceNameCode = 4;
             this.labelSet_Torihikikbn.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn.TabIndex = 4;
+            this.labelSet_Torihikikbn.TabIndex = 5;
             this.labelSet_Torihikikbn.ValueLabelSize = 100;
             this.labelSet_Torihikikbn.ValueLabelText = "";
             // 
@@ -255,7 +246,7 @@
             this.labelSet_Tantousha.SpaceCodeValue = 4;
             this.labelSet_Tantousha.SpaceNameCode = 4;
             this.labelSet_Tantousha.SpaceValueAppend = 4;
-            this.labelSet_Tantousha.TabIndex = 3;
+            this.labelSet_Tantousha.TabIndex = 4;
             this.labelSet_Tantousha.ValueLabelSize = 100;
             this.labelSet_Tantousha.ValueLabelText = "";
             // 
@@ -267,7 +258,7 @@
             this.txtCD.MaxLength = 4;
             this.txtCD.Name = "txtCD";
             this.txtCD.Size = new System.Drawing.Size(100, 22);
-            this.txtCD.TabIndex = 2;
+            this.txtCD.TabIndex = 3;
             // 
             // txtDenpyoNo
             // 
@@ -278,15 +269,18 @@
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoNo.TabIndex = 2;
+            this.txtDenpyoNo.TabStop = false;
+            this.txtDenpyoNo.Leave += new System.EventHandler(this.setDenpyo);
             // 
-            // baseCalendar
+            // txtYMD
             // 
-            this.baseCalendar.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseCalendar.Location = new System.Drawing.Point(7, 24);
-            this.baseCalendar.Name = "baseCalendar";
-            this.baseCalendar.Size = new System.Drawing.Size(100, 22);
-            this.baseCalendar.TabIndex = 1;
-            this.baseCalendar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYMD.Location = new System.Drawing.Point(7, 24);
+            this.txtYMD.MaxLength = 10;
+            this.txtYMD.Name = "txtYMD";
+            this.txtYMD.Size = new System.Drawing.Size(100, 22);
+            this.txtYMD.TabIndex = 1;
+            this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblTorihikikbn
             // 
@@ -519,11 +513,11 @@
             this.panelKensaku.Controls.Add(this.lblTantosha);
             this.panelKensaku.Controls.Add(this.lblTorihikikbn);
             this.panelKensaku.Controls.Add(this.txtDenpyoNo);
-            this.panelKensaku.Controls.Add(this.baseCalendar);
+            this.panelKensaku.Controls.Add(this.txtYMD);
             this.panelKensaku.Location = new System.Drawing.Point(736, 55);
             this.panelKensaku.Name = "panelKensaku";
             this.panelKensaku.Size = new System.Drawing.Size(659, 55);
-            this.panelKensaku.TabIndex = 96;
+            this.panelKensaku.TabIndex = 0;
             // 
             // lblTekiyo
             // 
@@ -544,111 +538,7 @@
             this.txtTekiyo.MaxLength = 30;
             this.txtTekiyo.Name = "txtTekiyo";
             this.txtTekiyo.Size = new System.Drawing.Size(250, 22);
-            this.txtTekiyo.TabIndex = 103;
-            // 
-            // panelInput
-            // 
-            this.panelInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelInput.Controls.Add(this.txtShireNameInput);
-            this.panelInput.Controls.Add(this.txtYubinInput);
-            this.panelInput.Controls.Add(this.lblYubinInput);
-            this.panelInput.Controls.Add(this.txtJusho1Input);
-            this.panelInput.Controls.Add(this.lblJusho1Input);
-            this.panelInput.Controls.Add(this.txtJusho2Input);
-            this.panelInput.Controls.Add(this.lblJusho2Input);
-            this.panelInput.Controls.Add(this.lblShireNameInput);
-            this.panelInput.Location = new System.Drawing.Point(24, 637);
-            this.panelInput.Name = "panelInput";
-            this.panelInput.Size = new System.Drawing.Size(374, 134);
-            this.panelInput.TabIndex = 104;
-            // 
-            // txtShireNameInput
-            // 
-            this.txtShireNameInput.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShireNameInput.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtShireNameInput.Location = new System.Drawing.Point(102, 101);
-            this.txtShireNameInput.MaxLength = 30;
-            this.txtShireNameInput.Name = "txtShireNameInput";
-            this.txtShireNameInput.Size = new System.Drawing.Size(250, 22);
-            this.txtShireNameInput.TabIndex = 87;
-            // 
-            // txtYubinInput
-            // 
-            this.txtYubinInput.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYubinInput.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtYubinInput.Location = new System.Drawing.Point(102, 11);
-            this.txtYubinInput.MaxLength = 8;
-            this.txtYubinInput.Name = "txtYubinInput";
-            this.txtYubinInput.Size = new System.Drawing.Size(100, 22);
-            this.txtYubinInput.TabIndex = 87;
-            // 
-            // lblYubinInput
-            // 
-            this.lblYubinInput.AutoSize = true;
-            this.lblYubinInput.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblYubinInput.Location = new System.Drawing.Point(18, 14);
-            this.lblYubinInput.Name = "lblYubinInput";
-            this.lblYubinInput.Size = new System.Drawing.Size(71, 15);
-            this.lblYubinInput.strToolTip = null;
-            this.lblYubinInput.TabIndex = 88;
-            this.lblYubinInput.Text = "郵便番号";
-            this.lblYubinInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtJusho1Input
-            // 
-            this.txtJusho1Input.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtJusho1Input.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho1Input.Location = new System.Drawing.Point(102, 41);
-            this.txtJusho1Input.MaxLength = 30;
-            this.txtJusho1Input.Name = "txtJusho1Input";
-            this.txtJusho1Input.Size = new System.Drawing.Size(250, 22);
-            this.txtJusho1Input.TabIndex = 87;
-            // 
-            // lblJusho1Input
-            // 
-            this.lblJusho1Input.AutoSize = true;
-            this.lblJusho1Input.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJusho1Input.Location = new System.Drawing.Point(18, 44);
-            this.lblJusho1Input.Name = "lblJusho1Input";
-            this.lblJusho1Input.Size = new System.Drawing.Size(55, 15);
-            this.lblJusho1Input.strToolTip = null;
-            this.lblJusho1Input.TabIndex = 88;
-            this.lblJusho1Input.Text = "住所１";
-            this.lblJusho1Input.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtJusho2Input
-            // 
-            this.txtJusho2Input.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtJusho2Input.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtJusho2Input.Location = new System.Drawing.Point(102, 71);
-            this.txtJusho2Input.MaxLength = 30;
-            this.txtJusho2Input.Name = "txtJusho2Input";
-            this.txtJusho2Input.Size = new System.Drawing.Size(250, 22);
-            this.txtJusho2Input.TabIndex = 87;
-            // 
-            // lblJusho2Input
-            // 
-            this.lblJusho2Input.AutoSize = true;
-            this.lblJusho2Input.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJusho2Input.Location = new System.Drawing.Point(18, 74);
-            this.lblJusho2Input.Name = "lblJusho2Input";
-            this.lblJusho2Input.Size = new System.Drawing.Size(55, 15);
-            this.lblJusho2Input.strToolTip = null;
-            this.lblJusho2Input.TabIndex = 88;
-            this.lblJusho2Input.Text = "住所２";
-            this.lblJusho2Input.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblShireNameInput
-            // 
-            this.lblShireNameInput.AutoSize = true;
-            this.lblShireNameInput.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShireNameInput.Location = new System.Drawing.Point(18, 104);
-            this.lblShireNameInput.Name = "lblShireNameInput";
-            this.lblShireNameInput.Size = new System.Drawing.Size(71, 15);
-            this.lblShireNameInput.strToolTip = null;
-            this.lblShireNameInput.TabIndex = 88;
-            this.lblShireNameInput.Text = "仕入先名";
-            this.lblShireNameInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtTekiyo.TabIndex = 6;
             // 
             // lblGokei
             // 
@@ -713,6 +603,7 @@
             this.txtGokei.ReadOnly = true;
             this.txtGokei.Size = new System.Drawing.Size(133, 22);
             this.txtGokei.TabIndex = 106;
+            this.txtGokei.TabStop = false;
             this.txtGokei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtShohizei
@@ -730,6 +621,7 @@
             this.txtShohizei.ReadOnly = true;
             this.txtShohizei.Size = new System.Drawing.Size(133, 22);
             this.txtShohizei.TabIndex = 106;
+            this.txtShohizei.TabStop = false;
             this.txtShohizei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtSogokei
@@ -747,6 +639,7 @@
             this.txtSogokei.ReadOnly = true;
             this.txtSogokei.Size = new System.Drawing.Size(133, 22);
             this.txtSogokei.TabIndex = 106;
+            this.txtSogokei.TabStop = false;
             this.txtSogokei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtUnchin
@@ -763,7 +656,7 @@
             this.txtUnchin.Name = "txtUnchin";
             this.txtUnchin.ReadOnly = true;
             this.txtUnchin.Size = new System.Drawing.Size(133, 22);
-            this.txtUnchin.TabIndex = 106;
+            this.txtUnchin.TabIndex = 8;
             this.txtUnchin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseTextMoney1
@@ -779,6 +672,7 @@
             this.baseTextMoney1.Name = "baseTextMoney1";
             this.baseTextMoney1.Size = new System.Drawing.Size(133, 22);
             this.baseTextMoney1.TabIndex = 106;
+            this.baseTextMoney1.TabStop = false;
             this.baseTextMoney1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseTextMoney2
@@ -794,6 +688,7 @@
             this.baseTextMoney2.Name = "baseTextMoney2";
             this.baseTextMoney2.Size = new System.Drawing.Size(133, 22);
             this.baseTextMoney2.TabIndex = 106;
+            this.baseTextMoney2.TabStop = false;
             this.baseTextMoney2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseTextMoney3
@@ -809,6 +704,7 @@
             this.baseTextMoney3.Name = "baseTextMoney3";
             this.baseTextMoney3.Size = new System.Drawing.Size(133, 22);
             this.baseTextMoney3.TabIndex = 106;
+            this.baseTextMoney3.TabStop = false;
             this.baseTextMoney3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseTextMoney4
@@ -824,6 +720,7 @@
             this.baseTextMoney4.Name = "baseTextMoney4";
             this.baseTextMoney4.Size = new System.Drawing.Size(133, 22);
             this.baseTextMoney4.TabIndex = 106;
+            this.baseTextMoney4.TabStop = false;
             this.baseTextMoney4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseTextMoney5
@@ -839,6 +736,7 @@
             this.baseTextMoney5.Name = "baseTextMoney5";
             this.baseTextMoney5.Size = new System.Drawing.Size(133, 22);
             this.baseTextMoney5.TabIndex = 106;
+            this.baseTextMoney5.TabStop = false;
             this.baseTextMoney5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTanka1
@@ -971,6 +869,7 @@
             this.txtJuchu1.ReadOnly = true;
             this.txtJuchu1.Size = new System.Drawing.Size(100, 22);
             this.txtJuchu1.TabIndex = 107;
+            this.txtJuchu1.TabStop = false;
             // 
             // txtJuchu2
             // 
@@ -982,6 +881,7 @@
             this.txtJuchu2.ReadOnly = true;
             this.txtJuchu2.Size = new System.Drawing.Size(100, 22);
             this.txtJuchu2.TabIndex = 107;
+            this.txtJuchu2.TabStop = false;
             // 
             // txtJuchu3
             // 
@@ -993,6 +893,7 @@
             this.txtJuchu3.ReadOnly = true;
             this.txtJuchu3.Size = new System.Drawing.Size(100, 22);
             this.txtJuchu3.TabIndex = 107;
+            this.txtJuchu3.TabStop = false;
             // 
             // txtJuchu4
             // 
@@ -1004,6 +905,7 @@
             this.txtJuchu4.ReadOnly = true;
             this.txtJuchu4.Size = new System.Drawing.Size(100, 22);
             this.txtJuchu4.TabIndex = 107;
+            this.txtJuchu4.TabStop = false;
             // 
             // txtJuchu5
             // 
@@ -1015,6 +917,7 @@
             this.txtJuchu5.ReadOnly = true;
             this.txtJuchu5.Size = new System.Drawing.Size(100, 22);
             this.txtJuchu5.TabIndex = 107;
+            this.txtJuchu5.TabStop = false;
             // 
             // baseLabel11
             // 
@@ -1076,21 +979,21 @@
             this.baseLabel27.Text = "倉庫番号";
             this.baseLabel27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseViewDataGroup1
+            // gbData1
             // 
-            this.baseViewDataGroup1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.baseViewDataGroup1.Location = new System.Drawing.Point(12, 169);
-            this.baseViewDataGroup1.Name = "baseViewDataGroup1";
-            this.baseViewDataGroup1.Size = new System.Drawing.Size(1395, 80);
-            this.baseViewDataGroup1.TabIndex = 108;
+            this.gbData1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gbData1.Location = new System.Drawing.Point(12, 169);
+            this.gbData1.Name = "gbData1";
+            this.gbData1.Size = new System.Drawing.Size(1395, 80);
+            this.gbData1.TabIndex = 1;
             // 
-            // baseViewDataGroup2
+            // gbData2
             // 
-            this.baseViewDataGroup2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.baseViewDataGroup2.Location = new System.Drawing.Point(12, 248);
-            this.baseViewDataGroup2.Name = "baseViewDataGroup2";
-            this.baseViewDataGroup2.Size = new System.Drawing.Size(1395, 80);
-            this.baseViewDataGroup2.TabIndex = 109;
+            this.gbData2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gbData2.Location = new System.Drawing.Point(12, 248);
+            this.gbData2.Name = "gbData2";
+            this.gbData2.Size = new System.Drawing.Size(1395, 80);
+            this.gbData2.TabIndex = 2;
             // 
             // lblTeka
             // 
@@ -1140,17 +1043,17 @@
             this.baseLabel9.Text = "仕入率";
             this.baseLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseViewDataGroup3
+            // gbData3
             // 
-            this.baseViewDataGroup3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.baseViewDataGroup3.Controls.Add(this.baseLabel9);
-            this.baseViewDataGroup3.Controls.Add(this.baseLabel10);
-            this.baseViewDataGroup3.Controls.Add(this.lblShireritsu);
-            this.baseViewDataGroup3.Controls.Add(this.lblTeka);
-            this.baseViewDataGroup3.Location = new System.Drawing.Point(12, 327);
-            this.baseViewDataGroup3.Name = "baseViewDataGroup3";
-            this.baseViewDataGroup3.Size = new System.Drawing.Size(1395, 80);
-            this.baseViewDataGroup3.TabIndex = 109;
+            this.gbData3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gbData3.Controls.Add(this.baseLabel9);
+            this.gbData3.Controls.Add(this.baseLabel10);
+            this.gbData3.Controls.Add(this.lblShireritsu);
+            this.gbData3.Controls.Add(this.lblTeka);
+            this.gbData3.Location = new System.Drawing.Point(12, 327);
+            this.gbData3.Name = "gbData3";
+            this.gbData3.Size = new System.Drawing.Size(1395, 80);
+            this.gbData3.TabIndex = 3;
             // 
             // baseLabel15
             // 
@@ -1224,19 +1127,19 @@
             this.baseLabel16.Text = "仕入率";
             this.baseLabel16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseViewDataGroup4
+            // gbData4
             // 
-            this.baseViewDataGroup4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel16);
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel17);
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel12);
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel13);
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel14);
-            this.baseViewDataGroup4.Controls.Add(this.baseLabel15);
-            this.baseViewDataGroup4.Location = new System.Drawing.Point(12, 406);
-            this.baseViewDataGroup4.Name = "baseViewDataGroup4";
-            this.baseViewDataGroup4.Size = new System.Drawing.Size(1395, 80);
-            this.baseViewDataGroup4.TabIndex = 109;
+            this.gbData4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gbData4.Controls.Add(this.baseLabel16);
+            this.gbData4.Controls.Add(this.baseLabel17);
+            this.gbData4.Controls.Add(this.baseLabel12);
+            this.gbData4.Controls.Add(this.baseLabel13);
+            this.gbData4.Controls.Add(this.baseLabel14);
+            this.gbData4.Controls.Add(this.baseLabel15);
+            this.gbData4.Location = new System.Drawing.Point(12, 406);
+            this.gbData4.Name = "gbData4";
+            this.gbData4.Size = new System.Drawing.Size(1395, 80);
+            this.gbData4.TabIndex = 4;
             // 
             // baseLabel24
             // 
@@ -1310,30 +1213,30 @@
             this.baseLabel19.Text = "仕入率";
             this.baseLabel19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseViewDataGroup5
+            // gbData5
             // 
-            this.baseViewDataGroup5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel19);
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel20);
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel21);
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel22);
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel23);
-            this.baseViewDataGroup5.Controls.Add(this.baseLabel24);
-            this.baseViewDataGroup5.Location = new System.Drawing.Point(12, 485);
-            this.baseViewDataGroup5.Name = "baseViewDataGroup5";
-            this.baseViewDataGroup5.Size = new System.Drawing.Size(1395, 80);
-            this.baseViewDataGroup5.TabIndex = 109;
+            this.gbData5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gbData5.Controls.Add(this.baseLabel19);
+            this.gbData5.Controls.Add(this.baseLabel20);
+            this.gbData5.Controls.Add(this.baseLabel21);
+            this.gbData5.Controls.Add(this.baseLabel22);
+            this.gbData5.Controls.Add(this.baseLabel23);
+            this.gbData5.Controls.Add(this.baseLabel24);
+            this.gbData5.Location = new System.Drawing.Point(12, 485);
+            this.gbData5.Name = "gbData5";
+            this.gbData5.Size = new System.Drawing.Size(1395, 80);
+            this.gbData5.TabIndex = 5;
             // 
             // A0030_ShireInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
-            this.Controls.Add(this.baseViewDataGroup5);
-            this.Controls.Add(this.baseViewDataGroup4);
-            this.Controls.Add(this.baseViewDataGroup3);
-            this.Controls.Add(this.baseViewDataGroup2);
-            this.Controls.Add(this.baseViewDataGroup1);
+            this.Controls.Add(this.gbData5);
+            this.Controls.Add(this.gbData4);
+            this.Controls.Add(this.gbData3);
+            this.Controls.Add(this.gbData2);
+            this.Controls.Add(this.gbData1);
             this.Controls.Add(this.txtJuchu5);
             this.Controls.Add(this.txtJuchu4);
             this.Controls.Add(this.txtJuchu3);
@@ -1362,40 +1265,38 @@
             this.Controls.Add(this.txtTanka1);
             this.Controls.Add(this.lblShohizei);
             this.Controls.Add(this.lblGokei);
-            this.Controls.Add(this.panelInput);
             this.Controls.Add(this.txtTekiyo);
             this.Controls.Add(this.lblTekiyo);
             this.Controls.Add(this.panelKensaku);
             this.Controls.Add(this.panelView);
             this.Controls.Add(this.lbShiresakiKensaku);
-            this.Controls.Add(this.txtShiresakiKensaku);
+            this.Controls.Add(this.txtShireNameView);
             this.Controls.Add(this.lblJusho2Kensaku);
-            this.Controls.Add(this.txtlJusho2Kensaku);
+            this.Controls.Add(this.txtJusho2View);
             this.Controls.Add(this.lblJusho1Kensaku);
-            this.Controls.Add(this.txtlJusho1Kensaku);
+            this.Controls.Add(this.txtJusho1View);
             this.Controls.Add(this.lblEigyouCd);
             this.Controls.Add(this.lblYubinKensaku);
             this.Controls.Add(this.txtEigyouCd);
-            this.Controls.Add(this.txtYubinKensaku);
+            this.Controls.Add(this.txtYubinView);
             this.Name = "A0030_ShireInput";
             this.Text = "A0030_ShireInput";
             this.Load += new System.EventHandler(this.A0030_ShireInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0030_ShireInput_KeyDown);
-            this.Controls.SetChildIndex(this.txtYubinKensaku, 0);
+            this.Controls.SetChildIndex(this.txtYubinView, 0);
             this.Controls.SetChildIndex(this.txtEigyouCd, 0);
             this.Controls.SetChildIndex(this.lblYubinKensaku, 0);
             this.Controls.SetChildIndex(this.lblEigyouCd, 0);
-            this.Controls.SetChildIndex(this.txtlJusho1Kensaku, 0);
+            this.Controls.SetChildIndex(this.txtJusho1View, 0);
             this.Controls.SetChildIndex(this.lblJusho1Kensaku, 0);
-            this.Controls.SetChildIndex(this.txtlJusho2Kensaku, 0);
+            this.Controls.SetChildIndex(this.txtJusho2View, 0);
             this.Controls.SetChildIndex(this.lblJusho2Kensaku, 0);
-            this.Controls.SetChildIndex(this.txtShiresakiKensaku, 0);
+            this.Controls.SetChildIndex(this.txtShireNameView, 0);
             this.Controls.SetChildIndex(this.lbShiresakiKensaku, 0);
             this.Controls.SetChildIndex(this.panelView, 0);
             this.Controls.SetChildIndex(this.panelKensaku, 0);
             this.Controls.SetChildIndex(this.lblTekiyo, 0);
             this.Controls.SetChildIndex(this.txtTekiyo, 0);
-            this.Controls.SetChildIndex(this.panelInput, 0);
             this.Controls.SetChildIndex(this.lblGokei, 0);
             this.Controls.SetChildIndex(this.lblShohizei, 0);
             this.Controls.SetChildIndex(this.txtTanka1, 0);
@@ -1424,11 +1325,11 @@
             this.Controls.SetChildIndex(this.txtJuchu3, 0);
             this.Controls.SetChildIndex(this.txtJuchu4, 0);
             this.Controls.SetChildIndex(this.txtJuchu5, 0);
-            this.Controls.SetChildIndex(this.baseViewDataGroup1, 0);
-            this.Controls.SetChildIndex(this.baseViewDataGroup2, 0);
-            this.Controls.SetChildIndex(this.baseViewDataGroup3, 0);
-            this.Controls.SetChildIndex(this.baseViewDataGroup4, 0);
-            this.Controls.SetChildIndex(this.baseViewDataGroup5, 0);
+            this.Controls.SetChildIndex(this.gbData1, 0);
+            this.Controls.SetChildIndex(this.gbData2, 0);
+            this.Controls.SetChildIndex(this.gbData3, 0);
+            this.Controls.SetChildIndex(this.gbData4, 0);
+            this.Controls.SetChildIndex(this.gbData5, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -1447,14 +1348,12 @@
             this.panel1.PerformLayout();
             this.panelKensaku.ResumeLayout(false);
             this.panelKensaku.PerformLayout();
-            this.panelInput.ResumeLayout(false);
-            this.panelInput.PerformLayout();
-            this.baseViewDataGroup3.ResumeLayout(false);
-            this.baseViewDataGroup3.PerformLayout();
-            this.baseViewDataGroup4.ResumeLayout(false);
-            this.baseViewDataGroup4.PerformLayout();
-            this.baseViewDataGroup5.ResumeLayout(false);
-            this.baseViewDataGroup5.PerformLayout();
+            this.gbData3.ResumeLayout(false);
+            this.gbData3.PerformLayout();
+            this.gbData4.ResumeLayout(false);
+            this.gbData4.PerformLayout();
+            this.gbData5.ResumeLayout(false);
+            this.gbData5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1462,16 +1361,16 @@
 
         #endregion
 
-        private Common.Ctl.BaseText txtYubinKensaku;
+        private Common.Ctl.BaseText txtYubinView;
         private Common.Ctl.BaseLabel lblYubinKensaku;
-        private Common.Ctl.BaseText txtlJusho1Kensaku;
+        private Common.Ctl.BaseText txtJusho1View;
         private Common.Ctl.BaseLabel lblJusho1Kensaku;
-        private Common.Ctl.BaseText txtlJusho2Kensaku;
+        private Common.Ctl.BaseText txtJusho2View;
         private Common.Ctl.BaseLabel lblJusho2Kensaku;
-        private Common.Ctl.BaseText txtShiresakiKensaku;
+        private Common.Ctl.BaseText txtShireNameView;
         private Common.Ctl.BaseLabel lbShiresakiKensaku;
         private Common.Ctl.BaseText txtDenpyoNo;
-        private Common.Ctl.BaseCalendar baseCalendar;
+        private Common.Ctl.BaseCalendar txtYMD;
         private Common.Ctl.BaseLabel lblDenpyoNo;
         private Common.Ctl.BaseLabel lblYMD;
         private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn;
@@ -1496,15 +1395,6 @@
         private System.Windows.Forms.Panel panelKensaku;
         private Common.Ctl.BaseLabel lblTekiyo;
         private Common.Ctl.BaseText txtTekiyo;
-        private System.Windows.Forms.Panel panelInput;
-        private Common.Ctl.BaseText txtShireNameInput;
-        private Common.Ctl.BaseText txtYubinInput;
-        private Common.Ctl.BaseLabel lblYubinInput;
-        private Common.Ctl.BaseText txtJusho1Input;
-        private Common.Ctl.BaseLabel lblJusho1Input;
-        private Common.Ctl.BaseText txtJusho2Input;
-        private Common.Ctl.BaseLabel lblJusho2Input;
-        private Common.Ctl.BaseLabel lblShireNameInput;
         private Common.Ctl.BaseLabel lblGokei;
         private Common.Ctl.BaseLabel lblShohizei;
         private Common.Ctl.BaseLabel lblSogokei;
@@ -1538,26 +1428,26 @@
         private Common.Ctl.BaseLabel baseLabel25;
         private Common.Ctl.BaseLabel baseLabel26;
         private Common.Ctl.BaseLabel baseLabel27;
-        private BaseViewDataGroup baseViewDataGroup1;
-        private BaseViewDataGroup baseViewDataGroup2;
+        private BaseViewDataGroup gbData1;
+        private BaseViewDataGroup gbData2;
         private Common.Ctl.BaseLabel lblTeka;
         private Common.Ctl.BaseLabel lblShireritsu;
         private Common.Ctl.BaseLabel baseLabel10;
         private Common.Ctl.BaseLabel baseLabel9;
-        private BaseViewDataGroup baseViewDataGroup3;
+        private BaseViewDataGroup gbData3;
         private Common.Ctl.BaseLabel baseLabel15;
         private Common.Ctl.BaseLabel baseLabel14;
         private Common.Ctl.BaseLabel baseLabel13;
         private Common.Ctl.BaseLabel baseLabel12;
         private Common.Ctl.BaseLabel baseLabel17;
         private Common.Ctl.BaseLabel baseLabel16;
-        private BaseViewDataGroup baseViewDataGroup4;
+        private BaseViewDataGroup gbData4;
         private Common.Ctl.BaseLabel baseLabel24;
         private Common.Ctl.BaseLabel baseLabel23;
         private Common.Ctl.BaseLabel baseLabel22;
         private Common.Ctl.BaseLabel baseLabel21;
         private Common.Ctl.BaseLabel baseLabel20;
         private Common.Ctl.BaseLabel baseLabel19;
-        private BaseViewDataGroup baseViewDataGroup5;
+        private BaseViewDataGroup gbData5;
     }
 }

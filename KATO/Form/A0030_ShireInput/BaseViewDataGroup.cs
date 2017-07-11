@@ -16,5 +16,26 @@ namespace KATO.Form.A0030_ShireInput
         {
             InitializeComponent();
         }
+
+        ///<summary>
+        ///delData
+        ///入力項目削除
+        ///</summary>
+        public void delData()
+        {
+            txtNo.Clear();
+            txtChumonNo.Clear();
+            txtHin.Clear();
+            txtSu.Clear();
+            txtTanka.Clear();
+            txtKin.Clear();
+            txtBiko.Clear();
+            labelSet_Eigyosho.codeTxt.Clear();
+            txtTeka.Clear();
+            txtShireritsu.Clear();
+            txtChokinTanka.Clear();
+            txtMasterTanka.Clear();
+            txtTokuisaki.Clear();
+        }
     }
 }

@@ -31,8 +31,8 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///M1100_Chokusosaki
-        /// フォームの初期設定
-        /// </summary>
+        ///フォームの初期設定
+        ///</summary>
         public M1100_Chokusosaki(Control c)
         {
             //画面データが解放されていた時の対策
@@ -62,10 +62,10 @@ namespace KATO.Form.M1100_Chokusosaki
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M1100_Chokusosaki_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M1100_Chokusosaki_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M1100_Chokusosaki_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -83,7 +83,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///M1090_Eigyosho_KeyDown
-        /// キー入力判定（画面全般）
+        ///キー入力判定（画面全般）
         ///</summary>
         private void M1100_Chokusosaki_KeyDown(object sender, KeyEventArgs e)
         {
@@ -146,7 +146,7 @@ namespace KATO.Form.M1100_Chokusosaki
 
         ///<summary>
         ///judChokuTxtKeyDown
-        /// キー入力判定（無機能テキストボックス）
+        ///キー入力判定（無機能テキストボックス）
         ///</summary>
         private void judChokuTxtKeyDown(object sender, KeyEventArgs e)
         {
@@ -246,7 +246,7 @@ namespace KATO.Form.M1100_Chokusosaki
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtChokuKeyDown(sender, e);
+                    showChokusosakiList();
                     break;
                 case Keys.F10:
                     break;
@@ -289,32 +289,28 @@ namespace KATO.Form.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///judtxtChokuKeyDown
+        ///showChokusosakiList
         ///キー入力判定
         ///</summary>
-        private void judtxtChokuKeyDown(object sender, KeyEventArgs e)
+        private void showChokusosakiList()
         {
-            //F9キーが押されて且つ得意先コードが入力されている場合
-            if (e.KeyCode == Keys.F9 && labelSet_Tokuisaki.CodeTxtText != "")
+            //直送先リストのインスタンス生成
+            ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Tokuisaki.CodeTxtText);
+            try
             {
-                //直送先リストのインスタンス生成
-                ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Tokuisaki.CodeTxtText);
-                try
-                {
-                    //直送先リストの表示、画面IDを渡す
-                    chokusosakilist.StartPosition = FormStartPosition.Manual;
-                    chokusosakilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHOKUSOSAKI;
-                    chokusosakilist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //直送先リストの表示、画面IDを渡す
+                chokusosakilist.StartPosition = FormStartPosition.Manual;
+                chokusosakilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHOKUSOSAKI;
+                chokusosakilist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -442,7 +438,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 lstChokusosakiLoad.Add(txtChokusoCd.Text);
 
                 //戻り値のDatatableを取り込む
-                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstChokusosakiLoad);
+                dtSetCd = chokusosakiB.setTxtChokusoLeave(lstChokusosakiLoad);
 
                 //検索結果にデータが存在しなければ終了
                 if (dtSetCd.Rows.Count == 0)
@@ -567,7 +563,7 @@ namespace KATO.Form.M1100_Chokusosaki
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chokusosakiB.updTxtChokusoLeave(lstChokusosaki);
+                dtSetCd = chokusosakiB.setTxtChokusoLeave(lstChokusosaki);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
@@ -610,10 +606,10 @@ namespace KATO.Form.M1100_Chokusosaki
             txtChokusoCd.Focus();
         }
         
-        /// <summary>
-        /// judtxtChokuKeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
+        ///<summary>
+        ///judtxtChokuKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
         private void judtxtChokuKeyUp(object sender, KeyEventArgs e)
         {
             Control cActiveBefore = this.ActiveControl;

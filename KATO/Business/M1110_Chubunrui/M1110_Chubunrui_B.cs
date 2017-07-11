@@ -105,10 +105,10 @@ namespace KATO.Business.M1110_Chubunrui
         }
 
         ///<summary>
-        ///updTxtChubunruiLeave
+        ///getTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtChubunruiLeave(List<string> lstString)
+        public DataTable getTxtChubunruiLeave(List<string> lstString)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();

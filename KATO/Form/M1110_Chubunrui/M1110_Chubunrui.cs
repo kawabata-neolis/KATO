@@ -30,10 +30,10 @@ namespace KATO.Form.M1110_Chubunrui
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        /// <summary>
-        /// M1110_Chubunrui
-        /// フォームの初期設定
-        /// </summary>
+        ///<summary>
+        ///M1110_Chubunrui
+        ///フォームの初期設定
+        ///</summary>
         public M1110_Chubunrui(Control c)
         {
             //画面データが解放されていた時の対策
@@ -63,10 +63,10 @@ namespace KATO.Form.M1110_Chubunrui
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
         }
 
-        /// <summary>
-        /// M_Chubunrui_Load
-        /// 画面レイアウト設定
-        /// </summary>
+        ///<summary>
+        ///M_Chubunrui_Load
+        ///画面レイアウト設定
+        ///</summary>
         private void M_Chubunrui_Load(object sender, EventArgs e)
         {
             this.Show();
@@ -247,7 +247,7 @@ namespace KATO.Form.M1110_Chubunrui
                     break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    judtxtChubunKeyDown(sender, e);
+                    showChubunList();
                     break;
                 case Keys.F10:
                     break;
@@ -289,34 +289,30 @@ namespace KATO.Form.M1110_Chubunrui
         }
 
         ///<summary>
-        ///judtxtCyokuCDKeyDown
+        ///showChubunList
         ///コード入力項目でのキー入力判定
         ///</summary>
-        private void judtxtChubunKeyDown(object sender, KeyEventArgs e)
+        private void showChubunList()
         {
-            //F9を押して且つ大分類コードが記載されている場合
-            if (e.KeyCode == Keys.F9 && LabelSet_Daibun.CodeTxtText != "")
+            //ラベルセットである情報を渡すためにインスタンス生成
+            LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
+            //中分類リストのインスタンス生成
+            ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
+            try
             {
-                //ラベルセットである情報を渡すためにインスタンス生成
-                LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
-                //中分類リストのインスタンス生成
-                ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
-                try
-                {
-                    //中分類リストの表示、画面IDを渡す
-                    chubunruilist.StartPosition = FormStartPosition.Manual;
-                    chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
-                    chubunruilist.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    return;
-                }
+                //中分類リストの表示、画面IDを渡す
+                chubunruilist.StartPosition = FormStartPosition.Manual;
+                chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
+                chubunruilist.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
             }
         }
-        
+
         ///<summary>
         ///addChubunrui
         ///テキストボックス内のデータをDBに登録
@@ -434,7 +430,7 @@ namespace KATO.Form.M1110_Chubunrui
                 lstChubunruiLoad.Add(txtChubunrui.Text);
 
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.updTxtChubunruiLeave(lstChubunruiLoad);
+                dtSetCd = chubunB.getTxtChubunruiLeave(lstChubunruiLoad);
 
                 //取消メソッド起動前に、残す項目を確保用
                 string strTokuiSub = "";
@@ -563,7 +559,7 @@ namespace KATO.Form.M1110_Chubunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.updTxtChubunruiLeave(lstString);
+                dtSetCd = chubunB.getTxtChubunruiLeave(lstString);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)

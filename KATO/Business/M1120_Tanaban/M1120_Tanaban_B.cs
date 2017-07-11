@@ -106,10 +106,10 @@ namespace KATO.Business.M1120_Tanaban
         }
 
         ///<summary>
-        ///updTxtTanabanCdLeave
+        ///getTxtTanabanCdLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtTanabanCdLeave(string strTanaban)
+        public DataTable getTxtTanabanCdLeave(string strTanaban)
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();

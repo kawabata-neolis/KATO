@@ -103,10 +103,10 @@ namespace KATO.Business.M1130_Shohizeiritsu
         }
 
         ///<summary>
-        ///updTxtShohizeiLeave
+        ///getTxtShohizeiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable updTxtShohizeiLeave(string strShohizei)
+        public DataTable getTxtShohizeiLeave(string strShohizei)
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();
