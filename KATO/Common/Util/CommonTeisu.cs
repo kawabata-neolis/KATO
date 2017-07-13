@@ -98,15 +98,18 @@ namespace KATO.Common.Util
         public const string SIZE_A4 = "a4";
         public const string SIZE_B4 = "b4";
         public const string SIZE_B5 = "b5";
+        public const string SIZE_A3 = "a3";
         //public static readonly string[] PARAM_A4 = { "297", "210" };
         public static readonly string[] PARAM_A4 = { "842", "595" };
         public static readonly string[] PARAM_B4 = { "1032", "729" };
         public static readonly string[] PARAM_B5 = { "729", "516" };
+        public static readonly string[] PARAM_A3 = { "1191", "842" };
         public static Dictionary<String, string[]> paramSize = new Dictionary<string, string[]>()
         {
             {SIZE_A4, PARAM_A4}
            ,{SIZE_B4, PARAM_B4}
            ,{SIZE_B5, PARAM_B5}
+           ,{SIZE_A3, PARAM_A3}
         };
         public static bool TATE = true;
         public static bool YOKO = false;

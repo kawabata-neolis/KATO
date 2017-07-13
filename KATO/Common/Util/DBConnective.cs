@@ -272,7 +272,7 @@ namespace KATO.Common.Util
         {
             Boolean isConnect = false;
 
-            DataTable strResult = null;
+            DataTable dtResult = null;
 
             if ((CON == null) || (CON.State != ConnectionState.Open))
             {
@@ -289,7 +289,9 @@ namespace KATO.Common.Util
             {
                 CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
             }
-            CM.Parameters.Add(strRet.Substring(1), SqlDbType.Int).Direction = ParameterDirection.Output;
+            if (strRet != null && string.IsNullOrWhiteSpace(strRet)) {
+                CM.Parameters.Add(strRet.Substring(1), SqlDbType.Int).Direction = ParameterDirection.Output;
+            }
 
             //using (var sdr = CM.ExecuteReader())
             //{
@@ -300,18 +302,26 @@ namespace KATO.Common.Util
             //        }
             //    }
             //}
-            SqlDataReader sdr = CM.ExecuteReader();
+            //SqlDataReader sdr = CM.ExecuteReader();
 
-            strResult.Load(sdr);
+            //strResult.Load(sdr);
 
-            sdr.Close();
+            //sdr.Close();
+
+            DataSet dataSet = new DataSet();
+            using (SqlDataAdapter adapter = new SqlDataAdapter(CM))
+            {
+                adapter.Fill(dataSet);
+            }
+
+            dtResult = dataSet.Tables[0];
 
             if (isConnect)
             {
                 this.DB_Disconnect();
             }
 
-            return (strResult);
+            return (dtResult);
         }
 
         public void RunSqlCommon(String strSqlName, String[] prms)
