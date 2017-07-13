@@ -108,7 +108,7 @@ namespace KATO.Business.M1110_Chubunrui
         ///getTxtChubunruiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable getTxtChubunruiLeave(List<string> lstString)
+        public DataTable getTxtChubunruiLeave(string strDaibunCd, string strChubunCd)
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
@@ -137,7 +137,7 @@ namespace KATO.Business.M1110_Chubunrui
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1]);
+                strSQLInput = string.Format(strSQLInput, strDaibunCd, strChubunCd);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);

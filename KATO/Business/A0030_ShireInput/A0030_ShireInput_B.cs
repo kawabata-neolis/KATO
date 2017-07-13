@@ -234,10 +234,10 @@ namespace KATO.Business.A0030_ShireInput
         }
 
         ///<summary>
-        ///getShiremesai
+        ///getShireMesai
         ///仕入ヘッダテーブル上のデータを確保
         ///</summary>
-        public DataTable getShiremesai(string strDenpyoNo)
+        public DataTable getShireMesai(string strDenpyoNo)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -283,6 +283,33 @@ namespace KATO.Business.A0030_ShireInput
             finally
             {
                 //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getHachuJuchu
+        ///検索データを記入
+        ///</summary>
+        public DataTable getHachuJuchu(string strHNo)
+        {
+            DataTable dtHachuJuchu;
+
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                dtHachuJuchu = dbconnective.ReadSql("SELECT dbo.f_get発注番号_受注番号FROM発注('" + strHNo + "')");
+
+                return dtHachuJuchu;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
                 dbconnective.DB_Disconnect();
             }
         }
