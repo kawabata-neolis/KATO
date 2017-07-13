@@ -12,6 +12,7 @@ using KATO.Common.Util;
 using KATO.Common.Form;
 using KATO.Business.A0030_ShireInput;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Business.M1110_Chubunrui;
 
 namespace KATO.Form.A0030_ShireInput
 {
@@ -294,6 +295,7 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
+            //品名データを作成する用
             string strHinmei;
 
             string strNM;
@@ -397,15 +399,166 @@ namespace KATO.Form.A0030_ShireInput
                 blDenpyoLeave = true;
 
                 //仕入明細の取得
-                dtSetshire = shireinputB.getShiremesai(txtDenpyoNo.Text);
+                dtSetshire = shireinputB.getShireMesai(txtDenpyoNo.Text);
 
                 //取得したデータが1行以上あった場合
                 if (dtSetshire.Rows.Count > 0)
                 {
-                    //vb1284行目から
+                    //テーブルの行数分ループ
+                    for(int intCnt = 0; intCnt < dtSetshire.Rows.Count; intCnt++)
+                    {
+                        //行番号が99になった場合
+                        if (dtSetshire.Rows[intCnt]["行番号"].ToString() == "99")
+                        {
+                            goto Unchin_JP;
+                        }
+
+                        //行番号の数値から-1した数値を確保
+                        int intRowCntMinus1 = int.Parse(dtSetshire.Rows[intCnt]["行番号"].ToString()) - 1;
+
+                        //表示するデータを確保
+                        List<string> lstData = new List<string>();
+
+                        //中分類のデータ確保
+                        DataTable dtChubun = null;
+
+                        //[0]
+                        lstData.Add(dtSetshire.Rows[intCnt]["行番号"].ToString());
+                        //[1]
+                        lstData.Add(dtSetshire.Rows[intCnt]["発注番号"].ToString());
+                        //[2]
+                        lstData.Add(dtSetshire.Rows[intCnt]["商品コード"].ToString());
+                        //[3]
+                        lstData.Add(dtSetshire.Rows[intCnt]["メーカーコード"].ToString());
+                        //[4]
+                        lstData.Add(dtSetshire.Rows[intCnt]["大分類コード"].ToString());
+
+                        strHinmei = dtSetshire.Rows[intCnt]["メーカー名"].ToString();
+
+                        //[5]
+                        lstData.Add(dtSetshire.Rows[intCnt]["中分類コード"].ToString());
+
+                        //中分類のビジネス層インスタンス生成
+                        M1110_Chubunrui_B chubunruiB = new M1110_Chubunrui_B();
+                        //中分類のコードと名前を確保
+                        dtChubun = chubunruiB.getTxtChubunruiLeave(dtSetshire.Rows[intCnt]["大分類コード"].ToString(), dtSetshire.Rows[intCnt]["中分類コード"].ToString());
+
+                        strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
+
+                        //Ｃ１にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ１"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ１"].ToString();
+                            //[6]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ１"].ToString());
+                        }
+                        else
+                        {
+                            //[6]
+                            lstData.Add("");
+                        }
+                        //Ｃ２にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ２"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ２"].ToString();
+                            //[7]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ２"].ToString());
+                        }
+                        else
+                        {
+                            //[7]
+                            lstData.Add("");
+                        }
+                        //Ｃ３にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ３"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ３"].ToString();
+                            //[8]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ３"].ToString());
+                        }
+                        else
+                        {
+                            //[8]
+                            lstData.Add("");
+                        }
+                        //Ｃ４にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ４"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ４"].ToString();
+                            //[9]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ４"].ToString());
+                        }
+                        else
+                        {
+                            //[9]
+                            lstData.Add("");
+                        }
+                        //Ｃ５にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ５"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ５"].ToString();
+                            //[10]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ５"].ToString());
+                        }
+                        else
+                        {
+                            //[10]
+                            lstData.Add("");
+                        }
+                        //Ｃ６にデータがある場合
+                        if (dtSetshire.Rows[intCnt]["Ｃ６"].ToString() != "")
+                        {
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ６"].ToString();
+                            //[11]
+                            lstData.Add(dtSetshire.Rows[intCnt]["Ｃ６"].ToString());
+                        }
+                        else
+                        {
+                            //[11]
+                            lstData.Add("");
+                        }
+
+                        //[12]
+                        lstData.Add(strHinmei);
+                        //[13]
+                        lstData.Add(dtSetshire.Rows[intCnt]["数量"].ToString());
+                        //[14]
+                        lstData.Add(dtSetshire.Rows[intCnt]["仕入単価"].ToString());
+                        //[15]
+                        lstData.Add(dtSetshire.Rows[intCnt]["仕入金額"].ToString());
+                        //[16]
+                        lstData.Add(dtSetshire.Rows[intCnt]["備考"].ToString());
+                        //[17]
+                        lstData.Add(dtSetshire.Rows[intCnt]["入庫倉庫"].ToString());
+
+                        //データ確保
+                        int intHNo = int.Parse(dtSetshire.Rows[intCnt]["発注番号"].ToString());
+
+                        //発注受注番号の取得
+                        DataTable dtHachuJuchu = shireinputB.getHachuJuchu(intHNo.ToString());
+
+                        //行番号-1が0の場合
+                        if (intRowCntMinus1 == 0)
+                        {
+                            gbData1.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
+                            gbData1.setData(lstData);
+
+                            //一行以上ある場合
+                            if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
+                            {
+                                txtJuchu1.Text = dtHachuJuchu.Rows[0][0].ToString();
+                            }
+                        }
+                    }
                 }
 
-                txtYMD.Focus();
+
+
+            txtYMD.Focus();
+
+            //次のフォーカスに移動
+            Unchin_JP:
+                SendKeys.Send("{TAB}");
 
             }
             catch (Exception ex)

@@ -407,8 +407,6 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         public void delChubunrui()
         {
-            //記入情報のデータの存在確認用
-            List<string> lstChubunruiLoad = new List<string>();
             //記入情報削除用
             List<string> lstChubunrui = new List<string>();
 
@@ -425,12 +423,8 @@ namespace KATO.Form.M1110_Chubunrui
             M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
             try
             {
-                //データの存在確認を検索する情報を入れる
-                lstChubunruiLoad.Add(LabelSet_Daibun.CodeTxtText);
-                lstChubunruiLoad.Add(txtChubunrui.Text);
-
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.getTxtChubunruiLeave(lstChubunruiLoad);
+                dtSetCd = chubunB.getTxtChubunruiLeave(LabelSet_Daibun.CodeTxtText, txtChubunrui.Text);
 
                 //取消メソッド起動前に、残す項目を確保用
                 string strTokuiSub = "";
@@ -559,7 +553,7 @@ namespace KATO.Form.M1110_Chubunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.getTxtChubunruiLeave(lstString);
+                dtSetCd = chubunB.getTxtChubunruiLeave(LabelSet_Daibun.CodeTxtText, txtChubunrui.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
