@@ -55,7 +55,7 @@ namespace KATO.Form.A0030_ShireInput
 
         ///<summary>
         ///setData
-        ///入力項目削除
+        ///項目にデータを入れる
         ///</summary>
         public void setData(List<string> lstData)
         {
@@ -86,12 +86,16 @@ namespace KATO.Form.A0030_ShireInput
             //品名
             txtHin.Text = lstData[12];
 
-//フォーマットが出来ない
-
             //数量
-            txtSu.Text = string.Format("{0:#,#}", lstData[13]);
+            txtSu.Text = string.Format("{0:#}", lstData[13]);
             //単価(仕入単価)
             txtTanka.Text = string.Format("{0:#,#.00}", lstData[14]);
+
+            //単価のサブの入れものに追加(仕入率計算時に[.]があるとエラーを起こすため)
+            txtTankaSub.Visible = true;
+            txtTankaSub.Text = string.Format("{0:#}", lstData[14]);
+            txtTankaSub.Visible = false;
+
             //金額(仕入金額)
             txtKin.Text = string.Format("{0:#,#}", lstData[15]);
             //備考
@@ -99,17 +103,22 @@ namespace KATO.Form.A0030_ShireInput
             //入庫倉庫
             labelSet_Eigyosho.CodeTxtText = lstData[17];
 
-            //品名の機能停止、色が灰色になるのを防ぐ
-            txtHin.Enabled = false;
-            txtHin.BackColor = Color.White;
-
-            //txtShireritsu.Text = lstData[13];
-            //txtChokinTanka.Text = lstData[14];
-            //txtMasterTanka.Text = lstData[15];
-            //txtTokuisaki.Text = lstData[16];
-
-            //そのほかのデータを入れる
+            //直近単価、マスタ単価、定価、得意先
             setAnotherData();
+            
+            //0パディング等の表示情報の修正
+            txtSu.Focus();
+            txtTanka.Focus();
+            txtKin.Focus();
+            txtTankaSub.Focus();
+            txtBiko.Focus();
+
+            //仕入率の取得
+            txtShireritsu.Text = ((decimal.Parse(txtTankaSub.Text) / int.Parse(txtTekaSub.Text)) * 100).ToString();
+
+            //0パディング等の表示情報の修正
+            txtShireritsu.Focus();
+            txtBiko.Focus();
         }
 
         ///<summary>
@@ -128,8 +137,6 @@ namespace KATO.Form.A0030_ShireInput
             getChokinTanka();
             //マスタ単価と定価の取得
             getMasterTankaTeka();
-            //仕入率の取得
-
             //得意先の取得
             getTokuisaki();
         }
@@ -236,6 +243,11 @@ namespace KATO.Form.A0030_ShireInput
                 txtMasterTanka.Text = string.Format("{0:#,#.00}", dtSetCd_B.Rows[0]["仕入単価"]);
                 //定価を入れる
                 txtTeka.Text = string.Format("{0:#,#}", dtSetCd_B.Rows[0]["定価"]);
+
+                //定価のサブの入れものに追加(仕入率計算時に[.]があるとエラーを起こすため)
+                txtTekaSub.Visible = true;
+                txtTekaSub.Text = string.Format("{0:#}", dtSetCd_B.Rows[0]["定価"]);
+                txtTekaSub.Visible = false;
 
                 return;
             }

@@ -169,6 +169,41 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void addShireInput()
         {
+            object o;
+            object SyohinCD;
+            int theErr;
+            int Denno;
+
+            decimal UnchinKin;
+
+            //伝票番号
+            if (txtDenpyoNo.blIsEmpty() == false)
+            {
+                return;
+            }
+            //年月日
+            if (txtYMD.blIsEmpty() == false)
+            {
+                return;
+            }
+            //コード
+            if (txtCD.blIsEmpty() == false)
+            {
+                return;
+            }
+            //仕入先名
+
+            //郵便番号
+            //住所１
+            //住所２
+            //取引区分
+            //担当者名
+            if (StringUtl.blIsEmpty(labelSet_Tantousha.ValueLabelText) == false)
+            {
+                return;
+            }
+            //営業所コード
+            //
 
         }
 
@@ -531,13 +566,13 @@ namespace KATO.Form.A0030_ShireInput
                         //[17]
                         lstData.Add(dtSetshire.Rows[intCnt]["入庫倉庫"].ToString());
 
-                        //データ確保
+                        //発注番号の取得
                         int intHNo = int.Parse(dtSetshire.Rows[intCnt]["発注番号"].ToString());
 
                         //発注受注番号の取得
                         DataTable dtHachuJuchu = shireinputB.getHachuJuchu(intHNo.ToString());
 
-                        //行番号-1が0の場合
+                        //行番号-1が0の場合(1行目)
                         if (intRowCntMinus1 == 0)
                         {
                             gbData1.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
@@ -547,13 +582,83 @@ namespace KATO.Form.A0030_ShireInput
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
                                 txtJuchu1.Text = dtHachuJuchu.Rows[0][0].ToString();
+
+                                //受注単価の取得
+                                DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu1.Text);
+
+                                txtTanka1.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                            }
+                        }
+                        //行番号-1が1の場合(2行目)
+                        else if (intRowCntMinus1 == 1)
+                        {
+                            gbData2.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
+                            gbData2.setData(lstData);
+
+                            //一行以上ある場合
+                            if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
+                            {
+                                txtJuchu2.Text = dtHachuJuchu.Rows[0][0].ToString();
+
+                                //受注単価の取得
+                                DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu2.Text);
+
+                                txtTanka2.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                            }
+                        }
+                        //行番号-1が2の場合(3行目)
+                        else if (intRowCntMinus1 == 2)
+                        {
+                            gbData3.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
+                            gbData3.setData(lstData);
+
+                            //一行以上ある場合
+                            if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
+                            {
+                                txtJuchu3.Text = dtHachuJuchu.Rows[0][0].ToString();
+
+                                //受注単価の取得
+                                DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu3.Text);
+
+                                txtTanka3.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                            }
+                        }
+                        //行番号-1が3の場合(4行目)
+                        else if (intRowCntMinus1 == 3)
+                        {
+                            gbData4.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
+                            gbData4.setData(lstData);
+
+                            //一行以上ある場合
+                            if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
+                            {
+                                txtJuchu4.Text = dtHachuJuchu.Rows[0][0].ToString();
+
+                                //受注単価の取得
+                                DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu4.Text);
+
+                                txtTanka4.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                            }
+                        }
+                        //行番号-1が4の場合(5行目)
+                        else if (intRowCntMinus1 == 4)
+                        {
+                            gbData5.strJuchuNo = dtHachuJuchu.Rows[0][0].ToString();
+                            gbData5.setData(lstData);
+
+                            //一行以上ある場合
+                            if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
+                            {
+                                txtJuchu5.Text = dtHachuJuchu.Rows[0][0].ToString();
+
+                                //受注単価の取得
+                                DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu5.Text);
+
+                                txtTanka5.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                             }
                         }
                     }
-                }
-
-
-
+                }                
             txtYMD.Focus();
 
             //次のフォーカスに移動

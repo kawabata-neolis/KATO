@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.txtTekaSub = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTankaSub = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtKin = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTanka = new KATO.Common.Ctl.BaseTextMoney();
             this.txtTokuisaki = new KATO.Common.Ctl.BaseText();
             this.txtC6 = new KATO.Common.Ctl.BaseText();
             this.txtC5 = new KATO.Common.Ctl.BaseText();
@@ -43,18 +47,78 @@
             this.labelSet_Eigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.txtMasterTanka = new KATO.Common.Ctl.BaseTextMoney();
             this.txtChokinTanka = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtSu = new KATO.Common.Ctl.BaseTextMoney();
             this.txtShireritsu = new KATO.Common.Ctl.BaseTextMoney();
             this.lblShireritsu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTeka = new KATO.Common.Ctl.BaseTextMoney();
             this.lblTeka = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBiko = new KATO.Common.Ctl.BaseText();
-            this.txtKin = new KATO.Common.Ctl.BaseText();
-            this.txtTanka = new KATO.Common.Ctl.BaseText();
             this.txtHin = new KATO.Common.Ctl.BaseText();
             this.txtChumonNo = new KATO.Common.Ctl.BaseText();
             this.txtNo = new KATO.Common.Ctl.BaseText();
-            this.txtSu = new KATO.Common.Ctl.BaseTextMoney();
             this.SuspendLayout();
+            // 
+            // txtTekaSub
+            // 
+            this.txtTekaSub.blnCommaOK = true;
+            this.txtTekaSub.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTekaSub.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTekaSub.intDeciSet = 0;
+            this.txtTekaSub.intIntederSet = 0;
+            this.txtTekaSub.intShishagonyu = 0;
+            this.txtTekaSub.Location = new System.Drawing.Point(131, 45);
+            this.txtTekaSub.MaxLength = 0;
+            this.txtTekaSub.Name = "txtTekaSub";
+            this.txtTekaSub.Size = new System.Drawing.Size(10, 22);
+            this.txtTekaSub.TabIndex = 18;
+            this.txtTekaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTekaSub.Visible = false;
+            // 
+            // txtTankaSub
+            // 
+            this.txtTankaSub.blnCommaOK = true;
+            this.txtTankaSub.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTankaSub.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTankaSub.intDeciSet = 0;
+            this.txtTankaSub.intIntederSet = 0;
+            this.txtTankaSub.intShishagonyu = 0;
+            this.txtTankaSub.Location = new System.Drawing.Point(120, 45);
+            this.txtTankaSub.MaxLength = 0;
+            this.txtTankaSub.Name = "txtTankaSub";
+            this.txtTankaSub.Size = new System.Drawing.Size(10, 22);
+            this.txtTankaSub.TabIndex = 18;
+            this.txtTankaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTankaSub.Visible = false;
+            // 
+            // txtKin
+            // 
+            this.txtKin.blnCommaOK = true;
+            this.txtKin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKin.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKin.intDeciSet = 0;
+            this.txtKin.intIntederSet = 0;
+            this.txtKin.intShishagonyu = 0;
+            this.txtKin.Location = new System.Drawing.Point(849, 13);
+            this.txtKin.MaxLength = 0;
+            this.txtKin.Name = "txtKin";
+            this.txtKin.Size = new System.Drawing.Size(149, 22);
+            this.txtKin.TabIndex = 5;
+            this.txtKin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtTanka
+            // 
+            this.txtTanka.blnCommaOK = true;
+            this.txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTanka.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTanka.intDeciSet = 2;
+            this.txtTanka.intIntederSet = 0;
+            this.txtTanka.intShishagonyu = 0;
+            this.txtTanka.Location = new System.Drawing.Point(693, 13);
+            this.txtTanka.MaxLength = 3;
+            this.txtTanka.Name = "txtTanka";
+            this.txtTanka.Size = new System.Drawing.Size(150, 22);
+            this.txtTanka.TabIndex = 4;
+            this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTokuisaki
             // 
@@ -208,20 +272,38 @@
             this.txtChokinTanka.TabStop = false;
             this.txtChokinTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // txtSu
+            // 
+            this.txtSu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSu.blnCommaOK = true;
+            this.txtSu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSu.intDeciSet = 0;
+            this.txtSu.intIntederSet = 0;
+            this.txtSu.intShishagonyu = 0;
+            this.txtSu.Location = new System.Drawing.Point(576, 13);
+            this.txtSu.MaxLength = 0;
+            this.txtSu.Name = "txtSu";
+            this.txtSu.ReadOnly = true;
+            this.txtSu.Size = new System.Drawing.Size(111, 22);
+            this.txtSu.TabIndex = 3;
+            this.txtSu.TabStop = false;
+            this.txtSu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // txtShireritsu
             // 
             this.txtShireritsu.BackColor = System.Drawing.SystemColors.Window;
             this.txtShireritsu.blnCommaOK = true;
             this.txtShireritsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShireritsu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtShireritsu.intDeciSet = 0;
+            this.txtShireritsu.intDeciSet = 1;
             this.txtShireritsu.intIntederSet = 0;
-            this.txtShireritsu.intShishagonyu = 0;
-            this.txtShireritsu.Location = new System.Drawing.Point(652, 46);
-            this.txtShireritsu.MaxLength = 0;
+            this.txtShireritsu.intShishagonyu = 1;
+            this.txtShireritsu.Location = new System.Drawing.Point(647, 46);
+            this.txtShireritsu.MaxLength = 10;
             this.txtShireritsu.Name = "txtShireritsu";
             this.txtShireritsu.ReadOnly = true;
-            this.txtShireritsu.Size = new System.Drawing.Size(36, 22);
+            this.txtShireritsu.Size = new System.Drawing.Size(40, 22);
             this.txtShireritsu.TabIndex = 9;
             this.txtShireritsu.TabStop = false;
             this.txtShireritsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -230,7 +312,7 @@
             // 
             this.lblShireritsu.AutoSize = true;
             this.lblShireritsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShireritsu.Location = new System.Drawing.Point(595, 49);
+            this.lblShireritsu.Location = new System.Drawing.Point(586, 49);
             this.lblShireritsu.Name = "lblShireritsu";
             this.lblShireritsu.Size = new System.Drawing.Size(55, 15);
             this.lblShireritsu.strToolTip = null;
@@ -247,7 +329,7 @@
             this.txtTeka.intDeciSet = 0;
             this.txtTeka.intIntederSet = 0;
             this.txtTeka.intShishagonyu = 0;
-            this.txtTeka.Location = new System.Drawing.Point(427, 46);
+            this.txtTeka.Location = new System.Drawing.Point(422, 46);
             this.txtTeka.MaxLength = 0;
             this.txtTeka.Name = "txtTeka";
             this.txtTeka.ReadOnly = true;
@@ -260,7 +342,7 @@
             // 
             this.lblTeka.AutoSize = true;
             this.lblTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTeka.Location = new System.Drawing.Point(382, 49);
+            this.lblTeka.Location = new System.Drawing.Point(377, 49);
             this.lblTeka.Name = "lblTeka";
             this.lblTeka.Size = new System.Drawing.Size(39, 15);
             this.lblTeka.strToolTip = null;
@@ -276,29 +358,6 @@
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(380, 22);
             this.txtBiko.TabIndex = 6;
-            // 
-            // txtKin
-            // 
-            this.txtKin.BackColor = System.Drawing.SystemColors.Window;
-            this.txtKin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKin.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKin.Location = new System.Drawing.Point(849, 13);
-            this.txtKin.Name = "txtKin";
-            this.txtKin.ReadOnly = true;
-            this.txtKin.Size = new System.Drawing.Size(150, 22);
-            this.txtKin.TabIndex = 5;
-            this.txtKin.TabStop = false;
-            this.txtKin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtTanka
-            // 
-            this.txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanka.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtTanka.Location = new System.Drawing.Point(693, 13);
-            this.txtTanka.Name = "txtTanka";
-            this.txtTanka.Size = new System.Drawing.Size(150, 22);
-            this.txtTanka.TabIndex = 4;
-            this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHin
             // 
@@ -334,29 +393,15 @@
             this.txtNo.TabStop = false;
             this.txtNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtSu
-            // 
-            this.txtSu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSu.blnCommaOK = true;
-            this.txtSu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSu.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSu.intDeciSet = 0;
-            this.txtSu.intIntederSet = 0;
-            this.txtSu.intShishagonyu = 0;
-            this.txtSu.Location = new System.Drawing.Point(576, 13);
-            this.txtSu.MaxLength = 0;
-            this.txtSu.Name = "txtSu";
-            this.txtSu.ReadOnly = true;
-            this.txtSu.Size = new System.Drawing.Size(111, 22);
-            this.txtSu.TabIndex = 3;
-            this.txtSu.TabStop = false;
-            this.txtSu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // BaseViewDataGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.txtTekaSub);
+            this.Controls.Add(this.txtTankaSub);
+            this.Controls.Add(this.txtKin);
+            this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.txtTokuisaki);
             this.Controls.Add(this.txtC6);
             this.Controls.Add(this.txtC5);
@@ -377,8 +422,6 @@
             this.Controls.Add(this.txtTeka);
             this.Controls.Add(this.lblTeka);
             this.Controls.Add(this.txtBiko);
-            this.Controls.Add(this.txtKin);
-            this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.txtHin);
             this.Controls.Add(this.txtChumonNo);
             this.Controls.Add(this.txtNo);
@@ -394,8 +437,6 @@
         private Common.Ctl.BaseText txtNo;
         private Common.Ctl.BaseText txtChumonNo;
         private Common.Ctl.BaseText txtHin;
-        private Common.Ctl.BaseText txtTanka;
-        private Common.Ctl.BaseText txtKin;
         private Common.Ctl.BaseText txtBiko;
         private Common.Ctl.BaseLabel lblTeka;
         private Common.Ctl.BaseTextMoney txtTeka;
@@ -416,5 +457,9 @@
         private Common.Ctl.BaseText txtC6;
         private Common.Ctl.BaseText txtTokuisaki;
         private Common.Ctl.BaseTextMoney txtSu;
+        private Common.Ctl.BaseTextMoney txtTanka;
+        private Common.Ctl.BaseTextMoney txtKin;
+        private Common.Ctl.BaseTextMoney txtTankaSub;
+        private Common.Ctl.BaseTextMoney txtTekaSub;
     }
 }

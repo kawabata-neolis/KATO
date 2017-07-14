@@ -289,7 +289,7 @@ namespace KATO.Business.A0030_ShireInput
 
         ///<summary>
         ///getHachuJuchu
-        ///検索データを記入
+        ///発注受注データを記入
         ///</summary>
         public DataTable getHachuJuchu(string strHNo)
         {
@@ -300,6 +300,33 @@ namespace KATO.Business.A0030_ShireInput
             try
             {
                 dtHachuJuchu = dbconnective.ReadSql("SELECT dbo.f_get発注番号_受注番号FROM発注('" + strHNo + "')");
+
+                return dtHachuJuchu;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getJuchuTanka
+        ///受注単価データを記入
+        ///</summary>
+        public DataTable getJuchuTanka(string strJuchuNo)
+        {
+            DataTable dtHachuJuchu;
+
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                dtHachuJuchu = dbconnective.ReadSql("SELECT dbo.f_get受注番号から受注単価('" + strJuchuNo + "')");
 
                 return dtHachuJuchu;
             }
