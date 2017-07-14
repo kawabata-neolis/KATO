@@ -192,18 +192,73 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
             //仕入先名
-
+            if (txtShireNameView.blIsEmpty() == false)
+            {
+                return;
+            }
             //郵便番号
+            if (txtYubinView.blIsEmpty() == false)
+            {
+                return;
+            }
             //住所１
+            if (txtJusho1View.blIsEmpty() == false)
+            {
+                return;
+            }
             //住所２
+            if (txtJusho2View.blIsEmpty() == false)
+            {
+                return;
+            }
             //取引区分
+            if (StringUtl.blIsEmpty(labelSet_Torihikikbn.ValueLabelText) == false)
+            {
+                return;
+            }
             //担当者名
             if (StringUtl.blIsEmpty(labelSet_Tantousha.ValueLabelText) == false)
             {
                 return;
             }
             //営業所コード
-            //
+            if (txtEigyouCd.blIsEmpty() == false)
+            {
+                return;
+            }
+            //DBNull(なし)
+            //摘要
+            if (txtTekiyo.blIsEmpty() == false)
+            {
+                return;
+            }
+            //運賃
+            if (txtUnchin.blIsEmpty() == false)
+            {
+                return;
+            }
+            //合計
+            if (txtGokei.blIsEmpty() == false)
+            {
+                return;
+            }
+            //消費税
+            if (txtShohizei.blIsEmpty() == false)
+            {
+                return;
+            }
+            //総合計
+            if (txtSogokei.blIsEmpty() == false)
+            {
+                return;
+            }
+            //直送先コード（なし）
+            //直送先名（なし）
+            //郵便番号（直送先）（なし）
+            //住所１（直送先）（なし）
+            //住所２（直送先）（なし）
+            //ユーザーID（判定無し）
+
 
         }
 
