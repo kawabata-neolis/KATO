@@ -118,19 +118,27 @@
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
+    <Compile Include="Business\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
+    <Compile Include="Business\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint_B.cs" />
+    <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0481_SiireSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0482_SiireSuiiHyoLevel3_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0490_UriageSuiiHyo_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0491_UriageSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3_B.cs" />
+    <Compile Include="Business\C0530_UriageArariSuiihyoPrint\C0530_UriageArariSuiihyoPrint_B.cs" />
+    <Compile Include="Business\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint_B.cs" />
+    <Compile Include="Business\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin_B.cs" />
     <Compile Include="Business\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_B.cs" />
     <Compile Include="Business\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_B.cs" />
     <Compile Include="Business\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_B.cs" />
     <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
     <Compile Include="Business\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
+    <Compile Include="Business\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_B.cs" />
+    <Compile Include="Business\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
@@ -146,6 +154,7 @@
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
+    <Compile Include="Business\M1150_ShohinTankaIkkatsuUpdate\M1150_ShohinTankaIkkatsuUpdate_B.cs" />
     <Compile Include="Business\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka_B.cs" />
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
@@ -534,11 +543,29 @@
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.designer.cs">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.Designer.cs">
+      <DependentUpon>B0050_NyukinCheakPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.designer.cs">
       <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.Designer.cs">
+      <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.Designer.cs">
+      <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.cs">
       <SubType>Form</SubType>
@@ -576,6 +603,24 @@
     <Compile Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.designer.cs">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\C0530_UriageArariSuiihyoPrint\C0530_UriageArariSuiihyoPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\C0530_UriageArariSuiihyoPrint\C0530_UriageArariSuiihyoPrint.Designer.cs">
+      <DependentUpon>C0530_UriageArariSuiihyoPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint.Designer.cs">
+      <DependentUpon>C0650_SyohingunUriageSiirePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.Designer.cs">
+      <DependentUpon>D0300_ZaikoIchiranKakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -611,6 +656,18 @@
     </Compile>
     <Compile Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.Designer.cs">
       <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.Designer.cs">
+      <DependentUpon>E0330_TokuisakiMotocyoKakunin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin.Designer.cs">
+      <DependentUpon>E0340_SiiresakiMotochouKakunin.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.cs">
       <SubType>Form</SubType>
@@ -737,6 +794,12 @@
     </Compile>
     <Compile Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.Designer.cs">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1150_ShohinTankaIkkatsuUpdate\M1150_ShohinTankaIkkatsuUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1150_ShohinTankaIkkatsuUpdate\M1150_ShohinTankaIkkatsuUpdate.designer.cs">
+      <DependentUpon>M1150_ShohinTankaIkkatsuUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka.cs">
       <SubType>Form</SubType>
@@ -992,8 +1055,17 @@
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.resx">
+      <DependentUpon>B0050_NyukinCheakPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.resx">
       <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.resx">
+      <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.resx">
+      <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.resx">
       <DependentUpon>C0480_SiireSuiiHyo.cs</DependentUpon>
@@ -1013,6 +1085,15 @@
     <EmbeddedResource Include="Form\C0490_UriageSuiiHyo\C0492_UriageSuiiHyoLevel3.resx">
       <DependentUpon>C0492_UriageSuiiHyoLevel3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\C0530_UriageArariSuiihyoPrint\C0530_UriageArariSuiihyoPrint.resx">
+      <DependentUpon>C0530_UriageArariSuiihyoPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint.resx">
+      <DependentUpon>C0650_SyohingunUriageSiirePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.resx">
+      <DependentUpon>D0300_ZaikoIchiranKakunin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.resx">
       <DependentUpon>D0310_UriageJissekiKakunin.cs</DependentUpon>
     </EmbeddedResource>
@@ -1030,6 +1111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.resx">
       <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.resx">
+      <DependentUpon>E0330_TokuisakiMotocyoKakunin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin.resx">
+      <DependentUpon>E0340_SiiresakiMotochouKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.resx">
       <DependentUpon>G0920_HidukeSeigen.cs</DependentUpon>
@@ -1104,6 +1191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1130_Shohizeiritsu\M1130_Shohizeiritsu.resx">
       <DependentUpon>M1130_Shohizeiritsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1150_ShohinTankaIkkatsuUpdate\M1150_ShohinTankaIkkatsuUpdate.resx">
+      <DependentUpon>M1150_ShohinTankaIkkatsuUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1160_TokuteimukesakiTanka\M1160_TokuteimukesakiTanka.resx">
       <DependentUpon>M1160_TokuteimukesakiTanka.cs</DependentUpon>
