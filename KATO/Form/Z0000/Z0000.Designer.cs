@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.baseMenuButton24 = new KATO.Common.Ctl.BaseMenuButton();
+            this.baseMenuButton20 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton15 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton14 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton12 = new KATO.Common.Ctl.BaseMenuButton();
@@ -43,6 +45,7 @@
             this.btnTestWindow = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaInput = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.baseMenuButton25 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton18 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton17 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton16 = new KATO.Common.Ctl.BaseMenuButton();
@@ -56,9 +59,11 @@
             this.btnShohinMotochoKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.baseMenuButton23 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton19 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton8 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.baseMenuButton22 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton7 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton4 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
@@ -76,11 +81,8 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.baseMenuButton6 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton20 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton21 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton22 = new KATO.Common.Ctl.BaseMenuButton();
-            this.baseMenuButton23 = new KATO.Common.Ctl.BaseMenuButton();
+            this.baseMenuButton6 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -168,6 +170,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.baseMenuButton24);
             this.tabPage1.Controls.Add(this.baseMenuButton20);
             this.tabPage1.Controls.Add(this.baseMenuButton15);
             this.tabPage1.Controls.Add(this.baseMenuButton14);
@@ -187,6 +190,28 @@
             this.tabPage1.Size = new System.Drawing.Size(1392, 737);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
+            // 
+            // baseMenuButton24
+            // 
+            this.baseMenuButton24.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton24.Location = new System.Drawing.Point(23, 346);
+            this.baseMenuButton24.Name = "baseMenuButton24";
+            this.baseMenuButton24.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton24.TabIndex = 116;
+            this.baseMenuButton24.Text = "担当者別売上管理表";
+            this.baseMenuButton24.UseVisualStyleBackColor = false;
+            this.baseMenuButton24.Click += new System.EventHandler(this.baseMenuButton24_Click);
+            // 
+            // baseMenuButton20
+            // 
+            this.baseMenuButton20.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton20.Location = new System.Drawing.Point(23, 279);
+            this.baseMenuButton20.Name = "baseMenuButton20";
+            this.baseMenuButton20.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton20.TabIndex = 115;
+            this.baseMenuButton20.Text = "入金入力";
+            this.baseMenuButton20.UseVisualStyleBackColor = false;
+            this.baseMenuButton20.Click += new System.EventHandler(this.baseMenuButton20_Click);
             // 
             // baseMenuButton15
             // 
@@ -213,7 +238,7 @@
             // baseMenuButton12
             // 
             this.baseMenuButton12.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton12.Location = new System.Drawing.Point(604, 412);
+            this.baseMenuButton12.Location = new System.Drawing.Point(607, 672);
             this.baseMenuButton12.Name = "baseMenuButton12";
             this.baseMenuButton12.Size = new System.Drawing.Size(280, 40);
             this.baseMenuButton12.TabIndex = 112;
@@ -325,6 +350,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.baseMenuButton25);
             this.tabPage2.Controls.Add(this.baseMenuButton18);
             this.tabPage2.Controls.Add(this.baseMenuButton17);
             this.tabPage2.Controls.Add(this.baseMenuButton16);
@@ -343,6 +369,17 @@
             this.tabPage2.Size = new System.Drawing.Size(1392, 737);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
+            // 
+            // baseMenuButton25
+            // 
+            this.baseMenuButton25.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton25.Location = new System.Drawing.Point(23, 346);
+            this.baseMenuButton25.Name = "baseMenuButton25";
+            this.baseMenuButton25.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton25.TabIndex = 115;
+            this.baseMenuButton25.Text = "棚卸プレシート";
+            this.baseMenuButton25.UseVisualStyleBackColor = false;
+            this.baseMenuButton25.Click += new System.EventHandler(this.baseMenuButton25_Click);
             // 
             // baseMenuButton18
             // 
@@ -467,7 +504,7 @@
             // 
             // btnZanKakunin
             // 
-            this.btnZanKakunin.BackColor = System.Drawing.Color.LightYellow;
+            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
             this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
             this.btnZanKakunin.Name = "btnZanKakunin";
             this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
@@ -488,6 +525,17 @@
             this.tabPage3.Size = new System.Drawing.Size(1392, 737);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "3";
+            // 
+            // baseMenuButton23
+            // 
+            this.baseMenuButton23.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton23.Location = new System.Drawing.Point(323, 21);
+            this.baseMenuButton23.Name = "baseMenuButton23";
+            this.baseMenuButton23.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton23.TabIndex = 111;
+            this.baseMenuButton23.Text = "売上実績確認（AS400）";
+            this.baseMenuButton23.UseVisualStyleBackColor = false;
+            this.baseMenuButton23.Click += new System.EventHandler(this.baseMenuButton23_Click);
             // 
             // baseMenuButton19
             // 
@@ -536,6 +584,17 @@
             this.tabPage4.Size = new System.Drawing.Size(1392, 737);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "4";
+            // 
+            // baseMenuButton22
+            // 
+            this.baseMenuButton22.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton22.Location = new System.Drawing.Point(342, 351);
+            this.baseMenuButton22.Name = "baseMenuButton22";
+            this.baseMenuButton22.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton22.TabIndex = 107;
+            this.baseMenuButton22.Text = "特定向先単価マスタ";
+            this.baseMenuButton22.UseVisualStyleBackColor = false;
+            this.baseMenuButton22.Click += new System.EventHandler(this.baseMenuButton22_Click);
             // 
             // baseMenuButton7
             // 
@@ -723,27 +782,6 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
             // 
-            // baseMenuButton6
-            // 
-            this.baseMenuButton6.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton6.Location = new System.Drawing.Point(23, 38);
-            this.baseMenuButton6.Name = "baseMenuButton6";
-            this.baseMenuButton6.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton6.TabIndex = 75;
-            this.baseMenuButton6.Text = "商品分類別利益率設定";
-            this.baseMenuButton6.UseVisualStyleBackColor = false;
-            this.baseMenuButton6.Click += new System.EventHandler(this.baseMenuButton6_Click_1);
-            // 
-            // baseMenuButton20
-            // 
-            this.baseMenuButton20.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton20.Location = new System.Drawing.Point(23, 279);
-            this.baseMenuButton20.Name = "baseMenuButton20";
-            this.baseMenuButton20.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton20.TabIndex = 115;
-            this.baseMenuButton20.Text = "入金入力";
-            this.baseMenuButton20.UseVisualStyleBackColor = false;
-            // 
             // baseMenuButton21
             // 
             this.baseMenuButton21.BackColor = System.Drawing.Color.LightYellow;
@@ -755,33 +793,22 @@
             this.baseMenuButton21.UseVisualStyleBackColor = false;
             this.baseMenuButton21.Click += new System.EventHandler(this.baseMenuButton21_Click);
             // 
-            // baseMenuButton22
+            // baseMenuButton6
             // 
-            this.baseMenuButton22.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton22.Location = new System.Drawing.Point(342, 351);
-            this.baseMenuButton22.Name = "baseMenuButton22";
-            this.baseMenuButton22.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton22.TabIndex = 107;
-            this.baseMenuButton22.Text = "特定向先単価マスタ";
-            this.baseMenuButton22.UseVisualStyleBackColor = false;
-            this.baseMenuButton22.Click += new System.EventHandler(this.baseMenuButton22_Click);
-            // 
-            // baseMenuButton23
-            // 
-            this.baseMenuButton23.BackColor = System.Drawing.Color.LightYellow;
-            this.baseMenuButton23.Location = new System.Drawing.Point(323, 21);
-            this.baseMenuButton23.Name = "baseMenuButton23";
-            this.baseMenuButton23.Size = new System.Drawing.Size(280, 40);
-            this.baseMenuButton23.TabIndex = 111;
-            this.baseMenuButton23.Text = "売上実績確認（AS400）";
-            this.baseMenuButton23.UseVisualStyleBackColor = false;
-            this.baseMenuButton23.Click += new System.EventHandler(this.baseMenuButton23_Click);
+            this.baseMenuButton6.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton6.Location = new System.Drawing.Point(23, 38);
+            this.baseMenuButton6.Name = "baseMenuButton6";
+            this.baseMenuButton6.Size = new System.Drawing.Size(280, 40);
+            this.baseMenuButton6.TabIndex = 75;
+            this.baseMenuButton6.Text = "商品分類別利益率設定";
+            this.baseMenuButton6.UseVisualStyleBackColor = false;
+            this.baseMenuButton6.Click += new System.EventHandler(this.baseMenuButton6_Click_1);
             // 
             // Z0000
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1354, 733);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.tabControl1);
             this.Location = new System.Drawing.Point(-7, 0);
             this.Name = "Z0000";
@@ -868,5 +895,7 @@
         private Common.Ctl.BaseMenuButton baseMenuButton21;
         private Common.Ctl.BaseMenuButton baseMenuButton22;
         private Common.Ctl.BaseMenuButton baseMenuButton23;
+        private Common.Ctl.BaseMenuButton baseMenuButton24;
+        private Common.Ctl.BaseMenuButton baseMenuButton25;
     }
 }

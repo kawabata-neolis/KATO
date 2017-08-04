@@ -57,9 +57,9 @@
             this.lblStatusHeader,
             this.lblStatusMessage,
             this.lblStatusUser});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 806);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 804);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1419, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1424, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -83,7 +83,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.lblStatusMessage.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
             this.lblStatusMessage.Name = "lblStatusMessage";
-            this.lblStatusMessage.Size = new System.Drawing.Size(1344, 17);
+            this.lblStatusMessage.Size = new System.Drawing.Size(1349, 17);
             this.lblStatusMessage.Spring = true;
             this.lblStatusMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -260,7 +260,6 @@
             // BaseForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblSubWinSHow);
             this.Controls.Add(this.cmbSubWinShow);

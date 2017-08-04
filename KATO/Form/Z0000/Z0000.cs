@@ -368,8 +368,8 @@ namespace KATO.Form.Z0000
 
         private void baseMenuButton16_Click(object sender, EventArgs e)
         {
-            //B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint seikyu = new B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint(this);
-            //seikyu.ShowDialog();
+            B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint seikyu = new B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint(this);
+            seikyu.ShowDialog();
         }
 
         private void baseMenuButton17_Click(object sender, EventArgs e)
@@ -406,6 +406,24 @@ namespace KATO.Form.Z0000
         {
             D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400 uriageAS400 = new D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400(this);
             uriageAS400.ShowDialog();
+        }
+
+        private void baseMenuButton24_Click(object sender, EventArgs e)
+        {
+            C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint uriage = new C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint(this);
+            uriage.ShowDialog();
+        }
+
+        private void baseMenuButton20_Click(object sender, EventArgs e)
+        {
+            B0040_NyukinInput.B0040_NyukinInput nyukin = new B0040_NyukinInput.B0040_NyukinInput(this);
+            nyukin.ShowDialog();
+        }
+
+        private void baseMenuButton25_Click(object sender, EventArgs e)
+        {
+            F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint preSheet = new F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint(this);
+            preSheet.ShowDialog();
         }
     }
 }

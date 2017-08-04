@@ -843,7 +843,7 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void cbJuchuTanka_Leave(object sender, EventArgs e)
         {
-
+            updKakeritsu();
         }
 
         private void updKakeritsu()
@@ -911,7 +911,23 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void txtSearchStr_KeyDown(object sender, KeyEventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtSearchStr.Text))
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F9)
+                {
+                    // TODO: 商品リスト呼び出し
+                }
+            }
+        }
 
+        private void txtNoki_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNoki.Text))
+            {
+                return;
+            }
+
+            
         }
     }
 }

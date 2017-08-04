@@ -290,6 +290,7 @@
             // 
             // radSet_Sort2
             // 
+            this.radSet_Sort2.intJudBtn = 0;
             this.radSet_Sort2.LabelTitle = "";
             this.radSet_Sort2.Location = new System.Drawing.Point(14, 57);
             this.radSet_Sort2.Name = "radSet_Sort2";
@@ -681,9 +682,7 @@
             // 
             // D0310_UriageJissekiKakunin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.baseLabel9);
             this.Controls.Add(this.txtArariritsu);
@@ -719,7 +718,7 @@
             this.Controls.Add(this.labelSet_Tantousha);
             this.Controls.Add(this.labelSet_Nyuryokusya);
             this.Name = "D0310_UriageJissekiKakunin";
-            this.Text = "Form1";
+            this.Text = "売上実績確認";
             this.Load += new System.EventHandler(this.D0310_UriageJissekiKakunin_Load);
             this.Shown += new System.EventHandler(this.D0310_UriageJissekiKakunin_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0310_UriageJissekiKakunin_KeyDown);

@@ -53,11 +53,18 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
+            // フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            // フォームが最小化されないようにする
+            this.MinimizeBox = false;
 
-            //ウィンドウ位置をマニュアル
+            // 最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
+            // ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
+            // 親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 

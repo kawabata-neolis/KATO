@@ -203,10 +203,8 @@
             // 
             // D0680_UriageJissekiKakuninAS400
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.txtYMDclose);
             this.Controls.Add(this.txtYMDopen);
             this.Controls.Add(this.gridTorihiki);
@@ -218,7 +216,7 @@
             this.Controls.Add(this.lblKikan);
             this.Controls.Add(this.labelSet_Tokuisaki);
             this.Name = "D0680_UriageJissekiKakuninAS400";
-            this.Text = "Form1";
+            this.Text = "売上実績確認(AS400)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.D0680_UriageJissekiKakuninAS400_FormClosed);
             this.Load += new System.EventHandler(this.D0680_UriageJissekiKakuninAS400_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0680_UriageJissekiKakuninAS400_KeyDown);
