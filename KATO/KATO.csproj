@@ -133,6 +133,7 @@
     <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
+    <Compile Include="Business\M1000_Kaishajyoken\M1000_Kaishajyoken_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
     <Compile Include="Business\M1030_Shohin\M1030_Shohin_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
@@ -150,6 +151,8 @@
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
+    <Compile Include="Common\Business\ShireList_B.cs" />
+    <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Business\KakouGenkaList_B.cs" />
     <Compile Include="Common\Business\ShiharaiList_B.cs" />
     <Compile Include="Common\Business\NyukinList_B.cs" />
@@ -433,6 +436,12 @@
     <Compile Include="Common\Form\ShiharaiList.Designer.cs">
       <DependentUpon>ShiharaiList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\ShireList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ShireList.Designer.cs">
+      <DependentUpon>ShireList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\ShiresakiList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,6 +477,12 @@
     </Compile>
     <Compile Include="Common\Form\TorihikikbnList.Designer.cs">
       <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\UriageList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\UriageList.Designer.cs">
+      <DependentUpon>UriageList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Util\CommonException.cs" />
     <Compile Include="Common\Util\CommonTeisu.cs" />
@@ -623,6 +638,12 @@
     </Compile>
     <Compile Include="Form\JuchuInput\JuchuInput_Test.Designer.cs">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\M1000_Kaishajyoken\M1000_Kaishajyoken.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1000_Kaishajyoken\M1000_Kaishajyoken.designer.cs">
+      <DependentUpon>M1000_Kaishajyoken.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\M1030_Shohin\M1030_Shohin.cs">
       <SubType>Form</SubType>
@@ -947,6 +968,9 @@
       <DependentUpon>ShiharaiList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShireList.resx">
+      <DependentUpon>ShireList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ShiresakiList.resx">
       <DependentUpon>ShiresakiList.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -967,6 +991,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TorihikikbnList.resx">
       <DependentUpon>TorihikikbnList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\UriageList.resx">
+      <DependentUpon>UriageList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0010_JuchuInput\A0010_JuchuInput.resx">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
@@ -1037,6 +1064,9 @@
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1000_Kaishajyoken\M1000_Kaishajyoken.resx">
+      <DependentUpon>M1000_Kaishajyoken.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1030_Shohin\M1030_Shohin.resx">
       <DependentUpon>M1030_Shohin.cs</DependentUpon>
@@ -1152,6 +1182,57 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Log4net.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuDataCnt_NOKako_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuShireTankaShohinCd_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuShohinCd_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuShireTanka_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_KakoShireTanka_KakoNyuko_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_KakoShireTanka_KakoShuko_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_KakoShireTanka_KakoHachu_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_Juchu_Shiretanka_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuDataCnt_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_ShohinCd_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_ShohinCdMAX_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuTanka_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_gb_ChokinShireTanka_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_gb_Shohizei_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_gb_HachuData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_HachuKin_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_HachuTanka_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_ShireHeader_SELECT.sql">
@@ -1829,6 +1910,7 @@
     <Content Include="SQL\F0140_Tanaorosi\Tanaorosi_SELECT_SetItem.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\M1000_Kaishajyoken\M1000_Kaishajyoken_SELECT_LEAVE.sql" />
     <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -50,7 +50,7 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                if (this.Parent is GroupBox)
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     EigyoshoList daibunruiList = new EigyoshoList(this.Parent.Parent, this);
                     daibunruiList.Show();
@@ -96,15 +96,15 @@ namespace KATO.Common.Ctl
             {
                 this.ValueLabelText = "";
 
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                //グループボックスかパネル内にいる場合(仕入入力画面にも対応)
+                if (this.Parent is GroupBox || this.Parent is Panel || this.Parent is KATO.Form.A0030_ShireInput.BaseViewDataGroup)
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
                 }
-                else
+                else 
                 {
 
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
@@ -154,11 +154,11 @@ namespace KATO.Common.Ctl
                 {
                     this.ValueLabelText = "";
 
-                    //グループボックス内にいる場合
-                    if (this.Parent is GroupBox)
+                    //グループボックスかパネル内にいる場合
+                    if (this.Parent is GroupBox || this.Parent is Panel)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         return;
                     }

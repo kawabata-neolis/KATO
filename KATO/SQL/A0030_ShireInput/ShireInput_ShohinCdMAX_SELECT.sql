@@ -1,0 +1,1 @@
+SELECT MAX(商品コード) FROM 商品

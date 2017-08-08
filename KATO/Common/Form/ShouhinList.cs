@@ -457,9 +457,6 @@ namespace KATO.Common.Form
         ///</summary>
         private void setTextData()
         {
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
             if (strDaibunruiCode.Length >= 1)
             {
                 labelSet_Daibunrui.CodeTxtText = strDaibunruiCode;

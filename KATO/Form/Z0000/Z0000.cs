@@ -239,6 +239,14 @@ namespace KATO.Form.Z0000
             shireinput.ShowDialog();
         }
 
+        //  会社条件
+        private void btnKaishajoken_Click(object sender, EventArgs e)
+        {
+            M1000_Kaishajyoken.M1000_Kaishajyoken kaishajoken = new M1000_Kaishajyoken.M1000_Kaishajyoken(this);
+            kaishajoken.ShowDialog();
+        }
+
+
 
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
@@ -275,5 +283,6 @@ namespace KATO.Form.Z0000
             }
             pf.Dispose();
         }
+
     }
 }

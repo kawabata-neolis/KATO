@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1070_Torihikisaki;
 using KATO.Common.Util;
-using KATO.Form.F0140_TanaorosiInput;
+using KATO.Form.A0030_ShireInput;
 
 namespace KATO.Common.Business
 {
@@ -38,6 +38,14 @@ namespace KATO.Common.Business
                     //データを連れてくるため、newをしないこと
                     M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
                     torihikisaki.setTokuisakiListClose();
+                    break;
+                }
+                //取引先のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_SHIREINPUT && frm.Name.Equals("A0030_ShireInput"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    A0030_ShireInput shireinput = (A0030_ShireInput)frm;
+                    shireinput.setTokuisakiListClose();
                     break;
                 }
             }
@@ -95,6 +103,21 @@ namespace KATO.Common.Business
                                 //データを連れてくるため、newをしないこと
                                 M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
                                 torihikisaki.setTorihikisaki(dtSelectData);
+                                break;
+                            }
+                        }
+                        break;
+                    //仕入入力
+                    case CommonTeisu.FRM_SHIREINPUT:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("A0030_ShireInput"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                A0030_ShireInput shireinput = (A0030_ShireInput)frm;
+                                shireinput.setTorihikisaki(dtSelectData);
                                 break;
                             }
                         }

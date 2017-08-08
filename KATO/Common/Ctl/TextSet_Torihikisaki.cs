@@ -49,7 +49,7 @@ namespace KATO.Common.Ctl
         {
             if (e.KeyCode == Keys.F9)
             {
-                if (this.Parent is GroupBox)
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent.Parent, this);
                     torihikisakiList.StartPosition = FormStartPosition.Manual;
@@ -102,11 +102,11 @@ namespace KATO.Common.Ctl
             {
                 this.valueTextText = "";
 
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
                 }
@@ -175,11 +175,11 @@ namespace KATO.Common.Ctl
                 {
                     this.valueTextText = "";
 
-                    //グループボックス内にいる場合
-                    if (this.Parent is GroupBox)
+                    //グループボックスかパネル内にいる場合
+                    if (this.Parent is GroupBox || this.Parent is Panel)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         return;
                     }
@@ -198,11 +198,11 @@ namespace KATO.Common.Ctl
                 //データロギング
                 new CommonException(ex);
 
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
                 }
@@ -258,11 +258,11 @@ namespace KATO.Common.Ctl
             {
                 this.valueTextText = "";
 
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
                 }
@@ -329,11 +329,11 @@ namespace KATO.Common.Ctl
                 //データロギング
                 new CommonException(ex);
 
-                //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
                 }

@@ -178,6 +178,56 @@ namespace KATO.Common.Util
             }
         }
 
+        ///// <summary>
+        ///// SQLクエリを実行します。(PROC用(戻り値無し、パラメータ付きで実行))
+        ///// </summary>
+        ///// <param name="sqlStr">SQLクエリ</param>
+        ///// <param name="cmdType">コマンドタイプ</param>
+        //public void RunSqlR(string sqlStr, CommandType cmdType, int intOutputNo, object outputVal, params object[] param)
+        //{
+        //    Boolean isConnect = false;
+
+        //    SqlCommand gCmd = CM;
+        //    SqlParameterCollection prm = CM.Parameters;
+
+        //    //パラメータの量
+        //    int intParaCnt = -1;
+            
+        //    if ((CON == null) || (CON.State != ConnectionState.Open))
+        //    {
+        //        this.DB_Connect();
+        //        isConnect = true;
+        //    }
+
+        //    //パラメータの量が0以上の場合
+        //    if (intParaCnt >= 0)
+        //    {
+        //        //パラメータの量分ループ
+        //        for (int intcntB = 0; intcntB < intParaCnt; intcntB++)
+        //        {
+        //            //パラメータの中身を更新
+        //            prm = CM.Parameters;
+
+        //            //outputNoと一致する場合
+        //            if (intcntB == intOutputNo)
+        //            {
+        //                prm.
+        //            }
+
+
+        //        }
+        //    }
+
+        //    //CM.Parameters.(intOutputNo, lstDataName[cnt], lstTableName[cnt]);
+
+        //    CM.ExecuteNonQuery();
+
+        //    if (isConnect)
+        //    {
+        //        this.DB_Disconnect();
+        //    }
+        //}
+
         /// <summary>
         /// SQLクエリを実行します。(PROC用(戻り値あり))
         /// </summary>
