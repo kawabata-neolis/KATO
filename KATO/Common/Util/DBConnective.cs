@@ -50,7 +50,7 @@ namespace KATO.Common.Util
             CON = new SqlConnection(ConnectStr);
             CON.Open();
             CM = CON.CreateCommand();
-            CM.CommandTimeout = 240;
+            CM.CommandTimeout = 2000;
             CM.Connection = CON;
             adapter = new SqlDataAdapter();
         }
@@ -287,7 +287,16 @@ namespace KATO.Common.Util
             //各該当データをPROCに適用
             for (int cnt = 0; cnt < lstTableName.Count; cnt++)
             {
-                CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+                //nullだった場合はDBNull.valueを返す。
+                if (lstTableName[cnt] == "null" || lstTableName[cnt] == null)
+                {
+                    CM.Parameters.AddWithValue(lstDataName[cnt],DBNull.Value);
+                }
+                else
+                {
+                    CM.Parameters.AddWithValue(lstDataName[cnt], lstTableName[cnt]);
+                }
+                
             }
             if (strRet != null && string.IsNullOrWhiteSpace(strRet)) {
                 CM.Parameters.Add(strRet.Substring(1), SqlDbType.Int).Direction = ParameterDirection.Output;
