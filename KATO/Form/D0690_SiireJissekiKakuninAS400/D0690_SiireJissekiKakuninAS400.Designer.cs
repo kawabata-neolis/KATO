@@ -254,7 +254,7 @@
             this.Controls.Add(this.lblaida1);
             this.Controls.Add(this.lblKikan);
             this.Name = "D0690_SiireJissekiKakuninAS400";
-            this.Text = "D0690_SiireJissekiKakuninAS400";
+            this.Text = "仕入実績確認(AS400)";
             this.Load += new System.EventHandler(this.D0690_SiireJissekiKakuninAS400_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0690_SiireJissekiKakuninAS400_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);

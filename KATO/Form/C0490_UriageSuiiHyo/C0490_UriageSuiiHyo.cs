@@ -43,16 +43,16 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
 
             ////フォームが最大化されないようにする
-            //this.MaximizeBox = false;
+            this.MaximizeBox = false;
             ////フォームが最小化されないようにする
-            //this.MinimizeBox = false;
+            this.MinimizeBox = false;
 
             ////最大サイズと最小サイズを現在のサイズに設定する
-            //this.MaximumSize = this.Size;
-            //this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;

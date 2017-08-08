@@ -18,6 +18,7 @@ namespace KATO.Common.Form
     {
         System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
 
+        private bool diagFlg = true;
         private int _action = 2;
         public int action
         {
@@ -30,6 +31,20 @@ namespace KATO.Common.Form
                 return _action;
             }
         }
+
+        private string _printer = "";
+        public string printer
+        {
+            set
+            {
+                _printer = value;
+            }
+            get
+            {
+                return _printer;
+            }
+        }
+
 
         private string stPath;
         private string stSize;
@@ -51,6 +66,7 @@ namespace KATO.Common.Form
                 {
                     prtList.SelectedIndex = intIdx;
                     txtPrt.Text = item;
+                    _printer = item;
                 }
                 intIdx++;
             }
@@ -77,6 +93,7 @@ namespace KATO.Common.Form
         private void prtList_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtPrt.Text = prtList.Items[prtList.SelectedIndex].ToString();
+            _printer = prtList.Items[prtList.SelectedIndex].ToString();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -98,6 +115,16 @@ namespace KATO.Common.Form
         {
             _action = CommonTeisu.ACTION_CANCEL;
             this.Close();
+        }
+
+        public void execPrint(String p, string size, bool flg)
+        {
+            _action = CommonTeisu.ACTION_PRINT;
+            _printer = p;
+            stSize = size;
+            tateFlg = flg;
+            diagFlg = false;
+            execPrint();
         }
 
         public void execPrint()
@@ -157,19 +184,21 @@ namespace KATO.Common.Form
 
             using (GhostscriptProcessor processor = new GhostscriptProcessor())
             {
-                if (rdPage1.Checked)
-                {
-                    stSize = CommonTeisu.SIZE_B5;
+                if (diagFlg) {
+                    if (rdPage1.Checked)
+                    {
+                        stSize = CommonTeisu.SIZE_B5;
+                    }
+                    else if (rdPage2.Checked)
+                    {
+                        stSize = CommonTeisu.SIZE_A4;
+                    }
+                    if (rdPage3.Checked)
+                    {
+                        stSize = CommonTeisu.SIZE_B4;
+                    }
+                    lstSize = CommonTeisu.paramSize[stSize];
                 }
-                else if (rdPage2.Checked)
-                {
-                    stSize = CommonTeisu.SIZE_A4;
-                }
-                if (rdPage3.Checked)
-                {
-                    stSize = CommonTeisu.SIZE_B4;
-                }
-                lstSize = CommonTeisu.paramSize[stSize];
 
 
                 List<string> switches = new List<string>();
@@ -180,7 +209,7 @@ namespace KATO.Common.Form
                 switches.Add("-dNOSAFER");
                 switches.Add("-dNumCopies=1"); //部数
                 switches.Add("-sDEVICE=mswinpr2");
-                switches.Add("-sOutputFile=%printer%" + txtPrt.Text);
+                switches.Add("-sOutputFile=%printer%" + _printer);
                 if (tateFlg)
                 {
                     switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);

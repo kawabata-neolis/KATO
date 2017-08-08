@@ -284,5 +284,154 @@ namespace KATO.Form.Z0000
             pf.Dispose();
         }
 
+        private void baseMenuButton2_Click(object sender, EventArgs e)
+        {
+            D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin siire = new D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this);
+            siire.ShowDialog();
+        }
+
+        private void baseMenuButton3_Click(object sender, EventArgs e)
+        {
+            A0090_SiireCheakPrint.A0090_SiireCheakPrint siirecheak = new A0090_SiireCheakPrint.A0090_SiireCheakPrint(this);
+            siirecheak.ShowDialog();
+        }
+
+        private void baseMenuButton4_Click(object sender, EventArgs e)
+        {
+            M1150_ShohinTankaIkkatsuUpdate.M1150_ShohinTankaIkkatsuUpdate shohin = new M1150_ShohinTankaIkkatsuUpdate.M1150_ShohinTankaIkkatsuUpdate(this);
+            shohin.ShowDialog();
+        }
+
+        private void baseMenuButton5_Click(object sender, EventArgs e)
+        {
+            B0060_ShiharaiInput.B0060_ShiharaiInput shiharai = new B0060_ShiharaiInput.B0060_ShiharaiInput(this);
+            shiharai.ShowDialog();
+        }
+
+        private void baseMenuButton6_Click_1(object sender, EventArgs e)
+        {
+            M1220_SyohinBunruiRiekiritsu.M1220_SyohinBunruiRiekiritsu shohin = new M1220_SyohinBunruiRiekiritsu.M1220_SyohinBunruiRiekiritsu(this);
+            shohin.ShowDialog();
+        }
+
+        private void baseMenuButton7_Click(object sender, EventArgs e)
+        {
+            G0920_HidukeSeigen.G0920_HidukeSeigen hiduke = new G0920_HidukeSeigen.G0920_HidukeSeigen(this);
+            hiduke.ShowDialog();
+        }
+
+        private void baseMenuButton8_Click(object sender, EventArgs e)
+        {
+            D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400 siire = new D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400(this);
+            siire.ShowDialog();
+        }
+
+        private void baseMenuButton3_Click_1(object sender, EventArgs e)
+        {
+            A0090_SiireCheakPrint.A0090_SiireCheakPrint siire = new A0090_SiireCheakPrint.A0090_SiireCheakPrint(this);
+            siire.ShowDialog();
+        }
+
+        private void baseMenuButton9_Click(object sender, EventArgs e)
+        {
+            E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin siire = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this);
+            siire.ShowDialog();
+        }
+
+        private void baseMenuButton10_Click(object sender, EventArgs e)
+        {
+            A0150_UriageCheckPrint.A0150_UriageCheckPrint uriage = new A0150_UriageCheckPrint.A0150_UriageCheckPrint(this);
+            uriage.ShowDialog();
+        }
+
+        private void baseMenuButton11_Click(object sender, EventArgs e)
+        {
+            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 0 , "", "");
+            uriage.ShowDialog();
+        }
+
+        private void baseMenuButton12_Click(object sender, EventArgs e)
+        {
+            D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin zaiko = new D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin(this);
+            zaiko.ShowDialog();
+        }
+
+        private void baseMenuButton13_Click(object sender, EventArgs e)
+        {
+            C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint uriage = new C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint(this);
+            uriage.ShowDialog();
+        }
+
+        private void baseMenuButton14_Click(object sender, EventArgs e)
+        {
+            B0050_NyukinCheakPrint.B0050_NyukinCheakPrint nyukin = new B0050_NyukinCheakPrint.B0050_NyukinCheakPrint(this);
+            nyukin.ShowDialog();
+        }
+
+        private void baseMenuButton15_Click(object sender, EventArgs e)
+        {
+            B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint shiharai = new B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint(this);
+            shiharai.ShowDialog();
+        }
+
+        private void baseMenuButton16_Click(object sender, EventArgs e)
+        {
+            B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint seikyu = new B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint(this);
+            seikyu.ShowDialog();
+        }
+
+        private void baseMenuButton17_Click(object sender, EventArgs e)
+        {
+            B0410_SeikyuItiranPrint.B0410_SeikyuItiranPrint seikyuu = new B0410_SeikyuItiranPrint.B0410_SeikyuItiranPrint(this);
+            seikyuu.ShowDialog();
+        }
+
+        private void baseMenuButton18_Click(object sender, EventArgs e)
+        {
+            E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisakimototyoukakunin = new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 0, "");
+            tokuisakimototyoukakunin.ShowDialog();
+        }
+
+        private void baseMenuButton19_Click(object sender, EventArgs e)
+        {
+            C0650_SyohingunUriageSiirePrint.C0650_SyohingunUriageSiirePrint uriageriekiritu = new C0650_SyohingunUriageSiirePrint.C0650_SyohingunUriageSiirePrint(this);
+            uriageriekiritu.ShowDialog();
+        }
+
+        private void baseMenuButton21_Click(object sender, EventArgs e)
+        {
+            M1210_ShohinbetsuRiekiritsuSettei.M1210_ShohinbetsuRiekiritsuSettei uriageriekiritu = new M1210_ShohinbetsuRiekiritsuSettei.M1210_ShohinbetsuRiekiritsuSettei(this);
+            uriageriekiritu.ShowDialog();
+        }
+
+        private void baseMenuButton22_Click(object sender, EventArgs e)
+        {
+            M1160_TokuteimukesakiTanka.M1160_TokuteimukesakiTanka tokuteimukesakitankamasuta = new M1160_TokuteimukesakiTanka.M1160_TokuteimukesakiTanka(this);
+            tokuteimukesakitankamasuta.ShowDialog();
+        }
+
+        private void baseMenuButton23_Click(object sender, EventArgs e)
+        {
+            D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400 uriageAS400 = new D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400(this);
+            uriageAS400.ShowDialog();
+        }
+
+        private void baseMenuButton24_Click(object sender, EventArgs e)
+        {
+            C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint uriage = new C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint(this);
+            uriage.ShowDialog();
+        }
+
+        private void baseMenuButton20_Click(object sender, EventArgs e)
+        {
+            B0040_NyukinInput.B0040_NyukinInput nyukin = new B0040_NyukinInput.B0040_NyukinInput(this);
+            nyukin.ShowDialog();
+        }
+
+        private void baseMenuButton25_Click(object sender, EventArgs e)
+        {
+            F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint preSheet = new F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint(this);
+            preSheet.ShowDialog();
+        }
     }
 }

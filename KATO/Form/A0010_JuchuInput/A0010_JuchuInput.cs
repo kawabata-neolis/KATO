@@ -836,10 +836,98 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        private void cbJuchuTanka_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updKakeritsu();
+        }
+
+        private void cbJuchuTanka_Leave(object sender, EventArgs e)
+        {
+            updKakeritsu();
+        }
+
+        private void updKakeritsu()
+        {
+            if (lsDaibunrui.CodeTxtText.Equals("28") && lsChubunrui.CodeTxtText.Equals("04"))
+            {
+                cbSiireTanka.Text = cbJuchuTanka.Text;
+            }
+            // 定価が未設定の場合、掛率を計算しない
+            if (string.IsNullOrEmpty(txtTeika.Text) || int.Parse(txtTeika.Text) == 0)
+            {
+                return;
+            }
+
+            string strNumerator = "0";
+
+            if (string.IsNullOrEmpty(cbJuchuTanka.Text))
+            {
+                strNumerator = "0";
+            }
+            else
+            {
+                strNumerator = cbJuchuTanka.Text;
+            }
+            txtJuchuTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text)).ToString();
+
+            if (string.IsNullOrEmpty(cbSiireTanka.Text))
+            {
+                strNumerator = "0";
+            }
+            else
+            {
+                strNumerator = cbSiireTanka.Text;
+            }
+            txtSiireTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text)).ToString();
+
+            if (string.IsNullOrEmpty(txtKinSiireTanka.Text))
+            {
+                strNumerator = "0";
+            }
+            else
+            {
+                strNumerator = txtKinSiireTanka.Text;
+            }
+            txtKinSiireTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text)).ToString();
+
+        }
+
+        // 在庫一覧表示
         private void execZaikoDisp()
         {
 
         }
 
+        private void cbJuchuTanka_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrEmpty(cbJuchuTanka.Text))
+                {
+                    cbJuchuTanka.Focus();
+                }
+            }
+        }
+
+        private void txtSearchStr_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSearchStr.Text))
+            {
+                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.F9)
+                {
+                    // TODO: 商品リスト呼び出し
+                }
+            }
+        }
+
+        private void txtNoki_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNoki.Text))
+            {
+                return;
+            }
+
+            
+        }
     }
 }

@@ -165,8 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1379, 758);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.txtDenpyoYMDend);
             this.Controls.Add(this.baseLabel5);
             this.Controls.Add(this.txtNyuryokuYMDend);
@@ -178,7 +177,7 @@
             this.Controls.Add(this.baseLabel2);
             this.Controls.Add(this.baseLabel1);
             this.Name = "A0150_UriageCheckPrint";
-            this.Text = "Form1";
+            this.Text = "売上チェックリスト";
             this.Load += new System.EventHandler(this.A0150_UriageCheckPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0490_UriageSuiiHyo_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
