@@ -88,6 +88,20 @@ namespace KATO.Common.Ctl
             }
         }
 
+        private int _printFlg = -1;
+        public int printFlg
+        {
+            get
+            {
+                return _printFlg;
+            }
+            set
+            {
+                _printFlg = value;
+            }
+        }
+
+
         // テスト用文字列
         private List<String> strMgsList = new List<String>();
 
