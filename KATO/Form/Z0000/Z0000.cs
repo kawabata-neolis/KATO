@@ -277,10 +277,19 @@ namespace KATO.Form.Z0000
         // 印刷テスト
         private void baseMenuButton1_Click(object sender, EventArgs e)
         {
-            Common.Form.PrintForm pf = new Common.Form.PrintForm(this, @"G:\aaa.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+            //Common.Form.PrintForm pf = new Common.Form.PrintForm(this, @"G:\aaa.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+            Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+
             try
             {
-                pf.ShowDialog();
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    pf.execPreview(@"G:\aaa.pdf");
+                } else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    pf.execPrint(null, @"G:\aaa.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
             }
             catch (Exception ex)
             {

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using KATO.Common.Util;
 
 using Ghostscript.NET.Processor;
+using KATO.Common.Ctl;
 
 namespace KATO.Common.Form
 {
@@ -99,32 +100,48 @@ namespace KATO.Common.Form
         private void btnPrint_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PRINT;
-            execPrint();
+            ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PRINT;
+            //execPrint();
             this.Close();
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PREVIEW;
-            PDFPreview pv = new PDFPreview(this, stPath);
-            pv.ShowDialog();
-            pv.Dispose();
+            ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PREVIEW;
+            this.Close();
+            //PDFPreview pv = new PDFPreview(this, stPath);
+            //pv.ShowDialog();
+            //pv.Dispose();
         }
 
         private void baseButton3_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_CANCEL;
+            ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_CANCEL;
             this.Close();
         }
 
-        public void execPrint(String p, string size, bool flg)
+        public void execPrint(string p, string path, string size, bool tFlg, bool dFlg)
         {
             _action = CommonTeisu.ACTION_PRINT;
-            _printer = p;
+            if (p != null && !string.IsNullOrEmpty(p)) {
+                _printer = p;
+            }
+            stPath = path;
             stSize = size;
-            tateFlg = flg;
-            diagFlg = false;
+            tateFlg = tFlg;
+            diagFlg = dFlg;
             execPrint();
+        }
+
+        public void execPreview(string path)
+        {
+            _action = CommonTeisu.ACTION_PREVIEW;
+            stPath = path;
+            PDFPreview pv = new PDFPreview(this, stPath);
+            pv.ShowDialog();
+            pv.Dispose();
         }
 
         public void execPrint()
