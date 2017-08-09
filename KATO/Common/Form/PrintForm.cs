@@ -100,9 +100,17 @@ namespace KATO.Common.Form
         private void btnPrint_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PRINT;
-            ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PRINT;
+            if (stPath == null || string.IsNullOrEmpty(stPath))
+            {
+                ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PRINT;
+                this.Close();
+            }
+            else
+            {
+                execPrint();
+                this.Close();
+            }
             //execPrint();
-            this.Close();
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
