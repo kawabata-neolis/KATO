@@ -105,6 +105,34 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
+        ///TantoushaList
+        ///フォームの初期設定(セットテキストボックス)
+        ///</summary>
+        public TantoushaList(Control c, LabelSet_Tantousha lblSetTantouSelect, object obj)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            lblSetTantousha = lblSetTantouSelect;
+
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 30;
+        }
+
+        ///<summary>
         ///TantousyaList_Load
         ///画面レイアウト設定
         ///</summary>

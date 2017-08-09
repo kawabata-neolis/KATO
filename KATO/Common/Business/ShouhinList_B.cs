@@ -120,7 +120,8 @@ namespace KATO.Common.Business
             }
             catch (Exception ex)
             {
-                ex.ToString();
+                new CommonException(ex);
+                throw (ex);
             }
             return (dtView);
         }

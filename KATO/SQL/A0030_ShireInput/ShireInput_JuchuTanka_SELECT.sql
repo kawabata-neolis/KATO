@@ -1,0 +1,1 @@
+SELECT dbo.f_get受注番号から受注単価(" + txtJyuchuNo(Index).data + ")

@@ -67,6 +67,7 @@
             this.baseMenuButton7 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton4 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnKaishajoken = new KATO.Common.Ctl.BaseMenuButton();
             this.txtChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaban = new KATO.Common.Ctl.BaseMenuButton();
@@ -566,6 +567,7 @@
             this.tabPage4.Controls.Add(this.baseMenuButton7);
             this.tabPage4.Controls.Add(this.baseMenuButton4);
             this.tabPage4.Controls.Add(this.btnChokusosaki);
+            this.tabPage4.Controls.Add(this.btnKaishajoken);
             this.tabPage4.Controls.Add(this.txtChokusosaki);
             this.tabPage4.Controls.Add(this.btnEigyosho);
             this.tabPage4.Controls.Add(this.btnTanaban);
@@ -627,6 +629,17 @@
             this.btnChokusosaki.TabIndex = 104;
             this.btnChokusosaki.Text = "直送先";
             this.btnChokusosaki.UseVisualStyleBackColor = false;
+            // 
+            // btnKaishajoken
+            // 
+            this.btnKaishajoken.BackColor = System.Drawing.Color.LightYellow;
+            this.btnKaishajoken.Location = new System.Drawing.Point(342, 163);
+            this.btnKaishajoken.Name = "btnKaishajoken";
+            this.btnKaishajoken.Size = new System.Drawing.Size(280, 40);
+            this.btnKaishajoken.TabIndex = 104;
+            this.btnKaishajoken.Text = "直送先";
+            this.btnKaishajoken.UseVisualStyleBackColor = false;
+            this.btnKaishajoken.Click += new System.EventHandler(this.btnKaishajoken_Click);
             // 
             // txtChokusosaki
             // 
@@ -762,7 +775,7 @@
             // 
             // btnDaibunrui
             // 
-            this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
+            this.btnDaibunrui.BackColor = System.Drawing.Color.Cyan;
             this.btnDaibunrui.Location = new System.Drawing.Point(23, 33);
             this.btnDaibunrui.Name = "btnDaibunrui";
             this.btnDaibunrui.Size = new System.Drawing.Size(280, 40);

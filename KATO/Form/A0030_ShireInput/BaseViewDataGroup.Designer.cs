@@ -37,6 +37,7 @@
             this.txtC6 = new KATO.Common.Ctl.BaseText();
             this.txtC5 = new KATO.Common.Ctl.BaseText();
             this.txtC4 = new KATO.Common.Ctl.BaseText();
+            this.txtJuchuNo = new KATO.Common.Ctl.BaseText();
             this.txtC3 = new KATO.Common.Ctl.BaseText();
             this.txtC2 = new KATO.Common.Ctl.BaseText();
             this.txtC1 = new KATO.Common.Ctl.BaseText();
@@ -72,7 +73,6 @@
             this.txtTekaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTekaSub.TabIndex = 18;
             this.txtTekaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTekaSub.Visible = false;
             // 
             // txtTankaSub
             // 
@@ -88,7 +88,6 @@
             this.txtTankaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTankaSub.TabIndex = 18;
             this.txtTankaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTankaSub.Visible = false;
             // 
             // txtKin
             // 
@@ -119,14 +118,18 @@
             this.txtTanka.Size = new System.Drawing.Size(150, 22);
             this.txtTanka.TabIndex = 4;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka.Leave += new System.EventHandler(this.txtTanka_Leave);
             // 
             // txtTokuisaki
             // 
+            this.txtTokuisaki.BackColor = System.Drawing.SystemColors.Window;
             this.txtTokuisaki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTokuisaki.Location = new System.Drawing.Point(1004, 46);
             this.txtTokuisaki.Name = "txtTokuisaki";
+            this.txtTokuisaki.ReadOnly = true;
             this.txtTokuisaki.Size = new System.Drawing.Size(380, 22);
             this.txtTokuisaki.TabIndex = 12;
+            this.txtTokuisaki.TabStop = false;
             // 
             // txtC6
             // 
@@ -135,7 +138,6 @@
             this.txtC6.Name = "txtC6";
             this.txtC6.Size = new System.Drawing.Size(10, 22);
             this.txtC6.TabIndex = 17;
-            this.txtC6.Visible = false;
             // 
             // txtC5
             // 
@@ -144,7 +146,6 @@
             this.txtC5.Name = "txtC5";
             this.txtC5.Size = new System.Drawing.Size(10, 22);
             this.txtC5.TabIndex = 17;
-            this.txtC5.Visible = false;
             // 
             // txtC4
             // 
@@ -153,7 +154,14 @@
             this.txtC4.Name = "txtC4";
             this.txtC4.Size = new System.Drawing.Size(10, 22);
             this.txtC4.TabIndex = 17;
-            this.txtC4.Visible = false;
+            // 
+            // txtJuchuNo
+            // 
+            this.txtJuchuNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJuchuNo.Location = new System.Drawing.Point(142, 45);
+            this.txtJuchuNo.Name = "txtJuchuNo";
+            this.txtJuchuNo.Size = new System.Drawing.Size(10, 22);
+            this.txtJuchuNo.TabIndex = 17;
             // 
             // txtC3
             // 
@@ -162,7 +170,6 @@
             this.txtC3.Name = "txtC3";
             this.txtC3.Size = new System.Drawing.Size(10, 22);
             this.txtC3.TabIndex = 17;
-            this.txtC3.Visible = false;
             // 
             // txtC2
             // 
@@ -171,7 +178,6 @@
             this.txtC2.Name = "txtC2";
             this.txtC2.Size = new System.Drawing.Size(10, 22);
             this.txtC2.TabIndex = 17;
-            this.txtC2.Visible = false;
             // 
             // txtC1
             // 
@@ -180,7 +186,6 @@
             this.txtC1.Name = "txtC1";
             this.txtC1.Size = new System.Drawing.Size(10, 22);
             this.txtC1.TabIndex = 17;
-            this.txtC1.Visible = false;
             // 
             // txtChubunCd
             // 
@@ -189,7 +194,6 @@
             this.txtChubunCd.Name = "txtChubunCd";
             this.txtChubunCd.Size = new System.Drawing.Size(10, 22);
             this.txtChubunCd.TabIndex = 16;
-            this.txtChubunCd.Visible = false;
             // 
             // txtDaibunCd
             // 
@@ -198,7 +202,6 @@
             this.txtDaibunCd.Name = "txtDaibunCd";
             this.txtDaibunCd.Size = new System.Drawing.Size(10, 22);
             this.txtDaibunCd.TabIndex = 15;
-            this.txtDaibunCd.Visible = false;
             // 
             // txtMakerCd
             // 
@@ -207,7 +210,6 @@
             this.txtMakerCd.Name = "txtMakerCd";
             this.txtMakerCd.Size = new System.Drawing.Size(10, 22);
             this.txtMakerCd.TabIndex = 14;
-            this.txtMakerCd.Visible = false;
             // 
             // txtShohinCd
             // 
@@ -216,7 +218,6 @@
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.Size = new System.Drawing.Size(10, 22);
             this.txtShohinCd.TabIndex = 13;
-            this.txtShohinCd.Visible = false;
             // 
             // labelSet_Eigyosho
             // 
@@ -248,7 +249,6 @@
             this.txtMasterTanka.Location = new System.Drawing.Point(849, 46);
             this.txtMasterTanka.MaxLength = 3;
             this.txtMasterTanka.Name = "txtMasterTanka";
-            this.txtMasterTanka.ReadOnly = true;
             this.txtMasterTanka.Size = new System.Drawing.Size(150, 22);
             this.txtMasterTanka.TabIndex = 11;
             this.txtMasterTanka.TabStop = false;
@@ -287,8 +287,8 @@
             this.txtSu.ReadOnly = true;
             this.txtSu.Size = new System.Drawing.Size(111, 22);
             this.txtSu.TabIndex = 3;
-            this.txtSu.TabStop = false;
             this.txtSu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSu.Leave += new System.EventHandler(this.txtSu_Leave);
             // 
             // txtShireritsu
             // 
@@ -379,6 +379,8 @@
             this.txtChumonNo.Size = new System.Drawing.Size(100, 22);
             this.txtChumonNo.TabIndex = 1;
             this.txtChumonNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtChumonNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChumonNo_KeyDown);
+            this.txtChumonNo.Leave += new System.EventHandler(this.txtChumonNo_Leave);
             // 
             // txtNo
             // 
@@ -406,6 +408,7 @@
             this.Controls.Add(this.txtC6);
             this.Controls.Add(this.txtC5);
             this.Controls.Add(this.txtC4);
+            this.Controls.Add(this.txtJuchuNo);
             this.Controls.Add(this.txtC3);
             this.Controls.Add(this.txtC2);
             this.Controls.Add(this.txtC1);
@@ -433,33 +436,33 @@
         }
 
         #endregion
-
-        private Common.Ctl.BaseText txtNo;
-        private Common.Ctl.BaseText txtChumonNo;
-        private Common.Ctl.BaseText txtHin;
-        private Common.Ctl.BaseText txtBiko;
-        private Common.Ctl.BaseLabel lblTeka;
-        private Common.Ctl.BaseTextMoney txtTeka;
-        private Common.Ctl.BaseLabel lblShireritsu;
-        private Common.Ctl.BaseTextMoney txtShireritsu;
-        private Common.Ctl.BaseTextMoney txtChokinTanka;
-        private Common.Ctl.BaseTextMoney txtMasterTanka;
-        private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho;
-        private Common.Ctl.BaseText txtShohinCd;
-        private Common.Ctl.BaseText txtMakerCd;
-        private Common.Ctl.BaseText txtDaibunCd;
-        private Common.Ctl.BaseText txtChubunCd;
-        private Common.Ctl.BaseText txtC1;
-        private Common.Ctl.BaseText txtC2;
-        private Common.Ctl.BaseText txtC3;
-        private Common.Ctl.BaseText txtC4;
-        private Common.Ctl.BaseText txtC5;
-        private Common.Ctl.BaseText txtC6;
-        private Common.Ctl.BaseText txtTokuisaki;
-        private Common.Ctl.BaseTextMoney txtSu;
-        private Common.Ctl.BaseTextMoney txtTanka;
-        private Common.Ctl.BaseTextMoney txtKin;
-        private Common.Ctl.BaseTextMoney txtTankaSub;
-        private Common.Ctl.BaseTextMoney txtTekaSub;
+        public Common.Ctl.BaseText txtNo;
+        public Common.Ctl.BaseText txtHin;
+        public Common.Ctl.BaseText txtBiko;
+        public Common.Ctl.BaseLabel lblTeka;
+        public Common.Ctl.BaseTextMoney txtTeka;
+        public Common.Ctl.BaseLabel lblShireritsu;
+        public Common.Ctl.BaseTextMoney txtShireritsu;
+        public Common.Ctl.BaseTextMoney txtChokinTanka;
+        public Common.Ctl.BaseTextMoney txtMasterTanka;
+        public Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho;
+        public Common.Ctl.BaseText txtShohinCd;
+        public Common.Ctl.BaseText txtMakerCd;
+        public Common.Ctl.BaseText txtDaibunCd;
+        public Common.Ctl.BaseText txtChubunCd;
+        public Common.Ctl.BaseText txtC1;
+        public Common.Ctl.BaseText txtC2;
+        public Common.Ctl.BaseText txtC3;
+        public Common.Ctl.BaseText txtC4;
+        public Common.Ctl.BaseText txtC5;
+        public Common.Ctl.BaseText txtC6;
+        public Common.Ctl.BaseText txtTokuisaki;
+        public Common.Ctl.BaseTextMoney txtSu;
+        public Common.Ctl.BaseTextMoney txtTanka;
+        public Common.Ctl.BaseTextMoney txtKin;
+        public Common.Ctl.BaseTextMoney txtTankaSub;
+        public Common.Ctl.BaseTextMoney txtTekaSub;
+        public Common.Ctl.BaseText txtChumonNo;
+        public Common.Ctl.BaseText txtJuchuNo;
     }
 }

@@ -47,18 +47,41 @@ namespace KATO.Common.Ctl
             else if (intSelectDay == 1)
             {
                 //その月の1日を取り出す
-                DateTime datiFirstDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                DateTime datiFirstDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 01);
 
                 //初期値はその月の1日
                 this.Text = datiFirstDayOfMonth.ToString("yyyy/MM/dd");
             }
-            else if(intSelectDay == 2)
+            else if (intSelectDay == 2)
             {
                 //その月の末日を取り出す
                 DateTime datiEndDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
 
                 //初期値はその月の末日
                 this.Text = datiEndDayOfMonth.ToString("yyyy/MM/dd");
+            }
+            else if (intSelectDay == 3)
+            {
+                //表示年の確保
+                string strYear = DateTime.Today.Year.ToString();
+
+                //表示月の確保
+                string strMonth = DateTime.Today.Month.ToString();
+
+                //本月が1月の場合
+                if (DateTime.Today.Month == 1)
+                {
+                    //前の年に変更
+                    strYear = (DateTime.Today.Year - 1).ToString();
+                    //前の月に変更
+                    strMonth = "12";
+                }
+
+                //その月の先月の1日を取り出す
+                DateTime dateFirstDayOFLastMonth = new DateTime(int.Parse(strYear), int.Parse(strMonth) -1, 01);
+
+                //初期値は先月の1日
+                this.Text = dateFirstDayOFLastMonth.ToString("yyyy/MM/dd");
             }
         }
 
