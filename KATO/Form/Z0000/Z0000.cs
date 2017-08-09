@@ -286,6 +286,7 @@ namespace KATO.Form.Z0000
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
                     pf.execPreview(@"G:\aaa.pdf");
+                    pf.ShowDialog(this);
                 } else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     pf.execPrint(null, @"G:\aaa.pdf", CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
