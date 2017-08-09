@@ -1314,6 +1314,12 @@
     <None Include="Template\B0420_SeikyuMeisaishoPrint.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Template\M0620_HushoAtenaInsatsu_Naga3.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\M0620_HushoAtenaInsatsu_Naga4.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Template\M1010_Daibunrui.xlsx" />
   </ItemGroup>
   <ItemGroup>

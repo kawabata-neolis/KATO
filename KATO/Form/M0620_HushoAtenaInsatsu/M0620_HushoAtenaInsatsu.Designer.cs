@@ -58,30 +58,57 @@
             // btnF12
             // 
             this.btnF12.TabIndex = 3;
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
             this.btnF11.TabIndex = 1;
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
             this.btnF05.TabIndex = 6;
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
             this.btnF04.TabIndex = 5;
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
             this.btnF03.TabIndex = 4;
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
             this.btnF02.TabIndex = 8;
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF01
             // 
             this.btnF01.TabIndex = 7;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // gbYoshiSelect
             // 
@@ -178,6 +205,7 @@
             this.labelSet_Torihikisaki.TabIndex = 0;
             this.labelSet_Torihikisaki.ValueLabelSize = 550;
             this.labelSet_Torihikisaki.ValueLabelText = "";
+            this.labelSet_Torihikisaki.Leave += new System.EventHandler(this.AtenaView);
             // 
             // gbAtenaSelect
             // 

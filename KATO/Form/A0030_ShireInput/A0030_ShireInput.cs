@@ -280,7 +280,6 @@ namespace KATO.Form.A0030_ShireInput
                 new CommonException(ex);
                 return;
             }
-
         }
 
         ///<summary>

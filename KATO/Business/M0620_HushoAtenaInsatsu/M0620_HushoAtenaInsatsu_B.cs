@@ -1,4 +1,5 @@
-﻿using KATO.Common.Util;
+﻿using ClosedXML.Excel;
+using KATO.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -71,6 +72,112 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getAtenaInsatsuData
+        ///印刷用データの取得
+        ///</summary>
+        public DataTable getAtenaInsatsuData (List<string> lstAtenaInsatsu)
+        {
+
+            List<string> lstAtenaInsatsuName = new List<string>();
+            lstAtenaInsatsuName.Add("取引先コード");
+            lstAtenaInsatsuName.Add("パターン");
+            lstAtenaInsatsuName.Add("敬称");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                dtSetCd_B = dbconnective.RunSqlReDT("宛名印刷_PROC", CommandType.StoredProcedure, lstAtenaInsatsu, lstAtenaInsatsuName, null);
+
+                return dtSetCd_B;
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
+        /// <param name="dtSeikyuMeisai">
+        ///     請求明細書のデータテーブル</param>
+        /// -----------------------------------------------------------------------------
+        public string dbToPdf(DataTable dtSetCd_B_Input, bool blNaga4)
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "";
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            if (blNaga4 == true)
+            {
+                strFilePath = "./Template/M0620_HushoAtenaInsatsu_Naga4.xlsx";
+            }
+            else if (blNaga4 == false)
+            {
+                strFilePath = "./Template/M0620_HushoAtenaInsatsu_Naga3.xlsx";
+            }
+
+            try
+            {
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+
+                IXLWorksheet templatesheet1 = workbook.Worksheet(1);   // テンプレートシート
+                IXLWorksheet currentsheet = null;  // 処理中シート
+
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+
+                // テンプレートシートからコピー
+                templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+
+                currentsheet.Cell("D2").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
+                currentsheet.Cell("L4").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
+                currentsheet.Cell("L6").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
+                currentsheet.Cell("R7").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
+
+                // テンプレートシート削除
+                templatesheet1.Delete();
+
+                // workbookを保存
+                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                workbook.SaveAs(strOutXlsFile);
+
+                // workbookを解放
+                workbook.Dispose();
+
+                // ロゴ貼り付け処理
+                CreatePdf pdf = new CreatePdf();
+
+                // PDF化の処理
+                return pdf.createPdf(strOutXlsFile, strDateTime);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                // Workフォルダの全ファイルを取得
+                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    //File.Delete(filepath);
+                }
             }
         }
     }

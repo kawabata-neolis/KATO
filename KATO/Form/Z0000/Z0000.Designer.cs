@@ -563,7 +563,7 @@
             // 
             // baseMenuButton8
             // 
-            this.baseMenuButton8.BackColor = System.Drawing.Color.Cyan;
+            this.baseMenuButton8.BackColor = System.Drawing.Color.LightYellow;
             this.baseMenuButton8.Location = new System.Drawing.Point(20, 21);
             this.baseMenuButton8.Name = "baseMenuButton8";
             this.baseMenuButton8.Size = new System.Drawing.Size(280, 40);
@@ -775,7 +775,7 @@
             // 
             // btnDaibunrui
             // 
-            this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
+            this.btnDaibunrui.BackColor = System.Drawing.Color.Cyan;
             this.btnDaibunrui.Location = new System.Drawing.Point(23, 33);
             this.btnDaibunrui.Name = "btnDaibunrui";
             this.btnDaibunrui.Size = new System.Drawing.Size(280, 40);

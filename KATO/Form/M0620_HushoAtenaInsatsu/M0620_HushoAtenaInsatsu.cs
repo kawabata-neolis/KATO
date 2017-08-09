@@ -21,6 +21,9 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
         // ログ初期設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //長４かどうか
+        bool blNaga4 = false;
+
         /// <summary>
         /// M0620_HushoAtenaInsatsu
         /// コンストラクタ(画面初期設定)
@@ -73,6 +76,8 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
             radSet_2btn_Yoshi.radbtn1.Checked = true;
             //敬称御中にチェック
             radSet_2btn_Kesho.radbtn1.Checked = true;
+            //住所①を使用にチェック
+            radAtena1.Checked = true;
         }
 
         /// <summary>
@@ -126,7 +131,7 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                 // 印刷処理へ
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-
+                    printHusho();
                     break;
                 // 終了処理へ
                 case Keys.F12:
@@ -145,7 +150,22 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
         ///</summary>
         private void judBtnClick(object sender, EventArgs e)
         {
-
+            //ボタン入力情報によって動作を変える
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F04: // 取消
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delText();
+                    break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    printHusho();
+                    break;
+                case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
+                    this.Close();
+                    break;
+            }
         }
 
         ///<summary>
@@ -211,9 +231,16 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                     lblGrayJusho2.Text = dtSetData.Rows[0]["請求書送付住所２"].ToString();
                 }
 
-
-//印刷ロジック
-
+                //長４を選択
+                if (radSet_2btn_Yoshi.radbtn0.Checked == true)
+                {
+                    blNaga4 = true;
+                }
+                //長３を選択
+                else if(radSet_2btn_Yoshi.radbtn1.Checked == true)
+                {
+                    blNaga4 = false;
+                }
             }
             catch (Exception ex)
             {
@@ -226,15 +253,121 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
             }
         }
 
-        private void printHushoNaga4()
+        ///<summary>
+        ///printHusho
+        ///印刷ダイアログ
+        ///</summary>
+        private void printHusho()
         {
+            //敬称
+            string strKeisho = "";
 
+            //SQL実行先のフラグ管理
+            int intFlag = 0;
+
+            //印刷情報取得用
+            List<string> lstAtenaInsatsu = new List<string>();
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+            
+            //取引先入力項目に記入がある場合
+            if (StringUtl.blIsEmpty(labelSet_Torihikisaki.codeTxt.ToString()))
+            {
+                //様にチェックされている場合
+                if (radSet_2btn_Kesho.radbtn0.Checked == true)
+                {
+                    strKeisho = "  様";
+                }
+                else if (radSet_2btn_Kesho.radbtn1.Checked == true)
+                {
+                    strKeisho = "  御中";
+                }
+
+                //住所①を使用にチェックされている場合
+                if (radAtena1.Checked == true)
+                {
+                    intFlag = 0;
+                }
+                //住所②を使用にチェックされている場合
+                else if (radAtena2.Checked == true)
+                {
+                    intFlag = 1;
+                }
+                //領収書送付先を使用にチェックされている場合
+                else if (radAtena3.Checked == true)
+                {
+                    intFlag = 2;
+                }
+                //請求書送付先を使用にチェックされている場合
+                else if (radAtena4.Checked == true)
+                {
+                    intFlag = 3;
+                }
+
+                //ビジネス層のインスタンス生成
+                M0620_HushoAtenaInsatsu_B hushoatenainsatsuB = new M0620_HushoAtenaInsatsu_B();
+                try
+                {
+                    lstAtenaInsatsu.Add(labelSet_Torihikisaki.CodeTxtText);
+                    lstAtenaInsatsu.Add(intFlag.ToString());
+                    lstAtenaInsatsu.Add(strKeisho);
+
+                    dtSetCd_B = hushoatenainsatsuB.getAtenaInsatsuData(lstAtenaInsatsu);
+
+                    //取得したデータがない場合
+                    if (dtSetCd_B.Rows.Count == 0 || dtSetCd_B == null)
+                    {
+                        //例外発生メッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+
+                    //初期値
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, TATE);
+
+                    //長４の場合
+                    if (radSet_2btn_Yoshi.radbtn0.Checked == true)
+                    {
+                        //印刷ダイアログ
+                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO);
+                        pf.ShowDialog(this);
+                    }
+                    else if (radSet_2btn_Yoshi.radbtn1.Checked == true)
+                    {
+                        //印刷ダイアログ
+                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO);
+                        pf.ShowDialog(this);
+                    }
+
+                    //プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        //結果セットをレコードセットに
+                        strFile = hushoatenainsatsuB.dbToPdf(dtSetCd_B, blNaga4);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                    }
+//印刷
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
         }
-
-        private void printHushoNaga3()
-        {
-
-        }
-
     }
 }
