@@ -152,7 +152,7 @@ namespace KATO.Form.A0030_ShireInput
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-//                    this.setRireki();
+                    this.setUriageJisseki();
                     break;
                 case Keys.F9:
                     break;
@@ -1107,7 +1107,7 @@ namespace KATO.Form.A0030_ShireInput
 
         ///<summary>
         ///setUriageJisseki
-        ///売り上げ実績から商品コードの取得
+        ///売り上げ実績画面へ
         ///</summary>
         public void setUriageJisseki()
         {
@@ -1117,10 +1117,14 @@ namespace KATO.Form.A0030_ShireInput
             string strSyohinCD;
 
             //コード未記入の場合
-            if (StringUtl.blIsEmpty(txtCD.Text))
+            if (!StringUtl.blIsEmpty(txtCD.Text))
             {
                 return;
             }
+
+            //売上実績確認画面へ移動
+            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage = new Form.D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 0, "", "");
+            uriage.ShowDialog();
 
         }
 

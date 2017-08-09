@@ -246,6 +246,12 @@ namespace KATO.Form.Z0000
             kaishajoken.ShowDialog();
         }
 
+        // 封書宛名印刷
+        private void btnHushoAtena_Click(object sender, EventArgs e)
+        {
+            M0620_HushoAtenaInsatsu.M0620_HushoAtenaInsatsu hushoatena = new M0620_HushoAtenaInsatsu.M0620_HushoAtenaInsatsu(this);
+            hushoatena.ShowDialog();
+        }
 
 
         //F12が押されたら

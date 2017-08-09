@@ -73,6 +73,7 @@
             this.txtTekaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTekaSub.TabIndex = 18;
             this.txtTekaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTekaSub.Visible = false;
             // 
             // txtTankaSub
             // 
@@ -88,6 +89,7 @@
             this.txtTankaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTankaSub.TabIndex = 18;
             this.txtTankaSub.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTankaSub.Visible = false;
             // 
             // txtKin
             // 
@@ -138,6 +140,7 @@
             this.txtC6.Name = "txtC6";
             this.txtC6.Size = new System.Drawing.Size(10, 22);
             this.txtC6.TabIndex = 17;
+            this.txtC6.Visible = false;
             // 
             // txtC5
             // 
@@ -146,6 +149,7 @@
             this.txtC5.Name = "txtC5";
             this.txtC5.Size = new System.Drawing.Size(10, 22);
             this.txtC5.TabIndex = 17;
+            this.txtC5.Visible = false;
             // 
             // txtC4
             // 
@@ -154,6 +158,7 @@
             this.txtC4.Name = "txtC4";
             this.txtC4.Size = new System.Drawing.Size(10, 22);
             this.txtC4.TabIndex = 17;
+            this.txtC4.Visible = false;
             // 
             // txtJuchuNo
             // 
@@ -162,6 +167,7 @@
             this.txtJuchuNo.Name = "txtJuchuNo";
             this.txtJuchuNo.Size = new System.Drawing.Size(10, 22);
             this.txtJuchuNo.TabIndex = 17;
+            this.txtJuchuNo.Visible = false;
             // 
             // txtC3
             // 
@@ -170,6 +176,7 @@
             this.txtC3.Name = "txtC3";
             this.txtC3.Size = new System.Drawing.Size(10, 22);
             this.txtC3.TabIndex = 17;
+            this.txtC3.Visible = false;
             // 
             // txtC2
             // 
@@ -178,6 +185,7 @@
             this.txtC2.Name = "txtC2";
             this.txtC2.Size = new System.Drawing.Size(10, 22);
             this.txtC2.TabIndex = 17;
+            this.txtC2.Visible = false;
             // 
             // txtC1
             // 
@@ -186,6 +194,7 @@
             this.txtC1.Name = "txtC1";
             this.txtC1.Size = new System.Drawing.Size(10, 22);
             this.txtC1.TabIndex = 17;
+            this.txtC1.Visible = false;
             // 
             // txtChubunCd
             // 
@@ -194,6 +203,7 @@
             this.txtChubunCd.Name = "txtChubunCd";
             this.txtChubunCd.Size = new System.Drawing.Size(10, 22);
             this.txtChubunCd.TabIndex = 16;
+            this.txtChubunCd.Visible = false;
             // 
             // txtDaibunCd
             // 
@@ -202,6 +212,7 @@
             this.txtDaibunCd.Name = "txtDaibunCd";
             this.txtDaibunCd.Size = new System.Drawing.Size(10, 22);
             this.txtDaibunCd.TabIndex = 15;
+            this.txtDaibunCd.Visible = false;
             // 
             // txtMakerCd
             // 
@@ -210,6 +221,7 @@
             this.txtMakerCd.Name = "txtMakerCd";
             this.txtMakerCd.Size = new System.Drawing.Size(10, 22);
             this.txtMakerCd.TabIndex = 14;
+            this.txtMakerCd.Visible = false;
             // 
             // txtShohinCd
             // 
@@ -218,6 +230,7 @@
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.Size = new System.Drawing.Size(10, 22);
             this.txtShohinCd.TabIndex = 13;
+            this.txtShohinCd.Visible = false;
             // 
             // labelSet_Eigyosho
             // 

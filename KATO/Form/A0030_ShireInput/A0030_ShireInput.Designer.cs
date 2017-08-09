@@ -487,6 +487,7 @@
             this.txtEigyouCd.Size = new System.Drawing.Size(100, 22);
             this.txtEigyouCd.TabIndex = 87;
             this.txtEigyouCd.TabStop = false;
+            this.txtEigyouCd.Visible = false;
             // 
             // lblEigyouCd
             // 
@@ -499,6 +500,7 @@
             this.lblEigyouCd.TabIndex = 88;
             this.lblEigyouCd.Text = "営業所コード";
             this.lblEigyouCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEigyouCd.Visible = false;
             // 
             // panelView
             // 

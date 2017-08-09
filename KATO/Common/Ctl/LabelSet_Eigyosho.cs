@@ -155,7 +155,7 @@ namespace KATO.Common.Ctl
                     this.ValueLabelText = "";
 
                     //グループボックスかパネル内にいる場合
-                    if (this.Parent is GroupBox || this.Parent is Panel)
+                    if (this.Parent is GroupBox || this.Parent is Panel || this.Parent is KATO.Form.A0030_ShireInput.BaseViewDataGroup)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -175,7 +175,7 @@ namespace KATO.Common.Ctl
             catch (Exception ex)
             {
                 //グループボックス内にいる場合
-                if (this.Parent is GroupBox)
+                if (this.Parent is GroupBox || this.Parent is Panel || this.Parent is KATO.Form.A0030_ShireInput.BaseViewDataGroup)
                 {
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);

@@ -60,6 +60,7 @@
             this.btnZanKakunin = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.baseMenuButton23 = new KATO.Common.Ctl.BaseMenuButton();
+            this.btnHushoAtena = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton19 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton8 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -67,7 +68,6 @@
             this.baseMenuButton7 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton4 = new KATO.Common.Ctl.BaseMenuButton();
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
-            this.btnKaishajoken = new KATO.Common.Ctl.BaseMenuButton();
             this.txtChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.btnEigyosho = new KATO.Common.Ctl.BaseMenuButton();
             this.btnTanaban = new KATO.Common.Ctl.BaseMenuButton();
@@ -338,7 +338,7 @@
             // 
             // btnTanaInput
             // 
-            this.btnTanaInput.BackColor = System.Drawing.Color.Cyan;
+            this.btnTanaInput.BackColor = System.Drawing.Color.LightYellow;
             this.btnTanaInput.Location = new System.Drawing.Point(23, 33);
             this.btnTanaInput.Name = "btnTanaInput";
             this.btnTanaInput.Size = new System.Drawing.Size(280, 40);
@@ -505,7 +505,7 @@
             // 
             // btnZanKakunin
             // 
-            this.btnZanKakunin.BackColor = System.Drawing.Color.Cyan;
+            this.btnZanKakunin.BackColor = System.Drawing.Color.LightYellow;
             this.btnZanKakunin.Location = new System.Drawing.Point(23, 33);
             this.btnZanKakunin.Name = "btnZanKakunin";
             this.btnZanKakunin.Size = new System.Drawing.Size(280, 40);
@@ -518,6 +518,7 @@
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.Controls.Add(this.baseMenuButton23);
+            this.tabPage3.Controls.Add(this.btnHushoAtena);
             this.tabPage3.Controls.Add(this.baseMenuButton19);
             this.tabPage3.Controls.Add(this.baseMenuButton8);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
@@ -538,6 +539,17 @@
             this.baseMenuButton23.UseVisualStyleBackColor = false;
             this.baseMenuButton23.Click += new System.EventHandler(this.baseMenuButton23_Click);
             // 
+            // btnHushoAtena
+            // 
+            this.btnHushoAtena.BackColor = System.Drawing.Color.LightYellow;
+            this.btnHushoAtena.Location = new System.Drawing.Point(20, 143);
+            this.btnHushoAtena.Name = "btnHushoAtena";
+            this.btnHushoAtena.Size = new System.Drawing.Size(280, 40);
+            this.btnHushoAtena.TabIndex = 110;
+            this.btnHushoAtena.Text = "封書宛名印刷";
+            this.btnHushoAtena.UseVisualStyleBackColor = false;
+            this.btnHushoAtena.Click += new System.EventHandler(this.btnHushoAtena_Click);
+            // 
             // baseMenuButton19
             // 
             this.baseMenuButton19.BackColor = System.Drawing.Color.LightYellow;
@@ -551,7 +563,7 @@
             // 
             // baseMenuButton8
             // 
-            this.baseMenuButton8.BackColor = System.Drawing.Color.LightYellow;
+            this.baseMenuButton8.BackColor = System.Drawing.Color.Cyan;
             this.baseMenuButton8.Location = new System.Drawing.Point(20, 21);
             this.baseMenuButton8.Name = "baseMenuButton8";
             this.baseMenuButton8.Size = new System.Drawing.Size(280, 40);
@@ -567,7 +579,6 @@
             this.tabPage4.Controls.Add(this.baseMenuButton7);
             this.tabPage4.Controls.Add(this.baseMenuButton4);
             this.tabPage4.Controls.Add(this.btnChokusosaki);
-            this.tabPage4.Controls.Add(this.btnKaishajoken);
             this.tabPage4.Controls.Add(this.txtChokusosaki);
             this.tabPage4.Controls.Add(this.btnEigyosho);
             this.tabPage4.Controls.Add(this.btnTanaban);
@@ -629,17 +640,6 @@
             this.btnChokusosaki.TabIndex = 104;
             this.btnChokusosaki.Text = "直送先";
             this.btnChokusosaki.UseVisualStyleBackColor = false;
-            // 
-            // btnKaishajoken
-            // 
-            this.btnKaishajoken.BackColor = System.Drawing.Color.LightYellow;
-            this.btnKaishajoken.Location = new System.Drawing.Point(342, 163);
-            this.btnKaishajoken.Name = "btnKaishajoken";
-            this.btnKaishajoken.Size = new System.Drawing.Size(280, 40);
-            this.btnKaishajoken.TabIndex = 104;
-            this.btnKaishajoken.Text = "直送先";
-            this.btnKaishajoken.UseVisualStyleBackColor = false;
-            this.btnKaishajoken.Click += new System.EventHandler(this.btnKaishajoken_Click);
             // 
             // txtChokusosaki
             // 
@@ -775,7 +775,7 @@
             // 
             // btnDaibunrui
             // 
-            this.btnDaibunrui.BackColor = System.Drawing.Color.Cyan;
+            this.btnDaibunrui.BackColor = System.Drawing.Color.LightYellow;
             this.btnDaibunrui.Location = new System.Drawing.Point(23, 33);
             this.btnDaibunrui.Name = "btnDaibunrui";
             this.btnDaibunrui.Size = new System.Drawing.Size(280, 40);
@@ -910,5 +910,6 @@
         private Common.Ctl.BaseMenuButton baseMenuButton23;
         private Common.Ctl.BaseMenuButton baseMenuButton24;
         private Common.Ctl.BaseMenuButton baseMenuButton25;
+        private Common.Ctl.BaseMenuButton btnHushoAtena;
     }
 }
