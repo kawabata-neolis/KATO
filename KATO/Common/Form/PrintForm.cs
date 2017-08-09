@@ -108,8 +108,14 @@ namespace KATO.Common.Form
         private void btnPreview_Click(object sender, EventArgs e)
         {
             _action = CommonTeisu.ACTION_PREVIEW;
-            ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PREVIEW;
-            this.Close();
+            if (stPath == null || string.IsNullOrEmpty(stPath)) {
+                ((BaseForm)this.Owner).printFlg = CommonTeisu.ACTION_PREVIEW;
+                this.Close();
+            }
+            else
+            {
+                execPreview(stPath);
+            }
             //PDFPreview pv = new PDFPreview(this, stPath);
             //pv.ShowDialog();
             //pv.Dispose();
