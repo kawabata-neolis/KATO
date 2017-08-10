@@ -241,24 +241,34 @@ namespace KATO.Common.Form
                 switches.Add("-dNumCopies=1"); //部数
                 switches.Add("-sDEVICE=mswinpr2");
                 switches.Add("-sOutputFile=%printer%" + _printer);
-                if (tateFlg)
+
+                if (stSize == CommonTeisu.SIZE_NAGA3 || stSize == CommonTeisu.SIZE_NAGA4)
                 {
-                    switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);
-                    switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[0]);
-                    //switches.Add("-sPAPERSIZE=" + stSize);
-                    //switches.Add("-g" + lstSize[1] + "x" + lstSize[0]);
+                    switches.Add("-dManualFeed");
                 }
                 else
                 {
-                    //横指定A4
-                    switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
-                    switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
-                    //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
+
+                    if (tateFlg)
+                    {
+                        switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);
+                        switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[0]);
+                        //switches.Add("-sPAPERSIZE=" + stSize);
+                        //switches.Add("-g" + lstSize[1] + "x" + lstSize[0]);
+                    }
+                    else
+                    {
+                        //横指定A4
+                        switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
+                        switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
+                        //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
+                    }
+                    //両面印刷
+                    //switches.Add("-dDuplex");//TrueON,false=off
+                    //switches.Add("-dTumble=true");//True=短辺綴じ false=長辺綴じ
+                    switches.Add("-dFitPage");
                 }
-                //両面印刷
-                //switches.Add("-dDuplex");//TrueON,false=off
-                //switches.Add("-dTumble=true");//True=短辺綴じ false=長辺綴じ
-                switches.Add("-dFitPage");
+
                 switches.Add("-f");
                 switches.Add(stPath);
                 processor.StartProcessing(switches.ToArray(), null);
