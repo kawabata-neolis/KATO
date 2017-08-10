@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1100_Chokusosaki;
 using KATO.Form.A0030_ShireInput;
+using KATO.Form.A0020_UriageInput;
 
 namespace KATO.Common.Business
 {
@@ -93,20 +94,38 @@ namespace KATO.Common.Business
             switch (intFrmKind)
             {
                 //仕入入力
-                //case CommonTeisu.FRM_SHIREINPUT:
-                //    全てのフォームの中から
-                //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                //    {
-                //        目的のフォームを探す
-                //        if (frm.Name == "A0030_ShireInput")
-                //        {
-                //            データを連れてくるため、newをしないこと
-                //            A0030_ShireInput shireinput = (A0030_ShireInput)frm;
-                //            shireinput.setDenpyo_Uriage(strDenpyo);
-                //            break;
-                //        }
-                //    }
-                //    break;
+                case CommonTeisu.FRM_SHIREINPUT:
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //目的のフォームを探す
+                        if (frm.Name == "A0030_ShireInput")
+                        {
+                            ////データを連れてくるため、newをしないこと
+                            //A0030_ShireInput shireinput = (A0030_ShireInput)frm;
+                            //shireinput.setDenpyo_Uriage(strDenpyo);
+                            break;
+                        }
+                    }
+                    break;
+
+                //売上入力
+                case CommonTeisu.FRM_URIAGEINPUT:
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+
+                        //目的のフォームを探す
+                        if (frm.Name == "A0020_UriageInput")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            A0020_UriageInput uriageinput = (A0020_UriageInput)frm;
+                            uriageinput.setDenpyo_Uriage(strDenpyo);
+                            break;
+                        }
+                    }
+                    break;
+
 
                 default:
                     break;
@@ -122,14 +141,23 @@ namespace KATO.Common.Business
             //全てのフォームの中から移動元フォームの検索
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                ////直送先のフォームを探す
-                //if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "A0030_ShireInput")
-                //{
-                //    //データを連れてくるため、newをしないこと
-                //    A0030_ShireInput shireinput = (A0030_ShireInput)frm;
-                //    shireinput.setUriageListClose();
-                //    break;
-                //}
+                //直送先のフォームを探す
+                if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "A0030_ShireInput")
+                {
+                    ////データを連れてくるため、newをしないこと
+                    //A0030_ShireInput shireinput = (A0030_ShireInput)frm;
+                    //shireinput.setUriageListClose();
+                    break;
+                }
+
+                //直送先のフォームを探す
+                if (intFrm == CommonTeisu.FRM_CHOKUSOSAKI && frm.Name == "A0020_UriageInput")
+                {
+                    //データを連れてくるため、newをしないこと
+                    A0020_UriageInput shireinput = (A0020_UriageInput)frm;
+                    shireinput.setUriageListClose();
+                    break;
+                }
             }
         }
     }

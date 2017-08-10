@@ -35,11 +35,11 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
 
         // SPPowerUser
         private string strSPPowerUser = Environment.UserName;
-        //private string strSPPowerUser = "aaa";
+        //private string strSPPowerUser = "ooba";
 
         // ユーザーID
         private string strUserId = Environment.UserName;
-        //private string strUserId = "k.kato";
+        //private string strUserId = "ooba";
 
         /// <summary>
         /// D0320_SiireJissekiKakunin
@@ -109,16 +109,15 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             }
             else
             {
-                // 【ログインIDから営業所コードを取得】
-                string strEigyoCd = "0002";
+                // ログインIDから営業所コードを取得
+                string strEigyoCd = getEigyoCd(Environment.UserName);
 
-                // ログインユーザーの営業所コードが本社の場合
+                // 営業コードからラジオボタンの初期チェックを設定
                 if (strEigyoCd.Equals("0001"))
                 {
                     radEigyosho.radbtn1.Checked = true;
                 }
-                // ログインユーザーの営業所コードが岐阜の場合
-                else if (strEigyoCd.Equals("0002"))
+                else
                 {
                     radEigyosho.radbtn2.Checked = true;
                 }
@@ -251,9 +250,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 520);
-            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 80);
-            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
-            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
+            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumn(bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
             setColumn(syukaName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
             setColumn(siireName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
@@ -261,8 +260,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             setColumn(hachuTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
             setColumn(siireTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
             setColumn(juchuNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 100);
-            setColumn(juchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
-            setColumn(juchuKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
+            setColumn(juchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(juchuKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
         }
 
         /// <summary>
@@ -509,11 +508,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
-                // エラーロギング
-                new CommonException(ex);
-                return;
+                throw;
             }
             return;
         }
@@ -525,9 +522,6 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void printReport()
         {
-
-            // 【印刷用ダイアログ】
-
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
@@ -554,11 +548,31 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
 
                 if (dtSiireJissekiList != null && dtSiireJissekiList.Rows.Count > 0)
                 {
-                    // PDF作成
-                    siireB.dbToPdf(dtSiireJissekiList, lstSearchItem);
+                    // 印刷ダイアログ
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A3, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
 
-                    // PDF出力完了メッセージ
-                    MessageBox.Show(this, "PDF出力完了");
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = siireB.dbToPdf(dtSiireJissekiList, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = siireB.dbToPdf(dtSiireJissekiList, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_A3, CommonTeisu.YOKO, true);
+                    }
+
+                    pf.Dispose();
                 }
                 else
                 {
@@ -807,6 +821,41 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// getEigyoCd
+        /// ログインユーザーの営業コードを取得
+        /// </summary>
+        private string getEigyoCd(string strUserId)
+        {
+            string strEigyoCd = "";
+
+            //ビジネス層のインスタンス生成
+            D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
+            try
+            {
+                // ビジネス層、データグリッドビュー表示用ロジックに移動
+                DataTable dtSetView = siireB.getEigyoCd(strUserId);
+
+                // 検索結果が1件以上の場合
+                if (dtSetView.Rows.Count > 0)
+                {
+                    strEigyoCd = dtSetView.Rows[0]["営業所コード"].ToString();
+                }
+                else
+                {
+                    strEigyoCd = "0002";
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+                return strEigyoCd;
+            }
+
+            return strEigyoCd;
         }
 
     }

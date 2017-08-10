@@ -89,9 +89,6 @@ namespace KATO.Form.A0090_SiireCheakPrint
             // 伝票年月日の設定
             txtDenpyoYMDStart.setUp(1);
             txtDenpyoYMDEnd.setUp(2);
-
-            //Option3(1).Value = True
-
         }
 
         /// <summary>
@@ -205,19 +202,54 @@ namespace KATO.Form.A0090_SiireCheakPrint
         /// </summary>
         private void printReport()
         {
-
-            // 【印刷用ダイアログ】
-
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定（入力年月日（開始・終了）、伝票年月日（開始・終了））
-            if (txtInputYMDStart.blIsEmpty() == false || txtInputYMDEnd.blIsEmpty() == false ||
-                txtDenpyoYMDStart.blIsEmpty() == false || txtDenpyoYMDEnd.blIsEmpty() == false)
+            // 空文字判定（入力年月日（開始））
+            if (txtInputYMDStart.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                txtInputYMDStart.Focus();
+
+                return;
+            }
+
+            // 空文字判定（入力年月日（終了））
+            if (txtInputYMDEnd.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtInputYMDEnd.Focus();
+
+                return;
+            }
+
+            // 空文字判定（伝票年月日（開始））
+            if (txtDenpyoYMDStart.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDStart.Focus();
+
+                return;
+            }
+
+            // 空文字判定（伝票年月日（終了））
+            if (txtDenpyoYMDEnd.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDEnd.Focus();
+
                 return;
             }
 
@@ -239,11 +271,31 @@ namespace KATO.Form.A0090_SiireCheakPrint
                 
                 if (dtSiireCheakList.Rows.Count > 0)
                 {
-                    // PDF作成
-                    cheakPrintB.dbToPdf(dtSiireCheakList, lstSearchItem);
+                    // 印刷ダイアログ
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
 
-                    // PDF出力完了メッセージ
-                    MessageBox.Show(this, "PDF出力完了");
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = cheakPrintB.dbToPdf(dtSiireCheakList, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = cheakPrintB.dbToPdf(dtSiireCheakList, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    }
+
+                    pf.Dispose();
                 }
                 else
                 {

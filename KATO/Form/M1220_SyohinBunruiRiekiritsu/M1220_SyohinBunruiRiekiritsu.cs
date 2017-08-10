@@ -13,7 +13,6 @@ using KATO.Common.Form;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.M1220_SyohinBunruiRiekiritsu;
 
-
 namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
 {
     /// <summary>
@@ -66,6 +65,10 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             // 中分類setデータを読めるようにする
             labelSet_DaibunruiS.Lschubundata = labelSet_ChubunruiS;
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            // メーカーsetデータを読めるようにする
+            labelSet_DaibunruiS.Lsmakerdata = labelSet_MakerS;
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
         /// <summary>
@@ -540,14 +543,17 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
                 return;
             }
 
+            // 画面ID（1つ目の引数）
+            int intFrm = 3;
             // 得意先コード（2つ目の引数）
             string strTokuisaki = gridRiekiritsu.Rows[currentRow].Cells[0].Value.ToString();
             // 大分類名（3つ目の引数）
             string strDaibunrui = gridRiekiritsu.Rows[currentRow].Cells[2].Value.ToString().Trim();
 
-            // 【売上実績確認フォームを開く】
-            // 3と得意先コード（strTokuisaki）と大分類名（strDaibunrui）を渡す
-
+            // 売上実績確認フォームを開く
+            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage =
+                new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, intFrm, strTokuisaki, strDaibunrui);
+            uriage.ShowDialog();
         }
 
         /// <summary>

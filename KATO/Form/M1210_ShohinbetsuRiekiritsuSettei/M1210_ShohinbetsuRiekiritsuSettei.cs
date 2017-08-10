@@ -66,7 +66,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
         private void M1210_ShohinbetsuRiekiritsuSettei_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "商品別利益率設定";
+            this._Title = "商品別利益率承認設定";
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
@@ -111,7 +111,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             DataGridViewTextBoxColumn Riekiritsu = new DataGridViewTextBoxColumn();
             Riekiritsu.DataPropertyName = "利益率";
             Riekiritsu.Name = "利益率";
-            Riekiritsu.HeaderText = "利益率";
+            Riekiritsu.HeaderText = "掛率";
 
             DataGridViewTextBoxColumn Tanka = new DataGridViewTextBoxColumn();
             Tanka.DataPropertyName = "単価";
@@ -260,7 +260,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             }
         }
 
-        //利益率テキストボックスのフォーカスが外れた場合
+        //掛率テキストボックスのフォーカスが外れた場合
         private void txtRiekiritsu_Leave(object sender, EventArgs e)
         {
             ChangetxtRiekiritsu();
@@ -268,7 +268,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
 
         ///<summary>
         ///ChangetxtRiekiritsu
-        ///利益率が変わった場合の処理
+        ///掛率が変わった場合の処理
         ///</summary>
         private void ChangetxtRiekiritsu()
         {
@@ -362,27 +362,8 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                     break;
                 case Keys.F6:
                     logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
-
-                    if (gridShohinbetsuRiekiritsu.Rows.Count <= 0)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        if (txtKataban.Text == "" || labelSet_Tokuisaki.CodeTxtText == "")
-                        {
-                            return;
-                        }
-                    }
-                    
-                    String sstr = "";
-
-                    sstr = txtKataban.Text.Substring(txtKataban.Text.IndexOf(" "));
-                    sstr.Replace(" ", "");
-
-                    //売上実績フォームを開く処理
-                    // 引数(3, 得意先コード, sstr)
-                    
+                    //売上実績確認フォームへ
+                    showUriageJissekiKakunin();
                     break;
                 case Keys.F7:
                     break;
@@ -427,12 +408,47 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 case STR_BTN_F06: // 売上実績確認
                     logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
                     //売上実績フォームへ
+                    showUriageJissekiKakunin();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }
+        }
+
+        /// <summary>
+        /// showUriageJissekiKakunin
+        /// 売上実績確認フォームを開く処理
+        /// </summary>
+        private void showUriageJissekiKakunin()
+        {
+            if (gridShohinbetsuRiekiritsu.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            string sstr = "";
+            string tokuisakicd = "";
+            string sinamei_kataban = "";
+
+            //選択行の得意先コードを取得する。
+            tokuisakicd = gridShohinbetsuRiekiritsu.CurrentRow.Cells[0].Value.ToString();
+
+            //選択行の品名・型番を取得する。
+            sinamei_kataban = gridShohinbetsuRiekiritsu.CurrentRow.Cells[2].Value.ToString();
+
+            //品名・型番からメーカー名を省く
+            //sstr = txtKataban.Text.Substring(txtKataban.Text.IndexOf(" "));
+            sstr = sinamei_kataban.Substring(sinamei_kataban.IndexOf(" "));
+            sstr.Replace(" ", "");
+
+            //売上実績フォームを開く処理
+            int intFrmKind = 1210;
+
+            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriagejissekikakunin =
+                new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, intFrmKind, tokuisakicd, sstr);
+            uriagejissekikakunin.ShowDialog();
         }
 
         /// <summary>
@@ -533,11 +549,11 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 return false;
             }
 
-            // 空文字判定（利益率、単価）
+            // 空文字判定（掛率、単価）
             if (txtRiekiritsu.Text.Equals("") && txtTanka.Text.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "利益率、単価はいずれかを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "掛率、単価はいずれかを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return false;
             }
@@ -754,7 +770,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 lstShohinbetsuRiekiritsuLoad.Add(labelSet_TantoushaS.CodeTxtText);
                 /*[2]品名・型番*/
                 lstShohinbetsuRiekiritsuLoad.Add(txtSinamei_KatabanS.Text);
-                /*[3]ラジオボタン１（得意先・品名・利益率・単価）*/
+                /*[3]ラジオボタン１（得意先・品名・掛率・単価）*/
                 lstShohinbetsuRiekiritsuLoad.Add(razioOrderS1.judCheckBtn().ToString());
                 /*[4]ラジオボタン２（Ａ－Ｚ・Ｚ－Ａ）*/
                 lstShohinbetsuRiekiritsuLoad.Add(razioOrderS2.judCheckBtn().ToString());
@@ -789,21 +805,30 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 return;
             }
 
-            //選択行をテキストボックスに設定（カラム順：コード、得意先名、品名・型番、利益率、単価、設定・解除、商品コード）
+            //選択行をテキストボックスに設定（カラム順：コード、得意先名、品名・型番、掛率、単価、設定・解除、商品コード）
             labelSet_Tokuisaki.CodeTxtText = gridShohinbetsuRiekiritsu.CurrentRow.Cells[0].Value.ToString();
             txtShohinCd.Text = gridShohinbetsuRiekiritsu.CurrentRow.Cells[6].Value.ToString();
 
             ChangetxtShohinCd();
 
             txtKataban.Text = gridShohinbetsuRiekiritsu.CurrentRow.Cells[2].Value.ToString();
-            txtRiekiritsu.Text = decimal.Parse(gridShohinbetsuRiekiritsu.CurrentRow.Cells[3].Value.ToString()).ToString("0.0");
 
+            //掛率が空白ではない場合
+            if (gridShohinbetsuRiekiritsu.CurrentRow.Cells[3].Value.ToString() != "")
+            {
+                txtRiekiritsu.Text = decimal.Parse(gridShohinbetsuRiekiritsu.CurrentRow.Cells[3].Value.ToString()).ToString("0.0");
+            }
             ChangetxtRiekiritsu();
 
             txtTanka.Text = decimal.Parse(gridShohinbetsuRiekiritsu.CurrentRow.Cells[4].Value.ToString()).ToString("#,0");
 
-            
-            //利益率算出
+            //追加仕様、大分類、中分類、メーカーを表示
+            labelSet_Daibunrui.CodeTxtText = gridShohinbetsuRiekiritsu.CurrentRow.Cells[7].Value.ToString();
+            labelSet_Chubunrui.CodeTxtText = gridShohinbetsuRiekiritsu.CurrentRow.Cells[8].Value.ToString();
+            labelSet_Maker.CodeTxtText = gridShohinbetsuRiekiritsu.CurrentRow.Cells[9].Value.ToString();
+
+
+            //掛率算出
             if (txtTeika.Text != "")
             {
                 if (txtTeika.Text != "0")

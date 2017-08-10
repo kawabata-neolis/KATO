@@ -3,15 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.IO;
-using System.ComponentModel;
 
-using Spire.Xls;
 using ClosedXML.Excel;
-
-//iTextSharp関連の名前空間
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace KATO.Business.B0070_ShiharaiCheakPrint
 {
@@ -106,13 +99,11 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             try
             {
-                string strHeader = "";
-                string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                string strSpace = "       ";
-                string strComputerName = System.Windows.Forms.SystemInformation.ComputerName;
+                CreatePdf pdf = new CreatePdf();
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
@@ -144,7 +135,7 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
                 decimal decKingaku = outDataAll.Select(gokei => gokei.kingaku).Sum();
 
                 // リストをデータテーブルに変換
-                DataTable dtChkList = this.ConvertToDataTable(outDataAll);
+                DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
                 int maxRowCnt = dtChkList.Rows.Count + 1;
                 int maxColCnt = dtChkList.Columns.Count;
@@ -231,15 +222,8 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№7）");
 
-                        // ヘッダーシートからコピー
-                        headersheet.CopyTo("Page1");
-                        currentsheet = workbook.Worksheet(2);
-
-                        // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
-                            pageCnt.ToString() + " / " + maxPage.ToString();
-                        currentsheet.PageSetup.Header.Right.AddText(strHeader);
-
+                        // ヘッダーシートのコピー、ヘッダー部の指定
+                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                     }
 
                     // 1セルずつデータ出力
@@ -293,12 +277,8 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
                         {
                             xlsRowCnt = 3;
 
-                            // コンピュータ名、日付、ページ数を取得
-                            strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
-                                pageCnt.ToString() + " / " + maxPage.ToString();
-
                             // ヘッダーシートのコピー、ヘッダー部の指定
-                            sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, strHeader);
+                            pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                         }
                     }
 
@@ -337,7 +317,7 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime);
 
             }
             catch
@@ -357,206 +337,5 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
 
         }
 
-        /// <summary>
-        /// ヘッダーシートをコピーし、ヘッダー部を指定
-        /// <param name="workbook">参照型 ワークブック</param>
-        /// <param name="headersheet">参照型 ヘッダーシート</param>
-        /// <param name="currentsheet">参照型 カレントシート</param>
-        /// <param name="pageCnt">ページ数</param>
-        /// <param name="strHeader">コンピュータ名、日付、ページ数</param>
-        /// </summary>
-        private void sheetCopy(ref XLWorkbook workbook, ref IXLWorksheet headersheet, ref IXLWorksheet currentsheet, int pageCnt, string strHeader)
-        {
-            // ヘッダーシートからコピー
-            headersheet.CopyTo("Page" + pageCnt.ToString());
-            currentsheet = workbook.Worksheet(pageCnt + 1);
-
-            // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-            currentsheet.PageSetup.Header.Right.AddText(strHeader);
-        }
-
-        /// 【共通化可能】
-        /// -----------------------------------------------------------------------------
-        /// <summary>
-        /// PDF化(Spire.xls)の処理
-        /// <param name="strInXlsFile">エクセルファイル</param>
-        /// <param name="strDateTime">日時</param>
-        /// </summary>
-        /// -----------------------------------------------------------------------------
-        private string createPdf(string strInXlsFile, string strDateTime)
-        {
-            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-            string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
-            string strJoinPdfFile;
-
-            try
-            {
-
-                Workbook printbook = new Workbook();
-                printbook.LoadFromFile(strInXlsFile, ExcelVersion.Version2010);
-                int sheetMax = printbook.Worksheets.Count;
-
-                // Excelシートの枚数分PDF化
-                for (int sheetCnt = 0; sheetCnt < sheetMax; sheetCnt++)
-                {
-                    // pdf化するシートを取得
-                    Worksheet printsheet = printbook.Worksheets[sheetCnt];
-
-                    string no = no = (sheetCnt + 1).ToString();
-                    if (no.Length == 1)
-                    {
-                        no = "0" + no;
-                    }
-
-                    string strPdfFile = strWorkPath + strDateTime + "_" + no + ".pdf";
-
-                    // 出力したいシートをPDFで保存
-                    printsheet.SaveToPdf(strPdfFile);
-
-                    // シートカウントが0の場合結合用のPDFを保存
-                    if (sheetCnt == 0)
-                    {
-                        string strJoinyouPdfFile = strPdfPath + strDateTime + ".pdf";
-
-                        // 出力したいシートをPDFで保存
-                        printsheet.SaveToPdf(strJoinyouPdfFile);
-                    }
-                }
-                // printbookを解放
-                printbook.Dispose();
-
-                // フォルダ下の作成日時".pdf"ファイルをすべて取得する
-                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(strWorkPath);
-                System.IO.FileInfo[] fiFiles = di.GetFiles(strDateTime + "*.pdf", System.IO.SearchOption.AllDirectories);
-                Array.Sort<FileInfo>(fiFiles, delegate (FileInfo f1, FileInfo f2)
-                {
-                    // ファイル名でソート
-                    return f1.Name.CompareTo(f2.Name);
-                });
-                int filesMax = fiFiles.Count();
-                string[] strFiles = new string[filesMax];
-
-                // FileInfo配列をstring配列に
-                for (int fileCnt = 0; fileCnt < filesMax; fileCnt++)
-                {
-                    strFiles[fileCnt] = strWorkPath + fiFiles[fileCnt].Name;
-                }
-
-                // 結合PDFオブジェクト
-                strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
-
-                // PDFファイル数が0でなければ結合
-                if (filesMax != 0)
-                {
-                    fnJoinPdf(strFiles, strJoinPdfFile, 1);
-                }
-
-            }
-            catch
-            {
-                throw;
-            }
-            return strJoinPdfFile;
-        }
-
-
-        /// 【共通化可能】
-        /// -----------------------------------------------------------------------------
-        /// <summary>
-        /// PDFファイルの結合
-        /// WritePage = 0：全ページ、WritePage = 1：全ファイルの1ページのみ
-        /// WritePage = 2(3...)：全ファイルの1～2(1～3)ページ
-        /// </summary>
-        /// <param name="sSrcFilePath1">入力ファイルパス1</param>
-        /// <param name="sSrcFilePath2">入力ファイルパス2</param>
-        /// <param name="sJoinFilePath">結合ファイルパス</param>
-        /// <param name="WritePage">結合ページ数</param>
-        /// -----------------------------------------------------------------------------
-        private void fnJoinPdf(string[] arySrcFilePath, string sJoinFilePath, int WritePage)
-        {
-            Document doc = null;    // 出力ファイルDocument
-            PdfCopy copy = null;    // 出力ファイルPdfCopy
-
-            try
-            {
-                //-------------------------------------------------------------------------------------
-                // ファイル件数分、ファイル結合
-                //-------------------------------------------------------------------------------------
-                for (int i = 0; i < arySrcFilePath.Length; i++)
-                {
-                    // リーダー取得
-                    PdfReader reader = new PdfReader(arySrcFilePath[i]);
-                    // 入力ファイル1を出力ファイルの雛形にする
-                    if (i == 0)
-                    {
-                        // Document作成
-                        doc = new Document(reader.GetPageSizeWithRotation(1));
-                        // 出力ファイルPdfCopy作成
-                        copy = new PdfCopy(doc, new FileStream(sJoinFilePath, FileMode.Create));
-                        // 出力ファイルDocumentを開く
-                        doc.Open();
-                        // 文章プロパティ設定
-                        //doc.AddKeywords((string)reader.Info["Keywords"]);
-                        //doc.AddAuthor((string)reader.Info["Author"]);
-                        //doc.AddTitle((string)reader.Info["Title"]);
-                        //doc.AddCreator((string)reader.Info["Creator"]);
-                        //doc.AddSubject((string)reader.Info["Subject"]);
-                    }
-                    // 結合するPDFのページ数
-                    if (WritePage == 0) WritePage = reader.NumberOfPages;
-                    if (WritePage > reader.NumberOfPages) WritePage = reader.NumberOfPages;
-
-                    // PDFコンテンツを取得、copyオブジェクトに追加
-                    for (int iPageCnt = 1; iPageCnt <= WritePage; iPageCnt++)
-                    {
-                        PdfImportedPage page = copy.GetImportedPage(reader, iPageCnt);
-                        copy.AddPage(page);
-                    }
-                    // フォーム入力を結合
-                    PRAcroForm form = reader.AcroForm;
-                    if (form != null)
-                        copy.AddDocument(reader);
-                    // リーダーを閉じる
-                    reader.Close();
-                }
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                if (copy != null)
-                    copy.Close();
-                if (doc != null)
-                    doc.Close();
-            }
-        }
-
-
-        /// -----------------------------------------------------------------------------------------
-        /// <summary>
-        /// ListをDataTableへ変換
-        /// </summary>
-        /// -----------------------------------------------------------------------------------------
-        private DataTable ConvertToDataTable<T>(IList<T> data)
-        {
-            PropertyDescriptorCollection properties =
-                TypeDescriptor.GetProperties(typeof(T));
-
-            DataTable table = new DataTable();
-
-            foreach (PropertyDescriptor prop in properties)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-
-            foreach (T item in data)
-            {
-                DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-            return table;
-        }
     }
 }

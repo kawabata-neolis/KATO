@@ -329,7 +329,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                         headersheet.Column(12).Width = 10;
                         headersheet.Column(13).Width = 10;
                         headersheet.Column(14).Width = 10;
-                        headersheet.Column(15).Width = 5;
+                        headersheet.Column(15).Width = 7;
 
                         // 印刷体裁（B4横、印刷範囲）
                         headersheet.PageSetup.PaperSize = XLPaperSize.B4Paper;

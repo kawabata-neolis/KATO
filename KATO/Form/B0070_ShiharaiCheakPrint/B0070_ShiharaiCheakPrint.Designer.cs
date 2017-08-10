@@ -51,50 +51,62 @@
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 11;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 10;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
+            this.btnF10.TabStop = false;
             this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
+            this.btnF09.TabStop = false;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
+            this.btnF08.TabStop = false;
             this.btnF08.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF07
             // 
+            this.btnF07.TabStop = false;
             this.btnF07.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF06
             // 
+            this.btnF06.TabStop = false;
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
+            this.btnF05.TabStop = false;
             this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 12;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabStop = false;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
+            this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF01
             // 
+            this.btnF01.TabStop = false;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_SiiresakiCdTo
@@ -113,7 +125,7 @@
             this.labelSet_SiiresakiCdTo.SpaceCodeValue = 4;
             this.labelSet_SiiresakiCdTo.SpaceNameCode = 4;
             this.labelSet_SiiresakiCdTo.SpaceValueAppend = 4;
-            this.labelSet_SiiresakiCdTo.TabIndex = 130;
+            this.labelSet_SiiresakiCdTo.TabIndex = 7;
             this.labelSet_SiiresakiCdTo.ValueLabelSize = 0;
             this.labelSet_SiiresakiCdTo.ValueLabelText = "";
             // 
@@ -157,7 +169,7 @@
             this.labelSet_SiiresakiCdFrom.SpaceCodeValue = 4;
             this.labelSet_SiiresakiCdFrom.SpaceNameCode = 4;
             this.labelSet_SiiresakiCdFrom.SpaceValueAppend = 4;
-            this.labelSet_SiiresakiCdFrom.TabIndex = 129;
+            this.labelSet_SiiresakiCdFrom.TabIndex = 6;
             this.labelSet_SiiresakiCdFrom.ValueLabelSize = 0;
             this.labelSet_SiiresakiCdFrom.ValueLabelText = "";
             // 
@@ -192,7 +204,7 @@
             this.txtInputYMDEnd.MaxLength = 10;
             this.txtInputYMDEnd.Name = "txtInputYMDEnd";
             this.txtInputYMDEnd.Size = new System.Drawing.Size(90, 22);
-            this.txtInputYMDEnd.TabIndex = 126;
+            this.txtInputYMDEnd.TabIndex = 3;
             this.txtInputYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDenpyoYMDEnd
@@ -202,7 +214,7 @@
             this.txtDenpyoYMDEnd.MaxLength = 10;
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(90, 22);
-            this.txtDenpyoYMDEnd.TabIndex = 128;
+            this.txtDenpyoYMDEnd.TabIndex = 5;
             this.txtDenpyoYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtInputYMDStart
@@ -212,7 +224,7 @@
             this.txtInputYMDStart.MaxLength = 10;
             this.txtInputYMDStart.Name = "txtInputYMDStart";
             this.txtInputYMDStart.Size = new System.Drawing.Size(90, 22);
-            this.txtInputYMDStart.TabIndex = 125;
+            this.txtInputYMDStart.TabIndex = 2;
             this.txtInputYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDenpyoYMDStart
@@ -222,7 +234,7 @@
             this.txtDenpyoYMDStart.MaxLength = 10;
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(90, 22);
-            this.txtDenpyoYMDStart.TabIndex = 127;
+            this.txtDenpyoYMDStart.TabIndex = 4;
             this.txtDenpyoYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel3
@@ -279,7 +291,7 @@
             this.txtUserId.Location = new System.Drawing.Point(646, 210);
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(100, 22);
-            this.txtUserId.TabIndex = 124;
+            this.txtUserId.TabIndex = 1;
             // 
             // baseLabel4
             // 

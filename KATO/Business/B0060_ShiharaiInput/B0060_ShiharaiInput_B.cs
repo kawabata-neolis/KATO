@@ -282,7 +282,132 @@ namespace KATO.Business.B0060_ShiharaiInput
             }
         }
 
+        /// <summary>
+        /// getSiiresakiData
+        /// 取引先データを取得
+        /// </summary>
+        public DataTable getSiiresakiData(List<string> lstItem)
+        {
+            DataTable dtGetTableGrid = new DataTable();
 
+            string strSQLInput = "";
+
+            OpenSQL opensql = new OpenSQL();
+
+            // データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+
+            // SQL文 請求履歴
+
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+
+            strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            // WHERE条件に入力仕入先コードをバインド
+            strSQLInput = string.Format(strSQLInput, lstItem[0]);
+
+            // SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+
+            return dtGetTableGrid;
+        }
+
+        /// <summary>
+        /// getSiireJissekiList
+        /// 仕入実績を取得
+        /// </summary>
+        public DataTable getSiireJissekiList(List<string> lstItem)
+        {
+            string strSql;
+            DataTable dtGetTableGrid = new DataTable();
+
+            strSql = "SELECT ";
+
+            // 締切日が31の場合
+            if (lstItem[1].Equals("31"))
+            {
+                strSql += " FORMAT(伝票年月日,'yyyy/MM') AS 年月,";
+            }
+            else
+            {
+                strSql += " FORMAT(DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 'yyyy/MM') AS 年月,";
+            }
+
+            strSql += " SUM(税抜合計金額)AS 税抜合計金額,";
+            strSql += " SUM(消費税) AS 消費税,";
+            strSql += " SUM(税抜合計金額 + 消費税) AS 税込合計金額";
+            strSql += " FROM";
+            strSql += " (SELECT 伝票年月日, 税抜合計金額,";
+            strSql += "  CASE dbo.f_get消費税計算区分('" + lstItem[0] + "')";
+            strSql += "  WHEN '0' THEN IsNull(消費税, 0)";
+            strSql += "  WHEN '1' THEN IsNull(消費税, 0)";
+            strSql += "  WHEN '2' THEN";
+            strSql += "   CASE '" + lstItem[2] + "'";
+            strSql += "   WHEN '0' THEN IsNull(FLOOR(税抜合計金額 * dbo.f_get消費税率(伝票年月日) / 100), '0')";
+            strSql += "   WHEN '1' THEN IsNull(ROUND(税抜合計金額 * dbo.f_get消費税率(伝票年月日) / 100, 0), '0')";
+            strSql += "   WHEN '2' THEN IsNull(CEILING(税抜合計金額 * dbo.f_get消費税率(伝票年月日) / 100), '0')";
+            strSql += "   END";
+            strSql += "  END AS 消費税";
+            strSql += "  FROM 仕入ヘッダ";
+            strSql += "  WHERE 仕入先コード = '" + lstItem[0] + "'";
+
+            // 締切日が31の場合
+            if (lstItem[1].Equals("31"))
+            {
+                strSql += "  AND 伝票年月日 >= DATEADD(YEAR, -3, GETDATE())";
+            }
+            else
+            {
+                strSql += "  AND 伝票年月日 >= DATEADD(MONTH, -1, DATEADD(YEAR, -3, GETDATE()))";
+            }
+
+            strSql += "  AND 伝票年月日 <= GETDATE()";
+            strSql += " ) AS Z";
+
+            // 締切日が31の場合
+            if (lstItem[1].Equals("31"))
+            {
+                strSql += " GROUP BY FORMAT(伝票年月日,'yyyy/MM')";
+            }
+            else
+            {
+                strSql += " GROUP BY FORMAT(DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 'yyyy/MM')";
+            }
+            strSql += " ORDER BY 年月 DESC";
+
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // 検索データをデータテーブルへ格納
+                dtGetTableGrid = dbconnective.ReadSql(strSql);
+
+                return dtGetTableGrid;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
 
     }
 }

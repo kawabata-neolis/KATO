@@ -192,9 +192,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 360);
             setColumn(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
             setColumn(baika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
-            setColumn(siireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
-            setColumn(hyokaTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
-            setColumn(tateneTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
+            setColumn(siireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 140);
+            setColumn(hyokaTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 140);
+            setColumn(tateneTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 140);
             setColumn(tanabanHonsha, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(tanabanGifu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(zaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 100);
@@ -743,12 +743,30 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 
                 if (dtShohinList.Rows.Count > 0)
                 {
-                    // PDF作成
-                    String strFile = shohinB.dbToPdf(dtShohinList, lstSearchItem);
-
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                    pf.ShowDialog();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = shohinB.dbToPdf(dtShohinList, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = shohinB.dbToPdf(dtShohinList, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    }
+
                     pf.Dispose();
                 }
                 else

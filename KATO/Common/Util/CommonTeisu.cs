@@ -70,6 +70,8 @@ namespace KATO.Common.Util
         public const int FRM_SHOHINBETSURIEKIRITSUSETTEI = 1210;
         public const int FRM_TOKUTEIMUKESAKITANKA = 1160;
         public const int FRM_SHIREINPUT = 0030;
+        public const int FRM_URIAGEINPUT = 0020;
+
 
         public const int FRM_TEST = 9999;
 

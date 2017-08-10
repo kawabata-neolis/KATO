@@ -310,12 +310,30 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                         }
                     }
 
-                    // PDF作成
-                    String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
-
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_A4, true);
-                    pf.ShowDialog();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.TATE);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
+                    }
+
                     pf.Dispose();
                 }
                 else

@@ -74,7 +74,7 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
-            this.btnF01.Text = STR_FUNC_F1;
+            this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF12.Text = STR_FUNC_F12;
 

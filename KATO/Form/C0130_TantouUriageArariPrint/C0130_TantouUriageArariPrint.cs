@@ -282,12 +282,30 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 // 対象データがある場合
                 if (dtUriage != null && dtUriage.Rows.Count > 0)
                 {
-                    // PDF作成
-                    String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
-
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                    pf.ShowDialog();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    }
+
                     pf.Dispose();
                 }
                 else

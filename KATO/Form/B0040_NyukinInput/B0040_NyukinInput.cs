@@ -25,6 +25,9 @@ namespace KATO.Form.B0040_NyukinInput
     ///</summary>
     public partial class B0040_NyukinInput : BaseForm
     {
+        //現在の選択行を初期化
+        private int CurrentRow = 99;
+
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
@@ -322,6 +325,9 @@ namespace KATO.Form.B0040_NyukinInput
         {
             //請求履歴表示メソッドへ
             getSeikyuRireki();
+
+            //機能追加_締切日、支払月数、支払日、支払条件、集金区分表示
+            getTorihikisakiData();
         }
         
         /// <summary>
@@ -709,6 +715,9 @@ namespace KATO.Form.B0040_NyukinInput
                     //請求履歴を表示する。
                     getSeikyuRireki();
 
+                    //取引先データを表示
+                    getTorihikisakiData();
+
                     this.btnF01.Enabled = true;
                     this.btnF03.Enabled = true;
 
@@ -924,12 +933,11 @@ namespace KATO.Form.B0040_NyukinInput
 
         /// <summary>
         /// delCurrentRow
-        /// 選択行（０～９）を削除し、値を再設定する。
-        /// また合計も再計算する。
+        /// 選択行（０～９)番号を取得する。
         /// </summary>
-        private void delCurrentRow()
+        private void getCurrentRow(object sender, EventArgs e)
         {
-            int CurrentRow = 99;
+
             String str = "";
 
             // このフォームで現在アクティブなコントロールを取得する
@@ -941,13 +949,29 @@ namespace KATO.Form.B0040_NyukinInput
                 str = cControl.Name;
                 //末尾から1文字切り取り
                 str = str.Substring(str.Length - 1, 1);
-                //切り取った文字列が数字でなければ処理終了
+                //切り取った文字列が数字でなければ99を設定
                 if (!int.TryParse(str, out CurrentRow))
                 {
-                    return;
+                    CurrentRow = 99;
                 }
                 //数字が０～９の間でない場合、処理終了
                 if (CurrentRow < 0 && CurrentRow > 9)
+                {
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// delCurrentRow
+        /// 選択行（０～９）を削除し、値を再設定する。
+        /// また合計も再計算する。
+        /// </summary>
+        private void delCurrentRow()
+        {
+            
+                //数字が０～９の間でない場合、処理終了
+                if (CurrentRow < 0 || CurrentRow > 9)
                 {
                     return;
                 }
@@ -1000,7 +1024,7 @@ namespace KATO.Form.B0040_NyukinInput
 
                 //合計計算メソッドへ
                 sumKingakuGoukei();
-            }
+            
         }
 
         /// <summary>
@@ -1074,6 +1098,66 @@ namespace KATO.Form.B0040_NyukinInput
                 gridSeikyuRireki.DataSource = dtSetView;
 
                 gridSeikyuRireki.Visible = true;
+
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                gridSeikyuRireki.Visible = true;
+                new CommonException(ex);
+                return;
+            }
+            return;
+        }
+
+        /// <summary>
+        /// getTorihikisakiData
+        /// 機能追加＿取引先の情報を表示（締切日、支払月数、支払日、支払条件、集金区分）
+        /// （請求履歴）
+        /// </summary>
+        private void getTorihikisakiData()
+        {
+            //データ検索用
+            List<string> lstTorikhikisakiDataLoad = new List<string>();
+
+            //検索時のデータ取り出し先
+            DataTable dtSetView;
+
+            //空文字判定（得意先コード）
+            if (labelSet_Tokuisaki.CodeTxtText == "")
+            {
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
+            B0040_NyukinInput_B nyukinInputB = new B0040_NyukinInput_B();
+            try
+            {
+                //データの存在確認を検索する情報を入れる
+                /*[0]得意先コード*/
+                lstTorikhikisakiDataLoad.Add(labelSet_Tokuisaki.CodeTxtText);
+                
+                //ビジネス層、取引先情報表示用ロジックに移動
+                dtSetView = nyukinInputB.getTorihikisakiData(lstTorikhikisakiDataLoad);
+
+                if (dtSetView.Rows.Count > 0)
+                {
+                    txtSimekiribi.Text = dtSetView.Rows[0]["締切日"].ToString();
+                    txtSiharaiGessuu.Text = dtSetView.Rows[0]["支払月数"].ToString();
+                    txtSiharaibi.Text = dtSetView.Rows[0]["支払日"].ToString();
+                    txtSiharaiJoken.Text = dtSetView.Rows[0]["支払条件"].ToString();
+                    txtSyukinKbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
+                }
+                else
+                {
+                    txtSimekiribi.Text = "";
+                    txtSiharaiGessuu.Text = "";
+                    txtSiharaibi.Text = "";
+                    txtSiharaiJoken.Text = "";
+                    txtSyukinKbn.Text = "";
+                }
+
+
 
             }
             catch (Exception ex)
@@ -1220,7 +1304,5 @@ namespace KATO.Form.B0040_NyukinInput
             }
             return false;
         }
-
-
     }
 }

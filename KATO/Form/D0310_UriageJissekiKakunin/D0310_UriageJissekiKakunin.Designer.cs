@@ -107,6 +107,7 @@
             // btnF06
             // 
             this.btnF06.TabIndex = 17;
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
@@ -682,7 +683,8 @@
             // 
             // D0310_UriageJissekiKakunin
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.baseLabel9);
             this.Controls.Add(this.txtArariritsu);
@@ -718,7 +720,7 @@
             this.Controls.Add(this.labelSet_Tantousha);
             this.Controls.Add(this.labelSet_Nyuryokusya);
             this.Name = "D0310_UriageJissekiKakunin";
-            this.Text = "売上実績確認";
+            this.Text = "Form1";
             this.Load += new System.EventHandler(this.D0310_UriageJissekiKakunin_Load);
             this.Shown += new System.EventHandler(this.D0310_UriageJissekiKakunin_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0310_UriageJissekiKakunin_KeyDown);

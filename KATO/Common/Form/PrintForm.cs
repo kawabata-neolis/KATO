@@ -245,6 +245,7 @@ namespace KATO.Common.Form
                 if (stSize == CommonTeisu.SIZE_NAGA3 || stSize == CommonTeisu.SIZE_NAGA4)
                 {
                     switches.Add("-dManualFeed");
+                    switches.Add("-dCasset=1");
                 }
                 else
                 {

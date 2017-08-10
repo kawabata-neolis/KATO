@@ -93,8 +93,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 gridUriageJisseki.Focus();
 
             }
-            //画面不明【暫定】
-            else if (intFrm == 2)
+            //売上入力
+            else if (intFrm == 0020)
             {
                 
                 labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
@@ -104,7 +104,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 gridUriageJisseki.Focus();
             }
             //売上別利益率設定
-            else if (intFrm == 3)
+            else if (intFrm == 1210)
             {
 
                 labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
@@ -196,10 +196,10 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             }
 
             //CSV・印刷テスト用コード
-            //this.btnF11.Enabled = true;
-            //this.btnF11.Text = STR_FUNC_F11;
-            //this.btnF07.Enabled = true;
-            //this.btnF07.Text = "F7:CSV";
+            this.btnF11.Enabled = true;
+            this.btnF11.Text = STR_FUNC_F11;
+            this.btnF07.Enabled = true;
+            this.btnF07.Text = "F7:CSV";
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -789,12 +789,29 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                     basemessagebox.ShowDialog();
                     return;
                 }
+                
+                // 印刷ダイアログ
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A3, CommonTeisu.YOKO);
 
-                // PDF作成
-                uriagejissekikakunin.dbToPdf(dtSetView, lstUriageSuiiLoad);
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    // PDF作成
+                    string strFile = uriagejissekikakunin.dbToPdf(dtSetView, lstUriageSuiiLoad);
+                    pf.execPreview(@strFile);
+                }
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    string strFile = uriagejissekikakunin.dbToPdf(dtSetView, lstUriageSuiiLoad);
 
-                //印刷完了メッセージ
-                MessageBox.Show("PDF出力が完了しました。");
+                    // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
+                    // ダイアログ表示時は最後の引数はtrue
+                    // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
+                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A3, CommonTeisu.YOKO, true);
+                }
+
+                pf.Dispose();
 
             }
             catch (Exception ex)

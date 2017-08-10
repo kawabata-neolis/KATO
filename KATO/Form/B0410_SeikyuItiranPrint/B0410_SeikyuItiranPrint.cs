@@ -240,13 +240,28 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                     basemessagebox.ShowDialog();
                     return;
                 }
-
-                // PDF作成
-                string strFile = seikyuitiranprintB.dbToPdf(dtSeikyuItiran, lstSearchItem);
-
+                
                 //プリントダイアログ！
-                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                pf.ShowDialog();
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    // PDF作成
+                    string strFile = seikyuitiranprintB.dbToPdf(dtSeikyuItiran, lstSearchItem);
+                    pf.execPreview(@strFile);
+                }
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    string strFile = seikyuitiranprintB.dbToPdf(dtSeikyuItiran, lstSearchItem);
+
+                    // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
+                    // ダイアログ表示時は最後の引数はtrue
+                    // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
+                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                }
+
                 pf.Dispose();
 
             }

@@ -46,30 +46,37 @@
             // 
             // btnF12
             // 
+            this.btnF12.TabStop = false;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabStop = false;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
+            this.btnF10.TabStop = false;
             this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
+            this.btnF09.TabStop = false;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
+            this.btnF08.TabStop = false;
             this.btnF08.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF07
             // 
+            this.btnF07.TabStop = false;
             this.btnF07.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF06
             // 
+            this.btnF06.TabStop = false;
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
@@ -86,6 +93,7 @@
             // 
             // btnF02
             // 
+            this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF01
@@ -193,7 +201,7 @@
             this.gridHidukeSeigen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridHidukeSeigen.Size = new System.Drawing.Size(968, 447);
             this.gridHidukeSeigen.StandardTab = true;
-            this.gridHidukeSeigen.TabIndex = 104;
+            this.gridHidukeSeigen.TabIndex = 5;
             this.gridHidukeSeigen.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridHidukeSeigen_CellMouseClick);
             this.gridHidukeSeigen.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridHidukeSeigen_CellMouseDoubleClick);
             // 

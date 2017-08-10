@@ -31,21 +31,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.backFormButton = new KATO.Common.Ctl.BaseButton();
+            this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.gridUriageSuii = new KATO.Common.Ctl.BaseDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageSuii)).BeginInit();
             this.SuspendLayout();
             // 
-            // backFormButton
+            // btnF12
             // 
-            this.backFormButton.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.backFormButton.Location = new System.Drawing.Point(1107, 51);
-            this.backFormButton.Name = "backFormButton";
-            this.backFormButton.Size = new System.Drawing.Size(117, 30);
-            this.backFormButton.TabIndex = 132;
-            this.backFormButton.Text = "戻る(F12)";
-            this.backFormButton.UseVisualStyleBackColor = true;
-            this.backFormButton.Click += new System.EventHandler(this.backFormButton_Click);
+            this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btnF12.Location = new System.Drawing.Point(1107, 51);
+            this.btnF12.Name = "btnF12";
+            this.btnF12.Size = new System.Drawing.Size(117, 30);
+            this.btnF12.TabIndex = 132;
+            this.btnF12.UseVisualStyleBackColor = true;
+            this.btnF12.Click += new System.EventHandler(this.backFormButton_Click);
             // 
             // gridUriageSuii
             // 
@@ -86,7 +85,7 @@
             this.gridUriageSuii.RowHeadersVisible = false;
             this.gridUriageSuii.RowTemplate.Height = 21;
             this.gridUriageSuii.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriageSuii.Size = new System.Drawing.Size(1323, 672);
+            this.gridUriageSuii.Size = new System.Drawing.Size(1395, 672);
             this.gridUriageSuii.StandardTab = true;
             this.gridUriageSuii.TabIndex = 133;
             this.gridUriageSuii.TabStop = false;
@@ -95,36 +94,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.gridUriageSuii);
-            this.Controls.Add(this.backFormButton);
+            this.Controls.Add(this.btnF12);
             this.Name = "C0492_UriageSuiiHyoLevel3";
             this.Text = "C0492_UriageSuiiHyoLevel3";
             this.Load += new System.EventHandler(this.C0492_UriageSuiiHyoLevel3_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0492_UriageSuiiHyoLevel3_KeyDown);
-            this.Controls.SetChildIndex(this.btnF01, 0);
-            this.Controls.SetChildIndex(this.btnF02, 0);
-            this.Controls.SetChildIndex(this.btnF03, 0);
-            this.Controls.SetChildIndex(this.btnF04, 0);
-            this.Controls.SetChildIndex(this.btnF05, 0);
-            this.Controls.SetChildIndex(this.btnF06, 0);
-            this.Controls.SetChildIndex(this.btnF07, 0);
-            this.Controls.SetChildIndex(this.btnF08, 0);
-            this.Controls.SetChildIndex(this.btnF09, 0);
-            this.Controls.SetChildIndex(this.btnF10, 0);
-            this.Controls.SetChildIndex(this.btnF11, 0);
-            this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.backFormButton, 0);
-            this.Controls.SetChildIndex(this.gridUriageSuii, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageSuii)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Common.Ctl.BaseButton backFormButton;
+        private Common.Ctl.BaseButton btnF12;
         private Common.Ctl.BaseDataGridView gridUriageSuii;
     }
 }

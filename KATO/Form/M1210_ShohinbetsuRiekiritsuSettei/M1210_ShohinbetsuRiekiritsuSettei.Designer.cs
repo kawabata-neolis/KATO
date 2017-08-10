@@ -33,15 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelSet_TokuisakiS = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.txtSinamei_KatabanS = new KATO.Common.Ctl.BaseText();
             this.baseButton_kensaku = new KATO.Common.Ctl.BaseButton();
             this.lblKataban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_TantoushaS = new KATO.Common.Ctl.LabelSet_Tantousha();
-            this.labelSet_TokuisakiS = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.razioOrderS1 = new KATO.Common.Ctl.RadSet_4btn();
             this.gridShohinbetsuRiekiritsu = new KATO.Common.Ctl.BaseDataGridView();
-            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
@@ -59,6 +58,7 @@
             this.razioSettei = new KATO.Common.Ctl.RadSet_2btn();
             this.txtTeika = new KATO.Common.Ctl.BaseTextMoney();
             this.txtTanka = new KATO.Common.Ctl.BaseTextMoney();
+            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridShohinbetsuRiekiritsu)).BeginInit();
@@ -66,37 +66,88 @@
             // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 18;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.TabIndex = 17;
+            // 
+            // btnF10
+            // 
+            this.btnF10.TabIndex = 16;
+            // 
+            // btnF09
+            // 
+            this.btnF09.TabIndex = 15;
+            // 
+            // btnF08
+            // 
+            this.btnF08.TabIndex = 14;
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabIndex = 13;
             // 
             // btnF06
             // 
+            this.btnF06.TabIndex = 12;
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.TabIndex = 11;
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 10;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabIndex = 9;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.TabIndex = 8;
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 7;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.labelSet_TokuisakiS);
             this.groupBox1.Controls.Add(this.txtSinamei_KatabanS);
             this.groupBox1.Controls.Add(this.baseButton_kensaku);
             this.groupBox1.Controls.Add(this.lblKataban);
             this.groupBox1.Controls.Add(this.labelSet_TantoushaS);
-            this.groupBox1.Controls.Add(this.labelSet_TokuisakiS);
             this.groupBox1.Location = new System.Drawing.Point(29, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(513, 151);
-            this.groupBox1.TabIndex = 87;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索条件";
+            // 
+            // labelSet_TokuisakiS
+            // 
+            this.labelSet_TokuisakiS.AppendLabelSize = 0;
+            this.labelSet_TokuisakiS.AppendLabelText = "";
+            this.labelSet_TokuisakiS.CodeTxtSize = 40;
+            this.labelSet_TokuisakiS.CodeTxtText = "";
+            this.labelSet_TokuisakiS.LabelName = "得意先コード";
+            this.labelSet_TokuisakiS.Location = new System.Drawing.Point(7, 18);
+            this.labelSet_TokuisakiS.Name = "labelSet_TokuisakiS";
+            this.labelSet_TokuisakiS.ShowAppendFlg = false;
+            this.labelSet_TokuisakiS.Size = new System.Drawing.Size(446, 22);
+            this.labelSet_TokuisakiS.SpaceCodeValue = 4;
+            this.labelSet_TokuisakiS.SpaceNameCode = 4;
+            this.labelSet_TokuisakiS.SpaceValueAppend = 4;
+            this.labelSet_TokuisakiS.TabIndex = 0;
+            this.labelSet_TokuisakiS.ValueLabelSize = 300;
+            this.labelSet_TokuisakiS.ValueLabelText = "";
             // 
             // txtSinamei_KatabanS
             // 
@@ -105,7 +156,7 @@
             this.txtSinamei_KatabanS.MaxLength = 100;
             this.txtSinamei_KatabanS.Name = "txtSinamei_KatabanS";
             this.txtSinamei_KatabanS.Size = new System.Drawing.Size(353, 22);
-            this.txtSinamei_KatabanS.TabIndex = 104;
+            this.txtSinamei_KatabanS.TabIndex = 2;
             // 
             // baseButton_kensaku
             // 
@@ -113,7 +164,7 @@
             this.baseButton_kensaku.Location = new System.Drawing.Point(399, 122);
             this.baseButton_kensaku.Name = "baseButton_kensaku";
             this.baseButton_kensaku.Size = new System.Drawing.Size(100, 23);
-            this.baseButton_kensaku.TabIndex = 13;
+            this.baseButton_kensaku.TabIndex = 3;
             this.baseButton_kensaku.Text = "検索";
             this.baseButton_kensaku.UseVisualStyleBackColor = true;
             this.baseButton_kensaku.Click += new System.EventHandler(this.baseButton_kensaku_Click);
@@ -148,24 +199,6 @@
             this.labelSet_TantoushaS.ValueLabelSize = 120;
             this.labelSet_TantoushaS.ValueLabelText = "";
             // 
-            // labelSet_TokuisakiS
-            // 
-            this.labelSet_TokuisakiS.AppendLabelSize = 40;
-            this.labelSet_TokuisakiS.AppendLabelText = "";
-            this.labelSet_TokuisakiS.CodeTxtSize = 40;
-            this.labelSet_TokuisakiS.CodeTxtText = "";
-            this.labelSet_TokuisakiS.LabelName = "得意先コード";
-            this.labelSet_TokuisakiS.Location = new System.Drawing.Point(7, 19);
-            this.labelSet_TokuisakiS.Name = "labelSet_TokuisakiS";
-            this.labelSet_TokuisakiS.ShowAppendFlg = true;
-            this.labelSet_TokuisakiS.Size = new System.Drawing.Size(501, 22);
-            this.labelSet_TokuisakiS.SpaceCodeValue = 4;
-            this.labelSet_TokuisakiS.SpaceNameCode = 4;
-            this.labelSet_TokuisakiS.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiS.TabIndex = 0;
-            this.labelSet_TokuisakiS.ValueLabelSize = 350;
-            this.labelSet_TokuisakiS.ValueLabelText = "";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.razioOrderS1);
@@ -193,7 +226,7 @@
             this.razioOrderS1.PositionRadbtn4_Y = 0;
             this.razioOrderS1.Radbtn1Text = "得意先";
             this.razioOrderS1.Radbtn2Text = "品名";
-            this.razioOrderS1.Radbtn3Text = "利益率";
+            this.razioOrderS1.Radbtn3Text = "掛率";
             this.razioOrderS1.Radbtn4Text = "単価";
             this.razioOrderS1.Size = new System.Drawing.Size(382, 19);
             this.razioOrderS1.TabIndex = 0;
@@ -240,24 +273,6 @@
             this.gridShohinbetsuRiekiritsu.TabIndex = 89;
             this.gridShohinbetsuRiekiritsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridShohinbetsuRiekiritsu_CellDoubleClick);
             // 
-            // labelSet_Tokuisaki
-            // 
-            this.labelSet_Tokuisaki.AppendLabelSize = 40;
-            this.labelSet_Tokuisaki.AppendLabelText = "";
-            this.labelSet_Tokuisaki.CodeTxtSize = 40;
-            this.labelSet_Tokuisaki.CodeTxtText = "";
-            this.labelSet_Tokuisaki.LabelName = "得意先コード";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(29, 442);
-            this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
-            this.labelSet_Tokuisaki.ShowAppendFlg = true;
-            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(499, 22);
-            this.labelSet_Tokuisaki.SpaceCodeValue = 4;
-            this.labelSet_Tokuisaki.SpaceNameCode = 4;
-            this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 90;
-            this.labelSet_Tokuisaki.ValueLabelSize = 350;
-            this.labelSet_Tokuisaki.ValueLabelText = "";
-            // 
             // labelSet_Daibunrui
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
@@ -277,7 +292,7 @@
             this.labelSet_Daibunrui.SpaceCodeValue = 4;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 91;
+            this.labelSet_Daibunrui.TabIndex = 2;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
             // 
@@ -296,7 +311,7 @@
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
-            this.labelSet_Chubunrui.TabIndex = 92;
+            this.labelSet_Chubunrui.TabIndex = 3;
             this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
             // 
@@ -315,7 +330,7 @@
             this.labelSet_Maker.SpaceNameCode = 35;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
-            this.labelSet_Maker.TabIndex = 93;
+            this.labelSet_Maker.TabIndex = 4;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
             // 
@@ -364,7 +379,7 @@
             this.txtKensakuS.MaxLength = 40;
             this.txtKensakuS.Name = "txtKensakuS";
             this.txtKensakuS.Size = new System.Drawing.Size(297, 22);
-            this.txtKensakuS.TabIndex = 96;
+            this.txtKensakuS.TabIndex = 19;
             this.txtKensakuS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKensaku_KeyDown);
             // 
             // txtKataban
@@ -421,10 +436,10 @@
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.baseLabel5.Location = new System.Drawing.Point(33, 589);
             this.baseLabel5.Name = "baseLabel5";
-            this.baseLabel5.Size = new System.Drawing.Size(79, 15);
+            this.baseLabel5.Size = new System.Drawing.Size(63, 15);
             this.baseLabel5.strToolTip = null;
             this.baseLabel5.TabIndex = 102;
-            this.baseLabel5.Text = "利益率(%)";
+            this.baseLabel5.Text = "掛率(%)";
             this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtRiekiritsu
@@ -435,7 +450,7 @@
             this.txtRiekiritsu.MaxLength = 5;
             this.txtRiekiritsu.Name = "txtRiekiritsu";
             this.txtRiekiritsu.Size = new System.Drawing.Size(66, 22);
-            this.txtRiekiritsu.TabIndex = 103;
+            this.txtRiekiritsu.TabIndex = 5;
             this.txtRiekiritsu.Leave += new System.EventHandler(this.txtRiekiritsu_Leave);
             // 
             // razioOrderS2
@@ -453,7 +468,7 @@
             this.razioOrderS2.Radbtn1Text = "Ａ―Ｚ";
             this.razioOrderS2.Radbtn2Text = "Ｚ―Ａ";
             this.razioOrderS2.Size = new System.Drawing.Size(188, 18);
-            this.razioOrderS2.TabIndex = 1;
+            this.razioOrderS2.TabIndex = 31;
             // 
             // razioSettei
             // 
@@ -499,14 +514,34 @@
             this.txtTanka.MaxLength = 9;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
-            this.txtTanka.TabIndex = 106;
+            this.txtTanka.TabIndex = 6;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTanka.Leave += new System.EventHandler(this.txtTanka_Leave);
             // 
+            // labelSet_Tokuisaki
+            // 
+            this.labelSet_Tokuisaki.AppendLabelSize = 0;
+            this.labelSet_Tokuisaki.AppendLabelText = "";
+            this.labelSet_Tokuisaki.CodeTxtSize = 40;
+            this.labelSet_Tokuisaki.CodeTxtText = "";
+            this.labelSet_Tokuisaki.LabelName = "得意先コード";
+            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(29, 442);
+            this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
+            this.labelSet_Tokuisaki.ShowAppendFlg = false;
+            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(454, 22);
+            this.labelSet_Tokuisaki.SpaceCodeValue = 4;
+            this.labelSet_Tokuisaki.SpaceNameCode = 4;
+            this.labelSet_Tokuisaki.SpaceValueAppend = 4;
+            this.labelSet_Tokuisaki.TabIndex = 1;
+            this.labelSet_Tokuisaki.ValueLabelSize = 300;
+            this.labelSet_Tokuisaki.ValueLabelText = "";
+            // 
             // M1210_ShohinbetsuRiekiritsuSettei
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Tokuisaki);
             this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.txtTeika);
             this.Controls.Add(this.razioSettei);
@@ -524,7 +559,6 @@
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);
             this.Controls.Add(this.labelSet_Daibunrui);
-            this.Controls.Add(this.labelSet_Tokuisaki);
             this.Controls.Add(this.gridShohinbetsuRiekiritsu);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -547,7 +581,6 @@
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.gridShohinbetsuRiekiritsu, 0);
-            this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Maker, 0);
@@ -565,6 +598,7 @@
             this.Controls.SetChildIndex(this.razioSettei, 0);
             this.Controls.SetChildIndex(this.txtTeika, 0);
             this.Controls.SetChildIndex(this.txtTanka, 0);
+            this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -578,11 +612,9 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private Common.Ctl.LabelSet_Tantousha labelSet_TantoushaS;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_TokuisakiS;
         private Common.Ctl.BaseLabel lblKataban;
         private System.Windows.Forms.GroupBox groupBox2;
         private Common.Ctl.BaseDataGridView gridShohinbetsuRiekiritsu;
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki;
         private Common.Ctl.LabelSet_Daibunrui labelSet_Daibunrui;
         private Common.Ctl.LabelSet_Chubunrui labelSet_Chubunrui;
         private Common.Ctl.LabelSet_Maker labelSet_Maker;
@@ -603,5 +635,7 @@
         private Common.Ctl.RadSet_2btn razioSettei;
         private Common.Ctl.BaseTextMoney txtTeika;
         private Common.Ctl.BaseTextMoney txtTanka;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiS;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_Tokuisaki;
     }
 }

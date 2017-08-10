@@ -43,16 +43,16 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             InitializeComponent();
 
-            //this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Maximized;
 
             ////フォームが最大化されないようにする
-            this.MaximizeBox = false;
+            //this.MaximizeBox = false;
             ////フォームが最小化されないようにする
-            this.MinimizeBox = false;
+            //this.MinimizeBox = false;
 
             ////最大サイズと最小サイズを現在のサイズに設定する
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
+            //this.MaximumSize = this.Size;
+            //this.MinimumSize = this.Size;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
@@ -341,6 +341,10 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printReport();
+                    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -522,8 +526,6 @@ namespace KATO.Form.C0490_UriageSuiiHyo
         /// </summary>
         private void printReport()
         {
-            //【プリントダイアログの表示】
-
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
@@ -556,17 +558,29 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 
                 // 検索実行（印刷用）
                 DataTable dtSiireSuiiList = uriagesuiihyoB.getUriageSuiiList(lstSearchItem, "print");
+                
+                // 印刷ダイアログ
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
 
-                // PDF作成
-                string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    // PDF作成
+                    string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                    pf.execPreview(@strFile);
+                }
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
 
-                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                pf.ShowDialog();
+                    // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
+                    // ダイアログ表示時は最後の引数はtrue
+                    // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
+                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+
                 pf.Dispose();
-
-                //印刷完了メッセージ
-                MessageBox.Show("PDF出力が完了しました。");
-
             }
             catch (Exception ex)
             {

@@ -4,15 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.IO;
-using System.ComponentModel;
 using System.Text;
 
-using Spire.Xls;
 using ClosedXML.Excel;
-
-//iTextSharp関連の名前空間
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace KATO.Business.D0320_SiireJissekiKakunin
 {
@@ -26,6 +20,43 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
     /// </summary>
     class D0320_SiireJissekiKakunin_B
     {
+        /// <summary>
+        /// getEigyoCd
+        /// 営業コードを取得
+        /// </summary>
+        public DataTable getEigyoCd(string strUserId)
+        {
+            DataTable dtGetTableGrid = new DataTable();
+            string strSQLInput = "";
+
+            // SQL文 営業所コード
+            strSQLInput = strSQLInput + " SELECT ";
+            strSQLInput = strSQLInput + " 営業所コード ";
+
+            strSQLInput = strSQLInput + " FROM ";
+            strSQLInput = strSQLInput + " 担当者  ";
+
+            strSQLInput = strSQLInput + " WHERE ";
+            strSQLInput = strSQLInput + " ログインＩＤ= '" + strUserId + "' ";
+            strSQLInput = strSQLInput + " AND 削除='N' ";
+
+            // SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+            return (dtGetTableGrid);
+        }
 
         /// <summary>
         /// getSiireJissekiList
@@ -200,17 +231,15 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
         /// <param name="dtSiireJisseki">
         ///     仕入実績確認のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public void dbToPdf(DataTable dtSiireJisseki, List<string> lstItem)
+        public string dbToPdf(DataTable dtSiireJisseki, List<string> lstItem)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             try
             {
-                string strHeader = "";
-                string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                string strSpace = "       ";
-                string strComputerName = System.Windows.Forms.SystemInformation.ComputerName;
+                CreatePdf pdf = new CreatePdf();
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
@@ -248,9 +277,9 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 decimal decKingaku = outDataAll.Select(gokei => gokei.kingaku).Sum();
 
                 // リストをデータテーブルに変換
-                DataTable dtChkList = this.ConvertToDataTable(outDataAll);
+                DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
-                int maxRowCnt = dtChkList.Rows.Count;
+                int maxRowCnt = dtChkList.Rows.Count + 1;
                 int maxColCnt = dtChkList.Columns.Count;
                 int pageCnt = 0;    // ページ(シート枚数)カウント
                 int rowCnt = 1;     // datatable処理行カウント
@@ -325,43 +354,35 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                         headersheet.Column(1).Width = 9;
                         headersheet.Column(2).Width = 8;
                         headersheet.Column(3).Width = 14;
-                        headersheet.Column(4).Width = 50;
+                        headersheet.Column(4).Width = 30;
                         headersheet.Column(5).Width = 6;
-                        headersheet.Column(6).Width = 8;
+                        headersheet.Column(6).Width = 12;
                         headersheet.Column(7).Width = 12;
-                        headersheet.Column(8).Width = 8;
-                        headersheet.Column(9).Width = 29;
-                        headersheet.Column(10).Width = 29;
+                        headersheet.Column(8).Width = 30;
+                        headersheet.Column(9).Width = 20;
+                        headersheet.Column(10).Width = 20;
                         headersheet.Column(11).Width = 8;
                         headersheet.Column(12).Width = 10;
                         headersheet.Column(13).Width = 10;
                         headersheet.Column(14).Width = 8;
 
+                        // フォントサイズ変更
+                        headersheet.Range("D4:D48").Style.Font.FontSize = 6;
+                        headersheet.Range("H4:H48").Style.Font.FontSize = 6;
+                        headersheet.Range("I4:I48").Style.Font.FontSize = 6;
+                        headersheet.Range("J4:J48").Style.Font.FontSize = 6;
+
                         // 印刷体裁（A3横、印刷範囲、余白）
                         headersheet.PageSetup.PaperSize = XLPaperSize.A3Paper;
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
-                        headersheet.PageSetup.Margins.Left = 0.25;
-                        headersheet.PageSetup.Margins.Right = 0.25;
+                        headersheet.PageSetup.Margins.Left = 0.7;
+                        headersheet.PageSetup.Margins.Right = 0.7;
 
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№32）");
 
-                        // ヘッダーシートからコピー
-                        headersheet.CopyTo("Page1");
-                        currentsheet = workbook.Worksheet(2);
-
-                        // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-                        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
-                            pageCnt.ToString() + " / " + maxPage.ToString();
-                        currentsheet.PageSetup.Header.Right.AddText(strHeader);
-
-                    }
-
-                    // ヘッダー行の場合
-                    if (xlsRowCnt == 3)
-                    {
-                        // 出力行へ移動
-                        xlsRowCnt++;
+                        // ヘッダーシートのコピー、ヘッダー部の指定
+                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                     }
 
                     // 1セルずつデータ出力
@@ -370,21 +391,34 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                         string str = drSiireCheak[colCnt - 1].ToString();
 
                         // 数量、金額セルの処理
-                        if (colCnt >= 5 && colCnt <= 7)
+                        if (colCnt == 5 || colCnt == 7)
                         {
                             // 3桁毎に","を挿入する
                             str = string.Format("{0:#,0}", decimal.Parse(str));
                             currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                         }
 
-                        // 備考の場合、出力しないため何もしない
+                        // 単価セルの処理
+                        if (colCnt == 6)
+                        {
+                            // 3桁毎に","を挿入する、小数点第2位まで
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0.00");
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+
+                        // 伝票番号、発注番号、受注番号の場合
+                        if (colCnt == 2 || colCnt == 11 || colCnt == 14)
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+
+                        // 備考の場合
                         if (colCnt == 8)
                         {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
                         }
-                        else
-                        {
-                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-                        }
+
+                        currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                         
                     }
 
@@ -403,37 +437,33 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                         {
                             xlsRowCnt = 3;
 
-                            // コンピュータ名、日付、ページ数を取得
-                            strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
-                                pageCnt.ToString() + " / " + maxPage.ToString();
-
                             // ヘッダーシートのコピー、ヘッダー部の指定
-                            sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, strHeader);
+                            pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                         }
-                    }
-
-                    // 最終行を出力した後、合計行を出力
-                    if (maxRowCnt == rowCnt)
-                    {
-                        // 3桁毎に","を挿入する
-                        IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt + 1, 7);
-                        kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        kingakuCell.Value = string.Format("{0:#,0}", decKingaku);
-
-                        // セルの結合
-                        currentsheet.Range(xlsRowCnt + 1, 1, xlsRowCnt + 1, 6).Merge();
-                        currentsheet.Range(xlsRowCnt + 1, 8, xlsRowCnt + 1, 14).Merge();
-
-                        // 1行分のセルの周囲に罫線を引く
-                        currentsheet.Range(xlsRowCnt + 1, 1, xlsRowCnt + 1, 14).Style
-                                .Border.SetTopBorder(XLBorderStyleValues.Thin)
-                                .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-                                .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-                                .Border.SetRightBorder(XLBorderStyleValues.Thin);
                     }
 
                     rowCnt++;
                     xlsRowCnt++;
+                }
+
+                // 最終行を出力した後、合計行を出力
+                if (dtChkList.Rows.Count > 0)
+                {
+                    // 3桁毎に","を挿入する
+                    IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, 7);
+                    kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                    kingakuCell.Value = string.Format("{0:#,0}", decKingaku);
+
+                    // セルの結合
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 6).Merge();
+                    currentsheet.Range(xlsRowCnt, 8, xlsRowCnt, 14).Merge();
+
+                    // 1行分のセルの周囲に罫線を引く
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 14).Style
+                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
                 }
 
                 // ヘッダーシート削除
@@ -447,7 +477,7 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 workbook.Dispose();
 
                 // PDF化の処理
-                createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime);
 
             }
             catch
@@ -465,206 +495,6 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 }
             }
 
-        }
-
-        /// <summary>
-        /// ヘッダーシートをコピーし、ヘッダー部を指定
-        /// <param name="workbook">参照型 ワークブック</param>
-        /// <param name="headersheet">参照型 ヘッダーシート</param>
-        /// <param name="currentsheet">参照型 カレントシート</param>
-        /// <param name="pageCnt">ページ数</param>
-        /// <param name="strHeader">コンピュータ名、日付、ページ数</param>
-        /// </summary>
-        private void sheetCopy(ref XLWorkbook workbook, ref IXLWorksheet headersheet, ref IXLWorksheet currentsheet, int pageCnt, string strHeader)
-        {
-            // ヘッダーシートからコピー
-            headersheet.CopyTo("Page" + pageCnt.ToString());
-            currentsheet = workbook.Worksheet(pageCnt + 1);
-
-            // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-            currentsheet.PageSetup.Header.Right.AddText(strHeader);
-        }
-
-        /// 【共通化可能】
-        /// -----------------------------------------------------------------------------
-        /// <summary>
-        /// PDF化(Spire.xls)の処理
-        /// <param name="strInXlsFile">エクセルファイル</param>
-        /// <param name="strDateTime">日時</param>
-        /// </summary>
-        /// -----------------------------------------------------------------------------
-        private void createPdf(string strInXlsFile, string strDateTime)
-        {
-            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-            string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
-
-            try
-            {
-
-                Workbook printbook = new Workbook();
-                printbook.LoadFromFile(strInXlsFile, ExcelVersion.Version2010);
-                int sheetMax = printbook.Worksheets.Count;
-
-                // Excelシートの枚数分PDF化
-                for (int sheetCnt = 0; sheetCnt < sheetMax; sheetCnt++)
-                {
-                    // pdf化するシートを取得
-                    Worksheet printsheet = printbook.Worksheets[sheetCnt];
-
-                    string no = no = (sheetCnt + 1).ToString();
-                    if (no.Length == 1)
-                    {
-                        no = "0" + no;
-                    }
-
-                    string strPdfFile = strWorkPath + strDateTime + "_" + no + ".pdf";
-
-                    // 出力したいシートをPDFで保存
-                    printsheet.SaveToPdf(strPdfFile);
-
-                    // シートカウントが0の場合結合用のPDFを保存
-                    if (sheetCnt == 0)
-                    {
-                        string strJoinyouPdfFile = strPdfPath + strDateTime + ".pdf";
-
-                        // 出力したいシートをPDFで保存
-                        printsheet.SaveToPdf(strJoinyouPdfFile);
-                    }
-                }
-                // printbookを解放
-                printbook.Dispose();
-
-                // フォルダ下の作成日時".pdf"ファイルをすべて取得する
-                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(strWorkPath);
-                System.IO.FileInfo[] fiFiles = di.GetFiles(strDateTime + "*.pdf", System.IO.SearchOption.AllDirectories);
-                Array.Sort<FileInfo>(fiFiles, delegate (FileInfo f1, FileInfo f2)
-                {
-                    // ファイル名でソート
-                    return f1.Name.CompareTo(f2.Name);
-                });
-                int filesMax = fiFiles.Count();
-                string[] strFiles = new string[filesMax];
-
-                // FileInfo配列をstring配列に
-                for (int fileCnt = 0; fileCnt < filesMax; fileCnt++)
-                {
-                    strFiles[fileCnt] = strWorkPath + fiFiles[fileCnt].Name;
-                }
-
-                // 結合PDFオブジェクト
-                string strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
-
-                // PDFファイル数が0でなければ結合
-                if (filesMax != 0)
-                {
-                    fnJoinPdf(strFiles, strJoinPdfFile, 1);
-                }
-
-            }
-            catch
-            {
-                throw;
-            }
-            return;
-        }
-
-
-        /// 【共通化可能】
-        /// -----------------------------------------------------------------------------
-        /// <summary>
-        /// PDFファイルの結合
-        /// WritePage = 0：全ページ、WritePage = 1：全ファイルの1ページのみ
-        /// WritePage = 2(3...)：全ファイルの1～2(1～3)ページ
-        /// </summary>
-        /// <param name="sSrcFilePath1">入力ファイルパス1</param>
-        /// <param name="sSrcFilePath2">入力ファイルパス2</param>
-        /// <param name="sJoinFilePath">結合ファイルパス</param>
-        /// <param name="WritePage">結合ページ数</param>
-        /// -----------------------------------------------------------------------------
-        private void fnJoinPdf(string[] arySrcFilePath, string sJoinFilePath, int WritePage)
-        {
-            Document doc = null;    // 出力ファイルDocument
-            PdfCopy copy = null;    // 出力ファイルPdfCopy
-
-            try
-            {
-                //-------------------------------------------------------------------------------------
-                // ファイル件数分、ファイル結合
-                //-------------------------------------------------------------------------------------
-                for (int i = 0; i < arySrcFilePath.Length; i++)
-                {
-                    // リーダー取得
-                    PdfReader reader = new PdfReader(arySrcFilePath[i]);
-                    // 入力ファイル1を出力ファイルの雛形にする
-                    if (i == 0)
-                    {
-                        // Document作成
-                        doc = new Document(reader.GetPageSizeWithRotation(1));
-                        // 出力ファイルPdfCopy作成
-                        copy = new PdfCopy(doc, new FileStream(sJoinFilePath, FileMode.Create));
-                        // 出力ファイルDocumentを開く
-                        doc.Open();
-                        // 文章プロパティ設定
-                        //doc.AddKeywords((string)reader.Info["Keywords"]);
-                        //doc.AddAuthor((string)reader.Info["Author"]);
-                        //doc.AddTitle((string)reader.Info["Title"]);
-                        //doc.AddCreator((string)reader.Info["Creator"]);
-                        //doc.AddSubject((string)reader.Info["Subject"]);
-                    }
-                    // 結合するPDFのページ数
-                    if (WritePage == 0) WritePage = reader.NumberOfPages;
-                    if (WritePage > reader.NumberOfPages) WritePage = reader.NumberOfPages;
-
-                    // PDFコンテンツを取得、copyオブジェクトに追加
-                    for (int iPageCnt = 1; iPageCnt <= WritePage; iPageCnt++)
-                    {
-                        PdfImportedPage page = copy.GetImportedPage(reader, iPageCnt);
-                        copy.AddPage(page);
-                    }
-                    // フォーム入力を結合
-                    PRAcroForm form = reader.AcroForm;
-                    if (form != null)
-                        copy.AddDocument(reader);
-                    // リーダーを閉じる
-                    reader.Close();
-                }
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                if (copy != null)
-                    copy.Close();
-                if (doc != null)
-                    doc.Close();
-            }
-        }
-
-        /// -----------------------------------------------------------------------------------------
-        /// <summary>
-        /// ListをDataTableへ変換
-        /// </summary>
-        /// -----------------------------------------------------------------------------------------
-        private DataTable ConvertToDataTable<T>(IList<T> data)
-        {
-            PropertyDescriptorCollection properties =
-                TypeDescriptor.GetProperties(typeof(T));
-
-            DataTable table = new DataTable();
-
-            foreach (PropertyDescriptor prop in properties)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-
-            foreach (T item in data)
-            {
-                DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-            return table;
         }
 
         /// -----------------------------------------------------------------------------

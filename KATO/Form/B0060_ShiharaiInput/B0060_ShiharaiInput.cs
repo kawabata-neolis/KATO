@@ -90,6 +90,66 @@ namespace KATO.Form.B0060_ShiharaiInput
 
             // テスト用に【営業所コード】へ'0001'をセット
             labelSet_Eigyosho.CodeTxtText = "0001";
+
+            //DataGridViewの初期設定
+            SetUpGrid();
+        }
+
+        /// <summary>
+        /// GridSetUp
+        /// DataGridView初期設定
+        /// </summary>
+        private void SetUpGrid()
+        {
+            // 列自動生成禁止
+            gridSiireJisseki.AutoGenerateColumns = false;
+
+            // データをバインド
+            DataGridViewTextBoxColumn hiduke = new DataGridViewTextBoxColumn();
+            hiduke.DataPropertyName = "年月";
+            hiduke.Name = "年月";
+            hiduke.HeaderText = "年月";
+
+            DataGridViewTextBoxColumn kingaku = new DataGridViewTextBoxColumn();
+            kingaku.DataPropertyName = "税抜合計金額";
+            kingaku.Name = "税抜合計金額";
+            kingaku.HeaderText = "仕入金額";
+
+            DataGridViewTextBoxColumn zei = new DataGridViewTextBoxColumn();
+            zei.DataPropertyName = "消費税";
+            zei.Name = "消費税";
+            zei.HeaderText = "消費税";
+
+            DataGridViewTextBoxColumn goukei = new DataGridViewTextBoxColumn();
+            goukei.DataPropertyName = "税込合計金額";
+            goukei.Name = "税込合計金額";
+            goukei.HeaderText = "合計";
+
+            // 個々の幅、文字の寄せ
+            setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM", 90);
+            setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 160);
+            setColumn(zei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 140);
+            setColumn(goukei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 160);
+        }
+
+        /// <summary>
+        /// setColumn
+        /// DataGridViewの内部設定
+        /// </summary>
+        private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridSiireJisseki.Columns.Add(col);
+            if (gridSiireJisseki.Columns[col.Name] != null)
+            {
+                gridSiireJisseki.Columns[col.Name].Width = intLen;
+                gridSiireJisseki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridSiireJisseki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridSiireJisseki.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
         }
 
         /// <summary>
@@ -232,6 +292,13 @@ namespace KATO.Form.B0060_ShiharaiInput
             if (txtDenpyoNo.Text.Equals(""))
             {
                 labelSet_Siiresaki.CodeTxtText = "";
+                txtShimekiribi.Text = "";
+                txtShiharaiGessuu.Text = "";
+                txtShiharaibi.Text = "";
+                txtShiharaiJoken.Text = "";
+                txtSyukinKbn.Text = "";
+                txtZeiHasuuKubun.Text = "";
+                gridSiireJisseki.DataSource = "";
 
                 // グループボックス内のテキストボックス内の文字を削除
                 delMeisai();
@@ -243,6 +310,12 @@ namespace KATO.Form.B0060_ShiharaiInput
                 // 伝票番号から支払データを取得し、テキストボックスへ配置
                 setShiharai();
             }
+
+            // 機能追加_締切日、支払月数、支払日、支払条件、集金区分表示
+            getSiiresakiData();
+
+            // 仕入実績表示
+            setSiireJisseki();
         }
 
         /// <summary>
@@ -447,6 +520,19 @@ namespace KATO.Form.B0060_ShiharaiInput
         }
 
         /// <summary>
+        /// labelSet_Siiresaki_Leave
+        /// 仕入先コードのLeaveイベント
+        /// </summary>
+        private void labelSet_Siiresaki_Leave(object sender, EventArgs e)
+        {
+            // 機能追加_締切日、支払月数、支払日、支払条件、集金区分表示
+            getSiiresakiData();
+
+            // 仕入実績表示
+            setSiireJisseki();
+        }
+
+        /// <summary>
         /// setShiharaiList
         /// 支払リストに移動
         /// </summary>
@@ -464,9 +550,11 @@ namespace KATO.Form.B0060_ShiharaiInput
             {
                 // エラーロギング
                 new CommonException(ex);
+
                 // 例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
                 return;
             }
         }
@@ -479,6 +567,13 @@ namespace KATO.Form.B0060_ShiharaiInput
         {
             txtDenpyoYMD.Text = "";
             labelSet_Siiresaki.CodeTxtText = "";
+            txtShimekiribi.Text = "";
+            txtShiharaiGessuu.Text = "";
+            txtShiharaibi.Text = "";
+            txtShiharaiJoken.Text = "";
+            txtSyukinKbn.Text = "";
+            txtZeiHasuuKubun.Text = "";
+            gridSiireJisseki.DataSource = "";
 
             // グループボックス内のテキストボックス内の文字を削除
             delMeisai();
@@ -563,13 +658,24 @@ namespace KATO.Form.B0060_ShiharaiInput
         /// </summary>
         private void delText()
         {
-            labelSet_Siiresaki.CodeTxtText = "";
+            // 削除するデータ以外を確保
+            string strDenpyoYMD = txtDenpyoYMD.Text;
+            string strDenpyoNo = txtDenpyoNo.Text;
+            string strTantousha = labelSet_Tantousha.CodeTxtText;
+            string strEigyosho = labelSet_Eigyosho.CodeTxtText;
 
-            // グループボックス内のテキストボックス内の文字を削除
-            delMeisai();
+            // 画面の項目内を白紙にする
+            delFormClear(this, gridSiireJisseki);
 
             this.btnF01.Enabled = false;
             this.btnF03.Enabled = false;
+
+            txtDenpyoYMD.Text = strDenpyoYMD;
+            txtDenpyoNo.Text = strDenpyoNo;
+            labelSet_Tantousha.CodeTxtText = strTantousha;
+            labelSet_Eigyosho.CodeTxtText = strEigyosho;
+
+            labelSet_Siiresaki.Focus();
         }
 
         /// <summary>
@@ -797,10 +903,11 @@ namespace KATO.Form.B0060_ShiharaiInput
             // 仕入先コードがある場合
             if (!labelSet_Siiresaki.CodeTxtText.Equals(""))
             {
-                // 【得意先元帳確認フォームを開く】
-                // 6と仕入先コードを渡す
+                // 得意先元帳確認フォームを開く
+                E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisaki = 
+                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, labelSet_Siiresaki.CodeTxtText);
+                tokuisaki.ShowDialog();
             }
-
         }
 
         /// <summary>
@@ -960,6 +1067,130 @@ namespace KATO.Form.B0060_ShiharaiInput
             return false;
         }
 
+        /// <summary>
+        /// getSiiresakiData
+        /// 機能追加_取引先の情報を表示（締切日、支払月数、支払日、支払条件、集金区分）
+        /// </summary>
+        private void getSiiresakiData()
+        {
+            // データ検索用
+            List<string> lstSiiresakiDataLoad = new List<string>();
+
+            // 検索時のデータ取り出し先
+            DataTable dtSetView;
+
+            // 空文字判定（仕入先コード）
+            if (labelSet_Siiresaki.CodeTxtText.Equals(""))
+            {
+                return;
+            }
+
+            // ビジネス層のインスタンス生成
+            B0060_ShiharaiInput_B shiharaiInputB = new B0060_ShiharaiInput_B();
+            try
+            {
+                // データの存在確認を検索する情報を入れる
+                /* [0]仕入先コード */
+                lstSiiresakiDataLoad.Add(labelSet_Siiresaki.CodeTxtText);
+
+                // ビジネス層、取引先情報表示用ロジックに移動
+                dtSetView = shiharaiInputB.getSiiresakiData(lstSiiresakiDataLoad);
+
+                if (dtSetView.Rows.Count > 0)
+                {
+                    txtShimekiribi.Text = dtSetView.Rows[0]["締切日"].ToString();
+                    txtShiharaiGessuu.Text = dtSetView.Rows[0]["支払月数"].ToString();
+                    txtShiharaibi.Text = dtSetView.Rows[0]["支払日"].ToString();
+                    txtShiharaiJoken.Text = dtSetView.Rows[0]["支払条件"].ToString().Trim();
+                    txtSyukinKbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
+                    txtZeiHasuuKubun.Text = dtSetView.Rows[0]["消費税端数計算区分"].ToString();
+                }
+                else
+                {
+                    txtShimekiribi.Text = "";
+                    txtShiharaiGessuu.Text = "";
+                    txtShiharaibi.Text = "";
+                    txtShiharaiJoken.Text = "";
+                    txtSyukinKbn.Text = "";
+                    txtZeiHasuuKubun.Text = "";
+                    gridSiireJisseki.DataSource = "";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            return;
+        }
+
+        /// <summary>
+        /// setSiireJisseki
+        /// データをグリッドビューに追加
+        /// </summary>
+        private void setSiireJisseki()
+        {
+            // データ検索用
+            List<string> lstSearchItem = new List<string>();
+
+            lstSearchItem.Add(labelSet_Siiresaki.CodeTxtText);      // 仕入先コード
+            lstSearchItem.Add(txtShimekiribi.Text);                 // 締切日
+            lstSearchItem.Add(txtZeiHasuuKubun.Text);               // 消費税端数計算区分
+
+            // 仕入先コードが空の場合
+            if (labelSet_Siiresaki.CodeTxtText.Equals(""))
+            {
+                txtShimekiribi.Text = "";
+                txtShiharaiGessuu.Text = "";
+                txtShiharaibi.Text = "";
+                txtShiharaiJoken.Text = "";
+                txtSyukinKbn.Text = "";
+                txtZeiHasuuKubun.Text = "";
+                gridSiireJisseki.DataSource = "";
+
+                return;
+            }
+
+            // 締切日、消費税端数計算区分が空の場合
+            if (txtShimekiribi.Text.Equals("") || txtZeiHasuuKubun.Text.Equals(""))
+            {
+                return;
+            }
+
+            // ビジネス層のインスタンス生成
+            B0060_ShiharaiInput_B siireB = new B0060_ShiharaiInput_B();
+            try
+            {
+                // 検索実行
+                DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem);
+
+                // データテーブルからデータグリッドへセット
+                gridSiireJisseki.DataSource = dtSiireJissekiList;
+
+                Control cNow = this.ActiveControl;
+                cNow.Focus();
+
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            return;
+        }
 
     }
 }

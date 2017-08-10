@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
+    <Compile Include="Business\A0020_UriageInput\A0020_UriageInput_B.cs" />
     <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
     <Compile Include="Business\A0090_SiireCheakPrint\A0090_SiireCheakPrint_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint_B.cs" />
     <Compile Include="Business\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint_B.cs" />
+    <Compile Include="Business\C0140_TantouUriageArariNenkan\C0140_TantouUriageArariNenkan_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0481_SiireSuiiHyoLevel2_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0482_SiireSuiiHyoLevel3_B.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Business\M1200_Group\M1200_Group_B.cs" />
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
+    <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Business\KakouGenkaList_B.cs" />
@@ -360,6 +363,12 @@
     <Compile Include="Common\Ctl\RadSet_6btn.Designer.cs">
       <DependentUpon>RadSet_6btn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\TextSet_Jucyu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\TextSet_Jucyu.designer.cs">
+      <DependentUpon>TextSet_Jucyu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\TextSet_Torihikisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -522,6 +531,12 @@
     <Compile Include="Form\A0010_JuchuInput\A0010_JuchuInput.designer.cs">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.Designer.cs">
+      <DependentUpon>A0020_UriageInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0030_ShireInput\A0030_ShireInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -599,6 +614,12 @@
     </Compile>
     <Compile Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.Designer.cs">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\C0140_TantouUriageArariNenkan\C0140_TantouUriageArariNenkan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\C0140_TantouUriageArariNenkan\C0140_TantouUriageArariNenkan.Designer.cs">
+      <DependentUpon>C0140_TantouUriageArariNenkan.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.cs">
       <SubType>Form</SubType>
@@ -882,6 +903,12 @@
     <Compile Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.designer.cs">
       <DependentUpon>M1220_SyohinBunruiRiekiritsu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2.Designer.cs">
+      <DependentUpon>M1240_ShohinSiireKakakuSuii2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1006,6 +1033,9 @@
       <DependentUpon>RadSet_6btn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\TextSet_Jucyu.resx">
+      <DependentUpon>TextSet_Jucyu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\TextSet_Torihikisaki.resx">
       <DependentUpon>TextSet_Torihikisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1097,6 +1127,9 @@
     <EmbeddedResource Include="Form\A0010_JuchuInput\A0010_JuchuInput.resx">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0020_UriageInput\A0020_UriageInput.resx">
+      <DependentUpon>A0020_UriageInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0030_ShireInput\A0030_ShireInput.resx">
       <DependentUpon>A0030_ShireInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1135,6 +1168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.resx">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\C0140_TantouUriageArariNenkan\C0140_TantouUriageArariNenkan.resx">
+      <DependentUpon>C0140_TantouUriageArariNenkan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo.resx">
       <DependentUpon>C0480_SiireSuiiHyo.cs</DependentUpon>
@@ -1287,6 +1323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu.resx">
       <DependentUpon>M1220_SyohinBunruiRiekiritsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2.resx">
+      <DependentUpon>M1240_ShohinSiireKakakuSuii2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>

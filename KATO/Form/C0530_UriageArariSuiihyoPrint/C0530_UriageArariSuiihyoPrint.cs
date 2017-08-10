@@ -212,12 +212,27 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
             List<DataTable> lstDtSuiihyo = new List<DataTable>();
             DataTable dtSuiihyo = null;
 
-            // 空文字判定（期間年月日（開始・終了））
-            if (txtYmdFrom.blIsEmpty() == false || txtYmdTo.blIsEmpty() == false)
+            // 空文字判定（期間年月日（開始））
+            if (txtYmdFrom.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                txtYmdFrom.Focus();
+
+                return;
+            }
+
+            // 空文字判定（期間年月日（終了））
+            if (txtYmdTo.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdTo.Focus();
+
                 return;
             }
 
@@ -316,13 +331,32 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                 // 対象データがある場合
                 if (blnData)
                 {
-                    // PDF作成
                     lstSearchItem[0] = txtYmdFrom.Text;
-                    String strFile = suiihyoPrint_B.dbToPdf(lstDtSuiihyo, lstSearchItem);
 
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                    pf.ShowDialog();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = suiihyoPrint_B.dbToPdf(lstDtSuiihyo, lstSearchItem);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = suiihyoPrint_B.dbToPdf(lstDtSuiihyo, lstSearchItem);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    }
+
                     pf.Dispose();
                 }
                 else

@@ -162,6 +162,52 @@ namespace KATO.Business.B0040_NyukinInput
         }
 
         ///<summary>
+        ///getTorihikisakiData
+        ///取引先データを取得
+        ///</summary>
+        public DataTable getTorihikisakiData(List<string> lstString)
+        {
+            DataTable dtGetTableGrid = new DataTable();
+
+            string strSQLInput = "";
+
+            OpenSQL opensql = new OpenSQL();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+
+            //SQL文 請求履歴
+
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+
+            strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+            //WHERE条件に入力得意先コードをバインド
+            strSQLInput = string.Format(strSQLInput,lstString[0]);
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+
+            return dtGetTableGrid;
+        }
+
+        ///<summary>
         ///getTokuisakiCd
         ///入金テーブルから得意先コードを取得する。
         ///</summary>

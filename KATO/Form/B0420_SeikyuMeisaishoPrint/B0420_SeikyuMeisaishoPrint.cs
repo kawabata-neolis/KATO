@@ -244,12 +244,30 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
                 if (dtSeikyuMeisai != null && dtSeikyuMeisai.Rows.Count > 0)
                 {
-                    // PDF作成
-                    String strFile = meisaiPrintB.dbToPdf(dtSeikyuMeisai);
-
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_A4, false);
-                    pf.ShowDialog();
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = meisaiPrintB.dbToPdf(dtSeikyuMeisai);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = meisaiPrintB.dbToPdf(dtSeikyuMeisai);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                    }
+
                     pf.Dispose();
                 }
                 else

@@ -215,6 +215,8 @@ namespace KATO.Form.A0150_UriageCheckPrint
                 lstSearchItem.Add(txtDenpyoYMDstart.Text);
                 lstSearchItem.Add(txtDenpyoYMDend.Text);
                 lstSearchItem.Add(txtUserID.Text);
+                lstSearchItem.Add(labelSet_TokuisakiCdFrom.CodeTxtText);
+                lstSearchItem.Add(labelSet_TokuisakiCdTo.CodeTxtText);
 
                 // 検索実行（印刷用）
                 DataTable dtSiireSuiiList = uriagecheckprintB.getUriageCheckList(lstSearchItem);
@@ -227,13 +229,31 @@ namespace KATO.Form.A0150_UriageCheckPrint
                     basemessagebox.ShowDialog();
                     return;
                 }
+                
+                // 印刷ダイアログ
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
 
-                // PDF作成
-                uriagecheckprintB.dbToPdf(dtSiireSuiiList, lstSearchItem);
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    // PDF作成
+                    string strFile;
+                    strFile = uriagecheckprintB.dbToPdf(dtSiireSuiiList, lstSearchItem);
+                    pf.execPreview(@strFile);
+                }
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    string strFile;
+                    strFile = uriagecheckprintB.dbToPdf(dtSiireSuiiList, lstSearchItem);
 
-                //印刷完了メッセージ
-                MessageBox.Show("PDF出力が完了しました。");
+                    // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
+                    // ダイアログ表示時は最後の引数はtrue
+                    // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
+                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                }
 
+                pf.Dispose();
             }
             catch (Exception ex)
             {

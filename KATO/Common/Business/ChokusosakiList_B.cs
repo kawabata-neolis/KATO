@@ -8,6 +8,7 @@ using KATO.Common.Util;
 using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1100_Chokusosaki;
+using KATO.Form.A0020_UriageInput;
 
 namespace KATO.Common.Business
 {
@@ -124,6 +125,22 @@ namespace KATO.Common.Business
                         }
                         break;
 
+                    //売上入力
+                    case CommonTeisu.FRM_URIAGEINPUT:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name == "A0020_UriageInput")
+                            {
+                                //データを連れてくるため、newをしないこと
+                                A0020_UriageInput uriageinput = (A0020_UriageInput)frm;
+                                uriageinput.setChokusoCode(dtSelectData);
+                                break;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }
@@ -153,6 +170,15 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1100_Chokusosaki chokusosaki = (M1100_Chokusosaki)frm;
+                    chokusosaki.setChokuListClose();
+                    break;
+                }
+
+                //売上入力のフォームを探す
+                if (intFrm == CommonTeisu.FRM_URIAGEINPUT && frm.Name == "A0020_UriageInput")
+                {
+                    //データを連れてくるため、newをしないこと
+                    A0020_UriageInput chokusosaki = (A0020_UriageInput)frm;
                     chokusosaki.setChokuListClose();
                     break;
                 }

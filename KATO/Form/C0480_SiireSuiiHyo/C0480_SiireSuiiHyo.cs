@@ -60,6 +60,9 @@ namespace KATO.Form.C0480_SiireSuiiHyo
 
             // 中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            // メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
         /// <summary>
@@ -81,15 +84,14 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // 初期表示
-            labelSet_Eigyosho.Focus();
-            labelSet_Daibunrui.Focus();
-
             // 開始終了年月の設定
             txtCalendarYMclose.setUp(0);
             dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
             txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
-            
+
+            // 初期表示
+            txtCalendarYMopen.Focus();
+
             // DataGridViewの初期設定
             SetUpGrid();
         }
@@ -360,9 +362,6 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         {
             System.DateTime dateYMopen;
 
-            // 期間以外のテキストボックスをクリアにする
-            delText();
-
             // 期間終了の日付設定
             if (DateTime.TryParse(txtCalendarYMopen.Text + "/01", out dateYMopen))
             {
@@ -421,13 +420,39 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定（期間開始、期間終了、仕入先コード開始、仕入先コード終了）
-            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false || 
-                labelSet_TokuisakiStart.CodeTxtText.Equals("") || labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            // 空文字判定（期間開始、期間終了）
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+
+            // 空文字判定（仕入先コード開始）
+            if (labelSet_TokuisakiStart.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiStart.Focus();
+
+                return;
+            }
+
+            // 空文字判定（仕入先コード終了）
+            if (labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiEnd.Focus();
+
                 return;
             }
 
@@ -551,22 +576,45 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         /// </summary>
         private void printReport()
         {
-
-            // 【印刷用ダイアログ】
-
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定（期間開始、期間終了、仕入先コード開始、仕入先コード終了）
-            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false ||
-                labelSet_TokuisakiStart.CodeTxtText.Equals("") || labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            // 空文字判定（期間開始、期間終了）
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+
+            // 空文字判定（仕入先コード開始）
+            if (labelSet_TokuisakiStart.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiStart.Focus();
+
                 return;
             }
 
+            // 空文字判定（仕入先コード終了）
+            if (labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiEnd.Focus();
+
+                return;
+            }
+            
             // ビジネス層のインスタンス生成
             C0480_SiireSuiiHyo_B siiresuiihyoB = new C0480_SiireSuiiHyo_B();
             try
@@ -588,15 +636,31 @@ namespace KATO.Form.C0480_SiireSuiiHyo
 
                 if (dtSiireSuiiList.Rows.Count > 0)
                 {
-                    // PDF作成
-                    String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                    // 印刷ダイアログ
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
 
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, strFile, SIZE_B4, false);
-                    pf.ShowDialog();
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        // PDF作成
+                        String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                        // プレビュー
+                        pf.execPreview(strFile);
+                        pf.ShowDialog(this);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                        // 一括印刷
+                        pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    }
+
                     pf.Dispose();
-
-                    // PDF出力完了メッセージ
-                    MessageBox.Show(this, "PDF出力完了");
                 }
                 else
                 {
