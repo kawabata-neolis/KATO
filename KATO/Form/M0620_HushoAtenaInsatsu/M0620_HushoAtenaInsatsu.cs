@@ -328,7 +328,7 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                     }
 
                     //初期値
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, TATE);
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, YOKO);
 
                     //長４の場合
                     if (radSet_2btn_Yoshi.radbtn0.Checked == true)
@@ -353,9 +353,23 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                         // プレビュー
                         pf.execPreview(strFile);
                     }
-//印刷
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        // PDF作成
+                        strFile = hushoatenainsatsuB.dbToPdf(dtSetCd_B, blNaga4);
 
-
+                        if (blNaga4 == true)
+                        {
+                            // 一括印刷
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO, true);
+                        }
+                        else
+                        {
+                            // 一括印刷
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO, true);
+                        }
+                    }
 
                 }
                 catch (Exception ex)

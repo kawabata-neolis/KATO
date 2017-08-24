@@ -121,11 +121,13 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
             string strFilePath = "";
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
+            int intPaperSizeIndex = 0;
+
             if (blNaga4 == true)
             {
                 strFilePath = "./Template/M0620_HushoAtenaInsatsu_Naga4.xlsx";
             }
-            else if (blNaga4 == false)
+            else
             {
                 strFilePath = "./Template/M0620_HushoAtenaInsatsu_Naga3.xlsx";
             }
@@ -144,10 +146,21 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
                 templatesheet1.CopyTo("Page" + pageCnt.ToString());
                 currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                currentsheet.Cell("D2").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
-                currentsheet.Cell("L4").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
-                currentsheet.Cell("L6").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
-                currentsheet.Cell("R7").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
+                if (blNaga4 == true)
+                {
+                    currentsheet.Cell("D2").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
+                    currentsheet.Cell("L4").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
+                    currentsheet.Cell("L6").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
+                    currentsheet.Cell("R8").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
+                }
+                else
+                {
+                    currentsheet.Cell("G3").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
+                    currentsheet.Cell("P6").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
+                    currentsheet.Cell("P8").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
+                    currentsheet.Cell("T10").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
+                }
+
 
                 // テンプレートシート削除
                 templatesheet1.Delete();
@@ -159,11 +172,20 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
                 // workbookを解放
                 workbook.Dispose();
 
-                // ロゴ貼り付け処理
+                if (blNaga4 == true)
+                {
+                    intPaperSizeIndex = 4;
+                }
+                else
+                {
+                    intPaperSizeIndex = 3;
+                }
+
                 CreatePdf pdf = new CreatePdf();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, intPaperSizeIndex);
+                //return pdf.createPdf(strOutXlsFile, strDateTime);
             }
             catch
             {

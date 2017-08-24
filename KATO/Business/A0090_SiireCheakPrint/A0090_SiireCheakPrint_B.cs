@@ -579,7 +579,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
 
             }
             catch

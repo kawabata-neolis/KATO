@@ -317,7 +317,7 @@ namespace KATO.Business.B0070_ShiharaiCheakPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
 
             }
             catch

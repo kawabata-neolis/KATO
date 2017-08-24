@@ -2146,7 +2146,7 @@ namespace KATO.Business.A0020_UriageInput
                 pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
             }
             catch
             {

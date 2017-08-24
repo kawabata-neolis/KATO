@@ -764,7 +764,7 @@ namespace KATO.Business.C0530_UriageArariSuiihyoPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
 
             }
             catch
