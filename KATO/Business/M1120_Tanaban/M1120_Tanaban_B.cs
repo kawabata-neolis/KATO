@@ -169,8 +169,8 @@ namespace KATO.Business.M1120_Tanaban
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("M1020_Maker");
-            lstSQL.Add("Maker_PrintData_SELECT");
+            lstSQL.Add("M1120_Tanaban");
+            lstSQL.Add("Tanaban_PrintData_SELECT");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -241,8 +241,8 @@ namespace KATO.Business.M1120_Tanaban
                 var outDataAll = dtSetCd_B_Input.AsEnumerable()
                     .Select(dat => new
                     {
-                        makerCd = (String)dat["メーカーコード"],
-                        makerName = dat["メーカー名"],
+                        makerCd = (String)dat["棚番"],
+                        makerName = dat["棚番名"],
                     }).ToList();
 
                 //リストをデータテーブルに変換
@@ -254,6 +254,9 @@ namespace KATO.Business.M1120_Tanaban
                 int rowCnt = 1;     // datatable処理行カウント
                 int xlsRowCnt = 4;  // Excel出力行カウント（開始は出力行）
                 int maxPage = 0;    // 最大ページ数
+
+                //各セルの縦サイズ指定
+                headersheet.RowHeight = 14;
 
                 //ページ数計算
                 double page = 1.0 * maxRowCnt / 47;
@@ -278,14 +281,14 @@ namespace KATO.Business.M1120_Tanaban
 
                         //タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");
-                        titleCell.Value = "メーカーマスタリスト";
+                        titleCell.Value = "棚番マスタリスト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
                         headersheet.Range("A1", "B1").Merge();
 
                         //ヘッダー出力(表ヘッダー)
-                        headersheet.Cell("A3").Value = "コード";
-                        headersheet.Cell("B3").Value = "メーカー名";
+                        headersheet.Cell("A3").Value = "棚番";
+                        headersheet.Cell("B3").Value = "棚番名";
 
                         //ヘッダー列
                         headersheet.Range("A3", "B3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
@@ -306,7 +309,7 @@ namespace KATO.Business.M1120_Tanaban
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Default;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№111）");
+                        headersheet.PageSetup.Header.Left.AddText("（№112）");
 
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
@@ -315,11 +318,19 @@ namespace KATO.Business.M1120_Tanaban
                     // 1セルずつデータ出力
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
-                        string str = drSiireCheak[colCnt - 1].ToString();
+                        string str = drSiireCheak[colCnt-1].ToString();
 
-                        //二桁の0パディングをさせる
-                        currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("0000");
-
+                        //棚番の場合
+                        if (colCnt == 1)
+                        {
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, colCnt);
+                            kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+                        else
+                        {
+                            IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, colCnt);
+                            kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                     }
 
@@ -331,7 +342,7 @@ namespace KATO.Business.M1120_Tanaban
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                     // 47行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 47)
+                    if (xlsRowCnt == 53)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)

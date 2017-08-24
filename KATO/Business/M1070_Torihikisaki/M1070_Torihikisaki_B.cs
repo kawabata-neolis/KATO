@@ -299,6 +299,7 @@ namespace KATO.Business.M1070_Torihikisaki
                 dbconnective.DB_Disconnect();
             }
         }
+
         ///<summary>
         ///getPrintData
         ///印刷前のデータ取得
@@ -487,7 +488,7 @@ namespace KATO.Business.M1070_Torihikisaki
                         //二桁の0パディングをさせる
                         currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("0000");
 
-                        //中心にする
+                        //左に寄せる
                         currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
 
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;

@@ -2135,7 +2135,16 @@
     <Content Include="SQL\M1070_Torihikisaki\Torihikisaki_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\M1090_Eigyosho\Eigyosho_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1100_Chokusosaki\Chokusosaki_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\M1110_Chubunrui\Chubunrui_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1120_Tanaban\Tanaban_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
