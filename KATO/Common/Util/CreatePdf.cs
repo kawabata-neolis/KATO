@@ -52,25 +52,8 @@ namespace KATO.Common.Util
                     if(intPaperSizeIndex == 4)
                     {
                         printsheet.Activate();
-                        //printsheet.Unprotect();
-
-                        //printsheet.PageSetup.PaperSize = PaperSizeType.PaperEnvelope9;
-                        //printsheet.PageSetup.PrintArea = printsheet.GetRowHeightPixels(255).ToString();
 
                         printsheet.PageSetup.PrintArea = "$A$1:$AL$11";
-
-                        //printsheet.PageSetup.PaperSize = PaperSizeType.PaperUser;
-
-                        var A = printsheet.PageSetup.PageHeight;
-                        var B = printsheet.PageSetup.PageWidth;
-
-                        //printsheet.PageSetup.PageWidth = 10;
-                        //printsheet.PageSetup.PageHeight = 20;
-
-                        //var str = printsheet.Range;
-
-                        //printsheet.DefaultPrintRowHeight = 10;
-                        //printsheet.DefaultColumnWidth = 581;
                     }
                     else if(intPaperSizeIndex == 3)
                     {
@@ -78,7 +61,8 @@ namespace KATO.Common.Util
 
                         printsheet.PageSetup.PrintArea = "$A$1:$AS$18";
 
-                        printsheet.PageSetup.IsPrintGridlines = true;
+                        //テンプレートの印刷範囲確認用に枠線を付ける
+                        //printsheet.PageSetup.IsPrintGridlines = true;
                     }
 
                     string strPdfFile = strWorkPath + strDateTime + "_" + no + ".pdf";

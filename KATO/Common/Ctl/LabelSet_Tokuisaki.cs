@@ -58,9 +58,20 @@ namespace KATO.Common.Ctl
                     tokuisakiList.ShowDialog();
                 }
                 //親画面がBaseFormの場合
-                else
+                else if (this.Parent is BaseForm)
                 {
                     TokuisakiList tokuisakiList = new TokuisakiList(this.Parent, this);
+                    tokuisakiList.StartPosition = FormStartPosition.Manual;
+                    tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    tokuisakiList.ShowDialog();
+                }
+                //親画面がLIST画面の場合
+                else
+                {
+                    //他と判別させるために空のオブジェクトを作成する
+                    object obj = new object();
+
+                    TokuisakiList tokuisakiList = new TokuisakiList(this.Parent, this, obj);
                     tokuisakiList.StartPosition = FormStartPosition.Manual;
                     tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     tokuisakiList.ShowDialog();
@@ -93,6 +104,9 @@ namespace KATO.Common.Ctl
                 return;
             }
 
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
             //禁止文字チェック
             blnGood = StringUtl.JudBanChr(this.CodeTxtText);
             //数字のみを許可する
@@ -118,16 +132,7 @@ namespace KATO.Common.Ctl
                     return;
                 }
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-            
-            //4文字以下の場合0パティング
-            if (this.CodeTxtText.Length < 4)
-            {
-                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
-            }
-            
+                                   
             //データ渡し用
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_TokuisakiAS400_SELECT_LEAVE");

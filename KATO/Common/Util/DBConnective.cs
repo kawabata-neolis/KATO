@@ -50,7 +50,7 @@ namespace KATO.Common.Util
             CON = new SqlConnection(ConnectStr);
             CON.Open();
             CM = CON.CreateCommand();
-            CM.CommandTimeout = 2000;
+            CM.CommandTimeout = 5000;
             CM.Connection = CON;
             adapter = new SqlDataAdapter();
         }

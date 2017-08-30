@@ -479,7 +479,6 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 new CommonException(ex);
                 return;
             }
-            return;
         }
 
         /// <summary>
@@ -514,9 +513,10 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 gridUriageSuii.Columns[12].HeaderText = dateStartYMD.AddMonths(10).ToString("M月");
                 gridUriageSuii.Columns[13].HeaderText = dateStartYMD.AddMonths(11).ToString("M月");
             }
-            catch
+            catch (Exception ex)
             {
-
+                new CommonException(ex);
+                return;
             }
         }
 

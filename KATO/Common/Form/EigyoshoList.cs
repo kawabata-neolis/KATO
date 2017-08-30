@@ -374,9 +374,9 @@ namespace KATO.Common.Form
             //選択行の検索情報取得用
             List<string> lstSelectData = new List<string>();
 
-            //選択行の大分類情報取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells["大分類コード"].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells["大分類名"].Value;
+            //選択行の営業所情報取得
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["業種コード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["業種名"].Value;
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);

@@ -35,6 +35,9 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //担当者別伝票処理件数画面内にある複数のテキストボックスの判断
+        int intSelectTextBox = 0;
+
         //フォームタイトル設定
         private string Title = "";
         public string _Title
@@ -130,6 +133,34 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 30;
+        }
+
+        ///<summary>
+        ///TantoushaList
+        ///フォームの初期設定(担当者別伝票処理件数の通常テキストボックス)
+        ///</summary>
+        public TantoushaList(Control c, int intSelect)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //open、closeのどっちのテキストボックスかの判断
+            intSelectTextBox = intSelect;
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 130;
         }
 
         ///<summary>
@@ -430,7 +461,7 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                tantoushaListB.getSelectItem(intFrmKind, strSelectId);
+                tantoushaListB.getSelectItem(intFrmKind, strSelectId, intSelectTextBox);
 
                 setEndAction(lstSelectId);
             }
@@ -481,7 +512,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tantoushalistB.FormMove(intFrmKind);
+                tantoushalistB.FormMove(intFrmKind, intSelectTextBox);
             }
             catch (Exception ex)
             {

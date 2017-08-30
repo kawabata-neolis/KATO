@@ -70,7 +70,7 @@ namespace KATO.Form.M1120_Tanaban
         private void M1120_Tanaban_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "営業所マスタ";
+            this._Title = "棚番マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
@@ -486,8 +486,6 @@ namespace KATO.Form.M1120_Tanaban
 
             //禁止文字チェック
             blnGood = StringUtl.JudBanChr(txtTanabanCd.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtTanabanCd.Text, CommonTeisu.NUMBER_ONLY);
 
             //文字チェックが通らなかった場合
             if (blnGood == false)

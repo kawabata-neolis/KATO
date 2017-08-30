@@ -253,6 +253,13 @@ namespace KATO.Form.Z0000
             hushoatena.ShowDialog();
         }
 
+        // 担当者別伝票処理件数
+        private void btnTantoshabetudenpyo_Click(object sender, EventArgs e)
+        {
+            C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount tantoshabetudenpyo = new C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount(this);
+            tantoshabetudenpyo.ShowDialog();
+        }
+
 
         //F12が押されたら
         private void judF12Click(object sender, EventArgs e)
@@ -449,5 +456,6 @@ namespace KATO.Form.Z0000
             F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint preSheet = new F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint(this);
             preSheet.ShowDialog();
         }
+
     }
 }

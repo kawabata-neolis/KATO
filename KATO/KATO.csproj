@@ -135,6 +135,7 @@
     <Compile Include="Business\C0530_UriageArariSuiihyoPrint\C0530_UriageArariSuiihyoPrint_B.cs" />
     <Compile Include="Business\C0630_TokuisakiUriageArariPrint\C0630_TokuisakiUriageArariPrint_B.cs" />
     <Compile Include="Business\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint_B.cs" />
+    <Compile Include="Business\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount_B.cs" />
     <Compile Include="Business\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin_B.cs" />
     <Compile Include="Business\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_B.cs" />
     <Compile Include="Business\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_B.cs" />
@@ -675,6 +676,12 @@
     <Compile Include="Form\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint.Designer.cs">
       <DependentUpon>C0650_SyohingunUriageSiirePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount.Designer.cs">
+      <DependentUpon>C6000_TantoshabetuDenpyoCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1199,6 +1206,9 @@
     <EmbeddedResource Include="Form\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint.resx">
       <DependentUpon>C0650_SyohingunUriageSiirePrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount.resx">
+      <DependentUpon>C6000_TantoshabetuDenpyoCount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.resx">
       <DependentUpon>D0300_ZaikoIchiranKakunin.cs</DependentUpon>
     </EmbeddedResource>
@@ -1439,6 +1449,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_Shiremeisai_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\C6000_TantoshabetuDenpyoCount\DenpyoCount_SELECT_SetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\KakouGenkaList_View.sql">

@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
-using KATO.Form.F0140_TanaorosiInput;
 using KATO.Form.M1050_Tantousha;
+using KATO.Form.C6000_TantoshabetuDenpyoCount;
 
 namespace KATO.Common.Business
 {
@@ -22,6 +22,9 @@ namespace KATO.Common.Business
     ///</summary>
     class TantoushaList_B
     {
+        //担当者別伝票処理件数画面内にある複数のテキストボックスの判断
+        int intSelectTextBox = 0;
+
         ///<summary>
         ///getViewGrid
         ///読み込み時の処理
@@ -75,17 +78,27 @@ namespace KATO.Common.Business
         ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void FormMove(int intFrmKind)
+        public void FormMove(int intFrmKind, int intSelectTextBox)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //担当者のフォームを探す
-                if (intFrmKind == 4 && frm.Name.Equals("M1050_Tantousha"))
+                if (intFrmKind == CommonTeisu.FRM_TANTOUSHA && frm.Name.Equals("M1050_Tantousha"))
                 {
                     //データを連れてくるため、newをしないこと
                     M1050_Tantousha tantousha = (M1050_Tantousha)frm;
                     tantousha.CloseTantoshaList();
+                    break;
+                }
+
+                //担当者別伝票処理件数のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT && frm.Name.Equals("C6000_TantoshabetuDenpyoCount"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    C6000_TantoshabetuDenpyoCount tantoushabetudenpyocount = (C6000_TantoshabetuDenpyoCount)frm;
+
+                    tantoushabetudenpyocount.CloseTantoshaList(intSelectTextBox);
                     break;
                 }
             }
@@ -95,7 +108,7 @@ namespace KATO.Common.Business
         ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void getSelectItem(int intFrmKind, string strSelectId)
+        public void getSelectItem(int intFrmKind, string strSelectId, int intSelectTextBox)
         {
             //検索データの受け取り用
             DataTable dtSelectData;
@@ -147,6 +160,33 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
+                    //担当者別伝票処理件数
+                    case CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {                            
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("C6000_TantoshabetuDenpyoCount"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                C6000_TantoshabetuDenpyoCount tantoshabetudenpyocount = (C6000_TantoshabetuDenpyoCount)frm;
+
+                                //openの方のテキストボックスの場合
+                                if (intSelectTextBox == 1)
+                                {
+                                    tantoshabetudenpyocount.setTantoushaOpen(dtSelectData);
+                                }
+                                //closeの方のテキストボックスの場合
+                                else
+                                {
+                                    tantoshabetudenpyocount.setTantoushaClose(dtSelectData);
+                                }
+
+                                break;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }

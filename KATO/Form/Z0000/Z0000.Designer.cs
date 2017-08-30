@@ -82,6 +82,7 @@
             this.btnMaker = new KATO.Common.Ctl.BaseMenuButton();
             this.btnDaibunrui = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnTantoshabetudenpyo = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton21 = new KATO.Common.Ctl.BaseMenuButton();
             this.baseMenuButton6 = new KATO.Common.Ctl.BaseMenuButton();
             this.tabControl1.SuspendLayout();
@@ -149,6 +150,8 @@
             // 
             // btnF01
             // 
+            this.btnF01.BackColor = System.Drawing.Color.Cyan;
+            this.btnF01.UseVisualStyleBackColor = false;
             this.btnF01.Visible = false;
             this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
@@ -787,6 +790,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.btnTantoshabetudenpyo);
             this.tabPage5.Controls.Add(this.baseMenuButton21);
             this.tabPage5.Controls.Add(this.baseMenuButton6);
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
@@ -794,6 +798,17 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 737);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
+            // 
+            // btnTantoshabetudenpyo
+            // 
+            this.btnTantoshabetudenpyo.BackColor = System.Drawing.Color.LightYellow;
+            this.btnTantoshabetudenpyo.Location = new System.Drawing.Point(23, 172);
+            this.btnTantoshabetudenpyo.Name = "btnTantoshabetudenpyo";
+            this.btnTantoshabetudenpyo.Size = new System.Drawing.Size(280, 40);
+            this.btnTantoshabetudenpyo.TabIndex = 111;
+            this.btnTantoshabetudenpyo.Text = "担当者別伝票処理件数";
+            this.btnTantoshabetudenpyo.UseVisualStyleBackColor = false;
+            this.btnTantoshabetudenpyo.Click += new System.EventHandler(this.btnTantoshabetudenpyo_Click);
             // 
             // baseMenuButton21
             // 
@@ -911,5 +926,6 @@
         private Common.Ctl.BaseMenuButton baseMenuButton24;
         private Common.Ctl.BaseMenuButton baseMenuButton25;
         private Common.Ctl.BaseMenuButton btnHushoAtena;
+        private Common.Ctl.BaseMenuButton btnTantoshabetudenpyo;
     }
 }
