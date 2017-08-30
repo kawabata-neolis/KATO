@@ -19,6 +19,18 @@ namespace KATO.Common.Form
     {
         System.Drawing.Printing.PrintDocument pd = new System.Drawing.Printing.PrintDocument();
 
+        private int _intPrintCnt = 1;
+        public int intPrintCnt
+        {
+            set
+            {
+                _intPrintCnt = value;
+            }
+            get
+            {
+                return _intPrintCnt;
+            }
+        }
         private bool diagFlg = true;
         private int _action = 2;
         public int action
@@ -107,7 +119,10 @@ namespace KATO.Common.Form
             }
             else
             {
-                execPrint();
+                for (int i = 0; i < intPrintCnt; i++)
+                {
+                    execPrint();
+                }
                 this.Close();
             }
             //execPrint();
@@ -146,7 +161,30 @@ namespace KATO.Common.Form
             stSize = size;
             tateFlg = tFlg;
             diagFlg = dFlg;
-            execPrint();
+            //execPrint();
+            for (int i = 0; i < intPrintCnt; i++)
+            {
+                execPrint();
+            }
+        }
+
+        public void execPrint(string p, string path, string size, bool tFlg, bool dFlg, int pNum)
+        {
+            _action = CommonTeisu.ACTION_PRINT;
+            if (p != null && !string.IsNullOrEmpty(p))
+            {
+                _printer = p;
+            }
+            stPath = path;
+            stSize = size;
+            tateFlg = tFlg;
+            diagFlg = dFlg;
+            //_intPrintCnt = pNum;
+            //execPrint();
+            for (int i = 0; i < intPrintCnt; i++)
+            {
+                execPrint();
+            }
         }
 
         public void execPreview(string path)
@@ -238,6 +276,7 @@ namespace KATO.Common.Form
                 switches.Add("-dBATCH");
                 switches.Add("-dNOPAUSE");
                 switches.Add("-dNOSAFER");
+                //switches.Add("-dNumCopies=" + _intPrintCnt.ToString()); //部数
                 switches.Add("-dNumCopies=1"); //部数
                 switches.Add("-sDEVICE=mswinpr2");
                 switches.Add("-sOutputFile=%printer%" + _printer);
