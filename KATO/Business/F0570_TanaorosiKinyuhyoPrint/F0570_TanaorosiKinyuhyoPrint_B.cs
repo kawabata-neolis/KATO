@@ -383,7 +383,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 0);
 
             }
             catch (Exception ex)

@@ -313,7 +313,6 @@ namespace KATO.Common.Form
                 switches.Add(stPath);
                 processor.StartProcessing(switches.ToArray(), null);
             }
-
         }
 
         private void btnPrt_Click(object sender, EventArgs e)

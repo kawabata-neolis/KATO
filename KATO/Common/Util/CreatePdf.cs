@@ -23,6 +23,122 @@ namespace KATO.Common.Util
         /// <param name="strDateTime">日時</param>
         /// </summary>
         /// -----------------------------------------------------------------------------
+        public string createPdf(string strInXlsFile, string strDateTime, int intPaperSizeIndex)
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
+            string strJoinPdfFile;
+
+            try
+            {
+                Workbook printbook = new Workbook();
+                printbook.LoadFromFile(strInXlsFile, ExcelVersion.Version2010);
+                int sheetMax = printbook.Worksheets.Count;
+
+                // Excelシートの枚数分PDF化
+                for (int sheetCnt = 0; sheetCnt < sheetMax; sheetCnt++)
+                {
+                    // pdf化するシートを取得
+                    Worksheet printsheet = printbook.Worksheets[sheetCnt];
+
+                    var i = printsheet.PageSetup.PageHeight;
+
+                    string no = no = (sheetCnt + 1).ToString();
+                    if (no.Length == 1)
+                    {
+                        no = "0" + no;
+                    }
+
+                    if(intPaperSizeIndex == 4)
+                    {
+                        printsheet.Activate();
+                        //printsheet.Unprotect();
+
+                        //printsheet.PageSetup.PaperSize = PaperSizeType.PaperEnvelope9;
+                        //printsheet.PageSetup.PrintArea = printsheet.GetRowHeightPixels(255).ToString();
+
+                        printsheet.PageSetup.PrintArea = "$A$1:$AL$11";
+
+                        //printsheet.PageSetup.PaperSize = PaperSizeType.PaperUser;
+
+                        var A = printsheet.PageSetup.PageHeight;
+                        var B = printsheet.PageSetup.PageWidth;
+
+                        //printsheet.PageSetup.PageWidth = 10;
+                        //printsheet.PageSetup.PageHeight = 20;
+
+                        //var str = printsheet.Range;
+
+                        //printsheet.DefaultPrintRowHeight = 10;
+                        //printsheet.DefaultColumnWidth = 581;
+                    }
+                    else if(intPaperSizeIndex == 3)
+                    {
+                        printsheet.Activate();
+
+                        printsheet.PageSetup.PrintArea = "$A$1:$AS$18";
+
+                        printsheet.PageSetup.IsPrintGridlines = true;
+                    }
+
+                    string strPdfFile = strWorkPath + strDateTime + "_" + no + ".pdf";
+
+                    // 出力したいシートをPDFで保存
+                    printsheet.SaveToPdf(strPdfFile);
+
+                    // シートカウントが0の場合結合用のPDFを保存
+                    if (sheetCnt == 0)
+                    {
+                        string strJoinyouPdfFile = strPdfPath + strDateTime + ".pdf";
+
+                        // 出力したいシートをPDFで保存
+                        printsheet.SaveToPdf(strJoinyouPdfFile);
+                    }
+                }
+                // printbookを解放
+                printbook.Dispose();
+
+                // フォルダ下の作成日時".pdf"ファイルをすべて取得する
+                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(strWorkPath);
+                System.IO.FileInfo[] fiFiles = di.GetFiles(strDateTime + "*.pdf", System.IO.SearchOption.AllDirectories);
+                Array.Sort<FileInfo>(fiFiles, delegate (FileInfo f1, FileInfo f2)
+                {
+                    // ファイル名でソート
+                    return f1.Name.CompareTo(f2.Name);
+                });
+                int filesMax = fiFiles.Count();
+                string[] strFiles = new string[filesMax];
+
+                // FileInfo配列をstring配列に
+                for (int fileCnt = 0; fileCnt < filesMax; fileCnt++)
+                {
+                    strFiles[fileCnt] = strWorkPath + fiFiles[fileCnt].Name;
+                }
+
+                // 結合PDFオブジェクト
+                strJoinPdfFile = strPdfPath + strDateTime + ".pdf";
+
+                // PDFファイル数が0でなければ結合
+                if (filesMax != 0)
+                {
+                    fnJoinPdf(strFiles, strJoinPdfFile, 1);
+                }
+
+            }
+            catch
+            {
+                throw;
+            }
+            return strJoinPdfFile;
+        }
+
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// PDF化(Spire.xls)の処理(通常サイズ)
+        /// <param name="strInXlsFile">エクセルファイル</param>
+        /// <param name="strDateTime">日時</param>
+        /// </summary>
+        /// -----------------------------------------------------------------------------
         public string createPdf(string strInXlsFile, string strDateTime)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
@@ -40,6 +156,8 @@ namespace KATO.Common.Util
                 {
                     // pdf化するシートを取得
                     Worksheet printsheet = printbook.Worksheets[sheetCnt];
+
+                    var i = printsheet.PageSetup.PageHeight;
 
                     string no = no = (sheetCnt + 1).ToString();
                     if (no.Length == 1)
@@ -100,7 +218,7 @@ namespace KATO.Common.Util
 
         /// -----------------------------------------------------------------------------
         /// <summary>
-        /// PDFファイルの結合
+        /// PDFファイルの結合(長3,長4の場合)
         /// WritePage = 0：全ページ、WritePage = 1：全ファイルの1ページのみ
         /// WritePage = 2(3...)：全ファイルの1～2(1～3)ページ
         /// </summary>

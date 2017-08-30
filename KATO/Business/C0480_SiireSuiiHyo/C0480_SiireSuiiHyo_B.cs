@@ -1308,7 +1308,7 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 workbook.Dispose();
 
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime);
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
 
             }
             catch

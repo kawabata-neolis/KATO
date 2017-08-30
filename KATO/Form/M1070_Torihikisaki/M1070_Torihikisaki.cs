@@ -142,6 +142,8 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    printTorihiki();
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -290,6 +292,10 @@ namespace KATO.Form.M1070_Torihikisaki
                     break;
                 case STR_BTN_F08: // 未割当の番号検索
                     this.delText();
+                    break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printTorihiki();
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -1034,6 +1040,69 @@ namespace KATO.Form.M1070_Torihikisaki
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
+            }
+        }
+
+        ///<summary>
+        ///printTorihiki
+        ///印刷ダイアログ
+        ///</summary>
+        private void printTorihiki()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //ビジネス層のインスタンス生成
+            M1070_Torihikisaki_B torihikiB = new M1070_Torihikisaki_B();
+            try
+            {
+                dtSetCd_B = torihikiB.getPrintData();
+
+                //取得したデータがない場合
+                if (dtSetCd_B.Rows.Count == 0 || dtSetCd_B == null)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //結果セットをレコードセットに
+                    strFile = torihikiB.dbToPdf(dtSetCd_B);
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    strFile = torihikiB.dbToPdf(dtSetCd_B);
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
     }
