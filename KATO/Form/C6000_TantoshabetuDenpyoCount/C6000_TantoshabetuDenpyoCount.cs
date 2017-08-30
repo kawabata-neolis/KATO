@@ -539,6 +539,7 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
 
                 pf.ShowDialog(this);
+                pf.intPrintCnt = int.Parse(txtPrintCount.Text);
 
                 //入力項目の記入に漏れがある場合
                 if (txtDenpyoOpen.blIsEmpty() == false || 
@@ -636,11 +637,6 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
-        }
-
-        private void gbViewData_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -227,9 +227,15 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                             {
                                 str = "";
                             }
+                            else
+                            {
+                                int intChange = (int)Math.Floor(double.Parse(str));
+                                str = string.Format("{0:#,0}", intChange);
+                            }
                         }
                         
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                        currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                     }
 
                     //1行分のセルの周囲に罫線を引く
@@ -256,29 +262,28 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                     xlsRowCnt++;
                 }
 
-
                 if (dtChkList.Rows.Count > 0)
                 {
-                    // セル結合、中央揃え
+                    //セル結合、中央揃え
                     IXLCell sumcell = currentsheet.Cell(xlsRowCnt, 1);
                     sumcell.Value = "◆◆  合  計  ◆◆";
-                    //sumcell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
-                    // 金額セルの処理（3桁毎に","を挿入する）
+                    //金額セルの処理（3桁毎に","を挿入する）
                     for (int cnt = 0; cnt < 7; cnt++)
                     {
                         IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, cnt + 2);
                         kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        kingakuCell.Value = string.Format("{0:#,0}", lstKei[cnt]);
+
+                        int intChange = (int)Math.Floor(double.Parse(lstKei[cnt]));
+                        kingakuCell.Value = string.Format("{0:#,0}", intChange);
                     }
 
-                    // 1行分のセルの周囲に罫線を引く
+                    //1行分のセルの周囲に罫線を引く
                     currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 8).Style
                             .Border.SetTopBorder(XLBorderStyleValues.Thin)
                             .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
-
                 }
 
                 //ヘッダーシート削除

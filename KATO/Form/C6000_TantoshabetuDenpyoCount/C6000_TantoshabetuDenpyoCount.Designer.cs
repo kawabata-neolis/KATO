@@ -176,7 +176,6 @@
             this.gbViewData.Size = new System.Drawing.Size(1147, 691);
             this.gbViewData.TabIndex = 93;
             this.gbViewData.TabStop = false;
-            this.gbViewData.Enter += new System.EventHandler(this.gbViewData_Enter);
             // 
             // gridViewData
             // 
