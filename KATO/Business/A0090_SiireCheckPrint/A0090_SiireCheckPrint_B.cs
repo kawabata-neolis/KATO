@@ -6,10 +6,10 @@ using System.Linq;
 
 using ClosedXML.Excel;
 
-namespace KATO.Business.A0090_SiireCheakPrint
+namespace KATO.Business.A0090_SiireCheckPrint
 {
     /// <summary>
-    /// A0090_SiireCheakPrint_B
+    /// A0090_SiireCheckPrint_B
     /// 仕入チェックリスト ビジネスロジック
     /// 作成者：多田
     /// 作成日：2017/7/1
@@ -17,17 +17,17 @@ namespace KATO.Business.A0090_SiireCheakPrint
     /// 更新日：2017/7/1
     /// カラム論理名
     /// </summary>
-    class A0090_SiireCheakPrint_B
+    class A0090_SiireCheckPrint_B
     {
 
         /// <summary>
-        /// getSiireCheakList
+        /// getSiireCheckList
         /// 仕入チェックリストを取得
         /// </summary>
-        public DataTable getSiireCheakList(List<string> lstItem)
+        public DataTable getSiireCheckList(List<string> lstItem)
         {
             string strSql;
-            DataTable dtSiireCheakList = new DataTable();
+            DataTable dtSiireCheckList = new DataTable();
 
             strSql = "SELECT dbo.f_getグループコード(仕入ヘッダ.担当者コード) AS グループコード, ";
             strSql += "dbo.f_getグループ名(dbo.f_getグループコード(仕入ヘッダ.担当者コード)) AS グループ名, ";
@@ -99,9 +99,9 @@ namespace KATO.Business.A0090_SiireCheakPrint
             try
             {
                 // 検索データをテーブルへ格納
-                dtSiireCheakList = dbconnective.ReadSql(strSql);
+                dtSiireCheckList = dbconnective.ReadSql(strSql);
 
-                return dtSiireCheakList;
+                return dtSiireCheckList;
             }
             catch
             {
@@ -116,10 +116,10 @@ namespace KATO.Business.A0090_SiireCheakPrint
         /// -----------------------------------------------------------------------------
         /// <summary>
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
-        /// <param name="dtSiireCheakList">
+        /// <param name="dtSiireCheckList">
         ///     仕入推移表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtSiireCheakList, List<string> lstItem)
+        public string dbToPdf(DataTable dtSiireCheckList, List<string> lstItem)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -142,7 +142,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
 
 
                 //Linqで必要なデータをselect
-                var outDataAll = dtSiireCheakList.AsEnumerable()
+                var outDataAll = dtSiireCheckList.AsEnumerable()
                     .Select(dat => new
                     {
                         groupCd = dat["グループコード"],
@@ -172,7 +172,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                 decKingaku[2] = outDataAll.Select(gokei => gokei.zeikomi).Sum();
 
                 // 担当者計
-                var tantoGoukei = from tbl in dtSiireCheakList.AsEnumerable()
+                var tantoGoukei = from tbl in dtSiireCheckList.AsEnumerable()
                                   group tbl by tbl.Field<string>("担当者コード") into g
                                   select new
                                   {
@@ -194,7 +194,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
 
 
                 // グループ計
-                var groupGoukei = from tbl in dtSiireCheakList.AsEnumerable()
+                var groupGoukei = from tbl in dtSiireCheckList.AsEnumerable()
                                   group tbl by tbl.Field<string>("グループコード") into g
                                   select new
                                   {
@@ -245,7 +245,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                 string strDenpyoNo = "";
 
                 // ClosedXMLで1行ずつExcelに出力
-                foreach (DataRow drSiireCheak in dtChkList.Rows)
+                foreach (DataRow drSiireCheck in dtChkList.Rows)
                 {
                     // 1ページ目のシート作成
                     if (rowCnt == 1)
@@ -331,7 +331,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                     // グループ名出力
                     if (groupRowCnt == 0)
                     {
-                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireCheak[1];
+                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireCheck[1];
                         currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 13).Merge();
 
                         // 1行分のセルの周囲に罫線を引く
@@ -360,7 +360,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                     // 担当者名出力
                     if (tantoRowCnt == 0)
                     {
-                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireCheak[3];
+                        currentsheet.Cell(xlsRowCnt, 1).Value = drSiireCheck[3];
                         currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 13).Merge();
 
                         // 1行分のセルの周囲に罫線を引く
@@ -389,7 +389,7 @@ namespace KATO.Business.A0090_SiireCheakPrint
                     // 1セルずつデータ出力
                     for (int colCnt = 8; colCnt <= maxColCnt - 3; colCnt++)
                     {
-                        string str = drSiireCheak[colCnt - 1].ToString();
+                        string str = drSiireCheck[colCnt - 1].ToString();
 
                         // 金額セルの処理
                         if (colCnt == 11 || colCnt == 13)
@@ -417,12 +417,12 @@ namespace KATO.Business.A0090_SiireCheakPrint
                         if (colCnt == 8)
                         {
                             // 最初の行の場合 or 前行の伝票番号が現在の伝票番号と同じでない場合
-                            if (!drSiireCheak[7].ToString().Equals(strDenpyoNo))
+                            if (!drSiireCheck[7].ToString().Equals(strDenpyoNo))
                             {
                                 // 仕入先コード、仕入先名、年月日、伝票番号、取引区分名
                                 for (int cnt = 0; cnt < 5; cnt++)
                                 {
-                                    currentsheet.Cell(xlsRowCnt, cnt + 1).Value = drSiireCheak[cnt + 4].ToString();
+                                    currentsheet.Cell(xlsRowCnt, cnt + 1).Value = drSiireCheck[cnt + 4].ToString();
                                 }
 
                                 // 税抜合計金額、消費税、税込合計金額
@@ -431,10 +431,10 @@ namespace KATO.Business.A0090_SiireCheakPrint
                                     // 3桁毎に","を挿入する
                                     IXLCell kingakuCell = currentsheet.Cell(xlsRowCnt, colCnt + cnt + 3);
                                     kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                                    kingakuCell.Value = string.Format("{0:#,0}", decimal.Parse(drSiireCheak[colCnt + cnt + 6].ToString()));
+                                    kingakuCell.Value = string.Format("{0:#,0}", decimal.Parse(drSiireCheck[colCnt + cnt + 6].ToString()));
                                 }
                                 
-                                strDenpyoNo = drSiireCheak[7].ToString();
+                                strDenpyoNo = drSiireCheck[7].ToString();
                             }
                         }
                         // 取引区分名の場合、伝票番号の処理で行っているため何もしない

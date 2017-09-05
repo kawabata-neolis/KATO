@@ -11,12 +11,12 @@ using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Business.A0090_SiireCheakPrint;
+using KATO.Business.A0090_SiireCheckPrint;
 
-namespace KATO.Form.A0090_SiireCheakPrint
+namespace KATO.Form.A0090_SiireCheckPrint
 {
     /// <summary>
-    /// A0090_SiireCheakPrint
+    /// A0090_SiireCheckPrint
     /// 仕入チェックリストフォーム
     /// 作成者：多田
     /// 作成日：2017/7/1
@@ -24,15 +24,15 @@ namespace KATO.Form.A0090_SiireCheakPrint
     /// 更新日：2017/7/1
     /// カラム論理名
     /// </summary>
-    public partial class A0090_SiireCheakPrint : BaseForm
+    public partial class A0090_SiireCheckPrint : BaseForm
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
-        /// A0090_SiireCheakPrint
+        /// A0090_SiireCheckPrint
         /// フォーム関係の設定
         /// </summary>
-        public A0090_SiireCheakPrint(Control c)
+        public A0090_SiireCheckPrint(Control c)
         {
             if (c == null)
             {
@@ -61,10 +61,10 @@ namespace KATO.Form.A0090_SiireCheakPrint
         }
 
         /// <summary>
-        /// A0090_SiireCheakPrint_Load
+        /// A0090_SiireCheckPrint_Load
         /// 読み込み時
         /// </summary>
-        private void A0090_SiireCheakPrint_Load(object sender, EventArgs e)
+        private void A0090_SiireCheckPrint_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "仕入チェックリスト";
@@ -92,10 +92,10 @@ namespace KATO.Form.A0090_SiireCheakPrint
         }
 
         /// <summary>
-        /// A0090_SiireCheakPrint_KeyDown
+        /// A0090_SiireCheckPrint_KeyDown
         /// キー入力判定
         /// </summary>
-        private void A0090_SiireCheakPrint_KeyDown(object sender, KeyEventArgs e)
+        private void A0090_SiireCheckPrint_KeyDown(object sender, KeyEventArgs e)
         {
             // キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -254,7 +254,7 @@ namespace KATO.Form.A0090_SiireCheakPrint
             }
 
             // ビジネス層のインスタンス生成
-            A0090_SiireCheakPrint_B cheakPrintB = new A0090_SiireCheakPrint_B();
+            A0090_SiireCheckPrint_B checkPrintB = new A0090_SiireCheckPrint_B();
             try
             {
                 // 検索するデータをリストに格納
@@ -267,9 +267,9 @@ namespace KATO.Form.A0090_SiireCheakPrint
                 lstSearchItem.Add(labelSet_SiiresakiCdTo.CodeTxtText);
 
                 // 検索実行
-                DataTable dtSiireCheakList = cheakPrintB.getSiireCheakList(lstSearchItem);
+                DataTable dtSiireCheckList = checkPrintB.getSiireCheckList(lstSearchItem);
                 
-                if (dtSiireCheakList.Rows.Count > 0)
+                if (dtSiireCheckList.Rows.Count > 0)
                 {
                     // 印刷ダイアログ
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
@@ -279,7 +279,7 @@ namespace KATO.Form.A0090_SiireCheakPrint
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
                         // PDF作成
-                        String strFile = cheakPrintB.dbToPdf(dtSiireCheakList, lstSearchItem);
+                        String strFile = checkPrintB.dbToPdf(dtSiireCheckList, lstSearchItem);
 
                         // プレビュー
                         pf.execPreview(strFile);
@@ -289,7 +289,7 @@ namespace KATO.Form.A0090_SiireCheakPrint
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
                         // PDF作成
-                        String strFile = cheakPrintB.dbToPdf(dtSiireCheakList, lstSearchItem);
+                        String strFile = checkPrintB.dbToPdf(dtSiireCheckList, lstSearchItem);
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);

@@ -1,6 +1,6 @@
-﻿namespace KATO.Form.B0050_NyukinCheakPrint
+﻿namespace KATO.Form.B0050_NyukinCheckPrint
 {
-    partial class B0050_NyukinCheakPrint
+    partial class B0050_NyukinCheckPrint
     {
         /// <summary>
         /// Required designer variable.
@@ -277,7 +277,7 @@
             this.baseLabel1.Text = "ユーザーＩＤ";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // B0050_NyukinCheakPrint
+            // B0050_NyukinCheckPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -294,10 +294,10 @@
             this.Controls.Add(this.lblKikan);
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.baseLabel1);
-            this.Name = "B0050_NyukinCheakPrint";
+            this.Name = "B0050_NyukinCheckPrint";
             this.Text = "B0050_NyukinCheakPrint";
-            this.Load += new System.EventHandler(this.B0050_NyukinCheakPrint_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0050_NyukinCheakPrint_KeyDown);
+            this.Load += new System.EventHandler(this.B0050_NyukinCheckPrint_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0050_NyukinCheckPrint_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

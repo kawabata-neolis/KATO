@@ -6,10 +6,10 @@ using System.Linq;
 
 using ClosedXML.Excel;
 
-namespace KATO.Business.B0050_NyukinCheakPrint
+namespace KATO.Business.B0050_NyukinCheckPrint
 {
     /// <summary>
-    /// B0050_NyukinCheakPrint_B
+    /// B0050_NyukinCheckPrint_B
     /// 入金チェックリスト ビジネスロジック
     /// 作成者：多田
     /// 作成日：2017/7/25
@@ -17,16 +17,16 @@ namespace KATO.Business.B0050_NyukinCheakPrint
     /// 更新日：2017/7/25
     /// カラム論理名
     /// </summary>
-    class B0050_NyukinCheakPrint_B
+    class B0050_NyukinCheckPrint_B
     {
         /// <summary>
         /// getNyukinCheakList
         /// 入金チェックリストを取得
         /// </summary>
-        public DataTable getNyukinCheakList(List<string> lstItem)
+        public DataTable getNyukinCheckList(List<string> lstItem)
         {
             string strSql;
-            DataTable dtNyukinCheakList = new DataTable();
+            DataTable dtNyukinCheckList = new DataTable();
 
             strSql = "SELECT 入金年月日, ";
             strSql += "伝票番号, ";
@@ -74,9 +74,9 @@ namespace KATO.Business.B0050_NyukinCheakPrint
             try
             {
                 // 検索データをテーブルへ格納
-                dtNyukinCheakList = dbconnective.ReadSql(strSql);
+                dtNyukinCheckList = dbconnective.ReadSql(strSql);
 
-                return dtNyukinCheakList;
+                return dtNyukinCheckList;
             }
             catch
             {
@@ -91,10 +91,10 @@ namespace KATO.Business.B0050_NyukinCheakPrint
         /// -----------------------------------------------------------------------------
         /// <summary>
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
-        /// <param name="dtNyukinCheakList">
+        /// <param name="dtNyukinCheckList">
         ///     仕入推移表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtNyukinCheakList, List<string> lstItem)
+        public string dbToPdf(DataTable dtNyukinCheckList, List<string> lstItem)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -117,7 +117,7 @@ namespace KATO.Business.B0050_NyukinCheakPrint
 
 
                 //Linqで必要なデータをselect
-                var outDataAll = dtNyukinCheakList.AsEnumerable()
+                var outDataAll = dtNyukinCheckList.AsEnumerable()
                     .Select(dat => new
                     {
                         tokuisakiCd = dat["得意先コード"],
@@ -157,7 +157,7 @@ namespace KATO.Business.B0050_NyukinCheakPrint
                 }
 
                 // ClosedXMLで1行ずつExcelに出力
-                foreach (DataRow drSiireCheak in dtChkList.Rows)
+                foreach (DataRow drSiireCheck in dtChkList.Rows)
                 {
                     // 1ページ目のシート作成
                     if (rowCnt == 1)
@@ -228,7 +228,7 @@ namespace KATO.Business.B0050_NyukinCheakPrint
                     // 1セルずつデータ出力
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
-                        string str = drSiireCheak[colCnt - 1].ToString();
+                        string str = drSiireCheck[colCnt - 1].ToString();
 
                         // 入金日、手形期日セルの場合
                         if (colCnt == 3 || colCnt == 7)

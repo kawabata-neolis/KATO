@@ -11,12 +11,12 @@ using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Business.B0050_NyukinCheakPrint;
+using KATO.Business.B0050_NyukinCheckPrint;
 
-namespace KATO.Form.B0050_NyukinCheakPrint
+namespace KATO.Form.B0050_NyukinCheckPrint
 {
     /// <summary>
-    /// B0050_NyukinCheakPrint
+    /// B0050_NyukinCheckPrint
     /// 入金チェックリストフォーム
     /// 作成者：多田
     /// 作成日：2017/7/25
@@ -24,7 +24,7 @@ namespace KATO.Form.B0050_NyukinCheakPrint
     /// 更新日：2017/7/25
     /// カラム論理名
     /// </summary>
-    public partial class B0050_NyukinCheakPrint : BaseForm
+    public partial class B0050_NyukinCheckPrint : BaseForm
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -32,7 +32,7 @@ namespace KATO.Form.B0050_NyukinCheakPrint
         /// B0050_NyukinCheakPrint
         /// フォーム関係の設定
         /// </summary>
-        public B0050_NyukinCheakPrint(Control c)
+        public B0050_NyukinCheckPrint(Control c)
         {
             if (c == null)
             {
@@ -61,10 +61,10 @@ namespace KATO.Form.B0050_NyukinCheakPrint
         }
 
         /// <summary>
-        /// B0050_NyukinCheakPrint_Load
+        /// B0050_NyukinCheckPrint_Load
         /// 読み込み時
         /// </summary>
-        private void B0050_NyukinCheakPrint_Load(object sender, EventArgs e)
+        private void B0050_NyukinCheckPrint_Load(object sender, EventArgs e)
         {
             this.Show();
             this._Title = "入金チェックリスト";
@@ -92,10 +92,10 @@ namespace KATO.Form.B0050_NyukinCheakPrint
         }
 
         /// <summary>
-        /// B0050_NyukinCheakPrint_KeyDown
+        /// B0050_NyukinCheckPrint_KeyDown
         /// キー入力判定
         /// </summary>
-        private void B0050_NyukinCheakPrint_KeyDown(object sender, KeyEventArgs e)
+        private void B0050_NyukinCheckPrint_KeyDown(object sender, KeyEventArgs e)
         {
             // キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -253,7 +253,7 @@ namespace KATO.Form.B0050_NyukinCheakPrint
             }
 
             // ビジネス層のインスタンス生成
-            B0050_NyukinCheakPrint_B cheakPrintB = new B0050_NyukinCheakPrint_B();
+            B0050_NyukinCheckPrint_B checkPrintB = new B0050_NyukinCheckPrint_B();
             try
             {
                 // 検索するデータをリストに格納
@@ -266,9 +266,9 @@ namespace KATO.Form.B0050_NyukinCheakPrint
                 lstSearchItem.Add(labelSet_TokuisakiCdTo.CodeTxtText);
 
                 // 検索実行
-                DataTable dtNyukinCheakList = cheakPrintB.getNyukinCheakList(lstSearchItem);
+                DataTable dtNyukinCheckList = checkPrintB.getNyukinCheckList(lstSearchItem);
 
-                if (dtNyukinCheakList != null && dtNyukinCheakList.Rows.Count > 0)
+                if (dtNyukinCheckList != null && dtNyukinCheckList.Rows.Count > 0)
                 {
                     // 印刷ダイアログ
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
@@ -278,7 +278,7 @@ namespace KATO.Form.B0050_NyukinCheakPrint
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
                         // PDF作成
-                        String strFile = cheakPrintB.dbToPdf(dtNyukinCheakList, lstSearchItem);
+                        String strFile = checkPrintB.dbToPdf(dtNyukinCheckList, lstSearchItem);
 
                         // プレビュー
                         pf.execPreview(strFile);
@@ -288,7 +288,7 @@ namespace KATO.Form.B0050_NyukinCheakPrint
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
                         // PDF作成
-                        String strFile = cheakPrintB.dbToPdf(dtNyukinCheakList, lstSearchItem);
+                        String strFile = checkPrintB.dbToPdf(dtNyukinCheckList, lstSearchItem);
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);

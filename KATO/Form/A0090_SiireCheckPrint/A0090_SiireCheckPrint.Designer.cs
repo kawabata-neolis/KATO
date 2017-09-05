@@ -1,6 +1,6 @@
-﻿namespace KATO.Form.A0090_SiireCheakPrint
+﻿namespace KATO.Form.A0090_SiireCheckPrint
 {
-    partial class A0090_SiireCheakPrint
+    partial class A0090_SiireCheckPrint
     {
         /// <summary>
         /// Required designer variable.
@@ -266,8 +266,8 @@
             this.Controls.Add(this.baseLabel1);
             this.Name = "A0090_SiireCheakPrint";
             this.Text = "A0090_SiireCheakPrint";
-            this.Load += new System.EventHandler(this.A0090_SiireCheakPrint_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0090_SiireCheakPrint_KeyDown);
+            this.Load += new System.EventHandler(this.A0090_SiireCheckPrint_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0090_SiireCheckPrint_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

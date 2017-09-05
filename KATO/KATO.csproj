@@ -114,12 +114,12 @@
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
     <Compile Include="Business\A0020_UriageInput\A0020_UriageInput_B.cs" />
     <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
-    <Compile Include="Business\A0090_SiireCheakPrint\A0090_SiireCheakPrint_B.cs" />
+    <Compile Include="Business\A0090_SiireCheckPrint\A0090_SiireCheckPrint_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
-    <Compile Include="Business\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint_B.cs" />
+    <Compile Include="Business\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
     <Compile Include="Business\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint_B.cs" />
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
@@ -169,6 +169,7 @@
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
+    <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Business\KakouGenkaList_B.cs" />
@@ -351,6 +352,12 @@
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Torihikikbn.Designer.cs">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Menu.Designer.cs">
+      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Torihikisaki.cs">
       <SubType>UserControl</SubType>
@@ -550,11 +557,11 @@
     <Compile Include="Form\A0030_ShireInput\BaseViewDataGroup.Designer.cs">
       <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.cs">
+    <Compile Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.Designer.cs">
-      <DependentUpon>A0090_SiireCheakPrint.cs</DependentUpon>
+    <Compile Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.Designer.cs">
+      <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
@@ -580,11 +587,11 @@
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.designer.cs">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.cs">
+    <Compile Include="Form\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.Designer.cs">
-      <DependentUpon>B0050_NyukinCheakPrint.cs</DependentUpon>
+    <Compile Include="Form\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint.Designer.cs">
+      <DependentUpon>B0050_NyukinCheckPrint.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.cs">
       <SubType>Form</SubType>
@@ -922,6 +929,12 @@
     <Compile Include="Form\Z0000\Z0000.Designer.cs">
       <DependentUpon>Z0000.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.Designer.cs">
+      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Common\Ctl\BaseButton.resx">
@@ -1030,6 +1043,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikikbn.resx">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Menu.resx">
+      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikisaki.resx">
@@ -1143,8 +1160,8 @@
     <EmbeddedResource Include="Form\A0030_ShireInput\BaseViewDataGroup.resx">
       <DependentUpon>BaseViewDataGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\A0090_SiireCheakPrint\A0090_SiireCheakPrint.resx">
-      <DependentUpon>A0090_SiireCheakPrint.cs</DependentUpon>
+    <EmbeddedResource Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.resx">
+      <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>
@@ -1158,8 +1175,8 @@
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\B0050_NyukinCheakPrint\B0050_NyukinCheakPrint.resx">
-      <DependentUpon>B0050_NyukinCheakPrint.cs</DependentUpon>
+    <EmbeddedResource Include="Form\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint.resx">
+      <DependentUpon>B0050_NyukinCheckPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0060_ShiharaiInput\B0060_ShiharaiInput.resx">
       <DependentUpon>B0060_ShiharaiInput.cs</DependentUpon>
@@ -1341,6 +1358,9 @@
       <DependentUpon>Z0000.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.resx">
+      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1500,6 +1520,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Menu_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_KenshuzumiShire_SELECT_COUNT.sql">
@@ -2158,6 +2181,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1120_Tanaban\Tanaban_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z1500_MyMenuSet\MyMenuSet_MenuSet_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
