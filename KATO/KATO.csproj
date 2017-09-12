@@ -169,8 +169,9 @@
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
-    <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
+    <Compile Include="Business\Z0000_MainMenu\Z0000_MainMenu_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
+    <Compile Include="Common\Business\MenuList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Business\KakouGenkaList_B.cs" />
     <Compile Include="Common\Business\ShiharaiList_B.cs" />
@@ -353,12 +354,6 @@
     <Compile Include="Common\Ctl\LabelSet_Torihikikbn.Designer.cs">
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Ctl\LabelSet_Menu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Common\Ctl\LabelSet_Menu.Designer.cs">
-      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Common\Ctl\LabelSet_Torihikisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -424,6 +419,12 @@
     </Compile>
     <Compile Include="Common\Form\KakouGenkaList.Designer.cs">
       <DependentUpon>KakouGenkaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\MenuList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\MenuList.Designer.cs">
+      <DependentUpon>MenuList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\NyukinList.cs">
       <SubType>Form</SubType>
@@ -929,12 +930,6 @@
     <Compile Include="Form\Z0000\Z0000.Designer.cs">
       <DependentUpon>Z0000.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.Designer.cs">
-      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Common\Ctl\BaseButton.resx">
@@ -1045,10 +1040,6 @@
       <DependentUpon>LabelSet_Torihikikbn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\Ctl\LabelSet_Menu.resx">
-      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Torihikisaki.resx">
       <DependentUpon>LabelSet_Torihikisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1090,6 +1081,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\KakouGenkaList.resx">
       <DependentUpon>KakouGenkaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\MenuList.resx">
+      <DependentUpon>MenuList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\NyukinList.resx">
       <DependentUpon>NyukinList.cs</DependentUpon>
@@ -1358,9 +1352,6 @@
       <DependentUpon>Z0000.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.resx">
-      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1477,6 +1468,9 @@
     <Content Include="SQL\Common\CommonForm\KakouGenkaList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\MenuList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\ShiharaiList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1522,9 +1516,6 @@
     <Content Include="SQL\Common\CommonForm\EigyoushoList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_Menu_SELECT_LEAVE.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SQL\Common\C_LIST_KenshuzumiShire_SELECT_COUNT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1565,6 +1556,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Daibun_SELECT_LEAVE_NAME.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_MenuList_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_ShiresakiAS400_SELECT_LEAVE.sql">
@@ -2183,7 +2177,10 @@
     <Content Include="SQL\M1120_Tanaban\Tanaban_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Z1500_MyMenuSet\MyMenuSet_MenuSet_SELECT.sql">
+    <Content Include="SQL\Z0000_MainMenu\MainMenu_TantoshaCd_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z0000_MainMenu\MainMenu_Kengen_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -7,35 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Business;
-using static KATO.Common.Util.CommonTeisu;
 using System.Security.Permissions;
+using KATO.Common.Ctl;
+using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Common.Form
 {
     ///<summary>
-    ///DaibunruiList
-    ///大分類リストフォーム
+    ///MenuList
+    ///メニューリストフォーム
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
     ///更新日：2017/5/1
     ///カラム論理名
     ///</summary>
-    public partial class GyoshuList : System.Windows.Forms.Form
+    public partial class MenuList : System.Windows.Forms.Form
     {
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //セットを作成する場合、変更
-        LabelSet_Gyoshu lblSetGyoshu = null;
+        //メニューコードの確保
+        string strMenuCdsub = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
-        //フォームタイトル設定
+        //画面タイトル設定
         private string Title = "";
         public string _Title
         {
@@ -51,11 +51,11 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// GyoshuList
-        /// フォームの初期設定（通常のテキストボックスから）
-        /// </summary>
-        public GyoshuList(Control c)
+        ///<summary>
+        ///MenuList
+        ///フォームの初期設定（通常のテキストボックスから）
+        ///</summary>
+        public MenuList(Control c)
         {
             //画面データが解放されていた時の対策
             if (c == null)
@@ -76,47 +76,79 @@ namespace KATO.Common.Form
             this.Top = c.Top + 150;
         }
 
-        /// <summary>
-        /// GyoshuList
-        /// フォームの初期設定（ラベルセットから）
-        /// </summary>
-        public GyoshuList(Control c, LabelSet_Gyoshu lblSetGyoshuSelect)
-        {
-            //画面データが解放されていた時の対策
-            if (c == null)
-            {
-                return;
-            }
-
-            //画面位置の指定
-            int intWindowWidth = c.Width;
-            int intWindowHeight = c.Height;
-
-            //ラベルセットデータの確保
-            lblSetGyoshu = lblSetGyoshuSelect;
-
-            InitializeComponent();
-
-            //ウィンドウ位置をマニュアル
-            this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 150;
-        }
-
-        /// <summary>
-        /// GyoshuList_Load
-        /// 画面レイアウト設定
-        /// </summary>
-        private void GyoshuList_Load(object sender, EventArgs e)
+        ///<summary>
+        ///MenuList_Load
+        ///画面レイアウト設定
+        ///</summary>
+        private void MenuList_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "業種リスト";
+            this._Title = "frmMenuList";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF12.Text = "F12:戻る";
 
+            setupGrid();
+
             setDatagridView();
+        }
+
+        ///<summary>
+        ///setupGrid
+        ///DataGridView初期設定
+        ///</summary>
+        private void setupGrid()
+        {
+            //列自動生成禁止
+            gridMenu.AutoGenerateColumns = false;
+
+            //データをバインド
+            DataGridViewTextBoxColumn PgNo = new DataGridViewTextBoxColumn();
+            PgNo.DataPropertyName = "ＰＧ番号";
+            PgNo.Name = "ＰＧ番号";
+            PgNo.HeaderText = "PgNo";
+
+            DataGridViewTextBoxColumn PgName = new DataGridViewTextBoxColumn();
+            PgName.DataPropertyName = "ＰＧ名";
+            PgName.Name = "ＰＧ名";
+            PgName.HeaderText = "プログラム名";
+
+            DataGridViewTextBoxColumn comment = new DataGridViewTextBoxColumn();
+            comment.DataPropertyName = "コメント";
+            comment.Name = "コメント";
+            comment.HeaderText = "コメント";
+
+            //個々の幅、文章の寄せ
+            setColumn(PgNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(PgName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumn(comment, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null , 400);
+        }
+
+        ///<summary>
+        ///setColumn
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            //column設定
+            gridMenu.Columns.Add(col);
+            //カラム名が空でない場合
+            if (gridMenu.Columns[col.Name] != null)
+            {
+                //横幅サイズの決定
+                gridMenu.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
+                gridMenu.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
+                gridMenu.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                //フォーマットが指定されていた場合
+                if (fmt != null)
+                {
+                    //フォーマットを指定
+                    gridMenu.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
         }
 
         ///<summary>
@@ -125,24 +157,25 @@ namespace KATO.Common.Form
         ///</summary>
         private void setDatagridView()
         {
+            //取得したデータの編集を行う用
+            DataTable dtView = new DataTable();
+
             //ビジネス層のインスタンス生成
-            GyoshuList_B gyoshulistB = new GyoshuList_B();
+            MenuList_B menulistB = new MenuList_B();
             try
             {
-                //データグリッドビュー部分
-                gridSeihin.DataSource = gyoshulistB.getDatagridView();
+                //検索データを取得
+                dtView = menulistB.getViewGrid();
 
-                //幅の値を設定
-                gridSeihin.Columns["業種コード"].Width = 120;
-                gridSeihin.Columns["業種名"].Width = 250;
 
-                //中央揃え
-                gridSeihin.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //データグリッドビューに表示
+                gridMenu.DataSource = dtView;
 
-                lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
+                //検索件数を表示
+                lblRecords.Text = "該当件数( " + gridMenu.RowCount.ToString() + "件)";
 
                 //件数が0の場合
-                if (lblRecords.Text == "0")
+                if (gridMenu.RowCount == 0)
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -162,10 +195,10 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///judGyoshuListKeyDown
+        ///MenuList_KeyDown
         ///キー入力判定
         ///</summary>
-        private void judGyoshuListKeyDown(object sender, KeyEventArgs e)
+        private void MenuList_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -230,31 +263,40 @@ namespace KATO.Common.Form
             List<string> lstString = new List<string>();
 
             //戻るボタンの処理
-            EndAction(lstString);
+            setEndAction(lstString);
         }
 
         ///<summary>
-        ///EndAction
+        ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void EndAction(List<string> lstSelectId)
+        private void setEndAction(List<string> lstSelectId)
         {
-            //データグリッドビューからデータを選択且つセット系から来た場合
-            if (lblSetGyoshu != null && lstSelectId.Count != 0)
-            {
-                //セットの中に検索結果データを入れる
-                lblSetGyoshu.CodeTxtText = lstSelectId[0];
-                lblSetGyoshu.ValueLabelText = lstSelectId[1];
-            }
+            ////データグリッドビューからデータを選択且つセット系から来た場合
+            //if (lblSetMenu != null && lstSelectId.Count != 0)
+            //{
+            //    //ＰＧ番号が0の場合
+            //    if (lstSelectId[0] == "0")
+            //    {
+            //        lblSetMenu.CodeTxtText = "0";
+            //        lblSetMenu.ValueLabelText = "";
+            //    }
+            //    else
+            //    {
+            //        //セットの中に検索結果データを入れる
+            //        lblSetMenu.CodeTxtText = lstSelectId[0];
+            //        lblSetMenu.ValueLabelText = lstSelectId[1];
+            //    }
+            //}
 
             this.Close();
 
             //ビジネス層のインスタンス生成
-            GyoshuList_B gyoshulistB = new GyoshuList_B();
+            MenuList_B menulistB = new MenuList_B();
             try
             {
                 //画面終了処理
-                gyoshulistB.FormMove(intFrmKind);
+                menulistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {
@@ -268,19 +310,19 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
-        ///gridSeihin_DoubleClick
+        ///gridMenu_CellDoubleClick
         ///データグリッドビュー内のデータをダブルクリックしたとき
         ///</summary>
-        private void gridSeihin_DoubleClick(object sender, EventArgs e)
+        private void gridMenu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             setSelectItem();
         }
 
         ///<summary>
-        ///judGridSeihinKeyDown
+        ///gridMenu_KeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
         ///</summary>        
-        private void judGridSeihinKeyDown(object sender, KeyEventArgs e)
+        private void gridMenu_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -338,31 +380,31 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //データグリッドビューにデータが存在しなければ終了
-            if (gridSeihin.RowCount == 0)
+            //検索結果にデータが存在しなければ終了
+            if (gridMenu.RowCount == 0)
             {
                 return;
             }
 
-            //選択行の業種情報
-            List<string> lstString = new List<string>();
+            //選択行の担当者情報
+            List<string> lstSelectId = new List<string>();
 
-            //選択行の業種情報取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells["業種コード"].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells["業種名"].Value;
+            //選択行の担当者情報取得
+            string strSelectNo = (string)gridMenu.CurrentRow.Cells["ＰＧ番号"].Value.ToString();
+            string strSelectName = (string)gridMenu.CurrentRow.Cells["ＰＧ名"].Value;
 
             //検索情報を入れる
-            lstString.Add(strSelectId);
-            lstString.Add(strSelectName);
+            lstSelectId.Add(strSelectNo);
+            lstSelectId.Add(strSelectName);
 
             //ビジネス層のインスタンス生成
-            GyoshuList_B gyoshulistB = new GyoshuList_B();
+            MenuList_B menuListB = new MenuList_B();
             try
             {
-                //データグリッドビュー内のデータ選択後の処理
-                gyoshulistB.getSelectItem(intFrmKind, strSelectId);
+                //ビジネス層、検索ロジックに移動
+                menuListB.getSelectItem(intFrmKind, strSelectNo);
 
-                EndAction(lstString);
+                setEndAction(lstSelectId);
             }
             catch (Exception ex)
             {

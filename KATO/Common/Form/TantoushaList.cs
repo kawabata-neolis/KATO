@@ -268,11 +268,11 @@ namespace KATO.Common.Form
             DataTable dtView = new DataTable();
 
             //ビジネス層のインスタンス生成
-            TantoushaList_B daibunlistB = new TantoushaList_B();
+            TantoushaList_B tantolistB = new TantoushaList_B();
             try
             {
                 //検索データを取得
-                dtView = daibunlistB.getViewGrid();
+                dtView = tantolistB.getViewGrid();
 
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
