@@ -404,7 +404,5 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
             }
 
         }
-
-
     }
 }

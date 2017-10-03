@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
 {
+    /// E0330_TokuisakiMotocyoKakunin_B
+    /// 得意先元帳確認
+    /// 作成者：
+    /// 作成日：2017/6/30
+    /// 更新者：
+    /// 更新日：2017/6/30
+    /// カラム論理名
+    /// </summary>
     class E0330_TokuisakiMotocyoKakunin_B
     {
         ///<summary>

@@ -171,8 +171,8 @@ namespace KATO.Business.A0470_Hachusuhenko
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_Hachusuhenko_UPDATE");
+            lstSQL.Add("A0470_Hachusuhenko");
+            lstSQL.Add("Hachusuhenko_UPDATE");
 
             //SQL発行
             OpenSQL opensql = new OpenSQL();

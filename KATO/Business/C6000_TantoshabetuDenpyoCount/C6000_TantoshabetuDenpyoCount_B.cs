@@ -9,6 +9,15 @@ using KATO.Common.Util;
 
 namespace KATO.Business.C6000_TantoshabetuDenpyoCount
 {
+    /// <summary>
+    /// C6000_TantoshabetuDenpyoCount_B
+    /// 担当者別伝票処理件数 ビジネスロジック
+    /// 作成者：
+    /// 作成日：2017/7/20
+    /// 更新者：
+    /// 更新日：2017/7/20
+    /// カラム論理名
+    /// </summary>
     class C6000_TantoshabetuDenpyoCount_B
     {
         ///<summary>

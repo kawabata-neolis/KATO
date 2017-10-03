@@ -230,6 +230,5 @@ namespace KATO.Business.M1210_ShohinbetsuRiekiritsuSettei
             }
             return;
         }
-
     }
 }

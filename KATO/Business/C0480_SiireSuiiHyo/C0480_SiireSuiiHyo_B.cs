@@ -1325,8 +1325,6 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                     //File.Delete(filepath);
                 }
             }
-
         }
-
     }
 }

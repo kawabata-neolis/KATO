@@ -17,6 +17,15 @@ using KATO.Common.Util;
 
 namespace KATO.Business.C0650_SyohingunUriageSiirePrint
 {
+    /// <summary>
+    /// C0650_SyohingunUriageSiirePrint_B
+    /// 商品群別売上仕入管理表 ビジネスロジック
+    /// 作成者：多田
+    /// 作成日：2017/7/20
+    /// 更新者：多田
+    /// 更新日：2017/7/20
+    /// カラム論理名
+    /// </summary>
     class C0650_SyohingunUriageSiirePrint_B
     {
         /// <summary>

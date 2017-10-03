@@ -781,8 +781,6 @@ namespace KATO.Business.C0530_UriageArariSuiihyoPrint
                     //File.Delete(filepath);
                 }
             }
-
         }
-
     }
 }

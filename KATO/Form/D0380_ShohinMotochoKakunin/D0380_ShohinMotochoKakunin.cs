@@ -462,29 +462,6 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             txtGihuShuko.Text = string.Format("{0:#,#}", lstString[5]);
             txtHonGenzaiko.Text = string.Format("{0:#,#}", lstString[6]);
             txtGihuGenzaiko.Text = string.Format("{0:#,#}", lstString[7]);
-
-
-            //txtHonZenZaiko.Text = lstString[0];
-            //txtGihuZenZaiko.Text = lstString[1];
-            //txtHonNyuko.Text = lstString[2];
-            //txtGihuNyuko.Text = lstString[3];
-            //txtHonShuko.Text = lstString[4];
-            //txtGihuShuko.Text = lstString[5];
-            //txtHonGenzaiko.Text = lstString[6];
-            //txtGihuGenzaiko.Text = lstString[7];
-
-            ////金額の表示をさせるため、一度対象にフォーカスさせる
-            //txtHonZenZaiko.Focus();
-            //txtGihuZenZaiko.Focus();
-            //txtHonNyuko.Focus();
-            //txtGihuNyuko.Focus();
-            //txtHonShuko.Focus();
-            //txtGihuShuko.Focus();
-            //txtHonGenzaiko.Focus();
-            //txtGihuGenzaiko.Focus();
-
-            ////元のフォーカス位置に移動
-            //cActiveBefore.Focus();
         }
 
         /// <summary>

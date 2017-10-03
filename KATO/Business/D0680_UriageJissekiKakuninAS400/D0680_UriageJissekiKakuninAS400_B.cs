@@ -8,6 +8,15 @@ using System.Threading.Tasks;
 
 namespace KATO.Business.D0680_UriageJissekiKakuninAS400
 {
+    ///<summary>
+    ///D0680_UriageJissekiKakuninAS400_B
+    ///売上実績確認(AS400)
+    ///作成者：
+    ///作成日：2017/3/23
+    ///更新者：
+    ///更新日：2017/4/7
+    ///カラム論理名
+    ///</summary>
     class D0680_UriageJissekiKakuninAS400_B
     {
         /// <summary>

@@ -11,6 +11,15 @@ using ClosedXML.Excel;
 
 namespace KATO.Business.D0310_UriageJissekiKakunin
 {
+    /// <summary>
+    /// D0310_UriageJissekiKakunin_B
+    /// 売上実績確認 ビジネスロジック
+    /// 作成者：
+    /// 作成日：2017/7/20
+    /// 更新者：
+    /// 更新日：2017/7/20
+    /// カラム論理名
+    /// </summary>
     class D0310_UriageJissekiKakunin_B
     {
         /// <summary>
@@ -642,8 +651,6 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
                     //File.Delete(filepath);
                 }
             }
-
         }
-
     }
 }

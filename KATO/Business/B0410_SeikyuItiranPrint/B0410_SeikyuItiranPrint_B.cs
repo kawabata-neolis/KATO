@@ -17,27 +17,36 @@ using System.IO;
 
 namespace KATO.Business.B0410_SeikyuItiranPrint
 {
+    /// <summary>
+    /// B0410_SeikyuItiranPrint_B
+    /// 支払チェックリスト ビジネスロジック
+    /// 作成者：
+    /// 作成日：2017/7/25
+    /// 更新者：
+    /// 更新日：2017/7/25
+    /// カラム論理名
+    /// </summary>
     class B0410_SeikyuItiranPrint_B
     {
-        ///<summary>
-        ///getZengetuYokugetuSyutoku
-        ///締切年月日の前月翌月を取得
-        ///</summary>
+        /// <summary>
+        /// getZengetuYokugetuSyutoku
+        /// 締切年月日の前月翌月を取得
+        /// </summary>
         public DataTable getZengetuYokugetuSyutoku(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
-            //SQL文 請求履歴
+            // SQL文 請求履歴
 
             strSQLInput = strSQLInput + " SELECT dbo.f_前月翌日('"+lstString[0]+"') AS 前月翌月 ";
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -57,21 +66,21 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
             return dtGetTableGrid;
         }
 
-        ///<summary>
-        ///testgetSeikyu
-        ///テスト用請求一覧
-        ///</summary>
+        /// <summary>
+        /// testgetSeikyu
+        /// テスト用請求一覧
+        /// </summary>
         public DataTable testgetSeikyu(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
-            //SQL文 請求履歴
+            // SQL文 請求履歴
 
             strSQLInput = strSQLInput + " SELECT 'カナカナショウジ' AS カナ   ";
             strSQLInput += " ,'1100' AS 得意先コード ";
@@ -93,7 +102,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
             strSQLInput += " ,'2' AS 消費税計算区分 ";
 
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -145,7 +154,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                 // トランザクション開始
                 dbconnective.BeginTrans();
 
-                //請求一覧表_PROCを実行
+                // 請求一覧表_PROCを実行
                 DtRet = dbconnective.RunSqlReDT("請求一覧表_PROC",CommandType.StoredProcedure, lstDataName , lstTableName,null);
 
 
@@ -197,7 +206,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                 IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
 
-                //Linqで必要なデータをselect
+                // Linqで必要なデータをselect
                 var outDataAll = dtSeikyuList.AsEnumerable()
                     .Select(dat => new
                     {
@@ -219,7 +228,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                     }).ToList();
 
                 // linqで前月売掛金、入金現金、入金小切手、入金振込、入金手形、入金相殺、入金手数料、
-                //入金その他、繰越残高、当月売上高、当月消費税、当月残高の合計算出
+                // 入金その他、繰越残高、当月売上高、当月消費税、当月残高の合計算出
                 decimal[] decKingaku = new decimal[13];
                 decKingaku[0] = outDataAll.Select(gokei => gokei.ZengetuUrikakezan).Sum();
                 decKingaku[1] = outDataAll.Select(gokei => gokei.NyukinGenkin).Sum();

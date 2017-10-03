@@ -57,7 +57,31 @@ namespace KATO.Common.Ctl
                 DateTime datiEndDayOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
 
                 //初期値はその月の末日
-                this.Text = datiEndDayOfMonth.ToString("yyyy/MM/dd");
+                this.Text = datiEndDayOfMonth.ToString("yyyy/MM");
+            }
+            else if (intSelectMonth == 3)
+            {
+                //次の月にする
+                //表示年の確保
+                string strYear = DateTime.Today.Year.ToString();
+
+                //表示月の確保
+                string strMonth = DateTime.Today.Month.ToString();
+
+                //本月が1月の場合
+                if (DateTime.Today.Month == 12)
+                {
+                    //前の年に変更
+                    strYear = (DateTime.Today.Year + 1).ToString();
+                    //前の月に変更
+                    strMonth = "1";
+                }
+
+                //その月の来月の1日を取り出す
+                DateTime dateFirstDayOFNextMonth = new DateTime(int.Parse(strYear), int.Parse(strMonth) + 1, 01);
+
+                //初期値は来月の1日
+                this.Text = dateFirstDayOFNextMonth.ToString("yyyy/MM");
             }
         }
 

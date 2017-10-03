@@ -8,21 +8,30 @@ using System.Threading.Tasks;
 
 namespace KATO.Business.M1160_TokuteimukesakiTanka
 {
+    /// <summary>
+    /// M1160_TokuteimukesakiTanka_B
+    /// 特定向先単価マスタ
+    /// 作成者：
+    /// 作成日：2017/5/1
+    /// 更新者：
+    /// 更新日：2017/5/1
+    /// カラム論理名
+    /// </summary>
     class M1160_TokuteimukesakiTanka_B
     {
-        ///<summary>
-        ///getMaster
-        ///特定向先単価マスタを取得
-        ///</summary>
+        /// <summary>
+        /// getMaster
+        /// 特定向先単価マスタを取得
+        /// </summary>
         public DataTable getMaster(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            //SQL文 商品別利益率
+            // SQL文 商品別利益率
 
             strSQLInput = strSQLInput + " SELECT ";
             strSQLInput = strSQLInput + " 得意先コード ";
@@ -40,19 +49,19 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
             strSQLInput = strSQLInput + " WHERE ";
             strSQLInput = strSQLInput + " 削除 = 'N' ";
 
-            //仕入先コードを記述した場合
+            // 仕入先コードを記述した場合
             if (lstString[0] != "")
             {
                 strSQLInput = strSQLInput + " AND 仕入先コード = '" + lstString[0] + "' ";
             }
 
-            //得意先コードを記述した場合
+            // 得意先コードを記述した場合
             if (lstString[1] != "")
             {
                 strSQLInput = strSQLInput + " AND 得意先コード = '" + lstString[1] + "' ";
             }
 
-            //商品コードを記述した場合
+            // 商品コードを記述した場合
             if (lstString[2] != "")
             {
                 strSQLInput = strSQLInput + " AND 商品コード= '" + lstString[2] + "' ";
@@ -61,7 +70,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
             strSQLInput = strSQLInput + " ORDER BY 型番, 単価, 仕入先コード ASC ";
 
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -80,23 +89,23 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
             return (dtGetTableGrid);
         }
 
-        ///<summary>
-        ///getShohinData
-        ///商品データを取得
-        ///</summary>
+        /// <summary>
+        /// getShohinData
+        /// 商品データを取得
+        /// </summary>
         public DataTable getShohinData(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            //SQL文 商品別利益率
+            // SQL文 商品別利益率
 
             strSQLInput = strSQLInput + " SELECT * FROM 商品 WHERE 商品コード='" + lstString[0] + "' AND 削除='N' ";
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try

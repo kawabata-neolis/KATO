@@ -215,8 +215,6 @@ namespace KATO.Business.C0480_SiireSuiiHyo
                 dbconnective.DB_Disconnect();
             }
             return (dtGetTableGrid);
-
-        }
-        
+        }        
     }
 }

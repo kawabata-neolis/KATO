@@ -10,14 +10,14 @@ using System.Windows.Forms;
 namespace KATO.Business.B0040_NyukinInput
 {
 
-    ///<summary>
-    ///B0040_NyukinInput_B
-    ///入金入力ビジネス層
-    ///作成者：TMSOL太田
-    ///作成日：2017/06/26
-    ///更新者：
-    ///更新日：
-    ///カラム論理名
+    /// <summary>
+    /// B0040_NyukinInput_B
+    /// 入金入力ビジネス層
+    /// 作成者：TMSOL太田
+    /// 作成日：2017/06/26
+    /// 更新者：
+    /// 更新日：
+    /// カラム論理名
     class B0040_NyukinInput_B
     {
         /// <summary>
@@ -79,7 +79,7 @@ namespace KATO.Business.B0040_NyukinInput
             {
                 // ロールバック処理
                 dbconnective.Rollback();
-                //new CommonException(ex);
+                // new CommonException(ex);
                 throw;
             }
             finally
@@ -121,17 +121,17 @@ namespace KATO.Business.B0040_NyukinInput
             return;
         }
 
-        ///<summary>
-        ///getSeikyuRireki
-        ///請求履歴を取得
-        ///</summary>
+        /// <summary>
+        /// getSeikyuRireki
+        /// 請求履歴を取得
+        /// </summary>
         public DataTable getSeikyuRireki(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
@@ -141,7 +141,7 @@ namespace KATO.Business.B0040_NyukinInput
 
             strSQLInput = strSQLInput + " FROM 請求履歴 WHERE 得意先コード = '"+ lstString[0] + "' ORDER BY 請求年月日 DESC ";
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -161,10 +161,10 @@ namespace KATO.Business.B0040_NyukinInput
             return dtGetTableGrid;
         }
 
-        ///<summary>
-        ///getTorihikisakiData
-        ///取引先データを取得
-        ///</summary>
+        /// <summary>
+        /// getTorihikisakiData
+        /// 取引先データを取得
+        /// </summary>
         public DataTable getTorihikisakiData(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -173,21 +173,21 @@ namespace KATO.Business.B0040_NyukinInput
 
             OpenSQL opensql = new OpenSQL();
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
-            //SQL文 請求履歴
+            // SQL文 請求履歴
 
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
 
             strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-            //WHERE条件に入力得意先コードをバインド
+            // WHERE条件に入力得意先コードをバインド
             strSQLInput = string.Format(strSQLInput,lstString[0]);
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -207,27 +207,27 @@ namespace KATO.Business.B0040_NyukinInput
             return dtGetTableGrid;
         }
 
-        ///<summary>
-        ///getTokuisakiCd
-        ///入金テーブルから得意先コードを取得する。
-        ///</summary>
+        /// <summary>
+        /// getTokuisakiCd
+        /// 入金テーブルから得意先コードを取得する。
+        /// </summary>
         public DataTable getTokuisakiCd(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
-            //SQL文 請求履歴
+            // SQL文 請求履歴
 
             strSQLInput = strSQLInput + " SELECT DISTINCT 得意先コード";
 
             strSQLInput = strSQLInput + " FROM 入金 WHERE 伝票番号 = '"+lstString[0]+"' AND 削除 = 'N' ";
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -248,27 +248,27 @@ namespace KATO.Business.B0040_NyukinInput
         }
 
 
-        ///<summary>
-        ///getNyukinData
-        ///入金テーブルから全データを取得する。
-        ///</summary>
+        /// <summary>
+        /// getNyukinData
+        /// 入金テーブルから全データを取得する。
+        /// </summary>
         public DataTable getNyukinData(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
 
             string strSQLInput = "";
 
-            //データ渡し用
+            // データ渡し用
             List<string> lstStringSQL = new List<string>();
 
 
-            //SQL文 請求履歴
+            // SQL文 請求履歴
 
             strSQLInput = strSQLInput + " SELECT * ";
 
             strSQLInput = strSQLInput + " FROM 入金 WHERE 伝票番号 = '"+lstString[0]+"' AND 削除 = 'N' ORDER BY 行番号 ";
 
-            //SQLのインスタンス作成
+            // SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
@@ -420,6 +420,5 @@ namespace KATO.Business.B0040_NyukinInput
                 dbconnective.DB_Disconnect();
             }
         }
-
     }
 }

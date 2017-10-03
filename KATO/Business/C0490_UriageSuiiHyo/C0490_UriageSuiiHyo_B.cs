@@ -70,8 +70,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP0 無指定
-        ///分類コードが空欄かつ、メーカーコードが空欄
+        ///DISP0 
+        ///無指定 分類コードが空欄かつ、メーカーコードが空欄
         ///</summary>
         public DataTable DISP0(List<string> lstString, string strType)
         {
@@ -190,8 +190,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP1 大分類を指定
-        ///分類コードを入力かつ中分類コードが空欄の場合
+        ///DISP1 
+        ///大分類を指定 分類コードを入力かつ中分類コードが空欄の場合
         ///</summary>
         public DataTable DISP1(List<string> lstString, string strType)
         {
@@ -305,8 +305,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP2 大分類,中分類を指定
-        ///分類コードを入力かつ中分類コードを入力かつメーカコードが空欄の場合
+        ///DISP2 
+        ///大分類,中分類を指定 分類コードを入力かつ中分類コードを入力かつメーカコードが空欄の場合
         ///</summary>
         public DataTable DISP2(List<string> lstString, string strType)
         {
@@ -421,8 +421,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP3 大分類,中分類,メーカーを指定
-        ///分類コードを入力かつ中分類コードを入力かつメーカコードを入力した場合
+        ///DISP3 
+        ///大分類,中分類,メーカーを指定 分類コードを入力かつ中分類コードを入力かつメーカコードを入力した場合
         ///</summary>
         public DataTable DISP3(List<string> lstString, string strType)
         {
@@ -537,8 +537,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP4 メーカーのみを指定へ
-        ///分類コードが空欄かつ、メーカーコードを指定の場合
+        ///DISP4 
+        ///メーカーのみを指定へ 分類コードが空欄かつ、メーカーコードを指定の場合
         ///</summary>
         public DataTable DISP4(List<string> lstString, string strType)
         {
@@ -1265,8 +1265,6 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                     //File.Delete(filepath);
                 }
             }
-
         }
-
     }
 }

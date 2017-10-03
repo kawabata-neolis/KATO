@@ -73,6 +73,7 @@ namespace KATO.Business.A0030_ShireInput
                 dbconnective.DB_Disconnect();
             }
         }
+
         ///<summary>
         ///delShireInput
         ///仕入入力情報の削除
@@ -1094,7 +1095,7 @@ namespace KATO.Business.A0030_ShireInput
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("A0030_ShireInput");
-            lstSQL.Add("ShireInput_Juchu_Shiretanka_UPDATE");
+            lstSQL.Add("ShireInput_JuchuShireTanka_UPDATE");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();

@@ -29,8 +29,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_HachuInput_SELECT_GRID");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_SELECT_GRID");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -80,8 +80,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_HachuInput_SELECT_LEAVE");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_SELECT_GRID");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -182,8 +182,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_Hachu_SELECT_LEAVE");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_SELECT_LEAVE");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -268,8 +268,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_HachuInput_JuchuRenkei");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_JuchuRenkei");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -319,8 +319,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_HachuInput_Denpyo_UPDATE_SELECT");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_Denpyo_UPDATE_SELECT");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -370,8 +370,8 @@ namespace KATO.Business.A0100_HachuInput_B
             List<string> lstSQL = new List<string>();
 
             //データ渡し用
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_Hachu_SELECT_Tanka");
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_SELECT_Tanka");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();

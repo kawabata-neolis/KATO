@@ -95,6 +95,5 @@ namespace KATO.Business.E0340_SiiresakiMotochouKakunin
                 dbconnective.DB_Disconnect();
             }
         }
-
     }
 }

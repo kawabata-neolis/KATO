@@ -122,6 +122,7 @@
     <Compile Include="Business\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
     <Compile Include="Business\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint_B.cs" />
+    <Compile Include="Business\B0250_MOnyuryoku\B0250_MOnyuryoku_B.cs" />
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint_B.cs" />
     <Compile Include="Business\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint_B.cs" />
@@ -169,7 +170,7 @@
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
-    <Compile Include="Business\Z0000_MainMenu\Z0000_MainMenu_B.cs" />
+    <Compile Include="Business\Z0000\Z0000_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
     <Compile Include="Common\Business\MenuList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
@@ -605,6 +606,12 @@
     </Compile>
     <Compile Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.Designer.cs">
       <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\MOnyuryoku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\MOnyuryoku.Designer.cs">
+      <DependentUpon>MOnyuryoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
       <SubType>Form</SubType>
@@ -1178,6 +1185,9 @@
     <EmbeddedResource Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.resx">
       <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0250_MOnyuryoku\MOnyuryoku.resx">
+      <DependentUpon>MOnyuryoku.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.resx">
       <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -1426,9 +1436,6 @@
     <Content Include="SQL\A0030_ShireInput\ShireInput_KakoShireTanka_KakoHachu_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\A0030_ShireInput\ShireInput_Juchu_Shiretanka_UPDATE.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuDataCnt_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1460,6 +1467,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_Shiremeisai_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataGridView_NOTALL.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\C6000_TantoshabetuDenpyoCount\DenpyoCount_SELECT_SetDataGridView.sql">
@@ -1537,19 +1547,16 @@
     <Content Include="SQL\Common\C_LIST_NyukinList_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_Hachu_SELECT_Tanka.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SQL\Common\C_LIST_Hachu_SELECT_LEAVE.sql">
+    <Content Include="SQL\A0100_HachuInput\HachuInput_SELECT_Tanka.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Juchu_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_GRID.sql">
+    <Content Include="SQL\A0100_HachuInput\HachuInput_SELECT_GRID.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_HachuInput_SELECT_LEAVE.sql">
+    <Content Include="SQL\A0100_HachuInput\HachuInput_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Chubun_SELECT_LEAVE_NAME.sql">
@@ -1591,7 +1598,10 @@
     <Content Include="SQL\Common\C_LIST_Maker_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_HachuInput_JuchuRenkei.sql">
+    <Content Include="SQL\A0100_HachuInput\HachuInput_JuchuRenkei.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_Zaikosu.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql">
@@ -1624,10 +1634,10 @@
     <Content Include="SQL\Common\C_LIST_Shohizeiritsu_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_HachuInput_Denpyo_UPDATE_SELECT.sql">
+    <Content Include="SQL\A0100_HachuInput\HachuInput_Denpyo_UPDATE_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\C_LIST_Hachusuhenko_UPDATE.sql">
+    <Content Include="SQL\A0470_Hachusuhenko\Hachusuhenko_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_TorihikisakiKensaku_SELECT_LEAVE.sql">
@@ -2177,10 +2187,16 @@
     <Content Include="SQL\M1120_Tanaban\Tanaban_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Z0000_MainMenu\MainMenu_TantoshaCd_SELECT.sql">
+    <Content Include="SQL\Z0000\MainMenu_Data_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Z0000_MainMenu\MainMenu_Kengen_SELECT.sql">
+    <Content Include="SQL\Z0000\MainMenu_Comment_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z0000\MainMenu_TantoshaCd_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z0000\MainMenu_Kengen_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

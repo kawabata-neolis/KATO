@@ -775,6 +775,5 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                 throw;
             }
         }
-
     }
 }

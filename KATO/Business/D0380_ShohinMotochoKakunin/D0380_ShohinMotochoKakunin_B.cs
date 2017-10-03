@@ -22,7 +22,7 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
     class D0380_ShohinMotochoKakunin_B
     {
         ///<summary>
-        ///setTxtBox
+        ///setTextBox
         ///検索データを記入
         ///</summary>
         public List<string> setTextBox(List<string> lstString)

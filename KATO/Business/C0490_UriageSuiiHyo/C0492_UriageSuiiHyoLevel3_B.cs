@@ -61,8 +61,8 @@ namespace KATO.Business.C0490_UriageSuiiHyo
         }
 
         ///<summary>
-        ///DISP2 大分類,中分類を指定
-        ///分類コードを入力かつ中分類コードを入力かつメーカコードが空欄の場合
+        ///DISP2 
+        ///大分類,中分類を指定 分類コードを入力かつ中分類コードを入力かつメーカコードが空欄の場合
         ///</summary>
         public DataTable DISP2(List<string> lstString)
         {

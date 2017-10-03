@@ -8,7 +8,7 @@ using KATO.Common.Util;
 namespace KATO.Business.M1040_Torihikikbn
 {
     ///<summary>
-    ///M1040_Torihikikubun_B
+    ///M1040_Torihikikbn_B
     ///取引区分のビジネス層
     ///作成者：大河内
     ///作成日：2017/5/1

@@ -91,6 +91,7 @@ namespace KATO.Common.Form
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 24;
             this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 110;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
@@ -126,7 +127,9 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.LabelName = "大分類";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 12);
             this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(350, 22);
@@ -167,6 +170,7 @@ namespace KATO.Common.Form
             this.btnGifuZaiko.TabIndex = 104;
             this.btnGifuZaiko.Text = "岐阜在庫";
             this.btnGifuZaiko.UseVisualStyleBackColor = true;
+            this.btnGifuZaiko.Visible = false;
             this.btnGifuZaiko.Click += new System.EventHandler(this.btnGifuZaikoClick);
             // 
             // btnHonshaZaiko
@@ -178,6 +182,7 @@ namespace KATO.Common.Form
             this.btnHonshaZaiko.TabIndex = 104;
             this.btnHonshaZaiko.Text = "本社在庫";
             this.btnHonshaZaiko.UseVisualStyleBackColor = true;
+            this.btnHonshaZaiko.Visible = false;
             this.btnHonshaZaiko.Click += new System.EventHandler(this.btnHonshaZaikoClick);
             // 
             // gridTorihiki
@@ -243,6 +248,7 @@ namespace KATO.Common.Form
             this.lblDataFree.TabIndex = 100;
             this.lblDataFree.Text = "※ﾌﾘｰ在庫の表示は右のボタンを押してください。";
             this.lblDataFree.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDataFree.Visible = false;
             // 
             // lblKensaku
             // 

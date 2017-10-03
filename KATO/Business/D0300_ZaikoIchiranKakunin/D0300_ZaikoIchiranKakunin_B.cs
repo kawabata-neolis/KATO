@@ -36,7 +36,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                     lstItem[2] + "', '" + lstItem[3] + "', '" + lstItem[4] + "'";
 
                 // 在庫一覧表データ作成_PROCを実行
-                dbconnective.ReadSql(strProc);
+                dbconnective.ReadSql(strProc);  
 
                 // コミット
                 dbconnective.Commit();
@@ -555,8 +555,6 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                     //File.Delete(filepath);
                 }
             }
-
         }
-
     }
 }

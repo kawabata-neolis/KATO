@@ -623,7 +623,7 @@ namespace KATO.Form.A0030_ShireInput
                         lstHachutanKoshin.Add(strShohinCd);
                         lstHachutanKoshin.Add(bvg[intCnt].txtChumonNo.Text);
 
-                        //発注データの発注単価更新
+                        //発注データの発注単価更新  
                         shireinputB.addHachuTankaKoshin(lstHachutanKoshin);
 
                         //発注データの発注金額更新

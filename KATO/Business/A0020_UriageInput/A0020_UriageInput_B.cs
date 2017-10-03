@@ -1537,7 +1537,7 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + "SELECT * FROM 商品分類別利益率 ";
             strSql = strSql + " WHERE 削除='N'";
             strSql = strSql + " AND 設定='1'";
-            strSql = strSql + " AND 得意先コード='" + lstString[0] + "'";
+            strSql = strSql + " AND 得意先コード='" + lstString[0] + "'"; 
             strSql = strSql + " AND 大分類コード='" + lstString[2] + "'";
             strSql = strSql + " AND 中分類コード IS NULL ";
             strSql = strSql + " AND メーカーコード='" + lstString[4] + "'";
@@ -1571,7 +1571,7 @@ namespace KATO.Business.A0020_UriageInput
             string strSql = "";
 
             strSql = strSql + "SELECT dbo.f_get指定日の在庫数('" + lstString[0] + "' ,'" + lstString[1] + "' ,'"+DateTime.Parse(lstString[2]).ToString("yyyy/MM/dd")+"') AS 指定日の在庫数 ";
-            
+             
             DBConnective dbconnective = new DBConnective();
             try
             {

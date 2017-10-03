@@ -84,7 +84,7 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                 IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
 
-                //Linqで必要なデータをselect
+                // Linqで必要なデータをselect
                 var outDataAll = dtUriage.AsEnumerable()
                     .Select(dat => new
                     {
@@ -612,7 +612,6 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
                     //File.Delete(filepath);
                 }
             }
-
         }
     }
 }

@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Permissions;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
-using KATO.Business.Z0000_MainMenu_B;
+using KATO.Business.Z0000_B;
 
 namespace KATO.Form.Z0000
 {
@@ -27,6 +27,11 @@ namespace KATO.Form.Z0000
     ///</summary>
     public partial class Z0000 : BaseForm
     {
+        string[] PG_NG = new string[999];
+        string[] PG_FL1 = new string[999];
+        string[] PG_Comment = new string[999];
+        string[] PG_NO = new string[999];
+
         ///<summary>
         ///Z0000
         ///フォームの初期設定
@@ -51,6 +56,181 @@ namespace KATO.Form.Z0000
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             //DrawItemイベントハンドラを追加
             tabControl1.DrawItem += new DrawItemEventHandler(TabControl1_DrawItem);
+
+            Menu_Set();
+        }
+
+        ///<summary>
+        ///Menu_Set
+        ///ユーザー別PG情報を取得
+        ///</summary>
+        public void Menu_Set()
+        {
+            DataTable dtGetComment = new DataTable();
+            DataTable dtGetData = new DataTable();
+
+            string strBtnName = "";
+
+            //一番右列のボタンを作成しない処理をする用
+            int intBtnSet = 0;
+
+            Z0000_B mainmenuB = new Z0000_B();
+            try
+            {
+                dtGetComment = mainmenuB.getComment();
+
+                if (dtGetComment.Rows.Count > 0)
+                {
+                    //行数分ループ
+                    for (int intCnt = 0; intCnt < dtGetComment.Rows.Count; intCnt++)
+                    {
+                        PG_NG[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = dtGetComment.Rows[intCnt]["使用中止"].ToString();
+                        PG_FL1[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = dtGetComment.Rows[intCnt]["FL1"].ToString();
+
+                        //コメント文がある場合
+                        if (dtGetComment.Rows[intCnt]["コメント"].ToString() != "")
+                        {
+                            PG_Comment[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = dtGetComment.Rows[intCnt]["コメント"].ToString();
+                        }
+                        else
+                        {
+                            PG_Comment[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = "";
+                        }
+                    }
+                }
+
+                string strUserID = SystemInformation.UserName;
+
+                strUserID = "administrator";
+
+                dtGetData = mainmenuB.getData(strUserID);
+
+                //PG_NG内のnullを空白にする
+                for (int intCnt = 0; intCnt < PG_NG.Length; intCnt++)
+                {
+                    //nullの場合は空白文字を入れる
+                    if (PG_NG[intCnt] == null)
+                    {
+                        PG_NG[intCnt] = " ";
+                    }
+                }
+
+                if (dtGetData.Rows.Count > 0)
+                {
+                    //行数分ループ
+                    for (int intCnt = 0; intCnt < dtGetData.Rows.Count; intCnt++)
+                    {
+                        //PG番号が1000以上の場合
+                        if (int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) >= 1000)
+                        {
+                            //PG名がある場合
+                            if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != "")
+                            {
+                                //PG_NG[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = dtGetData.Rows[intCnt]["ＰＧ番号"].ToString();
+
+                                //SSTab1.TabPages.Item(rs.Fields(1)).Text = rs.Fields(2).Value;
+                            }
+                        }
+                        else
+                        {
+                            //PG名がある場合
+                            if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != "")
+                            {
+                                //使用中止の場合
+                                if (PG_NG[int.Parse(intCnt.ToString())] == "Y")
+                                {
+                                    strBtnName = "btn_" + dtGetData.Rows[intCnt]["メニューＮＯ"].ToString();
+                                    
+                                    //"TextBox1"という名前のコントロールを探す
+                                    BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                                    //データがある場合
+                                    if (btnData != null)
+                                    {
+                                        btnData.Visible = false;
+                                    }
+                                }
+                                else
+                                {
+
+                                    //一番右の列に表示させない処理、解除する場合は
+                                    //strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString());
+                                    //↑のみにする
+
+                                    if (int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) > 30)
+                                    {
+                                        intBtnSet = int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) + 10;
+
+                                        if (intBtnSet > 70)
+                                        {
+                                            intBtnSet = intBtnSet + 10;
+
+                                            if (intBtnSet > 110)
+                                            {
+                                                intBtnSet = intBtnSet + 10;
+
+                                                if (intBtnSet > 150)
+                                                {
+                                                    intBtnSet = intBtnSet + 10;
+                                                }
+                                            }
+                                        }
+
+                                        strBtnName = "btn_" + intBtnSet;
+                                    }
+                                    else
+                                    {                                        
+                                        strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString());
+                                    }
+
+                                    //"TextBox1"という名前のコントロールを探す
+                                    BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                                    //データがある場合
+                                    if (btnData != null)
+                                    {
+                                        btnData.Visible = true;
+
+                                        if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() == null)
+                                        {
+                                            break;
+                                        }
+
+                                        //btnData.Text = dtGetData.Rows[intCnt]["メニューＮＯ"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
+                                        btnData.Text = "  " + dtGetData.Rows[intCnt]["メニューＮＯ"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        public static object FindControlByFieldName(Control cfrm, string name)
+        {
+            System.Type t = cfrm.GetType();
+
+            System.Reflection.FieldInfo fi = t.GetField(
+                name,
+                System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.DeclaredOnly);
+
+            if (fi == null)
+                return null;
+
+            return fi.GetValue(cfrm);
         }
 
         ///<summary>
@@ -163,7 +343,7 @@ namespace KATO.Form.Z0000
             }
 
             //同時押しの場合
-            if (e.KeyCode == Keys.A && e.Shift == true)
+            if (e.Control == true && e.Shift == true && e.KeyCode == Keys.F1)
             {
                 if (TestButton1.Visible == true)
                 {
@@ -221,7 +401,13 @@ namespace KATO.Form.Z0000
             // このフォームで現在アクティブなコントロールを取得する
             Control cControl = this.ActiveControl;
 
-            switch (cControl.Text)
+            //ピリオド位置の確保
+            int intIndexOf = cControl.Text.IndexOf('.');
+
+            //ピリオド以降の文字列の確保
+            string strControlName = cControl.Text.Substring(intIndexOf + 1);
+
+            switch (strControlName)
             {
                 case "受注入力":
                     A0010_JuchuInput.A0010_JuchuInput juchuinput = new A0010_JuchuInput.A0010_JuchuInput(this);
@@ -286,7 +472,8 @@ namespace KATO.Form.Z0000
                     break;
 
                 case "ＭＯ入力":
-                    //作成中
+                    B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
+                    monyuryoku.ShowDialog();
                     break;
 
                 case "ＭＯ入力確定":
@@ -410,7 +597,7 @@ namespace KATO.Form.Z0000
                     kaisyajoken.ShowDialog();
                     break;
 
-                case "大分類 ":
+                case "大分類":
                     M1010_Daibunrui.M1010_Daibunrui daibunrui = new M1010_Daibunrui.M1010_Daibunrui(this);
                     daibunrui.ShowDialog();
                     break;
@@ -546,7 +733,7 @@ namespace KATO.Form.Z0000
                 return;
             }
             
-            Z0000_MainMenu_B mainmenuB = new Z0000_MainMenu_B();
+            Z0000_B mainmenuB = new Z0000_B();
             try
             {
                 //担当者コードの取得
@@ -627,7 +814,8 @@ namespace KATO.Form.Z0000
                         break;
 
                     case "25":
-                        //ＭＯ入力
+                        B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
+                        monyuryoku.ShowDialog();
                         break;
 
                     case "26":

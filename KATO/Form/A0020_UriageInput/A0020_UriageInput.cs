@@ -625,6 +625,7 @@ namespace KATO.Form.A0020_UriageInput
         }
 
         /// <summary>
+        /// delJucyu
         /// 売上データを削除する。
         /// </summary>
         private void delJucyu()
@@ -710,7 +711,10 @@ namespace KATO.Form.A0020_UriageInput
             uriagejissekikakunin.ShowDialog();
         }
 
-        //伝票番号テーブルから新規伝票番号を得る。
+        /// <summary>
+        /// GetDenpyoNo
+        // 伝票番号テーブルから新規伝票番号を得る。
+        /// </summary>
         public string GetDenpyoNo(string DenName)
         {
             A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
@@ -830,7 +834,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //商品テーブルから新規商品コードを得る。
+        /// <summary>
+        /// GetDenpyoNo
+        /// 商品テーブルから新規商品コードを得る。
+        /// </summary>
         public string GetNewSyohinNo()
         {
             string reGetNewSyohinNo = "";
@@ -1023,7 +1030,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //VBのleft関数にあたる。
+        /// <summary>
+        /// vbLeft
+        /// VBのleft関数にあたる。
+        /// </summary>
         public static string vbLeft(string stTarget, int iLength)
         {
             if (iLength <= stTarget.Length)
@@ -1034,7 +1044,10 @@ namespace KATO.Form.A0020_UriageInput
             return stTarget;
         }
 
-        //VBのmidにあたる。
+        /// <summary>
+        /// vbMid
+        /// VBのmidにあたる。
+        /// </summary>
         public static string vbMid(string stTarget, int iStart)
         {
             if (iStart <= stTarget.Length)
@@ -1045,7 +1058,10 @@ namespace KATO.Form.A0020_UriageInput
             return string.Empty;
         }
 
-        //vbのmidにあたる。
+        /// <summary>
+        /// vbMid
+        /// VBのmidにあたる。
+        /// </summary>
         public static string vbMid(string stTarget, int iStart, int iLength)
         {
             if (iStart <= stTarget.Length)
@@ -1061,6 +1077,10 @@ namespace KATO.Form.A0020_UriageInput
             return string.Empty;
         }
 
+        /// <summary>
+        /// vbRight
+        /// VBのRightにあたる。
+        /// </summary>
         public static string vbRight(string stTarget, int iLength)
         {
             if (iLength <= stTarget.Length)
@@ -1071,7 +1091,10 @@ namespace KATO.Form.A0020_UriageInput
             return stTarget;
         }
 
-        //データのチェックを行う。
+        /// <summary>
+        /// DataCheack
+        /// データのチェックを行う。
+        /// </summary>
         private Boolean DataCheack()
         {
             if (txtYMD.Text == "")
@@ -1939,6 +1962,10 @@ namespace KATO.Form.A0020_UriageInput
             return true;
         }
 
+        /// <summary>
+        /// Rieki10
+        /// 利益のチェックを行う。
+        /// </summary>
         private Boolean Rieki10()
         {
             int i;
@@ -2011,7 +2038,10 @@ namespace KATO.Form.A0020_UriageInput
             return reRieki10;
         }
 
-        //指定日の在庫数を得る。
+        /// <summary>
+        /// Get_ZaikoSu2
+        /// 指定日の在庫数を得る。
+        /// </summary>
         private Boolean Get_ZaikoSu2(string SyouhinCD, string Eigyousyo,ref decimal sU, DateTime yymd)
         {
             string strSQL;
@@ -2062,7 +2092,10 @@ namespace KATO.Form.A0020_UriageInput
 
         }
 
-        //商品別利益率チェック機能
+        /// <summary>
+        /// Get_ZaikoSu2
+        /// 商品別利益率チェック機能。
+        /// </summary>
         private int SyohinbetuCheck(int i)
         {
             Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
@@ -2326,7 +2359,10 @@ namespace KATO.Form.A0020_UriageInput
 
         }
 
-        //処理済の更新＆倉庫間移動データの追加
+        /// <summary>
+        /// Data_Create
+        /// 処理済の更新＆倉庫間移動データの追加。
+        /// </summary>
         private void Data_Create(string JucyuNo)
         {
             //変数を初期化する。
@@ -2690,8 +2726,10 @@ namespace KATO.Form.A0020_UriageInput
         }
 
 
-
-        //売上伝票において、指定した次の伝票番号を得る。
+        /// <summary>
+        /// GetNextDenpyoNumber
+        /// 売上伝票において、指定した次の伝票番号を得る。
+        /// </summary>
         private string GetNextDenpyoNumber(string DenpyoNo)
         {
             //伝票番号が空白の場合はNULLを返す。
@@ -2740,7 +2778,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //売上伝票において、指定した前の伝票番号を得る。
+        /// <summary>
+        /// GetPrevDenpyoNumber
+        /// 売上伝票において、指定した前の伝票番号を得る。
+        /// </summary>
         private string GetPrevDenpyoNumber(string DenpyoNo)
         {
             //検索時のデータ取り出し先
@@ -2892,23 +2933,29 @@ namespace KATO.Form.A0020_UriageInput
             txtTelNo_C.Text = Cyokusousakilist.Rows[0]["電話番号"].ToString();
         }
 
-        ///<summary>
-        ///setUriageListClose
-        ///setUriageListCloseが閉じたら伝票Noにフォーカス
-        ///</summary>
+        /// <summary>
+        /// setUriageListClose
+        /// setUriageListCloseが閉じたら伝票Noにフォーカス
+        /// </summary>
         public void setChokuListClose()
         {
             txtCyoku.Focus();
         }
 
-        //直送先リストのフォーカスが外れた場合
+        /// <summary>
+        /// txtCyoku_Leave
+        /// 直送先リストのフォーカスが外れた場合
+        /// </summary>
         private void txtCyoku_Leave(object sender, EventArgs e)
         {
             //直送先リストのフォーカスが外れた場合のメソッドへ。
             txtCyoku_func();
         }
 
-        //直送先リストのフォーカスが外れた場合の処理
+        /// <summary>
+        /// txtCyoku_func
+        /// 直送先リストのフォーカスが外れた場合
+        /// </summary>
         private void txtCyoku_func()
         {
             if (txtCyoku.Text == "")
@@ -2922,7 +2969,10 @@ namespace KATO.Form.A0020_UriageInput
             txtYubin_C.Focus();
         }
 
-        //直送先CDに該当するデータの存在をチェックする。
+        /// <summary>
+        /// Cyoku_Check
+        /// 直送先CDに該当するデータの存在をチェックする
+        /// </summary>
         private void Cyoku_Check()
         {
             DataTable dtSetView = new DataTable();
@@ -2970,7 +3020,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //伝票NOのフォーカスが外れた場合
+        /// <summary>
+        /// txtDenNo_Leave
+        /// 伝票NOのフォーカスが外れた場合
+        /// </summary>
         private void txtDenNo_Leave(object sender, EventArgs e)
         {
             //伝票NOが空白の場合は処理終了。
@@ -2989,7 +3042,10 @@ namespace KATO.Form.A0020_UriageInput
             MODY_FLAG = false;
         }
 
-        //伝票番号に該当する明細を表示する。
+        /// <summary>
+        /// DispDenpyo
+        /// 伝票番号に該当する明細を表示する
+        /// </summary>
         private void DispDenpyo()
         {
             string Hinmei = "";
@@ -3263,7 +3319,10 @@ namespace KATO.Form.A0020_UriageInput
 
         }
 
-        //売上削除が承認されているかチェックする。
+        /// <summary>
+        /// UriageSakujoCheck
+        /// 売上削除が承認されているかチェックする
+        /// </summary>
         private Boolean UriageSakujoCheck(string DenNo)
         {
             //検索時のデータ取り出し先
@@ -3299,7 +3358,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //受注明細１～５のテキストボックスの中身をクリアする。
+        /// <summary>
+        /// OneLineClear
+        /// 受注明細１～５のテキストボックスの中身をクリアする。
+        /// </summary>
         private void OneLineClear()
         {
             for (int i = 1; i <= 5; i++)
@@ -3339,10 +3401,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        ///<summary>
-        ///PutIsNull
-        ///値がNULLの場合、差し替え文字を挿入する。
-        ///</summary>
+        /// <summary>
+        /// PutIsNull
+        /// 値がNULLの場合、差し替え文字を挿入する。
+        /// </summary>
         private String PutIsNull(string CheckColumn, String ChangeValue)
         {
             if (CheckColumn == null || CheckColumn == "")
@@ -3354,14 +3416,20 @@ namespace KATO.Form.A0020_UriageInput
             return CheckColumn;
         }
 
-        //年月日のフォーカスが外れた場合
+        /// <summary>
+        /// txtYMD_Leave
+        /// 年月日のフォーカスが外れた場合
+        /// </summary>
         private void txtYMD_Leave(object sender, EventArgs e)
         {
             //年月日のフォーカスが外れた場合のメソッドへ
             txtYMD_func();
         }
 
-        //年月日のフォーカスが外れた場合の処理
+        /// <summary>
+        /// txtYMD_func
+        /// 年月日のフォーカスが外れた場合の処理
+        /// </summary>
         private void txtYMD_func()
         {
             if (txtYMD.Text == "")
@@ -3382,6 +3450,10 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
+        /// <summary>
+        /// GDateCheckEG
+        /// 日付範囲チェックのメソッド
+        /// </summary>
         private Boolean GDateCheckEG(int gNo, string EigyosyoCd, DateTime Ymd, bool alert = true)
         {
             //検索時のデータ取り出し先
@@ -3427,14 +3499,20 @@ namespace KATO.Form.A0020_UriageInput
             }
         }
 
-        //コードテキストボックスのフォーカスが外れた場合。
+        /// <summary>
+        /// labelSet_txtCD_Leave
+        /// コードテキストボックスのフォーカスが外れた場合
+        /// </summary>
         private void labelSet_txtCD_Leave(object sender, EventArgs e)
         {
             //コードテキストボックスのフォーカスが外れた場合のメソッドへ。
             labelSet_txtCD_func();
         }
 
-        //コードテキストボックスのフォーカスが外れた場合の処理。
+        /// <summary>
+        /// labelSet_txtCD_func
+        /// コードテキストボックスのフォーカスが外れた場合の処理
+        /// </summary>
         private void labelSet_txtCD_func()
         {
             //コードに該当する取引先名が空欄の場合は処理終了。

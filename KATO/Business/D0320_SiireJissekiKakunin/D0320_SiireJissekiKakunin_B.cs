@@ -137,7 +137,6 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 strSql += " AND b.備考 LIKE '%" + lstItem[7] + "%'";
             }
 
-
             // 得意先がある場合
             if (!lstItem[8].Equals(""))
             {
@@ -552,6 +551,5 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
 
             return;
         }
-
     }
 }

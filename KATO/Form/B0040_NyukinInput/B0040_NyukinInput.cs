@@ -614,7 +614,10 @@ namespace KATO.Form.B0040_NyukinInput
             }
         }
 
-        //伝票番号を入力した場合の処理
+        ///<summary>
+        ///txtDenpyoNo_Leave
+        ///伝票番号を入力した場合の処理
+        ///</summary>
         private void txtDenpyoNo_Leave(object sender, EventArgs e)
         {
             //伝票番号は空白だった場合は、処理終了

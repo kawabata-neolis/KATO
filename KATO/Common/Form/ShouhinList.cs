@@ -577,27 +577,29 @@ namespace KATO.Common.Form
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
 
-                if (columns.Contains("本社在庫"))
-                {
-                    //指定日在庫、棚卸数量の小数点切り下げ
-                    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
-                    {
-                        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["本社在庫"].ToString()));
-                        dtView.Rows[cnt]["本社在庫"] = decHonsha.ToString();
-                        //ヘッダーを含まない特定のセルの背景色を赤色にする
-                        this.gridTorihiki.Columns["本社在庫"].DefaultCellStyle.BackColor = Color.Red;
-                    }
-                }
 
-                if (columns.Contains("岐阜在庫"))
-                {
-                    //指定日在庫、棚卸数量の小数点切り下げ
-                    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
-                    {
-                        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["岐阜在庫"].ToString()));
-                        dtView.Rows[cnt]["岐阜在庫"] = decHonsha.ToString();
-                    }
-                }
+
+                //if (columns.Contains("本社在庫"))
+                //{
+                //    //指定日在庫、棚卸数量の小数点切り下げ
+                //    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+                //    {
+                //        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["本社在庫"].ToString()));
+                //        dtView.Rows[cnt]["本社在庫"] = decHonsha.ToString();
+                //        //ヘッダーを含まない特定のセルの背景色を赤色にする
+                //        this.gridTorihiki.Columns["本社在庫"].DefaultCellStyle.BackColor = Color.Red;
+                //    }
+                //}
+
+                //if (columns.Contains("岐阜在庫"))
+                //{
+                //    //指定日在庫、棚卸数量の小数点切り下げ
+                //    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+                //    {
+                //        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["岐阜在庫"].ToString()));
+                //        dtView.Rows[cnt]["岐阜在庫"] = decHonsha.ToString();
+                //    }
+                //}
 
                 gridTorihiki.DataSource = dtView;
                 this.gridTorihiki.Columns["コード"].Visible = false;

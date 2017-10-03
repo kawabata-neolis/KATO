@@ -62,7 +62,7 @@ namespace KATO.Business.M1120_Tanaban
         }
 
         ///<summary>
-        ///delEighosho
+        ///delTanaban
         ///テキストボックス内のデータをDBから削除
         ///</summary>
         public void delTanaban(List<string> lstString)
