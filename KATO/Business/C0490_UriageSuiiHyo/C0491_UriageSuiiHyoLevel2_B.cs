@@ -215,7 +215,6 @@ namespace KATO.Business.C0490_UriageSuiiHyo
             }
             return (dtGetTableGrid);
 
-        }
-        
+        }        
     }
 }

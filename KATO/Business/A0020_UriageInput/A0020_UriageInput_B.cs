@@ -8,6 +8,15 @@ using ClosedXML.Excel;
 
 namespace KATO.Business.A0020_UriageInput
 {
+    ///<summary>
+    ///A0020_UriageInput_B
+    ///売上入力のビジネス層
+    ///作成者：
+    ///作成日：2017/5/1
+    ///更新者：
+    ///更新日：2017/5/1
+    ///カラム論理名
+    ///</summary>
     class A0020_UriageInput_B
     {
         /// <summary>
@@ -2162,7 +2171,6 @@ namespace KATO.Business.A0020_UriageInput
                     //File.Delete(filepath);
                 }
             }
-
         }
     }
 }

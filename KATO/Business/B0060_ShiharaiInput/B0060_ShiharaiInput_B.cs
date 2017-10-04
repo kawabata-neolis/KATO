@@ -408,6 +408,5 @@ namespace KATO.Business.B0060_ShiharaiInput
                 dbconnective.DB_Disconnect();
             }
         }
-
     }
 }

@@ -186,7 +186,6 @@ namespace KATO.Business.C0490_UriageSuiiHyo
                 dbconnective.DB_Disconnect();
             }
             return (dtGetTableGrid);
-
         }
 
         ///<summary>

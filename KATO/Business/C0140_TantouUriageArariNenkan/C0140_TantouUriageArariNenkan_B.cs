@@ -653,6 +653,5 @@ namespace KATO.Business.C0140_TantouUriageArariNenkan
 
             return decKingakuGroup;
         }
-
     }
 }
