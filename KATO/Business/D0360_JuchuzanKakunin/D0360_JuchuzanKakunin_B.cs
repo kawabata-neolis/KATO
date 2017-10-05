@@ -376,6 +376,5 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
             return dtRet;
         }
-
     }
 }

@@ -63,7 +63,7 @@
             this.btn_35 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_16 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_34 = new KATO.Common.Ctl.BaseMenuButton();
-            this.btn_P1_15 = new KATO.Common.Ctl.BaseMenuButton();
+            this.btn_15 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_33 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_14 = new KATO.Common.Ctl.BaseMenuButton();
             this.btn_40 = new KATO.Common.Ctl.BaseMenuButton();
@@ -375,7 +375,7 @@
             this.tabPage1.Controls.Add(this.btn_35);
             this.tabPage1.Controls.Add(this.btn_16);
             this.tabPage1.Controls.Add(this.btn_34);
-            this.tabPage1.Controls.Add(this.btn_P1_15);
+            this.tabPage1.Controls.Add(this.btn_15);
             this.tabPage1.Controls.Add(this.btn_33);
             this.tabPage1.Controls.Add(this.btn_14);
             this.tabPage1.Controls.Add(this.btn_40);
@@ -458,6 +458,7 @@
             this.btn_30.Location = new System.Drawing.Point(725, 660);
             this.btn_30.Name = "btn_30";
             this.btn_30.Size = new System.Drawing.Size(280, 40);
+            this.btn_30.strPGNo = null;
             this.btn_30.TabIndex = 30;
             this.btn_30.Text = "  30.在庫一覧確認";
             this.btn_30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -472,6 +473,7 @@
             this.btn_29.Location = new System.Drawing.Point(725, 590);
             this.btn_29.Name = "btn_29";
             this.btn_29.Size = new System.Drawing.Size(280, 40);
+            this.btn_29.strPGNo = null;
             this.btn_29.TabIndex = 29;
             this.btn_29.Text = "  29.客先別在庫表_?";
             this.btn_29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -486,6 +488,7 @@
             this.btn_10.Location = new System.Drawing.Point(30, 660);
             this.btn_10.Name = "btn_10";
             this.btn_10.Size = new System.Drawing.Size(280, 40);
+            this.btn_10.strPGNo = null;
             this.btn_10.TabIndex = 10;
             this.btn_10.Text = "  10.発注入力";
             this.btn_10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -500,6 +503,7 @@
             this.btn_28.Location = new System.Drawing.Point(725, 520);
             this.btn_28.Name = "btn_28";
             this.btn_28.Size = new System.Drawing.Size(280, 40);
+            this.btn_28.strPGNo = null;
             this.btn_28.TabIndex = 28;
             this.btn_28.Text = "  28.倉庫移動確認_?";
             this.btn_28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -514,6 +518,7 @@
             this.btn_9.Location = new System.Drawing.Point(30, 590);
             this.btn_9.Name = "btn_9";
             this.btn_9.Size = new System.Drawing.Size(280, 40);
+            this.btn_9.strPGNo = null;
             this.btn_9.TabIndex = 9;
             this.btn_9.Text = "  9.仕入データチェックリスト";
             this.btn_9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -528,6 +533,7 @@
             this.btn_27.Location = new System.Drawing.Point(725, 450);
             this.btn_27.Name = "btn_27";
             this.btn_27.Size = new System.Drawing.Size(280, 40);
+            this.btn_27.strPGNo = null;
             this.btn_27.TabIndex = 27;
             this.btn_27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_27.UseVisualStyleBackColor = false;
@@ -541,6 +547,7 @@
             this.btn_8.Location = new System.Drawing.Point(30, 520);
             this.btn_8.Name = "btn_8";
             this.btn_8.Size = new System.Drawing.Size(280, 40);
+            this.btn_8.strPGNo = null;
             this.btn_8.TabIndex = 8;
             this.btn_8.Text = "  8.納品書印刷";
             this.btn_8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -555,6 +562,7 @@
             this.btn_26.Location = new System.Drawing.Point(725, 380);
             this.btn_26.Name = "btn_26";
             this.btn_26.Size = new System.Drawing.Size(280, 40);
+            this.btn_26.strPGNo = null;
             this.btn_26.TabIndex = 26;
             this.btn_26.Text = "  26.ＭＯ入力確定_?";
             this.btn_26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -569,6 +577,7 @@
             this.btn_7.Location = new System.Drawing.Point(30, 450);
             this.btn_7.Name = "btn_7";
             this.btn_7.Size = new System.Drawing.Size(280, 40);
+            this.btn_7.strPGNo = null;
             this.btn_7.TabIndex = 7;
             this.btn_7.Text = "  7.支払データチェックリスト";
             this.btn_7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -583,6 +592,7 @@
             this.btn_25.Location = new System.Drawing.Point(725, 310);
             this.btn_25.Name = "btn_25";
             this.btn_25.Size = new System.Drawing.Size(280, 40);
+            this.btn_25.strPGNo = null;
             this.btn_25.TabIndex = 25;
             this.btn_25.Text = "  25.ＭＯ入力";
             this.btn_25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -597,6 +607,7 @@
             this.btn_6.Location = new System.Drawing.Point(30, 380);
             this.btn_6.Name = "btn_6";
             this.btn_6.Size = new System.Drawing.Size(280, 40);
+            this.btn_6.strPGNo = null;
             this.btn_6.TabIndex = 6;
             this.btn_6.Text = "  6.支払入力";
             this.btn_6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -611,6 +622,7 @@
             this.btn_32.Location = new System.Drawing.Point(1075, 100);
             this.btn_32.Name = "btn_32";
             this.btn_32.Size = new System.Drawing.Size(280, 40);
+            this.btn_32.strPGNo = null;
             this.btn_32.TabIndex = 32;
             this.btn_32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_32.UseVisualStyleBackColor = false;
@@ -624,6 +636,7 @@
             this.btn_5.Location = new System.Drawing.Point(30, 310);
             this.btn_5.Name = "btn_5";
             this.btn_5.Size = new System.Drawing.Size(280, 40);
+            this.btn_5.strPGNo = null;
             this.btn_5.TabIndex = 5;
             this.btn_5.Text = "  5.入金データチェックリスト";
             this.btn_5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -638,6 +651,7 @@
             this.btn_12.Location = new System.Drawing.Point(380, 100);
             this.btn_12.Name = "btn_12";
             this.btn_12.Size = new System.Drawing.Size(280, 40);
+            this.btn_12.strPGNo = null;
             this.btn_12.TabIndex = 12;
             this.btn_12.Text = "  12.注文書印刷";
             this.btn_12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -652,6 +666,7 @@
             this.btn_11.Location = new System.Drawing.Point(380, 30);
             this.btn_11.Name = "btn_11";
             this.btn_11.Size = new System.Drawing.Size(280, 40);
+            this.btn_11.strPGNo = null;
             this.btn_11.TabIndex = 11;
             this.btn_11.Text = "  11.加工手配入力";
             this.btn_11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -666,6 +681,7 @@
             this.btn_31.Location = new System.Drawing.Point(1075, 30);
             this.btn_31.Name = "btn_31";
             this.btn_31.Size = new System.Drawing.Size(280, 40);
+            this.btn_31.strPGNo = null;
             this.btn_31.TabIndex = 31;
             this.btn_31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_31.UseVisualStyleBackColor = false;
@@ -679,6 +695,7 @@
             this.btn_39.Location = new System.Drawing.Point(1075, 590);
             this.btn_39.Name = "btn_39";
             this.btn_39.Size = new System.Drawing.Size(280, 40);
+            this.btn_39.strPGNo = null;
             this.btn_39.TabIndex = 39;
             this.btn_39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_39.UseVisualStyleBackColor = false;
@@ -692,6 +709,7 @@
             this.btn_21.Location = new System.Drawing.Point(725, 30);
             this.btn_21.Name = "btn_21";
             this.btn_21.Size = new System.Drawing.Size(280, 40);
+            this.btn_21.strPGNo = null;
             this.btn_21.TabIndex = 21;
             this.btn_21.Text = "  21.見積書入力";
             this.btn_21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -706,6 +724,7 @@
             this.btn_38.Location = new System.Drawing.Point(1075, 520);
             this.btn_38.Name = "btn_38";
             this.btn_38.Size = new System.Drawing.Size(280, 40);
+            this.btn_38.strPGNo = null;
             this.btn_38.TabIndex = 38;
             this.btn_38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_38.UseVisualStyleBackColor = false;
@@ -719,6 +738,7 @@
             this.btn_19.Location = new System.Drawing.Point(380, 590);
             this.btn_19.Name = "btn_19";
             this.btn_19.Size = new System.Drawing.Size(280, 40);
+            this.btn_19.strPGNo = null;
             this.btn_19.TabIndex = 19;
             this.btn_19.Text = "  19.出庫指示書(受注分)";
             this.btn_19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -733,6 +753,7 @@
             this.btn_37.Location = new System.Drawing.Point(1075, 450);
             this.btn_37.Name = "btn_37";
             this.btn_37.Size = new System.Drawing.Size(280, 40);
+            this.btn_37.strPGNo = null;
             this.btn_37.TabIndex = 37;
             this.btn_37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_37.UseVisualStyleBackColor = false;
@@ -746,6 +767,7 @@
             this.btn_18.Location = new System.Drawing.Point(380, 520);
             this.btn_18.Name = "btn_18";
             this.btn_18.Size = new System.Drawing.Size(280, 40);
+            this.btn_18.strPGNo = null;
             this.btn_18.TabIndex = 18;
             this.btn_18.Text = "  18.出庫指示書(依頼分)";
             this.btn_18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -760,6 +782,7 @@
             this.btn_36.Location = new System.Drawing.Point(1075, 380);
             this.btn_36.Name = "btn_36";
             this.btn_36.Size = new System.Drawing.Size(280, 40);
+            this.btn_36.strPGNo = null;
             this.btn_36.TabIndex = 36;
             this.btn_36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_36.UseVisualStyleBackColor = false;
@@ -773,6 +796,7 @@
             this.btn_17.Location = new System.Drawing.Point(380, 450);
             this.btn_17.Name = "btn_17";
             this.btn_17.Size = new System.Drawing.Size(280, 40);
+            this.btn_17.strPGNo = null;
             this.btn_17.TabIndex = 17;
             this.btn_17.Text = "  17.出庫承認入力_?";
             this.btn_17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -787,6 +811,7 @@
             this.btn_35.Location = new System.Drawing.Point(1075, 310);
             this.btn_35.Name = "btn_35";
             this.btn_35.Size = new System.Drawing.Size(280, 40);
+            this.btn_35.strPGNo = null;
             this.btn_35.TabIndex = 35;
             this.btn_35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_35.UseVisualStyleBackColor = false;
@@ -800,6 +825,7 @@
             this.btn_16.Location = new System.Drawing.Point(380, 380);
             this.btn_16.Name = "btn_16";
             this.btn_16.Size = new System.Drawing.Size(280, 40);
+            this.btn_16.strPGNo = null;
             this.btn_16.TabIndex = 16;
             this.btn_16.Text = "  16.出庫依頼入力_?";
             this.btn_16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -814,25 +840,27 @@
             this.btn_34.Location = new System.Drawing.Point(1075, 240);
             this.btn_34.Name = "btn_34";
             this.btn_34.Size = new System.Drawing.Size(280, 40);
+            this.btn_34.strPGNo = null;
             this.btn_34.TabIndex = 34;
             this.btn_34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_34.UseVisualStyleBackColor = false;
             this.btn_34.Visible = false;
             this.btn_34.Click += new System.EventHandler(this.btnClick);
             // 
-            // btn_P1_15
+            // btn_15
             // 
-            this.btn_P1_15.BackColor = System.Drawing.Color.LightYellow;
-            this.btn_P1_15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btn_P1_15.Location = new System.Drawing.Point(380, 310);
-            this.btn_P1_15.Name = "btn_P1_15";
-            this.btn_P1_15.Size = new System.Drawing.Size(280, 40);
-            this.btn_P1_15.TabIndex = 15;
-            this.btn_P1_15.Text = "  15.売上チェックリスト";
-            this.btn_P1_15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_P1_15.UseVisualStyleBackColor = false;
-            this.btn_P1_15.Visible = false;
-            this.btn_P1_15.Click += new System.EventHandler(this.btnClick);
+            this.btn_15.BackColor = System.Drawing.Color.LightYellow;
+            this.btn_15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.btn_15.Location = new System.Drawing.Point(380, 310);
+            this.btn_15.Name = "btn_15";
+            this.btn_15.Size = new System.Drawing.Size(280, 40);
+            this.btn_15.strPGNo = null;
+            this.btn_15.TabIndex = 15;
+            this.btn_15.Text = "  15.売上チェックリスト";
+            this.btn_15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_15.UseVisualStyleBackColor = false;
+            this.btn_15.Visible = false;
+            this.btn_15.Click += new System.EventHandler(this.btnClick);
             // 
             // btn_33
             // 
@@ -841,6 +869,7 @@
             this.btn_33.Location = new System.Drawing.Point(1075, 170);
             this.btn_33.Name = "btn_33";
             this.btn_33.Size = new System.Drawing.Size(280, 40);
+            this.btn_33.strPGNo = null;
             this.btn_33.TabIndex = 33;
             this.btn_33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_33.UseVisualStyleBackColor = false;
@@ -854,6 +883,7 @@
             this.btn_14.Location = new System.Drawing.Point(380, 240);
             this.btn_14.Name = "btn_14";
             this.btn_14.Size = new System.Drawing.Size(280, 40);
+            this.btn_14.strPGNo = null;
             this.btn_14.TabIndex = 14;
             this.btn_14.Text = "  14.棚卸入力";
             this.btn_14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -868,6 +898,7 @@
             this.btn_40.Location = new System.Drawing.Point(1075, 660);
             this.btn_40.Name = "btn_40";
             this.btn_40.Size = new System.Drawing.Size(280, 40);
+            this.btn_40.strPGNo = null;
             this.btn_40.TabIndex = 40;
             this.btn_40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_40.UseVisualStyleBackColor = false;
@@ -881,6 +912,7 @@
             this.btn_13.Location = new System.Drawing.Point(380, 170);
             this.btn_13.Name = "btn_13";
             this.btn_13.Size = new System.Drawing.Size(280, 40);
+            this.btn_13.strPGNo = null;
             this.btn_13.TabIndex = 13;
             this.btn_13.Text = "  13.担当者別売上管理表";
             this.btn_13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -895,6 +927,7 @@
             this.btn_24.Location = new System.Drawing.Point(725, 240);
             this.btn_24.Name = "btn_24";
             this.btn_24.Size = new System.Drawing.Size(280, 40);
+            this.btn_24.strPGNo = null;
             this.btn_24.TabIndex = 24;
             this.btn_24.Text = "  24.加工品受注入力";
             this.btn_24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -909,6 +942,7 @@
             this.btn_20.Location = new System.Drawing.Point(380, 660);
             this.btn_20.Name = "btn_20";
             this.btn_20.Size = new System.Drawing.Size(280, 40);
+            this.btn_20.strPGNo = null;
             this.btn_20.TabIndex = 20;
             this.btn_20.Text = "  20.出庫指示書(加工分)";
             this.btn_20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -923,6 +957,7 @@
             this.btn_23.Location = new System.Drawing.Point(725, 170);
             this.btn_23.Name = "btn_23";
             this.btn_23.Size = new System.Drawing.Size(280, 40);
+            this.btn_23.strPGNo = null;
             this.btn_23.TabIndex = 23;
             this.btn_23.Text = "  23.返品値引分売り上げ承認入力";
             this.btn_23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -937,6 +972,7 @@
             this.btn_4.Location = new System.Drawing.Point(30, 240);
             this.btn_4.Name = "btn_4";
             this.btn_4.Size = new System.Drawing.Size(280, 40);
+            this.btn_4.strPGNo = null;
             this.btn_4.TabIndex = 4;
             this.btn_4.Text = "  4.入金入力";
             this.btn_4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -951,6 +987,7 @@
             this.btn_22.Location = new System.Drawing.Point(725, 100);
             this.btn_22.Name = "btn_22";
             this.btn_22.Size = new System.Drawing.Size(280, 40);
+            this.btn_22.strPGNo = null;
             this.btn_22.TabIndex = 22;
             this.btn_22.Text = "  22.受注分出庫承認入力";
             this.btn_22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -965,6 +1002,7 @@
             this.btn_3.Location = new System.Drawing.Point(30, 170);
             this.btn_3.Name = "btn_3";
             this.btn_3.Size = new System.Drawing.Size(280, 40);
+            this.btn_3.strPGNo = null;
             this.btn_3.TabIndex = 3;
             this.btn_3.Text = "  3.仕入入力";
             this.btn_3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -979,6 +1017,7 @@
             this.btn_2.Location = new System.Drawing.Point(30, 100);
             this.btn_2.Name = "btn_2";
             this.btn_2.Size = new System.Drawing.Size(280, 40);
+            this.btn_2.strPGNo = null;
             this.btn_2.TabIndex = 2;
             this.btn_2.Text = "  2.売上入力";
             this.btn_2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -993,6 +1032,7 @@
             this.btn_1.Location = new System.Drawing.Point(30, 30);
             this.btn_1.Name = "btn_1";
             this.btn_1.Size = new System.Drawing.Size(280, 40);
+            this.btn_1.strPGNo = null;
             this.btn_1.TabIndex = 1;
             this.btn_1.Text = "  1.受注入力";
             this.btn_1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1058,6 +1098,7 @@
             this.btn_70.Location = new System.Drawing.Point(725, 660);
             this.btn_70.Name = "btn_70";
             this.btn_70.Size = new System.Drawing.Size(280, 40);
+            this.btn_70.strPGNo = null;
             this.btn_70.TabIndex = 30;
             this.btn_70.Text = "在庫一覧表_?";
             this.btn_70.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1072,6 +1113,7 @@
             this.btn_69.Location = new System.Drawing.Point(725, 590);
             this.btn_69.Name = "btn_69";
             this.btn_69.Size = new System.Drawing.Size(280, 40);
+            this.btn_69.strPGNo = null;
             this.btn_69.TabIndex = 29;
             this.btn_69.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_69.UseVisualStyleBackColor = false;
@@ -1085,6 +1127,7 @@
             this.btn_50.Location = new System.Drawing.Point(30, 660);
             this.btn_50.Name = "btn_50";
             this.btn_50.Size = new System.Drawing.Size(280, 40);
+            this.btn_50.strPGNo = null;
             this.btn_50.TabIndex = 10;
             this.btn_50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_50.UseVisualStyleBackColor = false;
@@ -1098,6 +1141,7 @@
             this.btn_68.Location = new System.Drawing.Point(725, 520);
             this.btn_68.Name = "btn_68";
             this.btn_68.Size = new System.Drawing.Size(280, 40);
+            this.btn_68.strPGNo = null;
             this.btn_68.TabIndex = 28;
             this.btn_68.Text = "棚卸チェックシート";
             this.btn_68.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1112,6 +1156,7 @@
             this.btn_49.Location = new System.Drawing.Point(30, 590);
             this.btn_49.Name = "btn_49";
             this.btn_49.Size = new System.Drawing.Size(280, 40);
+            this.btn_49.strPGNo = null;
             this.btn_49.TabIndex = 9;
             this.btn_49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_49.UseVisualStyleBackColor = false;
@@ -1125,6 +1170,7 @@
             this.btn_67.Location = new System.Drawing.Point(725, 450);
             this.btn_67.Name = "btn_67";
             this.btn_67.Size = new System.Drawing.Size(280, 40);
+            this.btn_67.strPGNo = null;
             this.btn_67.TabIndex = 27;
             this.btn_67.Text = "棚卸プレート_?";
             this.btn_67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1139,6 +1185,7 @@
             this.btn_48.Location = new System.Drawing.Point(30, 520);
             this.btn_48.Name = "btn_48";
             this.btn_48.Size = new System.Drawing.Size(280, 40);
+            this.btn_48.strPGNo = null;
             this.btn_48.TabIndex = 8;
             this.btn_48.Text = "商品元帳確認";
             this.btn_48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1153,6 +1200,7 @@
             this.btn_66.Location = new System.Drawing.Point(725, 380);
             this.btn_66.Name = "btn_66";
             this.btn_66.Size = new System.Drawing.Size(280, 40);
+            this.btn_66.strPGNo = null;
             this.btn_66.TabIndex = 26;
             this.btn_66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_66.UseVisualStyleBackColor = false;
@@ -1166,6 +1214,7 @@
             this.btn_47.Location = new System.Drawing.Point(30, 450);
             this.btn_47.Name = "btn_47";
             this.btn_47.Size = new System.Drawing.Size(280, 40);
+            this.btn_47.strPGNo = null;
             this.btn_47.TabIndex = 7;
             this.btn_47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_47.UseVisualStyleBackColor = false;
@@ -1179,6 +1228,7 @@
             this.btn_65.Location = new System.Drawing.Point(725, 310);
             this.btn_65.Name = "btn_65";
             this.btn_65.Size = new System.Drawing.Size(280, 40);
+            this.btn_65.strPGNo = null;
             this.btn_65.TabIndex = 25;
             this.btn_65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_65.UseVisualStyleBackColor = false;
@@ -1192,6 +1242,7 @@
             this.btn_46.Location = new System.Drawing.Point(30, 380);
             this.btn_46.Name = "btn_46";
             this.btn_46.Size = new System.Drawing.Size(280, 40);
+            this.btn_46.strPGNo = null;
             this.btn_46.TabIndex = 6;
             this.btn_46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_46.UseVisualStyleBackColor = false;
@@ -1205,6 +1256,7 @@
             this.btn_72.Location = new System.Drawing.Point(1075, 100);
             this.btn_72.Name = "btn_72";
             this.btn_72.Size = new System.Drawing.Size(280, 40);
+            this.btn_72.strPGNo = null;
             this.btn_72.TabIndex = 32;
             this.btn_72.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_72.UseVisualStyleBackColor = false;
@@ -1218,6 +1270,7 @@
             this.btn_45.Location = new System.Drawing.Point(30, 310);
             this.btn_45.Name = "btn_45";
             this.btn_45.Size = new System.Drawing.Size(280, 40);
+            this.btn_45.strPGNo = null;
             this.btn_45.TabIndex = 5;
             this.btn_45.Text = "受注残確認";
             this.btn_45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1232,6 +1285,7 @@
             this.btn_52.Location = new System.Drawing.Point(380, 100);
             this.btn_52.Name = "btn_52";
             this.btn_52.Size = new System.Drawing.Size(280, 40);
+            this.btn_52.strPGNo = null;
             this.btn_52.TabIndex = 12;
             this.btn_52.Text = "請求明細書";
             this.btn_52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1246,6 +1300,7 @@
             this.btn_51.Location = new System.Drawing.Point(380, 30);
             this.btn_51.Name = "btn_51";
             this.btn_51.Size = new System.Drawing.Size(280, 40);
+            this.btn_51.strPGNo = null;
             this.btn_51.TabIndex = 11;
             this.btn_51.Text = "請求一覧表";
             this.btn_51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1260,6 +1315,7 @@
             this.btn_71.Location = new System.Drawing.Point(1075, 30);
             this.btn_71.Name = "btn_71";
             this.btn_71.Size = new System.Drawing.Size(280, 40);
+            this.btn_71.strPGNo = null;
             this.btn_71.TabIndex = 31;
             this.btn_71.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_71.UseVisualStyleBackColor = false;
@@ -1273,6 +1329,7 @@
             this.btn_79.Location = new System.Drawing.Point(1075, 590);
             this.btn_79.Name = "btn_79";
             this.btn_79.Size = new System.Drawing.Size(280, 40);
+            this.btn_79.strPGNo = null;
             this.btn_79.TabIndex = 39;
             this.btn_79.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_79.UseVisualStyleBackColor = false;
@@ -1286,6 +1343,7 @@
             this.btn_61.Location = new System.Drawing.Point(725, 30);
             this.btn_61.Name = "btn_61";
             this.btn_61.Size = new System.Drawing.Size(280, 40);
+            this.btn_61.strPGNo = null;
             this.btn_61.TabIndex = 21;
             this.btn_61.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_61.UseVisualStyleBackColor = false;
@@ -1299,6 +1357,7 @@
             this.btn_78.Location = new System.Drawing.Point(1075, 520);
             this.btn_78.Name = "btn_78";
             this.btn_78.Size = new System.Drawing.Size(280, 40);
+            this.btn_78.strPGNo = null;
             this.btn_78.TabIndex = 38;
             this.btn_78.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_78.UseVisualStyleBackColor = false;
@@ -1312,6 +1371,7 @@
             this.btn_59.Location = new System.Drawing.Point(380, 590);
             this.btn_59.Name = "btn_59";
             this.btn_59.Size = new System.Drawing.Size(280, 40);
+            this.btn_59.strPGNo = null;
             this.btn_59.TabIndex = 19;
             this.btn_59.Text = "分類別売上推移表";
             this.btn_59.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1326,6 +1386,7 @@
             this.btn_77.Location = new System.Drawing.Point(1075, 450);
             this.btn_77.Name = "btn_77";
             this.btn_77.Size = new System.Drawing.Size(280, 40);
+            this.btn_77.strPGNo = null;
             this.btn_77.TabIndex = 37;
             this.btn_77.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_77.UseVisualStyleBackColor = false;
@@ -1339,6 +1400,7 @@
             this.btn_58.Location = new System.Drawing.Point(380, 520);
             this.btn_58.Name = "btn_58";
             this.btn_58.Size = new System.Drawing.Size(280, 40);
+            this.btn_58.strPGNo = null;
             this.btn_58.TabIndex = 18;
             this.btn_58.Text = "分類別仕入推移表";
             this.btn_58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1353,6 +1415,7 @@
             this.btn_76.Location = new System.Drawing.Point(1075, 380);
             this.btn_76.Name = "btn_76";
             this.btn_76.Size = new System.Drawing.Size(280, 40);
+            this.btn_76.strPGNo = null;
             this.btn_76.TabIndex = 36;
             this.btn_76.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_76.UseVisualStyleBackColor = false;
@@ -1366,6 +1429,7 @@
             this.btn_57.Location = new System.Drawing.Point(380, 450);
             this.btn_57.Name = "btn_57";
             this.btn_57.Size = new System.Drawing.Size(280, 40);
+            this.btn_57.strPGNo = null;
             this.btn_57.TabIndex = 17;
             this.btn_57.Text = "発注数変更";
             this.btn_57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1380,6 +1444,7 @@
             this.btn_75.Location = new System.Drawing.Point(1075, 310);
             this.btn_75.Name = "btn_75";
             this.btn_75.Size = new System.Drawing.Size(280, 40);
+            this.btn_75.strPGNo = null;
             this.btn_75.TabIndex = 35;
             this.btn_75.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_75.UseVisualStyleBackColor = false;
@@ -1393,6 +1458,7 @@
             this.btn_56.Location = new System.Drawing.Point(380, 380);
             this.btn_56.Name = "btn_56";
             this.btn_56.Size = new System.Drawing.Size(280, 40);
+            this.btn_56.strPGNo = null;
             this.btn_56.TabIndex = 16;
             this.btn_56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_56.UseVisualStyleBackColor = false;
@@ -1406,6 +1472,7 @@
             this.btn_74.Location = new System.Drawing.Point(1075, 240);
             this.btn_74.Name = "btn_74";
             this.btn_74.Size = new System.Drawing.Size(280, 40);
+            this.btn_74.strPGNo = null;
             this.btn_74.TabIndex = 34;
             this.btn_74.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_74.UseVisualStyleBackColor = false;
@@ -1419,6 +1486,7 @@
             this.btn_55.Location = new System.Drawing.Point(380, 310);
             this.btn_55.Name = "btn_55";
             this.btn_55.Size = new System.Drawing.Size(280, 40);
+            this.btn_55.strPGNo = null;
             this.btn_55.TabIndex = 15;
             this.btn_55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_55.UseVisualStyleBackColor = false;
@@ -1432,6 +1500,7 @@
             this.btn_73.Location = new System.Drawing.Point(1075, 170);
             this.btn_73.Name = "btn_73";
             this.btn_73.Size = new System.Drawing.Size(280, 40);
+            this.btn_73.strPGNo = null;
             this.btn_73.TabIndex = 33;
             this.btn_73.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_73.UseVisualStyleBackColor = false;
@@ -1445,6 +1514,7 @@
             this.btn_54.Location = new System.Drawing.Point(380, 240);
             this.btn_54.Name = "btn_54";
             this.btn_54.Size = new System.Drawing.Size(280, 40);
+            this.btn_54.strPGNo = null;
             this.btn_54.TabIndex = 14;
             this.btn_54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_54.UseVisualStyleBackColor = false;
@@ -1458,6 +1528,7 @@
             this.btn_80.Location = new System.Drawing.Point(1075, 660);
             this.btn_80.Name = "btn_80";
             this.btn_80.Size = new System.Drawing.Size(280, 40);
+            this.btn_80.strPGNo = null;
             this.btn_80.TabIndex = 40;
             this.btn_80.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_80.UseVisualStyleBackColor = false;
@@ -1471,6 +1542,7 @@
             this.btn_53.Location = new System.Drawing.Point(380, 170);
             this.btn_53.Name = "btn_53";
             this.btn_53.Size = new System.Drawing.Size(280, 40);
+            this.btn_53.strPGNo = null;
             this.btn_53.TabIndex = 13;
             this.btn_53.Text = "売上削除承認入力_?";
             this.btn_53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1485,6 +1557,7 @@
             this.btn_64.Location = new System.Drawing.Point(725, 240);
             this.btn_64.Name = "btn_64";
             this.btn_64.Size = new System.Drawing.Size(280, 40);
+            this.btn_64.strPGNo = null;
             this.btn_64.TabIndex = 24;
             this.btn_64.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_64.UseVisualStyleBackColor = false;
@@ -1498,6 +1571,7 @@
             this.btn_60.Location = new System.Drawing.Point(380, 660);
             this.btn_60.Name = "btn_60";
             this.btn_60.Size = new System.Drawing.Size(280, 40);
+            this.btn_60.strPGNo = null;
             this.btn_60.TabIndex = 20;
             this.btn_60.Text = "売掛金残高一覧確認_?";
             this.btn_60.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1512,6 +1586,7 @@
             this.btn_63.Location = new System.Drawing.Point(725, 170);
             this.btn_63.Name = "btn_63";
             this.btn_63.Size = new System.Drawing.Size(280, 40);
+            this.btn_63.strPGNo = null;
             this.btn_63.TabIndex = 23;
             this.btn_63.Text = "得意先別売上粗利推移表";
             this.btn_63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1526,6 +1601,7 @@
             this.btn_44.Location = new System.Drawing.Point(30, 240);
             this.btn_44.Name = "btn_44";
             this.btn_44.Size = new System.Drawing.Size(280, 40);
+            this.btn_44.strPGNo = null;
             this.btn_44.TabIndex = 4;
             this.btn_44.Text = "仕入先元帳確認";
             this.btn_44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1540,6 +1616,7 @@
             this.btn_62.Location = new System.Drawing.Point(725, 100);
             this.btn_62.Name = "btn_62";
             this.btn_62.Size = new System.Drawing.Size(280, 40);
+            this.btn_62.strPGNo = null;
             this.btn_62.TabIndex = 22;
             this.btn_62.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_62.UseVisualStyleBackColor = false;
@@ -1553,6 +1630,7 @@
             this.btn_43.Location = new System.Drawing.Point(30, 170);
             this.btn_43.Name = "btn_43";
             this.btn_43.Size = new System.Drawing.Size(280, 40);
+            this.btn_43.strPGNo = null;
             this.btn_43.TabIndex = 3;
             this.btn_43.Text = "得意先元帳確認";
             this.btn_43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1567,6 +1645,7 @@
             this.btn_42.Location = new System.Drawing.Point(30, 100);
             this.btn_42.Name = "btn_42";
             this.btn_42.Size = new System.Drawing.Size(280, 40);
+            this.btn_42.strPGNo = null;
             this.btn_42.TabIndex = 2;
             this.btn_42.Text = "仕入実績確認";
             this.btn_42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1581,6 +1660,7 @@
             this.btn_41.Location = new System.Drawing.Point(30, 30);
             this.btn_41.Name = "btn_41";
             this.btn_41.Size = new System.Drawing.Size(280, 40);
+            this.btn_41.strPGNo = null;
             this.btn_41.TabIndex = 1;
             this.btn_41.Text = "売上実績確認";
             this.btn_41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1645,6 +1725,7 @@
             this.btn_110.Location = new System.Drawing.Point(725, 660);
             this.btn_110.Name = "btn_110";
             this.btn_110.Size = new System.Drawing.Size(280, 40);
+            this.btn_110.strPGNo = null;
             this.btn_110.TabIndex = 30;
             this.btn_110.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_110.UseVisualStyleBackColor = false;
@@ -1658,6 +1739,7 @@
             this.btn_109.Location = new System.Drawing.Point(725, 590);
             this.btn_109.Name = "btn_109";
             this.btn_109.Size = new System.Drawing.Size(280, 40);
+            this.btn_109.strPGNo = null;
             this.btn_109.TabIndex = 29;
             this.btn_109.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_109.UseVisualStyleBackColor = false;
@@ -1671,6 +1753,7 @@
             this.btn_90.Location = new System.Drawing.Point(30, 660);
             this.btn_90.Name = "btn_90";
             this.btn_90.Size = new System.Drawing.Size(280, 40);
+            this.btn_90.strPGNo = null;
             this.btn_90.TabIndex = 10;
             this.btn_90.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_90.UseVisualStyleBackColor = false;
@@ -1684,6 +1767,7 @@
             this.btn_108.Location = new System.Drawing.Point(725, 520);
             this.btn_108.Name = "btn_108";
             this.btn_108.Size = new System.Drawing.Size(280, 40);
+            this.btn_108.strPGNo = null;
             this.btn_108.TabIndex = 28;
             this.btn_108.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_108.UseVisualStyleBackColor = false;
@@ -1697,6 +1781,7 @@
             this.btn_89.Location = new System.Drawing.Point(30, 590);
             this.btn_89.Name = "btn_89";
             this.btn_89.Size = new System.Drawing.Size(280, 40);
+            this.btn_89.strPGNo = null;
             this.btn_89.TabIndex = 9;
             this.btn_89.Text = "仕入実績確認（AS400）";
             this.btn_89.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1711,6 +1796,7 @@
             this.btn_107.Location = new System.Drawing.Point(725, 450);
             this.btn_107.Name = "btn_107";
             this.btn_107.Size = new System.Drawing.Size(280, 40);
+            this.btn_107.strPGNo = null;
             this.btn_107.TabIndex = 27;
             this.btn_107.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_107.UseVisualStyleBackColor = false;
@@ -1724,6 +1810,7 @@
             this.btn_88.Location = new System.Drawing.Point(30, 520);
             this.btn_88.Name = "btn_88";
             this.btn_88.Size = new System.Drawing.Size(280, 40);
+            this.btn_88.strPGNo = null;
             this.btn_88.TabIndex = 8;
             this.btn_88.Text = "売上実績確認（AS400）";
             this.btn_88.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1738,6 +1825,7 @@
             this.btn_106.Location = new System.Drawing.Point(725, 380);
             this.btn_106.Name = "btn_106";
             this.btn_106.Size = new System.Drawing.Size(280, 40);
+            this.btn_106.strPGNo = null;
             this.btn_106.TabIndex = 26;
             this.btn_106.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_106.UseVisualStyleBackColor = false;
@@ -1751,6 +1839,7 @@
             this.btn_87.Location = new System.Drawing.Point(30, 450);
             this.btn_87.Name = "btn_87";
             this.btn_87.Size = new System.Drawing.Size(280, 40);
+            this.btn_87.strPGNo = null;
             this.btn_87.TabIndex = 7;
             this.btn_87.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_87.UseVisualStyleBackColor = false;
@@ -1764,6 +1853,7 @@
             this.btn_105.Location = new System.Drawing.Point(725, 310);
             this.btn_105.Name = "btn_105";
             this.btn_105.Size = new System.Drawing.Size(280, 40);
+            this.btn_105.strPGNo = null;
             this.btn_105.TabIndex = 25;
             this.btn_105.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_105.UseVisualStyleBackColor = false;
@@ -1777,6 +1867,7 @@
             this.btn_86.Location = new System.Drawing.Point(30, 380);
             this.btn_86.Name = "btn_86";
             this.btn_86.Size = new System.Drawing.Size(280, 40);
+            this.btn_86.strPGNo = null;
             this.btn_86.TabIndex = 6;
             this.btn_86.Text = "得意先別売上検収入力＆確認";
             this.btn_86.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1791,6 +1882,7 @@
             this.btn_112.Location = new System.Drawing.Point(1075, 100);
             this.btn_112.Name = "btn_112";
             this.btn_112.Size = new System.Drawing.Size(280, 40);
+            this.btn_112.strPGNo = null;
             this.btn_112.TabIndex = 32;
             this.btn_112.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_112.UseVisualStyleBackColor = false;
@@ -1804,6 +1896,7 @@
             this.btn_85.Location = new System.Drawing.Point(30, 310);
             this.btn_85.Name = "btn_85";
             this.btn_85.Size = new System.Drawing.Size(280, 40);
+            this.btn_85.strPGNo = null;
             this.btn_85.TabIndex = 5;
             this.btn_85.Text = "商品群別売上仕入管理表";
             this.btn_85.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1818,6 +1911,7 @@
             this.btn_92.Location = new System.Drawing.Point(380, 100);
             this.btn_92.Name = "btn_92";
             this.btn_92.Size = new System.Drawing.Size(280, 40);
+            this.btn_92.strPGNo = null;
             this.btn_92.TabIndex = 12;
             this.btn_92.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_92.UseVisualStyleBackColor = false;
@@ -1831,6 +1925,7 @@
             this.btn_91.Location = new System.Drawing.Point(380, 30);
             this.btn_91.Name = "btn_91";
             this.btn_91.Size = new System.Drawing.Size(280, 40);
+            this.btn_91.strPGNo = null;
             this.btn_91.TabIndex = 11;
             this.btn_91.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_91.UseVisualStyleBackColor = false;
@@ -1844,6 +1939,7 @@
             this.btn_111.Location = new System.Drawing.Point(1075, 30);
             this.btn_111.Name = "btn_111";
             this.btn_111.Size = new System.Drawing.Size(280, 40);
+            this.btn_111.strPGNo = null;
             this.btn_111.TabIndex = 31;
             this.btn_111.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_111.UseVisualStyleBackColor = false;
@@ -1857,6 +1953,7 @@
             this.btn_119.Location = new System.Drawing.Point(1075, 590);
             this.btn_119.Name = "btn_119";
             this.btn_119.Size = new System.Drawing.Size(280, 40);
+            this.btn_119.strPGNo = null;
             this.btn_119.TabIndex = 39;
             this.btn_119.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_119.UseVisualStyleBackColor = false;
@@ -1870,6 +1967,7 @@
             this.btn_101.Location = new System.Drawing.Point(725, 30);
             this.btn_101.Name = "btn_101";
             this.btn_101.Size = new System.Drawing.Size(280, 40);
+            this.btn_101.strPGNo = null;
             this.btn_101.TabIndex = 21;
             this.btn_101.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_101.UseVisualStyleBackColor = false;
@@ -1883,6 +1981,7 @@
             this.btn_118.Location = new System.Drawing.Point(1075, 520);
             this.btn_118.Name = "btn_118";
             this.btn_118.Size = new System.Drawing.Size(280, 40);
+            this.btn_118.strPGNo = null;
             this.btn_118.TabIndex = 38;
             this.btn_118.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_118.UseVisualStyleBackColor = false;
@@ -1896,6 +1995,7 @@
             this.btn_99.Location = new System.Drawing.Point(380, 590);
             this.btn_99.Name = "btn_99";
             this.btn_99.Size = new System.Drawing.Size(280, 40);
+            this.btn_99.strPGNo = null;
             this.btn_99.TabIndex = 19;
             this.btn_99.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_99.UseVisualStyleBackColor = false;
@@ -1909,6 +2009,7 @@
             this.btn_117.Location = new System.Drawing.Point(1075, 450);
             this.btn_117.Name = "btn_117";
             this.btn_117.Size = new System.Drawing.Size(280, 40);
+            this.btn_117.strPGNo = null;
             this.btn_117.TabIndex = 37;
             this.btn_117.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_117.UseVisualStyleBackColor = false;
@@ -1922,6 +2023,7 @@
             this.btn_98.Location = new System.Drawing.Point(380, 520);
             this.btn_98.Name = "btn_98";
             this.btn_98.Size = new System.Drawing.Size(280, 40);
+            this.btn_98.strPGNo = null;
             this.btn_98.TabIndex = 18;
             this.btn_98.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_98.UseVisualStyleBackColor = false;
@@ -1935,6 +2037,7 @@
             this.btn_116.Location = new System.Drawing.Point(1075, 380);
             this.btn_116.Name = "btn_116";
             this.btn_116.Size = new System.Drawing.Size(280, 40);
+            this.btn_116.strPGNo = null;
             this.btn_116.TabIndex = 36;
             this.btn_116.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_116.UseVisualStyleBackColor = false;
@@ -1948,6 +2051,7 @@
             this.btn_97.Location = new System.Drawing.Point(380, 450);
             this.btn_97.Name = "btn_97";
             this.btn_97.Size = new System.Drawing.Size(280, 40);
+            this.btn_97.strPGNo = null;
             this.btn_97.TabIndex = 17;
             this.btn_97.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_97.UseVisualStyleBackColor = false;
@@ -1961,6 +2065,7 @@
             this.btn_115.Location = new System.Drawing.Point(1075, 310);
             this.btn_115.Name = "btn_115";
             this.btn_115.Size = new System.Drawing.Size(280, 40);
+            this.btn_115.strPGNo = null;
             this.btn_115.TabIndex = 35;
             this.btn_115.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_115.UseVisualStyleBackColor = false;
@@ -1974,6 +2079,7 @@
             this.btn_96.Location = new System.Drawing.Point(380, 380);
             this.btn_96.Name = "btn_96";
             this.btn_96.Size = new System.Drawing.Size(280, 40);
+            this.btn_96.strPGNo = null;
             this.btn_96.TabIndex = 16;
             this.btn_96.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_96.UseVisualStyleBackColor = false;
@@ -1987,6 +2093,7 @@
             this.btn_114.Location = new System.Drawing.Point(1075, 240);
             this.btn_114.Name = "btn_114";
             this.btn_114.Size = new System.Drawing.Size(280, 40);
+            this.btn_114.strPGNo = null;
             this.btn_114.TabIndex = 34;
             this.btn_114.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_114.UseVisualStyleBackColor = false;
@@ -2000,6 +2107,7 @@
             this.btn_95.Location = new System.Drawing.Point(380, 310);
             this.btn_95.Name = "btn_95";
             this.btn_95.Size = new System.Drawing.Size(280, 40);
+            this.btn_95.strPGNo = null;
             this.btn_95.TabIndex = 15;
             this.btn_95.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_95.UseVisualStyleBackColor = false;
@@ -2013,6 +2121,7 @@
             this.btn_113.Location = new System.Drawing.Point(1075, 170);
             this.btn_113.Name = "btn_113";
             this.btn_113.Size = new System.Drawing.Size(280, 40);
+            this.btn_113.strPGNo = null;
             this.btn_113.TabIndex = 33;
             this.btn_113.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_113.UseVisualStyleBackColor = false;
@@ -2026,6 +2135,7 @@
             this.btn_94.Location = new System.Drawing.Point(380, 240);
             this.btn_94.Name = "btn_94";
             this.btn_94.Size = new System.Drawing.Size(280, 40);
+            this.btn_94.strPGNo = null;
             this.btn_94.TabIndex = 14;
             this.btn_94.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_94.UseVisualStyleBackColor = false;
@@ -2039,6 +2149,7 @@
             this.btn_120.Location = new System.Drawing.Point(1075, 660);
             this.btn_120.Name = "btn_120";
             this.btn_120.Size = new System.Drawing.Size(280, 40);
+            this.btn_120.strPGNo = null;
             this.btn_120.TabIndex = 40;
             this.btn_120.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_120.UseVisualStyleBackColor = false;
@@ -2052,6 +2163,7 @@
             this.btn_93.Location = new System.Drawing.Point(380, 170);
             this.btn_93.Name = "btn_93";
             this.btn_93.Size = new System.Drawing.Size(280, 40);
+            this.btn_93.strPGNo = null;
             this.btn_93.TabIndex = 13;
             this.btn_93.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_93.UseVisualStyleBackColor = false;
@@ -2065,6 +2177,7 @@
             this.btn_104.Location = new System.Drawing.Point(725, 240);
             this.btn_104.Name = "btn_104";
             this.btn_104.Size = new System.Drawing.Size(280, 40);
+            this.btn_104.strPGNo = null;
             this.btn_104.TabIndex = 24;
             this.btn_104.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_104.UseVisualStyleBackColor = false;
@@ -2078,6 +2191,7 @@
             this.btn_100.Location = new System.Drawing.Point(380, 660);
             this.btn_100.Name = "btn_100";
             this.btn_100.Size = new System.Drawing.Size(280, 40);
+            this.btn_100.strPGNo = null;
             this.btn_100.TabIndex = 20;
             this.btn_100.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_100.UseVisualStyleBackColor = false;
@@ -2091,6 +2205,7 @@
             this.btn_103.Location = new System.Drawing.Point(725, 170);
             this.btn_103.Name = "btn_103";
             this.btn_103.Size = new System.Drawing.Size(280, 40);
+            this.btn_103.strPGNo = null;
             this.btn_103.TabIndex = 23;
             this.btn_103.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_103.UseVisualStyleBackColor = false;
@@ -2104,6 +2219,7 @@
             this.btn_84.Location = new System.Drawing.Point(30, 240);
             this.btn_84.Name = "btn_84";
             this.btn_84.Size = new System.Drawing.Size(280, 40);
+            this.btn_84.strPGNo = null;
             this.btn_84.TabIndex = 4;
             this.btn_84.Text = "見積書作成リスト_?";
             this.btn_84.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2118,6 +2234,7 @@
             this.btn_102.Location = new System.Drawing.Point(725, 100);
             this.btn_102.Name = "btn_102";
             this.btn_102.Size = new System.Drawing.Size(280, 40);
+            this.btn_102.strPGNo = null;
             this.btn_102.TabIndex = 22;
             this.btn_102.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_102.UseVisualStyleBackColor = false;
@@ -2131,6 +2248,7 @@
             this.btn_83.Location = new System.Drawing.Point(30, 170);
             this.btn_83.Name = "btn_83";
             this.btn_83.Size = new System.Drawing.Size(280, 40);
+            this.btn_83.strPGNo = null;
             this.btn_83.TabIndex = 3;
             this.btn_83.Text = "得意先別売上管理表";
             this.btn_83.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2145,6 +2263,7 @@
             this.btn_82.Location = new System.Drawing.Point(30, 100);
             this.btn_82.Name = "btn_82";
             this.btn_82.Size = new System.Drawing.Size(280, 40);
+            this.btn_82.strPGNo = null;
             this.btn_82.TabIndex = 2;
             this.btn_82.Text = "封書宛名印刷";
             this.btn_82.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2159,6 +2278,7 @@
             this.btn_81.Location = new System.Drawing.Point(30, 30);
             this.btn_81.Name = "btn_81";
             this.btn_81.Size = new System.Drawing.Size(280, 40);
+            this.btn_81.strPGNo = null;
             this.btn_81.TabIndex = 1;
             this.btn_81.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_81.UseVisualStyleBackColor = false;
@@ -2222,6 +2342,7 @@
             this.btn_150.Location = new System.Drawing.Point(725, 660);
             this.btn_150.Name = "btn_150";
             this.btn_150.Size = new System.Drawing.Size(280, 40);
+            this.btn_150.strPGNo = null;
             this.btn_150.TabIndex = 30;
             this.btn_150.Text = "グループマスタ";
             this.btn_150.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2236,6 +2357,7 @@
             this.btn_149.Location = new System.Drawing.Point(725, 590);
             this.btn_149.Name = "btn_149";
             this.btn_149.Size = new System.Drawing.Size(280, 40);
+            this.btn_149.strPGNo = null;
             this.btn_149.TabIndex = 29;
             this.btn_149.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_149.UseVisualStyleBackColor = false;
@@ -2249,6 +2371,7 @@
             this.btn_130.Location = new System.Drawing.Point(30, 660);
             this.btn_130.Name = "btn_130";
             this.btn_130.Size = new System.Drawing.Size(280, 40);
+            this.btn_130.strPGNo = null;
             this.btn_130.TabIndex = 10;
             this.btn_130.Text = "会社条件";
             this.btn_130.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2263,6 +2386,7 @@
             this.btn_148.Location = new System.Drawing.Point(725, 520);
             this.btn_148.Name = "btn_148";
             this.btn_148.Size = new System.Drawing.Size(280, 40);
+            this.btn_148.strPGNo = null;
             this.btn_148.TabIndex = 28;
             this.btn_148.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_148.UseVisualStyleBackColor = false;
@@ -2276,6 +2400,7 @@
             this.btn_129.Location = new System.Drawing.Point(30, 590);
             this.btn_129.Name = "btn_129";
             this.btn_129.Size = new System.Drawing.Size(280, 40);
+            this.btn_129.strPGNo = null;
             this.btn_129.TabIndex = 9;
             this.btn_129.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_129.UseVisualStyleBackColor = false;
@@ -2289,6 +2414,7 @@
             this.btn_147.Location = new System.Drawing.Point(725, 450);
             this.btn_147.Name = "btn_147";
             this.btn_147.Size = new System.Drawing.Size(280, 40);
+            this.btn_147.strPGNo = null;
             this.btn_147.TabIndex = 27;
             this.btn_147.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_147.UseVisualStyleBackColor = false;
@@ -2302,6 +2428,7 @@
             this.btn_128.Location = new System.Drawing.Point(30, 520);
             this.btn_128.Name = "btn_128";
             this.btn_128.Size = new System.Drawing.Size(280, 40);
+            this.btn_128.strPGNo = null;
             this.btn_128.TabIndex = 8;
             this.btn_128.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_128.UseVisualStyleBackColor = false;
@@ -2315,6 +2442,7 @@
             this.btn_146.Location = new System.Drawing.Point(725, 380);
             this.btn_146.Name = "btn_146";
             this.btn_146.Size = new System.Drawing.Size(280, 40);
+            this.btn_146.strPGNo = null;
             this.btn_146.TabIndex = 26;
             this.btn_146.Text = "特定向先単価マスタ";
             this.btn_146.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2329,6 +2457,7 @@
             this.btn_127.Location = new System.Drawing.Point(30, 450);
             this.btn_127.Name = "btn_127";
             this.btn_127.Size = new System.Drawing.Size(280, 40);
+            this.btn_127.strPGNo = null;
             this.btn_127.TabIndex = 7;
             this.btn_127.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_127.UseVisualStyleBackColor = false;
@@ -2342,6 +2471,7 @@
             this.btn_145.Location = new System.Drawing.Point(725, 310);
             this.btn_145.Name = "btn_145";
             this.btn_145.Size = new System.Drawing.Size(280, 40);
+            this.btn_145.strPGNo = null;
             this.btn_145.TabIndex = 25;
             this.btn_145.Text = "商品マスタ単価一括更新";
             this.btn_145.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2356,6 +2486,7 @@
             this.btn_126.Location = new System.Drawing.Point(30, 380);
             this.btn_126.Name = "btn_126";
             this.btn_126.Size = new System.Drawing.Size(280, 40);
+            this.btn_126.strPGNo = null;
             this.btn_126.TabIndex = 6;
             this.btn_126.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_126.UseVisualStyleBackColor = false;
@@ -2369,6 +2500,7 @@
             this.btn_152.Location = new System.Drawing.Point(1075, 100);
             this.btn_152.Name = "btn_152";
             this.btn_152.Size = new System.Drawing.Size(280, 40);
+            this.btn_152.strPGNo = null;
             this.btn_152.TabIndex = 32;
             this.btn_152.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_152.UseVisualStyleBackColor = false;
@@ -2382,6 +2514,7 @@
             this.btn_125.Location = new System.Drawing.Point(30, 310);
             this.btn_125.Name = "btn_125";
             this.btn_125.Size = new System.Drawing.Size(280, 40);
+            this.btn_125.strPGNo = null;
             this.btn_125.TabIndex = 5;
             this.btn_125.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_125.UseVisualStyleBackColor = false;
@@ -2395,6 +2528,7 @@
             this.btn_132.Location = new System.Drawing.Point(380, 100);
             this.btn_132.Name = "btn_132";
             this.btn_132.Size = new System.Drawing.Size(280, 40);
+            this.btn_132.strPGNo = null;
             this.btn_132.TabIndex = 12;
             this.btn_132.Text = "メーカー";
             this.btn_132.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2409,6 +2543,7 @@
             this.btn_131.Location = new System.Drawing.Point(380, 30);
             this.btn_131.Name = "btn_131";
             this.btn_131.Size = new System.Drawing.Size(280, 40);
+            this.btn_131.strPGNo = null;
             this.btn_131.TabIndex = 11;
             this.btn_131.Text = "大分類";
             this.btn_131.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2423,6 +2558,7 @@
             this.btn_151.Location = new System.Drawing.Point(1075, 30);
             this.btn_151.Name = "btn_151";
             this.btn_151.Size = new System.Drawing.Size(280, 40);
+            this.btn_151.strPGNo = null;
             this.btn_151.TabIndex = 31;
             this.btn_151.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_151.UseVisualStyleBackColor = false;
@@ -2436,6 +2572,7 @@
             this.btn_159.Location = new System.Drawing.Point(1075, 590);
             this.btn_159.Name = "btn_159";
             this.btn_159.Size = new System.Drawing.Size(280, 40);
+            this.btn_159.strPGNo = null;
             this.btn_159.TabIndex = 39;
             this.btn_159.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_159.UseVisualStyleBackColor = false;
@@ -2449,6 +2586,7 @@
             this.btn_141.Location = new System.Drawing.Point(725, 30);
             this.btn_141.Name = "btn_141";
             this.btn_141.Size = new System.Drawing.Size(280, 40);
+            this.btn_141.strPGNo = null;
             this.btn_141.TabIndex = 21;
             this.btn_141.Text = "中分類";
             this.btn_141.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2463,6 +2601,7 @@
             this.btn_158.Location = new System.Drawing.Point(1075, 520);
             this.btn_158.Name = "btn_158";
             this.btn_158.Size = new System.Drawing.Size(280, 40);
+            this.btn_158.strPGNo = null;
             this.btn_158.TabIndex = 38;
             this.btn_158.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_158.UseVisualStyleBackColor = false;
@@ -2476,6 +2615,7 @@
             this.btn_139.Location = new System.Drawing.Point(380, 590);
             this.btn_139.Name = "btn_139";
             this.btn_139.Size = new System.Drawing.Size(280, 40);
+            this.btn_139.strPGNo = null;
             this.btn_139.TabIndex = 19;
             this.btn_139.Text = "営業所";
             this.btn_139.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2490,6 +2630,7 @@
             this.btn_157.Location = new System.Drawing.Point(1075, 450);
             this.btn_157.Name = "btn_157";
             this.btn_157.Size = new System.Drawing.Size(280, 40);
+            this.btn_157.strPGNo = null;
             this.btn_157.TabIndex = 37;
             this.btn_157.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_157.UseVisualStyleBackColor = false;
@@ -2503,6 +2644,7 @@
             this.btn_138.Location = new System.Drawing.Point(380, 520);
             this.btn_138.Name = "btn_138";
             this.btn_138.Size = new System.Drawing.Size(280, 40);
+            this.btn_138.strPGNo = null;
             this.btn_138.TabIndex = 18;
             this.btn_138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_138.UseVisualStyleBackColor = false;
@@ -2516,6 +2658,7 @@
             this.btn_156.Location = new System.Drawing.Point(1075, 380);
             this.btn_156.Name = "btn_156";
             this.btn_156.Size = new System.Drawing.Size(280, 40);
+            this.btn_156.strPGNo = null;
             this.btn_156.TabIndex = 36;
             this.btn_156.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_156.UseVisualStyleBackColor = false;
@@ -2529,6 +2672,7 @@
             this.btn_137.Location = new System.Drawing.Point(380, 450);
             this.btn_137.Name = "btn_137";
             this.btn_137.Size = new System.Drawing.Size(280, 40);
+            this.btn_137.strPGNo = null;
             this.btn_137.TabIndex = 17;
             this.btn_137.Text = "取引先";
             this.btn_137.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2543,6 +2687,7 @@
             this.btn_155.Location = new System.Drawing.Point(1075, 310);
             this.btn_155.Name = "btn_155";
             this.btn_155.Size = new System.Drawing.Size(280, 40);
+            this.btn_155.strPGNo = null;
             this.btn_155.TabIndex = 35;
             this.btn_155.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_155.UseVisualStyleBackColor = false;
@@ -2556,6 +2701,7 @@
             this.btn_136.Location = new System.Drawing.Point(380, 380);
             this.btn_136.Name = "btn_136";
             this.btn_136.Size = new System.Drawing.Size(280, 40);
+            this.btn_136.strPGNo = null;
             this.btn_136.TabIndex = 16;
             this.btn_136.Text = "業種";
             this.btn_136.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2570,6 +2716,7 @@
             this.btn_154.Location = new System.Drawing.Point(1075, 240);
             this.btn_154.Name = "btn_154";
             this.btn_154.Size = new System.Drawing.Size(280, 40);
+            this.btn_154.strPGNo = null;
             this.btn_154.TabIndex = 34;
             this.btn_154.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_154.UseVisualStyleBackColor = false;
@@ -2583,6 +2730,7 @@
             this.btn_135.Location = new System.Drawing.Point(380, 310);
             this.btn_135.Name = "btn_135";
             this.btn_135.Size = new System.Drawing.Size(280, 40);
+            this.btn_135.strPGNo = null;
             this.btn_135.TabIndex = 15;
             this.btn_135.Text = "担当者";
             this.btn_135.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2597,6 +2745,7 @@
             this.btn_153.Location = new System.Drawing.Point(1075, 170);
             this.btn_153.Name = "btn_153";
             this.btn_153.Size = new System.Drawing.Size(280, 40);
+            this.btn_153.strPGNo = null;
             this.btn_153.TabIndex = 33;
             this.btn_153.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_153.UseVisualStyleBackColor = false;
@@ -2610,6 +2759,7 @@
             this.btn_134.Location = new System.Drawing.Point(380, 240);
             this.btn_134.Name = "btn_134";
             this.btn_134.Size = new System.Drawing.Size(280, 40);
+            this.btn_134.strPGNo = null;
             this.btn_134.TabIndex = 14;
             this.btn_134.Text = "取引区分";
             this.btn_134.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2624,6 +2774,7 @@
             this.btn_160.Location = new System.Drawing.Point(1075, 660);
             this.btn_160.Name = "btn_160";
             this.btn_160.Size = new System.Drawing.Size(280, 40);
+            this.btn_160.strPGNo = null;
             this.btn_160.TabIndex = 40;
             this.btn_160.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_160.UseVisualStyleBackColor = false;
@@ -2637,6 +2788,7 @@
             this.btn_133.Location = new System.Drawing.Point(380, 170);
             this.btn_133.Name = "btn_133";
             this.btn_133.Size = new System.Drawing.Size(280, 40);
+            this.btn_133.strPGNo = null;
             this.btn_133.TabIndex = 13;
             this.btn_133.Text = "商品";
             this.btn_133.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2651,6 +2803,7 @@
             this.btn_144.Location = new System.Drawing.Point(725, 240);
             this.btn_144.Name = "btn_144";
             this.btn_144.Size = new System.Drawing.Size(280, 40);
+            this.btn_144.strPGNo = null;
             this.btn_144.TabIndex = 24;
             this.btn_144.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_144.UseVisualStyleBackColor = false;
@@ -2664,6 +2817,7 @@
             this.btn_140.Location = new System.Drawing.Point(380, 660);
             this.btn_140.Name = "btn_140";
             this.btn_140.Size = new System.Drawing.Size(280, 40);
+            this.btn_140.strPGNo = null;
             this.btn_140.TabIndex = 20;
             this.btn_140.Text = "直送先";
             this.btn_140.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2678,6 +2832,7 @@
             this.btn_143.Location = new System.Drawing.Point(725, 170);
             this.btn_143.Name = "btn_143";
             this.btn_143.Size = new System.Drawing.Size(280, 40);
+            this.btn_143.strPGNo = null;
             this.btn_143.TabIndex = 23;
             this.btn_143.Text = "消費税率";
             this.btn_143.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2692,6 +2847,7 @@
             this.btn_124.Location = new System.Drawing.Point(30, 240);
             this.btn_124.Name = "btn_124";
             this.btn_124.Size = new System.Drawing.Size(280, 40);
+            this.btn_124.strPGNo = null;
             this.btn_124.TabIndex = 4;
             this.btn_124.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_124.UseVisualStyleBackColor = false;
@@ -2705,6 +2861,7 @@
             this.btn_142.Location = new System.Drawing.Point(725, 100);
             this.btn_142.Name = "btn_142";
             this.btn_142.Size = new System.Drawing.Size(280, 40);
+            this.btn_142.strPGNo = null;
             this.btn_142.TabIndex = 22;
             this.btn_142.Text = "棚番";
             this.btn_142.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2719,6 +2876,7 @@
             this.btn_123.Location = new System.Drawing.Point(30, 170);
             this.btn_123.Name = "btn_123";
             this.btn_123.Size = new System.Drawing.Size(280, 40);
+            this.btn_123.strPGNo = null;
             this.btn_123.TabIndex = 3;
             this.btn_123.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_123.UseVisualStyleBackColor = false;
@@ -2732,6 +2890,7 @@
             this.btn_121.Location = new System.Drawing.Point(30, 30);
             this.btn_121.Name = "btn_121";
             this.btn_121.Size = new System.Drawing.Size(280, 40);
+            this.btn_121.strPGNo = null;
             this.btn_121.TabIndex = 1;
             this.btn_121.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_121.UseVisualStyleBackColor = false;
@@ -2745,6 +2904,7 @@
             this.btn_122.Location = new System.Drawing.Point(30, 100);
             this.btn_122.Name = "btn_122";
             this.btn_122.Size = new System.Drawing.Size(280, 40);
+            this.btn_122.strPGNo = null;
             this.btn_122.TabIndex = 2;
             this.btn_122.Text = "日付制限";
             this.btn_122.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2758,6 +2918,7 @@
             this.btnChokusosaki.Location = new System.Drawing.Point(249, 757);
             this.btnChokusosaki.Name = "btnChokusosaki";
             this.btnChokusosaki.Size = new System.Drawing.Size(280, 40);
+            this.btnChokusosaki.strPGNo = null;
             this.btnChokusosaki.TabIndex = 104;
             this.btnChokusosaki.Text = "直送先";
             this.btnChokusosaki.UseVisualStyleBackColor = false;
@@ -2818,6 +2979,7 @@
             this.btn_190.Location = new System.Drawing.Point(725, 660);
             this.btn_190.Name = "btn_190";
             this.btn_190.Size = new System.Drawing.Size(280, 40);
+            this.btn_190.strPGNo = null;
             this.btn_190.TabIndex = 30;
             this.btn_190.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_190.UseVisualStyleBackColor = false;
@@ -2831,6 +2993,7 @@
             this.btn_189.Location = new System.Drawing.Point(725, 590);
             this.btn_189.Name = "btn_189";
             this.btn_189.Size = new System.Drawing.Size(280, 40);
+            this.btn_189.strPGNo = null;
             this.btn_189.TabIndex = 29;
             this.btn_189.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_189.UseVisualStyleBackColor = false;
@@ -2844,6 +3007,7 @@
             this.btn_170.Location = new System.Drawing.Point(30, 660);
             this.btn_170.Name = "btn_170";
             this.btn_170.Size = new System.Drawing.Size(280, 40);
+            this.btn_170.strPGNo = null;
             this.btn_170.TabIndex = 10;
             this.btn_170.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_170.UseVisualStyleBackColor = false;
@@ -2857,6 +3021,7 @@
             this.btn_188.Location = new System.Drawing.Point(725, 520);
             this.btn_188.Name = "btn_188";
             this.btn_188.Size = new System.Drawing.Size(280, 40);
+            this.btn_188.strPGNo = null;
             this.btn_188.TabIndex = 28;
             this.btn_188.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_188.UseVisualStyleBackColor = false;
@@ -2870,6 +3035,7 @@
             this.btn_169.Location = new System.Drawing.Point(30, 590);
             this.btn_169.Name = "btn_169";
             this.btn_169.Size = new System.Drawing.Size(280, 40);
+            this.btn_169.strPGNo = null;
             this.btn_169.TabIndex = 9;
             this.btn_169.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_169.UseVisualStyleBackColor = false;
@@ -2883,6 +3049,7 @@
             this.btn_187.Location = new System.Drawing.Point(725, 450);
             this.btn_187.Name = "btn_187";
             this.btn_187.Size = new System.Drawing.Size(280, 40);
+            this.btn_187.strPGNo = null;
             this.btn_187.TabIndex = 27;
             this.btn_187.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_187.UseVisualStyleBackColor = false;
@@ -2896,6 +3063,7 @@
             this.btn_168.Location = new System.Drawing.Point(30, 520);
             this.btn_168.Name = "btn_168";
             this.btn_168.Size = new System.Drawing.Size(280, 40);
+            this.btn_168.strPGNo = null;
             this.btn_168.TabIndex = 8;
             this.btn_168.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_168.UseVisualStyleBackColor = false;
@@ -2909,6 +3077,7 @@
             this.btn_186.Location = new System.Drawing.Point(725, 380);
             this.btn_186.Name = "btn_186";
             this.btn_186.Size = new System.Drawing.Size(280, 40);
+            this.btn_186.strPGNo = null;
             this.btn_186.TabIndex = 26;
             this.btn_186.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_186.UseVisualStyleBackColor = false;
@@ -2922,6 +3091,7 @@
             this.btn_167.Location = new System.Drawing.Point(30, 450);
             this.btn_167.Name = "btn_167";
             this.btn_167.Size = new System.Drawing.Size(280, 40);
+            this.btn_167.strPGNo = null;
             this.btn_167.TabIndex = 7;
             this.btn_167.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_167.UseVisualStyleBackColor = false;
@@ -2935,6 +3105,7 @@
             this.btn_185.Location = new System.Drawing.Point(725, 310);
             this.btn_185.Name = "btn_185";
             this.btn_185.Size = new System.Drawing.Size(280, 40);
+            this.btn_185.strPGNo = null;
             this.btn_185.TabIndex = 25;
             this.btn_185.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_185.UseVisualStyleBackColor = false;
@@ -2948,6 +3119,7 @@
             this.btn_166.Location = new System.Drawing.Point(30, 380);
             this.btn_166.Name = "btn_166";
             this.btn_166.Size = new System.Drawing.Size(280, 40);
+            this.btn_166.strPGNo = null;
             this.btn_166.TabIndex = 6;
             this.btn_166.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_166.UseVisualStyleBackColor = false;
@@ -2961,6 +3133,7 @@
             this.btn_192.Location = new System.Drawing.Point(1075, 100);
             this.btn_192.Name = "btn_192";
             this.btn_192.Size = new System.Drawing.Size(280, 40);
+            this.btn_192.strPGNo = null;
             this.btn_192.TabIndex = 32;
             this.btn_192.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_192.UseVisualStyleBackColor = false;
@@ -2974,6 +3147,7 @@
             this.btn_165.Location = new System.Drawing.Point(30, 310);
             this.btn_165.Name = "btn_165";
             this.btn_165.Size = new System.Drawing.Size(280, 40);
+            this.btn_165.strPGNo = null;
             this.btn_165.TabIndex = 5;
             this.btn_165.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_165.UseVisualStyleBackColor = false;
@@ -2987,6 +3161,7 @@
             this.btn_172.Location = new System.Drawing.Point(380, 100);
             this.btn_172.Name = "btn_172";
             this.btn_172.Size = new System.Drawing.Size(280, 40);
+            this.btn_172.strPGNo = null;
             this.btn_172.TabIndex = 12;
             this.btn_172.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_172.UseVisualStyleBackColor = false;
@@ -3000,6 +3175,7 @@
             this.btn_171.Location = new System.Drawing.Point(380, 30);
             this.btn_171.Name = "btn_171";
             this.btn_171.Size = new System.Drawing.Size(280, 40);
+            this.btn_171.strPGNo = null;
             this.btn_171.TabIndex = 11;
             this.btn_171.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_171.UseVisualStyleBackColor = false;
@@ -3013,6 +3189,7 @@
             this.btn_191.Location = new System.Drawing.Point(1075, 30);
             this.btn_191.Name = "btn_191";
             this.btn_191.Size = new System.Drawing.Size(280, 40);
+            this.btn_191.strPGNo = null;
             this.btn_191.TabIndex = 31;
             this.btn_191.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_191.UseVisualStyleBackColor = false;
@@ -3026,6 +3203,7 @@
             this.btn_199.Location = new System.Drawing.Point(1075, 590);
             this.btn_199.Name = "btn_199";
             this.btn_199.Size = new System.Drawing.Size(280, 40);
+            this.btn_199.strPGNo = null;
             this.btn_199.TabIndex = 39;
             this.btn_199.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_199.UseVisualStyleBackColor = false;
@@ -3039,6 +3217,7 @@
             this.btn_181.Location = new System.Drawing.Point(725, 30);
             this.btn_181.Name = "btn_181";
             this.btn_181.Size = new System.Drawing.Size(280, 40);
+            this.btn_181.strPGNo = null;
             this.btn_181.TabIndex = 21;
             this.btn_181.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_181.UseVisualStyleBackColor = false;
@@ -3052,6 +3231,7 @@
             this.btn_198.Location = new System.Drawing.Point(1075, 520);
             this.btn_198.Name = "btn_198";
             this.btn_198.Size = new System.Drawing.Size(280, 40);
+            this.btn_198.strPGNo = null;
             this.btn_198.TabIndex = 38;
             this.btn_198.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_198.UseVisualStyleBackColor = false;
@@ -3065,6 +3245,7 @@
             this.btn_179.Location = new System.Drawing.Point(380, 590);
             this.btn_179.Name = "btn_179";
             this.btn_179.Size = new System.Drawing.Size(280, 40);
+            this.btn_179.strPGNo = null;
             this.btn_179.TabIndex = 19;
             this.btn_179.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_179.UseVisualStyleBackColor = false;
@@ -3078,6 +3259,7 @@
             this.btn_197.Location = new System.Drawing.Point(1075, 450);
             this.btn_197.Name = "btn_197";
             this.btn_197.Size = new System.Drawing.Size(280, 40);
+            this.btn_197.strPGNo = null;
             this.btn_197.TabIndex = 37;
             this.btn_197.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_197.UseVisualStyleBackColor = false;
@@ -3091,6 +3273,7 @@
             this.btn_178.Location = new System.Drawing.Point(380, 520);
             this.btn_178.Name = "btn_178";
             this.btn_178.Size = new System.Drawing.Size(280, 40);
+            this.btn_178.strPGNo = null;
             this.btn_178.TabIndex = 18;
             this.btn_178.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_178.UseVisualStyleBackColor = false;
@@ -3104,6 +3287,7 @@
             this.btn_196.Location = new System.Drawing.Point(1075, 380);
             this.btn_196.Name = "btn_196";
             this.btn_196.Size = new System.Drawing.Size(280, 40);
+            this.btn_196.strPGNo = null;
             this.btn_196.TabIndex = 36;
             this.btn_196.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_196.UseVisualStyleBackColor = false;
@@ -3117,6 +3301,7 @@
             this.btn_177.Location = new System.Drawing.Point(380, 450);
             this.btn_177.Name = "btn_177";
             this.btn_177.Size = new System.Drawing.Size(280, 40);
+            this.btn_177.strPGNo = null;
             this.btn_177.TabIndex = 17;
             this.btn_177.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_177.UseVisualStyleBackColor = false;
@@ -3130,6 +3315,7 @@
             this.btn_195.Location = new System.Drawing.Point(1075, 310);
             this.btn_195.Name = "btn_195";
             this.btn_195.Size = new System.Drawing.Size(280, 40);
+            this.btn_195.strPGNo = null;
             this.btn_195.TabIndex = 252;
             this.btn_195.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_195.UseVisualStyleBackColor = false;
@@ -3143,6 +3329,7 @@
             this.btn_176.Location = new System.Drawing.Point(380, 380);
             this.btn_176.Name = "btn_176";
             this.btn_176.Size = new System.Drawing.Size(280, 40);
+            this.btn_176.strPGNo = null;
             this.btn_176.TabIndex = 16;
             this.btn_176.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_176.UseVisualStyleBackColor = false;
@@ -3156,6 +3343,7 @@
             this.btn_194.Location = new System.Drawing.Point(1075, 240);
             this.btn_194.Name = "btn_194";
             this.btn_194.Size = new System.Drawing.Size(280, 40);
+            this.btn_194.strPGNo = null;
             this.btn_194.TabIndex = 35;
             this.btn_194.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_194.UseVisualStyleBackColor = false;
@@ -3169,6 +3357,7 @@
             this.btn_175.Location = new System.Drawing.Point(380, 310);
             this.btn_175.Name = "btn_175";
             this.btn_175.Size = new System.Drawing.Size(280, 40);
+            this.btn_175.strPGNo = null;
             this.btn_175.TabIndex = 15;
             this.btn_175.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_175.UseVisualStyleBackColor = false;
@@ -3182,6 +3371,7 @@
             this.btn_193.Location = new System.Drawing.Point(1075, 170);
             this.btn_193.Name = "btn_193";
             this.btn_193.Size = new System.Drawing.Size(280, 40);
+            this.btn_193.strPGNo = null;
             this.btn_193.TabIndex = 33;
             this.btn_193.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_193.UseVisualStyleBackColor = false;
@@ -3195,6 +3385,7 @@
             this.btn_174.Location = new System.Drawing.Point(380, 240);
             this.btn_174.Name = "btn_174";
             this.btn_174.Size = new System.Drawing.Size(280, 40);
+            this.btn_174.strPGNo = null;
             this.btn_174.TabIndex = 14;
             this.btn_174.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_174.UseVisualStyleBackColor = false;
@@ -3208,6 +3399,7 @@
             this.btn_200.Location = new System.Drawing.Point(1075, 660);
             this.btn_200.Name = "btn_200";
             this.btn_200.Size = new System.Drawing.Size(280, 40);
+            this.btn_200.strPGNo = null;
             this.btn_200.TabIndex = 40;
             this.btn_200.Text = "マイメニュー";
             this.btn_200.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3222,6 +3414,7 @@
             this.btn_173.Location = new System.Drawing.Point(380, 170);
             this.btn_173.Name = "btn_173";
             this.btn_173.Size = new System.Drawing.Size(280, 40);
+            this.btn_173.strPGNo = null;
             this.btn_173.TabIndex = 13;
             this.btn_173.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_173.UseVisualStyleBackColor = false;
@@ -3235,6 +3428,7 @@
             this.btn_184.Location = new System.Drawing.Point(725, 240);
             this.btn_184.Name = "btn_184";
             this.btn_184.Size = new System.Drawing.Size(280, 40);
+            this.btn_184.strPGNo = null;
             this.btn_184.TabIndex = 24;
             this.btn_184.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_184.UseVisualStyleBackColor = false;
@@ -3248,6 +3442,7 @@
             this.btn_180.Location = new System.Drawing.Point(380, 660);
             this.btn_180.Name = "btn_180";
             this.btn_180.Size = new System.Drawing.Size(280, 40);
+            this.btn_180.strPGNo = null;
             this.btn_180.TabIndex = 20;
             this.btn_180.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_180.UseVisualStyleBackColor = false;
@@ -3261,6 +3456,7 @@
             this.btn_183.Location = new System.Drawing.Point(725, 170);
             this.btn_183.Name = "btn_183";
             this.btn_183.Size = new System.Drawing.Size(280, 40);
+            this.btn_183.strPGNo = null;
             this.btn_183.TabIndex = 23;
             this.btn_183.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_183.UseVisualStyleBackColor = false;
@@ -3274,6 +3470,7 @@
             this.btn_164.Location = new System.Drawing.Point(30, 240);
             this.btn_164.Name = "btn_164";
             this.btn_164.Size = new System.Drawing.Size(280, 40);
+            this.btn_164.strPGNo = null;
             this.btn_164.TabIndex = 4;
             this.btn_164.Text = "商品仕入単価推移表2";
             this.btn_164.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3288,6 +3485,7 @@
             this.btn_182.Location = new System.Drawing.Point(725, 100);
             this.btn_182.Name = "btn_182";
             this.btn_182.Size = new System.Drawing.Size(280, 40);
+            this.btn_182.strPGNo = null;
             this.btn_182.TabIndex = 22;
             this.btn_182.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_182.UseVisualStyleBackColor = false;
@@ -3301,6 +3499,7 @@
             this.btn_163.Location = new System.Drawing.Point(30, 170);
             this.btn_163.Name = "btn_163";
             this.btn_163.Size = new System.Drawing.Size(280, 40);
+            this.btn_163.strPGNo = null;
             this.btn_163.TabIndex = 3;
             this.btn_163.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_163.UseVisualStyleBackColor = false;
@@ -3314,6 +3513,7 @@
             this.btn_162.Location = new System.Drawing.Point(30, 100);
             this.btn_162.Name = "btn_162";
             this.btn_162.Size = new System.Drawing.Size(280, 40);
+            this.btn_162.strPGNo = null;
             this.btn_162.TabIndex = 2;
             this.btn_162.Text = "商品分類別利益率設定";
             this.btn_162.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3328,6 +3528,7 @@
             this.btn_161.Location = new System.Drawing.Point(30, 30);
             this.btn_161.Name = "btn_161";
             this.btn_161.Size = new System.Drawing.Size(280, 40);
+            this.btn_161.strPGNo = null;
             this.btn_161.TabIndex = 1;
             this.btn_161.Text = "商品別利益率設定";
             this.btn_161.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3413,7 +3614,7 @@
         private Common.Ctl.BaseMenuButton btn_4;
         private Common.Ctl.BaseMenuButton btn_13;
         private Common.Ctl.BaseMenuButton btn_14;
-        private Common.Ctl.BaseMenuButton btn_P1_15;
+        private Common.Ctl.BaseMenuButton btn_15;
         private Common.Ctl.BaseMenuButton btn_21;
         private Common.Ctl.BaseMenuButton btn_11;
         private Common.Ctl.BaseMenuButton btn_12;

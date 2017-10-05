@@ -166,7 +166,7 @@ namespace KATO.Business.Z0000_B
                 }
 
 //テスト
-                strUserID = "a.kato";
+                //strUserID = "a.kato";
 
                 //SQLファイルと該当コードでフォーマット
                 strSQLInput = string.Format(strSQLInput, strUserID);
@@ -180,6 +180,60 @@ namespace KATO.Business.Z0000_B
                 }
 
                 return (strTantoshaCd);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getDataKengen
+        ///データの取り出し(権限テーブル)
+        ///</summary>
+        public DataTable getDataKengen(string strTantoshaCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Z0000");
+            lstSQL.Add("MainMenu_Kengen_SELECT_ALL");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTantoshaCd);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
             }
             catch (Exception ex)
             {

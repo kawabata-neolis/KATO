@@ -101,105 +101,72 @@ namespace KATO.Form.Z0000
 
                 string strUserID = SystemInformation.UserName;
 
-                strUserID = "administrator";
+                //テスト用
+                //strUserID = "k.kato";
 
-                dtGetData = mainmenuB.getData(strUserID);
+                //担当者コードの取得
+                string strTantoshaCd = mainmenuB.getTantoshaCd(strUserID);
 
-                //PG_NG内のnullを空白にする
-                for (int intCnt = 0; intCnt < PG_NG.Length; intCnt++)
+                //権限テーブルのデータを取得
+                dtGetData = mainmenuB.getDataKengen(strTantoshaCd);
+
+                //登録されたユーザーでない場合
+                if(dtGetData.Rows.Count == 0)
                 {
-                    //nullの場合は空白文字を入れる
-                    if (PG_NG[intCnt] == null)
-                    {
-                        PG_NG[intCnt] = " ";
-                    }
+                    return;
                 }
 
-                if (dtGetData.Rows.Count > 0)
+                //テーブル分ループ
+                for (int intCnt = 0; intCnt < dtGetData.Rows.Count; intCnt++)
                 {
-                    //行数分ループ
-                    for (int intCnt = 0; intCnt < dtGetData.Rows.Count; intCnt++)
+                    //ＰＧ名がnull且つ[.]でない場合
+                    if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != ".")
                     {
-                        //PG番号が1000以上の場合
-                        if (int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) >= 1000)
+                        //600番以前の場合
+                        if (int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) < 600)
                         {
-                            //PG名がある場合
-                            if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != "")
+                            if (int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) > 30)
                             {
-                                //PG_NG[int.Parse(dtGetComment.Rows[intCnt]["PG番号"].ToString())] = dtGetData.Rows[intCnt]["ＰＧ番号"].ToString();
+                                intBtnSet = int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) + 10;
 
-                                //SSTab1.TabPages.Item(rs.Fields(1)).Text = rs.Fields(2).Value;
-                            }
-                        }
-                        else
-                        {
-                            //PG名がある場合
-                            if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != "")
-                            {
-                                //使用中止の場合
-                                if (PG_NG[int.Parse(intCnt.ToString())] == "Y")
+                                if (intBtnSet > 70)
                                 {
-                                    strBtnName = "btn_" + dtGetData.Rows[intCnt]["メニューＮＯ"].ToString();
-                                    
-                                    //"TextBox1"という名前のコントロールを探す
-                                    BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+                                    intBtnSet = intBtnSet + 10;
 
-                                    //データがある場合
-                                    if (btnData != null)
+                                    if (intBtnSet > 110)
                                     {
-                                        btnData.Visible = false;
-                                    }
-                                }
-                                else
-                                {
+                                        intBtnSet = intBtnSet + 10;
 
-                                    //一番右の列に表示させない処理、解除する場合は
-                                    //strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString());
-                                    //↑のみにする
-
-                                    if (int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) > 30)
-                                    {
-                                        intBtnSet = int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString()) + 10;
-
-                                        if (intBtnSet > 70)
+                                        if (intBtnSet > 150)
                                         {
                                             intBtnSet = intBtnSet + 10;
-
-                                            if (intBtnSet > 110)
-                                            {
-                                                intBtnSet = intBtnSet + 10;
-
-                                                if (intBtnSet > 150)
-                                                {
-                                                    intBtnSet = intBtnSet + 10;
-                                                }
-                                            }
                                         }
-
-                                        strBtnName = "btn_" + intBtnSet;
-                                    }
-                                    else
-                                    {                                        
-                                        strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["メニューＮＯ"].ToString());
-                                    }
-
-                                    //"TextBox1"という名前のコントロールを探す
-                                    BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
-
-                                    //データがある場合
-                                    if (btnData != null)
-                                    {
-                                        btnData.Visible = true;
-
-                                        if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() == null)
-                                        {
-                                            break;
-                                        }
-
-                                        //btnData.Text = dtGetData.Rows[intCnt]["メニューＮＯ"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
-                                        btnData.Text = "  " + dtGetData.Rows[intCnt]["メニューＮＯ"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
                                     }
                                 }
+
+                                strBtnName = "btn_" + intBtnSet;
+                            }
+                            else
+                            {
+                                strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString());
+                            }
+
+                            //"TextBox1"という名前のコントロールを探す
+                            BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                            btnData.Visible = true;
+
+                            btnData.Text = "  " + dtGetData.Rows[intCnt]["ＰＧ番号"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
+                            btnData.strPGNo = dtGetData.Rows[intCnt]["ＰＧ番号"].ToString();
+
+                            //権限がYの場合
+                            if (dtGetData.Rows[intCnt]["権限"].ToString() == "N")
+                            {
+                                //"TextBox1"という名前のコントロールを探す
+                                btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                                //非表示
+                                btnData.Visible = false;
                             }
                         }
                     }
@@ -400,297 +367,492 @@ namespace KATO.Form.Z0000
         {
             // このフォームで現在アクティブなコントロールを取得する
             Control cControl = this.ActiveControl;
+            //BaseMenuButton bmbData = this.ActiveControl.AccessibilityObject;
 
-            //ピリオド位置の確保
-            int intIndexOf = cControl.Text.IndexOf('.');
+            BaseMenuButton bmb = (BaseMenuButton)cControl;
 
-            //ピリオド以降の文字列の確保
-            string strControlName = cControl.Text.Substring(intIndexOf + 1);
-
-            switch (strControlName)
+            switch (bmb.strPGNo)
             {
-                case "受注入力":
+                //受注入力
+                case "1":
                     A0010_JuchuInput.A0010_JuchuInput juchuinput = new A0010_JuchuInput.A0010_JuchuInput(this);
                     juchuinput.ShowDialog();
                     break;
 
-                case "売上入力":
+                //売上入力
+                case "2":
                     A0020_UriageInput.A0020_UriageInput uriageinput = new A0020_UriageInput.A0020_UriageInput(this);
                     uriageinput.ShowDialog();
                     break;
 
-                case "仕入入力":
+                //仕入入力
+                case "3":
                     A0030_ShireInput.A0030_ShireInput shireinput = new A0030_ShireInput.A0030_ShireInput(this);
                     shireinput.ShowDialog();
                     break;
 
-                case "入金入力":
+                //入金入力
+                case "4":
                     B0040_NyukinInput.B0040_NyukinInput nyukininput = new B0040_NyukinInput.B0040_NyukinInput(this);
                     nyukininput.ShowDialog();
                     break;
 
-                case "入金データチェックリスト":
+                //入金データチェックリスト
+                case "5":
                     B0050_NyukinCheckPrint.B0050_NyukinCheckPrint nyukincheck = new B0050_NyukinCheckPrint.B0050_NyukinCheckPrint(this);
                     nyukincheck.ShowDialog();
                     break;
 
-                case "仕入データチェックリスト":
+                //支払入力
+                case "6":
+                    break;
+
+                //支払データチェックリスト
+                case "7":
+                    break;
+
+                //納品書印刷
+                case "8":
+                    break;
+
+                //仕入データチェックリスト
+                case "9":
                     A0090_SiireCheckPrint.A0090_SiireCheckPrint shirecheck = new A0090_SiireCheckPrint.A0090_SiireCheckPrint(this);
                     shirecheck.ShowDialog();
                     break;
 
-                case "発注入力":
+                //発注入力
+                case "10":
                     A0100_HachuInput.A0100_HachuInput hachuinput = new A0100_HachuInput.A0100_HachuInput(this);
                     hachuinput.ShowDialog();
                     break;
 
-                case "担当者別売上管理表":
+                //加工手配入力
+                case "11":
+                    break;
+
+                //注文書印刷
+                case "12":
+                    break;
+                    
+                //担当者別売上管理表
+                case "13":
                     C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint tantouriarari = new C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint(this);
                     tantouriarari.ShowDialog();
                     break;
 
-                case "棚卸入力":
+                //棚卸入力
+                case "14":
                     F0140_TanaorosiInput.F0140_TanaorosiInput tanainput = new F0140_TanaorosiInput.F0140_TanaorosiInput(this);
                     tanainput.ShowDialog();
                     break;
 
-                case "売上チェックリスト":
+                //売上チェックリスト
+                case "15":
                     A0150_UriageCheckPrint.A0150_UriageCheckPrint uriagecheck = new A0150_UriageCheckPrint.A0150_UriageCheckPrint(this);
                     uriagecheck.ShowDialog();
                     break;
 
-                case "出庫依頼入力":
-
+                //出庫依頼入力
+                case "16":
                     break;
 
-                case "出庫承認入力":
-
+                //出庫承認入力
+                case "17":
                     break;
 
-                case "見積書入力":
+                //出庫指示書（依頼分）
+                case "18":
+                    break;
+
+                //出庫指示書（受注分）
+                case "19":
+                    break;
+
+                //出庫指示書（加工分）
+                case "20":
+                    break;
+
+                //見積書入力
+                case "21":
                     //作成中
                     break;
 
-                case "ＭＯ入力":
+                //受注分出庫承認入力
+                case "22":
+                    break;
+
+                //返品値引分売上承認入力
+                case "23":
+                    break;
+
+                //加工品受注入力
+                case "24":
+                    break;
+
+                //ＭＯ入力
+                case "25":
                     B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
                     monyuryoku.ShowDialog();
                     break;
 
-                case "ＭＯ入力確定":
-                    
+                //ＭＯ入力確定
+                case "26":                    
                     break;
 
-                case "倉庫移動確認":
-                    
+                //倉庫移動確認
+                case "28":                    
                     break;
 
-                case "客先別倉庫数":
-
+                //客先別倉庫数
+                case "29":
                     break;
 
-                case "在庫一覧確認":
+                //在庫一覧確認
+                case "30":
                     D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin zaikokakunin = new D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin(this);
                     zaikokakunin.ShowDialog();
                     break;
 
-                case "売上実績確認":
+                //売上実績確認
+                case "31":
                     D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriagekakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 0, "", "");
                     uriagekakunin.ShowDialog();
                     break;
 
-                case "仕入実績確認":
+                //仕入実績確認
+                case "32":
                     D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin shirejissekikakunin = new D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this);
                     shirejissekikakunin.ShowDialog();
                     break;
 
-                case "得意先元帳確認":
+                //得意先元帳確認
+                case "33":
                     E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuimotochokakunin = new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 0, "");
                     tokuimotochokakunin.ShowDialog();
                     break;
 
-                case "仕入先元帳確認":
+                //仕入先元帳確認
+                case "34":
                     E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin shiremotochokakunin = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this);
                     shiremotochokakunin.ShowDialog();
                     break;
 
-                case "受注残確認":
+                //商品仕入実績確認
+                case "35":
+                    break;
+
+                //受注残確認
+                case "36":
                     D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
                     juchuzankakunin.ShowDialog();
                     break;
 
-                case "商品元帳確認":
+                //発注残確認
+                case "37":
+                    break;
+
+                //商品元帳確認
+                case "38":
                     D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmotochokakunin = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
                     shohinmotochokakunin.ShowDialog();
                     break;
 
-                case "請求一覧表":
+                //発注納期遅延確認
+                case "39":
+                    break;
+
+                //入荷済受注残確認
+                case "40":
+                    break;
+
+                //請求一覧表
+                case "41":
                     B0410_SeikyuItiranPrint.B0410_SeikyuItiranPrint seikyuitiran = new B0410_SeikyuItiranPrint.B0410_SeikyuItiranPrint(this);
                     seikyuitiran.ShowDialog();
                     break;
 
-                case "請求明細書":
+                //請求明細書
+                case "42":
                     B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint seikyumesai = new B0420_SeikyuMeisaishoPrint.B0420_SeikyuMeisaishoPrint(this);
                     seikyumesai.ShowDialog();
                     break;
 
-                case "発注数変更":
+                //売上削除承認入力
+                case "43":
+                    break;
+
+                //加工品状況確認
+                case "46":
+                    break;
+
+                //発注数変更
+                case "47":
                     A0470_Hachusuhenko.A0470_Hachusuhenko hachusuhenko = new A0470_Hachusuhenko.A0470_Hachusuhenko(this);
                     hachusuhenko.ShowDialog();
                     break;
 
-                case "分類別仕入推移表":
+                //分類別仕入推移表
+                case "48":
                     C0480_SiireSuiiHyo.C0480_SiireSuiiHyo shiresuiihyo = new C0480_SiireSuiiHyo.C0480_SiireSuiiHyo(this);
                     shiresuiihyo.ShowDialog();
                     break;
 
-                case "分類別売上推移表":
+                //分類別売上推移表
+                case "49":
                     C0490_UriageSuiiHyo.C0490_UriageSuiiHyo uriagesuiihyo = new C0490_UriageSuiiHyo.C0490_UriageSuiiHyo(this);
                     uriagesuiihyo.ShowDialog();
                     break;
 
-                case "得意先別売上粗利推移表":
+                //売掛金残高一覧確認
+                case "50":
+                    break;
+
+                //売掛金残高一覧表
+                case "51":
+                    break;
+
+                //買掛金残高一覧表
+                case "52":
+                    break;
+
+                //得意先別売上粗利推移表
+                case "53":
                     C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint uriageararisuii = new C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint(this);
                     uriageararisuii.ShowDialog();
                     break;
 
-                case "棚卸プレシート":
+                //得意先元帳
+                case "54":
+                    break;
+
+                //仕入先元帳
+                case "55":
+                    break;
+
+                //仕入先別仕入推移表
+                case "56":
+                    break;
+
+                //棚卸プレシート
+                case "57":
                     F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint tanaoroshikinyu = new F0570_TanaorosiKinyuhyoPrint.F0570_TanaorosiKinyuhyoPrint(this);
                     tanaoroshikinyu.ShowDialog();
                     break;
 
-                case "封書宛名印刷":
+                //棚卸チェックシート
+                case "58":
+                    break;
+
+                //棚卸更新
+                case "59":
+                    break;
+
+                //在庫一覧表
+                case "60":
+                    break;
+
+                //取引先別売上入金対比表
+                case "61":
+                    break;
+
+                //封書宛名印刷
+                case "62":
                     M0620_HushoAtenaInsatsu.M0620_HushoAtenaInsatsu hushoatena = new M0620_HushoAtenaInsatsu.M0620_HushoAtenaInsatsu(this);
                     hushoatena.ShowDialog();
                     break;
 
-                case "得意先別売上管理表":
+                //得意先別売上管理表
+                case "63":
                     C0630_TokuisakiUriageArariPrint.C0630_TokuisakiUriageArariPrint tokuisakiuriagearari = new C0630_TokuisakiUriageArariPrint.C0630_TokuisakiUriageArariPrint(this);
                     tokuisakiuriagearari.ShowDialog();
                     break;
 
-                case "商品群別売上仕入管理表":
+                //見積書作成リスト
+                case "64":
+                    break;
+
+                //商品群別売上仕入管理表
+                case "65":
                     C0650_SyohingunUriageSiirePrint.C0650_SyohingunUriageSiirePrint shohingunuriagesire = new C0650_SyohingunUriageSiirePrint.C0650_SyohingunUriageSiirePrint(this);
                     shohingunuriagesire.ShowDialog();
                     break;
 
-                case "得意先別売上検収入力＆確認":
+                //得意先別売上検収入力＆確認
+                case "66":
                     //作成中
                     break;
 
-                case "売上実績確認（AS400）":
+                //仕入検収入力＆確認
+                case "67":
+                    break;
+
+                //売上実績確認（AS400）
+                case "68":
                     D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400 uriagejissekias400 = new D0680_UriageJissekiKakuninAS400.D0680_UriageJissekiKakuninAS400(this);
                     uriagejissekias400.ShowDialog();
                     break;
 
-                case "仕入実績確認（AS400）":
+                //仕入実績確認（AS400）
+                case "69":
                     D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400 shirejissekias400 = new D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400(this);
                     shirejissekias400.ShowDialog();
                     break;
 
-                case "日付制限":
+                //商品元帳確認（AS400）
+                case "70":
+                    break;
+
+                //発注区分設定
+                case "91":
+                    break;
+
+                //日付制限
+                case "92":
                     G0920_HidukeSeigen.G0920_HidukeSeigen hidukeseigen = new G0920_HidukeSeigen.G0920_HidukeSeigen(this);
                     hidukeseigen.ShowDialog();
                     break;
 
-                case "会社条件":
+                //会社条件
+                case "100":
                     M1000_Kaishajyoken.M1000_Kaishajyoken kaisyajoken = new M1000_Kaishajyoken.M1000_Kaishajyoken(this);
                     kaisyajoken.ShowDialog();
                     break;
 
-                case "大分類":
+                //大分類
+                case "101":
                     M1010_Daibunrui.M1010_Daibunrui daibunrui = new M1010_Daibunrui.M1010_Daibunrui(this);
                     daibunrui.ShowDialog();
                     break;
 
-                case "メーカー":
+                //メーカー
+                case "102":
                     M1020_Maker.M1020_Maker maker = new M1020_Maker.M1020_Maker(this);
                     maker.ShowDialog();
                     break;
 
-                case "商品":
+                //商品
+                case "103":
                     M1030_Shohin.M1030_Shohin shohin = new M1030_Shohin.M1030_Shohin(this);
                     shohin.ShowDialog();
                     break;
 
-                case "取引区分":
+                //取引区分
+                case "104":
                     M1040_Torihikikbn.M1040_Torihikikbn torihikikbn = new M1040_Torihikikbn.M1040_Torihikikbn(this);
                     torihikikbn.ShowDialog();
                     break;
 
-                case "担当者":
+                //担当者
+                case "105":
                     M1050_Tantousha.M1050_Tantousha tantosha = new M1050_Tantousha.M1050_Tantousha(this);
                     tantosha.ShowDialog();
                     break;
 
-                case "業種":
+                //業種
+                case "106":
                     M1060_Gyoushu.M1060_Gyoshu gyoshu = new M1060_Gyoushu.M1060_Gyoshu(this);
                     gyoshu.ShowDialog();
                     break;
 
-                case "取引先":
+                //取引先
+                case "107":
                     M1070_Torihikisaki.M1070_Torihikisaki torihikisaki = new M1070_Torihikisaki.M1070_Torihikisaki(this);
                     torihikisaki.ShowDialog();
                     break;
 
-                case "営業所":
+                //営業所
+                case "109":
                     M1090_Eigyosho.M1090_Eigyosho eigyosho = new M1090_Eigyosho.M1090_Eigyosho(this);
                     eigyosho.ShowDialog();
                     break;
 
-                case "直送先":
+                //直送先
+                case "110":
                     M1100_Chokusosaki.M1100_Chokusosaki chokusosaki = new M1100_Chokusosaki.M1100_Chokusosaki(this);
                     chokusosaki.ShowDialog();
                     break;
 
-                case "中分類":
+                //中分類
+                case "111":
                     M1110_Chubunrui.M1110_Chubunrui chubunrui = new M1110_Chubunrui.M1110_Chubunrui(this);
                     chubunrui.ShowDialog();
                     break;
 
-                case "棚番":
+                //棚番
+                case "112":
                     M1120_Tanaban.M1120_Tanaban tanaban = new M1120_Tanaban.M1120_Tanaban(this);
                     tanaban.ShowDialog();
                     break;
 
-                case "消費税率":
+                //消費税率
+                case "113":
                     M1130_Shohizeiritsu.M1130_Shohizeiritsu shohizeiritsu = new M1130_Shohizeiritsu.M1130_Shohizeiritsu(this);
                     shohizeiritsu.ShowDialog();
                     break;
 
-                case "商品マスタ単価一括更新":
+                //取引先確認
+                case "114":
+                    break;
+
+                //商品マスタ単価一括更新
+                case "115":
                     M1150_ShohinTankaIkkatsuUpdate.M1150_ShohinTankaIkkatsuUpdate shohintankaupdate = new M1150_ShohinTankaIkkatsuUpdate.M1150_ShohinTankaIkkatsuUpdate(this);
                     shohintankaupdate.ShowDialog();
                     break;
 
-                case "特定向先単価マスタ":
+                //特定向先単価マスタ
+                case "116":
                     M1160_TokuteimukesakiTanka.M1160_TokuteimukesakiTanka tokuteitankamaster = new M1160_TokuteimukesakiTanka.M1160_TokuteimukesakiTanka(this);
                     tokuteitankamaster.ShowDialog();
                     break;
 
-                case "グループマスタ":
+                //グループマスタ
+                case "120":
                     M1200_Group.M1200_Group group = new M1200_Group.M1200_Group(this);
                     group.ShowDialog();
                     break;
 
-                case "商品分類別利益率設定":
+                //商品別利益率設定
+                case "121":
                     M1210_ShohinbetsuRiekiritsuSettei.M1210_ShohinbetsuRiekiritsuSettei shohinbunruirieki = new M1210_ShohinbetsuRiekiritsuSettei.M1210_ShohinbetsuRiekiritsuSettei(this);
                     shohinbunruirieki.ShowDialog();
                     break;
 
-                case "商品別利益率設定":
+                //商品分類別利益率設定
+                case "122":
                     M1220_SyohinBunruiRiekiritsu.M1220_SyohinBunruiRiekiritsu shohinbeturieki = new M1220_SyohinBunruiRiekiritsu.M1220_SyohinBunruiRiekiritsu(this);
                     shohinbeturieki.ShowDialog();
                     break;
 
-                case "担当者別伝票処理件数":
+                //加工手配履歴
+                case "123":
+                    break;
+
+                //商品仕入単価推移表2
+                case "124":
+                    M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2 shohintankasuii2 = new M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2(this);
+                    shohintankasuii2.ShowDialog();
+                    break;
+
+                //メニュー権限
+                case "148":
+                    break;
+
+                //メニュー権限２
+                case "149":
+                    break;
+
+                //マイメニュー
+                case "150":
+                    break;
+
+                //担当者別伝票処理件数
+                case "600":
                     C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount tantoshabetusyori = new C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount(this);
                     tantoshabetusyori.ShowDialog();
                     break;
 
-                case "商品仕入単価推移表2" :
-                    M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2 shohintankasuii2 = new M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2(this);
-                    shohintankasuii2.ShowDialog();
-                    break;
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -738,6 +900,12 @@ namespace KATO.Form.Z0000
             {
                 //担当者コードの取得
                 strTantoshaCd = mainmenuB.getTantoshaCd(SystemInformation.UserName);
+
+                //登録されたユーザーでない場合
+                if (strTantoshaCd == null)
+                {
+                    return;
+                }
 
                 strKengen = mainmenuB.getKengen(strTantoshaCd, txtShoriNo.Text);
 

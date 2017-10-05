@@ -54,6 +54,9 @@ namespace KATO.Business.M1050_Tantousha
 
                 //コミット開始
                 dbconnective.Commit();
+
+                //新規でメニュー権限を追加
+                addKengen(lstString);
             }
             catch (Exception ex)
             {
@@ -67,6 +70,85 @@ namespace KATO.Business.M1050_Tantousha
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///addKengen
+        ///新規でメニュー権限を追加
+        ///</summary>
+        public void addKengen(List<string> lstString)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLSelect = new List<string>();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLInsert = new List<string>();
+
+            //SQLファイルのパスとファイル名を追加(メニュー権限取得)
+            lstSQLSelect.Add("M1050_Tantousha");
+            lstSQLSelect.Add("Tantousha_MenuKengen_SELECT");
+
+            //SQLファイルのパスとファイル名を追加(メニュー権限追加)
+            lstSQLInsert.Add("M1050_Tantousha");
+            lstSQLInsert.Add("Tantousha_MenuKengen_INSERT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得(メニュー権限取得)
+                string strSQLSelect = opensql.setOpenSQL(lstSQLSelect);
+
+                //パスがなければ返す
+                if (strSQLSelect == "")
+                {
+                    return;
+                }
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
+                                
+                //SQLファイルのパス取得(メニュー権限追加)
+                string strSQLInsert = opensql.setOpenSQL(lstSQLInsert);
+
+                //パスがなければ返す
+                if (strSQLInsert == "")
+                {
+                    return;
+                }
+
+                //取得したメニュー権限分ループ
+                for (int intCnt = 0; intCnt < dtSetCd_B.Rows.Count; intCnt++)
+                {
+                    string[] aryStrInsert = new string[] {
+                    lstString[0],
+                    dtSetCd_B.Rows[intCnt]["ＰＧ番号"].ToString(),
+                    dtSetCd_B.Rows[intCnt]["ＰＧ名"].ToString(),
+                    dtSetCd_B.Rows[intCnt]["権限"].ToString()
+                    };
+
+                    //SQL接続後、該当データを登録
+                    dbconnective.RunSqlCommon("C_SQL_MENUKENGEN_UPD", aryStrInsert);
+                }
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
 
         ///<summary>
         ///delTantosha

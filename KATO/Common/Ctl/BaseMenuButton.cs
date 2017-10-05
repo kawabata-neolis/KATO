@@ -12,6 +12,25 @@ namespace KATO.Common.Ctl
 {
     public partial class BaseMenuButton : Button
     {
+        //PG番号確保用
+        string strpgno;
+
+        /// <summary>
+        /// strPGNo
+        /// プロパティの設定（PG番号）
+        /// </summary>
+        public string strPGNo
+        {
+            get
+            {
+                return this.strpgno;
+            }
+            set
+            {
+                this.strpgno = value;
+            }
+        }
+
         public BaseMenuButton()
         {
             InitializeComponent();
