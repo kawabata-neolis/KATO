@@ -102,7 +102,7 @@ namespace KATO.Form.Z0000
                 string strUserID = SystemInformation.UserName;
 
                 //テスト用
-                //strUserID = "k.kato";
+                strUserID = "k.kato";
 
                 //担当者コードの取得
                 string strTantoshaCd = mainmenuB.getTantoshaCd(strUserID);
