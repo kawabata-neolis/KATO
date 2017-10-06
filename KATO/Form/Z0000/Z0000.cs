@@ -101,8 +101,8 @@ namespace KATO.Form.Z0000
 
                 string strUserID = SystemInformation.UserName;
 
-                //テスト用
-                strUserID = "k.kato";
+//テスト用
+                //strUserID = "k.kato";
 
                 //担当者コードの取得
                 string strTantoshaCd = mainmenuB.getTantoshaCd(strUserID);
@@ -845,6 +845,8 @@ namespace KATO.Form.Z0000
 
                 //マイメニュー
                 case "150":
+                    Z1500_MyMenuSet.Z1500_MyMenuSet mymenu = new Z1500_MyMenuSet.Z1500_MyMenuSet(this);
+                    mymenu.ShowDialog();
                     break;
 
                 //担当者別伝票処理件数
@@ -907,6 +909,7 @@ namespace KATO.Form.Z0000
                     return;
                 }
 
+                //権限の値を確保
                 strKengen = mainmenuB.getKengen(strTantoshaCd, txtShoriNo.Text);
 
                 if (strKengen == "N")
@@ -919,87 +922,142 @@ namespace KATO.Form.Z0000
 
                 switch (txtShoriNo.Text)
                 {
+                    //受注入力
                     case "1":
                         A0010_JuchuInput.A0010_JuchuInput juchuinput = new A0010_JuchuInput.A0010_JuchuInput(this);
                         juchuinput.ShowDialog();
                         break;
 
+                    //売上入力
                     case "2":
                         A0020_UriageInput.A0020_UriageInput uriageinput = new A0020_UriageInput.A0020_UriageInput(this);
                         uriageinput.ShowDialog();
                         break;
 
+                    //仕入入力
                     case "3":
                         A0030_ShireInput.A0030_ShireInput shireinput = new A0030_ShireInput.A0030_ShireInput(this);
                         shireinput.ShowDialog();
                         break;
 
+                    //入金入力
                     case "4":
                         B0040_NyukinInput.B0040_NyukinInput nyukininput = new B0040_NyukinInput.B0040_NyukinInput(this);
                         nyukininput.ShowDialog();
                         break;
 
+                    //入金データチェックリスト
                     case "5":
                         B0050_NyukinCheckPrint.B0050_NyukinCheckPrint nyukincheck = new B0050_NyukinCheckPrint.B0050_NyukinCheckPrint(this);
                         nyukincheck.ShowDialog();
                         break;
 
+                    //支払入力
+                    case "6":
+                        break;
+
+                    //支払データチェックリスト
                     case "7":
                         A0090_SiireCheckPrint.A0090_SiireCheckPrint shirecheck = new A0090_SiireCheckPrint.A0090_SiireCheckPrint(this);
                         shirecheck.ShowDialog();
                         break;
 
+                    //納品書印刷
+                    case "8":
+                        break;
+
+                    //仕入データチェックリスト
+                    case "9":
+                        break;
+
+                    //発注入力
                     case "10":
                         A0100_HachuInput.A0100_HachuInput hachuinput = new A0100_HachuInput.A0100_HachuInput(this);
                         hachuinput.ShowDialog();
                         break;
 
+                    //加工手配入力
+                    case "11":
+                        break;
+
+                    //注文書印刷
+                    case "12":
+                        break;
+
+                    //担当者別売上管理表
                     case "13":
                         C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint tantouriarari = new C0130_TantouUriageArariPrint.C0130_TantouUriageArariPrint(this);
                         tantouriarari.ShowDialog();
                         break;
 
+                    //棚卸入力
                     case "14":
                         F0140_TanaorosiInput.F0140_TanaorosiInput tanainput = new F0140_TanaorosiInput.F0140_TanaorosiInput(this);
                         tanainput.ShowDialog();
                         break;
 
+                    //売上チェックリスト
                     case "15":
                         A0150_UriageCheckPrint.A0150_UriageCheckPrint uriagecheck = new A0150_UriageCheckPrint.A0150_UriageCheckPrint(this);
                         uriagecheck.ShowDialog();
                         break;
 
+                    //出庫依頼入力
                     case "16":
-                        //出庫依頼入力
                         break;
 
+                    //出庫承認入力
                     case "17":
-                        //出庫承認入力
                         break;
 
+                    //出庫指示書（依頼分）
+                    case "18":
+                        break;
+
+                    //出庫指示書（受注分）
+                    case "19":
+                        break;
+
+                    //出庫指示書（加工分）
+                    case "20":
+                        break;
+
+                    //見積書入力
                     case "21":
-                        //見積書入力
                         break;
 
+                    //受注分出庫承認入力
+                    case "22":
+                        break;
+
+                    //返品値引分売上承認入力
+                    case "23":
+                        break;
+
+                    //加工品受注入力
+                    case "24":
+                        break;
+
+                    //ＭＯ入力
                     case "25":
                         B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
                         monyuryoku.ShowDialog();
                         break;
 
+                    //ＭＯ入力確定
                     case "26":
-                        //ＭＯ入力確定
                         break;
 
+                    //倉庫移動確認
                     case "28":
-                        //倉庫移動確認
                         break;
 
+                    //客先別在庫表
                     case "29":
-                        //客先別在庫表
                         break;
-                        
+
+                    //在庫一覧確認
                     case "30":
-                        //在庫一覧確認
                         D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin zaikokakunin = new D0300_ZaikoIchiranKakunin.D0300_ZaikoIchiranKakunin(this);
                         zaikokakunin.ShowDialog();
                         break;

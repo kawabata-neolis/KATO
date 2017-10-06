@@ -47,9 +47,9 @@ namespace KATO.Common.Util
 
                 return(SqlText);
             }
-            catch
+            catch(Exception e)
             {
-                return("");
+                    return("");
             }
             finally
             {

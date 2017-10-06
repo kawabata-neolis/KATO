@@ -171,6 +171,7 @@
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
     <Compile Include="Business\Z0000\Z0000_B.cs" />
+    <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
     <Compile Include="Common\Business\MenuList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
@@ -324,6 +325,12 @@
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Maker.Designer.cs">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\LabelSet_Menu.designer.cs">
+      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Ctl\LabelSet_Shiresaki.cs">
       <SubType>UserControl</SubType>
@@ -937,6 +944,12 @@
     <Compile Include="Form\Z0000\Z0000.Designer.cs">
       <DependentUpon>Z0000.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.designer.cs">
+      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Common\Ctl\BaseButton.resx">
@@ -1026,6 +1039,9 @@
     <EmbeddedResource Include="Common\Ctl\LabelSet_Maker.resx">
       <DependentUpon>LabelSet_Maker.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\LabelSet_Menu.resx">
+      <DependentUpon>LabelSet_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\LabelSet_Shiresaki.resx">
       <DependentUpon>LabelSet_Shiresaki.cs</DependentUpon>
@@ -1362,6 +1378,9 @@
       <DependentUpon>Z0000.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Z1500_MyMenuSet\Z1500_MyMenuSet.resx">
+      <DependentUpon>Z1500_MyMenuSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1530,6 +1549,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_GDateCheckEG.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Menu_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_ShireHeader_SELECT.sql">
@@ -2206,6 +2228,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Z0000\MainMenu_Kengen_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z1500_MyMenuSet\MyMenuSet_MenuSet_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z1500_MyMenuSet\MyMenuSet_MenuSet_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

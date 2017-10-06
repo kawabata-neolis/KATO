@@ -80,16 +80,9 @@ namespace KATO.Business.M1050_Tantousha
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQLSelect = new List<string>();
 
-            //SQLファイルのパスとファイル名を入れる用
-            List<string> lstSQLInsert = new List<string>();
-
             //SQLファイルのパスとファイル名を追加(メニュー権限取得)
             lstSQLSelect.Add("M1050_Tantousha");
             lstSQLSelect.Add("Tantousha_MenuKengen_SELECT");
-
-            //SQLファイルのパスとファイル名を追加(メニュー権限追加)
-            lstSQLInsert.Add("M1050_Tantousha");
-            lstSQLInsert.Add("Tantousha_MenuKengen_INSERT");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -113,15 +106,6 @@ namespace KATO.Business.M1050_Tantousha
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
                                 
-                //SQLファイルのパス取得(メニュー権限追加)
-                string strSQLInsert = opensql.setOpenSQL(lstSQLInsert);
-
-                //パスがなければ返す
-                if (strSQLInsert == "")
-                {
-                    return;
-                }
-
                 //取得したメニュー権限分ループ
                 for (int intCnt = 0; intCnt < dtSetCd_B.Rows.Count; intCnt++)
                 {

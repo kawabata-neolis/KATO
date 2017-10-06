@@ -30,7 +30,7 @@ namespace KATO.Common.Form
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //メニューコードの確保
-        string strMenuCdsub = null;
+        LabelSet_Menu lblSetMenu = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -75,6 +75,35 @@ namespace KATO.Common.Form
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
         }
+
+        /// <summary>
+        /// MakerList
+        /// フォームの初期設定（ラベルセットから）
+        /// </summary>
+        public MenuList(Control c, LabelSet_Menu lblSetMenuSelect)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            lblSetMenu = lblSetMenuSelect;
+
+            InitializeComponent();
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
+        }
+
 
         ///<summary>
         ///MenuList_Load
