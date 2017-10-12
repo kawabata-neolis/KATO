@@ -11,6 +11,7 @@ using KATO.Common.Ctl;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.Z1500_MyMenuSet;
 using KATO.Common.Util;
+using KATO.Form;
 
 namespace KATO.Form.Z1500_MyMenuSet
 {
@@ -260,9 +261,11 @@ namespace KATO.Form.Z1500_MyMenuSet
 
                     //登録
                     mymenuB.addMyMenu(lstMakerData);
-
-
                 }
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -272,6 +275,23 @@ namespace KATO.Form.Z1500_MyMenuSet
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+
+            //閉じる
+            this.Close();
+
+            //全てのフォームの中から
+            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+            {
+                //業種のフォームを探す
+                if (frm.Name.Equals("Z0000"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    Z0000.Z0000 z0000 = (Z0000.Z0000)frm;
+                    z0000.Menu_ReSet();
+                    z0000.Menu_Set();
+                    break;
+                }
             }
         }
 

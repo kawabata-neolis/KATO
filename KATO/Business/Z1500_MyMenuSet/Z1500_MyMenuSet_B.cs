@@ -75,7 +75,7 @@ namespace KATO.Business.Z1500_MyMenuSet
 
         ///<summary>
         ///getMenuSet
-        ///各ユーザー用のデータを取得
+        ///データを登録
         ///</summary>
         public void addMyMenu(List<string> lstMakerData)
         {
@@ -120,6 +120,9 @@ namespace KATO.Business.Z1500_MyMenuSet
 
                 //SQL接続後、該当データを取得
                 dbconnective.RunSql(strSQLInput);
+
+                //コミット開始
+                dbconnective.Commit();
 
                 return;
             }
