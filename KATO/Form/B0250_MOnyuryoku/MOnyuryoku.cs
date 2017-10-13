@@ -60,6 +60,9 @@ namespace KATO.Form.B0250_MOnyuryoku
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //中分類setデータを読めるようにする
+            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
         }
 
         ///<summary>
@@ -69,7 +72,7 @@ namespace KATO.Form.B0250_MOnyuryoku
         private void MOnyuryoku_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "大分類マスタ";
+            this._Title = "ＭＯ入力";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF01.Text = STR_FUNC_F1;
@@ -343,7 +346,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 {
                     gridKataban.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
-            }
+            }       
         }
 
         ///<summary>

@@ -1027,7 +1027,7 @@
             // 
             // btn_1
             // 
-            this.btn_1.BackColor = System.Drawing.Color.Cyan;
+            this.btn_1.BackColor = System.Drawing.Color.LightYellow;
             this.btn_1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_1.Location = new System.Drawing.Point(30, 30);
             this.btn_1.Name = "btn_1";
@@ -1655,7 +1655,7 @@
             // 
             // btn_41
             // 
-            this.btn_41.BackColor = System.Drawing.Color.LightYellow;
+            this.btn_41.BackColor = System.Drawing.Color.Cyan;
             this.btn_41.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_41.Location = new System.Drawing.Point(30, 30);
             this.btn_41.Name = "btn_41";

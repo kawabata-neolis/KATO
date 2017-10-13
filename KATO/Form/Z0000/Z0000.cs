@@ -13,6 +13,8 @@ using System.Security.Permissions;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Business.Z0000_B;
+using System.Collections;
+using KATO.Form;
 
 namespace KATO.Form.Z0000
 {
@@ -45,7 +47,7 @@ namespace KATO.Form.Z0000
         ///Z0000_Load
         ///画面レイアウト設定
         ///</summary>
-        private void Z0000_Load(object sender, EventArgs e)
+        public void Z0000_Load(object sender, EventArgs e)
         {
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -57,23 +59,49 @@ namespace KATO.Form.Z0000
             //DrawItemイベントハンドラを追加
             tabControl1.DrawItem += new DrawItemEventHandler(TabControl1_DrawItem);
 
+            //Menu_ReSet();
             Menu_Set();
         }
 
+
         ///<summary>
         ///Menu_Set
-        ///ユーザー別PG情報を取得
+        ///メニューリセット
+        ///</summary>
+        public void Menu_ReSet()
+        {
+            string strBtnName = "";
+
+            //初期化
+            //マイメニュー分ループ
+            for (int intCnt = 1; intCnt <= 200; intCnt++)
+            {
+                strBtnName = "btn_" + intCnt;
+
+                //各ボタン名のコントロールを探す
+                BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                //各ボタンを初期化
+                btnData.Text = "";
+                btnData.strPGNo = null;
+                btnData.Visible = false;
+            }
+        }
+        
+        ///<summary>
+        ///Menu_Set
+        ///ユーザー別PG情報を取得、配置
         ///</summary>
         public void Menu_Set()
         {
             DataTable dtGetComment = new DataTable();
+            DataTable dtGetMyMenu = new DataTable();
             DataTable dtGetData = new DataTable();
 
             string strBtnName = "";
 
-            //一番右列のボタンを作成しない処理をする用
-            int intBtnSet = 0;
-
+            Control[] ctrlList = null;
+            
             Z0000_B mainmenuB = new Z0000_B();
             try
             {
@@ -101,7 +129,7 @@ namespace KATO.Form.Z0000
 
                 string strUserID = SystemInformation.UserName;
 
-//テスト用
+                ////テスト用
                 //strUserID = "k.kato";
 
                 //担当者コードの取得
@@ -111,62 +139,94 @@ namespace KATO.Form.Z0000
                 dtGetData = mainmenuB.getDataKengen(strTantoshaCd);
 
                 //登録されたユーザーでない場合
-                if(dtGetData.Rows.Count == 0)
+                if (dtGetData.Rows.Count == 0)
                 {
                     return;
                 }
 
-                //テーブル分ループ
-                for (int intCnt = 0; intCnt < dtGetData.Rows.Count; intCnt++)
+                //マイメニューのビジネスを使用
+                Business.Z1500_MyMenuSet.Z1500_MyMenuSet_B mymenuB = new Business.Z1500_MyMenuSet.Z1500_MyMenuSet_B();
+
+                //マイメニューの情報取得
+                dtGetMyMenu = mymenuB.getMenuSet("master");
+
+                //マイメニュー分ループ
+                for (int intCnt = 0; intCnt < dtGetMyMenu.Rows.Count; intCnt++)
+                {
+                    strBtnName = "btn_" + int.Parse(dtGetMyMenu.Rows[intCnt]["メニューＮＯ"].ToString());
+
+                    //各ボタン名のコントロールを探す
+                    BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
+
+                    //ＰＧ名がある場合
+                    if (dtGetMyMenu.Rows[intCnt]["ＰＧ名"].ToString() != "")
+                    {
+                        btnData.Visible = true;
+
+                        //各ボタンに書き込み
+                        btnData.Text = "  " + dtGetMyMenu.Rows[intCnt]["ＰＧ番号"].ToString() + "." + dtGetMyMenu.Rows[intCnt]["ＰＧ名"].ToString();
+                        btnData.strPGNo = dtGetMyMenu.Rows[intCnt]["ＰＧ番号"].ToString();
+                    }
+                    else
+                    {
+                        btnData.Visible = false;
+
+                    }
+                }
+
+                //権限テーブル文ループ
+                for (int intCntKengen = 0; intCntKengen < dtGetData.Rows.Count; intCntKengen++)
                 {
                     //ＰＧ名がnull且つ[.]でない場合
-                    if (dtGetData.Rows[intCnt]["ＰＧ名"].ToString() != ".")
+                    if (dtGetData.Rows[intCntKengen]["ＰＧ名"].ToString() != ".")
                     {
-                        //600番以前の場合
-                        if (int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) < 600)
+                        //PG番号を確保
+                        string strDataNameKengen = dtGetData.Rows[intCntKengen]["ＰＧ番号"].ToString();
+
+                        //全てのコントロールを確保
+                        ctrlList = GetAllControls(this);
+
+                        //権限がNの場合
+                        if (dtGetData.Rows[intCntKengen]["権限"].ToString() == "N")
                         {
-                            if (int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) > 30)
+                            //確保したコントロール分ループ
+                            for (int intCntCtrl = 0; intCntCtrl < ctrlList.Length; intCntCtrl++)
                             {
-                                intBtnSet = int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString()) + 10;
-
-                                if (intBtnSet > 70)
+                                //変換できるかの判定を行う
+                                if (ctrlList[intCntCtrl] is BaseMenuButton)
                                 {
-                                    intBtnSet = intBtnSet + 10;
+                                    BaseMenuButton btnDataCtrl = (BaseMenuButton)ctrlList[intCntCtrl];
 
-                                    if (intBtnSet > 110)
+                                    //PG番号と一致した場合
+                                    if (btnDataCtrl.strPGNo == strDataNameKengen)
                                     {
-                                        intBtnSet = intBtnSet + 10;
-
-                                        if (intBtnSet > 150)
-                                        {
-                                            intBtnSet = intBtnSet + 10;
-                                        }
+                                        //非表示
+                                        btnDataCtrl.Visible = false;
                                     }
                                 }
-
-                                strBtnName = "btn_" + intBtnSet;
                             }
-                            else
+                        }
+                        //権限がYの場合
+                        else
+                        {
+                            //全てのコントロールを確保
+                            ctrlList = GetAllControls(this);
+
+                            //確保したコントロール分ループ
+                            for (int intCntCtrl = 0; intCntCtrl < ctrlList.Length; intCntCtrl++)
                             {
-                                strBtnName = "btn_" + int.Parse(dtGetData.Rows[intCnt]["ＰＧ番号"].ToString());
-                            }
+                                //変換できるかの判定を行う
+                                if (ctrlList[intCntCtrl] is BaseMenuButton)
+                                {
+                                    BaseMenuButton btnDataCtrl = (BaseMenuButton)ctrlList[intCntCtrl];
 
-                            //"TextBox1"という名前のコントロールを探す
-                            BaseMenuButton btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
-
-                            btnData.Visible = true;
-
-                            btnData.Text = "  " + dtGetData.Rows[intCnt]["ＰＧ番号"].ToString() + "." + dtGetData.Rows[intCnt]["ＰＧ名"].ToString();
-                            btnData.strPGNo = dtGetData.Rows[intCnt]["ＰＧ番号"].ToString();
-
-                            //権限がYの場合
-                            if (dtGetData.Rows[intCnt]["権限"].ToString() == "N")
-                            {
-                                //"TextBox1"という名前のコントロールを探す
-                                btnData = (BaseMenuButton)FindControlByFieldName(this, strBtnName);
-
-                                //非表示
-                                btnData.Visible = false;
+                                    //PG番号と一致した場合
+                                    if (btnDataCtrl.strPGNo == strDataNameKengen)
+                                    {
+                                        //非表示
+                                        btnDataCtrl.Visible = true;
+                                    }
+                                }
                             }
                         }
                     }
@@ -181,8 +241,30 @@ namespace KATO.Form.Z0000
                 basemessagebox.ShowDialog();
                 return;
             }
+
+            tabControl1.SelectedIndex = 0;
         }
 
+
+        ///<summary>
+        ///GetAllControls
+        ///画面全てのコントロールを確保
+        ///</summary>
+        public Control[] GetAllControls(Control top)
+        {
+            ArrayList buf = new ArrayList();
+            foreach (Control c in top.Controls)
+            {
+                buf.Add(c);
+                buf.AddRange(GetAllControls(c));
+            }
+            return (Control[])buf.ToArray(typeof(Control));
+        }
+
+        ///<summary>
+        ///FindControlByFieldName
+        ///画面全ての同名コントロールを確保
+        ///</summary>
         public static object FindControlByFieldName(Control cfrm, string name)
         {
             System.Type t = cfrm.GetType();
@@ -367,7 +449,6 @@ namespace KATO.Form.Z0000
         {
             // このフォームで現在アクティブなコントロールを取得する
             Control cControl = this.ActiveControl;
-            //BaseMenuButton bmbData = this.ActiveControl.AccessibilityObject;
 
             BaseMenuButton bmb = (BaseMenuButton)cControl;
 
