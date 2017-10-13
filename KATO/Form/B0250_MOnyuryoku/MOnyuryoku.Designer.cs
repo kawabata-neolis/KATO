@@ -190,7 +190,7 @@
             // 
             this.labelSet_Maker.AppendLabelSize = 0;
             this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 30;
+            this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
             this.labelSet_Maker.Location = new System.Drawing.Point(588, 74);
@@ -202,7 +202,7 @@
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 5;
-            this.labelSet_Maker.ValueLabelSize = 200;
+            this.labelSet_Maker.ValueLabelSize = 190;
             this.labelSet_Maker.ValueLabelText = "";
             // 
             // labelSet_Shiresaki

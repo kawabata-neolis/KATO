@@ -490,6 +490,10 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void addMO()
         {
+            int intTheErr;
+            DateTime dtYMD;
+            object objSijisU;
+
             decimal decSu = 0;
             decimal decTanka = 0;
             object objNouki = null;
@@ -502,6 +506,12 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
+            int intDenNo = 0;
+            string strChuban;
+            short shtHasuu;
+            string strTantou;
+            decimal decKingaku;
+            
             //砂時計表示処理
             //libMessage/waitCursor
 
@@ -528,18 +538,44 @@ namespace KATO.Form.B0250_MOnyuryoku
                         gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0")
                     {
                         decSu = 0;
-                        //金額を入れる
                         decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
                         objNouki = null;
-                        //仕向け先名を入れる
                         objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
 
                         strCode = gridKataban.Rows[intCnt].Cells[16].Value.ToString();
                     }
                     else
                     {
+                        decSu = decimal.Parse(gridKataban.Rows[intCnt].Cells[8].Value.ToString());
+                        decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
+                        objNouki = gridKataban.Rows[intCnt].Cells[11].Value;
+                        objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
 
                     }
+
+                    //発注指が空白でないもしくは0
+                    if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
+                        gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
+                    {
+                        objSijisU = null;
+                    }
+                    else
+                    {
+                        objSijisU = gridKataban.Rows[intCnt].Cells[7].Value;
+                    }
+
+                    //
+                    if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[15].Value.ToString()) == false)
+                    {
+                        Business.A0020_UriageInput.A0020_UriageInput_B uriageB = new Business.A0020_UriageInput.A0020_UriageInput_B();
+                        intDenNo = int.Parse(uriageB.getDenpyoNo("発注番号").ToString());
+                    }
+                    else
+                    {
+                        intDenNo = int.Parse(gridKataban.Rows[intCnt].Cells[15].Value.ToString());
+                    }
+
+                    //intTheErr = 
                 }
                 else
                 {

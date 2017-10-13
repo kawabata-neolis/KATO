@@ -72,5 +72,63 @@ namespace KATO.Business.B0250_MOnyuryoku
                 dbconnective.DB_Disconnect();
             }
         }
+
+        /// <summary>
+        /// getExecSProc
+        /// MOデータ変更の判定
+        /// </summary>
+        public int getExecSProc(string strYMD, 
+                                   string strCode, 
+                                   object objSijisU, 
+                                   decimal decSu, 
+                                   decimal decTanka, 
+                                   object objNouki,
+                                   object objTorihiki,
+                                   int intDenNo,
+                                   string strUserID
+                                   )
+        {
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@年月度");
+            lstTableName.Add("@商品コード");
+            lstTableName.Add("@ＭＯ発注指示数");
+            lstTableName.Add("@ＭＯ発注数");
+            lstTableName.Add("@ＭＯ発注単価");
+            lstTableName.Add("@納期");
+            lstTableName.Add("@取引先コード");
+            lstTableName.Add("@発注番号");
+            lstTableName.Add("@ユーザー名");
+
+            List<string> lstDataName = new List<string>();
+            lstDataName.Add(strYMD);
+            lstDataName.Add(strCode);
+            lstDataName.Add(objSijisU.ToString());
+            lstDataName.Add(decSu.ToString());
+            lstDataName.Add(decTanka.ToString());
+            lstDataName.Add(objNouki.ToString());
+            lstDataName.Add(objTorihiki.ToString());
+            lstDataName.Add(intDenNo.ToString());
+            lstDataName.Add(strUserID);
+
+            int intExec;
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // get伝票番号_PROC"を実行
+                intExec = int.Parse(dbconnective.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, "@番号"));
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+
+            return intExec;
+
+        }
     }
 }

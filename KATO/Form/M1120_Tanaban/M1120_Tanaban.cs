@@ -429,6 +429,7 @@ namespace KATO.Form.M1120_Tanaban
 
                 //データ渡し用
                 lstTanaban.Add(txtTanabanCd.Text);
+                lstTanaban.Add(txtTanabanName.Text);
                 lstTanaban.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
