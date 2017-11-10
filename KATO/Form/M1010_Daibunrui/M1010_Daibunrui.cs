@@ -545,6 +545,10 @@ namespace KATO.Form.M1010_Daibunrui
                     txtLabel6.Text = dtSetCd.Rows[0]["ラベル名６"].ToString();
                     txtName.Focus();
                 }
+                else
+                {
+                    txtName.Text = "";
+                }
                 cActive.Focus();
             }
             catch (Exception ex)

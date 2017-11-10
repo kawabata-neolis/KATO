@@ -29,6 +29,11 @@ namespace KATO.Form.Z1500_MyMenuSet
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        Control cActive = null;
+
+        //エラーメッセージを表示したかどうか
+        bool blMessageOn = false;
+
         ///<summary>
         ///Z1500_MyMenuSet
         ///フォームの初期設定
@@ -310,6 +315,82 @@ namespace KATO.Form.Z1500_MyMenuSet
                 return null;
 
             return fi.GetValue(cfrm);
+        }
+
+
+        /////<summary>
+        /////labelSet_Menu1_Leave
+        /////離れた時のフォーカス位置調整
+        /////</summary>
+        //private void labelSet_Menu1_Leave(object sender, EventArgs e)
+        //{
+        //    switch (cActive.Name)
+        //    {
+        //        //1
+        //        case "labelSet_Menu1":
+
+        //            //メッセージ表示がされていた場合
+        //            if (labelSet_Menu1.blMessageOn == true)
+        //            {
+        //                labelSet_Menu1.Focus();
+        //            }
+        //            break;
+                
+        //    }
+        //    //if ()
+        //    //{
+
+        //    //}
+        //}
+
+        ///<summary>
+        ///labelSet_Menu1_Enter
+        ///フォーカスが来た場合
+        ///</summary>
+        private void labelSet_Menu1_Enter(object sender, EventArgs e)
+        {
+            //エラーメッセージ表示がされたかどうか
+            if (blMessageOn == false)
+            {
+                //フォーカス位置の確保
+                cActive = this.ActiveControl;
+            }
+            else
+            {
+                //フォーカス位置を戻す
+                //cActive.Focus();
+
+                this.ActiveControl = cActive;
+                blMessageOn = false;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Menu1_Validating
+        ///
+        ///</summary>
+        private void labelSet_Menu1_Validating(object sender, CancelEventArgs e)
+        {
+            Control c = this.ActiveControl;
+
+            switch (cActive.Name)
+            {
+                //1
+                case "labelSet_Menu1":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Menu1.blMessageOn == true)
+                    {
+                        //this.ActiveControl = labelSet_Menu1;
+                        e.Cancel = true;
+                        //labelSet_Menu1.Focus();
+
+                        blMessageOn = true;
+                        labelSet_Menu1.blMessageOn = false;
+                    }
+                    break;
+
+            }
         }
     }
 }

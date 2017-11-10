@@ -103,6 +103,7 @@
             this.labelSet_Tokuisaki.TabIndex = 0;
             this.labelSet_Tokuisaki.ValueLabelSize = 300;
             this.labelSet_Tokuisaki.ValueLabelText = "";
+            this.labelSet_Tokuisaki.Leave += new System.EventHandler(this.labelSet_Tokuisaki_Leave);
             // 
             // nameLabel
             // 

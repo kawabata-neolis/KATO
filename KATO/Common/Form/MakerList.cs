@@ -43,7 +43,7 @@ namespace KATO.Common.Form
         public int intFrmKind = 0;
 
         //大分類コードの予備データ
-        string strSubDaibunCd;
+        string strSubDaibunCd = "";
 
         //フォームタイトル設定
         private string Title = "";
@@ -136,7 +136,7 @@ namespace KATO.Common.Form
             InitializeComponent();
 
             //テキストボックスに入れる
-            labelSet_Daibunrui.CodeTxtText = strdaibunCD;
+            lblSetDaibunrui.CodeTxtText = strdaibunCD;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
@@ -155,13 +155,9 @@ namespace KATO.Common.Form
             this._Title = "メーカーリスト";
 
             //大分類がすでに入力されていた場合検索
-            if(labelSet_Daibunrui.CodeTxtText.Length > 0)
+            if(lblSetDaibunrui.CodeTxtText.Length > 0)
             {
                 btnKensakuClick(sender, e);
-            }
-            else
-            {
-                setDatagridView();
             }
 
             // フォームでもキーイベントを受け取る
@@ -170,11 +166,63 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
+            SetUpGrid();
+
+            setDatagridView();
+
             //大分類コードが記入されている場合
-            if (labelSet_Daibunrui.CodeTxtText != "")
+            if (lblSetDaibunrui.CodeTxtText != "")
             {
                 setDatagridView();
                 setKensaku();
+            }
+        }
+
+        ///<summary>
+        ///SetUpGrid
+        ///DataGridView初期設定
+        ///</summary>
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            gridMaker.AutoGenerateColumns = false;
+
+            //データをバインド
+            //1
+            DataGridViewTextBoxColumn makerCd = new DataGridViewTextBoxColumn();
+            makerCd.DataPropertyName = "メーカーコード";
+            makerCd.Name = "メーカーコード";
+            makerCd.HeaderText = "メーカーコード";
+
+            //2
+            DataGridViewTextBoxColumn makerName = new DataGridViewTextBoxColumn();
+            makerName.DataPropertyName = "メーカー名";
+            makerName.Name = "メーカー名";
+            makerName.HeaderText = "メーカー名";
+
+            //個々の幅、文章の寄せ
+            setColumnKataban(makerCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumnKataban(makerName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+
+        }
+
+        ///<summary>
+        ///setColumnKataban
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumnKataban(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridMaker.Columns.Add(col);
+            if (gridMaker.Columns[col.Name] != null)
+            {
+                gridMaker.Columns[col.Name].Width = intLen;
+                gridMaker.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridMaker.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridMaker.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
             }
         }
 
@@ -190,13 +238,6 @@ namespace KATO.Common.Form
             {
                 //データグリッドビュー部分
                 gridMaker.DataSource = makerlistB.getDatagridView();
-
-                //幅の値を設定
-                gridMaker.Columns["メーカーコード"].Width = 150;
-                gridMaker.Columns["メーカー名"].Width = 200;
-
-                //中央揃え
-                gridMaker.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //検索件数を表示
                 lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
@@ -220,7 +261,6 @@ namespace KATO.Common.Form
                 return;
             }
         }
-
 
         ///<summary>
         ///judMakerListKeyDown
@@ -287,7 +327,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
@@ -302,7 +342,7 @@ namespace KATO.Common.Form
         ///EndAction
         ///戻るボタンの処理
         ///</summary>
-        private void EndAction(List<string> lstSelectId)
+        public void EndAction(List<string> lstSelectId)
         {
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetMaker != null && lstSelectId.Count != 0)
@@ -387,42 +427,21 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //記入情報検索用
-            List<string> lstSearch = new List<string>();
-
-            //画面の業種検索情報取得
-            lstSearch.Add(labelSet_Daibunrui.CodeTxtText);
-            lstSearch.Add(txtKensaku.Text);
-
-            //ビジネス層のインスタンス生成
-            MakerList_B makerlistB = new MakerList_B();
-            try
+            //大分類ラベルセットが空でない場合
+            if (lblSetDaibunrui.ValueLabelText != "")
             {
-                //データグリッドビュー部分
-                gridMaker.DataSource = makerlistB.getKensaku(lstSearch);
-
-                //表示数を記載
-                lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
-
-                //予備の大分類コードに保持
-                strSubDaibunCd = labelSet_Daibunrui.CodeTxtText;
-
-                gridMaker.Focus();
+                setDatagridView();
             }
-            catch (Exception ex)
+            else
             {
-                //エラーロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                BaseForm baseform = new BaseForm();
+                baseform.delFormClear(this, gridMaker);
             }
         }
 
         ///<summary>
         ///setGridSeihinDoubleClick
-        ///データグリッドビュー内のデータをダブルクリックしたとき
+        ///データグリッドビュー内のデータをダブルクリックしたとき  
         ///</summary>        
         private void setGridSeihinDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -611,16 +630,38 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// txtKensaku_KeyUp
-        /// 入力項目上でのキー判定と文字数判定
-        /// </summary>
-        private void txtKensaku_KeyUp(object sender, KeyEventArgs e)
+        ///<summary>
+        ///txtKensaku_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void txtKensaku_KeyUp(object sender, KeyEventArgs e)  
         {
             Control cActiveBefore = this.ActiveControl;
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///lblSetDaibunrui_Leave
+        ///大分類コードのラベルセットから離れた場合
+        ///</summary>
+        private void lblSetDaibunrui_Leave(object sender, EventArgs e)
+        {
+            //大分類コードがない場合
+            if (lblSetDaibunrui.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibunrui.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //大分類の名前が白紙の場合
+            if (lblSetDaibunrui.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibunrui.ValueLabelText) == false)
+            {
+                gridMaker.DataSource = null;
+                lblSetDaibunrui.Focus();
+            }
         }
     }
 }

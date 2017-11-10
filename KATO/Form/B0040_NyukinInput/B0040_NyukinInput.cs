@@ -754,6 +754,12 @@ namespace KATO.Form.B0040_NyukinInput
         public void setNyukinDenpyo(DataTable dtSelectData)
         {
             txtDenpyoNo.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
+
+            //飛ばす用の変数
+            object sender = new object();
+            EventArgs e = new EventArgs();
+
+            txtDenpyoNo_Leave(sender, e);
         }
 
         ///<summary>

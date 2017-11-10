@@ -123,15 +123,15 @@ namespace KATO.Common.Form
 
             //データをバインド
             DataGridViewTextBoxColumn gyoshuCD = new DataGridViewTextBoxColumn();
-            gyoshuCD.DataPropertyName = "業種コード";
-            gyoshuCD.Name = "業種コード";
-            gyoshuCD.HeaderText = "業種コード";
+            gyoshuCD.DataPropertyName = "営業所コード";
+            gyoshuCD.Name = "営業所コード";
+            gyoshuCD.HeaderText = "営業所コード";
 
             //データをバインド
             DataGridViewTextBoxColumn gyoshuName = new DataGridViewTextBoxColumn();
-            gyoshuName.DataPropertyName = "業種名";
-            gyoshuName.Name = "業種名";
-            gyoshuName.HeaderText = "業種名";
+            gyoshuName.DataPropertyName = "営業所名";
+            gyoshuName.Name = "営業所名";
+            gyoshuName.HeaderText = "営業所名";
             
             //データグリッドビューにカラムデータを追加
             gridSeihin.Columns.Add(gyoshuCD);
@@ -155,11 +155,11 @@ namespace KATO.Common.Form
                 gridSeihin.DataSource = eigyoulistB.setDatagridView();
 
                 //幅の値を設定
-                gridSeihin.Columns["業種コード"].Width = 150;
-                gridSeihin.Columns["業種名"].Width = 250;
+                gridSeihin.Columns["営業所コード"].Width = 150;
+                gridSeihin.Columns["営業所名"].Width = 250;
 
                 //中央揃え
-                gridSeihin.Columns["業種名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                gridSeihin.Columns["営業所名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //検索件数を表示
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
@@ -375,8 +375,8 @@ namespace KATO.Common.Form
             List<string> lstSelectData = new List<string>();
 
             //選択行の営業所情報取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells["業種コード"].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells["業種名"].Value;
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["営業所コード"].Value;
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["営業所名"].Value;
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);

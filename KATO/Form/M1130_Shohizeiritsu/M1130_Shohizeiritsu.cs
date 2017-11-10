@@ -458,6 +458,8 @@ namespace KATO.Form.M1130_Shohizeiritsu
         {
             txtTekiyoYMD.Text = dtSelectData.Rows[0]["適用開始年月日"].ToString();
             txtShohizeiritu.Text = dtSelectData.Rows[0]["消費税率"].ToString();
+
+            txtShohizeiritu.setMoneyData(txtShohizeiritu.Text, 1);
         }
 
         ///<summary>
@@ -485,13 +487,26 @@ namespace KATO.Form.M1130_Shohizeiritsu
             M1130_Shohizeiritsu_B shohizeirituB = new M1130_Shohizeiritsu_B();
             try
             {
-                //戻り値のDatatableを取り込む
-                dtSetCd = shohizeirituB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
+                //YMD判定
+                blnGood = txtTekiyoYMD.updCalendarLeave(txtTekiyoYMD.Text);
 
-                //Datatable内のデータが存在する場合
-                if (dtSetCd.Rows.Count != 0)
+                //YMDに変換できる場合
+                if (blnGood == true)
                 {
-                    setShohizeiritsu(dtSetCd);
+                    //戻り値のDatatableを取り込む
+                    dtSetCd = shohizeirituB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
+
+                    //Datatable内のデータが存在する場合
+                    if (dtSetCd.Rows.Count != 0)
+                    {
+                        //テキストボックスに入れる
+                        setShohizeiritsu(dtSetCd);
+                    }
+                    else
+                    {
+                        //テキストボックスを白紙
+                        txtShohizeiritu.Text = "";
+                    }
                 }
             }
             catch (Exception ex)

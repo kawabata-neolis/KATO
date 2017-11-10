@@ -54,10 +54,6 @@ namespace KATO.Common.Business
 
                 //検索データを表示
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
-
-                //column名の変更をすることで、gridviewに表示出来るようにする
-                dtGetTableGrid.Columns["営業所コード"].ColumnName = "業種コード";
-                dtGetTableGrid.Columns["営業所名"].ColumnName = "業種名";
             }
             catch (Exception ex)
             {

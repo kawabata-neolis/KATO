@@ -54,7 +54,7 @@ namespace KATO.Common.Ctl
                 {
                     TokuisakiList tokuisakiList = new TokuisakiList(this.Parent.Parent, this);
                     tokuisakiList.StartPosition = FormStartPosition.Manual;
-                    tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    //tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     tokuisakiList.ShowDialog();
                 }
                 //親画面がBaseFormの場合
@@ -62,7 +62,7 @@ namespace KATO.Common.Ctl
                 {
                     TokuisakiList tokuisakiList = new TokuisakiList(this.Parent, this);
                     tokuisakiList.StartPosition = FormStartPosition.Manual;
-                    tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    //tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     tokuisakiList.ShowDialog();
                 }
                 //親画面がLIST画面の場合
@@ -73,7 +73,7 @@ namespace KATO.Common.Ctl
 
                     TokuisakiList tokuisakiList = new TokuisakiList(this.Parent, this, obj);
                     tokuisakiList.StartPosition = FormStartPosition.Manual;
-                    tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    //tokuisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
                     tokuisakiList.ShowDialog();
                 }
             }
@@ -102,6 +102,57 @@ namespace KATO.Common.Ctl
                 this.ValueLabelText = "";
                 this.AppendLabelText = "";
                 return;
+            }
+
+            //禁止文字チェック
+            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
+            //数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                //Parent 内のすべてのコントロールを列挙する
+                foreach (Control cControl in Parent.Controls)
+                {
+                    //列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
+                    if (cControl is BaseButton)
+                    {
+                        if (cControl.Text == "F12:戻る")
+                        {
+                            //フォーカスがボタンを指している場合
+                            Control ctrlParent = ParentForm.ActiveControl;
+
+                            if (ctrlParent.Name == "btnF12")
+                            {
+                                //全てのフォームの中から
+                                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                                {
+                                    //商品のフォームを探す
+                                    if (frm.Name == Parent.Name)
+                                    {
+                                        //入金リストの場合
+                                        if (frm.Name == "NyukinList")
+                                        {
+                                            //データを連れてくるため、newをしないこと
+                                            NyukinList nyukinlist = (NyukinList)frm;
+                                            nyukinlist.btnEndClick(sender, e);
+                                            return;
+                                        }
+                                        //支払リストの場合
+                                        else if(frm.Name == "ShiharaiList")
+                                        {
+                                            //データを連れてくるため、newをしないこと
+                                            ShiharaiList shiharailist = (ShiharaiList)frm;
+                                            shiharailist.btnEndClick(sender, e);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                this.ValueLabelText = "";
             }
 
             //前後の空白を取り除く

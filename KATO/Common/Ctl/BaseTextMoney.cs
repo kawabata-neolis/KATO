@@ -356,5 +356,26 @@ namespace KATO.Common.Ctl
         {
             strDataSub = this.Text;
         }
+
+        //
+        //四捨五入のみを行う処理
+        //
+        public void setMoneyData(string strMoneyInput, int intshishagonyu)
+        {
+            //string strMoneyOutPut = "";
+
+            if (this.Text == "")
+            {
+                return;
+            }
+
+            //四捨五入
+            this.Text = updShishagonyu(strMoneyInput, intshishagonyu);
+
+            //カンマ付け、小数点以下付けに移動
+            updPriceMethod();
+
+            return;
+        }
     }
 }

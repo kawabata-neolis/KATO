@@ -300,6 +300,9 @@ namespace KATO.Common.Ctl
             }
             catch (Exception ex)
             {
+                //データロギング
+                new CommonException(ex);
+
                 //グループボックスかパネル内にいる場合
                 if (this.Parent is GroupBox || this.Parent is Panel)
                 {

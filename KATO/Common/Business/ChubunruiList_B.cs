@@ -207,7 +207,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1110_Chubunrui chubunrui = (M1110_Chubunrui)frm;
-                    chubunrui.GetContainerControl();
+                    chubunrui.setChubunListClose();
                     break;
                 }
                 //棚卸入力フォームを探す

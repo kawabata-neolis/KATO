@@ -486,6 +486,8 @@ namespace KATO.Form.Z0000
 
                 //支払入力
                 case "6":
+                    B0060_ShiharaiInput.B0060_ShiharaiInput shiharaiinput = new B0060_ShiharaiInput.B0060_ShiharaiInput(this);
+                    shiharaiinput.ShowDialog();
                     break;
 
                 //支払データチェックリスト

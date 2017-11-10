@@ -1370,19 +1370,14 @@
         private Common.Ctl.BaseLabel baseLabel25;
         private Common.Ctl.BaseLabel baseLabel26;
         private Common.Ctl.BaseLabel baseLabel27;
-        private BaseViewDataGroup gbData1;
-        private BaseViewDataGroup gbData2;
         private Common.Ctl.BaseLabel lblTeka;
         private Common.Ctl.BaseLabel baseLabel10;
-        private BaseViewDataGroup gbData3;
         private Common.Ctl.BaseLabel baseLabel15;
         private Common.Ctl.BaseLabel baseLabel13;
         private Common.Ctl.BaseLabel baseLabel17;
-        private BaseViewDataGroup gbData4;
         private Common.Ctl.BaseLabel baseLabel24;
         private Common.Ctl.BaseLabel baseLabel22;
         private Common.Ctl.BaseLabel baseLabel20;
-        private BaseViewDataGroup gbData5;
         public Common.Ctl.BaseText txtCD;
         public Common.Ctl.BaseText txtYubinView;
         public Common.Ctl.BaseText txtJusho1View;
@@ -1408,5 +1403,10 @@
         public Common.Ctl.BaseText txtJuchu3;
         public Common.Ctl.BaseText txtJuchu4;
         public Common.Ctl.BaseText txtJuchu5;
+        public BaseViewDataGroup gbData1;
+        public BaseViewDataGroup gbData2;
+        public BaseViewDataGroup gbData3;
+        public BaseViewDataGroup gbData4;
+        public BaseViewDataGroup gbData5;
     }
 }

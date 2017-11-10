@@ -106,7 +106,7 @@ namespace KATO.Business.M1130_Shohizeiritsu
         ///getTxtShohizeiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public DataTable getTxtShohizeiLeave(string strShohizei)
+        public DataTable getTxtShohizeiLeave(string strTekiyoYMD)
         {
             //データ渡し用
             List<string> lstSQL = new List<string>();
@@ -135,7 +135,7 @@ namespace KATO.Business.M1130_Shohizeiritsu
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strShohizei);
+                strSQLInput = string.Format(strSQLInput, strTekiyoYMD);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);

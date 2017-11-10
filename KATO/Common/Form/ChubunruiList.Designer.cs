@@ -35,7 +35,7 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
+            this.lblSetDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.gridSeihin = new KATO.Common.Ctl.BaseDataGridView();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
@@ -53,28 +53,29 @@ namespace KATO.Common.Form
             this.lblRecords.TabIndex = 19;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
-            // labelSet_Daibunrui
+            // lblSetDaibunrui
             // 
-            this.labelSet_Daibunrui.AppendLabelSize = 0;
-            this.labelSet_Daibunrui.AppendLabelText = "";
-            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.labelSet_Daibunrui.CodeTxtSize = 33;
-            this.labelSet_Daibunrui.CodeTxtText = "";
-            this.labelSet_Daibunrui.LabelName = "大分類コード";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(40, 24);
-            this.labelSet_Daibunrui.Lschubundata = null;
-            this.labelSet_Daibunrui.Lsmakerdata = null;
-            this.labelSet_Daibunrui.LsSubchubundata = null;
-            this.labelSet_Daibunrui.LsSubmakerdata = null;
-            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
-            this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(359, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 10;
-            this.labelSet_Daibunrui.SpaceNameCode = 4;
-            this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 101;
-            this.labelSet_Daibunrui.ValueLabelSize = 200;
-            this.labelSet_Daibunrui.ValueLabelText = "";
+            this.lblSetDaibunrui.AppendLabelSize = 0;
+            this.lblSetDaibunrui.AppendLabelText = "";
+            this.lblSetDaibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblSetDaibunrui.CodeTxtSize = 33;
+            this.lblSetDaibunrui.CodeTxtText = "";
+            this.lblSetDaibunrui.LabelName = "大分類コード";
+            this.lblSetDaibunrui.Location = new System.Drawing.Point(40, 24);
+            this.lblSetDaibunrui.Lschubundata = null;
+            this.lblSetDaibunrui.Lsmakerdata = null;
+            this.lblSetDaibunrui.LsSubchubundata = null;
+            this.lblSetDaibunrui.LsSubmakerdata = null;
+            this.lblSetDaibunrui.Name = "lblSetDaibunrui";
+            this.lblSetDaibunrui.ShowAppendFlg = false;
+            this.lblSetDaibunrui.Size = new System.Drawing.Size(359, 22);
+            this.lblSetDaibunrui.SpaceCodeValue = 10;
+            this.lblSetDaibunrui.SpaceNameCode = 4;
+            this.lblSetDaibunrui.SpaceValueAppend = 4;
+            this.lblSetDaibunrui.TabIndex = 101;
+            this.lblSetDaibunrui.ValueLabelSize = 200;
+            this.lblSetDaibunrui.ValueLabelText = "";
+            this.lblSetDaibunrui.Leave += new System.EventHandler(this.labelSet_Daibunrui_Leave);
             // 
             // gridSeihin
             // 
@@ -144,7 +145,7 @@ namespace KATO.Common.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 524);
-            this.Controls.Add(this.labelSet_Daibunrui);
+            this.Controls.Add(this.lblSetDaibunrui);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridSeihin);
             this.Controls.Add(this.btnF11);
@@ -165,6 +166,6 @@ namespace KATO.Common.Form
         private BaseButton btnF12;
         private BaseDataGridView gridSeihin;
         private System.Windows.Forms.Label lblRecords;
-        private LabelSet_Daibunrui labelSet_Daibunrui;
+        private LabelSet_Daibunrui lblSetDaibunrui;
     }
 }

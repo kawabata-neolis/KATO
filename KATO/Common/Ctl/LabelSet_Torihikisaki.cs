@@ -102,6 +102,40 @@ namespace KATO.Common.Ctl
 
             if (blnGood == false)
             {
+                //Parent 内のすべてのコントロールを列挙する
+                foreach (Control cControl in Parent.Controls)
+                {
+                    //列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
+                    if (cControl is BaseButton)
+                    {
+                        if (cControl.Text == "F12:戻る")
+                        {
+                            //フォーカスがボタンを指している場合
+                            Control ctrlParent = ParentForm.ActiveControl;
+
+                            if (ctrlParent.Name == "btnF12")
+                            {
+                                //全てのフォームの中から
+                                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                                {
+                                    //商品のフォームを探す
+                                    if (frm.Name == Parent.Name)
+                                    {
+                                        //仕入リストの場合
+                                        if (frm.Name == "ShireList")
+                                        {
+                                            //データを連れてくるため、newをしないこと
+                                            ShireList shirelist = (ShireList)frm;
+                                            shirelist.btnEndClick(sender, e);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
                 this.ValueLabelText = "";
 
                 //グループボックスかパネル内にいる場合

@@ -253,7 +253,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
             EndAction();
@@ -420,6 +420,28 @@ namespace KATO.Common.Form
                 cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
 
                 return cpForm;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Tokuisaki_Leave
+        ///得意先コードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
+        {
+            //得意先コードがない場合
+            if (labelSet_Tokuisaki.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false)
+            {
+                return; 
+            }
+
+            //得意先の名前が白紙の場合
+            if (labelSet_Tokuisaki.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(labelSet_Tokuisaki.ValueLabelText) == false)
+            {
+                gridTokui.DataSource = null;
+                labelSet_Tokuisaki.Focus();
             }
         }
     }

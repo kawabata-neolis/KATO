@@ -355,12 +355,12 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
             //空文字判定（営業所コード）
-            if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false )
+            if (StringUtl.blIsEmpty(lblSetEigyousho.CodeTxtText) == false )
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                labelSet_Eigyousho.Focus();
+                lblSetEigyousho.Focus();
                 return;
             }
             //空文字判定（注番）
@@ -373,12 +373,12 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
             //空文字判定（グループコード）
-            if (StringUtl.blIsEmpty(labelSet_GroupCd.CodeTxtText) == false)
+            if (StringUtl.blIsEmpty(lblSetGroupCd.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                labelSet_GroupCd.Focus();
+                lblSetGroupCd.Focus();
                 return;
             }
             //空文字判定（目標金額）
@@ -395,9 +395,9 @@ namespace KATO.Form.M1050_Tantousha
             lstTantousha.Add(txtTantoushaCd.Text);
             lstTantousha.Add(txtTantoushaName.Text);
             lstTantousha.Add(txtLoginID.Text);
-            lstTantousha.Add(labelSet_Eigyousho.CodeTxtText);
+            lstTantousha.Add(lblSetEigyousho.CodeTxtText);
             lstTantousha.Add(txtChuban.Text);
-            lstTantousha.Add(labelSet_GroupCd.CodeTxtText);
+            lstTantousha.Add(lblSetGroupCd.CodeTxtText);
             lstTantousha.Add(txtMokuhyou.Text);
             lstTantousha.Add(SystemInformation.UserName);
 
@@ -481,9 +481,9 @@ namespace KATO.Form.M1050_Tantousha
                 lstTantousha.Add(txtTantoushaCd.Text);
                 lstTantousha.Add(txtTantoushaName.Text);
                 lstTantousha.Add(txtLoginID.Text);
-                lstTantousha.Add(labelSet_Eigyousho.CodeTxtText);
+                lstTantousha.Add(lblSetEigyousho.CodeTxtText);
                 lstTantousha.Add(txtChuban.Text);
-                lstTantousha.Add(labelSet_GroupCd.CodeTxtText);
+                lstTantousha.Add(lblSetGroupCd.CodeTxtText);
                 lstTantousha.Add(txtMokuhyou.Text);
                 lstTantousha.Add(SystemInformation.UserName);
 
@@ -517,9 +517,9 @@ namespace KATO.Form.M1050_Tantousha
             txtTantoushaCd.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
             txtTantoushaName.Text = dtSelectData.Rows[0]["担当者名"].ToString();
             txtLoginID.Text = dtSelectData.Rows[0]["ログインID"].ToString();
-            labelSet_Eigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
+            lblSetEigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
             txtChuban.Text = dtSelectData.Rows[0]["注番文字"].ToString();
-            labelSet_GroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
+            lblSetGroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
             txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,#");
         }
 
@@ -577,6 +577,10 @@ namespace KATO.Form.M1050_Tantousha
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTantousha(dtSetCd);
+                }
+                else
+                {
+                    txtTantoushaName.Text = "";
                 }
             }
             catch (Exception ex)
@@ -671,6 +675,48 @@ namespace KATO.Form.M1050_Tantousha
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Eigyousho_Leave
+        ///営業所のラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Eigyousho_Leave(object sender, EventArgs e)
+        {
+            //営業所コードがない場合
+            if (lblSetEigyousho.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetEigyousho.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //営業所コードの名前が白紙の場合
+            if (lblSetEigyousho.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetEigyousho.ValueLabelText) == false)
+            {
+                lblSetEigyousho.Focus();
+            }
+        }
+
+        ///<summary>
+        ///labelSet_GroupCd_Leave
+        ///グループコードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_GroupCd_Leave(object sender, EventArgs e)
+        {
+            //グループコードがない場合
+            if (lblSetGroupCd.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetGroupCd.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //コードの名前が白紙の場合
+            if (lblSetGroupCd.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetGroupCd.ValueLabelText) == false)
+            {
+                lblSetGroupCd.Focus();
             }
         }
     }

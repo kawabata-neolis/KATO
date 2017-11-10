@@ -78,7 +78,7 @@ namespace KATO.Common.Form
             InitializeComponent();
 
             //テキストボックスに入れる
-            labelSet_Daibunrui.CodeTxtText = strdaibunCd;
+            lblSetDaibunrui.CodeTxtText = strdaibunCd;
 
             //大分類コードの確保
             strSubDaibunCd = strdaibunCd;
@@ -112,7 +112,7 @@ namespace KATO.Common.Form
             InitializeComponent();
 
             //テキストボックスに入れる
-            labelSet_Daibunrui.CodeTxtText = strdaibunCD;
+            lblSetDaibunrui.CodeTxtText = strdaibunCD;
 
             //大分類コードの確保
             strSubDaibunCd = strdaibunCD;
@@ -137,21 +137,72 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            getDatagridView();
+            SetUpGrid();
+
+            setDatagridView();
 
             //データない場合、フォーカス位置を変える
             if (gridSeihin.RowCount == 0)
             {
-                labelSet_Daibunrui.Focus();
+                lblSetDaibunrui.Focus();
             }
         }
-        
+
+        ///<summary>
+        ///SetUpGrid
+        ///DataGridView初期設定
+        ///</summary>
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            gridSeihin.AutoGenerateColumns = false;
+
+            //データをバインド
+            //1
+            DataGridViewTextBoxColumn chubunCd = new DataGridViewTextBoxColumn();
+            chubunCd.DataPropertyName = "中分類コード";
+            chubunCd.Name = "中分類コード";
+            chubunCd.HeaderText = "中分類コード";
+
+            //2
+            DataGridViewTextBoxColumn chubunName = new DataGridViewTextBoxColumn();
+            chubunName.DataPropertyName = "中分類名";
+            chubunName.Name = "中分類名";
+            chubunName.HeaderText = "中分類名";
+
+            //個々の幅、文章の寄せ
+            setColumnKataban(chubunCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
+            setColumnKataban(chubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+
+        }
+
+        ///<summary>
+        ///setColumnKataban
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumnKataban(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridSeihin.Columns.Add(col);
+            if (gridSeihin.Columns[col.Name] != null)
+            {
+                gridSeihin.Columns[col.Name].Width = intLen;
+                gridSeihin.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridSeihin.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridSeihin.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
         ///<summary>
         ///getDatagridView
         ///データグリッドビュー表示
         ///</summary>
-        private void getDatagridView()
+        private void setDatagridView()
         {
+
             //大分類テキストボックスに入れる用
             DataTable dtGetTable;
 
@@ -160,25 +211,27 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridSeihin.DataSource = chubunlistB.getDatagridView(labelSet_Daibunrui.CodeTxtText);
+                gridSeihin.DataSource = chubunlistB.getDatagridView(lblSetDaibunrui.CodeTxtText);
                 //テキストボックス部分
-                dtGetTable = chubunlistB.getText(labelSet_Daibunrui.CodeTxtText);
-
-                //幅の値を設定
-                gridSeihin.Columns["中分類コード"].Width = 130;
-                gridSeihin.Columns["中分類名"].Width = 200;
-
-                //中央揃え
-                gridSeihin.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dtGetTable = chubunlistB.getText(lblSetDaibunrui.CodeTxtText);
 
                 //大分類コードと名前を表示
-                labelSet_Daibunrui.CodeTxtText = dtGetTable.Rows[0]["大分類コード"].ToString();
-                labelSet_Daibunrui.ValueLabelText = dtGetTable.Rows[0]["大分類名"].ToString();
+                lblSetDaibunrui.CodeTxtText = dtGetTable.Rows[0]["大分類コード"].ToString();
+                lblSetDaibunrui.ValueLabelText = dtGetTable.Rows[0]["大分類名"].ToString();
 
                 lblRecords.Text = "該当件数( " + gridSeihin.RowCount.ToString() + "件)";
 
                 //予備の大分類コードに保持
-                strSubDaibunCd = labelSet_Daibunrui.CodeTxtText;
+                strSubDaibunCd = lblSetDaibunrui.CodeTxtText;
+
+                //件数が0の場合
+                if (gridSeihin.RowCount == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -255,7 +308,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
@@ -343,7 +396,17 @@ namespace KATO.Common.Form
         private void btnKensakuClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-            getDatagridView();
+
+            //大分類ラベルセットが空でない場合
+            if (lblSetDaibunrui.ValueLabelText != "")
+            {
+                setDatagridView();
+            }
+            else
+            {
+                BaseForm baseform = new BaseForm();
+                baseform.delFormClear(this, gridSeihin);
+            }
         }
 
         ///<summary>
@@ -473,6 +536,28 @@ namespace KATO.Common.Form
                 cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
 
                 return cpForm;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Daibunrui_Leave
+        ///大分類コードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Daibunrui_Leave(object sender, EventArgs e)
+        {
+            //大分類コードがない場合
+            if (lblSetDaibunrui.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibunrui.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //大分類の名前がない場合
+            if (lblSetDaibunrui.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibunrui.ValueLabelText) == false)
+            {
+                gridSeihin.DataSource = null;
+                lblSetDaibunrui.Focus();
             }
         }
     }

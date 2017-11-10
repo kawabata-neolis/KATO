@@ -511,6 +511,10 @@ namespace KATO.Form.M1120_Tanaban
                 {
                     setTanabanCd(dtSetCd);
                 }
+                else
+                {
+                    txtTanabanName.Text = "";
+                }
             }
             catch (Exception ex)
             {

@@ -518,7 +518,10 @@ namespace KATO.Form.M1060_Gyoushu
                     txtGyoshuName.Text = dtSetCd.Rows[0]["業種名"].ToString();
                     txtGyoshuName.Focus();
                 }
-
+                else
+                {
+                    txtGyoshuName.Text = "";
+                }
             }
             catch (Exception ex)
             {

@@ -167,7 +167,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = nyukinlistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridTokui.DataSource = nyukinlistB.getDatagridView(lblSetTokuisaki.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -249,7 +249,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
             setEndAction();
@@ -291,7 +291,7 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
-            strTokuiCdsub = labelSet_Tokuisaki.CodeTxtText;
+            strTokuiCdsub = lblSetTokuisaki.CodeTxtText;
 
             gridTokui.Focus();
         }
@@ -416,6 +416,28 @@ namespace KATO.Common.Form
 
                 default:
                     break;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Tokuisaki_Leave
+        ///得意先コードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
+        {
+            //得意先コードがない場合
+            if (lblSetTokuisaki.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetTokuisaki.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //徳斉木の名前が白紙の場合
+            if (lblSetTokuisaki.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetTokuisaki.ValueLabelText) == false)
+            {
+                gridTokui.DataSource = null;
+                lblSetTokuisaki.Focus();
             }
         }
     }

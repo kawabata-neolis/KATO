@@ -293,20 +293,20 @@
         protected System.Windows.Forms.ToolStripStatusLabel lblStatusHeader;
         protected System.Windows.Forms.ToolStripStatusLabel lblStatusMessage;
         protected System.Windows.Forms.ToolStripStatusLabel lblStatusUser;
-        protected System.Windows.Forms.Button btnF12;
-        protected System.Windows.Forms.Button btnF11;
-        protected System.Windows.Forms.Button btnF10;
-        protected System.Windows.Forms.Button btnF09;
-        protected System.Windows.Forms.Button btnF08;
-        protected System.Windows.Forms.Button btnF07;
-        protected System.Windows.Forms.Button btnF06;
-        protected System.Windows.Forms.Button btnF05;
-        protected System.Windows.Forms.Button btnF04;
-        protected System.Windows.Forms.Button btnF03;
-        protected System.Windows.Forms.Button btnF02;
-        protected System.Windows.Forms.Button btnF01;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ComboBox cmbSubWinShow;
         private System.Windows.Forms.Label lblSubWinSHow;
+        public System.Windows.Forms.Button btnF01;
+        public System.Windows.Forms.Button btnF12;
+        public System.Windows.Forms.Button btnF11;
+        public System.Windows.Forms.Button btnF10;
+        public System.Windows.Forms.Button btnF09;
+        public System.Windows.Forms.Button btnF08;
+        public System.Windows.Forms.Button btnF07;
+        public System.Windows.Forms.Button btnF06;
+        public System.Windows.Forms.Button btnF05;
+        public System.Windows.Forms.Button btnF04;
+        public System.Windows.Forms.Button btnF03;
+        public System.Windows.Forms.Button btnF02;
     }
 }

@@ -301,7 +301,7 @@ namespace KATO.Form.M1100_Chokusosaki
         private void showChokusosakiList()
         {
             //直送先リストのインスタンス生成
-            ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Tokuisaki.CodeTxtText);
+            ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Torihikisaki.CodeTxtText);
             try
             {
                 //直送先リストの表示、画面IDを渡す
@@ -333,12 +333,12 @@ namespace KATO.Form.M1100_Chokusosaki
             string strTokuiSub = "";
 
             //空文字判定（得意先コード）
-            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false)
+            if (StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                labelSet_Tokuisaki.Focus();
+                labelSet_Torihikisaki.Focus();
                 return;
             }
             //空文字判定（得意先コード）
@@ -361,7 +361,7 @@ namespace KATO.Form.M1100_Chokusosaki
             }
 
             //登録情報を入れる（得意先コード、直送先コード、直送先名、郵便番号、住所１、住所２、電話番号、部署名、ユーザー名）
-            lstChokusosaki.Add(labelSet_Tokuisaki.codeTxt.Text);
+            lstChokusosaki.Add(labelSet_Torihikisaki.codeTxt.Text);
             lstChokusosaki.Add(txtChokusoCd.Text);
             lstChokusosaki.Add(txtChokusoName.Text);
             lstChokusosaki.Add(txtYubin.Text);
@@ -382,12 +382,12 @@ namespace KATO.Form.M1100_Chokusosaki
                 basemessagebox.ShowDialog();
 
                 //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
+                strTokuiSub = labelSet_Torihikisaki.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-                labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
-                labelSet_Tokuisaki.Focus();
+                labelSet_Torihikisaki.CodeTxtText = strTokuiSub;
+                labelSet_Torihikisaki.Focus();
                 txtChokusoCd.Focus();
             }
             catch (Exception ex)
@@ -409,7 +409,7 @@ namespace KATO.Form.M1100_Chokusosaki
         {
             //画面の項目内を白紙にする
             delFormClear(this);
-            labelSet_Tokuisaki.Focus();
+            labelSet_Torihikisaki.Focus();
         }
 
         ///<summary>
@@ -430,7 +430,7 @@ namespace KATO.Form.M1100_Chokusosaki
             string strTokuiSub = "";
 
             //空文字判定（得意先コード、直送先コード）
-            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
+            if (StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
             {
                 return;
             }
@@ -440,7 +440,7 @@ namespace KATO.Form.M1100_Chokusosaki
             try
             {
                 //データの存在確認を検索する情報を入れる
-                lstChokusosakiLoad.Add(labelSet_Tokuisaki.CodeTxtText);
+                lstChokusosakiLoad.Add(labelSet_Torihikisaki.CodeTxtText);
                 lstChokusosakiLoad.Add(txtChokusoCd.Text);
 
                 //戻り値のDatatableを取り込む
@@ -461,7 +461,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 }
 
                 //削除情報を入れる（得意先コード、直送先コード、直送先名、郵便番号、住所１、住所２、電話番号、部署名、ユーザー名）
-                lstChokusosaki.Add(labelSet_Tokuisaki.codeTxt.Text);
+                lstChokusosaki.Add(labelSet_Torihikisaki.codeTxt.Text);
                 lstChokusosaki.Add(txtChokusoCd.Text);
                 lstChokusosaki.Add(txtChokusoName.Text);
                 lstChokusosaki.Add(txtYubin.Text);
@@ -479,12 +479,12 @@ namespace KATO.Form.M1100_Chokusosaki
                 basemessagebox.ShowDialog();
 
                 //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = labelSet_Tokuisaki.CodeTxtText;
+                strTokuiSub = labelSet_Torihikisaki.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-                labelSet_Tokuisaki.CodeTxtText = strTokuiSub;
-                labelSet_Tokuisaki.Focus();
+                labelSet_Torihikisaki.CodeTxtText = strTokuiSub;
+                labelSet_Torihikisaki.Focus();
                 txtChokusoCd.Focus();
             }
             catch (Exception ex)
@@ -531,22 +531,17 @@ namespace KATO.Form.M1100_Chokusosaki
             txtChokusoCd.Text = txtChokusoCd.Text.Trim();
 
             //空文字判定（得意先コード、直送先コード）
-            if (StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
+            if (StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
             {
                 return;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtChokusoCd.TextLength < 4)
-            {
-                txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
-            }
 
             //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(labelSet_Tokuisaki.CodeTxtText);
+            blnGood = StringUtl.JudBanChr(labelSet_Torihikisaki.CodeTxtText);
             blnGood = StringUtl.JudBanChr(txtChokusoCd.Text);
             //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(labelSet_Tokuisaki.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            blnGood = StringUtl.JudBanSelect(labelSet_Torihikisaki.CodeTxtText, CommonTeisu.NUMBER_ONLY);
             blnGood = StringUtl.JudBanSelect(txtChokusoCd.Text, CommonTeisu.NUMBER_ONLY);
 
             //文字チェックが通らなかった場合
@@ -556,12 +551,25 @@ namespace KATO.Form.M1100_Chokusosaki
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
-                labelSet_Tokuisaki.Focus();
+                //各項目のクリア
+                txtChokusoName.Clear();
+                txtYubin.Clear();
+                txtJusho1.Clear();
+                txtJusho2.Clear();
+                txtDenwa.Clear();
+
+                txtChokusoCd.Focus();
                 return;
             }
 
+            //文字数が足りなかった場合0パティング
+            if (txtChokusoCd.TextLength < 4)
+            {
+                txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
+            }
+
             //データの存在確認を検索する情報を入れる
-            lstChokusosaki.Add(labelSet_Tokuisaki.CodeTxtText);
+            lstChokusosaki.Add(labelSet_Torihikisaki.CodeTxtText);
             lstChokusosaki.Add(txtChokusoCd.Text);
 
             //ビジネス層のインスタンス生成
@@ -600,7 +608,7 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void setTokuiListClose()
         {
-            labelSet_Tokuisaki.Focus();
+            labelSet_Torihikisaki.Focus();
         }
 
         ///<summary>
@@ -647,7 +655,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 {
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
+                    basemessagebox.ShowDialog();    
                     return;
                 }
 
@@ -684,6 +692,27 @@ namespace KATO.Form.M1100_Chokusosaki
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Tokuisaki_Leave
+        ///得意先のラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
+        {
+            //大分類コードがない場合
+            if (labelSet_Torihikisaki.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //大分類の名前が白紙の場合
+            if (labelSet_Torihikisaki.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(labelSet_Torihikisaki.ValueLabelText) == false)
+            {
+                labelSet_Torihikisaki.Focus();
             }
         }
     }

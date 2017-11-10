@@ -128,13 +128,13 @@ namespace KATO.Common.Ctl
                 if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     DaibunruiList daibunruiList = new DaibunruiList(this.Parent.Parent, this);
-                    daibunruiList.Show();
+                    daibunruiList.ShowDialog();
                 }
                 //親画面がBaseFormの場合
                 else if (this.Parent is BaseForm)
                 {
                     DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this);
-                    daibunruiList.Show();
+                    daibunruiList.ShowDialog();
                 }
                 //親画面がLIST画面の場合
                 else
@@ -143,7 +143,7 @@ namespace KATO.Common.Ctl
                     object obj = new object();
 
                     DaibunruiList daibunruiList = new DaibunruiList(this.Parent, this, obj);
-                    daibunruiList.Show();
+                    daibunruiList.ShowDialog();
                 }
             }
             else if (e.KeyCode == Keys.Enter)
@@ -180,24 +180,49 @@ namespace KATO.Common.Ctl
 
             if (blnGood == false)
             {
+                //Parent 内のすべてのコントロールを列挙する
+                foreach (Control cControl in Parent.Controls)
+                {
+                    //列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
+                    if (cControl is BaseButton)
+                    {
+                        if (cControl.Text == "F12:戻る")
+                        {
+                            //フォーカスがボタンを指している場合
+                            Control ctrlParent = ParentForm.ActiveControl;
+
+                            if (ctrlParent.Name == "btnF12")
+                            {
+                                //全てのフォームの中から
+                                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                                {
+                                    //商品のフォームを探す
+                                    if (frm.Name == Parent.Name)
+                                    {
+                                        //中分類リストの場合
+                                        if (frm.Name == "ChubunruiList")
+                                        {
+                                            //データを連れてくるため、newをしないこと
+                                            ChubunruiList chubunlist = (ChubunruiList)frm;
+                                            chubunlist.btnEndClick(sender, e);
+                                            return;
+                                        }
+                                        //メーカーリストの場合
+                                        else if(frm.Name == "MakerList")
+                                        {
+                                            //データを連れてくるため、newをしないこと
+                                            MakerList makerlist = (MakerList)frm;
+                                            makerlist.btnEndClick(sender, e);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
                 this.ValueLabelText = "";
-
-                //グループボックスかパネル内にいる場合
-                if (this.Parent is GroupBox || this.Parent is Panel)
-                {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-                else
-                {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
             }
 
             if (this.CodeTxtText.Length == 1)
@@ -243,14 +268,14 @@ namespace KATO.Common.Ctl
                     if (this.Parent is GroupBox || this.Parent is Panel)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         return;
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         return;
                     }
@@ -296,6 +321,7 @@ namespace KATO.Common.Ctl
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    this.Focus();
                     return;
                 }
             }

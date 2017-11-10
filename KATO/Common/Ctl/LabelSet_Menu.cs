@@ -23,6 +23,9 @@ namespace KATO.Common.Ctl
     ///</summary>
     public partial class LabelSet_Menu : BaseTextLabelSet
     {
+        //エラーメッセージを表示したかどうか
+        public bool blMessageOn = false;
+
         ///<summary>
         ///LabelSet_Menu
         ///読み込み時
@@ -89,6 +92,25 @@ namespace KATO.Common.Ctl
         }
 
         ///<summary>
+        ///codeTxt_KeyPress
+        ///コード入力項目でのキー入力判定（数値判定）
+        ///</summary>
+        private void codeTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\b')
+            {
+                return;
+            }
+
+            //0から9以外の場合
+            if (e.KeyChar < '0' || '9' < e.KeyChar)
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
+            }
+        }
+        
+        ///<summary>
         ///codeTxt_Leave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
@@ -133,15 +155,20 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
+
+                    blMessageOn = true;
                 }
                 else
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
+
+                    blMessageOn = true;
                 }
+
+                CodeTxtText = "0";
+                return;
             }
 
             //前後の空白を取り除く
@@ -183,10 +210,11 @@ namespace KATO.Common.Ctl
                         this.CodeTxtText = dtSetCd.Rows[0]["ＰＧ番号"].ToString();
                         this.ValueLabelText = dtSetCd.Rows[0]["ＰＧ名"].ToString();
                     }
+                    blMessageOn = false;
                 }
                 else
                 {
-                    this.ValueLabelText = "";
+                    this.CodeTxtText = "";
 
                     //グループボックスかパネル内にいる場合
                     if (this.Parent is GroupBox || this.Parent is Panel)
@@ -194,15 +222,14 @@ namespace KATO.Common.Ctl
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
+                    blMessageOn = true;
                 }
                 return;
             }

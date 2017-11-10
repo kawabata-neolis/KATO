@@ -122,5 +122,21 @@ namespace KATO.Common.Ctl
                 SendKeys.Send("{TAB}");
             }
         }
+
+        //
+        //別の場所にフォーカスされているかのチェックと背景白化(強制指示用)
+        //
+        public void BaseText_Leave_Check()
+        {
+            //背景色がシアンの場合
+            if (this.BackColor == Color.Cyan)
+            {
+                //背景色を白にする
+                this.BackColor = Color.White;
+            }
+
+            //フォーカスが外れたのでリセット
+            blnFirstClick = true;
+        }
     }
 }

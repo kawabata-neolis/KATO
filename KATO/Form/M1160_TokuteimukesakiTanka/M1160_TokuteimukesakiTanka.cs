@@ -540,7 +540,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             try
             {
                 //商品リストの表示、画面IDを渡す
-                shouhinlist.intFrmKind = CommonTeisu.FRM_TEST;
+                shouhinlist.intFrmKind = CommonTeisu.FRM_TOKUTEIMUKESAKITANKA;
                 shouhinlist.strKensaku = txtKensakuS.Text;
                 shouhinlist.ShowDialog();
             }

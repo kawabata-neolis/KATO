@@ -130,5 +130,88 @@ namespace KATO.Business.B0250_MOnyuryoku
             return intExec;
 
         }
+
+        ///<summary>
+        ///setGridKataban
+        ///グリッドビューの表示
+        ///</summary>
+        public DataTable setGridKataban(List<string> lstStringViewData)
+        {
+            DataTable dtKataban = new DataTable();
+
+            string strSQLInput = "";
+
+            strSQLInput = strSQLInput + "SELECT";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, ''))";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ２, ''))";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ３, ''))";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ４, ''))";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ５, ''))";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ６, '')),";
+
+            strSQLInput = strSQLInput + "現在在庫数,";
+            strSQLInput = strSQLInput + "売上数量,";
+            strSQLInput = strSQLInput + "仕入数量,";
+            strSQLInput = strSQLInput + "発注残数量,";
+            strSQLInput = strSQLInput + "ＭＯ発注指示数,";
+            strSQLInput = strSQLInput + "ＭＯ発注数,";
+            strSQLInput = strSQLInput + "ＭＯ発注単価,";
+            strSQLInput = strSQLInput + "ROUND(ＭＯ発注数*ＭＯ発注単価,0,0),";
+            strSQLInput = strSQLInput + "納期,";
+            strSQLInput = strSQLInput + "取引先コード,";
+            strSQLInput = strSQLInput + "dbo.f_get取引先名称(取引先コード),";
+            strSQLInput = strSQLInput + "RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 注番, ";
+            strSQLInput = strSQLInput + "発注番号,";
+            strSQLInput = strSQLInput + "商品コード,";
+
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ１,'')),";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ２,'')),";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ３,'')),";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ４,'')),";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ５,'')),";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ６,'')),";
+            strSQLInput = strSQLInput + "dbo.f_get商品箱入数(商品コード),";
+            strSQLInput = strSQLInput + "dbo.f_get商品コードから最終仕入日(商品コード)";
+
+            strSQLInput = strSQLInput + "FROM ＭＯ";
+
+            strSQLInput = strSQLInput + " WHERE 年月日 = '" + lstStringViewData[0] + "'";
+            strSQLInput = strSQLInput + " AND メーカーコード = '" + lstStringViewData[1] + "'";
+            strSQLInput = strSQLInput + " AND 大分類コード = '" + lstStringViewData[2] + "'";
+            strSQLInput = strSQLInput + " AND 中分類コード = '" + lstStringViewData[3] + "'";
+            strSQLInput = strSQLInput + " AND 確定フラグ = '0'";
+            strSQLInput = strSQLInput + " AND 削除 = 'N'";
+
+            //マイナスの型番にチェックされている場合
+            if (lstStringViewData[4] == "Minus")
+            {
+                strSQLInput = strSQLInput + " AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0s";
+            }
+
+            strSQLInput = strSQLInput + " " + "ORDER BY Rtrim(ISNULL(Ｃ１,''))";
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //データ取得
+                dtKataban = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return (dtKataban);
+        }
     }
 }

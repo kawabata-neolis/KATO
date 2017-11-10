@@ -31,7 +31,7 @@ namespace KATO.Form.A0030_ShireInput
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //ロックをかけるか否か
-        bool blRock = false;
+        public bool blRock = false;
 
         //行数(gbでも使用する)
         public int intMaxRow = 4;
@@ -44,6 +44,9 @@ namespace KATO.Form.A0030_ShireInput
 
         //各行の情報を入れる配列
         BaseViewDataGroup[] bvg;
+
+        //
+        public short shotCnt = 0;
 
         ///<summary>
         ///A0030_ShireInput
@@ -1152,7 +1155,7 @@ namespace KATO.Form.A0030_ShireInput
             }
 
             //品名データを作成する用
-            string strHinmei;
+            string strHinmei = "";
 
             string strNM;
 
@@ -1285,11 +1288,13 @@ namespace KATO.Form.A0030_ShireInput
                         lstData.Add(dtSetshire.Rows[intCnt]["商品コード"].ToString());
                         //[3]
                         lstData.Add(dtSetshire.Rows[intCnt]["メーカーコード"].ToString());
-                        //[4]
-                        lstData.Add(dtSetshire.Rows[intCnt]["大分類コード"].ToString());
 
+                        //品名の確保（メーカー名部分）
                         strHinmei = dtSetshire.Rows[intCnt]["メーカー名"].ToString();
 
+                        //[4]
+                        lstData.Add(dtSetshire.Rows[intCnt]["大分類コード"].ToString());
+                        
                         //[5]
                         lstData.Add(dtSetshire.Rows[intCnt]["中分類コード"].ToString());
 
@@ -1401,6 +1406,8 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
+                                txtJuchu1.Text = "";
+
                                 txtJuchu1.Text = dtHachuJuchu.Rows[0][0].ToString();
 
                                 //受注単価の取得
@@ -1418,6 +1425,8 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
+                                txtJuchu2.Text = "";
+
                                 txtJuchu2.Text = dtHachuJuchu.Rows[0][0].ToString();
 
                                 //受注単価の取得
@@ -1435,6 +1444,8 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
+                                txtJuchu2.Text = "";
+
                                 txtJuchu3.Text = dtHachuJuchu.Rows[0][0].ToString();
 
                                 //受注単価の取得
@@ -1452,6 +1463,8 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
+                                txtJuchu4.Text = "";
+
                                 txtJuchu4.Text = dtHachuJuchu.Rows[0][0].ToString();
 
                                 //受注単価の取得
@@ -1469,6 +1482,8 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
+                                txtJuchu5.Text = "";
+
                                 txtJuchu5.Text = dtHachuJuchu.Rows[0][0].ToString();
 
                                 //受注単価の取得
@@ -1684,6 +1699,11 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka1.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+
+                    dtSetCd.Clear();
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu1.Text);
+
+                    gbData1.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
                 }
             }
             catch (Exception ex)
@@ -1706,7 +1726,7 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka2.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu2.Text))
             {
                 return;
             }
@@ -1718,12 +1738,17 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                dtSetCd = shireinputB.getJuchuTanka(txtJuchu1.Text);
+                dtSetCd = shireinputB.getJuchuTanka(txtJuchu2.Text);
 
                 //取引先情報が１件以上ある場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka2.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+
+                    dtSetCd.Clear();
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu2.Text);
+
+                    gbData2.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
                 }
             }
             catch (Exception ex)
@@ -1746,7 +1771,7 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka3.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu3.Text))
             {
                 return;
             }
@@ -1758,12 +1783,17 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                dtSetCd = shireinputB.getJuchuTanka(txtJuchu1.Text);
+                dtSetCd = shireinputB.getJuchuTanka(txtJuchu3.Text);
 
                 //取引先情報が１件以上ある場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka3.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+
+                    dtSetCd.Clear();
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka3.Text);
+
+                    gbData3.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
                 }
             }
             catch (Exception ex)
@@ -1786,7 +1816,7 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka4.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu4.Text))
             {
                 return;
             }
@@ -1798,12 +1828,18 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                dtSetCd = shireinputB.getJuchuTanka(txtJuchu1.Text);
+                dtSetCd = shireinputB.getJuchuTanka(txtJuchu4.Text);
 
                 //取引先情報が１件以上ある場合
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka4.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+
+                    dtSetCd.Clear();
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka4.Text);
+
+                    gbData4.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+
                 }
             }
             catch (Exception ex)
@@ -1844,6 +1880,12 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka5.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+
+                    dtSetCd.Clear();
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka5.Text);
+
+                    gbData5.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+
                 }
             }
             catch (Exception ex)

@@ -464,31 +464,27 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void showShohinList()
         {
-            //検索文字列に何か記入されている場合
-            if (txtKensaku.TextLength > 0)
+            try
             {
-                try
-                {
-                    ShouhinList shouhinlist = new ShouhinList(this);
-                    shouhinlist.intFrmKind = CommonTeisu.FRM_HACHUINPUT;
-                    shouhinlist.strYMD = txtHachuYMD.Text;
-                    shouhinlist.strEigyoushoCode = "";
-                    shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                    shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-                    shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                    shouhinlist.strKensaku = txtKensaku.Text;
-                    shouhinlist.ShowDialog();
+                ShouhinList shouhinlist = new ShouhinList(this);
+                shouhinlist.intFrmKind = CommonTeisu.FRM_HACHUINPUT;
+                shouhinlist.strYMD = txtHachuYMD.Text;
+                shouhinlist.strEigyoushoCode = "";
+                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
+                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
+                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
+                shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.ShowDialog();
 
-                }
-                catch (Exception ex)
-                {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

@@ -436,7 +436,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 
@@ -565,6 +565,54 @@ namespace KATO.Common.Form
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///labelSet_Tantousha_Leave
+        ///担当者コードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Tantousha_Leave(object sender, EventArgs e)
+        {
+            //得意先コードがない場合
+            if (labelSet_Tantousha.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(labelSet_Tantousha.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //得意先の名前が白紙の場合
+            if (labelSet_Tantousha.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(labelSet_Tantousha.ValueLabelText) == false)
+            {
+                gridShire.DataSource = null;
+                labelSet_Tantousha.Focus();
+                //取引先コードのラベルセットの背景色のチェック、背景白化
+                labelSet_Torihikisaki.codeTxt.BaseText_Leave_Check();
+            }
+        }
+
+        ///<summary>
+        ///labelSet_Torihikisaki_Leave
+        ///取引先コードのラベルセットから離れた場合
+        ///</summary>
+        private void labelSet_Torihikisaki_Leave(object sender, EventArgs e)
+        {
+            //得意先コードがない場合
+            if (labelSet_Torihikisaki.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //得意先の名前が白紙の場合
+            if (labelSet_Torihikisaki.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(labelSet_Torihikisaki.ValueLabelText) == false)
+            {
+                gridShire.DataSource = null;
+                labelSet_Torihikisaki.Focus();
+                //担当者コードのラベルセットの背景色のチェック、背景白化
+                labelSet_Tantousha.codeTxt.BaseText_Leave_Check();
+            }
         }
     }
 }

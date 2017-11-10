@@ -62,7 +62,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 
             //中分類setデータを読めるようにする
-            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+            lblSetDaibunrui.Lschubundata = lblSetChubunrui;
         }
 
         ///<summary>
@@ -182,41 +182,66 @@ namespace KATO.Form.B0250_MOnyuryoku
             KHachuNo1.Name = "発注番号";
             KHachuNo1.HeaderText = "発注番号";
 
-            //14
+            //14(非表示)
             DataGridViewTextBoxColumn KHachuNo2 = new DataGridViewTextBoxColumn();
             KHachuNo2.DataPropertyName = "発注番号";
             KHachuNo2.Name = "発注番号";
             KHachuNo2.HeaderText = "発注番号";
 
-            //15
+            //15(非表示)
             DataGridViewTextBoxColumn KShohinCd = new DataGridViewTextBoxColumn();
             KShohinCd.DataPropertyName = "商品コード";
             KShohinCd.Name = "商品コード";
             KShohinCd.HeaderText = "商品コード";
 
-            //16
+            //16(非表示)
             DataGridViewTextBoxColumn KC1 = new DataGridViewTextBoxColumn();
             KC1.DataPropertyName = "Ｃ１";
             KC1.Name = "Ｃ１";
             KC1.HeaderText = "Ｃ１";
 
-            //17
+            //17(非表示)
             DataGridViewTextBoxColumn KC2 = new DataGridViewTextBoxColumn();
             KC2.DataPropertyName = "Ｃ２";
             KC2.Name = "Ｃ２";
             KC2.HeaderText = "Ｃ２";
 
-            //18
+            //18(非表示)
             DataGridViewTextBoxColumn KC3 = new DataGridViewTextBoxColumn();
             KC3.DataPropertyName = "Ｃ３";
             KC3.Name = "Ｃ３";
             KC3.HeaderText = "Ｃ３";
 
-            //19
+            //19(非表示)
             DataGridViewTextBoxColumn KC4 = new DataGridViewTextBoxColumn();
-            KC4.DataPropertyName = "Ｃ３";
-            KC4.Name = "Ｃ３";
-            KC4.HeaderText = "Ｃ３";
+            KC4.DataPropertyName = "Ｃ４";
+            KC4.Name = "Ｃ４";
+            KC4.HeaderText = "Ｃ４";
+
+            //20(非表示)
+            DataGridViewTextBoxColumn KC5 = new DataGridViewTextBoxColumn();
+            KC5.DataPropertyName = "Ｃ５";
+            KC5.Name = "Ｃ５";
+            KC5.HeaderText = "Ｃ５";
+
+            //21(非表示)
+            DataGridViewTextBoxColumn KC6 = new DataGridViewTextBoxColumn();
+            KC6.DataPropertyName = "Ｃ６";
+            KC6.Name = "Ｃ６";
+            KC6.HeaderText = "Ｃ６";
+
+            //22(14)
+            DataGridViewTextBoxColumn KHakorisu = new DataGridViewTextBoxColumn();
+            KHakorisu.DataPropertyName = "箱入数";
+            KHakorisu.Name = "箱入数";
+            KHakorisu.HeaderText = "箱入数";
+
+            //23(15)
+            DataGridViewTextBoxColumn KSaishushirebi = new DataGridViewTextBoxColumn();
+            KSaishushirebi.DataPropertyName = "最終仕入日";
+            KSaishushirebi.Name = "最終仕入日";
+            KSaishushirebi.HeaderText = "最終仕入日";
+
 
 
             //個々の幅、文章の寄せ
@@ -236,81 +261,113 @@ namespace KATO.Form.B0250_MOnyuryoku
             setColumnKataban(KCode, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
             setColumnKataban(KShimukesakiname, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
             setColumnKataban(KHachuNo1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban(KHachuNo2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban(KShohinCd, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumnKataban(KHachuNo2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KC6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
+            setColumnKataban(KHakorisu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumnKataban(KSaishushirebi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
 
+//実行未確認、ここから
+            //対象列を非表示
+            gridKataban.Columns[14].Visible = false;
+            gridKataban.Columns[15].Visible = false;
+            gridKataban.Columns[16].Visible = false;
+            gridKataban.Columns[17].Visible = false;
+            gridKataban.Columns[18].Visible = false;
+            gridKataban.Columns[19].Visible = false;
+            gridKataban.Columns[20].Visible = false;
+            gridKataban.Columns[21].Visible = false;
 
 
             //データをバインド
+            //1
             DataGridViewTextBoxColumn K2Kataban = new DataGridViewTextBoxColumn();
             K2Kataban.DataPropertyName = "型番";
             K2Kataban.Name = "型番";
             K2Kataban.HeaderText = "型番";
 
+            //2
             DataGridViewTextBoxColumn K2Freezaiko = new DataGridViewTextBoxColumn();
             K2Freezaiko.DataPropertyName = "ﾌﾘｰ在庫";
             K2Freezaiko.Name = "ﾌﾘｰ在庫";
             K2Freezaiko.HeaderText = "ﾌﾘｰ在庫";
 
+            //3
             DataGridViewTextBoxColumn K2Shiresu = new DataGridViewTextBoxColumn();
             K2Shiresu.DataPropertyName = "仕入数";
             K2Shiresu.Name = "仕入数";
             K2Shiresu.HeaderText = "仕入数";
 
+            //4
             DataGridViewTextBoxColumn K2Hachuzan = new DataGridViewTextBoxColumn();
             K2Hachuzan.DataPropertyName = "発注残";
             K2Hachuzan.Name = "発注残";
             K2Hachuzan.HeaderText = "発注残";
 
+            //5
             DataGridViewTextBoxColumn K2Juchuzan = new DataGridViewTextBoxColumn();
             K2Juchuzan.DataPropertyName = "受注残";
             K2Juchuzan.Name = "受注残";
             K2Juchuzan.HeaderText = "受注残";
 
+            //6
             DataGridViewTextBoxColumn K2Hachusu = new DataGridViewTextBoxColumn();
             K2Hachusu.DataPropertyName = "発注数";
             K2Hachusu.Name = "発注数";
             K2Hachusu.HeaderText = "発注数";
 
+            //7
             DataGridViewTextBoxColumn K2Tanka = new DataGridViewTextBoxColumn();
             K2Tanka.DataPropertyName = "単価";
             K2Tanka.Name = "単価";
             K2Tanka.HeaderText = "単価";
 
+            //8
             DataGridViewTextBoxColumn K2Kingaku = new DataGridViewTextBoxColumn();
             K2Kingaku.DataPropertyName = "金額";
             K2Kingaku.Name = "金額";
             K2Kingaku.HeaderText = "金額";
 
+            //9
             DataGridViewTextBoxColumn K2Noki = new DataGridViewTextBoxColumn();
             K2Noki.DataPropertyName = "納期";
             K2Noki.Name = "納期";
             K2Noki.HeaderText = "納期";
 
+            //10
             DataGridViewTextBoxColumn K2Code = new DataGridViewTextBoxColumn();
             K2Code.DataPropertyName = "ｺｰﾄﾞ";
             K2Code.Name = "ｺｰﾄﾞ";
             K2Code.HeaderText = "ｺｰﾄﾞ";
 
+            //11
             DataGridViewTextBoxColumn K2Shimukesakiname = new DataGridViewTextBoxColumn();
             K2Shimukesakiname.DataPropertyName = "仕向け先名";
             K2Shimukesakiname.Name = "仕向け先名";
             K2Shimukesakiname.HeaderText = "仕向け先名";
 
+            //12
             DataGridViewTextBoxColumn K2HachuNo = new DataGridViewTextBoxColumn();
             K2HachuNo.DataPropertyName = "発注番号";
             K2HachuNo.Name = "発注番号";
             K2HachuNo.HeaderText = "発注番号";
 
+            //13
             DataGridViewTextBoxColumn K2Hakosu = new DataGridViewTextBoxColumn();
             K2Hakosu.DataPropertyName = "箱入数";
             K2Hakosu.Name = "箱入数";
             K2Hakosu.HeaderText = "箱入数";
 
+            //14
             DataGridViewTextBoxColumn K2Saishushire = new DataGridViewTextBoxColumn();
             K2Saishushire.DataPropertyName = "最終仕入日";
             K2Saishushire.Name = "最終仕入日";
             K2Saishushire.HeaderText = "最終仕入日";
+
 
             //個々の幅、文章の寄せ
             setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
@@ -511,75 +568,208 @@ namespace KATO.Form.B0250_MOnyuryoku
             short shtHasuu;
             string strTantou;
             decimal decKingaku;
-            
+
             //砂時計表示処理
             //libMessage/waitCursor
 
-            //型番グリッドビューに中身がある場合
-            for (int intCnt = 1; intCnt <= gridKataban.Rows.Count; intCnt++)
+            try
             {
-                string str = gridKataban.Rows[intCnt].Cells[8].Value.ToString();
-                string str02 = gridKataban.Rows[intCnt].Cells[14].Value.ToString();
+                //型番グリッドビューに中身がある場合
+                for (int intCnt = 1; intCnt <= gridKataban.Rows.Count; intCnt++)
+                {
+                    string str = gridKataban.Rows[intCnt].Cells[8].Value.ToString();
+                    string str02 = gridKataban.Rows[intCnt].Cells[14].Value.ToString();
 
-                //単価が空白でないもしくは0、且つ発注番号が空白でない場合
-                if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[8].Value.ToString()) == false ||
-                    gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0" &&
-                    StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[14].Value.ToString()) == false
-                    )
-                {
-                    
-                }
-                //発注数が空白でないもしくは0の場合
-                else if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
-                         gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
-                {
-                    //単価が空白でないもしくは0
+                    //単価が空白でないもしくは0、且つ発注番号が空白でない場合
                     if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[8].Value.ToString()) == false ||
-                        gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0")
+                        gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0" &&
+                        StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[14].Value.ToString()) == false
+                        )
                     {
-                        decSu = 0;
-                        decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
-                        objNouki = null;
-                        objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
 
-                        strCode = gridKataban.Rows[intCnt].Cells[16].Value.ToString();
+                    }
+                    //発注数が空白でないもしくは0の場合
+                    else if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
+                             gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
+                    {
+                        //単価が空白でないもしくは0
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[8].Value.ToString()) == false ||
+                            gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0")
+                        {
+                            decSu = 0;
+                            decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
+                            objNouki = null;
+                            objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
+
+                            strCode = gridKataban.Rows[intCnt].Cells[16].Value.ToString();
+                        }
+                        else
+                        {
+                            decSu = decimal.Parse(gridKataban.Rows[intCnt].Cells[8].Value.ToString());
+                            decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
+                            objNouki = gridKataban.Rows[intCnt].Cells[11].Value;
+                            objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
+
+                        }
+
+                        //発注指が空白でないもしくは0
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
+                            gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
+                        {
+                            objSijisU = null;
+                        }
+                        else
+                        {
+                            objSijisU = gridKataban.Rows[intCnt].Cells[7].Value;
+                        }
+
+                        //
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[15].Value.ToString()) == false)
+                        {
+                            //ビジネス層
+                            Business.A0020_UriageInput.A0020_UriageInput_B uriageB = new Business.A0020_UriageInput.A0020_UriageInput_B();
+                            intDenNo = int.Parse(uriageB.getDenpyoNo("発注番号").ToString());
+                        }
+                        else
+                        {
+                            intDenNo = int.Parse(gridKataban.Rows[intCnt].Cells[15].Value.ToString());
+                        }
+
+                        Business.B0250_MOnyuryoku.B0250_MOnyuryoku_B monyuB = new B0250_MOnyuryoku_B();
+                        intTheErr = monyuB.getExecSProc(txtYM.Text, strCode, objSijisU, decSu, decTanka, objNouki, objTorihiki, intDenNo, SystemInformation.UserName);
                     }
                     else
                     {
-                        decSu = decimal.Parse(gridKataban.Rows[intCnt].Cells[8].Value.ToString());
-                        decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
-                        objNouki = gridKataban.Rows[intCnt].Cells[11].Value;
-                        objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
+                        //単価が空白でないもしくは0
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[8].Value.ToString()) == false ||
+                            gridKataban.Rows[intCnt].Cells[8].Value.ToString() == "0")
+                        {
+                            decSu = 0;
+                            decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
+                            objNouki = null;
+                            objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
 
-                    }
+                            strCode = gridKataban.Rows[intCnt].Cells[16].Value.ToString();
+                        }
+                        else
+                        {
+                            decSu = decimal.Parse(gridKataban.Rows[intCnt].Cells[8].Value.ToString());
+                            decTanka = decimal.Parse(gridKataban.Rows[intCnt].Cells[9].Value.ToString());
+                            objNouki = gridKataban.Rows[intCnt].Cells[11].Value;
+                            objTorihiki = gridKataban.Rows[intCnt].Cells[12].Value;
 
-                    //発注指が空白でないもしくは0
-                    if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
-                        gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
-                    {
-                        objSijisU = null;
-                    }
-                    else
-                    {
-                        objSijisU = gridKataban.Rows[intCnt].Cells[7].Value;
-                    }
+                            strCode = gridKataban.Rows[intCnt].Cells[16].Value.ToString();
+                        }
 
-                    //
-                    if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[15].Value.ToString()) == false)
-                    {
-                        Business.A0020_UriageInput.A0020_UriageInput_B uriageB = new Business.A0020_UriageInput.A0020_UriageInput_B();
-                        intDenNo = int.Parse(uriageB.getDenpyoNo("発注番号").ToString());
-                    }
-                    else
-                    {
-                        intDenNo = int.Parse(gridKataban.Rows[intCnt].Cells[15].Value.ToString());
-                    }
+                        //発注指が空白でないもしくは0
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[7].Value.ToString()) == false ||
+                            gridKataban.Rows[intCnt].Cells[7].Value.ToString() == "0")
+                        {
+                            objSijisU = null;
+                        }
+                        else
+                        {
+                            objSijisU = gridKataban.Rows[intCnt].Cells[7].Value;
+                        }
 
-                    //intTheErr = 
+                        //
+                        if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells[15].Value.ToString()) == false)
+                        {
+                            //ビジネス層
+                            Business.A0020_UriageInput.A0020_UriageInput_B uriageB = new Business.A0020_UriageInput.A0020_UriageInput_B();
+                            intDenNo = int.Parse(uriageB.getDenpyoNo("発注番号").ToString());
+                        }
+                        else
+                        {
+                            intDenNo = int.Parse(gridKataban.Rows[intCnt].Cells[15].Value.ToString());
+                        }
+
+                        Business.B0250_MOnyuryoku.B0250_MOnyuryoku_B monyuB = new B0250_MOnyuryoku_B();
+                        intTheErr = monyuB.getExecSProc(txtYM.Text, strCode, objSijisU, decSu, decTanka, objNouki, objTorihiki, intDenNo, SystemInformation.UserName);
+                    }
+                }
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                lblSetShohin.CodeTxtText = "";
+                txtHasseisu.Text = "";
+                txtTanka.Text = "";
+                txtNoki.Text = "";
+                lblSetShimukesaki.CodeTxtText = "";
+                lblSetShimukesaki.ValueLabelText = "";
+
+                lblSetDaibunrui.Focus();
+
+                //上段グリッドビューの行数確保
+                int intRow;
+                intRow = gridKataban.Rows.Count;
+
+                showGridKataban();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        ///<summary>
+        ///showGridKataban
+        ///型番グリッドの表示
+        ///</summary>
+        private void showGridKataban()
+        {
+            //YMD判定
+            bool blGood = txtYM.updCalendarLeave(txtYM.Text);
+
+            //グリッドに入れる用のデータテーブル
+            DataTable dtGridViewKataban = new DataTable();
+
+            //YMDに変換できる場合
+            if (blGood == true)
+            {
+
+                List<string> lstStringViewData = new List<string>();
+                
+                lstStringViewData.Add(txtYM.Text);                  //0
+                lstStringViewData.Add(lblSetMaker.CodeTxtText);     //1
+                lstStringViewData.Add(lblSetDaibunrui.CodeTxtText); //2
+                lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //3
+
+                //マイナスの型番にチェックがある場合
+                if (radSet_2btn_PrintCheck.radbtn0.Checked == true)
+                {
+                    lstStringViewData.Add("Minus");                 //4
                 }
                 else
                 {
+                    lstStringViewData.Add("ALL");                   //4
+                }
 
+                lstStringViewData.Add(txtShukeiM.Text);             //5
+                
+                B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+                try
+                {
+                    dtGridViewKataban = monyuryokuB.setGridKataban(lstStringViewData);
+
+                    //グリッドビューの表示
+                    gridKataban.DataSource = dtGridViewKataban;
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
                 }
             }
         }
@@ -637,10 +827,10 @@ namespace KATO.Form.B0250_MOnyuryoku
             if (txtZaikoYMD.blIsEmpty() == false ||
                 txtYM.blIsEmpty() == false ||
                 txtShukeiM.blIsEmpty() == false ||
-                StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText) == false ||
-                StringUtl.blIsEmpty(labelSet_Chubunrui.CodeTxtText) == false ||
-                StringUtl.blIsEmpty(labelSet_Maker.CodeTxtText) == false ||
-                StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
+                StringUtl.blIsEmpty(lblSetDaibunrui.CodeTxtText) == false ||
+                StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText) == false ||
+                StringUtl.blIsEmpty(lblSetMaker.CodeTxtText) == false ||
+                StringUtl.blIsEmpty(lblSetShimukesaki.CodeTxtText) == false)
             {
                 blGood = false;
                 return (blGood);
@@ -669,28 +859,5 @@ namespace KATO.Form.B0250_MOnyuryoku
 
 
         }
-
-        /////<summary>
-        /////labelSet_Shiresaki_Leave
-        /////取引先コードから離れた場合
-        /////</summary>
-        //private void labelSet_Shiresaki_Leave(object sender, EventArgs e)
-        //{
-        //    B0250_MOnyuryoku_B monyuryoku = new B0250_MOnyuryoku_B();
-        //    try
-        //    {
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //データロギング
-        //        new CommonException(ex);
-        //        //例外発生メッセージ（OK）
-        //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-        //        basemessagebox.ShowDialog();
-        //        return;
-        //    }
-        //}
     }
 }

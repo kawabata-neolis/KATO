@@ -71,10 +71,10 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///getEndAction
+        ///FormMove
         ///戻るボタンの処理
         ///</summary>
-        public void getEndAction(int intFrmKind)
+        public void FormMove(int intFrmKind)
         {
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)

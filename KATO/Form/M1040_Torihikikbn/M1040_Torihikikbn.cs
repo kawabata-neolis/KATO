@@ -518,6 +518,10 @@ namespace KATO.Form.M1040_Torihikikbn
                     txtTorihikikubunCd.Text = dtSetCd.Rows[0]["取引区分コード"].ToString();
                     txtTorihikikubunName.Text = dtSetCd.Rows[0]["取引区分名"].ToString();
                 }
+                else
+                {
+                    txtTorihikikubunName.Text = "";
+                }
             }
             catch (Exception ex)
             {

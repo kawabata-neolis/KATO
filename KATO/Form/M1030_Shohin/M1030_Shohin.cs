@@ -729,7 +729,7 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         public void closeShohinList()
         {
-            txtData1.Focus();
+            txtKensaku.Focus();
         }
 
         ///<summary>

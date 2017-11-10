@@ -35,6 +35,10 @@
             this.lbl = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -79,10 +83,6 @@
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // txtEigyoshoCd
             // 
             this.txtEigyoshoCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -99,7 +99,7 @@
             // txtEigyoshoName
             // 
             this.txtEigyoshoName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtEigyoshoName.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtEigyoshoName.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtEigyoshoName.Location = new System.Drawing.Point(717, 141);
             this.txtEigyoshoName.MaxLength = 30;
             this.txtEigyoshoName.Name = "txtEigyoshoName";
@@ -115,6 +115,7 @@
             this.lblEigyoshoName.Location = new System.Drawing.Point(640, 144);
             this.lblEigyoshoName.Name = "lblEigyoshoName";
             this.lblEigyoshoName.Size = new System.Drawing.Size(71, 15);
+            this.lblEigyoshoName.strToolTip = null;
             this.lblEigyoshoName.TabIndex = 88;
             this.lblEigyoshoName.Text = "営業所名";
             this.lblEigyoshoName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,6 +127,7 @@
             this.lbl.Location = new System.Drawing.Point(443, 144);
             this.lbl.Name = "lbl";
             this.lbl.Size = new System.Drawing.Size(103, 15);
+            this.lbl.strToolTip = null;
             this.lbl.TabIndex = 88;
             this.lbl.Text = "営業所コード";
             this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

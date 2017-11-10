@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using KATO.Common.Util;
 using System.Windows.Forms;
 using KATO.Common.Form;
-using KATO.Form.M1100_Chokusosaki;
 using KATO.Form.JuchuInput;
+using KATO.Form.B0040_NyukinInput;
 
 namespace KATO.Common.Business
 {
@@ -34,6 +34,9 @@ namespace KATO.Common.Business
 
             //フォーマットするもの用
             string strSQLInput;
+
+            //空文字を削除
+            strSetGrid = strSetGrid.Trim();
 
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -136,12 +139,12 @@ namespace KATO.Common.Business
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
-                            //テスト用
-                            if (frm.Name == "JuchuInput_Test")
+                            //入金入力
+                            if (frm.Name == "B0040_NyukinInput")
                             {
                                 //データを連れてくるため、newをしないこと
-                                JuchuInput_Test test = (JuchuInput_Test)frm;
-                                test.setNyukinDenpyo(dtSelectData);
+                                B0040_NyukinInput nyukin = (B0040_NyukinInput)frm;
+                                nyukin.setNyukinDenpyo(dtSelectData);
                                 break;
                             }
                         }

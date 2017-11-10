@@ -426,6 +426,7 @@ namespace KATO.Form.M1090_Eigyosho
 
                 //削除情報を入れる（営業所コード、営業所名、ユーザー名）
                 lstEigyosho.Add(txtEigyoshoCd.Text);
+                lstEigyosho.Add(txtEigyoshoName.Text);
                 lstEigyosho.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -498,7 +499,7 @@ namespace KATO.Form.M1090_Eigyosho
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-
+                txtEigyoshoName.Text = "";
                 txtEigyoshoCd.Focus();
                 return;
             }
@@ -514,6 +515,10 @@ namespace KATO.Form.M1090_Eigyosho
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setEigyoshoCode(dtSetCd);
+                }
+                else
+                {
+                    txtEigyoshoName.Text = "";
                 }
             }
             catch (Exception ex)

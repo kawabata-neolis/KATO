@@ -640,11 +640,15 @@ namespace KATO.Form.B0060_ShiharaiInput
             {
                 // 伝票番号から支払データを取得し、テキストボックスへ配置
                 setShiharai();
+
+                object sender = new object();
+                EventArgs e = new EventArgs();
+                updDenpyoNoLeave(sender, e);
            }
         }
 
         /// <summary>
-        /// setShiharaiListClose
+        /// setShiharaiListClose    
         /// setShiharaiListCloseが閉じたらコード記入欄にフォーカス
         /// </summary>
         public void setShiharaiListClose()

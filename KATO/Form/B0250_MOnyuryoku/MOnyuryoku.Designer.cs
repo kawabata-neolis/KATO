@@ -38,10 +38,10 @@
             this.txtZaikoYMD = new KATO.Common.Ctl.BaseCalendar();
             this.txtYM = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtShukeiM = new KATO.Common.Ctl.BaseText();
-            this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
-            this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
-            this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
-            this.labelSet_Shiresaki = new KATO.Common.Ctl.LabelSet_Shiresaki();
+            this.lblSetDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
+            this.lblSetChubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
+            this.lblSetMaker = new KATO.Common.Ctl.LabelSet_Maker();
+            this.lblSetShiresaki = new KATO.Common.Ctl.LabelSet_Shiresaki();
             this.lblYM = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShukeiM = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblZaikoYMD = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -60,13 +60,14 @@
             this.txtHasseisu = new KATO.Common.Ctl.BaseText();
             this.txtTanka = new KATO.Common.Ctl.BaseTextMoney();
             this.txtNoki = new KATO.Common.Ctl.BaseCalendar();
-            this.labelSet_Torihikisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lblSetShimukesaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.lblGrayKensu = new KATO.Common.Ctl.BaseLabelGray();
             this.lblGrayKosuKensu = new KATO.Common.Ctl.BaseLabelGray();
             this.btnInput = new KATO.Common.Ctl.BaseButton();
             this.btnChancel = new KATO.Common.Ctl.BaseButton();
             this.gbPrintCheck = new System.Windows.Forms.GroupBox();
             this.radSet_2btn_PrintCheck = new KATO.Common.Ctl.RadSet_2btn();
+            this.lblSetShohin = new KATO.Common.Ctl.BaseTextLabelSet();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).BeginInit();
             this.gbPrintCheck.SuspendLayout();
@@ -144,84 +145,84 @@
             this.txtShukeiM.Size = new System.Drawing.Size(80, 22);
             this.txtShukeiM.TabIndex = 1;
             // 
-            // labelSet_Daibunrui
+            // lblSetDaibunrui
             // 
-            this.labelSet_Daibunrui.AppendLabelSize = 0;
-            this.labelSet_Daibunrui.AppendLabelText = "";
-            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.labelSet_Daibunrui.CodeTxtSize = 24;
-            this.labelSet_Daibunrui.CodeTxtText = "";
-            this.labelSet_Daibunrui.LabelName = "大分類コード";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(556, 43);
-            this.labelSet_Daibunrui.Lschubundata = null;
-            this.labelSet_Daibunrui.Lsmakerdata = null;
-            this.labelSet_Daibunrui.LsSubchubundata = null;
-            this.labelSet_Daibunrui.LsSubmakerdata = null;
-            this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
-            this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(351, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 4;
-            this.labelSet_Daibunrui.SpaceNameCode = 4;
-            this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 3;
-            this.labelSet_Daibunrui.ValueLabelSize = 205;
-            this.labelSet_Daibunrui.ValueLabelText = "";
+            this.lblSetDaibunrui.AppendLabelSize = 0;
+            this.lblSetDaibunrui.AppendLabelText = "";
+            this.lblSetDaibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lblSetDaibunrui.CodeTxtSize = 24;
+            this.lblSetDaibunrui.CodeTxtText = "";
+            this.lblSetDaibunrui.LabelName = "大分類コード";
+            this.lblSetDaibunrui.Location = new System.Drawing.Point(556, 43);
+            this.lblSetDaibunrui.Lschubundata = null;
+            this.lblSetDaibunrui.Lsmakerdata = null;
+            this.lblSetDaibunrui.LsSubchubundata = null;
+            this.lblSetDaibunrui.LsSubmakerdata = null;
+            this.lblSetDaibunrui.Name = "lblSetDaibunrui";
+            this.lblSetDaibunrui.ShowAppendFlg = false;
+            this.lblSetDaibunrui.Size = new System.Drawing.Size(351, 22);
+            this.lblSetDaibunrui.SpaceCodeValue = 4;
+            this.lblSetDaibunrui.SpaceNameCode = 4;
+            this.lblSetDaibunrui.SpaceValueAppend = 4;
+            this.lblSetDaibunrui.TabIndex = 3;
+            this.lblSetDaibunrui.ValueLabelSize = 205;
+            this.lblSetDaibunrui.ValueLabelText = "";
             // 
-            // labelSet_Chubunrui
+            // lblSetChubunrui
             // 
-            this.labelSet_Chubunrui.AppendLabelSize = 0;
-            this.labelSet_Chubunrui.AppendLabelText = "";
-            this.labelSet_Chubunrui.CodeTxtSize = 24;
-            this.labelSet_Chubunrui.CodeTxtText = "";
-            this.labelSet_Chubunrui.LabelName = "中分類コード";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(932, 43);
-            this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
-            this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(463, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 4;
-            this.labelSet_Chubunrui.SpaceNameCode = 4;
-            this.labelSet_Chubunrui.SpaceValueAppend = 4;
-            this.labelSet_Chubunrui.strDaibunCd = null;
-            this.labelSet_Chubunrui.TabIndex = 4;
-            this.labelSet_Chubunrui.ValueLabelSize = 315;
-            this.labelSet_Chubunrui.ValueLabelText = "";
+            this.lblSetChubunrui.AppendLabelSize = 0;
+            this.lblSetChubunrui.AppendLabelText = "";
+            this.lblSetChubunrui.CodeTxtSize = 24;
+            this.lblSetChubunrui.CodeTxtText = "";
+            this.lblSetChubunrui.LabelName = "中分類コード";
+            this.lblSetChubunrui.Location = new System.Drawing.Point(932, 43);
+            this.lblSetChubunrui.Name = "lblSetChubunrui";
+            this.lblSetChubunrui.ShowAppendFlg = false;
+            this.lblSetChubunrui.Size = new System.Drawing.Size(463, 22);
+            this.lblSetChubunrui.SpaceCodeValue = 4;
+            this.lblSetChubunrui.SpaceNameCode = 4;
+            this.lblSetChubunrui.SpaceValueAppend = 4;
+            this.lblSetChubunrui.strDaibunCd = null;
+            this.lblSetChubunrui.TabIndex = 4;
+            this.lblSetChubunrui.ValueLabelSize = 315;
+            this.lblSetChubunrui.ValueLabelText = "";
             // 
-            // labelSet_Maker
+            // lblSetMaker
             // 
-            this.labelSet_Maker.AppendLabelSize = 0;
-            this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 40;
-            this.labelSet_Maker.CodeTxtText = "";
-            this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(588, 74);
-            this.labelSet_Maker.Name = "labelSet_Maker";
-            this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(319, 22);
-            this.labelSet_Maker.SpaceCodeValue = 4;
-            this.labelSet_Maker.SpaceNameCode = 4;
-            this.labelSet_Maker.SpaceValueAppend = 4;
-            this.labelSet_Maker.strDaibunCd = null;
-            this.labelSet_Maker.TabIndex = 5;
-            this.labelSet_Maker.ValueLabelSize = 190;
-            this.labelSet_Maker.ValueLabelText = "";
+            this.lblSetMaker.AppendLabelSize = 0;
+            this.lblSetMaker.AppendLabelText = "";
+            this.lblSetMaker.CodeTxtSize = 40;
+            this.lblSetMaker.CodeTxtText = "";
+            this.lblSetMaker.LabelName = "メーカー";
+            this.lblSetMaker.Location = new System.Drawing.Point(588, 74);
+            this.lblSetMaker.Name = "lblSetMaker";
+            this.lblSetMaker.ShowAppendFlg = false;
+            this.lblSetMaker.Size = new System.Drawing.Size(319, 22);
+            this.lblSetMaker.SpaceCodeValue = 4;
+            this.lblSetMaker.SpaceNameCode = 4;
+            this.lblSetMaker.SpaceValueAppend = 4;
+            this.lblSetMaker.strDaibunCd = null;
+            this.lblSetMaker.TabIndex = 5;
+            this.lblSetMaker.ValueLabelSize = 190;
+            this.lblSetMaker.ValueLabelText = "";
             // 
-            // labelSet_Shiresaki
+            // lblSetShiresaki
             // 
-            this.labelSet_Shiresaki.AppendLabelSize = 0;
-            this.labelSet_Shiresaki.AppendLabelText = "";
-            this.labelSet_Shiresaki.CodeTxtSize = 40;
-            this.labelSet_Shiresaki.CodeTxtText = "";
-            this.labelSet_Shiresaki.LabelName = "仕入先コード";
-            this.labelSet_Shiresaki.Location = new System.Drawing.Point(932, 74);
-            this.labelSet_Shiresaki.Name = "labelSet_Shiresaki";
-            this.labelSet_Shiresaki.ShowAppendFlg = false;
-            this.labelSet_Shiresaki.Size = new System.Drawing.Size(475, 22);
-            this.labelSet_Shiresaki.SpaceCodeValue = 4;
-            this.labelSet_Shiresaki.SpaceNameCode = 4;
-            this.labelSet_Shiresaki.SpaceValueAppend = 4;
-            this.labelSet_Shiresaki.TabIndex = 6;
-            this.labelSet_Shiresaki.ValueLabelSize = 300;
-            this.labelSet_Shiresaki.ValueLabelText = "";
+            this.lblSetShiresaki.AppendLabelSize = 0;
+            this.lblSetShiresaki.AppendLabelText = "";
+            this.lblSetShiresaki.CodeTxtSize = 40;
+            this.lblSetShiresaki.CodeTxtText = "";
+            this.lblSetShiresaki.LabelName = "仕入先コード";
+            this.lblSetShiresaki.Location = new System.Drawing.Point(932, 74);
+            this.lblSetShiresaki.Name = "lblSetShiresaki";
+            this.lblSetShiresaki.ShowAppendFlg = false;
+            this.lblSetShiresaki.Size = new System.Drawing.Size(475, 22);
+            this.lblSetShiresaki.SpaceCodeValue = 4;
+            this.lblSetShiresaki.SpaceNameCode = 4;
+            this.lblSetShiresaki.SpaceValueAppend = 4;
+            this.lblSetShiresaki.TabIndex = 6;
+            this.lblSetShiresaki.ValueLabelSize = 300;
+            this.lblSetShiresaki.ValueLabelText = "";
             // 
             // lblYM
             // 
@@ -487,23 +488,23 @@
             this.txtNoki.TabIndex = 23;
             this.txtNoki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // labelSet_Torihikisaki
+            // lblSetShimukesaki
             // 
-            this.labelSet_Torihikisaki.AppendLabelSize = 0;
-            this.labelSet_Torihikisaki.AppendLabelText = "";
-            this.labelSet_Torihikisaki.CodeTxtSize = 40;
-            this.labelSet_Torihikisaki.CodeTxtText = "";
-            this.labelSet_Torihikisaki.LabelName = "仕向先";
-            this.labelSet_Torihikisaki.Location = new System.Drawing.Point(613, 752);
-            this.labelSet_Torihikisaki.Name = "labelSet_Torihikisaki";
-            this.labelSet_Torihikisaki.ShowAppendFlg = false;
-            this.labelSet_Torihikisaki.Size = new System.Drawing.Size(412, 22);
-            this.labelSet_Torihikisaki.SpaceCodeValue = 4;
-            this.labelSet_Torihikisaki.SpaceNameCode = 4;
-            this.labelSet_Torihikisaki.SpaceValueAppend = 4;
-            this.labelSet_Torihikisaki.TabIndex = 24;
-            this.labelSet_Torihikisaki.ValueLabelSize = 300;
-            this.labelSet_Torihikisaki.ValueLabelText = "";
+            this.lblSetShimukesaki.AppendLabelSize = 0;
+            this.lblSetShimukesaki.AppendLabelText = "";
+            this.lblSetShimukesaki.CodeTxtSize = 40;
+            this.lblSetShimukesaki.CodeTxtText = "";
+            this.lblSetShimukesaki.LabelName = "仕向先";
+            this.lblSetShimukesaki.Location = new System.Drawing.Point(613, 752);
+            this.lblSetShimukesaki.Name = "lblSetShimukesaki";
+            this.lblSetShimukesaki.ShowAppendFlg = false;
+            this.lblSetShimukesaki.Size = new System.Drawing.Size(412, 22);
+            this.lblSetShimukesaki.SpaceCodeValue = 4;
+            this.lblSetShimukesaki.SpaceNameCode = 4;
+            this.lblSetShimukesaki.SpaceValueAppend = 4;
+            this.lblSetShimukesaki.TabIndex = 24;
+            this.lblSetShimukesaki.ValueLabelSize = 300;
+            this.lblSetShimukesaki.ValueLabelText = "";
             // 
             // lblGrayKensu
             // 
@@ -582,17 +583,37 @@
             this.radSet_2btn_PrintCheck.Size = new System.Drawing.Size(98, 42);
             this.radSet_2btn_PrintCheck.TabIndex = 26;
             // 
+            // lblSetShohin
+            // 
+            this.lblSetShohin.AppendLabelSize = 0;
+            this.lblSetShohin.AppendLabelText = "";
+            this.lblSetShohin.CodeTxtSize = 40;
+            this.lblSetShohin.CodeTxtText = "";
+            this.lblSetShohin.LabelName = "商品コード";
+            this.lblSetShohin.Location = new System.Drawing.Point(9, 69);
+            this.lblSetShohin.Name = "lblSetShohin";
+            this.lblSetShohin.ShowAppendFlg = false;
+            this.lblSetShohin.Size = new System.Drawing.Size(133, 22);
+            this.lblSetShohin.SpaceCodeValue = 5;
+            this.lblSetShohin.SpaceNameCode = 0;
+            this.lblSetShohin.SpaceValueAppend = 0;
+            this.lblSetShohin.TabIndex = 102;
+            this.lblSetShohin.ValueLabelSize = 0;
+            this.lblSetShohin.ValueLabelText = "";
+            this.lblSetShohin.Visible = false;
+            // 
             // MOnyuryoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblSetShohin);
             this.Controls.Add(this.gbPrintCheck);
             this.Controls.Add(this.btnChancel);
             this.Controls.Add(this.btnInput);
             this.Controls.Add(this.lblGrayKosuKensu);
             this.Controls.Add(this.lblGrayKensu);
-            this.Controls.Add(this.labelSet_Torihikisaki);
+            this.Controls.Add(this.lblSetShimukesaki);
             this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.lblNoki);
             this.Controls.Add(this.lblTanka);
@@ -607,10 +628,10 @@
             this.Controls.Add(this.lblZaikoYMD);
             this.Controls.Add(this.lblShukeiM);
             this.Controls.Add(this.lblYM);
-            this.Controls.Add(this.labelSet_Shiresaki);
-            this.Controls.Add(this.labelSet_Maker);
-            this.Controls.Add(this.labelSet_Chubunrui);
-            this.Controls.Add(this.labelSet_Daibunrui);
+            this.Controls.Add(this.lblSetShiresaki);
+            this.Controls.Add(this.lblSetMaker);
+            this.Controls.Add(this.lblSetChubunrui);
+            this.Controls.Add(this.lblSetDaibunrui);
             this.Controls.Add(this.txtHasseisu);
             this.Controls.Add(this.txtUriagesu);
             this.Controls.Add(this.txtKensaku);
@@ -641,10 +662,10 @@
             this.Controls.SetChildIndex(this.txtKensaku, 0);
             this.Controls.SetChildIndex(this.txtUriagesu, 0);
             this.Controls.SetChildIndex(this.txtHasseisu, 0);
-            this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
-            this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
-            this.Controls.SetChildIndex(this.labelSet_Maker, 0);
-            this.Controls.SetChildIndex(this.labelSet_Shiresaki, 0);
+            this.Controls.SetChildIndex(this.lblSetDaibunrui, 0);
+            this.Controls.SetChildIndex(this.lblSetChubunrui, 0);
+            this.Controls.SetChildIndex(this.lblSetMaker, 0);
+            this.Controls.SetChildIndex(this.lblSetShiresaki, 0);
             this.Controls.SetChildIndex(this.lblYM, 0);
             this.Controls.SetChildIndex(this.lblShukeiM, 0);
             this.Controls.SetChildIndex(this.lblZaikoYMD, 0);
@@ -659,12 +680,13 @@
             this.Controls.SetChildIndex(this.lblTanka, 0);
             this.Controls.SetChildIndex(this.lblNoki, 0);
             this.Controls.SetChildIndex(this.txtTanka, 0);
-            this.Controls.SetChildIndex(this.labelSet_Torihikisaki, 0);
+            this.Controls.SetChildIndex(this.lblSetShimukesaki, 0);
             this.Controls.SetChildIndex(this.lblGrayKensu, 0);
             this.Controls.SetChildIndex(this.lblGrayKosuKensu, 0);
             this.Controls.SetChildIndex(this.btnInput, 0);
             this.Controls.SetChildIndex(this.btnChancel, 0);
             this.Controls.SetChildIndex(this.gbPrintCheck, 0);
+            this.Controls.SetChildIndex(this.lblSetShohin, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).EndInit();
             this.gbPrintCheck.ResumeLayout(false);
@@ -678,10 +700,10 @@
         private Common.Ctl.BaseCalendar txtZaikoYMD;
         private Common.Ctl.BaseCalendarYM txtYM;
         private Common.Ctl.BaseText txtShukeiM;
-        private Common.Ctl.LabelSet_Daibunrui labelSet_Daibunrui;
-        private Common.Ctl.LabelSet_Chubunrui labelSet_Chubunrui;
-        private Common.Ctl.LabelSet_Maker labelSet_Maker;
-        private Common.Ctl.LabelSet_Shiresaki labelSet_Shiresaki;
+        private Common.Ctl.LabelSet_Daibunrui lblSetDaibunrui;
+        private Common.Ctl.LabelSet_Chubunrui lblSetChubunrui;
+        private Common.Ctl.LabelSet_Maker lblSetMaker;
+        private Common.Ctl.LabelSet_Shiresaki lblSetShiresaki;
         private Common.Ctl.BaseLabel lblYM;
         private Common.Ctl.BaseLabel lblShukeiM;
         private Common.Ctl.BaseLabel lblZaikoYMD;
@@ -700,12 +722,13 @@
         private Common.Ctl.BaseText txtHasseisu;
         private Common.Ctl.BaseTextMoney txtTanka;
         private Common.Ctl.BaseCalendar txtNoki;
-        private Common.Ctl.LabelSet_Torihikisaki labelSet_Torihikisaki;
+        private Common.Ctl.LabelSet_Torihikisaki lblSetShimukesaki;
         private Common.Ctl.BaseLabelGray lblGrayKensu;
         private Common.Ctl.BaseLabelGray lblGrayKosuKensu;
         private Common.Ctl.BaseButton btnInput;
         private Common.Ctl.BaseButton btnChancel;
         private System.Windows.Forms.GroupBox gbPrintCheck;
         private Common.Ctl.RadSet_2btn radSet_2btn_PrintCheck;
+        private Common.Ctl.BaseTextLabelSet lblSetShohin;
     }
 }

@@ -83,7 +83,7 @@ namespace KATO.Common.Form
 
         ///<summary>
         ///TokuisakiList
-        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）（通常画面）
         ///</summary>
         public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect)
         {
@@ -112,11 +112,11 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
-        }
+        }   
 
         ///<summary>
         ///TokuisakiList
-        ///前画面からデータ受け取り(通常テキストボックス)
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）（LIST画面から）
         ///</summary>
         public TokuisakiList(Control c, LabelSet_Tokuisaki lblSetTokuiSelect, object pbj)
         {
@@ -129,6 +129,9 @@ namespace KATO.Common.Form
             //画面位置の指定
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            lblSetTokuisaki = lblSetTokuiSelect;
 
             InitializeComponent();
 
@@ -321,10 +324,10 @@ namespace KATO.Common.Form
             }
         }
 
-        /// <summary>
-        /// judGridTokuiKeyDown
+        ///<summary>
+        ///judGridTokuiKeyDown
         ///データグリッドビュー内のデータ選択中にキーが押されたとき
-        /// </summary>
+        ///</summary>
         private void judGridTokuiKeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
@@ -393,30 +396,35 @@ namespace KATO.Common.Form
             //データ渡し用
             List<string> lstSelectData = new List<string>();
 
-            string strSelectId = null;
-            string strSelectName = null;
+            string strSelectId = (string)gridShiresaki.CurrentRow.Cells["得意先コード"].Value;
+            string strSelectName = (string)gridShiresaki.CurrentRow.Cells["得意先名"].Value;
 
-            int intSelectRow = 0;
-            int intSelectColumn = 0;
+            //int intSelectRow = 0;
+            //int intSelectColumn = 0;
 
-            //何行目かを確保
-            intSelectRow = gridShiresaki.CurrentCell.RowIndex;
-            intSelectColumn = gridShiresaki.CurrentCell.ColumnIndex;
+            ////何行目かを確保
+            //intSelectRow = gridShiresaki.CurrentCell.RowIndex;
+            //intSelectColumn = gridShiresaki.CurrentCell.ColumnIndex;
 
-            //datagridviewをdatatable化
-            DataTable dtSelect = (DataTable)gridShiresaki.DataSource;
+            ////datagridviewをdatatable化
+            //DataTable dtSelect = (DataTable)gridShiresaki.DataSource;
 
-            //選択した得意先コードの確保
-            strSelectId = dtSelect.Rows[intSelectRow]["得意先コード"].ToString();
+            ////選択した得意先コードの確保
+            //strSelectId = dtSelect.Rows[intSelectRow]["得意先コード"].ToString();
 
-            //選択した得意先コードが存在しない場合
-            if (strSelectId == "")
-            {
-                return;
-            }
+            ////選択した得意先コードが存在しない場合
+            //if (strSelectId == "")
+            //{
+            //    return;
+            //}
 
-            //選択した得意先名の確保
-            strSelectName = dtSelect.Rows[intSelectRow]["得意先名"].ToString();
+            ////選択した得意先名の確保
+            //strSelectName = dtSelect.Rows[intSelectRow]["得意先名"].ToString();
+
+            //前後の空白を取り除く
+
+            strSelectName = strSelectName.Trim();
+            strSelectId = strSelectId.Trim();
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);
@@ -428,7 +436,6 @@ namespace KATO.Common.Form
             {
                 //ビジネス層、検索ロジックに移動
                 shiresakilistB.getSelectItem(intFrmKind, strSelectId);
-
                 EndAction(lstSelectData);
             }
             catch (Exception ex)
@@ -478,7 +485,7 @@ namespace KATO.Common.Form
             try
             {
                 //画面終了処理
-                tokuisakilistB.getEndAction(intFrmKind);
+                tokuisakilistB.FormMove(intFrmKind);
             }
             catch (Exception ex)
             {

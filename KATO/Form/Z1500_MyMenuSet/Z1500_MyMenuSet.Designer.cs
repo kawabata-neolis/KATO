@@ -36,6 +36,7 @@
             this.lblP1PgNo4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP1PgName2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP1PgNo3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblP1Text = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP1PgName1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP1No4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP1PgNo2 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -330,6 +331,7 @@
             this.object_ba405883_1f52_4748_b816_b6744714de26 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Menu1 = new KATO.Common.Ctl.LabelSet_Menu();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.baseLabel1373 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP2PgName4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP2gName3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP2PgNo4 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -639,6 +641,7 @@
             this.labelSet_Menu80 = new KATO.Common.Ctl.LabelSet_Menu();
             this.object_dc345908_ddcd_4c34_9c66_a76d4cfa9bff = new KATO.Common.Ctl.BaseLabel(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblP3Text = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP3PgName4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP3gName3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP3PgNo4 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -988,6 +991,7 @@
             this.object_f3957c54_4b78_4d6b_9fa1_7166536c6f22 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel733 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblP4Text = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP4PgName4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP4PgName3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP4PgNo4 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -1382,6 +1386,7 @@
             this.baseLabel1029 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btnChokusosaki = new KATO.Common.Ctl.BaseMenuButton();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.lblP5Text = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP5PgName4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP5PgName3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP5PgNo4 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -1813,11 +1818,6 @@
             this.baseLabel1363 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1364 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1365 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblP1Text = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel1373 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblP3Text = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblP4Text = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblP5Text = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblP2Text.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.labelSet_Menu40.SuspendLayout();
@@ -2025,6 +2025,12 @@
             this.labelSet_Menu161.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.BackColor = System.Drawing.Color.Cyan;
+            this.btnF01.UseVisualStyleBackColor = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -2068,12 +2074,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.BackColor = System.Drawing.Color.Cyan;
-            this.btnF01.UseVisualStyleBackColor = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblP2Text
             // 
@@ -2212,6 +2212,18 @@
             this.lblP1PgNo3.TabIndex = 40;
             this.lblP1PgNo3.Text = "PgNo";
             this.lblP1PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblP1Text
+            // 
+            this.lblP1Text.AutoSize = true;
+            this.lblP1Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblP1Text.Location = new System.Drawing.Point(50, 690);
+            this.lblP1Text.Name = "lblP1Text";
+            this.lblP1Text.Size = new System.Drawing.Size(359, 15);
+            this.lblP1Text.strToolTip = null;
+            this.lblP1Text.TabIndex = 40;
+            this.lblP1Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
+            this.lblP1Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1PgName1
             // 
@@ -4361,6 +4373,7 @@
             this.labelSet_Menu4.TabIndex = 3;
             this.labelSet_Menu4.ValueLabelSize = 250;
             this.labelSet_Menu4.ValueLabelText = "";
+            this.labelSet_Menu4.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
             // 
             // baseLabel8
             // 
@@ -5512,6 +5525,7 @@
             this.labelSet_Menu3.TabIndex = 2;
             this.labelSet_Menu3.ValueLabelSize = 250;
             this.labelSet_Menu3.ValueLabelText = "";
+            this.labelSet_Menu3.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
             // 
             // baseLabel4
             // 
@@ -6084,6 +6098,7 @@
             this.labelSet_Menu2.TabIndex = 1;
             this.labelSet_Menu2.ValueLabelSize = 250;
             this.labelSet_Menu2.ValueLabelText = "";
+            this.labelSet_Menu2.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
             // 
             // baseLabel1
             // 
@@ -6214,6 +6229,8 @@
             this.labelSet_Menu1.TabIndex = 0;
             this.labelSet_Menu1.ValueLabelSize = 250;
             this.labelSet_Menu1.ValueLabelText = "";
+            this.labelSet_Menu1.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
+            this.labelSet_Menu1.Validating += new System.ComponentModel.CancelEventHandler(this.labelSet_Menu1_Validating);
             // 
             // tabPage2
             // 
@@ -6277,6 +6294,18 @@
             this.tabPage2.Size = new System.Drawing.Size(1392, 718);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
+            // 
+            // baseLabel1373
+            // 
+            this.baseLabel1373.AutoSize = true;
+            this.baseLabel1373.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1373.Location = new System.Drawing.Point(50, 690);
+            this.baseLabel1373.Name = "baseLabel1373";
+            this.baseLabel1373.Size = new System.Drawing.Size(359, 15);
+            this.baseLabel1373.strToolTip = null;
+            this.baseLabel1373.TabIndex = 53;
+            this.baseLabel1373.Text = "※不要なプログラムは、PgNoに０を入力します。";
+            this.baseLabel1373.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2PgName4
             // 
@@ -10532,6 +10561,18 @@
             this.tabPage3.Size = new System.Drawing.Size(1392, 718);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "3";
+            // 
+            // lblP3Text
+            // 
+            this.lblP3Text.AutoSize = true;
+            this.lblP3Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblP3Text.Location = new System.Drawing.Point(50, 690);
+            this.lblP3Text.Name = "lblP3Text";
+            this.lblP3Text.Size = new System.Drawing.Size(359, 15);
+            this.lblP3Text.strToolTip = null;
+            this.lblP3Text.TabIndex = 65;
+            this.lblP3Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
+            this.lblP3Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3PgName4
             // 
@@ -15307,6 +15348,18 @@
             this.tabPage4.Size = new System.Drawing.Size(1392, 718);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "4";
+            // 
+            // lblP4Text
+            // 
+            this.lblP4Text.AutoSize = true;
+            this.lblP4Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblP4Text.Location = new System.Drawing.Point(50, 690);
+            this.lblP4Text.Name = "lblP4Text";
+            this.lblP4Text.Size = new System.Drawing.Size(359, 15);
+            this.lblP4Text.strToolTip = null;
+            this.lblP4Text.TabIndex = 117;
+            this.lblP4Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
+            this.lblP4Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4PgName4
             // 
@@ -20598,6 +20651,7 @@
             this.btnChokusosaki.Location = new System.Drawing.Point(249, 757);
             this.btnChokusosaki.Name = "btnChokusosaki";
             this.btnChokusosaki.Size = new System.Drawing.Size(280, 40);
+            this.btnChokusosaki.strPGNo = null;
             this.btnChokusosaki.TabIndex = 104;
             this.btnChokusosaki.Text = "直送先";
             this.btnChokusosaki.UseVisualStyleBackColor = false;
@@ -20663,6 +20717,18 @@
             this.tabPage5.Size = new System.Drawing.Size(1392, 718);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "5";
+            // 
+            // lblP5Text
+            // 
+            this.lblP5Text.AutoSize = true;
+            this.lblP5Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblP5Text.Location = new System.Drawing.Point(50, 690);
+            this.lblP5Text.Name = "lblP5Text";
+            this.lblP5Text.Size = new System.Drawing.Size(359, 15);
+            this.lblP5Text.strToolTip = null;
+            this.lblP5Text.TabIndex = 129;
+            this.lblP5Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
+            this.lblP5Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5PgName4
             // 
@@ -26454,66 +26520,6 @@
             this.baseLabel1365.TabIndex = 0;
             this.baseLabel1365.Text = "  1";
             this.baseLabel1365.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblP1Text
-            // 
-            this.lblP1Text.AutoSize = true;
-            this.lblP1Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblP1Text.Location = new System.Drawing.Point(50, 690);
-            this.lblP1Text.Name = "lblP1Text";
-            this.lblP1Text.Size = new System.Drawing.Size(359, 15);
-            this.lblP1Text.strToolTip = null;
-            this.lblP1Text.TabIndex = 40;
-            this.lblP1Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
-            this.lblP1Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // baseLabel1373
-            // 
-            this.baseLabel1373.AutoSize = true;
-            this.baseLabel1373.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1373.Location = new System.Drawing.Point(50, 690);
-            this.baseLabel1373.Name = "baseLabel1373";
-            this.baseLabel1373.Size = new System.Drawing.Size(359, 15);
-            this.baseLabel1373.strToolTip = null;
-            this.baseLabel1373.TabIndex = 53;
-            this.baseLabel1373.Text = "※不要なプログラムは、PgNoに０を入力します。";
-            this.baseLabel1373.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblP3Text
-            // 
-            this.lblP3Text.AutoSize = true;
-            this.lblP3Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblP3Text.Location = new System.Drawing.Point(50, 690);
-            this.lblP3Text.Name = "lblP3Text";
-            this.lblP3Text.Size = new System.Drawing.Size(359, 15);
-            this.lblP3Text.strToolTip = null;
-            this.lblP3Text.TabIndex = 65;
-            this.lblP3Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
-            this.lblP3Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblP4Text
-            // 
-            this.lblP4Text.AutoSize = true;
-            this.lblP4Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblP4Text.Location = new System.Drawing.Point(50, 690);
-            this.lblP4Text.Name = "lblP4Text";
-            this.lblP4Text.Size = new System.Drawing.Size(359, 15);
-            this.lblP4Text.strToolTip = null;
-            this.lblP4Text.TabIndex = 117;
-            this.lblP4Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
-            this.lblP4Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblP5Text
-            // 
-            this.lblP5Text.AutoSize = true;
-            this.lblP5Text.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblP5Text.Location = new System.Drawing.Point(50, 690);
-            this.lblP5Text.Name = "lblP5Text";
-            this.lblP5Text.Size = new System.Drawing.Size(359, 15);
-            this.lblP5Text.strToolTip = null;
-            this.lblP5Text.TabIndex = 129;
-            this.lblP5Text.Text = "※不要なプログラムは、PgNoに０を入力します。";
-            this.lblP5Text.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Z1500_MyMenuSet
             // 

@@ -386,15 +386,17 @@ namespace KATO.Common.Form
 
             //選択した仕入先コードの確保
             strSelectId = dtSelect.Rows[intSelectRow]["仕入先コード"].ToString();
+            strSelectName = dtSelect.Rows[intSelectRow]["仕入先名"].ToString();
+
+            //前後の空白を取り除く
+            strSelectId = strSelectId.Trim();
+            strSelectName = strSelectName.Trim();
 
             //選択した仕入先コードが存在しない場合
             if (strSelectId == "")
             {
                 return;
             }
-
-            //選択した仕入先名の確保
-            strSelectName = dtSelect.Rows[intSelectRow]["仕入先名"].ToString();
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);
@@ -424,7 +426,7 @@ namespace KATO.Common.Form
         ///btnEndClick
         ///戻るボタンを押したとき
         ///</summary>
-        private void btnEndClick(object sender, EventArgs e)
+        public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
 

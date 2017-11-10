@@ -73,6 +73,7 @@ namespace KATO.Form.M1110_Chubunrui
             this._Title = "中分類マスタ";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
+
             this.btnF01.Text = STR_FUNC_F1;
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
@@ -300,22 +301,26 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         private void showChubunList()
         {
-            //ラベルセットである情報を渡すためにインスタンス生成
-            LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
-            //中分類リストのインスタンス生成
-            ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, LabelSet_Daibun.CodeTxtText);
-            try
+            //大分類コードが存在する場合
+            if (lblSetDaibun.CodeTxtText != "")
             {
-                //中分類リストの表示、画面IDを渡す
-                chubunruilist.StartPosition = FormStartPosition.Manual;
-                chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
-                chubunruilist.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                return;
+                //ラベルセットである情報を渡すためにインスタンス生成
+                LabelSet_Chubunrui lblSetChubunSelect = new LabelSet_Chubunrui();
+                //中分類リストのインスタンス生成
+                ChubunruiList chubunruilist = new ChubunruiList(this, lblSetChubunSelect, lblSetDaibun.CodeTxtText);
+                try
+                {
+                    //中分類リストの表示、画面IDを渡す
+                    chubunruilist.StartPosition = FormStartPosition.Manual;
+                    chubunruilist.intFrmKind = KATO.Common.Util.CommonTeisu.FRM_CHUBUNRUI;
+                    chubunruilist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    return;
+                }
             }
         }
 
@@ -332,12 +337,12 @@ namespace KATO.Form.M1110_Chubunrui
             string strTokuiSub = "";
 
             //文字判定（大分類コード）
-            if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false)
+            if (StringUtl.blIsEmpty(lblSetDaibun.CodeTxtText) == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                LabelSet_Daibun.Focus();
+                lblSetDaibun.Focus();
                 return;
             }
             //文字判定（中分類コード）
@@ -360,7 +365,7 @@ namespace KATO.Form.M1110_Chubunrui
             }
 
             //登録情報を入れる（大分類コード、中分類コード、中分類名、ユーザー名）
-            lstChubunrui.Add(LabelSet_Daibun.CodeTxtText);
+            lstChubunrui.Add(lblSetDaibun.CodeTxtText);
             lstChubunrui.Add(txtChubunrui.Text);
             lstChubunrui.Add(txtElem.Text);
             lstChubunrui.Add(SystemInformation.UserName);
@@ -377,12 +382,12 @@ namespace KATO.Form.M1110_Chubunrui
                 basemessagebox.ShowDialog();
 
                 //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = LabelSet_Daibun.CodeTxtText;
+                strTokuiSub = lblSetDaibun.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-                LabelSet_Daibun.CodeTxtText = strTokuiSub;
-                LabelSet_Daibun.Focus();
+                lblSetDaibun.CodeTxtText = strTokuiSub;
+                lblSetDaibun.Focus();
                 txtChubunrui.Focus();
             }
             catch (Exception ex)
@@ -404,7 +409,7 @@ namespace KATO.Form.M1110_Chubunrui
         {
             //画面の項目内を白紙にする
             delFormClear(this);
-            LabelSet_Daibun.Focus();
+            lblSetDaibun.Focus();
         }
 
         ///<summary>
@@ -420,7 +425,7 @@ namespace KATO.Form.M1110_Chubunrui
             DataTable dtSetCd;
 
             //空文字判定（大部類コード、中分類コード）
-            if (StringUtl.blIsEmpty(LabelSet_Daibun.CodeTxtText) == false || txtChubunrui.blIsEmpty() == false)
+            if (StringUtl.blIsEmpty(lblSetDaibun.CodeTxtText) == false || txtChubunrui.blIsEmpty() == false)
             {
                 return;
             }
@@ -430,7 +435,7 @@ namespace KATO.Form.M1110_Chubunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.getTxtChubunruiLeave(LabelSet_Daibun.CodeTxtText, txtChubunrui.Text);
+                dtSetCd = chubunB.getTxtChubunruiLeave(lblSetDaibun.CodeTxtText, txtChubunrui.Text);
 
                 //取消メソッド起動前に、残す項目を確保用
                 string strTokuiSub = "";
@@ -450,7 +455,7 @@ namespace KATO.Form.M1110_Chubunrui
                 }
                 
                 //削除情報を入れる（大分類コード、中分類コード、中分類名、ユーザー名）
-                lstChubunrui.Add(LabelSet_Daibun.CodeTxtText);
+                lstChubunrui.Add(lblSetDaibun.CodeTxtText);
                 lstChubunrui.Add(txtChubunrui.Text);
                 lstChubunrui.Add(txtElem.Text);
                 lstChubunrui.Add(SystemInformation.UserName);
@@ -463,12 +468,12 @@ namespace KATO.Form.M1110_Chubunrui
                 basemessagebox.ShowDialog();
 
                 //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = LabelSet_Daibun.CodeTxtText;
+                strTokuiSub = lblSetDaibun.CodeTxtText;
 
                 //テキストボックスを白紙にする
                 delText();
-                LabelSet_Daibun.CodeTxtText = strTokuiSub;
-                LabelSet_Daibun.Focus();
+                lblSetDaibun.CodeTxtText = strTokuiSub;
+                lblSetDaibun.Focus();
                 txtChubunrui.Focus();
 
             }
@@ -490,8 +495,8 @@ namespace KATO.Form.M1110_Chubunrui
         public void setDaibunrui(DataTable dtSelectData)
         {
             
-            LabelSet_Daibun.CodeTxtText = dtSelectData.Rows[0]["大分類コード"].ToString();
-            LabelSet_Daibun.ValueLabelText = dtSelectData.Rows[0]["大分類名"].ToString();
+            lblSetDaibun.CodeTxtText = dtSelectData.Rows[0]["大分類コード"].ToString();
+            lblSetDaibun.ValueLabelText = dtSelectData.Rows[0]["大分類名"].ToString();
         }
 
         ///<summary>
@@ -551,7 +556,7 @@ namespace KATO.Form.M1110_Chubunrui
             }
 
             //データの存在確認を検索する情報を入れる
-            lstString.Add(LabelSet_Daibun.CodeTxtText);
+            lstString.Add(lblSetDaibun.CodeTxtText);
             lstString.Add(txtChubunrui.Text);
 
             //ビジネス層のインスタンス生成
@@ -559,14 +564,18 @@ namespace KATO.Form.M1110_Chubunrui
             try
             {
                 //戻り値のDatatableを取り込む
-                dtSetCd = chubunB.getTxtChubunruiLeave(LabelSet_Daibun.CodeTxtText, txtChubunrui.Text);
+                dtSetCd = chubunB.getTxtChubunruiLeave(lblSetDaibun.CodeTxtText, txtChubunrui.Text);
 
                 //Datatable内のデータが存在する場合
                 if (dtSetCd.Rows.Count != 0)
                 {
-                    LabelSet_Daibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    lblSetDaibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
                     txtChubunrui.Text = dtSetCd.Rows[0]["中分類コード"].ToString();
                     txtElem.Text = dtSetCd.Rows[0]["中分類名"].ToString();
+                }
+                else
+                {
+                    txtElem.Text = "";
                 }
             }
             catch (Exception ex)
@@ -587,7 +596,16 @@ namespace KATO.Form.M1110_Chubunrui
         ///</summary>
         public void closeDaibunruiList()
         {
-            LabelSet_Daibun.Focus();
+            lblSetDaibun.Focus();
+        }
+
+        ///<summary>
+        ///setChubunListClose
+        ///ChubunListCloseが閉じたらコード記入欄にフォーカス
+        ///</summary>
+        public void setChubunListClose()
+        {
+            txtChubunrui.Focus();
         }
 
         ///<summary>
@@ -674,6 +692,27 @@ namespace KATO.Form.M1110_Chubunrui
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        ///<summary>
+        ///lblSetDaibun_Leave
+        ///大分類のラベルセットから離れた場合
+        ///</summary>
+        private void lblSetDaibun_Leave(object sender, EventArgs e)
+        {
+            //大分類コードがない場合
+            if (lblSetDaibun.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibun.CodeTxtText) == false)
+            {
+                return;
+            }
+
+            //大分類の名前が白紙の場合
+            if (lblSetDaibun.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblSetDaibun.ValueLabelText) == false)
+            {
+                lblSetDaibun.Focus();
             }
         }
     }

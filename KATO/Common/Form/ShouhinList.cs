@@ -125,7 +125,11 @@ namespace KATO.Common.Form
             //データ渡し用
             lstInt.Add(0);
 
-            setShohinView(lstInt);
+            //検索単語があれば表示
+            if (StringUtl.blIsEmpty(strKensaku) == true)
+            {
+                setShohinView(lstInt);
+            }
         }
 
         ///<summary>
@@ -356,8 +360,8 @@ namespace KATO.Common.Form
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
+                    //ダブルクリックと同じ動作
+                    setSelectItem();
                     break;
                 case Keys.F1:
                     break;

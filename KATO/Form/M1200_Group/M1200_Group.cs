@@ -496,7 +496,7 @@ namespace KATO.Form.M1200_Group
                 //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-
+                txtGroupName.Text = "";
                 txtGroupId.Focus();
                 return;
             }
@@ -512,6 +512,10 @@ namespace KATO.Form.M1200_Group
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setGroup(dtSetCd);
+                }
+                else
+                {
+                    txtGroupName.Text = "";
                 }
             }
             catch (Exception ex)

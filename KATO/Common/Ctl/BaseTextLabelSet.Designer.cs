@@ -77,6 +77,7 @@
             this.nameLabel.Location = new System.Drawing.Point(2, 3);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(0, 15);
+            this.nameLabel.strToolTip = null;
             this.nameLabel.TabIndex = 0;
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 

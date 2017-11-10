@@ -532,24 +532,43 @@ namespace KATO.Form.F0140_TanaorosiInput
         ///setShouhin
         ///取り出したデータをテキストボックスに配置（商品リスト）
         ///</summary>
-        public void setShouhin(List<string> lstStringTana, List<DataTable> lstDTtana)
+        public void setShouhin(DataTable dtShohin)
         {
             if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false)
             {
                 return;
             }
 
-            labelSet_Daibunrui.CodeTxtText = lstDTtana[0].Rows[0]["大分類コード"].ToString();
-            labelSet_Daibunrui.ValueLabelText = lstDTtana[0].Rows[0]["大分類名"].ToString();
-            labelSet_Chubunrui_Edit.CodeTxtText = lstDTtana[1].Rows[0]["中分類コード"].ToString();
-            labelSet_Chubunrui_Edit.ValueLabelText = lstDTtana[1].Rows[0]["中分類名"].ToString();
-            labelSet_Maker_Edit.CodeTxtText = lstDTtana[2].Rows[0]["メーカーコード"].ToString();
-            labelSet_Maker_Edit.ValueLabelText = lstDTtana[2].Rows[0]["メーカー名"].ToString();
-            labelSet_Tanaban_Edit.CodeTxtText = lstDTtana[3].Rows[0]["棚番"].ToString();
-            labelSet_Tanaban_Edit.ValueLabelText = lstDTtana[4].Rows[0]["棚番名"].ToString();
-            txtTanasuu.Text = lstDTtana[3].Rows[0]["棚卸数量"].ToString();
-            txtTyoubosuu.Text = lstDTtana[3].Rows[0]["指定日在庫"].ToString();
-            lblDspShouhin.Text = lstStringTana[1].ToString();
+            labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
+            //labelSet_Daibunrui.ValueLabelText = dtShohin.Rows[0]["大分類名"].ToString();
+            labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
+            labelSet_Chubunrui_Edit.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
+            //labelSet_Chubunrui_Edit.ValueLabelText = dtShohin.Rows[0]["中分類名"].ToString();
+            labelSet_Maker_Edit.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
+            //labelSet_Maker_Edit.ValueLabelText = dtShohin.Rows[0]["メーカー名"].ToString();
+
+            //営業所で判別
+            if (labelSet_Eigyousho.CodeTxtText == "0001")
+            {
+                labelSet_Tanaban_Edit.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
+            }
+            else
+            {
+                labelSet_Tanaban_Edit.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
+            }
+
+            //labelSet_Tanaban_Edit.ValueLabelText = dtShohin.Rows[0]["棚番名"].ToString();
+            //txtTanasuu.Text = dtShohin.Rows[0]["棚卸数量"].ToString();
+            //txtTyoubosuu.Text = dtShohin.Rows[0]["指定日在庫"].ToString();
+            //lblDspShouhin.Text = dtShohin.Rows[0][""].ToString();
+
+            lblDspShouhin.Text = labelSet_Chubunrui_Edit.ValueLabelText + " " +
+                                 dtShohin.Rows[0]["Ｃ１"] + " " +
+                                 dtShohin.Rows[0]["Ｃ２"] + " " +
+                                 dtShohin.Rows[0]["Ｃ３"] + " " +
+                                 dtShohin.Rows[0]["Ｃ４"] + " " +
+                                 dtShohin.Rows[0]["Ｃ５"] + " " +
+                                 dtShohin.Rows[0]["Ｃ６"] + " " ;
         }
 
         ///<summary>

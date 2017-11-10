@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.txtChokusoCd = new KATO.Common.Ctl.BaseText();
             this.lblChokusoCd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblChokusoName = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -44,7 +43,12 @@
             this.txtDenwa = new KATO.Common.Ctl.BaseText();
             this.txtBushoName = new KATO.Common.Ctl.BaseText();
             this.lblBushoName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.labelSet_Torihikisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -89,28 +93,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // labelSet_Tokuisaki
-            // 
-            this.labelSet_Tokuisaki.AppendLabelSize = 40;
-            this.labelSet_Tokuisaki.AppendLabelText = "";
-            this.labelSet_Tokuisaki.CodeTxtSize = 40;
-            this.labelSet_Tokuisaki.CodeTxtText = "";
-            this.labelSet_Tokuisaki.LabelName = "得意先コード";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(389, 107);
-            this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
-            this.labelSet_Tokuisaki.ShowAppendFlg = false;
-            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(642, 22);
-            this.labelSet_Tokuisaki.SpaceCodeValue = 20;
-            this.labelSet_Tokuisaki.SpaceNameCode = 4;
-            this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 0;
-            this.labelSet_Tokuisaki.ValueLabelSize = 330;
-            this.labelSet_Tokuisaki.ValueLabelText = "";
             // 
             // txtChokusoCd
             // 
@@ -200,7 +182,7 @@
             // txtChokusoName
             // 
             this.txtChokusoName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtChokusoName.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtChokusoName.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtChokusoName.Location = new System.Drawing.Point(648, 145);
             this.txtChokusoName.MaxLength = 30;
             this.txtChokusoName.Name = "txtChokusoName";
@@ -281,11 +263,30 @@
             this.lblBushoName.Text = "部署名";
             this.lblBushoName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // labelSet_Torihikisaki
+            // 
+            this.labelSet_Torihikisaki.AppendLabelSize = 0;
+            this.labelSet_Torihikisaki.AppendLabelText = "";
+            this.labelSet_Torihikisaki.CodeTxtSize = 40;
+            this.labelSet_Torihikisaki.CodeTxtText = "";
+            this.labelSet_Torihikisaki.LabelName = "得意先コード";
+            this.labelSet_Torihikisaki.Location = new System.Drawing.Point(389, 116);
+            this.labelSet_Torihikisaki.Name = "labelSet_Torihikisaki";
+            this.labelSet_Torihikisaki.ShowAppendFlg = false;
+            this.labelSet_Torihikisaki.Size = new System.Drawing.Size(637, 22);
+            this.labelSet_Torihikisaki.SpaceCodeValue = 23;
+            this.labelSet_Torihikisaki.SpaceNameCode = 4;
+            this.labelSet_Torihikisaki.SpaceValueAppend = 4;
+            this.labelSet_Torihikisaki.TabIndex = 0;
+            this.labelSet_Torihikisaki.ValueLabelSize = 300;
+            this.labelSet_Torihikisaki.ValueLabelText = "";
+            // 
             // M1100_Chokusosaki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Torihikisaki);
             this.Controls.Add(this.lblBushoName);
             this.Controls.Add(this.lblDenwa);
             this.Controls.Add(this.lblJusho2);
@@ -300,7 +301,6 @@
             this.Controls.Add(this.txtYubin);
             this.Controls.Add(this.txtChokusoName);
             this.Controls.Add(this.txtChokusoCd);
-            this.Controls.Add(this.labelSet_Tokuisaki);
             this.Name = "M1100_Chokusosaki";
             this.Text = "M1100_Chokusosaki";
             this.Load += new System.EventHandler(this.M1100_Chokusosaki_Load);
@@ -317,7 +317,6 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);
             this.Controls.SetChildIndex(this.txtChokusoCd, 0);
             this.Controls.SetChildIndex(this.txtChokusoName, 0);
             this.Controls.SetChildIndex(this.txtYubin, 0);
@@ -332,14 +331,13 @@
             this.Controls.SetChildIndex(this.lblJusho2, 0);
             this.Controls.SetChildIndex(this.lblDenwa, 0);
             this.Controls.SetChildIndex(this.lblBushoName, 0);
+            this.Controls.SetChildIndex(this.labelSet_Torihikisaki, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Common.Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki;
         private Common.Ctl.BaseText txtChokusoCd;
         private Common.Ctl.BaseLabel lblChokusoCd;
         private Common.Ctl.BaseLabel lblChokusoName;
@@ -354,5 +352,6 @@
         private Common.Ctl.BaseText txtDenwa;
         private Common.Ctl.BaseText txtBushoName;
         private Common.Ctl.BaseLabel lblBushoName;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_Torihikisaki;
     }
 }

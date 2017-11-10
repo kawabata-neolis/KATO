@@ -421,6 +421,7 @@ namespace KATO.Common.Business
                     dtShohin.Rows[cnt]["建値仕入単価"] = decTatene.ToString();
                 }
 
+
                 switch (lstInt[0])
                 {
                     //棚卸入力
@@ -433,7 +434,7 @@ namespace KATO.Common.Business
                             {
                                 //データを連れてくるため、newをしないこと
                                 F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                                tanaorosiinput.setShouhin(lstStringItem, lstDTTana);
+                                tanaorosiinput.setShouhin(dtShohin);
                                 break;
                             }
                         }

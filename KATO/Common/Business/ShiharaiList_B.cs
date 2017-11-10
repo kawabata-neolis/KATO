@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1100_Chokusosaki;
 using KATO.Form.JuchuInput;
+using KATO.Form.B0060_ShiharaiInput;
 
 namespace KATO.Common.Business
 {
@@ -34,6 +35,9 @@ namespace KATO.Common.Business
 
             //フォーマットするもの用
             string strSQLInput;
+
+            //空白文字を削除
+            strSetGrid = strSetGrid.Trim();
 
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -137,11 +141,11 @@ namespace KATO.Common.Business
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                         {
                             //テスト用
-                            if (frm.Name == "JuchuInput_Test")
+                            if (frm.Name == "B0060_ShiharaiInput")
                             {
                                 //データを連れてくるため、newをしないこと
-                                JuchuInput_Test test = (JuchuInput_Test)frm;
-                                test.setShiharaiDenpyo(dtSelectData);
+                                B0060_ShiharaiInput shiharai = (B0060_ShiharaiInput)frm;
+                                shiharai.setShiharaiDenpyo(dtSelectData);
                                 break;
                             }
                         }

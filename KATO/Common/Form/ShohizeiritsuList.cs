@@ -353,7 +353,7 @@ namespace KATO.Common.Form
             }
 
             //日付データを入れる
-            strSelectDay = dateSelect.Month.ToString();
+            strSelectDay = dateSelect.Day.ToString();
 
             //文字数が1だった場合、0パディング
             if (strSelectDay.Length == 1)

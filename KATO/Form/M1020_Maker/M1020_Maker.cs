@@ -307,7 +307,7 @@ namespace KATO.Form.M1020_Maker
                 //メーカーリストの表示、画面IDを渡す
                 makerlist.StartPosition = FormStartPosition.Manual;
                 makerlist.intFrmKind = CommonTeisu.FRM_MAKER;
-                makerlist.Show();
+                makerlist.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -519,6 +519,10 @@ namespace KATO.Form.M1020_Maker
                     txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
                     txtName.Focus();
                 }
+                else
+                {
+                    txtName.Text = "";
+                }
                 cActive.Focus();
             }
             catch (Exception ex)
@@ -533,10 +537,10 @@ namespace KATO.Form.M1020_Maker
         }
 
         ///<summary>
-        ///closeMakerList
+        ///setMakerListClose
         ///MakerListCloseが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void closeMakerList()
+        public void setMakerListClose()
         {
             txtMaker.Focus();
         }

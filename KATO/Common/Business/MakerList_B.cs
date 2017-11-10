@@ -131,11 +131,11 @@ namespace KATO.Common.Business
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
                 //メーカーのフォームを探す
-                if (intFrmKind == CommonTeisu.FRM_MAKER && frm.Name == "M1020_Maker")
+                if (intFrmKind == CommonTeisu.FRM_MAKER && frm.Name == "M1020_Maker")  
                 {
                     //データを連れてくるため、newをしないこと
                     M1020_Maker maker = (M1020_Maker)frm;
-                    maker.closeMakerList();
+                    maker.setMakerListClose();
                     break;
                 }
                 //棚卸入力のフォームを探す

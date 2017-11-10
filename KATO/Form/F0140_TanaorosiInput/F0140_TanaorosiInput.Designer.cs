@@ -72,6 +72,10 @@ namespace KATO.Form.F0140_TanaorosiInput
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -100,10 +104,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // baseLabel1
             // 
             this.baseLabel1.AutoSize = true;
@@ -111,6 +111,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.baseLabel1.Location = new System.Drawing.Point(15, 40);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(87, 15);
+            this.baseLabel1.strToolTip = null;
             this.baseLabel1.TabIndex = 90;
             this.baseLabel1.Text = "棚卸年月日";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -245,6 +246,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.baseLabel10.Location = new System.Drawing.Point(63, 662);
             this.baseLabel10.Name = "baseLabel10";
             this.baseLabel10.Size = new System.Drawing.Size(87, 15);
+            this.baseLabel10.strToolTip = null;
             this.baseLabel10.TabIndex = 0;
             this.baseLabel10.Text = "検索文字列";
             this.baseLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -267,6 +269,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblRecords.Location = new System.Drawing.Point(138, 409);
             this.lblRecords.Name = "lblRecords";
             this.lblRecords.Size = new System.Drawing.Size(87, 15);
+            this.lblRecords.strToolTip = null;
             this.lblRecords.TabIndex = 94;
             this.lblRecords.Text = "該当件数：";
             this.lblRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -336,7 +339,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             // 
             this.labelSet_Maker_Edit.AppendLabelSize = 0;
             this.labelSet_Maker_Edit.AppendLabelText = "";
-            this.labelSet_Maker_Edit.CodeTxtSize = 33;
+            this.labelSet_Maker_Edit.CodeTxtSize = 40;
             this.labelSet_Maker_Edit.CodeTxtText = "";
             this.labelSet_Maker_Edit.LabelName = "メーカー";
             this.labelSet_Maker_Edit.Location = new System.Drawing.Point(1060, 27);
@@ -347,6 +350,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Maker_Edit.SpaceCodeValue = 4;
             this.labelSet_Maker_Edit.SpaceNameCode = 4;
             this.labelSet_Maker_Edit.SpaceValueAppend = 4;
+            this.labelSet_Maker_Edit.strDaibunCd = null;
             this.labelSet_Maker_Edit.TabIndex = 97;
             this.labelSet_Maker_Edit.ValueLabelSize = 150;
             this.labelSet_Maker_Edit.ValueLabelText = "";
@@ -385,6 +389,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtKensaku.Location = new System.Drawing.Point(120, 27);
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(186, 22);
@@ -399,6 +404,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblHinmei.Location = new System.Drawing.Point(19, 59);
             this.lblHinmei.Name = "lblHinmei";
             this.lblHinmei.Size = new System.Drawing.Size(87, 15);
+            this.lblHinmei.strToolTip = null;
             this.lblHinmei.TabIndex = 0;
             this.lblHinmei.Text = "品名・型番";
             this.lblHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -410,6 +416,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblTyoubosuu.Location = new System.Drawing.Point(672, 87);
             this.lblTyoubosuu.Name = "lblTyoubosuu";
             this.lblTyoubosuu.Size = new System.Drawing.Size(87, 15);
+            this.lblTyoubosuu.strToolTip = null;
             this.lblTyoubosuu.TabIndex = 0;
             this.lblTyoubosuu.Text = "帳簿在庫数";
             this.lblTyoubosuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -421,6 +428,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblTanasuu.Location = new System.Drawing.Point(672, 59);
             this.lblTanasuu.Name = "lblTanasuu";
             this.lblTanasuu.Size = new System.Drawing.Size(55, 15);
+            this.lblTanasuu.strToolTip = null;
             this.lblTanasuu.TabIndex = 0;
             this.lblTanasuu.Text = "棚卸数";
             this.lblTanasuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -432,6 +440,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblKensaku.Location = new System.Drawing.Point(19, 30);
             this.lblKensaku.Name = "lblKensaku";
             this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.strToolTip = null;
             this.lblKensaku.TabIndex = 0;
             this.lblKensaku.Text = "検索文字列";
             this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -453,6 +462,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtbaseLabel7.Location = new System.Drawing.Point(25, 587);
             this.txtbaseLabel7.Name = "txtbaseLabel7";
             this.txtbaseLabel7.Size = new System.Drawing.Size(87, 15);
+            this.txtbaseLabel7.strToolTip = null;
             this.txtbaseLabel7.TabIndex = 94;
             this.txtbaseLabel7.Text = "商品コード";
             this.txtbaseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -472,12 +482,15 @@ namespace KATO.Form.F0140_TanaorosiInput
             // 
             this.labelSet_Daibunrui.AppendLabelSize = 0;
             this.labelSet_Daibunrui.AppendLabelText = "";
+            this.labelSet_Daibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.labelSet_Daibunrui.CodeTxtSize = 33;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード";
             this.labelSet_Daibunrui.Location = new System.Drawing.Point(12, 95);
             this.labelSet_Daibunrui.Lschubundata = null;
+            this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
+            this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(314, 22);
@@ -539,6 +552,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Maker.SpaceCodeValue = 10;
             this.labelSet_Maker.SpaceNameCode = 36;
             this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 3;
             this.labelSet_Maker.ValueLabelSize = 140;
             this.labelSet_Maker.ValueLabelText = "";
