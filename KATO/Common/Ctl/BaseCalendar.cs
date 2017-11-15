@@ -33,6 +33,22 @@ namespace KATO.Common.Ctl
         {
             base.OnPaint(pe);
         }
+        
+        //
+        //左寄せか右寄せか
+        //
+        public void setTextAlignSetUp(bool blLeftSide)
+        {
+            //左寄せの場合
+            if (blLeftSide == true)
+            {
+                this.TextAlign = HorizontalAlignment.Left;
+            }
+            else
+            {
+                this.TextAlign = HorizontalAlignment.Right;
+            }
+        }
 
         //
         //各フォームに合った初期値にする
@@ -407,3 +423,4 @@ namespace KATO.Common.Ctl
         }
     }
 }
+    

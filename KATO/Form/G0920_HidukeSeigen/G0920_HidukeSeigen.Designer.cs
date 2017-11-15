@@ -109,6 +109,7 @@
             this.txtCalendarMinYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMinYMD.TabIndex = 3;
             this.txtCalendarMinYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCalendarMinYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
             // 
             // txtCalendarMaxYMD
             // 
@@ -119,6 +120,7 @@
             this.txtCalendarMaxYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMaxYMD.TabIndex = 4;
             this.txtCalendarMaxYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCalendarMaxYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
             // 
             // lblMinYMD
             // 

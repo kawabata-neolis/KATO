@@ -154,6 +154,8 @@ namespace KATO.Common.Ctl
                 {
                     this.CodeTxtText = dtSetCd.Rows[0]["営業所コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["営業所名"].ToString();
+
+                    blMessageOn = false;
                 }
                 else
                 {

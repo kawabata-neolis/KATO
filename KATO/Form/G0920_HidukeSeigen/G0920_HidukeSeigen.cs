@@ -32,7 +32,7 @@ namespace KATO.Form.G0920_HidukeSeigen
 
         //エラーメッセージを表示したかどうか
         bool blMessageOn = false;
-
+        
         /// <summary>
         /// G0920_HidukeSeigen
         /// フォーム関係の設定
@@ -63,6 +63,10 @@ namespace KATO.Form.G0920_HidukeSeigen
             // 親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //右寄せに設定
+            txtCalendarMinYMD.setTextAlignSetUp(false);
+            txtCalendarMaxYMD.setTextAlignSetUp(false);
         }
 
 
@@ -711,8 +715,24 @@ namespace KATO.Form.G0920_HidukeSeigen
             if (labelSet_Eigyosho.blMessageOn == true)
             {
                 blMessageOn = true;
-                
+
+                //初期化
+                labelSet_Eigyosho.blMessageOn = false;
+
+                labelSet_Eigyosho.Focus();
             }
         }
+
+        ///judText_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judText_KeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
+
     }
 }
