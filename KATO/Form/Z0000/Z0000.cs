@@ -163,6 +163,9 @@ namespace KATO.Form.Z0000
                     {
                         btnData.Visible = true;
 
+                        //初期化
+                        btnData.Text = "";
+                        
                         //各ボタンに書き込み
                         btnData.Text = "  " + dtGetMyMenu.Rows[intCnt]["ＰＧ番号"].ToString() + "." + dtGetMyMenu.Rows[intCnt]["ＰＧ名"].ToString();
                         btnData.strPGNo = dtGetMyMenu.Rows[intCnt]["ＰＧ番号"].ToString();

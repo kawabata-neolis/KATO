@@ -155,17 +155,16 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-
-                    blMessageOn = true;
                 }
                 else
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-
-                    blMessageOn = true;
                 }
+
+                //エラーメッセージを表示された
+                blMessageOn = true;
 
                 CodeTxtText = "0";
                 return;
@@ -214,10 +213,18 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
-                    this.CodeTxtText = "";
+                    //初期化
+                    this.CodeTxtText = "0";
+                    this.ValueLabelText = "0";
 
                     //グループボックスかパネル内にいる場合
-                    if (this.Parent is GroupBox || this.Parent is Panel)
+                    if (this.Parent is TabPage)
+                    {
+                        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                    }
+                    else if (this.Parent is GroupBox || this.Parent is Panel)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -229,6 +236,8 @@ namespace KATO.Common.Ctl
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                     }
+
+                    //エラーメッセージを表示された
                     blMessageOn = true;
                 }
                 return;
@@ -239,7 +248,7 @@ namespace KATO.Common.Ctl
                 new CommonException(ex);
 
                 //グループボックスかパネル内にいる場合
-                if (this.Parent is GroupBox || this.Parent is Panel)
+                if (this.Parent is GroupBox || this.Parent is Panel || this.Parent is TabPage)
                 {
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -281,6 +290,95 @@ namespace KATO.Common.Ctl
             else
             {
                 this.codeTxt.BackColor = Color.White;
+            }
+        }
+
+        ///<summary>
+        ///codeTxt_TextChanged
+        ///入力項目に変更があった場合
+        ///</summary>
+        private void codeTxt_TextChanged(object sender, EventArgs e)
+        {
+            //文字数が少ない場合
+            if (codeTxt.TextLength < 3)
+            {
+                return;
+            }
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+                
+            string strSQLName = null;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.ValueLabelText = "";
+                return;
+            }
+
+            //文字数が1の場合
+            if (this.CodeTxtText.Length == 1)
+            {
+                return;
+            }
+
+            strSQLName = "C_LIST_MenuList_SELECT_LEAVE";
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add(strSQLName);
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //配列設定
+                string[] aryStr = { this.CodeTxtText };
+
+                strSQLInput = string.Format(strSQLInput, aryStr);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["ＰＧ番号"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["ＰＧ名"].ToString();
+                }
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
         }
     }

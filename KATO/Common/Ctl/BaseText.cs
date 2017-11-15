@@ -110,16 +110,19 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-//ファンクションキーにも対応すること（各画面で使用しているボタン以外はスルーさせる）
+            //ファンクションキーにも対応すること（各画面で使用しているボタン以外はスルーさせる）
 
-            //文字コードを使用
-            int intByteCnt =　Encoding.GetEncoding("Shift_JIS").GetByteCount(cActiveBefore.Text);
-
-            //文字コードと最大入力数を比較
-            if (intByteCnt >= ((TextBox)cActiveBefore).MaxLength)
+            if (cActiveBefore != null)
             {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
+                //文字コードを使用
+                int intByteCnt = Encoding.GetEncoding("Shift_JIS").GetByteCount(cActiveBefore.Text);
+
+                //文字コードと最大入力数を比較
+                if (intByteCnt >= ((TextBox)cActiveBefore).MaxLength)
+                {
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                }
             }
         }
 

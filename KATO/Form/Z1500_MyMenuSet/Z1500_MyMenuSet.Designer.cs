@@ -2183,10 +2183,10 @@
             this.lblP1PgNo4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1PgNo4.Location = new System.Drawing.Point(1070, 15);
             this.lblP1PgNo4.Name = "lblP1PgNo4";
-            this.lblP1PgNo4.Size = new System.Drawing.Size(39, 15);
+            this.lblP1PgNo4.Size = new System.Drawing.Size(47, 15);
             this.lblP1PgNo4.strToolTip = null;
             this.lblP1PgNo4.TabIndex = 40;
-            this.lblP1PgNo4.Text = "PgNo";
+            this.lblP1PgNo4.Text = "PgNo.";
             this.lblP1PgNo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1PgName2
@@ -2207,10 +2207,10 @@
             this.lblP1PgNo3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1PgNo3.Location = new System.Drawing.Point(730, 15);
             this.lblP1PgNo3.Name = "lblP1PgNo3";
-            this.lblP1PgNo3.Size = new System.Drawing.Size(39, 15);
+            this.lblP1PgNo3.Size = new System.Drawing.Size(47, 15);
             this.lblP1PgNo3.strToolTip = null;
             this.lblP1PgNo3.TabIndex = 40;
-            this.lblP1PgNo3.Text = "PgNo";
+            this.lblP1PgNo3.Text = "PgNo.";
             this.lblP1PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1Text
@@ -2243,10 +2243,10 @@
             this.lblP1No4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1No4.Location = new System.Drawing.Point(1038, 15);
             this.lblP1No4.Name = "lblP1No4";
-            this.lblP1No4.Size = new System.Drawing.Size(23, 15);
+            this.lblP1No4.Size = new System.Drawing.Size(31, 15);
             this.lblP1No4.strToolTip = null;
             this.lblP1No4.TabIndex = 40;
-            this.lblP1No4.Text = "No";
+            this.lblP1No4.Text = "No.";
             this.lblP1No4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1PgNo2
@@ -2255,10 +2255,10 @@
             this.lblP1PgNo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1PgNo2.Location = new System.Drawing.Point(390, 15);
             this.lblP1PgNo2.Name = "lblP1PgNo2";
-            this.lblP1PgNo2.Size = new System.Drawing.Size(39, 15);
+            this.lblP1PgNo2.Size = new System.Drawing.Size(47, 15);
             this.lblP1PgNo2.strToolTip = null;
             this.lblP1PgNo2.TabIndex = 40;
-            this.lblP1PgNo2.Text = "PgNo";
+            this.lblP1PgNo2.Text = "PgNo.";
             this.lblP1PgNo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1No3
@@ -2267,10 +2267,10 @@
             this.lblP1No3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1No3.Location = new System.Drawing.Point(698, 15);
             this.lblP1No3.Name = "lblP1No3";
-            this.lblP1No3.Size = new System.Drawing.Size(23, 15);
+            this.lblP1No3.Size = new System.Drawing.Size(31, 15);
             this.lblP1No3.strToolTip = null;
             this.lblP1No3.TabIndex = 40;
-            this.lblP1No3.Text = "No";
+            this.lblP1No3.Text = "No.";
             this.lblP1No3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1PgNo1
@@ -2279,10 +2279,10 @@
             this.lblP1PgNo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1PgNo1.Location = new System.Drawing.Point(50, 15);
             this.lblP1PgNo1.Name = "lblP1PgNo1";
-            this.lblP1PgNo1.Size = new System.Drawing.Size(39, 15);
+            this.lblP1PgNo1.Size = new System.Drawing.Size(47, 15);
             this.lblP1PgNo1.strToolTip = null;
             this.lblP1PgNo1.TabIndex = 40;
-            this.lblP1PgNo1.Text = "PgNo";
+            this.lblP1PgNo1.Text = "PgNo.";
             this.lblP1PgNo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1No2
@@ -2291,10 +2291,10 @@
             this.lblP1No2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1No2.Location = new System.Drawing.Point(358, 15);
             this.lblP1No2.Name = "lblP1No2";
-            this.lblP1No2.Size = new System.Drawing.Size(23, 15);
+            this.lblP1No2.Size = new System.Drawing.Size(31, 15);
             this.lblP1No2.strToolTip = null;
             this.lblP1No2.TabIndex = 40;
-            this.lblP1No2.Text = "No";
+            this.lblP1No2.Text = "No.";
             this.lblP1No2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP1No1
@@ -2303,10 +2303,10 @@
             this.lblP1No1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP1No1.Location = new System.Drawing.Point(18, 15);
             this.lblP1No1.Name = "lblP1No1";
-            this.lblP1No1.Size = new System.Drawing.Size(23, 15);
+            this.lblP1No1.Size = new System.Drawing.Size(31, 15);
             this.lblP1No1.strToolTip = null;
             this.lblP1No1.TabIndex = 40;
-            this.lblP1No1.Text = "No";
+            this.lblP1No1.Text = "No.";
             this.lblP1No1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Menu40
@@ -5526,6 +5526,7 @@
             this.labelSet_Menu3.ValueLabelSize = 250;
             this.labelSet_Menu3.ValueLabelText = "";
             this.labelSet_Menu3.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
+            this.labelSet_Menu3.Leave += new System.EventHandler(this.labelSet_Menu1_Leave);
             // 
             // baseLabel4
             // 
@@ -6099,6 +6100,7 @@
             this.labelSet_Menu2.ValueLabelSize = 250;
             this.labelSet_Menu2.ValueLabelText = "";
             this.labelSet_Menu2.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
+            this.labelSet_Menu2.Leave += new System.EventHandler(this.labelSet_Menu1_Leave);
             // 
             // baseLabel1
             // 
@@ -6230,7 +6232,7 @@
             this.labelSet_Menu1.ValueLabelSize = 250;
             this.labelSet_Menu1.ValueLabelText = "";
             this.labelSet_Menu1.Enter += new System.EventHandler(this.labelSet_Menu1_Enter);
-            this.labelSet_Menu1.Validating += new System.ComponentModel.CancelEventHandler(this.labelSet_Menu1_Validating);
+            this.labelSet_Menu1.Leave += new System.EventHandler(this.labelSet_Menu1_Leave);
             // 
             // tabPage2
             // 
@@ -6337,10 +6339,10 @@
             this.lblP2PgNo4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2PgNo4.Location = new System.Drawing.Point(1070, 15);
             this.lblP2PgNo4.Name = "lblP2PgNo4";
-            this.lblP2PgNo4.Size = new System.Drawing.Size(39, 15);
+            this.lblP2PgNo4.Size = new System.Drawing.Size(47, 15);
             this.lblP2PgNo4.strToolTip = null;
             this.lblP2PgNo4.TabIndex = 43;
-            this.lblP2PgNo4.Text = "PgNo";
+            this.lblP2PgNo4.Text = "PgNo.";
             this.lblP2PgNo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2PgName2
@@ -6361,10 +6363,10 @@
             this.lblP2PgNo3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2PgNo3.Location = new System.Drawing.Point(730, 15);
             this.lblP2PgNo3.Name = "lblP2PgNo3";
-            this.lblP2PgNo3.Size = new System.Drawing.Size(39, 15);
+            this.lblP2PgNo3.Size = new System.Drawing.Size(47, 15);
             this.lblP2PgNo3.strToolTip = null;
             this.lblP2PgNo3.TabIndex = 45;
-            this.lblP2PgNo3.Text = "PgNo";
+            this.lblP2PgNo3.Text = "PgNo.";
             this.lblP2PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2PgName1
@@ -6385,10 +6387,10 @@
             this.lblP2No4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2No4.Location = new System.Drawing.Point(1038, 15);
             this.lblP2No4.Name = "lblP2No4";
-            this.lblP2No4.Size = new System.Drawing.Size(23, 15);
+            this.lblP2No4.Size = new System.Drawing.Size(31, 15);
             this.lblP2No4.strToolTip = null;
             this.lblP2No4.TabIndex = 47;
-            this.lblP2No4.Text = "No";
+            this.lblP2No4.Text = "No.";
             this.lblP2No4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2PgNo2
@@ -6397,10 +6399,10 @@
             this.lblP2PgNo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2PgNo2.Location = new System.Drawing.Point(390, 15);
             this.lblP2PgNo2.Name = "lblP2PgNo2";
-            this.lblP2PgNo2.Size = new System.Drawing.Size(39, 15);
+            this.lblP2PgNo2.Size = new System.Drawing.Size(47, 15);
             this.lblP2PgNo2.strToolTip = null;
             this.lblP2PgNo2.TabIndex = 48;
-            this.lblP2PgNo2.Text = "PgNo";
+            this.lblP2PgNo2.Text = "PgNo.";
             this.lblP2PgNo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2No3
@@ -6409,10 +6411,10 @@
             this.lblP2No3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2No3.Location = new System.Drawing.Point(698, 15);
             this.lblP2No3.Name = "lblP2No3";
-            this.lblP2No3.Size = new System.Drawing.Size(23, 15);
+            this.lblP2No3.Size = new System.Drawing.Size(31, 15);
             this.lblP2No3.strToolTip = null;
             this.lblP2No3.TabIndex = 49;
-            this.lblP2No3.Text = "No";
+            this.lblP2No3.Text = "No.";
             this.lblP2No3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2PgNo1
@@ -6421,10 +6423,10 @@
             this.lblP2PgNo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2PgNo1.Location = new System.Drawing.Point(50, 15);
             this.lblP2PgNo1.Name = "lblP2PgNo1";
-            this.lblP2PgNo1.Size = new System.Drawing.Size(39, 15);
+            this.lblP2PgNo1.Size = new System.Drawing.Size(47, 15);
             this.lblP2PgNo1.strToolTip = null;
             this.lblP2PgNo1.TabIndex = 50;
-            this.lblP2PgNo1.Text = "PgNo";
+            this.lblP2PgNo1.Text = "PgNo.";
             this.lblP2PgNo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2No2
@@ -6433,10 +6435,10 @@
             this.lblP2No2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2No2.Location = new System.Drawing.Point(358, 15);
             this.lblP2No2.Name = "lblP2No2";
-            this.lblP2No2.Size = new System.Drawing.Size(23, 15);
+            this.lblP2No2.Size = new System.Drawing.Size(31, 15);
             this.lblP2No2.strToolTip = null;
             this.lblP2No2.TabIndex = 51;
-            this.lblP2No2.Text = "No";
+            this.lblP2No2.Text = "No.";
             this.lblP2No2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP2No1
@@ -6445,10 +6447,10 @@
             this.lblP2No1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP2No1.Location = new System.Drawing.Point(18, 15);
             this.lblP2No1.Name = "lblP2No1";
-            this.lblP2No1.Size = new System.Drawing.Size(23, 15);
+            this.lblP2No1.Size = new System.Drawing.Size(31, 15);
             this.lblP2No1.strToolTip = null;
             this.lblP2No1.TabIndex = 52;
-            this.lblP2No1.Text = "No";
+            this.lblP2No1.Text = "No.";
             this.lblP2No1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Menu41
@@ -10604,10 +10606,10 @@
             this.lblP3PgNo4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3PgNo4.Location = new System.Drawing.Point(1070, 15);
             this.lblP3PgNo4.Name = "lblP3PgNo4";
-            this.lblP3PgNo4.Size = new System.Drawing.Size(39, 15);
+            this.lblP3PgNo4.Size = new System.Drawing.Size(47, 15);
             this.lblP3PgNo4.strToolTip = null;
             this.lblP3PgNo4.TabIndex = 55;
-            this.lblP3PgNo4.Text = "PgNo";
+            this.lblP3PgNo4.Text = "PgNo.";
             this.lblP3PgNo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3PgName2
@@ -10628,10 +10630,10 @@
             this.lblP3PgNo3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3PgNo3.Location = new System.Drawing.Point(730, 15);
             this.lblP3PgNo3.Name = "lblP3PgNo3";
-            this.lblP3PgNo3.Size = new System.Drawing.Size(39, 15);
+            this.lblP3PgNo3.Size = new System.Drawing.Size(47, 15);
             this.lblP3PgNo3.strToolTip = null;
             this.lblP3PgNo3.TabIndex = 57;
-            this.lblP3PgNo3.Text = "PgNo";
+            this.lblP3PgNo3.Text = "PgNo.";
             this.lblP3PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3PgName1
@@ -10652,10 +10654,10 @@
             this.lblP3No4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3No4.Location = new System.Drawing.Point(1038, 15);
             this.lblP3No4.Name = "lblP3No4";
-            this.lblP3No4.Size = new System.Drawing.Size(23, 15);
+            this.lblP3No4.Size = new System.Drawing.Size(31, 15);
             this.lblP3No4.strToolTip = null;
             this.lblP3No4.TabIndex = 59;
-            this.lblP3No4.Text = "No";
+            this.lblP3No4.Text = "No.";
             this.lblP3No4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3PgNo2
@@ -10664,10 +10666,10 @@
             this.lblP3PgNo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3PgNo2.Location = new System.Drawing.Point(390, 15);
             this.lblP3PgNo2.Name = "lblP3PgNo2";
-            this.lblP3PgNo2.Size = new System.Drawing.Size(39, 15);
+            this.lblP3PgNo2.Size = new System.Drawing.Size(47, 15);
             this.lblP3PgNo2.strToolTip = null;
             this.lblP3PgNo2.TabIndex = 60;
-            this.lblP3PgNo2.Text = "PgNo";
+            this.lblP3PgNo2.Text = "PgNo.";
             this.lblP3PgNo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3No3
@@ -10676,10 +10678,10 @@
             this.lblP3No3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3No3.Location = new System.Drawing.Point(698, 15);
             this.lblP3No3.Name = "lblP3No3";
-            this.lblP3No3.Size = new System.Drawing.Size(23, 15);
+            this.lblP3No3.Size = new System.Drawing.Size(31, 15);
             this.lblP3No3.strToolTip = null;
             this.lblP3No3.TabIndex = 61;
-            this.lblP3No3.Text = "No";
+            this.lblP3No3.Text = "No.";
             this.lblP3No3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3PgNo1
@@ -10688,10 +10690,10 @@
             this.lblP3PgNo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3PgNo1.Location = new System.Drawing.Point(50, 15);
             this.lblP3PgNo1.Name = "lblP3PgNo1";
-            this.lblP3PgNo1.Size = new System.Drawing.Size(39, 15);
+            this.lblP3PgNo1.Size = new System.Drawing.Size(47, 15);
             this.lblP3PgNo1.strToolTip = null;
             this.lblP3PgNo1.TabIndex = 62;
-            this.lblP3PgNo1.Text = "PgNo";
+            this.lblP3PgNo1.Text = "PgNo.";
             this.lblP3PgNo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3No2
@@ -10700,10 +10702,10 @@
             this.lblP3No2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3No2.Location = new System.Drawing.Point(358, 15);
             this.lblP3No2.Name = "lblP3No2";
-            this.lblP3No2.Size = new System.Drawing.Size(23, 15);
+            this.lblP3No2.Size = new System.Drawing.Size(31, 15);
             this.lblP3No2.strToolTip = null;
             this.lblP3No2.TabIndex = 63;
-            this.lblP3No2.Text = "No";
+            this.lblP3No2.Text = "No.";
             this.lblP3No2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP3No1
@@ -10712,10 +10714,10 @@
             this.lblP3No1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP3No1.Location = new System.Drawing.Point(18, 15);
             this.lblP3No1.Name = "lblP3No1";
-            this.lblP3No1.Size = new System.Drawing.Size(23, 15);
+            this.lblP3No1.Size = new System.Drawing.Size(31, 15);
             this.lblP3No1.strToolTip = null;
             this.lblP3No1.TabIndex = 64;
-            this.lblP3No1.Text = "No";
+            this.lblP3No1.Text = "No.";
             this.lblP3No1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Menu120
@@ -15391,10 +15393,10 @@
             this.lblP4PgNo4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4PgNo4.Location = new System.Drawing.Point(1070, 15);
             this.lblP4PgNo4.Name = "lblP4PgNo4";
-            this.lblP4PgNo4.Size = new System.Drawing.Size(39, 15);
+            this.lblP4PgNo4.Size = new System.Drawing.Size(47, 15);
             this.lblP4PgNo4.strToolTip = null;
             this.lblP4PgNo4.TabIndex = 107;
-            this.lblP4PgNo4.Text = "PgNo";
+            this.lblP4PgNo4.Text = "PgNo.";
             this.lblP4PgNo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4PgName2
@@ -15415,10 +15417,10 @@
             this.lblP4PgNo3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4PgNo3.Location = new System.Drawing.Point(730, 15);
             this.lblP4PgNo3.Name = "lblP4PgNo3";
-            this.lblP4PgNo3.Size = new System.Drawing.Size(39, 15);
+            this.lblP4PgNo3.Size = new System.Drawing.Size(47, 15);
             this.lblP4PgNo3.strToolTip = null;
             this.lblP4PgNo3.TabIndex = 109;
-            this.lblP4PgNo3.Text = "PgNo";
+            this.lblP4PgNo3.Text = "PgNo.";
             this.lblP4PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4PgName1
@@ -15439,10 +15441,10 @@
             this.lblP4No4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4No4.Location = new System.Drawing.Point(1038, 15);
             this.lblP4No4.Name = "lblP4No4";
-            this.lblP4No4.Size = new System.Drawing.Size(23, 15);
+            this.lblP4No4.Size = new System.Drawing.Size(31, 15);
             this.lblP4No4.strToolTip = null;
             this.lblP4No4.TabIndex = 111;
-            this.lblP4No4.Text = "No";
+            this.lblP4No4.Text = "No.";
             this.lblP4No4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4PgNo2
@@ -15451,10 +15453,10 @@
             this.lblP4PgNo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4PgNo2.Location = new System.Drawing.Point(390, 15);
             this.lblP4PgNo2.Name = "lblP4PgNo2";
-            this.lblP4PgNo2.Size = new System.Drawing.Size(39, 15);
+            this.lblP4PgNo2.Size = new System.Drawing.Size(47, 15);
             this.lblP4PgNo2.strToolTip = null;
             this.lblP4PgNo2.TabIndex = 112;
-            this.lblP4PgNo2.Text = "PgNo";
+            this.lblP4PgNo2.Text = "PgNo.";
             this.lblP4PgNo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4No3
@@ -15463,10 +15465,10 @@
             this.lblP4No3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4No3.Location = new System.Drawing.Point(698, 15);
             this.lblP4No3.Name = "lblP4No3";
-            this.lblP4No3.Size = new System.Drawing.Size(23, 15);
+            this.lblP4No3.Size = new System.Drawing.Size(31, 15);
             this.lblP4No3.strToolTip = null;
             this.lblP4No3.TabIndex = 113;
-            this.lblP4No3.Text = "No";
+            this.lblP4No3.Text = "No.";
             this.lblP4No3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4gNo1
@@ -15475,10 +15477,10 @@
             this.lblP4gNo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4gNo1.Location = new System.Drawing.Point(50, 15);
             this.lblP4gNo1.Name = "lblP4gNo1";
-            this.lblP4gNo1.Size = new System.Drawing.Size(39, 15);
+            this.lblP4gNo1.Size = new System.Drawing.Size(47, 15);
             this.lblP4gNo1.strToolTip = null;
             this.lblP4gNo1.TabIndex = 114;
-            this.lblP4gNo1.Text = "PgNo";
+            this.lblP4gNo1.Text = "PgNo.";
             this.lblP4gNo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4No2
@@ -15487,10 +15489,10 @@
             this.lblP4No2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4No2.Location = new System.Drawing.Point(358, 15);
             this.lblP4No2.Name = "lblP4No2";
-            this.lblP4No2.Size = new System.Drawing.Size(23, 15);
+            this.lblP4No2.Size = new System.Drawing.Size(31, 15);
             this.lblP4No2.strToolTip = null;
             this.lblP4No2.TabIndex = 115;
-            this.lblP4No2.Text = "No";
+            this.lblP4No2.Text = "No.";
             this.lblP4No2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP4No1
@@ -15499,10 +15501,10 @@
             this.lblP4No1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP4No1.Location = new System.Drawing.Point(18, 15);
             this.lblP4No1.Name = "lblP4No1";
-            this.lblP4No1.Size = new System.Drawing.Size(23, 15);
+            this.lblP4No1.Size = new System.Drawing.Size(31, 15);
             this.lblP4No1.strToolTip = null;
             this.lblP4No1.TabIndex = 116;
-            this.lblP4No1.Text = "No";
+            this.lblP4No1.Text = "No.";
             this.lblP4No1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Menu160
@@ -20760,10 +20762,10 @@
             this.lblP5PgNo4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5PgNo4.Location = new System.Drawing.Point(1070, 15);
             this.lblP5PgNo4.Name = "lblP5PgNo4";
-            this.lblP5PgNo4.Size = new System.Drawing.Size(39, 15);
+            this.lblP5PgNo4.Size = new System.Drawing.Size(47, 15);
             this.lblP5PgNo4.strToolTip = null;
             this.lblP5PgNo4.TabIndex = 119;
-            this.lblP5PgNo4.Text = "PgNo";
+            this.lblP5PgNo4.Text = "PgNo.";
             this.lblP5PgNo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5PgName2
@@ -20784,10 +20786,10 @@
             this.lblP5PgNo3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5PgNo3.Location = new System.Drawing.Point(730, 15);
             this.lblP5PgNo3.Name = "lblP5PgNo3";
-            this.lblP5PgNo3.Size = new System.Drawing.Size(39, 15);
+            this.lblP5PgNo3.Size = new System.Drawing.Size(47, 15);
             this.lblP5PgNo3.strToolTip = null;
             this.lblP5PgNo3.TabIndex = 121;
-            this.lblP5PgNo3.Text = "PgNo";
+            this.lblP5PgNo3.Text = "PgNo.";
             this.lblP5PgNo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5PgName1
@@ -20808,10 +20810,10 @@
             this.lblP5No4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5No4.Location = new System.Drawing.Point(1038, 15);
             this.lblP5No4.Name = "lblP5No4";
-            this.lblP5No4.Size = new System.Drawing.Size(23, 15);
+            this.lblP5No4.Size = new System.Drawing.Size(31, 15);
             this.lblP5No4.strToolTip = null;
             this.lblP5No4.TabIndex = 123;
-            this.lblP5No4.Text = "No";
+            this.lblP5No4.Text = "No.";
             this.lblP5No4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5PgNo2
@@ -20820,10 +20822,10 @@
             this.lblP5PgNo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5PgNo2.Location = new System.Drawing.Point(390, 15);
             this.lblP5PgNo2.Name = "lblP5PgNo2";
-            this.lblP5PgNo2.Size = new System.Drawing.Size(39, 15);
+            this.lblP5PgNo2.Size = new System.Drawing.Size(47, 15);
             this.lblP5PgNo2.strToolTip = null;
             this.lblP5PgNo2.TabIndex = 124;
-            this.lblP5PgNo2.Text = "PgNo";
+            this.lblP5PgNo2.Text = "PgNo.";
             this.lblP5PgNo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5No3
@@ -20832,10 +20834,10 @@
             this.lblP5No3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5No3.Location = new System.Drawing.Point(698, 15);
             this.lblP5No3.Name = "lblP5No3";
-            this.lblP5No3.Size = new System.Drawing.Size(23, 15);
+            this.lblP5No3.Size = new System.Drawing.Size(31, 15);
             this.lblP5No3.strToolTip = null;
             this.lblP5No3.TabIndex = 125;
-            this.lblP5No3.Text = "No";
+            this.lblP5No3.Text = "No.";
             this.lblP5No3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5PgNo1
@@ -20844,10 +20846,10 @@
             this.lblP5PgNo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5PgNo1.Location = new System.Drawing.Point(50, 15);
             this.lblP5PgNo1.Name = "lblP5PgNo1";
-            this.lblP5PgNo1.Size = new System.Drawing.Size(39, 15);
+            this.lblP5PgNo1.Size = new System.Drawing.Size(47, 15);
             this.lblP5PgNo1.strToolTip = null;
             this.lblP5PgNo1.TabIndex = 126;
-            this.lblP5PgNo1.Text = "PgNo";
+            this.lblP5PgNo1.Text = "PgNo.";
             this.lblP5PgNo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5No2
@@ -20856,10 +20858,10 @@
             this.lblP5No2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5No2.Location = new System.Drawing.Point(358, 15);
             this.lblP5No2.Name = "lblP5No2";
-            this.lblP5No2.Size = new System.Drawing.Size(23, 15);
+            this.lblP5No2.Size = new System.Drawing.Size(31, 15);
             this.lblP5No2.strToolTip = null;
             this.lblP5No2.TabIndex = 127;
-            this.lblP5No2.Text = "No";
+            this.lblP5No2.Text = "No.";
             this.lblP5No2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblP5No1
@@ -20868,10 +20870,10 @@
             this.lblP5No1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblP5No1.Location = new System.Drawing.Point(18, 15);
             this.lblP5No1.Name = "lblP5No1";
-            this.lblP5No1.Size = new System.Drawing.Size(23, 15);
+            this.lblP5No1.Size = new System.Drawing.Size(31, 15);
             this.lblP5No1.strToolTip = null;
             this.lblP5No1.TabIndex = 128;
-            this.lblP5No1.Text = "No";
+            this.lblP5No1.Text = "No.";
             this.lblP5No1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Menu200

@@ -29,7 +29,7 @@ namespace KATO.Form.Z1500_MyMenuSet
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        Control cActive = null;
+        Control cActiveBefore = null;
 
         //エラーメッセージを表示したかどうか
         bool blMessageOn = false;
@@ -111,10 +111,12 @@ namespace KATO.Form.Z1500_MyMenuSet
                     {
                         if (int.Parse(dr.ItemArray[0].ToString()) < 1000)
                         {
+                            //どこのラベルセットに入れるか取得
                             Control[] cs = this.Controls.Find("labelSet_Menu" + intLabelSetCnt, true);
 
-                            ((LabelSet_Menu)cs[0]).CodeTxtText += dr.ItemArray[1].ToString();
-                            ((LabelSet_Menu)cs[0]).ValueLabelText += dr.ItemArray[2].ToString();
+                            //ラベルセットに配置
+                            ((LabelSet_Menu)cs[0]).CodeTxtText = dr.ItemArray[1].ToString();
+                            ((LabelSet_Menu)cs[0]).ValueLabelText = dr.ItemArray[2].ToString();
                         }
                         intLabelSetCnt++;
                     }
@@ -249,6 +251,20 @@ namespace KATO.Form.Z1500_MyMenuSet
         ///</summary>
         private void addMyMenu()
         {
+            //フォーカス位置の確保
+            cActiveBefore = this.ActiveControl;
+
+            //一度登録ボタンに移動して各データをチェック
+            btnF01.Focus();
+
+            //エラーメッセージを表示したかどうか
+            if (blMessageOn == true)
+            {
+                //元のフォーカスに移動
+                cActiveBefore.Focus();
+                return;
+            }
+
             //ビジネス層のインスタンス生成
             Z1500_MyMenuSet_B mymenuB = new Z1500_MyMenuSet_B();
             try
@@ -317,32 +333,6 @@ namespace KATO.Form.Z1500_MyMenuSet
             return fi.GetValue(cfrm);
         }
 
-
-        /////<summary>
-        /////labelSet_Menu1_Leave
-        /////離れた時のフォーカス位置調整
-        /////</summary>
-        //private void labelSet_Menu1_Leave(object sender, EventArgs e)
-        //{
-        //    switch (cActive.Name)
-        //    {
-        //        //1
-        //        case "labelSet_Menu1":
-
-        //            //メッセージ表示がされていた場合
-        //            if (labelSet_Menu1.blMessageOn == true)
-        //            {
-        //                labelSet_Menu1.Focus();
-        //            }
-        //            break;
-                
-        //    }
-        //    //if ()
-        //    //{
-
-        //    //}
-        //}
-
         ///<summary>
         ///labelSet_Menu1_Enter
         ///フォーカスが来た場合
@@ -350,30 +340,67 @@ namespace KATO.Form.Z1500_MyMenuSet
         private void labelSet_Menu1_Enter(object sender, EventArgs e)
         {
             //エラーメッセージ表示がされたかどうか
-            if (blMessageOn == false)
+            if (blMessageOn == true)
             {
-                //フォーカス位置の確保
-                cActive = this.ActiveControl;
+                //フォーカス位置確保
+                Control cActive = this.ActiveControl;
+
+                switch (cActive.Name)
+                {
+                    //1
+                    case "labelSet_Menu1":
+
+                        labelSet_Menu1.codeTxt.BackColor = Color.White;
+                        break;
+                    //2
+                    case "labelSet_Menu2":
+
+                        labelSet_Menu2.codeTxt.BackColor = Color.White;
+                        break;
+                    //3
+                    case "labelSet_Menu3":
+
+                        labelSet_Menu3.codeTxt.BackColor = Color.White;
+                        break;
+                }
+
+                //初期化
+                blMessageOn = false;
+
+                switch (cActiveBefore.Name)
+                {
+                    //1
+                    case "labelSet_Menu1":
+                        labelSet_Menu1.Focus();
+                        labelSet_Menu1.codeTxt.BackColor = Color.Cyan;
+                        //this.ActiveControl = labelSet_Menu1;
+                        break;
+                    //2
+                    case "labelSet_Menu2":
+
+                        labelSet_Menu2.Focus();
+                        break;
+                    //3
+                    case "labelSet_Menu3":
+
+                        labelSet_Menu3.codeTxt.Focus();
+                        break;
+                }
             }
             else
             {
-                //フォーカス位置を戻す
-                //cActive.Focus();
-
-                this.ActiveControl = cActive;
-                blMessageOn = false;
+                //フォーカス位置の確保
+                cActiveBefore = this.ActiveControl;
             }
         }
 
         ///<summary>
-        ///labelSet_Menu1_Validating
-        ///
+        ///labelSet_Menu1_Leave
+        ///フォーカスが外れた場合
         ///</summary>
-        private void labelSet_Menu1_Validating(object sender, CancelEventArgs e)
+        private void labelSet_Menu1_Leave(object sender, EventArgs e)
         {
-            Control c = this.ActiveControl;
-
-            switch (cActive.Name)
+            switch (cActiveBefore.Name)
             {
                 //1
                 case "labelSet_Menu1":
@@ -381,15 +408,36 @@ namespace KATO.Form.Z1500_MyMenuSet
                     //メッセージ表示がされていた場合
                     if (labelSet_Menu1.blMessageOn == true)
                     {
-                        //this.ActiveControl = labelSet_Menu1;
-                        e.Cancel = true;
-                        //labelSet_Menu1.Focus();
-
                         blMessageOn = true;
+                        //初期化
                         labelSet_Menu1.blMessageOn = false;
                     }
-                    break;
 
+                    break;
+                //2
+                case "labelSet_Menu2":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Menu2.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Menu2.blMessageOn = false;
+                    }
+
+                    break;
+                //3
+                case "labelSet_Menu3":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Menu3.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Menu3.blMessageOn = false;
+                    }
+
+                    break;
             }
         }
     }

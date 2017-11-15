@@ -29,7 +29,7 @@ namespace KATO.Common.Form
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //メニューコードの確保
+        //メニューコードの確保（セット系用）
         LabelSet_Menu lblSetMenu = null;
 
         //どこのウィンドウかの判定（初期値）
@@ -301,22 +301,22 @@ namespace KATO.Common.Form
         ///</summary>
         private void setEndAction(List<string> lstSelectId)
         {
-            ////データグリッドビューからデータを選択且つセット系から来た場合
-            //if (lblSetMenu != null && lstSelectId.Count != 0)
-            //{
-            //    //ＰＧ番号が0の場合
-            //    if (lstSelectId[0] == "0")
-            //    {
-            //        lblSetMenu.CodeTxtText = "0";
-            //        lblSetMenu.ValueLabelText = "";
-            //    }
-            //    else
-            //    {
-            //        //セットの中に検索結果データを入れる
-            //        lblSetMenu.CodeTxtText = lstSelectId[0];
-            //        lblSetMenu.ValueLabelText = lstSelectId[1];
-            //    }
-            //}
+            //データグリッドビューからデータを選択且つセット系から来た場合
+            if (lblSetMenu != null && lstSelectId.Count != 0)
+            {
+                //ＰＧ番号が0の場合
+                if (lstSelectId[0] == "0")
+                {
+                    lblSetMenu.CodeTxtText = "0";
+                    lblSetMenu.ValueLabelText = "";
+                }
+                else
+                {
+                    //セットの中に検索結果データを入れる
+                    lblSetMenu.CodeTxtText = lstSelectId[0];
+                    lblSetMenu.ValueLabelText = lstSelectId[1];
+                }
+            }
 
             this.Close();
 

@@ -44,6 +44,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridHidukeSeigen)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -95,10 +99,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // txtCalendarMinYMD
             // 
@@ -161,6 +161,7 @@
             this.labelSet_Eigyosho.TabIndex = 2;
             this.labelSet_Eigyosho.ValueLabelSize = 250;
             this.labelSet_Eigyosho.ValueLabelText = "";
+            this.labelSet_Eigyosho.Leave += new System.EventHandler(this.labelSet_Eigyosho_Leave);
             // 
             // gridHidukeSeigen
             // 
@@ -228,6 +229,7 @@
             this.txtGamenNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGamenNo.TextChanged += new System.EventHandler(this.txtGamenNoTextChanged);
             this.txtGamenNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtGamenNoKeyDown);
+            this.txtGamenNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGamenNoKeyUp);
             this.txtGamenNo.Leave += new System.EventHandler(this.updTxtGamenNoLeave);
             // 
             // lblGamenName

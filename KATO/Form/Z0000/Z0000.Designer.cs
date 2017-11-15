@@ -251,6 +251,14 @@
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.BackColor = System.Drawing.SystemColors.Control;
+            this.btnF01.UseVisualStyleBackColor = false;
+            this.btnF01.Visible = false;
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
@@ -315,14 +323,6 @@
             this.btnF02.Visible = false;
             this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
-            // 
-            // btnF01
-            // 
-            this.btnF01.BackColor = System.Drawing.SystemColors.Control;
-            this.btnF01.UseVisualStyleBackColor = false;
-            this.btnF01.Visible = false;
-            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
-            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
             // 
             // tabControl1
             // 
@@ -1647,7 +1647,7 @@
             this.btn_42.Size = new System.Drawing.Size(280, 40);
             this.btn_42.strPGNo = null;
             this.btn_42.TabIndex = 2;
-            this.btn_42.Text = "仕入実績確認";
+            this.btn_42.Text = " 31.仕入実績確認";
             this.btn_42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_42.UseVisualStyleBackColor = false;
             this.btn_42.Visible = false;
@@ -1655,14 +1655,14 @@
             // 
             // btn_41
             // 
-            this.btn_41.BackColor = System.Drawing.Color.Cyan;
+            this.btn_41.BackColor = System.Drawing.Color.LightYellow;
             this.btn_41.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_41.Location = new System.Drawing.Point(30, 30);
             this.btn_41.Name = "btn_41";
             this.btn_41.Size = new System.Drawing.Size(280, 40);
             this.btn_41.strPGNo = null;
             this.btn_41.TabIndex = 1;
-            this.btn_41.Text = "売上実績確認";
+            this.btn_41.Text = " 31.売上実績確認";
             this.btn_41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_41.UseVisualStyleBackColor = false;
             this.btn_41.Visible = false;
@@ -2273,7 +2273,7 @@
             // 
             // btn_81
             // 
-            this.btn_81.BackColor = System.Drawing.Color.LightYellow;
+            this.btn_81.BackColor = System.Drawing.Color.Cyan;
             this.btn_81.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_81.Location = new System.Drawing.Point(30, 30);
             this.btn_81.Name = "btn_81";

@@ -77,6 +77,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageJisseki)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 12;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 23;
@@ -125,11 +130,6 @@
             // btnF02
             // 
             this.btnF02.TabIndex = 13;
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 12;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Nyuryokusya
             // 
@@ -372,7 +372,7 @@
             // 
             this.labelSet_Maker.AppendLabelSize = 0;
             this.labelSet_Maker.AppendLabelText = "";
-            this.labelSet_Maker.CodeTxtSize = 30;
+            this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
             this.labelSet_Maker.Location = new System.Drawing.Point(798, 104);

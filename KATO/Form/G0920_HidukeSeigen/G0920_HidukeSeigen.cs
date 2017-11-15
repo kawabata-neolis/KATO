@@ -19,8 +19,8 @@ namespace KATO.Form.G0920_HidukeSeigen
     /// 日付制限フォーム
     /// 作成者：多田
     /// 作成日：2017/6/29
-    /// 更新者：多田
-    /// 更新日：2017/6/29
+    /// 更新者：大河内
+    /// 更新日：2017/11/15
     /// カラム論理名
     /// </summary>
     public partial class G0920_HidukeSeigen : BaseForm
@@ -29,6 +29,9 @@ namespace KATO.Form.G0920_HidukeSeigen
 
         // グリッドビューで選択した行
         private int currentRow;
+
+        //エラーメッセージを表示したかどうか
+        bool blMessageOn = false;
 
         /// <summary>
         /// G0920_HidukeSeigen
@@ -638,6 +641,11 @@ namespace KATO.Form.G0920_HidukeSeigen
         /// </summary>
         private void txtGamenNoTextChanged(object sender, EventArgs e)
         {
+            //文字数が少ない場合
+            if (txtGamenNo.TextLength < 3)
+            {
+                return;
+            }
 
             if (txtGamenNo.Text == "" || String.IsNullOrWhiteSpace(txtGamenNo.Text).Equals(true))
             {
@@ -681,12 +689,30 @@ namespace KATO.Form.G0920_HidukeSeigen
             }
         }
 
+        ///<summary>
+        ///judtxtGamenNoKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtGamenNoKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///labelSet_Eigyosho_Leave
+        ///フォーカスが外れた場合
+        ///</summary>
+        private void labelSet_Eigyosho_Leave(object sender, EventArgs e)
+        {
+            //メッセージ表示がされていた場合
+            if (labelSet_Eigyosho.blMessageOn == true)
+            {
+                blMessageOn = true;
+                
+            }
+        }
     }
-
 }
-
-
-
-
-
-
