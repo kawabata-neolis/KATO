@@ -224,40 +224,43 @@ namespace KATO.Common.Form
             uriageMokuhyo.Name = "年間売上目標";
             uriageMokuhyo.HeaderText = "売上目標金額";
 
-            //バインドしたデータを追加
-            gridTantousha.Columns.Add(tantoushaCD);
-            gridTantousha.Columns.Add(tantoushaName);
-            gridTantousha.Columns.Add(eigyoushoCD);
-            gridTantousha.Columns.Add(chubanmoji);
-            gridTantousha.Columns.Add(groupCD);
-            gridTantousha.Columns.Add(uriageMokuhyo);
-
             //個々の幅、文章の寄せ
-            gridTantousha.Columns["担当者コード"].Width = 80;
-            gridTantousha.Columns["担当者コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTantousha.Columns["担当者コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTantousha.Columns["担当者名"].Width = 200;
-            gridTantousha.Columns["担当者名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTantousha.Columns["担当者名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTantousha.Columns["営業所コード"].Width = 100;
-            gridTantousha.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTantousha.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTantousha.Columns["注番文字"].Width = 100;
-            gridTantousha.Columns["注番文字"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTantousha.Columns["注番文字"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTantousha.Columns["グループコード"].Width = 100;
-            gridTantousha.Columns["グループコード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTantousha.Columns["グループコード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            gridTantousha.Columns["年間売上目標"].Width = 150;
-            gridTantousha.Columns["年間売上目標"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            gridTantousha.Columns["年間売上目標"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            setColumn(tantoushaCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumn(tantoushaName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(eigyoushoCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(chubanmoji, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(groupCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(uriageMokuhyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 150);
         }
-        
+
+        ///<summary>
+        ///setColumn
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            //column設定
+            gridTantousha.Columns.Add(col);
+
+            //カラム名が空でない場合
+            if (gridTantousha.Columns[col.Name] != null)
+            {
+                //横幅サイズの決定
+                gridTantousha.Columns[col.Name].Width = intLen;
+                //文章の寄せ方向の決定
+                gridTantousha.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                //カラム名の位置の決定
+                gridTantousha.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                //フォーマットが指定されていた場合
+                if (fmt != null)
+                {
+                    //フォーマットを指定
+                    gridTantousha.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
         ///<summary>
         ///setDatagridView
         ///データグリッドビュー表示

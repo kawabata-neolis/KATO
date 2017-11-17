@@ -362,6 +362,11 @@ namespace KATO.Form.Z1500_MyMenuSet
 
                         labelSet_Menu3.codeTxt.BackColor = Color.White;
                         break;
+                    //4
+                    case "labelSet_Menu4":
+
+                        labelSet_Menu4.codeTxt.BackColor = Color.White;
+                        break;
                 }
 
                 //初期化
@@ -384,6 +389,11 @@ namespace KATO.Form.Z1500_MyMenuSet
                     case "labelSet_Menu3":
 
                         labelSet_Menu3.codeTxt.Focus();
+                        break;
+                    //4
+                    case "labelSet_Menu4":
+
+                        labelSet_Menu4.codeTxt.Focus();
                         break;
                 }
             }

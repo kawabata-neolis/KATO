@@ -32,6 +32,11 @@ namespace KATO.Form.M1030_Shohin
         //管理者かどうかの判定
         Boolean blnKanri;
 
+        Control cActiveBefore = null;
+
+        //エラーメッセージを表示したかどうか
+        bool blMessageOn = false;
+
         ///<summary>
         ///M1030_Shohin
         ///フォームの初期設定（通常のテキストボックスから）
@@ -396,6 +401,20 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void addShohin()
         {
+            //フォーカス位置の確保
+            cActiveBefore = this.ActiveControl;
+
+            //一度登録ボタンに移動して各データをチェック
+            btnF01.Focus();
+
+            //エラーメッセージを表示したかどうか
+            if (blMessageOn == true)
+            {
+                //元のフォーカスに移動
+                cActiveBefore.Focus();
+                return;
+            }
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -826,6 +845,115 @@ namespace KATO.Form.M1030_Shohin
         public void setDaibun(string strDaibun)
         {
             labelSet_Daibunrui.CodeTxtText = strDaibun;
+        }
+
+        ///<summary>
+        ///labelset_Enter
+        ///フォーカスが来た場合
+        ///</summary>
+        private void labelset_Enter(object sender, EventArgs e)
+        {
+            //エラーメッセージ表示がされたかどうか
+            if (blMessageOn == true)
+            {
+                //フォーカス位置確保
+                Control cActive = this.ActiveControl;
+
+                switch (cActive.Name)
+                {
+                    //1
+                    case "labelSet_Daibunrui":
+
+                        labelSet_Daibunrui.codeTxt.BackColor = Color.White;
+                        break;
+                    //2
+                    case "labelSet_Chubunrui":
+
+                        labelSet_Chubunrui.codeTxt.BackColor = Color.White;
+                        break;
+                    //3
+                    case "labelSet_Maker":
+
+                        labelSet_Maker.codeTxt.BackColor = Color.White;
+                        break;
+                }
+
+                //初期化
+                blMessageOn = false;
+
+                switch (cActiveBefore.Name)
+                {
+                    //1
+                    case "labelSet_Daibunrui":
+                        labelSet_Daibunrui.Focus();
+                        labelSet_Daibunrui.codeTxt.BackColor = Color.Cyan;
+                        break;
+                    //2
+                    case "labelSet_Chubunrui":
+
+                        labelSet_Chubunrui.Focus();
+                        labelSet_Chubunrui.codeTxt.BackColor = Color.Cyan;
+                        break;
+                    //3
+                    case "labelSet_Maker":
+
+                        labelSet_Maker.codeTxt.Focus();
+                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;
+                        break;
+                }
+            }
+            else
+            {
+                //フォーカス位置の確保
+                cActiveBefore = this.ActiveControl;
+            }
+        }
+
+        ///<summary>
+        ///labelset_Leave
+        ///フォーカスが外れた場合
+        ///</summary>
+        private void labelset_Leave(object sender, EventArgs e)
+        {
+            switch (cActiveBefore.Name)
+            {
+                //1
+                case "labelSet_Daibunrui":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Daibunrui.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Daibunrui.blMessageOn = false;
+                    }
+
+                    break;
+                //2
+                case "labelSet_Chubunrui":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Chubunrui.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Chubunrui.blMessageOn = false;
+                    }
+
+                    break;
+                //3
+                case "labelSet_Maker":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Maker.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Maker.blMessageOn = false;
+                    }
+
+                    break;
+            }
         }
     }
 }

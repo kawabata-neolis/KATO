@@ -35,22 +35,6 @@ namespace KATO.Common.Ctl
         }
         
         //
-        //左寄せか右寄せか
-        //
-        public void setTextAlignSetUp(bool blLeftSide)
-        {
-            //左寄せの場合
-            if (blLeftSide == true)
-            {
-                this.TextAlign = HorizontalAlignment.Left;
-            }
-            else
-            {
-                this.TextAlign = HorizontalAlignment.Right;
-            }
-        }
-
-        //
         //各フォームに合った初期値にする
         //
         public void setUp(int intSelectDay)

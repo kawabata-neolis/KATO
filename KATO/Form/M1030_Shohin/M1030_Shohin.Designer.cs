@@ -98,6 +98,10 @@
             this.labelSet_TanabanHonsha.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -142,10 +146,6 @@
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // gbRadio
             // 
             this.gbRadio.Controls.Add(this.radSet_2btn_Toroku);
@@ -158,6 +158,7 @@
             // radSet_2btn_Toroku
             // 
             this.radSet_2btn_Toroku.Controls.Add(this.lblTitle);
+            this.radSet_2btn_Toroku.intJudBtn = 0;
             this.radSet_2btn_Toroku.LabelTitle = " ";
             this.radSet_2btn_Toroku.Location = new System.Drawing.Point(8, 20);
             this.radSet_2btn_Toroku.Name = "radSet_2btn_Toroku";
@@ -203,6 +204,8 @@
             this.labelSet_Maker.TabIndex = 2;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
+            this.labelSet_Maker.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_Maker.Leave += new System.EventHandler(this.labelset_Leave);
             // 
             // nameLabel
             // 
@@ -235,6 +238,8 @@
             this.labelSet_Chubunrui.TabIndex = 1;
             this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
+            this.labelSet_Chubunrui.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_Chubunrui.Leave += new System.EventHandler(this.labelset_Leave);
             // 
             // object_2ba5be3d_9b32_4310_9e96_6eda4d8a1577
             // 
@@ -271,6 +276,8 @@
             this.labelSet_Daibunrui.TabIndex = 0;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
+            this.labelSet_Daibunrui.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_Daibunrui.Leave += new System.EventHandler(this.labelset_Leave);
             // 
             // object_a1a44746_4090_422c_9959_b045440f4307
             // 

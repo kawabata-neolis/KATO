@@ -27,6 +27,9 @@ namespace KATO.Common.Ctl
         //他のformでも中分類setデータを見れるようにするためのもの
         LabelSet_Chubunrui lschubundata;
 
+        //エラーメッセージを表示したかどうか
+        public bool blMessageOn = false;
+
         /// <summary>
         /// Lschubundata
         /// プロパティの設定（データ確保）
@@ -223,6 +226,24 @@ namespace KATO.Common.Ctl
                 }
 
                 this.ValueLabelText = "";
+
+                //グループボックスかパネル内にいる場合
+                if (this.Parent is GroupBox || this.Parent is Panel)
+                {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                }
+
+                //エラーメッセージを表示された
+                blMessageOn = true;
+                return;
             }
 
             if (this.CodeTxtText.Length == 1)
@@ -259,6 +280,8 @@ namespace KATO.Common.Ctl
                 {
                     this.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["大分類名"].ToString();
+
+                    blMessageOn = false;
                 }
                 else
                 {
@@ -270,15 +293,15 @@ namespace KATO.Common.Ctl
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
+                    blMessageOn = true;
+                    return;
                 }
 
                 //中分類のプロパティが空でない場合
@@ -395,26 +418,26 @@ namespace KATO.Common.Ctl
                 {
                     this.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["大分類名"].ToString();
-                }
 
-                //中分類のプロパティが空でない場合
-                if (lschubundata != null)
-                {
-                    lschubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
-                }
-                if (lsSubchubundata != null)
-                {
-                    lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
-                }
+                    //中分類のプロパティが空でない場合
+                    if (lschubundata != null)
+                    {
+                        lschubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    }
+                    if (lsSubchubundata != null)
+                    {
+                        lsSubchubundata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    }
 
-                //メーカーのプロパティが空でない場合
-                if (lsmakerdata != null)
-                {
-                    lsmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
-                }
-                if (lsSubmakerdata != null)
-                {
-                    lsSubmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    //メーカーのプロパティが空でない場合
+                    if (lsmakerdata != null)
+                    {
+                        lsmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    }
+                    if (lsSubmakerdata != null)
+                    {
+                        lsSubmakerdata.strDaibunCd = dtSetCd.Rows[0]["大分類コード"].ToString();
+                    }
                 }
 
                 return;

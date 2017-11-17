@@ -63,10 +63,6 @@ namespace KATO.Form.G0920_HidukeSeigen
             // 親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
-
-            //右寄せに設定
-            txtCalendarMinYMD.setTextAlignSetUp(false);
-            txtCalendarMaxYMD.setTextAlignSetUp(false);
         }
 
 

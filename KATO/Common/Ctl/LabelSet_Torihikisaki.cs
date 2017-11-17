@@ -23,6 +23,9 @@ namespace KATO.Common.Ctl
     ///</summary>
     public partial class LabelSet_Torihikisaki : BaseTextLabelSet
     {
+        //エラーメッセージを表示したかどうか
+        public bool blMessageOn = false;
+
         /// <summary>
         /// LabelSet_Torihikisaki
         /// 読み込み時
@@ -144,15 +147,17 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
                 }
                 else
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
                 }
+
+                //エラーメッセージを表示された
+                blMessageOn = true;
+                return;
             }
 
             //前後の空白を取り除く
@@ -202,6 +207,8 @@ namespace KATO.Common.Ctl
                     this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["取引先名称"].ToString();
                     this.AppendLabelText = strZeikubun;
+
+                    blMessageOn = false;
                 }
                 else
                 {
@@ -213,15 +220,15 @@ namespace KATO.Common.Ctl
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
+
+                    blMessageOn = true;
                 }
                 return;
             }

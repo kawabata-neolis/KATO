@@ -71,7 +71,7 @@ namespace KATO.Common.Form
             InitializeComponent();
 
             //テキストボックスに入れる
-            labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
+            txtTokuisakiCd.Text = strTokuisakiCd;
 
             //得意先コードの確保
             strTokuiCdsub = strTokuisakiCd;
@@ -102,7 +102,7 @@ namespace KATO.Common.Form
             //グリッドの中身がない場合の初期フォーカス位置の変更
             if (gridChoku.RowCount == 0)
             {
-                labelSet_Tokuisaki.Focus();
+                txtTokuisakiCd.Focus();
             }
         }
 
@@ -117,7 +117,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridChoku.DataSource = chokusosakilistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridChoku.DataSource = chokusosakilistB.getDatagridView(txtTokuisakiCd.Text);
 
                 //幅の値を設定
                 gridChoku.Columns["直送先コード"].Width = 130;
@@ -250,7 +250,7 @@ namespace KATO.Common.Form
             getDatagridView();
 
             //得意先コードを確保
-            strTokuiCdsub = labelSet_Tokuisaki.CodeTxtText;
+            strTokuiCdsub = txtTokuisakiCd.Text;
 
             gridChoku.Focus();
         }
@@ -373,6 +373,22 @@ namespace KATO.Common.Form
 
                 return cpForm;
             }
+        }
+
+        ///<summary>
+        ///ChokusosakiList_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>        
+        private void ChokusosakiList_KeyUp(object sender, KeyEventArgs e)
+        {
+            //フォーカスの確保
+            Control cActiveBefore = this.ActiveControl;
+
+            //ベーステキストのインスタンス生成
+            BaseText basetext = new BaseText();
+
+            //キーアップされた時の判断処理
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

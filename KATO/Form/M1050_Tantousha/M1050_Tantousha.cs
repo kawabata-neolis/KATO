@@ -520,7 +520,7 @@ namespace KATO.Form.M1050_Tantousha
             lblSetEigyousho.CodeTxtText = dtSelectData.Rows[0]["営業所コード"].ToString();
             txtChuban.Text = dtSelectData.Rows[0]["注番文字"].ToString();
             lblSetGroupCd.CodeTxtText = dtSelectData.Rows[0]["グループコード"].ToString();
-            txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,#");
+            txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,0");
         }
 
         ///<summary>

@@ -23,6 +23,9 @@ namespace KATO.Common.Ctl
     ///</summary>
     public partial class LabelSet_Tokuisaki : BaseTextLabelSet
     {
+        //エラーメッセージを表示したかどうか
+        public bool blMessageOn = false;
+
         /// <summary>
         /// LabelSet_Tokuisaki
         /// 読み込み時
@@ -153,19 +156,6 @@ namespace KATO.Common.Ctl
                 }
 
                 this.ValueLabelText = "";
-            }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
-
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
-            {
-                this.ValueLabelText = "";
 
                 //グループボックスかパネル内にいる場合
                 if (this.Parent is GroupBox || this.Parent is Panel)
@@ -173,17 +163,19 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
                 }
                 else
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
                 }
+
+                //エラーメッセージを表示された
+                blMessageOn = true;
+                return;
             }
-                                   
+
             //データ渡し用
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_TokuisakiAS400_SELECT_LEAVE");
@@ -210,6 +202,8 @@ namespace KATO.Common.Ctl
                 {
                     this.CodeTxtText = dtSetCd.Rows[0]["得意先コード"].ToString();
                     this.ValueLabelText = dtSetCd.Rows[0]["得意先名"].ToString();
+
+                    blMessageOn = false;
                 }
                 else
                 {
@@ -221,15 +215,15 @@ namespace KATO.Common.Ctl
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
-                        return;
                     }
+
+                    blMessageOn = true;
                 }
                 return;
             }

@@ -29,6 +29,11 @@ namespace KATO.Form.M1100_Chokusosaki
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        Control cActiveBefore = null;
+
+        //エラーメッセージを表示したかどうか
+        bool blMessageOn = false;
+
         ///<summary>
         ///M1100_Chokusosaki
         ///フォームの初期設定
@@ -300,8 +305,10 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void showChokusosakiList()
         {
+            string strTorihikiCd = labelSet_Torihikisaki.CodeTxtText;
+
             //直送先リストのインスタンス生成
-            ChokusosakiList chokusosakilist = new ChokusosakiList(this, labelSet_Torihikisaki.CodeTxtText);
+            ChokusosakiList chokusosakilist = new ChokusosakiList(this, strTorihikiCd);
             try
             {
                 //直送先リストの表示、画面IDを渡す
@@ -326,6 +333,19 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void addChokusosaki()
         {
+            //フォーカス位置の確保
+            cActiveBefore = this.ActiveControl;
+
+            btnF01.Focus();
+
+            //エラーメッセージを表示したかどうか
+            if (blMessageOn == true)
+            {
+                //元のフォーカスに移動
+                cActiveBefore.Focus();
+                return;
+            }
+
             //記入情報登録用
             List<string> lstChokusosaki = new List<string>();
 
@@ -510,6 +530,7 @@ namespace KATO.Form.M1100_Chokusosaki
             txtJusho1.Text = dtSelectData.Rows[0]["住所１"].ToString();
             txtJusho2.Text = dtSelectData.Rows[0]["住所２"].ToString();
             txtDenwa.Text = dtSelectData.Rows[0]["電話番号"].ToString();
+            txtBushoName.Text = dtSelectData.Rows[0]["部署名"].ToString();
         }
 
         ///<summary>
@@ -557,6 +578,7 @@ namespace KATO.Form.M1100_Chokusosaki
                 txtJusho1.Clear();
                 txtJusho2.Clear();
                 txtDenwa.Clear();
+                txtBushoName.Clear();
 
                 txtChokusoCd.Focus();
                 return;
@@ -589,6 +611,16 @@ namespace KATO.Form.M1100_Chokusosaki
                     txtJusho2.Text = dtSetCd.Rows[0]["住所２"].ToString();
                     txtDenwa.Text = dtSetCd.Rows[0]["電話番号"].ToString();
                     txtBushoName.Text = dtSetCd.Rows[0]["部署名"].ToString();
+                }
+                else
+                {
+                    //各項目のクリア
+                    txtChokusoName.Clear();
+                    txtYubin.Clear();
+                    txtJusho1.Clear();
+                    txtJusho2.Clear();
+                    txtDenwa.Clear();
+                    txtBushoName.Clear();
                 }
             }
             catch (Exception ex)
@@ -696,22 +728,24 @@ namespace KATO.Form.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///labelSet_Tokuisaki_Leave
-        ///得意先のラベルセットから離れた場合
+        ///labelSet_Torihikisaki_Leave
+        ///フォーカスが外れた場合
         ///</summary>
-        private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
+        private void labelSet_Torihikisaki_Leave(object sender, EventArgs e)
         {
-            //大分類コードがない場合
+            //取引先コードがない場合
             if (labelSet_Torihikisaki.CodeTxtText == "" ||
                 StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
             {
+                blMessageOn = false;
                 return;
             }
 
-            //大分類の名前が白紙の場合
-            if (labelSet_Torihikisaki.ValueLabelText == "" ||
+            //取引先コード名が白紙の場合
+            if (labelSet_Torihikisaki.CodeTxtText == "" ||
                 StringUtl.blIsEmpty(labelSet_Torihikisaki.ValueLabelText) == false)
             {
+                blMessageOn = true;
                 labelSet_Torihikisaki.Focus();
             }
         }

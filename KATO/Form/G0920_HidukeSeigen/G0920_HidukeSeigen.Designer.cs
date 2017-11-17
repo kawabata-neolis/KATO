@@ -108,7 +108,6 @@
             this.txtCalendarMinYMD.Name = "txtCalendarMinYMD";
             this.txtCalendarMinYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMinYMD.TabIndex = 3;
-            this.txtCalendarMinYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarMinYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
             // 
             // txtCalendarMaxYMD
@@ -119,7 +118,6 @@
             this.txtCalendarMaxYMD.Name = "txtCalendarMaxYMD";
             this.txtCalendarMaxYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMaxYMD.TabIndex = 4;
-            this.txtCalendarMaxYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarMaxYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
             // 
             // lblMinYMD
@@ -228,7 +226,6 @@
             this.txtGamenNo.Name = "txtGamenNo";
             this.txtGamenNo.Size = new System.Drawing.Size(35, 22);
             this.txtGamenNo.TabIndex = 1;
-            this.txtGamenNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGamenNo.TextChanged += new System.EventHandler(this.txtGamenNoTextChanged);
             this.txtGamenNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtGamenNoKeyDown);
             this.txtGamenNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtGamenNoKeyUp);
