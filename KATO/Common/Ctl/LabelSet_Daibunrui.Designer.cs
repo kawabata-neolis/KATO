@@ -36,7 +36,6 @@
             this.codeTxt.MaxLength = 2;
             this.codeTxt.Size = new System.Drawing.Size(24, 22);
             this.codeTxt.ReadOnlyChanged += new System.EventHandler(this.codeTxt_ReadOnlyChanged);
-            this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaibunruiKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtDaibunruiKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtDaibunruiLeave);

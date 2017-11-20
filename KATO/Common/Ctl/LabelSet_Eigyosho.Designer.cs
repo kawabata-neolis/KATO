@@ -35,6 +35,7 @@
             this.codeTxt.Location = new System.Drawing.Point(107, 0);
             this.codeTxt.MaxLength = 4;
             this.codeTxt.Size = new System.Drawing.Size(40, 22);
+            this.codeTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.codeTxt.EnabledChanged += new System.EventHandler(this.codeTxt_EnabledChanged);
             this.codeTxt.TextChanged += new System.EventHandler(this.codeTxt_TextChanged);
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judEigyoushoKeyDown);

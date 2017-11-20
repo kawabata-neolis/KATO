@@ -294,7 +294,7 @@
             // txtKensaku
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKensaku.Location = new System.Drawing.Point(143, 195);
             this.txtKensaku.MaxLength = 40;
             this.txtKensaku.Name = "txtKensaku";

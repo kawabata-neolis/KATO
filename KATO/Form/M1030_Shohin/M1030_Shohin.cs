@@ -726,6 +726,11 @@ namespace KATO.Form.M1030_Shohin
             txtHako.Text = dtShohin.Rows[0]["箱入数"].ToString();
             txtComment.Text = dtShohin.Rows[0]["コメント"].ToString();
 
+            //空白を削除
+            labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
+            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.CodeTxtText.Trim();
+            labelSet_Chubunrui.CodeTxtText = labelSet_Chubunrui.CodeTxtText.Trim();
+
             lblGrayShohin.Text =
                 labelSet_Maker.CodeTxtText + " " +
                 labelSet_Daibunrui.CodeTxtText + " " +
@@ -757,6 +762,9 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void judtxtShohinKeyUp(object sender, KeyEventArgs e)
         {
+            ////フォーカス位置確保
+            //cActiveBefore = this.ActiveControl;
+
             //シフトタブ 2つ
             if (e.KeyCode == Keys.Tab && e.Shift == true)
             {
@@ -793,6 +801,8 @@ namespace KATO.Form.M1030_Shohin
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, "", CommonTeisu.LABEL_ZEROORONE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+
+                    //cActiveBefore.Focus();
                 }
                 else
                 {
@@ -826,8 +836,13 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void updCtxtLeave(object sender, EventArgs e)
         {
+            //空白を削除
+            labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
+            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.CodeTxtText.Trim();
+            labelSet_Chubunrui.CodeTxtText = labelSet_Chubunrui.CodeTxtText.Trim();
+
             lblGrayShohin.Text =
-                labelSet_Maker.CodeTxtText + " " +
+                labelSet_Maker.ValueLabelText + " " +
                 labelSet_Daibunrui.CodeTxtText + " " +
                 labelSet_Chubunrui.CodeTxtText + " " +
                 txtData1.Text + " " +
@@ -898,7 +913,7 @@ namespace KATO.Form.M1030_Shohin
                     case "labelSet_Maker":
 
                         labelSet_Maker.codeTxt.Focus();
-                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;
+                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;  
                         break;
                 }
             }

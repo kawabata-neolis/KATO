@@ -208,9 +208,9 @@ namespace KATO.Common.Ctl
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                     }
+                    blMessageOn = true;
+                    return;
                 }
-                blMessageOn = true;
-                return;
             }
             catch (Exception ex)
             {
@@ -244,88 +244,88 @@ namespace KATO.Common.Ctl
             basetext.judKeyUp(cActiveBefore, e);
         }
 
-        ///<summary>
-        ///codeTxt_TextChanged
-        ///入力項目に変更があった場合
-        ///</summary>
-        private void codeTxt_TextChanged(object sender, EventArgs e)
-        {
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
+        /////<summary>
+        /////codeTxt_TextChanged
+        /////入力項目に変更があった場合
+        /////</summary>
+        //private void codeTxt_TextChanged(object sender, EventArgs e)
+        //{
+        //    //データ渡し用
+        //    List<string> lstStringSQL = new List<string>();
 
-            DataTable dtSetCd;
+        //    DataTable dtSetCd;
 
-            string strSQLName = null;
+        //    string strSQLName = null;
 
-            if (this.strdaibunCd == null)
-            {
-                return;
-            }
+        //    if (this.strdaibunCd == null)
+        //    {
+        //        return;
+        //    }
 
-            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
-            {
-                this.ValueLabelText = "";
-                return;
-            }
+        //    if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+        //    {
+        //        this.ValueLabelText = "";
+        //        return;
+        //    }
 
-            strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
+        //    strSQLName = "C_LIST_Chubun_SELECT_LEAVE";
 
-            //データ渡し用
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLName);
+        //    //データ渡し用
+        //    lstStringSQL.Add("Common");
+        //    lstStringSQL.Add(strSQLName);
 
-            OpenSQL opensql = new OpenSQL();
-            try
-            {
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+        //    OpenSQL opensql = new OpenSQL();
+        //    try
+        //    {
+        //        string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-                if (strSQLInput == "")
-                {
-                    return;
-                }
+        //        if (strSQLInput == "")
+        //        {
+        //            return;
+        //        }
 
-                //配列設定
-                string[] aryStr = { this.strdaibunCd, this.CodeTxtText };
+        //        //配列設定
+        //        string[] aryStr = { this.strdaibunCd, this.CodeTxtText };
 
-                strSQLInput = string.Format(strSQLInput, aryStr);
+        //        strSQLInput = string.Format(strSQLInput, aryStr);
 
-                //SQLのインスタンス作成
-                DBConnective dbconnective = new DBConnective();
+        //        //SQLのインスタンス作成
+        //        DBConnective dbconnective = new DBConnective();
 
-                //SQL文を直書き（＋戻り値を受け取る)
-                dtSetCd = dbconnective.ReadSql(strSQLInput);
+        //        //SQL文を直書き（＋戻り値を受け取る)
+        //        dtSetCd = dbconnective.ReadSql(strSQLInput);
 
-                //データの有無チェック
-                if (dtSetCd.Rows.Count != 0)
-                {
-                    this.CodeTxtText = dtSetCd.Rows[0]["中分類コード"].ToString();
-                    this.ValueLabelText = dtSetCd.Rows[0]["中分類名"].ToString();
-                }
+        //        //データの有無チェック
+        //        if (dtSetCd.Rows.Count != 0)
+        //        {
+        //            this.CodeTxtText = dtSetCd.Rows[0]["中分類コード"].ToString();
+        //            this.ValueLabelText = dtSetCd.Rows[0]["中分類名"].ToString();
+        //        }
 
-                return;
-            }
-            catch (Exception ex)
-            {
-                //データロギング
-                new CommonException(ex);
+        //        return;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //データロギング
+        //        new CommonException(ex);
 
-                //グループボックスかパネル内にいる場合
-                if (this.Parent is GroupBox || this.Parent is Panel)
-                {
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-                else
-                {
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-        }
+        //        //グループボックスかパネル内にいる場合
+        //        if (this.Parent is GroupBox || this.Parent is Panel)
+        //        {
+        //            //例外発生メッセージ（OK）
+        //            BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+        //            basemessagebox.ShowDialog();
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            //例外発生メッセージ（OK）
+        //            BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+        //            basemessagebox.ShowDialog();
+        //            return;
+        //        }
+        //    }
+        //}
 
         ///<summary>
         ///LabelSet_Chubunrui_EnabledChanged
