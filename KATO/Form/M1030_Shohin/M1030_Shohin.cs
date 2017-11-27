@@ -75,6 +75,9 @@ namespace KATO.Form.M1030_Shohin
 
             //メーカーsetデータを読めるようにする
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+
+            //初期表示
+            txtZaiko.Text = "0";
         }
 
         ///<summary>
@@ -86,17 +89,19 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
-    //登録かの判定（仮）
-            if (SystemInformation.UserName != "admin")
-            {
-                this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
-                blnKanri = false;
-            }
-            else
-            {
-                this.btnF01.Text = STR_FUNC_F1;
-                blnKanri = true;
-            }
+            ////登録かの判定（仮）
+            //        if (SystemInformation.UserName != "admin")
+            //        {
+            //            this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
+            //            blnKanri = false;
+            //        }
+            //        else
+            //        {
+            //            this.btnF01.Text = STR_FUNC_F1;
+            //            blnKanri = true;
+            //        }
+
+            blnKanri = true;
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
@@ -415,6 +420,24 @@ namespace KATO.Form.M1030_Shohin
                 return;
             }
 
+            //空文字削除
+            labelSet_Daibunrui.CodeTxtText.Trim();
+            labelSet_Chubunrui.CodeTxtText.Trim();
+            labelSet_Maker.CodeTxtText.Trim();
+            txtData1.Text.Trim();
+            txtHachukbn.Text.Trim();
+            txtHyojun.Text.Trim();
+            txtShire.Text.Trim();
+            txtHyoka.Text.Trim();
+            txtTatene.Text.Trim();
+            txtZaiko.Text.Trim();
+            labelSet_TanabanHonsha.Text.Trim();
+            labelSet_TanabanGihu.Text.Trim();
+            txtTeika.Text.Trim();
+            txtHako.Text.Trim();
+            txtMemo.Text.Trim();
+            txtComment.Text.Trim();
+
             //データ渡し用
             List<string> lstString = new List<string>();
 
@@ -614,6 +637,8 @@ namespace KATO.Form.M1030_Shohin
             txtHako.Text = "";
             labelSet_Daibunrui.Focus();
             radSet_2btn_Toroku.radbtn0.Checked = true;
+
+            txtZaiko.Text = "0";
         }
 
         ///<summary>
@@ -707,6 +732,9 @@ namespace KATO.Form.M1030_Shohin
             labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
             txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
 
+            labelSet_Daibunrui.setTxtDaibunruiLeave();
+            labelSet_Chubunrui.setTxtChubunruiLeave();
+
             txtData1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
             txtData2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
             txtData3.Text = dtShohin.Rows[0]["Ｃ３"].ToString();
@@ -728,11 +756,12 @@ namespace KATO.Form.M1030_Shohin
 
             //空白を削除
             labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
-            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.CodeTxtText.Trim();
-            labelSet_Chubunrui.CodeTxtText = labelSet_Chubunrui.CodeTxtText.Trim();
+            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.ValueLabelText.Trim();
+            labelSet_Chubunrui.ValueLabelText = labelSet_Chubunrui.ValueLabelText.Trim();
+
 
             lblGrayShohin.Text =
-                labelSet_Maker.CodeTxtText + " " +
+                labelSet_Maker.ValueLabelText + " " +
                 labelSet_Daibunrui.CodeTxtText + " " +
                 labelSet_Chubunrui.CodeTxtText + " " +
                 txtData1.Text + " " +
@@ -762,57 +791,8 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void judtxtShohinKeyUp(object sender, KeyEventArgs e)
         {
-            ////フォーカス位置確保
-            //cActiveBefore = this.ActiveControl;
-
-            //シフトタブ 2つ
-            if (e.KeyCode == Keys.Tab && e.Shift == true)
-            {
-                return;
-            }
-            //左右のシフトキー 4つ とタブ、エンター
-            else if (e.KeyCode == Keys.Shift || e.KeyCode == Keys.LShiftKey || e.KeyCode == Keys.RShiftKey || e.KeyCode == Keys.ShiftKey || e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
-            {
-                return;
-            }
-            //キーボードの方向キー4つ
-            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
-            {
-                return;
-            }
-
-            //前後の空白を取り除く
-            ((TextBox)sender).Text = ((TextBox)sender).Text.Trim();
-
-            if (((TextBox)sender).Text == "")
-            {
-                return;
-            }
-
-            if (this.ActiveControl.Name == "txtHachukbn")
-            {
-                //TABボタンと同じ効果
-                SendKeys.Send("{TAB}");
-            }
-            else if (this.ActiveControl.Name == "txtZaiko")
-            {
-                if (((TextBox)sender).Text != "1" && ((TextBox)sender).Text != "0")
-                {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "", CommonTeisu.LABEL_ZEROORONE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-
-                    //cActiveBefore.Focus();
-                }
-                else
-                {
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
-                }
-            }
-
             //入力項目上でのキー判定と文字数判定
-            Control cActiveBefore = this.ActiveControl;
+            cActiveBefore = this.ActiveControl;
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
@@ -838,7 +818,7 @@ namespace KATO.Form.M1030_Shohin
         {
             //空白を削除
             labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
-            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.CodeTxtText.Trim();
+            labelSet_Daibunrui.CodeTxtText = labelSet_Daibunrui.CodeTxtText.Trim();
             labelSet_Chubunrui.CodeTxtText = labelSet_Chubunrui.CodeTxtText.Trim();
 
             lblGrayShohin.Text =
@@ -891,6 +871,16 @@ namespace KATO.Form.M1030_Shohin
 
                         labelSet_Maker.codeTxt.BackColor = Color.White;
                         break;
+                    //4
+                    case "labelSet_TanabanHonsha":
+
+                        labelSet_TanabanHonsha.codeTxt.BackColor = Color.White;
+                        break;
+                    //5
+                    case "labelSet_TanabanGihu":
+
+                        labelSet_TanabanGihu.codeTxt.BackColor = Color.White;
+                        break;
                 }
 
                 //初期化
@@ -913,7 +903,19 @@ namespace KATO.Form.M1030_Shohin
                     case "labelSet_Maker":
 
                         labelSet_Maker.codeTxt.Focus();
-                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;  
+                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;
+                        break;
+                    //4
+                    case "labelSet_TanabanHonsha":
+
+                        labelSet_TanabanHonsha.codeTxt.Focus();
+                        labelSet_TanabanHonsha.codeTxt.BackColor = Color.Cyan;
+                        break;
+                    //5
+                    case "labelSet_TanabanGihu":
+
+                        labelSet_TanabanGihu.codeTxt.Focus();
+                        labelSet_TanabanGihu.codeTxt.BackColor = Color.Cyan;
                         break;
                 }
             }
@@ -968,7 +970,78 @@ namespace KATO.Form.M1030_Shohin
                     }
 
                     break;
+                //4
+                case "labelSet_TanabanHonsha":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_TanabanHonsha.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_TanabanHonsha.blMessageOn = false;
+                    }
+
+                    break;
+                //5
+                case "labelSet_TanabanGihu":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_TanabanGihu.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_TanabanGihu.blMessageOn = false;
+                    }
+
+                    break;
+
             }
+        }
+
+        ///<summary>
+        ///txtZaiko_Leave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        private void txtZaiko_Leave(object sender, EventArgs e)
+        {
+            //前後の空白を取り除く
+            ((TextBox)sender).Text = ((TextBox)sender).Text.Trim();
+
+            if (((TextBox)sender).Text == "")
+            {
+                return;
+            }
+
+                if (((TextBox)sender).Text != "1" && ((TextBox)sender).Text != "0")
+                {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "", CommonTeisu.LABEL_ZEROORONE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    blMessageOn = true;
+
+                    cActiveBefore.Focus();
+                }
+        }
+
+        ///<summary>
+        ///shohin_Enter
+        ///code入力箇所からフォーカスがついた時
+        ///</summary>
+        private void shohin_Enter(object sender, EventArgs e)
+        {
+            if (blMessageOn == true)
+            {
+                cActiveBefore.Focus();
+
+                if (cActiveBefore.Name == "txtZaiko")
+                {
+                    txtZaiko.Text = "0";
+                }
+            }
+
+            //フォーカス位置確保
+            cActiveBefore = this.ActiveControl;
         }
     }
 }

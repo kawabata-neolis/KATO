@@ -464,12 +464,18 @@ namespace KATO.Common.Form
             if (strDaibunruiCode.Length >= 1)
             {
                 labelSet_Daibunrui.CodeTxtText = strDaibunruiCode;
+
+                //leaveの処理をする
+                labelSet_Daibunrui.setTxtDaibunruiLeave();
                 intDBjud = 1;
                 setLabel(intDBjud);
             }
             if (strChubunruiCode.Length >= 1)
             {
                 labelSet_Chubunrui.CodeTxtText = strChubunruiCode;
+
+                //leaveの処理をする
+                labelSet_Chubunrui.setTxtChubunruiLeave();
                 intDBjud = 2;
                 setLabel(intDBjud);
             }
@@ -515,8 +521,7 @@ namespace KATO.Common.Form
                 return;
             }
         }
-
-
+        
         ///<summary>
         ///btnKensakuClick
         ///検索ボタンを押したとき

@@ -105,6 +105,15 @@ namespace KATO.Common.Ctl
         ///</summary>
         private void updTxtChubunruiLeave(object sender, EventArgs e)
         {
+            setTxtChubunruiLeave();
+        }
+
+        ///<summary>
+        ///updTxtChubunruiLeave
+        ///code入力箇所からフォーカスが外れた時の処理
+        ///</summary>
+        public void setTxtChubunruiLeave()
+        {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 

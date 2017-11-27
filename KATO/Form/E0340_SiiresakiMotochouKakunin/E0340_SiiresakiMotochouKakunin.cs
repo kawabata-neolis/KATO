@@ -295,6 +295,24 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
         /// </summary>
         private void setSiire()
         {
+            //記入項目の空白削除
+            labelSet_Siiresaki.CodeTxtText.Trim();
+            txtYmStart.Text.Trim();
+            txtYmStart.Text.Trim();
+            txtZeigaku.Text.Trim();
+            txtShiharaiKingaku.Text.Trim();
+            txtSiireKingaku.Text.Trim();
+            txtZeigaku.Text.Trim();
+            txtTougetsuZandaka.Text.Trim();
+
+            //検索時に必須条件を満たさない場合
+            if (labelSet_Siiresaki.codeTxt.blIsEmpty() == false ||
+                txtYmStart.blIsEmpty() == false ||
+                txtYmEnd.blIsEmpty() == false)
+            {
+                return;
+            }
+
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 

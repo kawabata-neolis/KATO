@@ -164,7 +164,16 @@ namespace KATO.Common.Ctl
         ///updTxtDaibunruiLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        public void updTxtDaibunruiLeave(object sender, EventArgs e)
+        private void updTxtDaibunruiLeave(object sender, EventArgs e)
+        {
+            setTxtDaibunruiLeave();
+        }
+
+        ///<summary>
+        ///updTxtDaibunruiLeave
+        ///code入力箇所からフォーカスが外れた時の処理
+        ///</summary>
+        public void setTxtDaibunruiLeave()
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
@@ -172,6 +181,10 @@ namespace KATO.Common.Ctl
             DataTable dtSetCd;
 
             Boolean blnGood;
+
+            //情報を投げる必須項目になるため空の情報を作成
+            object sender = null;
+            EventArgs e = null;
 
             //空白、文字数3以上の場合
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true) || this.CodeTxtText.Length > 2)
@@ -216,7 +229,7 @@ namespace KATO.Common.Ctl
                                             return;
                                         }
                                         //メーカーリストの場合
-                                        else if(frm.Name == "MakerList")
+                                        else if (frm.Name == "MakerList")
                                         {
                                             //データを連れてくるため、newをしないこと
                                             MakerList makerlist = (MakerList)frm;
@@ -258,7 +271,7 @@ namespace KATO.Common.Ctl
 
             //前後の空白を取り除く
             this.CodeTxtText = this.CodeTxtText.Trim();
-            
+
             //データ渡し用
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_Daibun_SELECT_LEAVE");

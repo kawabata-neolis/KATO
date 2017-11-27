@@ -299,13 +299,13 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
         /// </summary>
         private void delText()
         {
-            // 削除するデータ以外を確保
-            string strTanaban = txtTanaban.Text;
+            //// 削除するデータ以外を確保
+            //string strTanaban = txtTanaban.Text;
 
             // 画面の項目内を白紙にする
             delFormClear(this, gridZaiko);
 
-            txtTanaban.Text = strTanaban;
+            //txtTanaban.Text = strTanaban;
 
             // ラジオボタンの初期表示
             radSiire.radbtn2.Checked = true;

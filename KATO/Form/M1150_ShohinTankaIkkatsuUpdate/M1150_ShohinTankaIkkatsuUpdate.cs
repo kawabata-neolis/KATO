@@ -546,13 +546,13 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
         /// </summary>
         private void delText()
         {
-            // 削除するデータ以外を確保
-            string strKataban = txtKataban.Text;
+            //// 削除するデータ以外を確保
+            //string strKataban = txtKataban.Text;
 
             // 画面の項目内を白紙にする
             delFormClear(this, gridShohin);
 
-            txtKataban.Text = strKataban;
+            //txtKataban.Text = strKataban;
 
             labelSet_Daibunrui.Focus();
         }

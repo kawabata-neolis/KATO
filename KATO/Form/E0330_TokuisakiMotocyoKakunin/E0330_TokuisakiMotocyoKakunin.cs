@@ -326,6 +326,24 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         /// </summary>
         private void setTokuisakimotocho()
         {
+            //記入項目の空白削除
+            labelSet_Tokuisaki.CodeTxtText.Trim();
+            txtStartYM.Text.Trim();
+            txtEndYM.Text.Trim();
+            txtZenZan.Text.Trim();
+            txtNyukin.Text.Trim();
+            txtUriage.Text.Trim();
+            txtZei.Text.Trim();
+            txtZandaka.Text.Trim();
+            
+            //検索時に必須条件を満たさない場合
+            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false ||
+                txtStartYM.blIsEmpty() == false ||
+                txtEndYM.blIsEmpty() == false)
+            {
+                return;
+            }
+
             //データ検索用
             List<string> lstUriageSuiiLoad = new List<string>();
 
