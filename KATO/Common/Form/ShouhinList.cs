@@ -167,46 +167,117 @@ namespace KATO.Common.Form
             hinmei.Name = "品名";
             hinmei.HeaderText = "品名";
 
+            DataGridViewTextBoxColumn honshazaiko = new DataGridViewTextBoxColumn();
+            honshazaiko.DataPropertyName = "本社在庫";
+            honshazaiko.Name = "本社在庫";
+            honshazaiko.HeaderText = "本社在庫";
+
+            DataGridViewTextBoxColumn honshafree = new DataGridViewTextBoxColumn();
+            honshafree.DataPropertyName = "本社ﾌﾘｰ";
+            honshafree.Name = "本社ﾌﾘｰ";
+            honshafree.HeaderText = "本社ﾌﾘｰ";
+
+            DataGridViewTextBoxColumn gihuzaiko = new DataGridViewTextBoxColumn();
+            gihuzaiko.DataPropertyName = "岐阜在庫";
+            gihuzaiko.Name = "岐阜在庫";
+            gihuzaiko.HeaderText = "岐阜在庫";
+
+            DataGridViewTextBoxColumn gihufree = new DataGridViewTextBoxColumn();
+            gihufree.DataPropertyName = "岐阜ﾌﾘｰ";
+            gihufree.Name = "岐阜ﾌﾘｰ";
+            gihufree.HeaderText = "岐阜ﾌﾘｰ";
+
+            DataGridViewTextBoxColumn teika = new DataGridViewTextBoxColumn();
+            teika.DataPropertyName = "定価";
+            teika.Name = "定価";
+            teika.HeaderText = "定価";
+
+            DataGridViewTextBoxColumn kakeritu = new DataGridViewTextBoxColumn();
+            kakeritu.DataPropertyName = "掛率";
+            kakeritu.Name = "掛率";
+            kakeritu.HeaderText = "掛率";
+
+            DataGridViewTextBoxColumn shiretanka = new DataGridViewTextBoxColumn();
+            shiretanka.DataPropertyName = "仕入単価";
+            shiretanka.Name = "仕入単価";
+            shiretanka.HeaderText = "仕入単価";
+
             DataGridViewTextBoxColumn memo = new DataGridViewTextBoxColumn();
             memo.DataPropertyName = "メモ";
             memo.Name = "メモ";
             memo.HeaderText = "メモ";
 
-            //バインドしたデータを追加
-            gridTorihiki.Columns.Add(code);
-            gridTorihiki.Columns.Add(maker);
-            gridTorihiki.Columns.Add(daibunrui);
-            gridTorihiki.Columns.Add(chubunrui);
-            gridTorihiki.Columns.Add(hinmei);
-            gridTorihiki.Columns.Add(memo);
-
-            gridTorihiki.AutoGenerateColumns = false;
-
             //個々の幅、文章の寄せ
-            gridTorihiki.Columns["コード"].Width = 0;
-            gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            setColumnShohin(code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnShohin(daibunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumnShohin(honshazaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(honshafree, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumnShohin(gihuzaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(gihufree, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumnShohin(teika, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
 
-            gridTorihiki.Columns["メーカー"].Width = 150;
-            gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridTorihiki.Columns["大分類名"].Width = 0;
-            gridTorihiki.Columns["大分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            gridTorihiki.Columns["大分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ////バインドしたデータを追加
+            //gridTorihiki.Columns.Add(code);
+            //gridTorihiki.Columns.Add(maker);
+            //gridTorihiki.Columns.Add(daibunrui);
+            //gridTorihiki.Columns.Add(chubunrui);
+            //gridTorihiki.Columns.Add(hinmei);
+            //gridTorihiki.Columns.Add(memo);
 
-            gridTorihiki.Columns["中分類名"].Width = 110;
-            gridTorihiki.Columns["中分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTorihiki.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //gridTorihiki.AutoGenerateColumns = false;
 
-            gridTorihiki.Columns["品名"].Width = 300;
-            gridTorihiki.Columns["品名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridTorihiki.Columns["品名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ////個々の幅、文章の寄せ
+            //gridTorihiki.Columns["コード"].Width = 0;
+            //gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridTorihiki.Columns["メモ"].Width = 110;
-            gridTorihiki.Columns["メモ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            gridTorihiki.Columns["メモ"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            //gridTorihiki.Columns["メーカー"].Width = 150;
+            //gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            //gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            //gridTorihiki.Columns["大分類名"].Width = 0;
+            //gridTorihiki.Columns["大分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //gridTorihiki.Columns["大分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //gridTorihiki.Columns["中分類名"].Width = 110;
+            //gridTorihiki.Columns["中分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            //gridTorihiki.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //gridTorihiki.Columns["品名"].Width = 300;
+            //gridTorihiki.Columns["品名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            //gridTorihiki.Columns["品名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //gridTorihiki.Columns["メモ"].Width = 110;
+            //gridTorihiki.Columns["メモ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //gridTorihiki.Columns["メモ"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+        }
+
+        ///<summary>
+        ///setColumnShohin
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumnShohin(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridTorihiki.Columns.Add(col);
+            if (gridTorihiki.Columns[col.Name] != null)
+            {
+                gridTorihiki.Columns[col.Name].Width = intLen;
+                gridTorihiki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridTorihiki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridTorihiki.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
         }
 
         ///<summary>
@@ -215,63 +286,63 @@ namespace KATO.Common.Form
         ///</summary>
         private void setupStart()
         {
-            if (intFrmKind == CommonTeisu.FRM_SHOHIN_TANA)
-            {
-                DataGridViewTextBoxColumn tanaHonsha = new DataGridViewTextBoxColumn();
-                tanaHonsha.DataPropertyName = "棚番本社";
-                tanaHonsha.Name = "棚番本社";
-                tanaHonsha.HeaderText = "棚番本社";
+            //if (intFrmKind == CommonTeisu.FRM_SHOHIN_TANA)
+            //{
+            //    DataGridViewTextBoxColumn tanaHonsha = new DataGridViewTextBoxColumn();
+            //    tanaHonsha.DataPropertyName = "棚番本社";
+            //    tanaHonsha.Name = "棚番本社";
+            //    tanaHonsha.HeaderText = "棚番本社";
 
-                DataGridViewTextBoxColumn tanaGifu = new DataGridViewTextBoxColumn();
-                tanaGifu.DataPropertyName = "棚番岐阜";
-                tanaGifu.Name = "棚番岐阜";
-                tanaGifu.HeaderText = "棚番岐阜";
+            //    DataGridViewTextBoxColumn tanaGifu = new DataGridViewTextBoxColumn();
+            //    tanaGifu.DataPropertyName = "棚番岐阜";
+            //    tanaGifu.Name = "棚番岐阜";
+            //    tanaGifu.HeaderText = "棚番岐阜";
 
-                gridTorihiki.Columns.Add(tanaHonsha);
-                gridTorihiki.Columns.Add(tanaGifu);
+            //    gridTorihiki.Columns.Add(tanaHonsha);
+            //    gridTorihiki.Columns.Add(tanaGifu);
 
-                gridTorihiki.Columns["棚番本社"].Width = 110;
-                gridTorihiki.Columns["棚番本社"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                gridTorihiki.Columns["棚番本社"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //    gridTorihiki.Columns["棚番本社"].Width = 110;
+            //    gridTorihiki.Columns["棚番本社"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //    gridTorihiki.Columns["棚番本社"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                gridTorihiki.Columns["棚番岐阜"].Width = 110;
-                gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //    gridTorihiki.Columns["棚番岐阜"].Width = 110;
+            //    gridTorihiki.Columns["棚番岐阜"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //    gridTorihiki.Columns["棚番岐阜"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-                chkNotToroku.Visible = true;
-                chkNotToroku.Checked = true;
-                lblDataFree.Visible = false;
-                btnHonshaZaiko.Visible = false;
-                btnGifuZaiko.Visible = false;
+            //    chkNotToroku.Visible = true;
+            //    chkNotToroku.Checked = true;
+            //    lblDataFree.Visible = false;
+            //    btnHonshaZaiko.Visible = false;
+            //    btnGifuZaiko.Visible = false;
 
-                blnZaikoKensaku = false;
-            }
-            else if (intFrmKind == CommonTeisu.FRM_SHOHIN ||
-                     intFrmKind == CommonTeisu.FRM_TANAOROSHI ||
-                     intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN ||
-                     intFrmKind == CommonTeisu.FRM_HACHUINPUT)
-            {
-                DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
-                zaikoHonsha.DataPropertyName = "本社在庫";
-                zaikoHonsha.Name = "本社在庫";
-                zaikoHonsha.HeaderText = "本社在庫";
+            //    blnZaikoKensaku = false;
+            //}
+            //else if (intFrmKind == CommonTeisu.FRM_SHOHIN ||
+            //         intFrmKind == CommonTeisu.FRM_TANAOROSHI ||
+            //         intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN ||
+            //         intFrmKind == CommonTeisu.FRM_HACHUINPUT)
+            //{
+            //    DataGridViewTextBoxColumn zaikoHonsha = new DataGridViewTextBoxColumn();
+            //    zaikoHonsha.DataPropertyName = "本社在庫";
+            //    zaikoHonsha.Name = "本社在庫";
+            //    zaikoHonsha.HeaderText = "本社在庫";
 
-                DataGridViewTextBoxColumn zaikoGifu = new DataGridViewTextBoxColumn();
-                zaikoGifu.DataPropertyName = "岐阜在庫";
-                zaikoGifu.Name = "岐阜在庫";
-                zaikoGifu.HeaderText = "岐阜在庫";
+            //    DataGridViewTextBoxColumn zaikoGifu = new DataGridViewTextBoxColumn();
+            //    zaikoGifu.DataPropertyName = "岐阜在庫";
+            //    zaikoGifu.Name = "岐阜在庫";
+            //    zaikoGifu.HeaderText = "岐阜在庫";
 
-                gridTorihiki.Columns.Add(zaikoHonsha);
-                gridTorihiki.Columns.Add(zaikoGifu);
+            //    gridTorihiki.Columns.Add(zaikoHonsha);
+            //    gridTorihiki.Columns.Add(zaikoGifu);
 
-                gridTorihiki.Columns["本社在庫"].Width = 110;
-                gridTorihiki.Columns["本社在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                gridTorihiki.Columns["本社在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //    gridTorihiki.Columns["本社在庫"].Width = 110;
+            //    gridTorihiki.Columns["本社在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //    gridTorihiki.Columns["本社在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                gridTorihiki.Columns["岐阜在庫"].Width = 110;
-                gridTorihiki.Columns["岐阜在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                gridTorihiki.Columns["岐阜在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
+            //    gridTorihiki.Columns["岐阜在庫"].Width = 110;
+            //    gridTorihiki.Columns["岐阜在庫"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //    gridTorihiki.Columns["岐阜在庫"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //}
         }
 
 

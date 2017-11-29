@@ -1488,6 +1488,7 @@
             // txtToriatu
             // 
             this.txtToriatu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtToriatu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtToriatu.Location = new System.Drawing.Point(93, 171);
             this.txtToriatu.MaxLength = 100;
             this.txtToriatu.Name = "txtToriatu";
@@ -1500,6 +1501,7 @@
             // txtKoza
             // 
             this.txtKoza.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKoza.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtKoza.Location = new System.Drawing.Point(94, 139);
             this.txtKoza.MaxLength = 50;
             this.txtKoza.Name = "txtKoza";
@@ -1527,7 +1529,7 @@
             this.txtJugyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJugyo.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtJugyo.Location = new System.Drawing.Point(94, 77);
-            this.txtJugyo.MaxLength = 15;
+            this.txtJugyo.MaxLength = 7;
             this.txtJugyo.Name = "txtJugyo";
             this.txtJugyo.Size = new System.Drawing.Size(130, 22);
             this.txtJugyo.TabIndex = 4;

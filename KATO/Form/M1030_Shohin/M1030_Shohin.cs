@@ -466,26 +466,18 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_Maker.Focus();
                 return;
             }
-            if (txtData1.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtData1.Focus();
-                return;
-            }
-            if (txtHachukbn.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtHachukbn.Focus();
-                return;
-            }
+            //if (txtHachukbn.blIsEmpty() == false)
+            //{
+            //    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    txtHachukbn.Focus();
+            //    return;
+            //}
             if (txtHyojun.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtHyojun.Focus();
                 return;
@@ -493,7 +485,7 @@ namespace KATO.Form.M1030_Shohin
             if (txtShire.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtShire.Focus();
                 return;
@@ -501,7 +493,7 @@ namespace KATO.Form.M1030_Shohin
             if (txtHyoka.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtHyoka.Focus();
                 return;
@@ -509,7 +501,7 @@ namespace KATO.Form.M1030_Shohin
             if (txtTatene.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtTatene.Focus();
                 return;
@@ -541,7 +533,7 @@ namespace KATO.Form.M1030_Shohin
             if (txtTeika.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtTeika.Focus();
                 return;
@@ -549,7 +541,7 @@ namespace KATO.Form.M1030_Shohin
             if (txtHako.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtHako.Focus();
                 return;
@@ -725,6 +717,9 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         public void setShouhin(DataTable dtShohin)
         {
+            //検索項目の確保
+            string strKensakuSub = txtKensaku.Text;
+
             delFormClear(this);
 
             labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
@@ -772,6 +767,9 @@ namespace KATO.Form.M1030_Shohin
                 txtData6.Text + " ";
 
             lblGrayToroku.Text = ((DateTime)dtShohin.Rows[0]["登録日時"]).ToString("yyyy/MM/dd");
+
+            //検索項目を元に戻す
+            txtKensaku.Text = strKensakuSub;
 
             radSet_2btn_Toroku.radbtn1.Checked = true;
         }
@@ -1042,6 +1040,11 @@ namespace KATO.Form.M1030_Shohin
 
             //フォーカス位置確保
             cActiveBefore = this.ActiveControl;
+        }
+
+        public void setChubun()
+        {
+            labelSet_Chubunrui.setTxtChubunruiLeave();
         }
     }
 }

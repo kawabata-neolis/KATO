@@ -217,6 +217,10 @@ namespace KATO.Common.Ctl
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                     }
+
+                    //空にする
+                    CodeTxtText = "";
+
                     blMessageOn = true;
                     return;
                 }

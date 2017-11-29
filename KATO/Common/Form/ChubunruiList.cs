@@ -330,7 +330,7 @@ namespace KATO.Common.Form
             {
                 //セットの中に検索結果データを入れる
                 lblSetChubun.CodeTxtText = lstSelectData[0];
-                lblSetChubun.ValueLabelText = lstSelectData[1];
+                //lblSetChubun.ValueLabelText = lstSelectData[1];
 
                 //全てのフォームの中から
                 foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -340,7 +340,9 @@ namespace KATO.Common.Form
                     {
                         //データを連れてくるため、newをしないこと
                         M1030_Shohin shohinHome = (M1030_Shohin)frm;
-                        shohinHome.setDaibun(strSubDaibunCd);
+
+                        //中分類のセット
+                        shohinHome.setChubun();
                         break;
                     }
                     //棚卸入力のフォームを探す
