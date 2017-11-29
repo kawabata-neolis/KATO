@@ -507,6 +507,8 @@ namespace KATO.Form.M1110_Chubunrui
         {
             txtChubunrui.Text = dtSelectData.Rows[0]["中分類コード"].ToString();
             txtElem.Text = dtSelectData.Rows[0]["中分類名"].ToString();
+
+            setTxtChubunrui();
         }
 
         ///<summary>
@@ -514,6 +516,15 @@ namespace KATO.Form.M1110_Chubunrui
         ///code入力箇所からフォーカスが外れた時（中分類）
         ///</summary>
         public void setTxtChubunruiLeave(object sender, EventArgs e)
+        {
+            setTxtChubunrui();
+        }
+
+        ///<summary>
+        ///setTxtChubunrui
+        ///code入力箇所からフォーカスが外れた時（中分類）
+        ///</summary>
+        public void setTxtChubunrui()
         {
             //データ渡し用
             List<string> lstString = new List<string>();

@@ -264,13 +264,13 @@ namespace KATO.Common.Ctl
                 return;
             }
 
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
             if (this.CodeTxtText.Length == 1)
             {
                 CodeTxtText = CodeTxtText.ToString().PadLeft(2, '0');
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             //データ渡し用
             lstStringSQL.Add("Common");
@@ -308,16 +308,18 @@ namespace KATO.Common.Ctl
                     //グループボックスかパネル内にいる場合
                     if (this.Parent is GroupBox || this.Parent is Panel)
                     {
-                        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                     }
                     else
                     {
-                        //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                     }
+
+                    //エラーメッセージを表示された
                     blMessageOn = true;
                     return;
                 }

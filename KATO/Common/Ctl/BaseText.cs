@@ -117,11 +117,20 @@ namespace KATO.Common.Ctl
                 //文字コードを使用
                 int intByteCnt = Encoding.GetEncoding("Shift_JIS").GetByteCount(cActiveBefore.Text);
 
-                //文字コードと最大入力数を比較
-                if (intByteCnt >= ((TextBox)cActiveBefore).MaxLength)
+                //コンボボックスボックスかの判定
+                if (cActiveBefore.GetType().Equals(typeof(ComboBox)))
                 {
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
+                }
+                else
+                {
+                    //文字コードと最大入力数を比較
+                    if (intByteCnt >= ((TextBox)cActiveBefore).MaxLength)
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
                 }
             }
         }

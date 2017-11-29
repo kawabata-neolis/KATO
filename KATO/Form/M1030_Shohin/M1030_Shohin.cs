@@ -791,9 +791,9 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void judtxtShohinKeyUp(object sender, KeyEventArgs e)
         {
-            //入力項目上でのキー判定と文字数判定
             cActiveBefore = this.ActiveControl;
 
+            //入力項目上でのキー判定と文字数判定
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
         }

@@ -344,49 +344,51 @@ namespace KATO.Common.Form
         ///</summary>
         public void EndAction(List<string> lstSelectId)
         {
-            //データグリッドビューからデータを選択且つセット系から来た場合
-            if (lblSetMaker != null && lstSelectId.Count != 0)
+            if(lblSetDaibunrui.blMessageOn == false)
             {
-                //セットの中に検索結果データを入れる
-                lblSetMaker.CodeTxtText = lstSelectId[0];
-                lblSetMaker.ValueLabelText = lstSelectId[1];
-
-                //全てのフォームの中から
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                //データグリッドビューからデータを選択且つセット系から来た場合
+                if (lblSetMaker != null && lstSelectId.Count != 0)
                 {
-                    //商品のフォームを探す
-                    if (frm.Name == "M1030_Shohin")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        M1030_Shohin shohinHome = (M1030_Shohin)frm;
-                        shohinHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
-                    //棚卸入力のフォームを探す
-                    if (frm.Name == "F0140_TanaorosiInput")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
-                        tanaHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
-                    //商品元帳確認のフォームを探す
-                    if (frm.Name == "D0380_ShohinMotochoKakunin")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
-                        shohinmotoHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
-                    //発注入力のフォームを探す
-                    if (frm.Name == "A0100_HachuInput")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
-                        hachuHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
+                    //セットの中に検索結果データを入れる
+                    lblSetMaker.CodeTxtText = lstSelectId[0];
+                    lblSetMaker.ValueLabelText = lstSelectId[1];
 
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //商品のフォームを探す
+                        if (frm.Name == "M1030_Shohin")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            M1030_Shohin shohinHome = (M1030_Shohin)frm;
+                            shohinHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                        //棚卸入力のフォームを探す
+                        if (frm.Name == "F0140_TanaorosiInput")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
+                            tanaHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                        //商品元帳確認のフォームを探す
+                        if (frm.Name == "D0380_ShohinMotochoKakunin")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
+                            shohinmotoHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                        //発注入力のフォームを探す
+                        if (frm.Name == "A0100_HachuInput")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
+                            hachuHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                    }
                 }
             }
 
@@ -427,16 +429,61 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //大分類ラベルセットが空でない場合
-            if (lblSetDaibunrui.ValueLabelText != "")
+            List<string> lstSearch = new List<string>();
+            DataTable dtKensaku = new DataTable();
+
+            //空白削除
+            lblSetDaibunrui.CodeTxtText = lblSetDaibunrui.CodeTxtText.Trim();
+            txtKensaku.Text = txtKensaku.Text.Trim();
+
+            //listに追加
+            lstSearch.Add(lblSetDaibunrui.CodeTxtText);
+            lstSearch.Add(txtKensaku.Text);
+
+            MakerList_B makerlistB = new MakerList_B();
+            try
             {
-                setDatagridView();
+                dtKensaku = makerlistB.getKensaku(lstSearch);
+
+                //一件以上ある場合
+                if (dtKensaku.Rows.Count != 0)
+                {
+                    gridMaker.DataSource = dtKensaku;
+                }
+            
+                //検索件数を表示
+                lblRecords.Text = "該当件数( " + gridMaker.RowCount.ToString() + "件)";
+
+                //件数が0の場合
+                if (gridMaker.RowCount == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                BaseForm baseform = new BaseForm();
-                baseform.delFormClear(this, gridMaker);
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
+
+            
+
+            ////大分類ラベルセットが空でない場合
+            //if (lblSetDaibunrui.ValueLabelText != "")
+            //{
+            //    setDatagridView();
+            //}
+            //else
+            //{
+            //    BaseForm baseform = new BaseForm();
+            //    baseform.delFormClear(this, gridMaker);
+            //}
         }
 
         ///<summary>
@@ -648,9 +695,8 @@ namespace KATO.Common.Form
         ///</summary>
         private void lblSetDaibunrui_Leave(object sender, EventArgs e)
         {
-            //大分類コードがない場合
-            if (lblSetDaibunrui.CodeTxtText == "" ||
-                StringUtl.blIsEmpty(lblSetDaibunrui.CodeTxtText) == false)
+            //メッセージが表示された場合
+            if (lblSetDaibunrui.blMessageOn == false)
             {
                 return;
             }
@@ -660,7 +706,6 @@ namespace KATO.Common.Form
                 StringUtl.blIsEmpty(lblSetDaibunrui.ValueLabelText) == false)
             {
                 gridMaker.DataSource = null;
-                lblSetDaibunrui.Focus();
             }
         }
     }

@@ -12,6 +12,8 @@ using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using KATO.Business.M1070_Torihikisaki;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace KATO.Form.M1070_Torihikisaki
 {
@@ -28,6 +30,11 @@ namespace KATO.Form.M1070_Torihikisaki
     {
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        Control cActiveBefore = null;
+
+        //エラーメッセージを表示したかどうか
+        bool blMessageOn = false;
 
         ///<summary>
         ///M1070_Torihikisaki
@@ -86,7 +93,12 @@ namespace KATO.Form.M1070_Torihikisaki
             cmbNonyu.Items.Add("直送");
             cmbNonyu.Items.Add("代引き");
             cmbNonyu.Items.Add("来店");
+
+            //gcIme1.SetInputScope(gcTextBox1, GrapeCity.Win.Editors.InputScopeNameValue.Hiragana);
+
+            //this.
         }
+
 
         ///<summary>
         ///judTorihikiKeyDown
@@ -212,6 +224,13 @@ namespace KATO.Form.M1070_Torihikisaki
                 default:
                     break;
             }
+
+            ////フリガナのテキストの場合
+            //if (this.ActiveControl.Name == "txtHuriT")
+            //{
+            //    txtHuriT.ImeMode = ImeMode.KatakanaHalf;
+            //}
+
         }
 
         ///<summary>
@@ -510,6 +529,27 @@ namespace KATO.Form.M1070_Torihikisaki
                 txtJugyo.Focus();
                 return;
             }
+
+            //文字判定（業務担当者コード）
+            if(labelSet_GyomuTantousha.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_GyomuTantousha.Focus();
+                return;
+            }
+
+            //文字判定（納入方法）
+            if (StringUtl.blIsEmpty(cmbNonyu.Text) == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                cmbNonyu.Focus();
+                return;
+            }
+
             //登録情報を入れる（多いため割愛部分あり）
             //取引先
             lstTorihikisaki.Add(txtCdT.Text);
@@ -605,7 +645,7 @@ namespace KATO.Form.M1070_Torihikisaki
             //納入方法
             lstTorihikisaki.Add(cmbNonyu.Text);
             //業務担当者
-            lstTorihikisaki.Add(txtGyotan.Text);
+            lstTorihikisaki.Add(labelSet_GyomuTantousha.CodeTxtText);
 
             //ユーザー名
             lstTorihikisaki.Add(SystemInformation.UserName);
@@ -777,7 +817,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 //納入方法
                 lstTorihikisaki.Add(cmbNonyu.Text);
                 //業務担当者
-                lstTorihikisaki.Add(txtGyotan.Text);
+                lstTorihikisaki.Add(labelSet_GyomuTantousha.CodeTxtText);
 
                 //ユーザー名
                 lstTorihikisaki.Add(SystemInformation.UserName);
@@ -900,7 +940,7 @@ namespace KATO.Form.M1070_Torihikisaki
             //納入方法
             cmbNonyu.Text = dtSelectData.Rows[0]["納入方法"].ToString();
             //業務担当者
-            txtGyotan.Text = dtSelectData.Rows[0]["業務担当者コード"].ToString();
+            labelSet_GyomuTantousha.CodeTxtText = dtSelectData.Rows[0]["業務担当者コード"].ToString();
         }
 
         ///<summary>
@@ -1020,7 +1060,7 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void cmbNonyu_KeyUp(object sender, KeyEventArgs e)
         {
-            Control cActiveBefore = this.ActiveControl;
+            cActiveBefore = this.ActiveControl;
 
             //ベーステキストのインスタンス生成
             BaseText basetext = new BaseText();
@@ -1103,6 +1143,188 @@ namespace KATO.Form.M1070_Torihikisaki
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+        }
+
+        ///<summary>
+        ///labelset_Enter
+        ///フォーカスが来た場合
+        ///</summary>
+        private void labelset_Enter(object sender, EventArgs e)
+        {
+            //エラーメッセージ表示がされたかどうか
+            if (blMessageOn == true)
+            {
+                //フォーカス位置確保
+                Control cActive = this.ActiveControl;
+
+                switch (cActive.Name)
+                {
+                    //1
+                    case "labelSet_Tantousha":
+
+                        labelSet_Tantousha.codeTxt.BackColor = Color.White;
+                        break;
+
+                    //2
+                    case "labelSet_GyoshuCd":
+
+                        labelSet_GyoshuCd.codeTxt.BackColor = Color.White;
+                        break;
+
+                    //3
+                    case "labelSet_GyomuTantousha":
+
+                        labelSet_GyomuTantousha.codeTxt.BackColor = Color.White;
+                        break;
+
+                }
+
+                //初期化
+                blMessageOn = false;
+
+                switch (cActiveBefore.Name)
+                {
+                    //1
+                    case "labelSet_Tantousha":
+                        labelSet_Tantousha.Focus();
+                        labelSet_Tantousha.codeTxt.BackColor = Color.Cyan;
+                        break;
+
+                    //2
+                    case "labelSet_GyoshuCd":
+                        labelSet_GyoshuCd.Focus();
+                        labelSet_GyoshuCd.codeTxt.BackColor = Color.Cyan;
+                        break;
+
+                    //3
+                    case "labelSet_GyomuTantousha":
+                        labelSet_GyomuTantousha.Focus();
+                        labelSet_GyomuTantousha.codeTxt.BackColor = Color.Cyan;
+                        break;
+                }
+            }
+            else
+            {
+                //フォーカス位置の確保
+                cActiveBefore = this.ActiveControl;
+            }
+        }
+
+        ///<summary>
+        ///labelset_Leave
+        ///フォーカスが外れた場合
+        ///</summary>
+        private void labelset_Leave(object sender, EventArgs e)
+        {
+            switch (cActiveBefore.Name)
+            {
+                //1
+                case "labelSet_Tantousha":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_Tantousha.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_Tantousha.blMessageOn = false;
+                    }
+
+                    break;
+
+                //2
+                case "labelSet_GyoshuCd":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_GyoshuCd.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_GyoshuCd.blMessageOn = false;
+                    }
+
+                    break;
+
+                //3
+                case "labelSet_GyomuTantousha":
+
+                    //メッセージ表示がされていた場合
+                    if (labelSet_GyomuTantousha.blMessageOn == true)
+                    {
+                        blMessageOn = true;
+                        //初期化
+                        labelSet_GyomuTantousha.blMessageOn = false;
+                    }
+
+                    break;
+            }
+        }
+        
+        ///<summary>
+        ///torihikisaki_Enter
+        ///code入力箇所からフォーカスがついた時
+        ///</summary>
+        private void torihikisaki_Enter(object sender, EventArgs e)
+        {
+            if (blMessageOn == true)
+            {
+                cActiveBefore.Focus();
+            }
+        }
+
+        ///<summary>
+        ///NomberTxt_KeyPress
+        ///数値のみ通す処理
+        ///</summary>
+        private void NomberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar < '0' || '9' < e.KeyChar)
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
+            }
+        }
+
+        private void txtHuriT_Leave(object sender, EventArgs e)
+        {
+            //空白出ない場合
+            if (txtHuriT.blIsEmpty())
+            {
+                string s = txtHuriT.Text;
+
+                //ひらがなをカタカナに変換する
+                string s1 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Katakana, 0x411);
+
+                //カタカナをひらがなに変換する
+                string s2 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Hiragana, 0x411);
+
+                //半角を全角に変換する
+                string s3 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Wide, 0x411);
+
+                //全角を半角に変換する
+                string s4 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Narrow, 0x411);
+
+                string subS = s.Substring(0, 1);
+
+                // 名前がアルファベット以外なら処理
+                if (Regex.IsMatch(subS, @"[^a-zA-Z]"))
+                {
+                    txtHuriT.Text = Microsoft.VisualBasic.Strings.StrConv(s1, Microsoft.VisualBasic.VbStrConv.Narrow, 0x411);
+                }
+
+                Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
+                int num = sjisEnc.GetByteCount(txtHuriT.Text);
+
+                //文字数とbyte数が合わない場合
+                if (txtHuriT.Text.Length != num)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "ひらがなとカタカナ以外の文字列が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtHuriT.Focus();
+                    return;
+                }
             }
         }
     }

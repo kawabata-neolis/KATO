@@ -545,6 +545,12 @@ namespace KATO.Common.Form
         ///</summary>
         private void labelSet_Daibunrui_Leave(object sender, EventArgs e)
         {
+            //メッセージが表示された場合
+            if(lblSetDaibunrui.blMessageOn == false)
+            {
+                return;
+            }
+
             //大分類コードがない場合
             if (lblSetDaibunrui.CodeTxtText == "" ||
                 StringUtl.blIsEmpty(lblSetDaibunrui.CodeTxtText) == false)
@@ -557,7 +563,6 @@ namespace KATO.Common.Form
                 StringUtl.blIsEmpty(lblSetDaibunrui.ValueLabelText) == false)
             {
                 gridSeihin.DataSource = null;
-                lblSetDaibunrui.Focus();
             }
         }
     }

@@ -170,9 +170,10 @@
             this.lblZeikbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_GyoshuCd = new KATO.Common.Ctl.LabelSet_Gyoshu();
             this.cmbNonyu = new KATO.Common.Ctl.BaseComboBox();
-            this.lblGyotan = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblNonyu = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtGyotan = new KATO.Common.Ctl.BaseText();
+            this.labelSet_GyomuTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.baseLabel12 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbTori.SuspendLayout();
             this.gbRyoshu.SuspendLayout();
             this.gbSeikyu.SuspendLayout();
@@ -180,7 +181,12 @@
             this.gbKaisha.SuspendLayout();
             this.gbTorihiki.SuspendLayout();
             this.gbSohusaki.SuspendLayout();
+            this.labelSet_GyomuTantousha.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -225,10 +231,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblCdT
             // 
@@ -295,6 +297,7 @@
             this.txtFAXAT.Name = "txtFAXAT";
             this.txtFAXAT.Size = new System.Drawing.Size(105, 22);
             this.txtFAXAT.TabIndex = 12;
+            this.txtFAXAT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtFAXAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtFAXAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -319,6 +322,7 @@
             this.txtFAXT.Name = "txtFAXT";
             this.txtFAXT.Size = new System.Drawing.Size(105, 22);
             this.txtFAXT.TabIndex = 7;
+            this.txtFAXT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtFAXT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtFAXT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -331,6 +335,7 @@
             this.txtTantoEmailA.Name = "txtTantoEmailA";
             this.txtTantoEmailA.Size = new System.Drawing.Size(330, 22);
             this.txtTantoEmailA.TabIndex = 16;
+            this.txtTantoEmailA.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTantoEmailA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTantoEmailA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -343,6 +348,7 @@
             this.txtBushoNameA.Name = "txtBushoNameA";
             this.txtBushoNameA.Size = new System.Drawing.Size(170, 22);
             this.txtBushoNameA.TabIndex = 15;
+            this.txtBushoNameA.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtBushoNameA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtBushoNameA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -355,6 +361,7 @@
             this.txtTantoNameA.Name = "txtTantoNameA";
             this.txtTantoNameA.Size = new System.Drawing.Size(170, 22);
             this.txtTantoNameA.TabIndex = 14;
+            this.txtTantoNameA.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTantoNameA.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTantoNameA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -367,6 +374,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(330, 22);
             this.txtEmail.TabIndex = 13;
+            this.txtEmail.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtEmail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -379,6 +387,7 @@
             this.txtDenwaAT.Name = "txtDenwaAT";
             this.txtDenwaAT.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaAT.TabIndex = 11;
+            this.txtDenwaAT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtDenwaAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtDenwaAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -463,6 +472,7 @@
             this.txtDenwaT.Name = "txtDenwaT";
             this.txtDenwaT.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaT.TabIndex = 6;
+            this.txtDenwaT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtDenwaT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtDenwaT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -475,6 +485,7 @@
             this.txtJusho2AT.Name = "txtJusho2AT";
             this.txtJusho2AT.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2AT.TabIndex = 10;
+            this.txtJusho2AT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho2AT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho2AT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -511,6 +522,7 @@
             this.txtJusho2T.Name = "txtJusho2T";
             this.txtJusho2T.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2T.TabIndex = 5;
+            this.txtJusho2T.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho2T.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho2T.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -523,6 +535,7 @@
             this.txtJusho1AT.Name = "txtJusho1AT";
             this.txtJusho1AT.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1AT.TabIndex = 9;
+            this.txtJusho1AT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho1AT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho1AT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -559,6 +572,7 @@
             this.txtJusho1T.Name = "txtJusho1T";
             this.txtJusho1T.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1T.TabIndex = 4;
+            this.txtJusho1T.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho1T.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho1T.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -571,6 +585,7 @@
             this.txtYubinAT.Name = "txtYubinAT";
             this.txtYubinAT.Size = new System.Drawing.Size(75, 22);
             this.txtYubinAT.TabIndex = 8;
+            this.txtYubinAT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtYubinAT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtYubinAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -607,6 +622,7 @@
             this.txtYubinT.Name = "txtYubinT";
             this.txtYubinT.Size = new System.Drawing.Size(75, 22);
             this.txtYubinT.TabIndex = 3;
+            this.txtYubinT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtYubinT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtYubinT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -631,8 +647,10 @@
             this.txtHuriT.Name = "txtHuriT";
             this.txtHuriT.Size = new System.Drawing.Size(170, 22);
             this.txtHuriT.TabIndex = 2;
+            this.txtHuriT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtHuriT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtHuriT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
+            this.txtHuriT.Leave += new System.EventHandler(this.txtHuriT_Leave);
             // 
             // lblHuriT
             // 
@@ -655,6 +673,7 @@
             this.txtNameT.Name = "txtNameT";
             this.txtNameT.Size = new System.Drawing.Size(330, 22);
             this.txtNameT.TabIndex = 1;
+            this.txtNameT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtNameT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtNameT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -679,6 +698,7 @@
             this.txtCdT.Name = "txtCdT";
             this.txtCdT.Size = new System.Drawing.Size(40, 22);
             this.txtCdT.TabIndex = 0;
+            this.txtCdT.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtCdT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtToriTxtKeyDown);
             this.txtCdT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             this.txtCdT.Leave += new System.EventHandler(this.txtCdT_Leave);
@@ -714,6 +734,7 @@
             this.txtFAXR.Name = "txtFAXR";
             this.txtFAXR.Size = new System.Drawing.Size(105, 22);
             this.txtFAXR.TabIndex = 5;
+            this.txtFAXR.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtFAXR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtFAXR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -738,6 +759,7 @@
             this.txtDenwaR.Name = "txtDenwaR";
             this.txtDenwaR.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaR.TabIndex = 4;
+            this.txtDenwaR.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtDenwaR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtDenwaR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -762,6 +784,7 @@
             this.txtJusho2R.Name = "txtJusho2R";
             this.txtJusho2R.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2R.TabIndex = 3;
+            this.txtJusho2R.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho2R.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho2R.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -786,6 +809,7 @@
             this.txtJusho1R.Name = "txtJusho1R";
             this.txtJusho1R.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1R.TabIndex = 2;
+            this.txtJusho1R.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho1R.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho1R.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -810,6 +834,7 @@
             this.txtYubinR.Name = "txtYubinR";
             this.txtYubinR.Size = new System.Drawing.Size(75, 22);
             this.txtYubinR.TabIndex = 1;
+            this.txtYubinR.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtYubinR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtYubinR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -822,6 +847,7 @@
             this.txtNameR.Name = "txtNameR";
             this.txtNameR.Size = new System.Drawing.Size(330, 22);
             this.txtNameR.TabIndex = 0;
+            this.txtNameR.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtNameR.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtNameR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -866,6 +892,8 @@
             this.labelSet_Tantousha.TabIndex = 2;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
+            this.labelSet_Tantousha.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_Tantousha.Leave += new System.EventHandler(this.labelset_Leave);
             // 
             // gbSeikyu
             // 
@@ -898,6 +926,7 @@
             this.txtFAXS.Name = "txtFAXS";
             this.txtFAXS.Size = new System.Drawing.Size(105, 22);
             this.txtFAXS.TabIndex = 5;
+            this.txtFAXS.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtFAXS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtFAXS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -922,6 +951,7 @@
             this.txtDenwaS.Name = "txtDenwaS";
             this.txtDenwaS.Size = new System.Drawing.Size(105, 22);
             this.txtDenwaS.TabIndex = 4;
+            this.txtDenwaS.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtDenwaS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtDenwaS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -946,6 +976,7 @@
             this.txtJusho2S.Name = "txtJusho2S";
             this.txtJusho2S.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2S.TabIndex = 3;
+            this.txtJusho2S.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho2S.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho2S.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -970,6 +1001,7 @@
             this.txtJusho1S.Name = "txtJusho1S";
             this.txtJusho1S.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1S.TabIndex = 2;
+            this.txtJusho1S.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJusho1S.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJusho1S.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -994,6 +1026,7 @@
             this.txtYubinS.Name = "txtYubinS";
             this.txtYubinS.Size = new System.Drawing.Size(75, 22);
             this.txtYubinS.TabIndex = 1;
+            this.txtYubinS.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtYubinS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtYubinS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1006,6 +1039,7 @@
             this.txtNameS.Name = "txtNameS";
             this.txtNameS.Size = new System.Drawing.Size(330, 22);
             this.txtNameS.TabIndex = 0;
+            this.txtNameS.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtNameS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtNameS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1068,7 +1102,9 @@
             this.txtSihabi.Name = "txtSihabi";
             this.txtSihabi.Size = new System.Drawing.Size(24, 22);
             this.txtSihabi.TabIndex = 2;
+            this.txtSihabi.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSihabi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSihabi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtSihabi.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblSihabi
@@ -1092,7 +1128,9 @@
             this.txtSihatuki.Name = "txtSihatuki";
             this.txtSihatuki.Size = new System.Drawing.Size(24, 22);
             this.txtSihatuki.TabIndex = 1;
+            this.txtSihatuki.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSihatuki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSihatuki.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtSihatuki.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblSihatuki
@@ -1112,11 +1150,13 @@
             this.txtSeikyuumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSeikyuumu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSeikyuumu.Location = new System.Drawing.Point(233, 84);
-            this.txtSeikyuumu.MaxLength = 4;
+            this.txtSeikyuumu.MaxLength = 1;
             this.txtSeikyuumu.Name = "txtSeikyuumu";
             this.txtSeikyuumu.Size = new System.Drawing.Size(24, 22);
             this.txtSeikyuumu.TabIndex = 5;
+            this.txtSeikyuumu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSeikyuumu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSeikyuumu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtSeikyuumu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtShukinkbn
@@ -1124,11 +1164,13 @@
             this.txtShukinkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShukinkbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShukinkbn.Location = new System.Drawing.Point(94, 84);
-            this.txtShukinkbn.MaxLength = 4;
+            this.txtShukinkbn.MaxLength = 2;
             this.txtShukinkbn.Name = "txtShukinkbn";
             this.txtShukinkbn.Size = new System.Drawing.Size(24, 22);
             this.txtShukinkbn.TabIndex = 4;
+            this.txtShukinkbn.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtShukinkbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtShukinkbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtShukinkbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtJoken
@@ -1140,6 +1182,7 @@
             this.txtJoken.Name = "txtJoken";
             this.txtJoken.Size = new System.Drawing.Size(330, 22);
             this.txtJoken.TabIndex = 3;
+            this.txtJoken.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJoken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJoken.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1164,7 +1207,9 @@
             this.txtSime.Name = "txtSime";
             this.txtSime.Size = new System.Drawing.Size(24, 22);
             this.txtSime.TabIndex = 0;
+            this.txtSime.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSime.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtSime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtSime.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblShukbn
@@ -1200,7 +1245,7 @@
             this.baseLabel9.Size = new System.Drawing.Size(77, 12);
             this.baseLabel9.strToolTip = "";
             this.baseLabel9.TabIndex = 90;
-            this.baseLabel9.Text = "(月末絞は31)";
+            this.baseLabel9.Text = "(月末締は31)";
             this.baseLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // baseLabel11
@@ -1236,7 +1281,7 @@
             this.baseLabel7.Size = new System.Drawing.Size(77, 12);
             this.baseLabel7.strToolTip = "";
             this.baseLabel7.TabIndex = 90;
-            this.baseLabel7.Text = "(月末絞は31)";
+            this.baseLabel7.Text = "(月末締は31)";
             this.baseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblJoken
@@ -1295,6 +1340,7 @@
             this.gbKaisha.Size = new System.Drawing.Size(914, 203);
             this.gbKaisha.TabIndex = 9;
             this.gbKaisha.TabStop = false;
+            this.gbKaisha.Enter += new System.EventHandler(this.torihikisaki_Enter);
             // 
             // txtSihon
             // 
@@ -1310,6 +1356,7 @@
             this.txtSihon.Size = new System.Drawing.Size(130, 22);
             this.txtSihon.TabIndex = 2;
             this.txtSihon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSihon.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSihon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtSihon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             this.txtSihon.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1323,6 +1370,7 @@
             this.txtSeturitu.Name = "txtSeturitu";
             this.txtSeturitu.Size = new System.Drawing.Size(170, 22);
             this.txtSeturitu.TabIndex = 3;
+            this.txtSeturitu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSeturitu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtSeturitu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1334,6 +1382,7 @@
             this.txtBango.Name = "txtBango";
             this.txtBango.Size = new System.Drawing.Size(65, 22);
             this.txtBango.TabIndex = 9;
+            this.txtBango.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtBango.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtBango.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1346,6 +1395,7 @@
             this.txtShubetu.Name = "txtShubetu";
             this.txtShubetu.Size = new System.Drawing.Size(55, 22);
             this.txtShubetu.TabIndex = 8;
+            this.txtShubetu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtShubetu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtShubetu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1370,6 +1420,7 @@
             this.txtSiten.Name = "txtSiten";
             this.txtSiten.Size = new System.Drawing.Size(170, 22);
             this.txtSiten.TabIndex = 7;
+            this.txtSiten.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSiten.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtSiten.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1430,6 +1481,7 @@
             this.txtKesan.Name = "txtKesan";
             this.txtKesan.Size = new System.Drawing.Size(170, 22);
             this.txtKesan.TabIndex = 5;
+            this.txtKesan.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtKesan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtKesan.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1441,6 +1493,7 @@
             this.txtToriatu.Name = "txtToriatu";
             this.txtToriatu.Size = new System.Drawing.Size(810, 22);
             this.txtToriatu.TabIndex = 11;
+            this.txtToriatu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtToriatu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtToriatu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1452,6 +1505,7 @@
             this.txtKoza.Name = "txtKoza";
             this.txtKoza.Size = new System.Drawing.Size(410, 22);
             this.txtKoza.TabIndex = 10;
+            this.txtKoza.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtKoza.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtKoza.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1464,6 +1518,7 @@
             this.txtGinko.Name = "txtGinko";
             this.txtGinko.Size = new System.Drawing.Size(170, 22);
             this.txtGinko.TabIndex = 6;
+            this.txtGinko.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtGinko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtGinko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1477,6 +1532,7 @@
             this.txtJugyo.Size = new System.Drawing.Size(130, 22);
             this.txtJugyo.TabIndex = 4;
             this.txtJugyo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtJugyo.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtJugyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtJugyo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             this.txtJugyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
@@ -1490,6 +1546,7 @@
             this.txtDaihyo.Name = "txtDaihyo";
             this.txtDaihyo.Size = new System.Drawing.Size(170, 22);
             this.txtDaihyo.TabIndex = 1;
+            this.txtDaihyo.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtDaihyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtDaihyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1538,6 +1595,7 @@
             this.txtSiha.Name = "txtSiha";
             this.txtSiha.Size = new System.Drawing.Size(330, 22);
             this.txtSiha.TabIndex = 0;
+            this.txtSiha.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtSiha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtSiha.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1628,6 +1686,7 @@
             this.txtTorihiki20.Name = "txtTorihiki20";
             this.txtTorihiki20.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki20.TabIndex = 19;
+            this.txtTorihiki20.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki20.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1640,6 +1699,7 @@
             this.txtTorihiki19.Name = "txtTorihiki19";
             this.txtTorihiki19.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki19.TabIndex = 18;
+            this.txtTorihiki19.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki19.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki19.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1652,6 +1712,7 @@
             this.txtTorihiki10.Name = "txtTorihiki10";
             this.txtTorihiki10.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki10.TabIndex = 9;
+            this.txtTorihiki10.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1664,6 +1725,7 @@
             this.txtTorihiki15.Name = "txtTorihiki15";
             this.txtTorihiki15.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki15.TabIndex = 14;
+            this.txtTorihiki15.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki15.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki15.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1676,6 +1738,7 @@
             this.txtTorihiki9.Name = "txtTorihiki9";
             this.txtTorihiki9.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki9.TabIndex = 8;
+            this.txtTorihiki9.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1688,6 +1751,7 @@
             this.txtTorihiki14.Name = "txtTorihiki14";
             this.txtTorihiki14.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki14.TabIndex = 13;
+            this.txtTorihiki14.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki14.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1700,6 +1764,7 @@
             this.txtTorihiki5.Name = "txtTorihiki5";
             this.txtTorihiki5.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki5.TabIndex = 4;
+            this.txtTorihiki5.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1712,6 +1777,7 @@
             this.txtTorihiki18.Name = "txtTorihiki18";
             this.txtTorihiki18.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki18.TabIndex = 17;
+            this.txtTorihiki18.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki18.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki18.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1724,6 +1790,7 @@
             this.txtTorihiki4.Name = "txtTorihiki4";
             this.txtTorihiki4.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki4.TabIndex = 3;
+            this.txtTorihiki4.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1736,6 +1803,7 @@
             this.txtTorihiki13.Name = "txtTorihiki13";
             this.txtTorihiki13.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki13.TabIndex = 12;
+            this.txtTorihiki13.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki13.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1748,6 +1816,7 @@
             this.txtTorihiki8.Name = "txtTorihiki8";
             this.txtTorihiki8.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki8.TabIndex = 7;
+            this.txtTorihiki8.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1760,6 +1829,7 @@
             this.txtTorihiki12.Name = "txtTorihiki12";
             this.txtTorihiki12.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki12.TabIndex = 11;
+            this.txtTorihiki12.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki12.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1772,6 +1842,7 @@
             this.txtTorihiki3.Name = "txtTorihiki3";
             this.txtTorihiki3.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki3.TabIndex = 2;
+            this.txtTorihiki3.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1784,6 +1855,7 @@
             this.txtTorihiki17.Name = "txtTorihiki17";
             this.txtTorihiki17.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki17.TabIndex = 16;
+            this.txtTorihiki17.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki17.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki17.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1796,6 +1868,7 @@
             this.txtTorihiki2.Name = "txtTorihiki2";
             this.txtTorihiki2.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki2.TabIndex = 1;
+            this.txtTorihiki2.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1808,6 +1881,7 @@
             this.txtTorihiki11.Name = "txtTorihiki11";
             this.txtTorihiki11.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki11.TabIndex = 10;
+            this.txtTorihiki11.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki11.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1820,6 +1894,7 @@
             this.txtTorihiki7.Name = "txtTorihiki7";
             this.txtTorihiki7.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki7.TabIndex = 6;
+            this.txtTorihiki7.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1832,6 +1907,7 @@
             this.txtTorihiki16.Name = "txtTorihiki16";
             this.txtTorihiki16.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki16.TabIndex = 15;
+            this.txtTorihiki16.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki16.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki16.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1845,6 +1921,7 @@
             this.txtTorihiki1.Name = "txtTorihiki1";
             this.txtTorihiki1.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki1.TabIndex = 0;
+            this.txtTorihiki1.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1857,6 +1934,7 @@
             this.txtTorihiki6.Name = "txtTorihiki6";
             this.txtTorihiki6.Size = new System.Drawing.Size(410, 22);
             this.txtTorihiki6.TabIndex = 5;
+            this.txtTorihiki6.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtTorihiki6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.txtTorihiki6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
@@ -1891,7 +1969,9 @@
             this.txtMesai.Name = "txtMesai";
             this.txtMesai.Size = new System.Drawing.Size(15, 22);
             this.txtMesai.TabIndex = 3;
+            this.txtMesai.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtMesai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtMesai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtMesai.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblMesai
@@ -1915,7 +1995,9 @@
             this.txtZeihasu.Name = "txtZeihasu";
             this.txtZeihasu.Size = new System.Drawing.Size(15, 22);
             this.txtZeihasu.TabIndex = 2;
+            this.txtZeihasu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtZeihasu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtZeihasu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtZeihasu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblZeihasu
@@ -1939,7 +2021,9 @@
             this.txtKeisankbn.Name = "txtKeisankbn";
             this.txtKeisankbn.Size = new System.Drawing.Size(15, 22);
             this.txtKeisankbn.TabIndex = 1;
+            this.txtKeisankbn.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtKeisankbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtKeisankbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtKeisankbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // txtZeikbn
@@ -1951,7 +2035,9 @@
             this.txtZeikbn.Name = "txtZeikbn";
             this.txtZeikbn.Size = new System.Drawing.Size(15, 22);
             this.txtZeikbn.TabIndex = 0;
+            this.txtZeikbn.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.txtZeikbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
+            this.txtZeikbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NomberTxt_KeyPress);
             this.txtZeikbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
             // 
             // lblKeisankbn
@@ -2043,6 +2129,8 @@
             this.labelSet_GyoshuCd.TabIndex = 4;
             this.labelSet_GyoshuCd.ValueLabelSize = 160;
             this.labelSet_GyoshuCd.ValueLabelText = "";
+            this.labelSet_GyoshuCd.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_GyoshuCd.Leave += new System.EventHandler(this.labelset_Leave);
             // 
             // cmbNonyu
             // 
@@ -2055,20 +2143,9 @@
             this.cmbNonyu.Name = "cmbNonyu";
             this.cmbNonyu.Size = new System.Drawing.Size(270, 23);
             this.cmbNonyu.TabIndex = 5;
+            this.cmbNonyu.Enter += new System.EventHandler(this.torihikisaki_Enter);
             this.cmbNonyu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
             this.cmbNonyu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbNonyu_KeyUp);
-            // 
-            // lblGyotan
-            // 
-            this.lblGyotan.AutoSize = true;
-            this.lblGyotan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGyotan.Location = new System.Drawing.Point(26, 686);
-            this.lblGyotan.Name = "lblGyotan";
-            this.lblGyotan.Size = new System.Drawing.Size(135, 15);
-            this.lblGyotan.strToolTip = null;
-            this.lblGyotan.TabIndex = 3;
-            this.lblGyotan.Text = "業務担当者コード";
-            this.lblGyotan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblNonyu
             // 
@@ -2082,26 +2159,58 @@
             this.lblNonyu.Text = "納入方法";
             this.lblNonyu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtGyotan
+            // labelSet_GyomuTantousha
             // 
-            this.txtGyotan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtGyotan.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtGyotan.Location = new System.Drawing.Point(167, 684);
-            this.txtGyotan.MaxLength = 4;
-            this.txtGyotan.Name = "txtGyotan";
-            this.txtGyotan.Size = new System.Drawing.Size(40, 22);
-            this.txtGyotan.TabIndex = 3;
-            this.txtGyotan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiTxtKeyDown);
-            this.txtGyotan.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTorihikiKeyUp);
+            this.labelSet_GyomuTantousha.AppendLabelSize = 0;
+            this.labelSet_GyomuTantousha.AppendLabelText = "";
+            this.labelSet_GyomuTantousha.CodeTxtSize = 40;
+            this.labelSet_GyomuTantousha.CodeTxtText = "";
+            this.labelSet_GyomuTantousha.Controls.Add(this.baseLabel12);
+            this.labelSet_GyomuTantousha.Controls.Add(this.nameLabel);
+            this.labelSet_GyomuTantousha.LabelName = "業務担当者コード";
+            this.labelSet_GyomuTantousha.Location = new System.Drawing.Point(24, 684);
+            this.labelSet_GyomuTantousha.Name = "labelSet_GyomuTantousha";
+            this.labelSet_GyomuTantousha.ShowAppendFlg = false;
+            this.labelSet_GyomuTantousha.Size = new System.Drawing.Size(314, 22);
+            this.labelSet_GyomuTantousha.SpaceCodeValue = 4;
+            this.labelSet_GyomuTantousha.SpaceNameCode = 8;
+            this.labelSet_GyomuTantousha.SpaceValueAppend = 4;
+            this.labelSet_GyomuTantousha.TabIndex = 3;
+            this.labelSet_GyomuTantousha.ValueLabelSize = 0;
+            this.labelSet_GyomuTantousha.ValueLabelText = "";
+            this.labelSet_GyomuTantousha.Enter += new System.EventHandler(this.labelset_Enter);
+            this.labelSet_GyomuTantousha.Leave += new System.EventHandler(this.labelset_Leave);
+            // 
+            // baseLabel12
+            // 
+            this.baseLabel12.AutoSize = true;
+            this.baseLabel12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel12.Location = new System.Drawing.Point(2, 3);
+            this.baseLabel12.Name = "baseLabel12";
+            this.baseLabel12.Size = new System.Drawing.Size(135, 15);
+            this.baseLabel12.strToolTip = null;
+            this.baseLabel12.TabIndex = 0;
+            this.baseLabel12.Text = "業務担当者コード";
+            this.baseLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(103, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "担当者コード";
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // M1070_Torihikisaki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
-            this.Controls.Add(this.txtGyotan);
             this.Controls.Add(this.lblNonyu);
-            this.Controls.Add(this.lblGyotan);
             this.Controls.Add(this.cmbNonyu);
             this.Controls.Add(this.labelSet_GyoshuCd);
             this.Controls.Add(this.gbSohusaki);
@@ -2109,6 +2218,7 @@
             this.Controls.Add(this.gbKaisha);
             this.Controls.Add(this.gbSime);
             this.Controls.Add(this.gbSeikyu);
+            this.Controls.Add(this.labelSet_GyomuTantousha);
             this.Controls.Add(this.labelSet_Tantousha);
             this.Controls.Add(this.gbRyoshu);
             this.Controls.Add(this.gbTori);
@@ -2131,6 +2241,7 @@
             this.Controls.SetChildIndex(this.gbTori, 0);
             this.Controls.SetChildIndex(this.gbRyoshu, 0);
             this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
+            this.Controls.SetChildIndex(this.labelSet_GyomuTantousha, 0);
             this.Controls.SetChildIndex(this.gbSeikyu, 0);
             this.Controls.SetChildIndex(this.gbSime, 0);
             this.Controls.SetChildIndex(this.gbKaisha, 0);
@@ -2138,9 +2249,7 @@
             this.Controls.SetChildIndex(this.gbSohusaki, 0);
             this.Controls.SetChildIndex(this.labelSet_GyoshuCd, 0);
             this.Controls.SetChildIndex(this.cmbNonyu, 0);
-            this.Controls.SetChildIndex(this.lblGyotan, 0);
             this.Controls.SetChildIndex(this.lblNonyu, 0);
-            this.Controls.SetChildIndex(this.txtGyotan, 0);
             this.gbTori.ResumeLayout(false);
             this.gbTori.PerformLayout();
             this.gbRyoshu.ResumeLayout(false);
@@ -2155,6 +2264,8 @@
             this.gbTorihiki.PerformLayout();
             this.gbSohusaki.ResumeLayout(false);
             this.gbSohusaki.PerformLayout();
+            this.labelSet_GyomuTantousha.ResumeLayout(false);
+            this.labelSet_GyomuTantousha.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2303,8 +2414,9 @@
         private Common.Ctl.BaseLabel baseLabel11;
         private Common.Ctl.BaseLabel baseLabel10;
         private Common.Ctl.BaseComboBox cmbNonyu;
-        private Common.Ctl.BaseLabel lblGyotan;
         private Common.Ctl.BaseLabel lblNonyu;
-        private Common.Ctl.BaseText txtGyotan;
+        private Common.Ctl.LabelSet_Tantousha labelSet_GyomuTantousha;
+        private Common.Ctl.BaseLabel baseLabel12;
+        private Common.Ctl.BaseLabel nameLabel;
     }
 }

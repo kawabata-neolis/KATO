@@ -128,7 +128,7 @@ namespace KATO.Common.Ctl
         private void BaseComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //parentが発注入力の場合
-            if (this.Parent.Parent.Name == "A0100_HachuInput")
+            if (this.Parent.Name == "A0100_HachuInput")
             {
                 //選んだアイテムがある場合
                 if (this.SelectedItem != null)
