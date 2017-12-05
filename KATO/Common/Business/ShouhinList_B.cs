@@ -55,7 +55,7 @@ namespace KATO.Common.Business
             {
                 strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
             }
-            if (lstBoolean[0] == true)
+            if (lstBoolean[0] == false)
             {
                 strWhere = strWhere + "  AND (";
                 strWhere = strWhere + " ((SELECT 棚番名 FROM 棚番 WHERE a.棚番本社=棚番.棚番)  IS NULL)";
@@ -113,61 +113,117 @@ namespace KATO.Common.Business
                         break;
                 }
 
-                //追加
-                dtView.Columns.Add("本社在庫", typeof(string));
-                dtView.Columns.Add("岐阜在庫", typeof(string));
-
-                //dtView分ループ
-                for (int intCnt = 0; intCnt < dtView.Rows.Count; intCnt++)
+                //データがあった場合
+                if (dtView.Rows.Count > 0)
                 {
-                    string strShohin = null;
-
-                    strShohin = dtView.Rows[intCnt]["コード"].ToString();
-
-                    //SQLファイルのパスとファイル名を入れる用
-                    List<string> lstSQL = new List<string>();
-
-                    //データ渡し用
-                    lstSQL.Add("Common");
-                    lstSQL.Add("C_LIST_Shohin_SELECT_Zaikosu");
-
-                    //SQL発行
-                    OpenSQL opensql = new OpenSQL();
-
-                    //SQLファイルのパス取得
-                    string strSQLInput = opensql.setOpenSQL(lstSQL);
-
-                    //パスがなければ返す
-                    if (strSQLInput == "")
+                    //dtView分ループ
+                    for (int intCnt = 0; intCnt < dtView.Rows.Count; intCnt++)
                     {
-                        return (dtView);
-                    }
+                        string strShohin = null;
 
-                    //SQLファイルと該当コードでフォーマット
-                    strSQLInput = string.Format(strSQLInput, strShohin);
+                        strShohin = dtView.Rows[intCnt]["コード"].ToString();
 
-                    //検索データを表示
-                    dtZaiko = dbConnective.ReadSql(strSQLInput);
+                        //SQLファイルのパスとファイル名を入れる用
+                        List<string> lstSQL = new List<string>();
 
-                    //dtZaiko分のループ
-                    for (int intCntZaiko = 0; intCntZaiko < dtZaiko.Rows.Count; intCntZaiko++)
-                    {
-                        //各コードが一致した場合
-                        if (dtView.Rows[intCnt]["コード"].ToString() == dtZaiko.Rows[intCntZaiko]["商品コード"].ToString())
+                        //データ渡し用
+                        lstSQL.Add("Common");
+                        lstSQL.Add("C_LIST_Shohin_SELECT_Zaikosu");
+
+                        //SQL発行
+                        OpenSQL opensql = new OpenSQL();
+
+                        //SQLファイルのパス取得
+                        string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                        //パスがなければ返す
+                        if (strSQLInput == "")
                         {
-                            //本社在庫の場合
-                            if (dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0001")
+                            return (dtView);
+                        }
+
+                        //SQLファイルと該当コードでフォーマット
+                        strSQLInput = string.Format(strSQLInput, strShohin);
+
+                        //検索データを表示
+                        dtZaiko = dbConnective.ReadSql(strSQLInput);
+
+                        //dtZaiko分のループ
+                        for (int intCntZaiko = 0; intCntZaiko < dtZaiko.Rows.Count; intCntZaiko++)
+                        {
+                            //各コードが一致した場合
+                            if (dtView.Rows[intCnt]["コード"].ToString() == dtZaiko.Rows[intCntZaiko]["商品コード"].ToString())
                             {
-                                dtView.Rows[intCnt]["本社在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
-                            }
-                            //岐阜在庫の場合
-                            else if(dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0002")
-                            {
-                                dtView.Rows[intCnt]["岐阜在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
+                                //本社在庫の場合
+                                if (dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0001")
+                                {
+                                    dtView.Rows[intCnt]["本社在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
+                                }
+                                //岐阜在庫の場合
+                                else if (dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0002")
+                                {
+                                    dtView.Rows[intCnt]["岐阜在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
+                                }
                             }
                         }
                     }
                 }
+
+                ////追加
+                //dtView.Columns.Add("本社在庫", typeof(string));
+                //dtView.Columns.Add("岐阜在庫", typeof(string));
+
+                ////dtView分ループ
+                //for (int intCnt = 0; intCnt < dtView.Rows.Count; intCnt++)
+                //{
+                //    string strShohin = null;
+
+                //    strShohin = dtView.Rows[intCnt]["コード"].ToString();
+
+                //    //SQLファイルのパスとファイル名を入れる用
+                //    List<string> lstSQL = new List<string>();
+
+                //    //データ渡し用
+                //    lstSQL.Add("Common");
+                //    lstSQL.Add("C_LIST_Shohin_SELECT_Zaikosu");
+
+                //    //SQL発行
+                //    OpenSQL opensql = new OpenSQL();
+
+                //    //SQLファイルのパス取得
+                //    string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //    //パスがなければ返す
+                //    if (strSQLInput == "")
+                //    {
+                //        return (dtView);
+                //    }
+
+                //    //SQLファイルと該当コードでフォーマット
+                //    strSQLInput = string.Format(strSQLInput, strShohin);
+
+                //    //検索データを表示
+                //    dtZaiko = dbConnective.ReadSql(strSQLInput);
+
+                //    //dtZaiko分のループ
+                //    for (int intCntZaiko = 0; intCntZaiko < dtZaiko.Rows.Count; intCntZaiko++)
+                //    {
+                //        //各コードが一致した場合
+                //        if (dtView.Rows[intCnt]["コード"].ToString() == dtZaiko.Rows[intCntZaiko]["商品コード"].ToString())
+                //        {
+                //            //本社在庫の場合
+                //            if (dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0001")
+                //            {
+                //                dtView.Rows[intCnt]["本社在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
+                //            }
+                //            //岐阜在庫の場合
+                //            else if(dtZaiko.Rows[intCntZaiko]["営業所コード"].ToString() == "0002")
+                //            {
+                //                dtView.Rows[intCnt]["岐阜在庫"] = Math.Floor(decimal.Parse(dtZaiko.Rows[intCntZaiko]["在庫数"].ToString())).ToString();
+                //            }
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {

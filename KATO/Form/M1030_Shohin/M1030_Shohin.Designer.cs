@@ -465,7 +465,7 @@
             this.txtData1.Size = new System.Drawing.Size(330, 22);
             this.txtData1.TabIndex = 4;
             this.txtData1.Enter += new System.EventHandler(this.shohin_Enter);
-            this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
+            this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKenKataTxtKeyDown);
             this.txtData1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtData1.Leave += new System.EventHandler(this.updCtxtLeave);
             // 

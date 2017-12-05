@@ -332,7 +332,22 @@ namespace KATO.Common.Form
                 lblSetChubun.CodeTxtText = lstSelectData[0];
                 //lblSetChubun.ValueLabelText = lstSelectData[1];
 
-                //全てのフォームの中から
+                //全てのフォームの中から(LIST系)
+                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                {
+                    //商品LISTのフォームを探す
+                    if (frm.Name == "ShouhinList")
+                    {
+                        //データを連れてくるため、newをしないこと
+                        ShouhinList shouhinlist = (ShouhinList)frm;
+
+                        //中分類のセット
+                        shouhinlist.setChubun();
+                        break;
+                    }
+                }
+
+                //全てのフォームの中から(FORM系)
                 foreach (System.Windows.Forms.Form frm in Application.OpenForms)
                 {
                     //商品のフォームを探す

@@ -90,12 +90,11 @@ namespace KATO.Common.Ctl
             }
         }
 
-
         ///<summary>
-        ///updTxtMakerLeave
-        ///code入力箇所からフォーカスが外れた時
+        ///setTxtMakerLeave
+        ///code入力箇所からフォーカスが外れた時の処理
         ///</summary>
-        public void updTxtMakerLeave(object sender, EventArgs e)
+        public void setTxtMakerLeave()
         {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
@@ -220,6 +219,16 @@ namespace KATO.Common.Ctl
                 }
             }
         }
+
+        ///<summary>
+        ///updTxtMakerLeave
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public void updTxtMakerLeave(object sender, EventArgs e)
+        {
+            setTxtMakerLeave();
+        }
+
 
         ///<summary>
         ///judtxtMakerKeyUp

@@ -19,6 +19,7 @@ using static KATO.Common.Util.CommonTeisu;
 using KATO.Form.M1030_Shohin;
 using KATO.Form.D0380_ShohinMotochoKakunin;
 using KATO.Form.A0100_HachuInput;
+using KATO.Common.Form;
 
 namespace KATO.Common.Form
 {
@@ -154,11 +155,11 @@ namespace KATO.Common.Form
             this.Show();
             this._Title = "メーカーリスト";
 
-            //大分類がすでに入力されていた場合検索
-            if(lblSetDaibunrui.CodeTxtText.Length > 0)
-            {
-                btnKensakuClick(sender, e);
-            }
+            ////大分類がすでに入力されていた場合検索
+            //if(lblSetDaibunrui.CodeTxtText.Length > 0)
+            //{
+            //    btnKensakuClick(sender, e);
+            //}
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
@@ -361,7 +362,7 @@ namespace KATO.Common.Form
                         {
                             //データを連れてくるため、newをしないこと
                             M1030_Shohin shohinHome = (M1030_Shohin)frm;
-                            shohinHome.setDaibun(strSubDaibunCd);
+                            shohinHome.setMaker();
                             break;
                         }
                         //棚卸入力のフォームを探す

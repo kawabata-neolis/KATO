@@ -36,6 +36,7 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
             this.chkNotToroku = new System.Windows.Forms.CheckBox();
+            this.radSet_2btn_Kensaku = new KATO.Common.Ctl.RadSet_2btn();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
@@ -77,6 +78,23 @@ namespace KATO.Common.Form
             this.chkNotToroku.UseVisualStyleBackColor = true;
             this.chkNotToroku.Visible = false;
             // 
+            // radSet_2btn_Kensaku
+            // 
+            this.radSet_2btn_Kensaku.intJudBtn = 0;
+            this.radSet_2btn_Kensaku.LabelTitle = " ";
+            this.radSet_2btn_Kensaku.Location = new System.Drawing.Point(314, 99);
+            this.radSet_2btn_Kensaku.Name = "radSet_2btn_Kensaku";
+            this.radSet_2btn_Kensaku.PositionLabelTitle_X = 0;
+            this.radSet_2btn_Kensaku.PositionLabelTitle_Y = 0;
+            this.radSet_2btn_Kensaku.PositionRadbtn1_X = 20;
+            this.radSet_2btn_Kensaku.PositionRadbtn1_Y = 0;
+            this.radSet_2btn_Kensaku.PositionRadbtn2_X = 120;
+            this.radSet_2btn_Kensaku.PositionRadbtn2_Y = 0;
+            this.radSet_2btn_Kensaku.Radbtn1Text = "部分一致";
+            this.radSet_2btn_Kensaku.Radbtn2Text = "完全一致";
+            this.radSet_2btn_Kensaku.Size = new System.Drawing.Size(217, 19);
+            this.radSet_2btn_Kensaku.TabIndex = 102;
+            // 
             // labelSet_Maker
             // 
             this.labelSet_Maker.AppendLabelSize = 0;
@@ -92,7 +110,7 @@ namespace KATO.Common.Form
             this.labelSet_Maker.SpaceNameCode = 24;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
-            this.labelSet_Maker.TabIndex = 110;
+            this.labelSet_Maker.TabIndex = 2;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
             this.labelSet_Maker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
@@ -112,7 +130,7 @@ namespace KATO.Common.Form
             this.labelSet_Chubunrui.SpaceNameCode = 40;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
-            this.labelSet_Chubunrui.TabIndex = 109;
+            this.labelSet_Chubunrui.TabIndex = 1;
             this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
             this.labelSet_Chubunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
@@ -136,7 +154,7 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui.SpaceCodeValue = 20;
             this.labelSet_Daibunrui.SpaceNameCode = 40;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
-            this.labelSet_Daibunrui.TabIndex = 108;
+            this.labelSet_Daibunrui.TabIndex = 0;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
             this.labelSet_Daibunrui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
@@ -147,7 +165,7 @@ namespace KATO.Common.Form
             this.btnF11.Location = new System.Drawing.Point(827, 41);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
-            this.btnF11.TabIndex = 105;
+            this.btnF11.TabIndex = 4;
             this.btnF11.UseVisualStyleBackColor = true;
             this.btnF11.Click += new System.EventHandler(this.btnKensakuClick);
             // 
@@ -157,7 +175,7 @@ namespace KATO.Common.Form
             this.btnF12.Location = new System.Drawing.Point(827, 12);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 106;
+            this.btnF12.TabIndex = 6;
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
@@ -224,7 +242,7 @@ namespace KATO.Common.Form
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTorihiki.Size = new System.Drawing.Size(931, 434);
             this.gridTorihiki.StandardTab = true;
-            this.gridTorihiki.TabIndex = 102;
+            this.gridTorihiki.TabIndex = 5;
             this.gridTorihiki.DoubleClick += new System.EventHandler(this.setGridTorihiki_DoubleClick);
             this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
@@ -234,7 +252,7 @@ namespace KATO.Common.Form
             this.txtKensaku.Location = new System.Drawing.Point(106, 96);
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(199, 22);
-            this.txtKensaku.TabIndex = 101;
+            this.txtKensaku.TabIndex = 3;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
             // lblDataFree
@@ -316,6 +334,7 @@ namespace KATO.Common.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 614);
+            this.Controls.Add(this.radSet_2btn_Kensaku);
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);
             this.Controls.Add(this.labelSet_Daibunrui);
@@ -361,5 +380,6 @@ namespace KATO.Common.Form
         private LabelSet_Daibunrui labelSet_Daibunrui;
         private LabelSet_Chubunrui labelSet_Chubunrui;
         private LabelSet_Maker labelSet_Maker;
+        private RadSet_2btn radSet_2btn_Kensaku;
     }
 }

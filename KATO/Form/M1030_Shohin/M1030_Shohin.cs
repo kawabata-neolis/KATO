@@ -387,6 +387,7 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
                 shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                 shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.blNoTana = true;
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)
@@ -832,12 +833,12 @@ namespace KATO.Form.M1030_Shohin
         }
 
         ///<summary>
-        ///updDaibun
-        ///リスト内の大分類が変更されたのを反映
+        ///setMaker
+        ///メーカーのLeave処理
         ///</summary>
-        public void setDaibun(string strDaibun)
+        public void setMaker()
         {
-            labelSet_Daibunrui.CodeTxtText = strDaibun;
+            labelSet_Maker.setTxtMakerLeave();
         }
 
         ///<summary>
@@ -1042,6 +1043,10 @@ namespace KATO.Form.M1030_Shohin
             cActiveBefore = this.ActiveControl;
         }
 
+        ///<summary>
+        ///setChubun
+        ///中分類のチェック
+        ///</summary>
         public void setChubun()
         {
             labelSet_Chubunrui.setTxtChubunruiLeave();

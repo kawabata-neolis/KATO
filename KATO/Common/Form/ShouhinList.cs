@@ -53,6 +53,9 @@ namespace KATO.Common.Form
         //DB参照の場所を判断（テキストボックスから）
         int intDBjud = 0;
 
+        //棚無し画面かどうか
+        public bool blNoTana = false;
+
         Boolean blnZaikoKensaku = true;
 
         private string Title = "";
@@ -99,8 +102,17 @@ namespace KATO.Common.Form
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
 
-            //未登録棚番を使用する場合
-            chkNotToroku.Checked = false;
+            //
+            if (blNoTana == true)
+            {
+                //未登録棚番を使用する場合
+                chkNotToroku.Checked = false;
+            }
+            else
+            {
+                chkNotToroku.Checked = true;
+            }
+
         }
 
         /// <summary>
@@ -113,6 +125,9 @@ namespace KATO.Common.Form
             this._Title = "商品リスト";
 
             List<int> lstInt = new List<int>();
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
 
             setTextData();
 
@@ -213,51 +228,14 @@ namespace KATO.Common.Form
             setColumnShohin(daibunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
-            setColumnShohin(honshazaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(honshazaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnShohin(honshafree, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
-            setColumnShohin(gihuzaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(gihuzaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnShohin(gihufree, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
-            setColumnShohin(teika, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
-            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnShohin(teika, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-
-
-            ////バインドしたデータを追加
-            //gridTorihiki.Columns.Add(code);
-            //gridTorihiki.Columns.Add(maker);
-            //gridTorihiki.Columns.Add(daibunrui);
-            //gridTorihiki.Columns.Add(chubunrui);
-            //gridTorihiki.Columns.Add(hinmei);
-            //gridTorihiki.Columns.Add(memo);
-
-            //gridTorihiki.AutoGenerateColumns = false;
-
-            ////個々の幅、文章の寄せ
-            //gridTorihiki.Columns["コード"].Width = 0;
-            //gridTorihiki.Columns["コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //gridTorihiki.Columns["コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //gridTorihiki.Columns["メーカー"].Width = 150;
-            //gridTorihiki.Columns["メーカー"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            //gridTorihiki.Columns["メーカー"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //gridTorihiki.Columns["大分類名"].Width = 0;
-            //gridTorihiki.Columns["大分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //gridTorihiki.Columns["大分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //gridTorihiki.Columns["中分類名"].Width = 110;
-            //gridTorihiki.Columns["中分類名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            //gridTorihiki.Columns["中分類名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //gridTorihiki.Columns["品名"].Width = 300;
-            //gridTorihiki.Columns["品名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            //gridTorihiki.Columns["品名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            //gridTorihiki.Columns["メモ"].Width = 110;
-            //gridTorihiki.Columns["メモ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //gridTorihiki.Columns["メモ"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
         }
 
         ///<summary>
@@ -636,6 +614,8 @@ namespace KATO.Common.Form
             gridTorihiki.DataSource = null;
             DataTable dtView = new DataTable();
 
+            decimal decHonsha = 0;
+
             //データ渡し用
             lstInt.Add(intFrmKind);
             lstInt.Add(lstIntMode[0]);
@@ -656,20 +636,27 @@ namespace KATO.Common.Form
                 
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
+                                
+                if (columns.Contains("本社在庫"))
+                {
+                    //指定日在庫、棚卸数量の小数点切り下げ
+                    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+                    {
+                        //空だった場合
+                        if (dtView.Rows[cnt]["本社在庫"].ToString() != "")
+                        {
+                            decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["本社在庫"].ToString()));
+                        }
+                        else
+                        {
+                            decHonsha = 0;
+                        }
 
-
-
-                //if (columns.Contains("本社在庫"))
-                //{
-                //    //指定日在庫、棚卸数量の小数点切り下げ
-                //    for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
-                //    {
-                //        decimal decHonsha = Math.Floor(decimal.Parse(dtView.Rows[cnt]["本社在庫"].ToString()));
-                //        dtView.Rows[cnt]["本社在庫"] = decHonsha.ToString();
-                //        //ヘッダーを含まない特定のセルの背景色を赤色にする
-                //        this.gridTorihiki.Columns["本社在庫"].DefaultCellStyle.BackColor = Color.Red;
-                //    }
-                //}
+                        dtView.Rows[cnt]["本社在庫"] = decHonsha.ToString();    
+                        //ヘッダーを含まない特定のセルの背景色を赤色にする
+                        this.gridTorihiki.Columns["本社在庫"].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
 
                 //if (columns.Contains("岐阜在庫"))
                 //{
@@ -940,6 +927,15 @@ namespace KATO.Common.Form
             intDBjud = 3;
             labelSet_Maker.ValueLabelText = "";
             setLabel(intDBjud);
+        }
+
+        ///<summary>
+        ///setChubun
+        ///中分類のチェック
+        ///</summary>
+        public void setChubun()
+        {
+            labelSet_Chubunrui.setTxtChubunruiLeave();
         }
     }
 }
