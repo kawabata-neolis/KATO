@@ -241,9 +241,9 @@
             // 
             this.groupBox2.Controls.Add(this.radSet_Sort1);
             this.groupBox2.Controls.Add(this.radSet_Sort2);
-            this.groupBox2.Location = new System.Drawing.Point(17, 141);
+            this.groupBox2.Location = new System.Drawing.Point(1091, 43);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(803, 83);
+            this.groupBox2.Size = new System.Drawing.Size(222, 83);
             this.groupBox2.TabIndex = 116;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "並び順の指定";
@@ -310,7 +310,7 @@
             // 
             this.radSet_JuchuHouhou.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.radSet_JuchuHouhou.LabelTitle = "";
-            this.radSet_JuchuHouhou.Location = new System.Drawing.Point(847, 141);
+            this.radSet_JuchuHouhou.Location = new System.Drawing.Point(1319, 43);
             this.radSet_JuchuHouhou.Name = "radSet_JuchuHouhou";
             this.radSet_JuchuHouhou.PositionLabelTitle_X = 0;
             this.radSet_JuchuHouhou.PositionLabelTitle_Y = 0;
@@ -323,7 +323,7 @@
             this.radSet_JuchuHouhou.Radbtn1Text = "両方";
             this.radSet_JuchuHouhou.Radbtn2Text = "通常受注";
             this.radSet_JuchuHouhou.Radbtn3Text = "加工受注";
-            this.radSet_JuchuHouhou.Size = new System.Drawing.Size(140, 83);
+            this.radSet_JuchuHouhou.Size = new System.Drawing.Size(93, 83);
             this.radSet_JuchuHouhou.TabIndex = 117;
             // 
             // labelSet_Daibunrui
@@ -493,7 +493,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridUriageJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridUriageJisseki.EnableHeadersVisualStyles = false;
-            this.gridUriageJisseki.Location = new System.Drawing.Point(17, 230);
+            this.gridUriageJisseki.Location = new System.Drawing.Point(17, 132);
             this.gridUriageJisseki.Name = "gridUriageJisseki";
             this.gridUriageJisseki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -507,7 +507,7 @@
             this.gridUriageJisseki.RowHeadersVisible = false;
             this.gridUriageJisseki.RowTemplate.Height = 21;
             this.gridUriageJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriageJisseki.Size = new System.Drawing.Size(1257, 392);
+            this.gridUriageJisseki.Size = new System.Drawing.Size(1395, 615);
             this.gridUriageJisseki.StandardTab = true;
             this.gridUriageJisseki.TabIndex = 128;
             this.gridUriageJisseki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUriageJisseki_CellDoubleClick);
@@ -535,7 +535,7 @@
             this.chkSiireMinyuryoku.FocusedBackColor = System.Drawing.SystemColors.Control;
             this.chkSiireMinyuryoku.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSiireMinyuryoku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.chkSiireMinyuryoku.Location = new System.Drawing.Point(993, 49);
+            this.chkSiireMinyuryoku.Location = new System.Drawing.Point(993, 15);
             this.chkSiireMinyuryoku.Name = "chkSiireMinyuryoku";
             this.chkSiireMinyuryoku.Size = new System.Drawing.Size(154, 19);
             this.chkSiireMinyuryoku.TabIndex = 131;
@@ -546,7 +546,7 @@
             // txtUriageKingaku
             // 
             this.txtUriageKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtUriageKingaku.Location = new System.Drawing.Point(170, 661);
+            this.txtUriageKingaku.Location = new System.Drawing.Point(170, 753);
             this.txtUriageKingaku.Name = "txtUriageKingaku";
             this.txtUriageKingaku.Size = new System.Drawing.Size(126, 22);
             this.txtUriageKingaku.TabIndex = 132;
@@ -555,7 +555,7 @@
             // 
             this.baseLabel5.AutoSize = true;
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(74, 664);
+            this.baseLabel5.Location = new System.Drawing.Point(74, 756);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(71, 15);
             this.baseLabel5.strToolTip = null;
@@ -567,7 +567,7 @@
             // 
             this.baseLabel6.AutoSize = true;
             this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(315, 664);
+            this.baseLabel6.Location = new System.Drawing.Point(315, 756);
             this.baseLabel6.Name = "baseLabel6";
             this.baseLabel6.Size = new System.Drawing.Size(71, 15);
             this.baseLabel6.strToolTip = null;
@@ -578,7 +578,7 @@
             // txtSiireKingaku
             // 
             this.txtSiireKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSiireKingaku.Location = new System.Drawing.Point(411, 661);
+            this.txtSiireKingaku.Location = new System.Drawing.Point(411, 753);
             this.txtSiireKingaku.Name = "txtSiireKingaku";
             this.txtSiireKingaku.Size = new System.Drawing.Size(126, 22);
             this.txtSiireKingaku.TabIndex = 134;
@@ -587,7 +587,7 @@
             // 
             this.baseLabel7.AutoSize = true;
             this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel7.Location = new System.Drawing.Point(558, 664);
+            this.baseLabel7.Location = new System.Drawing.Point(558, 756);
             this.baseLabel7.Name = "baseLabel7";
             this.baseLabel7.Size = new System.Drawing.Size(55, 15);
             this.baseLabel7.strToolTip = null;
@@ -598,7 +598,7 @@
             // txtArarigaku
             // 
             this.txtArarigaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtArarigaku.Location = new System.Drawing.Point(639, 661);
+            this.txtArarigaku.Location = new System.Drawing.Point(639, 753);
             this.txtArarigaku.Name = "txtArarigaku";
             this.txtArarigaku.Size = new System.Drawing.Size(126, 22);
             this.txtArarigaku.TabIndex = 136;
@@ -607,7 +607,7 @@
             // 
             this.baseLabel8.AutoSize = true;
             this.baseLabel8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel8.Location = new System.Drawing.Point(772, 664);
+            this.baseLabel8.Location = new System.Drawing.Point(772, 756);
             this.baseLabel8.Name = "baseLabel8";
             this.baseLabel8.Size = new System.Drawing.Size(39, 15);
             this.baseLabel8.strToolTip = null;
@@ -618,7 +618,7 @@
             // txtUntin
             // 
             this.txtUntin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtUntin.Location = new System.Drawing.Point(853, 661);
+            this.txtUntin.Location = new System.Drawing.Point(853, 753);
             this.txtUntin.Name = "txtUntin";
             this.txtUntin.Size = new System.Drawing.Size(126, 22);
             this.txtUntin.TabIndex = 138;
@@ -662,7 +662,7 @@
             // txtArariritsu
             // 
             this.txtArariritsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtArariritsu.Location = new System.Drawing.Point(639, 689);
+            this.txtArariritsu.Location = new System.Drawing.Point(1080, 753);
             this.txtArariritsu.Name = "txtArariritsu";
             this.txtArariritsu.Size = new System.Drawing.Size(126, 22);
             this.txtArariritsu.TabIndex = 140;
@@ -672,7 +672,7 @@
             // 
             this.baseLabel9.AutoSize = true;
             this.baseLabel9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel9.Location = new System.Drawing.Point(558, 692);
+            this.baseLabel9.Location = new System.Drawing.Point(999, 756);
             this.baseLabel9.Name = "baseLabel9";
             this.baseLabel9.Size = new System.Drawing.Size(55, 15);
             this.baseLabel9.strToolTip = null;
