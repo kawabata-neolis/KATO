@@ -63,6 +63,10 @@
             this.radSortOrder.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -117,10 +121,6 @@
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // gridSiireJisseki
             // 
             this.gridSiireJisseki.AllowUserToAddRows = false;
@@ -144,7 +144,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridSiireJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSiireJisseki.EnableHeadersVisualStyles = false;
-            this.gridSiireJisseki.Location = new System.Drawing.Point(12, 278);
+            this.gridSiireJisseki.Location = new System.Drawing.Point(12, 161);
             this.gridSiireJisseki.Name = "gridSiireJisseki";
             this.gridSiireJisseki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -158,7 +158,7 @@
             this.gridSiireJisseki.RowHeadersVisible = false;
             this.gridSiireJisseki.RowTemplate.Height = 21;
             this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireJisseki.Size = new System.Drawing.Size(1395, 460);
+            this.gridSiireJisseki.Size = new System.Drawing.Size(1395, 577);
             this.gridSiireJisseki.StandardTab = true;
             this.gridSiireJisseki.TabIndex = 111;
             this.gridSiireJisseki.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridSiireJisseki_CellMouseDoubleClick);
@@ -166,17 +166,17 @@
             // txtBikou
             // 
             this.txtBikou.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou.Location = new System.Drawing.Point(1020, 91);
+            this.txtBikou.Location = new System.Drawing.Point(914, 91);
             this.txtBikou.MaxLength = 100;
             this.txtBikou.Name = "txtBikou";
-            this.txtBikou.Size = new System.Drawing.Size(324, 22);
+            this.txtBikou.Size = new System.Drawing.Size(269, 22);
             this.txtBikou.TabIndex = 9;
             // 
             // lblBikou
             // 
             this.lblBikou.AutoSize = true;
             this.lblBikou.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBikou.Location = new System.Drawing.Point(927, 95);
+            this.lblBikou.Location = new System.Drawing.Point(821, 95);
             this.lblBikou.Name = "lblBikou";
             this.lblBikou.Size = new System.Drawing.Size(87, 15);
             this.lblBikou.strToolTip = null;
@@ -187,17 +187,17 @@
             // txtKataban
             // 
             this.txtKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKataban.Location = new System.Drawing.Point(1020, 54);
+            this.txtKataban.Location = new System.Drawing.Point(914, 54);
             this.txtKataban.MaxLength = 100;
             this.txtKataban.Name = "txtKataban";
-            this.txtKataban.Size = new System.Drawing.Size(324, 22);
+            this.txtKataban.Size = new System.Drawing.Size(269, 22);
             this.txtKataban.TabIndex = 8;
             // 
             // lblKataban
             // 
             this.lblKataban.AutoSize = true;
             this.lblKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKataban.Location = new System.Drawing.Point(927, 57);
+            this.lblKataban.Location = new System.Drawing.Point(821, 57);
             this.lblKataban.Name = "lblKataban";
             this.lblKataban.Size = new System.Drawing.Size(87, 15);
             this.lblKataban.strToolTip = null;
@@ -275,7 +275,7 @@
             this.labelSet_Daibunrui.CodeTxtSize = 24;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(374, 126);
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(333, 126);
             this.labelSet_Daibunrui.Lschubundata = null;
             this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
@@ -297,7 +297,7 @@
             this.labelSet_Chubunrui.CodeTxtSize = 24;
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.LabelName = "中分類コード";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(728, 127);
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(687, 126);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
             this.labelSet_Chubunrui.Size = new System.Drawing.Size(348, 22);
@@ -312,16 +312,16 @@
             // bgEigyo
             // 
             this.bgEigyo.Controls.Add(this.radEigyosho);
-            this.bgEigyo.Location = new System.Drawing.Point(1095, 119);
+            this.bgEigyo.Location = new System.Drawing.Point(1189, 46);
             this.bgEigyo.Name = "bgEigyo";
-            this.bgEigyo.Size = new System.Drawing.Size(238, 36);
+            this.bgEigyo.Size = new System.Drawing.Size(232, 36);
             this.bgEigyo.TabIndex = 125;
             this.bgEigyo.TabStop = false;
             // 
             // radEigyosho
             // 
             this.radEigyosho.LabelTitle = "";
-            this.radEigyosho.Location = new System.Drawing.Point(7, 12);
+            this.radEigyosho.Location = new System.Drawing.Point(6, 8);
             this.radEigyosho.Name = "radEigyosho";
             this.radEigyosho.PositionLabelTitle_X = 0;
             this.radEigyosho.PositionLabelTitle_Y = 0;
@@ -344,9 +344,9 @@
             this.bgSort.Controls.Add(this.radSortItem0);
             this.bgSort.Controls.Add(this.radSortOrder);
             this.bgSort.Controls.Add(this.lblSort);
-            this.bgSort.Location = new System.Drawing.Point(12, 166);
+            this.bgSort.Location = new System.Drawing.Point(1189, 85);
             this.bgSort.Name = "bgSort";
-            this.bgSort.Size = new System.Drawing.Size(345, 93);
+            this.bgSort.Size = new System.Drawing.Size(218, 70);
             this.bgSort.TabIndex = 126;
             this.bgSort.TabStop = false;
             // 
@@ -354,7 +354,7 @@
             // 
             this.radSortItem2.AutoSize = true;
             this.radSortItem2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radSortItem2.Location = new System.Drawing.Point(174, 27);
+            this.radSortItem2.Location = new System.Drawing.Point(151, 18);
             this.radSortItem2.Name = "radSortItem2";
             this.radSortItem2.Size = new System.Drawing.Size(57, 19);
             this.radSortItem2.TabIndex = 109;
@@ -365,7 +365,7 @@
             // 
             this.radSortItem1.AutoSize = true;
             this.radSortItem1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radSortItem1.Location = new System.Drawing.Point(99, 27);
+            this.radSortItem1.Location = new System.Drawing.Point(88, 18);
             this.radSortItem1.Name = "radSortItem1";
             this.radSortItem1.Size = new System.Drawing.Size(57, 19);
             this.radSortItem1.TabIndex = 109;
@@ -377,7 +377,7 @@
             this.radSortItem0.AutoSize = true;
             this.radSortItem0.Checked = true;
             this.radSortItem0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.radSortItem0.Location = new System.Drawing.Point(9, 27);
+            this.radSortItem0.Location = new System.Drawing.Point(9, 18);
             this.radSortItem0.Name = "radSortItem0";
             this.radSortItem0.Size = new System.Drawing.Size(73, 19);
             this.radSortItem0.TabIndex = 109;
@@ -390,7 +390,7 @@
             this.radSortOrder.Controls.Add(this.lblTitle);
             this.radSortOrder.intJudBtn = 0;
             this.radSortOrder.LabelTitle = "";
-            this.radSortOrder.Location = new System.Drawing.Point(9, 61);
+            this.radSortOrder.Location = new System.Drawing.Point(9, 43);
             this.radSortOrder.Name = "radSortOrder";
             this.radSortOrder.PositionLabelTitle_X = 0;
             this.radSortOrder.PositionLabelTitle_Y = 0;
@@ -462,7 +462,7 @@
             this.labelSet_Siiresaki.Location = new System.Drawing.Point(12, 91);
             this.labelSet_Siiresaki.Name = "labelSet_Siiresaki";
             this.labelSet_Siiresaki.ShowAppendFlg = false;
-            this.labelSet_Siiresaki.Size = new System.Drawing.Size(464, 22);
+            this.labelSet_Siiresaki.Size = new System.Drawing.Size(415, 22);
             this.labelSet_Siiresaki.SpaceCodeValue = 4;
             this.labelSet_Siiresaki.SpaceNameCode = 4;
             this.labelSet_Siiresaki.SpaceValueAppend = 4;
@@ -477,10 +477,10 @@
             this.labelSet_Tokuisaki.CodeTxtSize = 40;
             this.labelSet_Tokuisaki.CodeTxtText = "";
             this.labelSet_Tokuisaki.LabelName = "得意先";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(483, 91);
+            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(433, 91);
             this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
             this.labelSet_Tokuisaki.ShowAppendFlg = false;
-            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(420, 22);
+            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(371, 22);
             this.labelSet_Tokuisaki.SpaceCodeValue = 4;
             this.labelSet_Tokuisaki.SpaceNameCode = 4;
             this.labelSet_Tokuisaki.SpaceValueAppend = 4;

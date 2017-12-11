@@ -134,16 +134,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             //初期表示
             txtDenpyoYMDstart.Focus();
 
-            //現在の月の1日を表示（例；2017年4月13日→2017/04/01）
-            txtDenpyoYMDstart.Text = DateTime.Now.ToString("yyyy/MM")+"/01";
-            //月末を表示
-            System.DateTime dateStartYMD;
-            System.DateTime dateEndYMD;
-
-            dateStartYMD = DateTime.Parse(txtDenpyoYMDstart.Text);
-
-            dateEndYMD = dateStartYMD.AddMonths(2);
-            txtDenpyoYMDend.Text = dateEndYMD.AddDays(-1).ToString();
+            txtDenpyoYMDstart.Text = DateTime.Parse(DateTime.Now.ToString("yyyy/MM") + "/01").AddMonths(-1).ToString();
+            txtDenpyoYMDend.Text = DateTime.Parse(DateTime.Now.ToString("yyyy/MM") + "/01").AddMonths(1).AddDays(-1).ToString();
 
             //ユーザ権限チェック【暫定】
             String EigyoCd = "";
@@ -203,6 +195,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
             //DataGridViewの初期設定
             SetUpGrid();
+
+            labelSet_Nyuryokusya.Focus();
         }
 
         ///<summary>
@@ -315,11 +309,11 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
             //個々の幅、文章の寄せ
             setColumn(Sirusi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,30);
-            setColumn(Day, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
-            setColumn(DenpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null, 150);
+            setColumn(Day, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumn(DenpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null, 70);
             setColumn(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
             setColumn(Sinamei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 500);
-            setColumn(Suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0", 100);
+            setColumn(Suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0", 70);
             setColumn(Uriagetanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);
             setColumn(UriageKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);
             setColumn(Siiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);
@@ -327,9 +321,9 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             setColumn(Ararigaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);
             setColumn(Untin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);
             setColumn(Bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,300);
-            setColumn(HachusakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,150);
+            setColumn(HachusakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,300);
             setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,300);
-            setColumn(Juchubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,150);
+            setColumn(Juchubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,100);
             setColumn(nyuryokusya, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,150);
             //表示はしない項目
             setColumn(gyoubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
