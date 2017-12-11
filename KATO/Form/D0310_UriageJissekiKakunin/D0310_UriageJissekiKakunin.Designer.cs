@@ -493,7 +493,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridUriageJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridUriageJisseki.EnableHeadersVisualStyles = false;
-            this.gridUriageJisseki.Location = new System.Drawing.Point(17, 132);
+            this.gridUriageJisseki.Location = new System.Drawing.Point(4, 132);
             this.gridUriageJisseki.Name = "gridUriageJisseki";
             this.gridUriageJisseki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -507,7 +507,7 @@
             this.gridUriageJisseki.RowHeadersVisible = false;
             this.gridUriageJisseki.RowTemplate.Height = 21;
             this.gridUriageJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriageJisseki.Size = new System.Drawing.Size(1395, 615);
+            this.gridUriageJisseki.Size = new System.Drawing.Size(1415, 615);
             this.gridUriageJisseki.StandardTab = true;
             this.gridUriageJisseki.TabIndex = 128;
             this.gridUriageJisseki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUriageJisseki_CellDoubleClick);
