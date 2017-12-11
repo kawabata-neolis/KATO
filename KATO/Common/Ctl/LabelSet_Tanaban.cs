@@ -33,6 +33,9 @@ namespace KATO.Common.Ctl
         public LabelSet_Tanaban()
         {
             InitializeComponent();
+
+            ////GotFocusのハンドラを追加
+            //codeTxt.GotFocus += new EventHandler(setCodeTxt_GotFocus);
         }
 
         /// <summary>
@@ -85,6 +88,7 @@ namespace KATO.Common.Ctl
 
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
+                blMessageOn = false;
                 this.ValueLabelText = "";
                 return;
             }
@@ -151,6 +155,8 @@ namespace KATO.Common.Ctl
                 {
                     this.ValueLabelText = "";
 
+                    //codeTxt.blErrOn = true;
+
                     //グループボックスかパネル内にいる場合
                     if (this.Parent is GroupBox || this.Parent is Panel)
                     {
@@ -191,6 +197,17 @@ namespace KATO.Common.Ctl
                 }
             }
         }
+
+
+        //private void setCodeTxt_GotFocus(object sender, EventArgs e)
+        //{
+        //    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "GotFocus", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+        //    basemessagebox.ShowDialog();
+
+        //    codeTxt.Focus();
+        //    return;
+        //}
+
 
         ///judtxTanabanKeyUp
         ///入力項目上でのキー判定と文字数判定
@@ -298,6 +315,20 @@ namespace KATO.Common.Ctl
             else
             {
                 this.codeTxt.BackColor = Color.White;
+            }
+        }
+
+        ///<summary>
+        ///codeTxt_Validating
+        ///Leave後のエラーメッセージ判定
+        ///</summary>
+        private void codeTxt_Validating(object sender, CancelEventArgs e)
+        {
+            //エラーメッセージが出た場合
+            if (blMessageOn == true)
+            {
+                //全ての処理のキャンセル
+                e.Cancel = true;
             }
         }
     }

@@ -40,6 +40,7 @@
             this.codeTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanKeyDown);
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxTanabanKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTanabanLeave);
+            this.codeTxt.Validating += new System.ComponentModel.CancelEventHandler(this.codeTxt_Validating);
             // 
             // LabelSet_Tanaban
             // 

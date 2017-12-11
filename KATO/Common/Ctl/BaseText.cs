@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ComponentModel;
+using KATO.Form.M1030_Shohin;
 
 namespace KATO.Common.Ctl
 {
@@ -15,6 +16,9 @@ namespace KATO.Common.Ctl
     {
         //最初のクリックかの判断
         Boolean blnFirstClick = true;
+
+        ////エラーメッセージを出したか
+        //public bool blErrOn = false;
 
         public BaseText()
         {
@@ -31,6 +35,11 @@ namespace KATO.Common.Ctl
         //
         private void BaseText_Enter(object sender, EventArgs e)
         {
+            //if (blErrOn == true)
+            //{
+            //    return;
+            //}
+
             //背景色をシアンにする
             this.BackColor = Color.Cyan;
 

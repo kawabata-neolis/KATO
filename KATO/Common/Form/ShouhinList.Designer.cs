@@ -162,7 +162,7 @@ namespace KATO.Common.Form
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(827, 41);
+            this.btnF11.Location = new System.Drawing.Point(1289, 40);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 4;
@@ -172,7 +172,7 @@ namespace KATO.Common.Form
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(827, 12);
+            this.btnF12.Location = new System.Drawing.Point(1289, 11);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 6;
@@ -182,7 +182,7 @@ namespace KATO.Common.Form
             // btnGifuZaiko
             // 
             this.btnGifuZaiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnGifuZaiko.Location = new System.Drawing.Point(812, 93);
+            this.btnGifuZaiko.Location = new System.Drawing.Point(1289, 90);
             this.btnGifuZaiko.Name = "btnGifuZaiko";
             this.btnGifuZaiko.Size = new System.Drawing.Size(100, 23);
             this.btnGifuZaiko.TabIndex = 104;
@@ -194,7 +194,7 @@ namespace KATO.Common.Form
             // btnHonshaZaiko
             // 
             this.btnHonshaZaiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnHonshaZaiko.Location = new System.Drawing.Point(706, 94);
+            this.btnHonshaZaiko.Location = new System.Drawing.Point(1183, 91);
             this.btnHonshaZaiko.Name = "btnHonshaZaiko";
             this.btnHonshaZaiko.Size = new System.Drawing.Size(100, 23);
             this.btnHonshaZaiko.TabIndex = 104;
@@ -240,7 +240,7 @@ namespace KATO.Common.Form
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTorihiki.Size = new System.Drawing.Size(931, 434);
+            this.gridTorihiki.Size = new System.Drawing.Size(1385, 434);
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 5;
             this.gridTorihiki.DoubleClick += new System.EventHandler(this.setGridTorihiki_DoubleClick);
@@ -333,7 +333,7 @@ namespace KATO.Common.Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 614);
+            this.ClientSize = new System.Drawing.Size(1409, 614);
             this.Controls.Add(this.radSet_2btn_Kensaku);
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);

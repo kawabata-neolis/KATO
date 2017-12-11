@@ -33,9 +33,10 @@ namespace KATO.Form.M1030_Shohin
         Boolean blnKanri;
 
         Control cActiveBefore = null;
+        ShouhinList shouhinlist = null;
 
         //エラーメッセージを表示したかどうか
-        bool blMessageOn = false;
+        public bool blMessageOn = false;
 
         ///<summary>
         ///M1030_Shohin
@@ -180,6 +181,12 @@ namespace KATO.Form.M1030_Shohin
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
+
+                    //商品リストが一回以上開いたことがある場合
+                    if (shouhinlist != null)
+                    {
+                        shouhinlist.Close();
+                    }
                     this.Close();
                     break;
 
@@ -341,33 +348,55 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void showShohinList()
         {
-            ShouhinList shouhinlist = new ShouhinList(this);
-            try
+            //全てのフォームの中から
+            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
-                shouhinlist.strYMD = "";
-                shouhinlist.strEigyoushoCode = "";
-                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                shouhinlist.strKensaku = txtKensaku.Text;
-                shouhinlist.ShowDialog();
-
-                txtHyojun.Focus();
-                txtShire.Focus();
-                txtHyoka.Focus();
-                txtTatene.Focus();
-                txtTeika.Focus();
-                txtData1.Focus();
+                //目的のフォームを探す
+                if (frm.Name == "ShohinList")
+                {
+                    frm.Show();
+                    break;
+                }
             }
-            catch (Exception ex)
+
+            //商品リストが一回以上開いたことがない場合
+            if (shouhinlist == null)
             {
-                //データロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                shouhinlist = new ShouhinList(this);
+                try
+                {
+                    //検索項目に一つでも記入がある場合
+                    if (StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText) == false ||
+                        StringUtl.blIsEmpty(labelSet_Chubunrui.CodeTxtText) == false ||
+                        StringUtl.blIsEmpty(labelSet_Maker.CodeTxtText) == false ||
+                        StringUtl.blIsEmpty(txtKensaku.Text) == false)
+                    {
+                        shouhinlist.blKensaku = true;
+                    }
+
+                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                    shouhinlist.strYMD = "";
+                    shouhinlist.strEigyoushoCode = "";
+                    shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
+                    shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
+                    shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
+                    shouhinlist.strKensaku = txtKensaku.Text;
+                    shouhinlist.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            else
+            {
+                // 既に１回以上商品リストを表示しているので、hideを元に戻す
+                shouhinlist.Show();
             }
         }
 
@@ -388,6 +417,7 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                 shouhinlist.strKensaku = txtKensaku.Text;
                 shouhinlist.blNoTana = true;
+
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)
@@ -773,6 +803,12 @@ namespace KATO.Form.M1030_Shohin
             txtKensaku.Text = strKensakuSub;
 
             radSet_2btn_Toroku.radbtn1.Checked = true;
+
+            txtHyojun.updPriceMethod();
+            txtShire.updPriceMethod();
+            txtHyoka.updPriceMethod();
+            txtTatene.updPriceMethod();
+            txtTeika.updPriceMethod();
         }
 
         ///<summary>
@@ -885,38 +921,38 @@ namespace KATO.Form.M1030_Shohin
                 //初期化
                 blMessageOn = false;
 
-                switch (cActiveBefore.Name)
-                {
-                    //1
-                    case "labelSet_Daibunrui":
-                        labelSet_Daibunrui.Focus();
-                        labelSet_Daibunrui.codeTxt.BackColor = Color.Cyan;
-                        break;
-                    //2
-                    case "labelSet_Chubunrui":
+                //switch (cActiveBefore.Name)
+                //{
+                //    //1
+                //    case "labelSet_Daibunrui":
+                //        labelSet_Daibunrui.Focus();
+                //        labelSet_Daibunrui.codeTxt.BackColor = Color.Cyan;
+                //        break;
+                //    //2
+                //    case "labelSet_Chubunrui":
 
-                        labelSet_Chubunrui.Focus();
-                        labelSet_Chubunrui.codeTxt.BackColor = Color.Cyan;
-                        break;
-                    //3
-                    case "labelSet_Maker":
+                //        labelSet_Chubunrui.Focus();
+                //        labelSet_Chubunrui.codeTxt.BackColor = Color.Cyan;
+                //        break;
+                //    //3
+                //    case "labelSet_Maker":
 
-                        labelSet_Maker.codeTxt.Focus();
-                        labelSet_Maker.codeTxt.BackColor = Color.Cyan;
-                        break;
-                    //4
-                    case "labelSet_TanabanHonsha":
+                //        labelSet_Maker.codeTxt.Focus();
+                //        labelSet_Maker.codeTxt.BackColor = Color.Cyan;
+                //        break;
+                //    //4
+                //    case "labelSet_TanabanHonsha":
 
-                        labelSet_TanabanHonsha.codeTxt.Focus();
-                        labelSet_TanabanHonsha.codeTxt.BackColor = Color.Cyan;
-                        break;
-                    //5
-                    case "labelSet_TanabanGihu":
+                //        labelSet_TanabanHonsha.codeTxt.Focus();
+                //        labelSet_TanabanHonsha.codeTxt.BackColor = Color.Cyan;
+                //        break;
+                //    //5
+                //    case "labelSet_TanabanGihu":
 
-                        labelSet_TanabanGihu.codeTxt.Focus();
-                        labelSet_TanabanGihu.codeTxt.BackColor = Color.Cyan;
-                        break;
-                }
+                //        labelSet_TanabanGihu.codeTxt.Focus();
+                //        labelSet_TanabanGihu.codeTxt.BackColor = Color.Cyan;
+                //        break;
+                //}
             }
             else
             {
@@ -940,8 +976,6 @@ namespace KATO.Form.M1030_Shohin
                     if (labelSet_Daibunrui.blMessageOn == true)
                     {
                         blMessageOn = true;
-                        //初期化
-                        labelSet_Daibunrui.blMessageOn = false;
                     }
 
                     break;
@@ -952,8 +986,6 @@ namespace KATO.Form.M1030_Shohin
                     if (labelSet_Chubunrui.blMessageOn == true)
                     {
                         blMessageOn = true;
-                        //初期化
-                        labelSet_Chubunrui.blMessageOn = false;
                     }
 
                     break;
@@ -964,8 +996,6 @@ namespace KATO.Form.M1030_Shohin
                     if (labelSet_Maker.blMessageOn == true)
                     {
                         blMessageOn = true;
-                        //初期化
-                        labelSet_Maker.blMessageOn = false;
                     }
 
                     break;
@@ -976,8 +1006,6 @@ namespace KATO.Form.M1030_Shohin
                     if (labelSet_TanabanHonsha.blMessageOn == true)
                     {
                         blMessageOn = true;
-                        //初期化
-                        labelSet_TanabanHonsha.blMessageOn = false;
                     }
 
                     break;
@@ -988,12 +1016,9 @@ namespace KATO.Form.M1030_Shohin
                     if (labelSet_TanabanGihu.blMessageOn == true)
                     {
                         blMessageOn = true;
-                        //初期化
-                        labelSet_TanabanGihu.blMessageOn = false;
                     }
 
                     break;
-
             }
         }
 
@@ -1031,8 +1056,6 @@ namespace KATO.Form.M1030_Shohin
         {
             if (blMessageOn == true)
             {
-                cActiveBefore.Focus();
-
                 if (cActiveBefore.Name == "txtZaiko")
                 {
                     txtZaiko.Text = "0";
