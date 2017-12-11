@@ -366,10 +366,10 @@ namespace KATO.Form.M1030_Shohin
                 try
                 {
                     //検索項目に一つでも記入がある場合
-                    if (StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText) == false ||
-                        StringUtl.blIsEmpty(labelSet_Chubunrui.CodeTxtText) == false ||
-                        StringUtl.blIsEmpty(labelSet_Maker.CodeTxtText) == false ||
-                        StringUtl.blIsEmpty(txtKensaku.Text) == false)
+                    if (StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText) == true ||
+                        StringUtl.blIsEmpty(labelSet_Chubunrui.CodeTxtText) == true ||
+                        StringUtl.blIsEmpty(labelSet_Maker.CodeTxtText) == true ||
+                        StringUtl.blIsEmpty(txtKensaku.Text) == true)
                     {
                         shouhinlist.blKensaku = true;
                     }
