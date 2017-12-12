@@ -243,7 +243,7 @@ namespace KATO.Form.A0030_ShireInput
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    //this.setHachusuhenko();
+                    this.delShireInput();
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -994,6 +994,12 @@ namespace KATO.Form.A0030_ShireInput
         {
             //営業所コードと伝票番号の空文字判定
             if (txtEigyouCd.blIsEmpty() == false && txtDenpyoNo.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //年月日テキスト内が年月日として成り立たない場合
+            if(txtYMD.updCalendarLeave(txtYMD.Text) == false)
             {
                 return;
             }

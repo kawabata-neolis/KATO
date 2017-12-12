@@ -233,8 +233,8 @@ namespace KATO.Common.Form
 
             //個々の幅、文章の寄せ
             setColumnShohin(code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
             setColumnShohin(daibunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
             setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 302);
             setColumnShohin(honshazaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
@@ -245,6 +245,11 @@ namespace KATO.Common.Form
             setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 75);
             setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 100);
             setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+
+            //メーカーコードと大分類コードの列を非表示
+            gridTorihiki.Columns[0].Visible = false;
+            gridTorihiki.Columns[1].Visible = false;
+
         }
 
         ///<summary>
@@ -352,8 +357,8 @@ namespace KATO.Common.Form
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //ダブルクリックと同じ動作
-                    setSelectItem();
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     break;

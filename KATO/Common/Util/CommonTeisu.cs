@@ -613,6 +613,8 @@ namespace KATO.Common.Util
             ,SqlDbType.Char
             ,SqlDbType.Char
             ,SqlDbType.Char
+            ,SqlDbType.Char
+            ,SqlDbType.Char
             ,SqlDbType.DateTime
             ,SqlDbType.NChar
             ,SqlDbType.DateTime

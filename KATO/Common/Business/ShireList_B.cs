@@ -48,9 +48,17 @@ namespace KATO.Common.Business
                 strWhere = strWhere + " AND 仕入先コード ='" + lstShireView[1] + "'";
             }
 
-            strWhere = strWhere + " AND 伝票年月日 >='" + lstShireView[2] + "'";
-            strWhere = strWhere + " AND 伝票年月日 <='" + lstShireView[3] + "'";
-
+            //伝票年月日（開始）
+            if (StringUtl.blIsEmpty(lstShireView[2]))
+            {
+                strWhere = strWhere + " AND 伝票年月日 >='" + lstShireView[2] + "'";
+            }
+            //伝票年月日（終了）
+            if (StringUtl.blIsEmpty(lstShireView[3]))
+            {
+                strWhere = strWhere + " AND 伝票年月日 <='" + lstShireView[3] + "'";
+            }
+            
             //品名・型番に記入がある場合
             if (StringUtl.blIsEmpty(lstShireView[4]))
             {

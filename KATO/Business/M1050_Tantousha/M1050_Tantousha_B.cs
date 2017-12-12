@@ -42,11 +42,13 @@ namespace KATO.Business.M1050_Tantousha
                     "0",
                     "0",
                     "0",
+                    lstString[7],
+                    lstString[8],
                     "N",
                     DateTime.Now.ToString(),
-                    lstString[7],
+                    lstString[9],
                     DateTime.Now.ToString(),
-                    lstString[7]
+                    lstString[9]
                 };
 
                 //SQL接続、追加
@@ -186,7 +188,7 @@ namespace KATO.Business.M1050_Tantousha
 
         ///<summary>
         ///getTxtTantoshaLeave
-        ///code入力箇所からフォーカスが外れた時
+        ///担当者code入力箇所からフォーカスが外れた時
         ///</summary>
         public DataTable getTxtTantoshaLeave(string strTantousha)
         {
@@ -218,6 +220,57 @@ namespace KATO.Business.M1050_Tantousha
 
                 //SQLファイルと該当コードでフォーマット
                 strSQLInput = string.Format(strSQLInput, strTantousha);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getTxtYakushokuLeave
+        ///役職code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public DataTable getTxtYakushokuLeave(string strYakushokuCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_Yakushoku_SELECT_LEAVE");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strYakushokuCd);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);

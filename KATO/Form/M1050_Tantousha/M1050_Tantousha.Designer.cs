@@ -41,7 +41,19 @@
             this.txtChuban = new KATO.Common.Ctl.BaseText();
             this.lblMokuhyou = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtMokuhyou = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblYakushokuCd = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblHyoji = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtYakushokuCd = new KATO.Common.Ctl.BaseText();
+            this.txtHyoji = new KATO.Common.Ctl.BaseText();
+            this.lblGrayYakushokuCdName = new KATO.Common.Ctl.BaseLabelGray();
+            this.lblYakushokuMemo1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblYakushokuMemo2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblHyojiMemo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -86,10 +98,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblSetEigyousho
             // 
@@ -257,13 +265,120 @@
             this.txtMokuhyou.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMokuhyou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
             // 
+            // lblYakushokuCd
+            // 
+            this.lblYakushokuCd.AutoSize = true;
+            this.lblYakushokuCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblYakushokuCd.Location = new System.Drawing.Point(740, 355);
+            this.lblYakushokuCd.Name = "lblYakushokuCd";
+            this.lblYakushokuCd.Size = new System.Drawing.Size(87, 15);
+            this.lblYakushokuCd.strToolTip = null;
+            this.lblYakushokuCd.TabIndex = 89;
+            this.lblYakushokuCd.Text = "役職コード";
+            this.lblYakushokuCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblHyoji
+            // 
+            this.lblHyoji.AutoSize = true;
+            this.lblHyoji.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHyoji.Location = new System.Drawing.Point(740, 394);
+            this.lblHyoji.Name = "lblHyoji";
+            this.lblHyoji.Size = new System.Drawing.Size(71, 15);
+            this.lblHyoji.strToolTip = null;
+            this.lblHyoji.TabIndex = 89;
+            this.lblHyoji.Text = "表示設定";
+            this.lblHyoji.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtYakushokuCd
+            // 
+            this.txtYakushokuCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYakushokuCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtYakushokuCd.Location = new System.Drawing.Point(861, 352);
+            this.txtYakushokuCd.MaxLength = 2;
+            this.txtYakushokuCd.Name = "txtYakushokuCd";
+            this.txtYakushokuCd.Size = new System.Drawing.Size(30, 22);
+            this.txtYakushokuCd.TabIndex = 8;
+            this.txtYakushokuCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtYakushokuCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            this.txtYakushokuCd.Leave += new System.EventHandler(this.txtYakushokuCd_Leave);
+            // 
+            // txtHyoji
+            // 
+            this.txtHyoji.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtHyoji.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtHyoji.Location = new System.Drawing.Point(861, 391);
+            this.txtHyoji.MaxLength = 1;
+            this.txtHyoji.Name = "txtHyoji";
+            this.txtHyoji.Size = new System.Drawing.Size(30, 22);
+            this.txtHyoji.TabIndex = 9;
+            this.txtHyoji.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtHyoji.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            // 
+            // lblGrayYakushokuCdName
+            // 
+            this.lblGrayYakushokuCdName.AutoEllipsis = true;
+            this.lblGrayYakushokuCdName.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayYakushokuCdName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayYakushokuCdName.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayYakushokuCdName.Location = new System.Drawing.Point(908, 352);
+            this.lblGrayYakushokuCdName.Name = "lblGrayYakushokuCdName";
+            this.lblGrayYakushokuCdName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayYakushokuCdName.Size = new System.Drawing.Size(119, 22);
+            this.lblGrayYakushokuCdName.TabIndex = 99;
+            this.lblGrayYakushokuCdName.Text = "           ";
+            this.lblGrayYakushokuCdName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblYakushokuMemo1
+            // 
+            this.lblYakushokuMemo1.AutoSize = true;
+            this.lblYakushokuMemo1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblYakushokuMemo1.Location = new System.Drawing.Point(1053, 355);
+            this.lblYakushokuMemo1.Name = "lblYakushokuMemo1";
+            this.lblYakushokuMemo1.Size = new System.Drawing.Size(271, 15);
+            this.lblYakushokuMemo1.strToolTip = null;
+            this.lblYakushokuMemo1.TabIndex = 100;
+            this.lblYakushokuMemo1.Text = "00：取締役  10：部長  20：ﾏﾈｰｼﾞｬｰ";
+            this.lblYakushokuMemo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblYakushokuMemo2
+            // 
+            this.lblYakushokuMemo2.AutoSize = true;
+            this.lblYakushokuMemo2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblYakushokuMemo2.Location = new System.Drawing.Point(1053, 373);
+            this.lblYakushokuMemo2.Name = "lblYakushokuMemo2";
+            this.lblYakushokuMemo2.Size = new System.Drawing.Size(335, 15);
+            this.lblYakushokuMemo2.strToolTip = null;
+            this.lblYakushokuMemo2.TabIndex = 100;
+            this.lblYakushokuMemo2.Text = "30：営業担当  40：ﾘｰﾀﾞｰ  50：営業事務担当";
+            this.lblYakushokuMemo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblHyojiMemo
+            // 
+            this.lblHyojiMemo.AutoSize = true;
+            this.lblHyojiMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHyojiMemo.Location = new System.Drawing.Point(911, 395);
+            this.lblHyojiMemo.Name = "lblHyojiMemo";
+            this.lblHyojiMemo.Size = new System.Drawing.Size(151, 15);
+            this.lblHyojiMemo.strToolTip = null;
+            this.lblHyojiMemo.TabIndex = 100;
+            this.lblHyojiMemo.Text = "0：非表示  1：表示";
+            this.lblHyojiMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1050_Tantousha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblHyojiMemo);
+            this.Controls.Add(this.lblYakushokuMemo2);
+            this.Controls.Add(this.lblYakushokuMemo1);
+            this.Controls.Add(this.lblGrayYakushokuCdName);
             this.Controls.Add(this.txtMokuhyou);
+            this.Controls.Add(this.lblHyoji);
+            this.Controls.Add(this.lblYakushokuCd);
             this.Controls.Add(this.lblMokuhyou);
+            this.Controls.Add(this.txtHyoji);
+            this.Controls.Add(this.txtYakushokuCd);
             this.Controls.Add(this.txtChuban);
             this.Controls.Add(this.lblChuban);
             this.Controls.Add(this.txtLoginID);
@@ -300,8 +415,16 @@
             this.Controls.SetChildIndex(this.txtLoginID, 0);
             this.Controls.SetChildIndex(this.lblChuban, 0);
             this.Controls.SetChildIndex(this.txtChuban, 0);
+            this.Controls.SetChildIndex(this.txtYakushokuCd, 0);
+            this.Controls.SetChildIndex(this.txtHyoji, 0);
             this.Controls.SetChildIndex(this.lblMokuhyou, 0);
+            this.Controls.SetChildIndex(this.lblYakushokuCd, 0);
+            this.Controls.SetChildIndex(this.lblHyoji, 0);
             this.Controls.SetChildIndex(this.txtMokuhyou, 0);
+            this.Controls.SetChildIndex(this.lblGrayYakushokuCdName, 0);
+            this.Controls.SetChildIndex(this.lblYakushokuMemo1, 0);
+            this.Controls.SetChildIndex(this.lblYakushokuMemo2, 0);
+            this.Controls.SetChildIndex(this.lblHyojiMemo, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,5 +444,13 @@
         private Common.Ctl.BaseText txtChuban;
         private Common.Ctl.BaseLabel lblMokuhyou;
         private Common.Ctl.BaseTextMoney txtMokuhyou;
+        private Common.Ctl.BaseLabel lblYakushokuCd;
+        private Common.Ctl.BaseLabel lblHyoji;
+        private Common.Ctl.BaseText txtYakushokuCd;
+        private Common.Ctl.BaseText txtHyoji;
+        private Common.Ctl.BaseLabelGray lblGrayYakushokuCdName;
+        private Common.Ctl.BaseLabel lblYakushokuMemo1;
+        private Common.Ctl.BaseLabel lblYakushokuMemo2;
+        private Common.Ctl.BaseLabel lblHyojiMemo;
     }
 }

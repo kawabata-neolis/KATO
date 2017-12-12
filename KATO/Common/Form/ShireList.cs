@@ -74,7 +74,7 @@ namespace KATO.Common.Form
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 100;
+            this.Top = c.Top + 50;
         }
 
         /// <summary>
@@ -336,11 +336,11 @@ namespace KATO.Common.Form
             //個々の幅、文章の寄せ
             setColumn(denpyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(ymd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumn(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 403);
             setColumn(suu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
-            setColumn(biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
         }
 
         /// <summary>

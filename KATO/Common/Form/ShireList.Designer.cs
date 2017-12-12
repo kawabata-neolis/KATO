@@ -55,7 +55,7 @@
             // 
             this.lblRecords.AutoSize = true;
             this.lblRecords.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
-            this.lblRecords.Location = new System.Drawing.Point(20, 566);
+            this.lblRecords.Location = new System.Drawing.Point(20, 675);
             this.lblRecords.Name = "lblRecords";
             this.lblRecords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblRecords.Size = new System.Drawing.Size(125, 12);
@@ -99,7 +99,7 @@
             this.gridShire.RowHeadersVisible = false;
             this.gridShire.RowTemplate.Height = 21;
             this.gridShire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShire.Size = new System.Drawing.Size(931, 434);
+            this.gridShire.Size = new System.Drawing.Size(1356, 544);
             this.gridShire.StandardTab = true;
             this.gridShire.TabIndex = 6;
             this.gridShire.DoubleClick += new System.EventHandler(this.gridUriage_DoubleClick);
@@ -236,7 +236,7 @@
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(827, 41);
+            this.btnF11.Location = new System.Drawing.Point(1258, 41);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 5;
@@ -246,7 +246,7 @@
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(827, 12);
+            this.btnF12.Location = new System.Drawing.Point(1258, 12);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 7;
@@ -257,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 614);
+            this.ClientSize = new System.Drawing.Size(1380, 717);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridShire);
             this.Controls.Add(this.txtCalendarClose);

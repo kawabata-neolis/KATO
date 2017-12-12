@@ -1644,6 +1644,9 @@
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_Yakushoku_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\C_LIST_TokuisakiAS400_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
