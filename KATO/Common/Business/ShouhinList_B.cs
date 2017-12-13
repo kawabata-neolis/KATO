@@ -179,9 +179,62 @@ namespace KATO.Common.Business
 
                     dtView.Rows.Add(drInsert);
 
-                    //dtView分ループ
+                    //dtShohin分ループ
                     for (int intShohinCnt = 0; intShohinCnt < dtShohin.Rows.Count; intShohinCnt++)
                     {
+                        //商品コードを挿入
+                        dtView.Rows[intShohinCnt]["商品コード"] = dtShohin.Rows[intShohinCnt]["コード"].ToString();
+
+                        //メーカー名の取得
+                        M1020_Maker_B makerB = new M1020_Maker_B();
+                        dtMaker = makerB.getTxtMakerTextLeave(dtShohin.Rows[intShohinCnt]["メーカーコード"].ToString());
+
+                        //メーカー名を挿入
+                        dtView.Rows[intShohinCnt]["メーカー"] = dtMaker.Rows[0]["メーカー名"].ToString();
+
+                        //大分類名の取得
+                        M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
+                        dtDaibun = daibunB.getTxtDaibunruiLeave(dtShohin.Rows[intShohinCnt]["大分類コード"].ToString());
+
+                        //大分類名を挿入
+                        dtView.Rows[intShohinCnt]["大分類名"] = dtDaibun.Rows[0]["大分類名"].ToString();
+
+                        //中分類名の取得
+                        M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
+                        dtChubun = chubunB.getTxtChubunruiLeave(dtShohin.Rows[intShohinCnt]["大分類コード"].ToString(), dtShohin.Rows[intShohinCnt]["中分類コード"].ToString());
+
+                        //中分類名を挿入
+                        dtView.Rows[intShohinCnt]["中分類名"] = dtChubun.Rows[0]["中分類名"].ToString();
+
+                        //商品名を挿入
+                        dtView.Rows[intShohinCnt]["品名"] = dtShohin.Rows[intShohinCnt]["品名"].ToString();
+
+                        //定価を取り出す
+                        string strTeika = string.Format("{0:#,0}", decimal.Parse(dtShohin.Rows[intShohinCnt]["定価"].ToString()));
+                        //仕入単価を取り出す
+                        string strShireTanka = string.Format("{0:#,0.00}", decimal.Parse(dtShohin.Rows[intShohinCnt]["仕入単価"].ToString()));
+
+                        //仕入単価と定価が同じになる場合
+                        if (strShireTanka == "0.00" || strTeika == "0")
+                        {
+                            //掛率を挿入
+                            dtView.Rows[intShohinCnt]["掛率"] = "0";
+                        }
+                        else
+                        {
+                            //掛率を挿入
+                            dtView.Rows[intShohinCnt]["掛率"] = ((decimal)(decimal.Parse(strShireTanka) / decimal.Parse(strTeika)) * 100).ToString("#.0");
+                        }
+
+                        //定価を挿入
+                        dtView.Rows[intShohinCnt]["定価"] = strTeika;
+
+                        //仕入単価を挿入
+                        dtView.Rows[intShohinCnt]["仕入単価"] = strShireTanka;
+
+                        //メモ挿入
+                        dtView.Rows[intShohinCnt]["メモ"] = dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+                        
                         //SQLファイルのパスとファイル名を入れる用
                         List<string> lstSQL = new List<string>();
 
@@ -210,107 +263,57 @@ namespace KATO.Common.Business
                         //在庫数データにある場合
                         if (dtZaiko.Rows.Count > 0)
                         {
-                            //各行チェック
+                            //在庫数各行チェック
                             for (int intZaikoCnt = 0; intZaikoCnt < dtZaiko.Rows.Count; intZaikoCnt++)
                             {
-                                //商品コードを挿入
-                                dtView.Rows[intViewCnt]["商品コード"] = dtZaiko.Rows[intZaikoCnt]["商品コード"].ToString();
-
-                                //メーカー名の取得
-                                M1020_Maker_B makerB = new M1020_Maker_B();
-                                dtMaker = makerB.getTxtMakerTextLeave(dtShohin.Rows[intShohinCnt]["メーカーコード"].ToString());
-
-                                //メーカー名を挿入
-                                dtView.Rows[intViewCnt]["メーカー"] = dtMaker.Rows[0]["メーカー名"].ToString();
-
-                                //大分類名の取得
-                                M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
-                                dtDaibun = daibunB.getTxtDaibunruiLeave(dtShohin.Rows[intShohinCnt]["大分類コード"].ToString());
-
-                                //大分類名を挿入
-                                dtView.Rows[intViewCnt]["大分類名"] = dtDaibun.Rows[0]["大分類名"].ToString();
-
-                                //中分類名の取得
-                                M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
-                                dtChubun = chubunB.getTxtChubunruiLeave(dtShohin.Rows[intShohinCnt]["中分類コード"].ToString(), dtShohin.Rows[intShohinCnt]["中分類コード"].ToString());
-
-                                //中分類名を挿入
-                                dtView.Rows[intViewCnt]["中分類名"] = dtChubun.Rows[0]["中分類名"].ToString();
-
-                                //商品名を挿入
-                                dtView.Rows[intViewCnt]["品名"] = dtShohin.Rows[intShohinCnt]["品名"].ToString();
-
-                                //営業所コードが0001の場合
-                                if (dtZaiko.Rows[intZaikoCnt]["営業所コード"].ToString() == "0001")
+                                //在庫数テーブル内の商品コードと商品テーブルの商品コードが一致した場合
+                                if (dtView.Rows[intShohinCnt]["商品コード"].ToString() == dtZaiko.Rows[intZaikoCnt]["商品コード"].ToString())
                                 {
-                                    //在庫数（本社）を挿入
-                                    dtView.Rows[intViewCnt]["本社在庫"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["在庫数"].ToString())));
-                                    dtView.Rows[intViewCnt]["本社ﾌﾘｰ"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["フリー在庫数"].ToString())));
-                                }
-                                //0002の場合
-                                else
-                                {
-                                    dtView.Rows[intViewCnt]["岐阜在庫"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["在庫数"].ToString())));
-                                    dtView.Rows[intViewCnt]["岐阜ﾌﾘｰ"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["フリー在庫数"].ToString())));
-                                }
+                                    //営業所コードが0001の場合
+                                    if (dtZaiko.Rows[intZaikoCnt]["営業所コード"].ToString() == "0001")
+                                    {
+                                        //在庫数（本社）を挿入
+                                        dtView.Rows[intShohinCnt]["本社在庫"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["在庫数"].ToString())));
+                                        dtView.Rows[intShohinCnt]["本社ﾌﾘｰ"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["フリー在庫数"].ToString())));
+                                    }
+                                    //0002の場合
+                                    else
+                                    {
+                                        dtView.Rows[intShohinCnt]["岐阜在庫"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["在庫数"].ToString())));
+                                        dtView.Rows[intShohinCnt]["岐阜ﾌﾘｰ"] = string.Format("{0:#,0}", Math.Floor(decimal.Parse(dtZaiko.Rows[intZaikoCnt]["フリー在庫数"].ToString())));
+                                    }
 
-                                //定価を取り出す
-                                string strTeika = string.Format("{0:#,0}", decimal.Parse(dtShohin.Rows[intShohinCnt]["定価"].ToString()));
-                                //仕入単価を取り出す
-                                string strShireTanka = string.Format("{0:#,0.00}", decimal.Parse(dtShohin.Rows[intShohinCnt]["仕入単価"].ToString()));
-
-                                //仕入単価と定価が同じになる場合
-                                if (strShireTanka == "0.00" || strTeika == "0")
-                                {
-                                    //掛率を挿入
-                                    dtView.Rows[intViewCnt]["掛率"] = "0";
-                                }
-                                else
-                                {
-                                    //掛率を挿入
-                                    dtView.Rows[intViewCnt]["掛率"] = ((decimal)(decimal.Parse(strShireTanka) / decimal.Parse(strTeika)) * 100).ToString("#.0");
-                                }
-
-                                //定価を挿入
-                                dtView.Rows[intViewCnt]["定価"] = strTeika;
-
-                                //仕入単価を挿入
-                                dtView.Rows[intViewCnt]["仕入単価"] = strShireTanka;
-
-                                //メモ挿入
-                                dtView.Rows[intViewCnt]["メモ"] = dtShohin.Rows[intShohinCnt]["メモ"].ToString();
-
-                                //２つデータがあって且つ初回の場合
-                                if (dtZaiko.Rows.Count == 2 && blFirst == true)
-                                {
-                                    blFirst = false;
-                                }
-                                else
-                                {
-                                    //空白行の作成
-                                    drInsert = dtView.NewRow();
-                                    drInsert["商品コード"] = "";
-                                    drInsert["メーカー"] = "";
-                                    drInsert["中分類名"] = "";
-                                    drInsert["品名"] = "";
-                                    drInsert["本社在庫"] = "";
-                                    drInsert["本社ﾌﾘｰ"] = "";
-                                    drInsert["岐阜在庫"] = "";
-                                    drInsert["岐阜ﾌﾘｰ"] = "";
-                                    drInsert["定価"] = "";
-                                    drInsert["掛率"] = "";
-                                    drInsert["仕入単価"] = "";
-                                    drInsert["メモ"] = "";
-
-                                    dtView.Rows.Add(drInsert);
-
-                                    //初期化
-                                    blFirst = true;
+                                    //２つデータがあって且つ初回の場合
+                                    if (dtZaiko.Rows.Count == 2 && blFirst == true)
+                                    {
+                                        blFirst = false;
+                                    }
                                 }
                             }
-                            //記入箇所を次の行へ移動
-                            intViewCnt = intViewCnt + 1;
+
+                            //初期化
+                            blFirst = true;
                         }
+
+                        //記入箇所を次の行へ移動
+                        intViewCnt = intViewCnt + 1;
+
+                        //空白行の作成
+                        drInsert = dtView.NewRow();
+                        drInsert["商品コード"] = "";
+                        drInsert["メーカー"] = "";
+                        drInsert["中分類名"] = "";
+                        drInsert["品名"] = "";
+                        drInsert["本社在庫"] = "";
+                        drInsert["本社ﾌﾘｰ"] = "";
+                        drInsert["岐阜在庫"] = "";
+                        drInsert["岐阜ﾌﾘｰ"] = "";
+                        drInsert["定価"] = "";
+                        drInsert["掛率"] = "";
+                        drInsert["仕入単価"] = "";
+                        drInsert["メモ"] = "";
+
+                        dtView.Rows.Add(drInsert);
                     }
                     //最終行は白紙になるため削除する
                     dtView.Rows[dtView.Rows.Count - 1].Delete();

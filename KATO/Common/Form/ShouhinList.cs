@@ -234,17 +234,17 @@ namespace KATO.Common.Form
             //個々の幅、文章の寄せ
             setColumnShohin(code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnShohin(daibunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 302);
+            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 380);
             setColumnShohin(honshazaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(honshafree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(gihuzaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(gihufree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 75);
-            setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 100);
-            setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 190);
 
             //メーカーコードと大分類コードの列を非表示
             gridTorihiki.Columns[0].Visible = false;
@@ -592,19 +592,11 @@ namespace KATO.Common.Form
                     {
                         dtView.Rows[cnt]["本社在庫"] = dtView.Rows[cnt]["本社在庫"].ToString();
                     }
-                    else
-                    {
-                        dtView.Rows[cnt]["本社在庫"] = "0";
-                    }
 
                     //本社ﾌﾘｰが空でない場合
                     if (dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString() != "")
                     {
                         dtView.Rows[cnt]["本社ﾌﾘｰ"] = dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString();
-                    }
-                    else
-                    {
-                        decHonsha = 0;
                     }
 
                     //岐阜在庫が空でない場合
@@ -612,19 +604,11 @@ namespace KATO.Common.Form
                     {
                         dtView.Rows[cnt]["岐阜在庫"] = dtView.Rows[cnt]["岐阜在庫"].ToString();
                     }
-                    else
-                    {
-                        dtView.Rows[cnt]["岐阜在庫"] = 0;
-                    }
 
                     //岐阜ﾌﾘｰが空でない場合
                     if (dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString() != "")
                     {
                         dtView.Rows[cnt]["岐阜ﾌﾘｰ"] = dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString();
-                    }
-                    else
-                    {
-                        dtView.Rows[cnt]["岐阜ﾌﾘｰ"] = 0;
                     }
                 }
 
