@@ -305,29 +305,12 @@ namespace KATO.Form.A0030_ShireInput
             //記入情報登録用
             List<string> lstSaveData = new List<string>();
 
-            //各行の注文Noの有無
-            int intChumonCnt = 0;
-
-            //各行の情報を入れる
-            bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
-
-            //各行のチェック
-            for (int intCnt= 0; intCnt < bvg.Length; intCnt++)
+            //データのチェック
+            if (ChkData() == false)
             {
-                if (StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
-                {
-                    intChumonCnt = intChumonCnt + 1;
-                }
-            }
-
-            //どの行も注文番号が書かれていない場合
-            if (intChumonCnt == 0)
-            {
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "有効な明細行がありません。\r\n伝票が不要な場合は伝票削除（F3)を行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
                 return;
             }
+
 
             //伝票番号がない場合
             if (!StringUtl.blIsEmpty(txtDenpyoNo.Text))
@@ -768,8 +751,17 @@ namespace KATO.Form.A0030_ShireInput
                     {
                         decKin = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / intGyoCnt));
 
-                        decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / decKin * intGyoCnt));
-                                                
+                        //decKinとtxtUnchinが0の場合
+                        if (decKin.ToString() != "0" || int.Parse(txtUnchin.Text).ToString() != "0")
+                        {
+                            decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / decKin * intGyoCnt));
+                        }
+                        else
+                        {
+                            decKinSub = 0;
+                        }
+
+                        //
                         for (int intCnt = 0; intCnt <= intGyoCnt - 2; intCnt++)
                         {
                             arrUnchin[intCnt] = decKin;
@@ -1931,6 +1923,138 @@ namespace KATO.Form.A0030_ShireInput
                 basemessagebox.ShowDialog();
                 return dtSetCd;
             }
+        }
+
+
+        ///<summary>
+        ///ChkData
+        ///
+        ///</summary>
+        private bool ChkData()
+        {
+            object objSu = null;
+
+            //チェック後の判定
+            bool blgood = true;
+
+            //各行の注文Noの有無
+            int intChumonCnt = 0;
+
+            //各行の情報を入れる
+            bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
+
+            //各行のチェック
+            for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
+            {
+                if (StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
+                {
+                    intChumonCnt = intChumonCnt + 1;
+                }
+            }
+
+            //どの行も注文番号が書かれていない場合
+            if (intChumonCnt == 0)
+            {
+                //有効な明細行がないというメッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "有効な明細行がありません。\r\n伝票が不要な場合は伝票削除（F3)を行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                blgood = false;
+            }
+
+            decimal decUnchin = 0;
+            int intUnchinCnt = 0;
+
+            //運賃データが空の場合は0、それ以外はそのまま
+            if (txtUnchin.Text.Trim() == "")
+            {
+                decUnchin = 0;
+            }
+
+            //false判定でない場合
+            if (blgood == true)
+            {
+                //運賃データが0以外の場合
+                if (decUnchin != 0)
+                {
+                    //入力されている行数分チェック
+                    for (int intCnt = 0; intCnt <= bvg.Length; intCnt++)
+                    {
+                        //受注番号が空白以外で且つ１以上の場合
+                        if (StringUtl.blIsEmpty(bvg[intCnt].txtJuchuNo.Text) && int.Parse(bvg[intCnt].txtJuchuNo.Text) > 0)
+                        {
+                            intUnchinCnt = intUnchinCnt + 1;
+                        }
+
+                        //運賃カウントが0の場合
+                        if (intUnchinCnt == 0)
+                        {
+                            //"関連する受注データがないとメッセージ（OK）
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "関連する受注データがありません。明細行で運賃を入力して下さい。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+
+                            blgood = false;
+                        }
+                    }
+                }
+            }
+
+            //各gbDataのチェック
+            //false判定でない場合
+            if (blgood == true)
+            {
+                //各行のチェック
+                for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
+                {
+                    //注文番号がない場合
+                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
+                    {
+                        blgood = false;
+                    }
+                    //数量がない場合
+                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtSu.Text))
+                    {
+                        blgood = false;
+                    }
+                    //単価がない場合
+                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtTanka.Text))
+                    {
+                        blgood = false;
+                    }
+                    //倉庫番号がない場合
+                    if (!StringUtl.blIsEmpty(bvg[intCnt].labelSet_Eigyosho.ValueLabelText))
+                    {
+                        blgood = false;
+                    }
+
+                    //各行のチェック
+                    for (int intCntJuhuku = 0; intCnt < bvg.Length; intCntJuhuku++)
+                    {
+                        //同じ列同士の検索被りをしないようにする
+                        if (intCnt != intCntJuhuku)
+                        {
+                            //注文番号重複チェック
+                            if (bvg[intCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
+                            {
+                                //"関連する受注データがないとメッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                basemessagebox.ShowDialog();
+
+                                blgood = false;
+                            }
+                        }
+                    }
+
+                    //発注原価のチェック
+                    if (bvg[intCnt].txtTankaSub.Text != "0")
+                    {
+                        //
+                        blgood = false;
+                    }
+                }
+            }
+
+            return (blgood);
         }
 
 
