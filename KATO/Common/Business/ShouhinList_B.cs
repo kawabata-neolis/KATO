@@ -123,25 +123,42 @@ namespace KATO.Common.Business
 
             try
             {
-                switch (lstInt[1])
+                string strSELECT = "SELECT 商品.商品コード,大分類.大分類名,中分類.中分類名,メーカー.メーカー名,ISNULL(商品.Ｃ１, '') + ' ' + ISNULL(商品.Ｃ２, '') + ' ' + ISNULL(商品.Ｃ３, '') + ' ' +ISNULL(商品.Ｃ４, '') + ' ' +ISNULL(商品.Ｃ５, '') + ' ' +ISNULL(商品.Ｃ６, '') AS 品名,商品.メモ,商品.定価,商品.仕入単価,商品.コメント";
+                strSELECT = strSELECT + " FROM 商品,大分類,中分類,メーカー";
+                strSELECT = strSELECT + " WHERE 商品.大分類コード = 大分類.大分類コード AND 商品.大分類コード = 中分類.大分類コード AND 商品.中分類コード = 中分類.中分類コード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.メーカーコード = メーカー.メーカーコード";
+
+                //大分類あり
+                if (lstString[0] != "")
                 {
-                    //通常表示
-                    case 0:
-                        dtShohin = dbConnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード, a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名, a.メモ AS メモ, 大分類コード, 中分類コード, メーカーコード , 定価, 仕入単価 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        break;
-                    //本社在庫の表示
-                    case 1:
-                        dtShohin = dbConnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, dbo.f_get指定日のフリー在庫数Ｂ('0001', a.商品コード, '2050/12/31'), 大分類コード, 中分類コード, メーカーコード, 定価, 仕入単価 AS 本社在庫 , '' AS 岐阜在庫 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        break;
-                    //岐阜在庫の表示
-                    case 2:
-                        dtShohin = dbConnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, '' AS 本社在庫 , dbo.f_get指定日のフリー在庫数Ｂ('0002',a.商品コード,'2050/12/31') AS 岐阜在庫, 大分類コード, 中分類コード, メーカーコード, 定価, 仕入単価 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        break;
-                    //棚番の表示
-                    case 3:
-                        dtShohin = dbConnective.ReadSql("SELECT a.商品コード AS コード,dbo.f_getメーカー名(a.メーカーコード) AS メーカー,dbo.f_get大分類名(a.大分類コード) AS 大分類名,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名, ISNULL(a.Ｃ１,'')+' ' +ISNULL(a.Ｃ２,'')+' ' +ISNULL(a.Ｃ３,'')+' ' +ISNULL(a.Ｃ４,'')+' ' +ISNULL(a.Ｃ５,'')+' ' +ISNULL(a.Ｃ６,'') AS 品名,a.メモ AS メモ, a.棚番本社 AS 棚番本社, a.棚番岐阜 AS 棚番岐阜, 大分類コード, 中分類コード, メーカーコード, 定価, 仕入単価 FROM 商品 AS a " + strWhere + " ORDER BY 大分類コード,中分類コード,メーカーコード,Ｃ１,Ｃ２,Ｃ３,Ｃ４,Ｃ５,Ｃ６ ");
-                        break;
+                    strSELECT = strSELECT + " AND 商品.大分類コード = " + lstString[0];
                 }
+
+                //大分類と中分類共に記入されている場合
+                if (lstString[0] != "" && lstString[1] != "")
+                {
+                    strSELECT = strSELECT + " AND 商品.中分類コード = " + lstString[1];
+                }
+
+                //メーカーと大分類あり
+                if (lstString[2] != "")
+                {
+                    strSELECT = strSELECT + " AND 商品.メーカーコード = " + lstString[2];
+                }
+
+                //検索文字列と大分類またはメーカーがあり、部分検索の場合
+                if (lstString[3] != "" && lstBoolean[1] == true)
+                {
+                    strSELECT = strSELECT + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
+                }                
+                //検索文字列と大分類またはメーカーがあり、完全一致検索の場合
+                else if (lstString[3] != "" && lstBoolean[1] == false)
+                {
+                    strSELECT = strSELECT + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[3] + "'";
+                }
+
+
+                //SQL発行
+                dtShohin = dbConnective.ReadSql(strSELECT);
 
                 //データがあった場合
                 if (dtShohin.Rows.Count > 0)
@@ -183,28 +200,16 @@ namespace KATO.Common.Business
                     for (int intShohinCnt = 0; intShohinCnt < dtShohin.Rows.Count; intShohinCnt++)
                     {
                         //商品コードを挿入
-                        dtView.Rows[intShohinCnt]["商品コード"] = dtShohin.Rows[intShohinCnt]["コード"].ToString();
-
-                        //メーカー名の取得
-                        M1020_Maker_B makerB = new M1020_Maker_B();
-                        dtMaker = makerB.getTxtMakerTextLeave(dtShohin.Rows[intShohinCnt]["メーカーコード"].ToString());
+                        dtView.Rows[intShohinCnt]["商品コード"] = dtShohin.Rows[intShohinCnt]["商品コード"].ToString();
 
                         //メーカー名を挿入
-                        dtView.Rows[intShohinCnt]["メーカー"] = dtMaker.Rows[0]["メーカー名"].ToString();
-
-                        //大分類名の取得
-                        M1010_Daibunrui_B daibunB = new M1010_Daibunrui_B();
-                        dtDaibun = daibunB.getTxtDaibunruiLeave(dtShohin.Rows[intShohinCnt]["大分類コード"].ToString());
+                        dtView.Rows[intShohinCnt]["メーカー"] = dtShohin.Rows[intShohinCnt]["メーカー名"].ToString();
 
                         //大分類名を挿入
-                        dtView.Rows[intShohinCnt]["大分類名"] = dtDaibun.Rows[0]["大分類名"].ToString();
-
-                        //中分類名の取得
-                        M1110_Chubunrui_B chubunB = new M1110_Chubunrui_B();
-                        dtChubun = chubunB.getTxtChubunruiLeave(dtShohin.Rows[intShohinCnt]["大分類コード"].ToString(), dtShohin.Rows[intShohinCnt]["中分類コード"].ToString());
+                        dtView.Rows[intShohinCnt]["大分類名"] = dtShohin.Rows[intShohinCnt]["大分類名"].ToString();
 
                         //中分類名を挿入
-                        dtView.Rows[intShohinCnt]["中分類名"] = dtChubun.Rows[0]["中分類名"].ToString();
+                        dtView.Rows[intShohinCnt]["中分類名"] = dtShohin.Rows[intShohinCnt]["中分類名"].ToString();
 
                         //商品名を挿入
                         dtView.Rows[intShohinCnt]["品名"] = dtShohin.Rows[intShohinCnt]["品名"].ToString();
@@ -255,7 +260,7 @@ namespace KATO.Common.Business
                         }
 
                         //SQLファイルと該当コードでフォーマット
-                        strSQLInput = string.Format(strSQLInput, dtShohin.Rows[intShohinCnt]["コード"].ToString());
+                        strSQLInput = string.Format(strSQLInput, dtShohin.Rows[intShohinCnt]["商品コード"].ToString());
 
                         //検索データを表示
                         dtZaiko = dbConnective.ReadSql(strSQLInput);

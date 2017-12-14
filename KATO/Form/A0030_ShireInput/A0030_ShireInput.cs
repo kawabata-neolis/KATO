@@ -768,8 +768,17 @@ namespace KATO.Form.A0030_ShireInput
                     {
                         decKin = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / intGyoCnt));
 
-                        decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / decKin * intGyoCnt));
-                                                
+                        //decKinとtxtUnchinが0の場合
+                        if (decKin.ToString() != "0" || int.Parse(txtUnchin.Text).ToString() != "0")
+                        {
+                            decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / decKin * intGyoCnt));
+                        }
+                        else
+                        {
+                            decKinSub = 0;
+                        }
+
+                        //
                         for (int intCnt = 0; intCnt <= intGyoCnt - 2; intCnt++)
                         {
                             arrUnchin[intCnt] = decKin;

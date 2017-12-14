@@ -110,7 +110,7 @@ namespace KATO.Common.Form
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 100;
+            this.Top = c.Top + 50;
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
@@ -359,6 +359,62 @@ namespace KATO.Common.Form
                 case Keys.Enter:
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        ///<summary>
+        ///judTokuiListGridKeyDown
+        ///キー入力判定(グリッド)
+        ///</summary>
+        private void judTokuiListGridKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //グリッド選択
+                    setSelectItem();
                     break;
                 case Keys.F1:
                     break;

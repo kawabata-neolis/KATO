@@ -59,7 +59,7 @@ namespace KATO.Common.Form
             // 
             this.lblRecords.AutoSize = true;
             this.lblRecords.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
-            this.lblRecords.Location = new System.Drawing.Point(20, 566);
+            this.lblRecords.Location = new System.Drawing.Point(13, 650);
             this.lblRecords.Name = "lblRecords";
             this.lblRecords.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblRecords.Size = new System.Drawing.Size(125, 12);
@@ -226,7 +226,7 @@ namespace KATO.Common.Form
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridTorihiki.EnableHeadersVisualStyles = false;
-            this.gridTorihiki.Location = new System.Drawing.Point(12, 122);
+            this.gridTorihiki.Location = new System.Drawing.Point(12, 124);
             this.gridTorihiki.Name = "gridTorihiki";
             this.gridTorihiki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -240,11 +240,11 @@ namespace KATO.Common.Form
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTorihiki.Size = new System.Drawing.Size(1385, 434);
+            this.gridTorihiki.Size = new System.Drawing.Size(1385, 513);
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 5;
             this.gridTorihiki.DoubleClick += new System.EventHandler(this.setGridTorihiki_DoubleClick);
-            this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
+            this.gridTorihiki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListGridKeyDown);
             // 
             // txtKensaku
             // 
@@ -333,7 +333,7 @@ namespace KATO.Common.Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1409, 614);
+            this.ClientSize = new System.Drawing.Size(1409, 675);
             this.Controls.Add(this.radSet_2btn_Kensaku);
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);
