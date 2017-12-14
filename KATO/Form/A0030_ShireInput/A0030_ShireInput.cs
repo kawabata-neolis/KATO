@@ -13,6 +13,7 @@ using KATO.Common.Form;
 using KATO.Business.A0030_ShireInput;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.M1110_Chubunrui;
+using KATO.Common.Business;
 
 namespace KATO.Form.A0030_ShireInput
 {
@@ -1940,6 +1941,9 @@ namespace KATO.Form.A0030_ShireInput
             //各行の注文Noの有無
             int intChumonCnt = 0;
 
+            //仕入単価入れる用
+            string strShireTanka = "";
+
             //各行の情報を入れる
             bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
 
@@ -2004,7 +2008,7 @@ namespace KATO.Form.A0030_ShireInput
             if (blgood == true)
             {
                 //各行のチェック
-                for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
+                for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
                 {
                     //注文番号がない場合
                     if (!StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
@@ -2028,7 +2032,7 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     //各行のチェック
-                    for (int intCntJuhuku = 0; intCnt < bvg.Length; intCntJuhuku++)
+                    for (int intCntJuhuku = 1; intCnt <= bvg.Length; intCntJuhuku++)
                     {
                         //同じ列同士の検索被りをしないようにする
                         if (intCnt != intCntJuhuku)
@@ -2041,6 +2045,7 @@ namespace KATO.Form.A0030_ShireInput
                                 basemessagebox.ShowDialog();
 
                                 blgood = false;
+                                return(blgood);
                             }
                         }
                     }
@@ -2048,8 +2053,29 @@ namespace KATO.Form.A0030_ShireInput
                     //発注原価のチェック
                     if (bvg[intCnt].txtTankaSub.Text != "0")
                     {
-                        //
-                        blgood = false;
+                        //商品マスタから仕入単価を得る
+                        ShouhinList_B shohinlistB = new ShouhinList_B();
+                        strShireTanka = shohinlistB.getShireTanka(bvg[intCnt].txtShohinCd.Text);
+
+                        //仕入単価がない場合
+                        if (strShireTanka == "")
+                        {
+                            blgood = false;
+                        }
+                        else
+                        {
+                            //発注単価より値段が高い場合
+                            if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(strShireTanka))
+                            {
+                                //"関連する受注データがないとメッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                basemessagebox.ShowDialog();
+
+                                blgood = false;
+
+                                bvg[intCnt].txtTanka.Focus();
+                            }
+                        }
                     }
                 }
             }

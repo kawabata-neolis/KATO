@@ -92,7 +92,7 @@ namespace KATO.Common.Business
             {
                 string strSELECT = "SELECT 商品.商品コード,大分類.大分類名,中分類.中分類名,メーカー.メーカー名 AS メーカー,ISNULL(商品.Ｃ１, '') + ' ' + ISNULL(商品.Ｃ２, '') + ' ' + ISNULL(商品.Ｃ３, '') + ' ' +ISNULL(商品.Ｃ４, '') + ' ' +ISNULL(商品.Ｃ５, '') + ' ' +ISNULL(商品.Ｃ６, '') AS 品名,本社在庫.在庫数 AS 本社在庫, 本社在庫.フリー在庫数 AS 本社ﾌﾘｰ, 岐阜在庫.在庫数 AS 岐阜在庫, 岐阜在庫.フリー在庫数 AS 岐阜ﾌﾘｰ, 商品.メモ,商品.定価,商品.仕入単価,商品.コメント";
                 strSELECT = strSELECT + " FROM 大分類,中分類,メーカー,商品 LEFT OUTER JOIN 在庫数 AS 本社在庫 ON 商品.商品コード = 本社在庫.商品コード and 本社在庫.営業所コード = '0001' LEFT OUTER JOIN 在庫数 AS 岐阜在庫 ON 商品.商品コード = 岐阜在庫.商品コード and 岐阜在庫.営業所コード = '0002'";
-                strSELECT = strSELECT + " WHERE 商品.大分類コード = 大分類.大分類コード AND 商品.大分類コード = 中分類.大分類コード AND 商品.中分類コード = 中分類.中分類コード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.メーカーコード = メーカー.メーカーコード";
+                strSELECT = strSELECT + " WHERE 商品.大分類コード = 大分類.大分類コード AND 商品.大分類コード = 中分類.大分類コード AND 商品.中分類コード = 中分類.中分類コード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.削除 = 'N' ";
 
                 //大分類あり
                 if (lstString[0] != "")
@@ -599,6 +599,57 @@ namespace KATO.Common.Business
                     tokuteimukesakitanka.setShohinClose();
                     break;
                 }
+            }
+        }
+
+        ///<summary>
+        ///FormMove
+        ///仕入単価取得用(仕入入力画面で使用)
+        ///カラム論理名
+        ///</summary>
+        public string getShireTanka(string strShohinCd)
+        {
+            string strShireTanka = "";
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLSelect = new List<string>();
+
+            //SQLファイルのパスとファイル名を追加(メニュー権限取得)
+            lstSQLSelect.Add("M1030_Shohin");
+            lstSQLSelect.Add("Shohin_SELECT_ShireTanka");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得(メニュー権限取得)
+                string strSQLSelect = opensql.setOpenSQL(lstSQLSelect);
+
+                //パスがなければ返す
+                if (strSQLSelect == "")
+                {
+                    return(strShireTanka);
+                }
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
+
+                return(strShireTanka);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
             }
         }
     }

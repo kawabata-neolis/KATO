@@ -2194,6 +2194,9 @@
     <Content Include="SQL\M1020_Maker\Maker_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_ShireTanka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
