@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].検収済仕入明細 AS A
+﻿MERGE INTO 検収済仕入明細 AS A
 USING
     (
         SELECT

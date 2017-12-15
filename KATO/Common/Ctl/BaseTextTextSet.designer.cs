@@ -97,6 +97,6 @@
         private BaseLabel nameLabel;
         public BaseText codeTxt;
         private BaseLabelGray appendLabel;
-        private BaseText valueText;
+        public BaseText valueText;
     }
 }

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].印刷設定 AS A
+﻿MERGE INTO 印刷設定 AS A
 USING
     (
         SELECT

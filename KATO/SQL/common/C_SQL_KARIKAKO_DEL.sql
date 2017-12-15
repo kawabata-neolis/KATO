@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].仮加工 AS A
+﻿MERGE INTO 仮加工 AS A
 USING
     (
         SELECT

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].伝票番号 AS A
+﻿MERGE INTO 伝票番号 AS A
 USING
     (
         SELECT

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].初期設定 AS A
+﻿MERGE INTO 初期設定 AS A
 USING
     (
         SELECT

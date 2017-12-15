@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].[直送先] AS A
+﻿MERGE INTO [直送先] AS A
 USING
     (
         SELECT

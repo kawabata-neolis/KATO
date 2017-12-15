@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].在庫一覧データ AS A
+﻿MERGE INTO 在庫一覧データ AS A
 USING
     (
         SELECT

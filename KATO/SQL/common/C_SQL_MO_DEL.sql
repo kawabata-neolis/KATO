@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].MO AS A
+﻿MERGE INTO MO AS A
 USING
     (
         SELECT

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].在庫一覧_棚卸調整 AS A
+﻿MERGE INTO 在庫一覧_棚卸調整 AS A
 USING
     (
         SELECT

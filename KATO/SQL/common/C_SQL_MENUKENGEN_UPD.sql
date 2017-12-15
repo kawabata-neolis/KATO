@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].メニュー権限 AS A
+﻿MERGE INTO メニュー権限 AS A
 USING
     (
         SELECT

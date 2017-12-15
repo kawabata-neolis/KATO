@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].日付制限 AS A
+﻿MERGE INTO 日付制限 AS A
 USING
     (
         SELECT

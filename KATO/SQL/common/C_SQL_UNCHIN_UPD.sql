@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].運賃 AS A
+﻿MERGE INTO 運賃 AS A
 USING
     (
         SELECT

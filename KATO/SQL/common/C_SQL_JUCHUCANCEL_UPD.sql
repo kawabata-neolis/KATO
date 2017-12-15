@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].受注キャンセル AS A
+﻿MERGE INTO 受注キャンセル AS A
 USING
     (
         SELECT

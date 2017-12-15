@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].カレンダ AS A
+﻿MERGE INTO カレンダ AS A
 USING
     (
         SELECT

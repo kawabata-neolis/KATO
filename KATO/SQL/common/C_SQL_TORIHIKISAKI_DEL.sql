@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].取引先 AS A
+﻿MERGE INTO 取引先 AS A
 USING
     (
         SELECT

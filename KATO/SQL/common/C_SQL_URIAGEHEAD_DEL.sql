@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].売上ヘッダ AS A
+﻿MERGE INTO 売上ヘッダ AS A
 USING
     (
         SELECT

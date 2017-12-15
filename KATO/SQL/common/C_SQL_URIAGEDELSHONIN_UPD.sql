@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].売上削除承認 AS A
+﻿MERGE INTO 売上削除承認 AS A
 USING
     (
         SELECT

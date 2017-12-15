@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].取引区分 AS A
+﻿MERGE INTO 取引区分 AS A
 USING
     (
         SELECT
