@@ -97,17 +97,16 @@ namespace KATO.Form.A0030_ShireInput
             setAnotherData();
             
             //0パディング等の表示情報の修正
-            txtSu.Focus();
-            txtTanka.Focus();
-            txtKin.Focus();
-            txtTankaSub.Focus();
-            txtBiko.Focus();
+            txtSu.updPriceMethod();
+            txtTanka.updPriceMethod();
+            txtKin.updPriceMethod();
+            txtTankaSub.updPriceMethod();
 
             //仕入率の取得
             txtShireritsu.Text = ((decimal.Parse(txtTankaSub.Text) / int.Parse(txtTekaSub.Text)) * 100).ToString();
 
             //0パディング等の表示情報の修正
-            txtShireritsu.Focus();
+            txtShireritsu.updPriceMethod();
             txtBiko.Focus();
 
 
@@ -405,6 +404,12 @@ namespace KATO.Form.A0030_ShireInput
                     shireinput.txtSogokei.Text = dtSetCd_B_Header.Rows[0]["税込合計金額"].ToString();
                     shireinput.txtUnchin.Text = dtSetCd_B_Header.Rows[0]["運賃"].ToString();
 
+                    //金額系の表示修正
+                    shireinput.txtGokei.updPriceMethod();
+                    shireinput.txtShohizei.updPriceMethod();
+                    shireinput.txtSogokei.updPriceMethod();
+                    shireinput.txtUnchin.updPriceMethod();
+
                     //初期化
                     strSQLInput = "";
 
@@ -600,10 +605,12 @@ namespace KATO.Form.A0030_ShireInput
 
                     //発注数量から仕入済数量を引く
                     txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
+                    txtSu.updPriceMethod();
                     //数量が変更になったことによる処理
                     setTxtSuChange();
 
                     txtTanka.Text = string.Format("{0:0.00}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注単価"].ToString()));
+                    txtTanka.updPriceMethod();
                     //単価が変更になったことによる処理
                     setTxtTankaChange();
 
@@ -726,7 +733,13 @@ namespace KATO.Form.A0030_ShireInput
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
             //数量と単価、四捨五入による計算、金額に記入
-            txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+
+
+//要確認
+            txtKin.Text = (int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
+            txtKin.updPriceMethod();
 
             //金額が-1になった場合
             if (txtKin.Text == "-1")
@@ -762,7 +775,9 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
+//要確認
             txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+            txtKin.updPriceMethod();
 
             //金額が-1になった場合
             if (txtKin.Text == "-1")
@@ -1130,6 +1145,7 @@ namespace KATO.Form.A0030_ShireInput
 
                 //数量と単価、四捨五入による計算、金額に記入
                 txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.updPriceMethod();
 
                 //金額が-1になった場合
                 if (txtKin.Text == "-1")
@@ -1174,6 +1190,7 @@ namespace KATO.Form.A0030_ShireInput
 
                 //数量と単価、四捨五入による計算、金額に記入
                 txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.updPriceMethod();
 
                 //金額が-1になった場合
                 if (txtKin.Text == "-1")
@@ -1343,7 +1360,7 @@ namespace KATO.Form.A0030_ShireInput
             for (intCnt = 0; intCnt <= shireinput.intMaxRow; intCnt++)
             {
                 //各行の入力金額を追加
-                decGokei = decGokei + int.Parse(txtKin.Text.Trim(' '));
+                decGokei = decGokei + decimal.Parse(txtKin.Text.Trim());
             }
 
             //運賃が記入されていない場合

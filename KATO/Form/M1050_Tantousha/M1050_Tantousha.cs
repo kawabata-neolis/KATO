@@ -417,18 +417,87 @@ namespace KATO.Form.M1050_Tantousha
                 txtHyoji.Focus();
                 return;
             }
-
-
-            //登録情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、ユーザー名）
+            //空文字判定（マスタ権限）
+            if (txtMasterKengen.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtMasterKengen.Focus();
+                return;
+            }
+            //入力文字判定（マスタ権限）
+            if (txtMasterKengen.Text != "0" && txtMasterKengen.Text != "1")
+            {
+                //メッセージボックスの処理、項目が該当数値以外の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "表示設定は、0か1を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtMasterKengen.Focus();
+                return;
+            }
+            //空文字判定（閲覧権限）
+            if (txtEtsuranKengen.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtEtsuranKengen.Focus();
+                return;
+            }
+            //入力文字判定（閲覧権限）
+            if (txtEtsuranKengen.Text != "0" && txtEtsuranKengen.Text != "1")
+            {
+                //メッセージボックスの処理、項目が該当数値以外の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "表示設定は、0か1を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtEtsuranKengen.Focus();
+                return;
+            }
+            //空文字判定（利益率権限）
+            if (txtRiekiritsuKengen.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtRiekiritsuKengen.Focus();
+                return;
+            }
+            //入力文字判定（利益率権限）
+            if (txtRiekiritsuKengen.Text != "0" && txtRiekiritsuKengen.Text != "1")
+            {
+                //メッセージボックスの処理、項目が該当数値以外の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "表示設定は、0か1を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtRiekiritsuKengen.Focus();
+                return;
+            }
+            
+            //登録情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、マスター権限、閲覧権限、利益率権限、ユーザー名）
+            //[0]
             lstTantousha.Add(txtTantoushaCd.Text);
+            //[1]
             lstTantousha.Add(txtTantoushaName.Text);
+            //[2]
             lstTantousha.Add(txtLoginID.Text);
+            //[3]
             lstTantousha.Add(lblSetEigyousho.CodeTxtText);
+            //[4]
             lstTantousha.Add(txtChuban.Text);
+            //[5]
             lstTantousha.Add(lblSetGroupCd.CodeTxtText);
+            //[6]
             lstTantousha.Add(txtMokuhyou.Text);
+            //[7]
+            lstTantousha.Add(txtMasterKengen.Text);
+            //[8]
+            lstTantousha.Add(txtEtsuranKengen.Text);
+            //[9]
+            lstTantousha.Add(txtRiekiritsuKengen.Text);
+            //[10]
             lstTantousha.Add(txtYakushokuCd.Text);
+            //[11]
             lstTantousha.Add(txtHyoji.Text);
+            //[12]
             lstTantousha.Add(SystemInformation.UserName);
 
             //ビジネス層のインスタンス生成
@@ -553,6 +622,9 @@ namespace KATO.Form.M1050_Tantousha
             txtMokuhyou.Text = ((decimal)dtSelectData.Rows[0]["年間売上目標"]).ToString("#,0");
             txtYakushokuCd.Text = dtSelectData.Rows[0]["役職コード"].ToString();
             txtHyoji.Text = dtSelectData.Rows[0]["表示"].ToString();
+            txtMasterKengen.Text = dtSelectData.Rows[0]["マスタ権限"].ToString();
+            txtEtsuranKengen.Text = dtSelectData.Rows[0]["閲覧権限"].ToString();
+            txtRiekiritsuKengen.Text = dtSelectData.Rows[0]["利益率権限"].ToString();
 
             //役職コードの表示
             txtYakushokuCd_Leave_Set();

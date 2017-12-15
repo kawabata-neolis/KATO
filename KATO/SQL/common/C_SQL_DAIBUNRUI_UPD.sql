@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].[大分類] AS A
+﻿MERGE INTO [大分類] AS A
 USING
     (
         SELECT

@@ -1141,6 +1141,9 @@ namespace KATO.Form.A0030_ShireInput
             //伝票番号の処理が1度でもあった場合
             if (blDenpyoLeave == true)
             {
+                //伝票番号を入力させないようにする
+
+
                 //初期化
                 blDenpyoLeave = false;
                 return;
@@ -1191,9 +1194,9 @@ namespace KATO.Form.A0030_ShireInput
                     labelSet_Tantousha.CodeTxtText = dtSetShireHeader.Rows[0]["担当者コード"].ToString();
                     txtEigyouCd.Text = dtSetShireHeader.Rows[0]["営業所コード"].ToString();
                     txtTekiyo.Text = dtSetShireHeader.Rows[0]["摘要欄"].ToString();
-                    txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"]);
-                    txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"]);
-                    txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"]);
+                    //txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"]);
+                    //txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"]);
+                    //txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"]);
                     txtUnchin.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["運賃"]);
 
                     //数値の入る各項目がnullの場合0を入れる
@@ -1289,7 +1292,7 @@ namespace KATO.Form.A0030_ShireInput
                         lstData.Add(dtSetshire.Rows[intCnt]["メーカーコード"].ToString());
 
                         //品名の確保（メーカー名部分）
-                        strHinmei = dtSetshire.Rows[intCnt]["メーカー名"].ToString();
+                        strHinmei = dtSetshire.Rows[intCnt]["メーカー名"].ToString().Trim();
 
                         //[4]
                         lstData.Add(dtSetshire.Rows[intCnt]["大分類コード"].ToString());
@@ -1302,12 +1305,12 @@ namespace KATO.Form.A0030_ShireInput
                         //中分類のコードと名前を確保
                         dtChubun = chubunruiB.getTxtChubunruiLeave(dtSetshire.Rows[intCnt]["大分類コード"].ToString(), dtSetshire.Rows[intCnt]["中分類コード"].ToString());
 
-                        strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
+                        strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"].ToString().Trim();
 
                         //Ｃ１にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ１"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ１"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ１"].ToString().Trim();
                             //[6]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ１"].ToString());
                         }
@@ -1319,7 +1322,7 @@ namespace KATO.Form.A0030_ShireInput
                         //Ｃ２にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ２"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ２"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ２"].ToString().Trim();
                             //[7]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ２"].ToString());
                         }
@@ -1331,7 +1334,7 @@ namespace KATO.Form.A0030_ShireInput
                         //Ｃ３にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ３"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ３"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ３"].ToString().Trim();
                             //[8]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ３"].ToString());
                         }
@@ -1343,7 +1346,7 @@ namespace KATO.Form.A0030_ShireInput
                         //Ｃ４にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ４"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ４"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ４"].ToString().Trim();
                             //[9]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ４"].ToString());
                         }
@@ -1355,7 +1358,7 @@ namespace KATO.Form.A0030_ShireInput
                         //Ｃ５にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ５"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ５"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ５"].ToString().Trim();
                             //[10]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ５"].ToString());
                         }
@@ -1367,7 +1370,7 @@ namespace KATO.Form.A0030_ShireInput
                         //Ｃ６にデータがある場合
                         if (dtSetshire.Rows[intCnt]["Ｃ６"].ToString() != "")
                         {
-                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ６"].ToString();
+                            strHinmei = strHinmei + " " + dtSetshire.Rows[intCnt]["Ｃ６"].ToString().Trim();
                             //[11]
                             lstData.Add(dtSetshire.Rows[intCnt]["Ｃ６"].ToString());
                         }
@@ -1380,21 +1383,21 @@ namespace KATO.Form.A0030_ShireInput
                         //[12]
                         lstData.Add(strHinmei);
                         //[13]
-                        lstData.Add(dtSetshire.Rows[intCnt]["数量"].ToString());
+                        lstData.Add(dtSetshire.Rows[intCnt]["数量"].ToString().Trim());
                         //[14]
-                        lstData.Add(dtSetshire.Rows[intCnt]["仕入単価"].ToString());
+                        lstData.Add(dtSetshire.Rows[intCnt]["仕入単価"].ToString().Trim());
                         //[15]
-                        lstData.Add(dtSetshire.Rows[intCnt]["仕入金額"].ToString());
+                        lstData.Add(dtSetshire.Rows[intCnt]["仕入金額"].ToString().Trim());
                         //[16]
-                        lstData.Add(dtSetshire.Rows[intCnt]["備考"].ToString());
+                        lstData.Add(dtSetshire.Rows[intCnt]["備考"].ToString().Trim());
                         //[17]
-                        lstData.Add(dtSetshire.Rows[intCnt]["入庫倉庫"].ToString());
+                        lstData.Add(dtSetshire.Rows[intCnt]["入庫倉庫"].ToString().Trim());
 
                         //発注番号の取得
-                        int intHNo = int.Parse(dtSetshire.Rows[intCnt]["発注番号"].ToString());
+                        int intHNo = int.Parse(dtSetshire.Rows[intCnt]["発注番号"].ToString().Trim());
 
                         //発注受注番号の取得
-                        DataTable dtHachuJuchu = shireinputB.getHachuJuchu(intHNo.ToString());
+                        DataTable dtHachuJuchu = shireinputB.getHachuJuchu(intHNo.ToString().Trim());
 
                         //行番号-1が0の場合(1行目)
                         if (intRowCntMinus1 == 0)
@@ -1413,6 +1416,7 @@ namespace KATO.Form.A0030_ShireInput
                                 DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu1.Text);
 
                                 txtTanka1.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                                txtTanka1.updPriceMethod();
                             }
                         }
                         //行番号-1が1の場合(2行目)
@@ -1432,6 +1436,7 @@ namespace KATO.Form.A0030_ShireInput
                                 DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu2.Text);
 
                                 txtTanka2.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                                txtTanka2.updPriceMethod();
                             }
                         }
                         //行番号-1が2の場合(3行目)
@@ -1451,6 +1456,7 @@ namespace KATO.Form.A0030_ShireInput
                                 DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu3.Text);
 
                                 txtTanka3.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                                txtTanka3.updPriceMethod();
                             }
                         }
                         //行番号-1が3の場合(4行目)
@@ -1470,6 +1476,7 @@ namespace KATO.Form.A0030_ShireInput
                                 DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu4.Text);
 
                                 txtTanka4.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                                txtTanka4.updPriceMethod();
                             }
                         }
                         //行番号-1が4の場合(5行目)
@@ -1489,6 +1496,7 @@ namespace KATO.Form.A0030_ShireInput
                                 DataTable dtJuchuTanka = shireinputB.getJuchuTanka(txtJuchu5.Text);
 
                                 txtTanka5.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
+                                txtTanka5.updPriceMethod();
                             }
                         }
                     }
@@ -1515,6 +1523,12 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     return;
                 }
+
+                //合計値を入力
+                txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"]);
+                txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"]);
+                txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"]);
+
             }
             catch (Exception ex)
             {
@@ -1680,8 +1694,9 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka1.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu1.Text) || txtJuchu1.Text.Trim() == "0")
             {
+                txtTanka1.Text = "0";
                 return;
             }
 
@@ -1698,6 +1713,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka1.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+                    txtTanka1.updPriceMethod();
 
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu1.Text);
@@ -1725,8 +1741,9 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka2.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu2.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu2.Text) || txtJuchu2.Text.Trim() == "0")
             {
+                txtTanka2.Text = "0";
                 return;
             }
 
@@ -1743,6 +1760,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka2.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+                    txtTanka2.updPriceMethod();
 
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu2.Text);
@@ -1770,8 +1788,9 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka3.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu3.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu3.Text) || txtJuchu2.Text.Trim() == "0")
             {
+                txtTanka3.Text = "0";
                 return;
             }
 
@@ -1788,6 +1807,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka3.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+                    txtTanka3.updPriceMethod();
 
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka3.Text);
@@ -1815,8 +1835,9 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka4.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu4.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu4.Text) || txtJuchu4.Text.Trim() == "0")
             {
+                txtTanka4.Text = "0";
                 return;
             }
 
@@ -1833,6 +1854,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka4.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+                    txtTanka4.updPriceMethod();
 
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka4.Text);
@@ -1861,8 +1883,9 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka5.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text))
+            if (!StringUtl.blIsEmpty(txtJuchu1.Text) || txtJuchu5.Text.Trim() == "0")
             {
+                txtTanka5.Text = "0";
                 return;
             }
 
@@ -1879,6 +1902,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     txtTanka5.Text = string.Format("{0:0.#}", double.Parse(dtSetCd.Rows[0][0].ToString()));
+                    txtTanka5.updPriceMethod();
 
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka5.Text);
