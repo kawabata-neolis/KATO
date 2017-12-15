@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].担当者 AS A
+﻿MERGE INTO 担当者 AS A
 USING
     (
         SELECT

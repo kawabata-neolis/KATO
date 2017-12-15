@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].見積明細カラオケ AS A
+﻿MERGE INTO 見積明細カラオケ AS A
 USING
     (
         SELECT

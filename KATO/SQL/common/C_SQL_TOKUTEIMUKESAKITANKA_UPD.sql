@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].特定向先単価 AS A
+﻿MERGE INTO 特定向先単価 AS A
 USING
     (
         SELECT

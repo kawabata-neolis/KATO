@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].営業所 AS A
+﻿MERGE INTO 営業所 AS A
 USING
     (
         SELECT

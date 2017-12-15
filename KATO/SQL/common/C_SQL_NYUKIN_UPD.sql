@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].入金 AS A
+﻿MERGE INTO 入金 AS A
 USING
     (
         SELECT

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].メーカー AS A
+﻿MERGE INTO メーカー AS A
 USING
     (
         SELECT

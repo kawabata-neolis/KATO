@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].棚番 AS A
+﻿MERGE INTO 棚番 AS A
 USING
     (
         SELECT

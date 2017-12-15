@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].請求履歴 AS A
+﻿MERGE INTO 請求履歴 AS A
 USING
     (
         SELECT

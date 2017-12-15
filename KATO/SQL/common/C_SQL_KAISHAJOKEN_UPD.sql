@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].会社処理条件 AS A
+﻿MERGE INTO 会社処理条件 AS A
 USING
     (
         SELECT

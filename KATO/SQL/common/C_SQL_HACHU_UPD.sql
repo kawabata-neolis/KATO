@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].発注 AS A
+﻿MERGE INTO 発注 AS A
 USING
     (
         SELECT

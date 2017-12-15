@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].返品値引売上承認 AS A
+﻿MERGE INTO 返品値引売上承認 AS A
 USING
     (
         SELECT

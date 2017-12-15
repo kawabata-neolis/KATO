@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].商品仕入単価履歴TMP AS A
+﻿MERGE INTO 商品仕入単価履歴TMP AS A
 USING
     (
         SELECT

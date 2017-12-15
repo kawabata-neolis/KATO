@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].出庫明細 AS A
+﻿MERGE INTO 出庫明細 AS A
 USING
     (
         SELECT

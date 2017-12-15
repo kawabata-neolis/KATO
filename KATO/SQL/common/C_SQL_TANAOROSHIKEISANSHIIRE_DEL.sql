@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].棚卸計算_仕入 AS A
+﻿MERGE INTO 棚卸計算_仕入 AS A
 USING
     (
         SELECT

@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].見積ヘッド AS A
+﻿MERGE INTO 見積ヘッド AS A
 USING
     (
         SELECT

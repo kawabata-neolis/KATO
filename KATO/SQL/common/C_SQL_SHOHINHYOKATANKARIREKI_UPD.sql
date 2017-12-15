@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].商品評価単価履歴 AS A
+﻿MERGE INTO 商品評価単価履歴 AS A
 USING
     (
         SELECT

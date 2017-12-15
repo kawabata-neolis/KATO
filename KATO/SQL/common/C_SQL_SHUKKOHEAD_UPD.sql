@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].出庫ヘッダ AS A
+﻿MERGE INTO 出庫ヘッダ AS A
 USING
     (
         SELECT

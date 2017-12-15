@@ -143,6 +143,22 @@ namespace KATO.Common.Ctl
                     this.SelectedIndex = 0;
                 }
             }
+            //parentが発注入力の場合
+            if (this.Parent.Name == "A0010_JuchuInput")
+            {
+                //選んだアイテムがある場合
+                if (this.SelectedItem != null)
+                {
+                    //コロンより手前（金額）のみを読み取る
+                    strMoney = this.SelectedItem.ToString().Split(':')[0];
+
+                    //インデックスを変更して、選択元データを読み取らないようにする
+                    this.Items[0] = strMoney;
+
+                    //インデックスを変更して、選択元データを読み取らないようにする
+                    this.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

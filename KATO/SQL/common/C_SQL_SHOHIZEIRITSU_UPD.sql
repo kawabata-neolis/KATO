@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].消費税率 AS A
+﻿MERGE INTO 消費税率 AS A
 USING
     (
         SELECT

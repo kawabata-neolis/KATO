@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].グループ AS A
+﻿MERGE INTO グループ AS A
 USING
     (
         SELECT

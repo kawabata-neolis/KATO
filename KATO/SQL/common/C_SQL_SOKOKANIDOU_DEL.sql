@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].倉庫間移動 AS A
+﻿MERGE INTO 倉庫間移動 AS A
 USING
     (
         SELECT

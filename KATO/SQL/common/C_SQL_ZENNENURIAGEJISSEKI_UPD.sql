@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].前年売上実績 AS A
+﻿MERGE INTO 前年売上実績 AS A
 USING
     (
         SELECT

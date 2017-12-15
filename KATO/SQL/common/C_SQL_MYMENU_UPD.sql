@@ -1,4 +1,4 @@
-﻿MERGE INTO [KATO].[dbo].マイメニュー AS A
+﻿MERGE INTO マイメニュー AS A
 USING
     (
         SELECT
