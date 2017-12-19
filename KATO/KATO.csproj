@@ -171,6 +171,7 @@
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
+    <Compile Include="Business\M1490_Menukengen2\M1490_Menukengen2_B.cs" />
     <Compile Include="Business\Z0000\Z0000_B.cs" />
     <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
     <Compile Include="Common\Business\ShireList_B.cs" />
@@ -939,6 +940,12 @@
     <Compile Include="Form\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2.Designer.cs">
       <DependentUpon>M1240_ShohinSiireKakakuSuii2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1490_Menukengen2\M1490_Menukengen2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1490_Menukengen2\M1490_Menukengen2.designer.cs">
+      <DependentUpon>M1490_Menukengen2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Z0000\Z0000.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1374,6 +1381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2.resx">
       <DependentUpon>M1240_ShohinSiireKakakuSuii2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1490_Menukengen2\M1490_Menukengen2.resx">
+      <DependentUpon>M1490_Menukengen2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Z0000\Z0000.resx">
       <DependentUpon>Z0000.cs</DependentUpon>

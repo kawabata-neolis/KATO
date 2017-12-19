@@ -46,7 +46,7 @@ namespace KATO.Form.A0030_ShireInput
         //各行の情報を入れる配列
         BaseViewDataGroup[] bvg;
 
-        //
+        //どこのGroupDataにフォーカスされているか
         public short shotCnt = 0;
 
         ///<summary>
@@ -1178,6 +1178,15 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
+                ////戻り値のDatatableを取り込む(日付制限の検索)
+                //dtSetCd = shireinputB.getHidukeseigen("3", txtEigyouCd.Text);
+
+                ////検索結果にデータが存在しなければ終了
+                //if (dtSetCd.Rows.Count == 0)
+                //{
+                //    return;
+                //}
+
                 //戻り値のDatatableを取り込む(仕入ヘッダー内の検索)
                 dtSetShireHeader = shireinputB.getShireHeader(txtDenpyoNo.Text);
 
@@ -1448,7 +1457,7 @@ namespace KATO.Form.A0030_ShireInput
                             //一行以上ある場合
                             if (dtHachuJuchu.Rows.Count > 0 && dtSetshire.Rows.Count > 0)
                             {
-                                txtJuchu2.Text = "";
+                                txtJuchu3.Text = "";
 
                                 txtJuchu3.Text = dtHachuJuchu.Rows[0][0].ToString();
 
@@ -1525,9 +1534,15 @@ namespace KATO.Form.A0030_ShireInput
                 }
 
                 //合計値を入力
-                txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"]);
-                txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"]);
-                txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"]);
+                txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"].ToString());
+                txtGokei.Text = StringUtl.updShishagonyu(txtGokei.Text, 0);
+                txtGokei.updPriceMethod();
+                txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"].ToString());
+                txtShohizei.Text = StringUtl.updShishagonyu(txtShohizei.Text, 0);
+                txtShohizei.updPriceMethod();
+                txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"].ToString());
+                txtSogokei.Text = StringUtl.updShishagonyu(txtSogokei.Text, 0);
+                txtSogokei.updPriceMethod();
 
             }
             catch (Exception ex)
@@ -1788,7 +1803,7 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka3.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu3.Text) || txtJuchu2.Text.Trim() == "0")
+            if (!StringUtl.blIsEmpty(txtJuchu3.Text) || txtJuchu3.Text.Trim() == "0")
             {
                 txtTanka3.Text = "0";
                 return;
@@ -1810,7 +1825,7 @@ namespace KATO.Form.A0030_ShireInput
                     txtTanka3.updPriceMethod();
 
                     dtSetCd.Clear();
-                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka3.Text);
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu3.Text);
 
                     gbData3.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
                 }
@@ -1857,7 +1872,7 @@ namespace KATO.Form.A0030_ShireInput
                     txtTanka4.updPriceMethod();
 
                     dtSetCd.Clear();
-                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka4.Text);
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu4.Text);
 
                     gbData4.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
 
@@ -2101,6 +2116,10 @@ namespace KATO.Form.A0030_ShireInput
                             }
                         }
                     }
+
+//
+//
+
                 }
             }
 
@@ -2118,6 +2137,22 @@ namespace KATO.Form.A0030_ShireInput
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///gbData1_Enter
+        ///DataGroupの1にフォーカスが来た場合
+        ///</summary>
+        private void gbData1_Enter(object sender, EventArgs e)
+        {
+            //GroupData1にフォーカスが行ってる情報を残す
+            shotCnt = 1;
+        }
+
+        private void gbData2_Enter(object sender, EventArgs e)
+        {
+            //GroupData1にフォーカスが行ってる情報を残す
+            shotCnt = 2;
         }
     }
 }

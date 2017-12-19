@@ -83,5 +83,17 @@ namespace KATO.Common.Util
 
             return (strData);
         }
+
+        ///
+        ///画面Noから日付範囲チェックをする
+        ///
+        public static bool judHidukeCheck(string strGamenID, string strEigyoshoCd)
+        {
+            bool blCheck = false;
+
+
+
+            return (blCheck);
+        }
     }
 }
