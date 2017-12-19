@@ -49,6 +49,15 @@
             this.lblYakushokuMemo1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblYakushokuMemo2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHyojiMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtMasterKengen = new KATO.Common.Ctl.BaseText();
+            this.lblMasterKengen = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtEtsuranKengen = new KATO.Common.Ctl.BaseText();
+            this.lblEtsuranKengen = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRiekiritsuKengen = new KATO.Common.Ctl.BaseText();
+            this.lblRiekiritsuKengen = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblMasterKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblEtsuranKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblRiekiritsuKengenMemo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
             // btnF01
@@ -281,7 +290,7 @@
             // 
             this.lblHyoji.AutoSize = true;
             this.lblHyoji.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyoji.Location = new System.Drawing.Point(740, 394);
+            this.lblHyoji.Location = new System.Drawing.Point(740, 401);
             this.lblHyoji.Name = "lblHyoji";
             this.lblHyoji.Size = new System.Drawing.Size(71, 15);
             this.lblHyoji.strToolTip = null;
@@ -306,10 +315,10 @@
             // 
             this.txtHyoji.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtHyoji.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtHyoji.Location = new System.Drawing.Point(861, 391);
+            this.txtHyoji.Location = new System.Drawing.Point(861, 398);
             this.txtHyoji.MaxLength = 1;
             this.txtHyoji.Name = "txtHyoji";
-            this.txtHyoji.Size = new System.Drawing.Size(30, 22);
+            this.txtHyoji.Size = new System.Drawing.Size(24, 22);
             this.txtHyoji.TabIndex = 9;
             this.txtHyoji.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
             this.txtHyoji.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
@@ -356,7 +365,7 @@
             // 
             this.lblHyojiMemo.AutoSize = true;
             this.lblHyojiMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyojiMemo.Location = new System.Drawing.Point(911, 395);
+            this.lblHyojiMemo.Location = new System.Drawing.Point(911, 402);
             this.lblHyojiMemo.Name = "lblHyojiMemo";
             this.lblHyojiMemo.Size = new System.Drawing.Size(151, 15);
             this.lblHyojiMemo.strToolTip = null;
@@ -364,19 +373,136 @@
             this.lblHyojiMemo.Text = "0：非表示  1：表示";
             this.lblHyojiMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtMasterKengen
+            // 
+            this.txtMasterKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMasterKengen.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMasterKengen.Location = new System.Drawing.Point(861, 436);
+            this.txtMasterKengen.MaxLength = 1;
+            this.txtMasterKengen.Name = "txtMasterKengen";
+            this.txtMasterKengen.Size = new System.Drawing.Size(24, 22);
+            this.txtMasterKengen.TabIndex = 10;
+            this.txtMasterKengen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtMasterKengen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            // 
+            // lblMasterKengen
+            // 
+            this.lblMasterKengen.AutoSize = true;
+            this.lblMasterKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMasterKengen.Location = new System.Drawing.Point(740, 439);
+            this.lblMasterKengen.Name = "lblMasterKengen";
+            this.lblMasterKengen.Size = new System.Drawing.Size(87, 15);
+            this.lblMasterKengen.strToolTip = null;
+            this.lblMasterKengen.TabIndex = 89;
+            this.lblMasterKengen.Text = "マスタ権限";
+            this.lblMasterKengen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtEtsuranKengen
+            // 
+            this.txtEtsuranKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtEtsuranKengen.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtEtsuranKengen.Location = new System.Drawing.Point(861, 474);
+            this.txtEtsuranKengen.MaxLength = 1;
+            this.txtEtsuranKengen.Name = "txtEtsuranKengen";
+            this.txtEtsuranKengen.Size = new System.Drawing.Size(24, 22);
+            this.txtEtsuranKengen.TabIndex = 11;
+            this.txtEtsuranKengen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtEtsuranKengen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            // 
+            // lblEtsuranKengen
+            // 
+            this.lblEtsuranKengen.AutoSize = true;
+            this.lblEtsuranKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblEtsuranKengen.Location = new System.Drawing.Point(740, 477);
+            this.lblEtsuranKengen.Name = "lblEtsuranKengen";
+            this.lblEtsuranKengen.Size = new System.Drawing.Size(71, 15);
+            this.lblEtsuranKengen.strToolTip = null;
+            this.lblEtsuranKengen.TabIndex = 89;
+            this.lblEtsuranKengen.Text = "閲覧権限";
+            this.lblEtsuranKengen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRiekiritsuKengen
+            // 
+            this.txtRiekiritsuKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsuKengen.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsuKengen.Location = new System.Drawing.Point(861, 510);
+            this.txtRiekiritsuKengen.MaxLength = 1;
+            this.txtRiekiritsuKengen.Name = "txtRiekiritsuKengen";
+            this.txtRiekiritsuKengen.Size = new System.Drawing.Size(24, 22);
+            this.txtRiekiritsuKengen.TabIndex = 12;
+            this.txtRiekiritsuKengen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouTxtKeyDown);
+            this.txtRiekiritsuKengen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtTantoushaKeyUp);
+            // 
+            // lblRiekiritsuKengen
+            // 
+            this.lblRiekiritsuKengen.AutoSize = true;
+            this.lblRiekiritsuKengen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsuKengen.Location = new System.Drawing.Point(740, 513);
+            this.lblRiekiritsuKengen.Name = "lblRiekiritsuKengen";
+            this.lblRiekiritsuKengen.Size = new System.Drawing.Size(87, 15);
+            this.lblRiekiritsuKengen.strToolTip = null;
+            this.lblRiekiritsuKengen.TabIndex = 89;
+            this.lblRiekiritsuKengen.Text = "利益率権限";
+            this.lblRiekiritsuKengen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblMasterKengenMemo
+            // 
+            this.lblMasterKengenMemo.AutoSize = true;
+            this.lblMasterKengenMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMasterKengenMemo.Location = new System.Drawing.Point(911, 439);
+            this.lblMasterKengenMemo.Name = "lblMasterKengenMemo";
+            this.lblMasterKengenMemo.Size = new System.Drawing.Size(151, 15);
+            this.lblMasterKengenMemo.strToolTip = null;
+            this.lblMasterKengenMemo.TabIndex = 100;
+            this.lblMasterKengenMemo.Text = "0：なし    1：あり";
+            this.lblMasterKengenMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblEtsuranKengenMemo
+            // 
+            this.lblEtsuranKengenMemo.AutoSize = true;
+            this.lblEtsuranKengenMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblEtsuranKengenMemo.Location = new System.Drawing.Point(911, 477);
+            this.lblEtsuranKengenMemo.Name = "lblEtsuranKengenMemo";
+            this.lblEtsuranKengenMemo.Size = new System.Drawing.Size(151, 15);
+            this.lblEtsuranKengenMemo.strToolTip = null;
+            this.lblEtsuranKengenMemo.TabIndex = 100;
+            this.lblEtsuranKengenMemo.Text = "0：なし    1：あり";
+            this.lblEtsuranKengenMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRiekiritsuKengenMemo
+            // 
+            this.lblRiekiritsuKengenMemo.AutoSize = true;
+            this.lblRiekiritsuKengenMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsuKengenMemo.Location = new System.Drawing.Point(911, 513);
+            this.lblRiekiritsuKengenMemo.Name = "lblRiekiritsuKengenMemo";
+            this.lblRiekiritsuKengenMemo.Size = new System.Drawing.Size(151, 15);
+            this.lblRiekiritsuKengenMemo.strToolTip = null;
+            this.lblRiekiritsuKengenMemo.TabIndex = 100;
+            this.lblRiekiritsuKengenMemo.Text = "0：なし    1：あり";
+            this.lblRiekiritsuKengenMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1050_Tantousha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblRiekiritsuKengenMemo);
+            this.Controls.Add(this.lblEtsuranKengenMemo);
+            this.Controls.Add(this.lblMasterKengenMemo);
             this.Controls.Add(this.lblHyojiMemo);
             this.Controls.Add(this.lblYakushokuMemo2);
             this.Controls.Add(this.lblYakushokuMemo1);
             this.Controls.Add(this.lblGrayYakushokuCdName);
             this.Controls.Add(this.txtMokuhyou);
+            this.Controls.Add(this.lblRiekiritsuKengen);
+            this.Controls.Add(this.lblEtsuranKengen);
+            this.Controls.Add(this.lblMasterKengen);
             this.Controls.Add(this.lblHyoji);
             this.Controls.Add(this.lblYakushokuCd);
             this.Controls.Add(this.lblMokuhyou);
+            this.Controls.Add(this.txtRiekiritsuKengen);
+            this.Controls.Add(this.txtEtsuranKengen);
+            this.Controls.Add(this.txtMasterKengen);
             this.Controls.Add(this.txtHyoji);
             this.Controls.Add(this.txtYakushokuCd);
             this.Controls.Add(this.txtChuban);
@@ -417,14 +543,23 @@
             this.Controls.SetChildIndex(this.txtChuban, 0);
             this.Controls.SetChildIndex(this.txtYakushokuCd, 0);
             this.Controls.SetChildIndex(this.txtHyoji, 0);
+            this.Controls.SetChildIndex(this.txtMasterKengen, 0);
+            this.Controls.SetChildIndex(this.txtEtsuranKengen, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsuKengen, 0);
             this.Controls.SetChildIndex(this.lblMokuhyou, 0);
             this.Controls.SetChildIndex(this.lblYakushokuCd, 0);
             this.Controls.SetChildIndex(this.lblHyoji, 0);
+            this.Controls.SetChildIndex(this.lblMasterKengen, 0);
+            this.Controls.SetChildIndex(this.lblEtsuranKengen, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsuKengen, 0);
             this.Controls.SetChildIndex(this.txtMokuhyou, 0);
             this.Controls.SetChildIndex(this.lblGrayYakushokuCdName, 0);
             this.Controls.SetChildIndex(this.lblYakushokuMemo1, 0);
             this.Controls.SetChildIndex(this.lblYakushokuMemo2, 0);
             this.Controls.SetChildIndex(this.lblHyojiMemo, 0);
+            this.Controls.SetChildIndex(this.lblMasterKengenMemo, 0);
+            this.Controls.SetChildIndex(this.lblEtsuranKengenMemo, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsuKengenMemo, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,5 +587,14 @@
         private Common.Ctl.BaseLabel lblYakushokuMemo1;
         private Common.Ctl.BaseLabel lblYakushokuMemo2;
         private Common.Ctl.BaseLabel lblHyojiMemo;
+        private Common.Ctl.BaseText txtMasterKengen;
+        private Common.Ctl.BaseLabel lblMasterKengen;
+        private Common.Ctl.BaseText txtEtsuranKengen;
+        private Common.Ctl.BaseLabel lblEtsuranKengen;
+        private Common.Ctl.BaseText txtRiekiritsuKengen;
+        private Common.Ctl.BaseLabel lblRiekiritsuKengen;
+        private Common.Ctl.BaseLabel lblMasterKengenMemo;
+        private Common.Ctl.BaseLabel lblEtsuranKengenMemo;
+        private Common.Ctl.BaseLabel lblRiekiritsuKengenMemo;
     }
 }

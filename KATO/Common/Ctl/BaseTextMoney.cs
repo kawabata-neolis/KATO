@@ -282,7 +282,7 @@ namespace KATO.Common.Ctl
                 if (strtextBox.Contains(','))
                 {
                     strtextBox = strtextBox.Replace(",", "");
-                }
+                }   
             }
             this.Text = strtextBox;
 

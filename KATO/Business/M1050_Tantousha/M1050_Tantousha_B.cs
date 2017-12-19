@@ -39,16 +39,16 @@ namespace KATO.Business.M1050_Tantousha
                     lstString[4],
                     lstString[5],
                     lstString[6],
-                    "0",
-                    "0",
-                    "0",
                     lstString[7],
                     lstString[8],
+                    lstString[9],
+                    lstString[10],
+                    lstString[11],
                     "N",
                     DateTime.Now.ToString(),
-                    lstString[9],
+                    lstString[12],
                     DateTime.Now.ToString(),
-                    lstString[9]
+                    lstString[12]
                 };
 
                 //SQL接続、追加

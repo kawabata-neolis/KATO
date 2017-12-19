@@ -73,6 +73,7 @@ namespace KATO.Common.Util
         public const int FRM_URIAGEINPUT = 0020;
         public const int FRM_TANTOSHABETUDENPYOCOUNT = 6000;
         public const int FRM_MENU = 1500;
+        public const int FRM_MENUKENGEN2 = 1490;
 
         public const int FRM_TEST = 9999;
 

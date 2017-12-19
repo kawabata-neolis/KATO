@@ -927,6 +927,8 @@ namespace KATO.Form.Z0000
 
                 //メニュー権限２
                 case "149":
+                    M1490_Menukengen2.M1490_Menukengen2 menukengen2 = new M1490_Menukengen2.M1490_Menukengen2(this);
+                    menukengen2.ShowDialog();
                     break;
 
                 //マイメニュー

@@ -117,6 +117,10 @@
             this.gbData5.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -160,10 +164,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // txtYubinView
             // 
@@ -1054,6 +1054,7 @@
             this.gbData1.Size = new System.Drawing.Size(1395, 80);
             this.gbData1.TabIndex = 1;
             this.gbData1.Tag = "1";
+            this.gbData1.Enter += new System.EventHandler(this.gbData1_Enter);
             // 
             // gbData2
             // 
@@ -1063,6 +1064,7 @@
             this.gbData2.Size = new System.Drawing.Size(1395, 80);
             this.gbData2.TabIndex = 2;
             this.gbData2.Tag = "2";
+            this.gbData2.Enter += new System.EventHandler(this.gbData2_Enter);
             // 
             // lblTeka
             // 
