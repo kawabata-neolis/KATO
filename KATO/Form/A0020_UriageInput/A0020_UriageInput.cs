@@ -34,6 +34,7 @@ namespace KATO.Form.A0020_UriageInput
 
         public Boolean MODY_FLAG = false;
 
+
         //現在の選択行を初期化
         private int CurrentRow = 99;
         

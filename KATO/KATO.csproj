@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\A0010_JuchuInput\A0010_JuchuInput_B.cs" />
+    <Compile Include="Business\A0010_JuchuInput\A0024_KakohinJuchuInput_B.cs" />
     <Compile Include="Business\A0020_UriageInput\A0020_UriageInput_B.cs" />
     <Compile Include="Business\A0030_ShireInput\A0030_ShireInput_B.cs" />
     <Compile Include="Business\A0090_SiireCheckPrint\A0090_SiireCheckPrint_B.cs" />
@@ -550,10 +551,16 @@
     <Compile Include="Form\A0010_JuchuInput\A0010_JuchuInput.designer.cs">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A0010_JuchuInput\Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0010_JuchuInput\Form6.designer.cs">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.Designer.cs">
+    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.designer.cs">
       <DependentUpon>A0020_UriageInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0030_ShireInput\A0030_ShireInput.cs">
@@ -1176,8 +1183,8 @@
     <EmbeddedResource Include="Form\A0010_JuchuInput\A0010_JuchuInput.resx">
       <DependentUpon>A0010_JuchuInput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\A0020_UriageInput\A0020_UriageInput.resx">
-      <DependentUpon>A0020_UriageInput.cs</DependentUpon>
+    <EmbeddedResource Include="Form\A0010_JuchuInput\Form6.resx">
+      <DependentUpon>Form6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0030_ShireInput\A0030_ShireInput.resx">
       <DependentUpon>A0030_ShireInput.cs</DependentUpon>
@@ -1401,6 +1408,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
