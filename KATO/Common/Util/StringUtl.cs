@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -87,13 +88,69 @@ namespace KATO.Common.Util
         ///
         ///画面Noから日付範囲チェックをする
         ///
-        public static bool judHidukeCheck(string strGamenID, string strEigyoshoCd)
+        public static bool judHidukeCheck(string strGamenID, string strEigyoshoCd, DateTime dateYMD)
         {
             bool blCheck = false;
 
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
 
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
 
-            return (blCheck);
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Common");
+            lstSQL.Add("C_LIST_GDateCheckEG");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (blCheck);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strGamenID, strEigyoshoCd);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                //行がある場合
+                if (dtSetCd_B.Rows.Count > 0)
+                {
+                    //チェックデータが取り出しデータの範囲内の場合
+                    if (DateTime.Parse(dtSetCd_B.Rows[0][0].ToString()) < dateYMD && dateYMD < DateTime.Parse(dtSetCd_B.Rows[0][1].ToString()))
+                    {
+                        blCheck = true;
+                    }
+                    else
+                    {
+                        blCheck = false;
+                    }
+                }
+                return (blCheck);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
     }
 }

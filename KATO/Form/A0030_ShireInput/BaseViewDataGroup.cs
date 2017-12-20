@@ -482,6 +482,9 @@ namespace KATO.Form.A0030_ShireInput
                 strSQLInput = "";
 
 
+
+//個々の処理をはじめに持っていくのも手
+
                 //詳細データ
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQLHachu);
@@ -499,7 +502,7 @@ namespace KATO.Form.A0030_ShireInput
                 dtSetCd_B_Hachu = dbconnective.ReadSql(strSQLInput);
                 
                 //データが1件以上ある場合
-                if (dtSetCd_B_Hachu.Rows[0][0].ToString() != "")
+                if (dtSetCd_B_Hachu.Rows.Count > 0)
                 {
                     //行数分ループ
                     for (int intCnt = 0; intCnt < dtSetCd_B_Hachu.Rows.Count; intCnt++)
@@ -698,6 +701,10 @@ namespace KATO.Form.A0030_ShireInput
                     //発注データが存在しないということを伝えるメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "発注データが存在しません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+
+                    //項目削除
+                    delText();
+
                     txtChumonNo.Focus();
                     return;
                 }

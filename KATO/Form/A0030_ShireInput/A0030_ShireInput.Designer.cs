@@ -316,6 +316,7 @@
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoNo.TabIndex = 2;
+            this.txtDenpyoNo.TabStop = false;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);
             this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             this.txtDenpyoNo.Leave += new System.EventHandler(this.setDenpyo);

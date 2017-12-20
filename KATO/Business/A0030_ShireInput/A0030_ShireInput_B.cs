@@ -21,60 +21,6 @@ namespace KATO.Business.A0030_ShireInput
     class A0030_ShireInput_B
     {
         ///<summary>
-        ///getHidukeseigen
-        ///日付制限の確保
-        ///</summary>
-        public DataTable getHidukeseigen(string strGamenID, string strEigyoshoCd)
-        {
-            //SQLファイルのパスとファイル名を入れる用
-            List<string> lstSQL = new List<string>();
-
-            //SQLファイルのパス用（フォーマット後）
-            string strSQLInput = "";
-
-            //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("Common");
-            lstSQL.Add("C_LIST_GDateCheckEG");
-
-            //SQL実行時に取り出したデータを入れる用
-            DataTable dtSetCd_B = new DataTable();
-
-            //SQL接続
-            OpenSQL opensql = new OpenSQL();
-
-            //接続用クラスのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-            try
-            {
-                //SQLファイルのパス取得
-                strSQLInput = opensql.setOpenSQL(lstSQL);
-
-                //パスがなければ返す
-                if (strSQLInput == "")
-                {
-                    return (dtSetCd_B);
-                }
-
-                //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strGamenID, strEigyoshoCd);
-
-                //SQL接続後、該当データを取得
-                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-
-                return (dtSetCd_B);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
-                //トランザクション終了
-                dbconnective.DB_Disconnect();
-            }
-        }
-
-        ///<summary>
         ///delShireInput
         ///仕入入力情報の削除
         ///</summary>
@@ -1644,6 +1590,63 @@ namespace KATO.Business.A0030_ShireInput
             }
             finally
             {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getHachusu
+        ///発注数の取得
+        ///</summary>
+        public DataTable getHachusu(string strChumonNo)
+        {            
+            //商品テーブルから取り出すデータ
+            DataTable dtHachusu = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("A0030_ShireInput");
+            lstSQL.Add("ShireInput_HachusuCnt_SELECT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtHachusu);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strChumonNo);
+
+                //SQL接続後、該当データを取得
+                dtHachusu = dbconnective.ReadSql(strSQLInput);
+
+                return (dtHachusu);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
