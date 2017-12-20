@@ -998,6 +998,9 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " SELECT a.発注番号, a.仕入先コード, a.発注者コード, ";
             strSelect += "CASE WHEN a.加工区分='0' THEN '発注' ELSE '本加工' END AS 区分,  ";
             strSelect += "a.発注年月日,";
+            strSelect += "a.大分類コード,";
+            strSelect += "a.中分類コード,";
+            strSelect += "a.メーカーコード,";
             strSelect += "RTRIM(dbo.f_get注番文字FROM担当者 (発注者コード)) + CAST(発注番号 AS varchar(8)) AS 注番, ";
             strSelect += "dbo.f_getメーカー名(a.メーカーコード)  ";
             strSelect += " + ' ' + dbo.f_get中分類名(a.大分類コード,a.中分類コード) +  ' '  +  Rtrim(ISNULL(a.Ｃ１,'')) ";
@@ -1028,6 +1031,9 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, '' AS 発注者コード, ";
             strSelect += "CASE a.取引区分 WHEN '41' THEN '出庫' WHEN '43' THEN '加工品出庫' END AS 区分,  ";
             strSelect += "a.伝票年月日 AS 発注年月日,";
+            strSelect += "b.大分類コード,";
+            strSelect += "b.中分類コード,";
+            strSelect += "b.メーカーコード,";
             strSelect += "b.備考 AS 注番, ";
             strSelect += "dbo.f_getメーカー名(b.メーカーコード)  ";
             strSelect += " + ' ' + dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  ' '  +  Rtrim(ISNULL(b.Ｃ１,'')) ";

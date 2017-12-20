@@ -560,7 +560,7 @@
     <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.Designer.cs">
+    <Compile Include="Form\A0020_UriageInput\A0020_UriageInput.designer.cs">
       <DependentUpon>A0020_UriageInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0030_ShireInput\A0030_ShireInput.cs">
@@ -1186,9 +1186,6 @@
     <EmbeddedResource Include="Form\A0010_JuchuInput\Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\A0020_UriageInput\A0020_UriageInput.resx">
-      <DependentUpon>A0020_UriageInput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0030_ShireInput\A0030_ShireInput.resx">
       <DependentUpon>A0030_ShireInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1411,6 +1408,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

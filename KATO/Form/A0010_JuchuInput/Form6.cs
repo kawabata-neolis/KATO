@@ -332,10 +332,14 @@ namespace KATO.Form.A0010_JuchuInput
                 tableLayoutPanel1.Controls.Add(inputPanel, 0, panelCnt[cat]);
 
 
-                ((TextBox)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
-                ((TextBox)inputPanel.Controls["txtHYMD"]).Text = r["発注年月日"].ToString();
+                ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = r["発注年月日"].ToString();
                 ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = r["発注者コード"].ToString();
-                ((TextBox)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
+                ((LabelSet_Shiresaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
+                ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
+                ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).Text = r["大分類コード"].ToString();
+                ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).Text = r["中分類コード"].ToString();
+                ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).Text = r["メーカーコード"].ToString();
+
 
 
 
@@ -373,8 +377,7 @@ namespace KATO.Form.A0010_JuchuInput
             tabIdx++;
 
             // ガワ
-            //Rectangle l = new Rectangle();
-
+            #region
             Panel linePanel = new Panel();
             linePanel.Size = new Size(1368, 125);
             basePanel.Controls.Add(linePanel);
@@ -391,8 +394,10 @@ namespace KATO.Form.A0010_JuchuInput
             lblHatTitle.Location = new Point(3, 2);
             lblHatTitle.BringToFront();
             lblHatTitle.BackColor = Color.Transparent;
+            #endregion
 
             // 1行目
+            #region
             Label lblHYMD = new Label();
             lblHYMD.AutoSize = true;
             lblHYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -402,7 +407,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblHYMD.Location = new Point(4, 22);
             lblHYMD.BringToFront();
 
-            TextBox txtHYMD = new TextBox();
+            BaseCalendar txtHYMD = new BaseCalendar();
             txtHYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtHYMD.Size = new System.Drawing.Size(85, 22);
             txtHYMD.TextAlign = HorizontalAlignment.Right;
@@ -508,7 +513,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblHNo.Location = new Point(841, 22);
             lblHNo.BringToFront();
 
-            TextBox txtHNo = new TextBox();
+            BaseTextMoney txtHNo = new BaseTextMoney();
             txtHNo.Name = "txtHNo";
             txtHNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtHNo.Size = new System.Drawing.Size(70, 22);
@@ -518,8 +523,10 @@ namespace KATO.Form.A0010_JuchuInput
             txtHNo.Name = "txtHNo" + idx.ToString(zeroPad);
             txtHNo.TabIndex = tabIdx;
             tabIdx++;
+            #endregion
 
             // 2行目
+            #region
             LabelSet_Daibunrui lsDaibun = new LabelSet_Daibunrui();
             lsDaibun.Name = "lsDaibun";
             lsDaibun.AutoSize = true;
@@ -675,6 +682,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtSearchStr.TabIndex = tabIdx;
             tabIdx++;
             txtSearchStr.Leave += new EventHandler(txtSearchStr_Leave);
+            #endregion
 
             // 3行目
             Label lblHinmei = new Label();
