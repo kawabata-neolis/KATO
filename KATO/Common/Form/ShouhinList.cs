@@ -136,8 +136,6 @@ namespace KATO.Common.Form
             this.Show();
             this._Title = "商品リスト";
 
-            List<int> lstInt = new List<int>();
-
             //メーカーsetデータを読めるようにする
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
 
@@ -146,13 +144,10 @@ namespace KATO.Common.Form
             //DataGridViewの初期設定
             setupGrid();
 
-            //データ渡し用
-            lstInt.Add(0);
-
             //検索単語があれば表示
             if (blKensaku == true)
             {
-                setShohinView(lstInt);
+                setShohinView();
             }
         }
 
@@ -582,10 +577,6 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
-            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-
-            List<int> lstInt = new List<int>();
-
             txtHon.Text = "";
             txtGihu.Text = "";
 
@@ -594,10 +585,7 @@ namespace KATO.Common.Form
             //DataGridViewの初期設定
             setupGrid();
 
-            //データ渡し用
-            lstInt.Add(0);
-
-            setShohinView(lstInt);
+            setShohinView();
         }
 
 
@@ -605,8 +593,10 @@ namespace KATO.Common.Form
         ///setShohinView
         ///検索データを記入
         ///</summary>
-        private void setShohinView(List<int> lstIntMode)
+        private void setShohinView()
         {
+            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+
             //データ渡し用
             List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();
@@ -620,7 +610,7 @@ namespace KATO.Common.Form
 
             //データ渡し用
             lstInt.Add(intFrmKind);
-            lstInt.Add(lstIntMode[0]);
+            lstInt.Add(0);
 
             lstString.Add(labelSet_Daibunrui.CodeTxtText);
             lstString.Add(labelSet_Chubunrui.CodeTxtText);
@@ -769,62 +759,6 @@ namespace KATO.Common.Form
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        ///<summary>
-        ///btnHonshaZaikoClick
-        ///本社在庫ボタン
-        ///</summary>
-        private void btnHonshaZaikoClick(object sender, EventArgs e)
-        {
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            txtHon.Text = "1";
-
-            //データ渡し用
-            lstInt.Add(1);
-
-            setShohinView(lstInt);
-
-            ////処理部に移動
-            //ShouhinList_B shohinlistB = new ShouhinList_B();
-            ////戻り値のDatatableを取り込む
-            //shohinlistB.ZaikoClick(lstString);
-
-            //gridTorihiki.Columns.Clear();
-
-            ////DataGridViewの初期設定
-            //setupGrid();
-
-            ////modeで判定して項目を追加
-            //setStart();
-
-            //setShohinView(0);
-
-            //txtHon.Text = "";
-        }
-
-        ///<summary>
-        ///btnGifuZaikoClick
-        ///岐阜在庫ボタン
-        ///</summary>
-        private void btnGifuZaikoClick(object sender, EventArgs e)
-        {
-            //データ渡し用
-            List<int> lstInt = new List<int>();
-
-            txtGihu.Text = "1";
-
-            //データ渡し用
-            lstInt.Add(2);
-
-            setShohinView(lstInt);
-
-            ////処理部に移動
-            //ShouhinList_B shohinlistB = new ShouhinList_B();
-            ////戻り値のDatatableを取り込む
-            //shohinlistB.ZaikoClick(lstString);
         }
 
         ///<summary>

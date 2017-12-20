@@ -77,6 +77,15 @@ namespace KATO.Common.Ctl
         ///</summary>
         public void updTxtEigyoushoLeave(object sender, EventArgs e)
         {
+            setEigyoushoLeave();
+        }
+
+        ///<summary>
+        ///setEigyoushoLeave
+        ///code入力箇所からフォーカスが外れた時の処理
+        ///</summary>
+        public void setEigyoushoLeave()
+        {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
@@ -106,7 +115,7 @@ namespace KATO.Common.Ctl
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                 }
-                else 
+                else
                 {
 
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
