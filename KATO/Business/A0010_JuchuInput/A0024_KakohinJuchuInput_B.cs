@@ -77,6 +77,31 @@ namespace KATO.Business.A0010_JuchuInput
             return retSuryo;
         }
 
+        public int getShiirezumisuryoH(string strHachuNo)
+        {
+            int retSuryo = -1;
+            DataTable dtSuryo = null;
+
+            string strQuery = "SELECT 仕入済数量 FROM 発注 WHERE 発注番号=" + strHachuNo + " AND 削除='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtSuryo = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (dtSuryo != null && dtSuryo.Rows.Count > 0)
+            {
+                retSuryo = (int)dtSuryo.Rows[0]["仕入済数量"];
+            }
+
+            return retSuryo;
+        }
+
         public string getZaikoHikiateFlg(string strJuchuNo)
         {
             String retFlg = "";
@@ -1001,6 +1026,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "a.大分類コード,";
             strSelect += "a.中分類コード,";
             strSelect += "a.メーカーコード,";
+            strSelect += "c.棚番本社,";
+            strSelect += "c.棚番岐阜,";
             strSelect += "RTRIM(dbo.f_get注番文字FROM担当者 (発注者コード)) + CAST(発注番号 AS varchar(8)) AS 注番, ";
             strSelect += "dbo.f_getメーカー名(a.メーカーコード)  ";
             strSelect += " + ' ' + dbo.f_get中分類名(a.大分類コード,a.中分類コード) +  ' '  +  Rtrim(ISNULL(a.Ｃ１,'')) ";
@@ -1023,9 +1050,11 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 型番,";
             strSelect += "a.商品コード AS 商品コード";
-            strSelect += " FROM 発注 a";
+            strSelect += " FROM 発注 a, 商品 c";
             strSelect += " WHERE a.受注番号 = " + strJuchuNo;
             strSelect += " AND a.削除 ='N'";
+            strSelect += " AND c.削除 ='N'";
+            strSelect += " AND a.商品コード = c.商品コード ";
 
             strSelect += "  UNION ALL ";
             strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, '' AS 発注者コード, ";
@@ -1034,6 +1063,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "b.大分類コード,";
             strSelect += "b.中分類コード,";
             strSelect += "b.メーカーコード,";
+            strSelect += "c.棚番本社,";
+            strSelect += "c.棚番岐阜,";
             strSelect += "b.備考 AS 注番, ";
             strSelect += "dbo.f_getメーカー名(b.メーカーコード)  ";
             strSelect += " + ' ' + dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  ' '  +  Rtrim(ISNULL(b.Ｃ１,'')) ";
@@ -1056,10 +1087,12 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 型番,";
             strSelect += "b.商品コード AS 商品コード";
-            strSelect += " FROM 出庫ヘッダ a,出庫明細 b";
+            strSelect += " FROM 出庫ヘッダ a,出庫明細 b, 商品 c";
             strSelect += " WHERE a.伝票番号 = b.伝票番号 ";
             strSelect += " AND a.削除 ='N'";
             strSelect += " AND b.削除 ='N'";
+            strSelect += " AND c.削除 ='N'";
+            strSelect += " AND b.商品コード = c.商品コード ";
             strSelect += " AND b.受注番号 = " + strJuchuNo;
             strSelect += " AND (a.取引区分 ='41' OR a.取引区分 ='43')";
 
@@ -1127,6 +1160,57 @@ namespace KATO.Business.A0010_JuchuInput
             //strSelect += " AND a.削除 ='N'";
 
             strSelect = "SELECT * FROM ( " + strSelect + ") Z  ";
+
+            strSelect += " ORDER BY 登録日時";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getHachu(string strNo)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 発注";
+            strSelect += " WHERE 発注番号 = " + strNo;
+            strSelect += "   AND 削除 ='N'";
+
+            strSelect += " ORDER BY 登録日時";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getShukko(string strNo, string strNoJ)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += " SELECT H.*,M.* FROM";
+            strSelect += " FROM 出庫ヘッダ H,出庫明細 M";
+            strSelect += " WHERE H.伝票番号=M.伝票番号 ";
+            strSelect += " AND H.削除 ='N'";
+            strSelect += " AND M.削除 ='N'";
+            strSelect += " AND b.伝票番号 = " + strNo;
+            strSelect += " AND M.受注番号 = " + strNoJ;
 
             strSelect += " ORDER BY 登録日時";
 

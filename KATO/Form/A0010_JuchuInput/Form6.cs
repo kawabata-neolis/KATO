@@ -184,7 +184,7 @@ namespace KATO.Form.A0010_JuchuInput
         // 検索
         private void txtSearchStr_Leave(object sender, EventArgs e)
         {
-            TextBox t = (TextBox)sender;
+            TextBox t = (BaseText)sender;
             Panel c = (Panel)t.Parent;
             //Control cc = c.Controls["txtHinmei"];
 
@@ -329,20 +329,24 @@ namespace KATO.Form.A0010_JuchuInput
             if (panelCnt[cat] < cats[cat] * limit * 100 + limit * 100)
             {
                 Panel inputPanel = createPanel(cats[cat], panelCnt[cat], "", null);
-                tableLayoutPanel1.Controls.Add(inputPanel, 0, panelCnt[cat]);
 
 
                 ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = r["発注年月日"].ToString();
                 ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = r["発注者コード"].ToString();
                 ((LabelSet_Shiresaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
                 ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
-                ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).Text = r["大分類コード"].ToString();
-                ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).Text = r["中分類コード"].ToString();
-                ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).Text = r["メーカーコード"].ToString();
+                ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = r["大分類コード"].ToString();
+                ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).CodeTxtText = r["中分類コード"].ToString();
+                ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).CodeTxtText = r["メーカーコード"].ToString();
+                ((BaseText)inputPanel.Controls["txtHinmei"]).Text = r["品名"].ToString();
+                ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = r["棚番本社"].ToString();
+                ((BaseLabelGray)inputPanel.Controls["txtTanabanR"]).Text = r["棚番岐阜"].ToString();
+                ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = r["発注数量"].ToString();
+                ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = r["発注単価"].ToString();
+                ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = r["納期"].ToString();
+                ((BaseText)inputPanel.Controls["txtChuban"]).Text = r["注番"].ToString();
 
-
-
-
+                tableLayoutPanel1.Controls.Add(inputPanel, 0, panelCnt[cat]);
 
                 foreach (Control cc in inputPanel.Controls)
                 {
@@ -521,6 +525,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtHNo.Location = new Point(934, 19);
             txtHNo.BringToFront();
             txtHNo.Name = "txtHNo" + idx.ToString(zeroPad);
+            txtHNo.Leave += new EventHandler(btnDelRow_Click);
             txtHNo.TabIndex = tabIdx;
             tabIdx++;
             #endregion
@@ -671,7 +676,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblSearchStr.Location = new Point(841, 52);
             lblSearchStr.BringToFront();
 
-            TextBox txtSearchStr = new TextBox();
+            BaseText txtSearchStr = new BaseText();
             txtSearchStr.Name = "txtSearchStr";
             txtSearchStr.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtSearchStr.Size = new System.Drawing.Size(271, 22);
@@ -685,6 +690,7 @@ namespace KATO.Form.A0010_JuchuInput
             #endregion
 
             // 3行目
+            #region
             Label lblHinmei = new Label();
             lblHinmei.AutoSize = true;
             lblHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -716,7 +722,7 @@ namespace KATO.Form.A0010_JuchuInput
             //tabIdx++;
             #endregion
 
-            TextBox txtHinmei = new TextBox();
+            BaseText txtHinmei = new BaseText();
             txtHinmei.Name = "txtHinmei";
             txtHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtHinmei.Size = new System.Drawing.Size(331, 22);
@@ -728,7 +734,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtHinmei.TabIndex = tabIdx;
             tabIdx++;
 
-            TextBox txtHinmeiY = new TextBox();
+            BaseText txtHinmeiY = new BaseText();
             txtHinmeiY.Name = "txtHinmeiY";
             txtHinmeiY.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtHinmeiY.Size = new System.Drawing.Size(169, 22);
@@ -750,7 +756,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblTanaban.Location = new Point(617, 80);
             lblTanaban.BringToFront();
 
-            TextBox txtTanabanL = new TextBox();
+            BaseLabelGray txtTanabanL = new BaseLabelGray();
             txtTanabanL.Name = "txtTanabanL";
             txtTanabanL.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtTanabanL.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -758,7 +764,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtTanabanL.ForeColor = System.Drawing.Color.Navy;
             txtTanabanL.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             txtTanabanL.Size = new System.Drawing.Size(45, 15);
-            txtTanabanL.ReadOnly = true;
+            //txtTanabanL.ReadOnly = true;
             basePanel.Controls.Add(txtTanabanL);
             //txtTanabanL.Location = new Point(934, 80);
             txtTanabanL.Location = new Point(661, 80);
@@ -766,7 +772,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtTanabanL.Name = "txtTanabanL" + idx.ToString(zeroPad);
             txtTanabanL.TabStop = false;
 
-            TextBox txtTanabanR = new TextBox();
+            BaseLabelGray txtTanabanR = new BaseLabelGray();
             txtTanabanR.Name = "txtTanabanR";
             txtTanabanR.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtTanabanR.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -774,13 +780,14 @@ namespace KATO.Form.A0010_JuchuInput
             txtTanabanR.ForeColor = System.Drawing.Color.Navy;
             txtTanabanR.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             txtTanabanR.Size = new System.Drawing.Size(45, 15);
-            txtTanabanR.ReadOnly = true;
+            //txtTanabanR.ReadOnly = true;
             basePanel.Controls.Add(txtTanabanR);
             //txtTanabanR.Location = new Point(982, 80);
             txtTanabanR.Location = new Point(709, 80);
             txtTanabanR.BringToFront();
             txtTanabanR.Name = "txtTanabanR" + idx.ToString(zeroPad);
             txtTanabanR.TabStop = false;
+            #endregion
 
             // 4行目
             Label lblSuryo = new Label();
@@ -792,7 +799,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblSuryo.Location = new Point(52, 108);
             lblSuryo.BringToFront();
 
-            TextBox txtSuryo = new BaseTextMoney();
+            BaseTextMoney txtSuryo = new BaseTextMoney();
             txtSuryo.Name = "txtSuryo";
             txtSuryo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtSuryo.Size = new System.Drawing.Size(77, 22);
@@ -813,7 +820,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblTanka.Location = new Point(199, 108);
             lblTanka.BringToFront();
 
-            TextBox txtTanka = new BaseTextMoney();
+            BaseTextMoney txtTanka = new BaseTextMoney();
             txtTanka.Name = "txtTanka";
             txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtTanka.Size = new System.Drawing.Size(77, 22);
@@ -841,7 +848,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             lblNohki.BringToFront();
 
-            TextBox txtNohki = new BaseCalendar();
+            BaseCalendar txtNohki = new BaseCalendar();
             txtNohki.Name = "txtNohki";
             txtNohki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtNohki.Size = new System.Drawing.Size(85, 22);
@@ -862,7 +869,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblChuban.Location = new Point(505, 108);
             lblChuban.BringToFront();
 
-            TextBox txtChuban = new TextBox();
+            BaseText txtChuban = new BaseText();
             txtChuban.Name = "txtChuban";
             txtChuban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             txtChuban.Size = new System.Drawing.Size(197, 22);
@@ -948,6 +955,63 @@ namespace KATO.Form.A0010_JuchuInput
                 lsMaker.ValueLabelText = lsMakerM.ValueLabelText;
                 txtHinmei.Text = this.txtHinmei.Text;
             }
+
+            // 隠し
+            #region
+            TextBox txtC1 = new TextBox();
+            txtC1.Name = "txtC1";
+            basePanel.Controls.Add(txtC1);
+            txtC1.SendToBack();
+            txtC1.Visible = false;
+
+            TextBox txtC2 = new TextBox();
+            txtC2.Name = "txtC2";
+            basePanel.Controls.Add(txtC2);
+            txtC2.SendToBack();
+            txtC2.Visible = false;
+
+            TextBox txtC3 = new TextBox();
+            txtC3.Name = "txtC3";
+            basePanel.Controls.Add(txtC3);
+            txtC3.SendToBack();
+            txtC3.Visible = false;
+
+            TextBox txtC4 = new TextBox();
+            txtC4.Name = "txtC4";
+            basePanel.Controls.Add(txtC4);
+            txtC4.SendToBack();
+            txtC4.Visible = false;
+
+            TextBox txtC5 = new TextBox();
+            txtC5.Name = "txtC5";
+            basePanel.Controls.Add(txtC5);
+            txtC5.SendToBack();
+            txtC5.Visible = false;
+
+            TextBox txtC6 = new TextBox();
+            txtC6.Name = "txtC6";
+            basePanel.Controls.Add(txtC6);
+            txtC6.SendToBack();
+            txtC6.Visible = false;
+
+            TextBox txtEigyo = new TextBox();
+            txtEigyo.Name = "txtEigyo";
+            basePanel.Controls.Add(txtEigyo);
+            txtEigyo.SendToBack();
+            txtEigyo.Visible = false;
+
+            TextBox txtTanto = new TextBox();
+            txtTanto.Name = "txtTanto";
+            basePanel.Controls.Add(txtTanto);
+            txtTanto.SendToBack();
+            txtTanto.Visible = false;
+
+            TextBox txtShohin = new TextBox();
+            txtShohin.Name = "txtShohin";
+            basePanel.Controls.Add(txtShohin);
+            txtShohin.SendToBack();
+            txtShohin.Visible = false;
+            #endregion
 
             return basePanel;
         }
@@ -1077,7 +1141,7 @@ namespace KATO.Form.A0010_JuchuInput
                 BaseMessageBox basemessagebox;
                 if (cate.Equals(labels[0]) || cate.Equals(labels[2]))
                 {
-                    int intSuryo = juchuB.getShiirezumisuryo(strHachuNo);
+                    int intSuryo = juchuB.getShiirezumisuryoH(strHachuNo);
                     if (intSuryo > 0)
                     {
                         basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
@@ -1318,6 +1382,109 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        private void txtHNo_Leave(object sender, EventArgs e)
+        {
+            string stNo = ((BaseTextMoney)sender).Text;
+            if (string.IsNullOrWhiteSpace(stNo))
+            {
+                return;
+            }
+
+            Panel c = (Panel)((BaseTextMoney)sender).Parent;
+            string sCate = ((Label)c.Controls["cate"]).Text;
+
+            BaseMessageBox basemessagebox;
+            A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
+            try
+            {
+                DataTable dt;
+                string sC1;
+                string sC2;
+                string sC3;
+                string sC4;
+                string sC5;
+                string sC6;
+
+                if (sCate.Equals(labels[0]) || sCate.Equals(labels[2]))
+                {
+                    dt = juchuB.getHachu(stNo);
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        ((BaseCalendar)c.Controls["txtHYMD"]).Text = dt.Rows[0]["発注年月日"].ToString();
+                        ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText = dt.Rows[0]["発注者コード"].ToString();
+                        ((LabelSet_Shiresaki)c.Controls["lsShiire"]).CodeTxtText = dt.Rows[0]["仕入先コード"].ToString();
+                        ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText = dt.Rows[0]["大分類コード"].ToString();
+                        ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText = dt.Rows[0]["中分類コード"].ToString();
+                        ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText = dt.Rows[0]["メーカーコード"].ToString();
+                        ((BaseLabelGray)c.Controls["txtTanabanL"]).Text = dt.Rows[0]["棚番本社"].ToString();
+                        ((BaseLabelGray)c.Controls["txtTanabanR"]).Text = dt.Rows[0]["棚番岐阜"].ToString();
+                        ((BaseTextMoney)c.Controls["txtSuryo"]).Text = dt.Rows[0]["発注数量"].ToString();
+                        ((BaseTextMoney)c.Controls["txtTanka"]).Text = dt.Rows[0]["発注単価"].ToString();
+                        ((BaseCalendar)c.Controls["txtNohki"]).Text = dt.Rows[0]["納期"].ToString();
+                        ((BaseText)c.Controls["txtChuban"]).Text = dt.Rows[0]["注番"].ToString();
+
+                        sC1 = dt.Rows[0]["Ｃ１"].ToString();
+                        sC2 = dt.Rows[0]["Ｃ２"].ToString();
+                        sC3 = dt.Rows[0]["Ｃ３"].ToString();
+                        sC4 = dt.Rows[0]["Ｃ４"].ToString();
+                        sC5 = dt.Rows[0]["Ｃ５"].ToString();
+                        sC6 = dt.Rows[0]["Ｃ６"].ToString();
+                        ((BaseText)c.Controls["txtC1"]).Text = sC1;
+                        ((BaseText)c.Controls["txtC2"]).Text = sC2;
+                        ((BaseText)c.Controls["txtC3"]).Text = sC3;
+                        ((BaseText)c.Controls["txtC4"]).Text = sC4;
+                        ((BaseText)c.Controls["txtC5"]).Text = sC5;
+                        ((BaseText)c.Controls["txtC6"]).Text = sC6;
+
+                        ((BaseText)c.Controls["txtHinmei"]).Text = (sC1 + " " + sC2 + " " + sC3 + " " + sC4 + " " + sC5 + " " + sC6).Trim();
+                        ((BaseText)c.Controls["txtEigyo"]).Text = dt.Rows[0]["営業所コード"].ToString();
+                        ((BaseText)c.Controls["txtTanto"]).Text = dt.Rows[0]["担当者コード"].ToString();
+
+                    }
+
+                }
+                else
+                {
+                    dt = juchuB.getShukko(stNo, strJuchuNo);
+                }
+
+                if (sCate.Equals(labels[0]) || sCate.Equals(labels[2])) {
+                    int iSu = juchuB.getShiirezumisuryoH(stNo);
+                    if (iSu != -1) {
+                        if (iSu > 0)
+                        {
+                            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+
+                            ((LabelSet_Tantousha)c.Controls["lsHSha"]).Enabled = false;
+
+                            ((BaseCalendar)c.Controls["txtHYMD"]).Enabled = false;
+                            ((LabelSet_Shiresaki)c.Controls["lsShiire"]).Enabled = false;
+                            ((BaseTextMoney)c.Controls["txtHNo"]).Enabled = false;
+                            ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).Enabled = false;
+                            ((LabelSet_Chubunrui)c.Controls["lsChubun"]).Enabled = false;
+                            ((LabelSet_Maker)c.Controls["lsMaker"]).Enabled = false;
+                            ((BaseText)c.Controls["txtHinmei"]).Enabled = false;
+                            ((BaseLabelGray)c.Controls["txtTanabanL"]).Enabled = false;
+                            ((BaseLabelGray)c.Controls["txtTanabanR"]).Enabled = false;
+                            ((BaseTextMoney)c.Controls["txtSuryo"]).Enabled = false;
+                            ((BaseTextMoney)c.Controls["txtTanka"]).Enabled = false;
+                            ((BaseCalendar)c.Controls["txtNohki"]).Enabled = false;
+                            ((BaseText)c.Controls["txtChuban"]).Enabled = true;
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
 
 
         //Control c = this.Controls["TextBox1"];

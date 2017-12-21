@@ -294,7 +294,6 @@
         protected System.Windows.Forms.ToolStripStatusLabel lblStatusMessage;
         protected System.Windows.Forms.ToolStripStatusLabel lblStatusUser;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ComboBox cmbSubWinShow;
         private System.Windows.Forms.Label lblSubWinSHow;
         public System.Windows.Forms.Button btnF01;
         public System.Windows.Forms.Button btnF12;
@@ -308,5 +307,6 @@
         public System.Windows.Forms.Button btnF04;
         public System.Windows.Forms.Button btnF03;
         public System.Windows.Forms.Button btnF02;
+        public System.Windows.Forms.ComboBox cmbSubWinShow;
     }
 }
