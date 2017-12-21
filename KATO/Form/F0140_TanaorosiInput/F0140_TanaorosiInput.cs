@@ -418,18 +418,41 @@ namespace KATO.Form.F0140_TanaorosiInput
                 F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();
                 tanaorosiinputB.addTanaoroshi(lstString);
 
+                //特定の値確保
+                string strYMD = txtYMD.Text;
+                string strDibunCd = labelSet_Daibunrui.CodeTxtText;
+                string strChubunCd = labelSet_Chubunrui.CodeTxtText;
+                string strEigyoCd = labelSet_Eigyousho.CodeTxtText;
+                string strMakerCd = labelSet_Maker.CodeTxtText;
+                string strTanaban = labelSet_Tanaban.CodeTxtText;
+
+                //画面内削除
+                delFormClear(this, gridRireki);
+
                 setViewGrid();
 
-                txtTanasuu.Text = "";
-                labelSet_Chubunrui_Edit.CodeTxtText = "";
-                labelSet_Chubunrui_Edit.ValueLabelText = "";
-                labelSet_Maker_Edit.CodeTxtText = "";
-                labelSet_Maker_Edit.ValueLabelText = "";
-                labelSet_Tanaban_Edit.CodeTxtText = "";
-                labelSet_Tanaban_Edit.ValueLabelText = "";
-                lblDspShouhin.Text = "";
+                //確保した値を元に戻す
+                txtYMD.Text = strYMD;
+                labelSet_Daibunrui.CodeTxtText = strDibunCd;
+                labelSet_Chubunrui.CodeTxtText = strChubunCd;
+                labelSet_Eigyousho.CodeTxtText = strEigyoCd;
+                labelSet_Maker.CodeTxtText = strMakerCd;
+                labelSet_Tanaban.CodeTxtText = strTanaban;
 
-                labelSet_Eigyousho.Focus();
+                //各ラベルセットのLeave処理
+                labelSet_Daibunrui.setTxtDaibunruiLeave();
+                labelSet_Chubunrui.setTxtChubunruiLeave();
+                labelSet_Eigyousho.setEigyoushoLeave();
+                labelSet_Maker.setTxtMakerLeave();
+                labelSet_Tanaban.setTanabanLeave();
+
+                txtTyoubosuu.Text = "0";
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                txtKensaku.Focus();
 
             }
             catch (Exception ex)
@@ -836,6 +859,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                     shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
                     shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                     shouhinlist.strKensaku = txtKensaku.Text;
+                    shouhinlist.blKensaku = true;
                     shouhinlist.ShowDialog();
 
                 }

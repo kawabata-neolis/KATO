@@ -607,9 +607,9 @@ namespace KATO.Common.Business
         ///仕入単価取得用(仕入入力画面で使用)
         ///カラム論理名
         ///</summary>
-        public string getShireTanka(string strShohinCd)
+        public DataTable getShireTanka(string strShohinCd)
         {
-            string strShireTanka = "";
+            DataTable dtShireTanka = new DataTable();
 
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQLSelect = new List<string>();
@@ -634,13 +634,13 @@ namespace KATO.Common.Business
                 //パスがなければ返す
                 if (strSQLSelect == "")
                 {
-                    return(strShireTanka);
+                    return(dtShireTanka);
                 }
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
 
-                return(strShireTanka);
+                return(dtShireTanka);
             }
             catch (Exception ex)
             {

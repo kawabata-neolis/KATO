@@ -79,6 +79,15 @@ namespace KATO.Common.Ctl
         ///</summary>
         public void updTxtTanabanLeave(object sender, EventArgs e)
         {
+            setTanabanLeave();
+        }
+
+        ///<summary>
+        ///setTanabanLeave
+        ///code入力箇所からフォーカスが外れた時の処理
+        ///</summary>
+        public void setTanabanLeave()
+        {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 

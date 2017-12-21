@@ -215,8 +215,8 @@ namespace KATO.Common.Form
             chubanmoji.HeaderText = "注番文字";
 
             DataGridViewTextBoxColumn groupCD = new DataGridViewTextBoxColumn();
-            groupCD.DataPropertyName = "グループコード";
-            groupCD.Name = "グループコード";
+            groupCD.DataPropertyName = "グループ名";
+            groupCD.Name = "グループ名";
             groupCD.HeaderText = "グループ";
 
             DataGridViewTextBoxColumn uriageMokuhyo = new DataGridViewTextBoxColumn();
@@ -229,7 +229,7 @@ namespace KATO.Common.Form
             setColumn(tantoushaName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(eigyoushoCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(chubanmoji, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(groupCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(groupCD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 110);
             setColumn(uriageMokuhyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 150);
         }
 
@@ -279,8 +279,7 @@ namespace KATO.Common.Form
 
                 //目標売上を整数型に
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
-                {
-                    
+                {                   
                     decimal decTyoubosuu = Math.Floor(decimal.Parse(dtView.Rows[cnt]["年間売上目標"].ToString()));
                     dtView.Rows[cnt]["年間売上目標"] = decTyoubosuu.ToString();
 

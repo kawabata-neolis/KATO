@@ -517,7 +517,7 @@ namespace KATO.Form.A0030_ShireInput
                 shireinputB.addShire(lstSaveData);
 
                 //各行のチェック
-                for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
+                for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
                 {
                     //注文番号に記入がある場合
                     if (StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
@@ -552,16 +552,35 @@ namespace KATO.Form.A0030_ShireInput
                                 A0030_ShireInput_B shireinputBadd = new A0030_ShireInput_B();
                                 try
                                 {
-                                    //新規の伝票番号を作成、取得
+                                    //商品コード取得
                                     strShohinCd = shireinputBadd.getNewShohinNo();
 
-                                    //商品番号がない場合
-                                    if (strShohinCd == "0")
-                                    {
-                                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "システムエラー", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                        basemessagebox.ShowDialog();
-                                        return;
-                                    }
+                                    //商品マスタ更新のための情報
+                                    List<string> lstShireMesaiKoshin = new List<string>();
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtShohinCd.Text);  //商品コード
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtMakerCd.Text);   //メーカーコード
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtDaibunCd.Text);  //大分類コード
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtChubunCd.Text);  //中分類コード
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtC1.Text);        //C1
+                                    lstShireMesaiKoshin.Add("");                            //C2
+                                    lstShireMesaiKoshin.Add("");                            //C3
+                                    lstShireMesaiKoshin.Add("");                            //C4
+                                    lstShireMesaiKoshin.Add("");                            //C5
+                                    lstShireMesaiKoshin.Add("");                            //C6
+                                    lstShireMesaiKoshin.Add("Y");                           //発注区分
+                                    lstShireMesaiKoshin.Add("0");                           //標準売価
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtTanka.Text);     //仕入単価
+                                    lstShireMesaiKoshin.Add("0");                           //在庫管理区分
+                                    lstShireMesaiKoshin.Add("000000");                      //棚番本社
+                                    lstShireMesaiKoshin.Add("000000");                      //棚番岐阜
+                                    lstShireMesaiKoshin.Add("");                            //メモ
+                                    lstShireMesaiKoshin.Add(bvg[intCnt].txtTanka.Text);     //評価単価
+                                    lstShireMesaiKoshin.Add("0");                           //定価
+                                    lstShireMesaiKoshin.Add("1");                           //箱入数
+                                    lstShireMesaiKoshin.Add(SystemInformation.UserName);    //ユーザー名
+
+                                    //商品マスタ更新
+                                    shireinputBadd.addShireMesaiKoshin(lstShireMesaiKoshin);
                                 }
                                 catch (Exception ex)
                                 {
@@ -581,25 +600,25 @@ namespace KATO.Form.A0030_ShireInput
                         }
 
                         //仕入明細更新用のデータ追加
-                        lstMesaiKoshin.Add(intDenpyoNo.ToString());
-                        lstMesaiKoshin.Add((intCnt + 1).ToString() );
-                        lstMesaiKoshin.Add(bvg[intCnt].txtChumonNo.Text);
-                        lstMesaiKoshin.Add(strShohinCd);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtMakerCd.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtDaibunCd.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtChubunCd.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC1.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC2.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC3.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC4.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC5.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtC6.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtSu.Text);
-                        lstMesaiKoshin.Add(string.Format("{0:0.#}", double.Parse(bvg[intCnt].txtTanka.Text)));
-                        lstMesaiKoshin.Add(bvg[intCnt].txtKin.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].txtBiko.Text);
-                        lstMesaiKoshin.Add(bvg[intCnt].labelSet_Eigyosho.CodeTxtText);
-                        lstMesaiKoshin.Add(SystemInformation.UserName);
+                        lstMesaiKoshin.Add(intDenpyoNo.ToString());                                             //伝票番号
+                        lstMesaiKoshin.Add((intCnt + 1).ToString() );                                           //行番号
+                        lstMesaiKoshin.Add(bvg[intCnt].txtChumonNo.Text);                                       //発注番号
+                        lstMesaiKoshin.Add(strShohinCd);                                                        //商品コード
+                        lstMesaiKoshin.Add(bvg[intCnt].txtMakerCd.Text);                                        //メーカーコード
+                        lstMesaiKoshin.Add(bvg[intCnt].txtDaibunCd.Text);                                       //大分類コード
+                        lstMesaiKoshin.Add(bvg[intCnt].txtChubunCd.Text);                                       //中分類コード
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC1.Text);                                             //C1
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC2.Text);                                             //C2
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC3.Text);                                             //C3
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC4.Text);                                             //C4
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC5.Text);                                             //C5
+                        lstMesaiKoshin.Add(bvg[intCnt].txtC6.Text);                                             //C6
+                        lstMesaiKoshin.Add(bvg[intCnt].txtSu.Text);                                             //数量
+                        lstMesaiKoshin.Add(string.Format("{0:0.#}", double.Parse(bvg[intCnt].txtTanka.Text)));  //仕入単価
+                        lstMesaiKoshin.Add(bvg[intCnt].txtKin.Text);                                            //仕入金額
+                        lstMesaiKoshin.Add(bvg[intCnt].txtBiko.Text);                                           //備考
+                        lstMesaiKoshin.Add(bvg[intCnt].labelSet_Eigyosho.CodeTxtText);                          //入庫倉庫
+                        lstMesaiKoshin.Add(SystemInformation.UserName);                                         //ユーザー名
 
                         //テスト用にコメントアウトしていた
                         //仕入明細更新
@@ -825,10 +844,9 @@ namespace KATO.Form.A0030_ShireInput
                         //入庫倉庫
                         lstShireUnchin.Add(txtEigyouCd.Text);
                         //ユーザー名
-                        lstShireUnchin.Add(SystemInformation.UserName);                       
+                        lstShireUnchin.Add(SystemInformation.UserName);
                         //運賃を仕入明細に追加
                         shireinputB.addShireUnchinKoshin(lstShireUnchin);
-
                     }
 
                     //登録完了メッセージ（OK）
@@ -1004,15 +1022,6 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                //戻り値のDatatableを取り込む(日付制限の検索)
-                dtSetCd = shireinputB.getHidukeseigen("3",txtEigyouCd.Text);
-
-                //検索結果にデータが存在しなければ終了
-                if (dtSetCd.Rows.Count == 0)
-                {
-                    return;
-                }
-
                 //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //NOが押された場合
@@ -1230,6 +1239,14 @@ namespace KATO.Form.A0030_ShireInput
                     dtSetKenshuzumishire = shireinputB.getKenshuShire(txtDenpyoNo.Text);
 
                     intKenshuShireCnt = int.Parse(dtSetKenshuzumishire.Rows[0]["カウント"].ToString());
+
+                    //年月日チェックをしたときにfalseの場合
+                    if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
+                    {
+                        //例外発生メッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                    }
 
                     //1以上の場合
                     if (intKenshuShireCnt > 0)
@@ -1981,7 +1998,10 @@ namespace KATO.Form.A0030_ShireInput
             int intChumonCnt = 0;
 
             //仕入単価入れる用
-            string strShireTanka = "";
+            DataTable dtShireTanka = new DataTable();
+
+            //発注数量入れる用
+            DataTable dtHachusu = new DataTable();
 
             //各行の情報を入れる
             bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
@@ -2021,7 +2041,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (decUnchin != 0)
                 {
                     //入力されている行数分チェック
-                    for (int intCnt = 0; intCnt <= bvg.Length; intCnt++)
+                    for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
                     {
                         //受注番号が空白以外で且つ１以上の場合
                         if (StringUtl.blIsEmpty(bvg[intCnt].txtJuchuNo.Text) && int.Parse(bvg[intCnt].txtJuchuNo.Text) > 0)
@@ -2038,91 +2058,184 @@ namespace KATO.Form.A0030_ShireInput
 
                             blgood = false;
                         }
+
+                        //各gbDataのチェック
+                        //false判定でない場合
+                        if (blgood == true)
+                        {
+                            //各行のチェック
+                            for (int intgbCnt = 1; intgbCnt <= bvg.Length; intgbCnt++)
+                            {
+                                //注文番号がない場合
+                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtChumonNo.Text))
+                                {
+                                    blgood = false;
+                                }
+                                //数量がない場合
+                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtSu.Text))
+                                {
+                                    blgood = false;
+                                }
+                                //単価がない場合
+                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtTanka.Text))
+                                {
+                                    blgood = false;
+                                }
+                                //倉庫番号がない場合
+                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].labelSet_Eigyosho.ValueLabelText))
+                                {
+                                    blgood = false;
+                                }
+
+                                //各行のチェック
+                                for (int intCntJuhuku = 1; intCnt <= bvg.Length; intCntJuhuku++)
+                                {
+                                    //同じ列同士の検索被りをしないようにする
+                                    if (intCnt != intCntJuhuku)
+                                    {
+                                        //注文番号重複チェック
+                                        if (bvg[intCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
+                                        {
+                                            //"関連する受注データがないとメッセージ（OK）
+                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                            basemessagebox.ShowDialog();
+
+                                            blgood = false;
+                                            return (blgood);
+                                        }
+                                    }
+                                }
+
+                                //発注原価のチェック
+                                if (bvg[intCnt].txtTankaSub.Text != "0")
+                                {
+                                    //商品マスタから仕入単価を得る
+                                    ShouhinList_B shohinlistB = new ShouhinList_B();
+                                    dtShireTanka = shohinlistB.getShireTanka(bvg[intCnt].txtShohinCd.Text);
+
+                                    //仕入単価がある場合
+                                    if (dtShireTanka.Rows.Count > 0)
+                                    {
+                                        //発注単価より値段が高い場合
+                                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
+                                        {
+                                            //"関連する受注データがないとメッセージ（OK）
+                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                            basemessagebox.ShowDialog();
+
+                                            blgood = false;
+
+                                            bvg[intCnt].txtTanka.Focus();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        blgood = false;
+                                    }
+                                }
+
+                                //発注数>=仕入数量のチェック
+                                if (bvg[intCnt].txtChumonNo.blIsEmpty() == true)
+                                {
+                                    if (blgood)
+                                    {
+                                        //商品マスタから仕入単価を得る
+                                        A0030_ShireInput_B shireB = new A0030_ShireInput_B();
+                                        dtHachusu = shireB.getHachusu(bvg[intCnt].txtChumonNo.Text);
+
+                                        //発注数がある場合
+                                        if (dtHachusu.Rows.Count > 0)
+                                        {
+                                            objSu = dtHachusu.Rows[0][0].ToString();
+                                        }
+
+                                        //発注数と仕入数量の比較
+                                        if (int.Parse(bvg[intCnt].txtSu.Text) > int.Parse(objSu.ToString()))
+                                        {
+                                            //"関連する受注データがないとメッセージ（OK）
+                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                            basemessagebox.ShowDialog();
+
+                                            blgood = false;
+                                            bvg[intCnt].txtSu.Focus();
+                                            return(blgood);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
 
-            //各gbDataのチェック
-            //false判定でない場合
-            if (blgood == true)
+            //発注原価チェック
+            if (blgood)
             {
-                //各行のチェック
-                for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
+                //受注単価内に０がある場合
+                if (txtJuchu1.Text == "0" || txtJuchu2.Text == "0" || txtJuchu3.Text == "0" || txtJuchu4.Text == "0" || txtJuchu5.Text == "0")
                 {
-                    //注文番号がない場合
-                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
-                    {
-                        blgood = false;
-                    }
-                    //数量がない場合
-                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtSu.Text))
-                    {
-                        blgood = false;
-                    }
-                    //単価がない場合
-                    if (!StringUtl.blIsEmpty(bvg[intCnt].txtTanka.Text))
-                    {
-                        blgood = false;
-                    }
-                    //倉庫番号がない場合
-                    if (!StringUtl.blIsEmpty(bvg[intCnt].labelSet_Eigyosho.ValueLabelText))
-                    {
-                        blgood = false;
-                    }
+                    //"関連する受注データがないとメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上単価が￥０の受注が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                    //各行のチェック
-                    for (int intCntJuhuku = 1; intCnt <= bvg.Length; intCntJuhuku++)
-                    {
-                        //同じ列同士の検索被りをしないようにする
-                        if (intCnt != intCntJuhuku)
-                        {
-                            //注文番号重複チェック
-                            if (bvg[intCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
-                            {
-                                //"関連する受注データがないとメッセージ（OK）
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                basemessagebox.ShowDialog();
-
-                                blgood = false;
-                                return(blgood);
-                            }
-                        }
-                    }
-
-                    //発注原価のチェック
-                    if (bvg[intCnt].txtTankaSub.Text != "0")
-                    {
-                        //商品マスタから仕入単価を得る
-                        ShouhinList_B shohinlistB = new ShouhinList_B();
-                        strShireTanka = shohinlistB.getShireTanka(bvg[intCnt].txtShohinCd.Text);
-
-                        //仕入単価がない場合
-                        if (strShireTanka == "")
-                        {
-                            blgood = false;
-                        }
-                        else
-                        {
-                            //発注単価より値段が高い場合
-                            if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(strShireTanka))
-                            {
-                                //"関連する受注データがないとメッセージ（OK）
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                basemessagebox.ShowDialog();
-
-                                blgood = false;
-
-                                bvg[intCnt].txtTanka.Focus();
-                            }
-                        }
-                    }
-
-//
-//
-
+                    blgood = false;
                 }
             }
 
+            //年月日チェックをしたときにfalseの場合
+            if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
+            {
+                txtYMD.Focus();
+                blgood = false;
+            }
+
+            //合計計算式を入れる（未定）
+
+            //good判定の判定
+            if (blgood == false)
+            {
+                return(blgood);
+            }
+            
+            //使用ユーザーがSPPowerUserの場合
+            if (SystemInformation.UserName != "nakashima" && SystemInformation.UserName != "takaxx9" && SystemInformation.UserName != "administrator" && SystemInformation.UserName != "jic")
+            {
+                //各行のデータ
+                for (int intCnt = 1; intCnt <= 5; intCnt++)
+                {
+                    if(bvg[intCnt].txtChumonNo.blIsEmpty() == false)
+                    {
+                        //単価の背景黒
+                        bvg[intCnt].txtTanka.BackColor = Color.Black;
+
+                        //"関連する受注データがないとメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "仕入単価が直近・マスタ仕入単価を上回っています。続行してもいいですか？", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        //単価と直近仕入単価の比較
+                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(bvg[intCnt].txtChokinTanka.Text))
+                        {
+                            bvg[intCnt].txtChokinTanka.BackColor = Color.Red;
+                        }
+
+                        //単価とマスタ単価の比較
+                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(bvg[intCnt].txtMasterTanka.Text))
+                        {
+                            bvg[intCnt].txtMasterTanka.BackColor = Color.Red;
+                        }
+                    }
+                }   
+
+                //good判定の判定
+                if (blgood == false)
+                {
+                    //テスト時に修正
+                    //if (msgAlertAsk(RituMSG, "仕入単価チェック", true) == frmMessage.msgRetVal.mrvAskok)
+                    //{
+                    //    good = true;
+                    //}
+                }
+            }            
             return (blgood);
         }
 

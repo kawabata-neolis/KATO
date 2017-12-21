@@ -396,6 +396,265 @@ namespace KATO.Form.A0030_ShireInput
             DBConnective dbconnective = new DBConnective();
             try
             {
+                //詳細データ
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQLHachu);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, txtChumonNo.Text);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B_Hachu = dbconnective.ReadSql(strSQLInput);
+
+                //データが1件以上ある場合
+                if (dtSetCd_B_Hachu.Rows.Count > 0)
+                {
+                    //行数分ループ
+                    for (int intCnt = 0; intCnt < dtSetCd_B_Hachu.Rows.Count; intCnt++)
+                    {
+
+//今後、修正するべき
+                        ////注文コードが仕入コードと一致しない場合
+                        //if (txtChumonNo.Text != shireinput.txtCD.Text)
+                        //{
+                        //    //発注データが存在しないということを伝えるメッセージ（OK）
+                        //    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "指定した取引先の発注データではありません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        //    basemessagebox.ShowDialog();
+
+                        //    txtChumonNo.Text = "";
+                        //    txtChumonNo.Focus();
+                        //    return;
+                        //}
+
+                        //if (MODY_FLAG == false)
+                        //{
+                        //    if (rs.Fields("発注フラグ").Value == 1)
+                        //    {
+                        //        if (System.Math.Abs(rs.Fields("仕入済数量").Value) >= System.Math.Abs(rs.Fields("発注数量").Value))
+                        //        {
+                        //            msgAlert("仕入済の発注データです！！");
+                        //            txtElem2(Index).Clear();
+                        //            txtElem2(Index).setFocus();
+                        //            return;
+                        //        }
+                        //        else
+                        //        {
+                        //            msgAlert(VB6.Format(rs.Fields("仕入済数量").Value, "###,###") + "個が仕入済です！！");
+                        //            //                txtElem2(Index).Clear
+                        //            //                txtElem2(Index).setFocus
+                        //            //                Exit Sub
+                        //        }
+                        //    }
+                        //}
+
+                        //行番号が99の場合
+                        if (dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString() == "99")
+                        {
+                            //運賃の処理があったが
+                        }
+
+                        ////行番号を確保
+                        //shireinput.shotCnt = short.Parse(dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString());
+
+                        //グループ内でも確保
+                        shortCntG = shireinput.shotCnt;
+
+                        //行数１の場合
+                        if (shireinput.shotCnt == 1)
+                        {
+                            shireinput.gbData1.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData1.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                        }
+                        //行数２の場合
+                        else if (shireinput.shotCnt == 2)
+                        {
+                            shireinput.gbData2.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData2.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                        }
+                        //行数３の場合
+                        else if (shireinput.shotCnt == 3)
+                        {
+                            shireinput.gbData3.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData3.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                        }
+                        //行数４の場合
+                        else if (shireinput.shotCnt == 4)
+                        {
+                            shireinput.gbData4.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData4.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                        }
+                        //行数５の場合
+                        else if (shireinput.shotCnt == 5)
+                        {
+                            shireinput.gbData5.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData5.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                        }
+                    }
+
+                    //初期化
+                    strHinmei = "";
+
+                    //中分類のデータ確保
+                    DataTable dtChubun = null;
+
+                    //商品コードが存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["商品コード"].ToString()))
+                    {
+                        txtShohinCd.Text = dtSetCd_B_Hachu.Rows[0]["商品コード"].ToString();
+                        setTxtShohinCd();
+                    }
+
+                    //メーカーコードが存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["メーカーコード"].ToString()))
+                    {
+                        txtMakerCd.Text = dtSetCd_B_Hachu.Rows[0]["メーカーコード"].ToString();
+                    }
+
+                    //大分類コードが存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString()))
+                    {
+                        txtDaibunCd.Text = dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString();
+                    }
+
+                    //中分類コードが存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString()))
+                    {
+                        txtChubunCd.Text = dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString();
+                    }
+
+                    //品名の確保（メーカー名部分）
+                    strHinmei = dtSetCd_B_Hachu.Rows[0]["メーカー名"].ToString().Trim(' ');
+
+                    //中分類のビジネス層インスタンス生成
+                    M1110_Chubunrui_B chubunruiB = new M1110_Chubunrui_B();
+                    //中分類のコードと名前を確保
+                    dtChubun = chubunruiB.getTxtChubunruiLeave(dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString(), dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString());
+
+                    strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
+
+                    //Ｃ１が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString().Trim(' ');
+                        txtC1.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString();
+                    }
+                    //Ｃ２が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString().Trim(' ');
+                        txtC2.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString();
+                    }
+                    //Ｃ３が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString().Trim(' ');
+                        txtC3.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString();
+                    }
+                    //Ｃ４が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString().Trim(' ');
+                        txtC4.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString();
+                    }
+                    //Ｃ５が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString().Trim(' ');
+                        txtC5.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString();
+                    }
+                    //Ｃ６が存在する場合
+                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString()))
+                    {
+                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString().Trim(' ');
+                        txtC6.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString();
+                    }
+
+                    txtHin.Text = strHinmei;
+
+                    //発注数量から仕入済数量を引く
+                    txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
+                    txtSu.updPriceMethod();
+                    //数量が変更になったことによる処理
+                    setTxtSuChange();
+
+                    txtTanka.Text = string.Format("{0:0.00}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注単価"].ToString()));
+                    txtTanka.updPriceMethod();
+                    //単価が変更になったことによる処理
+                    setTxtTankaChange();
+
+                    txtBiko.Text = dtSetCd_B_Hachu.Rows[0]["注番"].ToString();
+
+                    labelSet_Eigyosho.CodeTxtText = dtSetCd_B_Hachu.Rows[0]["営業所コード"].ToString();
+
+                    txtJuchuNo.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                    //仕入入力画面のコードが8888か5555の場合
+                    if (shireinput.txtCD.ToString() == "8888" || shireinput.txtCD.ToString() == "8888")
+                    {
+                        shireinput.txtShireNameView.Text = dtSetCd_B_Hachu.Rows[0]["仕入先名称"].ToString();
+                    }
+
+                    //受注番号が0ではない場合
+                    if (dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString() != "0")
+                    {
+                        //No.によって何番の仕入入力画面の受注番号項目に記入するか
+                        if (int.Parse(this.Tag.ToString()) == 1)
+                        {
+                            shireinput.txtJuchu1.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu1.Text);
+                        }
+                        if (int.Parse(this.Tag.ToString()) == 2)
+                        {
+                            shireinput.txtJuchu2.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu2.Text);
+                        }
+                        if (int.Parse(this.Tag.ToString()) == 3)
+                        {
+                            shireinput.txtJuchu3.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu3.Text);
+                        }
+                        if (int.Parse(this.Tag.ToString()) == 4)
+                        {
+                            shireinput.txtJuchu4.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu4.Text);
+                        }
+                        if (int.Parse(this.Tag.ToString()) == 5)
+                        {
+                            shireinput.txtJuchu5.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
+
+                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu5.Text);
+                        }
+
+                        //dtSetCdTokuisaki_Bにデータがある場合
+                        if (dtSetCdTokuisaki_B.Rows.Count > 0)
+                        {
+                            txtTokuisaki.Text = dtSetCdTokuisaki_B.Rows[0]["得意先名称"].ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    //発注データが存在しないということを伝えるメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "発注データが存在しません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //項目削除
+                    delText();
+
+                    txtChumonNo.Focus();
+                    return;
+                }
+
                 //ヘッダー
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQLHeader);
@@ -482,225 +741,9 @@ namespace KATO.Form.A0030_ShireInput
                 strSQLInput = "";
 
 
-                //詳細データ
-                //SQLファイルのパス取得
-                strSQLInput = opensql.setOpenSQL(lstSQLHachu);
 
-                //パスがなければ返す
-                if (strSQLInput == "")
-                {
-                    return;
-                }
+//個々の処理をはじめに持っていくのも手
 
-                //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, txtChumonNo.Text);
-
-                //SQL接続後、該当データを取得
-                dtSetCd_B_Hachu = dbconnective.ReadSql(strSQLInput);
-                
-                //データが1件以上ある場合
-                if (dtSetCd_B_Hachu.Rows[0][0].ToString() != "")
-                {
-                    //行数分ループ
-                    for (int intCnt = 0; intCnt < dtSetCd_B_Hachu.Rows.Count; intCnt++)
-                    {
-                        //行番号が99の場合
-                        if(dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString() == "99")
-                        {
-                                //運賃の処理があったが
-                        }
-
-                        ////行番号を確保
-                        //shireinput.shotCnt = short.Parse(dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString());
-
-                        //グループ内でも確保
-                        shortCntG = shireinput.shotCnt;
-
-                        //行数１の場合
-                        if (shireinput.shotCnt == 1)
-                        {
-                            shireinput.gbData1.txtNo.Text = shortCntG.ToString();
-                            shireinput.gbData1.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
-                        }
-                        //行数２の場合
-                        else if (shireinput.shotCnt == 2)
-                        {
-                            shireinput.gbData2.txtNo.Text = shortCntG.ToString();
-                            shireinput.gbData2.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
-                        }
-                        //行数３の場合
-                        else if (shireinput.shotCnt == 3)
-                        {
-                            shireinput.gbData3.txtNo.Text = shortCntG.ToString();
-                            shireinput.gbData3.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
-                        }
-                        //行数４の場合
-                        else if (shireinput.shotCnt == 4)
-                        {
-                            shireinput.gbData4.txtNo.Text = shortCntG.ToString();
-                            shireinput.gbData4.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
-                        }
-                        //行数５の場合
-                        else if (shireinput.shotCnt == 5)
-                        {
-                            shireinput.gbData5.txtNo.Text = shortCntG.ToString();
-                            shireinput.gbData5.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
-                        }
-                    }
-
-                    //初期化
-                    strHinmei = "";
-
-                    //中分類のデータ確保
-                    DataTable dtChubun = null;
-
-                    //商品コードが存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["商品コード"].ToString()))
-                    {
-                        txtShohinCd.Text = dtSetCd_B_Hachu.Rows[0]["商品コード"].ToString();
-                        setTxtShohinCd();
-                    }
-
-                    //メーカーコードが存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["メーカーコード"].ToString()))
-                    {
-                        txtMakerCd.Text = dtSetCd_B_Hachu.Rows[0]["メーカーコード"].ToString();
-                    }
-
-                    //大分類コードが存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString()))
-                    {
-                        txtDaibunCd.Text = dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString();
-                    }
-
-                    //中分類コードが存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString()))
-                    {
-                        txtChubunCd.Text = dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString();
-                    }
-                    
-                    //品名の確保（メーカー名部分）
-                    strHinmei = dtSetCd_B_Hachu.Rows[0]["メーカー名"].ToString().Trim(' ');
-
-                    //中分類のビジネス層インスタンス生成
-                    M1110_Chubunrui_B chubunruiB = new M1110_Chubunrui_B();
-                    //中分類のコードと名前を確保
-                    dtChubun = chubunruiB.getTxtChubunruiLeave(dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString(), dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString());
-
-                    strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
-
-                    //Ｃ１が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString().Trim(' ');
-                        txtC1.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString();
-                    }
-                    //Ｃ２が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString().Trim(' ');
-                        txtC2.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ２"].ToString();
-                    }
-                    //Ｃ３が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString().Trim(' ');
-                        txtC3.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ３"].ToString();
-                    }
-                    //Ｃ４が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString().Trim(' ');
-                        txtC4.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ４"].ToString();
-                    }
-                    //Ｃ５が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString().Trim(' ');
-                        txtC5.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ５"].ToString();
-                    }
-                    //Ｃ６が存在する場合
-                    if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString()))
-                    {
-                        strHinmei = strHinmei + dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString().Trim(' ');
-                        txtC6.Text = dtSetCd_B_Hachu.Rows[0]["Ｃ６"].ToString();
-                    }
-
-                    txtHin.Text = strHinmei;
-
-                    //発注数量から仕入済数量を引く
-                    txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
-                    txtSu.updPriceMethod();
-                    //数量が変更になったことによる処理
-                    setTxtSuChange();
-
-                    txtTanka.Text = string.Format("{0:0.00}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注単価"].ToString()));
-                    txtTanka.updPriceMethod();
-                    //単価が変更になったことによる処理
-                    setTxtTankaChange();
-
-                    txtBiko.Text = dtSetCd_B_Hachu.Rows[0]["注番"].ToString();
-
-                    labelSet_Eigyosho.CodeTxtText = dtSetCd_B_Hachu.Rows[0]["営業所コード"].ToString();
-                                        
-                    txtJuchuNo.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                    //仕入入力画面のコードが8888か5555の場合
-                    if(shireinput.txtCD.ToString() == "8888" || shireinput.txtCD.ToString() == "8888")
-                    {
-                        shireinput.txtShireNameView.Text = dtSetCd_B_Hachu.Rows[0]["仕入先名称"].ToString();
-                    }
-
-                    //受注番号が0ではない場合
-                    if (dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString() != "0")
-                    {
-                        //No.によって何番の仕入入力画面の受注番号項目に記入するか
-                        if (int.Parse(this.Tag.ToString()) == 1)
-                        {
-                            shireinput.txtJuchu1.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu1.Text);
-                        }
-                        if (int.Parse(this.Tag.ToString()) == 2)
-                        {
-                            shireinput.txtJuchu2.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu2.Text);
-                        }
-                        if (int.Parse(this.Tag.ToString()) == 3)
-                        {
-                            shireinput.txtJuchu3.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu3.Text);
-                        }
-                        if (int.Parse(this.Tag.ToString()) == 4)
-                        {
-                            shireinput.txtJuchu4.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu4.Text);
-                        }
-                        if (int.Parse(this.Tag.ToString()) == 5)
-                        {
-                            shireinput.txtJuchu5.Text = dtSetCd_B_Hachu.Rows[0]["受注番号"].ToString();
-
-                            dtSetCdTokuisaki_B = getJuchuTokuisaki(shireinput.txtJuchu5.Text);
-                        }
-
-                        //dtSetCdTokuisaki_Bにデータがある場合
-                        if (dtSetCdTokuisaki_B.Rows.Count > 0)
-                        {
-                            txtTokuisaki.Text = dtSetCdTokuisaki_B.Rows[0]["得意先名称"].ToString();
-                        }
-                    }
-                }
-                else
-                {
-                    //発注データが存在しないということを伝えるメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "発注データが存在しません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    txtChumonNo.Focus();
-                    return;
-                }
 
                 return;
             }

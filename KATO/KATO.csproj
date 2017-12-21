@@ -1455,6 +1455,9 @@
     <Content Include="Log4net.Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_HachusuCnt_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuDataCnt_NOKako_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

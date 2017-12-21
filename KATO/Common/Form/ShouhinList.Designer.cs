@@ -189,7 +189,6 @@ namespace KATO.Common.Form
             this.btnGifuZaiko.Text = "岐阜在庫";
             this.btnGifuZaiko.UseVisualStyleBackColor = true;
             this.btnGifuZaiko.Visible = false;
-            this.btnGifuZaiko.Click += new System.EventHandler(this.btnGifuZaikoClick);
             // 
             // btnHonshaZaiko
             // 
@@ -201,7 +200,6 @@ namespace KATO.Common.Form
             this.btnHonshaZaiko.Text = "本社在庫";
             this.btnHonshaZaiko.UseVisualStyleBackColor = true;
             this.btnHonshaZaiko.Visible = false;
-            this.btnHonshaZaiko.Click += new System.EventHandler(this.btnHonshaZaikoClick);
             // 
             // gridTorihiki
             // 
