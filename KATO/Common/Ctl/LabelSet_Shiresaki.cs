@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Common.Util;
+using KATO.Form.B0250_MOnyuryoku;
 
 namespace KATO.Common.Ctl
 {
@@ -61,6 +62,26 @@ namespace KATO.Common.Ctl
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
+            }
+
+            //エンターキー
+            if (e.KeyCode == Keys.Enter)
+            {
+                //親画面がＭＯ入力の場合
+                if (this.Parent.Name == "B0250_MOnyuryoku")
+                {
+                    //全てのフォームの中から
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //目的のフォームを探す
+                        if (frm.Name == "B0250_MOnyuryoku")
+                        {
+                            B0250_MOnyuryoku monyuryoku = (B0250_MOnyuryoku)frm;
+                            monyuryoku.setShiresakiEnterKey();
+                            break;
+                        }
+                    }
+                }
             }
         }
 

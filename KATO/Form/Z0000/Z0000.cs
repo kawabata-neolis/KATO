@@ -578,7 +578,7 @@ namespace KATO.Form.Z0000
 
                 //ＭＯ入力
                 case "25":
-                    B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
+                    B0250_MOnyuryoku.B0250_MOnyuryoku monyuryoku = new B0250_MOnyuryoku.B0250_MOnyuryoku(this);
                     monyuryoku.ShowDialog();
                     break;
 
@@ -1128,7 +1128,7 @@ namespace KATO.Form.Z0000
 
                     //ＭＯ入力
                     case "25":
-                        B0250_MOnyuryoku.MOnyuryoku monyuryoku = new B0250_MOnyuryoku.MOnyuryoku(this);
+                        B0250_MOnyuryoku.B0250_MOnyuryoku monyuryoku = new B0250_MOnyuryoku.B0250_MOnyuryoku(this);
                         monyuryoku.ShowDialog();
                         break;
 
