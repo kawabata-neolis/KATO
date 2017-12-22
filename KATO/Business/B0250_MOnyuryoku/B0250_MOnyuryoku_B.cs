@@ -142,40 +142,40 @@ namespace KATO.Business.B0250_MOnyuryoku
             string strSQLInput = "";
 
             strSQLInput = strSQLInput + "SELECT";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, ''))";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ２, ''))";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ３, ''))";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ４, ''))";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ５, ''))";
-            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ６, '')),";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, '')) +";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ２, '')) +";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ３, '')) +";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ４, '')) +";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ５, '')) +";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ６, '')) AS 型番,";
 
-            strSQLInput = strSQLInput + "現在在庫数,";
-            strSQLInput = strSQLInput + "売上数量,";
-            strSQLInput = strSQLInput + "仕入数量,";
-            strSQLInput = strSQLInput + "発注残数量,";
-            strSQLInput = strSQLInput + "ＭＯ発注指示数,";
-            strSQLInput = strSQLInput + "ＭＯ発注数,";
-            strSQLInput = strSQLInput + "ＭＯ発注単価,";
-            strSQLInput = strSQLInput + "ROUND(ＭＯ発注数*ＭＯ発注単価,0,0),";
+            strSQLInput = strSQLInput + "現在在庫数 AS ﾌﾘ在庫,";
+            strSQLInput = strSQLInput + "売上数量 AS 売上数,";
+            strSQLInput = strSQLInput + "仕入数量 AS 仕入数,";
+            strSQLInput = strSQLInput + "発注残数量 AS 発注残,";
+            strSQLInput = strSQLInput + "ＭＯ発注指示数 AS 発注指,";
+            strSQLInput = strSQLInput + "ＭＯ発注数 AS 発注数,";
+            strSQLInput = strSQLInput + "ＭＯ発注単価 AS 単価,";
+            strSQLInput = strSQLInput + "ROUND(ＭＯ発注数*ＭＯ発注単価,0,0) AS 金額,";
             strSQLInput = strSQLInput + "納期,";
-            strSQLInput = strSQLInput + "取引先コード,";
-            strSQLInput = strSQLInput + "dbo.f_get取引先名称(取引先コード),";
-            strSQLInput = strSQLInput + "RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 注番, ";
-            strSQLInput = strSQLInput + "発注番号,";
+            strSQLInput = strSQLInput + "取引先コード AS ｺｰﾄﾞ,";
+            strSQLInput = strSQLInput + "dbo.f_get取引先名称(取引先コード) AS 仕向け先名,";
+            strSQLInput = strSQLInput + "RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 発注番号, ";
+            strSQLInput = strSQLInput + "発注番号 AS 発注番号2,";
             strSQLInput = strSQLInput + "商品コード,";
 
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ１,'')),";
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ２,'')),";
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ３,'')),";
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ４,'')),";
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ５,'')),";
-            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ６,'')),";
-            //strSQLInput = strSQLInput + "dbo.f_get商品箱入数(商品コード),";
-            //strSQLInput = strSQLInput + "dbo.f_get商品コードから最終仕入日(商品コード)";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ１,'')) AS Ｃ１,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ２,'')) AS Ｃ２,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ３,'')) AS Ｃ３,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ４,'')) AS Ｃ４,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ５,'')) AS Ｃ５,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ６,'')) AS Ｃ６,";
+            strSQLInput = strSQLInput + "dbo.f_get商品箱入数(商品コード) AS 箱入数,";
+            strSQLInput = strSQLInput + "dbo.f_get商品コードから最終仕入日(商品コード) AS 最終仕入日 ";
 
             strSQLInput = strSQLInput + "FROM ＭＯ";
 
-            strSQLInput = strSQLInput + " WHERE 年月日 = '" + lstStringViewData[0] + "'";
+            strSQLInput = strSQLInput + " WHERE 年月度 = '" + lstStringViewData[0] + "'";
             strSQLInput = strSQLInput + " AND メーカーコード = '" + lstStringViewData[1] + "'";
             strSQLInput = strSQLInput + " AND 大分類コード = '" + lstStringViewData[2] + "'";
             strSQLInput = strSQLInput + " AND 中分類コード = '" + lstStringViewData[3] + "'";
@@ -329,6 +329,60 @@ namespace KATO.Business.B0250_MOnyuryoku
 
                 //コミット開始
                 dbconnective.Commit();
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getRirekiData
+        ///code入力箇所からフォーカスが外れた時
+        ///</summary>
+        public DataTable getRirekiData(string strDaibunCD)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_SELECT_GetDataGridView_NOTALL");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strDaibunCD);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
                 return (dtSetCd_B);
             }
             catch (Exception ex)

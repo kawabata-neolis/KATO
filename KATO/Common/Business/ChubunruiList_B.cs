@@ -284,4 +284,3 @@ namespace KATO.Common.Business
         }
     }
 }
-

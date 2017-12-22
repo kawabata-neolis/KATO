@@ -268,9 +268,9 @@ namespace KATO.Form.B0250_MOnyuryoku
             K2Kataban.HeaderText = "型番";
 
             DataGridViewTextBoxColumn K2Freezaiko = new DataGridViewTextBoxColumn();
-            K2Freezaiko.DataPropertyName = "ﾌﾘｰ在庫";
-            K2Freezaiko.Name = "ﾌﾘｰ在庫";
-            K2Freezaiko.HeaderText = "ﾌﾘｰ在庫";
+            K2Freezaiko.DataPropertyName = "ﾌﾘ在庫";
+            K2Freezaiko.Name = "ﾌﾘ在庫";
+            K2Freezaiko.HeaderText = "ﾌﾘ在庫";
 
             DataGridViewTextBoxColumn K2Shiresu = new DataGridViewTextBoxColumn();
             K2Shiresu.DataPropertyName = "仕入数";
@@ -383,33 +383,33 @@ namespace KATO.Form.B0250_MOnyuryoku
             K2Saishushire.HeaderText = "最終仕入日";
             
             //個々の幅、文章の寄せ（売上数非表示）
-            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumnKataban2(K2Freezaiko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumnKataban2(K2Uriagesu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnKataban2(K2Shiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
-            setColumnKataban2(K2Hachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
+            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 380);
+            setColumnKataban2(K2Freezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Uriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Shiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
 
-            setColumnKataban2(K2Juchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
-            setColumnKataban2(K2Hachushi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
-            setColumnKataban2(K2Hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 100);
-            setColumnKataban2(K2Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2Kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumnKataban2(K2Juchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachushi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumnKataban2(K2Kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
 
-            setColumnKataban2(K2Noki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2Code, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2Shimukesakiname, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2HachuNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2HachuNo2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumnKataban2(K2Noki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnKataban2(K2Code, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 65);
+            setColumnKataban2(K2Shimukesakiname, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnKataban2(K2HachuNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumnKataban2(K2HachuNo2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 0);
 
-            setColumnKataban2(K2ShohinCd, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2C6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 0);
-            setColumnKataban2(K2Hakosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
-            setColumnKataban2(K2Saishushire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleRight, "#,0", 120);
+            setColumnKataban2(K2ShohinCd, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2C6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnKataban2(K2Hakosu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnKataban2(K2Saishushire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
 
             //対象列を非表示
             gridKataban2.Columns["売上数"].Visible = false;
@@ -420,11 +420,59 @@ namespace KATO.Form.B0250_MOnyuryoku
             gridKataban2.Columns["Ｃ４"].Visible = false;
             gridKataban2.Columns["Ｃ５"].Visible = false;
             gridKataban2.Columns["Ｃ６"].Visible = false;
+            gridKataban2.Columns["発注番号2"].Visible = false;
+
+
+            //データをバインド
+            DataGridViewTextBoxColumn RirekiYM = new DataGridViewTextBoxColumn();
+            RirekiYM.DataPropertyName = "年月";
+            RirekiYM.Name = "年月";
+            RirekiYM.HeaderText = "年月";
+
+            DataGridViewTextBoxColumn RirekiUriage = new DataGridViewTextBoxColumn();
+            RirekiUriage.DataPropertyName = "売上";
+            RirekiUriage.Name = "売上";
+            RirekiUriage.HeaderText = "売上";
+
+            DataGridViewTextBoxColumn RirekiShuko = new DataGridViewTextBoxColumn();
+            RirekiShuko.DataPropertyName = "出庫";
+            RirekiShuko.Name = "出庫";
+            RirekiShuko.HeaderText = "出庫";
+
+            DataGridViewTextBoxColumn RirekiShire = new DataGridViewTextBoxColumn();
+            RirekiShire.DataPropertyName = "仕入";
+            RirekiShire.Name = "仕入";
+            RirekiShire.HeaderText = "仕入";
+
+            DataGridViewTextBoxColumn RirekiNyuko = new DataGridViewTextBoxColumn();
+            RirekiNyuko.DataPropertyName = "入庫";
+            RirekiNyuko.Name = "入庫";
+            RirekiNyuko.HeaderText = "入庫";
+
+            DataGridViewTextBoxColumn RirekiHachuzan = new DataGridViewTextBoxColumn();
+            RirekiHachuzan.DataPropertyName = "発注残";
+            RirekiHachuzan.Name = "発注残";
+            RirekiHachuzan.HeaderText = "発注残";
+
+            DataGridViewTextBoxColumn RirekiJuchuzan = new DataGridViewTextBoxColumn();
+            RirekiJuchuzan.DataPropertyName = "受注残";
+            RirekiJuchuzan.Name = "受注残";
+            RirekiJuchuzan.HeaderText = "受注残";
+
+            //個々の幅、文章の寄せ（売上数非表示）
+            setColumnRireki(RirekiYM, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 70);
+            setColumnRireki(RirekiUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiShuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiShire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiNyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiHachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+
         }
 
         ///<summary>
         ///setColumnKataban
-        ///DataGridViewの内部設定
+        ///DataGridViewの内部設定（上段）
         ///</summary>
         private void setColumnKataban(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -444,7 +492,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
         ///<summary>
         ///setColumnKataban2
-        ///DataGridViewの内部設定
+        ///DataGridViewの内部設定（下段）
         ///</summary>
         private void setColumnKataban2(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -458,6 +506,26 @@ namespace KATO.Form.B0250_MOnyuryoku
                 if (fmt != null)
                 {
                     gridKataban2.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
+        ///<summary>
+        ///setColumnRireki
+        ///DataGridViewの内部設定（履歴）
+        ///</summary>
+        private void setColumnRireki(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridRireki.Columns.Add(col);
+            if (gridRireki.Columns[col.Name] != null)
+            {
+                gridRireki.Columns[col.Name].Width = intLen;
+                gridRireki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridRireki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridRireki.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
         }
@@ -917,8 +985,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                     //グリッドビューの表示
                     gridKataban2.DataSource = dtGridViewKataban;
 
-                    //グリッドの色指定
-                    setGridColor();
+                    ////グリッドの色指定
+                    //setGridColor();
 
 
 
@@ -1065,6 +1133,49 @@ namespace KATO.Form.B0250_MOnyuryoku
                     }
                 }
             }
+        }
+
+        ///<summary>
+        ///gridKataban2_CellClick
+        ///下段のデータのどこかが選択された時
+        ///</summary>
+        private void gridKataban2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Gridに入れる用のdatatable
+            DataTable dtRireki = new DataTable();
+
+            //検索結果にデータが存在しなければ終了
+            if (gridRireki.RowCount == 0 )
+            {
+                return;
+            }
+            
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                //商品コードの確保
+                dtRireki = monyuryokuB.getRirekiData(gridRireki.CurrentRow.Cells["商品コード"].ToString());
+
+                //データがある場合
+                if (dtRireki.Rows.Count > 0)
+                {
+                    //YMテキスト確保
+                    //集計月数確保
+
+                    //データ内の行数分ループ
+                }
+            }
+            catch(Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+
         }
     }
 }
