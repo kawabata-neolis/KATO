@@ -303,7 +303,7 @@
             this.gridKataban.RowHeadersVisible = false;
             this.gridKataban.RowTemplate.Height = 21;
             this.gridKataban.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridKataban.Size = new System.Drawing.Size(1390, 246);
+            this.gridKataban.Size = new System.Drawing.Size(1390, 183);
             this.gridKataban.StandardTab = true;
             this.gridKataban.TabIndex = 9;
             // 
@@ -330,7 +330,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridKataban2.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridKataban2.EnableHeadersVisualStyles = false;
-            this.gridKataban2.Location = new System.Drawing.Point(12, 372);
+            this.gridKataban2.Location = new System.Drawing.Point(12, 304);
             this.gridKataban2.Name = "gridKataban2";
             this.gridKataban2.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -344,7 +344,7 @@
             this.gridKataban2.RowHeadersVisible = false;
             this.gridKataban2.RowTemplate.Height = 21;
             this.gridKataban2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridKataban2.Size = new System.Drawing.Size(935, 335);
+            this.gridKataban2.Size = new System.Drawing.Size(1391, 188);
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 8;
             this.gridKataban2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellClick);
@@ -650,7 +650,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridRireki.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridRireki.EnableHeadersVisualStyles = false;
-            this.gridRireki.Location = new System.Drawing.Point(953, 372);
+            this.gridRireki.Location = new System.Drawing.Point(12, 498);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -664,7 +664,7 @@
             this.gridRireki.RowHeadersVisible = false;
             this.gridRireki.RowTemplate.Height = 21;
             this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRireki.Size = new System.Drawing.Size(450, 335);
+            this.gridRireki.Size = new System.Drawing.Size(1391, 209);
             this.gridRireki.StandardTab = true;
             this.gridRireki.TabIndex = 102;
             // 

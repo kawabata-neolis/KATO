@@ -383,7 +383,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             K2Saishushire.HeaderText = "最終仕入日";
             
             //個々の幅、文章の寄せ（売上数非表示）
-            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 380);
+            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
             setColumnKataban2(K2Freezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumnKataban2(K2Uriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumnKataban2(K2Shiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
@@ -397,7 +397,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             setColumnKataban2(K2Noki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnKataban2(K2Code, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 65);
-            setColumnKataban2(K2Shimukesakiname, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnKataban2(K2Shimukesakiname, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumnKataban2(K2HachuNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumnKataban2(K2HachuNo2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 0);
 
@@ -840,6 +840,9 @@ namespace KATO.Form.B0250_MOnyuryoku
             //下段の表示
             showGridKataban2();
 
+            //履歴情報確保
+            getRIrekiData();
+
             //if (grdSeihin.rowCount > 0)
             //{
             //    grdSeihin.cellEditFocus(7, 1);
@@ -1136,25 +1139,47 @@ namespace KATO.Form.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///gridKataban2_CellClick
-        ///下段のデータのどこかが選択された時
+        ///getRIrekiData
+        ///履歴情報の確保
         ///</summary>
-        private void gridKataban2_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void getRIrekiData()
         {
             //Gridに入れる用のdatatable
             DataTable dtRireki = new DataTable();
 
-            //検索結果にデータが存在しなければ終了
-            if (gridRireki.RowCount == 0 )
+            //開始年月日（初期値）
+            DateTime dateOpenYMD = DateTime.Parse("2000/01/01");
+            //終了年月日（初期値）
+            DateTime dateEndYMD = DateTime.Parse("2000/01/01");
+
+            //開始年月日と終了年月日の確保
+            string strOpenYMD = "";
+            string strEndYMD = "";
+
+            //txtYMをdatetime型に変換できるか（終了年月日の確保も兼ねる）
+            if (DateTime.TryParse(txtYM.Text + "/01", out dateEndYMD))
+            {
+                //開始年月日の確保
+                dateOpenYMD = dateEndYMD;
+
+                //その月の最終日を求める
+                dateEndYMD = dateEndYMD.AddMonths(1);
+                dateEndYMD = dateEndYMD.AddDays(-1);
+
+                //開始年月日の確保
+                dateOpenYMD = dateOpenYMD.AddMonths( - int.Parse(txtShukeiM.Text));
+            }
+            else
             {
                 return;
             }
-            
+
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
             {
                 //商品コードの確保
-                dtRireki = monyuryokuB.getRirekiData(gridRireki.CurrentRow.Cells["商品コード"].ToString());
+                dtRireki = monyuryokuB.getRirekiData((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + dateOpenYMD.Day).ToString(), 
+                                                     (dateEndYMD.Year + "/" + dateEndYMD.Month + "/" + dateEndYMD.Day).ToString());
 
                 //データがある場合
                 if (dtRireki.Rows.Count > 0)
@@ -1165,7 +1190,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     //データ内の行数分ループ
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //データロギング
                 new CommonException(ex);
@@ -1174,7 +1199,21 @@ namespace KATO.Form.B0250_MOnyuryoku
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
 
+        ///<summary>
+        ///gridKataban2_CellClick
+        ///下段のデータのどこかが選択された時
+        ///</summary>
+        private void gridKataban2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //検索結果にデータが存在しなければ終了
+            if (gridRireki.RowCount == 0)
+            {
+                return;
+            }
+
+            //dtRirekiから指定の商品コードを取り出してgridRirekiに表示
 
         }
     }
