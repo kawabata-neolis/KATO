@@ -58,53 +58,65 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.gbKaikeikimatsu.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 0
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF01.TabIndex = 102;
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF12.TabIndex = 113;
             // 
             // btnF11
             // 
             this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF11.TabIndex = 112;
             // 
             // btnF10
             // 
             this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF10.TabIndex = 111;
             // 
             // btnF09
             // 
             this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF09.TabIndex = 110;
             // 
             // btnF08
             // 
             this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF08.TabIndex = 109;
             // 
             // btnF07
             // 
             this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF07.TabIndex = 108;
             // 
             // btnF06
             // 
             this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF06.TabIndex = 107;
             // 
             // btnF05
             // 
             this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF05.TabIndex = 106;
             // 
             // btnF04
             // 
             this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF04.TabIndex = 105;
             // 
             // btnF03
             // 
             this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF03.TabIndex = 104;
             // 
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            this.btnF02.TabIndex = 103;
             // 
             // txtKaisyaCode
             // 
@@ -115,7 +127,8 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtKaisyaCode.Name = "txtKaisyaCode";
             this.txtKaisyaCode.Size = new System.Drawing.Size(24, 22);
             this.txtKaisyaCode.TabIndex = 0;
-            this.txtKaisyaCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaisyaCodeKeyDown);
+            this.txtKaisyaCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtKaisyaCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             this.txtKaisyaCode.Leave += new System.EventHandler(this.getKaishajyokenLeave);
             // 
             // txtKaishaName
@@ -128,16 +141,18 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtKaishaName.Size = new System.Drawing.Size(330, 22);
             this.txtKaishaName.TabIndex = 1;
             this.txtKaishaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtKaishaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtYubinNum
             // 
             this.txtYubinNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYubinNum.Location = new System.Drawing.Point(540, 133);
-            this.txtYubinNum.MaxLength = 10;
+            this.txtYubinNum.MaxLength = 8;
             this.txtYubinNum.Name = "txtYubinNum";
-            this.txtYubinNum.Size = new System.Drawing.Size(90, 22);
+            this.txtYubinNum.Size = new System.Drawing.Size(70, 22);
             this.txtYubinNum.TabIndex = 2;
             this.txtYubinNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtYubinNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtJyusyo1
             // 
@@ -148,6 +163,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtJyusyo1.Size = new System.Drawing.Size(330, 22);
             this.txtJyusyo1.TabIndex = 3;
             this.txtJyusyo1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtJyusyo1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtJyusyo2
             // 
@@ -158,6 +174,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtJyusyo2.Size = new System.Drawing.Size(330, 22);
             this.txtJyusyo2.TabIndex = 4;
             this.txtJyusyo2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtJyusyo2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtDaihyosyaName
             // 
@@ -168,26 +185,31 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtDaihyosyaName.Size = new System.Drawing.Size(330, 22);
             this.txtDaihyosyaName.TabIndex = 5;
             this.txtDaihyosyaName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtDaihyosyaName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtDennwaNum
             // 
             this.txtDennwaNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDennwaNum.Location = new System.Drawing.Point(540, 244);
-            this.txtDennwaNum.MaxLength = 20;
+            this.txtDennwaNum.MaxLength = 13;
             this.txtDennwaNum.Name = "txtDennwaNum";
-            this.txtDennwaNum.Size = new System.Drawing.Size(180, 22);
+            this.txtDennwaNum.Size = new System.Drawing.Size(110, 22);
             this.txtDennwaNum.TabIndex = 6;
             this.txtDennwaNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtDennwaNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // txtGetumatsusimebi
             // 
             this.txtGetumatsusimebi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGetumatsusimebi.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtGetumatsusimebi.Location = new System.Drawing.Point(540, 301);
             this.txtGetumatsusimebi.MaxLength = 2;
             this.txtGetumatsusimebi.Name = "txtGetumatsusimebi";
             this.txtGetumatsusimebi.Size = new System.Drawing.Size(24, 22);
-            this.txtGetumatsusimebi.TabIndex = 7;
-            this.txtGetumatsusimebi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtGetumatsusimebi.TabIndex = 8;
+            this.txtGetumatsusimebi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGetumatsusimebiKeyDown);
+            this.txtGetumatsusimebi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGetumatsusimebi_KeyPress);
+            this.txtGetumatsusimebi.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // lblKaisyaCode
             // 
@@ -197,7 +219,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblKaisyaCode.Name = "lblKaisyaCode";
             this.lblKaisyaCode.Size = new System.Drawing.Size(87, 15);
             this.lblKaisyaCode.strToolTip = null;
-            this.lblKaisyaCode.TabIndex = 86;
+            this.lblKaisyaCode.TabIndex = 90;
             this.lblKaisyaCode.Text = "会社コード";
             this.lblKaisyaCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -208,7 +230,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblKaisyaName.Name = "lblKaisyaName";
             this.lblKaisyaName.Size = new System.Drawing.Size(87, 15);
             this.lblKaisyaName.strToolTip = null;
-            this.lblKaisyaName.TabIndex = 0;
+            this.lblKaisyaName.TabIndex = 91;
             this.lblKaisyaName.Text = "会社名";
             this.lblKaisyaName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -220,7 +242,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblYubinNum.Name = "lblYubinNum";
             this.lblYubinNum.Size = new System.Drawing.Size(71, 15);
             this.lblYubinNum.strToolTip = null;
-            this.lblYubinNum.TabIndex = 87;
+            this.lblYubinNum.TabIndex = 92;
             this.lblYubinNum.Text = "郵便番号";
             this.lblYubinNum.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -232,7 +254,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblJyusyo1.Name = "lblJyusyo1";
             this.lblJyusyo1.Size = new System.Drawing.Size(55, 15);
             this.lblJyusyo1.strToolTip = null;
-            this.lblJyusyo1.TabIndex = 88;
+            this.lblJyusyo1.TabIndex = 93;
             this.lblJyusyo1.Text = "住所１";
             this.lblJyusyo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -244,7 +266,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblJyusyo2.Name = "lblJyusyo2";
             this.lblJyusyo2.Size = new System.Drawing.Size(55, 15);
             this.lblJyusyo2.strToolTip = null;
-            this.lblJyusyo2.TabIndex = 89;
+            this.lblJyusyo2.TabIndex = 94;
             this.lblJyusyo2.Text = "住所２";
             this.lblJyusyo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -256,7 +278,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblDaihyosyaName.Name = "lblDaihyosyaName";
             this.lblDaihyosyaName.Size = new System.Drawing.Size(55, 15);
             this.lblDaihyosyaName.strToolTip = null;
-            this.lblDaihyosyaName.TabIndex = 90;
+            this.lblDaihyosyaName.TabIndex = 95;
             this.lblDaihyosyaName.Text = "代表者";
             this.lblDaihyosyaName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -268,7 +290,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblDennwaNum.Name = "lblDennwaNum";
             this.lblDennwaNum.Size = new System.Drawing.Size(71, 15);
             this.lblDennwaNum.strToolTip = null;
-            this.lblDennwaNum.TabIndex = 91;
+            this.lblDennwaNum.TabIndex = 96;
             this.lblDennwaNum.Text = "電話番号";
             this.lblDennwaNum.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -280,7 +302,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblGetumatsusimebi.Name = "lblGetumatsusimebi";
             this.lblGetumatsusimebi.Size = new System.Drawing.Size(71, 15);
             this.lblGetumatsusimebi.strToolTip = null;
-            this.lblGetumatsusimebi.TabIndex = 92;
+            this.lblGetumatsusimebi.TabIndex = 98;
             this.lblGetumatsusimebi.Text = "月末締日";
             this.lblGetumatsusimebi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -292,7 +314,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblFaxNum.Name = "lblFaxNum";
             this.lblFaxNum.Size = new System.Drawing.Size(87, 15);
             this.lblFaxNum.strToolTip = null;
-            this.lblFaxNum.TabIndex = 94;
+            this.lblFaxNum.TabIndex = 97;
             this.lblFaxNum.Text = "ＦＡＸ番号";
             this.lblFaxNum.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -300,11 +322,12 @@ namespace KATO.Form.M1000_Kaishajyoken
             // 
             this.txtFaxNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtFaxNum.Location = new System.Drawing.Point(540, 273);
-            this.txtFaxNum.MaxLength = 20;
+            this.txtFaxNum.MaxLength = 13;
             this.txtFaxNum.Name = "txtFaxNum";
-            this.txtFaxNum.Size = new System.Drawing.Size(180, 22);
-            this.txtFaxNum.TabIndex = 93;
+            this.txtFaxNum.Size = new System.Drawing.Size(110, 22);
+            this.txtFaxNum.TabIndex = 7;
             this.txtFaxNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtFaxNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // lblKaishiYMD
             // 
@@ -314,7 +337,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblKaishiYMD.Name = "lblKaishiYMD";
             this.lblKaishiYMD.Size = new System.Drawing.Size(87, 15);
             this.lblKaishiYMD.strToolTip = null;
-            this.lblKaishiYMD.TabIndex = 96;
+            this.lblKaishiYMD.TabIndex = 100;
             this.lblKaishiYMD.Text = "開始年月日";
             this.lblKaishiYMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblKaishiYMD.Visible = false;
@@ -329,19 +352,22 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.gbKaikeikimatsu.Location = new System.Drawing.Point(434, 329);
             this.gbKaikeikimatsu.Name = "gbKaikeikimatsu";
             this.gbKaikeikimatsu.Size = new System.Drawing.Size(564, 83);
-            this.gbKaikeikimatsu.TabIndex = 97;
+            this.gbKaikeikimatsu.TabIndex = 99;
             this.gbKaikeikimatsu.TabStop = false;
             this.gbKaikeikimatsu.Text = "会計期間";
             // 
             // txtShuryouYMD
             // 
+            this.txtShuryouYMD.BackColor = System.Drawing.SystemColors.Window;
             this.txtShuryouYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShuryouYMD.Location = new System.Drawing.Point(387, 34);
             this.txtShuryouYMD.Name = "txtShuryouYMD";
-            this.txtShuryouYMD.Size = new System.Drawing.Size(100, 22);
-            this.txtShuryouYMD.TabIndex = 100;
+            this.txtShuryouYMD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtShuryouYMD.Size = new System.Drawing.Size(90, 22);
+            this.txtShuryouYMD.TabIndex = 81;
             this.txtShuryouYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShuryouYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtShuryouYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // lblShuryouYMD
             // 
@@ -351,7 +377,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.lblShuryouYMD.Name = "lblShuryouYMD";
             this.lblShuryouYMD.Size = new System.Drawing.Size(87, 15);
             this.lblShuryouYMD.strToolTip = null;
-            this.lblShuryouYMD.TabIndex = 99;
+            this.lblShuryouYMD.TabIndex = 101;
             this.lblShuryouYMD.Text = "終了年月日";
             this.lblShuryouYMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblShuryouYMD.Visible = false;
@@ -361,16 +387,18 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.txtKaishiYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKaishiYMD.Location = new System.Drawing.Point(145, 37);
             this.txtKaishiYMD.Name = "txtKaishiYMD";
-            this.txtKaishiYMD.Size = new System.Drawing.Size(100, 22);
-            this.txtKaishiYMD.TabIndex = 98;
+            this.txtKaishiYMD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtKaishiYMD.Size = new System.Drawing.Size(90, 22);
+            this.txtKaishiYMD.TabIndex = 80;
             this.txtKaishiYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKaishiYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaishajyoDetailsKeyDown);
+            this.txtKaishiYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKeyUp);
             // 
             // M1000_Kaishajyoken
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.lblFaxNum);
             this.Controls.Add(this.txtFaxNum);
             this.Controls.Add(this.lblGetumatsusimebi);

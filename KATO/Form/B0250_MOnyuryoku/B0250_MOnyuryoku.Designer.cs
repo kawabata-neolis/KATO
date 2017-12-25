@@ -289,7 +289,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridKataban.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridKataban.EnableHeadersVisualStyles = false;
-            this.gridKataban.Location = new System.Drawing.Point(13, 115);
+            this.gridKataban.Location = new System.Drawing.Point(16, 115);
             this.gridKataban.Name = "gridKataban";
             this.gridKataban.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -330,7 +330,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridKataban2.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridKataban2.EnableHeadersVisualStyles = false;
-            this.gridKataban2.Location = new System.Drawing.Point(12, 304);
+            this.gridKataban2.Location = new System.Drawing.Point(15, 304);
             this.gridKataban2.Name = "gridKataban2";
             this.gridKataban2.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -650,7 +650,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridRireki.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridRireki.EnableHeadersVisualStyles = false;
-            this.gridRireki.Location = new System.Drawing.Point(12, 498);
+            this.gridRireki.Location = new System.Drawing.Point(15, 498);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

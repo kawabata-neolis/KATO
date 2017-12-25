@@ -73,7 +73,6 @@ namespace KATO.Common.Util
         public const int FRM_URIAGEINPUT = 0020;
         public const int FRM_TANTOSHABETUDENPYOCOUNT = 6000;
         public const int FRM_MENU = 1500;
-        public const int FRM_MENUKENGEN2 = 1490;
 
         public const int FRM_TEST = 9999;
 
@@ -155,6 +154,7 @@ namespace KATO.Common.Util
         public const string LABEL_TOUROKU_MISS = "登録失敗";
         public const string LABEL_NULL = "項目が空です。文字を入力してください。";
         public const string LABEL_MISS = "入力された文字列が正しくありません。";
+        public const string LABEL_MISSNUM = "入力された数値が正しくありません。";
         public const string LABEL_DEL_BEFORE = "表示中のレコードを削除します。よろしいですか。";
         public const string LABEL_DEL_AFTER = "正常に削除されました。";
         public const string LABEL_DATE_ALERT = "入力された日付が正しくありません。";
