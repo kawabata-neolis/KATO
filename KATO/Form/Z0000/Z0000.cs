@@ -766,11 +766,14 @@ namespace KATO.Form.Z0000
 
                 //得意先別売上検収入力＆確認
                 case "66":
-                    //作成中
+                    A0660_TokuisakiUriageKakunin.A0660_TokuisakiUriageKakunin tokuisakiuriakegakunin = new A0660_TokuisakiUriageKakunin.A0660_TokuisakiUriageKakunin(this);
+                    tokuisakiuriakegakunin.ShowDialog();
                     break;
 
                 //仕入検収入力＆確認
                 case "67":
+                    A0670_SiiresakiSiirekakunin.A0670_SiiresakiSiirekakunin siiresakisiirekakunin = new A0670_SiiresakiSiirekakunin.A0670_SiiresakiSiirekakunin(this);
+                    siiresakisiirekakunin.ShowDialog();
                     break;
 
                 //売上実績確認（AS400）

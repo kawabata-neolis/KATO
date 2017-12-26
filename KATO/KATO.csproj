@@ -120,6 +120,8 @@
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
+    <Compile Include="Business\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_B.cs" />
+    <Compile Include="Business\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
     <Compile Include="Business\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
@@ -598,6 +600,18 @@
     </Compile>
     <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.Designer.cs">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.designer.cs">
+      <DependentUpon>A0660_TokuisakiUriageKakunin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.designer.cs">
+      <DependentUpon>A0670_SiiresakiSiirekakunin.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.cs">
       <SubType>Form</SubType>
@@ -1203,6 +1217,12 @@
     <EmbeddedResource Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.resx">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.resx">
+      <DependentUpon>A0660_TokuisakiUriageKakunin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.resx">
+      <DependentUpon>A0670_SiiresakiSiirekakunin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1517,6 +1537,8 @@
     <Content Include="SQL\A0030_ShireInput\ShireInput_Shiremeisai_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
+    <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetRirekiUriagesu.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
