@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -65,8 +65,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtNonyuName = new System.Windows.Forms.TextBox();
+            this.txtNonyuCd = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -181,7 +181,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.textSet_Tokuisaki1 = new KATO.Common.Ctl.TextSet_Tokuisaki();
+            this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
             this.lsTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.lsEigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.gridMitsmori = new KATO.Common.Ctl.BaseDataGridViewEdit();
@@ -550,21 +550,21 @@
             this.label10.TabIndex = 160;
             this.label10.Text = "納　　期";
             // 
-            // textBox10
+            // txtNonyuName
             // 
-            this.textBox10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox10.Location = new System.Drawing.Point(192, 64);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(391, 22);
-            this.textBox10.TabIndex = 8;
+            this.txtNonyuName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtNonyuName.Location = new System.Drawing.Point(192, 64);
+            this.txtNonyuName.Name = "txtNonyuName";
+            this.txtNonyuName.Size = new System.Drawing.Size(391, 22);
+            this.txtNonyuName.TabIndex = 8;
             // 
-            // textBox11
+            // txtNonyuCd
             // 
-            this.textBox11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox11.Location = new System.Drawing.Point(147, 64);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(40, 22);
-            this.textBox11.TabIndex = 7;
+            this.txtNonyuCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtNonyuCd.Location = new System.Drawing.Point(147, 64);
+            this.txtNonyuCd.Name = "txtNonyuCd";
+            this.txtNonyuCd.Size = new System.Drawing.Size(40, 22);
+            this.txtNonyuCd.TabIndex = 7;
             // 
             // label11
             // 
@@ -1902,24 +1902,24 @@
             this.label27.TabIndex = 184;
             this.label27.Text = "率";
             // 
-            // textSet_Tokuisaki1
+            // tsTokuisaki
             // 
-            this.textSet_Tokuisaki1.AppendLabelSize = 40;
-            this.textSet_Tokuisaki1.AppendLabelText = "";
-            this.textSet_Tokuisaki1.CodeTxtSize = 40;
-            this.textSet_Tokuisaki1.CodeTxtText = "";
-            this.textSet_Tokuisaki1.LabelName = "得意先コード";
-            this.textSet_Tokuisaki1.Location = new System.Drawing.Point(36, 39);
-            this.textSet_Tokuisaki1.Name = "textSet_Tokuisaki1";
-            this.textSet_Tokuisaki1.ReadOnlyANDTabStopFlg = false;
-            this.textSet_Tokuisaki1.ShowAppendFlg = true;
-            this.textSet_Tokuisaki1.Size = new System.Drawing.Size(551, 22);
-            this.textSet_Tokuisaki1.SpaceCodeValue = 5;
-            this.textSet_Tokuisaki1.SpaceNameCode = 8;
-            this.textSet_Tokuisaki1.SpaceValueAppend = 4;
-            this.textSet_Tokuisaki1.TabIndex = 1000;
-            this.textSet_Tokuisaki1.ValueTextSize = 391;
-            this.textSet_Tokuisaki1.valueTextText = "";
+            this.tsTokuisaki.AppendLabelSize = 40;
+            this.tsTokuisaki.AppendLabelText = "";
+            this.tsTokuisaki.CodeTxtSize = 40;
+            this.tsTokuisaki.CodeTxtText = "";
+            this.tsTokuisaki.LabelName = "得意先コード";
+            this.tsTokuisaki.Location = new System.Drawing.Point(36, 39);
+            this.tsTokuisaki.Name = "tsTokuisaki";
+            this.tsTokuisaki.ReadOnlyANDTabStopFlg = false;
+            this.tsTokuisaki.ShowAppendFlg = true;
+            this.tsTokuisaki.Size = new System.Drawing.Size(551, 22);
+            this.tsTokuisaki.SpaceCodeValue = 5;
+            this.tsTokuisaki.SpaceNameCode = 8;
+            this.tsTokuisaki.SpaceValueAppend = 4;
+            this.tsTokuisaki.TabIndex = 1000;
+            this.tsTokuisaki.ValueTextSize = 391;
+            this.tsTokuisaki.valueTextText = "";
             // 
             // lsTantousha
             // 
@@ -1962,34 +1962,34 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2005,7 +2005,7 @@
             this.Controls.Add(this.gridMitsmori);
             this.Controls.Add(this.lsEigyosho);
             this.Controls.Add(this.lsTantousha);
-            this.Controls.Add(this.textSet_Tokuisaki1);
+            this.Controls.Add(this.tsTokuisaki);
             this.Controls.Add(this.textBox37);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.textBox36);
@@ -2024,8 +2024,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.txtNonyuName);
+            this.Controls.Add(this.txtNonyuCd);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.label10);
@@ -2090,8 +2090,8 @@
             this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.comboBox3, 0);
             this.Controls.SetChildIndex(this.label11, 0);
-            this.Controls.SetChildIndex(this.textBox11, 0);
-            this.Controls.SetChildIndex(this.textBox10, 0);
+            this.Controls.SetChildIndex(this.txtNonyuCd, 0);
+            this.Controls.SetChildIndex(this.txtNonyuName, 0);
             this.Controls.SetChildIndex(this.label12, 0);
             this.Controls.SetChildIndex(this.textBox12, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
@@ -2123,7 +2123,7 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
-            this.Controls.SetChildIndex(this.textSet_Tokuisaki1, 0);
+            this.Controls.SetChildIndex(this.tsTokuisaki, 0);
             this.Controls.SetChildIndex(this.lsTantousha, 0);
             this.Controls.SetChildIndex(this.lsEigyosho, 0);
             this.Controls.SetChildIndex(this.gridMitsmori, 0);
@@ -2176,8 +2176,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtNonyuName;
+        private System.Windows.Forms.TextBox txtNonyuCd;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label12;
@@ -2292,7 +2292,7 @@
         private System.Windows.Forms.TextBox txtZaiTeika2;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtZaiTeika1;
-        private Common.Ctl.TextSet_Tokuisaki textSet_Tokuisaki1;
+        private Common.Ctl.TextSet_Tokuisaki tsTokuisaki;
         private Common.Ctl.LabelSet_Tantousha lsTantousha;
         private Common.Ctl.LabelSet_Eigyosho lsEigyosho;
         private Common.Ctl.BaseDataGridViewEdit gridMitsmori;

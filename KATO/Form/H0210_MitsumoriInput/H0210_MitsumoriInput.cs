@@ -2519,6 +2519,34 @@ namespace KATO.Form.H0210_MitsumoriInput
                 basemessagebox.ShowDialog();
                 return false;
             }
+            if (string.IsNullOrWhiteSpace(tsTokuisaki.CodeTxtText))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(lsEigyosho.CodeTxtText))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            if (gridMitsmori.RowCount == 0)
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
+            if (gridMitsmori.RowCount == 0)
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
+
+
 
             return true;
         }
