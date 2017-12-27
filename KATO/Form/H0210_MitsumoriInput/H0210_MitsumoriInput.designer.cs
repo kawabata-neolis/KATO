@@ -50,11 +50,11 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtMode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtMYMD = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -392,14 +392,14 @@
             this.label2.TabIndex = 142;
             this.label2.Text = "新規：1 変更：2";
             // 
-            // textBox3
+            // txtMode
             // 
-            this.textBox3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox3.Location = new System.Drawing.Point(147, 14);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(23, 22);
-            this.textBox3.TabIndex = 0;
-            this.textBox3.Text = "1";
+            this.txtMode.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtMode.Location = new System.Drawing.Point(147, 14);
+            this.txtMode.Name = "txtMode";
+            this.txtMode.Size = new System.Drawing.Size(23, 22);
+            this.txtMode.TabIndex = 0;
+            this.txtMode.Text = "1";
             // 
             // label3
             // 
@@ -431,14 +431,14 @@
             this.label5.TabIndex = 147;
             this.label5.Text = "見積年月日";
             // 
-            // textBox5
+            // txtMYMD
             // 
-            this.textBox5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox5.Location = new System.Drawing.Point(430, 14);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(86, 22);
-            this.textBox5.TabIndex = 2;
-            this.textBox5.Text = "2017/01/12";
+            this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtMYMD.Location = new System.Drawing.Point(430, 14);
+            this.txtMYMD.Name = "txtMYMD";
+            this.txtMYMD.Size = new System.Drawing.Size(86, 22);
+            this.txtMYMD.TabIndex = 2;
+            this.txtMYMD.Text = "2017/01/12";
             // 
             // label6
             // 
@@ -2037,11 +2037,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtMYMD);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtMode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -2074,11 +2074,11 @@
             this.Controls.SetChildIndex(this.button11, 0);
             this.Controls.SetChildIndex(this.button12, 0);
             this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.textBox3, 0);
+            this.Controls.SetChildIndex(this.txtMode, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.textBox4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.textBox5, 0);
+            this.Controls.SetChildIndex(this.txtMYMD, 0);
             this.Controls.SetChildIndex(this.label6, 0);
             this.Controls.SetChildIndex(this.textBox8, 0);
             this.Controls.SetChildIndex(this.label7, 0);
@@ -2161,11 +2161,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtMode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtMYMD;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label7;

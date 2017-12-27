@@ -554,7 +554,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             txtIdx.Text = "0";
 
-            textBox3.Focus();
+            txtMode.Focus();
         }
 
         private void H0210_MitsumoriInput_Load(object sender, EventArgs e)
@@ -2497,6 +2497,30 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
             }
+        }
+
+        private bool chkData()
+        {
+            if (string.IsNullOrWhiteSpace(txtMode.Text))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            if (!txtMode.Text.Equals("1") && !txtMode.Text.Equals("2"))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力された数値が正しくありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtMYMD.Text))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
+            return true;
         }
     }
 }
