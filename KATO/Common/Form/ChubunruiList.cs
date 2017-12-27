@@ -40,6 +40,9 @@ namespace KATO.Common.Form
         //大分類コードの確保
         string strSubDaibunCd = null;
 
+        // 画面遷移前の大分類コード格納用
+        string strBefDaibuncd = null;
+
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
@@ -83,6 +86,9 @@ namespace KATO.Common.Form
             //大分類コードの確保
             strSubDaibunCd = strdaibunCd;
 
+            // 画面遷移前の大分類コードの保持
+            strBefDaibuncd = strdaibunCd;
+
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
@@ -116,6 +122,9 @@ namespace KATO.Common.Form
 
             //大分類コードの確保
             strSubDaibunCd = strdaibunCD;
+
+            // 画面遷移前の大分類コードの保持
+            strBefDaibuncd = strdaibunCD;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
@@ -328,62 +337,79 @@ namespace KATO.Common.Form
             //データグリッドビューからデータを選択且つセット系から来た場合
             if (lblSetChubun != null && lstSelectData.Count != 0)
             {
-                //セットの中に検索結果データを入れる
-                lblSetChubun.CodeTxtText = lstSelectData[0];
-                //lblSetChubun.ValueLabelText = lstSelectData[1];
+                // 遷移前の大分類と選択した中分類のチェック
+                ChubunruiList_B chubunlistB = new ChubunruiList_B();
+                DataTable dtChubunlist = chubunlistB.getSelectItemChk(lstSelectData[0], strBefDaibuncd);
 
-                //全てのフォームの中から(LIST系)
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                if (dtChubunlist.Rows.Count > 0)
                 {
-                    //商品LISTのフォームを探す
-                    if (frm.Name == "ShouhinList")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        ShouhinList shouhinlist = (ShouhinList)frm;
+                    //セットの中に検索結果データを入れる
+                    lblSetChubun.CodeTxtText = dtChubunlist.Rows[0]["中分類コード"].ToString();
+                    lblSetChubun.ValueLabelText = dtChubunlist.Rows[0]["中分類名"].ToString();
 
-                        //中分類のセット
-                        shouhinlist.setChubun();
-                        break;
+                    //全てのフォームの中から(LIST系)
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //商品LISTのフォームを探す
+                        if (frm.Name == "ShouhinList")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            ShouhinList shouhinlist = (ShouhinList)frm;
+
+                            //中分類のセット
+                            shouhinlist.setChubun();
+                            break;
+                        }
+                    }
+
+                    //全てのフォームの中から(FORM系)
+                    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    {
+                        //商品のフォームを探す
+                        if (frm.Name == "M1030_Shohin")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            M1030_Shohin shohinHome = (M1030_Shohin)frm;
+
+                            //中分類のセット
+                            shohinHome.setChubun();
+                            break;
+                        }
+                        //棚卸入力のフォームを探す
+                        if (frm.Name == "F0140_TanaorosiInput")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
+                            tanaHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                        //商品元帳確認のフォームを探す
+                        if (frm.Name == "D0380_ShohinMotochoKakunin")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
+                            shohinmotoHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
+                        //発注入力のフォームを探す
+                        if (frm.Name == "A0100_HachuInput")
+                        {
+                            //データを連れてくるため、newをしないこと
+                            A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
+                            hachuHome.setDaibun(strSubDaibunCd);
+                            break;
+                        }
                     }
                 }
-
-                //全てのフォームの中から(FORM系)
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                else
                 {
-                    //商品のフォームを探す
-                    if (frm.Name == "M1030_Shohin")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        M1030_Shohin shohinHome = (M1030_Shohin)frm;
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                        //中分類のセット
-                        shohinHome.setChubun();
-                        break;
-                    }
-                    //棚卸入力のフォームを探す
-                    if (frm.Name == "F0140_TanaorosiInput")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        F0140_TanaorosiInput tanaHome = (F0140_TanaorosiInput)frm;
-                        tanaHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
-                    //商品元帳確認のフォームを探す
-                    if (frm.Name == "D0380_ShohinMotochoKakunin")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        D0380_ShohinMotochoKakunin shohinmotoHome = (D0380_ShohinMotochoKakunin)frm;
-                        shohinmotoHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
-                    //発注入力のフォームを探す
-                    if (frm.Name == "A0100_HachuInput")
-                    {
-                        //データを連れてくるため、newをしないこと
-                        A0100_HachuInput hachuHome = (A0100_HachuInput)frm;
-                        hachuHome.setDaibun(strSubDaibunCd);
-                        break;
-                    }
+                    // セットの中にエラーの為、空白を入れる
+                    lblSetChubun.CodeTxtText = "";
+                    lblSetChubun.ValueLabelText = "";
                 }
             }
 

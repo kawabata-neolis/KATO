@@ -194,6 +194,52 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
+        /// getSelectItemChk
+        ///  存在チェック処理
+        ///</summary>
+        public DataTable getSelectItemChk(string strChubunCd, string strdaibunCDsub)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSelectData;
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパスとファイル名を入れる用
+                List<string> lstSQL = new List<string>();
+
+                //SQLファイルのパスとファイル名を追加
+                lstSQL.Add("Common");
+                lstSQL.Add("C_LIST_Chubun_SELECT_LEAVE");
+
+                //SQL発行
+                OpenSQL opensql = new OpenSQL();
+
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strdaibunCDsub, strChubunCd);
+
+                //SQL接続後、該当データを取得
+                dtSelectData = dbconnective.ReadSql(strSQLInput);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+
+            return dtSelectData;
+        }
+        ///<summary>
         ///FormMove
         ///戻るボタンの処理
         ///</summary>

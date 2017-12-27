@@ -120,6 +120,8 @@
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
+    <Compile Include="Business\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_B.cs" />
+    <Compile Include="Business\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_B.cs" />
     <Compile Include="Business\B0040_NyukinInput\B0040_NyukinInput_B.cs" />
     <Compile Include="Business\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
@@ -431,6 +433,12 @@
     <Compile Include="Common\Form\BaseComboBox.Designer.cs">
       <DependentUpon>BaseComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Form\ChubunruiList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ChubunruiList.designer.cs">
+      <DependentUpon>ChubunruiList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Form\KakouGenkaList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -542,12 +550,6 @@
     <Compile Include="Common\Util\DBConnective.Designer.cs">
       <DependentUpon>DBConnective.cs</DependentUpon>
     </Compile>
-    <Compile Include="Common\Form\ChubunruiList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Common\Form\ChubunruiList.Designer.cs">
-      <DependentUpon>ChubunruiList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Common\Util\LogUtil.cs" />
     <Compile Include="Common\Util\OpenSQL.cs" />
     <Compile Include="Common\Util\StringUtl.cs" />
@@ -605,6 +607,18 @@
     <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.Designer.cs">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.designer.cs">
+      <DependentUpon>A0660_TokuisakiUriageKakunin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.designer.cs">
+      <DependentUpon>A0670_SiiresakiSiirekakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\B0040_NyukinInput\B0040_NyukinInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -629,11 +643,11 @@
     <Compile Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.Designer.cs">
       <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\B0250_MOnyuryoku\MOnyuryoku.cs">
+    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\B0250_MOnyuryoku\MOnyuryoku.Designer.cs">
-      <DependentUpon>MOnyuryoku.cs</DependentUpon>
+    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.Designer.cs">
+      <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
       <SubType>Form</SubType>
@@ -1151,6 +1165,9 @@
       <DependentUpon>BaseComboBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
+      <DependentUpon>ChubunruiList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\KakouGenkaList.resx">
       <DependentUpon>KakouGenkaList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1163,10 +1180,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\ChokusosakiList.resx">
       <DependentUpon>ChokusosakiList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Common\Form\ChubunruiList.resx">
-      <DependentUpon>ChubunruiList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\GroupCdList.resx">
@@ -1238,6 +1251,12 @@
     <EmbeddedResource Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.resx">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin.resx">
+      <DependentUpon>A0660_TokuisakiUriageKakunin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin.resx">
+      <DependentUpon>A0670_SiiresakiSiirekakunin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0040_NyukinInput\B0040_NyukinInput.resx">
       <DependentUpon>B0040_NyukinInput.cs</DependentUpon>
     </EmbeddedResource>
@@ -1250,8 +1269,8 @@
     <EmbeddedResource Include="Form\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint.resx">
       <DependentUpon>B0070_ShiharaiCheakPrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\B0250_MOnyuryoku\MOnyuryoku.resx">
-      <DependentUpon>MOnyuryoku.cs</DependentUpon>
+    <EmbeddedResource Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.resx">
+      <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.resx">
       <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
@@ -1563,6 +1582,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_Shiremeisai_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
+    <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetRirekiUriagesu.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataCnt.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataGridView_NOTALL.sql">

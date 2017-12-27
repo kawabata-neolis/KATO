@@ -531,7 +531,7 @@ namespace KATO.Form.M1070_Torihikisaki
             }
 
             //文字判定（業務担当者コード）
-            if(labelSet_GyomuTantousha.codeTxt.blIsEmpty() == false)
+            if (labelSet_GyomuTantousha.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -682,7 +682,7 @@ namespace KATO.Form.M1070_Torihikisaki
             txtSihon.Text = "";
             txtCdT.Focus();
         }
-        
+
         ///<summary>
         ///delTorihiki
         ///テキストボックス内のデータをDBから削除
@@ -713,7 +713,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 {
                     return;
                 }
-                
+
                 //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //NOが押された場合
@@ -1030,6 +1030,14 @@ namespace KATO.Form.M1070_Torihikisaki
                 {
                     setTorihikisaki(dtSetCd);
                 }
+                else
+                {
+                    String strCdt = txtCdT.Text;
+
+                    //表示項目をリセット
+                    delFormClear(this);
+                    txtCdT.Text = strCdt;
+                }
             }
             catch (Exception ex)
             {
@@ -1047,11 +1055,11 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             Control cActiveBefore = this.ActiveControl;
 
-        	//ベーステキストのインスタンス生成
+            //ベーステキストのインスタンス生成
             BaseText basetext = new BaseText();
-            
+
             //キー判定、文字数判定
-        	basetext.judKeyUp(cActiveBefore, e);
+            basetext.judKeyUp(cActiveBefore, e);
         }
 
         ///<summary>
@@ -1259,7 +1267,7 @@ namespace KATO.Form.M1070_Torihikisaki
                     break;
             }
         }
-        
+
         ///<summary>
         ///torihikisaki_Enter
         ///code入力箇所からフォーカスがついた時
@@ -1278,7 +1286,7 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void NomberTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar < '0' || '9' < e.KeyChar)
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;

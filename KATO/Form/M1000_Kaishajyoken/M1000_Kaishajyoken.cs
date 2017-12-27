@@ -207,6 +207,101 @@ namespace KATO.Form.M1000_Kaishajyoken
             }
         }
 
+        /// <summary>
+        /// judtxtGetumatsusimebiKeyDown
+        /// 月末締日キー入力判定(テキストボックス【詳細項目全て】)
+        /// </summary>
+        private void judtxtGetumatsusimebiKeyDown(object sender, KeyEventArgs e)
+        {
+            // 文字判定（期首月）
+            if (txtGetumatsusimebi.blIsEmpty() == true)
+            {
+                // 期首月31日チェック
+                if (!(int.Parse(txtGetumatsusimebi.Text) >= 0 && int.Parse(txtGetumatsusimebi.Text) < 31))
+                {
+                    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISSNUM, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtGetumatsusimebi.Focus();
+                    return;
+
+                }
+            }
+
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    // タブ機能
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// txtGetumatsusimebi_KeyPress
+        /// 締日の数字入力規制
+        /// </summary>
+        private void txtGetumatsusimebi_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// judtxtShohizeiKeyUp
+        /// 入力項目上でのキー判定と文字数判定
+        /// </summary>
+        private void judtxtKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
 
         /// <summary>
         /// judBtnClick
@@ -291,15 +386,6 @@ namespace KATO.Form.M1000_Kaishajyoken
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                txtJyusyo1.Focus();
-                return;
-            }
-            // 文字判定（電話番号）
-            if (txtDennwaNum.blIsEmpty() == false)
-            {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
                 txtDennwaNum.Focus();
                 return;
             }
@@ -339,6 +425,7 @@ namespace KATO.Form.M1000_Kaishajyoken
                 txtShuryouYMD.Focus();
                 return;
             }
+
 
             // 画面情報【会社条件情報】を会社条件情報登録Ｂ層へのリスト格納
             lstString.Add(txtKaisyaCode.Text);         // 会社コード
@@ -487,6 +574,18 @@ namespace KATO.Form.M1000_Kaishajyoken
                 }
                 else
                 {
+                    // 会社コード以外表示クリア
+                    txtKaishaName.Text = "";
+                    txtYubinNum.Text = "";
+                    txtJyusyo1.Text = "";
+                    txtJyusyo2.Text = "";
+                    txtDaihyosyaName.Text = "";
+                    txtDennwaNum.Text = "";
+                    txtFaxNum.Text = "";
+                    txtGetumatsusimebi.Text = "";
+                    txtKaishiYMD.Text = "";
+                    txtShuryouYMD.Text = "";
+
                     // ファンクション機能を有効化(削除以外)
                     this.btnF01.Enabled = true;       // 登録機能
                     this.btnF04.Enabled = true;       // 取消機能
@@ -518,8 +617,8 @@ namespace KATO.Form.M1000_Kaishajyoken
             txtDennwaNum.Text = dtKaishajyokenInfo.Rows[0]["電話番号"].ToString();
             txtFaxNum.Text = dtKaishajyokenInfo.Rows[0]["ＦＡＸ"].ToString();
             txtGetumatsusimebi.Text = dtKaishajyokenInfo.Rows[0]["期首月"].ToString();
-            txtKaishiYMD.Text = dtKaishajyokenInfo.Rows[0]["開始年月日"].ToString();
-            txtShuryouYMD.Text = dtKaishajyokenInfo.Rows[0]["終了年月日"].ToString();
+            txtKaishiYMD.Text = dtKaishajyokenInfo.Rows[0]["開始年月日"].ToString().Substring(0,10);
+            txtShuryouYMD.Text = dtKaishajyokenInfo.Rows[0]["終了年月日"].ToString().Substring(0, 10);
         }
 
         /// <summary>
