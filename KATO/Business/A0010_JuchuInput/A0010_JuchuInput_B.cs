@@ -193,7 +193,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT 受注年月日";
+            strQuery += "SELECT FORMAT(受注年月日, 'yyyy/MM/dd') as 受注年月日";
             strQuery += "      ,受注者コード";
             strQuery += "      ,得意先コード";
             strQuery += "      ,大分類コード";
@@ -208,7 +208,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,受注数量";
             strQuery += "      ,受注単価";
             strQuery += "      ,仕入単価";
-            strQuery += "      ,納期";
+            strQuery += "      ,FORMAT(納期, 'yyyy/MM/dd') as 納期";
             strQuery += "      ,注番";
             strQuery += "      ,営業所コード";
             strQuery += "      ,担当者コード";
@@ -336,7 +336,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT H.伝票年月日, M.仕入単価, N.仕入先名称";
+            strQuery += "SELECT FORMAT(H.伝票年月日, 'yyyy/MM/dd') as 伝票年月日, M.仕入単価, N.仕入先名称";
             strQuery += "  FROM 仕入ヘッダ H, 仕入明細 M, 仕入先 N";
             strQuery += " WHERE H.削除='N'";
             strQuery += "   AND M.削除 = 'N'";
@@ -344,7 +344,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "   AND H.伝票番号 = M.伝票番号";
             strQuery += "   AND H.仕入先コード = N.仕入先コード";
             strQuery += "   AND M.商品コード = '" + strShohinCd + "'";
-            strQuery += "   ORDER BY H.伝票年月日 DESC";
+            strQuery += "   ORDER BY 伝票年月日 DESC";
 
             DBConnective dbCon = new DBConnective();
             try
@@ -833,7 +833,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "SELECT a.受注番号 AS 受注番号";
             strQuery += "      ,a.注番 AS 注番";
             strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
-            strQuery += "      ,dbo.f_get中分類名(a.大分類コード,a.中分類コード AS 中分類名";
+            strQuery += "      ,dbo.f_get中分類名(a.大分類コード,a.中分類コード) AS 中分類名";
             strQuery += "      ,RTRIM(ISNULL(a.Ｃ１,'')) + ' ' + ";
             strQuery += "           RTRIM(ISNULL(a.Ｃ２,'')) + ' ' + ";
             strQuery += "           RTRIM(ISNULL(a.Ｃ３,'')) + ' ' + ";
