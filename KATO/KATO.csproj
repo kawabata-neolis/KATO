@@ -383,6 +383,12 @@
     <Compile Include="Common\Ctl\TextSet_Jucyu.designer.cs">
       <DependentUpon>TextSet_Jucyu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\Ctl\TextSet_Tokuisaki.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\Ctl\TextSet_Tokuisaki.Designer.cs">
+      <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Ctl\TextSet_Torihikisaki.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -779,6 +785,30 @@
     <Compile Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.Designer.cs">
       <DependentUpon>G0920_HidukeSeigen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form11.designer.cs">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form12.designer.cs">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.designer.cs">
+      <DependentUpon>H0210_MitsumoriInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\UserControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\UserControl2.designer.cs">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1089,6 +1119,10 @@
     <EmbeddedResource Include="Common\Ctl\TextSet_Jucyu.resx">
       <DependentUpon>TextSet_Jucyu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Ctl\TextSet_Tokuisaki.resx">
+      <DependentUpon>TextSet_Tokuisaki.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Ctl\TextSet_Torihikisaki.resx">
       <DependentUpon>TextSet_Torihikisaki.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1294,6 +1328,18 @@
     <EmbeddedResource Include="Form\G0920_HidukeSeigen\G0920_HidukeSeigen.resx">
       <DependentUpon>G0920_HidukeSeigen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\Form11.resx">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\Form12.resx">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.resx">
+      <DependentUpon>H0210_MitsumoriInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\UserControl2.resx">
+      <DependentUpon>UserControl2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
       <DependentUpon>JuchuInput_Test.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1444,6 +1490,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Business\H0210_MitsumoriInput\" />
     <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />

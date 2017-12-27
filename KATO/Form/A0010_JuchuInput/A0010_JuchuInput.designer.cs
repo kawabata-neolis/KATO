@@ -1369,6 +1369,9 @@
             this.Controls.SetChildIndex(this.txtUriage, 0);
             this.Controls.SetChildIndex(this.baseLabel13, 0);
             this.Controls.SetChildIndex(this.txtUriSuryo, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.cbKinShiireTanka, 0);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -1381,8 +1384,6 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.cbKinShiireTanka, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridZaiko)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridJuchuZanMeisai)).EndInit();
             this.panel1.ResumeLayout(false);

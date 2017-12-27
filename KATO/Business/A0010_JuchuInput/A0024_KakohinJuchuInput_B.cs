@@ -132,7 +132,7 @@ namespace KATO.Business.A0010_JuchuInput
             int retSuryo = 0;
             DataTable dtSuryo = null;
 
-            string strQuery = "SSELECT COUNT(*) AS 数 FROM 出庫明細 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
+            string strQuery = "SELECT COUNT(*) AS 数 FROM 出庫明細 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
 
             DBConnective dbCon = new DBConnective();
             try

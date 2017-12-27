@@ -31,6 +31,7 @@ namespace KATO.Common.Form
 
         //得意先のラベルセットとテキストセットを確保する用
         LabelSet_Tokuisaki lblSetTokuisaki = null;
+        TextSet_Tokuisaki txtSetTokuisaki = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -112,7 +113,40 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
-        }   
+        }
+
+        ///<summary>
+        ///TokuisakiList
+        ///前画面からデータ受け取り(セットテキストボックス)（ラベル型）（通常画面）
+        ///</summary>
+        public TokuisakiList(Control c, TextSet_Tokuisaki lblSetTokuiSelect)
+        {
+            //画面データが解放されていた時の対策
+            if (c == null)
+            {
+                return;
+            }
+
+            //画面位置の指定
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            //ラベルセットデータの確保
+            txtSetTokuisaki = lblSetTokuiSelect;
+
+            InitializeComponent();
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+            this.btnF12.Text = "F12:戻る";
+            this.btnF11.Text = "F11:検索";
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + 150;
+        }
 
         ///<summary>
         ///TokuisakiList
@@ -476,6 +510,11 @@ namespace KATO.Common.Form
                 //セットの中に検索結果データを入れる
                 lblSetTokuisaki.CodeTxtText = lstSelectData[0];
                 lblSetTokuisaki.ValueLabelText = lstSelectData[1];
+            }
+            else if (txtSetTokuisaki != null && lstSelectData.Count != 0)
+            {
+                txtSetTokuisaki.CodeTxtText = lstSelectData[0];
+                txtSetTokuisaki.valueTextText = lstSelectData[1];
             }
 
             this.Close();
