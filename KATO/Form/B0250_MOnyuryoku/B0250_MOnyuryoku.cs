@@ -29,6 +29,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
+        //履歴表示用
+        DataTable dtRireki = new DataTable();
+
+
         ///<summary>
         ///MOnyuryoku
         ///フォームの初期設定
@@ -1340,8 +1345,11 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            //履歴表示用
-            DataTable dtRireki = new DataTable();
+            //履歴datatableの初期化（カラム残し）
+            dtRireki.Clear();
+
+            //カラムを残してデータのみを消す
+            gridRireki.DataSource = dtRireki;
 
             //商品コードを取得
             string str = (String)gridKataban2.CurrentRow.Cells[1].Value;
@@ -1349,14 +1357,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
             {
-                //履歴グリッドのデータ削除
-                //delGridClear(this, gridRireki);
-
-                //this.delFormClear(this, this.gridRireki);
-
-                //うまくいかないので別の方法を探す
-                this.gridRireki.Refresh();
-
                 //履歴データの取得(商品コードを渡す)
                 dtRireki = monyuryokuB.getRirekiData((String)gridKataban2.CurrentRow.Cells["商品コード"].Value);
 
@@ -1374,29 +1374,6 @@ namespace KATO.Form.B0250_MOnyuryoku
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
-            }
-        }
-
-        ///<summary>
-        ///delGridClear
-        ///グリッドのみをクリア
-        ///</summary>
-        public void delGridClear(Control hParent, DataGridView gridData)
-        {
-            // hParent 内のすべてのコントロールを列挙する
-            foreach (Control cControl in hParent.Controls)
-            {
-                // 列挙したコントロールにコントロールが含まれている場合は再帰呼び出しする
-                if (cControl.HasChildren == true)
-                {
-                    delFormClear(cControl, gridData);
-                }
-
-                // コントロールの型が BaseDataGridView からの派生型の場合は BaseDataGridView をクリアする
-                if (cControl is BaseDataGridView)
-                {
-                    gridData.DataSource = "";
-                }
             }
         }
     }
