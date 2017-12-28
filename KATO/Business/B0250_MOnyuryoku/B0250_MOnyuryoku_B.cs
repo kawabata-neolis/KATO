@@ -218,6 +218,79 @@ namespace KATO.Business.B0250_MOnyuryoku
         }
 
         ///<summary>
+        ///setGridKataban1
+        ///グリッドビュー1の表示
+        ///</summary>
+        public DataTable setGridKataban1(List<string> lstStringViewData)
+        {
+            DataTable dtKataban1 = new DataTable();
+
+            string strSQLInput = "";
+
+            strSQLInput = strSQLInput + "SELECT";
+            strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, '')) AS 型番,";
+
+            strSQLInput = strSQLInput + "現在在庫数 AS ﾌﾘ在庫,";
+            strSQLInput = strSQLInput + "売上数量 AS 売上数,";
+            strSQLInput = strSQLInput + "仕入数量 AS 仕入数,";
+            strSQLInput = strSQLInput + "発注残数量 AS 発注残,";
+            strSQLInput = strSQLInput + "受注残数量 AS 受注残,";
+            strSQLInput = strSQLInput + "ＭＯ発注数 AS 発注数,";
+            strSQLInput = strSQLInput + "ＭＯ発注単価 AS 単価,";
+            strSQLInput = strSQLInput + "ROUND(ＭＯ発注数*ＭＯ発注単価,0,0) AS 金額,";
+            strSQLInput = strSQLInput + "納期,";
+            strSQLInput = strSQLInput + "取引先コード AS ｺｰﾄﾞ,";
+            strSQLInput = strSQLInput + "dbo.f_get取引先名称(取引先コード) AS 仕向け先名,";
+            strSQLInput = strSQLInput + "RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 発注番号, ";
+            strSQLInput = strSQLInput + "発注番号 AS 発注番号2,";
+            strSQLInput = strSQLInput + "商品コード,";
+
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ１,'')) AS Ｃ１,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ２,'')) AS Ｃ２,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ３,'')) AS Ｃ３,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ４,'')) AS Ｃ４,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ５,'')) AS Ｃ５,";
+            strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ６,'')) AS Ｃ６,";
+            strSQLInput = strSQLInput + "dbo.f_get商品箱入数(商品コード) AS 箱入数,";
+            strSQLInput = strSQLInput + "dbo.f_get商品コードから最終仕入日(商品コード) AS 最終仕入日 ";
+
+            strSQLInput = strSQLInput + "FROM ＭＯ";
+
+            strSQLInput = strSQLInput + " WHERE 年月度 = '" + lstStringViewData[0] + "'";
+            strSQLInput = strSQLInput + " AND メーカーコード = '" + lstStringViewData[1] + "'";
+            strSQLInput = strSQLInput + " AND 大分類コード = '" + lstStringViewData[2] + "'";
+            strSQLInput = strSQLInput + " AND 中分類コード = '" + lstStringViewData[3] + "'";
+            strSQLInput = strSQLInput + " AND 確定フラグ = '0'";
+            strSQLInput = strSQLInput + " AND 削除 = 'N'";
+            strSQLInput = strSQLInput + " AND ＭＯ発注数 <> 0";
+
+            strSQLInput = strSQLInput + " " + "ORDER BY Rtrim(ISNULL(Ｃ１,''))";
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //データ取得（ここから取得）
+                dtKataban1 = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return (dtKataban1);
+        }
+
+        ///<summary>
         ///getDataCnt
         ///データのカウント取得とＭＯデータのチェック
         ///</summary>
@@ -346,35 +419,16 @@ namespace KATO.Business.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///getRirekiData
-        ///履歴情報の確保
+        ///setRirekiData
+        ///履歴データの削除と保存
         ///</summary>
-        public DataTable getRirekiData(string strOpenYMD, string strEndYMD)
+        public void setRirekiData(List<string> lstString)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
-
-            //SQL実行時に取り出した売上数データを入れる用
-            DataTable dtSetRireki = new DataTable();
-
-            //履歴DataBoxにカラム追加
-            dtSetRireki.Columns.Add("年月", typeof(string));
-            dtSetRireki.Columns.Add("商品コード", typeof(string));   //表示時には消える
-            dtSetRireki.Columns.Add("売上", typeof(string));
-            dtSetRireki.Columns.Add("出庫", typeof(string));
-            dtSetRireki.Columns.Add("仕入", typeof(string));
-            dtSetRireki.Columns.Add("入庫", typeof(string));
-            dtSetRireki.Columns.Add("発注残", typeof(string));
-            dtSetRireki.Columns.Add("受注残", typeof(string));
-            
-            //SQL実行時に取り出した売上数データを入れる用
-            DataTable dtSetUriagesu = new DataTable();
-
-            //履歴dt入れる用の年月
-            string strYM = "";
 
             //SQL接続
             OpenSQL opensql = new OpenSQL();
@@ -383,9 +437,9 @@ namespace KATO.Business.B0250_MOnyuryoku
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //SQLファイルのパスとファイル名を追加（売上数）
+                //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("B0250_MOnyuryoku");
-                lstSQL.Add("MOnyuryoku_SELECT_GetRirekiUriagesu");
+                lstSQL.Add("MOnyuryoku_DELETE_INSERT_MOtukibetu");
 
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQL);
@@ -393,35 +447,16 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //パスがなければ返す
                 if (strSQLInput == "")
                 {
-                    return (dtSetRireki);
+                    return;
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strOpenYMD, strEndYMD);
+                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1], lstString[2], lstString[3]);
 
                 //SQL接続後、該当データを取得
-                dtSetUriagesu = dbconnective.ReadSql(strSQLInput);
+                dbconnective.RunSql(strSQLInput);
 
-                //履歴テーブルに入れる
-                for (int intCnt = 0; intCnt <= dtSetUriagesu.Rows.Count; intCnt++)
-                {
-                    //dt履歴に新しい行の追加
-                    dtSetRireki.Rows.Add("");
-
-                    //履歴dtに商品コードを入れる
-                    dtSetRireki.Rows[intCnt]["商品コード"] = dtSetUriagesu.Rows[intCnt]["商品コード"].ToString();
-
-                    //年月のみの抜き取り
-                    strYM = getYM(DateTime.Parse(dtSetUriagesu.Rows[intCnt]["伝票年月日"].ToString()));
-                    
-                    //履歴dtに年月を入れる
-                    dtSetRireki.Rows[intCnt]["年月"] = strYM;
-
-                    //履歴dt売上数を入れる
-                    dtSetRireki.Rows[intCnt]["売上数"] = dtSetUriagesu.Rows[intCnt]["売上数"].ToString();
-                }
-
-                return (dtSetRireki);
+                return;
             }
             catch (Exception ex)
             {
@@ -434,6 +469,61 @@ namespace KATO.Business.B0250_MOnyuryoku
             }
         }
 
+
+        ///<summary>
+        ///setRirekiData
+        ///履歴データの取り出し
+        ///</summary>
+        public DataTable getRirekiData(string strShohinCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_SELECT_GetDataGridView_Rireki");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strShohinCd);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+        
         ///<summary>
         ///getYM
         ///年月情報のみの抜き取り

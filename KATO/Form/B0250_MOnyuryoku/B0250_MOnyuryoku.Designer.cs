@@ -44,7 +44,6 @@
             this.lblSetDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.lblSetChubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.lblSetMaker = new KATO.Common.Ctl.LabelSet_Maker();
-            this.lblSetShiresaki = new KATO.Common.Ctl.LabelSet_Shiresaki();
             this.lblYM = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShukeiM = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblZaikoYMD = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -73,55 +72,71 @@
             this.lblSetShohin = new KATO.Common.Ctl.BaseTextLabelSet();
             this.lblSetTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.gridRireki = new KATO.Common.Ctl.BaseDataGridView();
+            this.lblSetShiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).BeginInit();
             this.gbPrintCheck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 8;
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
             this.btnF11.TabIndex = 7;
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
             // 
             this.btnF10.TabIndex = 17;
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF09
             // 
             this.btnF09.TabIndex = 15;
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
             this.btnF08.TabIndex = 14;
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
             this.btnF07.TabIndex = 13;
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
             this.btnF06.TabIndex = 12;
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
             this.btnF05.TabIndex = 11;
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
             this.btnF04.TabIndex = 10;
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
             this.btnF03.TabIndex = 10;
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
             // 
             this.btnF02.TabIndex = 16;
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // txtZaikoYMD
             // 
@@ -150,6 +165,7 @@
             this.txtShukeiM.Name = "txtShukeiM";
             this.txtShukeiM.Size = new System.Drawing.Size(80, 22);
             this.txtShukeiM.TabIndex = 1;
+            this.txtShukeiM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // lblSetDaibunrui
             // 
@@ -211,24 +227,6 @@
             this.lblSetMaker.TabIndex = 6;
             this.lblSetMaker.ValueLabelSize = 190;
             this.lblSetMaker.ValueLabelText = "";
-            // 
-            // lblSetShiresaki
-            // 
-            this.lblSetShiresaki.AppendLabelSize = 0;
-            this.lblSetShiresaki.AppendLabelText = "";
-            this.lblSetShiresaki.CodeTxtSize = 40;
-            this.lblSetShiresaki.CodeTxtText = "";
-            this.lblSetShiresaki.LabelName = "仕入先コード";
-            this.lblSetShiresaki.Location = new System.Drawing.Point(932, 75);
-            this.lblSetShiresaki.Name = "lblSetShiresaki";
-            this.lblSetShiresaki.ShowAppendFlg = false;
-            this.lblSetShiresaki.Size = new System.Drawing.Size(475, 22);
-            this.lblSetShiresaki.SpaceCodeValue = 4;
-            this.lblSetShiresaki.SpaceNameCode = 4;
-            this.lblSetShiresaki.SpaceValueAppend = 4;
-            this.lblSetShiresaki.TabIndex = 7;
-            this.lblSetShiresaki.ValueLabelSize = 300;
-            this.lblSetShiresaki.ValueLabelText = "";
             // 
             // lblYM
             // 
@@ -344,10 +342,10 @@
             this.gridKataban2.RowHeadersVisible = false;
             this.gridKataban2.RowTemplate.Height = 21;
             this.gridKataban2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridKataban2.Size = new System.Drawing.Size(1391, 188);
+            this.gridKataban2.Size = new System.Drawing.Size(1391, 236);
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 8;
-            this.gridKataban2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellClick);
+            this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
             // 
             // lblKensaku
             // 
@@ -453,6 +451,7 @@
             this.txtKensaku.Size = new System.Drawing.Size(200, 22);
             this.txtKensaku.TabIndex = 89;
             this.txtKensaku.TabStop = false;
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // txtUriagesu
             // 
@@ -462,6 +461,7 @@
             this.txtUriagesu.Size = new System.Drawing.Size(500, 22);
             this.txtUriagesu.TabIndex = 89;
             this.txtUriagesu.TabStop = false;
+            this.txtUriagesu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // txtHasseisu
             // 
@@ -470,6 +470,7 @@
             this.txtHasseisu.Name = "txtHasseisu";
             this.txtHasseisu.Size = new System.Drawing.Size(100, 22);
             this.txtHasseisu.TabIndex = 8;
+            this.txtHasseisu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // txtTanka
             // 
@@ -485,6 +486,7 @@
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
             this.txtTanka.TabIndex = 9;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // txtNoki
             // 
@@ -494,6 +496,7 @@
             this.txtNoki.Size = new System.Drawing.Size(100, 22);
             this.txtNoki.TabIndex = 10;
             this.txtNoki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNoki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // lblSetShimukesaki
             // 
@@ -650,7 +653,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridRireki.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridRireki.EnableHeadersVisualStyles = false;
-            this.gridRireki.Location = new System.Drawing.Point(15, 498);
+            this.gridRireki.Location = new System.Drawing.Point(15, 546);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -664,15 +667,34 @@
             this.gridRireki.RowHeadersVisible = false;
             this.gridRireki.RowTemplate.Height = 21;
             this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRireki.Size = new System.Drawing.Size(1391, 209);
+            this.gridRireki.Size = new System.Drawing.Size(1391, 161);
             this.gridRireki.StandardTab = true;
             this.gridRireki.TabIndex = 102;
+            // 
+            // lblSetShiresaki
+            // 
+            this.lblSetShiresaki.AppendLabelSize = 0;
+            this.lblSetShiresaki.AppendLabelText = "";
+            this.lblSetShiresaki.CodeTxtSize = 40;
+            this.lblSetShiresaki.CodeTxtText = "";
+            this.lblSetShiresaki.LabelName = "仕入先コード";
+            this.lblSetShiresaki.Location = new System.Drawing.Point(932, 75);
+            this.lblSetShiresaki.Name = "lblSetShiresaki";
+            this.lblSetShiresaki.ShowAppendFlg = false;
+            this.lblSetShiresaki.Size = new System.Drawing.Size(466, 22);
+            this.lblSetShiresaki.SpaceCodeValue = 4;
+            this.lblSetShiresaki.SpaceNameCode = 4;
+            this.lblSetShiresaki.SpaceValueAppend = 4;
+            this.lblSetShiresaki.TabIndex = 7;
+            this.lblSetShiresaki.ValueLabelSize = 300;
+            this.lblSetShiresaki.ValueLabelText = "";
             // 
             // B0250_MOnyuryoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblSetShiresaki);
             this.Controls.Add(this.gridRireki);
             this.Controls.Add(this.lblSetTantousha);
             this.Controls.Add(this.lblSetShohin);
@@ -696,7 +718,6 @@
             this.Controls.Add(this.lblZaikoYMD);
             this.Controls.Add(this.lblShukeiM);
             this.Controls.Add(this.lblYM);
-            this.Controls.Add(this.lblSetShiresaki);
             this.Controls.Add(this.lblSetMaker);
             this.Controls.Add(this.lblSetChubunrui);
             this.Controls.Add(this.lblSetDaibunrui);
@@ -734,7 +755,6 @@
             this.Controls.SetChildIndex(this.lblSetDaibunrui, 0);
             this.Controls.SetChildIndex(this.lblSetChubunrui, 0);
             this.Controls.SetChildIndex(this.lblSetMaker, 0);
-            this.Controls.SetChildIndex(this.lblSetShiresaki, 0);
             this.Controls.SetChildIndex(this.lblYM, 0);
             this.Controls.SetChildIndex(this.lblShukeiM, 0);
             this.Controls.SetChildIndex(this.lblZaikoYMD, 0);
@@ -758,6 +778,7 @@
             this.Controls.SetChildIndex(this.lblSetShohin, 0);
             this.Controls.SetChildIndex(this.lblSetTantousha, 0);
             this.Controls.SetChildIndex(this.gridRireki, 0);
+            this.Controls.SetChildIndex(this.lblSetShiresaki, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).EndInit();
             this.gbPrintCheck.ResumeLayout(false);
@@ -775,7 +796,6 @@
         private Common.Ctl.LabelSet_Daibunrui lblSetDaibunrui;
         private Common.Ctl.LabelSet_Chubunrui lblSetChubunrui;
         private Common.Ctl.LabelSet_Maker lblSetMaker;
-        private Common.Ctl.LabelSet_Shiresaki lblSetShiresaki;
         private Common.Ctl.BaseLabel lblYM;
         private Common.Ctl.BaseLabel lblShukeiM;
         private Common.Ctl.BaseLabel lblZaikoYMD;
@@ -804,5 +824,6 @@
         private Common.Ctl.BaseTextLabelSet lblSetShohin;
         private Common.Ctl.LabelSet_Tantousha lblSetTantousha;
         private Common.Ctl.BaseDataGridView gridRireki;
+        private Common.Ctl.LabelSet_Torihikisaki lblSetShiresaki;
     }
 }
