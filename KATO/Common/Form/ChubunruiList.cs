@@ -357,7 +357,7 @@ namespace KATO.Common.Form
                             ShouhinList shouhinlist = (ShouhinList)frm;
 
                             //中分類のセット
-                            shouhinlist.setChubun();
+                            //shouhinlist.setChubun();
                             break;
                         }
                     }
@@ -372,7 +372,7 @@ namespace KATO.Common.Form
                             M1030_Shohin shohinHome = (M1030_Shohin)frm;
 
                             //中分類のセット
-                            shohinHome.setChubun();
+                            //shohinHome.setChubun();
                             break;
                         }
                         //棚卸入力のフォームを探す

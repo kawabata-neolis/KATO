@@ -406,10 +406,10 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN;
                 shouhinlist.strYMD = "";
                 shouhinlist.strEigyoushoCode = "";
-                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                shouhinlist.lsMaker = labelSet_Maker;
+                shouhinlist.btxtKensaku = txtKensaku;
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)

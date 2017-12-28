@@ -377,8 +377,8 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
                     shouhinlist.strYMD = "";
                     shouhinlist.strEigyoushoCode = "";
-                    shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                    shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
                     shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                     shouhinlist.strKensaku = txtKensaku.Text;
                     shouhinlist.ShowDialog();
@@ -412,8 +412,8 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN_TANA;
                 shouhinlist.strYMD = "";
                 shouhinlist.strEigyoushoCode = "";
-                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
+                shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                shouhinlist.lsChubunrui = labelSet_Chubunrui;
                 shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
                 shouhinlist.strKensaku = txtKensaku.Text;
                 shouhinlist.blNoTana = true;
@@ -758,8 +758,17 @@ namespace KATO.Form.M1030_Shohin
             labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
             txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
 
-            labelSet_Daibunrui.setTxtDaibunruiLeave();
-            labelSet_Chubunrui.setTxtChubunruiLeave();
+            // 大分類コードチェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return;
+            }
+
+            // 中分類コードチェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText.ToString()))
+            {
+                return;
+            }
 
             txtData1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
             txtData2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
@@ -1066,13 +1075,5 @@ namespace KATO.Form.M1030_Shohin
             cActiveBefore = this.ActiveControl;
         }
 
-        ///<summary>
-        ///setChubun
-        ///中分類のチェック
-        ///</summary>
-        public void setChubun()
-        {
-            labelSet_Chubunrui.setTxtChubunruiLeave();
-        }
     }
 }

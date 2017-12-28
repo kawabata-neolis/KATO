@@ -470,9 +470,9 @@ namespace KATO.Form.A0100_HachuInput
                 shouhinlist.intFrmKind = CommonTeisu.FRM_HACHUINPUT;
                 shouhinlist.strYMD = txtHachuYMD.Text;
                 shouhinlist.strEigyoushoCode = "";
-                shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
+                shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                shouhinlist.lsMaker = labelSet_Maker;
                 shouhinlist.strKensaku = txtKensaku.Text;
                 shouhinlist.ShowDialog();
 

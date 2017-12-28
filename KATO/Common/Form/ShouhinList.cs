@@ -36,16 +36,34 @@ namespace KATO.Common.Form
         public string strEigyoushoCode = "";
 
         //前画面から大分類コードを取り出す枠（大分類コード初期値）
-        public string strDaibunruiCode = "";
+        public LabelSet_Daibunrui lsDaibunrui = null; 
 
         //前画面から中分類コードを取り出す枠（中分類コード初期値）
-        public string strChubunruiCode = "";
+        public LabelSet_Chubunrui lsChubunrui = null;
 
         //前画面からメーカーコードを取り出す枠（メーカーコード初期値）
-        public string strMakerCode = "";
+        public LabelSet_Maker lsMaker = null;
 
         //前画面から検索コードを取り出す枠（検索コード初期値）
-        public string strKensaku = "";
+        public BaseText btxtKensaku = null;
+
+        //前画面から商品コードを取り出す枠（商品コード初期値）
+        public BaseText btxtShohinCd = null;
+
+        //前画面から品名を取り出す枠（品名初期値）
+        public BaseText btxtHinmei = null;
+
+        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）
+        public LabelSet_Tanaban lsTanabanH = null;
+
+        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）
+        public LabelSet_Tanaban lsTanabanG = null;
+
+        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（ラベルのみ）
+        public BaseLabelGray lblGrayTanabanH = null;
+
+        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）（ラベルのみ）
+        public BaseLabelGray lblGrayTanabanG = null;
 
         //検索項目が記入されているかどうか
         public bool blKensaku = false;
@@ -114,6 +132,55 @@ namespace KATO.Common.Form
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            // 大分類の引き渡しチェック
+            if (lsDaibunrui == null)
+            {
+                lsDaibunrui = new LabelSet_Daibunrui();
+            }
+
+            // 中分類の引き渡しチェック
+            if (lsChubunrui == null)
+            {
+                lsChubunrui = new LabelSet_Chubunrui();
+            }
+
+            // メーカーの引き渡しチェック
+            if (lsMaker == null)
+            {
+                lsMaker = new LabelSet_Maker();
+            }
+
+            // 検索テキストの引き渡しチェック
+            if (btxtKensaku == null)
+            {
+                btxtKensaku = new BaseText();
+            }
+
+            // 商品コードの引き渡しチェック
+            if (btxtShohinCd == null)
+            {
+                btxtShohinCd = new BaseText();
+            }
+
+            // 品名の引き渡しチェック
+            if (btxtHinmei == null)
+            {
+                btxtHinmei = new BaseText();
+            }
+
+            // 棚番本社（本社）の引き渡しチェック
+            if (lsTanabanH == null)
+            {
+                lsTanabanH = new LabelSet_Tanaban();
+            }
+
+            // 棚番本社（岐阜）の引き渡しチェック
+            if (lsTanabanG == null)
+            {
+                lsTanabanG = new LabelSet_Tanaban();
+            }
+
 
             //
             if (blNoTana == true)
@@ -449,7 +516,7 @@ namespace KATO.Common.Form
         {
             setSelectItem();
         }
-        
+
         ///<summary>
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
@@ -483,14 +550,15 @@ namespace KATO.Common.Form
             lstString.Add(strEigyoushoCode);
             lstString.Add(strSelectShohinCD);
             lstString.Add(strSelectMakerCD);
-            lstString.Add(strSelectDaibunName);
+            lstString.Add(strSelectDaibunName); 
             lstString.Add(strSelectChubunName);
             lstString.Add(strSelectid);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
+            DataTable dtshohin = null;
             try
             {
-                shohinlistB.getSelectItem(lstInt, lstString);
+               dtshohin = shohinlistB.getSelectItem(lstInt, lstString);
             }
             catch (Exception ex)
             {
@@ -502,40 +570,44 @@ namespace KATO.Common.Form
             }
             setEndAction();
         }
-        
+
         ///<summary>
         ///setTextData
         ///前画面のデータを記入
         ///</summary>
         private void setTextData()
         {
-            if (strDaibunruiCode.Length >= 1)
+            if (lsDaibunrui.CodeTxtText.Length >= 1)
             {
-                labelSet_Daibunrui.CodeTxtText = strDaibunruiCode;
+                labelSet_Daibunrui.CodeTxtText = lsDaibunrui.CodeTxtText;
 
-                //leaveの処理をする
-                labelSet_Daibunrui.setTxtDaibunruiLeave();
+                //大分類チェック
+                if (labelSet_Daibunrui.chkTxtDaibunrui())
+                {
+                    return;
+                }
                 intDBjud = 1;
                 setLabel(intDBjud);
             }
-            if (strChubunruiCode.Length >= 1)
+            if (lsChubunrui.CodeTxtText.Length >= 1)
             {
-                labelSet_Chubunrui.CodeTxtText = strChubunruiCode;
+                labelSet_Chubunrui.CodeTxtText = lsChubunrui.CodeTxtText;
 
                 //leaveの処理をする
                 labelSet_Chubunrui.setTxtChubunruiLeave();
                 intDBjud = 2;
                 setLabel(intDBjud);
             }
-            if (strMakerCode.Length >= 1)
+            if (labelSet_Maker.CodeTxtText.Length >= 1)
             {
-                labelSet_Maker.CodeTxtText = strMakerCode;
+                labelSet_Maker.CodeTxtText = lsMaker.CodeTxtText;
                 intDBjud = 3;
                 setLabel(intDBjud);
             }
-            txtKensaku.Text = strKensaku;
+
+            txtKensaku.Text = btxtKensaku.Text;
         }
-        
+
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
@@ -570,7 +642,7 @@ namespace KATO.Common.Form
                 return;
             }
         }
-        
+
         ///<summary>
         ///btnKensakuClick
         ///検索ボタンを押したとき
@@ -626,7 +698,7 @@ namespace KATO.Common.Form
             try
             {
                 dtView = shohinlistB.getShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
-                
+
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
 
@@ -862,13 +934,5 @@ namespace KATO.Common.Form
             setLabel(intDBjud);
         }
 
-        ///<summary>
-        ///setChubun
-        ///中分類のチェック
-        ///</summary>
-        public void setChubun()
-        {
-            labelSet_Chubunrui.setTxtChubunruiLeave();
-        }
     }
 }

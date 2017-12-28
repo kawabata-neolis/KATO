@@ -93,6 +93,15 @@ namespace KATO.Common.Ctl
         ///</summary>
         public void updTxtTokuisakiLeave(object sender, EventArgs e)
         {
+            setTxtTokuisakiLeave();
+        }
+
+        ///<summary>
+        ///setTxtTokuisakiLeave
+        ///code入力箇所からフォーカスが外れた時の処理
+        ///</summary>
+        public void setTxtTokuisakiLeave()
+        {
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
@@ -103,6 +112,7 @@ namespace KATO.Common.Ctl
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
+                this.AppendLabelText = "";
                 return;
             }
 
@@ -137,7 +147,7 @@ namespace KATO.Common.Ctl
                                         {
                                             //データを連れてくるため、newをしないこと
                                             ShireList shirelist = (ShireList)frm;
-                                            shirelist.btnEndClick(sender, e);
+                                            shirelist.btnEndClick(null,null);
                                             return;
                                         }
                                     }
@@ -147,21 +157,25 @@ namespace KATO.Common.Ctl
                     }
                 }
 
-                this.ValueLabelText = "";
-
                 //グループボックスかパネル内にいる場合
                 if (this.Parent is GroupBox || this.Parent is Panel)
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                 }
                 else
                 {
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                 }
+
+                this.ValueLabelText = "";
+                this.CodeTxtText = "";
+                this.AppendLabelText = "";
 
                 //エラーメッセージを表示された
                 blMessageOn = true;
@@ -175,7 +189,7 @@ namespace KATO.Common.Ctl
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
             }
-            
+
             //データ渡し用
             lstStringSQL.Add("Common");
             lstStringSQL.Add("C_LIST_Tantousha_SELECT_LEAVE");
@@ -207,21 +221,25 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
-                    this.ValueLabelText = "";
-
                     //グループボックスかパネル内にいる場合
                     if (this.Parent is GroupBox || this.Parent is Panel)
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
+                        SendKeys.Send("+{TAB}");
                     }
                     else
                     {
                         //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
+                        SendKeys.Send("+{TAB}");
                     }
+
+                    this.ValueLabelText = "";
+                    this.CodeTxtText = "";
+                    this.AppendLabelText = "";
 
                     //エラーメッセージを表示された
                     blMessageOn = true;
@@ -239,6 +257,7 @@ namespace KATO.Common.Ctl
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                     return;
                 }
                 else
@@ -246,6 +265,7 @@ namespace KATO.Common.Ctl
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                     return;
                 }
             }
@@ -279,6 +299,7 @@ namespace KATO.Common.Ctl
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
+                this.AppendLabelText = "";
                 return;
             }
 

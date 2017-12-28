@@ -144,18 +144,11 @@ namespace KATO.Business.B0250_MOnyuryoku
             strSQLInput = strSQLInput + "SELECT";
             strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, '')) AS 型番,";
 
-            //C2~C6あり版
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ１, '')) +";
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ２, '')) +";
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ３, '')) +";
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ４, '')) +";
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ５, '')) +";
-            //strSQLInput = strSQLInput + " " + "Rtrim(ISNULL(Ｃ６, '')) AS 型番,";
-
             strSQLInput = strSQLInput + "現在在庫数 AS ﾌﾘ在庫,";
             strSQLInput = strSQLInput + "売上数量 AS 売上数,";
             strSQLInput = strSQLInput + "仕入数量 AS 仕入数,";
             strSQLInput = strSQLInput + "発注残数量 AS 発注残,";
+            strSQLInput = strSQLInput + "受注残数量 AS 受注残,";
             strSQLInput = strSQLInput + "ＭＯ発注指示数 AS 発注指,";
             strSQLInput = strSQLInput + "ＭＯ発注数 AS 発注数,";
             strSQLInput = strSQLInput + "ＭＯ発注単価 AS 単価,";
@@ -166,6 +159,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             strSQLInput = strSQLInput + "RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 発注番号, ";
             strSQLInput = strSQLInput + "発注番号 AS 発注番号2,";
             strSQLInput = strSQLInput + "商品コード,";
+            strSQLInput = strSQLInput + "発注担当者,";
 
             strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ１,'')) AS Ｃ１,";
             strSQLInput = strSQLInput + "Rtrim(ISNULL(Ｃ２,'')) AS Ｃ２,";

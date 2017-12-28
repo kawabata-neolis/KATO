@@ -306,7 +306,7 @@ namespace KATO.Common.Business
         ///getSelectItem
         ///各画面へのデータ渡し
         ///</summary>
-        public void getSelectItem(List<int> lstInt, List<string> lstString)
+        public DataTable getSelectItem(List<int> lstInt, List<string> lstString)
         {
             List<string> lstStringItem = new List<string>();
 
@@ -419,6 +419,7 @@ namespace KATO.Common.Business
                 }
 
 
+
                 switch (lstInt[0])
                 {
                     //棚卸入力
@@ -523,6 +524,7 @@ namespace KATO.Common.Business
                     default:
                         break;
                 }
+                return dtShohin;
             }
             catch (Exception ex)
             {

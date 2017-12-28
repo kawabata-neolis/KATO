@@ -696,7 +696,7 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             {
                 //商品リストの表示、画面IDを渡す
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI;
-                shouhinlist.strKensaku = txtKensakuS.Text;
+                shouhinlist.btxtKensaku = txtKensakuS;
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)

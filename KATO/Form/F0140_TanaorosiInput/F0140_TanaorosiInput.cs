@@ -440,11 +440,23 @@ namespace KATO.Form.F0140_TanaorosiInput
                 labelSet_Tanaban.CodeTxtText = strTanaban;
 
                 //各ラベルセットのLeave処理
-                labelSet_Daibunrui.setTxtDaibunruiLeave();
-                labelSet_Chubunrui.setTxtChubunruiLeave();
-                labelSet_Eigyousho.setEigyoushoLeave();
-                labelSet_Maker.setTxtMakerLeave();
-                labelSet_Tanaban.setTanabanLeave();
+                if (labelSet_Daibunrui.chkTxtDaibunrui())
+                {
+                    return;
+                }
+                if (labelSet_Chubunrui.chkTxtChubunrui(strDibunCd))
+                {
+                    return;
+                }
+                if (labelSet_Eigyousho.chkTxtEigyousho())
+                {
+                    return;
+                }
+                 labelSet_Maker.setTxtMakerLeave();
+                if (labelSet_Tanaban.chkTxtTanaban())
+                {
+                    return;
+                }
 
                 txtTyoubosuu.Text = "0";
 
@@ -579,11 +591,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             {
                 labelSet_Tanaban_Edit.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
             }
-
-            //labelSet_Tanaban_Edit.ValueLabelText = dtShohin.Rows[0]["棚番名"].ToString();
-            //txtTanasuu.Text = dtShohin.Rows[0]["棚卸数量"].ToString();
-            //txtTyoubosuu.Text = dtShohin.Rows[0]["指定日在庫"].ToString();
-            //lblDspShouhin.Text = dtShohin.Rows[0][""].ToString();
 
             lblDspShouhin.Text = labelSet_Chubunrui_Edit.ValueLabelText + " " +
                                  dtShohin.Rows[0]["Ｃ１"] + " " +
@@ -851,14 +858,16 @@ namespace KATO.Form.F0140_TanaorosiInput
             {
                 try
                 {
+                    labelSet_Tanaban_Edit.CodeTxtText = labelSet_Tanaban.CodeTxtText;
                     ShouhinList shouhinlist = new ShouhinList(this);
                     shouhinlist.intFrmKind = CommonTeisu.FRM_TANAOROSHI;
                     shouhinlist.strYMD = txtYMD.Text;
                     shouhinlist.strEigyoushoCode = labelSet_Eigyousho.CodeTxtText;
-                    shouhinlist.strDaibunruiCode = labelSet_Daibunrui.CodeTxtText;
-                    shouhinlist.strChubunruiCode = labelSet_Chubunrui.CodeTxtText;
-                    shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                    shouhinlist.strKensaku = txtKensaku.Text;
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                    shouhinlist.lsMaker = labelSet_Maker;
+
+                    shouhinlist.btxtKensaku = txtKensaku;
                     shouhinlist.blKensaku = true;
                     shouhinlist.ShowDialog();
 
