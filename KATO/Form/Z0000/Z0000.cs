@@ -562,6 +562,8 @@ namespace KATO.Form.Z0000
                 //見積書入力
                 case "21":
                     //作成中
+                    H0210_MitsumoriInput.H0210_MitsumoriInput mInput = new H0210_MitsumoriInput.H0210_MitsumoriInput(this);
+                    mInput.ShowDialog();
                     break;
 
                 //受注分出庫承認入力
@@ -1115,6 +1117,8 @@ namespace KATO.Form.Z0000
 
                     //見積書入力
                     case "21":
+                        H0210_MitsumoriInput.H0210_MitsumoriInput mInput = new H0210_MitsumoriInput.H0210_MitsumoriInput(this);
+                        mInput.ShowDialog();
                         break;
 
                     //受注分出庫承認入力

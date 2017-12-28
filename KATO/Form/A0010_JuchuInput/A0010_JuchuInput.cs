@@ -104,8 +104,8 @@ namespace KATO.Form.A0010_JuchuInput
             hatchuzan.HeaderText = "発注残";
 
             DataGridViewTextBoxColumn juchzanUke = new DataGridViewTextBoxColumn();
-            juchzanUke.DataPropertyName = "発注残(受)";
-            juchzanUke.Name = "発注残(受)";
+            juchzanUke.DataPropertyName = "発注残受";
+            juchzanUke.Name = "発注残受";
             juchzanUke.HeaderText = "発注残(受)";
 
             DataGridViewTextBoxColumn freeZaiko = new DataGridViewTextBoxColumn();
@@ -249,6 +249,9 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delFormClear(this);
+                    lsDaibunrui.Enabled = true;
+                    lsChubunrui.Enabled = true;
+                    lsMaker.Enabled = true;
                     break;
                 case Keys.F5:
                     break;
@@ -583,11 +586,11 @@ namespace KATO.Form.A0010_JuchuInput
                     txtUriage.Text = dtJuchuNoInfo.Rows[0]["売上フラグ"].ToString();
 
                     string strHinmei = txtC1.Text.Trim() + " "
-                        + txtC1.Text.Trim() + " "
-                        + txtC1.Text.Trim() + " "
-                        + txtC1.Text.Trim() + " "
-                        + txtC1.Text.Trim() + " "
-                        + txtC1.Text.Trim();
+                        + txtC2.Text.Trim() + " "
+                        + txtC3.Text.Trim() + " "
+                        + txtC4.Text.Trim() + " "
+                        + txtC5.Text.Trim() + " "
+                        + txtC6.Text.Trim();
                     txtHinmei.Text = strHinmei.Trim();
 
                     txtJuchuSuryo.Enabled = true;
@@ -610,83 +613,85 @@ namespace KATO.Form.A0010_JuchuInput
                     }
 
                     DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(strCd);
-                    if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
-                    {
-                        txtHatchuNo.Text = dtHatchuNo.Rows[0]["発注番号"].ToString();
-                    }
-                    else
-                    {
-                        txtHatchusu.Text = "0";
-                    }
-
-                    int intUriSuryo = (int)dtJuchuNoInfo.Rows[0]["売上済数量"];
-                    int intjuchuSuryo = (int)dtJuchuNoInfo.Rows[0]["受注数量"];
-                    if (intUriSuryo == 0)
-                    {
-                        lockFlg = false;
-                    }
-                    else if (intUriSuryo == intjuchuSuryo)
-                    {
-                        btnF01.Enabled = false;
-                        btnF03.Enabled = false;
-                        btnF08.Enabled = false;
-                        btnF09.Enabled = false;
-                        BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上済の受注です。変更は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                        basemessageboxEr.ShowDialog();
-                        return;
-                    }
-                    else if (intUriSuryo > 0)
-                    {
-                        txtUriSuryo.Text = intUriSuryo.ToString();
-                        txtJuchuNo.Enabled = false;
-                        txtJuchuYMD.Enabled = false;
-
-                        if (powerUserFlg)
+                    if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0) {
+                        if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
                         {
-                            lsJuchusha.Enabled = true;
-                            cbJuchuTanka.Enabled = true;
+                            txtHatchuNo.Text = dtHatchuNo.Rows[0]["発注番号"].ToString();
                         }
                         else
                         {
-                            lsJuchusha.Enabled = false;
-                            cbJuchuTanka.Enabled = false;
+                            txtHatchusu.Text = "0";
                         }
-                        tsTokuisaki.Enabled = false;
-                        lsDaibunrui.Enabled = false;
-                        lsChubunrui.Enabled = false;
-                        lsMaker.Enabled = false;
-                        txtSearchStr.Enabled = false;
-                        txtHinmei.Enabled = false;
-                        txtJuchuSuryo.Enabled = false;
 
-                        cbSiireTanka.Enabled = false;
-                        txtHatchushiji.Enabled = false;
-                        txtHonshaShukko.Enabled = false;
-                        txtGihuShukko.Enabled = false;
-                        txtHatchusu.Enabled = false;
-                        tsShiiresaki.Enabled = false;
-                        txtShiireChuban.Enabled = false;
-
-                        if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
+                        int intUriSuryo = (int)dtJuchuNoInfo.Rows[0]["売上済数量"];
+                        int intjuchuSuryo = (int)dtJuchuNoInfo.Rows[0]["受注数量"];
+                        if (intUriSuryo == 0)
                         {
-                            int intShiireSuryo = (int)dtHatchuNo.Rows[0]["仕入済数量"];
-
-                            if (intUriSuryo == intShiireSuryo)
-                            {
-                                nokiFlg = true;
-                                txtJuchuSuryo.Enabled = true;
-                                BaseMessageBox basemessageboxEr1 = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。受注数・納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                                basemessageboxEr1.ShowDialog();
-                                return;
-                            }
+                            lockFlg = false;
                         }
+                        else if (intUriSuryo == intjuchuSuryo)
+                        {
+                            btnF01.Enabled = false;
+                            btnF03.Enabled = false;
+                            btnF08.Enabled = false;
+                            btnF09.Enabled = false;
+                            BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上済の受注です。変更は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            basemessageboxEr.ShowDialog();
+                            return;
+                        }
+                        else if (intUriSuryo > 0)
+                        {
+                            txtUriSuryo.Text = intUriSuryo.ToString();
+                            txtJuchuNo.Enabled = false;
+                            txtJuchuYMD.Enabled = false;
 
-                        nokiFlg = true;
-                        txtJuchuSuryo.Enabled = true;
-                        BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                        basemessageboxEr.ShowDialog();
-                        txtNoki.Focus();
-                        return;
+                            if (powerUserFlg)
+                            {
+                                lsJuchusha.Enabled = true;
+                                cbJuchuTanka.Enabled = true;
+                            }
+                            else
+                            {
+                                lsJuchusha.Enabled = false;
+                                cbJuchuTanka.Enabled = false;
+                            }
+                            tsTokuisaki.Enabled = false;
+                            lsDaibunrui.Enabled = false;
+                            lsChubunrui.Enabled = false;
+                            lsMaker.Enabled = false;
+                            txtSearchStr.Enabled = false;
+                            txtHinmei.Enabled = false;
+                            txtJuchuSuryo.Enabled = false;
+
+                            cbSiireTanka.Enabled = false;
+                            txtHatchushiji.Enabled = false;
+                            txtHonshaShukko.Enabled = false;
+                            txtGihuShukko.Enabled = false;
+                            txtHatchusu.Enabled = false;
+                            tsShiiresaki.Enabled = false;
+                            txtShiireChuban.Enabled = false;
+
+                            if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
+                            {
+                                int intShiireSuryo = (int)dtHatchuNo.Rows[0]["仕入済数量"];
+
+                                if (intUriSuryo == intShiireSuryo)
+                                {
+                                    nokiFlg = true;
+                                    txtJuchuSuryo.Enabled = true;
+                                    BaseMessageBox basemessageboxEr1 = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。受注数・納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                                    basemessageboxEr1.ShowDialog();
+                                    return;
+                                }
+                            }
+
+                            nokiFlg = true;
+                            txtJuchuSuryo.Enabled = true;
+                            BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            basemessageboxEr.ShowDialog();
+                            txtNoki.Focus();
+                            return;
+                        }
                     }
 
                     if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
@@ -858,7 +863,7 @@ namespace KATO.Form.A0010_JuchuInput
                 cbSiireTanka.Text = cbJuchuTanka.Text;
             }
             // 定価が未設定の場合、掛率を計算しない
-            if (string.IsNullOrEmpty(txtTeika.Text) || int.Parse(txtTeika.Text) == 0)
+            if (string.IsNullOrEmpty(txtTeika.Text) || double.Parse(txtTeika.Text) == 0)
             {
                 return;
             }
@@ -873,7 +878,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 strNumerator = cbJuchuTanka.Text;
             }
-            txtJuchuTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text) * 100).ToString();
+            txtJuchuTankaSub.Text = (double.Parse(strNumerator) / double.Parse(txtTeika.Text) * 100).ToString();
 
             if (string.IsNullOrEmpty(cbSiireTanka.Text))
             {
@@ -883,7 +888,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 strNumerator = cbSiireTanka.Text;
             }
-            txtSiireTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text) * 100).ToString();
+            txtSiireTankaSub.Text = (double.Parse(strNumerator) / double.Parse(txtTeika.Text) * 100).ToString();
 
             if (string.IsNullOrEmpty(cbKinShiireTanka.Text))
             {
@@ -893,7 +898,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 strNumerator = cbKinShiireTanka.Text;
             }
-            txtKinSiireTankaSub.Text = (int.Parse(strNumerator) / int.Parse(txtTeika.Text) * 100).ToString();
+            txtKinSiireTankaSub.Text = (double.Parse(strNumerator) / double.Parse(txtTeika.Text) * 100).ToString();
 
         }
 
@@ -935,7 +940,7 @@ namespace KATO.Form.A0010_JuchuInput
             //if ()
             //{
 
-            if (txtNoki.Text.CompareTo(string.Format("yyyy/mm/dd", DateTime.Now)) < 0)
+            if (txtNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/mm/dd")) < 0)
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
@@ -945,7 +950,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddYears(1));
+            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/mm/dd");
 
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
             {
@@ -959,7 +964,7 @@ namespace KATO.Form.A0010_JuchuInput
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
                         if (int.Parse(strSuryo) > 0)
                         {
-                            strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddMonths(6));
+                            strEndDay = endDateTime.AddMonths(6).ToString("yyyy/mm/dd");
                         }
                     }
                 }
@@ -997,7 +1002,7 @@ namespace KATO.Form.A0010_JuchuInput
             //if ()
             //{
 
-            if (txtShiireNoki.Text.CompareTo(string.Format("yyyy/mm/dd", DateTime.Now)) < 0)
+            if (txtShiireNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/mm/dd")) < 0)
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
@@ -1007,7 +1012,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddYears(1));
+            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/mm/dd");
 
             if (string.IsNullOrWhiteSpace(txtJuchuNo.Text))
             {
@@ -1021,7 +1026,7 @@ namespace KATO.Form.A0010_JuchuInput
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
                         if (int.Parse(strSuryo) > 0)
                         {
-                            strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddMonths(6));
+                            strEndDay = endDateTime.AddMonths(6).ToString("yyyy/mm/dd");
                         }
                     }
                 }
@@ -1643,7 +1648,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddYears(1));
+            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/mm/dd");
 
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
             {
@@ -1657,7 +1662,7 @@ namespace KATO.Form.A0010_JuchuInput
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
                         if (int.Parse(strSuryo) > 0)
                         {
-                            strEndDay = string.Format("yyyy/mm/dd", endDateTime.AddMonths(6));
+                            strEndDay = endDateTime.AddMonths(6).ToString("yyyy/mm/dd");
                         }
                     }
                 }
@@ -1675,7 +1680,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             if (!cbChuban.Checked) {
 
-                if (txtNoki.Text.CompareTo(string.Format("yyyy/mm/dd", DateTime.Now)) < 0)
+                if (txtNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/mm/dd")) < 0)
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
@@ -1696,7 +1701,7 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                 }
 
-                if (txtShiireNoki.Text.CompareTo(string.Format("yyyy/mm/dd", DateTime.Now)) < 0)
+                if (txtShiireNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/mm/dd")) < 0)
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
@@ -2250,7 +2255,7 @@ namespace KATO.Form.A0010_JuchuInput
             btnF08.Enabled = true;
             btnF09.Enabled = true;
 
-            txtJuchuYMD.Text = string.Format("yyyy/mm/dd", DateTime.Now);
+            txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/mm/dd");
             txtJuchuNo.Text = "";
             tsTokuisaki.CodeTxtText = "";
             tsTokuisaki.valueTextText = "";
@@ -2315,7 +2320,7 @@ namespace KATO.Form.A0010_JuchuInput
             btnF08.Enabled = true;
             btnF09.Enabled = true;
 
-            txtJuchuYMD.Text = string.Format("yyyy/mm/dd", DateTime.Now);
+            txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/mm/dd");
             txtJuchuNo.Text = "";
             tsTokuisaki.CodeTxtText = "";
             tsTokuisaki.valueTextText = "";
