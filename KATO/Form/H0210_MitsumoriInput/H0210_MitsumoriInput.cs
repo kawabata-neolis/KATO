@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Ctl;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Business.H0210_MitsumoriInput_B;
+using KATO.Business.H0210_MitsumoriInput;
 
 namespace KATO.Form.H0210_MitsumoriInput
 {

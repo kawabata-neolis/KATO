@@ -1055,7 +1055,7 @@
             this.tsShiiresaki.Name = "tsShiiresaki";
             this.tsShiiresaki.ReadOnlyANDTabStopFlg = false;
             this.tsShiiresaki.ShowAppendFlg = false;
-            this.tsShiiresaki.Size = new System.Drawing.Size(578, 22);
+            this.tsShiiresaki.Size = new System.Drawing.Size(599, 22);
             this.tsShiiresaki.SpaceCodeValue = 5;
             this.tsShiiresaki.SpaceNameCode = 72;
             this.tsShiiresaki.SpaceValueAppend = 4;

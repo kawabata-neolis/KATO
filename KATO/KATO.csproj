@@ -153,6 +153,7 @@
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\F0570_TanaorosiKinyuhyoPrint\F0570_TanaorosiKinyuhyoPrint_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
+    <Compile Include="Business\H0210_MitsumoriInput\H0210_MitsumoriInput_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu_B.cs" />
     <Compile Include="Business\M1000_Kaishajyoken\M1000_Kaishajyoken_B.cs" />
@@ -199,7 +200,6 @@
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\TorihikisakiList_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
-    <Compile Include="Form\Business\H0210_MitsumoriInput\H0210_MitsumoriInput_B.cs" />
     <Compile Include="Common\Ctl\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1510,66 +1510,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Form\Business\A0010_JuchuInput\" />
-    <Folder Include="Form\Business\A0020_UriageInput\" />
-    <Folder Include="Form\Business\A0030_ShireInput\" />
-    <Folder Include="Form\Business\A0090_SiireCheckPrint\" />
-    <Folder Include="Form\Business\A0100_HachuInput\" />
-    <Folder Include="Form\Business\A0150_UriageCheckPrint\" />
-    <Folder Include="Form\Business\A0470_Hachusuhenko\" />
-    <Folder Include="Form\Business\A0660_TokuisakiUriageKakunin\" />
-    <Folder Include="Form\Business\A0670_SiiresakiSiirekakunin\" />
-    <Folder Include="Form\Business\B0040_NyukinInput\" />
-    <Folder Include="Form\Business\B0050_NyukinCheckPrint\" />
-    <Folder Include="Form\Business\B0060_ShiharaiInput\" />
-    <Folder Include="Form\Business\B0070_ShiharaiCheakPrint\" />
-    <Folder Include="Form\Business\B0250_MOnyuryoku\" />
-    <Folder Include="Form\Business\B0410_SeikyuItiranPrint\" />
-    <Folder Include="Form\Business\B0420_SeikyuMeisaishoPrint\" />
-    <Folder Include="Form\Business\C0130_TantouUriageArariPrint\" />
-    <Folder Include="Form\Business\C0140_TantouUriageArariNenkan\" />
-    <Folder Include="Form\Business\C0480_SiireSuiiHyo\" />
-    <Folder Include="Form\Business\C0490_UriageSuiiHyo\" />
-    <Folder Include="Form\Business\C0530_UriageArariSuiihyoPrint\" />
-    <Folder Include="Form\Business\C0630_TokuisakiUriageArariPrint\" />
-    <Folder Include="Form\Business\C0650_SyohingunUriageSiirePrint\" />
-    <Folder Include="Form\Business\C6000_TantoshabetuDenpyoCount\" />
-    <Folder Include="Form\Business\D0300_ZaikoIchiranKakunin\" />
-    <Folder Include="Form\Business\D0310_UriageJissekiKakunin\" />
-    <Folder Include="Form\Business\D0320_SiireJissekiKakunin\" />
-    <Folder Include="Form\Business\D0360_JuchuzanKakunin\" />
-    <Folder Include="Form\Business\D0380_ShohinMotochoKakunin\" />
-    <Folder Include="Form\Business\D0680_UriageJissekiKakuninAS400\" />
-    <Folder Include="Form\Business\D0690_SiireJissekiKakuninAS400\" />
-    <Folder Include="Form\Business\E0330_TokuisakiMotocyoKakunin\" />
-    <Folder Include="Form\Business\E0340_SiiresakiMotochouKakunin\" />
-    <Folder Include="Form\Business\F0140_TanaorosiInput\" />
-    <Folder Include="Form\Business\F0570_TanaorosiKinyuhyoPrint\" />
-    <Folder Include="Form\Business\G0920_HidukeSeigen\" />
-    <Folder Include="Form\Business\JuchuInput\" />
-    <Folder Include="Form\Business\M0620_HushoAtenaInsatsu\" />
-    <Folder Include="Form\Business\M1000_Kaishajyoken\" />
-    <Folder Include="Form\Business\M1010_Daibunrui\" />
-    <Folder Include="Form\Business\M1020_Maker\" />
-    <Folder Include="Form\Business\M1030_Shohin\" />
-    <Folder Include="Form\Business\M1040_Torihikikbn\" />
-    <Folder Include="Form\Business\M1050_Tantousha\" />
-    <Folder Include="Form\Business\M1060_Gyoshu\" />
-    <Folder Include="Form\Business\M1070_Torihikisaki\" />
-    <Folder Include="Form\Business\M1090_Eigyosho\" />
-    <Folder Include="Form\Business\M1100_Chokusosaki\" />
-    <Folder Include="Form\Business\M1110_Chubunrui\" />
-    <Folder Include="Form\Business\M1120_Tanaban\" />
-    <Folder Include="Form\Business\M1130_Shohizeiritsu\" />
-    <Folder Include="Form\Business\M1150_ShohinTankaIkkatsuUpdate\" />
-    <Folder Include="Form\Business\M1160_TokuteimukesakiTanka\" />
-    <Folder Include="Form\Business\M1200_Group\" />
-    <Folder Include="Form\Business\M1210_ShohinbetsuRiekiritsuSettei\" />
-    <Folder Include="Form\Business\M1220_SyohinBunruiRiekiritsu\" />
-    <Folder Include="Form\Business\M1240_ShohinSiireKakakuSuii2\" />
-    <Folder Include="Form\Business\M1490_Menukengen2\" />
-    <Folder Include="Form\Business\Z0000\" />
-    <Folder Include="Form\Business\Z1500_MyMenuSet\" />
     <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />
