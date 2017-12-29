@@ -29,6 +29,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
+        //履歴表示用
+        DataTable dtRireki = new DataTable();
+
+
         ///<summary>
         ///MOnyuryoku
         ///フォームの初期設定
@@ -327,6 +332,11 @@ namespace KATO.Form.B0250_MOnyuryoku
             K2Shimukesakiname.Name = "仕向け先名";
             K2Shimukesakiname.HeaderText = "仕向け先名";
 
+            DataGridViewTextBoxColumn K2Tantosha = new DataGridViewTextBoxColumn();
+            K2Tantosha.DataPropertyName = "担当者";
+            K2Tantosha.Name = "担当者";
+            K2Tantosha.HeaderText = "担当者";
+            
             DataGridViewTextBoxColumn K2HachuNo = new DataGridViewTextBoxColumn();
             K2HachuNo.DataPropertyName = "発注番号";
             K2HachuNo.Name = "発注番号";
@@ -461,12 +471,12 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //個々の幅、文章の寄せ（売上数非表示）
             setColumnRireki(RirekiYM, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 70);
-            setColumnRireki(RirekiUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumnRireki(RirekiShuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumnRireki(RirekiShire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumnRireki(RirekiNyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumnRireki(RirekiHachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumnRireki(RirekiJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumnRireki(RirekiUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnRireki(RirekiShuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnRireki(RirekiShire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnRireki(RirekiNyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnRireki(RirekiHachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnRireki(RirekiJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
 
         }
 
@@ -594,6 +604,63 @@ namespace KATO.Form.B0250_MOnyuryoku
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///MOnyuryokuTxt_KeyDown
+        ///キー入力判定（テキストボックス）
+        ///</summary>
+        private void MOnyuryokuTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
                     break;
 
                 default:
@@ -810,7 +877,11 @@ namespace KATO.Form.B0250_MOnyuryoku
                 int intRow;
                 intRow = gridKataban.Rows.Count;
 
-                showGridKataban2();
+                //
+                if (!showGridKataban2())
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -838,7 +909,13 @@ namespace KATO.Form.B0250_MOnyuryoku
             }
 
             //下段の表示
-            showGridKataban2();
+            if(!showGridKataban2())
+            {
+                return;
+            }
+
+            //上段グリッド
+            showGridKataban1();
 
             //履歴情報確保
             getRIrekiData();
@@ -949,8 +1026,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///showGridKataban2
         ///型番グリッド2の表示
         ///</summary>
-        private void showGridKataban2()
+        private bool showGridKataban2()
         {
+            //表示できたかどうか
+            bool blGrid2VIew = false;
+
             //YMD判定
             bool blGood = txtYM.updCalendarLeave(txtYM.Text);
 
@@ -985,14 +1065,27 @@ namespace KATO.Form.B0250_MOnyuryoku
                 {
                     dtGridViewKataban = monyuryokuB.setGridKataban2(lstStringViewData);
 
-                    //グリッドビューの表示
-                    gridKataban2.DataSource = dtGridViewKataban;
+                    //テーブルがある場合
+                    if (dtGridViewKataban.Rows.Count > 0)
+                    {
+                        btnF01.Enabled = true;
+                        btnF03.Enabled = true;
 
-                    ////グリッドの色指定
-                    //setGridColor();
+                        //グリッドビューの表示
+                        gridKataban2.DataSource = dtGridViewKataban;
 
+                        //表示成功
+                        blGrid2VIew = true;
 
-
+                        ////グリッドの色指定
+                        //setGridColor();
+                    }
+                    else
+                    {
+                        //例外発生メッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力", "全て確定されています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1001,8 +1094,47 @@ namespace KATO.Form.B0250_MOnyuryoku
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    return;
+                    return(blGrid2VIew);
                 }
+            }
+            return (blGrid2VIew);
+        }
+
+        ///<summary>
+        ///showGridKataban1
+        ///型番グリッド1の表示
+        ///</summary>
+        private void showGridKataban1()
+        {
+            DataTable dtGridViewKataban = new DataTable();
+
+            List<string> lstStringViewData = new List<string>();
+
+            lstStringViewData.Add(txtYM.Text);                  //0
+            lstStringViewData.Add(lblSetMaker.CodeTxtText);     //1
+            lstStringViewData.Add(lblSetDaibunrui.CodeTxtText); //2
+            lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //3
+
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                dtGridViewKataban = monyuryokuB.setGridKataban1(lstStringViewData);
+
+                //テーブルがある場合
+                if (dtGridViewKataban.Rows.Count > 0)
+                {
+                    //グリッドビューの表示
+                    gridKataban2.DataSource = dtGridViewKataban;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -1144,8 +1276,13 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void getRIrekiData()
         {
-            //Gridに入れる用のdatatable
-            DataTable dtRireki = new DataTable();
+            //仕入先ラベルセットが空の場合
+            if (lblSetShiresaki.CodeTxtText == "")
+            {
+                return;
+            }
+
+            List<string> lstString = new List<string>();
 
             //開始年月日（初期値）
             DateTime dateOpenYMD = DateTime.Parse("2000/01/01");
@@ -1177,18 +1314,13 @@ namespace KATO.Form.B0250_MOnyuryoku
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
             {
-                //商品コードの確保
-                dtRireki = monyuryokuB.getRirekiData((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + dateOpenYMD.Day).ToString(), 
-                                                     (dateEndYMD.Year + "/" + dateEndYMD.Month + "/" + dateEndYMD.Day).ToString());
+                lstString.Add((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + dateOpenYMD.Day).ToString());
+                lstString.Add((dateEndYMD.Year + "/" + dateEndYMD.Month + "/" + dateEndYMD.Day).ToString());
+                lstString.Add(DateTime.Now.ToString());
+                lstString.Add(SystemInformation.UserName);
 
-                //データがある場合
-                if (dtRireki.Rows.Count > 0)
-                {
-                    //YMテキスト確保
-                    //集計月数確保
-
-                    //データ内の行数分ループ
-                }
+                //履歴データの削除と保存
+                monyuryokuB.setRirekiData(lstString);
             }
             catch (Exception ex)
             {
@@ -1202,19 +1334,47 @@ namespace KATO.Form.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///gridKataban2_CellClick
+        ///gridKataban2_SelectionChanged
         ///下段のデータのどこかが選択された時
         ///</summary>
-        private void gridKataban2_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void gridKataban2_SelectionChanged(object sender, EventArgs e)
         {
-            //検索結果にデータが存在しなければ終了
-            if (gridRireki.RowCount == 0)
+            //データがない場合
+            if (gridKataban2.Rows.Count <= 0)
             {
                 return;
             }
 
-            //dtRirekiから指定の商品コードを取り出してgridRirekiに表示
+            //履歴datatableの初期化（カラム残し）
+            dtRireki.Clear();
 
+            //カラムを残してデータのみを消す
+            gridRireki.DataSource = dtRireki;
+
+            //商品コードを取得
+            string str = (String)gridKataban2.CurrentRow.Cells[1].Value;
+
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                //履歴データの取得(商品コードを渡す)
+                dtRireki = monyuryokuB.getRirekiData((String)gridKataban2.CurrentRow.Cells["商品コード"].Value);
+
+                //履歴データにある場合
+                if (dtRireki.Rows.Count > 0)
+                {
+                    gridRireki.DataSource = dtRireki;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
     }
 }
