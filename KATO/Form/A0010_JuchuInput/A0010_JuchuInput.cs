@@ -70,6 +70,9 @@ namespace KATO.Form.A0010_JuchuInput
             this.btnF12.Text = STR_FUNC_F12;
 
             SetUpGrid();
+
+            txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/mm/dd");
+
         }
 
         ///<summary>
@@ -301,12 +304,16 @@ namespace KATO.Form.A0010_JuchuInput
             try
             {
                 // 売上済がある場合、削除不可
-                uriageSu = juchuB.getUriagezumisuryo(strJuchuNo);
-                if (uriageSu > 0)
+                DataTable dt = juchuB.getUriagezumisuryo(strJuchuNo);
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに売上済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessageboxEr.ShowDialog();
-                    return;
+                    uriageSu = (int)dt.Rows[0]["仕入済数量"];
+                    if (uriageSu > 0)
+                    {
+                        BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに売上済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessageboxEr.ShowDialog();
+                        return;
+                    }
                 }
                 // 仕入済がある場合、削除不可
                 if (juchuB.getShiirezumisuryo(strJuchuNo) > 0)
@@ -415,7 +422,6 @@ namespace KATO.Form.A0010_JuchuInput
 
             shohinList.Show();
         }
-
 
         /// <summary>
         /// judBtnClick
@@ -623,8 +629,16 @@ namespace KATO.Form.A0010_JuchuInput
                             txtHatchusu.Text = "0";
                         }
 
-                        int intUriSuryo = (int)dtJuchuNoInfo.Rows[0]["売上済数量"];
-                        int intjuchuSuryo = (int)dtJuchuNoInfo.Rows[0]["受注数量"];
+                        int intUriSuryo = 0;
+                        if (!string.IsNullOrWhiteSpace(dtJuchuNoInfo.Rows[0]["売上済数量"].ToString())) {
+                            intUriSuryo = int.Parse(dtJuchuNoInfo.Rows[0]["売上済数量"].ToString());
+                        }
+
+                        int intjuchuSuryo = 0;
+                        if (!string.IsNullOrWhiteSpace(dtJuchuNoInfo.Rows[0]["受注数量"].ToString()))
+                        {
+                            intjuchuSuryo = int.Parse(dtJuchuNoInfo.Rows[0]["受注数量"].ToString());
+                        }
                         if (intUriSuryo == 0)
                         {
                             lockFlg = false;
@@ -1537,8 +1551,6 @@ namespace KATO.Form.A0010_JuchuInput
 
             return ret;
         }
-
-
 
         private bool chkData()
         {

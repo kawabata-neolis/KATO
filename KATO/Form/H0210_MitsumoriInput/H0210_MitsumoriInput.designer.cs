@@ -28,47 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtMYMD = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtTanto = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbJoken = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtKenmei = new System.Windows.Forms.TextBox();
+            this.cbKigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbNoki = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtNonyuName = new System.Windows.Forms.TextBox();
             this.txtNonyuCd = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtBiko = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -79,64 +59,64 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtZaiTeika6 = new System.Windows.Forms.TextBox();
-            this.txtZaiTeika5 = new System.Windows.Forms.TextBox();
-            this.txtZaiTeika4 = new System.Windows.Forms.TextBox();
-            this.txtZaiTeika3 = new System.Windows.Forms.TextBox();
-            this.txtZaiTeika2 = new System.Windows.Forms.TextBox();
+            this.txtZaiTeika6 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTeika5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTeika4 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTeika3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTeika2 = new KATO.Common.Ctl.BaseTextMoney();
             this.label30 = new System.Windows.Forms.Label();
-            this.txtZaiTeika1 = new System.Windows.Forms.TextBox();
+            this.txtZaiTeika1 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtIdx = new System.Windows.Forms.TextBox();
             this.button29 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
-            this.txtKakTnk6 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei6 = new System.Windows.Forms.TextBox();
             this.txtKakCd6 = new System.Windows.Forms.TextBox();
             this.button22 = new System.Windows.Forms.Button();
-            this.txtKakTnk5 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk5 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei5 = new System.Windows.Forms.TextBox();
             this.txtKakCd5 = new System.Windows.Forms.TextBox();
             this.button23 = new System.Windows.Forms.Button();
-            this.txtKakTnk4 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk4 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei4 = new System.Windows.Forms.TextBox();
             this.txtKakCd4 = new System.Windows.Forms.TextBox();
             this.button24 = new System.Windows.Forms.Button();
-            this.txtSrrt6 = new System.Windows.Forms.TextBox();
-            this.txtArr6 = new System.Windows.Forms.TextBox();
-            this.txtSrrt5 = new System.Windows.Forms.TextBox();
-            this.txtArr5 = new System.Windows.Forms.TextBox();
-            this.txtSrrt4 = new System.Windows.Forms.TextBox();
-            this.txtArr4 = new System.Windows.Forms.TextBox();
+            this.txtSrrt6 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr6 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtSrrt5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtSrrt4 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr4 = new KATO.Common.Ctl.BaseTextMoney();
             this.label34 = new System.Windows.Forms.Label();
-            this.txtZaiRit6 = new System.Windows.Forms.TextBox();
-            this.txtZaiTnk6 = new System.Windows.Forms.TextBox();
+            this.txtZaiRit6 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTnk6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei6 = new System.Windows.Forms.TextBox();
             this.txtZaiCd6 = new System.Windows.Forms.TextBox();
             this.button19 = new System.Windows.Forms.Button();
-            this.txtZaiRit5 = new System.Windows.Forms.TextBox();
-            this.txtZaiTnk5 = new System.Windows.Forms.TextBox();
+            this.txtZaiRit5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTnk5 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei5 = new System.Windows.Forms.TextBox();
             this.txtZaiCd5 = new System.Windows.Forms.TextBox();
             this.button20 = new System.Windows.Forms.Button();
-            this.txtZaiRit4 = new System.Windows.Forms.TextBox();
-            this.txtZaiTnk4 = new System.Windows.Forms.TextBox();
+            this.txtZaiRit4 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTnk4 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei4 = new System.Windows.Forms.TextBox();
             this.txtZaiCd4 = new System.Windows.Forms.TextBox();
             this.button21 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
-            this.txtKakTnk3 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk3 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei3 = new System.Windows.Forms.TextBox();
             this.txtKakCd3 = new System.Windows.Forms.TextBox();
             this.button16 = new System.Windows.Forms.Button();
-            this.txtKakTnk2 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk2 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei2 = new System.Windows.Forms.TextBox();
             this.txtKakCd2 = new System.Windows.Forms.TextBox();
             this.button17 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
-            this.txtKakTnk1 = new System.Windows.Forms.TextBox();
+            this.txtKakTnk1 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKakMei1 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.txtKakCd1 = new System.Windows.Forms.TextBox();
@@ -144,27 +124,27 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtSrrt3 = new System.Windows.Forms.TextBox();
-            this.txtArr3 = new System.Windows.Forms.TextBox();
-            this.txtZaiRit3 = new System.Windows.Forms.TextBox();
-            this.txtZaiTnk3 = new System.Windows.Forms.TextBox();
+            this.txtSrrt3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiRit3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTnk3 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei3 = new System.Windows.Forms.TextBox();
             this.txtZaiCd3 = new System.Windows.Forms.TextBox();
             this.button15 = new System.Windows.Forms.Button();
-            this.txtSrrt2 = new System.Windows.Forms.TextBox();
-            this.txtArr2 = new System.Windows.Forms.TextBox();
-            this.txtZaiRit2 = new System.Windows.Forms.TextBox();
-            this.txtZaiTnk2 = new System.Windows.Forms.TextBox();
+            this.txtSrrt2 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr2 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiRit2 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiTnk2 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei2 = new System.Windows.Forms.TextBox();
             this.txtZaiCd2 = new System.Windows.Forms.TextBox();
             this.button14 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtSrrt1 = new System.Windows.Forms.TextBox();
-            this.txtArr1 = new System.Windows.Forms.TextBox();
-            this.txtZaiRit1 = new System.Windows.Forms.TextBox();
+            this.txtSrrt1 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtArr1 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtZaiRit1 = new KATO.Common.Ctl.BaseTextMoney();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.txtZaiTnk1 = new System.Windows.Forms.TextBox();
+            this.txtZaiTnk1 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiMei1 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtZaiCd1 = new System.Windows.Forms.TextBox();
@@ -181,206 +161,77 @@
             this.label26 = new System.Windows.Forms.Label();
             this.textBox37 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Tokuisaki();
+            this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.lsTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.lsEigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.gridMitsmori = new KATO.Common.Ctl.BaseDataGridViewEdit();
-            this.statusStrip1.SuspendLayout();
+            this.txtMNum = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtMYMD = new KATO.Common.Ctl.BaseCalendar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMitsmori)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStripStatusLabel1
+            // btnF01
             // 
-            this.toolStripStatusLabel1.AutoSize = false;
-            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(60, 19);
-            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF01.Location = new System.Drawing.Point(4, 789);
+            this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // toolStripStatusLabel6
+            // btnF12
             // 
-            this.toolStripStatusLabel6.AutoSize = false;
-            this.toolStripStatusLabel6.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabel6.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
-            this.toolStripStatusLabel6.Size = new System.Drawing.Size(1078, 19);
-            this.toolStripStatusLabel6.Spring = true;
-            this.toolStripStatusLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF12.Location = new System.Drawing.Point(1302, 789);
+            this.btnF12.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // toolStripStatusLabel5
+            // btnF11
             // 
-            this.toolStripStatusLabel5.AutoSize = false;
-            this.toolStripStatusLabel5.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabel5.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this.toolStripStatusLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(1, 19);
-            this.toolStripStatusLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF11.Location = new System.Drawing.Point(1184, 789);
+            this.btnF11.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // toolStripStatusLabel3
+            // btnF10
             // 
-            this.toolStripStatusLabel3.AutoSize = false;
-            this.toolStripStatusLabel3.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabel3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(160, 19);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF10.Location = new System.Drawing.Point(1066, 789);
+            this.btnF10.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // toolStripStatusLabel4
+            // btnF09
             // 
-            this.toolStripStatusLabel4.AutoSize = false;
-            this.toolStripStatusLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(110, 19);
-            this.toolStripStatusLabel4.Text = "9999/99/99 99:99";
+            this.btnF09.Location = new System.Drawing.Point(948, 789);
+            this.btnF09.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button12
+            // btnF08
             // 
-            this.button12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button12.Location = new System.Drawing.Point(1116, 789);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(100, 23);
-            this.button12.TabIndex = 33;
-            this.button12.Text = "終了(F12)";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnF08.Location = new System.Drawing.Point(830, 789);
+            this.btnF08.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button11
+            // btnF07
             // 
-            this.button11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button11.Location = new System.Drawing.Point(1015, 789);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(100, 23);
-            this.button11.TabIndex = 32;
-            this.button11.Text = "印刷(F11)";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnF07.Location = new System.Drawing.Point(712, 789);
+            this.btnF07.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button3
+            // btnF06
             // 
-            this.button3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(207, 789);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 23);
-            this.button3.TabIndex = 24;
-            this.button3.Text = "削除(F3)";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnF06.Location = new System.Drawing.Point(594, 789);
+            this.btnF06.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // statusStrip1
+            // btnF05
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel6,
-            this.toolStripStatusLabel5,
-            this.toolStripStatusLabel3,
-            this.toolStripStatusLabel4});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 792);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1424, 24);
-            this.statusStrip1.TabIndex = 125;
-            this.statusStrip1.Text = "statusStrip1";
+            this.btnF05.Location = new System.Drawing.Point(476, 789);
+            this.btnF05.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button1
+            // btnF04
             // 
-            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(5, 789);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "登録(F1)";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnF04.Location = new System.Drawing.Point(358, 789);
+            this.btnF04.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button10
+            // btnF03
             // 
-            this.button10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button10.Location = new System.Drawing.Point(914, 789);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(100, 23);
-            this.button10.TabIndex = 31;
-            this.button10.Text = "仕入詳細";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnF03.Location = new System.Drawing.Point(240, 789);
+            this.btnF03.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
-            // button9
+            // btnF02
             // 
-            this.button9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button9.Location = new System.Drawing.Point(813, 789);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 23);
-            this.button9.TabIndex = 30;
-            this.button9.Text = "検索(F9)";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button8.Location = new System.Drawing.Point(712, 789);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 23);
-            this.button8.TabIndex = 29;
-            this.button8.Text = "終わり(F8)";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button7.Location = new System.Drawing.Point(611, 789);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 23);
-            this.button7.TabIndex = 28;
-            this.button7.Text = "行挿入(F7)";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button6.Location = new System.Drawing.Point(510, 789);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 23);
-            this.button6.TabIndex = 27;
-            this.button6.Text = "行削除(F6)";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button5.Location = new System.Drawing.Point(409, 789);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 23);
-            this.button5.TabIndex = 26;
-            this.button5.Text = "選択(F5)";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(308, 789);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 23);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "取消(F4)";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(106, 789);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 23);
-            this.button2.TabIndex = 23;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnF02.Location = new System.Drawing.Point(122, 789);
+            this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // label2
             // 
@@ -411,16 +262,6 @@
             this.label3.TabIndex = 144;
             this.label3.Text = "見積書番号";
             // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox4.Location = new System.Drawing.Point(269, 14);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(62, 22);
-            this.textBox4.TabIndex = 1;
-            this.textBox4.Text = "82098";
-            this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -430,15 +271,6 @@
             this.label5.Size = new System.Drawing.Size(87, 15);
             this.label5.TabIndex = 147;
             this.label5.Text = "見積年月日";
-            // 
-            // txtMYMD
-            // 
-            this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtMYMD.Location = new System.Drawing.Point(430, 14);
-            this.txtMYMD.Name = "txtMYMD";
-            this.txtMYMD.Size = new System.Drawing.Size(86, 22);
-            this.txtMYMD.TabIndex = 2;
-            this.txtMYMD.Text = "2017/01/12";
             // 
             // label6
             // 
@@ -451,14 +283,14 @@
             this.label6.Text = "担当者名";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // textBox8
+            // txtTanto
             // 
-            this.textBox8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox8.Location = new System.Drawing.Point(147, 89);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(320, 22);
-            this.textBox8.TabIndex = 9;
-            this.textBox8.Text = "大橋次長殿";
+            this.txtTanto.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtTanto.Location = new System.Drawing.Point(147, 89);
+            this.txtTanto.Name = "txtTanto";
+            this.txtTanto.Size = new System.Drawing.Size(320, 22);
+            this.txtTanto.TabIndex = 9;
+            this.txtTanto.Text = "大橋次長殿";
             // 
             // label7
             // 
@@ -470,18 +302,18 @@
             this.label7.TabIndex = 154;
             this.label7.Text = "支払条件";
             // 
-            // comboBox1
+            // cbJoken
             // 
-            this.comboBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbJoken.FormattingEnabled = true;
+            this.cbJoken.Items.AddRange(new object[] {
             "従来通り",
             "別途打合せ"});
-            this.comboBox1.Location = new System.Drawing.Point(473, 165);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 23);
-            this.comboBox1.TabIndex = 13;
-            this.comboBox1.Text = "従来通り";
+            this.cbJoken.Location = new System.Drawing.Point(473, 165);
+            this.cbJoken.Name = "cbJoken";
+            this.cbJoken.Size = new System.Drawing.Size(192, 23);
+            this.cbJoken.TabIndex = 13;
+            this.cbJoken.Text = "従来通り";
             // 
             // label8
             // 
@@ -493,28 +325,28 @@
             this.label8.TabIndex = 156;
             this.label8.Text = "件　　名";
             // 
-            // textBox9
+            // txtKenmei
             // 
-            this.textBox9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox9.Location = new System.Drawing.Point(147, 114);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(320, 22);
-            this.textBox9.TabIndex = 10;
-            this.textBox9.Text = "※4280005 蜆川J";
+            this.txtKenmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKenmei.Location = new System.Drawing.Point(147, 114);
+            this.txtKenmei.Name = "txtKenmei";
+            this.txtKenmei.Size = new System.Drawing.Size(320, 22);
+            this.txtKenmei.TabIndex = 10;
+            this.txtKenmei.Text = "※4280005 蜆川J";
             // 
-            // comboBox2
+            // cbKigen
             // 
-            this.comboBox2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbKigen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbKigen.FormattingEnabled = true;
+            this.cbKigen.Items.AddRange(new object[] {
             "１０日間",
             "２０日間",
             "３０日間"});
-            this.comboBox2.Location = new System.Drawing.Point(147, 165);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(192, 23);
-            this.comboBox2.TabIndex = 12;
-            this.comboBox2.Text = "３０日間";
+            this.cbKigen.Location = new System.Drawing.Point(147, 165);
+            this.cbKigen.Name = "cbKigen";
+            this.cbKigen.Size = new System.Drawing.Size(192, 23);
+            this.cbKigen.TabIndex = 12;
+            this.cbKigen.Text = "３０日間";
             // 
             // label9
             // 
@@ -526,19 +358,19 @@
             this.label9.TabIndex = 158;
             this.label9.Text = "有効期限";
             // 
-            // comboBox3
+            // cbNoki
             // 
-            this.comboBox3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.cbNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbNoki.FormattingEnabled = true;
+            this.cbNoki.Items.AddRange(new object[] {
             "受注後　日",
             "下記参照願います",
             "別途打合せ"});
-            this.comboBox3.Location = new System.Drawing.Point(147, 139);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(192, 23);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.Text = "下記参照願います";
+            this.cbNoki.Location = new System.Drawing.Point(147, 139);
+            this.cbNoki.Name = "cbNoki";
+            this.cbNoki.Size = new System.Drawing.Size(192, 23);
+            this.cbNoki.TabIndex = 11;
+            this.cbNoki.Text = "下記参照願います";
             // 
             // label10
             // 
@@ -576,13 +408,13 @@
             this.label11.TabIndex = 162;
             this.label11.Text = "納入先コード";
             // 
-            // textBox12
+            // txtBiko
             // 
-            this.textBox12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox12.Location = new System.Drawing.Point(147, 191);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(320, 22);
-            this.textBox12.TabIndex = 14;
+            this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtBiko.Location = new System.Drawing.Point(147, 191);
+            this.txtBiko.Name = "txtBiko";
+            this.txtBiko.Size = new System.Drawing.Size(320, 22);
+            this.txtBiko.TabIndex = 14;
             // 
             // label12
             // 
@@ -782,8 +614,14 @@
             // txtZaiTeika6
             // 
             this.txtZaiTeika6.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika6.blnCommaOK = true;
             this.txtZaiTeika6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika6.intDeciSet = 2;
+            this.txtZaiTeika6.intIntederSet = 10;
+            this.txtZaiTeika6.intShishagonyu = 0;
             this.txtZaiTeika6.Location = new System.Drawing.Point(410, 166);
+            this.txtZaiTeika6.MaxLength = 13;
             this.txtZaiTeika6.Name = "txtZaiTeika6";
             this.txtZaiTeika6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika6.TabIndex = 26;
@@ -793,8 +631,14 @@
             // txtZaiTeika5
             // 
             this.txtZaiTeika5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika5.blnCommaOK = true;
             this.txtZaiTeika5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika5.intDeciSet = 2;
+            this.txtZaiTeika5.intIntederSet = 10;
+            this.txtZaiTeika5.intShishagonyu = 0;
             this.txtZaiTeika5.Location = new System.Drawing.Point(410, 141);
+            this.txtZaiTeika5.MaxLength = 13;
             this.txtZaiTeika5.Name = "txtZaiTeika5";
             this.txtZaiTeika5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika5.TabIndex = 21;
@@ -804,8 +648,14 @@
             // txtZaiTeika4
             // 
             this.txtZaiTeika4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika4.blnCommaOK = true;
             this.txtZaiTeika4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika4.intDeciSet = 2;
+            this.txtZaiTeika4.intIntederSet = 10;
+            this.txtZaiTeika4.intShishagonyu = 0;
             this.txtZaiTeika4.Location = new System.Drawing.Point(410, 116);
+            this.txtZaiTeika4.MaxLength = 13;
             this.txtZaiTeika4.Name = "txtZaiTeika4";
             this.txtZaiTeika4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika4.TabIndex = 16;
@@ -815,8 +665,14 @@
             // txtZaiTeika3
             // 
             this.txtZaiTeika3.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika3.blnCommaOK = true;
             this.txtZaiTeika3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika3.intDeciSet = 2;
+            this.txtZaiTeika3.intIntederSet = 10;
+            this.txtZaiTeika3.intShishagonyu = 0;
             this.txtZaiTeika3.Location = new System.Drawing.Point(410, 75);
+            this.txtZaiTeika3.MaxLength = 13;
             this.txtZaiTeika3.Name = "txtZaiTeika3";
             this.txtZaiTeika3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika3.TabIndex = 11;
@@ -828,8 +684,14 @@
             // txtZaiTeika2
             // 
             this.txtZaiTeika2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika2.blnCommaOK = true;
             this.txtZaiTeika2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika2.intDeciSet = 2;
+            this.txtZaiTeika2.intIntederSet = 10;
+            this.txtZaiTeika2.intShishagonyu = 0;
             this.txtZaiTeika2.Location = new System.Drawing.Point(410, 50);
+            this.txtZaiTeika2.MaxLength = 13;
             this.txtZaiTeika2.Name = "txtZaiTeika2";
             this.txtZaiTeika2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika2.TabIndex = 6;
@@ -851,8 +713,14 @@
             // txtZaiTeika1
             // 
             this.txtZaiTeika1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiTeika1.blnCommaOK = true;
             this.txtZaiTeika1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTeika1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTeika1.intDeciSet = 2;
+            this.txtZaiTeika1.intIntederSet = 10;
+            this.txtZaiTeika1.intShishagonyu = 0;
             this.txtZaiTeika1.Location = new System.Drawing.Point(410, 25);
+            this.txtZaiTeika1.MaxLength = 13;
             this.txtZaiTeika1.Name = "txtZaiTeika1";
             this.txtZaiTeika1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika1.TabIndex = 1;
@@ -929,8 +797,14 @@
             // 
             // txtKakTnk6
             // 
+            this.txtKakTnk6.blnCommaOK = true;
             this.txtKakTnk6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk6.intDeciSet = 2;
+            this.txtKakTnk6.intIntederSet = 0;
+            this.txtKakTnk6.intShishagonyu = 0;
             this.txtKakTnk6.Location = new System.Drawing.Point(1092, 166);
+            this.txtKakTnk6.MaxLength = 3;
             this.txtKakTnk6.Name = "txtKakTnk6";
             this.txtKakTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk6.TabIndex = 29;
@@ -970,8 +844,14 @@
             // 
             // txtKakTnk5
             // 
+            this.txtKakTnk5.blnCommaOK = true;
             this.txtKakTnk5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk5.intDeciSet = 2;
+            this.txtKakTnk5.intIntederSet = 0;
+            this.txtKakTnk5.intShishagonyu = 0;
             this.txtKakTnk5.Location = new System.Drawing.Point(1092, 141);
+            this.txtKakTnk5.MaxLength = 3;
             this.txtKakTnk5.Name = "txtKakTnk5";
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk5.TabIndex = 24;
@@ -1011,8 +891,14 @@
             // 
             // txtKakTnk4
             // 
+            this.txtKakTnk4.blnCommaOK = true;
             this.txtKakTnk4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk4.intDeciSet = 2;
+            this.txtKakTnk4.intIntederSet = 0;
+            this.txtKakTnk4.intShishagonyu = 0;
             this.txtKakTnk4.Location = new System.Drawing.Point(1092, 116);
+            this.txtKakTnk4.MaxLength = 3;
             this.txtKakTnk4.Name = "txtKakTnk4";
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk4.TabIndex = 19;
@@ -1053,8 +939,14 @@
             // txtSrrt6
             // 
             this.txtSrrt6.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt6.blnCommaOK = true;
             this.txtSrrt6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt6.intDeciSet = 1;
+            this.txtSrrt6.intIntederSet = 0;
+            this.txtSrrt6.intShishagonyu = 0;
             this.txtSrrt6.Location = new System.Drawing.Point(1326, 166);
+            this.txtSrrt6.MaxLength = 2;
             this.txtSrrt6.Name = "txtSrrt6";
             this.txtSrrt6.ReadOnly = true;
             this.txtSrrt6.Size = new System.Drawing.Size(38, 22);
@@ -1065,8 +957,14 @@
             // txtArr6
             // 
             this.txtArr6.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr6.blnCommaOK = true;
             this.txtArr6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr6.intDeciSet = 2;
+            this.txtArr6.intIntederSet = 10;
+            this.txtArr6.intShishagonyu = 0;
             this.txtArr6.Location = new System.Drawing.Point(1228, 166);
+            this.txtArr6.MaxLength = 13;
             this.txtArr6.Name = "txtArr6";
             this.txtArr6.ReadOnly = true;
             this.txtArr6.Size = new System.Drawing.Size(95, 22);
@@ -1077,8 +975,14 @@
             // txtSrrt5
             // 
             this.txtSrrt5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt5.blnCommaOK = true;
             this.txtSrrt5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt5.intDeciSet = 1;
+            this.txtSrrt5.intIntederSet = 0;
+            this.txtSrrt5.intShishagonyu = 0;
             this.txtSrrt5.Location = new System.Drawing.Point(1326, 141);
+            this.txtSrrt5.MaxLength = 2;
             this.txtSrrt5.Name = "txtSrrt5";
             this.txtSrrt5.ReadOnly = true;
             this.txtSrrt5.Size = new System.Drawing.Size(38, 22);
@@ -1089,8 +993,14 @@
             // txtArr5
             // 
             this.txtArr5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr5.blnCommaOK = true;
             this.txtArr5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr5.intDeciSet = 2;
+            this.txtArr5.intIntederSet = 10;
+            this.txtArr5.intShishagonyu = 0;
             this.txtArr5.Location = new System.Drawing.Point(1228, 141);
+            this.txtArr5.MaxLength = 13;
             this.txtArr5.Name = "txtArr5";
             this.txtArr5.ReadOnly = true;
             this.txtArr5.Size = new System.Drawing.Size(95, 22);
@@ -1101,8 +1011,14 @@
             // txtSrrt4
             // 
             this.txtSrrt4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt4.blnCommaOK = true;
             this.txtSrrt4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt4.intDeciSet = 1;
+            this.txtSrrt4.intIntederSet = 0;
+            this.txtSrrt4.intShishagonyu = 0;
             this.txtSrrt4.Location = new System.Drawing.Point(1326, 116);
+            this.txtSrrt4.MaxLength = 2;
             this.txtSrrt4.Name = "txtSrrt4";
             this.txtSrrt4.ReadOnly = true;
             this.txtSrrt4.Size = new System.Drawing.Size(38, 22);
@@ -1113,8 +1029,14 @@
             // txtArr4
             // 
             this.txtArr4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr4.blnCommaOK = true;
             this.txtArr4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr4.intDeciSet = 2;
+            this.txtArr4.intIntederSet = 10;
+            this.txtArr4.intShishagonyu = 0;
             this.txtArr4.Location = new System.Drawing.Point(1228, 116);
+            this.txtArr4.MaxLength = 13;
             this.txtArr4.Name = "txtArr4";
             this.txtArr4.ReadOnly = true;
             this.txtArr4.Size = new System.Drawing.Size(95, 22);
@@ -1137,8 +1059,14 @@
             // txtZaiRit6
             // 
             this.txtZaiRit6.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit6.blnCommaOK = true;
             this.txtZaiRit6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit6.intDeciSet = 1;
+            this.txtZaiRit6.intIntederSet = 0;
+            this.txtZaiRit6.intShishagonyu = 0;
             this.txtZaiRit6.Location = new System.Drawing.Point(607, 166);
+            this.txtZaiRit6.MaxLength = 2;
             this.txtZaiRit6.Name = "txtZaiRit6";
             this.txtZaiRit6.ReadOnly = true;
             this.txtZaiRit6.Size = new System.Drawing.Size(38, 22);
@@ -1148,8 +1076,14 @@
             // 
             // txtZaiTnk6
             // 
+            this.txtZaiTnk6.blnCommaOK = true;
             this.txtZaiTnk6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk6.intDeciSet = 2;
+            this.txtZaiTnk6.intIntederSet = 10;
+            this.txtZaiTnk6.intShishagonyu = 0;
             this.txtZaiTnk6.Location = new System.Drawing.Point(507, 166);
+            this.txtZaiTnk6.MaxLength = 13;
             this.txtZaiTnk6.Name = "txtZaiTnk6";
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk6.TabIndex = 27;
@@ -1173,6 +1107,7 @@
             this.txtZaiCd6.Name = "txtZaiCd6";
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd6.TabIndex = 25;
+            this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             // 
             // button19
             // 
@@ -1188,8 +1123,14 @@
             // txtZaiRit5
             // 
             this.txtZaiRit5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit5.blnCommaOK = true;
             this.txtZaiRit5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit5.intDeciSet = 1;
+            this.txtZaiRit5.intIntederSet = 0;
+            this.txtZaiRit5.intShishagonyu = 0;
             this.txtZaiRit5.Location = new System.Drawing.Point(607, 141);
+            this.txtZaiRit5.MaxLength = 2;
             this.txtZaiRit5.Name = "txtZaiRit5";
             this.txtZaiRit5.ReadOnly = true;
             this.txtZaiRit5.Size = new System.Drawing.Size(38, 22);
@@ -1199,8 +1140,14 @@
             // 
             // txtZaiTnk5
             // 
+            this.txtZaiTnk5.blnCommaOK = true;
             this.txtZaiTnk5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk5.intDeciSet = 2;
+            this.txtZaiTnk5.intIntederSet = 10;
+            this.txtZaiTnk5.intShishagonyu = 0;
             this.txtZaiTnk5.Location = new System.Drawing.Point(507, 141);
+            this.txtZaiTnk5.MaxLength = 13;
             this.txtZaiTnk5.Name = "txtZaiTnk5";
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk5.TabIndex = 22;
@@ -1224,6 +1171,7 @@
             this.txtZaiCd5.Name = "txtZaiCd5";
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd5.TabIndex = 20;
+            this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             // 
             // button20
             // 
@@ -1239,8 +1187,14 @@
             // txtZaiRit4
             // 
             this.txtZaiRit4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit4.blnCommaOK = true;
             this.txtZaiRit4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit4.intDeciSet = 1;
+            this.txtZaiRit4.intIntederSet = 0;
+            this.txtZaiRit4.intShishagonyu = 0;
             this.txtZaiRit4.Location = new System.Drawing.Point(607, 116);
+            this.txtZaiRit4.MaxLength = 2;
             this.txtZaiRit4.Name = "txtZaiRit4";
             this.txtZaiRit4.ReadOnly = true;
             this.txtZaiRit4.Size = new System.Drawing.Size(38, 22);
@@ -1250,8 +1204,14 @@
             // 
             // txtZaiTnk4
             // 
+            this.txtZaiTnk4.blnCommaOK = true;
             this.txtZaiTnk4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk4.intDeciSet = 2;
+            this.txtZaiTnk4.intIntederSet = 10;
+            this.txtZaiTnk4.intShishagonyu = 0;
             this.txtZaiTnk4.Location = new System.Drawing.Point(507, 116);
+            this.txtZaiTnk4.MaxLength = 13;
             this.txtZaiTnk4.Name = "txtZaiTnk4";
             this.txtZaiTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk4.TabIndex = 17;
@@ -1275,6 +1235,7 @@
             this.txtZaiCd4.Name = "txtZaiCd4";
             this.txtZaiCd4.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd4.TabIndex = 15;
+            this.txtZaiCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             // 
             // button21
             // 
@@ -1301,8 +1262,14 @@
             // 
             // txtKakTnk3
             // 
+            this.txtKakTnk3.blnCommaOK = true;
             this.txtKakTnk3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk3.intDeciSet = 2;
+            this.txtKakTnk3.intIntederSet = 0;
+            this.txtKakTnk3.intShishagonyu = 0;
             this.txtKakTnk3.Location = new System.Drawing.Point(1092, 75);
+            this.txtKakTnk3.MaxLength = 3;
             this.txtKakTnk3.Name = "txtKakTnk3";
             this.txtKakTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk3.TabIndex = 14;
@@ -1344,8 +1311,14 @@
             // 
             // txtKakTnk2
             // 
+            this.txtKakTnk2.blnCommaOK = true;
             this.txtKakTnk2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk2.intDeciSet = 2;
+            this.txtKakTnk2.intIntederSet = 0;
+            this.txtKakTnk2.intShishagonyu = 0;
             this.txtKakTnk2.Location = new System.Drawing.Point(1092, 50);
+            this.txtKakTnk2.MaxLength = 3;
             this.txtKakTnk2.Name = "txtKakTnk2";
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk2.TabIndex = 9;
@@ -1397,8 +1370,14 @@
             // 
             // txtKakTnk1
             // 
+            this.txtKakTnk1.blnCommaOK = true;
             this.txtKakTnk1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKakTnk1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk1.intDeciSet = 2;
+            this.txtKakTnk1.intIntederSet = 0;
+            this.txtKakTnk1.intShishagonyu = 0;
             this.txtKakTnk1.Location = new System.Drawing.Point(1092, 25);
+            this.txtKakTnk1.MaxLength = 3;
             this.txtKakTnk1.Name = "txtKakTnk1";
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk1.TabIndex = 4;
@@ -1484,8 +1463,14 @@
             // txtSrrt3
             // 
             this.txtSrrt3.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt3.blnCommaOK = true;
             this.txtSrrt3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt3.intDeciSet = 1;
+            this.txtSrrt3.intIntederSet = 0;
+            this.txtSrrt3.intShishagonyu = 0;
             this.txtSrrt3.Location = new System.Drawing.Point(1326, 75);
+            this.txtSrrt3.MaxLength = 2;
             this.txtSrrt3.Name = "txtSrrt3";
             this.txtSrrt3.ReadOnly = true;
             this.txtSrrt3.Size = new System.Drawing.Size(38, 22);
@@ -1497,8 +1482,14 @@
             // txtArr3
             // 
             this.txtArr3.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr3.blnCommaOK = true;
             this.txtArr3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr3.intDeciSet = 2;
+            this.txtArr3.intIntederSet = 10;
+            this.txtArr3.intShishagonyu = 0;
             this.txtArr3.Location = new System.Drawing.Point(1228, 75);
+            this.txtArr3.MaxLength = 13;
             this.txtArr3.Name = "txtArr3";
             this.txtArr3.ReadOnly = true;
             this.txtArr3.Size = new System.Drawing.Size(95, 22);
@@ -1510,8 +1501,14 @@
             // txtZaiRit3
             // 
             this.txtZaiRit3.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit3.blnCommaOK = true;
             this.txtZaiRit3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit3.intDeciSet = 1;
+            this.txtZaiRit3.intIntederSet = 0;
+            this.txtZaiRit3.intShishagonyu = 0;
             this.txtZaiRit3.Location = new System.Drawing.Point(607, 75);
+            this.txtZaiRit3.MaxLength = 2;
             this.txtZaiRit3.Name = "txtZaiRit3";
             this.txtZaiRit3.ReadOnly = true;
             this.txtZaiRit3.Size = new System.Drawing.Size(38, 22);
@@ -1522,12 +1519,19 @@
             // 
             // txtZaiTnk3
             // 
+            this.txtZaiTnk3.blnCommaOK = true;
             this.txtZaiTnk3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk3.intDeciSet = 2;
+            this.txtZaiTnk3.intIntederSet = 10;
+            this.txtZaiTnk3.intShishagonyu = 0;
             this.txtZaiTnk3.Location = new System.Drawing.Point(507, 75);
+            this.txtZaiTnk3.MaxLength = 13;
             this.txtZaiTnk3.Name = "txtZaiTnk3";
             this.txtZaiTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk3.TabIndex = 12;
             this.txtZaiTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             this.txtZaiTnk3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiMei3
@@ -1549,6 +1553,7 @@
             this.txtZaiCd3.Name = "txtZaiCd3";
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd3.TabIndex = 10;
+            this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // button15
@@ -1565,8 +1570,14 @@
             // txtSrrt2
             // 
             this.txtSrrt2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt2.blnCommaOK = true;
             this.txtSrrt2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt2.intDeciSet = 1;
+            this.txtSrrt2.intIntederSet = 0;
+            this.txtSrrt2.intShishagonyu = 0;
             this.txtSrrt2.Location = new System.Drawing.Point(1326, 50);
+            this.txtSrrt2.MaxLength = 2;
             this.txtSrrt2.Name = "txtSrrt2";
             this.txtSrrt2.ReadOnly = true;
             this.txtSrrt2.Size = new System.Drawing.Size(38, 22);
@@ -1578,8 +1589,14 @@
             // txtArr2
             // 
             this.txtArr2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr2.blnCommaOK = true;
             this.txtArr2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr2.intDeciSet = 2;
+            this.txtArr2.intIntederSet = 10;
+            this.txtArr2.intShishagonyu = 0;
             this.txtArr2.Location = new System.Drawing.Point(1228, 50);
+            this.txtArr2.MaxLength = 13;
             this.txtArr2.Name = "txtArr2";
             this.txtArr2.ReadOnly = true;
             this.txtArr2.Size = new System.Drawing.Size(95, 22);
@@ -1591,8 +1608,14 @@
             // txtZaiRit2
             // 
             this.txtZaiRit2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit2.blnCommaOK = true;
             this.txtZaiRit2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit2.intDeciSet = 1;
+            this.txtZaiRit2.intIntederSet = 0;
+            this.txtZaiRit2.intShishagonyu = 0;
             this.txtZaiRit2.Location = new System.Drawing.Point(607, 50);
+            this.txtZaiRit2.MaxLength = 2;
             this.txtZaiRit2.Name = "txtZaiRit2";
             this.txtZaiRit2.ReadOnly = true;
             this.txtZaiRit2.Size = new System.Drawing.Size(38, 22);
@@ -1603,12 +1626,19 @@
             // 
             // txtZaiTnk2
             // 
+            this.txtZaiTnk2.blnCommaOK = true;
             this.txtZaiTnk2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk2.intDeciSet = 2;
+            this.txtZaiTnk2.intIntederSet = 10;
+            this.txtZaiTnk2.intShishagonyu = 0;
             this.txtZaiTnk2.Location = new System.Drawing.Point(507, 50);
+            this.txtZaiTnk2.MaxLength = 13;
             this.txtZaiTnk2.Name = "txtZaiTnk2";
             this.txtZaiTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk2.TabIndex = 7;
             this.txtZaiTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             this.txtZaiTnk2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtZaiMei2
@@ -1630,6 +1660,7 @@
             this.txtZaiCd2.Name = "txtZaiCd2";
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd2.TabIndex = 5;
+            this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // button14
@@ -1656,8 +1687,14 @@
             // txtSrrt1
             // 
             this.txtSrrt1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSrrt1.blnCommaOK = true;
             this.txtSrrt1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSrrt1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSrrt1.intDeciSet = 1;
+            this.txtSrrt1.intIntederSet = 0;
+            this.txtSrrt1.intShishagonyu = 0;
             this.txtSrrt1.Location = new System.Drawing.Point(1326, 25);
+            this.txtSrrt1.MaxLength = 2;
             this.txtSrrt1.Name = "txtSrrt1";
             this.txtSrrt1.ReadOnly = true;
             this.txtSrrt1.Size = new System.Drawing.Size(38, 22);
@@ -1669,8 +1706,14 @@
             // txtArr1
             // 
             this.txtArr1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtArr1.blnCommaOK = true;
             this.txtArr1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArr1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtArr1.intDeciSet = 2;
+            this.txtArr1.intIntederSet = 10;
+            this.txtArr1.intShishagonyu = 0;
             this.txtArr1.Location = new System.Drawing.Point(1228, 25);
+            this.txtArr1.MaxLength = 13;
             this.txtArr1.Name = "txtArr1";
             this.txtArr1.ReadOnly = true;
             this.txtArr1.Size = new System.Drawing.Size(95, 22);
@@ -1682,8 +1725,14 @@
             // txtZaiRit1
             // 
             this.txtZaiRit1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtZaiRit1.blnCommaOK = true;
             this.txtZaiRit1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiRit1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiRit1.intDeciSet = 1;
+            this.txtZaiRit1.intIntederSet = 0;
+            this.txtZaiRit1.intShishagonyu = 0;
             this.txtZaiRit1.Location = new System.Drawing.Point(607, 25);
+            this.txtZaiRit1.MaxLength = 2;
             this.txtZaiRit1.Name = "txtZaiRit1";
             this.txtZaiRit1.ReadOnly = true;
             this.txtZaiRit1.Size = new System.Drawing.Size(38, 22);
@@ -1714,12 +1763,19 @@
             // 
             // txtZaiTnk1
             // 
+            this.txtZaiTnk1.blnCommaOK = true;
             this.txtZaiTnk1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtZaiTnk1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtZaiTnk1.intDeciSet = 2;
+            this.txtZaiTnk1.intIntederSet = 10;
+            this.txtZaiTnk1.intShishagonyu = 0;
             this.txtZaiTnk1.Location = new System.Drawing.Point(507, 25);
+            this.txtZaiTnk1.MaxLength = 13;
             this.txtZaiTnk1.Name = "txtZaiTnk1";
             this.txtZaiTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk1.TabIndex = 2;
             this.txtZaiTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             this.txtZaiTnk1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiMei1
@@ -1751,6 +1807,7 @@
             this.txtZaiCd1.Name = "txtZaiCd1";
             this.txtZaiCd1.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd1.TabIndex = 0;
+            this.txtZaiCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // button13
@@ -1827,7 +1884,6 @@
             this.textBox35.Size = new System.Drawing.Size(110, 15);
             this.textBox35.TabIndex = 179;
             this.textBox35.TabStop = false;
-            this.textBox35.Text = "334,500";
             this.textBox35.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox34
@@ -1841,7 +1897,6 @@
             this.textBox34.Size = new System.Drawing.Size(110, 15);
             this.textBox34.TabIndex = 181;
             this.textBox34.TabStop = false;
-            this.textBox34.Text = "197,050";
             this.textBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label25
@@ -1865,7 +1920,6 @@
             this.textBox36.Size = new System.Drawing.Size(110, 15);
             this.textBox36.TabIndex = 183;
             this.textBox36.TabStop = false;
-            this.textBox36.Text = "137,450";
             this.textBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label26
@@ -1889,7 +1943,6 @@
             this.textBox37.Size = new System.Drawing.Size(49, 15);
             this.textBox37.TabIndex = 185;
             this.textBox37.TabStop = false;
-            this.textBox37.Text = "41.09";
             this.textBox37.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label27
@@ -1962,46 +2015,77 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
             this.gridMitsmori.StandardTab = true;
             this.gridMitsmori.TabIndex = 1004;
+            this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
+            this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
+            this.gridMitsmori.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
+            // 
+            // txtMNum
+            // 
+            this.txtMNum.blnCommaOK = false;
+            this.txtMNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMNum.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMNum.intDeciSet = 0;
+            this.txtMNum.intIntederSet = 0;
+            this.txtMNum.intShishagonyu = 0;
+            this.txtMNum.Location = new System.Drawing.Point(269, 14);
+            this.txtMNum.MaxLength = 0;
+            this.txtMNum.Name = "txtMNum";
+            this.txtMNum.Size = new System.Drawing.Size(62, 22);
+            this.txtMNum.TabIndex = 1005;
+            this.txtMNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtMNum.Leave += new System.EventHandler(this.txtMNum_Leave);
+            // 
+            // txtMYMD
+            // 
+            this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMYMD.Location = new System.Drawing.Point(426, 14);
+            this.txtMYMD.Name = "txtMYMD";
+            this.txtMYMD.Size = new System.Drawing.Size(86, 22);
+            this.txtMYMD.TabIndex = 1006;
+            this.txtMYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // H0210_MitsumoriInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.Controls.Add(this.txtMYMD);
+            this.Controls.Add(this.txtMNum);
             this.Controls.Add(this.gridMitsmori);
             this.Controls.Add(this.lsEigyosho);
             this.Controls.Add(this.lsTantousha);
@@ -2022,78 +2106,49 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.txtBiko);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtNonyuName);
             this.Controls.Add(this.txtNonyuCd);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cbNoki);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbKigen);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.txtKenmei);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbJoken);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txtTanto);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtMYMD);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtMode);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
             this.KeyPreview = true;
             this.Name = "H0210_MitsumoriInput";
             this.Text = "販売管理 - [見積書入力]";
+            this.Load += new System.EventHandler(this.H0210_MitsumoriInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form7_KeyDown);
-            this.Controls.SetChildIndex(this.button2, 0);
-            this.Controls.SetChildIndex(this.button4, 0);
-            this.Controls.SetChildIndex(this.button5, 0);
-            this.Controls.SetChildIndex(this.button6, 0);
-            this.Controls.SetChildIndex(this.button7, 0);
-            this.Controls.SetChildIndex(this.button8, 0);
-            this.Controls.SetChildIndex(this.button9, 0);
-            this.Controls.SetChildIndex(this.button10, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
-            this.Controls.SetChildIndex(this.statusStrip1, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
-            this.Controls.SetChildIndex(this.button11, 0);
-            this.Controls.SetChildIndex(this.button12, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.txtMode, 0);
             this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.textBox4, 0);
             this.Controls.SetChildIndex(this.label5, 0);
-            this.Controls.SetChildIndex(this.txtMYMD, 0);
             this.Controls.SetChildIndex(this.label6, 0);
-            this.Controls.SetChildIndex(this.textBox8, 0);
+            this.Controls.SetChildIndex(this.txtTanto, 0);
             this.Controls.SetChildIndex(this.label7, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
+            this.Controls.SetChildIndex(this.cbJoken, 0);
             this.Controls.SetChildIndex(this.label8, 0);
-            this.Controls.SetChildIndex(this.textBox9, 0);
+            this.Controls.SetChildIndex(this.txtKenmei, 0);
             this.Controls.SetChildIndex(this.label9, 0);
-            this.Controls.SetChildIndex(this.comboBox2, 0);
+            this.Controls.SetChildIndex(this.cbKigen, 0);
             this.Controls.SetChildIndex(this.label10, 0);
-            this.Controls.SetChildIndex(this.comboBox3, 0);
+            this.Controls.SetChildIndex(this.cbNoki, 0);
             this.Controls.SetChildIndex(this.label11, 0);
             this.Controls.SetChildIndex(this.txtNonyuCd, 0);
             this.Controls.SetChildIndex(this.txtNonyuName, 0);
             this.Controls.SetChildIndex(this.label12, 0);
-            this.Controls.SetChildIndex(this.textBox12, 0);
+            this.Controls.SetChildIndex(this.txtBiko, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.label13, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
@@ -2110,6 +2165,10 @@
             this.Controls.SetChildIndex(this.textBox36, 0);
             this.Controls.SetChildIndex(this.label27, 0);
             this.Controls.SetChildIndex(this.textBox37, 0);
+            this.Controls.SetChildIndex(this.tsTokuisaki, 0);
+            this.Controls.SetChildIndex(this.lsTantousha, 0);
+            this.Controls.SetChildIndex(this.lsEigyosho, 0);
+            this.Controls.SetChildIndex(this.gridMitsmori, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -2123,12 +2182,8 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
-            this.Controls.SetChildIndex(this.tsTokuisaki, 0);
-            this.Controls.SetChildIndex(this.lsTantousha, 0);
-            this.Controls.SetChildIndex(this.lsEigyosho, 0);
-            this.Controls.SetChildIndex(this.gridMitsmori, 0);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.Controls.SetChildIndex(this.txtMNum, 0);
+            this.Controls.SetChildIndex(this.txtMYMD, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2142,44 +2197,24 @@
         }
 
         #endregion
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMode;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtMYMD;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtTanto;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbJoken;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtKenmei;
+        private System.Windows.Forms.ComboBox cbKigen;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbNoki;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtNonyuName;
         private System.Windows.Forms.TextBox txtNonyuCd;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtBiko;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -2190,23 +2225,23 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtSrrt3;
-        private System.Windows.Forms.TextBox txtArr3;
-        private System.Windows.Forms.TextBox txtZaiTnk3;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt3;
+        private KATO.Common.Ctl.BaseTextMoney txtArr3;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk3;
         private System.Windows.Forms.TextBox txtZaiMei3;
         private System.Windows.Forms.TextBox txtZaiCd3;
         private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.TextBox txtSrrt2;
-        private System.Windows.Forms.TextBox txtArr2;
-        private System.Windows.Forms.TextBox txtZaiTnk2;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt2;
+        private KATO.Common.Ctl.BaseTextMoney txtArr2;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk2;
         private System.Windows.Forms.TextBox txtZaiMei2;
         private System.Windows.Forms.TextBox txtZaiCd2;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtSrrt1;
-        private System.Windows.Forms.TextBox txtArr1;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt1;
+        private KATO.Common.Ctl.BaseTextMoney txtArr1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtZaiTnk1;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk1;
         private System.Windows.Forms.TextBox txtZaiMei1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtZaiCd1;
@@ -2225,29 +2260,29 @@
         private System.Windows.Forms.TextBox textBox37;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox txtZaiTnk6;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk6;
         private System.Windows.Forms.TextBox txtZaiMei6;
         private System.Windows.Forms.TextBox txtZaiCd6;
         private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.TextBox txtZaiTnk5;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk5;
         private System.Windows.Forms.TextBox txtZaiMei5;
         private System.Windows.Forms.TextBox txtZaiCd5;
         private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.TextBox txtZaiTnk4;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTnk4;
         private System.Windows.Forms.TextBox txtZaiMei4;
         private System.Windows.Forms.TextBox txtZaiCd4;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox txtKakTnk3;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk3;
         private System.Windows.Forms.TextBox txtKakMei3;
         private System.Windows.Forms.TextBox txtKakCd3;
         private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.TextBox txtKakTnk2;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk2;
         private System.Windows.Forms.TextBox txtKakMei2;
         private System.Windows.Forms.TextBox txtKakCd2;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtKakTnk1;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk1;
         private System.Windows.Forms.TextBox txtKakMei1;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txtKakCd1;
@@ -2255,46 +2290,48 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox txtKakTnk6;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk6;
         private System.Windows.Forms.TextBox txtKakMei6;
         private System.Windows.Forms.TextBox txtKakCd6;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.TextBox txtKakTnk5;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk5;
         private System.Windows.Forms.TextBox txtKakMei5;
         private System.Windows.Forms.TextBox txtKakCd5;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.TextBox txtKakTnk4;
+        private KATO.Common.Ctl.BaseTextMoney txtKakTnk4;
         private System.Windows.Forms.TextBox txtKakMei4;
         private System.Windows.Forms.TextBox txtKakCd4;
         private System.Windows.Forms.Button button24;
-        private System.Windows.Forms.TextBox txtSrrt6;
-        private System.Windows.Forms.TextBox txtArr6;
-        private System.Windows.Forms.TextBox txtSrrt5;
-        private System.Windows.Forms.TextBox txtArr5;
-        private System.Windows.Forms.TextBox txtSrrt4;
-        private System.Windows.Forms.TextBox txtArr4;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt6;
+        private KATO.Common.Ctl.BaseTextMoney txtArr6;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt5;
+        private KATO.Common.Ctl.BaseTextMoney txtArr5;
+        private KATO.Common.Ctl.BaseTextMoney txtSrrt4;
+        private KATO.Common.Ctl.BaseTextMoney txtArr4;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button29;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.TextBox txtZaiRit6;
-        private System.Windows.Forms.TextBox txtZaiRit5;
-        private System.Windows.Forms.TextBox txtZaiRit4;
-        private System.Windows.Forms.TextBox txtZaiRit3;
-        private System.Windows.Forms.TextBox txtZaiRit2;
-        private System.Windows.Forms.TextBox txtZaiRit1;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit6;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit5;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit4;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit3;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit2;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiRit1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtIdx;
-        private System.Windows.Forms.TextBox txtZaiTeika6;
-        private System.Windows.Forms.TextBox txtZaiTeika5;
-        private System.Windows.Forms.TextBox txtZaiTeika4;
-        private System.Windows.Forms.TextBox txtZaiTeika3;
-        private System.Windows.Forms.TextBox txtZaiTeika2;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika6;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika5;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika4;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika3;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika2;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtZaiTeika1;
-        private Common.Ctl.TextSet_Tokuisaki tsTokuisaki;
+        private KATO.Common.Ctl.BaseTextMoney txtZaiTeika1;
+        private Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
         private Common.Ctl.LabelSet_Tantousha lsTantousha;
         private Common.Ctl.LabelSet_Eigyosho lsEigyosho;
         private Common.Ctl.BaseDataGridViewEdit gridMitsmori;
+        private Common.Ctl.BaseTextMoney txtMNum;
+        private Common.Ctl.BaseCalendar txtMYMD;
     }
 }

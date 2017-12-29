@@ -27,9 +27,8 @@ namespace KATO.Business.A0010_JuchuInput
             dbConGr.Rollback();
         }
 
-        public int getUriagezumisuryo(string strJuchuNo)
+        public DataTable getUriagezumisuryo(string strJuchuNo)
         {
-            int retSuryo = 0;
             DataTable dtSuryo = null;
 
             string strQuery = "SELECT 売上済数量 FROM 受注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
@@ -44,12 +43,7 @@ namespace KATO.Business.A0010_JuchuInput
                 throw ex;
             }
 
-            if (dtSuryo != null && dtSuryo.Rows.Count > 0)
-            {
-                retSuryo = dtSuryo.Rows[0].Field<int>("売上済数量");
-            }
-
-            return retSuryo;
+            return dtSuryo;
         }
 
         public int getShiirezumisuryo(string strJuchuNo)
