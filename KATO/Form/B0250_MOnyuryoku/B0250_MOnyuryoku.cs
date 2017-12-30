@@ -1447,7 +1447,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //選択行の担当者取得
             lblSetHachuTantousha.CodeTxtText = (string)gridKataban2.CurrentRow.Cells["発注担当者"].Value.ToString();
-            //lblSetHachuTantousha.setTxtTokuisakiLeave();
+//共通部品修正後に
 
             //納期が記入された場合
             if (txtNoki.Text != "")
@@ -1516,7 +1516,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 {
                     //gridKataban2.Rows.Count = intCnt;
 
-                    //
+//詳細が不明なので聞く
                     if (gridKataban2.Rows.Count >= (intCnt + 5))
                     {
                         //grdSeihin.letSeeRow(i + 5);
@@ -1565,9 +1565,6 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            //仕向け先のデータチェック
-//            lblSetShimukesaki.
-
             //仕向けテキストにデータがない場合        
             if (!StringUtl.blIsEmpty(lblSetShimukesaki.CodeTxtText))
             {
@@ -1582,10 +1579,10 @@ namespace KATO.Form.B0250_MOnyuryoku
             }
 
             //中段グリッドの中身の行数分ループ
-            for (int intCnt = 0; intCnt <= gridKataban2.Rows.Count; intCnt++)
+            for (intR1 = 0; intR1 <= gridKataban2.Rows.Count; intR1++)
             {
                 //商品コードが中段グリッドと一致した場合
-                if (gridKataban2.Rows[intCnt].Cells["商品コード"].Value.ToString() == txtShohinCd.Text)
+                if (gridKataban2.Rows[intR1].Cells["商品コード"].Value.ToString() == txtShohinCd.Text)
                 {
                     break;
                 }
@@ -1593,11 +1590,38 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             blShimukeAri = false;
 
-            ////
-            //for (int intCnt = 0; intCnt <= )
-            //{
+            //中段グリッドの中身の行数分ループ
+            for (intR2 = 0; intR2 <= gridKataban2.Rows.Count; intR2++)
+            {
+                //該当の商品コードがあった場合
+                if (gridKataban2.Rows[intR2].Cells["商品コード"].Value.ToString() == txtShohinCd.Text)
+                {
+                    //仕向け先コードがあった場合
+                    if (gridKataban2.Rows[intR2].Cells["仕向け先コード"].Value.ToString() == txtShohinCd.Text)
+                    {
+                        //仕向けがある
+                        blShimukeAri = true;
+                        break;
+                    }
+                }
+            }
 
-            //}
+            //仕向けがあった場合
+            if (blShimukeAri)
+            {
+                intRow = intR2;
+            }
+            else
+            {
+                intRow = intR1;
+            }
+
+            //intRow値が1以上の場合
+            if (intRow > 0)
+            {
+                //ここから
+                //VB、1638行目
+            }
         }
     }
 }

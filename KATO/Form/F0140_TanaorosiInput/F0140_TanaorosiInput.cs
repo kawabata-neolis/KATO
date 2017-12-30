@@ -824,9 +824,22 @@ namespace KATO.Form.F0140_TanaorosiInput
         {
             if(txtKensaku.TextLength > 0)
             {
+                ShouhinList shouhinlist = new ShouhinList(this);
                 try
                 {
-                    ShouhinList shouhinlist = new ShouhinList(this);
+                    //検索項目に一つでも記入がある場合
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
+                    {
+                        shouhinlist.blKensaku = true;
+                    }
+
                     shouhinlist.intFrmKind = CommonTeisu.FRM_TANAOROSHI;
                     shouhinlist.strYMD = txtYMD.Text;
                     shouhinlist.strEigyoushoCode = labelSet_Eigyousho.CodeTxtText;

@@ -694,10 +694,17 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
-                //検索項目がある場合
-                if (txtKensakuS.blIsEmpty() == false)
+                //検索項目に一つでも記入がある場合
+                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                    txtKensakuS.blIsEmpty() == false)
                 {
                     shouhinlist.blKensaku = false;
+                }
+                else
+                {
+                    shouhinlist.blKensaku = true;
                 }
 
                 //商品リストの表示、画面IDを渡す

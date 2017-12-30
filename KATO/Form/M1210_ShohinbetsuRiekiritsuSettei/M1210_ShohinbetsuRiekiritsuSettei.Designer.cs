@@ -64,6 +64,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridShohinbetsuRiekiritsu)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 7;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 18;
@@ -111,11 +116,6 @@
             // btnF02
             // 
             this.btnF02.TabIndex = 8;
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 7;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // groupBox1
             // 
@@ -566,6 +566,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.M1210_ShohinbetsuRiekiritsuSettei_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1210_ShohinbetsuRiekiritsuSettei_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);

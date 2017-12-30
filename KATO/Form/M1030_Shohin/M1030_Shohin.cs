@@ -351,6 +351,19 @@ namespace KATO.Form.M1030_Shohin
                 //目的のフォームを探す
                 if (frm.Name == "ShohinList")
                 {
+                    //検索項目に一つでも記入がある場合
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
+                    {
+                        shouhinlist.blKensaku = true;
+                    }
+
                     shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
                     shouhinlist.strYMD = "";
                     shouhinlist.strEigyoushoCode = "";

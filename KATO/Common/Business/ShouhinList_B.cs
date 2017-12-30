@@ -90,8 +90,6 @@ namespace KATO.Common.Business
 
             try
             {
-                //C2~C6あり版
-                //string strSELECT = "SELECT 商品.商品コード,大分類.大分類名,中分類.中分類名,メーカー.メーカー名 AS メーカー,ISNULL(商品.Ｃ１, '') + ' ' + ISNULL(商品.Ｃ２, '') + ' ' + ISNULL(商品.Ｃ３, '') + ' ' +ISNULL(商品.Ｃ４, '') + ' ' +ISNULL(商品.Ｃ５, '') + ' ' +ISNULL(商品.Ｃ６, '') AS 品名,本社在庫.在庫数 AS 本社在庫, 本社在庫.フリー在庫数 AS 本社ﾌﾘｰ, 岐阜在庫.在庫数 AS 岐阜在庫, 岐阜在庫.フリー在庫数 AS 岐阜ﾌﾘｰ, 商品.メモ,商品.定価,商品.仕入単価,商品.コメント";
                 string strSELECT = "SELECT 商品.商品コード,大分類.大分類名,中分類.中分類名,メーカー.メーカー名 AS メーカー,ISNULL(商品.Ｃ１, '') AS 品名,本社在庫.在庫数 AS 本社在庫, 本社在庫.フリー在庫数 AS 本社ﾌﾘｰ, 岐阜在庫.在庫数 AS 岐阜在庫, 岐阜在庫.フリー在庫数 AS 岐阜ﾌﾘｰ, 商品.メモ,商品.定価,商品.仕入単価,商品.コメント";
                 strSELECT = strSELECT + " FROM 大分類,中分類,メーカー,商品 LEFT OUTER JOIN 在庫数 AS 本社在庫 ON 商品.商品コード = 本社在庫.商品コード and 本社在庫.営業所コード = '0001' LEFT OUTER JOIN 在庫数 AS 岐阜在庫 ON 商品.商品コード = 岐阜在庫.商品コード and 岐阜在庫.営業所コード = '0002'";
                 strSELECT = strSELECT + " WHERE 商品.大分類コード = 大分類.大分類コード AND 商品.大分類コード = 中分類.大分類コード AND 商品.中分類コード = 中分類.中分類コード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.削除 = 'N' ";
@@ -419,113 +417,6 @@ namespace KATO.Common.Business
                 }
 
                 //テスト完了後復帰
-                //return(dtShohin);
-
-                switch (lstInt[0])
-                {
-                    ////棚卸入力
-                    //case CommonTeisu.FRM_TANAOROSHI:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "F0140_TanaorosiInput")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                    //            tanaorosiinput.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    //case CommonTeisu.FRM_SHOHIN:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "M1030_Shohin")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            M1030_Shohin shohin = (M1030_Shohin)frm;
-                    //            shohin.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    //case CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "D0380_ShohinMotochoKakunin")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
-                    //            shohinmotochokakunin.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    case CommonTeisu.FRM_JUCHUINPUT:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "A0010_JuchuInput")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
-                                juchuInput.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
-                    //case CommonTeisu.FRM_HACHUINPUT:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "A0100_HachuInput")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                    //            hachuinput.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    //case CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
-                    //            shohinbetsuriekiritsusettei.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    //case CommonTeisu.FRM_TOKUTEIMUKESAKITANKA:
-                    //    //全てのフォームの中から
-                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                    //    {
-                    //        //目的のフォームを探す
-                    //        if (frm.Name == "M1160_TokuteimukesakiTanka")
-                    //        {
-                    //            //データを連れてくるため、newをしないこと
-                    //            M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
-                    //            tokuteimukesakitanka.setShouhin(dtShohin);
-                    //            break;
-                    //        }
-                    //    }
-                    //    break;
-                    default:
-                        break;
-                }
-
                 return (dtShohin);
             }
             catch (Exception ex)

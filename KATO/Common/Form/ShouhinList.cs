@@ -789,7 +789,6 @@ namespace KATO.Common.Form
 
                 //各データを各項目に入れる
                 setItemData(dtShohin);
-
             }
             catch (Exception ex)
             {
