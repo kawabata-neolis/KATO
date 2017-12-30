@@ -935,6 +935,7 @@
             this.baseLabel9.TabIndex = 131;
             this.baseLabel9.Text = "商品コード";
             this.baseLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.baseLabel9.Visible = false;
             // 
             // txtShukkaShiji
             // 
@@ -1042,7 +1043,7 @@
             this.txtHatchuNo.Name = "txtHatchuNo";
             this.txtHatchuNo.Size = new System.Drawing.Size(70, 22);
             this.txtHatchuNo.TabIndex = 111;
-            this.txtHatchuNo.TextChanged += new System.EventHandler(this.txtHatchuNo_TextChanged);
+            this.txtHatchuNo.Leave += new System.EventHandler(this.txtHatchuNo_Leave);
             // 
             // tsShiiresaki
             // 
@@ -1230,6 +1231,7 @@
             this.cbKinShiireTanka.Name = "cbKinShiireTanka";
             this.cbKinShiireTanka.Size = new System.Drawing.Size(146, 23);
             this.cbKinShiireTanka.TabIndex = 141;
+            this.cbKinShiireTanka.Leave += new System.EventHandler(this.cbKinShiireTanka_Leave);
             // 
             // A0010_JuchuInput
             // 

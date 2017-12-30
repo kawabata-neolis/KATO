@@ -150,6 +150,7 @@
     <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_B.cs" />
     <Compile Include="Business\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_B.cs" />
+    <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\F0570_TanaorosiKinyuhyoPrint\F0570_TanaorosiKinyuhyoPrint_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
     <Compile Include="Business\H0210_MitsumoriInput\H0210_MitsumoriInput_B.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Business\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu_B.cs" />
     <Compile Include="Business\M1000_Kaishajyoken\M1000_Kaishajyoken_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
+    <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
     <Compile Include="Business\M1030_Shohin\M1030_Shohin_B.cs" />
     <Compile Include="Business\M1040_Torihikikbn\M1040_Torihikikbn_B.cs" />
     <Compile Include="Business\M1050_Tantousha\M1050_Tantousha_B.cs" />
@@ -165,8 +167,6 @@
     <Compile Include="Business\M1090_Eigyosho\M1090_Eigyosho_B.cs" />
     <Compile Include="Business\M1100_Chokusosaki\M1100_Chokusosaki_B.cs" />
     <Compile Include="Business\M1110_Chubunrui\M1110_Chubunrui_B.cs" />
-    <Compile Include="Business\M1020_Maker\M1020_Maker_B.cs" />
-    <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
     <Compile Include="Business\M1120_Tanaban\M1120_Tanaban_B.cs" />
     <Compile Include="Business\M1130_Shohizeiritsu\M1130_Shohizeiritsu_B.cs" />
     <Compile Include="Business\M1150_ShohinTankaIkkatsuUpdate\M1150_ShohinTankaIkkatsuUpdate_B.cs" />
@@ -178,28 +178,28 @@
     <Compile Include="Business\M1490_Menukengen2\M1490_Menukengen2_B.cs" />
     <Compile Include="Business\Z0000\Z0000_B.cs" />
     <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
-    <Compile Include="Common\Business\ShireList_B.cs" />
-    <Compile Include="Common\Business\MenuList_B.cs" />
-    <Compile Include="Common\Business\UriageList_B.cs" />
-    <Compile Include="Common\Business\KakouGenkaList_B.cs" />
-    <Compile Include="Common\Business\ShiharaiList_B.cs" />
-    <Compile Include="Common\Business\NyukinList_B.cs" />
     <Compile Include="Common\Business\ChokusosakiList_B.cs" />
     <Compile Include="Common\Business\ChubunruiList_B.cs" />
+    <Compile Include="Common\Business\DaibunruiList_B.cs" />
+    <Compile Include="Common\Business\EigyoshoList_B.cs" />
     <Compile Include="Common\Business\GroupCdList_B.cs" />
     <Compile Include="Common\Business\GyoshuList_B.cs" />
+    <Compile Include="Common\Business\KakouGenkaList_B.cs" />
+    <Compile Include="Common\Business\MakerList_B.cs" />
+    <Compile Include="Common\Business\MenuList_B.cs" />
+    <Compile Include="Common\Business\NyukinList_B.cs" />
+    <Compile Include="Common\Business\ShiharaiList_B.cs" />
+    <Compile Include="Common\Business\ShireList_B.cs" />
     <Compile Include="Common\Business\ShiresakiList_B.cs" />
     <Compile Include="Common\Business\ShohizeiritsuList_B.cs" />
+    <Compile Include="Common\Business\ShouhinList_B.cs" />
+    <Compile Include="Common\Business\TanabanList_B.cs" />
+    <Compile Include="Common\Business\TantoushaList_B.cs" />
     <Compile Include="Common\Business\TokuisakiList_B.cs" />
     <Compile Include="Common\Business\TorihikiCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
-    <Compile Include="Common\Business\DaibunruiList_B.cs" />
-    <Compile Include="Common\Business\EigyoshoList_B.cs" />
-    <Compile Include="Common\Business\MakerList_B.cs" />
-    <Compile Include="Common\Business\ShouhinList_B.cs" />
-    <Compile Include="Common\Business\TanabanList_B.cs" />
     <Compile Include="Common\Business\TorihikisakiList_B.cs" />
-    <Compile Include="Common\Business\TantoushaList_B.cs" />
+    <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Ctl\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1510,7 +1510,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\Business\" />
     <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />

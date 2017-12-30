@@ -102,6 +102,11 @@
             this.rsNyukazumi.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 30;
+            this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 41;
@@ -156,11 +161,6 @@
             // 
             this.btnF02.TabIndex = 31;
             this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 30;
-            this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // lblJuchuNo
             // 
@@ -624,7 +624,9 @@
             this.lsDaibunrui.LabelName = "大分類";
             this.lsDaibunrui.Location = new System.Drawing.Point(10, 121);
             this.lsDaibunrui.Lschubundata = null;
+            this.lsDaibunrui.Lsmakerdata = null;
             this.lsDaibunrui.LsSubchubundata = null;
+            this.lsDaibunrui.LsSubmakerdata = null;
             this.lsDaibunrui.Name = "lsDaibunrui";
             this.lsDaibunrui.ShowAppendFlg = false;
             this.lsDaibunrui.Size = new System.Drawing.Size(289, 22);
@@ -668,6 +670,7 @@
             this.lsMaker.SpaceCodeValue = 4;
             this.lsMaker.SpaceNameCode = 24;
             this.lsMaker.SpaceValueAppend = 4;
+            this.lsMaker.strDaibunCd = null;
             this.lsMaker.TabIndex = 22;
             this.lsMaker.ValueLabelSize = 150;
             this.lsMaker.ValueLabelText = "";
@@ -713,6 +716,7 @@
             this.gridZanList.StandardTab = true;
             this.gridZanList.TabIndex = 128;
             this.gridZanList.TabStop = false;
+            this.gridZanList.DoubleClick += new System.EventHandler(this.gridZanList_DoubleClick);
             // 
             // lblSort
             // 
@@ -831,6 +835,7 @@
             // rsSortOrder
             // 
             this.rsSortOrder.Controls.Add(this.object_36572e75_39cd_4a90_a7ca_3e43cec858cf);
+            this.rsSortOrder.intJudBtn = 0;
             this.rsSortOrder.LabelTitle = "";
             this.rsSortOrder.Location = new System.Drawing.Point(19, 254);
             this.rsSortOrder.Name = "rsSortOrder";
@@ -1050,6 +1055,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.JuchuzanKakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0360_JuchuzanKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.rectSort, 0);
             this.Controls.SetChildIndex(this.lblJuchuNo, 0);
             this.Controls.SetChildIndex(this.txtJuchuNo, 0);

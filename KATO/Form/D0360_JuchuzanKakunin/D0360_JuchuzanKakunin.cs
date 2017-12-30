@@ -13,6 +13,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private BaseText bBox = null;
+
         ///<summary>
         ///D0360_JuchuzanKakunin
         ///フォーム初期設定
@@ -49,7 +51,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             lsDaibunrui.Lschubundata = lsChubunrui;
         }
 
-        public D0360_JuchuzanKakunin(Control c, string stTokuisaki)
+        public D0360_JuchuzanKakunin(Control c, string stTokuisaki, BaseText baseTxtBox)
         {
             // 引数のコントロールが無い場合は画面を開かない
             if (c == null)
@@ -80,7 +82,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //中分類setデータを読めるようにする
             lsDaibunrui.Lschubundata = lsChubunrui;
 
+            this.bBox = baseTxtBox;
             this.lsTokuisaki.CodeTxtText = stTokuisaki;
+            this.rsSearchKind.radbtn0.Checked = false;
+            this.rsSearchKind.radbtn2.Checked = false;
+            this.rsSearchKind.radbtn1.Checked = true;
+            txtJuchuNo.Focus();
             this.selZanList();
         }
 
@@ -451,7 +458,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                         txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入単価)", null)).ToString();
                         txtGokeiGenka.Focus();
                     }
-                    cNow.Focus();
+                    if (this.bBox == null)
+                    {
+                        cNow.Focus();
+                    }
                 }
 
             } catch (Exception ex)
@@ -470,6 +480,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 lst[idx] = null;
             }
+        }
+
+        private void gridZanList_DoubleClick(object sender, EventArgs e)
+        {
+            int intIdx = gridZanList.CurrentCell.RowIndex;
+            if (this.bBox != null) {
+                bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+            }
+
+            this.Close();
         }
     }
 }
