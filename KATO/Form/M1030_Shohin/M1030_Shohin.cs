@@ -119,9 +119,6 @@ namespace KATO.Form.M1030_Shohin
             this.btnF10.Text = STR_FUNC_F10_SHOHIN;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
-
-            //発注区分の非表示のため固定値設定
-            txtHachukbn.Text = "Y";
         }
 
         ///<summary>
@@ -354,6 +351,34 @@ namespace KATO.Form.M1030_Shohin
                 //目的のフォームを探す
                 if (frm.Name == "ShohinList")
                 {
+                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                    shouhinlist.strYMD = "";
+                    shouhinlist.strEigyoushoCode = "";
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                    shouhinlist.lsMaker = labelSet_Maker;
+                    shouhinlist.btxtKensaku = txtKensaku;
+                    shouhinlist.btxtHinC1 = txtData1;
+                    shouhinlist.btxtHinC2 = txtData2;
+                    shouhinlist.btxtHinC3 = txtData3;
+                    shouhinlist.btxtHinC4 = txtData4;
+                    shouhinlist.btxtHinC5 = txtData5;
+                    shouhinlist.btxtHinC6 = txtData6;
+                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
+                    shouhinlist.bmtxtShireTanka = txtShire;
+                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
+                    shouhinlist.bmtxtTateneShire = txtTatene;
+                    shouhinlist.btxtZaikokbn = txtZaiko;
+                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
+                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
+                    shouhinlist.btxtMemo = txtMemo;
+                    shouhinlist.bmtxtTeika = txtTeika;
+                    shouhinlist.bmtxtHakosu = txtHako;
+                    shouhinlist.btxtComment = txtComment;
+                    shouhinlist.lblGrayYM = lblGrayToroku;
+                    shouhinlist.btxtShohinCd = txtShohinCd;
+                    shouhinlist.lblGrayHinMakerChuDaiHinban = lblGrayShohin;
+
                     frm.Show();
                     break;
                 }
@@ -366,10 +391,14 @@ namespace KATO.Form.M1030_Shohin
                 try
                 {
                     //検索項目に一つでも記入がある場合
-                    if (StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText) == true ||
-                        StringUtl.blIsEmpty(labelSet_Chubunrui.CodeTxtText) == true ||
-                        StringUtl.blIsEmpty(labelSet_Maker.CodeTxtText) == true ||
-                        StringUtl.blIsEmpty(txtKensaku.Text) == true)
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
                     {
                         shouhinlist.blKensaku = true;
                     }
@@ -379,8 +408,30 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.strEigyoushoCode = "";
                     shouhinlist.lsDaibunrui = labelSet_Daibunrui;
                     shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                    shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                    shouhinlist.strKensaku = txtKensaku.Text;
+                    shouhinlist.lsMaker = labelSet_Maker;
+                    shouhinlist.btxtKensaku = txtKensaku;
+                    shouhinlist.btxtHinC1 = txtData1;
+                    shouhinlist.btxtHinC2 = txtData2;
+                    shouhinlist.btxtHinC3 = txtData3;
+                    shouhinlist.btxtHinC4 = txtData4;
+                    shouhinlist.btxtHinC5 = txtData5;
+                    shouhinlist.btxtHinC6 = txtData6;
+                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
+                    shouhinlist.bmtxtShireTanka = txtShire;
+                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
+                    shouhinlist.bmtxtTateneShire = txtTatene;
+                    shouhinlist.btxtZaikokbn = txtZaiko;
+                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
+                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
+                    shouhinlist.btxtMemo = txtMemo;
+                    shouhinlist.bmtxtTeika = txtTeika;
+                    shouhinlist.bmtxtHakosu = txtHako;
+                    shouhinlist.btxtComment = txtComment;
+                    shouhinlist.lblGrayYM = lblGrayToroku;
+                    shouhinlist.btxtShohinCd = txtShohinCd;
+                    shouhinlist.lblGrayHinMakerChuDaiHinban = lblGrayShohin;
+
+
                     shouhinlist.ShowDialog();
                 }
                 catch (Exception ex)
@@ -414,9 +465,14 @@ namespace KATO.Form.M1030_Shohin
                 shouhinlist.strEigyoushoCode = "";
                 shouhinlist.lsDaibunrui = labelSet_Daibunrui;
                 shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                shouhinlist.strMakerCode = labelSet_Maker.CodeTxtText;
-                shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.lsMaker = labelSet_Maker;
+                shouhinlist.btxtKensaku = txtKensaku;
                 shouhinlist.blNoTana = true;
+                shouhinlist.lblGrayYM = lblGrayToroku;
+                shouhinlist.lblGrayHinMakerChuDaiHinban = lblGrayShohin;
+                shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
+                shouhinlist.lsTanabanG = labelSet_TanabanGihu;
+                
 
                 shouhinlist.ShowDialog();
             }
@@ -456,7 +512,6 @@ namespace KATO.Form.M1030_Shohin
             labelSet_Chubunrui.CodeTxtText.Trim();
             labelSet_Maker.CodeTxtText.Trim();
             txtData1.Text.Trim();
-            txtHachukbn.Text.Trim();
             txtHyojun.Text.Trim();
             txtShire.Text.Trim();
             txtHyoka.Text.Trim();
@@ -497,14 +552,6 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_Maker.Focus();
                 return;
             }
-            //if (txtHachukbn.blIsEmpty() == false)
-            //{
-            //    //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
-            //    txtHachukbn.Focus();
-            //    return;
-            //}
             if (txtHyojun.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -590,7 +637,6 @@ namespace KATO.Form.M1030_Shohin
             lstString.Add(txtData4.Text);
             lstString.Add(txtData5.Text);
             lstString.Add(txtData6.Text);
-            lstString.Add(txtHachukbn.Text);
             lstString.Add(txtHyojun.strDataSub);
             lstString.Add(txtShire.strDataSub);
             lstString.Add(txtZaiko.Text);
@@ -704,7 +750,6 @@ namespace KATO.Form.M1030_Shohin
             lstString.Add(txtData4.Text);
             lstString.Add(txtData5.Text);
             lstString.Add(txtData6.Text);
-            lstString.Add(txtHachukbn.Text);
             lstString.Add(txtHyojun.strDataSub);
             lstString.Add(txtShire.strDataSub);
             lstString.Add(txtZaiko.Text);
@@ -740,84 +785,6 @@ namespace KATO.Form.M1030_Shohin
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        ///<summary>
-        ///setShouhin
-        ///取り出したデータをテキストボックスに配置（商品リスト）
-        ///</summary>
-        public void setShouhin(DataTable dtShohin)
-        {
-            //検索項目の確保
-            string strKensakuSub = txtKensaku.Text;
-
-            delFormClear(this);
-
-            labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
-            labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-            labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
-            txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
-
-            // 大分類コードチェック
-            if (labelSet_Daibunrui.chkTxtDaibunrui())
-            {
-                return;
-            }
-
-            // 中分類コードチェック
-            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText.ToString()))
-            {
-                return;
-            }
-
-            txtData1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
-            txtData2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
-            txtData3.Text = dtShohin.Rows[0]["Ｃ３"].ToString();
-            txtData4.Text = dtShohin.Rows[0]["Ｃ４"].ToString();
-            txtData5.Text = dtShohin.Rows[0]["Ｃ５"].ToString();
-            txtData6.Text = dtShohin.Rows[0]["Ｃ６"].ToString();
-            txtHachukbn.Text = dtShohin.Rows[0]["発注区分"].ToString();
-            txtHyojun.Text = dtShohin.Rows[0]["標準売価"].ToString();
-            txtShire.Text = dtShohin.Rows[0]["仕入単価"].ToString();
-            txtHyoka.Text = dtShohin.Rows[0]["評価単価"].ToString();
-            txtTatene.Text = dtShohin.Rows[0]["建値仕入単価"].ToString();
-            txtZaiko.Text = dtShohin.Rows[0]["在庫管理区分"].ToString();
-            labelSet_TanabanHonsha.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
-            labelSet_TanabanGihu.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
-            txtMemo.Text = dtShohin.Rows[0]["メモ"].ToString();
-            txtTeika.Text = dtShohin.Rows[0]["定価"].ToString();
-            txtHako.Text = dtShohin.Rows[0]["箱入数"].ToString();
-            txtComment.Text = dtShohin.Rows[0]["コメント"].ToString();
-
-            //空白を削除
-            labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
-            labelSet_Daibunrui.ValueLabelText = labelSet_Daibunrui.ValueLabelText.Trim();
-            labelSet_Chubunrui.ValueLabelText = labelSet_Chubunrui.ValueLabelText.Trim();
-
-
-            lblGrayShohin.Text =
-                labelSet_Maker.ValueLabelText + " " +
-                labelSet_Daibunrui.CodeTxtText + " " +
-                labelSet_Chubunrui.CodeTxtText + " " +
-                txtData1.Text + " " +
-                txtData2.Text + " " +
-                txtData3.Text + " " +
-                txtData4.Text + " " +
-                txtData5.Text + " " +
-                txtData6.Text + " ";
-
-            lblGrayToroku.Text = ((DateTime)dtShohin.Rows[0]["登録日時"]).ToString("yyyy/MM/dd");
-
-            //検索項目を元に戻す
-            txtKensaku.Text = strKensakuSub;
-
-            radSet_2btn_Toroku.radbtn1.Checked = true;
-
-            txtHyojun.updPriceMethod();
-            txtShire.updPriceMethod();
-            txtHyoka.updPriceMethod();
-            txtTatene.updPriceMethod();
-            txtTeika.updPriceMethod();
         }
 
         ///<summary>
@@ -1075,5 +1042,13 @@ namespace KATO.Form.M1030_Shohin
             cActiveBefore = this.ActiveControl;
         }
 
+        ///<summary>
+        ///setChubun
+        ///中分類のチェック
+        ///</summary>
+        public void setChubun()
+        {
+            labelSet_Chubunrui.setTxtChubunruiLeave();
+        }
     }
 }

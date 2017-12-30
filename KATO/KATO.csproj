@@ -152,6 +152,7 @@
     <Compile Include="Business\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_B.cs" />
     <Compile Include="Business\F0570_TanaorosiKinyuhyoPrint\F0570_TanaorosiKinyuhyoPrint_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
+    <Compile Include="Business\H0210_MitsumoriInput\H0210_MitsumoriInput_B.cs" />
     <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu_B.cs" />
     <Compile Include="Business\M1000_Kaishajyoken\M1000_Kaishajyoken_B.cs" />
@@ -646,7 +647,7 @@
     <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.Designer.cs">
+    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.designer.cs">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
@@ -1509,7 +1510,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\H0210_MitsumoriInput\" />
+    <Folder Include="Business\Business\" />
     <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />

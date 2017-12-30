@@ -232,8 +232,8 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.showRireki();
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.showRireki();
                     break;
                 case Keys.F9:
                     break;
@@ -449,8 +449,8 @@ namespace KATO.Form.A0100_HachuInput
                     this.delText();
                     break;
                 case STR_BTN_F08: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.showRireki();
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.showRireki();
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -464,16 +464,33 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void showShohinList()
         {
+            ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
-                ShouhinList shouhinlist = new ShouhinList(this);
+                //検索項目に一つでも記入がある場合
+                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                    txtKensaku.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = false;
+                }
+                else
+                {
+                    shouhinlist.blKensaku = true;
+                }
+
                 shouhinlist.intFrmKind = CommonTeisu.FRM_HACHUINPUT;
-                shouhinlist.strYMD = txtHachuYMD.Text;
-                shouhinlist.strEigyoushoCode = "";
                 shouhinlist.lsDaibunrui = labelSet_Daibunrui;
                 shouhinlist.lsChubunrui = labelSet_Chubunrui;
                 shouhinlist.lsMaker = labelSet_Maker;
-                shouhinlist.strKensaku = txtKensaku.Text;
+                shouhinlist.btxtHinC1 = txtHinmei;
+                shouhinlist.btxtShohinCd = txtShohinCd;
+                shouhinlist.lblGrayTanabanH = lblGrayTanaHon;
+                shouhinlist.lblGrayTanabanG = lblGrayTanaGihu;
+                shouhinlist.cbShireTanka = cmbHachutan;
+
+
                 shouhinlist.ShowDialog();
 
             }
@@ -893,36 +910,12 @@ namespace KATO.Form.A0100_HachuInput
         }
 
         ///<summary>
-        ///setShouhin
-        ///取り出したデータをテキストボックスに配置（商品リスト）
-        ///</summary>
-        public void setShouhin(DataTable dtShohin)
-        {
-            labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
-            labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-            labelSet_Maker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
-            txtHinmei.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
-            cmbHachutan.Text = ((decimal)dtShohin.Rows[0]["仕入単価"]).ToString("#,#.0000");
-            lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
-            lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-        }
-
-        ///<summary>
         ///closeShohinList
         ///ShohinListが閉じたらコード記入欄にフォーカス
         ///</summary>
         public void closeShohinList()
         {
             txtHachusu.Focus();
-        }
-
-        ///<summary>
-        ///showRireki
-        ///仕入実績確認を表示
-        ///</summary>
-        public void showRireki()
-        {
-
         }
 
         ///<summary>

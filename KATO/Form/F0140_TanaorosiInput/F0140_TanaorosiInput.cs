@@ -444,15 +444,22 @@ namespace KATO.Form.F0140_TanaorosiInput
                 {
                     return;
                 }
-                if (labelSet_Chubunrui.chkTxtChubunrui(strDibunCd))
+
+                if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
                 {
                     return;
                 }
+
                 if (labelSet_Eigyousho.chkTxtEigyousho())
                 {
                     return;
                 }
-                 labelSet_Maker.setTxtMakerLeave();
+
+                if (labelSet_Maker.chkTxtMaker())
+                {
+                    return;
+                }
+
                 if (labelSet_Tanaban.chkTxtTanaban())
                 {
                     return;
@@ -561,44 +568,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             radBase4.Checked = true;
 
             labelSet_Eigyousho.Focus();
-        }
-
-        ///<summary>
-        ///setShouhin
-        ///取り出したデータをテキストボックスに配置（商品リスト）
-        ///</summary>
-        public void setShouhin(DataTable dtShohin)
-        {
-            if (StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText) == false)
-            {
-                return;
-            }
-
-            labelSet_Daibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
-            //labelSet_Daibunrui.ValueLabelText = dtShohin.Rows[0]["大分類名"].ToString();
-            labelSet_Chubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-            labelSet_Chubunrui_Edit.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-            //labelSet_Chubunrui_Edit.ValueLabelText = dtShohin.Rows[0]["中分類名"].ToString();
-            labelSet_Maker_Edit.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
-            //labelSet_Maker_Edit.ValueLabelText = dtShohin.Rows[0]["メーカー名"].ToString();
-
-            //営業所で判別
-            if (labelSet_Eigyousho.CodeTxtText == "0001")
-            {
-                labelSet_Tanaban_Edit.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
-            }
-            else
-            {
-                labelSet_Tanaban_Edit.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
-            }
-
-            lblDspShouhin.Text = labelSet_Chubunrui_Edit.ValueLabelText + " " +
-                                 dtShohin.Rows[0]["Ｃ１"] + " " +
-                                 dtShohin.Rows[0]["Ｃ２"] + " " +
-                                 dtShohin.Rows[0]["Ｃ３"] + " " +
-                                 dtShohin.Rows[0]["Ｃ４"] + " " +
-                                 dtShohin.Rows[0]["Ｃ５"] + " " +
-                                 dtShohin.Rows[0]["Ｃ６"] + " " ;
         }
 
         ///<summary>
@@ -844,7 +813,6 @@ namespace KATO.Form.F0140_TanaorosiInput
         ///</summary>
         public void setShohinClose()
         {
-//修正の可能性あり（フォーカス追加）
             txtTanasuu.Focus();
         }
 
@@ -858,17 +826,29 @@ namespace KATO.Form.F0140_TanaorosiInput
             {
                 try
                 {
-                    labelSet_Tanaban_Edit.CodeTxtText = labelSet_Tanaban.CodeTxtText;
                     ShouhinList shouhinlist = new ShouhinList(this);
                     shouhinlist.intFrmKind = CommonTeisu.FRM_TANAOROSHI;
                     shouhinlist.strYMD = txtYMD.Text;
                     shouhinlist.strEigyoushoCode = labelSet_Eigyousho.CodeTxtText;
                     shouhinlist.lsDaibunrui = labelSet_Daibunrui;
-                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                    shouhinlist.lsMaker = labelSet_Maker;
-
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui_Edit;
+                    shouhinlist.lsMaker = labelSet_Maker_Edit;
                     shouhinlist.btxtKensaku = txtKensaku;
                     shouhinlist.blKensaku = true;
+                    shouhinlist.lblGrayHinChuHinban = lblDspShouhin;
+                    shouhinlist.btxtShohinCd = txtShouhinCD;
+
+                    //営業所が本社の場合
+                    if (labelSet_Eigyousho.CodeTxtText == "0001")
+                    {
+                        shouhinlist.lsTanabanH = labelSet_Tanaban_Edit;
+                    }
+                    //営業所が岐阜の場合
+                    else if (labelSet_Eigyousho.CodeTxtText == "0002")
+                    {
+                        shouhinlist.lsTanabanG = labelSet_Tanaban_Edit;
+                    }
+
                     shouhinlist.ShowDialog();
 
                 }

@@ -1447,7 +1447,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //選択行の担当者取得
             lblSetHachuTantousha.CodeTxtText = (string)gridKataban2.CurrentRow.Cells["発注担当者"].Value.ToString();
-            lblSetHachuTantousha.setTxtTokuisakiLeave();
+            //lblSetHachuTantousha.setTxtTokuisakiLeave();
 
             //納期が記入された場合
             if (txtNoki.Text != "")

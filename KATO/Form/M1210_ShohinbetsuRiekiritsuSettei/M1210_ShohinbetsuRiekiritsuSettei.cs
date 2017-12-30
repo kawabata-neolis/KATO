@@ -694,9 +694,21 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
+                //検索項目がある場合
+                if (txtKensakuS.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = false;
+                }
+
                 //商品リストの表示、画面IDを渡す
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI;
+                shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                shouhinlist.lsMaker = labelSet_Maker;
                 shouhinlist.btxtKensaku = txtKensakuS;
+                shouhinlist.btxtShohinCd = txtShohinCd;
+                shouhinlist.bmtxtTeika = txtTeika;
+                shouhinlist.btxtHinC1Hinban = txtKataban;
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)
@@ -708,27 +720,6 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        /// <summary>
-        /// setKataban
-        /// 以下の項目を取得
-        /// ・商品コード
-        /// ・品名
-        /// ・定価
-        /// </summary>
-        public void setShouhin(DataTable dtSelectData)
-        {
-            txtShohinCd.Text = dtSelectData.Rows[0]["商品コード"].ToString();
-
-            txtTeika.Text = decimal.Parse(dtSelectData.Rows[0]["定価"].ToString()).ToString("#,0");
-
-            txtKataban.Text = dtSelectData.Rows[0]["Ｃ１"].ToString();
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ２"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ３"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ４"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ５"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ６"].ToString(), "");
         }
 
         ///<summary>

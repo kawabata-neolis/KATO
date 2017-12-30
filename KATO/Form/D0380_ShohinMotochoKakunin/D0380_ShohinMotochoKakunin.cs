@@ -402,6 +402,17 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
+
+//処理がうまくいってないため再確認(12/30)
+                //検索項目に一つでも記入がある場合
+                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false ||
+                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false ||
+                    labelSet_Maker.codeTxt.blIsEmpty() == false ||
+                    txtKensaku.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = true;
+                }
+
                 //商品リストの表示、画面IDを渡す
                 shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN;
                 shouhinlist.strYMD = "";
@@ -410,6 +421,11 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 shouhinlist.lsChubunrui = labelSet_Chubunrui;
                 shouhinlist.lsMaker = labelSet_Maker;
                 shouhinlist.btxtKensaku = txtKensaku;
+                shouhinlist.btxtShohinCd = txtShohinCd;
+                shouhinlist.lblGrayHinMakerChuHinban = lblGrayShohin;
+                shouhinlist.lblGrayTanabanH = lblGrayTanaHon;
+                shouhinlist.lblGrayTanabanG = lblGrayTanaGihu;
+
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)

@@ -167,8 +167,8 @@ namespace KATO.Common.Ctl
                         strZeikubun = "内税";
                     }
 
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.valueTextText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.CodeTxtText = dtSetCd.Rows[0]["得意先コード"].ToString();
+                    this.valueTextText = dtSetCd.Rows[0]["得意先名称"].ToString();
                     this.AppendLabelText = strZeikubun;
                 }
                 else
@@ -318,8 +318,8 @@ namespace KATO.Common.Ctl
                         strZeikubun = "内税";
                     }
 
-                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    this.valueTextText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.CodeTxtText = dtSetCd.Rows[0]["得意先コード"].ToString();
+                    this.valueTextText = dtSetCd.Rows[0]["得意先名称"].ToString();
                     this.AppendLabelText = strZeikubun;
                 }
                 return;

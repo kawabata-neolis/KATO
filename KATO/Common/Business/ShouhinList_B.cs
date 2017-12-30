@@ -418,53 +418,54 @@ namespace KATO.Common.Business
                     dtShohin.Rows[cnt]["建値仕入単価"] = decTatene.ToString();
                 }
 
-
+                //テスト完了後復帰
+                //return(dtShohin);
 
                 switch (lstInt[0])
                 {
-                    //棚卸入力
-                    case CommonTeisu.FRM_TANAOROSHI:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "F0140_TanaorosiInput")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                                tanaorosiinput.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
-                    case CommonTeisu.FRM_SHOHIN:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "M1030_Shohin")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1030_Shohin shohin = (M1030_Shohin)frm;
-                                shohin.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
-                    case CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "D0380_ShohinMotochoKakunin")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
-                                shohinmotochokakunin.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
+                    ////棚卸入力
+                    //case CommonTeisu.FRM_TANAOROSHI:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "F0140_TanaorosiInput")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
+                    //            tanaorosiinput.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
+                    //case CommonTeisu.FRM_SHOHIN:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "M1030_Shohin")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            M1030_Shohin shohin = (M1030_Shohin)frm;
+                    //            shohin.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
+                    //case CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "D0380_ShohinMotochoKakunin")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
+                    //            shohinmotochokakunin.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
                     case CommonTeisu.FRM_JUCHUINPUT:
                         //全てのフォームの中から
                         foreach (System.Windows.Forms.Form frm in Application.OpenForms)
@@ -479,52 +480,53 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                    case CommonTeisu.FRM_HACHUINPUT:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "A0100_HachuInput")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                                hachuinput.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
-                    case CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
-                                shohinbetsuriekiritsusettei.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
-                    case CommonTeisu.FRM_TOKUTEIMUKESAKITANKA:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //目的のフォームを探す
-                            if (frm.Name == "M1160_TokuteimukesakiTanka")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
-                                tokuteimukesakitanka.setShouhin(dtShohin);
-                                break;
-                            }
-                        }
-                        break;
+                    //case CommonTeisu.FRM_HACHUINPUT:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "A0100_HachuInput")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
+                    //            hachuinput.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
+                    //case CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
+                    //            shohinbetsuriekiritsusettei.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
+                    //case CommonTeisu.FRM_TOKUTEIMUKESAKITANKA:
+                    //    //全てのフォームの中から
+                    //    foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                    //    {
+                    //        //目的のフォームを探す
+                    //        if (frm.Name == "M1160_TokuteimukesakiTanka")
+                    //        {
+                    //            //データを連れてくるため、newをしないこと
+                    //            M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
+                    //            tokuteimukesakitanka.setShouhin(dtShohin);
+                    //            break;
+                    //        }
+                    //    }
+                    //    break;
                     default:
                         break;
                 }
-                return dtShohin;
+
+                return (dtShohin);
             }
             catch (Exception ex)
             {

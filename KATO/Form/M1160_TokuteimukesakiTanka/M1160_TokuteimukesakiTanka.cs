@@ -539,9 +539,17 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
+                //検索項目がある場合
+                if (txtKensakuS.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = false;
+                }
+
                 //商品リストの表示、画面IDを渡す
                 shouhinlist.intFrmKind = CommonTeisu.FRM_TOKUTEIMUKESAKITANKA;
                 shouhinlist.btxtKensaku = txtKensakuS;
+                shouhinlist.btxtShohinCd = txtShohinCd;
+                shouhinlist.btxtHinC1Hinban = txtKataban;
                 shouhinlist.ShowDialog();
             }
             catch (Exception ex)

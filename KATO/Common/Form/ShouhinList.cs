@@ -29,41 +29,111 @@ namespace KATO.Common.Form
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        //前画面から年月日を取り出す枠（年月日初期値）
+        //前画面から年月日を取り出す枠（年月初期値）
         public string strYMD = "";
 
         //前画面から営業所コードを取り出す枠（営業所コード初期値）
         public string strEigyoushoCode = "";
 
-        //前画面から大分類コードを取り出す枠（大分類コード初期値）
-        public LabelSet_Daibunrui lsDaibunrui = null; 
+        //前画面から大分類コードを取り出す枠（大分類コード初期値）（ラベルセット）
+        public LabelSet_Daibunrui lsDaibunrui = null;
 
-        //前画面から中分類コードを取り出す枠（中分類コード初期値）
+        //前画面から中分類コードを取り出す枠（中分類コード初期値）（ラベルセット）
         public LabelSet_Chubunrui lsChubunrui = null;
 
-        //前画面からメーカーコードを取り出す枠（メーカーコード初期値）
+        //前画面からメーカーコードを取り出す枠（メーカーコード初期値）（ラベルセット）
         public LabelSet_Maker lsMaker = null;
 
-        //前画面から検索コードを取り出す枠（検索コード初期値）
+        //前画面から検索コードを取り出す枠（検索コード初期値）（ベーステキスト）
         public BaseText btxtKensaku = null;
 
-        //前画面から商品コードを取り出す枠（商品コード初期値）
+        //前画面から商品コードを取り出す枠（商品コード初期値）（ベーステキスト）
         public BaseText btxtShohinCd = null;
 
-        //前画面から品名を取り出す枠（品名初期値）
-        public BaseText btxtHinmei = null;
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ１のみ）（ベーステキスト）
+        public BaseText btxtHinC1 = null;
 
-        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ２のみ）（ベーステキスト）
+        public BaseText btxtHinC2 = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ３のみ）（ベーステキスト）
+        public BaseText btxtHinC3 = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ４のみ）（ベーステキスト）
+        public BaseText btxtHinC4 = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ５のみ）（ベーステキスト）
+        public BaseText btxtHinC5 = null;
+        
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ６のみ）（ベーステキスト）
+        public BaseText btxtHinC6 = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（Ｃ１~Ｃ６）（ベーステキスト）
+        public BaseText btxtHinC1Hinban = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+        public BaseLabelGray lblGrayHinChuHinban = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（メーカー名 + Ｃ１~Ｃ６）（グレイラベル）
+        public BaseLabelGray lblGrayHinMakerHinban = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（メーカー名 + 中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+        public BaseLabelGray lblGrayHinMakerChuHinban = null;
+
+        //前画面から品名を取り出す枠（品名初期値）（メーカー名 + 中分類名 + 大分類名 + Ｃ１~Ｃ６）（グレイラベル）
+        public BaseLabelGray lblGrayHinMakerChuDaiHinban = null;
+
+        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（ラベルセット）
         public LabelSet_Tanaban lsTanabanH = null;
 
-        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）
+        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）（ラベルセット）
         public LabelSet_Tanaban lsTanabanG = null;
 
-        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（ラベルのみ）
+        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（ベーステキスト）
+        public BaseText btxtTanabanH = null;
+
+        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）（ベーステキスト）
+        public BaseText btxtTanabanG = null;
+
+        //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（グレイラベル）
         public BaseLabelGray lblGrayTanabanH = null;
 
-        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）（ラベルのみ）
+        //前画面から棚番（岐阜）を取り出す枠（棚番岐阜初期値）（グレイラベル）
         public BaseLabelGray lblGrayTanabanG = null;
+
+        //前画面から年月日を取り出す枠（グレイラベル）
+        public BaseLabelGray lblGrayYM = null;
+
+        //前画面から標準売価を取り出す枠（標準売価初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtHyojunBaika = null;
+
+        //前画面から仕入単価を取り出す枠（仕入単価初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtShireTanka = null;
+
+        //前画面から評価単価を取り出す枠（評価単価初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtHyokaTanka = null;
+
+        //前画面から建値仕入単価を取り出す枠（建値仕入単価初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtTateneShire = null;
+
+        //前画面から定価を取り出す枠（定価初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtTeika = null;
+
+        //前画面から箱入数を取り出す枠（箱入数初期値）（ベーステキストマネー）
+        public BaseTextMoney bmtxtHakosu = null;
+
+        //前画面から在庫管理区分を取り出す枠（品名初期値）（ベーステキスト）
+        public BaseText btxtZaikokbn = null;
+
+        //前画面からメモを取り出す枠（メモ初期値）（ベーステキスト）
+        public BaseText btxtMemo = null;
+
+        //前画面からコメントを取り出す枠（コメント初期値）（ベーステキスト）
+        public BaseText btxtComment = null;
+
+        //前画面から仕入単価を取り出す枠（仕入単価初期値）（コンボボックス）
+        public ComboBox cbShireTanka = null;
+
 
         //検索項目が記入されているかどうか
         public bool blKensaku = false;
@@ -163,29 +233,178 @@ namespace KATO.Common.Form
                 btxtShohinCd = new BaseText();
             }
 
-            // 品名の引き渡しチェック
-            if (btxtHinmei == null)
+            // 品名の引き渡しチェック（Ｃ１のみ）（ベーステキスト）
+            if (btxtHinC1 == null)
             {
-                btxtHinmei = new BaseText();
+                btxtHinC1 = new BaseText();
             }
 
-            // 棚番本社（本社）の引き渡しチェック
+            // 品名の引き渡しチェック（Ｃ２のみ）（ベーステキスト）
+            if (btxtHinC2 == null)
+            {
+                btxtHinC2 = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（Ｃ３のみ）（ベーステキスト）
+            if (btxtHinC3 == null)
+            {
+                btxtHinC3 = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（Ｃ４のみ）（ベーステキスト）
+            if (btxtHinC4 == null)
+            {
+                btxtHinC4 = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（Ｃ５のみ）（ベーステキスト）
+            if (btxtHinC5 == null)
+            {
+                btxtHinC5 = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（Ｃ６のみ）（ベーステキスト）
+            if (btxtHinC6 == null)
+            {
+                btxtHinC6 = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（Ｃ１~Ｃ６）（ベーステキスト）
+            if (btxtHinC1Hinban == null)
+            {
+                btxtHinC1Hinban = new BaseText();
+            }
+
+            // 品名の引き渡しチェック（中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+            if (lblGrayHinChuHinban == null)
+            {
+                lblGrayHinChuHinban = new BaseLabelGray();
+            }
+
+            // 品名の引き渡しチェック（メーカー名 + Ｃ１~Ｃ６）（グレイラベル）
+            if (lblGrayHinMakerHinban == null)
+            {
+                lblGrayHinMakerHinban = new BaseLabelGray();
+            }
+
+            // 品名の引き渡しチェック（メーカー名 + 中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+            if (lblGrayHinMakerChuHinban == null)
+            {
+                lblGrayHinMakerChuHinban = new BaseLabelGray();
+            }
+
+            // 品名の引き渡しチェック（メーカー名 + 中分類名 + 大分類名 + Ｃ１~Ｃ６）（グレイラベル）
+            if (lblGrayHinMakerChuDaiHinban == null)
+            {
+                lblGrayHinMakerChuDaiHinban = new BaseLabelGray();
+            }
+
+
+            // 棚番本社（本社）の引き渡しチェック（ラベルセット）
             if (lsTanabanH == null)
             {
                 lsTanabanH = new LabelSet_Tanaban();
             }
 
-            // 棚番本社（岐阜）の引き渡しチェック
+            // 棚番本社（岐阜）の引き渡しチェック（ラベルセット）
             if (lsTanabanG == null)
             {
                 lsTanabanG = new LabelSet_Tanaban();
             }
 
+            // 棚番本社（本社）の引き渡しチェック（ベーステキスト）
+            if (btxtTanabanH == null)
+            {
+                btxtTanabanH = new BaseText();
+            }
 
-            //
+            // 棚番本社（岐阜）の引き渡しチェック（ベーステキスト）
+            if (btxtTanabanG == null)
+            {
+                btxtTanabanG = new BaseText();
+            }
+
+            // 棚番本社（本社）の引き渡しチェック（グレイラベル）
+            if (lblGrayTanabanH == null)
+            {
+                lblGrayTanabanH = new BaseLabelGray();
+            }
+
+            // 棚番本社（岐阜）の引き渡しチェック（グレイラベル）
+            if (lblGrayTanabanG == null)
+            {
+                lblGrayTanabanG = new BaseLabelGray();
+            }
+
+            // 年月の引き渡しチェック（グレイラベル）
+            if (lblGrayYM == null)
+            {
+                lblGrayYM = new BaseLabelGray();
+            }
+
+            // 標準売価の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtHyojunBaika == null)
+            {
+                bmtxtHyojunBaika = new BaseTextMoney();
+            }
+
+            // 仕入単価の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtShireTanka == null)
+            {
+                bmtxtShireTanka = new BaseTextMoney();
+            }
+
+            // 評価単価の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtHyokaTanka == null)
+            {
+                bmtxtHyokaTanka = new BaseTextMoney();
+            }
+
+            // 建値仕入単価の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtTateneShire == null)
+            {
+                bmtxtTateneShire = new BaseTextMoney();
+            }
+
+            // 箱入数初期値の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtHakosu == null)
+            {
+                bmtxtHakosu = new BaseTextMoney();
+            }
+
+            // 在庫管理区分の引き渡しチェック（ベーステキストマネー）
+            if (btxtZaikokbn == null)
+            {
+                btxtZaikokbn = new BaseText();
+            }
+
+            // 定価の引き渡しチェック（ベーステキストマネー）
+            if (bmtxtTeika == null)
+            {
+                bmtxtTeika = new BaseTextMoney();
+            }
+            
+            // メモの引き渡しチェック（ベーステキストマネー）
+            if (btxtMemo == null)
+            {
+                btxtMemo = new BaseText();
+            }
+
+            // コメントの引き渡しチェック（ベーステキストマネー）
+            if (btxtComment == null)
+            {
+                btxtComment = new BaseText();
+            }
+
+            // 仕入単価の引き渡しチェック（コンボボックス）
+            if (cbShireTanka == null)
+            {
+                cbShireTanka = new ComboBox();
+            }
+
+            // 未登録棚を表示する場合
             if (blNoTana == true)
             {
-                //未登録棚番を使用する場合
                 chkNotToroku.Checked = false;
             }
             else
@@ -516,7 +735,7 @@ namespace KATO.Common.Form
         {
             setSelectItem();
         }
-
+        
         ///<summary>
         ///setSelectItem
         ///データグリッドビュー内のデータ選択後の処理
@@ -526,6 +745,9 @@ namespace KATO.Common.Form
             //データ渡し用
             List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();
+
+            //商品検索結果を格納用
+            DataTable dtShohin = new DataTable();
 
             if (intFrmKind == 0)
             {
@@ -550,15 +772,24 @@ namespace KATO.Common.Form
             lstString.Add(strEigyoushoCode);
             lstString.Add(strSelectShohinCD);
             lstString.Add(strSelectMakerCD);
-            lstString.Add(strSelectDaibunName); 
+            lstString.Add(strSelectDaibunName);
             lstString.Add(strSelectChubunName);
             lstString.Add(strSelectid);
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
-            DataTable dtshohin = null;
             try
             {
-               dtshohin = shohinlistB.getSelectItem(lstInt, lstString);
+                dtShohin = shohinlistB.getSelectItem(lstInt, lstString);
+
+                //検索結果がない場合
+                if (dtShohin.Rows.Count <= 0)
+                {
+                    return;
+                }
+
+                //各データを各項目に入れる
+                setItemData(dtShohin);
+
             }
             catch (Exception ex)
             {
@@ -572,42 +803,219 @@ namespace KATO.Common.Form
         }
 
         ///<summary>
+        ///setItemData
+        ///各データを各項目に入れる
+        ///</summary>
+        private void setItemData(DataTable dtShohin)
+        {
+            //大分類
+            this.lsDaibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
+            this.lsDaibunrui.chkTxtDaibunrui();
+
+            //中分類
+            this.lsChubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
+            this.lsChubunrui.chkTxtChubunrui(dtShohin.Rows[0]["大分類コード"].ToString());
+
+            //メーカーコード
+            this.lsMaker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
+            this.lsMaker.chkTxtMaker();
+
+            //検索データ
+            this.btxtKensaku.Text = txtKensaku.Text.Trim();
+
+            //商品コード
+            this.btxtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString().Trim();
+
+            //品名（Ｃ１のみ）（ベーステキスト）
+            this.btxtHinC1.Text = dtShohin.Rows[0]["Ｃ１"].ToString().Trim();
+
+            //品名（Ｃ２のみ）（ベーステキスト）
+            this.btxtHinC2.Text = dtShohin.Rows[0]["Ｃ２"].ToString().Trim();
+
+            //品名（Ｃ３のみ）（ベーステキスト）
+            this.btxtHinC3.Text = dtShohin.Rows[0]["Ｃ３"].ToString().Trim();
+
+            //品名（Ｃ４のみ）（ベーステキスト）
+            this.btxtHinC4.Text = dtShohin.Rows[0]["Ｃ４"].ToString().Trim();
+
+            //品名（Ｃ５のみ）（ベーステキスト）
+            this.btxtHinC5.Text = dtShohin.Rows[0]["Ｃ５"].ToString().Trim();
+
+            //品名（Ｃ６のみ）（ベーステキスト）
+            this.btxtHinC6.Text = dtShohin.Rows[0]["Ｃ６"].ToString().Trim();
+
+            //品名（Ｃ１~Ｃ６）（ベーステキスト）
+            this.btxtHinC1Hinban.Text = this.btxtHinC1.Text +
+                                        " " +
+                                        this.btxtHinC2.Text +
+                                        " " +
+                                        this.btxtHinC3.Text +
+                                        " " +
+                                        this.btxtHinC4.Text +
+                                        " " +
+                                        this.btxtHinC5.Text +
+                                        " " +
+                                        this.btxtHinC6.Text;
+
+            //品名（中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+            this.lblGrayHinChuHinban.Text = lsChubunrui.ValueLabelText.Trim() +
+                                               " " +
+                                               this.btxtHinC1.Text +
+                                               " " +
+                                               this.btxtHinC2.Text +
+                                               " " +
+                                               this.btxtHinC3.Text +
+                                               " " +
+                                               this.btxtHinC4.Text +
+                                               " " +
+                                               this.btxtHinC5.Text +
+                                               " " +
+                                               this.btxtHinC6.Text;
+
+            //品名（（メーカー名 + Ｃ１~Ｃ６）（グレイラベル）
+            this.lblGrayHinMakerHinban.Text = lsMaker.ValueLabelText.Trim() +
+                                              " " +
+                                              this.btxtHinC1.Text +
+                                              " " +
+                                              this.btxtHinC2.Text +
+                                              " " +
+                                              this.btxtHinC3.Text +
+                                              " " +
+                                              this.btxtHinC4.Text +
+                                              " " +
+                                              this.btxtHinC5.Text +
+                                              " " +
+                                              this.btxtHinC6.Text;
+
+            //品名（（メーカー名 + 中分類名 + Ｃ１~Ｃ６）（グレイラベル）
+            this.lblGrayHinMakerChuHinban.Text = lsMaker.ValueLabelText.Trim() +
+                                                    " " +
+                                                    lsChubunrui.ValueLabelText.Trim() +
+                                                    " " +
+                                                    this.btxtHinC1.Text +
+                                                    " " +
+                                                    this.btxtHinC2.Text +
+                                                     " " +
+                                                    this.btxtHinC3.Text +
+                                                    " " +
+                                                    this.btxtHinC4.Text +
+                                                    " " +
+                                                    this.btxtHinC5.Text +
+                                                    " " +
+                                                    this.btxtHinC6.Text;
+
+            //品名（（メーカー名 + 中分類名 + 大分類 + Ｃ１~Ｃ６）（グレイラベル）
+            this.lblGrayHinMakerChuDaiHinban.Text = lsMaker.ValueLabelText.Trim() +
+                                                    " " +
+                                                    lsChubunrui.ValueLabelText.Trim() +
+                                                    " " +
+                                                    lsDaibunrui.ValueLabelText +
+                                                    " " +
+                                                    this.btxtHinC1.Text +
+                                                    " " +
+                                                    this.btxtHinC2.Text +
+                                                     " " +
+                                                    this.btxtHinC3.Text +
+                                                    " " +
+                                                    this.btxtHinC4.Text +
+                                                    " " +
+                                                    this.btxtHinC5.Text +
+                                                    " " +
+                                                    this.btxtHinC6.Text;
+
+            //棚番本社（ラベルセット）
+            this.lsTanabanH.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
+            this.lsTanabanH.chkTxtTanaban();
+
+            //棚番岐阜（ラベルセット）
+            this.lsTanabanG.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
+            this.lsTanabanG.chkTxtTanaban();
+
+            //棚番本社（ベーステキスト）
+            this.btxtTanabanH.Text = dtShohin.Rows[0]["棚番本社"].ToString();
+
+            //棚番岐阜（ベーステキスト）
+            this.btxtTanabanG.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
+
+            //棚番本社（グレイラベル）
+            this.lblGrayTanabanH.Text = dtShohin.Rows[0]["棚番本社"].ToString();
+
+            //棚番岐阜（グレイラベル）
+            this.lblGrayTanabanG.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
+
+            //年月（グレイラベル）
+            this.lblGrayYM.Text = ((DateTime)dtShohin.Rows[0]["登録日時"]).ToString("yyyy/MM/dd");
+
+            //標準売価（ベーステキストマネー）
+            this.bmtxtHyojunBaika.Text = dtShohin.Rows[0]["標準売価"].ToString();
+            this.bmtxtHyojunBaika.updPriceMethod();
+
+            //仕入単価（ベーステキストマネー）
+            this.bmtxtShireTanka.Text = dtShohin.Rows[0]["仕入単価"].ToString();
+            this.bmtxtShireTanka.updPriceMethod();
+
+            //定価（ベーステキストマネー）
+            this.bmtxtTeika.Text = dtShohin.Rows[0]["定価"].ToString();
+            this.bmtxtTeika.updPriceMethod();
+
+            //評価単価（ベーステキストマネー）
+            this.bmtxtHyokaTanka.Text = dtShohin.Rows[0]["評価単価"].ToString();
+            this.bmtxtHyokaTanka.updPriceMethod();
+
+            //建値仕入単価（ベーステキストマネー）
+            this.bmtxtTateneShire.Text = dtShohin.Rows[0]["建値仕入単価"].ToString();
+
+            //箱入数初期値（ベーステキストマネー）
+            this.bmtxtHakosu.Text = dtShohin.Rows[0]["箱入数"].ToString();
+            this.bmtxtHakosu.updPriceMethod();
+
+            //在庫管理区分（ベーステキストマネー）
+            this.btxtZaikokbn.Text = dtShohin.Rows[0]["在庫管理区分"].ToString();
+
+            //メモ（ベーステキストマネー）
+            this.btxtMemo.Text = dtShohin.Rows[0]["メモ"].ToString();
+
+            //コメント（ベーステキストマネー）
+            this.btxtComment.Text = dtShohin.Rows[0]["コメント"].ToString();
+
+            //仕入単価（コンボボックス
+            this.cbShireTanka.Text = dtShohin.Rows[0]["仕入単価"].ToString();
+            
+        }
+
+        ///<summary>
         ///setTextData
         ///前画面のデータを記入
         ///</summary>
         private void setTextData()
         {
-            if (lsDaibunrui.CodeTxtText.Length >= 1)
+            if (lsDaibunrui.CodeTxtText.ToString().Length >= 1)
             {
-                labelSet_Daibunrui.CodeTxtText = lsDaibunrui.CodeTxtText;
+                labelSet_Daibunrui.CodeTxtText = lsDaibunrui.CodeTxtText.ToString();
 
-                //大分類チェック
-                if (labelSet_Daibunrui.chkTxtDaibunrui())
-                {
-                    return;
-                }
+                //leaveの処理をする
+                labelSet_Daibunrui.setTxtDaibunruiLeave();
                 intDBjud = 1;
                 setLabel(intDBjud);
             }
-            if (lsChubunrui.CodeTxtText.Length >= 1)
+            if (lsChubunrui.CodeTxtText.ToString().Length >= 1)
             {
-                labelSet_Chubunrui.CodeTxtText = lsChubunrui.CodeTxtText;
+                labelSet_Chubunrui.CodeTxtText = lsChubunrui.CodeTxtText.ToString();
 
                 //leaveの処理をする
                 labelSet_Chubunrui.setTxtChubunruiLeave();
                 intDBjud = 2;
                 setLabel(intDBjud);
             }
-            if (labelSet_Maker.CodeTxtText.Length >= 1)
+            if (lsChubunrui.CodeTxtText.ToString().Length >= 1)
             {
-                labelSet_Maker.CodeTxtText = lsMaker.CodeTxtText;
+                labelSet_Maker.CodeTxtText = lsMaker.CodeTxtText.ToString();
                 intDBjud = 3;
                 setLabel(intDBjud);
             }
-
             txtKensaku.Text = btxtKensaku.Text;
         }
-
+        
         ///<summary>
         ///btnEndClick
         ///戻るボタンを押したとき
@@ -642,7 +1050,7 @@ namespace KATO.Common.Form
                 return;
             }
         }
-
+        
         ///<summary>
         ///btnKensakuClick
         ///検索ボタンを押したとき
@@ -698,7 +1106,7 @@ namespace KATO.Common.Form
             try
             {
                 dtView = shohinlistB.getShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
-
+                
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
 
@@ -877,7 +1285,7 @@ namespace KATO.Common.Form
         ///setDaibunruiListClose
         ///DaibunruiiListが閉じたらコード記入欄にフォーカス
         ///</summary>
-        public void setDaibunruiListClose()
+        public void CloseDaibunruiList()
         {
             labelSet_Daibunrui.Focus();
         }
@@ -934,5 +1342,13 @@ namespace KATO.Common.Form
             setLabel(intDBjud);
         }
 
+        ///<summary>
+        ///setChubun
+        ///中分類のチェック
+        ///</summary>
+        public void setChubun()
+        {
+            labelSet_Chubunrui.setTxtChubunruiLeave();
+        }
     }
 }

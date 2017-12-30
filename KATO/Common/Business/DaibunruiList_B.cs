@@ -104,7 +104,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     ShouhinList shouhinsist = (ShouhinList)frm;
-                    shouhinsist.setDaibunruiListClose();
+                    shouhinsist.CloseDaibunruiList();
                     break;
                 }
             }
