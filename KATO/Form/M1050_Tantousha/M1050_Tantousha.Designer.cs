@@ -519,6 +519,7 @@
             this.Text = "M1050_Tantousha";
             this.Load += new System.EventHandler(this.M1050_Tantousha_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

@@ -429,22 +429,22 @@ namespace KATO.Form.A0010_JuchuInput
 
             if (!String.IsNullOrWhiteSpace(lsDaibunrui.CodeTxtText))
             {
-                shohinList.strDaibunruiCode = lsDaibunrui.CodeTxtText;
+                shohinList.lsDaibunrui = lsDaibunrui;
             }
 
             if (!String.IsNullOrWhiteSpace(lsChubunrui.CodeTxtText))
             {
-                shohinList.strChubunruiCode = lsChubunrui.CodeTxtText;
+                shohinList.lsChubunrui = lsChubunrui;
             }
 
             if (!String.IsNullOrWhiteSpace(lsMaker.CodeTxtText))
             {
-                shohinList.strMakerCode = lsMaker.CodeTxtText;
+                shohinList.lsMaker = lsMaker;
             }
 
             if (!String.IsNullOrWhiteSpace(txtSearchStr.Text))
             {
-                shohinList.strKensaku = txtSearchStr.Text;
+                shohinList.btxtKensaku = txtSearchStr;
             }
             shohinList.intFrmKind = CommonTeisu.FRM_JUCHUINPUT;
             shohinList.Show();

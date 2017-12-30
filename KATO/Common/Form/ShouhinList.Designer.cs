@@ -42,11 +42,8 @@ namespace KATO.Common.Form
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
-            this.btnGifuZaiko = new KATO.Common.Ctl.BaseButton();
-            this.btnHonshaZaiko = new KATO.Common.Ctl.BaseButton();
             this.gridTorihiki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
-            this.lblDataFree = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGihu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHon = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -179,28 +176,6 @@ namespace KATO.Common.Form
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
-            // btnGifuZaiko
-            // 
-            this.btnGifuZaiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnGifuZaiko.Location = new System.Drawing.Point(1289, 90);
-            this.btnGifuZaiko.Name = "btnGifuZaiko";
-            this.btnGifuZaiko.Size = new System.Drawing.Size(100, 23);
-            this.btnGifuZaiko.TabIndex = 104;
-            this.btnGifuZaiko.Text = "岐阜在庫";
-            this.btnGifuZaiko.UseVisualStyleBackColor = true;
-            this.btnGifuZaiko.Visible = false;
-            // 
-            // btnHonshaZaiko
-            // 
-            this.btnHonshaZaiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnHonshaZaiko.Location = new System.Drawing.Point(1183, 91);
-            this.btnHonshaZaiko.Name = "btnHonshaZaiko";
-            this.btnHonshaZaiko.Size = new System.Drawing.Size(100, 23);
-            this.btnHonshaZaiko.TabIndex = 104;
-            this.btnHonshaZaiko.Text = "本社在庫";
-            this.btnHonshaZaiko.UseVisualStyleBackColor = true;
-            this.btnHonshaZaiko.Visible = false;
-            // 
             // gridTorihiki
             // 
             this.gridTorihiki.AllowUserToAddRows = false;
@@ -252,19 +227,6 @@ namespace KATO.Common.Form
             this.txtKensaku.Size = new System.Drawing.Size(199, 22);
             this.txtKensaku.TabIndex = 3;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
-            // 
-            // lblDataFree
-            // 
-            this.lblDataFree.AutoSize = true;
-            this.lblDataFree.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDataFree.Location = new System.Drawing.Point(337, 98);
-            this.lblDataFree.Name = "lblDataFree";
-            this.lblDataFree.Size = new System.Drawing.Size(367, 15);
-            this.lblDataFree.strToolTip = null;
-            this.lblDataFree.TabIndex = 100;
-            this.lblDataFree.Text = "※ﾌﾘｰ在庫の表示は右のボタンを押してください。";
-            this.lblDataFree.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblDataFree.Visible = false;
             // 
             // lblKensaku
             // 
@@ -339,12 +301,9 @@ namespace KATO.Common.Form
             this.Controls.Add(this.chkNotToroku);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
-            this.Controls.Add(this.btnGifuZaiko);
-            this.Controls.Add(this.btnHonshaZaiko);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.txtKensaku);
-            this.Controls.Add(this.lblDataFree);
             this.Controls.Add(this.lblKensaku);
             this.Controls.Add(this.lblGihu);
             this.Controls.Add(this.lblHon);
@@ -365,9 +324,6 @@ namespace KATO.Common.Form
         private BaseLabel lblKensaku;
         private BaseDataGridView gridTorihiki;
         private System.Windows.Forms.Label lblRecords;
-        private BaseLabel lblDataFree;
-        private BaseButton btnHonshaZaiko;
-        private BaseButton btnGifuZaiko;
         private BaseButton btnF11;
         private BaseButton btnF12;
         private System.Windows.Forms.CheckBox chkNotToroku;

@@ -58,7 +58,6 @@
             this.txtHyojun = new KATO.Common.Ctl.BaseTextMoney();
             this.txtMemo = new KATO.Common.Ctl.BaseText();
             this.txtZaiko = new KATO.Common.Ctl.BaseText();
-            this.txtHachukbn = new KATO.Common.Ctl.BaseText();
             this.labelSet_TanabanGihu = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.object_b5e58df5_5c06_48fb_be83_f7b312adb3ed = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -73,7 +72,6 @@
             this.lblHyojun = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHako = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblTeika = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblHachukbn = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGrayToroku = new KATO.Common.Ctl.BaseLabelGray();
             this.lblToroku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblC1 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -85,7 +83,6 @@
             this.lblC6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblTatene = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtTatene = new KATO.Common.Ctl.BaseTextMoney();
-            this.lblHachuData = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtComment = new KATO.Common.Ctl.BaseText();
             this.lblComment = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbRadio.SuspendLayout();
@@ -567,19 +564,6 @@
             this.txtZaiko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             this.txtZaiko.Leave += new System.EventHandler(this.txtZaiko_Leave);
             // 
-            // txtHachukbn
-            // 
-            this.txtHachukbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHachukbn.Location = new System.Drawing.Point(143, 404);
-            this.txtHachukbn.MaxLength = 1;
-            this.txtHachukbn.Name = "txtHachukbn";
-            this.txtHachukbn.Size = new System.Drawing.Size(15, 22);
-            this.txtHachukbn.TabIndex = 10;
-            this.txtHachukbn.Visible = false;
-            this.txtHachukbn.Enter += new System.EventHandler(this.shohin_Enter);
-            this.txtHachukbn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
-            this.txtHachukbn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            // 
             // labelSet_TanabanGihu
             // 
             this.labelSet_TanabanGihu.AppendLabelSize = 0;
@@ -768,19 +752,6 @@
             this.lblTeika.Text = "定価";
             this.lblTeika.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblHachukbn
-            // 
-            this.lblHachukbn.AutoSize = true;
-            this.lblHachukbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHachukbn.Location = new System.Drawing.Point(38, 408);
-            this.lblHachukbn.Name = "lblHachukbn";
-            this.lblHachukbn.Size = new System.Drawing.Size(71, 15);
-            this.lblHachukbn.strToolTip = null;
-            this.lblHachukbn.TabIndex = 130;
-            this.lblHachukbn.Text = "発注区分";
-            this.lblHachukbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblHachukbn.Visible = false;
-            // 
             // lblGrayToroku
             // 
             this.lblGrayToroku.AutoEllipsis = true;
@@ -926,19 +897,6 @@
             this.txtTatene.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtTatene.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
             // 
-            // lblHachuData
-            // 
-            this.lblHachuData.AutoSize = true;
-            this.lblHachuData.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHachuData.Location = new System.Drawing.Point(170, 408);
-            this.lblHachuData.Name = "lblHachuData";
-            this.lblHachuData.Size = new System.Drawing.Size(263, 15);
-            this.lblHachuData.strToolTip = null;
-            this.lblHachuData.TabIndex = 121;
-            this.lblHachuData.Text = "(Y：受注数≠受注数は不可　N：可)";
-            this.lblHachuData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblHachuData.Visible = false;
-            // 
             // txtComment
             // 
             this.txtComment.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -981,7 +939,6 @@
             this.Controls.Add(this.txtComment);
             this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.txtZaiko);
-            this.Controls.Add(this.txtHachukbn);
             this.Controls.Add(this.labelSet_TanabanGihu);
             this.Controls.Add(this.labelSet_TanabanHonsha);
             this.Controls.Add(this.lblComment);
@@ -994,8 +951,6 @@
             this.Controls.Add(this.lblHyojun);
             this.Controls.Add(this.lblHako);
             this.Controls.Add(this.lblTeika);
-            this.Controls.Add(this.lblHachuData);
-            this.Controls.Add(this.lblHachukbn);
             this.Controls.Add(this.txtData6);
             this.Controls.Add(this.txtData5);
             this.Controls.Add(this.txtData4);
@@ -1023,6 +978,7 @@
             this.Text = "M1030_Shohin";
             this.Load += new System.EventHandler(this.M1030_Shohin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.gbRadio, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
@@ -1046,8 +1002,6 @@
             this.Controls.SetChildIndex(this.txtData4, 0);
             this.Controls.SetChildIndex(this.txtData5, 0);
             this.Controls.SetChildIndex(this.txtData6, 0);
-            this.Controls.SetChildIndex(this.lblHachukbn, 0);
-            this.Controls.SetChildIndex(this.lblHachuData, 0);
             this.Controls.SetChildIndex(this.lblTeika, 0);
             this.Controls.SetChildIndex(this.lblHako, 0);
             this.Controls.SetChildIndex(this.lblHyojun, 0);
@@ -1060,7 +1014,6 @@
             this.Controls.SetChildIndex(this.lblComment, 0);
             this.Controls.SetChildIndex(this.labelSet_TanabanHonsha, 0);
             this.Controls.SetChildIndex(this.labelSet_TanabanGihu, 0);
-            this.Controls.SetChildIndex(this.txtHachukbn, 0);
             this.Controls.SetChildIndex(this.txtZaiko, 0);
             this.Controls.SetChildIndex(this.txtMemo, 0);
             this.Controls.SetChildIndex(this.txtComment, 0);
@@ -1134,7 +1087,6 @@
         private Common.Ctl.BaseTextMoney txtHyojun;
         private Common.Ctl.BaseText txtMemo;
         private Common.Ctl.BaseText txtZaiko;
-        private Common.Ctl.BaseText txtHachukbn;
         private Common.Ctl.LabelSet_Tanaban labelSet_TanabanGihu;
         private Common.Ctl.BaseLabel object_b5e58df5_5c06_48fb_be83_f7b312adb3ed;
         private Common.Ctl.BaseLabel baseLabel2;
@@ -1149,7 +1101,6 @@
         private Common.Ctl.BaseLabel lblHyojun;
         private Common.Ctl.BaseLabel lblHako;
         private Common.Ctl.BaseLabel lblTeika;
-        private Common.Ctl.BaseLabel lblHachukbn;
         private Common.Ctl.BaseLabelGray lblGrayToroku;
         private Common.Ctl.BaseLabel lblToroku;
         private Common.Ctl.BaseLabel lblC1;
@@ -1161,7 +1112,6 @@
         private Common.Ctl.BaseLabel lblC6;
         private Common.Ctl.BaseLabel lblTatene;
         private Common.Ctl.BaseTextMoney txtTatene;
-        private Common.Ctl.BaseLabel lblHachuData;
         private Common.Ctl.BaseText txtComment;
         private Common.Ctl.BaseLabel lblComment;
     }

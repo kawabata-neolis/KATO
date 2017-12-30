@@ -647,7 +647,7 @@
     <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.Designer.cs">
+    <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.designer.cs">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
