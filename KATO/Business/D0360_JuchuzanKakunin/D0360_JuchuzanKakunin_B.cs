@@ -74,59 +74,59 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "   AND b.発注数量 <> 0";
                 strQuery += "   AND b.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(a.受注番号)";
 
-                if (StringUtl.blIsEmpty(listParam[0]))
+                if (!StringUtl.blIsEmpty(listParam[0]))
                 {
                     strQuery += "   AND a.受注番号 = '" + listParam[0] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[20]))
+                if (!StringUtl.blIsEmpty(listParam[20]))
                 {
                     strQuery += "   AND a.大分類コード = '" + listParam[20] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[21]))
+                if (!StringUtl.blIsEmpty(listParam[21]))
                 {
                     strQuery += "   AND a.中分類コード = '" + listParam[21] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[22]))
+                if (!StringUtl.blIsEmpty(listParam[22]))
                 {
                     strQuery += "   AND a.メーカーコード = '" + listParam[22] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[18]))
+                if (!StringUtl.blIsEmpty(listParam[18]))
                 {
                     strQuery += "   AND a.得意先コード = '" + listParam[18] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[15]))
+                if (!StringUtl.blIsEmpty(listParam[15]))
                 {
                     strQuery += "   AND a.受注者コード = '" + listParam[15] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[17]))
+                if (!StringUtl.blIsEmpty(listParam[17]))
                 {
                     strQuery += "   AND dbo.f_get取引先マスタ担当者(a.得意先コード) = '" + listParam[17] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[11]))
+                if (!StringUtl.blIsEmpty(listParam[11]))
                 {
                     strQuery += "   AND a.受注年月日 >= '" + listParam[11] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[12]))
+                if (!StringUtl.blIsEmpty(listParam[12]))
                 {
                     strQuery += "   AND a.受注年月日 <= '" + listParam[12] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[5]))
+                if (!StringUtl.blIsEmpty(listParam[5]))
                 {
                     strQuery += "   AND a.納期 >= '" + listParam[5] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[6]))
+                if (!StringUtl.blIsEmpty(listParam[6]))
                 {
                     strQuery += "   AND a.納期 <= '" + listParam[6] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[2]))
+                if (!StringUtl.blIsEmpty(listParam[2]))
                 {
                     strQuery += "   AND (dbo.f_get中分類名(a.大分類コード, a.中分類コード)  +  REPLACE(ISNULL(a.Ｃ１, ''), ' ', '' ) ";
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ２, ''), ' ', '' )";
@@ -136,12 +136,12 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ６, ''), ' ', '' )) LIKE '%" + listParam[2].Replace(" ", "") + "%' ";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[3]))
+                if (!StringUtl.blIsEmpty(listParam[3]))
                 {
                     strQuery += "   AND a.注番 LIKE '%" + listParam[3] + "%'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[25]))
+                if (!StringUtl.blIsEmpty(listParam[25]))
                 {
                     if (int.Parse(listParam[25]) == 1)
                     {
@@ -153,7 +153,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     }
                 }
 
-                if (StringUtl.blIsEmpty(listParam[24]))
+                if (!StringUtl.blIsEmpty(listParam[24]))
                 {
                     if (int.Parse(listParam[24]) == 1)
                     {
@@ -165,7 +165,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     }
                 }
 
-                if (StringUtl.blIsEmpty(listParam[26]))
+                if (!StringUtl.blIsEmpty(listParam[26]))
                 {
                     int intGroup = int.Parse(listParam[26]);
                     if (intGroup != CommonTeisu.GROUP_RADIO_ALL)
@@ -220,69 +220,69 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "   AND a.仕入先コード <> '7777'";
                 strQuery += "   AND a.仕入先コード <> '9999'";
 
-                if (StringUtl.blIsEmpty(listParam[1]))
+                if (!StringUtl.blIsEmpty(listParam[1]))
                 {
                     strQuery += "   AND a.発注番号 = '" + listParam[1] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[20]))
+                if (!StringUtl.blIsEmpty(listParam[20]))
                 {
                     strQuery += "   AND a.大分類コード = '" + listParam[20] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[21]))
+                if (!StringUtl.blIsEmpty(listParam[21]))
                 {
                     strQuery += "   AND a.中分類コード = '" + listParam[21] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[22]))
+                if (!StringUtl.blIsEmpty(listParam[22]))
                 {
                     strQuery += "   AND a.メーカーコード = '" + listParam[22] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[16]))
+                if (!StringUtl.blIsEmpty(listParam[16]))
                 {
                     strQuery += "   AND a.発注者コード = '" + listParam[16] + "'";
                 }
-                if (StringUtl.blIsEmpty(listParam[19]))
+                if (!StringUtl.blIsEmpty(listParam[19]))
                 {
                     strQuery += "   AND a.仕入先コード = '" + listParam[19] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[0]))
+                if (!StringUtl.blIsEmpty(listParam[0]))
                 {
                     strQuery += "   AND a.受注番号 = '" + listParam[0] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[13]))
+                if (!StringUtl.blIsEmpty(listParam[13]))
                 {
                     strQuery += "   AND a.発注年月日 >= '" + listParam[13] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[14]))
+                if (!StringUtl.blIsEmpty(listParam[14]))
                 {
                     strQuery += "   AND a.発注年月日 <= '" + listParam[14] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[7]))
+                if (!StringUtl.blIsEmpty(listParam[7]))
                 {
                     strQuery += "   AND a.納期 >= '" + listParam[7] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[8]))
+                if (!StringUtl.blIsEmpty(listParam[8]))
                 {
                     strQuery += "   AND a.納期 <= '" + listParam[8] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[9]))
+                if (!StringUtl.blIsEmpty(listParam[9]))
                 {
                     strQuery += "   AND a.納期 >= '" + listParam[9] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[10]))
+                if (!StringUtl.blIsEmpty(listParam[10]))
                 {
                     strQuery += "   AND a.納期 <= '" + listParam[10] + "'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[25]))
+                if (!StringUtl.blIsEmpty(listParam[25]))
                 {
                     if (int.Parse(listParam[25]) == 1)
                     {
@@ -294,7 +294,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     }
                 }
 
-                if (StringUtl.blIsEmpty(listParam[2]))
+                if (!StringUtl.blIsEmpty(listParam[2]))
                 {
                     strQuery += "   AND (dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ１, ''), ' ', '')";
@@ -305,12 +305,12 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ６, ''), ' ', '')) LIKE '%" + listParam[2].Replace(" ", "") + "%' ";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[3]))
+                if (!StringUtl.blIsEmpty(listParam[3]))
                 {
                     strQuery += "   AND RTRIM(dbo.f_get注番文字FROM担当者(a.発注者コード)) + CAST(発注番号 AS varchar(8)) LIKE '%" + listParam[3] + "%'";
                 }
 
-                if (StringUtl.blIsEmpty(listParam[24]))
+                if (!StringUtl.blIsEmpty(listParam[24]))
                 {
                     if (int.Parse(listParam[24]) == 1)
                     {
@@ -322,7 +322,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     }
                 }
 
-                if (StringUtl.blIsEmpty(listParam[26]))
+                if (!StringUtl.blIsEmpty(listParam[26]))
                 {
                     int intGroup = int.Parse(listParam[26]);
                     if (intGroup != CommonTeisu.GROUP_RADIO_ALL)
