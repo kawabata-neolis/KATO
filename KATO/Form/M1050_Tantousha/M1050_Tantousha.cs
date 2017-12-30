@@ -78,6 +78,11 @@ namespace KATO.Form.M1050_Tantousha
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -106,18 +111,27 @@ namespace KATO.Form.M1050_Tantousha
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTantousha();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTantousha();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.deTantousha();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.deTantousha();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -270,16 +284,25 @@ namespace KATO.Form.M1050_Tantousha
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTantousha();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTantousha();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.deTantousha();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.deTantousha();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -363,6 +386,11 @@ namespace KATO.Form.M1050_Tantousha
                 lblSetEigyousho.Focus();
                 return;
             }
+            // 存在チェック（グループチェック）
+            if (lblSetEigyousho.chkTxtEigyousho())
+            {
+                return;
+            }
             //空文字判定（注番）
             if (txtChuban.blIsEmpty() == false)
             {
@@ -381,6 +409,11 @@ namespace KATO.Form.M1050_Tantousha
                 lblSetGroupCd.Focus();
                 return;
             }
+            // 存在チェック（グループチェック）
+            if (lblSetGroupCd.chkTxtGroupCd())
+            {
+                return;
+            }
             //空文字判定（目標金額）
             if (txtMokuhyou.blIsEmpty() == false)
             {
@@ -397,6 +430,11 @@ namespace KATO.Form.M1050_Tantousha
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtYakushokuCd.Focus();
+                return;
+            }
+            // 存在チェック（役職コード）
+            if (txtYakushokuCd_Leave_Set())
+            {
                 return;
             }
             //空文字判定（表示設定）
@@ -471,7 +509,12 @@ namespace KATO.Form.M1050_Tantousha
                 txtRiekiritsuKengen.Focus();
                 return;
             }
-            
+            // 担当者コードチェック
+            if (chkTantoushaCd())
+            {
+                return;
+            }
+
             //登録情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、マスター権限、閲覧権限、利益率権限、ユーザー名）
             //[0]
             lstTantousha.Add(txtTantoushaCd.Text);
@@ -512,7 +555,6 @@ namespace KATO.Form.M1050_Tantousha
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTantoushaCd.Focus();
             }
             catch (Exception ex)
             {
@@ -533,6 +575,11 @@ namespace KATO.Form.M1050_Tantousha
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+
             txtTantoushaCd.Focus();
             txtMokuhyou.Text = "";
         }
@@ -551,6 +598,12 @@ namespace KATO.Form.M1050_Tantousha
 
             //空文字判定（担当者コード）
             if (txtTantoushaCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 担当者コードチェック
+            if (chkTantoushaCd())
             {
                 return;
             }
@@ -577,15 +630,20 @@ namespace KATO.Form.M1050_Tantousha
                 }
 
                 //削除情報を入れる（担当者コード、担当者名、ログインID、営業所コード、注番、グループコード、目標金額、ユーザー名）
-                lstTantousha.Add(txtTantoushaCd.Text);
-                lstTantousha.Add(txtTantoushaName.Text);
-                lstTantousha.Add(txtLoginID.Text);
-                lstTantousha.Add(lblSetEigyousho.CodeTxtText);
-                lstTantousha.Add(txtChuban.Text);
-                lstTantousha.Add(lblSetGroupCd.CodeTxtText);
-                lstTantousha.Add(txtMokuhyou.Text);
+                lstTantousha.Add(dtSetCd.Rows[0]["担当者コード"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["担当者名"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["ログインID"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["営業所コード"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["注番文字"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["グループコード"].ToString());
+                lstTantousha.Add(((decimal)dtSetCd.Rows[0]["年間売上目標"]).ToString("#,0"));
+                lstTantousha.Add(dtSetCd.Rows[0]["マスタ権限"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["閲覧権限"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["利益率権限"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["役職コード"].ToString());
+                lstTantousha.Add(dtSetCd.Rows[0]["表示"].ToString());
                 lstTantousha.Add(SystemInformation.UserName);
-
+                
                 //ビジネス層、削除ロジックに移動
                 tantouB.delTantosha(lstTantousha);
 
@@ -594,7 +652,6 @@ namespace KATO.Form.M1050_Tantousha
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTantoushaCd.Focus();
             }
             catch (Exception ex)
             {
@@ -627,7 +684,10 @@ namespace KATO.Form.M1050_Tantousha
             txtRiekiritsuKengen.Text = dtSelectData.Rows[0]["利益率権限"].ToString();
 
             //役職コードの表示
-            txtYakushokuCd_Leave_Set();
+            if (txtYakushokuCd_Leave_Set())
+            {
+                return;
+            }
         }
 
         ///<summary>
@@ -639,9 +699,6 @@ namespace KATO.Form.M1050_Tantousha
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字チェック用
-            Boolean blnGood;
-
             //前後の空白を取り除く
             txtTantoushaCd.Text = txtTantoushaCd.Text.Trim();
 
@@ -651,28 +708,11 @@ namespace KATO.Form.M1050_Tantousha
                 return;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtTantoushaCd.TextLength < 4)
+            // 担当者コードチェック
+            if (chkTantoushaCd())
             {
-                txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
-            }
-            
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtTantoushaCd.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtTantoushaCd.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtTantoushaCd.Focus();
                 return;
             }
-
             //ビジネス層のインスタンス生成
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
             try
@@ -684,10 +724,18 @@ namespace KATO.Form.M1050_Tantousha
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTantousha(dtSetCd);
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
                 }
                 else
                 {
                     txtTantoushaName.Text = "";
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -833,20 +881,21 @@ namespace KATO.Form.M1050_Tantousha
         ///</summary>
         private void txtYakushokuCd_Leave(object sender, EventArgs e)
         {
-            txtYakushokuCd_Leave_Set();
+            if (txtYakushokuCd_Leave_Set())
+            {
+                return;
+            }
         }
 
         ///<summary>
         ///txtYakushokuCd_Leave_Set
-        ///役職コードから離れた場合の処理
+        ///役職コード入力処理
         ///</summary>
-        private void txtYakushokuCd_Leave_Set()
+        private bool txtYakushokuCd_Leave_Set()
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
-
-            //文字チェック用
-            Boolean blnGood;
+            
 
             //前後の空白を取り除く
             txtYakushokuCd.Text = txtYakushokuCd.Text.Trim();
@@ -855,29 +904,13 @@ namespace KATO.Form.M1050_Tantousha
             if (txtYakushokuCd.blIsEmpty() == false)
             {
                 lblGrayYakushokuCdName.Text = "";
-                return;
+                return true;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtYakushokuCd.TextLength < 2)
+            // 役職コードチェック
+            if (chkYakushokuCd())
             {
-                txtYakushokuCd.Text = txtYakushokuCd.Text.ToString().PadLeft(2, '0');
-            }
-
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtYakushokuCd.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtYakushokuCd.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtYakushokuCd.Focus();
-                return;
+                return true;
             }
 
             //ビジネス層のインスタンス生成
@@ -895,8 +928,18 @@ namespace KATO.Form.M1050_Tantousha
                 }
                 else
                 {
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYakushokuCd.Text = "";
                     lblGrayYakushokuCdName.Text = "";
+
+                    txtYakushokuCd.Focus();
+                    return true;
                 }
+                return false;
+
             }
             catch (Exception ex)
             {
@@ -905,8 +948,84 @@ namespace KATO.Form.M1050_Tantousha
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                return;
+                return true;
             }
         }
+        ///<summary>
+        /// chkTantoushaCd
+        /// 担当者コードチェック
+        ///</summary>
+        private bool chkTantoushaCd()
+        {
+
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtTantoushaCd.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTantoushaCd.Text = "";
+
+                txtTantoushaCd.Focus();
+                return true;
+            }
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtTantoushaCd.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                //文字数が足りなかった場合0パティング
+                if (txtTantoushaCd.TextLength < 4)
+                {
+                    txtTantoushaCd.Text = txtTantoushaCd.Text.ToString().PadLeft(4, '0');
+                }
+            }
+
+            return false;
+        }
+
+        ///<summary>
+        /// chkYakushokuCd
+        /// 役職コードチェック
+        ///</summary>
+        private bool chkYakushokuCd()
+        {
+
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtYakushokuCd.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYakushokuCd.Text = "";
+                lblGrayYakushokuCdName.Text = "";
+
+                txtYakushokuCd.Focus();
+                return true;
+            }
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtYakushokuCd.Text, CommonTeisu.NUMBER_ONLY) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYakushokuCd.Text = "";
+                lblGrayYakushokuCdName.Text = "";
+
+                txtYakushokuCd.Focus();
+                return true;
+            }
+
+            //文字数が足りなかった場合0パティング
+            if (txtYakushokuCd.TextLength < 2)
+            {
+                txtYakushokuCd.Text = txtYakushokuCd.Text.ToString().PadLeft(2, '0');
+            }
+            return false;
+        }
+
     }
 }

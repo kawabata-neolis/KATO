@@ -872,6 +872,10 @@
     <Compile Include="Form\M1070_Torihikisaki\M1070_Torihikisaki.Designer.cs">
       <DependentUpon>M1070_Torihikisaki.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\M1071_TorihikisakiInfo\M1071_TorihikisakiInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\M1071_TorihikisakiInfo\M1071_TorihikisakiInfo.Designer.cs" />
     <Compile Include="Form\M1090_Eigyosho\M1090_Eigyosho.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1385,6 +1389,7 @@
     <EmbeddedResource Include="Form\M1070_Torihikisaki\M1070_Torihikisaki.resx">
       <DependentUpon>M1070_Torihikisaki.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\M1071_TorihikisakiInfo\M1071_TorihikisakiInfo.resx" />
     <EmbeddedResource Include="Form\M1090_Eigyosho\M1090_Eigyosho.resx">
       <DependentUpon>M1090_Eigyosho.cs</DependentUpon>
     </EmbeddedResource>

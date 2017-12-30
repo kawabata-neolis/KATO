@@ -74,7 +74,6 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.btnF01.Text = STR_FUNC_F1;
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
-            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             // ボタン機能無効(検索機能後、使用できる)
@@ -110,20 +109,32 @@ namespace KATO.Form.M1000_Kaishajyoken
                     break;
                 // 登録処理へ
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addKaishajyoken();
+                    // ボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addKaishajyoken();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 // 削除処理へ
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delKaishajyoken();
+                    // ボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delKaishajyoken();
+                    }
                     break;
                 // 取消処理へ
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -313,20 +324,26 @@ namespace KATO.Form.M1000_Kaishajyoken
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addKaishajyoken();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addKaishajyoken();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delKaishajyoken();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delKaishajyoken();
+                    }
                     break;
                 case STR_BTN_F04: // 取り消し
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
-                //case STR_BTN_F11: //印刷
-                //    this.XX();
-                //    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -426,6 +443,27 @@ namespace KATO.Form.M1000_Kaishajyoken
                 return;
             }
 
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtKaisyaCode.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtKaisyaCode.Text = "";
+                txtKaisyaCode.Focus();
+                return;
+
+            }
+
+            // 会社コードの一桁で数値の場合パティング
+            if (StringUtl.JudBanSelect(txtKaisyaCode.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtKaisyaCode.TextLength == 1)
+                {
+                    txtKaisyaCode.Text = txtKaisyaCode.Text.ToString().PadLeft(2, '0');
+                }
+            }
 
             // 画面情報【会社条件情報】を会社条件情報登録Ｂ層へのリスト格納
             lstString.Add(txtKaisyaCode.Text);         // 会社コード
@@ -473,14 +511,39 @@ namespace KATO.Form.M1000_Kaishajyoken
             // データ渡し用
             List<string> lstString = new List<string>();
 
+            // メッセージボックス宣言
+            BaseMessageBox basemessagebox = null;
+
             // 存在チェック（会社コード）
             if (txtKaisyaCode.blIsEmpty() == false)
             {
                 return;
             }
 
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtKaisyaCode.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtKaisyaCode.Text = "";
+                txtKaisyaCode.Focus();
+                return;
+
+            }
+
+            // 会社コードの一桁で数値の場合パティング
+            if (StringUtl.JudBanSelect(txtKaisyaCode.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtKaisyaCode.TextLength == 1)
+                {
+                    txtKaisyaCode.Text = txtKaisyaCode.Text.ToString().PadLeft(2, '0');
+                }
+            }
+
             // メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
 
             //NOが押された場合
             if (basemessagebox.ShowDialog() == DialogResult.No)
@@ -514,6 +577,11 @@ namespace KATO.Form.M1000_Kaishajyoken
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
+
+                this.btnF01.Enabled = false;
+                this.btnF03.Enabled = false;
+                this.btnF04.Enabled = false;
+
                 txtKaisyaCode.Focus();
             }
             catch (Exception ex)
@@ -546,10 +614,26 @@ namespace KATO.Form.M1000_Kaishajyoken
             // 会社コードをトリム
             txtKaisyaCode.Text = txtKaisyaCode.Text.Trim();
 
-            // 会社
-            if (txtKaisyaCode.TextLength == 1)
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtKaisyaCode.Text) == false)
             {
-                txtKaisyaCode.Text = txtKaisyaCode.Text.ToString().PadLeft(2, '0');
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtKaisyaCode.Text = "";
+                txtKaisyaCode.Focus();
+                return;
+
+            }
+
+            // 会社コードの一桁で数値の場合パティング
+            if (StringUtl.JudBanSelect(txtKaisyaCode.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtKaisyaCode.TextLength == 1)
+                {
+                    txtKaisyaCode.Text = txtKaisyaCode.Text.ToString().PadLeft(2, '0');
+                }
             }
 
 
@@ -587,8 +671,9 @@ namespace KATO.Form.M1000_Kaishajyoken
                     txtShuryouYMD.Text = "";
 
                     // ファンクション機能を有効化(削除以外)
-                    this.btnF01.Enabled = true;       // 登録機能
-                    this.btnF04.Enabled = true;       // 取消機能
+                    this.btnF01.Enabled = true;      // 登録機能
+                    this.btnF03.Enabled = false;      // 削除機能
+                    this.btnF04.Enabled = false;       // 取消機能
                 }
 
                 // 会社名にフォーカスを移動
@@ -628,6 +713,11 @@ namespace KATO.Form.M1000_Kaishajyoken
         private void delText()
         {
             delFormClear(this);
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+
             txtKaisyaCode.Focus();
         }
 

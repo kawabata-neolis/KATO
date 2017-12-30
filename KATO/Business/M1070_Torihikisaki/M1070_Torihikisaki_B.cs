@@ -4,6 +4,8 @@ using System.Data;
 using System.Linq;
 using ClosedXML.Excel;
 using KATO.Common.Util;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace KATO.Business.M1070_Torihikisaki
 {
@@ -546,5 +548,46 @@ namespace KATO.Business.M1070_Torihikisaki
                 }
             }
         }
+
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        ///    フリガナのテキストボックスの中身をチェック</summary>
+        /// <param name="target">
+        ///    チェック対象の文字列</param>
+        /// <returns>
+        ///     ひらがな/カタカナなら半角カタカナ変換した文字列、それ以外なら"FALSE"を返す</returns>
+        /// -----------------------------------------------------------------------------
+        public string chkFurigana(string target)
+        {
+            string rtn = "";
+
+            // 文字列"kana"に含まれる文字がすべて"ひらがな"か調べる
+            // すべてひらがな(true)なら変換
+            if (Regex.IsMatch(target, @"^[\p{IsHiragana}\u30FC\u30A0]+$"))
+            {
+                // "ひらがな"を"カタカナ"に
+                rtn = Strings.StrConv(target, VbStrConv.Katakana, 0x411);
+            }
+            else
+            {
+                rtn = "FALSE";
+            }
+            // 文字列"kana"に含まれる文字がすべて"カタカナ"か調べる
+            // すべてカタカナ(true)なら変換
+            //  通常の全角カタカナの他に、カタカナフリガナ拡張、
+            //  濁点と半濁点、半角カタカナもカタカナとする
+            if (Regex.IsMatch(target, @"^[\p{IsKatakana}\u31F0-\u31FF\u3099-\u309C\uFF65-\uFF9F]+$"))
+            {
+                // 全角を半角に
+                rtn = Strings.StrConv(target, VbStrConv.Narrow, 0x411);
+            }
+            else
+            {
+                rtn = "FALSE";
+            }
+
+            return rtn;
+        }
+
     }
 }

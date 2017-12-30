@@ -12,8 +12,6 @@ using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
 using KATO.Business.M1070_Torihikisaki;
-using Microsoft.VisualBasic;
-using System.Text.RegularExpressions;
 
 namespace KATO.Form.M1070_Torihikisaki
 {
@@ -87,16 +85,18 @@ namespace KATO.Form.M1070_Torihikisaki
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
+            // 画面初回起動時は、下記ボタンは無効化
+            this.btnF01.Enabled = false;    // 登録
+            this.btnF03.Enabled = false;    // 削除
+            this.btnF04.Enabled = false;    // 取消
+            this.btnF09.Enabled = false;    // 検索
+
             //コンボボックス内データの追加
             cmbNonyu.Items.Add("配達");
             cmbNonyu.Items.Add("発送");
             cmbNonyu.Items.Add("直送");
             cmbNonyu.Items.Add("代引き");
             cmbNonyu.Items.Add("来店");
-
-            //gcIme1.SetInputScope(gcTextBox1, GrapeCity.Win.Editors.InputScopeNameValue.Hiragana);
-
-            //this.
         }
 
 
@@ -126,18 +126,28 @@ namespace KATO.Form.M1070_Torihikisaki
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTorihiki();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTorihiki();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delTorihiki();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delTorihiki();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                        this.txtCdT.Focus();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -225,12 +235,6 @@ namespace KATO.Form.M1070_Torihikisaki
                     break;
             }
 
-            ////フリガナのテキストの場合
-            //if (this.ActiveControl.Name == "txtHuriT")
-            //{
-            //    txtHuriT.ImeMode = ImeMode.KatakanaHalf;
-            //}
-
         }
 
         ///<summary>
@@ -310,7 +314,8 @@ namespace KATO.Form.M1070_Torihikisaki
                     this.delText();
                     break;
                 case STR_BTN_F08: // 未割当の番号検索
-                    this.delText();
+                    logger.Info(LogUtil.getMessage(this._Title, "空番実行"));
+                    this.showTorihikicdList();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -531,7 +536,7 @@ namespace KATO.Form.M1070_Torihikisaki
             }
 
             //文字判定（業務担当者コード）
-            if (labelSet_GyomuTantousha.codeTxt.blIsEmpty() == false)
+            if(labelSet_GyomuTantousha.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -680,9 +685,13 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             delFormClear(this);
             txtSihon.Text = "";
-            txtCdT.Focus();
-        }
 
+            // クリア後は登録、削除、取消は無効化
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+        }
+        
         ///<summary>
         ///delTorihiki
         ///テキストボックス内のデータをDBから削除
@@ -713,7 +722,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 {
                     return;
                 }
-
+                
                 //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //NOが押された場合
@@ -828,6 +837,7 @@ namespace KATO.Form.M1070_Torihikisaki
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
+
                 txtCdT.Focus();
             }
             catch (Exception ex)
@@ -958,21 +968,27 @@ namespace KATO.Form.M1070_Torihikisaki
         }
 
         ///<summary>
-        ///setTokuisakiListClose
-        ///得意先リストが閉じたらコード記入欄にフォーカス
+        ///     取引先リストが閉じたらコード入力欄にフォーカス
         ///</summary>
-        public void setTokuisakiListClose()
+        public void CloseTorihikisakiList()
         {
             txtCdT.Focus();
         }
 
         ///<summary>
-        ///setTorihikiCdListClose
-        ///担当者リストが閉じたらコード記入欄にフォーカス
+        ///     取引コードリストが閉じたらコード入力欄にフォーカス
         ///</summary>
-        public void setTorihikiCdListClose()
+        public void CloseTorihikiCdList()
         {
             txtCdT.Focus();
+        }
+
+        ///<summary>
+        ///     担当者リストが閉じたらコード入力欄にフォーカス
+        ///</summary>
+        public void CloseTantoshaList()
+        {
+            labelSet_Tantousha.Focus();
         }
 
         ///<summary>
@@ -983,9 +999,8 @@ namespace KATO.Form.M1070_Torihikisaki
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
-
             //文字チェック用
-            Boolean blnGood;
+            Boolean blnGood = false;
 
             //前後の空白を取り除く
             txtCdT.Text = txtCdT.Text.Trim();
@@ -995,56 +1010,77 @@ namespace KATO.Form.M1070_Torihikisaki
             {
                 return;
             }
-
-            //文字数が足りなかった場合0パティング
-            if (txtCdT.TextLength < 4)
+            else
             {
-                txtCdT.Text = txtCdT.Text.ToString().PadLeft(4, '0');
-            }
+                // 取引先コード取得
+                string torihikiCode = txtCdT.Text;
+                // SQL禁止文字チェック
+                blnGood = StringUtl.JudBanSQL(torihikiCode);
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtCdT.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtCdT.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtCdT.Focus();
-                return;
-            }
-
-            //ビジネス層のインスタンス生成
-            M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
-            try
-            {
-                //戻り値のDatatableを取り込む
-                dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(txtCdT.Text);
-
-                //Datatable内のデータが存在する場合
-                if (dtSetCd.Rows.Count != 0)
+                if (blnGood == true)
                 {
-                    setTorihikisaki(dtSetCd);
+                    // 数字チェック
+                    blnGood = StringUtl.JudBanSelect(torihikiCode, CommonTeisu.NUMBER_ONLY);
+
+                    if (blnGood == true)
+                    {
+                        //文字数が足りなかった場合0パティング
+                        if (torihikiCode.Length < 4)
+                        {
+                            // 検索結果がない場合、画面クリアするが、取引先コードは保持するため
+                            // 変数に入れておく
+                            torihikiCode = torihikiCode.PadLeft(4, '0');
+
+                            txtCdT.Text = torihikiCode;
+
+                        }
+                    }
+
+                    //ビジネス層のインスタンス生成
+                    M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
+                    try
+                    {
+                        //戻り値のDatatableを取り込む
+                        dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(torihikiCode);
+
+                        //Datatable内のデータが存在する場合
+                        if (dtSetCd.Rows.Count != 0)
+                        {
+                            setTorihikisaki(dtSetCd);
+
+                            // データ表示後、下記ボタン有効化
+                            this.btnF01.Enabled = true;
+                            this.btnF03.Enabled = true;
+                            this.btnF04.Enabled = true;
+                        }
+                        else
+                        {
+                            delText();
+                            // 画面クリアしても取引先コードは残す
+                            txtCdT.Text = torihikiCode;
+                            // フォーカスを名称テキストボックスへ
+                            //txtCdT.Focus();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //エラーロギング
+                        new CommonException(ex);
+                        return;
+                    }
                 }
                 else
                 {
-                    String strCdt = txtCdT.Text;
+                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                    //表示項目をリセット
-                    delFormClear(this);
-                    txtCdT.Text = strCdt;
+                    txtCdT.Focus();
                 }
+
+
             }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                return;
-            }
+
         }
 
         ///<summary>
@@ -1060,6 +1096,7 @@ namespace KATO.Form.M1070_Torihikisaki
 
             //キー判定、文字数判定
             basetext.judKeyUp(cActiveBefore, e);
+
         }
 
         ///<summary>
@@ -1267,7 +1304,7 @@ namespace KATO.Form.M1070_Torihikisaki
                     break;
             }
         }
-
+        
         ///<summary>
         ///torihikisaki_Enter
         ///code入力箇所からフォーカスがついた時
@@ -1286,7 +1323,7 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void NomberTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
+            if (e.KeyChar < '0' || '9' < e.KeyChar)
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
@@ -1295,36 +1332,17 @@ namespace KATO.Form.M1070_Torihikisaki
 
         private void txtHuriT_Leave(object sender, EventArgs e)
         {
-            //空白出ない場合
+            //ビジネス層のインスタンス生成
+            M1070_Torihikisaki_B torihikiB = new M1070_Torihikisaki_B();
+
+            // フリガナ入力されている場合
             if (txtHuriT.blIsEmpty())
             {
-                string s = txtHuriT.Text;
+                // フリガナ文字チェック
+                string kana = torihikiB.chkFurigana(txtHuriT.Text.Trim());
 
-                //ひらがなをカタカナに変換する
-                string s1 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Katakana, 0x411);
-
-                //カタカナをひらがなに変換する
-                string s2 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Hiragana, 0x411);
-
-                //半角を全角に変換する
-                string s3 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Wide, 0x411);
-
-                //全角を半角に変換する
-                string s4 = Microsoft.VisualBasic.Strings.StrConv(s, Microsoft.VisualBasic.VbStrConv.Narrow, 0x411);
-
-                string subS = s.Substring(0, 1);
-
-                // 名前がアルファベット以外なら処理
-                if (Regex.IsMatch(subS, @"[^a-zA-Z]"))
-                {
-                    txtHuriT.Text = Microsoft.VisualBasic.Strings.StrConv(s1, Microsoft.VisualBasic.VbStrConv.Narrow, 0x411);
-                }
-
-                Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
-                int num = sjisEnc.GetByteCount(txtHuriT.Text);
-
-                //文字数とbyte数が合わない場合
-                if (txtHuriT.Text.Length != num)
+                // 半角カナ変換ではなく"FALSE"が返ってきた場合エラーメッセージ
+                if (kana.Equals("FALSE"))
                 {
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "ひらがなとカタカナ以外の文字列が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -1332,6 +1350,10 @@ namespace KATO.Form.M1070_Torihikisaki
 
                     txtHuriT.Focus();
                     return;
+                }
+                else
+                {
+                    txtHuriT.Text = kana;
                 }
             }
         }

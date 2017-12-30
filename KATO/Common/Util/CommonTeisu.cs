@@ -56,6 +56,7 @@ namespace KATO.Common.Util
         public const int FRM_TANTOUSHA = 1050;
         public const int FRM_GYOSHU = 1060;
         public const int FRM_TORIHIKISAKI = 1070;
+        public const int FRM_TORIHIKISAKI_INFO = 1071;
         public const int FRM_TOKUISAKI = 10701;
         public const int FRM_EIGYOSHO = 1090;
         public const int FRM_CHOKUSOSAKI = 1100;
@@ -71,10 +72,9 @@ namespace KATO.Common.Util
         public const int FRM_TOKUTEIMUKESAKITANKA = 1160;
         public const int FRM_SHIREINPUT = 0030;
         public const int FRM_URIAGEINPUT = 0020;
-        public const int FRM_MENUKENGEN2 = 1490;
         public const int FRM_TANTOSHABETUDENPYOCOUNT = 6000;
-        public const int FRM_MONYURYOKU = 0250;
         public const int FRM_MENU = 1500;
+        public const int FRM_MENUKENGEN2 = 1490;
 
         public const int FRM_TEST = 9999;
 

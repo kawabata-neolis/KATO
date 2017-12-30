@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1070_Torihikisaki;
+using KATO.Form.M1071_TorihikisakiInfo;
 using KATO.Common.Util;
 using KATO.Form.A0030_ShireInput;
+using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
 
 namespace KATO.Common.Business
 {
@@ -17,9 +20,8 @@ namespace KATO.Common.Business
     ///取引先リスト（処理部）
     ///作成者：大河内
     ///作成日：2017/5/1
-    ///更新者：大河内
-    ///更新日：2017/5/1
-    ///カラム論理名
+    ///更新者：山本
+    ///更新日：2017/12/28
     ///</summary>
     class TorihikisakiList_B
     {
@@ -37,10 +39,15 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                    torihikisaki.setTokuisakiListClose();
+                    torihikisaki.CloseTorihikisakiList();
                     break;
                 }
-                //取引先のフォームを探す
+                else if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI_INFO && frm.Name.Equals("M1071_TorihikisakiInfo"))
+                {
+                    M1071_TorihikisakiInfo torihikisaki = (M1071_TorihikisakiInfo)frm;
+                    torihikisaki.CloseTorihikisakiList();
+                }
+                //仕入入力のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_SHIREINPUT && frm.Name.Equals("A0030_ShireInput"))
                 {
                     //データを連れてくるため、newをしないこと
@@ -137,54 +144,68 @@ namespace KATO.Common.Business
             }
         }
 
-        ///<summary>
-        ///getKensaku
-        ///検索時の処理
-        ///</summary>
-        public DataTable getKensaku(List<string> lstSelectData)
+        /// <summary>
+        /// gridに表示する取引先データ取得</summary>
+        /// <param name="lstSelectData">
+        ///     検索文字列用List</param>
+        /// <returns>
+        ///     検索結果をDataTableで返す</returns>
+        public DataTable getTorihikisaki(List<string> lstSelectData)
         {
-            //検索データの受け取り用
-            DataTable dtGetTableGrid = new DataTable();
+            DataTable dt = new DataTable();
 
-            //SQL文を記入する用
-            string strWhere = null;
+            // AND条件用変数
+            string andSql = "";
 
-            //SQL用に移動
+            // DBコネクションのインスタンス生成
             DBConnective dbConnective = new DBConnective();
             try
             {
-                strWhere = "WHERE a.削除 = 'N'";
-
-                //業種コードが存在するか
+                // フリガナが入力されている場合
                 if (lstSelectData[0] != "")
                 {
-                    strWhere = strWhere + " AND 業種コード ='" + lstSelectData[0] + "'";
+                    string kana = lstSelectData[0];
+
+                    // 文字列"kana"に含まれる文字がすべて"ひらがな"か調べる
+                    // すべてひらがな(true)なら変換
+                    if (Regex.IsMatch(kana, @"^[\p{IsHiragana}\u30FC\u30A0]+$"))
+                    {
+                        // "ひらがな"を"カタカナ"に
+                        kana = Strings.StrConv(kana, VbStrConv.Katakana, 0x411);
+                    }
+                    // 文字列"kana"に含まれる文字がすべて"カタカナ"か調べる
+                    // すべてカタカナ(true)なら変換
+                    //  通常の全角カタカナの他に、カタカナフリガナ拡張、
+                    //  濁点と半濁点、半角カタカナもカタカナとする
+                    if (Regex.IsMatch(kana, @"^[\p{IsKatakana}\u31F0-\u31FF\u3099-\u309C\uFF65-\uFF9F]+$"))
+                    {
+                        // 全角を半角に
+                        kana = Strings.StrConv(kana, VbStrConv.Narrow, 0x411);
+                    }
+
+                    andSql += " AND カナ LIKE '%" + kana + "%'";
                 }
-                //営業担当者が存在するか
+
+                // 取引先名称が入力されている場合
                 if (lstSelectData[1] != "")
                 {
-                    strWhere = strWhere + " AND 営業担当者 ='" + lstSelectData[1] + "'";
-                }
-                //取引先名称が存在するか
-                if (lstSelectData[2] != "")
-                {
-                    strWhere = strWhere + " AND 取引先名称 LIKE '%" + lstSelectData[2] + "%'";
-                }
-                //カナが存在するか
-                if (lstSelectData[3] != "")
-                {
-                    strWhere = strWhere + " AND カナ LIKE '%" + lstSelectData[3] + "%'";
-                }
-                //電話番号が存在するか
-                if (lstSelectData[4] != "")
-                {
-                    strWhere = strWhere + " AND 電話番号 LIKE '" + lstSelectData[4] + "%'";
+                    andSql +=  " AND 取引先名称 LIKE '%" + lstSelectData[1] + "%'";
                 }
 
-                //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql("SELECT a.取引先コード, a.取引先名称 FROM 取引先 a " + strWhere + " ORDER BY a.取引先コード ASC");
+                // SQLのパス指定用List
+                List<string> listSqlPath = new List<string>();
+                listSqlPath.Add("Common");
+                listSqlPath.Add("C_LIST_Torihikisaki_SELECT");
 
-                return (dtGetTableGrid);
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, andSql);
+
+                // SQL実行
+                dt = dbConnective.ReadSql(sql);
+
+                return (dt);
             }
             catch (Exception ex)
             {

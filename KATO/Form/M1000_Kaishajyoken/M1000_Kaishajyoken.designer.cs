@@ -59,64 +59,64 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.SuspendLayout();
             // 
             // btnF01
-            // 0
-            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
             this.btnF01.TabIndex = 102;
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF12
             // 
-            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF12.TabIndex = 113;
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF11.TabIndex = 112;
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
             // 
-            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF10.TabIndex = 111;
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF09
             // 
-            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF09.TabIndex = 110;
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
-            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF08.TabIndex = 109;
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
-            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF07.TabIndex = 108;
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
-            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF06.TabIndex = 107;
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF05.TabIndex = 106;
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF04.TabIndex = 105;
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF03.TabIndex = 104;
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             this.btnF02.TabIndex = 103;
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // txtKaisyaCode
             // 
@@ -398,7 +398,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblFaxNum);
             this.Controls.Add(this.txtFaxNum);
             this.Controls.Add(this.lblGetumatsusimebi);

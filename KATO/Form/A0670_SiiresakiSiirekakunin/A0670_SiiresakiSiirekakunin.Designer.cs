@@ -58,6 +58,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireKensyu)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 7;
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -112,11 +117,6 @@
             // 
             this.btnF02.TabIndex = 8;
             this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 7;
-            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // labelSet_Daibunrui
             // 
@@ -193,6 +193,7 @@
             // txtDenpyoYMDStart
             // 
             this.txtDenpyoYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenpyoYMDStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDStart.Location = new System.Drawing.Point(119, 93);
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(100, 22);
@@ -214,6 +215,7 @@
             // txtDenpyoYMDEnd
             // 
             this.txtDenpyoYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenpyoYMDEnd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDEnd.Location = new System.Drawing.Point(256, 93);
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(100, 22);
@@ -224,7 +226,7 @@
             // 
             this.radOutOrder.intJudBtn = 0;
             this.radOutOrder.LabelTitle = "";
-            this.radOutOrder.Location = new System.Drawing.Point(993, 88);
+            this.radOutOrder.Location = new System.Drawing.Point(1057, 88);
             this.radOutOrder.Name = "radOutOrder";
             this.radOutOrder.PositionLabelTitle_X = 0;
             this.radOutOrder.PositionLabelTitle_Y = 0;
@@ -240,7 +242,7 @@
             // radDisplay
             // 
             this.radDisplay.LabelTitle = "";
-            this.radDisplay.Location = new System.Drawing.Point(993, 162);
+            this.radDisplay.Location = new System.Drawing.Point(1057, 162);
             this.radDisplay.Name = "radDisplay";
             this.radDisplay.PositionLabelTitle_X = 0;
             this.radDisplay.PositionLabelTitle_Y = 0;
@@ -260,7 +262,7 @@
             // 
             this.groupBox1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox1.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox1.Location = new System.Drawing.Point(971, 61);
+            this.groupBox1.Location = new System.Drawing.Point(1035, 61);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(355, 60);
             this.groupBox1.TabIndex = 96;
@@ -271,7 +273,7 @@
             // 
             this.groupBox2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox2.ForeColor = System.Drawing.Color.Blue;
-            this.groupBox2.Location = new System.Drawing.Point(971, 137);
+            this.groupBox2.Location = new System.Drawing.Point(1035, 137);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(355, 60);
             this.groupBox2.TabIndex = 97;
@@ -305,6 +307,7 @@
             // txtKataban
             // 
             this.txtKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKataban.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtKataban.Location = new System.Drawing.Point(119, 150);
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(390, 22);
@@ -314,6 +317,7 @@
             // txtBiko
             // 
             this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtBiko.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtBiko.Location = new System.Drawing.Point(119, 179);
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(390, 22);
@@ -357,7 +361,7 @@
             this.gridSiireKensyu.RowHeadersVisible = false;
             this.gridSiireKensyu.RowTemplate.Height = 21;
             this.gridSiireKensyu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireKensyu.Size = new System.Drawing.Size(1298, 440);
+            this.gridSiireKensyu.Size = new System.Drawing.Size(1358, 499);
             this.gridSiireKensyu.StandardTab = true;
             this.gridSiireKensyu.TabIndex = 10;
             this.gridSiireKensyu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridSiireKensyu_KeyDown);
@@ -367,7 +371,7 @@
             // 
             this.lblKensyuTotal.AutoSize = true;
             this.lblKensyuTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKensyuTotal.Location = new System.Drawing.Point(687, 696);
+            this.lblKensyuTotal.Location = new System.Drawing.Point(749, 746);
             this.lblKensyuTotal.Name = "lblKensyuTotal";
             this.lblKensyuTotal.Size = new System.Drawing.Size(71, 15);
             this.lblKensyuTotal.strToolTip = null;
@@ -380,7 +384,8 @@
             this.txtKensyuTotal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtKensyuTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKensyuTotal.ForeColor = System.Drawing.Color.Black;
-            this.txtKensyuTotal.Location = new System.Drawing.Point(774, 693);
+            this.txtKensyuTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtKensyuTotal.Location = new System.Drawing.Point(836, 743);
             this.txtKensyuTotal.Name = "txtKensyuTotal";
             this.txtKensyuTotal.ReadOnly = true;
             this.txtKensyuTotal.Size = new System.Drawing.Size(100, 22);
@@ -391,7 +396,7 @@
             // 
             this.lblMikensyuTotal.AutoSize = true;
             this.lblMikensyuTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblMikensyuTotal.Location = new System.Drawing.Point(916, 696);
+            this.lblMikensyuTotal.Location = new System.Drawing.Point(978, 746);
             this.lblMikensyuTotal.Name = "lblMikensyuTotal";
             this.lblMikensyuTotal.Size = new System.Drawing.Size(87, 15);
             this.lblMikensyuTotal.strToolTip = null;
@@ -403,7 +408,8 @@
             // 
             this.txtMikensyuTotal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtMikensyuTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMikensyuTotal.Location = new System.Drawing.Point(1021, 693);
+            this.txtMikensyuTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtMikensyuTotal.Location = new System.Drawing.Point(1083, 743);
             this.txtMikensyuTotal.Name = "txtMikensyuTotal";
             this.txtMikensyuTotal.ReadOnly = true;
             this.txtMikensyuTotal.Size = new System.Drawing.Size(100, 22);
@@ -414,7 +420,7 @@
             // 
             this.lblInputTotal.AutoSize = true;
             this.lblInputTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblInputTotal.Location = new System.Drawing.Point(1144, 696);
+            this.lblInputTotal.Location = new System.Drawing.Point(1206, 746);
             this.lblInputTotal.Name = "lblInputTotal";
             this.lblInputTotal.Size = new System.Drawing.Size(71, 15);
             this.lblInputTotal.strToolTip = null;
@@ -426,7 +432,8 @@
             // 
             this.txtInputTotal.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtInputTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtInputTotal.Location = new System.Drawing.Point(1230, 693);
+            this.txtInputTotal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtInputTotal.Location = new System.Drawing.Point(1292, 743);
             this.txtInputTotal.Name = "txtInputTotal";
             this.txtInputTotal.ReadOnly = true;
             this.txtInputTotal.Size = new System.Drawing.Size(100, 22);
@@ -437,7 +444,7 @@
             // 
             this.groupBox3.Location = new System.Drawing.Point(17, 210);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1325, 468);
+            this.groupBox3.Size = new System.Drawing.Size(1385, 527);
             this.groupBox3.TabIndex = 109;
             this.groupBox3.TabStop = false;
             // 
@@ -445,7 +452,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.txtInputTotal);
             this.Controls.Add(this.lblInputTotal);
             this.Controls.Add(this.txtMikensyuTotal);

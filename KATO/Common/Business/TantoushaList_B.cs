@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KATO.Common.Util;
 using KATO.Form.M1050_Tantousha;
+using KATO.Form.M1070_Torihikisaki;
+using KATO.Form.B0250_MOnyuryoku;
 using KATO.Form.C6000_TantoshabetuDenpyoCount;
 
 namespace KATO.Common.Business
@@ -91,7 +93,19 @@ namespace KATO.Common.Business
                     tantousha.CloseTantoshaList();
                     break;
                 }
-
+                else if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
+                    torihikisaki.CloseTantoshaList();
+                    break;
+                }
+                //else if (intFrmKind == CommonTeisu.FRM_MONYURYOKU && frm.Name.Equals("B250_MOnyuryoku"))
+                //{
+                //    B0250_MOnyuryoku monyuryoku = (B0250_MOnyuryoku)frm;
+                //    monyuryoku.CloseTantoshaList();
+                //    break;
+                //}
                 //担当者別伝票処理件数のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT && frm.Name.Equals("C6000_TantoshabetuDenpyoCount"))
                 {

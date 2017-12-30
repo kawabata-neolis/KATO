@@ -78,6 +78,12 @@ namespace KATO.Form.M1010_Daibunrui
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -106,18 +112,30 @@ namespace KATO.Form.M1010_Daibunrui
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addDaibunrui();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addDaibunrui();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delDaibunrui();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delDaibunrui();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -272,16 +290,28 @@ namespace KATO.Form.M1010_Daibunrui
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addDaibunrui();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addDaibunrui();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delDaibunrui();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delDaibunrui();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -345,6 +375,12 @@ namespace KATO.Form.M1010_Daibunrui
                 return;
             }
 
+            // 大分類コードエラーチェック
+            if (chkDaibunCd() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（大分類コード、大分類名、ラべル１～６、ユーザー名）
             lstString.Add(txtDaibunrui.Text);
             lstString.Add(txtName.Text);
@@ -368,7 +404,6 @@ namespace KATO.Form.M1010_Daibunrui
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtDaibunrui.Focus();
             }
             catch (Exception ex)
             {
@@ -389,6 +424,9 @@ namespace KATO.Form.M1010_Daibunrui
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
             txtDaibunrui.Focus();
         }
 
@@ -406,6 +444,12 @@ namespace KATO.Form.M1010_Daibunrui
 
             //空文字判定（大分類コード）
             if (txtDaibunrui.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 大分類コードエラーチェック
+            if (chkDaibunCd() == true)
             {
                 return;
             }
@@ -449,7 +493,6 @@ namespace KATO.Form.M1010_Daibunrui
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtDaibunrui.Focus();
             }
             catch (Exception ex)
             {
@@ -491,9 +534,6 @@ namespace KATO.Form.M1010_Daibunrui
             //検索時のデータ取り出し先
             DataTable dtSetCd = null;
 
-            //文字チェック用
-            bool blGood;
-
             //前後の空白を取り除く
             txtDaibunrui.Text = txtDaibunrui.Text.Trim();
 
@@ -503,25 +543,9 @@ namespace KATO.Form.M1010_Daibunrui
                 return;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtDaibunrui.TextLength == 1)
+            // 大分類コードエラーチェック
+            if (chkDaibunCd() == true)
             {
-                txtDaibunrui.Text = txtDaibunrui.Text.ToString().PadLeft(2, '0');
-            }
-
-            //禁止文字チェック
-            blGood = StringUtl.JudBanChr(txtDaibunrui.Text);
-            //数字のみを許可する
-            blGood = StringUtl.JudBanSelect(txtDaibunrui.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtDaibunrui.Focus();
                 return;
             }
 
@@ -544,10 +568,16 @@ namespace KATO.Form.M1010_Daibunrui
                     txtLabel5.Text = dtSetCd.Rows[0]["ラベル名５"].ToString();
                     txtLabel6.Text = dtSetCd.Rows[0]["ラベル名６"].ToString();
                     txtName.Focus();
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
                 }
                 else
                 {
                     txtName.Text = "";
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
                 cActive.Focus();
             }
@@ -644,6 +674,46 @@ namespace KATO.Form.M1010_Daibunrui
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        ///<summary>
+        /// chkDaibunCd
+        /// 大分類コードチェック
+        ///</summary>
+        private bool chkDaibunCd()
+        {
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtDaibunrui.Text) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDaibunrui.Text = "";
+
+                txtDaibunrui.Focus();
+                return true;
+            }
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtDaibunrui.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDaibunrui.Text = "";
+
+                txtDaibunrui.Focus();
+                return true;
+            }
+
+            // 文字数が足りなかった場合0パティング
+            if (txtDaibunrui.TextLength == 1)
+            {
+                txtDaibunrui.Text = txtDaibunrui.Text.ToString().PadLeft(2, '0');
+            }
+            return false;
         }
     }
 }

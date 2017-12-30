@@ -18,7 +18,7 @@ namespace KATO.Common.Util
         {
             Boolean blnGood = false;
 
-            if (strText == "" ||String.IsNullOrWhiteSpace(strText).Equals(false))
+            if (String.IsNullOrWhiteSpace(strText).Equals(false))
             {
                 blnGood = true;
             }
@@ -83,6 +83,31 @@ namespace KATO.Common.Util
             strData = Convert.ToString(Decimal.Round(d, intShisyagonyu, MidpointRounding.AwayFromZero));
 
             return (strData);
+        }
+
+        /// <summary>
+        ///     SQL禁則文字チェック</summary>
+        /// <param name="strData">
+        ///     チェック対象文字列</param>
+        /// <returns>
+        ///     禁止文字が含まれていた場合"false"を返す</returns>
+        public static bool JudBanSQL(string strData)
+        {
+            bool result = true;
+
+            string[] arrBanChar = { "`", ".", "!", "[", "]", "\"", @"*", @"?" }; 
+
+            for (int arrCnt = 0; arrCnt < arrBanChar.Length; arrCnt++)
+            {
+                if (0 <= strData.IndexOf(arrBanChar[arrCnt]))
+                {
+                    result = false;
+                    break;
+                }
+                
+            }
+
+            return result;
         }
 
         ///
@@ -152,5 +177,6 @@ namespace KATO.Common.Util
                 dbconnective.DB_Disconnect();
             }
         }
+
     }
 }

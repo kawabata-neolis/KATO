@@ -79,6 +79,12 @@ namespace KATO.Form.M1020_Maker
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -272,16 +278,25 @@ namespace KATO.Form.M1020_Maker
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addMaker();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addMaker();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delMaker();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delMaker();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -345,6 +360,12 @@ namespace KATO.Form.M1020_Maker
                 return;
             }
 
+            //メーカーコードチェック
+            if (chkMakerCd() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（メーカーID、メーカー名、ユーザー名）
             lstMakerData.Add(txtMaker.Text);
             lstMakerData.Add(txtName.Text);
@@ -362,7 +383,6 @@ namespace KATO.Form.M1020_Maker
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtMaker.Focus();
             }
             catch (Exception ex)
             {
@@ -383,6 +403,10 @@ namespace KATO.Form.M1020_Maker
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
             txtMaker.Focus();
         }
 
@@ -400,6 +424,12 @@ namespace KATO.Form.M1020_Maker
 
             //空文字判定（メーカーコード）
             if (txtMaker.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            //メーカーコードチェック
+            if (chkMakerCd() == true)
             {
                 return;
             }
@@ -437,7 +467,6 @@ namespace KATO.Form.M1020_Maker
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtMaker.Focus();
             }
             catch (Exception ex)
             {
@@ -471,10 +500,7 @@ namespace KATO.Form.M1020_Maker
 
             //検索時のデータ取り出し先
             DataTable dtSetCd = null;
-
-            //文字チェック用
-            bool blGood;
-
+            
             //前後の空白を取り除く
             txtMaker.Text = txtMaker.Text.Trim();
 
@@ -483,25 +509,10 @@ namespace KATO.Form.M1020_Maker
             {
                 return;
             }
-            //文字数が足りなかった場合0パティング
-            if (txtMaker.TextLength < 4)
+
+            //メーカーコードチェック
+            if (chkMakerCd() == true)
             {
-                txtMaker.Text = txtMaker.Text.ToString().PadLeft(4, '0');
-            }
-
-            //禁止文字チェック
-            blGood = StringUtl.JudBanChr(txtMaker.Text);
-            //数字のみを許可する
-            blGood = StringUtl.JudBanSelect(txtMaker.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtMaker.Focus();
                 return;
             }
 
@@ -518,10 +529,21 @@ namespace KATO.Form.M1020_Maker
                     txtMaker.Text = dtSetCd.Rows[0]["メーカーコード"].ToString();
                     txtName.Text = dtSetCd.Rows[0]["メーカー名"].ToString();
                     txtName.Focus();
+ 
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
                 }
                 else
                 {
+                    txtMaker.Text = "";
                     txtName.Text = "";
+
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
                 cActive.Focus();
             }
@@ -617,6 +639,33 @@ namespace KATO.Form.M1020_Maker
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+        ///<summary>
+        /// chkMakerCd
+        /// メーカーコードチェック
+        ///</summary>
+        private bool chkMakerCd()
+        {
+            if (StringUtl.JudBanSQL(txtMaker.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtMaker.Text = "";
+                txtMaker.Focus();
+                return true;
+            }
+
+            //数値数が足りなかった場合0パティング
+            if (StringUtl.JudBanSelect(txtMaker.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtMaker.TextLength < 4)
+                {
+                    txtMaker.Text = txtMaker.Text.ToString().PadLeft(4, '0');
+                }
+            }
+            return false;
         }
     }
 }

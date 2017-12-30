@@ -531,26 +531,22 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //記入情報検索用
+            // 検索文字列用List
             List<string> lstSelectData = new List<string>();
 
-            //画面の取引先検索情報取得
-            lstSelectData.Add("");
-            lstSelectData.Add("");
-            lstSelectData.Add(txtTorihikisaki.Text);
-            lstSelectData.Add(txtHurigana.Text);
-            lstSelectData.Add("");
+            lstSelectData.Add(txtHurigana.Text);        // フリガナ
+            lstSelectData.Add(txtTorihikisaki.Text);    // 取引先名称
 
             //ビジネス層のインスタンス生成
             TorihikisakiList_B tokuisakiB = new TorihikisakiList_B();
             try
             {
-                //データグリッドビュー部分
-                gridTorihikisaki.DataSource = tokuisakiB.getKensaku(lstSelectData);
+                // 検索結果をDataGridViewにバインド
+                gridTorihikisaki.DataSource = tokuisakiB.getTorihikisaki(lstSelectData);
 
-                //表示数を記載
+                // 表示件数表示
                 lblRecords.Text = "該当件数( " + gridTorihikisaki.RowCount.ToString() + "件)";
-
+                // gridにフォーカス
                 gridTorihikisaki.Focus();
 
             }

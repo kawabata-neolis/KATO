@@ -150,21 +150,23 @@ namespace KATO.Business.M1050_Tantousha
             try
             {
                 string[] aryStr = new string[] {
-                    lstString[0],
-                    lstString[1],
-                    lstString[2],
-                    lstString[3],
-                    lstString[4],
-                    lstString[5],
-                    lstString[6],
-                    "0",
-                    "0",
-                    "0",
-                    "Y",
-                    DateTime.Now.ToString(),
-                    lstString[7],
-                    DateTime.Now.ToString(),
-                    lstString[7]
+                    lstString[0],                           // [担当者コード]
+                    lstString[1],                           // [担当者名]
+                    lstString[2],                           // [ログインＩＤ]
+                    lstString[3],                           // [営業所コード]
+                    lstString[4],                           // [注番文字]
+                    lstString[5],                           // [グループコード]
+                    lstString[6],                           // [年間売上目標]
+                    lstString[7],                           // [マスタ権限]
+                    lstString[8],                           // [閲覧権限]
+                    lstString[9],                           // [利益率権限]
+                    lstString[10],                          // [役職コード]
+                    lstString[11],                          // [表示]
+                    "Y",                                    // [削除]
+                    DateTime.Now.ToString(),                // [登録日時]
+                    lstString[12],                          // [登録ユーザー名]
+                    DateTime.Now.ToString(),                // [更新日時]
+                    lstString[12]                           // [更新ユーザー名]
                 };
 
                 //SQL接続、削除

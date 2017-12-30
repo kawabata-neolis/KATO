@@ -35,7 +35,7 @@ namespace KATO.Common.Business
                 {
                     //データを連れてくるため、newをしないこと
                     M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                    torihikisaki.setTorihikiCdListClose();
+                    torihikisaki.CloseTorihikiCdList();
                     break;
                 }
             }

@@ -78,6 +78,13 @@ namespace KATO.Form.M1040_Torihikikbn
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
+
         }
 
         ///<summary>
@@ -106,18 +113,28 @@ namespace KATO.Form.M1040_Torihikikbn
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTorikbn();
+                    // ボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTorikbn();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delTorikbn();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delTorikbn();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -271,16 +288,25 @@ namespace KATO.Form.M1040_Torihikikbn
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTorikbn();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTorikbn();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delTorikbn();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delTorikbn();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -347,6 +373,12 @@ namespace KATO.Form.M1040_Torihikikbn
                 return;
             }
 
+            // 取引区分チェック
+            if (chkTorihikikubunCd() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（取引区分コード、取引区分名、ユーザー名）
             lstTorihikikbnData.Add(txtTorihikikubunCd.Text);
             lstTorihikikbnData.Add(txtTorihikikubunName.Text);
@@ -364,7 +396,6 @@ namespace KATO.Form.M1040_Torihikikbn
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTorihikikubunCd.Focus();
             }
             catch (Exception ex)
             {
@@ -385,6 +416,9 @@ namespace KATO.Form.M1040_Torihikikbn
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
             txtTorihikikubunCd.Focus();
         }
 
@@ -402,6 +436,12 @@ namespace KATO.Form.M1040_Torihikikbn
 
             //文字判定（取引区分コード、取引区分名）
             if (txtTorihikikubunCd.blIsEmpty() == false && txtTorihikikubunName.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 取引区分チェック
+            if (chkTorihikikubunCd() == true)
             {
                 return;
             }
@@ -439,7 +479,6 @@ namespace KATO.Form.M1040_Torihikikbn
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtTorihikikubunCd.Focus();
             }
             catch (Exception ex)
             {
@@ -471,9 +510,6 @@ namespace KATO.Form.M1040_Torihikikbn
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字チェック用
-            bool blGood;
-
             //前後の空白を取り除く
             txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.Trim();
 
@@ -482,31 +518,15 @@ namespace KATO.Form.M1040_Torihikikbn
             {
                 return;
             }
-            
-            //文字数が足りなかった場合0パティング
-            if (txtTorihikikubunCd.TextLength == 1)
+
+            // 取引区分チェック
+            if (chkTorihikikubunCd() == true)
             {
-                txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.ToString().PadLeft(2, '0');
-            }
-
-            //禁止文字チェック
-            blGood = StringUtl.JudBanChr(txtTorihikikubunCd.Text);
-            //数字のみを許可する
-            blGood = StringUtl.JudBanSelect(txtTorihikikubunCd.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtTorihikikubunCd.Focus();
                 return;
             }
 
             //ビジネス層のインスタンス生成
-            M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();      
+            M1040_Torihikikbn_B torikbnB = new M1040_Torihikikbn_B();
             try
             {
                 //戻り値のDatatableを取り込む
@@ -517,10 +537,19 @@ namespace KATO.Form.M1040_Torihikikbn
                 {
                     txtTorihikikubunCd.Text = dtSetCd.Rows[0]["取引区分コード"].ToString();
                     txtTorihikikubunName.Text = dtSetCd.Rows[0]["取引区分名"].ToString();
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
                 }
                 else
                 {
                     txtTorihikikubunName.Text = "";
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
+
                 }
             }
             catch (Exception ex)
@@ -616,6 +645,39 @@ namespace KATO.Form.M1040_Torihikikbn
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+
+        ///<summary>
+        /// chkTorihikikubunCd
+        /// 取引区分チェック
+        ///</summary>
+        private bool chkTorihikikubunCd()
+        {
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtTorihikikubunCd.Text) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTorihikikubunCd.Text = "";
+
+                txtTorihikikubunCd.Focus();
+                return true;
+            }
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtTorihikikubunCd.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                // 文字数が足りなかった場合0パティング
+                if (txtTorihikikubunCd.TextLength == 1)
+                {
+                    txtTorihikikubunCd.Text = txtTorihikikubunCd.Text.ToString().PadLeft(2, '0');
+                }
+            }
+
+            return false;
         }
     }
 }
