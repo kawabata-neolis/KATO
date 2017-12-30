@@ -1769,7 +1769,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             if (chkDigit(txtJuchuSuryo.Text) && decimal.Parse(txtJuchuSuryo.Text) > 0)
             {
-                if (int.Parse(txtHonshaShukko.Text) + int.Parse(txtGihuShukko.Text) > int.Parse(txtJuchuSuryo.Text))
+                if (decimal.Parse(txtHonshaShukko.Text) + decimal.Parse(txtGihuShukko.Text) > decimal.Parse(txtJuchuSuryo.Text))
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数は受注数量以下で入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
@@ -1777,11 +1777,18 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
 
-            if (int.Parse(txtJuchuSuryo.Text) < 0)
+            if (chkDigit(txtJuchuSuryo.Text) && decimal.Parse(txtJuchuSuryo.Text) < 0)
             {
-                if (int.Parse(cbSiireTanka.Text) == 0)
+                if (decimal.Parse(cbSiireTanka.Text).Equals(0))
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は仕入単価＝０は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+
+                if (txtHatchushiji.Text.Equals("0"))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は発注指示をしてください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                     return false;
                 }
@@ -1789,12 +1796,6 @@ namespace KATO.Form.A0010_JuchuInput
 
             if (int.Parse(txtJuchuSuryo.Text) < 0)
             {
-                if (txtHatchushiji.Text.Equals("0"))
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は発注指示をしてください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
             }
 
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
