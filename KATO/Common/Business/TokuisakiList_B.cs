@@ -167,7 +167,7 @@ namespace KATO.Common.Business
         ///getKensaku
         ///検索時の処理
         ///</summary>
-        public DataTable getKensaku(string  strSelectData)
+        public DataTable getTokuisaki(string tokuiName)
         {
             //検索データの受け取り用
             DataTable dtGetTableGrid = new DataTable();
@@ -180,9 +180,9 @@ namespace KATO.Common.Business
             try
             {
                 //業種コードが存在するか
-                if (strSelectData != "")
+                if (tokuiName != "")
                 {
-                    strWhere = strWhere + " WHERE 得意先名 LIKE '%" + strSelectData + "%'";
+                    strWhere = strWhere + " WHERE 得意先名 LIKE '%" + tokuiName + "%'";
                 }
 
                 //検索データを表示

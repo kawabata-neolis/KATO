@@ -468,8 +468,8 @@ namespace KATO.Form.M1040_Torihikikbn
                 }
 
                 //削除情報を入れる（取引区分CD、取引区分名、ユーザー名）
-                lstTorihikikbn.Add(txtTorihikikubunCd.Text);
-                lstTorihikikbn.Add(txtTorihikikubunName.Text);
+                lstTorihikikbn.Add(dtSetCd.Rows[0]["取引区分コード"].ToString());
+                lstTorihikikbn.Add(dtSetCd.Rows[0]["取引区分名"].ToString());
                 lstTorihikikbn.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -666,6 +666,8 @@ namespace KATO.Form.M1040_Torihikikbn
                 txtTorihikikubunCd.Focus();
                 return true;
             }
+
+            this.txtTorihikikubunCd.Text = StringUtl.JudZenToHanNum(txtTorihikikubunCd.Text);
 
             // 数値チェック
             if (StringUtl.JudBanSelect(txtTorihikikubunCd.Text, CommonTeisu.NUMBER_ONLY) == true)

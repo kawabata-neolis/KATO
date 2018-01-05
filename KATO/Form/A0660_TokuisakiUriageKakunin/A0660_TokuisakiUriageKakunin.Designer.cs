@@ -135,7 +135,6 @@
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoYMDEnd.TabIndex = 2;
-            this.txtDenpyoYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel2
             // 
@@ -157,7 +156,6 @@
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoYMDStart.TabIndex = 1;
-            this.txtDenpyoYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblYMD
             // 
@@ -537,6 +535,7 @@
             this.Text = "A0660_TokuisakiUriageKakunin";
             this.Load += new System.EventHandler(this.A0660_TokuisakiUriageKakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0660_TokuisakiUriageKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

@@ -116,10 +116,9 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///getKensaku
         ///検索時の処理
         ///</summary>
-        public DataTable getKensaku(List<string> lstSelectData)
+        public DataTable getSiiresaki(string siireName)
         {
             //検索データの受け取り用
             DataTable dtGetTableGrid = new DataTable();
@@ -134,9 +133,9 @@ namespace KATO.Common.Business
                 strWhere = "";
 
                 //業種コードが存在するか
-                if (lstSelectData[0] != "")
+                if (siireName != "")
                 {
-                    strWhere = strWhere + " WHERE 仕入先名 LIKE '%" + lstSelectData[0] + "%'";
+                    strWhere = strWhere + " WHERE 仕入先名 LIKE '%" + siireName + "%'";
                 }
 
                 //検索データを表示

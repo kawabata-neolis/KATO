@@ -479,19 +479,15 @@ namespace KATO.Common.Form
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
-            //記入情報検索用
-            List<string> lstSelectData = new List<string>();
-
             //画面の取引先検索情報取得
-            lstSelectData.Add(txtTorihikisaki.Text);
-            lstSelectData.Add(txtHurigana.Text);
+            string siireName = txtTorihikisaki.Text.ToString();
 
             //ビジネス層のインスタンス生成
             ShiresakiList_B shiresakilistB = new ShiresakiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridShiresaki.DataSource = shiresakilistB.getKensaku(lstSelectData);
+                gridShiresaki.DataSource = shiresakilistB.getSiiresaki(siireName);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridShiresaki.RowCount.ToString() + "件)";

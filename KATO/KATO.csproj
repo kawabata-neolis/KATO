@@ -1591,6 +1591,12 @@
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataKataban.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataKataban2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_DELETE_INSERT_MOtukibetu.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

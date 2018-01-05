@@ -476,14 +476,14 @@ namespace KATO.Form.M1010_Daibunrui
                 }
 
                 //削除情報を入れる（大分類CD、大分類名、ラベル１～６、ユーザー名）
-                lstDaibunData.Add(txtDaibunrui.Text);
-                lstDaibunData.Add(txtName.Text);
-                lstDaibunData.Add(txtLabel1.Text);
-                lstDaibunData.Add(txtLabel2.Text);
-                lstDaibunData.Add(txtLabel3.Text);
-                lstDaibunData.Add(txtLabel4.Text);
-                lstDaibunData.Add(txtLabel5.Text);
-                lstDaibunData.Add(txtLabel6.Text);
+                lstDaibunData.Add(dtSetCd.Rows[0]["大分類コード"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["大分類名"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名１"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名２"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名３"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名４"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名５"].ToString());
+                lstDaibunData.Add(dtSetCd.Rows[0]["ラベル名６"].ToString());
                 lstDaibunData.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -696,7 +696,7 @@ namespace KATO.Form.M1010_Daibunrui
             }
 
             // 数値チェック
-            if (StringUtl.JudBanSelect(txtDaibunrui.Text, CommonTeisu.NUMBER_ONLY) == true)
+            if (StringUtl.JudBanSelect(txtDaibunrui.Text, CommonTeisu.NUMBER_ONLY) == false)
             {
                 // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);

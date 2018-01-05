@@ -198,7 +198,6 @@
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoYMDStart.TabIndex = 1;
-            this.txtDenpyoYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel2
             // 
@@ -220,7 +219,6 @@
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoYMDEnd.TabIndex = 2;
-            this.txtDenpyoYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // radOutOrder
             // 
@@ -480,6 +478,7 @@
             this.Text = "A0670_SiiresakiSiirekakunin";
             this.Load += new System.EventHandler(this.A0670_SiiresakiSiirekakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0670_SiiresakiSiirekakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.groupBox3, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
