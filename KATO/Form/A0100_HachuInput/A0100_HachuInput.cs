@@ -232,8 +232,8 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    //this.showRireki();
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    this.showRireki();
                     break;
                 case Keys.F9:
                     break;
@@ -505,6 +505,27 @@ namespace KATO.Form.A0100_HachuInput
             }
         }
 
+        ///<summary>
+        ///showRireki
+        ///売上実績確認の実行
+        ///</summary>
+        private void showRireki()
+        {
+            //入力チェック
+            if (StringUtl.blIsEmpty(textSet_Tokuisaki.CodeTxtText) == false)
+            {
+                return;
+            }
+
+//商品コードを入れている場所が限られすぎているため、追加で商品コードを入れる場所を作る必要あり
+            if (txtShohinCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 10, textSet_Tokuisaki.CodeTxtText,txtShohinCd.Text);
+            uriage.ShowDialog();
+        }
 
         ///<summary>
         ///addHachu

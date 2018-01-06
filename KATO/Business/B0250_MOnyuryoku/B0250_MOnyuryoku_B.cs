@@ -119,8 +119,11 @@ namespace KATO.Business.B0250_MOnyuryoku
             try
             {
                 // ＭＯデータ変更_PROC"を実行
-//処理内容確認と入れる
+//再度確認、発注担当者の登録項目を増やす必要もあり
                 intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
+
+                //コミット
+                dbconnective.Commit();
             }
             catch
             {

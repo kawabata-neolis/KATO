@@ -414,12 +414,6 @@ namespace KATO.Form.A0030_ShireInput
             {
                 txtSogokei.Text = "";
             }
-            //直送先コード（なし）
-            //直送先名（なし）
-            //郵便番号（直送先）（なし）
-            //住所１（直送先）（なし）
-            //住所２（直送先）（なし）
-            //ユーザーID（判定無し）
 
             //伝票番号[0]
             lstSaveData.Add(txtDenpyoNo.Text);
@@ -496,9 +490,6 @@ namespace KATO.Form.A0030_ShireInput
             //受注データカウント(受注番号が1以上の場合の処理)の確保用
             DataTable dtJuchuDataCntNO = new DataTable();
 
-
-            //発注番号の確保用
-            int intHachuNo;
 
             //型番確保用
             string strKataban = "";
@@ -650,11 +641,10 @@ namespace KATO.Form.A0030_ShireInput
                                 //受注データのカウント取得
                                 dtJuchuDataCnt = shireinputB.getJuchuDataCnt(bvg[intCnt].txtChumonNo.Text);
 
-//テスト中はわざと通す必要あり
-
+                                //テスト中はわざと通す必要あり
                                 //カウント1以上の場合
-                                //if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) > 0)
-                                if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) >= 0)
+                                if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) > 0)
+                                //if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) >= 0)
                                 {
                                     //加工をする判定
                                     blKakojuchu = true;
@@ -1015,9 +1005,6 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
-            //検索時のデータ取り出し先
-            DataTable dtSetCd = null;
-
             //ビジネス層のインスタンス生成
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
@@ -1121,11 +1108,6 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void setUriageJisseki()
         {
-            object txtSyohinCD;
-            object SyohinCD;
-
-            string strSyohinCD;
-
             //コード未記入の場合
             if (!StringUtl.blIsEmpty(txtCD.Text))
             {
@@ -1168,8 +1150,6 @@ namespace KATO.Form.A0030_ShireInput
             //品名データを作成する用
             string strHinmei = "";
 
-            string strNM;
-
             //検収済仕入明細のカウント
             int intKenshuShireCnt;
 
@@ -1187,15 +1167,6 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                ////戻り値のDatatableを取り込む(日付制限の検索)
-                //dtSetCd = shireinputB.getHidukeseigen("3", txtEigyouCd.Text);
-
-                ////検索結果にデータが存在しなければ終了
-                //if (dtSetCd.Rows.Count == 0)
-                //{
-                //    return;
-                //}
-
                 //戻り値のDatatableを取り込む(仕入ヘッダー内の検索)
                 dtSetShireHeader = shireinputB.getShireHeader(txtDenpyoNo.Text);
 
@@ -1212,9 +1183,6 @@ namespace KATO.Form.A0030_ShireInput
                     labelSet_Tantousha.CodeTxtText = dtSetShireHeader.Rows[0]["担当者コード"].ToString();
                     txtEigyouCd.Text = dtSetShireHeader.Rows[0]["営業所コード"].ToString();
                     txtTekiyo.Text = dtSetShireHeader.Rows[0]["摘要欄"].ToString();
-                    //txtGokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税抜合計金額"]);
-                    //txtShohizei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["消費税"]);
-                    //txtSogokei.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["税込合計金額"]);
                     txtUnchin.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["運賃"]);
 
                     //数値の入る各項目がnullの場合0を入れる
@@ -1985,7 +1953,7 @@ namespace KATO.Form.A0030_ShireInput
 
         ///<summary>
         ///ChkData
-        ///
+        ///データチェック
         ///</summary>
         private bool ChkData()
         {
@@ -2225,16 +2193,6 @@ namespace KATO.Form.A0030_ShireInput
                         }
                     }
                 }   
-
-                //good判定の判定
-                if (blgood == false)
-                {
-                    //テスト時に修正
-                    //if (msgAlertAsk(RituMSG, "仕入単価チェック", true) == frmMessage.msgRetVal.mrvAskok)
-                    //{
-                    //    good = true;
-                    //}
-                }
             }            
             return (blgood);
         }
@@ -2262,9 +2220,13 @@ namespace KATO.Form.A0030_ShireInput
             shotCnt = 1;
         }
 
+        ///<summary>
+        ///gbData2_Enter
+        ///DataGroupの2にフォーカスが来た場合
+        ///</summary>
         private void gbData2_Enter(object sender, EventArgs e)
         {
-            //GroupData1にフォーカスが行ってる情報を残す
+            //GroupData2にフォーカスが行ってる情報を残す
             shotCnt = 2;
         }
     }

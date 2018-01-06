@@ -338,7 +338,6 @@
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 8;
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
-            this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
             this.gridKataban2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridKataban2_KeyDown);
             // 
             // lblKensaku
