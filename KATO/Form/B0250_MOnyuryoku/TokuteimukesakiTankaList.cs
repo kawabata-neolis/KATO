@@ -37,8 +37,14 @@ namespace KATO.Common.Form
         //前画面から仕向け先を取り出す枠（仕向け先初期値）（ラベルセット）
         public LabelSet_Torihikisaki lsShimuke = null;
 
-        //前画面から単価を取り出す枠（仕向け先初期値）（ベーステキストマネー）
+        //前画面から単価を取り出す枠（仕向け先初期値）（ベーステキスト）
         public BaseText btxtTanka = null;
+
+        //前画面から発注数を取り出す枠（発注数初期値）（ベーステキストマネー）
+        public BaseTextMoney btmHachu = null;
+
+        //前画面から金額を取り出す枠（金額初期値）（ベーステキストマネー）
+        public BaseTextMoney btmKin = null;
 
         //型番コードの確保
         string strKataban = null;
@@ -436,6 +442,9 @@ namespace KATO.Common.Form
             btxtTanka.Text = (string)gridSeihin.CurrentRow.Cells["単価"].Value.ToString();
             //余計な00を削除
             btxtTanka.Text = btxtTanka.Text.Remove(btxtTanka.Text.Length - 2);
+
+            //金額の計算
+            //btmKin.Text = StringUtl.updShishagonyu(int.Parse(btmHachu.Text) * int.Parse(btxtTanka.Text), 0);
 
             this.Close();
         }
