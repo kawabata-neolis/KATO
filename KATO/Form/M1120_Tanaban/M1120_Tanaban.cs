@@ -80,6 +80,12 @@ namespace KATO.Form.M1120_Tanaban
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -108,18 +114,29 @@ namespace KATO.Form.M1120_Tanaban
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTanaban();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTanaban();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delTanaban();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delTanaban();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }                    
                     break;
                 case Keys.F5:
                     break;
@@ -272,16 +289,28 @@ namespace KATO.Form.M1120_Tanaban
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addTanaban();
+                                  // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addTanaban();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delTanaban();
+                                  // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delTanaban();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                                  // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -347,6 +376,12 @@ namespace KATO.Form.M1120_Tanaban
                 return;
             }
 
+            // 棚番コードエラーチェック
+            if (chkTanaCd() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（棚番コード、棚番名、ユーザー名）
             lstString.Add(txtTanabanCd.Text);
             lstString.Add(txtTanabanName.Text);
@@ -385,6 +420,9 @@ namespace KATO.Form.M1120_Tanaban
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
             txtTanabanCd.Focus();
         }
 
@@ -402,6 +440,12 @@ namespace KATO.Form.M1120_Tanaban
 
             //文字判定（棚番コード、棚番名）
             if (txtTanabanCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 棚番コードエラーチェック
+            if (chkTanaCd() == true)
             {
                 return;
             }
@@ -428,8 +472,8 @@ namespace KATO.Form.M1120_Tanaban
                 }
 
                 //データ渡し用
-                lstTanaban.Add(txtTanabanCd.Text);
-                lstTanaban.Add(txtTanabanName.Text);
+                lstTanaban.Add(dtSetCd.Rows[0]["棚番"].ToString());
+                lstTanaban.Add(dtSetCd.Rows[0]["棚番名"].ToString());
                 lstTanaban.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -473,29 +517,20 @@ namespace KATO.Form.M1120_Tanaban
             //検索時のデータ取り出し先        
             DataTable dtSetCd;
 
-            //文字チェック用
-            Boolean blnGood;
-
             //前後の空白を取り除く
             txtTanabanCd.Text = txtTanabanCd.Text.Trim();
 
             //空文字判定
             if (txtTanabanCd.blIsEmpty() == false)
             {
+                // 棚番テキストボックスが空の場合フォーカス動かさない
+                txtTanabanCd.Focus();
                 return;
             }
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtTanabanCd.Text);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
+            // 棚番コードエラーチェック
+            if (chkTanaCd() == true)
             {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtTanabanCd.Focus();
                 return;
             }
 
@@ -510,10 +545,17 @@ namespace KATO.Form.M1120_Tanaban
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setTanabanCd(dtSetCd);
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
                 }
                 else
                 {
                     txtTanabanName.Text = "";
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -609,6 +651,27 @@ namespace KATO.Form.M1120_Tanaban
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+
+        ///<summary>
+        /// 棚番コードチェック
+        ///</summary>
+        private bool chkTanaCd()
+        {
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtTanabanCd.Text) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTanabanCd.Text = "";
+
+                txtTanabanCd.Focus();
+                return true;
+            }
+            return false;
         }
     }
 }

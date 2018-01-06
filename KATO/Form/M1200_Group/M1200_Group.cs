@@ -79,6 +79,13 @@ namespace KATO.Form.M1200_Group
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
+
         }
 
         ///<summary>
@@ -107,18 +114,30 @@ namespace KATO.Form.M1200_Group
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addGroup();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addGroup();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delGroup();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delGroup();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -269,16 +288,28 @@ namespace KATO.Form.M1200_Group
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addGroup();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addGroup();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delGroup();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delGroup();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -341,6 +372,12 @@ namespace KATO.Form.M1200_Group
                 return;
             }
 
+            // グループIDの文字チェック
+            if (chkGroupId() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（グループID、グループ名、ユーザー名）
             lstGroup.Add(txtGroupId.Text);
             lstGroup.Add(txtGroupName.Text);
@@ -358,8 +395,6 @@ namespace KATO.Form.M1200_Group
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtGroupId.Text = "";
-                txtGroupId.Focus();
             }
             catch (Exception ex)
             {
@@ -380,6 +415,12 @@ namespace KATO.Form.M1200_Group
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+
+            // ファンクション機能リセット
+            btnF01.Enabled = false;
+            btnF03.Enabled = false;
+            btnF04.Enabled = false;
+
             txtGroupId.Focus();
         }
 
@@ -397,6 +438,12 @@ namespace KATO.Form.M1200_Group
 
             //空文字判定（グループコード）
             if (txtGroupId.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // グループIDの文字チェック
+            if (chkGroupId() == true)
             {
                 return;
             }
@@ -423,8 +470,8 @@ namespace KATO.Form.M1200_Group
                 }
 
                 //削除情報を入れる（グループコード、グループ名、ユーザー名）
-                lstGroup.Add(txtGroupId.Text);
-                lstGroup.Add(txtGroupName.Text);
+                lstGroup.Add(dtSetCd.Rows[0]["グループコード"].ToString());
+                lstGroup.Add(dtSetCd.Rows[0]["グループ名"].ToString());
                 lstGroup.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -467,37 +514,18 @@ namespace KATO.Form.M1200_Group
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字チェック用
-            Boolean blnGood;
-
             //前後の空白を取り除く
             txtGroupId.Text = txtGroupId.Text.Trim();
 
-            //文字判定
+            // グループIDの空チェック
             if (txtGroupId.blIsEmpty() == false)
             {
                 return;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtGroupId.TextLength < 4)
+            // グループIDの文字チェック
+            if (chkGroupId() == true)
             {
-                txtGroupId.Text = txtGroupId.Text.ToString().PadLeft(4, '0');
-            }
-
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtGroupId.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtGroupId.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtGroupName.Text = "";
-                txtGroupId.Focus();
                 return;
             }
 
@@ -512,10 +540,21 @@ namespace KATO.Form.M1200_Group
                 if (dtSetCd.Rows.Count != 0)
                 {
                     setGroup(dtSetCd);
+
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
+
                 }
                 else
                 {
                     txtGroupName.Text = "";
+
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -548,6 +587,34 @@ namespace KATO.Form.M1200_Group
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        /// chkGroupId
+        /// グループIDチェック
+        ///</summary>
+        private bool chkGroupId()
+        {
+            if (StringUtl.JudBanSQL(txtGroupId.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtGroupId.Text = "";
+                txtGroupId.Focus();
+                return true;
+            }
+
+            //数値数が足りなかった場合0パティング
+            if (StringUtl.JudBanSelect(txtGroupId.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtGroupId.TextLength < 4)
+                {
+                    txtGroupId.Text = txtGroupId.Text.ToString().PadLeft(4, '0');
+                }
+            }
+            return false;
         }
     }
 }

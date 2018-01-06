@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KATO.Common.Form;
 using KATO.Common.Util;
+using KATO.Form.M1490_Menukengen2;
 using System.Windows.Forms;
 
 namespace KATO.Common.Business
@@ -30,15 +31,14 @@ namespace KATO.Common.Business
             //全てのフォームの中から
             foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                //例
-                ////取引先のフォームを探す
-                //if (intFrmKind == CommonTeisu.FRM_TORIHIKISAKI && frm.Name.Equals("M1070_Torihikisaki"))
-                //{
-                //    //データを連れてくるため、newをしないこと
-                //    M1070_Torihikisaki torihikisaki = (M1070_Torihikisaki)frm;
-                //    torihikisaki.setTokuisakiListClose();
-                //    break;
-                //}
+                // 戻るフォームを指定
+                if (intFrmKind == CommonTeisu.FRM_MENUKENGEN2 && frm.Name.Equals("M1490_Menukengen2"))
+                {
+                    //データを連れてくるため、newをしないこと
+                    M1490_Menukengen2 menukengen2 = (M1490_Menukengen2)frm;
+                    menukengen2.CloseMenuList();
+                    break;
+                }
             }
         }
 
@@ -162,46 +162,6 @@ namespace KATO.Common.Business
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
-            }
-        }
-
-        ///<summary>
-        ///getKensaku
-        ///検索時の処理
-        ///</summary>
-        public DataTable getKensaku(List<string> lstSelectData)
-        {
-            //検索データの受け取り用
-            DataTable dtGetTableGrid = new DataTable();
-
-            //SQL文を記入する用
-            string strWhere = null;
-
-            //SQL用に移動
-            DBConnective dbConnective = new DBConnective();
-            try
-            {
-                strWhere = "";
-
-                //業種コードが存在するか
-                if (lstSelectData[0] != "")
-                {
-                    strWhere = strWhere + " WHERE 仕入先名 LIKE '%" + lstSelectData[0] + "%'";
-                }
-
-                //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql("SELECT 仕入先コード, 仕入先名 FROM AS400仕入先名_VIEW " + strWhere + " ORDER BY 仕入先コード ASC");
-
-                return (dtGetTableGrid);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
-                //トランザクション終了
-                dbConnective.DB_Disconnect();
             }
         }
 

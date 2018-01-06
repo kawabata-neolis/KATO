@@ -423,8 +423,8 @@ namespace KATO.Business.B0250_MOnyuryoku
             //      lstStringMOdata[3] + "','" +
             //      lstStringMOdata[4] + "'";
 
-            ////SQL実行時に取り出したデータを入れる用
-            //DataTable dtSetCd_B = new DataTable();
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
 
             ////SQL接続
             //OpenSQL opensql = new OpenSQL();
@@ -437,7 +437,7 @@ namespace KATO.Business.B0250_MOnyuryoku
 
             //    //コミット開始
             //    dbconnective.Commit();
-            //    return (dtSetCd_B);
+            return (dtSetCd_B);
             //}
             //catch (Exception ex)
             //{
