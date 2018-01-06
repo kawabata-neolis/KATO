@@ -262,21 +262,30 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addJuchu();
+                    if (btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addJuchu();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delJuchu();
+                    if (btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delJuchu();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delFormClear(this);
-                    lsDaibunrui.Enabled = true;
-                    lsChubunrui.Enabled = true;
-                    lsMaker.Enabled = true;
+                    if (btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delFormClear(this);
+                        lsDaibunrui.codeTxt.ReadOnly = false;
+                        lsChubunrui.codeTxt.ReadOnly = false;
+                        lsMaker.codeTxt.ReadOnly = false;
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -285,11 +294,16 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    //this.setRireki();
+                    if (btnF08.Enabled) {
+                        logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                        //this.setRireki();
+                    }
                     break;
                 case Keys.F9:
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    if (btnF09.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    }
                     break;
                 case Keys.F10:
                     break;
@@ -446,6 +460,10 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 shohinList.btxtKensaku = txtSearchStr;
             }
+            shohinList.btxtShohinCd = txtShohinCd;
+            shohinList.btxtHinC1Hinban = txtHinmei;
+            shohinList.blKensaku = true;
+
             shohinList.intFrmKind = CommonTeisu.FRM_JUCHUINPUT;
             shohinList.Show();
         }
@@ -504,8 +522,8 @@ namespace KATO.Form.A0010_JuchuInput
             if (!string.IsNullOrWhiteSpace(strCd))
             {
                 txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
-                txtHinmei.Enabled = true;
-                txtJuchuSuryo.Enabled = true;
+                txtHinmei.ReadOnly = false;
+                txtJuchuSuryo.ReadOnly = false;
                 txtJuchuSuryo.Focus();
 
             }
@@ -1794,10 +1812,6 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
 
-            if (int.Parse(txtJuchuSuryo.Text) < 0)
-            {
-            }
-
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
             {
                 A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
@@ -1832,7 +1846,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 if (txtHatchushiji.Equals("0"))
                 {
-                    if (int.Parse(txtHonshaShukko.Text) + int.Parse(txtGihuShukko.Text) != int.Parse(txtJuchuSuryo.Text))
+                    if (!(decimal.Parse(txtHonshaShukko.Text) + decimal.Parse(txtGihuShukko.Text)).Equals(decimal.Parse(txtJuchuSuryo.Text)))
                     {
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
@@ -1842,7 +1856,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 else
                 {
-                    if (int.Parse(txtHonshaShukko.Text) + int.Parse(txtGihuShukko.Text) + int.Parse(txtHatchusu.Text) != int.Parse(txtJuchuSuryo.Text))
+                    if (!(decimal.Parse(txtHonshaShukko.Text) + decimal.Parse(txtGihuShukko.Text) + decimal.Parse(txtHatchusu.Text)).Equals(decimal.Parse(txtJuchuSuryo.Text)))
                     {
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数・発注数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
@@ -1876,11 +1890,11 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(txtUriSuryo.Text))
+            if (chkDigit(txtUriSuryo.Text))
             {
                 if (!lsDaibunrui.CodeTxtText.Equals("28"))
                 {
-                    if (int.Parse(txtJuchuSuryo.Text) < int.Parse(txtUriSuryo.Text))
+                    if (decimal.Parse(txtJuchuSuryo.Text) < decimal.Parse(txtUriSuryo.Text))
                     {
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注数量は売上済数量以上を入力してください。\r\n売上済：" + txtUriSuryo.Text, CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
@@ -1902,21 +1916,21 @@ namespace KATO.Form.A0010_JuchuInput
                         {
                             DataTable dtZaiko = juchuB.getZaiko("0001", txtShohinCd.Text);
 
-                            if (dtZaiko != null && dtZaiko.Rows.Count > 0 && int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0)
+                            if (dtZaiko != null && dtZaiko.Rows.Count > 0 && decimal.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0)
                             {
-                                if (int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) >= int.Parse(txtHonshaShukko.Text))
+                                if (decimal.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) >= decimal.Parse(txtHonshaShukko.Text))
                                 {
-                                    dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
+                                    dtZaiko = juchuB.getZaiko("0001", txtShohinCd.Text);
 
-                                    int zaikoF = 0;
+                                    decimal zaikoF = 0;
                                     for (int i = 0; i < dtZaiko.Rows.Count; i++)
                                     {
-                                        zaikoF += int.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
+                                        zaikoF += decimal.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
                                     }
 
                                     if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || txtEigyoshoCd.Equals("0002"))
                                     {
-                                        if (int.Parse(txtHonshaShukko.Text) > zaikoF)
+                                        if (decimal.Parse(txtHonshaShukko.Text) > zaikoF)
                                         {
                                             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                             basemessagebox.ShowDialog();
@@ -1926,7 +1940,7 @@ namespace KATO.Form.A0010_JuchuInput
                                     }
                                     else
                                     {
-                                        if (int.Parse(txtHonshaShukko.Text) > zaikoF + int.Parse(txtJuchuSuryo.Text) - int.Parse(txtHatchusu.Text))
+                                        if (decimal.Parse(txtHonshaShukko.Text) > zaikoF + decimal.Parse(txtJuchuSuryo.Text) - decimal.Parse(txtHatchusu.Text))
                                         {
                                             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                             basemessagebox.ShowDialog();
@@ -1953,28 +1967,28 @@ namespace KATO.Form.A0010_JuchuInput
                         }
                     }
 
-                    if (int.Parse(txtGihuShukko.Text) > 0)
+                    if (decimal.Parse(txtGihuShukko.Text) > 0)
                     {
                         A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
                         try
                         {
                             DataTable dtZaiko = juchuB.getZaiko("0002", txtShohinCd.Text);
 
-                            if (dtZaiko != null && dtZaiko.Rows.Count > 0 && int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0)
+                            if (dtZaiko != null && dtZaiko.Rows.Count > 0 && decimal.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0)
                             {
-                                if (int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) >= int.Parse(txtHonshaShukko.Text))
+                                if (int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) >= decimal.Parse(txtHonshaShukko.Text))
                                 {
-                                    dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
+                                    dtZaiko = juchuB.getZaiko("0002", txtShohinCd.Text);
 
-                                    int zaikoF = 0;
+                                    decimal zaikoF = 0;
                                     for (int i = 0; i < dtZaiko.Rows.Count; i++)
                                     {
-                                        zaikoF += int.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
+                                        zaikoF += decimal.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
                                     }
 
                                     if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || txtEigyoshoCd.Equals("0001"))
                                     {
-                                        if (int.Parse(txtGihuShukko.Text) > zaikoF)
+                                        if (decimal.Parse(txtGihuShukko.Text) > zaikoF)
                                         {
                                             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                             basemessagebox.ShowDialog();
@@ -2018,17 +2032,17 @@ namespace KATO.Form.A0010_JuchuInput
                         {
                             DataTable dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
 
-                            if (dtZaiko != null && dtZaiko.Rows.Count > 1 && int.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0 && int.Parse(dtZaiko.Rows[1]["在庫数"].ToString()) > 0)
+                            if (dtZaiko != null && dtZaiko.Rows.Count > 1 && decimal.Parse(dtZaiko.Rows[0]["在庫数"].ToString()) > 0 && decimal.Parse(dtZaiko.Rows[1]["在庫数"].ToString()) > 0)
                             {
-                                int zaikoF = 0;
+                                decimal zaikoF = 0;
                                 for (int i = 0; i < dtZaiko.Rows.Count; i++)
                                 {
-                                    zaikoF += int.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
+                                    zaikoF += decimal.Parse(dtZaiko.Rows[i]["フリー在庫数"].ToString());
                                 }
 
                                 if (string.IsNullOrWhiteSpace(txtJuchuNo.Text))
                                 {
-                                    if ((int.Parse(txtHonshaShukko.Text) + int.Parse(txtGihuShukko.Text)) > zaikoF)
+                                    if ((decimal.Parse(txtHonshaShukko.Text) + decimal.Parse(txtGihuShukko.Text)) > zaikoF)
                                     {
                                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                         basemessagebox.ShowDialog();
@@ -2038,7 +2052,7 @@ namespace KATO.Form.A0010_JuchuInput
                                 }
                                 else
                                 {
-                                    if ((int.Parse(txtHonshaShukko.Text) + int.Parse(txtGihuShukko.Text)) > zaikoF + int.Parse(txtJuchuSuryo.Text) - int.Parse(txtHatchusu.Text))
+                                    if ((decimal.Parse(txtHonshaShukko.Text) + decimal.Parse(txtGihuShukko.Text)) > zaikoF + decimal.Parse(txtJuchuSuryo.Text) - decimal.Parse(txtHatchusu.Text))
                                     {
                                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                         basemessagebox.ShowDialog();
@@ -2126,12 +2140,12 @@ namespace KATO.Form.A0010_JuchuInput
         {
             int ret = 0;
 
-            int intShiire = 0;
+            decimal decShiire = 0;
             if (cbSiireTanka.Text != null)
             {
-                intShiire = int.Parse(cbSiireTanka.Text);
+                decShiire = int.Parse(cbSiireTanka.Text);
             }
-            int intRitsu = (Math.Abs(int.Parse(cbJuchuTanka.Text)) - intShiire) / Math.Abs(int.Parse(cbJuchuTanka.Text)) * 100;
+            decimal decRitsu = (Math.Abs(decimal.Parse(cbJuchuTanka.Text)) - decShiire) / Math.Abs(decimal.Parse(cbJuchuTanka.Text)) * 100;
 
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             try
@@ -2143,7 +2157,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ret = 1;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
-                        if (intRitsu < int.Parse(dtRieki.Rows[0]["利益率"].ToString()))
+                        if (decRitsu < decimal.Parse(dtRieki.Rows[0]["利益率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2156,7 +2170,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (dtRieki.Rows[0]["単価"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["単価"].ToString()))
                     {
-                        if (int.Parse(cbJuchuTanka.Text) < int.Parse(dtRieki.Rows[0]["単価"].ToString()))
+                        if (decimal.Parse(cbJuchuTanka.Text) < decimal.Parse(dtRieki.Rows[0]["単価"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "単価", "設定単価を下回っています。\r\n(設定単価=" + dtRieki.Rows[0]["単価"].ToString() + "円)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2187,7 +2201,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ret = 1;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
-                        if (intRitsu < int.Parse(dtRieki.Rows[0]["利益率"].ToString()))
+                        if (decRitsu < decimal.Parse(dtRieki.Rows[0]["利益率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2200,7 +2214,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (dtRieki.Rows[0]["掛率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["掛率"].ToString()))
                     {
-                        if (int.Parse(txtJuchuTankaSub.Text) < int.Parse(dtRieki.Rows[0]["掛率"].ToString()))
+                        if (decimal.Parse(txtJuchuTankaSub.Text) < decimal.Parse(dtRieki.Rows[0]["掛率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2220,7 +2234,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ret = 1;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
-                        if (intRitsu < int.Parse(dtRieki.Rows[0]["利益率"].ToString()))
+                        if (decRitsu < decimal.Parse(dtRieki.Rows[0]["利益率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2233,7 +2247,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (dtRieki.Rows[0]["掛率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["掛率"].ToString()))
                     {
-                        if (int.Parse(txtJuchuTankaSub.Text) < int.Parse(dtRieki.Rows[0]["掛率"].ToString()))
+                        if (decimal.Parse(txtJuchuTankaSub.Text) < decimal.Parse(dtRieki.Rows[0]["掛率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2253,7 +2267,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ret = 1;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
-                        if (intRitsu < int.Parse(dtRieki.Rows[0]["利益率"].ToString()))
+                        if (decRitsu < decimal.Parse(dtRieki.Rows[0]["利益率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2266,7 +2280,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (dtRieki.Rows[0]["掛率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["掛率"].ToString()))
                     {
-                        if (int.Parse(txtJuchuTankaSub.Text) < int.Parse(dtRieki.Rows[0]["掛率"].ToString()))
+                        if (decimal.Parse(txtJuchuTankaSub.Text) < decimal.Parse(dtRieki.Rows[0]["掛率"].ToString()))
                         {
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
@@ -2334,24 +2348,24 @@ namespace KATO.Form.A0010_JuchuInput
             txtSiireTankaSub.Text = "";
             txtUriSuryo.Text = "";
 
-            txtJuchuNo.Enabled = true;
-            txtJuchuYMD.Enabled = true;
-            lsJuchusha.Enabled = true;
-            tsTokuisaki.Enabled = true;
-            lsDaibunrui.Enabled = true;
-            lsChubunrui.Enabled = true;
-            lsMaker.Enabled = true;
-            txtSearchStr.Enabled = true;
-            txtJuchuSuryo.Enabled = true;
+            txtJuchuNo.ReadOnly = false;
+            txtJuchuYMD.ReadOnly = false;
+            lsJuchusha.codeTxt.ReadOnly = false;
+            tsTokuisaki.ReadOnlyANDTabStopFlg = false;
+            lsDaibunrui.codeTxt.ReadOnly = false;
+            lsChubunrui.codeTxt.ReadOnly = false;
+            lsMaker.codeTxt.ReadOnly = false;
+            txtSearchStr.ReadOnly = false;
+            txtJuchuSuryo.ReadOnly = false;
             cbJuchuTanka.Enabled = true;
             cbSiireTanka.Enabled = true;
-            txtHatchushiji.Enabled = true;
-            txtHonshaShukko.Enabled = true;
-            txtGihuShukko.Enabled = true;
-            txtHatchusu.Enabled = true;
-            txtChuban.Enabled = true;
-            tsShiiresaki.Enabled = true;
-            txtShiireChuban.Enabled = true;
+            txtHatchushiji.ReadOnly = false;
+            txtHonshaShukko.ReadOnly = false;
+            txtGihuShukko.ReadOnly = false;
+            txtHatchusu.ReadOnly = false;
+            txtChuban.ReadOnly = false;
+            tsShiiresaki.ReadOnlyANDTabStopFlg = false;
+            txtShiireChuban.ReadOnly = false;
 
             lsJuchusha.Focus();
         }
@@ -2403,23 +2417,23 @@ namespace KATO.Form.A0010_JuchuInput
             cbKinShiireTanka.Text = "";
             txtKinSiireTankaSub.Text = "";
 
-            txtJuchuYMD.Enabled = true;
-            lsJuchusha.Enabled = true;
-            tsTokuisaki.Enabled = true;
-            lsDaibunrui.Enabled = true;
-            lsChubunrui.Enabled = true;
-            lsMaker.Enabled = true;
-            txtSearchStr.Enabled = true;
-            txtJuchuSuryo.Enabled = true;
+            txtJuchuYMD.ReadOnly = false;
+            lsJuchusha.codeTxt.ReadOnly = false;
+            tsTokuisaki.codeTxt.ReadOnly = false;
+            lsDaibunrui.codeTxt.ReadOnly = false;
+            lsChubunrui.codeTxt.ReadOnly = false;
+            lsMaker.codeTxt.ReadOnly = false;
+            txtSearchStr.ReadOnly = false;
+            txtJuchuSuryo.ReadOnly = false;
             cbJuchuTanka.Enabled = true;
             cbSiireTanka.Enabled = true;
-            txtHatchushiji.Enabled = true;
-            txtHonshaShukko.Enabled = true;
-            txtGihuShukko.Enabled = true;
-            txtHatchusu.Enabled = true;
-            txtChuban.Enabled = true;
-            tsShiiresaki.Enabled = true;
-            txtShiireChuban.Enabled = true;
+            txtHatchushiji.ReadOnly = false;
+            txtHonshaShukko.ReadOnly = false;
+            txtGihuShukko.ReadOnly = false;
+            txtHatchusu.ReadOnly = false;
+            txtChuban.ReadOnly = false;
+            tsShiiresaki.ReadOnlyANDTabStopFlg = false;
+            txtShiireChuban.ReadOnly = false;
         }
 
         private void getZaikoInfo ()

@@ -189,6 +189,8 @@ namespace KATO.Business.A0010_JuchuInput
             aryPrm.Add(strJuchuNo);
 
             DBConnective dbCon = new DBConnective();
+            dbCon.DB_Connect();
+            dbCon.BeginTrans();
             try
             {
                 dbCon.BeginTrans();
@@ -218,6 +220,10 @@ namespace KATO.Business.A0010_JuchuInput
             {
                 dbCon.Rollback();
                 throw ex;
+            }
+            finally
+            {
+                dbCon.DB_Disconnect();
             }
 
         }
@@ -310,37 +316,38 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT 受注年月日";
-            strQuery += "      ,受注者コード";
-            strQuery += "      ,得意先コード";
-            strQuery += "      ,大分類コード";
-            strQuery += "      ,中分類コード";
-            strQuery += "      ,メーカーコード";
-            strQuery += "      ,Ｃ１";
-            strQuery += "      ,Ｃ２";
-            strQuery += "      ,Ｃ３";
-            strQuery += "      ,Ｃ４";
-            strQuery += "      ,Ｃ５";
-            strQuery += "      ,Ｃ６";
-            strQuery += "      ,受注数量";
-            strQuery += "      ,受注単価";
-            strQuery += "      ,仕入単価";
-            strQuery += "      ,納期";
-            strQuery += "      ,注番";
-            strQuery += "      ,営業所コード";
-            strQuery += "      ,担当者コード";
-            strQuery += "      ,得意先名称";
-            strQuery += "      ,発注指示区分";
-            strQuery += "      ,商品コード";
-            strQuery += "      ,本社出庫数";
-            strQuery += "      ,岐阜出庫数";
-            strQuery += "      ,出荷指示区分";
-            strQuery += "      ,在庫引当フラグ";
-            strQuery += "      ,売上フラグ";
-            strQuery += "      ,売上済数量";
-            strQuery += "  FROM 受注";
-            strQuery += " WHERE 受注番号 = " + strJuchuNo;
-            strQuery += "   AND 削除     = 'N'";
+            strQuery += "SELECT a.受注年月日";
+            strQuery += "      ,a.受注者コード";
+            strQuery += "      ,a.得意先コード";
+            strQuery += "      ,a.大分類コード";
+            strQuery += "      ,a.中分類コード";
+            strQuery += "      ,a.メーカーコード";
+            strQuery += "      ,a.Ｃ１";
+            strQuery += "      ,a.Ｃ２";
+            strQuery += "      ,a.Ｃ３";
+            strQuery += "      ,a.Ｃ４";
+            strQuery += "      ,a.Ｃ５";
+            strQuery += "      ,a.Ｃ６";
+            strQuery += "      ,a.受注数量";
+            strQuery += "      ,a.受注単価";
+            strQuery += "      ,a.仕入単価";
+            strQuery += "      ,a.納期";
+            strQuery += "      ,a.注番";
+            strQuery += "      ,a.営業所コード";
+            strQuery += "      ,a.担当者コード";
+            strQuery += "      ,a.得意先名称";
+            strQuery += "      ,a.発注指示区分";
+            strQuery += "      ,a.商品コード";
+            strQuery += "      ,a.本社出庫数";
+            strQuery += "      ,a.岐阜出庫数";
+            strQuery += "      ,a.出荷指示区分";
+            strQuery += "      ,a.在庫引当フラグ";
+            strQuery += "      ,a.売上フラグ";
+            strQuery += "      ,a.売上済数量";
+            strQuery += "      ,b.定価";
+            strQuery += "  FROM 受注 a left join 商品 as b on a.商品コード = b.商品コード and b.削除 = 'N'";
+            strQuery += " WHERE a.受注番号 = " + strJuchuNo;
+            strQuery += "   AND a.削除     = 'N'";
 
             DBConnective dbCon = new DBConnective();
             try
@@ -713,7 +720,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public string getDenpyoNo(string tableName)
+        public string getDenpyoNo(string tableName, DBConnective con)
         {
             List<string> lstTableName = new List<string>();
             lstTableName.Add("@テーブル名");
@@ -723,11 +730,10 @@ namespace KATO.Business.A0010_JuchuInput
 
             string strRet;
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // get伝票番号_PROC"を実行
-                strRet = dbconnective.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, "@番号");
+                strRet = con.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, "@番号");
             }
             catch
             {
@@ -763,7 +769,7 @@ namespace KATO.Business.A0010_JuchuInput
             return dtRet;
         }
 
-        public void updJuchu(List<String> aryPrm)
+        public void updJuchu(List<String> aryPrm, DBConnective con)
         {
             List<String> aryCol = new List<string>();
 
@@ -802,7 +808,7 @@ namespace KATO.Business.A0010_JuchuInput
 
             try
             {
-                dbConGr.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                con.RunSql("受注入力更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
             }
             catch (Exception ex)
             {
@@ -810,7 +816,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void updJuchuH(List<String> aryPrm)
+        public void updJuchuH(List<String> aryPrm, DBConnective con)
         {
             List<String> aryCol = new List<string>();
 
@@ -845,7 +851,103 @@ namespace KATO.Business.A0010_JuchuInput
 
             try
             {
-                dbConGr.RunSql("発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                con.RunSql("発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void updShukkoHead(List<String> aryPrm, DBConnective con)
+        {
+            List<String> aryCol = new List<string>();
+
+            aryCol.Add("@伝票番号");
+            aryCol.Add("@伝票年月日");
+            aryCol.Add("@仕入先コード");
+            aryCol.Add("@取引区分");
+            aryCol.Add("@担当者コード");
+            aryCol.Add("@営業所コード");
+            aryCol.Add("@ユーザー名");
+            aryCol.Add("@仕入先名称");
+
+            try
+            {
+                con.RunSql("出庫ヘッダ更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+
+                string strSQL = "出庫明細全削除_PROC '" + aryCol[0] + "'";
+                con.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void updNewShohin(List<String> aryPrm, DBConnective con)
+        {
+            List<String> aryCol = new List<string>();
+
+            aryCol.Add("@商品コード");
+            aryCol.Add("@メーカーコード");
+            aryCol.Add("@大分類コード");
+            aryCol.Add("@中分類コード");
+            aryCol.Add("@Ｃ１");
+            aryCol.Add("@Ｃ２");
+            aryCol.Add("@Ｃ３");
+            aryCol.Add("@Ｃ４");
+            aryCol.Add("@Ｃ５");
+            aryCol.Add("@Ｃ６");
+            aryCol.Add("@発注区分");
+            aryCol.Add("@標準売価");
+            aryCol.Add("@仕入単価");
+            aryCol.Add("@在庫管理区分");
+            aryCol.Add("@棚番本社");
+            aryCol.Add("@棚番岐阜");
+            aryCol.Add("@メモ");
+            aryCol.Add("@評価単価");
+            aryCol.Add("@定価");
+            aryCol.Add("@箱入数");
+            aryCol.Add("@ユーザー名");
+
+            try
+            {
+                con.RunSql("商品マスタ更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void updShukkoMeisai(List<String> aryPrm, DBConnective con)
+        {
+            List<String> aryCol = new List<string>();
+
+            aryCol.Add("@伝票番号");
+            aryCol.Add("@行番号");
+            aryCol.Add("@商品コード");
+            aryCol.Add("@メーカーコード");
+            aryCol.Add("@大分類コード");
+            aryCol.Add("@中分類コード");
+            aryCol.Add("@Ｃ１");
+            aryCol.Add("@Ｃ２");
+            aryCol.Add("@Ｃ３");
+            aryCol.Add("@Ｃ４");
+            aryCol.Add("@Ｃ５");
+            aryCol.Add("@Ｃ６");
+            aryCol.Add("@数量");
+            aryCol.Add("@単価");
+            aryCol.Add("@備考");
+            aryCol.Add("@出庫倉庫");
+            aryCol.Add("@受注番号");
+            aryCol.Add("@出庫予定日");
+            aryCol.Add("@ユーザー名");
+
+            try
+            {
+                con.RunSql("出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
             }
             catch (Exception ex)
             {
@@ -1038,11 +1140,17 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 品名,";
             strSelect += "a.発注数量,";
             strSelect += "a.発注単価,";
-            strSelect += "a.納期,";
+            strSelect += "FORMAT(a.納期, 'yyyy/MM/dd') as 納期,";
             strSelect += "a.仕入先名称 AS 仕入先名,";
-            strSelect += "dbo.f_get発注番号から仕入日(a.発注番号) AS 仕入日,";
+            strSelect += "FORMAT(dbo.f_get発注番号から仕入日(a.発注番号), 'yyyy/MM/dd') AS 仕入日,";
             strSelect += "a.仕入済数量,";
-            strSelect += "a.登録日時,";
+            strSelect += "FORMAT(a.登録日時, 'yyyy/MM/dd') as 登録日時,";
+            strSelect += " Rtrim(ISNULL(a.Ｃ１,'')) AS Ｃ１, ";
+            strSelect += " Rtrim(ISNULL(a.Ｃ２,'')) AS Ｃ２, ";
+            strSelect += " Rtrim(ISNULL(a.Ｃ３,'')) AS Ｃ３, ";
+            strSelect += " Rtrim(ISNULL(a.Ｃ４,'')) AS Ｃ４, ";
+            strSelect += " Rtrim(ISNULL(a.Ｃ５,'')) AS Ｃ５, ";
+            strSelect += " Rtrim(ISNULL(a.Ｃ６,'')) AS Ｃ６, ";
             strSelect += " Rtrim(ISNULL(a.Ｃ１,'')) ";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ２,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ３,''))";
@@ -1075,11 +1183,17 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 品名,";
             strSelect += "b.数量 AS 発注数量,";
             strSelect += "b.単価 AS 発注単価,";
-            strSelect += "b.出庫予定日 AS 納期,";
+            strSelect += "FORMAT(b.出庫予定日, 'yyyy/MM/dd') AS 納期,";
             strSelect += "a.仕入先名称 AS 仕入先名,";
             strSelect += "NULL AS 仕入日,";
             strSelect += "NULL AS 仕入済数量,";
-            strSelect += "b.登録日時,";
+            strSelect += "FORMAT(b.登録日時, 'yyyy/MM/dd') as 登録日時,";
+            strSelect += " Rtrim(ISNULL(b.Ｃ１,'')) AS Ｃ１, ";
+            strSelect += " Rtrim(ISNULL(b.Ｃ２,'')) AS Ｃ２, ";
+            strSelect += " Rtrim(ISNULL(b.Ｃ３,'')) AS Ｃ３, ";
+            strSelect += " Rtrim(ISNULL(b.Ｃ４,'')) AS Ｃ４, ";
+            strSelect += " Rtrim(ISNULL(b.Ｃ５,'')) AS Ｃ５, ";
+            strSelect += " Rtrim(ISNULL(b.Ｃ６,'')) AS Ｃ６, ";
             strSelect += " Rtrim(ISNULL(b.Ｃ１,'')) ";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ２,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ３,''))";
@@ -1209,11 +1323,33 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " WHERE H.伝票番号=M.伝票番号 ";
             strSelect += " AND H.削除 ='N'";
             strSelect += " AND M.削除 ='N'";
-            strSelect += " AND b.伝票番号 = " + strNo;
+            strSelect += " AND H.伝票番号 = " + strNo;
             strSelect += " AND M.受注番号 = " + strNoJ;
 
             strSelect += " ORDER BY 登録日時";
 
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getShukkoSu(string strNo)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += " SELECT 数量 FROM";
+            strSelect += " FROM 出庫明細";
+            strSelect += " WHERE 削除 ='N'";
+            strSelect += " AND 伝票番号 = " + strNo;
+            
             DBConnective dbCon = new DBConnective();
             try
             {
