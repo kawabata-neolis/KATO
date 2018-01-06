@@ -27,9 +27,9 @@ namespace KATO.Business.A0010_JuchuInput
             dbConGr.Rollback();
         }
 
-        public int getUriagezumisuryo(string strJuchuNo)
+        public decimal getUriagezumisuryo(string strJuchuNo)
         {
-            int retSuryo = -1;
+            decimal retSuryo = -1;
             DataTable dtSuryo = null;
 
             string strQuery = "SELECT 売上済数量 FROM 受注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
@@ -46,15 +46,18 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null && dtSuryo.Rows.Count > 0)
             {
-                retSuryo = dtSuryo.Rows[0].Field<int>("売上済数量");
+                string st = dtSuryo.Rows[0]["売上済数量"].ToString();
+                if (string.IsNullOrWhiteSpace(st)) {
+                    retSuryo = decimal.Parse(st);
+                }
             }
 
             return retSuryo;
         }
 
-        public int getShiirezumisuryo(string strJuchuNo)
+        public decimal getShiirezumisuryo(string strJuchuNo)
         {
-            int retSuryo = -1;
+            decimal retSuryo = -1;
             DataTable dtSuryo = null;
 
             string strQuery = "SELECT 仕入済数量 FROM 発注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
@@ -71,15 +74,18 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null && dtSuryo.Rows.Count > 0)
             {
-                retSuryo = (int)dtSuryo.Rows[0]["仕入済数量"];
+                string st = dtSuryo.Rows[0]["仕入済数量"].ToString();
+                if (string.IsNullOrWhiteSpace(st)) {
+                    retSuryo = decimal.Parse(st);
+                }
             }
 
             return retSuryo;
         }
 
-        public int getShiirezumisuryoH(string strHachuNo)
+        public decimal getShiirezumisuryoH(string strHachuNo)
         {
-            int retSuryo = -1;
+            decimal retSuryo = -1;
             DataTable dtSuryo = null;
 
             string strQuery = "SELECT 仕入済数量 FROM 発注 WHERE 発注番号=" + strHachuNo + " AND 削除='N'";
@@ -96,7 +102,10 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null && dtSuryo.Rows.Count > 0)
             {
-                retSuryo = (int)dtSuryo.Rows[0]["仕入済数量"];
+                string st = dtSuryo.Rows[0]["仕入済数量"].ToString();
+                if (!string.IsNullOrWhiteSpace(st)) {
+                    retSuryo = decimal.Parse(st);
+                }
             }
 
             return retSuryo;
@@ -127,9 +136,9 @@ namespace KATO.Business.A0010_JuchuInput
             return retFlg;
         }
 
-        public int getShukkoToroku(string strJuchuNo)
+        public decimal getShukkoToroku(string strJuchuNo)
         {
-            int retSuryo = 0;
+            decimal retSuryo = 0;
             DataTable dtSuryo = null;
 
             string strQuery = "SELECT COUNT(*) AS 数 FROM 出庫明細 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
@@ -146,7 +155,10 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null)
             {
-                retSuryo = (int)dtSuryo.Rows[0]["数"];
+                string st = dtSuryo.Rows[0]["数"].ToString();
+                if (!string.IsNullOrWhiteSpace(st)) {
+                    retSuryo = decimal.Parse(st);
+                }
             }
 
             return retSuryo;
@@ -197,9 +209,9 @@ namespace KATO.Business.A0010_JuchuInput
                 dbCon.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
                 
                 String strSQL = "";
-                strSQL = "UPDATE 発注 ";
-                strSQL = " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
-                strSQL = " WHERE 受注番号= " + strJuchuNo;
+                strSQL += "UPDATE 発注 ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " WHERE 受注番号= " + strJuchuNo;
                 dbCon.RunSql(strSQL);
 
                 strSQL = "UPDATE 出庫ヘッダ  ";
@@ -237,9 +249,9 @@ namespace KATO.Business.A0010_JuchuInput
                 dbCon.BeginTrans();
 
                 String strSQL = "";
-                strSQL = "UPDATE 受注 ";
-                strSQL = " SET 仕入単価=" + strTanka;
-                strSQL = " WHERE 受注番号= " + strJuchuNo + " AND 削除='N'";
+                strSQL += "UPDATE 受注 ";
+                strSQL += " SET 仕入単価=" + strTanka;
+                strSQL += " WHERE 受注番号= " + strJuchuNo + " AND 削除='N'";
                 dbCon.RunSql(strSQL);
 
                 dbCon.Commit();
@@ -316,7 +328,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT a.受注年月日";
+            strQuery += "SELECT FORMAT(a.受注年月日, 'yyyy/MM/dd') as 受注年月日";
             strQuery += "      ,a.受注者コード";
             strQuery += "      ,a.得意先コード";
             strQuery += "      ,a.大分類コード";
@@ -331,7 +343,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,a.受注数量";
             strQuery += "      ,a.受注単価";
             strQuery += "      ,a.仕入単価";
-            strQuery += "      ,a.納期";
+            strQuery += "      ,FORMAT(a.納期, 'yyyy/MM/dd') as 納期";
             strQuery += "      ,a.注番";
             strQuery += "      ,a.営業所コード";
             strQuery += "      ,a.担当者コード";
@@ -987,6 +999,7 @@ namespace KATO.Business.A0010_JuchuInput
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+            dbconnective.DB_Connect();
 
             //トランザクション開始
             dbconnective.BeginTrans();
@@ -1013,6 +1026,10 @@ namespace KATO.Business.A0010_JuchuInput
                 //ロールバック開始
                 dbconnective.Rollback();
                 throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1124,7 +1141,7 @@ namespace KATO.Business.A0010_JuchuInput
             string strSelect = "";
             strSelect += " SELECT a.発注番号, a.仕入先コード, a.発注者コード, ";
             strSelect += "CASE WHEN a.加工区分='0' THEN '発注' ELSE '本加工' END AS 区分,  ";
-            strSelect += "a.発注年月日,";
+            strSelect += "FORMAT(a.発注年月日, 'yyyy/MM/dd') as 発注年月日,";
             strSelect += "a.大分類コード,";
             strSelect += "a.中分類コード,";
             strSelect += "a.メーカーコード,";
@@ -1167,7 +1184,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "  UNION ALL ";
             strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, '' AS 発注者コード, ";
             strSelect += "CASE a.取引区分 WHEN '41' THEN '出庫' WHEN '43' THEN '加工品出庫' END AS 区分,  ";
-            strSelect += "a.伝票年月日 AS 発注年月日,";
+            strSelect += "FORMAT(a.伝票年月日, 'yyyy/MM/dd') AS 発注年月日,";
             strSelect += "b.大分類コード,";
             strSelect += "b.中分類コード,";
             strSelect += "b.メーカーコード,";
@@ -1346,10 +1363,61 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strSelect = "";
             strSelect += " SELECT 数量 FROM";
-            strSelect += " FROM 出庫明細";
+            strSelect += " 出庫明細";
             strSelect += " WHERE 削除 ='N'";
             strSelect += " AND 伝票番号 = " + strNo;
             
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public string getUriageTanka(string strNo, string strCd)
+        {
+            string ret = "0";
+            DataTable dt = null;
+            string strSQL = " SELECT TOP 1 M.売上単価 FROM 売上ヘッダ H, 売上明細 M ";
+            strSQL += " WHERE H.得意先コード='" + strNo + "'";
+            strSQL += " AND M.商品コード='" + strCd + "'";
+            strSQL += " AND H.伝票番号=M.伝票番号";
+            strSQL += " ORDER BY H.伝票年月日 DESC";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dt = dbCon.ReadSql(strSQL);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    ret = dt.Rows[0]["売上単価"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ret;
+        }
+
+        public DataTable getShukkoTanka(string strNo, string strCd)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += " SELECT 発注単価";
+            strSelect += " FROM 発注";
+            strSelect += " WHERE 削除 ='N'";
+            strSelect += " AND 受注番号 = " + strNo;
+            strSelect += " AND 商品コード='" + strCd + "'";
+
             DBConnective dbCon = new DBConnective();
             try
             {

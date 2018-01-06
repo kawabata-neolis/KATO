@@ -95,6 +95,9 @@ namespace KATO.Form.A0010_JuchuInput
 
             txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
+            cmbSubWinShow.Items.Add("売上実績確認");
+            cmbSubWinShow.Items.Add("加工品受注入力");
+            cmbSubWinShow.Items.Add("見積書入力");
         }
 
         ///<summary>
@@ -440,31 +443,35 @@ namespace KATO.Form.A0010_JuchuInput
         private void showShohinList()
         {
             KATO.Common.Form.ShouhinList shohinList = new KATO.Common.Form.ShouhinList(this);
+            shohinList.intFrmKind = CommonTeisu.FRM_JUCHUINPUT;
+            shohinList.blKensaku = false;
+            shohinList.lsDaibunrui = lsDaibunrui;
+            shohinList.lsChubunrui = lsChubunrui;
+            shohinList.lsMaker = lsMaker;
+            shohinList.btxtKensaku = txtSearchStr;
+            shohinList.btxtShohinCd = txtShohinCd;
+            shohinList.btxtHinC1Hinban = txtHinmei;
 
             if (!String.IsNullOrWhiteSpace(lsDaibunrui.CodeTxtText))
             {
-                shohinList.lsDaibunrui = lsDaibunrui;
+                shohinList.blKensaku = true;
             }
 
             if (!String.IsNullOrWhiteSpace(lsChubunrui.CodeTxtText))
             {
-                shohinList.lsChubunrui = lsChubunrui;
+                shohinList.blKensaku = true;
             }
 
             if (!String.IsNullOrWhiteSpace(lsMaker.CodeTxtText))
             {
-                shohinList.lsMaker = lsMaker;
+                shohinList.blKensaku = true;
             }
 
             if (!String.IsNullOrWhiteSpace(txtSearchStr.Text))
             {
-                shohinList.btxtKensaku = txtSearchStr;
+                shohinList.blKensaku = true;
             }
-            shohinList.btxtShohinCd = txtShohinCd;
-            shohinList.btxtHinC1Hinban = txtHinmei;
-            shohinList.blKensaku = true;
-
-            shohinList.intFrmKind = CommonTeisu.FRM_JUCHUINPUT;
+            
             shohinList.Show();
         }
 
@@ -2554,5 +2561,31 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        private void cmbSubWinShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+
+            if (c.SelectedIndex == 1)
+            {
+                Form6 f = new Form6(this);
+                f.strJuchuNo = txtJuchuNo.Text;
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                f.StartPosition = FormStartPosition.Manual;
+                f.Location = s.Bounds.Location;
+
+                f.Show();
+            }
+        }
     }
 }
