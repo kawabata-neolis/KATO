@@ -456,8 +456,8 @@ namespace KATO.Form.M1020_Maker
                 }
 
                 //削除情報を入れる（メーカーCD、メーカー名、ユーザー名）
-                lstMakerData.Add(txtMaker.Text);
-                lstMakerData.Add(txtName.Text);
+                lstMakerData.Add(dtSetCd.Rows[0]["メーカーコード"].ToString());
+                lstMakerData.Add(dtSetCd.Rows[0]["メーカー名"].ToString());
                 lstMakerData.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動

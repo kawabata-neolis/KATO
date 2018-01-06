@@ -29,10 +29,6 @@ namespace KATO.Form.M1100_Chokusosaki
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        Control cActiveBefore = null;
-
-        //エラーメッセージを表示したかどうか
-        bool blMessageOn = false;
 
         ///<summary>
         ///M1100_Chokusosaki
@@ -84,6 +80,12 @@ namespace KATO.Form.M1100_Chokusosaki
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -112,18 +114,30 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addChokusosaki();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addChokusosaki();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delChokusosaki();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delChokusosaki();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -252,8 +266,11 @@ namespace KATO.Form.M1100_Chokusosaki
                 case Keys.F8:
                     break;
                 case Keys.F9:
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    showChokusosakiList();
+                    if (labelSet_Torihikisaki.CodeTxtText != "")
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        showChokusosakiList();
+                    }
                     break;
                 case Keys.F10:
                     break;
@@ -277,16 +294,28 @@ namespace KATO.Form.M1100_Chokusosaki
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addChokusosaki();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addChokusosaki();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delChokusosaki();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delChokusosaki();
+                    }
                     break;
                 case STR_BTN_F04: // 取り消し
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -333,24 +362,9 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         private void addChokusosaki()
         {
-            //フォーカス位置の確保
-            cActiveBefore = this.ActiveControl;
-
-            btnF01.Focus();
-
-            //エラーメッセージを表示したかどうか
-            if (blMessageOn == true)
-            {
-                //元のフォーカスに移動
-                cActiveBefore.Focus();
-                return;
-            }
 
             //記入情報登録用
             List<string> lstChokusosaki = new List<string>();
-
-            //取消メソッド起動前に、残す項目を確保用
-            string strTokuiSub = "";
 
             //空文字判定（得意先コード）
             if (StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
@@ -361,7 +375,12 @@ namespace KATO.Form.M1100_Chokusosaki
                 labelSet_Torihikisaki.Focus();
                 return;
             }
-            //空文字判定（得意先コード）
+            // 値チェック（得意先コード：仕様上、取引先コード）
+            if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+            //空文字判定（直送先コード）
             if (txtChokusoCd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -370,6 +389,13 @@ namespace KATO.Form.M1100_Chokusosaki
                 txtChokusoCd.Focus();
                 return;
             }
+
+            // 値チェック（直送先コード）
+            if (chkChokusoCd() == true)
+            {
+                return;
+            }
+
             //空文字判定（直送先名）
             if (txtChokusoName.blIsEmpty() == false)
             {
@@ -400,15 +426,10 @@ namespace KATO.Form.M1100_Chokusosaki
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
-
-                //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = labelSet_Torihikisaki.CodeTxtText;
-
+                
                 //テキストボックスを白紙にする
-                delText();
-                labelSet_Torihikisaki.CodeTxtText = strTokuiSub;
-                labelSet_Torihikisaki.Focus();
-                txtChokusoCd.Focus();
+                DipDelChokusoInfo();
+
             }
             catch (Exception ex)
             {
@@ -429,6 +450,11 @@ namespace KATO.Form.M1100_Chokusosaki
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+
             labelSet_Torihikisaki.Focus();
         }
 
@@ -445,12 +471,21 @@ namespace KATO.Form.M1100_Chokusosaki
 
             //検索時のデータ取り出し先
             DataTable dtSetCd;
-
-            //取消メソッド起動前に、残す項目を確保用
-            string strTokuiSub = "";
-
+            
             //空文字判定（得意先コード、直送先コード）
             if (StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false || txtChokusoCd.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 値チェック（得意先コード：仕様上、取引先コード）
+            if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+
+            // 値チェック（直送先コード）
+            if (chkChokusoCd() == true)
             {
                 return;
             }
@@ -481,14 +516,14 @@ namespace KATO.Form.M1100_Chokusosaki
                 }
 
                 //削除情報を入れる（得意先コード、直送先コード、直送先名、郵便番号、住所１、住所２、電話番号、部署名、ユーザー名）
-                lstChokusosaki.Add(labelSet_Torihikisaki.codeTxt.Text);
-                lstChokusosaki.Add(txtChokusoCd.Text);
-                lstChokusosaki.Add(txtChokusoName.Text);
-                lstChokusosaki.Add(txtYubin.Text);
-                lstChokusosaki.Add(txtJusho1.Text);
-                lstChokusosaki.Add(txtJusho2.Text);
-                lstChokusosaki.Add(txtDenwa.Text);
-                lstChokusosaki.Add(txtBushoName.Text);
+                lstChokusosaki.Add(dtSetCd.Rows[0]["得意先コード"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["直送先コード"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["直送先名"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["郵便番号"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["住所１"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["住所２"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["電話番号"].ToString());
+                lstChokusosaki.Add(dtSetCd.Rows[0]["部署名"].ToString());
                 lstChokusosaki.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -498,14 +533,9 @@ namespace KATO.Form.M1100_Chokusosaki
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
-                //取消メソッド起動前に、残す項目を確保
-                strTokuiSub = labelSet_Torihikisaki.CodeTxtText;
 
                 //テキストボックスを白紙にする
-                delText();
-                labelSet_Torihikisaki.CodeTxtText = strTokuiSub;
-                labelSet_Torihikisaki.Focus();
-                txtChokusoCd.Focus();
+                DipDelChokusoInfo();
             }
             catch (Exception ex)
             {
@@ -545,9 +575,6 @@ namespace KATO.Form.M1100_Chokusosaki
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字チェック用
-            Boolean blnGood;
-
             //前後の空白を取り除く
             txtChokusoCd.Text = txtChokusoCd.Text.Trim();
 
@@ -557,37 +584,10 @@ namespace KATO.Form.M1100_Chokusosaki
                 return;
             }
 
-
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(labelSet_Torihikisaki.CodeTxtText);
-            blnGood = StringUtl.JudBanChr(txtChokusoCd.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(labelSet_Torihikisaki.CodeTxtText, CommonTeisu.NUMBER_ONLY);
-            blnGood = StringUtl.JudBanSelect(txtChokusoCd.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
+            // 値チェック（直送先コード）
+            if (chkChokusoCd() == true)
             {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                //各項目のクリア
-                txtChokusoName.Clear();
-                txtYubin.Clear();
-                txtJusho1.Clear();
-                txtJusho2.Clear();
-                txtDenwa.Clear();
-                txtBushoName.Clear();
-
-                txtChokusoCd.Focus();
                 return;
-            }
-
-            //文字数が足りなかった場合0パティング
-            if (txtChokusoCd.TextLength < 4)
-            {
-                txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
             }
 
             //データの存在確認を検索する情報を入れる
@@ -611,16 +611,25 @@ namespace KATO.Form.M1100_Chokusosaki
                     txtJusho2.Text = dtSetCd.Rows[0]["住所２"].ToString();
                     txtDenwa.Text = dtSetCd.Rows[0]["電話番号"].ToString();
                     txtBushoName.Text = dtSetCd.Rows[0]["部署名"].ToString();
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
+
                 }
                 else
                 {
                     //各項目のクリア
-                    txtChokusoName.Clear();
-                    txtYubin.Clear();
-                    txtJusho1.Clear();
-                    txtJusho2.Clear();
-                    txtDenwa.Clear();
-                    txtBushoName.Clear();
+                    txtChokusoName.Text = "";
+                    txtYubin.Text = "";
+                    txtJusho1.Text = "";
+                    txtJusho2.Text = "";
+                    txtDenwa.Text = "";
+                    txtBushoName.Text = "";
+
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -728,26 +737,57 @@ namespace KATO.Form.M1100_Chokusosaki
         }
 
         ///<summary>
-        ///labelSet_Torihikisaki_Leave
-        ///フォーカスが外れた場合
+        /// DipDelChokusoInfo
+        /// 直送先に掛かるデータリセット
         ///</summary>
-        private void labelSet_Torihikisaki_Leave(object sender, EventArgs e)
+        private void DipDelChokusoInfo()
         {
-            //取引先コードがない場合
-            if (labelSet_Torihikisaki.CodeTxtText == "" ||
-                StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
+            //各項目のクリア
+            txtChokusoCd.Text = "";
+            txtChokusoName.Text = "";
+            txtYubin.Text = "";
+            txtJusho1.Text = "";
+            txtJusho2.Text = "";
+            txtDenwa.Text = "";
+            txtBushoName.Text = "";
+            txtChokusoCd.Focus();
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+        }
+
+        ///<summary>
+        /// chkChokusoCd
+        /// 直送先コードチェック
+        ///</summary>
+        private bool chkChokusoCd()
+        {
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtChokusoCd.Text) == false)
             {
-                blMessageOn = false;
-                return;
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                DipDelChokusoInfo();
+
+                return true;
             }
 
-            //取引先コード名が白紙の場合
-            if (labelSet_Torihikisaki.CodeTxtText == "" ||
-                StringUtl.blIsEmpty(labelSet_Torihikisaki.ValueLabelText) == false)
+            this.txtChokusoCd.Text = StringUtl.JudZenToHanNum(txtChokusoCd.Text);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtChokusoCd.Text, CommonTeisu.NUMBER_ONLY) == true)
             {
-                blMessageOn = true;
-                labelSet_Torihikisaki.Focus();
+                // 文字数が足りなかった場合0パティング
+                if (txtChokusoCd.TextLength < 4)
+                {
+                    txtChokusoCd.Text = txtChokusoCd.Text.ToString().PadLeft(4, '0');
+                }
             }
+
+            return false;
         }
     }
 }

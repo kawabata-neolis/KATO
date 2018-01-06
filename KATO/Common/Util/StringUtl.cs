@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace KATO.Common.Util
 {
@@ -108,6 +109,17 @@ namespace KATO.Common.Util
             }
 
             return result;
+        }
+
+        /// <summary>
+        ///     全角数字から半角数字変換</summary>
+        /// <param name="strData">
+        ///     チェック対象文字列</param>
+        /// <returns>
+        ///     全角数字を半角数字に変換する</returns>
+        public static string JudZenToHanNum(string strData)
+        {
+            return Regex.Replace(strData, "[０-９]", p => ((char)(p.Value[0] - '０' + '0')).ToString());
         }
 
         ///

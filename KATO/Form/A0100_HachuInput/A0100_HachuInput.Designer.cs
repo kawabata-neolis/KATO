@@ -80,6 +80,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridHachu)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
@@ -123,10 +127,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // lblHachuYMD
             // 
@@ -769,6 +769,7 @@
             this.Text = "A0100_HachuInput";
             this.Load += new System.EventHandler(this.A0100_HachuInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0100_HachuInput_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

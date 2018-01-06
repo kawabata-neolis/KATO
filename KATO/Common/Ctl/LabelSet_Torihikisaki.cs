@@ -272,7 +272,7 @@ namespace KATO.Common.Ctl
         /// 引数　：なし
         /// 戻り値：エラー発生【true】
         ///</summary>
-        private bool chkTxtTorihikisaki()
+        public bool chkTxtTorihikisaki()
         {
             // データ渡し用
             List<string> lstStringSQL = new List<string>();

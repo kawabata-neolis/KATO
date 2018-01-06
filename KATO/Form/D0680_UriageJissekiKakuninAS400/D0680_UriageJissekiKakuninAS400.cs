@@ -76,64 +76,21 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
 
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
+            // F9:検索ボタン無効
+            this.btnF09.Enabled = false;
 
-            txtYMDopen.setUp(0);
+            // 初期表示
+            labelSet_Tokuisaki.Focus();
 
-            System.DateTime dateStartYMD;
-            System.DateTime dateEndYMD;
-            
-            //開始を2005/3/01、終了を2005/04/30に固定
-            dateEndYMD = DateTime.Parse("2005/4/30");
-            txtYMDclose.Text = dateEndYMD.ToString("yyyy/MM/dd");
+            // 伝票年月日の設定
+            txtCalendarYMDStart.Text = "2005/04/30";
+            DateTime dateYMDStart = DateTime.Parse(txtCalendarYMDStart.Text);
+            txtCalendarYMDStart.Text = dateYMDStart.AddMonths(-1).ToString().Substring(0, 8) + "01";
 
-            dateStartYMD = dateEndYMD.AddMonths(-1);
-            txtYMDopen.Text = dateStartYMD.ToString("yyyy/MM")+"/01";
-
-            //DataGridViewの初期設定
+            // DataGridViewの初期設定
             SetUpGrid();
-        }
-
-        private void D0680_UriageJissekiKakuninAS400_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // 受注入力フォームから呼ばれた場合
-            if (this.intFrm == 0010)
-            {
-                // 全てのフォームの中から移動元フォームの検索
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                {
-                    
-                    // 【受注入力フォームに変更すること、画面IDとフォーム名】
-                    if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "A0010JuchuInput")
-                    {
-                        // データを連れてくるため、newをしないこと
-                        // 【受注入力フォームに変更すること】
-                        // 【受注入力フォームに「setSiireJissekiKakuninClose()」を実装すること】戻った時のフォーカスの位置
-                        //A0010_JuchuInput.A0010JuchuInput juchuInput = (A0010_JuchuInput.A0010JuchuInput)frm;
-                        //juchuInput.setSiireJissekiKakuninClose();
-                        break;
-                    }
-                }
-            }
-
-            // 売上入力フォームから呼ばれた場合
-            if (this.intFrm == 0020)
-            {
-                // 全てのフォームの中から移動元フォームの検索
-                foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                {
-                    // 【売上入力フォームに変更すること、画面IDとフォーム名】
-                    if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "A0010JuchuInput")
-                    {
-                        // データを連れてくるため、newをしないこと
-                        // 【売上入力フォームに変更すること】
-                        // 【売上入力フォームに「setSiireJissekiKakuninClose()」を実装すること】戻った時のフォーカスの位置
-                        //A0010_JuchuInput.A0010JuchuInput uriageInput = (A0010_JuchuInput.A0010JuchuInput)frm;
-                        //uriageInput.setSiireJissekiKakuninClose();
-                        break;
-                    }
-                }
-            }
         }
 
         ///<summary>
@@ -195,15 +152,15 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
 
 
             //個々の幅、文章の寄せ
-            setColumn(day, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
-            setColumn(DenpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumn(Shinamei_katasiki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
-            setColumn(Suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0", 80);
-            setColumn(UriageTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(UriageKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(Bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumn(day, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
+            setColumn(DenpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
+            setColumn(Shinamei_katasiki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 350);
+            setColumn(Suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0.00", 80);
+            setColumn(UriageTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(UriageKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumn(Bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(Tekiyou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,200);
+            setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,300);
            
         }
 
@@ -324,11 +281,12 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
             DataTable dtSetView;
 
             //空文字判定（得意先コード、品番・型番、備考、開始伝票年月日、終了伝票年月日）
-            if (labelSet_Tokuisaki.CodeTxtText == "" && txtSinamei_KatabanS.Text == "" && txtBikouS.Text == "" && txtYMDopen.blIsEmpty() == false && txtYMDclose.blIsEmpty() == false)
+            if (labelSet_Tokuisaki.CodeTxtText == "" && txtSinamei_KatabanS.Text == "" && txtBikouS.Text == "" && txtCalendarYMDStart.blIsEmpty() == false && txtCalendarYMDEnd.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT,"条件を指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                labelSet_Tokuisaki.codeTxt.Focus();
                 return;
             }
 
@@ -338,9 +296,9 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
             {
                 //データの存在確認を検索する情報を入れる
                 /*[0]開始伝票年月日*/
-                lstUriageSuiiLoad.Add(txtYMDopen.Text);
+                lstUriageSuiiLoad.Add(txtCalendarYMDStart.Text);
                 /*[1]終了伝票年月日*/
-                lstUriageSuiiLoad.Add(txtYMDclose.Text);
+                lstUriageSuiiLoad.Add(txtCalendarYMDEnd.Text);
                 /*[2]得意先コード*/
                 lstUriageSuiiLoad.Add(labelSet_Tokuisaki.CodeTxtText);
                 /*[3]品番・型番*/
@@ -397,14 +355,14 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
         private void delText()
         {
             // 削除するデータ以外を確保
-            string strKikanStart = txtYMDopen.Text;
-            string strKikanEnd = txtYMDclose.Text;
+            string strKikanStart = txtCalendarYMDStart.Text;
+            string strKikanEnd = txtCalendarYMDEnd.Text;
 
             // 画面の項目内を白紙にする
             delFormClear(this, gridTorihiki);
 
-            txtYMDopen.Text = strKikanStart;
-            txtYMDclose.Text = strKikanEnd;
+            txtCalendarYMDStart.Text = strKikanStart;
+            txtCalendarYMDEnd.Text = strKikanEnd;
             
             labelSet_Tokuisaki.Focus();
         }

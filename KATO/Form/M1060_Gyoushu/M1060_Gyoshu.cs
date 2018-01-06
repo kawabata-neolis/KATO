@@ -78,6 +78,11 @@ namespace KATO.Form.M1060_Gyoushu
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
         }
 
         ///<summary>
@@ -106,18 +111,27 @@ namespace KATO.Form.M1060_Gyoushu
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addGyoushu();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addGyoushu();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delGyoushu();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delGyoushu();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -270,16 +284,25 @@ namespace KATO.Form.M1060_Gyoushu
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addGyoushu();
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addGyoushu();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delGyoushu();
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delGyoushu();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -346,6 +369,12 @@ namespace KATO.Form.M1060_Gyoushu
                 return;
             }
 
+            // 業種コードチェック
+            if (chkGyoshuCd() == true)
+            {
+                return;
+            }
+
             //登録情報を入れる（業種コード、業種名、ユーザー名）、
             lstString.Add(txtGyoshuCd.Text);
             lstString.Add(txtGyoshuName.Text);
@@ -383,6 +412,11 @@ namespace KATO.Form.M1060_Gyoushu
         {
             //画面の項目内を白紙にする
             delFormClear(this);
+
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+
             txtGyoshuCd.Focus();
         }
 
@@ -400,6 +434,12 @@ namespace KATO.Form.M1060_Gyoushu
 
             //文字判定（業種コード、業種名）
             if (txtGyoshuCd.blIsEmpty() == false && txtGyoshuName.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            // 業種コードチェック
+            if (chkGyoshuCd() == true)
             {
                 return;
             }
@@ -426,8 +466,8 @@ namespace KATO.Form.M1060_Gyoushu
                 }
 
                 //削除情報を入れる（業種コード、業種名、ユーザー名）
-                lstGyoushu.Add(txtGyoshuCd.Text);
-                lstGyoushu.Add(txtGyoshuName.Text);
+                lstGyoushu.Add(dtSetCd.Rows[0]["業種コード"].ToString());
+                lstGyoushu.Add(dtSetCd.Rows[0]["業種名"].ToString());
                 lstGyoushu.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -438,7 +478,6 @@ namespace KATO.Form.M1060_Gyoushu
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtGyoshuCd.Focus();
             }
             catch (Exception ex)
             {
@@ -482,25 +521,9 @@ namespace KATO.Form.M1060_Gyoushu
                 return;
             }
 
-            //文字数が足りなかった場合0パティング
-            if (txtGyoshuCd.TextLength < 4)
+            // 業種コードチェック
+            if (chkGyoshuCd() == true)
             {
-                txtGyoshuCd.Text = txtGyoshuCd.Text.ToString().PadLeft(4, '0');
-            }
-            
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(txtGyoshuCd.Text);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(txtGyoshuCd.Text, CommonTeisu.NUMBER_ONLY);
-
-            //文字チェックが通らなかった場合
-            if (blnGood == false)
-            {
-                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtGyoshuCd.Focus();
                 return;
             }
 
@@ -516,12 +539,23 @@ namespace KATO.Form.M1060_Gyoushu
                 {
                     txtGyoshuCd.Text = dtSetCd.Rows[0]["業種コード"].ToString();
                     txtGyoshuName.Text = dtSetCd.Rows[0]["業種名"].ToString();
-                    txtGyoshuName.Focus();
+
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
+                    this.btnF04.Enabled = true;
+
                 }
                 else
                 {
                     txtGyoshuName.Text = "";
+
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = false;
+                    this.btnF04.Enabled = true;
                 }
+                txtGyoshuName.Focus();
             }
             catch (Exception ex)
             {
@@ -616,6 +650,37 @@ namespace KATO.Form.M1060_Gyoushu
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        ///<summary>
+        /// chktxtGyoshuCd
+        /// 業種コードチェック
+        ///</summary>
+        private bool chkGyoshuCd()
+        {
+            if (StringUtl.JudBanSQL(txtGyoshuCd.Text) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.txtGyoshuCd.Text = "";
+                txtGyoshuCd.Focus();
+                return true;
+            }
+
+            // 全角数字を半角数字に変換
+            this.txtGyoshuCd.Text = StringUtl.JudZenToHanNum(txtGyoshuCd.Text);
+
+            //数値数が足りなかった場合0パティング
+            if (StringUtl.JudBanSelect(txtGyoshuCd.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (txtGyoshuCd.TextLength < 4)
+                {
+                    txtGyoshuCd.Text = txtGyoshuCd.Text.ToString().PadLeft(4, '0');
+                }
+            }
+            return false;
         }
     }
 }

@@ -45,6 +45,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -98,15 +102,11 @@
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // lblaida1
             // 
             this.lblaida1.AutoSize = true;
             this.lblaida1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblaida1.Location = new System.Drawing.Point(293, 80);
+            this.lblaida1.Location = new System.Drawing.Point(216, 81);
             this.lblaida1.Name = "lblaida1";
             this.lblaida1.Size = new System.Drawing.Size(23, 15);
             this.lblaida1.strToolTip = null;
@@ -118,7 +118,7 @@
             // 
             this.lblKikan.AutoSize = true;
             this.lblKikan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKikan.Location = new System.Drawing.Point(100, 80);
+            this.lblKikan.Location = new System.Drawing.Point(13, 81);
             this.lblKikan.Name = "lblKikan";
             this.lblKikan.Size = new System.Drawing.Size(87, 15);
             this.lblKikan.strToolTip = null;
@@ -129,7 +129,7 @@
             // txtCalendarYMDStart
             // 
             this.txtCalendarYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtCalendarYMDStart.Location = new System.Drawing.Point(193, 77);
+            this.txtCalendarYMDStart.Location = new System.Drawing.Point(119, 77);
             this.txtCalendarYMDStart.MaxLength = 10;
             this.txtCalendarYMDStart.Name = "txtCalendarYMDStart";
             this.txtCalendarYMDStart.Size = new System.Drawing.Size(90, 22);
@@ -139,7 +139,7 @@
             // txtCalendarYMDEnd
             // 
             this.txtCalendarYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtCalendarYMDEnd.Location = new System.Drawing.Point(323, 78);
+            this.txtCalendarYMDEnd.Location = new System.Drawing.Point(245, 77);
             this.txtCalendarYMDEnd.MaxLength = 10;
             this.txtCalendarYMDEnd.Name = "txtCalendarYMDEnd";
             this.txtCalendarYMDEnd.Size = new System.Drawing.Size(90, 22);
@@ -236,7 +236,7 @@
             this.labelSet_Shiiresaki.CodeTxtSize = 40;
             this.labelSet_Shiiresaki.CodeTxtText = "";
             this.labelSet_Shiiresaki.LabelName = "仕入先コード";
-            this.labelSet_Shiiresaki.Location = new System.Drawing.Point(98, 43);
+            this.labelSet_Shiiresaki.Location = new System.Drawing.Point(12, 40);
             this.labelSet_Shiiresaki.Name = "labelSet_Shiiresaki";
             this.labelSet_Shiiresaki.ShowAppendFlg = false;
             this.labelSet_Shiiresaki.Size = new System.Drawing.Size(471, 22);
@@ -266,6 +266,7 @@
             this.Text = "D0690_SiireJissekiKakuninAS400";
             this.Load += new System.EventHandler(this.D0690_SiireJissekiKakuninAS400_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0690_SiireJissekiKakuninAS400_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

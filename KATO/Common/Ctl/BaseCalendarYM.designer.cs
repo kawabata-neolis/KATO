@@ -33,7 +33,6 @@
             // BaseCalendarYM
             // 
             this.Size = new System.Drawing.Size(65, 22);
-            this.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Enter += new System.EventHandler(this.updCalendarEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.setCalendarKeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.setCalendarKeyPress);

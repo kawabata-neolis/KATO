@@ -280,7 +280,6 @@
             this.labelSet_Torihikisaki.TabIndex = 0;
             this.labelSet_Torihikisaki.ValueLabelSize = 300;
             this.labelSet_Torihikisaki.ValueLabelText = "";
-            this.labelSet_Torihikisaki.Leave += new System.EventHandler(this.labelSet_Torihikisaki_Leave);
             // 
             // M1100_Chokusosaki
             // 

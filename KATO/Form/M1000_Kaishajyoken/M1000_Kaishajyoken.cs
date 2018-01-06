@@ -358,6 +358,7 @@ namespace KATO.Form.M1000_Kaishajyoken
         /// </summary>
         private void addKaishajyoken()
         {
+
             // データ渡し用
             List<string> lstString = new List<string>();
 
@@ -484,6 +485,7 @@ namespace KATO.Form.M1000_Kaishajyoken
 
             try
             {
+
                 // Ｂ層登録及び更新メソッド
                 kaishajyokenB.addKaishajyoken(lstString);
 
@@ -508,6 +510,10 @@ namespace KATO.Form.M1000_Kaishajyoken
         /// </summary>
         public void delKaishajyoken()
         {
+
+            // 会社条件情報格納用DataTable
+            DataTable dtKaishajyokenInfo;
+
             // データ渡し用
             List<string> lstString = new List<string>();
 
@@ -551,25 +557,43 @@ namespace KATO.Form.M1000_Kaishajyoken
                 return;
             }
 
-            // 画面情報【会社条件情報】を会社条件情報削除Ｂ層へのリスト格納
-            lstString.Add(txtKaisyaCode.Text);         // 会社コード
-            lstString.Add(txtKaishaName.Text);         // 会社名
-            lstString.Add(txtYubinNum.Text);           // 郵便番号
-            lstString.Add(txtJyusyo1.Text);            // 住所１
-            lstString.Add(txtJyusyo2.Text);            // 住所２
-            lstString.Add(txtDaihyosyaName.Text);      // 代表者名
-            lstString.Add(txtDennwaNum.Text);          // 電話番号
-            lstString.Add(txtFaxNum.Text);             // ＦＡＸ
-            lstString.Add(txtGetumatsusimebi.Text);    // 期首月
-            lstString.Add(txtKaishiYMD.Text);          // 開始年月日
-            lstString.Add(txtShuryouYMD.Text);         // 終了年月日
-            lstString.Add(SystemInformation.UserName); // ユーザ名
 
             // Ｂ層クラス宣言【会社条件】
             M1000_Kaishajyoken_B kaishajyokenB = new M1000_Kaishajyoken_B();
 
             try
             {
+                // Ｂ層の会社条件情報取得処理
+                dtKaishajyokenInfo = kaishajyokenB.getKaishajyoken(txtKaisyaCode.Text);
+
+                //検索結果にデータが存在しなければ終了
+                if (dtKaishajyokenInfo.Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
+                // 画面情報【会社条件情報】を会社条件情報削除Ｂ層へのリスト格納
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["会社コード"].ToString());                     // 会社コード
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["会社名"].ToString());                         // 会社名
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["郵便番号"].ToString());                       // 郵便番号
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["住所１"].ToString());                         // 住所１
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["住所２"].ToString());                         // 住所２
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["代表者名"].ToString());                       // 代表者名
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["電話番号"].ToString());                       // 電話番号
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["ＦＡＸ"].ToString());                         // ＦＡＸ
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["期首月"].ToString());                         // 期首月
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["開始年月日"].ToString().Substring(0, 10));     // 開始年月日
+                lstString.Add(dtKaishajyokenInfo.Rows[0]["終了年月日"].ToString().Substring(0, 10));    // 終了年月日
+                lstString.Add(SystemInformation.UserName);                                              // ユーザ名
+
                 // Ｂ層削除メソッド
                 kaishajyokenB.delKaishajyoken(lstString);
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)

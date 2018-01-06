@@ -546,14 +546,14 @@ namespace KATO.Common.Form
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
             //記入情報検索用
-            List<string> lstSelectData = new List<string>();
+            string tokuiName = txtTokuisaki.Text.ToString();
 
             //ビジネス層のインスタンス生成
             TokuisakiList_B tokuisakilistB = new TokuisakiList_B();
             try
             {
                 //データグリッドビュー部分
-                gridShiresaki.DataSource = tokuisakilistB.getKensaku(txtTokuisaki.Text);
+                gridShiresaki.DataSource = tokuisakilistB.getTokuisaki(tokuiName);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridShiresaki.RowCount.ToString() + "件)";

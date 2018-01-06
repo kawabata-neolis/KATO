@@ -27,6 +27,20 @@ namespace KATO.Common.Business
         //担当者別伝票処理件数画面内にある複数のテキストボックスの判断
         int intSelectTextBox = 0;
 
+        // 表示カラムの表示フラグ
+        bool blShowFlag = false;
+
+        ///<summary>
+        /// 担当者リストコンストラクタ
+        /// 表示コントロール
+        ///</summary>
+        public TantoushaList_B(bool blFlag)
+        {
+            // 表示カラムのコントロール
+            blShowFlag = blFlag;
+
+        }
+
         ///<summary>
         ///getViewGrid
         ///読み込み時の処理
@@ -35,6 +49,7 @@ namespace KATO.Common.Business
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
+            string strAddWhile = "";
 
             //データ渡し用
             lstSQL.Add("Common");
@@ -60,8 +75,20 @@ namespace KATO.Common.Business
                     return (dtGetTableGrid);
                 }
 
+                // 表示コントロール
+                if (blShowFlag == false)
+                {
+                    strAddWhile = " AND 担当者.表示 = '1' ";
+                }
+                else
+                { 
+                    strAddWhile = "";
+                }
+
+                string sql = string.Format(strSQLInput, strAddWhile);
+
                 //検索データを表示
-                dtGetTableGrid = dbConnective.ReadSql(strSQLInput);
+                dtGetTableGrid = dbConnective.ReadSql(sql);
 
                 return (dtGetTableGrid);
             }

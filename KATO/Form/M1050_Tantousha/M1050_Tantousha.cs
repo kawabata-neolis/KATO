@@ -322,7 +322,7 @@ namespace KATO.Form.M1050_Tantousha
         private void showTantoushaList()
         {
             //担当者リストのインスタンス生成
-            TantoushaList tantoushalist = new TantoushaList(this);
+            TantoushaList tantoushalist = new TantoushaList(this, true);
             try
             {
                 //担当者区分リストの表示、画面IDを渡す

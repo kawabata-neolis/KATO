@@ -75,7 +75,10 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
 
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
+            this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
+            // F9:検索ボタン無効
+            this.btnF09.Enabled = false;
 
             // 初期表示
             labelSet_Shiiresaki.Focus();
@@ -148,7 +151,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
             setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 350);
-            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 80);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
             setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumn(bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
@@ -294,7 +297,7 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "条件を指定してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                
+                labelSet_Shiiresaki.codeTxt.Focus();
                 return;
             }
 

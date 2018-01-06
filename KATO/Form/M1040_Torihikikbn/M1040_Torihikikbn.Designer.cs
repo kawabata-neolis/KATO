@@ -35,6 +35,10 @@
             this.txtTorihikikubunCd = new KATO.Common.Ctl.BaseText();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -79,10 +83,6 @@
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // lblName
             // 
             this.lblName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -120,7 +120,7 @@
             // txtTorihikikubunCd
             // 
             this.txtTorihikikubunCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTorihikikubunCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTorihikikubunCd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtTorihikikubunCd.Location = new System.Drawing.Point(517, 90);
             this.txtTorihikikubunCd.MaxLength = 2;
             this.txtTorihikikubunCd.Name = "txtTorihikikubunCd";
@@ -143,6 +143,7 @@
             this.Text = "M1040_Torihikikbn";
             this.Load += new System.EventHandler(this.M1040_Torihikikubun_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorikbnKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

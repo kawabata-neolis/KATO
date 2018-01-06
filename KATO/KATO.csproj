@@ -126,6 +126,7 @@
     <Compile Include="Business\B0050_NyukinCheckPrint\B0050_NyukinCheckPrint_B.cs" />
     <Compile Include="Business\B0060_ShiharaiInput\B0060_ShiharaiInput_B.cs" />
     <Compile Include="Business\B0070_ShiharaiCheakPrint\B0070_ShiharaiCheakPrint_B.cs" />
+    <Compile Include="Business\B0250_MOnyuryoku\TokuteimukesakiTankaList_B.cs" />
     <Compile Include="Business\B0250_MOnyuryoku\B0250_MOnyuryoku_B.cs" />
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint_B.cs" />
@@ -649,6 +650,12 @@
     </Compile>
     <Compile Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.designer.cs">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.Designer.cs">
+      <DependentUpon>TokuteimukesakiTankaList.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
       <SubType>Form</SubType>
@@ -1277,6 +1284,10 @@
     <EmbeddedResource Include="Form\B0250_MOnyuryoku\B0250_MOnyuryoku.resx">
       <DependentUpon>B0250_MOnyuryoku.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.resx">
+      <DependentUpon>TokuteimukesakiTankaList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.resx">
       <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -1591,10 +1602,19 @@
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataKataban.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataKataban2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_DELETE_INSERT_MOtukibetu.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataGridView_Rireki.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\TokuteimukesakiTankaList_SELECT_GetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetRirekiUriagesu.sql">

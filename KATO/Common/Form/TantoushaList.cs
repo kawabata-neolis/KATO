@@ -38,6 +38,9 @@ namespace KATO.Common.Form
         //担当者別伝票処理件数画面内にある複数のテキストボックスの判断
         int intSelectTextBox = 0;
 
+        // 表示カラムの表示フラグ
+        bool blShowFlag = false;
+
         //フォームタイトル設定
         private string Title = "";
         public string _Title
@@ -58,7 +61,7 @@ namespace KATO.Common.Form
         ///TantoushaList
         ///フォームの初期設定(通常テキストボックス)
         ///</summary>
-        public TantoushaList(Control c)
+        public TantoushaList(Control c, bool blFlag)
         {
             //画面データが解放されていた時の対策
             if (c == null)
@@ -77,6 +80,10 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 130;
+
+            // 表示カラムの表示フラグ格納
+            blShowFlag = blFlag;
+
         }
 
         ///<summary>
@@ -105,6 +112,9 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 130;
+
+            // 表示カラムの表示フラグ格納
+            blShowFlag = false;
         }
 
         ///<summary>
@@ -133,6 +143,9 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 30;
+
+            // 表示カラムの表示フラグ格納
+            blShowFlag = false;
         }
 
         ///<summary>
@@ -161,6 +174,9 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 130;
+
+            // 表示カラムの表示フラグ格納
+            blShowFlag = false;
         }
 
         ///<summary>
@@ -271,7 +287,7 @@ namespace KATO.Common.Form
             DataTable dtView = new DataTable();
 
             //ビジネス層のインスタンス生成
-            TantoushaList_B tantolistB = new TantoushaList_B();
+            TantoushaList_B tantolistB = new TantoushaList_B(blShowFlag);
             try
             {
                 //検索データを取得
@@ -459,7 +475,7 @@ namespace KATO.Common.Form
             lstSelectId.Add(strSelectName);
 
             //ビジネス層のインスタンス生成
-            TantoushaList_B tantoushaListB = new TantoushaList_B();
+            TantoushaList_B tantoushaListB = new TantoushaList_B(blShowFlag);
             try
             {
                 //ビジネス層、検索ロジックに移動
@@ -510,7 +526,7 @@ namespace KATO.Common.Form
             this.Close();
 
             //ビジネス層のインスタンス生成
-            TantoushaList_B tantoushalistB = new TantoushaList_B();
+            TantoushaList_B tantoushalistB = new TantoushaList_B(blShowFlag);
             try
             {
                 //画面終了処理

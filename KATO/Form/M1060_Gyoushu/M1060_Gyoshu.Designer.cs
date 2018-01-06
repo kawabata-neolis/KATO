@@ -35,6 +35,11 @@
             this.lblName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -90,15 +95,10 @@
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             this.btnF02.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            this.btnF01.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judtxtGyoushuKeyUp);
-            // 
             // txtGyoshuCd
             // 
             this.txtGyoshuCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtGyoshuCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtGyoshuCd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtGyoshuCd.Location = new System.Drawing.Point(502, 109);
             this.txtGyoshuCd.MaxLength = 4;
             this.txtGyoshuCd.Name = "txtGyoshuCd";
@@ -157,6 +157,7 @@
             this.Text = "M1060_Gyoushu";
             this.Load += new System.EventHandler(this.M1060_Gyoushu_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judGyoshuKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.txtGyoshuCd, 0);
             this.Controls.SetChildIndex(this.txtGyoshuName, 0);
             this.Controls.SetChildIndex(this.lblCD, 0);
