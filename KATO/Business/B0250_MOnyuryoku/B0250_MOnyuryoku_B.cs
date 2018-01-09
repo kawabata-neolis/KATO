@@ -73,11 +73,11 @@ namespace KATO.Business.B0250_MOnyuryoku
             }
         }
 
-        /// <summary>
-        /// getExecSProc
-        /// MOデータ変更の処理（戻り値は現行の名残）
-        /// </summary>
-        public int getExecSProc(string strYMD,
+        ///<summary>
+        ///updMO
+        ///MOデータ変更の処理（戻り値は現行の名残）
+        ///</summary>
+        public int updMO(string strYMD,
                                 string strCode,
                                 object objSijisU,
                                 decimal decSu,
@@ -118,8 +118,8 @@ namespace KATO.Business.B0250_MOnyuryoku
             dbconnective.BeginTrans();
             try
             {
-                // ＭＯデータ変更_PROC"を実行
-//再度確認、発注担当者の登録項目を増やす必要もあり
+                //ＭＯデータ変更_PROCを実行
+//発注担当者の登録項目を増やす必要もあり
                 intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
 
                 //コミット
@@ -139,6 +139,45 @@ namespace KATO.Business.B0250_MOnyuryoku
 
             return intExec;
 
+        }
+
+        ///<summary>
+        ///delMO
+        ///削除処理
+        ///</summary>
+        public void delMO (string strYM, string strShohinCd)
+        {
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@年月度");
+            lstTableName.Add("@商品コード");
+
+            List<string> lstDataName = new List<string>();
+            lstDataName.Add(strYM);
+            lstDataName.Add(strShohinCd);
+
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ削除_PROC", CommandType.StoredProcedure, lstDataName, lstTableName);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw;
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
 
         ///<summary>
@@ -274,19 +313,16 @@ namespace KATO.Business.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///getDataCnt
+        ///getDataCount
         ///データのカウント取得とＭＯデータのチェック
         ///</summary>
-        public DataTable getDataCnt(List<string> lstStringViewData)
+        public DataTable getDataCount(List<string> lstString)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
-
-            //MOマスタチェック
-            string strSQLMOmasterCheck = null;
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("B0250_MOnyuryoku");
@@ -311,37 +347,12 @@ namespace KATO.Business.B0250_MOnyuryoku
                     return (dtSetCd_B);
                 }
 
-                //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, lstStringViewData[0], lstStringViewData[1], lstStringViewData[2], lstStringViewData[3]);
+                //SQLファイルと該当コードでフォーマット(引数：[年月度],[メーカーコード],[大分類コード],[中分類コード])
+                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1], lstString[2], lstString[3]);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-
-                //既にデータがある場合
-                if (dtSetCd_B.Rows[0][0].ToString() == "0")
-                {
-                    //すでにデータが存在する場合は
-                    //砂時計処理
-                    //waitCursor(true);
-
-                    strSQLMOmasterCheck = "ＭＯデータ商品マスタチェック_PROC '" +
-                                          lstStringViewData[0] + "','" +
-                                          lstStringViewData[1] + "','" +
-                                          lstStringViewData[2] + "','" +
-                                          lstStringViewData[3] + "','" +
-                                          lstStringViewData[4] + "'";
-
-                    dbconnective.ReadSql(strSQLMOmasterCheck);
-
-                    //コミット開始
-                    dbconnective.Commit();
-                    return (dtSetCd_B);
-                }
-                else
-                {
-
-                }
-
+                                
                 return (dtSetCd_B);
             }
             catch (Exception ex)
@@ -356,43 +367,76 @@ namespace KATO.Business.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///updMOdata
-        ///MOデータの作成
+        ///updMOMasterCheck
+        ///ＭＯデータ商品マスタチェック_PROC実行処理
         ///</summary>
-        public DataTable updMOdata(List<string> lstStringMOdata)
+        public void updMOMasterCheck(List<string> lstString)
         {
-            //SQLファイルのパスとファイル名を入れる用
-            List<string> lstSQL = new List<string>();
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@年月");
+            lstTableName.Add("@メーカーコード");
+            lstTableName.Add("@大分類コード");
+            lstTableName.Add("@中分類コード");
+            lstTableName.Add("@ユーザー名");
 
-            //MOマスタチェック
-            string strSQLMOCreate = null;
-
-            strSQLMOCreate = "ＭＯデータ作成_PROC '" +
-                  lstStringMOdata[0] + "','" +
-                  lstStringMOdata[1] + "','" +
-                  lstStringMOdata[2] + "','" +
-                  lstStringMOdata[3] + "','" +
-                  lstStringMOdata[4] + "'";
-
-            //SQL実行時に取り出したデータを入れる用
-            DataTable dtSetCd_B = new DataTable();
-
-            //SQL接続
-            OpenSQL opensql = new OpenSQL();
-
-            //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
             try
             {
-                dbconnective.ReadSql(strSQLMOCreate);
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ商品マスタチェック_PROC", CommandType.StoredProcedure, lstString, lstTableName);
 
-                //コミット開始
+                //コミット
                 dbconnective.Commit();
-                return (dtSetCd_B);
             }
             catch (Exception ex)
             {
-                throw (ex);
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw(ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///updMOdata
+        ///MOデータの作成
+        ///</summary>
+        public void updMOdata(List<string> lstStringMOdata)
+        {
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@在庫年月日");
+            lstTableName.Add("@年月");
+            lstTableName.Add("@月数");
+            lstTableName.Add("@メーカーコード");
+            lstTableName.Add("@大分類コード");
+            lstTableName.Add("@中分類コード");
+            lstTableName.Add("@仕入先コード");
+            lstTableName.Add("@ユーザー名");
+
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ作成_PROC", CommandType.StoredProcedure, lstStringMOdata, lstTableName);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw(ex);
             }
             finally
             {
@@ -452,6 +496,91 @@ namespace KATO.Business.B0250_MOnyuryoku
             }
         }
 
+        ///<summary>
+        ///setMOshoki
+        ///データの数確認とＭＯデータの初期更新
+        ///</summary>
+        public void setMOshoki(List<string> lstString)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_SELECT_GetDataCnt");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, lstString[1], lstString[3], lstString[4], lstString[5]);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                //既にデータがある場合
+                if (dtSetCd_B.Rows[0][0].ToString() == "0")
+                {
+                    return;
+                }
+
+                List<string> lstTableName = new List<string>();
+                lstTableName.Add("@在庫年月日");
+                lstTableName.Add("@年月");
+                lstTableName.Add("@月数");
+                lstTableName.Add("@メーカーコード");
+                lstTableName.Add("@大分類コード");
+                lstTableName.Add("@中分類コード");
+                lstTableName.Add("@仕入先コード");
+                lstTableName.Add("@ユーザー名");
+
+                List<string> lstDataName = new List<string>();
+                lstDataName.Add(lstString[0]);
+                lstDataName.Add(lstString[1]);
+                lstDataName.Add(lstString[2]);
+                lstDataName.Add(lstString[3]);
+                lstDataName.Add(lstString[4]);
+                lstDataName.Add(lstString[5]);
+                lstDataName.Add(lstString[6]);
+                lstDataName.Add(lstString[7]);
+
+                //ＭＯデータ初期更新_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ初期更新_PROC", CommandType.StoredProcedure, lstDataName, lstTableName);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw;
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
 
         ///<summary>
         ///setRirekiData
@@ -536,5 +665,58 @@ namespace KATO.Business.B0250_MOnyuryoku
             return (strYM);
         }
 
+        ///<summary>
+        ///getTorihikiHasu
+        ///取引先の端数区分を得る
+        ///</summary>
+        public DataTable getTorihikiHasu(string strTorihikiCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_SELECT_GetTorihikiHasu");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTorihikiCd);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }

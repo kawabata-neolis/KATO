@@ -338,6 +338,7 @@
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 8;
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
+            this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
             this.gridKataban2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridKataban2_KeyDown);
             // 
             // lblKensaku
@@ -452,6 +453,7 @@
             this.btnChancel.TabStop = false;
             this.btnChancel.Text = "取消";
             this.btnChancel.UseVisualStyleBackColor = true;
+            this.btnChancel.Click += new System.EventHandler(this.btnChancel_Click);
             // 
             // gbPrintCheck
             // 
@@ -585,7 +587,7 @@
             this.lblKingaku.Size = new System.Drawing.Size(39, 15);
             this.lblKingaku.strToolTip = null;
             this.lblKingaku.TabIndex = 96;
-            this.lblKingaku.Text = "単価";
+            this.lblKingaku.Text = "金額";
             this.lblKingaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblKingaku.Visible = false;
             // 

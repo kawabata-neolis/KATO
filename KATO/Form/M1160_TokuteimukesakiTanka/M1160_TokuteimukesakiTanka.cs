@@ -27,6 +27,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        // 検索文字列の検索前格納
+        private string strBfKensa = "";
+
+        // 検索フラグ
+        private bool blSelectFlag = false;
+
         /// <summary>
         /// M1160_TokuteimukesakiTanka
         /// フォーム関係の設定
@@ -72,11 +78,13 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
 
-            this.btnF06.Text = "F6:マスターチェック";
+            this.btnF06.Text = "F6:表示";
             this.btnF12.Text = STR_FUNC_F12;
 
             //DataGridViewの初期設定
             SetUpGrid();
+            labelSet_Tokuisaki.Focus();
+            blSelectFlag = false;
         }
 
         ///<summary>
@@ -148,16 +156,6 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             gridTokuteimukesakiTanka.Columns[7].Visible = false;
 
 
-            /*  SPadminiUserの場合の処理
-             if (SPadminiUser)
-             {
-                txtShohinCd.Visible = true;
-             }else
-             {
-                txtShohinCd.Visible = false;
-             }
-             */
-
             labelSet_Siiresaki.CodeTxtText = "1800";
 
         }
@@ -224,7 +222,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case Keys.F5:
                     break;
                 case Keys.F6:
-                    logger.Info(LogUtil.getMessage(this._Title, "マスターチェック実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.CheckMaster();
                     break;
                 case Keys.F7:
@@ -267,8 +265,8 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
-                case STR_BTN_F06: // 売上実績確認
-                    logger.Info(LogUtil.getMessage(this._Title, "マスターチェック実行"));
+                case STR_BTN_F06: // 表示
+                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.CheckMaster();
                     break;
                 case STR_BTN_F12: // 終了
@@ -293,6 +291,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 return;
             }
 
+            // 得意先コードチェック
+            if(labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+
             // ビジネス層のインスタンス生成
             M1160_TokuteimukesakiTanka_B tokuteimukesakitankaB = new M1160_TokuteimukesakiTanka_B();
             try
@@ -301,7 +305,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 lstItem.Add(labelSet_Siiresaki.CodeTxtText);
                 lstItem.Add(labelSet_Tokuisaki.CodeTxtText);
                 lstItem.Add(txtShohinCd.Text);
-                lstItem.Add(txtKataban.Text);
+                lstItem.Add(txtKataban.Text.Trim());
                 //単価のカンマを省く
                 txtTanka.Text = txtTanka.Text.Replace(",", "");
                 lstItem.Add(txtTanka.Text);
@@ -347,6 +351,23 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         /// </summary>
         private void delTokuteimukesakiTanka()
         {
+            
+            // 空文字判定（得意先）
+            if (labelSet_Tokuisaki.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Tokuisaki.Focus();
+                return;
+            }
+
+            // 得意先コードチェック
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+
             M1160_TokuteimukesakiTanka_B tokuteimukesakitankaB = new M1160_TokuteimukesakiTanka_B();
             try
             {
@@ -536,50 +557,82 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         ///</summary>
         private void setShohinList()
         {
-            ShouhinList shouhinlist = new ShouhinList(this);
-            try
+            if(blSelectFlag == false)
             {
-                //検索項目がある場合
-                if (txtKensakuS.blIsEmpty() == false)
+                ShouhinList shouhinlist = new ShouhinList(this);
+                try
                 {
-                    shouhinlist.blKensaku = false;
+                    //検索項目がある場合
+                    if (txtKensakuS.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
+                    {
+                        shouhinlist.blKensaku = true;
+
+                    }
+
+                    //商品リストの表示、画面IDを渡す
+                    shouhinlist.intFrmKind = CommonTeisu.FRM_TOKUTEIMUKESAKITANKA;
+                    shouhinlist.btxtKensaku = txtKensakuS;
+                    shouhinlist.btxtShohinCd = txtShohinCd;
+                    shouhinlist.btxtHinC1Hinban = txtKataban;
+                    shouhinlist.ShowDialog();
+                    strBfKensa = txtKensakuS.Text;
+                    blSelectFlag = true;
+                }
+                catch (Exception ex)
+                {
+                    //エラーロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
                 }
 
-                //商品リストの表示、画面IDを渡す
-                shouhinlist.intFrmKind = CommonTeisu.FRM_TOKUTEIMUKESAKITANKA;
-                shouhinlist.btxtKensaku = txtKensakuS;
-                shouhinlist.btxtShohinCd = txtShohinCd;
-                shouhinlist.btxtHinC1Hinban = txtKataban;
-                shouhinlist.ShowDialog();
             }
-            catch (Exception ex)
+            else
             {
-                //エラーロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                // 検索前の検索文字列がブランク、又は、検索前と検索文字列が違っていた場合
+                if (strBfKensa == "" || strBfKensa != txtKensakuS.Text)
+                {
+                    ShouhinList shouhinlist = new ShouhinList(this);
+                    try
+                    {
+                        //検索項目がある場合
+                        if (txtKensakuS.blIsEmpty() == false)
+                        {
+                            shouhinlist.blKensaku = false;
+                        }
+                        else
+                        {
+                            shouhinlist.blKensaku = true;
+                        }
+
+                        //商品リストの表示、画面IDを渡す
+                        shouhinlist.intFrmKind = CommonTeisu.FRM_TOKUTEIMUKESAKITANKA;
+                        shouhinlist.btxtKensaku = txtKensakuS;
+                        shouhinlist.btxtShohinCd = txtShohinCd;
+                        shouhinlist.btxtHinC1Hinban = txtKataban;
+                        shouhinlist.ShowDialog();
+                        strBfKensa = txtKensakuS.Text;
+                    }
+                    catch (Exception ex)
+                    {
+                        //エラーロギング
+                        new CommonException(ex);
+                        //例外発生メッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                }
             }
+
         }
 
-        /// <summary>
-        /// setKataban
-        /// 以下の項目を取得
-        /// ・商品コード
-        /// ・型番
-        /// </summary>
-        public void setShouhin(DataTable dtSelectData)
-        {
-            txtShohinCd.Text = dtSelectData.Rows[0]["商品コード"].ToString();
-
-            txtKataban.Text = dtSelectData.Rows[0]["Ｃ１"].ToString();
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ２"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ３"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ４"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ５"].ToString(), "");
-            txtKataban.Text += " " + PutIsNull(dtSelectData.Rows[0]["Ｃ６"].ToString(), "");
-        }
 
         ///<summary>
         ///PutIsNull

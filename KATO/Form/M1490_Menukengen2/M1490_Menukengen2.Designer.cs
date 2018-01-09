@@ -28,54 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txtMenukengen2 = new KATO.Common.Ctl.BaseText();
-            this.lblMenuName = new KATO.Common.Ctl.BaseLabelGray();
-            this.lblPgno = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gridKengen = new KATO.Common.Ctl.BaseDataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.labelSet_Menu = new KATO.Common.Ctl.LabelSet_Menu();
             ((System.ComponentModel.ISupportInitialize)(this.gridKengen)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtMenukengen2
+            // btnF01
             // 
-            this.txtMenukengen2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMenukengen2.Location = new System.Drawing.Point(168, 63);
-            this.txtMenukengen2.MaxLength = 3;
-            this.txtMenukengen2.Name = "txtMenukengen2";
-            this.txtMenukengen2.Size = new System.Drawing.Size(100, 22);
-            this.txtMenukengen2.TabIndex = 87;
-            this.txtMenukengen2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMenukengen2_KeyDown);
+            this.btnF01.TabIndex = 2;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // lblMenuName
+            // btnF12
             // 
-            this.lblMenuName.AutoEllipsis = true;
-            this.lblMenuName.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblMenuName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblMenuName.ForeColor = System.Drawing.Color.Blue;
-            this.lblMenuName.Location = new System.Drawing.Point(274, 63);
-            this.lblMenuName.Name = "lblMenuName";
-            this.lblMenuName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMenuName.Size = new System.Drawing.Size(202, 22);
-            this.lblMenuName.TabIndex = 99;
-            this.lblMenuName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF12.TabIndex = 5;
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // lblPgno
+            // btnF11
             // 
-            this.lblPgno.AutoSize = true;
-            this.lblPgno.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblPgno.Location = new System.Drawing.Point(82, 66);
-            this.lblPgno.Name = "lblPgno";
-            this.lblPgno.Size = new System.Drawing.Size(47, 15);
-            this.lblPgno.strToolTip = null;
-            this.lblPgno.TabIndex = 100;
-            this.lblPgno.Text = "PGNo.";
-            this.lblPgno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.TabIndex = 4;
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.TabIndex = 3;
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // gridKengen
             // 
@@ -116,7 +130,7 @@
             this.gridKengen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridKengen.Size = new System.Drawing.Size(498, 630);
             this.gridKengen.StandardTab = true;
-            this.gridKengen.TabIndex = 101;
+            this.gridKengen.TabIndex = 1;
             this.gridKengen.DoubleClick += new System.EventHandler(this.gridKengen_DblClick);
             this.gridKengen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridKengen_KeyDown);
             // 
@@ -147,22 +161,41 @@
             this.label3.TabIndex = 104;
             this.label3.Text = "　 変更したい行でダブルクリックします。";
             // 
+            // labelSet_Menu
+            // 
+            this.labelSet_Menu.AppendLabelSize = 0;
+            this.labelSet_Menu.AppendLabelText = "";
+            this.labelSet_Menu.CodeTxtSize = 40;
+            this.labelSet_Menu.CodeTxtText = "";
+            this.labelSet_Menu.LabelName = "PGNo.";
+            this.labelSet_Menu.Location = new System.Drawing.Point(85, 70);
+            this.labelSet_Menu.Name = "labelSet_Menu";
+            this.labelSet_Menu.ShowAppendFlg = false;
+            this.labelSet_Menu.Size = new System.Drawing.Size(637, 22);
+            this.labelSet_Menu.SpaceCodeValue = 4;
+            this.labelSet_Menu.SpaceNameCode = 4;
+            this.labelSet_Menu.SpaceValueAppend = 4;
+            this.labelSet_Menu.TabIndex = 0;
+            this.labelSet_Menu.ValueLabelSize = 300;
+            this.labelSet_Menu.ValueLabelText = "";
+            this.labelSet_Menu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Menu_KeyDown);
+            this.labelSet_Menu.Leave += new System.EventHandler(this.labelSet_Menu_Leave);
+            // 
             // M1490_Menukengen2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Menu);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gridKengen);
-            this.Controls.Add(this.lblPgno);
-            this.Controls.Add(this.lblMenuName);
-            this.Controls.Add(this.txtMenukengen2);
             this.Name = "M1490_Menukengen2";
             this.Text = "M1490_Menukengen2";
             this.Load += new System.EventHandler(this.M1490_Menukengen2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1490_Menukengen2_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -175,13 +208,11 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.txtMenukengen2, 0);
-            this.Controls.SetChildIndex(this.lblMenuName, 0);
-            this.Controls.SetChildIndex(this.lblPgno, 0);
             this.Controls.SetChildIndex(this.gridKengen, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.labelSet_Menu, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKengen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,13 +220,10 @@
         }
 
         #endregion
-
-        private Common.Ctl.BaseText txtMenukengen2;
-        private Common.Ctl.BaseLabelGray lblMenuName;
-        private Common.Ctl.BaseLabel lblPgno;
         private Common.Ctl.BaseDataGridView gridKengen;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private Common.Ctl.LabelSet_Menu labelSet_Menu;
     }
 }

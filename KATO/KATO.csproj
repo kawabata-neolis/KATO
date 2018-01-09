@@ -1614,6 +1614,9 @@
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataGridView_Rireki.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetTorihikiHasu.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\TokuteimukesakiTankaList_SELECT_GetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1770,6 +1773,7 @@
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT.sql" />
     <Content Include="SQL\Common\C_LIST_Yakushoku_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

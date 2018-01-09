@@ -78,6 +78,13 @@ namespace KATO.Form.M1130_Shohizeiritsu
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
+
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+            this.btnF04.Enabled = false;
+            this.btnF09.Enabled = false;
+
         }
 
         ///<summary>
@@ -106,18 +113,30 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addShohizeiritsu();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addShohizeiritsu();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delShohizeiritsu();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delShohizeiritsu();
+                    }
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -268,16 +287,28 @@ namespace KATO.Form.M1130_Shohizeiritsu
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.addShohizeiritsu();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addShohizeiritsu();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    this.delShohizeiritsu();
+                    // ファンクションボタン制御
+                    if (this.btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delShohizeiritsu();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -318,6 +349,9 @@ namespace KATO.Form.M1130_Shohizeiritsu
             //記入情報登録用
             List<string> lstShohizei = new List<string>();
 
+            // 日付チェック用文字列
+            string strDateData = "";
+
             //空文字判定（年月日）
             if (txtTekiyoYMD.blIsEmpty() == false)
             {
@@ -336,11 +370,29 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 txtShohizeiritu.Focus();
                 return;
             }
+            // 日付フォーマット再生成
+            strDateData = txtTekiyoYMD.chkDateDataFormat(txtTekiyoYMD.Text);
 
-            //入力項目が規定通りになるように一度フォーカスを外す
-            Control cActiveBefore = this.ActiveControl;
-            //内部的に別フォーカスにしたい
-            this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            // 日付フォーマットチェック
+            if (strDateData == "")
+            {
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                txtTekiyoYMD.Text = strDateData;
+                txtTekiyoYMD.Focus();
+            }
+            else
+            {
+                txtTekiyoYMD.Text = strDateData;
+            }
+
+            // 消費税率チェック
+            if (chkShohizeiritu() == true)
+            {
+                return;
+            }
 
             //登録情報を入れる（年月日、消費税率、ユーザー名）
             lstShohizei.Add(txtTekiyoYMD.Text);
@@ -381,6 +433,11 @@ namespace KATO.Form.M1130_Shohizeiritsu
             delFormClear(this);
             txtShohizeiritu.Text = "";
 
+            // ファンクション機能リセット
+            btnF01.Enabled = false;
+            btnF03.Enabled = false;
+            btnF04.Enabled = false;
+
             txtTekiyoYMD.Focus();
         }
 
@@ -396,10 +453,31 @@ namespace KATO.Form.M1130_Shohizeiritsu
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
+            // 日付チェック用文字列
+            string strDateData = "";
+
             //文字判定
             if (txtTekiyoYMD.blIsEmpty() == false)
             {
                 return;
+            }
+
+            // 日付フォーマット再生成
+            strDateData = txtTekiyoYMD.chkDateDataFormat(txtTekiyoYMD.Text);
+
+            // 日付フォーマットチェック
+            if (strDateData == "")
+            {
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                txtTekiyoYMD.Text = strDateData;
+                txtTekiyoYMD.Focus();
+            }
+            else
+            {
+                txtTekiyoYMD.Text = strDateData;
             }
 
             //ビジネス層のインスタンス生成
@@ -424,8 +502,8 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 }
 
                 //削除情報を入れる（年月日、消費税率、ユーザー名）
-                lstShohizei.Add(txtTekiyoYMD.Text);
-                lstShohizei.Add(txtShohizeiritu.Text);
+                lstShohizei.Add(dtSetCd.Rows[0]["適用開始年月日"].ToString());
+                lstShohizei.Add(dtSetCd.Rows[0]["消費税率"].ToString());
                 lstShohizei.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -436,8 +514,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 basemessagebox.ShowDialog();
                 //テキストボックスを白紙にする
                 delText();
-                txtShohizeiritu.Text = "";
-                txtTekiyoYMD.Focus();
             }
             catch (Exception ex)
             {
@@ -471,8 +547,8 @@ namespace KATO.Form.M1130_Shohizeiritsu
             //検索時のデータ取り出し先
             DataTable dtSetCd;
 
-            //文字チェック用
-            Boolean blnGood;
+            // 日付チェック用文字列
+            string strDateData = "";
 
             //前後の空白を取り除く
             txtTekiyoYMD.Text = txtTekiyoYMD.Text.Trim();
@@ -483,30 +559,53 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 return;
             }
 
+            // 日付フォーマット再生成
+            strDateData = txtTekiyoYMD.chkDateDataFormat(txtTekiyoYMD.Text);
+
+            // 日付フォーマットチェック
+            if (strDateData == "")
+            {
+                //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                txtTekiyoYMD.Text = strDateData;
+                txtTekiyoYMD.Focus();
+            }
+            else
+            {
+                txtTekiyoYMD.Text = strDateData;
+            }
+
             //ビジネス層のインスタンス生成
             M1130_Shohizeiritsu_B shohizeirituB = new M1130_Shohizeiritsu_B();
             try
             {
-                //YMD判定
-                blnGood = txtTekiyoYMD.updCalendarLeave(txtTekiyoYMD.Text);
+                //戻り値のDatatableを取り込む
+                dtSetCd = shohizeirituB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
 
-                //YMDに変換できる場合
-                if (blnGood == true)
+                //Datatable内のデータが存在する場合
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    //戻り値のDatatableを取り込む
-                    dtSetCd = shohizeirituB.getTxtShohizeiLeave(txtTekiyoYMD.Text);
+                    //テキストボックスに入れる
+                    setShohizeiritsu(dtSetCd);
 
-                    //Datatable内のデータが存在する場合
-                    if (dtSetCd.Rows.Count != 0)
-                    {
-                        //テキストボックスに入れる
-                        setShohizeiritsu(dtSetCd);
-                    }
-                    else
-                    {
-                        //テキストボックスを白紙
-                        txtShohizeiritu.Text = "";
-                    }
+                    // ファンクション機能制御
+                    btnF01.Enabled = true;
+                    btnF03.Enabled = true;
+                    btnF04.Enabled = true;
+
+                    txtShohizeiritu.Focus();
+                }
+                else
+                {
+                    //テキストボックスを白紙
+                    txtShohizeiritu.Text = "";
+                    // ファンクション機能制御
+                    btnF01.Enabled = true;
+                    btnF03.Enabled = false;
+                    btnF04.Enabled = true;
+                    txtShohizeiritu.Focus();
                 }
             }
             catch (Exception ex)
@@ -539,6 +638,40 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        /// chkShohizeiritu
+        /// 消費税チェック
+        ///</summary>
+        private bool chkShohizeiritu()
+        {
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtShohizeiritu.Text) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                //テキストボックスを白紙
+                txtShohizeiritu.Text = "";
+
+                return true;
+            }
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtShohizeiritu.Text, CommonTeisu.NUMBER_ONLY) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                //テキストボックスを白紙
+                txtShohizeiritu.Text = "";
+                return true;
+            }
+
+            return false;
         }
     }
 }

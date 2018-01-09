@@ -87,6 +87,10 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.btnF06.Text = "棚番コピー";
             this.btnF12.Text = STR_FUNC_F12;
 
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF04.Enabled = false;
+
             // SPPowerUserの場合のみF11に文字を表示
             if (strSPPowerUser.Equals("ゲストユーザー"))
             {
@@ -250,16 +254,24 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.updShohinMaster();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.updShohinMaster();
+                    }
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
                     break;
                 case Keys.F4:
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case Keys.F5:
                     break;
@@ -300,12 +312,20 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    this.updShohinMaster();
+                    // ファンクションボタン制御
+                    if (this.btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.updShohinMaster();
+                    }
                     break;
                 case STR_BTN_F04: // 取消
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delText();
+                    // ファンクションボタン制御
+                    if (this.btnF04.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                        this.delText();
+                    }
                     break;
                 case STR_BTN_F06: // 棚番コピー
                     logger.Info(LogUtil.getMessage(this._Title, "棚番コピー実行"));
@@ -335,6 +355,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 
 
             this.setShohin();
+
         }
 
         /// <summary>
@@ -469,6 +490,10 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 
                     Control cNow = this.ActiveControl;
                     cNow.Focus();
+                    // ファンクションボタン制御
+                    this.btnF01.Enabled = true;
+                    this.btnF04.Enabled = true;
+
                 }
 
             }
@@ -552,7 +577,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // 画面の項目内を白紙にする
             delFormClear(this, gridShohin);
 
-            //txtKataban.Text = strKataban;
+            // ファンクションボタン制御
+            this.btnF01.Enabled = false;
+            this.btnF04.Enabled = false;
 
             labelSet_Daibunrui.Focus();
         }

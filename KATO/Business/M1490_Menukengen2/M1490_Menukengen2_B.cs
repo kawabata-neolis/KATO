@@ -31,15 +31,18 @@ namespace KATO.Business.M1490_Menukengen2
 
                 dtkengen = dbconnective.ReadSql(sql);
 
-                // メニュー名取得
-                var mName = dtkengen.AsEnumerable()
-                    .GroupBy(m => m["ＰＧ名"])
-                    .Select(m => m.Key).ToList();
+                if (dtkengen.Rows.Count != 0)
+                {
+                    // メニュー名取得
+                    var mName = dtkengen.AsEnumerable()
+                        .GroupBy(m => m["ＰＧ名"])
+                        .Select(m => m.Key).ToList();
 
-                menuName = mName[0].ToString();
+                    menuName = mName[0].ToString();
 
-                // メニュー名を取得できたら、dtkengenからPG名カラムを削除
-                dtkengen.Columns.Remove("ＰＧ名");
+                    // メニュー名を取得できたら、dtkengenからPG名カラムを削除
+                    dtkengen.Columns.Remove("ＰＧ名");
+                }
 
             }
             catch(Exception ex)

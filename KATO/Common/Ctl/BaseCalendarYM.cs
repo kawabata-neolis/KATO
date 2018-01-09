@@ -380,5 +380,150 @@ namespace KATO.Common.Ctl
                 return;
             }
         }
+        ///<summary>
+        /// chkDateYMDataFormat
+        /// テキストボックス内の日付フォーマットをチェック及び再生成
+        /// 引数：日付フォーマット再生成済み日付文字列　エラーの場合、空を返す。
+        ///</summary>
+        public string chkDateYMDataFormat(string strDateData)
+        {
+            strY = DateTime.Today.Year.ToString();
+            strM = "01";
+
+            Boolean blnDateCheck = false;
+
+            //テキストデータの格納
+            string strDate = "";
+
+            //格納（エラー時に元に戻す用）
+            string strDataPi = "";
+
+            //文字チェック,チェック用のLISTを作成
+            List<string> checklist = new List<string>();
+
+            //データを入れる配列
+            string[] strInData;
+
+            //リストに追加
+            checklist.Add(strDateData);
+
+            //テキストボックス内のチェック
+            foreach (string Listvalue in checklist)
+            {
+                //「,]があった場合一度取り除く
+                if (strDateData.Contains('.'))
+                {
+                    strDataPi = strDateData;
+                    strDateData = strDateData.Replace(".", "/");
+                }
+            }
+
+            strInData = strDateData.Split('/');
+
+            if (strInData.Count() == 2)
+            {
+                strY = strInData[0];
+
+                //20~と付けるか否か
+                if (strY.Length == 3)
+                {
+                    strY = 2 + strY;
+                }
+                else if (strY.Length == 2)
+                {
+                    int intY = int.Parse(strY);
+
+                    if (intY < 50)
+                    {
+                        strY = 20 + strY;
+                    }
+                    else
+                    {
+                        strY = 19 + strY;
+                    }
+                }
+                else if (strY.Length == 1)
+                {
+                    strY = 200 + strY;
+                }
+
+                strM = strInData[1];
+
+                if (strM.Length == 1)
+                {
+                    strM = strM.PadLeft(2, '0');
+                }
+            }
+            else if (strInData.Count() == 1)
+            {
+                if (strInData[0].Length > 4)
+                {
+                    //月部のみを取り出す
+                    strY = strInData[0].Substring(0, strInData[0].Length - 4);
+
+                    //20~と付けるか否か
+                    if (strY.Length == 3)
+                    {
+                        strY = 2 + strY;
+                    }
+                    else if (strY.Length == 2)
+                    {
+                        int intY = int.Parse(strY);
+
+                        if (intY < 50)
+                        {
+                            strY = 20 + strY;
+                        }
+                        else
+                        {
+                            strY = 19 + strY;
+                        }
+                    }
+                    else if (strY.Length == 1)
+                    {
+                        strY = 200 + strY;
+                    }
+
+                    //月部のみを取り出す
+                    strM = strInData[0].Substring(strInData[0].Length - 4, 2);
+                }
+                else if (strInData[0].Length > 2)
+                {
+                    //月部のみを取り出す
+                    strM = strInData[0].Substring(0, strInData[0].Length - 2);
+                }
+                else
+                {
+                    //月部のみを取り出す
+                    strM = strInData[0].ToString();
+
+                    if (strM.Length == 1)
+                    {
+                        strM = strM.PadLeft(2, '0');
+                    }
+                }
+            }
+
+            strDate = strY + "/" + strM;
+
+            blnDateCheck = StringUtl.JudCalenderCheck(strDate);
+
+            if (blnDateCheck == true)
+            {
+                strDateData = strDate;
+            }
+            else
+            {
+                if (strDataPi != "")
+                {
+                    strDateData = strDataPi;
+                }
+                else
+                {
+                    strDateData = "";
+                }
+            }
+            return (strDateData);
+        }
     }
 }
