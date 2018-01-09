@@ -1075,11 +1075,11 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,dbo.f_get商品別受注残数(b.営業所コード,'" + strShohinNo + "') AS 受注残";
             strQuery += "      ,dbo.f_get商品別発注残数(b.営業所コード,'" + strShohinNo + "') AS 発注残";
             //strQuery += "      ,dbo.f_get商品別受注残数加工品材料分(b.営業所コード,'" + strShohinNo + "')";
-            strQuery += "      ,dbo.f_get商品別発注残数受注有り(b.営業所コード,'" + strShohinNo + "') AS 発注残(受)";
+            strQuery += "      ,dbo.f_get商品別発注残数受注有り(b.営業所コード,'" + strShohinNo + "') AS 発注残受";
             strQuery += "      ,a.フリー在庫数 AS ﾌﾘｰ在庫";
             strQuery += "  FROM 在庫数 a, 営業所 b";
             strQuery += " WHERE a.商品コード = '" + strShohinNo + "'";
-            strQuery += "   AND a.営業所コード = 営業所コード";
+            strQuery += "   AND a.営業所コード = b.営業所コード";
             strQuery += "   AND b.削除 = 'N'";
             strQuery += " ORDER BY b.営業所コード ";
 

@@ -81,6 +81,78 @@ namespace KATO.Form.A0010_JuchuInput
             getInfo();
         }
 
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            //gridZanList.AutoGenerateColumns = false;
+
+            //データをバインド
+            #region
+            DataGridViewTextBoxColumn eigyosho = new DataGridViewTextBoxColumn();
+            eigyosho.DataPropertyName = "営業所";
+            eigyosho.Name = "営業所";
+            eigyosho.HeaderText = "営業所";
+
+            DataGridViewTextBoxColumn zaikosu = new DataGridViewTextBoxColumn();
+            zaikosu.DataPropertyName = "在庫数";
+            zaikosu.Name = "在庫数";
+            zaikosu.HeaderText = "在庫数";
+
+            DataGridViewTextBoxColumn juchzan = new DataGridViewTextBoxColumn();
+            juchzan.DataPropertyName = "受注残";
+            juchzan.Name = "受注残";
+            juchzan.HeaderText = "受注残";
+
+            DataGridViewTextBoxColumn hatchuzan = new DataGridViewTextBoxColumn();
+            hatchuzan.DataPropertyName = "発注残";
+            hatchuzan.Name = "発注残";
+            hatchuzan.HeaderText = "発注残";
+
+            DataGridViewTextBoxColumn juchzanUke = new DataGridViewTextBoxColumn();
+            juchzanUke.DataPropertyName = "発注残受";
+            juchzanUke.Name = "発注残受";
+            juchzanUke.HeaderText = "発注残(受)";
+
+            DataGridViewTextBoxColumn freeZaiko = new DataGridViewTextBoxColumn();
+            freeZaiko.DataPropertyName = "ﾌﾘｰ在庫";
+            freeZaiko.Name = "ﾌﾘｰ在庫";
+            freeZaiko.HeaderText = "ﾌﾘｰ在庫";
+            #endregion
+
+            //バインド、個々の幅、文章の寄せの設定
+            #region
+            setColumn(gridZaiko, eigyosho, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 61);
+            setColumn(gridZaiko, zaikosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 66);
+            setColumn(gridZaiko, juchzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 66);
+            setColumn(gridZaiko, hatchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 66);
+            setColumn(gridZaiko, juchzanUke, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumn(gridZaiko, freeZaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 74);
+
+            #endregion
+        }
+
+        ///<summary>
+        ///setColumn
+        ///Grid列設定
+        ///</summary>
+        private void setColumn(Common.Ctl.BaseDataGridView gr, DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gr.Columns.Add(col);
+            if (gr.Columns[col.Name] != null)
+            {
+                gr.Columns[col.Name].Width = intLen;
+                gr.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gr.Columns[col.Name].HeaderCell.Style.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+                gr.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gr.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
+
         private void button13_Click(object sender, EventArgs e)
         {
             addInputPanel(cats[0]);
@@ -332,7 +404,9 @@ namespace KATO.Form.A0010_JuchuInput
                 ((LabelSet_Shiresaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
                 ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
                 ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = r["大分類コード"].ToString();
+                ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
                 ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).CodeTxtText = r["中分類コード"].ToString();
+                ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).chkTxtChubunrui(((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText);
                 ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).CodeTxtText = r["メーカーコード"].ToString();
                 ((BaseText)inputPanel.Controls["txtHinmei"]).Text = r["品名"].ToString();
                 ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = r["棚番本社"].ToString();
