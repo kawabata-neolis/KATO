@@ -119,7 +119,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             try
             {
                 //ＭＯデータ変更_PROCを実行
-//発注担当者の登録項目を増やす必要もあり
+//発注担当者の登録項目を増やす必要もあり？
                 intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
 
                 //コミット
@@ -136,9 +136,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
-
             return intExec;
-
         }
 
         ///<summary>
@@ -718,5 +716,63 @@ namespace KATO.Business.B0250_MOnyuryoku
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///updTorikeshi
+        ///取り消し項目を反映
+        ///</summary>
+        public void updTorikeshi(string strYM, string strShohinCd)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_UPDATE_Torikeshi");
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strYM, strShohinCd);
+
+                //SQL接続、追加
+                dbconnective.RunSql(strSQLInput);
+
+                //コミット開始
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
     }
 }

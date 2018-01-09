@@ -62,6 +62,8 @@ namespace KATO.Common.Ctl
                 //選択モードを行単位での選択のみにする
                 this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
+            //列自動生成禁止
+            this.AutoGenerateColumns = false;
         }
     }
 }

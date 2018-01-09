@@ -112,6 +112,27 @@ namespace KATO.Common.Ctl
             lblStatusMessage.Text = "";
             lblStatusUser.Text = Environment.UserName;
 
+            //ユーザによってフラグを立てる(adminUserFlg)
+            if (lblStatusUser.Text == "nakashima" ||
+                lblStatusUser.Text == "takaxx9" ||
+                lblStatusUser.Text == "adminstrator" ||
+                lblStatusUser.Text == "jic"
+                )
+            {
+                adminUserFlg = true;
+            }
+
+            //ユーザによってフラグを立てる(powerUserFlg)
+            if (lblStatusUser.Text == "nakashima" ||
+                lblStatusUser.Text == "takaxx9" ||
+                lblStatusUser.Text == "h.kato" ||
+                lblStatusUser.Text == "s.kato" ||
+                lblStatusUser.Text == "adminstrator" ||
+                lblStatusUser.Text == "jic"
+                )
+            {
+                powerUserFlg = true;
+            }
         }
 
         /// <summary>
@@ -165,7 +186,7 @@ namespace KATO.Common.Ctl
                 CreateParams cpForm = base.CreateParams;
                 cpForm.ClassStyle = cpForm.ClassStyle | FRM_NOCLOSE;
 
-                return cpForm;
+                return cpForm;  
             }
         }
 

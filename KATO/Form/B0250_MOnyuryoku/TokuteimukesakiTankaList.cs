@@ -37,17 +37,8 @@ namespace KATO.Common.Form
         //前画面から仕向け先を取り出す枠（仕向け先初期値）（ラベルセット）
         public LabelSet_Torihikisaki lsShimuke = null;
 
-        //前画面から単価を取り出す枠（仕向け先初期値）（ベーステキスト）
-        public BaseText btxtTanka = null;
-
-        //前画面から発注数を取り出す枠（発注数初期値）（ベーステキストマネー）
-        public BaseTextMoney btmHachu = null;
-
-        //前画面から金額を取り出す枠（金額初期値）（ベーステキストマネー）
-        public BaseTextMoney btmKin = null;
-
-        //型番コードの確保
-        string strKataban = null;
+        //前画面から単価を取り出す枠（単価初期値）（ベーステキストマネー）
+        public BaseTextMoney btmTanka = null;
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
@@ -317,23 +308,6 @@ namespace KATO.Common.Form
         private void EndAction()
         {
             this.Close();
-
-            ////ビジネス層のインスタンス生成
-            //ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
-            //try
-            //{
-            //    //ビジネス層、移動元フォームに移動するロジックに移動
-            //    chokusosakilistB.FormMove(intFrmKind);
-            //}
-            //catch (Exception ex)
-            //{
-            //    //エラーロギング
-            //    new CommonException(ex);
-            //    //例外発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
-            //    return;
-            //}
         }
 
         ///<summary>
@@ -439,12 +413,8 @@ namespace KATO.Common.Form
             lsShimuke.chkTxtTorihikisaki();
 
             //単価の取得
-            btxtTanka.Text = (string)gridSeihin.CurrentRow.Cells["単価"].Value.ToString();
-            //余計な00を削除
-            btxtTanka.Text = btxtTanka.Text.Remove(btxtTanka.Text.Length - 2);
-
-            //金額の計算
-            //btmKin.Text = StringUtl.updShishagonyu(int.Parse(btmHachu.Text) * int.Parse(btxtTanka.Text), 0);
+            btmTanka.Text = (string)gridSeihin.CurrentRow.Cells["単価"].Value.ToString();
+            btmTanka.setMoneyData(btmTanka.Text, 0);
 
             this.Close();
         }

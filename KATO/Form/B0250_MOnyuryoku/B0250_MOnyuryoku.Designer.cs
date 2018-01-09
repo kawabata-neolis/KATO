@@ -69,7 +69,7 @@
             this.lblShohinCd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShohinCd = new KATO.Common.Ctl.BaseText();
             this.txtHachusu = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtTanka = new KATO.Common.Ctl.BaseText();
+            this.txtTanka = new KATO.Common.Ctl.BaseTextMoney();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).BeginInit();
             this.gbPrintCheck.SuspendLayout();
@@ -339,6 +339,7 @@
             this.gridKataban2.TabIndex = 8;
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
             this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
+            this.gridKataban2.Sorted += new System.EventHandler(this.gridKataban2_Sorted);
             this.gridKataban2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridKataban2_KeyDown);
             // 
             // lblKensaku
@@ -596,13 +597,13 @@
             this.txtKingaku.blnCommaOK = true;
             this.txtKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKingaku.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku.intDeciSet = 0;
+            this.txtKingaku.intDeciSet = 2;
             this.txtKingaku.intIntederSet = 0;
-            this.txtKingaku.intShishagonyu = 0;
+            this.txtKingaku.intShishagonyu = 2;
             this.txtKingaku.Location = new System.Drawing.Point(66, 79);
-            this.txtKingaku.MaxLength = 0;
+            this.txtKingaku.MaxLength = 3;
             this.txtKingaku.Name = "txtKingaku";
-            this.txtKingaku.Size = new System.Drawing.Size(20, 22);
+            this.txtKingaku.Size = new System.Drawing.Size(64, 22);
             this.txtKingaku.TabIndex = 9;
             this.txtKingaku.TabStop = false;
             this.txtKingaku.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -627,7 +628,7 @@
             this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShohinCd.Location = new System.Drawing.Point(247, 79);
             this.txtShohinCd.Name = "txtShohinCd";
-            this.txtShohinCd.Size = new System.Drawing.Size(21, 22);
+            this.txtShohinCd.Size = new System.Drawing.Size(64, 22);
             this.txtShohinCd.TabIndex = 89;
             this.txtShohinCd.TabStop = false;
             this.txtShohinCd.Visible = false;
@@ -651,21 +652,25 @@
             // 
             // txtTanka
             // 
+            this.txtTanka.blnCommaOK = true;
             this.txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTanka.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTanka.intDeciSet = 2;
+            this.txtTanka.intIntederSet = 0;
+            this.txtTanka.intShishagonyu = 2;
             this.txtTanka.Location = new System.Drawing.Point(219, 752);
+            this.txtTanka.MaxLength = 3;
             this.txtTanka.Name = "txtTanka";
-            this.txtTanka.Size = new System.Drawing.Size(116, 22);
+            this.txtTanka.Size = new System.Drawing.Size(100, 22);
             this.txtTanka.TabIndex = 10;
-            this.txtTanka.TabStop = false;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             // 
             // B0250_MOnyuryoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.lblSetShiresaki);
             this.Controls.Add(this.gridRireki);
             this.Controls.Add(this.lblSetHachuTantousha);
@@ -691,7 +696,6 @@
             this.Controls.Add(this.lblSetChubunrui);
             this.Controls.Add(this.lblSetDaibunrui);
             this.Controls.Add(this.txtShohinCd);
-            this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.txtShukeiM);
             this.Controls.Add(this.txtYM);
@@ -706,7 +710,6 @@
             this.Controls.SetChildIndex(this.txtYM, 0);
             this.Controls.SetChildIndex(this.txtShukeiM, 0);
             this.Controls.SetChildIndex(this.txtKensaku, 0);
-            this.Controls.SetChildIndex(this.txtTanka, 0);
             this.Controls.SetChildIndex(this.txtShohinCd, 0);
             this.Controls.SetChildIndex(this.lblSetDaibunrui, 0);
             this.Controls.SetChildIndex(this.lblSetChubunrui, 0);
@@ -745,6 +748,7 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.txtTanka, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).EndInit();
             this.gbPrintCheck.ResumeLayout(false);
@@ -787,6 +791,6 @@
         private Common.Ctl.BaseLabel lblShohinCd;
         private Common.Ctl.BaseText txtShohinCd;
         private Common.Ctl.BaseTextMoney txtHachusu;
-        private Common.Ctl.BaseText txtTanka;
+        private Common.Ctl.BaseTextMoney txtTanka;
     }
 }
