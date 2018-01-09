@@ -391,11 +391,11 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //コミット
                 dbconnective.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-                throw;
+                throw(ex);
             }
             finally
             {
@@ -408,46 +408,41 @@ namespace KATO.Business.B0250_MOnyuryoku
         ///updMOdata
         ///MOデータの作成
         ///</summary>
-        public DataTable updMOdata(List<string> lstStringMOdata)
+        public void updMOdata(List<string> lstStringMOdata)
         {
-            ////SQLファイルのパスとファイル名を入れる用
-            //List<string> lstSQL = new List<string>();
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@在庫年月日");
+            lstTableName.Add("@年月");
+            lstTableName.Add("@月数");
+            lstTableName.Add("@メーカーコード");
+            lstTableName.Add("@大分類コード");
+            lstTableName.Add("@中分類コード");
+            lstTableName.Add("@仕入先コード");
+            lstTableName.Add("@ユーザー名");
 
-            ////MOマスタチェック
-            //string strSQLMOCreate = null;
+            DBConnective dbconnective = new DBConnective();
 
-            //strSQLMOCreate = "ＭＯデータ作成_PROC '" +
-            //      lstStringMOdata[0] + "','" +
-            //      lstStringMOdata[1] + "','" +
-            //      lstStringMOdata[2] + "','" +
-            //      lstStringMOdata[3] + "','" +
-            //      lstStringMOdata[4] + "'";
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ作成_PROC", CommandType.StoredProcedure, lstStringMOdata, lstTableName);
 
-            //SQL実行時に取り出したデータを入れる用
-            DataTable dtSetCd_B = new DataTable();
-
-            ////SQL接続
-            //OpenSQL opensql = new OpenSQL();
-
-            ////接続用クラスのインスタンス作成
-            //DBConnective dbconnective = new DBConnective();
-            //try
-            //{
-            //    dbconnective.ReadSql(strSQLMOCreate);
-
-            //    //コミット開始
-            //    dbconnective.Commit();
-            return (dtSetCd_B);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw (ex);
-            //}
-            //finally
-            //{
-            //    //トランザクション終了
-            //    dbconnective.DB_Disconnect();
-            //}
+                //コミット
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw(ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
 
         ///<summary>
