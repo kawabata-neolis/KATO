@@ -78,6 +78,7 @@ namespace KATO.Form.A0010_JuchuInput
             strJuchuNo = a0010JInput.txtJuchuNo.Text;
             strJuchuSu = a0010JInput.txtJuchuSuryo.Text;
 
+            SetUpGrid();
             getInfo();
         }
 

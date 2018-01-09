@@ -68,7 +68,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label24.Location = new System.Drawing.Point(428, 113);
+            this.label24.Location = new System.Drawing.Point(495, 113);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(63, 30);
             this.label24.TabIndex = 123;
@@ -77,7 +77,7 @@
             // textBox28
             // 
             this.textBox28.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox28.Location = new System.Drawing.Point(428, 146);
+            this.textBox28.Location = new System.Drawing.Point(495, 146);
             this.textBox28.Name = "textBox28";
             this.textBox28.Size = new System.Drawing.Size(63, 22);
             this.textBox28.TabIndex = 10;
@@ -127,7 +127,7 @@
             this.gridZaiko.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridZaiko.RowTemplate.Height = 21;
             this.gridZaiko.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridZaiko.Size = new System.Drawing.Size(369, 63);
+            this.gridZaiko.Size = new System.Drawing.Size(432, 63);
             this.gridZaiko.StandardTab = true;
             this.gridZaiko.TabIndex = 121;
             this.gridZaiko.TabStop = false;
@@ -169,7 +169,6 @@
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(331, 22);
             this.txtHinmei.TabIndex = 7;
-            this.txtHinmei.Text = "SS5-38 (BP1-01-1-①)硬質ｸﾛﾑﾒｯｷ<ﾒｯｷ厚30μ>";
             // 
             // textBox32
             // 
@@ -230,7 +229,6 @@
             this.txtJuchuYMD.Name = "txtJuchuYMD";
             this.txtJuchuYMD.Size = new System.Drawing.Size(85, 22);
             this.txtJuchuYMD.TabIndex = 0;
-            this.txtJuchuYMD.Text = "2011/11/01";
             // 
             // label27
             // 

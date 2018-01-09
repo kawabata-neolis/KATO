@@ -176,61 +176,73 @@
             // btnF01
             // 
             this.btnF01.Location = new System.Drawing.Point(4, 789);
+            this.btnF01.TabIndex = 16;
             this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF12
             // 
             this.btnF12.Location = new System.Drawing.Point(1302, 789);
+            this.btnF12.TabIndex = 27;
             this.btnF12.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF11
             // 
             this.btnF11.Location = new System.Drawing.Point(1184, 789);
+            this.btnF11.TabIndex = 26;
             this.btnF11.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF10
             // 
             this.btnF10.Location = new System.Drawing.Point(1066, 789);
+            this.btnF10.TabIndex = 25;
             this.btnF10.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF09
             // 
             this.btnF09.Location = new System.Drawing.Point(948, 789);
+            this.btnF09.TabIndex = 24;
             this.btnF09.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF08
             // 
             this.btnF08.Location = new System.Drawing.Point(830, 789);
+            this.btnF08.TabIndex = 23;
             this.btnF08.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF07
             // 
             this.btnF07.Location = new System.Drawing.Point(712, 789);
+            this.btnF07.TabIndex = 22;
             this.btnF07.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF06
             // 
             this.btnF06.Location = new System.Drawing.Point(594, 789);
+            this.btnF06.TabIndex = 21;
             this.btnF06.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF05
             // 
             this.btnF05.Location = new System.Drawing.Point(476, 789);
+            this.btnF05.TabIndex = 20;
             this.btnF05.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF04
             // 
             this.btnF04.Location = new System.Drawing.Point(358, 789);
+            this.btnF04.TabIndex = 19;
             this.btnF04.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF03
             // 
             this.btnF03.Location = new System.Drawing.Point(240, 789);
+            this.btnF03.TabIndex = 18;
             this.btnF03.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF02
             // 
             this.btnF02.Location = new System.Drawing.Point(122, 789);
+            this.btnF02.TabIndex = 17;
             this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // label2
@@ -289,8 +301,7 @@
             this.txtTanto.Location = new System.Drawing.Point(147, 89);
             this.txtTanto.Name = "txtTanto";
             this.txtTanto.Size = new System.Drawing.Size(320, 22);
-            this.txtTanto.TabIndex = 9;
-            this.txtTanto.Text = "大橋次長殿";
+            this.txtTanto.TabIndex = 8;
             // 
             // label7
             // 
@@ -312,7 +323,7 @@
             this.cbJoken.Location = new System.Drawing.Point(473, 165);
             this.cbJoken.Name = "cbJoken";
             this.cbJoken.Size = new System.Drawing.Size(192, 23);
-            this.cbJoken.TabIndex = 13;
+            this.cbJoken.TabIndex = 12;
             this.cbJoken.Text = "従来通り";
             // 
             // label8
@@ -331,8 +342,7 @@
             this.txtKenmei.Location = new System.Drawing.Point(147, 114);
             this.txtKenmei.Name = "txtKenmei";
             this.txtKenmei.Size = new System.Drawing.Size(320, 22);
-            this.txtKenmei.TabIndex = 10;
-            this.txtKenmei.Text = "※4280005 蜆川J";
+            this.txtKenmei.TabIndex = 9;
             // 
             // cbKigen
             // 
@@ -345,7 +355,7 @@
             this.cbKigen.Location = new System.Drawing.Point(147, 165);
             this.cbKigen.Name = "cbKigen";
             this.cbKigen.Size = new System.Drawing.Size(192, 23);
-            this.cbKigen.TabIndex = 12;
+            this.cbKigen.TabIndex = 11;
             this.cbKigen.Text = "３０日間";
             // 
             // label9
@@ -369,7 +379,7 @@
             this.cbNoki.Location = new System.Drawing.Point(147, 139);
             this.cbNoki.Name = "cbNoki";
             this.cbNoki.Size = new System.Drawing.Size(192, 23);
-            this.cbNoki.TabIndex = 11;
+            this.cbNoki.TabIndex = 10;
             this.cbNoki.Text = "下記参照願います";
             // 
             // label10
@@ -388,7 +398,7 @@
             this.txtNonyuName.Location = new System.Drawing.Point(192, 64);
             this.txtNonyuName.Name = "txtNonyuName";
             this.txtNonyuName.Size = new System.Drawing.Size(391, 22);
-            this.txtNonyuName.TabIndex = 8;
+            this.txtNonyuName.TabIndex = 7;
             // 
             // txtNonyuCd
             // 
@@ -396,7 +406,7 @@
             this.txtNonyuCd.Location = new System.Drawing.Point(147, 64);
             this.txtNonyuCd.Name = "txtNonyuCd";
             this.txtNonyuCd.Size = new System.Drawing.Size(40, 22);
-            this.txtNonyuCd.TabIndex = 7;
+            this.txtNonyuCd.TabIndex = 6;
             // 
             // label11
             // 
@@ -414,7 +424,7 @@
             this.txtBiko.Location = new System.Drawing.Point(147, 191);
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(320, 22);
-            this.txtBiko.TabIndex = 14;
+            this.txtBiko.TabIndex = 13;
             // 
             // label12
             // 
@@ -443,7 +453,7 @@
             this.checkBox2.Location = new System.Drawing.Point(193, 11);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(154, 19);
-            this.checkBox2.TabIndex = 2;
+            this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "中分類名印刷なし";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
@@ -454,7 +464,7 @@
             this.checkBox1.Location = new System.Drawing.Point(17, 11);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(170, 19);
-            this.checkBox1.TabIndex = 1;
+            this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "メーカー名印刷なし";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -495,7 +505,7 @@
             this.radioButton2.Location = new System.Drawing.Point(94, 11);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(73, 19);
-            this.radioButton2.TabIndex = 2;
+            this.radioButton2.TabIndex = 1;
             this.radioButton2.Text = "納入先";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -507,7 +517,7 @@
             this.radioButton1.Location = new System.Drawing.Point(15, 11);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(73, 19);
-            this.radioButton1.TabIndex = 1;
+            this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "得意先";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -1840,8 +1850,7 @@
             this.textBox33.Name = "textBox33";
             this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox33.Size = new System.Drawing.Size(570, 105);
-            this.textBox33.TabIndex = 17;
-            this.textBox33.Text = "全角で33字×6行の表示が可能\r\n";
+            this.textBox33.TabIndex = 14;
             // 
             // label21
             // 
@@ -1970,7 +1979,7 @@
             this.tsTokuisaki.SpaceCodeValue = 5;
             this.tsTokuisaki.SpaceNameCode = 8;
             this.tsTokuisaki.SpaceValueAppend = 4;
-            this.tsTokuisaki.TabIndex = 1000;
+            this.tsTokuisaki.TabIndex = 5;
             this.tsTokuisaki.ValueTextSize = 391;
             this.tsTokuisaki.valueTextText = "";
             // 
@@ -1988,7 +1997,7 @@
             this.lsTantousha.SpaceCodeValue = 4;
             this.lsTantousha.SpaceNameCode = 4;
             this.lsTantousha.SpaceValueAppend = 4;
-            this.lsTantousha.TabIndex = 1002;
+            this.lsTantousha.TabIndex = 3;
             this.lsTantousha.ValueLabelSize = 120;
             this.lsTantousha.ValueLabelText = "";
             // 
@@ -2006,7 +2015,7 @@
             this.lsEigyosho.SpaceCodeValue = 4;
             this.lsEigyosho.SpaceNameCode = 4;
             this.lsEigyosho.SpaceValueAppend = 4;
-            this.lsEigyosho.TabIndex = 1003;
+            this.lsEigyosho.TabIndex = 4;
             this.lsEigyosho.ValueLabelSize = 250;
             this.lsEigyosho.ValueLabelText = "";
             // 
@@ -2048,7 +2057,7 @@
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
             this.gridMitsmori.StandardTab = true;
-            this.gridMitsmori.TabIndex = 1004;
+            this.gridMitsmori.TabIndex = 15;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
             this.gridMitsmori.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
@@ -2065,7 +2074,7 @@
             this.txtMNum.MaxLength = 0;
             this.txtMNum.Name = "txtMNum";
             this.txtMNum.Size = new System.Drawing.Size(62, 22);
-            this.txtMNum.TabIndex = 1005;
+            this.txtMNum.TabIndex = 1;
             this.txtMNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtMNum.Leave += new System.EventHandler(this.txtMNum_Leave);
@@ -2076,7 +2085,7 @@
             this.txtMYMD.Location = new System.Drawing.Point(426, 14);
             this.txtMYMD.Name = "txtMYMD";
             this.txtMYMD.Size = new System.Drawing.Size(86, 22);
-            this.txtMYMD.TabIndex = 1006;
+            this.txtMYMD.TabIndex = 2;
             this.txtMYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // H0210_MitsumoriInput

@@ -20,6 +20,7 @@ namespace KATO.Form.A0010_JuchuInput
 
         bool lockFlg = false;
         bool nokiFlg = false;
+        bool kyouseiFlg = false;
 
         public A0010_JuchuInput(Control c)
         {
@@ -2119,6 +2120,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     if (Math.Abs(Double.Parse(cbJuchuTanka.Text)) < Math.Abs(Double.Parse(cbSiireTanka.Text)) / dblRitsu)
                     {
+                        kyouseiFlg = true;
                         BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", strRitsuMsg, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                         //NOが押された場合
                         if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -2166,6 +2168,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (decRitsu < decimal.Parse(dtRieki.Rows[0]["利益率"].ToString()))
                         {
+                            kyouseiFlg = true;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -2179,6 +2182,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (decimal.Parse(cbJuchuTanka.Text) < decimal.Parse(dtRieki.Rows[0]["単価"].ToString()))
                         {
+                            kyouseiFlg = true;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "単価", "設定単価を下回っています。\r\n(設定単価=" + dtRieki.Rows[0]["単価"].ToString() + "円)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
