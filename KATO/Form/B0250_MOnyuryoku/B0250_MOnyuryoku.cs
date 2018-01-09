@@ -2049,7 +2049,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
         ///<summary>
         ///btnChancel_Click
-        ///中段選択部分の修正を取り消す
+        ///下段入力項目の修正を取り消して中段グリッドにも反映する
         ///引数　：画面情報、イベント情報
         ///戻り値：なし
         ///</summary>
@@ -2070,7 +2070,27 @@ namespace KATO.Form.B0250_MOnyuryoku
             //中段グリッド分ループ
             for (intR1 = 0; intR1 < gridKataban2.Rows.Count; intR1++)
             {
-                //
+                //商品コードが一致している場合
+                if (gridKataban2.Rows[intR1].Cells["商品コード"].ToString() == txtShohinCd.Text)
+                {
+                    break;
+                }
+            }
+
+            blShimukeAri = false;
+
+            //中段グリッド分ループ
+            for (intR2 = intR1; intR2 < gridKataban2.Rows.Count; intR2++)
+            {
+                //商品コードが一致している場合
+                if (gridKataban2.Rows[intR2].Cells["商品コード"].ToString() == txtShohinCd.Text)
+                {
+                    //仕向け先コードが一致する場合
+                    if (gridKataban2.Rows[intR2].Cells["ｺｰﾄﾞ"].ToString() == lblSetShimukesaki.CodeTxtText)
+                    {
+
+                    }
+                }
             }
         }
     }
