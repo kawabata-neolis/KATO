@@ -774,5 +774,101 @@ namespace KATO.Business.B0250_MOnyuryoku
             }
         }
 
+        ///<summary>
+        ///updHachukoshin
+        ///発注更新処理
+        ///</summary>
+        public void updHachukoshin(List<string> lstStringHachukoshin)
+        {
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@仕入先コード");
+            lstTableName.Add("@発注年月日");
+            lstTableName.Add("@発注番号");
+            lstTableName.Add("@発注者コード");
+            lstTableName.Add("@営業所コード");
+            lstTableName.Add("@担当者コード");
+            lstTableName.Add("@受注番号");
+            lstTableName.Add("@出庫番号");
+            lstTableName.Add("@行番号");
+            lstTableName.Add("@商品コード");
+            lstTableName.Add("@メーカーコード");
+            lstTableName.Add("@大分類コード");
+            lstTableName.Add("@中分類コード");
+            lstTableName.Add("@Ｃ１");
+            lstTableName.Add("@Ｃ２");
+            lstTableName.Add("@Ｃ３");
+            lstTableName.Add("@Ｃ４");
+            lstTableName.Add("@Ｃ５");
+            lstTableName.Add("@Ｃ６");
+            lstTableName.Add("@発注数量");
+            lstTableName.Add("@発注単価");
+            lstTableName.Add("@発注金額");
+            lstTableName.Add("@納期");
+            lstTableName.Add("@発注フラグ");
+            lstTableName.Add("@注番");
+            lstTableName.Add("@加工区分");
+            lstTableName.Add("@仕入先名称");
+            lstTableName.Add("@ユーザー名");
+
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///updMOdataKakutei
+        ///ＭＯデータ確定処理
+        ///</summary>
+        public void updMOdataKakutei(List<string> lstStringMOKakutei)
+        {
+            List<string> lstTableName = new List<string>();
+            lstTableName.Add("@年月度");
+            lstTableName.Add("@商品コード");
+            lstTableName.Add("@ユーザー名");
+
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //ＭＯデータ削除_PROCを実行
+                dbconnective.RunSqlRe("ＭＯデータ確定_PROC", CommandType.StoredProcedure, lstStringMOKakutei, lstTableName);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }

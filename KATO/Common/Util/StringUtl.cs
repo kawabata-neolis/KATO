@@ -86,6 +86,28 @@ namespace KATO.Common.Util
             return (strData);
         }
 
+        //
+        //切り上げさせる
+        //
+        public static string updKiriage(string strData)
+        {
+            Decimal d = Convert.ToDecimal(strData);
+            strData = Convert.ToString(Decimal.Ceiling(d));
+
+            return (strData);
+        }
+
+        //
+        //切り捨て
+        //
+        public static string updKirisute(string strData)
+        {
+            Decimal d = Convert.ToDecimal(strData);
+            strData = Convert.ToString(Decimal.Floor(d));
+
+            return (strData);
+        }
+
         /// <summary>
         ///     SQL禁則文字チェック</summary>
         /// <param name="strData">
