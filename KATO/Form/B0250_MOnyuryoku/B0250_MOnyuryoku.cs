@@ -12,6 +12,7 @@ using KATO.Common.Form;
 using KATO.Common.Util;
 using KATO.Business.B0250_MOnyuryoku;
 using static KATO.Common.Util.CommonTeisu;
+using System.IO;
 
 namespace KATO.Form.B0250_MOnyuryoku
 {
@@ -245,12 +246,12 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             setColumnKataban(KJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumnKataban(KHachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
-            setColumnKataban(KTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumnKataban(KTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
             setColumnKataban(KKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
 
             setColumnKataban(KNoki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 0);
 
-            setColumnKataban(KCode, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
+            setColumnKataban(KCode, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 65);
 
             setColumnKataban(KShimukesakiname, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
             setColumnKataban(KHachuNo1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
@@ -610,14 +611,14 @@ namespace KATO.Form.B0250_MOnyuryoku
                     saveCSV();
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "得値実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "特値実行"));
                     showTokune();
                     break;
                 case Keys.F9:
                     break;
                 case Keys.F10:
                     logger.Info(LogUtil.getMessage(this._Title, "ｴｸｾﾙ取込実行"));
-
+                    setExelData();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -659,6 +660,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 case Keys.Enter:
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
+                    txtKensaku_Leave();
                     break;
                 case Keys.F1:
                     break;
@@ -719,13 +721,17 @@ namespace KATO.Form.B0250_MOnyuryoku
                     logger.Info(LogUtil.getMessage(this._Title, "再計算実行"));
                     this.updSaikesan();
                     break;
+                case STR_BTN_F07: // ＣＳＶ
+                    logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ"));
+                    this.saveCSV();
+                    break;
                 case STR_BTN_F08: // 得値
                     logger.Info(LogUtil.getMessage(this._Title, "得値実行"));
                     this.showTokune();
                     break;
                 case STR_BTN_F10: // ｴｸｾﾙ取込
                     logger.Info(LogUtil.getMessage(this._Title, "ｴｸｾﾙ取込実行"));
-                    this.delText();
+                    this.setExelData();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -1584,23 +1590,12 @@ namespace KATO.Form.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///printMO
-        ///印刷ダイアログ
-        ///</summary>
-        private void printMO()
-        {
-
-        }
-
-        ///<summary>
         ///updSaikesan
         ///再計算
         ///</summary>
         private void updSaikesan()
         {
             Control cActiveBefore = this.ActiveControl;
-
-            bool blGood = false;
             
             List<string> lstString = new List<string>();
 
@@ -1698,10 +1693,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             DateTime dateOpenYMD = DateTime.Parse("2000/01/01");
             //終了年月日（初期値）
             DateTime dateEndYMD = DateTime.Parse("2000/01/01");
-
-            //開始年月日と終了年月日の確保
-            string strOpenYMD = "";
-            string strEndYMD = "";
 
             //txtYMをdatetime型に変換できるか（終了年月日の確保も兼ねる）
             if (DateTime.TryParse(txtYM.Text + "/01", out dateEndYMD))
@@ -1907,7 +1898,7 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///txtKensaku_Leave
         ///中段グリッド内検索（型番先頭文字から）
         ///</summary>
-        private void txtKensaku_Leave(object sender, EventArgs e)
+        private void txtKensaku_Leave()
         {
             //中段グリッドの中身がない場合
             if (gridKataban2.Rows.Count <= 0)
@@ -2081,13 +2072,19 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //単価がある場合
                 if (txtTanka.blIsEmpty())
                 {
+                    //「,]があった場合一度取り除く
+                    if (txtTanka.Text.Contains(','))
+                    {
+                        txtTanka.Text = txtTanka.Text.Replace(",", "");
+                    }
+
                     gridKataban2.Rows[intRow].Cells["単価"].Value = txtTanka.Text;
                 }
 
                 //金額がある場合
                 if (txtKingaku.blIsEmpty())
                 {
-                    gridKataban2.Rows[intRow].Cells["金額"].Value = decimal.Parse(txtKingaku.Text).ToString();
+                    gridKataban2.Rows[intRow].Cells["金額"].Value = (decimal.Parse(gridKataban2.Rows[intRow].Cells["単価"].Value.ToString())) * (decimal.Parse(gridKataban2.Rows[intRow].Cells["発注数"].Value.ToString()));
                 }
 
                 //納期がある場合
@@ -2302,12 +2299,356 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void saveCSV()
         {
-            string strSQL;
-            short i;
-            string textfilenamePre;
+            //保存時のファイル名初期表示
             string strText;
 
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtPrintData = new DataTable();
 
+            //上段入力項目チェック
+            if (chkTxtData())
+            {
+                return;
+            }
+            
+            //印刷用データを入れる用
+            List<string> lstPrintData = new List<string>();
+
+            //印刷用データを入れる
+            lstPrintData.Add(txtYM.Text);
+            lstPrintData.Add(lblSetMaker.CodeTxtText);
+            lstPrintData.Add(lblSetDaibunrui.CodeTxtText);
+            lstPrintData.Add(lblSetChubunrui.CodeTxtText);
+
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                //印刷データの取得(各データを渡す)
+                dtPrintData = monyuryokuB.getPrintData(lstPrintData);
+
+                //印刷データにない場合
+                if (dtPrintData.Rows.Count == 0)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "", "該当データはありません。。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                //SaveFileDialogクラスのインスタンスを作成
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                //ダイアログタイトル
+                saveFileDialog.Title = "ファイルの保存";
+
+                //ダイアログ状でフォルダ変更して閉じた際に、元に戻す→true、戻さない→false
+                saveFileDialog.RestoreDirectory = true;
+
+                //CSVデータのみを選択できるようにする,|すべてのファイル|*.*|*.*
+                saveFileDialog.Filter = "CSVファイル|*.csv";
+
+                //ファイル名初期値の（"/"," ",":"を空にする）
+                strText = "ＭＯ入力" + (DateTime.Now).ToString().Replace("/", "");
+                strText = strText.Replace(" ", "");
+                strText = strText.Replace(":", "");
+
+                saveFileDialog.FileName = strText;
+                    
+                //ダイアログを表示し、戻り値が [OK] の場合は、選択したファイルを表示する
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //CSV化するdatatableの列数
+                    int intRows = dtPrintData.Rows.Count;
+                    //CSV化するdatatableの行数
+                    int intCols = dtPrintData.Columns.Count;
+
+                    //行数カウント用
+                    int intRowsCnt;
+                    //列数カウント用
+                    int intColsCnt;
+                    //最終行
+                    int lastColIndex = intCols - 1;
+
+                    //ヘッダ取得用
+                    string strHeader = "";
+                    //データ取得用
+                    string strData = "";
+
+                    //書き込み用
+                    StreamWriter swKakikomi = null;
+
+                    //CSVファイルに書き込むときに使うEncoding
+                    Encoding enc = Encoding.GetEncoding("Shift_JIS");
+
+                    //DataTable内の値を確保、CSVで扱えるように加工
+                    for (intRowsCnt = 0; intRowsCnt < intRows; intRowsCnt++)
+                    {
+
+                        for (intColsCnt = 0; intColsCnt < intCols; intColsCnt++)
+                        {
+                            //一行目の場合
+                            if (intRowsCnt == 0)
+                            {
+                                strHeader += "\"";
+                                strData += "\"";
+
+                                //ヘッダの取得
+                                strHeader += dtPrintData.Columns[intColsCnt].Caption.Replace(" ", "");
+                                strHeader += "\"";
+
+                                //納期の場合
+                                if (intColsCnt == 3)
+                                {
+                                    //YMDのみに変換してデータの取得
+                                    strData += DateTime.Parse(dtPrintData.Rows[intRowsCnt][intColsCnt].ToString()).ToString("yyyy/MM/dd").Replace(" ", "");
+                                }
+                                else
+                                {
+                                    //データの取得
+                                    strData += dtPrintData.Rows[intRowsCnt][intColsCnt].ToString().Replace(" ", "");
+                                }
+                                strData += "\"";
+
+                                //最後以外カンマを書き込む
+                                if (lastColIndex > intColsCnt)
+                                {
+                                    strHeader += ",";
+                                    strData += ",";
+                                }
+                                //最後まで行ったら
+                                else
+                                {
+                                    //書き込む場所と名前を指定
+                                    swKakikomi = new StreamWriter(saveFileDialog.FileName, true, enc);
+
+                                    //記入,改行
+                                    swKakikomi.WriteLine(strHeader);
+                                    swKakikomi.WriteLine(strData);
+
+                                    //閉じる
+                                    swKakikomi.Close();
+
+                                    //初期化
+                                    strHeader = "";
+                                    strData = "";
+                                }
+                            }
+                            //２行目以降の場合
+                            else
+                            {
+                                strData += "\"";
+                                //データの取得
+                                if (string.IsNullOrWhiteSpace(dtPrintData.Rows[intRowsCnt][intColsCnt].ToString()))
+                                {
+                                    strData += "";
+                                }
+                                else
+                                {
+                                    //納期の場合
+                                    if (intColsCnt == 3)
+                                    {
+                                        //YMDのみに変換してデータの取得
+                                        strData += DateTime.Parse(dtPrintData.Rows[intRowsCnt][intColsCnt].ToString()).ToString("yyyy/MM/dd").Replace(" ", "");
+                                    }
+                                    else
+                                    {
+                                        //データの取得
+                                        strData += dtPrintData.Rows[intRowsCnt][intColsCnt].ToString().Replace(" ", "");
+                                    }
+                                }
+                                strData += "\"";
+
+                                //最後以外カンマを書き込む
+                                if (lastColIndex > intColsCnt)
+                                {
+                                    strData += ",";
+                                }
+                                //最後まで行ったら
+                                else if (lastColIndex == intColsCnt)
+                                {
+                                    //書き込む場所と名前を指定
+                                    swKakikomi = new StreamWriter(saveFileDialog.FileName, true, enc);
+
+                                    //記入,改行
+                                    swKakikomi.WriteLine(strData);
+
+                                    //閉じる
+                                    swKakikomi.Close();
+
+                                    //初期化
+                                    strData = "";
+                                }//ヘッダーかデータかの判断
+                            }//行数ループ
+                        }//列数ループ
+                    }//書き込み終了
+
+                    //CSVファイル作成完了メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "", "CSVファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        ///<summary>
+        ///printMO
+        ///印刷ダイアログ
+        ///</summary>
+        private void printMO()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtPrintData = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //上段入力項目チェック
+            if (chkTxtData())
+            {
+                return;
+            }
+
+            //印刷用データを入れる用
+            List<string> lstPrintData = new List<string>();
+
+            //印刷用データを入れる
+            lstPrintData.Add(txtYM.Text);
+            lstPrintData.Add(lblSetMaker.CodeTxtText);
+            lstPrintData.Add(lblSetDaibunrui.CodeTxtText);
+            lstPrintData.Add(lblSetChubunrui.CodeTxtText);
+
+            //印刷ヘッダーに記載する用
+            List<string> lstPrintHeader = new List<string>();
+
+            DateTime dateYM = DateTime.Parse(txtYM.Text);
+
+            //印刷ヘッダーに記載する
+            lstPrintHeader.Add(dateYM.Year + "年" + dateYM.Month +"月度");
+            lstPrintHeader.Add(lblSetShiresaki.ValueLabelText);
+
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                //印刷データの取得(各データを渡す)
+                dtPrintData = monyuryokuB.getPrintData(lstPrintData);
+
+                //印刷データにない場合
+                if (dtPrintData.Rows.Count == 0)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "", "該当データはありません。。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //結果セットをレコードセットに
+                    strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        ///<summary>
+        ///setExelData
+        ///エクセル取込
+        ///引数　：なし
+        ///戻り値：なし
+        ///</summary>
+        private void setExelData()
+        {
+            //OpenFileDialogクラスのインスタンスを作成
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            //ダイアログタイトル
+            openFileDialog.Title = "ファイルを開く";
+
+            //ダイアログ状でフォルダ変更して閉じた際に、元に戻す→true、戻さない→false
+            openFileDialog.RestoreDirectory = true;
+
+            //CSVデータのみを選択できるようにする,|すべてのファイル|*.*|*.*
+            openFileDialog.Filter = "Excelファイル|*.xls|すべてのファイル|*.*";
+
+            //ダイアログを表示し、戻り値が [OK] の場合は、選択したファイルを表示する
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                int IDCol;
+                IDCol = 4;
+                int SuCol;
+                SuCol = 7;
+
+                string Kataban;
+
+                int i;
+                int r;
+                int IDRow;
+                bool ari;
+                string NasiKataban;
+                NasiKataban = "";
+
+                //エクセルタイプを取り込めるようにする
+                //Type EXL = Type.GetTypeFromProgID("Excel.Application");
+
+                //FileStream fsYomikomi = openFileDialog.FileName;
+
+                //読み込み用
+                //StreamReader srYomikomi = new StreamReader(openFileDialog.FileName);
+
+                //Workbook workbook = new Workbook(fsYomikomi);
+
+                ////エクセルデータ取込込み
+                //Workbook wkTorikomi = new Workbook(openFileDialog.FileName);
+
+                IDRow = 5;
+
+                for(i = IDRow; i <= 65536; i++)
+                {
+                    //if (wkTorikomi.ce)
+                    //{
+
+                    //}
+                    //if (EXL.)
+                    //{
+
+                    //}
+                }
+            }
         }
 
         ///<summary>

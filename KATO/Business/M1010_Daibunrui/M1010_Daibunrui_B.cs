@@ -350,7 +350,7 @@ namespace KATO.Business.M1010_Daibunrui
                         pageCnt++;
                         if (pageCnt <= maxPage)
                         {
-                            xlsRowCnt = 4;
+                            xlsRowCnt = 3;
 
                             // ヘッダーシートのコピー、ヘッダー部の指定
                             pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
