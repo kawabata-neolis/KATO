@@ -97,7 +97,7 @@ namespace KATO.Common.Business
         ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void getSelectItem(int intFrmKind, string strDenpyo)
+        public DataTable getSelectItem(int intFrmKind, string strDenpyo)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -122,7 +122,7 @@ namespace KATO.Common.Business
                 //パスがなければ返す
                 if (strSQLInput == "")
                 {
-                    return;
+                    return(dtSelectData);
                 }
 
                 //SQLファイルと該当コードでフォーマット
@@ -131,27 +131,7 @@ namespace KATO.Common.Business
                 //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                //移動元フォームの検索
-                switch (intFrmKind)
-                {
-                    //テスト用
-                    case CommonTeisu.FRM_TEST:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //入金入力
-                            if (frm.Name == "B0040_NyukinInput")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                B0040_NyukinInput nyukin = (B0040_NyukinInput)frm;
-                                nyukin.setNyukinDenpyo(dtSelectData);
-                                break;
-                            }
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                return (dtSelectData);
             }
             catch (Exception ex)
             {
@@ -161,25 +141,6 @@ namespace KATO.Common.Business
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
-            }
-        }
-
-        ///<summary>
-        ///FormMove
-        ///戻るボタンの処理
-        ///</summary>
-        public void FormMove(int intFrm)
-        {
-            //全てのフォームの中から移動元フォームの検索
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-            {
-                //テストのフォームを探す
-                if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "JuchuInput_Test")
-                {
-                    //データを連れてくるため、newをしないこと
-                    JuchuInput_Test test = (JuchuInput_Test)frm;
-                    test.setNyukinListClose();
-                }
             }
         }
     }

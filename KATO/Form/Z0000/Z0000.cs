@@ -948,6 +948,13 @@ namespace KATO.Form.Z0000
                     tantoshabetusyori.ShowDialog();
                     break;
 
+                //請求履歴（仮位置）
+                case "151":
+                    B1510_SeikyuRireki.B1510_SeikyuRireki seikyurireki = new B1510_SeikyuRireki.B1510_SeikyuRireki(this);
+                    seikyurireki.ShowDialog();
+                    break;
+
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
