@@ -176,6 +176,7 @@
     <Compile Include="Business\M1210_ShohinbetsuRiekiritsuSettei\M1210_ShohinbetsuRiekiritsuSettei_B.cs" />
     <Compile Include="Business\M1220_SyohinBunruiRiekiritsu\M1220_SyohinBunruiRiekiritsu_B.cs" />
     <Compile Include="Business\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_B.cs" />
+    <Compile Include="Business\B1510_SeikyuRireki\B1510_SeikyuRireki_B.cs" />
     <Compile Include="Business\M1490_Menukengen2\M1490_Menukengen2_B.cs" />
     <Compile Include="Business\Z0000\Z0000_B.cs" />
     <Compile Include="Business\Z1500_MyMenuSet\Z1500_MyMenuSet_B.cs" />
@@ -656,6 +657,12 @@
     </Compile>
     <Compile Include="Form\B0250_MOnyuryoku\TokuteimukesakiTankaList.Designer.cs">
       <DependentUpon>TokuteimukesakiTankaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\B1510_SeikyuRireki\B1510_SeikyuRireki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\B1510_SeikyuRireki\B1510_SeikyuRireki.Designer.cs">
+      <DependentUpon>B1510_SeikyuRireki.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.cs">
       <SubType>Form</SubType>
@@ -1306,6 +1313,9 @@
       <DependentUpon>TokuteimukesakiTankaList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\B1510_SeikyuRireki\B1510_SeikyuRireki.resx">
+      <DependentUpon>B1510_SeikyuRireki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint.resx">
       <DependentUpon>B0410_SeikyuItiranPrint.cs</DependentUpon>
     </EmbeddedResource>
@@ -1635,6 +1645,9 @@
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetPrintData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_UPDATE_Torikeshi.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1663,6 +1676,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetDataGridView_NOTALL.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B1510_SeikyuRireki\SeikyuRireki_SELECT_NyukinData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B1510_SeikyuRireki\SeikyuRireki_SELECT_TokuisakiCd.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\B1510_SeikyuRireki\SeikyuRireki_SELECT_SetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\C6000_TantoshabetuDenpyoCount\DenpyoCount_SELECT_SetDataGridView.sql">

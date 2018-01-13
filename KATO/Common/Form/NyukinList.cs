@@ -35,6 +35,9 @@ namespace KATO.Common.Form
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
 
+        //前画面から伝票番号を取り出す枠（伝票番号初期値）（ベーステキストマネー）
+        public BaseTextMoney bmDenpyo = null;
+        
         //画面タイトル設定
         private string Title = "";
         public string _Title
@@ -74,6 +77,13 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
+
+            // 伝票番号の引き渡しチェック
+            if (bmDenpyo == null)
+            {
+                bmDenpyo = new BaseTextMoney();
+            }
+
         }
 
         ///<summary>
@@ -167,7 +177,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = nyukinlistB.getDatagridView(lblSetTokuisaki.CodeTxtText);
+                gridTokui.DataSource = nyukinlistB.getDatagridView(lblsetTokui.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -252,33 +262,19 @@ namespace KATO.Common.Form
         public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-            setEndAction();
+            this.Close();
         }
 
         ///<summary>
         ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void setEndAction()
+        private void setEndAction(DataTable dtNyukin)
         {
             this.Close();
 
-            //ビジネス層のインスタンス生成
-            NyukinList_B nyukinlistB = new NyukinList_B();
-            try
-            {
-                //ビジネス層、移動元フォームに移動するロジックに移動
-                nyukinlistB.FormMove(intFrmKind);
-            }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            bmDenpyo.Text = dtNyukin.Rows[0]["伝票番号"].ToString();
+
         }
 
         ///<summary>
@@ -291,7 +287,7 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
-            strTokuiCdsub = lblSetTokuisaki.CodeTxtText;
+            strTokuiCdsub = lblsetTokui.CodeTxtText;
 
             gridTokui.Focus();
         }
@@ -312,7 +308,7 @@ namespace KATO.Common.Form
         private void setSelectItem()
         {
             //取引コードを入れる用
-            DataTable dtTorihikiCd = new DataTable();
+            DataTable dtNyukin = new DataTable();
 
             //検索結果にデータが存在しなければ終了
             if (gridTokui.RowCount == 0)
@@ -325,9 +321,15 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                nyukinkistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
+                dtNyukin = nyukinkistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
 
-                setEndAction();
+                //検索結果がない場合
+                if (dtNyukin.Rows.Count <= 0)
+                {
+                    return;
+                }
+                
+                setEndAction(dtNyukin);
             }
             catch (Exception ex)
             {
@@ -416,28 +418,6 @@ namespace KATO.Common.Form
 
                 default:
                     break;
-            }
-        }
-
-        ///<summary>
-        ///labelSet_Tokuisaki_Leave
-        ///得意先コードのラベルセットから離れた場合
-        ///</summary>
-        private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
-        {
-            //得意先コードがない場合
-            if (lblSetTokuisaki.CodeTxtText == "" ||
-                StringUtl.blIsEmpty(lblSetTokuisaki.CodeTxtText) == false)
-            {
-                return;
-            }
-
-            //徳斉木の名前が白紙の場合
-            if (lblSetTokuisaki.ValueLabelText == "" ||
-                StringUtl.blIsEmpty(lblSetTokuisaki.ValueLabelText) == false)
-            {
-                gridTokui.DataSource = null;
-                lblSetTokuisaki.Focus();
             }
         }
     }

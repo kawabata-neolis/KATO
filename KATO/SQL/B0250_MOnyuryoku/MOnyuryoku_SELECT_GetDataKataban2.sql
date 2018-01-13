@@ -10,11 +10,11 @@ SELECT Rtrim(ISNULL(Ｃ１, '')) AS 型番,
 	   納期,
 	   取引先コード AS ｺｰﾄﾞ,
 	   dbo.f_get取引先名称(取引先コード) AS 仕向け先名,
-	   発注担当者 AS 発注担当者コード,
+	   発注担当者コード,
 	   (
 			SELECT 担当者.担当者名 
 			FROM 担当者 
-			WHERE 担当者.担当者コード = ＭＯ.発注担当者
+			WHERE 担当者.担当者コード = ＭＯ.発注担当者コード
 	   )AS 発注担当者,
 	   RTRIM(dbo.f_get注番文字FROM担当者('0003')) + CAST(発注番号 AS varchar(8)) AS 発注番号, 
 	   発注番号 AS 発注番号2,
