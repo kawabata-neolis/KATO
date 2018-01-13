@@ -14,6 +14,24 @@ namespace KATO.Form.H0210_MitsumoriInput
 {
     public partial class Form11 : BaseForm
     {
+
+        public string strMitsuNo = null;
+        public string strMitsuYMD = null;
+        public string strMitsuTitle = null;
+        public string strTantoName = null;
+        public string strNoki = null;
+        public string strJoken = null;
+        public string strKigen = null;
+        public string strBiko = null;
+        public string strToriCd = null;
+        public string strToriName = null;
+        public string strTantoCd = null;
+        public string strEigyoCd = null;
+        public string strUriTotal = null;
+        public string strArariTotal = null;
+        public string strNonyuCd = null;
+        public string strNonyuName = null;
+
         private string[] strHinmeis;
         public string[] StrHinmeis
         {
@@ -52,9 +70,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             foreach (Control cc in tableLayoutPanel1.Controls)
             {
                 UserControl2 uc = (UserControl2)cc;
-                f = inputCheck(uc.textBox26, f);
-                f = inputCheck(uc.textBox25, f);
-                f = inputCheck(uc.textBox23, f);
+                f = inputCheck(uc.lsDaibun.codeTxt, f);
+                f = inputCheck(uc.lsChubun.codeTxt, f);
+                f = inputCheck(uc.lsMaker.codeTxt, f);
             }
 
             if (f)
@@ -78,9 +96,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 foreach (Control cc in tableLayoutPanel1.Controls)
                 {
                     UserControl2 uc = (UserControl2)cc;
-                    f = inputCheck(uc.textBox26, f);
-                    f = inputCheck(uc.textBox25, f);
-                    f = inputCheck(uc.textBox23, f);
+                    f = inputCheck(uc.lsDaibun.codeTxt, f);
+                    f = inputCheck(uc.lsChubun.codeTxt, f);
+                    f = inputCheck(uc.lsMaker.codeTxt, f);
                 }
 
                 if (f) {
@@ -94,11 +112,11 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private Boolean inputCheck(TextBox tb, Boolean b)
+        private Boolean inputCheck(BaseText tb, Boolean b)
         {
             Boolean ret = b;
 
-            if (isNullBlank(tb.Text))
+            if (string.IsNullOrWhiteSpace(tb.Text))
             {
                 ret = false;
                 tb.BackColor = Color.Red;
@@ -109,26 +127,5 @@ namespace KATO.Form.H0210_MitsumoriInput
             return ret;
         }
 
-        private Boolean isNullBlank(String s)
-        {
-            Boolean ret = false;
-
-            if (s == null)
-            {
-                ret = true;
-            } else if (s.Equals(""))
-            {
-                ret = true;
-            }
-
-            return ret;
-        }
-
-        private void inputLbl(TextBox tb, TextBox lbl)
-        {
-            if (!isNullBlank(tb.Text)) {
-                lbl.Text = "ﾃｽﾄ用ﾀﾞﾐｰｺｰﾄﾞ";
-            }
-        }
     }
 }

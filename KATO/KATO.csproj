@@ -819,11 +819,29 @@
     <Compile Include="Form\H0210_MitsumoriInput\Form12.designer.cs">
       <DependentUpon>Form12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form8_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\Form8_2.designer.cs">
+      <DependentUpon>Form8_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.designer.cs">
       <DependentUpon>H0210_MitsumoriInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\PDFPreviewM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\PDFPreviewM.Designer.cs">
+      <DependentUpon>PDFPreviewM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\PrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\H0210_MitsumoriInput\PrintDialog.designer.cs">
+      <DependentUpon>PrintDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\H0210_MitsumoriInput\UserControl2.cs">
       <SubType>UserControl</SubType>
@@ -1369,8 +1387,17 @@
     <EmbeddedResource Include="Form\H0210_MitsumoriInput\Form12.resx">
       <DependentUpon>Form12.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\Form8_2.resx">
+      <DependentUpon>Form8_2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\H0210_MitsumoriInput\H0210_MitsumoriInput.resx">
       <DependentUpon>H0210_MitsumoriInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\PDFPreviewM.resx">
+      <DependentUpon>PDFPreviewM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\H0210_MitsumoriInput\PrintDialog.resx">
+      <DependentUpon>PrintDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\H0210_MitsumoriInput\UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
@@ -1508,6 +1535,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Template\C0140_TantouUriageArariNenkan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\H0210_MitsumorishoPrint.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Template\H0210_ShiireDetail.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Template\M0620_HushoAtenaInsatsu_Naga3.xlsx">

@@ -334,6 +334,41 @@ namespace KATO.Common.Util
             workbook.Dispose();
         }
 
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// ロゴ（KATO_LOGO）の貼り付け処理(1ページ目のみ)
+        /// </summary>
+        /// <param name="strInXlsFile">エクセルファイル</param>
+        /// <param name="topRow">貼り付け位置（行）</param>
+        /// <param name="leftColumn">貼り付け位置（列）</param>
+        /// <param name="topRowOffset">貼り付け位置（行：オフセット）</param>
+        /// <param name="LeftColumnOffset">貼り付け位置（列：オフセット）</param>
+        /// <param name="percent">縮小サイズ</param>
+        /// -----------------------------------------------------------------------------
+        public void logoPasteOnlyTopPage(string strInXlsFile, int[] topRow, int[] leftColumn, int topRowOffset, int leftColumnOffset, int percent)
+        {
+            Workbook workbook = new Workbook();
+            workbook.LoadFromFile(strInXlsFile, ExcelVersion.Version2010);
+
+            Worksheet worksheet = workbook.Worksheets[0];
+
+            for (int cnt = 0; cnt < topRow.Count(); cnt++)
+            {
+                // 画像の貼り付け
+                ExcelPicture pic = worksheet.Pictures.Add(topRow[cnt], leftColumn[cnt], @"./Common/KATO_LOGO.jpg");
+                pic.TopRowOffset = topRowOffset;
+                pic.LeftColumnOffset = leftColumnOffset;
+                pic.Width = (int)(pic.Width * (float)percent / 100);
+                pic.Height = (int)(pic.Height * (float)percent / 100);
+            }
+
+            // 保存
+            workbook.Save();
+
+            // workbookを解放
+            workbook.Dispose();
+        }
+
         /// <summary>
         /// ヘッダーシートをコピー
         /// <param name="workbook">参照型 ワークブック</param>

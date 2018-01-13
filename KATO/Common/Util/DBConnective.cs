@@ -164,6 +164,7 @@ namespace KATO.Common.Util
             CM.CommandType = cmdType;
             CM.CommandText = sqlStr;
 
+            CM.Parameters.Clear();
             //各該当データをPROCに適用
             for(int cnt = 0; cnt < lstTableName.Count; cnt++)
             {
@@ -198,6 +199,8 @@ namespace KATO.Common.Util
             //UPDATE INSERT DELETE 用            
             CM.CommandType = cmdType;
             CM.CommandText = sqlStr;
+
+            CM.Parameters.Clear();
 
             //各該当データをPROCに適用
             for (int cnt = 0; cnt < lstTableName.Count; cnt++)
@@ -239,6 +242,8 @@ namespace KATO.Common.Util
             CM.CommandType = cmdType;
             CM.CommandText = sqlStr;
 
+            CM.Parameters.Clear();
+            
             //各該当データをPROCに適用
             for (int cnt = 0; cnt < lstTableName.Count; cnt++)
             {
@@ -284,6 +289,8 @@ namespace KATO.Common.Util
             CM.CommandType = cmdType;
             CM.CommandText = sqlStr;
 
+            CM.Parameters.Clear();
+            
             //各該当データをPROCに適用
             for (int cnt = 0; cnt < lstTableName.Count; cnt++)
             {

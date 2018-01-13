@@ -29,14 +29,11 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtHin = new System.Windows.Forms.TextBox();
+            this.lsDaibun = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.lsChubun = new KATO.Common.Ctl.LabelSet_Chubunrui();
+            this.lsMaker = new KATO.Common.Ctl.LabelSet_Maker();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,100 +57,89 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 31);
             this.tableLayoutPanel1.TabIndex = 300;
             // 
+            // txtHin
+            // 
+            this.txtHin.BackColor = System.Drawing.SystemColors.Window;
+            this.txtHin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtHin.Location = new System.Drawing.Point(11, 4);
+            this.txtHin.Name = "txtHin";
+            this.txtHin.ReadOnly = true;
+            this.txtHin.Size = new System.Drawing.Size(310, 22);
+            this.txtHin.TabIndex = 235;
+            this.txtHin.TabStop = false;
+            // 
+            // lsDaibun
+            // 
+            this.lsDaibun.AppendLabelSize = 0;
+            this.lsDaibun.AppendLabelText = "";
+            this.lsDaibun.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lsDaibun.CodeTxtSize = 30;
+            this.lsDaibun.CodeTxtText = "";
+            this.lsDaibun.LabelName = "";
+            this.lsDaibun.Location = new System.Drawing.Point(327, 4);
+            this.lsDaibun.Lschubundata = null;
+            this.lsDaibun.Lsmakerdata = null;
+            this.lsDaibun.LsSubchubundata = null;
+            this.lsDaibun.LsSubmakerdata = null;
+            this.lsDaibun.Name = "lsDaibun";
+            this.lsDaibun.ShowAppendFlg = false;
+            this.lsDaibun.Size = new System.Drawing.Size(166, 22);
+            this.lsDaibun.SpaceCodeValue = 4;
+            this.lsDaibun.SpaceNameCode = 4;
+            this.lsDaibun.SpaceValueAppend = 4;
+            this.lsDaibun.TabIndex = 242;
+            this.lsDaibun.ValueLabelSize = 130;
+            this.lsDaibun.ValueLabelText = "";
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox13);
-            this.panel1.Controls.Add(this.textBox23);
-            this.panel1.Controls.Add(this.textBox20);
-            this.panel1.Controls.Add(this.textBox25);
-            this.panel1.Controls.Add(this.textBox30);
-            this.panel1.Controls.Add(this.textBox21);
-            this.panel1.Controls.Add(this.textBox26);
+            this.panel1.Controls.Add(this.lsMaker);
+            this.panel1.Controls.Add(this.lsChubun);
+            this.panel1.Controls.Add(this.lsDaibun);
+            this.panel1.Controls.Add(this.txtHin);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(855, 31);
             this.panel1.TabIndex = 0;
             // 
-            // textBox13
+            // lsChubun
             // 
-            this.textBox13.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox13.ForeColor = System.Drawing.Color.Navy;
-            this.textBox13.Location = new System.Drawing.Point(727, 7);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(111, 15);
-            this.textBox13.TabIndex = 241;
-            this.textBox13.TabStop = false;
+            this.lsChubun.AppendLabelSize = 0;
+            this.lsChubun.AppendLabelText = "";
+            this.lsChubun.CodeTxtSize = 30;
+            this.lsChubun.CodeTxtText = "";
+            this.lsChubun.LabelName = "";
+            this.lsChubun.Location = new System.Drawing.Point(499, 4);
+            this.lsChubun.Name = "lsChubun";
+            this.lsChubun.ShowAppendFlg = false;
+            this.lsChubun.Size = new System.Drawing.Size(160, 22);
+            this.lsChubun.SpaceCodeValue = 4;
+            this.lsChubun.SpaceNameCode = 4;
+            this.lsChubun.SpaceValueAppend = 4;
+            this.lsChubun.strDaibunCd = null;
+            this.lsChubun.TabIndex = 243;
+            this.lsChubun.ValueLabelSize = 120;
+            this.lsChubun.ValueLabelText = "";
             // 
-            // textBox23
+            // lsMaker
             // 
-            this.textBox23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox23.Location = new System.Drawing.Point(691, 4);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(30, 22);
-            this.textBox23.TabIndex = 238;
-            this.textBox23.Leave += new System.EventHandler(this.textBox23_Leave);
-            // 
-            // textBox20
-            // 
-            this.textBox20.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox20.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox20.ForeColor = System.Drawing.Color.Navy;
-            this.textBox20.Location = new System.Drawing.Point(562, 7);
-            this.textBox20.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(111, 15);
-            this.textBox20.TabIndex = 240;
-            this.textBox20.TabStop = false;
-            // 
-            // textBox25
-            // 
-            this.textBox25.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox25.Location = new System.Drawing.Point(526, 4);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(30, 22);
-            this.textBox25.TabIndex = 237;
-            this.textBox25.Leave += new System.EventHandler(this.textBox25_Leave);
-            // 
-            // textBox30
-            // 
-            this.textBox30.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox30.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox30.Location = new System.Drawing.Point(12, 4);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.ReadOnly = true;
-            this.textBox30.Size = new System.Drawing.Size(331, 22);
-            this.textBox30.TabIndex = 235;
-            this.textBox30.TabStop = false;
-            // 
-            // textBox21
-            // 
-            this.textBox21.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox21.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox21.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox21.ForeColor = System.Drawing.Color.Navy;
-            this.textBox21.Location = new System.Drawing.Point(397, 7);
-            this.textBox21.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.ReadOnly = true;
-            this.textBox21.Size = new System.Drawing.Size(111, 15);
-            this.textBox21.TabIndex = 239;
-            this.textBox21.TabStop = false;
-            // 
-            // textBox26
-            // 
-            this.textBox26.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox26.Location = new System.Drawing.Point(361, 4);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(30, 22);
-            this.textBox26.TabIndex = 236;
-            this.textBox26.Leave += new System.EventHandler(this.textBox26_Leave);
+            this.lsMaker.AppendLabelSize = 0;
+            this.lsMaker.AppendLabelText = "";
+            this.lsMaker.CodeTxtSize = 40;
+            this.lsMaker.CodeTxtText = "";
+            this.lsMaker.LabelName = "";
+            this.lsMaker.Location = new System.Drawing.Point(665, 4);
+            this.lsMaker.Name = "lsMaker";
+            this.lsMaker.ShowAppendFlg = false;
+            this.lsMaker.Size = new System.Drawing.Size(180, 22);
+            this.lsMaker.SpaceCodeValue = 4;
+            this.lsMaker.SpaceNameCode = 4;
+            this.lsMaker.SpaceValueAppend = 4;
+            this.lsMaker.strDaibunCd = null;
+            this.lsMaker.TabIndex = 244;
+            this.lsMaker.ValueLabelSize = 130;
+            this.lsMaker.ValueLabelText = "";
             // 
             // UserControl2
             // 
@@ -173,12 +159,9 @@
 
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.TextBox textBox13;
-        public System.Windows.Forms.TextBox textBox23;
-        public System.Windows.Forms.TextBox textBox20;
-        public System.Windows.Forms.TextBox textBox25;
-        public System.Windows.Forms.TextBox textBox30;
-        public System.Windows.Forms.TextBox textBox21;
-        public System.Windows.Forms.TextBox textBox26;
+        public System.Windows.Forms.TextBox txtHin;
+        public Common.Ctl.LabelSet_Daibunrui lsDaibun;
+        public Common.Ctl.LabelSet_Chubunrui lsChubun;
+        public Common.Ctl.LabelSet_Maker lsMaker;
     }
 }
