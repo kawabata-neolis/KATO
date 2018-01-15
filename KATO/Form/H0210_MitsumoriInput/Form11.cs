@@ -70,9 +70,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             foreach (Control cc in tableLayoutPanel1.Controls)
             {
                 UserControl2 uc = (UserControl2)cc;
-                f = inputCheck(uc.lsDaibun.codeTxt, f);
-                f = inputCheck(uc.lsChubun.codeTxt, f);
-                f = inputCheck(uc.lsMaker.codeTxt, f);
+                f = inputCheck(uc.lsDaibun.codeTxt, f, uc.cD);
+                f = inputCheck(uc.lsChubun.codeTxt, f, uc.cC);
+                f = inputCheck(uc.lsMaker.codeTxt, f, uc.cM);
             }
 
             if (f)
@@ -96,9 +96,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 foreach (Control cc in tableLayoutPanel1.Controls)
                 {
                     UserControl2 uc = (UserControl2)cc;
-                    f = inputCheck(uc.lsDaibun.codeTxt, f);
-                    f = inputCheck(uc.lsChubun.codeTxt, f);
-                    f = inputCheck(uc.lsMaker.codeTxt, f);
+                    f = inputCheck(uc.lsDaibun.codeTxt, f, uc.cD);
+                    f = inputCheck(uc.lsChubun.codeTxt, f, uc.cC);
+                    f = inputCheck(uc.lsMaker.codeTxt, f, uc.cM);
                 }
 
                 if (f) {
@@ -112,7 +112,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private Boolean inputCheck(BaseText tb, Boolean b)
+        private Boolean inputCheck(BaseText tb, Boolean b, DataGridViewCell c)
         {
             Boolean ret = b;
 
@@ -123,6 +123,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             } else
             {
                 tb.BackColor = Color.White;
+                c.Value = tb.Text;
+
             }
             return ret;
         }

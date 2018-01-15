@@ -55,6 +55,10 @@ namespace KATO.Form.H0210_MitsumoriInput
         public string strShiireArari3 = null;
         public string strShiireRitsu3 = null;
 
+        public DataGridViewCell cD = null;
+        public DataGridViewCell cC = null;
+        public DataGridViewCell cM = null;
+
         //public string strShiireCd4 = null;
         //public string strShiireName4 = null;
         //public string strShiireTanka4 = null;
@@ -77,8 +81,11 @@ namespace KATO.Form.H0210_MitsumoriInput
         //public string strShiireRitsu6 = null;
 
 
-        public UserControl2()
+        public UserControl2(DataGridViewCell d, DataGridViewCell c, DataGridViewCell m)
         {
+            cD = d;
+            cC = c;
+            cM = m;
             InitializeComponent();
         }
         

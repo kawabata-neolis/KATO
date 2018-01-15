@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -167,6 +167,8 @@
             this.gridMitsmori = new KATO.Common.Ctl.BaseDataGridViewEdit();
             this.txtMNum = new KATO.Common.Ctl.BaseTextMoney();
             this.txtMYMD = new KATO.Common.Ctl.BaseCalendar();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -525,6 +527,8 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.txtZaiTeika6);
             this.panel3.Controls.Add(this.txtZaiTeika5);
             this.panel3.Controls.Add(this.txtZaiTeika4);
@@ -636,7 +640,6 @@
             this.txtZaiTeika6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika6.TabIndex = 26;
             this.txtZaiTeika6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiTeika5
             // 
@@ -653,7 +656,6 @@
             this.txtZaiTeika5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika5.TabIndex = 21;
             this.txtZaiTeika5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiTeika4
             // 
@@ -670,7 +672,6 @@
             this.txtZaiTeika4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika4.TabIndex = 16;
             this.txtZaiTeika4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiTeika3
             // 
@@ -687,9 +688,6 @@
             this.txtZaiTeika3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika3.TabIndex = 11;
             this.txtZaiTeika3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika3.TextChanged += new System.EventHandler(this.txtZaiTeika3_TextChanged);
-            this.txtZaiTeika3.Leave += new System.EventHandler(this.txtZaiTeika3_Leave);
-            this.txtZaiTeika3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiTeika2
             // 
@@ -706,9 +704,6 @@
             this.txtZaiTeika2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika2.TabIndex = 6;
             this.txtZaiTeika2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika2.TextChanged += new System.EventHandler(this.txtZaiTeika2_TextChanged);
-            this.txtZaiTeika2.Leave += new System.EventHandler(this.txtZaiTeika2_Leave);
-            this.txtZaiTeika2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // label30
             // 
@@ -735,9 +730,6 @@
             this.txtZaiTeika1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika1.TabIndex = 1;
             this.txtZaiTeika1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTeika1.TextChanged += new System.EventHandler(this.txtZaiTeika1_TextChanged);
-            this.txtZaiTeika1.Leave += new System.EventHandler(this.txtZaiTeika1_Leave);
-            this.txtZaiTeika1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtIdx
             // 
@@ -757,6 +749,7 @@
             this.button29.TabStop = false;
             this.button29.Text = "🔄";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // button28
             // 
@@ -768,6 +761,7 @@
             this.button28.TabStop = false;
             this.button28.Text = "🔄";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // button26
             // 
@@ -819,6 +813,7 @@
             this.txtKakTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk6.TabIndex = 29;
             this.txtKakTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei6
             // 
@@ -830,7 +825,6 @@
             this.txtKakMei6.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei6.TabIndex = 67;
             this.txtKakMei6.TabStop = false;
-            this.txtKakMei6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtKakCd6
             // 
@@ -839,6 +833,8 @@
             this.txtKakCd6.Name = "txtKakCd6";
             this.txtKakCd6.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd6.TabIndex = 28;
+            this.txtKakCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button22
             // 
@@ -866,6 +862,7 @@
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk5.TabIndex = 24;
             this.txtKakTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei5
             // 
@@ -877,7 +874,6 @@
             this.txtKakMei5.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei5.TabIndex = 55;
             this.txtKakMei5.TabStop = false;
-            this.txtKakMei5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtKakCd5
             // 
@@ -886,6 +882,8 @@
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd5.TabIndex = 23;
+            this.txtKakCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button23
             // 
@@ -913,6 +911,7 @@
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk4.TabIndex = 19;
             this.txtKakTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei4
             // 
@@ -924,7 +923,6 @@
             this.txtKakMei4.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei4.TabIndex = 43;
             this.txtKakMei4.TabStop = false;
-            this.txtKakMei4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtKakCd4
             // 
@@ -933,6 +931,8 @@
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd4.TabIndex = 18;
+            this.txtKakCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button24
             // 
@@ -963,6 +963,7 @@
             this.txtSrrt6.TabIndex = 71;
             this.txtSrrt6.TabStop = false;
             this.txtSrrt6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSrrt6.Visible = false;
             // 
             // txtArr6
             // 
@@ -981,6 +982,7 @@
             this.txtArr6.TabIndex = 70;
             this.txtArr6.TabStop = false;
             this.txtArr6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArr6.Visible = false;
             // 
             // txtSrrt5
             // 
@@ -999,6 +1001,7 @@
             this.txtSrrt5.TabIndex = 59;
             this.txtSrrt5.TabStop = false;
             this.txtSrrt5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSrrt5.Visible = false;
             // 
             // txtArr5
             // 
@@ -1017,6 +1020,7 @@
             this.txtArr5.TabIndex = 58;
             this.txtArr5.TabStop = false;
             this.txtArr5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArr5.Visible = false;
             // 
             // txtSrrt4
             // 
@@ -1035,6 +1039,7 @@
             this.txtSrrt4.TabIndex = 47;
             this.txtSrrt4.TabStop = false;
             this.txtSrrt4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSrrt4.Visible = false;
             // 
             // txtArr4
             // 
@@ -1053,6 +1058,7 @@
             this.txtArr4.TabIndex = 46;
             this.txtArr4.TabStop = false;
             this.txtArr4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArr4.Visible = false;
             // 
             // label34
             // 
@@ -1098,6 +1104,7 @@
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk6.TabIndex = 27;
             this.txtZaiTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtZaiMei6
             // 
@@ -1118,6 +1125,7 @@
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd6.TabIndex = 25;
             this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtZaiCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button19
             // 
@@ -1129,6 +1137,7 @@
             this.button19.TabStop = false;
             this.button19.Text = "選択";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Visible = false;
             // 
             // txtZaiRit5
             // 
@@ -1162,6 +1171,7 @@
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk5.TabIndex = 22;
             this.txtZaiTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtZaiMei5
             // 
@@ -1182,6 +1192,7 @@
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd5.TabIndex = 20;
             this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtZaiCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button20
             // 
@@ -1193,6 +1204,7 @@
             this.button20.TabStop = false;
             this.button20.Text = "選択";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Visible = false;
             // 
             // txtZaiRit4
             // 
@@ -1226,6 +1238,7 @@
             this.txtZaiTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk4.TabIndex = 17;
             this.txtZaiTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtZaiMei4
             // 
@@ -1246,6 +1259,7 @@
             this.txtZaiCd4.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd4.TabIndex = 15;
             this.txtZaiCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtZaiCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button21
             // 
@@ -1257,6 +1271,7 @@
             this.button21.TabStop = false;
             this.button21.Text = "選択";
             this.button21.UseVisualStyleBackColor = true;
+            this.button21.Visible = false;
             // 
             // label29
             // 
@@ -1284,7 +1299,7 @@
             this.txtKakTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk3.TabIndex = 14;
             this.txtKakTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
+            this.txtKakTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei3
             // 
@@ -1296,7 +1311,6 @@
             this.txtKakMei3.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei3.TabIndex = 31;
             this.txtKakMei3.TabStop = false;
-            this.txtKakMei3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtKakCd3
             // 
@@ -1305,7 +1319,8 @@
             this.txtKakCd3.Name = "txtKakCd3";
             this.txtKakCd3.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd3.TabIndex = 13;
-            this.txtKakCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
+            this.txtKakCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button16
             // 
@@ -1333,7 +1348,7 @@
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk2.TabIndex = 9;
             this.txtKakTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
+            this.txtKakTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei2
             // 
@@ -1345,7 +1360,6 @@
             this.txtKakMei2.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei2.TabIndex = 19;
             this.txtKakMei2.TabStop = false;
-            this.txtKakMei2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtKakCd2
             // 
@@ -1354,7 +1368,8 @@
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd2.TabIndex = 8;
-            this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
+            this.txtKakCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button17
             // 
@@ -1392,7 +1407,7 @@
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk1.TabIndex = 4;
             this.txtKakTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
+            this.txtKakTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei1
             // 
@@ -1404,7 +1419,6 @@
             this.txtKakMei1.Size = new System.Drawing.Size(295, 22);
             this.txtKakMei1.TabIndex = 7;
             this.txtKakMei1.TabStop = false;
-            this.txtKakMei1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // label32
             // 
@@ -1423,7 +1437,8 @@
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd1.TabIndex = 3;
-            this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
+            this.txtKakCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
+            this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button18
             // 
@@ -1487,7 +1502,6 @@
             this.txtSrrt3.TabIndex = 35;
             this.txtSrrt3.TabStop = false;
             this.txtSrrt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSrrt3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtArr3
             // 
@@ -1506,7 +1520,6 @@
             this.txtArr3.TabIndex = 34;
             this.txtArr3.TabStop = false;
             this.txtArr3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtArr3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiRit3
             // 
@@ -1525,7 +1538,6 @@
             this.txtZaiRit3.TabIndex = 28;
             this.txtZaiRit3.TabStop = false;
             this.txtZaiRit3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiRit3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiTnk3
             // 
@@ -1542,7 +1554,6 @@
             this.txtZaiTnk3.TabIndex = 12;
             this.txtZaiTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
-            this.txtZaiTnk3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiMei3
             // 
@@ -1554,7 +1565,6 @@
             this.txtZaiMei3.Size = new System.Drawing.Size(295, 22);
             this.txtZaiMei3.TabIndex = 26;
             this.txtZaiMei3.TabStop = false;
-            this.txtZaiMei3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
             // 
             // txtZaiCd3
             // 
@@ -1564,7 +1574,7 @@
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd3.TabIndex = 10;
             this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox32_PreviewKeyDown);
+            this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button15
             // 
@@ -1576,6 +1586,7 @@
             this.button15.TabStop = false;
             this.button15.Text = "選択";
             this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // txtSrrt2
             // 
@@ -1594,7 +1605,6 @@
             this.txtSrrt2.TabIndex = 23;
             this.txtSrrt2.TabStop = false;
             this.txtSrrt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSrrt2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtArr2
             // 
@@ -1613,7 +1623,6 @@
             this.txtArr2.TabIndex = 22;
             this.txtArr2.TabStop = false;
             this.txtArr2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtArr2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtZaiRit2
             // 
@@ -1632,7 +1641,6 @@
             this.txtZaiRit2.TabIndex = 16;
             this.txtZaiRit2.TabStop = false;
             this.txtZaiRit2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiRit2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtZaiTnk2
             // 
@@ -1649,7 +1657,6 @@
             this.txtZaiTnk2.TabIndex = 7;
             this.txtZaiTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
-            this.txtZaiTnk2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtZaiMei2
             // 
@@ -1661,7 +1668,6 @@
             this.txtZaiMei2.Size = new System.Drawing.Size(295, 22);
             this.txtZaiMei2.TabIndex = 6;
             this.txtZaiMei2.TabStop = false;
-            this.txtZaiMei2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
             // 
             // txtZaiCd2
             // 
@@ -1671,7 +1677,7 @@
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd2.TabIndex = 5;
             this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox25_PreviewKeyDown);
+            this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button14
             // 
@@ -1683,6 +1689,7 @@
             this.button14.TabStop = false;
             this.button14.Text = "選択";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // label20
             // 
@@ -1711,7 +1718,6 @@
             this.txtSrrt1.TabIndex = 11;
             this.txtSrrt1.TabStop = false;
             this.txtSrrt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSrrt1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtArr1
             // 
@@ -1730,7 +1736,6 @@
             this.txtArr1.TabIndex = 10;
             this.txtArr1.TabStop = false;
             this.txtArr1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtArr1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiRit1
             // 
@@ -1749,7 +1754,6 @@
             this.txtZaiRit1.TabIndex = 4;
             this.txtZaiRit1.TabStop = false;
             this.txtZaiRit1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiRit1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // label19
             // 
@@ -1786,7 +1790,6 @@
             this.txtZaiTnk1.TabIndex = 2;
             this.txtZaiTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
-            this.txtZaiTnk1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // txtZaiMei1
             // 
@@ -1798,7 +1801,6 @@
             this.txtZaiMei1.Size = new System.Drawing.Size(295, 22);
             this.txtZaiMei1.TabIndex = 2;
             this.txtZaiMei1.TabStop = false;
-            this.txtZaiMei1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
             // 
             // label17
             // 
@@ -1818,7 +1820,7 @@
             this.txtZaiCd1.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd1.TabIndex = 0;
             this.txtZaiCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBox13_PreviewKeyDown);
+            this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button13
             // 
@@ -1830,6 +1832,7 @@
             this.button13.TabStop = false;
             this.button13.Text = "選択";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // label16
             // 
@@ -2024,34 +2027,34 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle14;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2060,7 +2063,7 @@
             this.gridMitsmori.TabIndex = 15;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
-            this.gridMitsmori.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged);
+            this.gridMitsmori.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dataGridView2_PreviewKeyDown);
             // 
             // txtMNum
             // 
@@ -2087,6 +2090,30 @@
             this.txtMYMD.Size = new System.Drawing.Size(86, 22);
             this.txtMYMD.TabIndex = 2;
             this.txtMYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(651, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 22);
+            this.button1.TabIndex = 275;
+            this.button1.TabStop = false;
+            this.button1.Text = "🔄";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button2.Location = new System.Drawing.Point(651, 128);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 22);
+            this.button2.TabIndex = 274;
+            this.button2.TabStop = false;
+            this.button2.Text = "🔄";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // H0210_MitsumoriInput
             // 
@@ -2342,5 +2369,7 @@
         private Common.Ctl.BaseDataGridViewEdit gridMitsmori;
         private Common.Ctl.BaseTextMoney txtMNum;
         private Common.Ctl.BaseCalendar txtMYMD;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
