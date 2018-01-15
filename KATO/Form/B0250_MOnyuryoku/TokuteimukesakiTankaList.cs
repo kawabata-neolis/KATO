@@ -102,18 +102,24 @@ namespace KATO.Common.Form
 
             //DataGridViewの初期設定
             SetUpGrid();
-
+            
             //型番がある場合は検索
             if (txtKataban.blIsEmpty() == true)
             {
                 //データグリッドビューに表示
                 getDatagridView();
+
             }
 
             //グリッドの中身がない場合の初期フォーカス位置の変更
             if (gridSeihin.RowCount == 0)
             {
+                //データがないの発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 btnF12.Focus();
+                return;
+
             }
         }
 
@@ -209,10 +215,16 @@ namespace KATO.Common.Form
         ///</summary>
         private void getDatagridView()
         {
+            //表示するデータ
+            DataTable dtTokune = new DataTable();
+
             //ビジネス層のインスタンス生成
             TokuteimukesakiTankaList_B tokumukesakitanlist = new TokuteimukesakiTankaList_B();
             try
             {
+                //特値データの取り出し
+                dtTokune = tokumukesakitanlist.getDatagridView(txtKataban.Text, lblsetTorihikisakiCd.CodeTxtText, txtShohinCd.Text);
+
                 //データグリッドビュー部分
                 gridSeihin.DataSource = tokumukesakitanlist.getDatagridView(txtKataban.Text, lblsetTorihikisakiCd.CodeTxtText, txtShohinCd.Text);
 

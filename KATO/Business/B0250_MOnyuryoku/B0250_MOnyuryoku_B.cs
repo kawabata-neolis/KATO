@@ -121,7 +121,6 @@ namespace KATO.Business.B0250_MOnyuryoku
             try
             {
                 //ＭＯデータ変更_PROCを実行
-//発注担当者の登録項目を増やす必要もあり？
                 intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
 
                 //コミット
@@ -196,7 +195,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             if (lstStringViewData[4] == "Minus")
             {
                 //lstStringViewData[6]
-                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0s");
+                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0");
             }
             else
             {
