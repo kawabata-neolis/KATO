@@ -13,6 +13,7 @@ using KATO.Common.Util;
 using KATO.Business.B0250_MOnyuryoku;
 using static KATO.Common.Util.CommonTeisu;
 using System.IO;
+using ClosedXML.Excel;
 
 namespace KATO.Form.B0250_MOnyuryoku
 {
@@ -618,7 +619,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     break;
                 case Keys.F10:
                     logger.Info(LogUtil.getMessage(this._Title, "ｴｸｾﾙ取込実行"));
-                    setExelData();
+                    setExcelData();
                     break;
                 case Keys.F11:
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -731,7 +732,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     break;
                 case STR_BTN_F10: // ｴｸｾﾙ取込
                     logger.Info(LogUtil.getMessage(this._Title, "ｴｸｾﾙ取込実行"));
-                    this.setExelData();
+                    this.setExcelData();
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
@@ -1135,7 +1136,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             }
         }
 
-        //修正必須
         ///<summary>
         ///lblSetShiresaki_Leave
         ///上段仕入先コードから離れた時（エンターで起動するように変更）
@@ -1143,6 +1143,56 @@ namespace KATO.Form.B0250_MOnyuryoku
         private void lblSetShiresaki_Leave(object sender, EventArgs e)
         {
             setShiresakiEnterKey();
+
+            //年月度
+            if (txtYM.blIsEmpty() == false)
+            {
+                txtYM.Focus();
+            }
+
+            //集計月数
+            if (txtShukeiM.blIsEmpty() == false)
+            {
+                txtShukeiM.Focus();
+            }
+
+            //在庫年月度
+            if (txtZaikoYMD.blIsEmpty() == false)
+            {
+                txtZaikoYMD.Focus();
+            }
+
+            //発注年月度
+            if (txtHachuYMD.blIsEmpty() == false)
+            {
+                txtHachuYMD.Focus();
+            }
+
+            //大分類
+            if (lblSetDaibunrui.chkTxtDaibunrui() == true)
+            {
+                lblSetDaibunrui.Focus();
+            }
+
+            //中分類
+            if (lblSetChubunrui.chkTxtChubunrui(lblSetDaibunrui.CodeTxtText) == true)
+            {
+                lblSetChubunrui.Focus();
+            }
+
+            //メーカー
+            if (lblSetMaker.chkTxtMaker() == true)
+            {
+                lblSetMaker.Focus();
+            }
+
+            //仕入先コード
+            if (lblSetShiresaki.chkTxtTorihikisaki() == true)
+            {
+                lblSetShiresaki.Focus();
+            }
+
+
         }
 
         ///<summary>
@@ -1151,11 +1201,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         public void setShiresakiEnterKey()
         {
-            //上段入力項目チェック
-            if (chkTxtData() == true)
-            {
-                return;
-            }
+            ////上段入力項目チェック
+            //if (chkTxtData() == true)
+            //{
+            //    return;
+            //}
             
             //データのカウント処理
             if (chkDataCount() == true)
@@ -2109,6 +2159,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             }
         }
 
+        //登録用のやつが必要か確認
+
         ///<summary>
         ///chkTxtData
         ///上段テキストデータ存在チェック
@@ -2123,47 +2175,86 @@ namespace KATO.Form.B0250_MOnyuryoku
             //年月度
             if (txtYM.blIsEmpty() == false)
             {
-                return (blnGood);
+                blnGood = false;
+                txtYM.Focus();
             }
 
-            //集計月数
-            if (txtShukeiM.blIsEmpty() == false)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return (blnGood);
+                //集計月数
+                if (txtShukeiM.blIsEmpty() == false)
+                {
+                    blnGood = false;
+                    txtShukeiM.Focus();
+                }
             }
 
-            //在庫年月度
-            if (txtZaikoYMD.blIsEmpty() == false)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return(blnGood);
+                //在庫年月度
+                if (txtZaikoYMD.blIsEmpty() == false)
+                {
+                    blnGood = false;
+                    txtZaikoYMD.Focus();
+                }
             }
 
-            //大分類
-            if (lblSetDaibunrui.chkTxtDaibunrui() == true)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return (blnGood);
+                //発注年月度
+                if (txtHachuYMD.blIsEmpty() == false)
+                {
+                    blnGood = false;
+                    txtHachuYMD.Focus();
+                }
             }
 
-            //中分類
-            if (lblSetChubunrui.chkTxtChubunrui(lblSetDaibunrui.CodeTxtText) == true)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return (blnGood);
+                //大分類
+                if (lblSetDaibunrui.chkTxtDaibunrui() == true)
+                {
+                    blnGood = false;
+                    lblSetDaibunrui.Focus();
+                }
             }
 
-            //メーカー
-            if (lblSetMaker.chkTxtMaker() == true)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return (blnGood);
+                //中分類
+                if (lblSetChubunrui.chkTxtChubunrui(lblSetDaibunrui.CodeTxtText) == true)
+                {
+                    blnGood = false;
+                    lblSetChubunrui.Focus();
+                }
             }
 
-            //仕入先コード
-            if (lblSetShiresaki.chkTxtTorihikisaki() == true)
+            //エラーになってない場合
+            if (blnGood == true)
             {
-                return (blnGood);
+                //メーカー
+                if (lblSetMaker.chkTxtMaker() == true)
+                {
+                    blnGood = false;
+                    lblSetMaker.Focus();
+                }
             }
-
-            //チェック通過
-            blnGood = false;
+            
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //仕入先コード
+                if (lblSetShiresaki.chkTxtTorihikisaki() == true)
+                {
+                    blnGood = false;
+                    lblSetShiresaki.Focus();
+                }
+            }
 
             return (blnGood);
         }
@@ -2586,13 +2677,25 @@ namespace KATO.Form.B0250_MOnyuryoku
         }
 
         ///<summary>
-        ///setExelData
+        ///getExelData
         ///エクセル取込
         ///引数　：なし
         ///戻り値：なし
         ///</summary>
-        private void setExelData()
+        private void setExcelData()
         {
+            //エクセルデータを入れる用
+            DataTable dtExcelData = new DataTable();
+
+            //ファイルパス用
+            string strFilePath = "";
+
+            //ディレクトリパス用
+            string strDirectoryPath = "";
+
+            //ファイル拡張子用
+            string strKakucho = "";
+
             //OpenFileDialogクラスのインスタンスを作成
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -2608,45 +2711,89 @@ namespace KATO.Form.B0250_MOnyuryoku
             //ダイアログを表示し、戻り値が [OK] の場合は、選択したファイルを表示する
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                int IDCol;
-                IDCol = 4;
-                int SuCol;
-                SuCol = 7;
+                //ファイルパスを取得
+                strFilePath = openFileDialog.FileName;
 
-                string Kataban;
+                //ディレクトリパスを取得
+                strDirectoryPath = Path.GetDirectoryName(strFilePath);
 
-                int i;
-                int r;
-                int IDRow;
-                bool ari;
-                string NasiKataban;
-                NasiKataban = "";
+                //拡張子を取得
+                strKakucho = Path.GetExtension(strFilePath);
 
-                //エクセルタイプを取り込めるようにする
-                //Type EXL = Type.GetTypeFromProgID("Excel.Application");
+                //正しい拡張子かどうか判定
 
-                //FileStream fsYomikomi = openFileDialog.FileName;
 
-                //読み込み用
-                //StreamReader srYomikomi = new StreamReader(openFileDialog.FileName);
 
-                //Workbook workbook = new Workbook(fsYomikomi);
-
-                ////エクセルデータ取込込み
-                //Workbook wkTorikomi = new Workbook(openFileDialog.FileName);
-
-                IDRow = 5;
-
-                for(i = IDRow; i <= 65536; i++)
+                //ＭＯ入力のビジネス層
+                B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+                //PDF作成層
+                CreatePdf createpdf = new CreatePdf();
+                try
                 {
-                    //if (wkTorikomi.ce)
-                    //{
+                    //エクセルデータをデータテーブルで取得する
+                    dtExcelData = createpdf.exceltoDataTable(strFilePath, strKakucho);
 
-                    //}
-                    //if (EXL.)
-                    //{
+                    int IDCol;
+                    IDCol = 3;
+                    int SuCol;
+                    SuCol = 6;
 
-                    //}
+                    string Kataban;
+
+                    int i;
+                    int r;
+                    int IDRow;
+                    bool ari;
+                    string NasiKataban;
+                    NasiKataban = "";
+
+                    IDRow = 3;
+
+                    for (i = IDRow; i < dtExcelData.Rows.Count; i++)
+                    {
+                        if (dtExcelData.Rows[i][IDCol].ToString().Trim() == "")
+                        {
+                            break;
+                        }
+
+                        //空白を削除
+                        Kataban = dtExcelData.Rows[i][IDCol].ToString().Trim();
+
+                        ari = false;
+
+                        for (r = 0; r < this.gridKataban2.RowCount; r++)
+                        {
+                            //該当の型番の場合
+                            if (gridKataban2.Rows[r].Cells["型番"].Value.ToString().Trim() == Kataban)
+                            {
+                                gridKataban2.Rows[r].Cells["発注指"].Value = dtExcelData.Rows[i][SuCol].ToString();
+                                ari = true;
+                                break;
+                            }
+
+                            //型番なしの場合
+                            if (ari == false)
+                            {
+                                NasiKataban = NasiKataban + Kataban + "\t" + "\t" + "\t" + dtExcelData.Rows[i][SuCol].ToString() + "\r\n";
+                                break;
+                            }
+                        }
+                    }
+
+                    //型番がある場合
+                    if (NasiKataban != "")
+                    {
+                        //メモ帳に書き込みとファイルを開く
+                        monyuryokuB.setExcelData(strDirectoryPath, NasiKataban);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                 }
             }
         }
@@ -2661,6 +2808,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         {
             //グリッドの文字色指定
             setGridColor();
+        }
+
+        private void lblSetShiresaki_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

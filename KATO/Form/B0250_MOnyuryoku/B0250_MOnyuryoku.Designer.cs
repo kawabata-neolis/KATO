@@ -594,6 +594,7 @@
             this.lblSetShiresaki.ValueLabelSize = 300;
             this.lblSetShiresaki.ValueLabelText = "";
             this.lblSetShiresaki.Leave += new System.EventHandler(this.lblSetShiresaki_Leave);
+            this.lblSetShiresaki.Validating += new System.ComponentModel.CancelEventHandler(this.lblSetShiresaki_Validating);
             // 
             // lblKingaku
             // 
