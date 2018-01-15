@@ -155,7 +155,7 @@ namespace KATO.Form.A0100_HachuInput
             setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.#", 130);
             setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
 
-            gridHachu.Columns[0].Visible = false;
+            gridHachu.Columns["発注番号"].Visible = false;
         }
 
         ///<summary>
@@ -513,12 +513,6 @@ namespace KATO.Form.A0100_HachuInput
         {
             //入力チェック
             if (StringUtl.blIsEmpty(textSet_Tokuisaki.CodeTxtText) == false)
-            {
-                return;
-            }
-
-//商品コードを入れている場所が限られすぎているため、追加で商品コードを入れる場所を作る必要あり
-            if (txtShohinCd.blIsEmpty() == false)
             {
                 return;
             }

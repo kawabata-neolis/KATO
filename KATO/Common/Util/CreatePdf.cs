@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Data;
 using System.ComponentModel;
+using System.Data.OleDb;
 
 using Spire.Xls;
 
@@ -424,6 +425,63 @@ namespace KATO.Common.Util
                 strSpace + strNow + strSpace + page.ToString() + " / " + maxPage.ToString();
 
             return strHeader;
+        }
+
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// ヘッダー部に指定する情報を取得
+        /// <param name="page">ページ数</param>
+        /// <param name="page">最大ページ数</param>
+        /// <param name="strNow">現在の日付</param>
+        /// </summary>
+        /// -----------------------------------------------------------------------------
+        public DataTable exceltoDataTable(string xlFilePath, string strKakucho)
+        {
+            Workbook workbook = new Workbook();
+            try
+            {
+                //拡張子が.xlsxの場合
+                if (strKakucho == ".xlsx")
+                {
+                    workbook.LoadFromFile(xlFilePath, ExcelVersion.Version2013);
+                }
+                //拡張子が.xlsの場合
+                else if (strKakucho == ".xls")
+                {
+                    workbook.LoadFromFile(xlFilePath, ExcelVersion.Version97to2003);
+                }
+
+                Worksheet sheet = workbook.Worksheets[0];
+                DataTable dataTable = sheet.ExportDataTable(sheet.FirstRow, sheet.FirstColumn, sheet.LastRow, sheet.LastColumn, false);
+
+                DataTable dtCloned = dataTable.Clone();
+                foreach (DataColumn dc in dtCloned.Columns)
+                    dc.DataType = typeof(string);
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    dtCloned.ImportRow(row);
+                }
+                foreach (DataRow row in dtCloned.Rows)
+                {
+                    for (int i = 0; i < dtCloned.Columns.Count; i++)
+                    {
+                        dtCloned.Columns[i].ReadOnly = false;
+                        if (string.IsNullOrEmpty(row[i].ToString()))
+                            row[i] = string.Empty;
+                    }
+                }
+
+                return dtCloned;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                workbook.Dispose();
+            }
+
         }
 
     }

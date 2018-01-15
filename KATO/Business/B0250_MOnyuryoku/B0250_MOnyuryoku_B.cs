@@ -3,6 +3,7 @@ using KATO.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,7 +121,6 @@ namespace KATO.Business.B0250_MOnyuryoku
             try
             {
                 //ＭＯデータ変更_PROCを実行
-//発注担当者の登録項目を増やす必要もあり？
                 intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
 
                 //コミット
@@ -195,7 +195,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             if (lstStringViewData[4] == "Minus")
             {
                 //lstStringViewData[6]
-                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0s");
+                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0");
             }
             else
             {
@@ -869,6 +869,34 @@ namespace KATO.Business.B0250_MOnyuryoku
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getPrintData
+        ///印刷情報確保
+        ///</summary>
+        public void setExcelData(string strDirectoryPath, string strNasiKataban)
+        {
+            //メモ帳を書き込むパスとファイル名
+            StreamWriter sw = new System.IO.StreamWriter(strDirectoryPath + "\\未登録型番リスト.txt",
+                                                     false,
+                                                     System.Text.Encoding.GetEncoding("shift_jis"));
+            try
+            {
+                //型番無しをテキストに書き込み
+                sw.WriteLine(strNasiKataban);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                sw.Close();
+
+                //ファイルを指定してメモ帳を起動する
+                System.Diagnostics.Process.Start("Notepad", strDirectoryPath + "\\未登録型番リスト.txt");
             }
         }
 
