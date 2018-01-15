@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,13 +51,13 @@
             this.txtBiko = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbChubun = new System.Windows.Forms.CheckBox();
+            this.cbMaker = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rd2 = new System.Windows.Forms.RadioButton();
+            this.rd1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtZaiTeika6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTeika5 = new KATO.Common.Ctl.BaseTextMoney();
@@ -150,16 +150,16 @@
             this.txtZaiCd1 = new System.Windows.Forms.TextBox();
             this.button13 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.txtMemo = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
-            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.txtUriTotal = new System.Windows.Forms.TextBox();
+            this.txtSiireTotal = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.txtArariTotal = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.txtArariRitsu = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.lsTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
@@ -439,34 +439,34 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.cbChubun);
+            this.panel1.Controls.Add(this.cbMaker);
             this.panel1.Location = new System.Drawing.Point(613, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(353, 40);
             this.panel1.TabIndex = 15;
             // 
-            // checkBox2
+            // cbChubun
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox2.Location = new System.Drawing.Point(193, 11);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(154, 19);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "中分類名印刷なし";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbChubun.AutoSize = true;
+            this.cbChubun.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbChubun.Location = new System.Drawing.Point(193, 11);
+            this.cbChubun.Name = "cbChubun";
+            this.cbChubun.Size = new System.Drawing.Size(154, 19);
+            this.cbChubun.TabIndex = 1;
+            this.cbChubun.Text = "中分類名印刷なし";
+            this.cbChubun.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // cbMaker
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox1.Location = new System.Drawing.Point(17, 11);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(170, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "メーカー名印刷なし";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbMaker.AutoSize = true;
+            this.cbMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbMaker.Location = new System.Drawing.Point(17, 11);
+            this.cbMaker.Name = "cbMaker";
+            this.cbMaker.Size = new System.Drawing.Size(170, 19);
+            this.cbMaker.TabIndex = 0;
+            this.cbMaker.Text = "メーカー名印刷なし";
+            this.cbMaker.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -491,36 +491,36 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.rd2);
+            this.panel2.Controls.Add(this.rd1);
             this.panel2.Location = new System.Drawing.Point(613, 96);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(181, 40);
             this.panel2.TabIndex = 16;
             // 
-            // radioButton2
+            // rd2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.radioButton2.Location = new System.Drawing.Point(94, 11);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "納入先";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rd2.AutoSize = true;
+            this.rd2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rd2.Location = new System.Drawing.Point(94, 11);
+            this.rd2.Name = "rd2";
+            this.rd2.Size = new System.Drawing.Size(73, 19);
+            this.rd2.TabIndex = 1;
+            this.rd2.Text = "納入先";
+            this.rd2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rd1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.radioButton1.Location = new System.Drawing.Point(15, 11);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(73, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "得意先";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rd1.AutoSize = true;
+            this.rd1.Checked = true;
+            this.rd1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rd1.Location = new System.Drawing.Point(15, 11);
+            this.rd1.Name = "rd1";
+            this.rd1.Size = new System.Drawing.Size(73, 19);
+            this.rd1.TabIndex = 0;
+            this.rd1.TabStop = true;
+            this.rd1.Text = "得意先";
+            this.rd1.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -1842,15 +1842,15 @@
             this.label16.Text = "コード";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox33
+            // txtMemo
             // 
-            this.textBox33.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox33.Location = new System.Drawing.Point(834, 105);
-            this.textBox33.Multiline = true;
-            this.textBox33.Name = "textBox33";
-            this.textBox33.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox33.Size = new System.Drawing.Size(570, 105);
-            this.textBox33.TabIndex = 14;
+            this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtMemo.Location = new System.Drawing.Point(834, 105);
+            this.txtMemo.Multiline = true;
+            this.txtMemo.Name = "txtMemo";
+            this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMemo.Size = new System.Drawing.Size(570, 105);
+            this.txtMemo.TabIndex = 14;
             // 
             // label21
             // 
@@ -1882,31 +1882,31 @@
             this.label24.TabIndex = 178;
             this.label24.Text = "売上計";
             // 
-            // textBox35
+            // txtUriTotal
             // 
-            this.textBox35.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox35.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox35.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox35.ForeColor = System.Drawing.Color.Navy;
-            this.textBox35.Location = new System.Drawing.Point(593, 573);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(110, 15);
-            this.textBox35.TabIndex = 179;
-            this.textBox35.TabStop = false;
-            this.textBox35.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtUriTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtUriTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUriTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtUriTotal.ForeColor = System.Drawing.Color.Navy;
+            this.txtUriTotal.Location = new System.Drawing.Point(593, 573);
+            this.txtUriTotal.Name = "txtUriTotal";
+            this.txtUriTotal.Size = new System.Drawing.Size(110, 15);
+            this.txtUriTotal.TabIndex = 179;
+            this.txtUriTotal.TabStop = false;
+            this.txtUriTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox34
+            // txtSiireTotal
             // 
-            this.textBox34.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox34.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox34.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox34.ForeColor = System.Drawing.Color.Navy;
-            this.textBox34.Location = new System.Drawing.Point(780, 573);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(110, 15);
-            this.textBox34.TabIndex = 181;
-            this.textBox34.TabStop = false;
-            this.textBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSiireTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtSiireTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSiireTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtSiireTotal.ForeColor = System.Drawing.Color.Navy;
+            this.txtSiireTotal.Location = new System.Drawing.Point(780, 573);
+            this.txtSiireTotal.Name = "txtSiireTotal";
+            this.txtSiireTotal.Size = new System.Drawing.Size(110, 15);
+            this.txtSiireTotal.TabIndex = 181;
+            this.txtSiireTotal.TabStop = false;
+            this.txtSiireTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label25
             // 
@@ -1918,18 +1918,18 @@
             this.label25.TabIndex = 180;
             this.label25.Text = "仕入計";
             // 
-            // textBox36
+            // txtArariTotal
             // 
-            this.textBox36.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox36.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox36.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox36.ForeColor = System.Drawing.Color.Navy;
-            this.textBox36.Location = new System.Drawing.Point(951, 573);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(110, 15);
-            this.textBox36.TabIndex = 183;
-            this.textBox36.TabStop = false;
-            this.textBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArariTotal.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtArariTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtArariTotal.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArariTotal.ForeColor = System.Drawing.Color.Navy;
+            this.txtArariTotal.Location = new System.Drawing.Point(951, 573);
+            this.txtArariTotal.Name = "txtArariTotal";
+            this.txtArariTotal.Size = new System.Drawing.Size(110, 15);
+            this.txtArariTotal.TabIndex = 183;
+            this.txtArariTotal.TabStop = false;
+            this.txtArariTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label26
             // 
@@ -1941,18 +1941,18 @@
             this.label26.TabIndex = 182;
             this.label26.Text = "粗利";
             // 
-            // textBox37
+            // txtArariRitsu
             // 
-            this.textBox37.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox37.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox37.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox37.ForeColor = System.Drawing.Color.Navy;
-            this.textBox37.Location = new System.Drawing.Point(1106, 573);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(49, 15);
-            this.textBox37.TabIndex = 185;
-            this.textBox37.TabStop = false;
-            this.textBox37.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArariRitsu.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtArariRitsu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtArariRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtArariRitsu.ForeColor = System.Drawing.Color.Navy;
+            this.txtArariRitsu.Location = new System.Drawing.Point(1106, 573);
+            this.txtArariRitsu.Name = "txtArariRitsu";
+            this.txtArariRitsu.Size = new System.Drawing.Size(49, 15);
+            this.txtArariRitsu.TabIndex = 185;
+            this.txtArariRitsu.TabStop = false;
+            this.txtArariRitsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label27
             // 
@@ -2024,34 +2024,34 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2099,17 +2099,17 @@
             this.Controls.Add(this.lsEigyosho);
             this.Controls.Add(this.lsTantousha);
             this.Controls.Add(this.tsTokuisaki);
-            this.Controls.Add(this.textBox37);
+            this.Controls.Add(this.txtArariRitsu);
             this.Controls.Add(this.label27);
-            this.Controls.Add(this.textBox36);
+            this.Controls.Add(this.txtArariTotal);
             this.Controls.Add(this.label26);
-            this.Controls.Add(this.textBox34);
+            this.Controls.Add(this.txtSiireTotal);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.textBox35);
+            this.Controls.Add(this.txtUriTotal);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.textBox33);
+            this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.panel2);
@@ -2163,17 +2163,17 @@
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.label14, 0);
             this.Controls.SetChildIndex(this.panel3, 0);
-            this.Controls.SetChildIndex(this.textBox33, 0);
+            this.Controls.SetChildIndex(this.txtMemo, 0);
             this.Controls.SetChildIndex(this.label21, 0);
             this.Controls.SetChildIndex(this.label15, 0);
             this.Controls.SetChildIndex(this.label24, 0);
-            this.Controls.SetChildIndex(this.textBox35, 0);
+            this.Controls.SetChildIndex(this.txtUriTotal, 0);
             this.Controls.SetChildIndex(this.label25, 0);
-            this.Controls.SetChildIndex(this.textBox34, 0);
+            this.Controls.SetChildIndex(this.txtSiireTotal, 0);
             this.Controls.SetChildIndex(this.label26, 0);
-            this.Controls.SetChildIndex(this.textBox36, 0);
+            this.Controls.SetChildIndex(this.txtArariTotal, 0);
             this.Controls.SetChildIndex(this.label27, 0);
-            this.Controls.SetChildIndex(this.textBox37, 0);
+            this.Controls.SetChildIndex(this.txtArariRitsu, 0);
             this.Controls.SetChildIndex(this.tsTokuisaki, 0);
             this.Controls.SetChildIndex(this.lsTantousha, 0);
             this.Controls.SetChildIndex(this.lsEigyosho, 0);
@@ -2226,13 +2226,13 @@
         private System.Windows.Forms.TextBox txtBiko;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbChubun;
+        private System.Windows.Forms.CheckBox cbMaker;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rd2;
+        private System.Windows.Forms.RadioButton rd1;
         private System.Windows.Forms.Panel panel3;
         private KATO.Common.Ctl.BaseTextMoney txtSrrt3;
         private KATO.Common.Ctl.BaseTextMoney txtArr3;
@@ -2256,17 +2256,17 @@
         private System.Windows.Forms.TextBox txtZaiCd1;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.TextBox txtMemo;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox35;
-        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.TextBox txtUriTotal;
+        private System.Windows.Forms.TextBox txtSiireTotal;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox txtArariTotal;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox37;
+        private System.Windows.Forms.TextBox txtArariRitsu;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label34;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk6;
