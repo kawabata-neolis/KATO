@@ -1655,6 +1655,9 @@
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_SELECT_Riekiritsu.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_SELECT_Henpin.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

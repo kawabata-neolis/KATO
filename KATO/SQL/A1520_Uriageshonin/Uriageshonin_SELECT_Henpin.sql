@@ -1,4 +1,5 @@
-SELECT 受注番号,
+SELECT CASE WHEN dbo.f_get返品値引売上承認フラグ(受注番号) = 0 THEN 'N' ELSE 'Y' END AS 承認,
+	   受注番号,
        納期,
 	   得意先名称  AS 得意先, 
 	   (
@@ -26,4 +27,4 @@ WHERE 削除 ='N' AND
 	  ABS(売上済数量) < ABS(受注数量) AND 
 	  (受注数量<0 ) 
 	  {0}
-ORDER BY 納期 
+ORDER BY 納期, 得意先, 受注番号

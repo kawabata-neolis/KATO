@@ -85,6 +85,8 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //返品値引分売上承認入力の表示
             showGirdHenpin();
+            //履歴率承認の表示
+            //showGirdRiekiritsu();
         }
 
         ///<summary>
@@ -176,6 +178,97 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //受注番号非表示
             HJuchuNo.Visible = false;
+
+            //データをバインド
+            DataGridViewTextBoxColumn RJuchuNo = new DataGridViewTextBoxColumn();
+            RJuchuNo.DataPropertyName = "受注番号";
+            RJuchuNo.Name = "受注番号";
+            RJuchuNo.HeaderText = "受注番号";
+
+            DataGridViewTextBoxColumn RDenpyoYMD = new DataGridViewTextBoxColumn();
+            RDenpyoYMD.DataPropertyName = "伝票年月日";
+            RDenpyoYMD.Name = "伝票年月日";
+            RDenpyoYMD.HeaderText = "伝票年月日";
+
+            DataGridViewTextBoxColumn RShonin = new DataGridViewTextBoxColumn();
+            RShonin.DataPropertyName = "承認";
+            RShonin.Name = "承認";
+            RShonin.HeaderText = "承認";
+
+            DataGridViewTextBoxColumn RNoki = new DataGridViewTextBoxColumn();
+            RNoki.DataPropertyName = "納期";
+            RNoki.Name = "納期";
+            RNoki.HeaderText = "納期";
+
+            DataGridViewTextBoxColumn RTokuisaki = new DataGridViewTextBoxColumn();
+            RTokuisaki.DataPropertyName = "得意先";
+            RTokuisaki.Name = "得意先";
+            RTokuisaki.HeaderText = "得意先";
+
+            DataGridViewTextBoxColumn RMaker = new DataGridViewTextBoxColumn();
+            RMaker.DataPropertyName = "ﾒｰｶｰ";
+            RMaker.Name = "ﾒｰｶｰ";
+            RMaker.HeaderText = "ﾒｰｶｰ";
+
+            DataGridViewTextBoxColumn RKataban = new DataGridViewTextBoxColumn();
+            RKataban.DataPropertyName = "型番";
+            RKataban.Name = "型番";
+            RKataban.HeaderText = "型番";
+
+            DataGridViewTextBoxColumn RSu = new DataGridViewTextBoxColumn();
+            RSu.DataPropertyName = "数量";
+            RSu.Name = "数量";
+            RSu.HeaderText = "数量";
+
+            DataGridViewTextBoxColumn RJuchuTanka = new DataGridViewTextBoxColumn();
+            RJuchuTanka.DataPropertyName = "受注単価";
+            RJuchuTanka.Name = "受注単価";
+            RJuchuTanka.HeaderText = "受注単価";
+
+            DataGridViewTextBoxColumn RShireTanka = new DataGridViewTextBoxColumn();
+            RShireTanka.DataPropertyName = "仕入単価";
+            RShireTanka.Name = "仕入単価";
+            RShireTanka.HeaderText = "仕入単価";
+
+            DataGridViewTextBoxColumn RRiekiritsu = new DataGridViewTextBoxColumn();
+            RRiekiritsu.DataPropertyName = "利益率";
+            RRiekiritsu.Name = "利益率";
+            RRiekiritsu.HeaderText = "利益率";
+
+            DataGridViewTextBoxColumn RChuban = new DataGridViewTextBoxColumn();
+            RChuban.DataPropertyName = "注番";
+            RChuban.Name = "注番";
+            RChuban.HeaderText = "注番";
+
+            DataGridViewTextBoxColumn RShanaiMemo = new DataGridViewTextBoxColumn();
+            RShanaiMemo.DataPropertyName = "社内メモ";
+            RShanaiMemo.Name = "社内メモ";
+            RShanaiMemo.HeaderText = "社内メモ";
+
+            DataGridViewTextBoxColumn RTanto = new DataGridViewTextBoxColumn();
+            RTanto.DataPropertyName = "担当者";
+            RTanto.Name = "担当者";
+            RTanto.HeaderText = "担当者";
+
+            //個々の幅、文章の寄せ
+            setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnRiekiritsu(RDenpyoYMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            setColumnRiekiritsu(RShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnRiekiritsu(RNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnRiekiritsu(RTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnRiekiritsu(RMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnRiekiritsu(RKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnRiekiritsu(RSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnRiekiritsu(RJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
+            setColumnRiekiritsu(RShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
+            setColumnRiekiritsu(RRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 200);
+            setColumnRiekiritsu(RChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnRiekiritsu(RShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+
+            //受注番号、伝票年月日非表示
+            RJuchuNo.Visible = false;
+            RDenpyoYMD.Visible = false;
         }
 
         ///<summary>
@@ -194,6 +287,26 @@ namespace KATO.Form.A1520_Uriageshonin
                 if (fmt != null)
                 {
                     gridHenpinNebiki.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
+        ///<summary>
+        ///setColumnRiekiritsu
+        ///DataGridViewの内部設定（利益率承認）
+        ///</summary>
+        private void setColumnRiekiritsu(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridRiekiritsu.Columns.Add(col);
+            if (gridRiekiritsu.Columns[col.Name] != null)
+            {
+                gridRiekiritsu.Columns[col.Name].Width = intLen;
+                gridRiekiritsu.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridRiekiritsu.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridRiekiritsu.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
         }
@@ -301,7 +414,7 @@ namespace KATO.Form.A1520_Uriageshonin
 
         ///<summary>
         ///btnSaihyojiHenpin_Click
-        ///返品値引き分売上承認の再表示ボタンを押す
+        ///返品値引分売上承認の再表示ボタンを押す
         ///</summary>
         private void btnSaihyojiHenpin_Click(object sender, EventArgs e)
         {
@@ -311,7 +424,7 @@ namespace KATO.Form.A1520_Uriageshonin
 
         ///<summary>
         ///showGirdHenpin
-        ///返品値引き分売上承認のグリッド表示
+        ///返品値引分売上承認のグリッド表示
         ///</summary>
         private void showGirdHenpin()
         {
@@ -365,5 +478,69 @@ namespace KATO.Form.A1520_Uriageshonin
 
         }
 
+        ///<summary>
+        ///btnSaihyojiHenpin_Click
+        ///利益率承認の再表示ボタンを押す
+        ///</summary>
+        private void btnSaihyojiRiekiritsu_Click(object sender, EventArgs e)
+        {
+            //利益率承認のグリッド表示
+            showGirdRiekiritsu();
+        }
+
+        ///<summary>
+        ///showGirdRiekiritsu
+        ///利益率承認のグリッド表示
+        ///</summary>
+        private void showGirdRiekiritsu()
+        {
+            DataTable dtGrid = new DataTable();
+
+            int intShonin = 0;
+
+            //ラジオボタンのチェックによって表示を変える
+            if (radHenpin.radbtn0.Checked == true)
+            {
+                intShonin = 0;
+            }
+            else if (radHenpin.radbtn1.Checked == true)
+            {
+                intShonin = 1;
+            }
+            else
+            {
+                intShonin = 2;
+            }
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                dtGrid = uriageshoninB.getViewGridRiekiritsu(intShonin);
+
+                //テーブルがある場合
+                if (dtGrid.Rows.Count > 0)
+                {
+                    //グリッドビューの表示
+                    gridRiekiritsu.DataSource = dtGrid;
+                }
+                else
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this, "売上承認", CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+                    gridHenpinNebiki.DataSource = "";
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
     }
 }
