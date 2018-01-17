@@ -383,6 +383,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 //削除
+                juchuB.beginTrance();
                 juchuB.delJuchu(strJuchuNo, lblStatusUser.Text);
 
                 //// デッドストック在庫を使用していた場合は、再度デッドストックとして戻す
@@ -391,12 +392,14 @@ namespace KATO.Form.A0010_JuchuInput
                 //    juchuB.restoreDeadStock(txtDeadStockNo.Text);
                 //}
 
+                juchuB.commit();
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 this.delFormClear(this);
             }
             catch (Exception ex)
             {
+                juchuB.rollback();
                 new CommonException(ex);
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -2487,7 +2490,7 @@ namespace KATO.Form.A0010_JuchuInput
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             try
             {
-                DataTable dtJuchuZan = juchuB.getJuchuZanInfo(txtShohinCd.Text);
+                DataTable dtJuchuZan = juchuB.getJuchuZanInfo(tsTokuisaki.CodeTxtText);
                 gridJuchuZanMeisai.DataSource = dtJuchuZan;
             }
             catch (Exception ex)

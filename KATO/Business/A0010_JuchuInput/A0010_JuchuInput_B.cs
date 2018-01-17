@@ -20,11 +20,13 @@ namespace KATO.Business.A0010_JuchuInput
         public void commit()
         {
             dbConGr.Commit();
+            dbConGr.DB_Disconnect();
         }
 
         public void rollback()
         {
             dbConGr.Rollback();
+            dbConGr.DB_Disconnect();
         }
 
         public DataTable getUriagezumisuryo(string strJuchuNo)
@@ -107,16 +109,16 @@ namespace KATO.Business.A0010_JuchuInput
             aryPrm.Add(strUser);
             aryPrm.Add(strJuchuNo);
 
-            DBConnective dbCon = new DBConnective();
+            //DBConnective dbCon = new DBConnective();
             try
             {
-                dbCon.BeginTrans();
-                dbCon.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
-                dbCon.Commit();
+                //dbCon.BeginTrans();
+                dbConGr.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                //dbCon.Commit();
             }
             catch (Exception ex)
             {
-                dbCon.Rollback();
+                //dbCon.Rollback();
                 throw ex;
             }
 
