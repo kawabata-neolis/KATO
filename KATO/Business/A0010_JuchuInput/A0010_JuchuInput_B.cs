@@ -189,7 +189,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT FORMAT(受注年月日, 'yyyy/MM/dd') as 受注年月日";
+            strQuery += "SELECT CONVERT(VARCHAR, 受注年月日, 111) as 受注年月日";
             strQuery += "      ,受注者コード";
             strQuery += "      ,得意先コード";
             strQuery += "      ,大分類コード";
@@ -204,7 +204,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,受注数量";
             strQuery += "      ,受注単価";
             strQuery += "      ,仕入単価";
-            strQuery += "      ,FORMAT(納期, 'yyyy/MM/dd') as 納期";
+            strQuery += "      ,CONVERT(VARCHAR, 納期, 111) as 納期";
             strQuery += "      ,注番";
             strQuery += "      ,営業所コード";
             strQuery += "      ,担当者コード";
@@ -260,7 +260,7 @@ namespace KATO.Business.A0010_JuchuInput
 
             strQuery += "SELECT 発注数量";
             strQuery += "      ,仕入先コード";
-            strQuery += "      ,FORMAT(納期, 'yyyy/MM/dd') as 納期";
+            strQuery += "      ,CONVERT(VARCHAR, 納期, 111) as 納期";
             strQuery += "      ,注番";
             strQuery += "      ,担当者コード";
             strQuery += "      ,仕入先名称";
@@ -332,7 +332,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT FORMAT(H.伝票年月日, 'yyyy/MM/dd') as 伝票年月日, M.仕入単価, N.仕入先名称";
+            strQuery += "SELECT CONVERT(VARCHAR, H.伝票年月日, 111) as 伝票年月日, M.仕入単価, N.仕入先名称";
             strQuery += "  FROM 仕入ヘッダ H, 仕入明細 M, 仕入先 N";
             strQuery += " WHERE H.削除='N'";
             strQuery += "   AND M.削除 = 'N'";
@@ -360,7 +360,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery = " SELECT FORMAT(MAX(受注年月日), 'yyyy/MM/dd') AS 受注日";
+            strQuery = " SELECT CONVERT(VARCHAR, MAX(受注年月日), 111) AS 受注日";
             strQuery += "      ,受注単価";
             strQuery += "  FROM 受注";
             strQuery += " WHERE 削除 = 'N'";
@@ -387,7 +387,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT FORMAT(MAX(H.伝票年月日), 'yyyy/MM/dd') AS 仕入日, M.仕入単価";
+            strQuery += "SELECT CONVERT(VARCHAR, MAX(H.伝票年月日), 111) AS 仕入日, M.仕入単価";
             strQuery += "  FROM 仕入ヘッダ H, 仕入明細 M";
             strQuery += " WHERE H.削除='N'";
             strQuery += "   AND M.削除 = 'N'";
@@ -537,7 +537,7 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void updChubanOnly(string strJuchuNo, string strChuban)
         {
-            string strQuery = "UPDATE 受注 SET 注番 = '" + strChuban + "'WHERE 受注番号 = " + strJuchuNo;
+            string strQuery = "UPDATE 受注 SET 注番 = '" + strChuban + "' WHERE 受注番号 = " + strJuchuNo;
 
             DBConnective dbCon = new DBConnective();
             dbCon.BeginTrans();
@@ -735,26 +735,14 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void delHachu(string strHachuban, string strUserName)
         {
-            string strSQL = null;
+            string strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
 
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            //トランザクション開始
-            dbconnective.BeginTrans();
             try
             {
-                strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
-
-                //コミット開始
-                dbconnective.Commit();
-                return;
+                dbConGr.ReadSql(strSQL);
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
                 throw (ex);
             }
         }
@@ -838,7 +826,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "           RTRIM(ISNULL(a.Ｃ５,'')) + ' ' + ";
             strQuery += "           RTRIM(ISNULL(a.Ｃ６,'')) AS 型番";
             strQuery += "      ,a.受注数量 AS 受注数量";
-            strQuery += "      ,FORMAT(a.納期, 'yyyy/MM/dd') as 納期";
+            strQuery += "      ,CONVERT(VARCHAR, a.納期, 111) as 納期";
             strQuery += "      ,a.本社出庫数 AS 本社出庫";
             strQuery += "      ,a.岐阜出庫数 AS 岐阜出庫";
             strQuery += "      ,a.発注指示区分 AS 発注指示";
@@ -883,6 +871,29 @@ namespace KATO.Business.A0010_JuchuInput
             }
 
             return dtRet;
+        }
+
+        public void updZaiko(bool bPlus, string eigyo, string shohin, string sSu)
+        {
+            string strQuery = "UPDATE 在庫数 SET ";
+            if (bPlus) {
+                strQuery += "フリー在庫数 = フリー在庫数 + " + sSu;
+            }
+            else
+            {
+                strQuery += "フリー在庫数 = フリー在庫数 - " + sSu;
+            }
+            strQuery += " WHERE 商品コード = '" + shohin + "'";
+            strQuery += "   AND 営業所コード = '" + eigyo + "'";
+
+            try
+            {
+                dbConGr.RunSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

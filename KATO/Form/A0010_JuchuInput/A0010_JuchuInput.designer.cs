@@ -230,7 +230,7 @@
             this.txtEigyoshoCd.Location = new System.Drawing.Point(943, 10);
             this.txtEigyoshoCd.Name = "txtEigyoshoCd";
             this.txtEigyoshoCd.Size = new System.Drawing.Size(38, 22);
-            this.txtEigyoshoCd.TabIndex = 3;
+            this.txtEigyoshoCd.TabIndex = 4;
             // 
             // lblHinmei
             // 
@@ -748,7 +748,7 @@
             this.lsJuchusha.SpaceCodeValue = 5;
             this.lsJuchusha.SpaceNameCode = 7;
             this.lsJuchusha.SpaceValueAppend = 4;
-            this.lsJuchusha.TabIndex = 2;
+            this.lsJuchusha.TabIndex = 3;
             this.lsJuchusha.ValueLabelSize = 129;
             this.lsJuchusha.ValueLabelText = "";
             // 
@@ -828,7 +828,7 @@
             this.tsTokuisaki.SpaceCodeValue = 5;
             this.tsTokuisaki.SpaceNameCode = 8;
             this.tsTokuisaki.SpaceValueAppend = 4;
-            this.tsTokuisaki.TabIndex = 4;
+            this.tsTokuisaki.TabIndex = 0;
             this.tsTokuisaki.ValueTextSize = 423;
             this.tsTokuisaki.valueTextText = "";
             this.tsTokuisaki.Leave += new System.EventHandler(this.tsTokuisaki_Leave);
@@ -865,7 +865,7 @@
             this.txtJuchuYMD.Location = new System.Drawing.Point(121, 10);
             this.txtJuchuYMD.Name = "txtJuchuYMD";
             this.txtJuchuYMD.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchuYMD.TabIndex = 0;
+            this.txtJuchuYMD.TabIndex = 2;
             this.txtJuchuYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHatchushiji
@@ -927,7 +927,6 @@
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.Size = new System.Drawing.Size(162, 22);
             this.txtShohinCd.TabIndex = 130;
-            this.txtShohinCd.Visible = false;
             this.txtShohinCd.Leave += new System.EventHandler(this.txtShohinCd_Leave);
             // 
             // baseLabel9
@@ -1153,7 +1152,6 @@
             this.txtC1.Name = "txtC1";
             this.txtC1.Size = new System.Drawing.Size(60, 22);
             this.txtC1.TabIndex = 124;
-            this.txtC1.Visible = false;
             this.txtC1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1_KeyDown);
             // 
             // txtC2
@@ -1163,7 +1161,6 @@
             this.txtC2.Name = "txtC2";
             this.txtC2.Size = new System.Drawing.Size(60, 22);
             this.txtC2.TabIndex = 125;
-            this.txtC2.Visible = false;
             // 
             // txtC3
             // 
@@ -1172,7 +1169,6 @@
             this.txtC3.Name = "txtC3";
             this.txtC3.Size = new System.Drawing.Size(60, 22);
             this.txtC3.TabIndex = 126;
-            this.txtC3.Visible = false;
             // 
             // txtC4
             // 
@@ -1181,7 +1177,6 @@
             this.txtC4.Name = "txtC4";
             this.txtC4.Size = new System.Drawing.Size(60, 22);
             this.txtC4.TabIndex = 127;
-            this.txtC4.Visible = false;
             // 
             // txtC5
             // 
@@ -1190,7 +1185,6 @@
             this.txtC5.Name = "txtC5";
             this.txtC5.Size = new System.Drawing.Size(60, 22);
             this.txtC5.TabIndex = 128;
-            this.txtC5.Visible = false;
             // 
             // txtC6
             // 
@@ -1199,7 +1193,6 @@
             this.txtC6.Name = "txtC6";
             this.txtC6.Size = new System.Drawing.Size(60, 22);
             this.txtC6.TabIndex = 129;
-            this.txtC6.Visible = false;
             // 
             // panel1
             // 
