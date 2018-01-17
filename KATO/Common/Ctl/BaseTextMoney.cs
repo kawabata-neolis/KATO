@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KATO.Common.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -169,6 +170,9 @@ namespace KATO.Common.Ctl
         //
         private void updMoneyLeave(object sender, EventArgs e)
         {
+            //数値チェック用
+            decimal decCheck = 0;
+
             //背景色を白にする
             this.BackColor = Color.White;
 
@@ -177,6 +181,29 @@ namespace KATO.Common.Ctl
 
             if (this.Text == "")
             {
+                return;
+            }
+
+            //コピーペーストされた時のための数値チェック
+            if (!decimal.TryParse(this.Text, out decCheck))
+            {
+                if (this.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+                }
+                else if (this.Parent.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+                }
+
+//ラベルセットのカーソル色が残るのを防ぐ
+//しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
+                SendKeys.Send("+{TAB}");
+
                 return;
             }
 
@@ -214,12 +241,15 @@ namespace KATO.Common.Ctl
                         }
                     }
                 }
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.')
+
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.' && e.KeyChar != '\u0001' 
+                                                                                                  && e.KeyChar != '\u0003' 
+                                                                                                  && e.KeyChar != '\u0016' 
+                                                                                                  && e.KeyChar != '\u0018')
                 {
                     //押されたキーが 0～9でない場合は、イベントをキャンセルする
                     blnEntry = false;
-                }
-
+                }                
             }
             //小数点以下を拒否
             else if (_intDeciSet == 0)
