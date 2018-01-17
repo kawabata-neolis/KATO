@@ -113,6 +113,8 @@ namespace KATO.Form.H0210_MitsumoriInput
         int RowIndex = 0;
         int ColIndex = 0;
         bool keyFlgF9 = true;
+        string defUser = "";
+        string defEigyo = "";
 
         public H0210_MitsumoriInput(Control c)
         {
@@ -154,16 +156,43 @@ namespace KATO.Form.H0210_MitsumoriInput
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
-            this.btnF01.Text = STR_FUNC_F1;
-            this.btnF03.Text = STR_FUNC_F3;
-            this.btnF04.Text = STR_FUNC_F4;
-            this.btnF06.Text = "F6:行削除";
-            this.btnF07.Text = "F7:行挿入";
-            this.btnF08.Text = "F8:終わり";
-            this.btnF09.Text = STR_FUNC_F9;
-            this.btnF10.Text = "仕入詳細";
-            this.btnF11.Text = STR_FUNC_F11;
-            this.btnF12.Text = STR_FUNC_F12;
+            btnF01.Text = STR_FUNC_F1;
+            btnF03.Text = STR_FUNC_F3;
+            btnF04.Text = STR_FUNC_F4;
+            //btnF05.Text = "選択";
+            btnF06.Text = "F6:行削除";
+            btnF07.Text = "F7:行挿入";
+            btnF08.Text = "終わり";
+            btnF09.Text = STR_FUNC_F9;
+            btnF10.Text = "仕入詳細";
+            btnF11.Text = STR_FUNC_F11;
+            btnF12.Text = STR_FUNC_F12;
+
+            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+            try
+            {
+                DataTable dt = inputB.getUserInfo(Environment.UserName);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    defUser = dt.Rows[0]["担当者コード"].ToString();
+                    defEigyo = dt.Rows[0]["営業所コード"].ToString();
+                }
+                lsTantousha.CodeTxtText = defUser;
+                lsEigyosho.CodeTxtText = defEigyo;
+
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            txtMYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
             SetUpGrid();
             for (int i = 0; i < 200; i++)
@@ -178,12 +207,29 @@ namespace KATO.Form.H0210_MitsumoriInput
             gridMitsmori.CurrentCell = gridMitsmori[0, 0];
         }
 
+        // メニューボタン・Fキー操作
         private void Form7_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.F1)
             {
+                if (!btnF01.Enabled)
+                {
+                    return;
+                }
                 btnF01.Focus();
                 updMitsumori();
+            }
+            else if (e.KeyData == Keys.F3)
+            {
+                if (!btnF03.Enabled)
+                {
+                    return;
+                }
+                delMitsumori();
+            }
+            else if (e.KeyData == Keys.F4)
+            {
+                clearInput();
             }
             else if (e.KeyData == Keys.F6)
             {
@@ -192,6 +238,11 @@ namespace KATO.Form.H0210_MitsumoriInput
             else if (e.KeyData == Keys.F7)
             {
                 addRow();
+            }
+            else if (e.KeyData == Keys.F8)
+            {
+                btnF01.Enabled = true;
+                btnF03.Enabled = true;
             }
             else if (e.KeyData == Keys.F9)
             {
@@ -219,263 +270,6 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private void updMitsumori()
-        {
-            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
-            try
-            {
-                string strMNum = "";
-                inputB.beginTrance();
-                if (string.IsNullOrWhiteSpace(txtMNum.Text))
-                {
-                    strMNum = inputB.getDenpyoNo("見積");
-                    txtMNum.Text = strMNum;
-                }
-                else
-                {
-                    strMNum = txtMNum.Text;
-                }
-
-                changeTotal();
-
-                Form11 f = new Form11();
-                Screen s = null;
-                Screen[] argScreen = Screen.AllScreens;
-                if (argScreen.Length > 1)
-                {
-                    s = argScreen[1];
-                }
-                else
-                {
-                    s = argScreen[0];
-                }
-
-                f.StartPosition = FormStartPosition.Manual;
-                f.Location = s.Bounds.Location;
-
-                for (int i = 0; i < gridMitsmori.RowCount; i++)
-                {
-                    string a = gridMitsmori[1, i].Value.ToString();
-                    if (gridMitsmori[1, i].Value != null && gridMitsmori[1, i].Value.ToString().Equals("1"))
-                    {
-                        UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
-                        uc.Name = "uc" + i.ToString();
-                        uc.txtHin.Text = getCellValue(gridMitsmori[2, i], false);
-
-                        uc.lsDaibun.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
-                        uc.lsChubun.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
-                        uc.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
-
-                        uc.strRow = getCellValue(gridMitsmori[0, i], false);
-                        uc.strShohinCd = getCellValue(gridMitsmori[86, i], false);
-                        uc.strC1 = getCellValue(gridMitsmori[93, i], false);
-                        uc.strC2 = getCellValue(gridMitsmori[94, i], false);
-                        uc.strC3 = getCellValue(gridMitsmori[95, i], false);
-                        uc.strC4 = getCellValue(gridMitsmori[96, i], false);
-                        uc.strC5 = getCellValue(gridMitsmori[97, i], false);
-                        uc.strC6 = getCellValue(gridMitsmori[98, i], false);
-
-                        uc.strSuryo = getCellValue(gridMitsmori[3, i], false);
-                        uc.strTanni = getCellValue(null, true);
-                        uc.strMitsuTanka = getCellValue(gridMitsmori[5, i], true);
-                        uc.strKin = getCellValue(gridMitsmori[7, i], true);
-                        uc.strShiireKin = getCellValue(gridMitsmori[8, i], true);
-                        uc.strArariKin = getCellValue(gridMitsmori[9, i], true);
-                        uc.strArariritsuKin = getCellValue(gridMitsmori[10, i], true);
-                        uc.strBiko = getCellValue(gridMitsmori[11, i], false);
-
-                        uc.strShiiName = getCellValue(gridMitsmori[12, i], false);
-                        uc.strPrint = getCellValue(gridMitsmori[13, i], false);
-
-                        uc.strShiireCd1 = getCellValue(gridMitsmori[14, i], false);
-                        uc.strShiireName1 = getCellValue(gridMitsmori[15, i], false);
-                        uc.strShiireTanka1 = getCellValue(gridMitsmori[16, i], false);
-                        uc.strShiireKin1 = getCellValue(gridMitsmori[17, i], false);
-                        uc.strShiireArari1 = getCellValue(gridMitsmori[18, i], false);
-                        uc.strShiireRitsu1 = getCellValue(gridMitsmori[19, i], false);
-
-                        uc.strShiireCd2 = getCellValue(gridMitsmori[20, i], false);
-                        uc.strShiireName2 = getCellValue(gridMitsmori[21, i], false);
-                        uc.strShiireTanka2 = getCellValue(gridMitsmori[22, i], false);
-                        uc.strShiireKin2 = getCellValue(gridMitsmori[23, i], false);
-                        uc.strShiireArari2 = getCellValue(gridMitsmori[24, i], false);
-                        uc.strShiireRitsu2 = getCellValue(gridMitsmori[25, i], false);
-
-                        uc.strShiireCd3 = getCellValue(gridMitsmori[26, i], false);
-                        uc.strShiireName3 = getCellValue(gridMitsmori[27, i], false);
-                        uc.strShiireTanka3 = getCellValue(gridMitsmori[28, i], false);
-                        uc.strShiireKin3 = getCellValue(gridMitsmori[29, i], false);
-                        uc.strShiireArari3 = getCellValue(gridMitsmori[30, i], false);
-                        uc.strShiireRitsu3 = getCellValue(gridMitsmori[31, i], false);
-
-                        if (!string.IsNullOrWhiteSpace(uc.strShiireName1) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[14, i], false);
-                        }
-                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName2) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[20, i], false);
-                        }
-                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName3) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[26, i], false);
-                        }
-
-                        f.tableLayoutPanel1.Controls.Add(uc);
-                    }
-                }
-
-                f.FrmParent = this;
-                f.ShowDialog();
-                f.Dispose();
-
-                if (printFlg)
-                {
-                    List<String> aryPrm = new List<string>();
-
-                    aryPrm.Add(strMNum);
-                    aryPrm.Add(txtMYMD.Text);
-                    aryPrm.Add(txtKenmei.Text);
-                    aryPrm.Add(txtTanto.Text);
-                    aryPrm.Add(cbNoki.Text);
-                    aryPrm.Add(cbJoken.Text);
-                    aryPrm.Add(cbKigen.Text);
-                    aryPrm.Add(txtBiko.Text);
-                    aryPrm.Add(tsTokuisaki.CodeTxtText);
-                    aryPrm.Add(tsTokuisaki.valueTextText);
-                    aryPrm.Add(lsTantousha.CodeTxtText);
-                    aryPrm.Add(lsEigyosho.CodeTxtText);
-                    aryPrm.Add(txtUriTotal.Text);
-                    aryPrm.Add(txtArariTotal.Text);
-                    aryPrm.Add(txtNonyuCd.Text);
-                    aryPrm.Add(txtNonyuName.Text);
-                    aryPrm.Add(txtMemo.Text);
-                    aryPrm.Add(Environment.UserName);
-
-                    inputB.updMitsumoriH(aryPrm);
-                    inputB.delMitsumoriM(strMNum, Environment.UserName);
-
-                    for (int i = 0; i < gridMitsmori.RowCount; i++)
-                    {
-                        if (getCellValue(gridMitsmori[2, i], false).Equals("以下余白"))
-                        {
-                            break;
-                        }
-
-                        aryPrm = new List<string>();
-                        aryPrm.Add(strMNum);
-                        aryPrm.Add(getCellValue(gridMitsmori[0, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[86, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[2, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[3, i], true));
-                        aryPrm.Add(getCellValue(null, true));
-                        aryPrm.Add(getCellValue(gridMitsmori[5, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[7, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[9, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[10, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[11, i], false));
-
-                        if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[14, i], false)) && getCellValue(gridMitsmori[14, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
-                        {
-                            aryPrm.Add(getCellValue(gridMitsmori[14, i], false));
-                        }
-                        else if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[20, i], false)) && getCellValue(gridMitsmori[20, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
-                        {
-                            aryPrm.Add(getCellValue(gridMitsmori[20, i], false));
-                        }
-                        else if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[26, i], false)) && getCellValue(gridMitsmori[26, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
-                        {
-                            aryPrm.Add(getCellValue(gridMitsmori[26, i], false));
-                        }
-                        else
-                        {
-                            aryPrm.Add("");
-                        }
-
-                        aryPrm.Add(getCellValue(gridMitsmori[12, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[13, i], false));
-
-                        aryPrm.Add(getCellValue(gridMitsmori[14, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[15, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[16, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[17, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[18, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[19, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[20, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[21, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[22, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[23, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[24, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[25, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[26, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[27, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[28, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[29, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[30, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[31, i], false));
-                        aryPrm.Add(Environment.UserName);
-
-                        inputB.updMitsumoriM(aryPrm);
-                    }
-
-                    inputB.commit();
-
-                    PrintDialog pf = new PrintDialog(this);
-                    pf.StartPosition = FormStartPosition.CenterScreen;
-                    pf.Location = s.Bounds.Location;
-                    pf.ShowDialog();
-                    pf.Dispose();
-
-                    if (intPrint > 0)
-                    {
-                        printMitsumori();
-                    }
-                    if (intPrint == 2)
-                    {
-                        printDetail();
-                    }
-
-                    intPrint = 0;
-                    PrintFlg = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                //データロギング
-                new CommonException(ex);
-                inputB.rollback();
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
-        }
-
-        private string getCellValue(DataGridViewCell c, bool zero)
-        {
-            string ret = "";
-            if (zero)
-            {
-                ret = "0";
-            }
-
-            if (c != null && c.Value != null && !string.IsNullOrWhiteSpace(c.Value.ToString()))
-            {
-                ret = c.Value.ToString();
-            }
-            return ret;
-        }
-
         private void btnFKeys_Click(object sender, EventArgs e)
         {
             switch (((Button)sender).Name)
@@ -485,9 +279,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    delMitsumori();
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    clearInput();
                     break;
                 case STR_BTN_F06: // 行削除
                     logger.Info(LogUtil.getMessage(this._Title, "行削除実行"));
@@ -496,6 +292,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                 case STR_BTN_F07: // 行挿入
                     logger.Info(LogUtil.getMessage(this._Title, "行挿入実行"));
                     addRow();
+                    break;
+                case STR_BTN_F08: // 終わり
+                    btnF01.Enabled = true;
+                    btnF03.Enabled = true;
                     break;
                 case STR_BTN_F09: // 検索
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
@@ -516,6 +316,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
+        // Grid設定
         ///<summary>
         ///GridSetUp
         ///DataGridView初期設定
@@ -1167,89 +968,89 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, txtRowNum, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 36);
             gridMitsmori.Columns.Add(cbRow);
             setColumn(gridMitsmori, hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
-            setColumn(gridMitsmori, suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumn(gridMitsmori, teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, mitsumoriTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 50);
-            setColumn(gridMitsmori, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, shiireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arari, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 50);
+            setColumn(gridMitsmori, suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumn(gridMitsmori, teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, mitsumoriTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, shiireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arari, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, insatsu, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 20);
             setColumn(gridMitsmori, shiireCd1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(gridMitsmori, shiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 50);
+            setColumn(gridMitsmori, shiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(gridMitsmori, shiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 50);
+            setColumn(gridMitsmori, shiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(gridMitsmori, shiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 97);
-            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 50);
+            setColumn(gridMitsmori, shiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd4);
             setColumn(gridMitsmori, shiireName4);
-            setColumn(gridMitsmori, shiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, shiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, shiireCd5);
             setColumn(gridMitsmori, shiireName5);
-            setColumn(gridMitsmori, shiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, shiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, shiireCd6);
             setColumn(gridMitsmori, shiireName6);
-            setColumn(gridMitsmori, shiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, shiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd1);
             setColumn(gridMitsmori, kakoShiireName1);
-            setColumn(gridMitsmori, kakoShiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd2);
             setColumn(gridMitsmori, kakoShiireName2);
-            setColumn(gridMitsmori, kakoShiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd3);
             setColumn(gridMitsmori, kakoShiireName3);
-            setColumn(gridMitsmori, kakoShiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd4);
             setColumn(gridMitsmori, kakoShiireName4);
-            setColumn(gridMitsmori, kakoShiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd5);
             setColumn(gridMitsmori, kakoShiireName5);
-            setColumn(gridMitsmori, kakoShiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, kakoShiireCd6);
             setColumn(gridMitsmori, kakoShiireName6);
-            setColumn(gridMitsmori, kakoShiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(gridMitsmori, kakoShiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
+            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
             setColumn(gridMitsmori, shohin);
             setColumn(gridMitsmori, daibunrui);
             setColumn(gridMitsmori, chubunrui);
@@ -1295,13 +1096,6 @@ namespace KATO.Form.H0210_MitsumoriInput
             gr.Columns.Add(col);
         }
 
-        private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            RowIndex = e.RowIndex;
-            ColIndex = e.ColumnIndex;
-            setText(e.RowIndex);
-        }
-
         private void setText(int idx)
         {
             try
@@ -1319,7 +1113,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 txtZaiTeika2.Text = getCellValue(gridMitsmori[4, rowIdx], false);
                 txtZaiCd2.Text = getCellValue(gridMitsmori[20, rowIdx], false);
-                txtZaiTnk1.Text = getCellValue(gridMitsmori[21, rowIdx], false);
+                txtZaiTnk2.Text = getCellValue(gridMitsmori[21, rowIdx], false);
                 txtZaiTnk2.Text = getCellValue(gridMitsmori[22, rowIdx], false);
                 txtKakCd2.Text = getCellValue(gridMitsmori[56, rowIdx], false);
                 txtKakMei2.Text = getCellValue(gridMitsmori[57, rowIdx], false);
@@ -1430,6 +1224,216 @@ namespace KATO.Form.H0210_MitsumoriInput
                 basemessagebox.ShowDialog();
                 return;
             }
+        }
+
+        private void setRowBGColor1(Color bgc)
+        {
+            txtZaiCd1.BackColor = bgc;
+            txtZaiMei1.BackColor = bgc;
+            txtZaiTeika1.BackColor = bgc;
+            txtZaiTnk1.BackColor = bgc;
+            txtZaiRit1.BackColor = bgc;
+            txtKakCd1.BackColor = bgc;
+            txtKakMei1.BackColor = bgc;
+            txtKakTnk1.BackColor = bgc;
+            //txtKakRit1.BackColor = bgc;
+            txtArr1.BackColor = bgc;
+            txtSrrt1.BackColor = bgc;
+        }
+        private void setRowBGColor2(Color bgc)
+        {
+            txtZaiCd2.BackColor = bgc;
+            txtZaiMei2.BackColor = bgc;
+            txtZaiTeika2.BackColor = bgc;
+            txtZaiTnk2.BackColor = bgc;
+            txtZaiRit2.BackColor = bgc;
+            txtKakCd2.BackColor = bgc;
+            txtKakMei2.BackColor = bgc;
+            txtKakTnk2.BackColor = bgc;
+            //txtKakRit2.BackColor = bgc;
+            txtArr2.BackColor = bgc;
+            txtSrrt2.BackColor = bgc;
+        }
+        private void setRowBGColor3(Color bgc)
+        {
+            txtZaiCd3.BackColor = bgc;
+            txtZaiMei3.BackColor = bgc;
+            txtZaiTeika3.BackColor = bgc;
+            txtZaiTnk3.BackColor = bgc;
+            txtZaiRit3.BackColor = bgc;
+            txtKakCd3.BackColor = bgc;
+            txtKakMei3.BackColor = bgc;
+            txtKakTnk3.BackColor = bgc;
+            //txtKakRit3.BackColor = bgc;
+            txtArr3.BackColor = bgc;
+            txtSrrt3.BackColor = bgc;
+        }
+        private void setRowBGColor4(Color bgc)
+        {
+            txtZaiCd4.BackColor = bgc;
+            txtZaiMei4.BackColor = bgc;
+            txtZaiTeika4.BackColor = bgc;
+            txtZaiTnk4.BackColor = bgc;
+            txtZaiRit4.BackColor = bgc;
+            txtKakCd4.BackColor = bgc;
+            txtKakMei4.BackColor = bgc;
+            txtKakTnk4.BackColor = bgc;
+            //txtKakRit4.BackColor = bgc;
+            txtArr4.BackColor = bgc;
+            txtSrrt4.BackColor = bgc;
+        }
+        private void setRowBGColor5(Color bgc)
+        {
+            txtZaiCd5.BackColor = bgc;
+            txtZaiMei5.BackColor = bgc;
+            txtZaiTeika5.BackColor = bgc;
+            txtZaiTnk5.BackColor = bgc;
+            txtZaiRit5.BackColor = bgc;
+            txtKakCd5.BackColor = bgc;
+            txtKakMei5.BackColor = bgc;
+            txtKakTnk5.BackColor = bgc;
+            //txtKakRit5.BackColor = bgc;
+            txtArr5.BackColor = bgc;
+            txtSrrt5.BackColor = bgc;
+        }
+        private void setRowBGColor6(Color bgc)
+        {
+            txtZaiCd6.BackColor = bgc;
+            txtZaiMei6.BackColor = bgc;
+            txtZaiTeika6.BackColor = bgc;
+            txtZaiTnk6.BackColor = bgc;
+            txtZaiRit6.BackColor = bgc;
+            txtKakCd6.BackColor = bgc;
+            txtKakMei6.BackColor = bgc;
+            txtKakTnk6.BackColor = bgc;
+            //txtKakRit6.BackColor = bgc;
+            txtArr6.BackColor = bgc;
+            txtSrrt6.BackColor = bgc;
+        }
+
+        private void dataGridView2_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            RowIndex = e.RowIndex;
+            ColIndex = e.ColumnIndex;
+            setText(e.RowIndex);
+        }
+
+        private void dataGridView2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            keyFlgF9 = false;
+            if (ColIndex == 2 && e.KeyCode == Keys.F9)
+            {
+                LabelSet_Daibunrui lDai = new LabelSet_Daibunrui();
+                LabelSet_Chubunrui lChu = new LabelSet_Chubunrui();
+                LabelSet_Maker lMak = new LabelSet_Maker();
+                BaseText tSho = new BaseText();
+                BaseText tKata = new BaseText();
+                BaseText tC1 = new BaseText();
+                BaseText tC2 = new BaseText();
+                BaseText tC3 = new BaseText();
+                BaseText tC4 = new BaseText();
+                BaseText tC5 = new BaseText();
+                BaseText tC6 = new BaseText();
+
+                ShouhinList sl = new ShouhinList(this);
+                sl.lsDaibunrui = lDai;
+                sl.lsChubunrui = lChu;
+                sl.lsMaker = lMak;
+                sl.btxtShohinCd = tSho;
+                sl.btxtHinC1Hinban = tKata;
+                sl.btxtHinC1 = tC1;
+                sl.btxtHinC2 = tC2;
+                sl.btxtHinC3 = tC3;
+                sl.btxtHinC4 = tC4;
+                sl.btxtHinC5 = tC5;
+                sl.btxtHinC6 = tC6;
+                sl.intFrmKind = 1;
+
+                sl.ShowDialog();
+
+                int intRow = RowIndex;
+                gridMitsmori[2, intRow].Value = tKata.Text;
+                gridMitsmori[87, intRow].Value = lDai.CodeTxtText;
+                gridMitsmori[88, intRow].Value = lDai.CodeTxtText;
+                gridMitsmori[89, intRow].Value = lDai.CodeTxtText;
+                gridMitsmori[86, intRow].Value = tSho.Text;
+                gridMitsmori[93, intRow].Value = tC1.Text;
+                gridMitsmori[94, intRow].Value = tC2.Text;
+                gridMitsmori[95, intRow].Value = tC3.Text;
+                gridMitsmori[96, intRow].Value = tC4.Text;
+                gridMitsmori[97, intRow].Value = tC5.Text;
+                gridMitsmori[98, intRow].Value = tC6.Text;
+            }
+        }
+
+        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            editGrid(e);
+        }
+
+        // gird 更新
+        private void editGrid(DataGridViewCellEventArgs e)
+        {
+            // 品名・型番がある時は印刷チェックを入れる
+            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, e.RowIndex], false)))
+            {
+                gridMitsmori[1, e.RowIndex].Value = "1";
+            }
+            else
+            {
+                gridMitsmori[1, e.RowIndex].Value = "0";
+            }
+
+            // 見積単価・数量・定価のいずれかが変更された場合
+            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+            {
+                decimal dSuryo = 0;
+                decimal dTeika = 0;
+                decimal dTanka = 0;
+
+                decimal dRitsu = 0;
+                decimal dKin = 0;
+
+                dSuryo = Decimal.Parse(getCellValue(gridMitsmori[3, e.RowIndex], true));
+                dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, e.RowIndex], true));
+                dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, e.RowIndex], true));
+
+                if (!dTeika.Equals(0))
+                {
+                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                }
+
+                dKin = Decimal.Round(dTanka * dSuryo, 0);
+
+                gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString();
+
+                gridMitsmori.EndEdit();
+
+                setText(e.RowIndex);
+                calc(1);
+                calc(2);
+                calc(3);
+                changeTotal();
+            }
+        }
+
+        private void txtZaiTnk1_Leave(object sender, EventArgs e)
+        {
+            calc(1);
+            changeTotal();
+        }
+
+        private void txtZaiTnk2_Leave(object sender, EventArgs e)
+        {
+            calc(2);
+            changeTotal();
+        }
+
+        private void txtZaiTnk3_Leave(object sender, EventArgs e)
+        {
+            calc(3);
+            changeTotal();
         }
 
         // 下部編集部計算
@@ -1661,6 +1665,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 cellKakoTanka2.Value = dKakoTanka2.ToString();
                 cellKakoKin2.Value = dKakoKin2.ToString();
 
+                gridMitsmori.EndEdit();
 
                 // 粗利率が閾値未満の場合、フォントカラーを変更
                 if (dArariRitsuM < 15)
@@ -1687,40 +1692,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        private Boolean cellValueChecker(int col, int row)
-        {
-            Boolean flg = false;
-
-            DataGridViewCell nowCell = gridMitsmori[col, row];
-            if (nowCell != null)
-            {
-                if (nowCell.Value != null)
-                {
-                    flg = true;
-                }
-            }
-
-            return flg;
-        }
-        private Boolean cellValueCheckerN(int col, int row)
-        {
-            Boolean flg = false;
-
-            DataGridViewCell nowCell = gridMitsmori[col, row];
-            if (nowCell != null)
-            {
-                if (nowCell.Value != null)
-                {
-                    if (!string.IsNullOrWhiteSpace(nowCell.Value.ToString()))
-                    {
-                        flg = true;
-                    }
-                }
-            }
-
-            return flg;
         }
 
         // 合計値計算
@@ -1761,14 +1732,15 @@ namespace KATO.Form.H0210_MitsumoriInput
                             gridMitsmori[10, i].Value = gridMitsmori[31, i].Value;
                         }
                     }
+                    gridMitsmori.EndEdit();
                 }
                 #endregion
 
                 // 仕入合計、売上(見積)合計
                 for (int i = 0; i < gridMitsmori.RowCount; i++)
                 {
-                    dShiireTotal += getDecValue(getCellValue(gridMitsmori[8, i], true));
-                    dMitsuTotal += getDecValue(getCellValue(gridMitsmori[5, i], true));
+                    dShiireTotal += getDecValue(getCellValue(gridMitsmori[8, i], true)) * getDecValue(getCellValue(gridMitsmori[3, i], true));
+                    dMitsuTotal += getDecValue(getCellValue(gridMitsmori[5, i], true)) * getDecValue(getCellValue(gridMitsmori[3, i], true));
                 }
                 txtSiireTotal.Text = (Decimal.Round(dShiireTotal, 0)).ToString();
                 txtUriTotal.Text = (Decimal.Round(dMitsuTotal, 0)).ToString();
@@ -1794,185 +1766,372 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private void setRowBGColor1(Color bgc)
+        private void addRow()
         {
-            txtZaiCd1.BackColor = bgc;
-            txtZaiMei1.BackColor = bgc;
-            txtZaiTeika1.BackColor = bgc;
-            txtZaiTnk1.BackColor = bgc;
-            txtZaiRit1.BackColor = bgc;
-            txtKakCd1.BackColor = bgc;
-            txtKakMei1.BackColor = bgc;
-            txtKakTnk1.BackColor = bgc;
-            //txtKakRit1.BackColor = bgc;
-            txtArr1.BackColor = bgc;
-            txtSrrt1.BackColor = bgc;
-        }
-        private void setRowBGColor2(Color bgc)
-        {
-            txtZaiCd2.BackColor = bgc;
-            txtZaiMei2.BackColor = bgc;
-            txtZaiTeika2.BackColor = bgc;
-            txtZaiTnk2.BackColor = bgc;
-            txtZaiRit2.BackColor = bgc;
-            txtKakCd2.BackColor = bgc;
-            txtKakMei2.BackColor = bgc;
-            txtKakTnk2.BackColor = bgc;
-            //txtKakRit2.BackColor = bgc;
-            txtArr2.BackColor = bgc;
-            txtSrrt2.BackColor = bgc;
-        }
-        private void setRowBGColor3(Color bgc)
-        {
-            txtZaiCd3.BackColor = bgc;
-            txtZaiMei3.BackColor = bgc;
-            txtZaiTeika3.BackColor = bgc;
-            txtZaiTnk3.BackColor = bgc;
-            txtZaiRit3.BackColor = bgc;
-            txtKakCd3.BackColor = bgc;
-            txtKakMei3.BackColor = bgc;
-            txtKakTnk3.BackColor = bgc;
-            //txtKakRit3.BackColor = bgc;
-            txtArr3.BackColor = bgc;
-            txtSrrt3.BackColor = bgc;
-        }
-        private void setRowBGColor4(Color bgc)
-        {
-            txtZaiCd4.BackColor = bgc;
-            txtZaiMei4.BackColor = bgc;
-            txtZaiTeika4.BackColor = bgc;
-            txtZaiTnk4.BackColor = bgc;
-            txtZaiRit4.BackColor = bgc;
-            txtKakCd4.BackColor = bgc;
-            txtKakMei4.BackColor = bgc;
-            txtKakTnk4.BackColor = bgc;
-            //txtKakRit4.BackColor = bgc;
-            txtArr4.BackColor = bgc;
-            txtSrrt4.BackColor = bgc;
-        }
-        private void setRowBGColor5(Color bgc)
-        {
-            txtZaiCd5.BackColor = bgc;
-            txtZaiMei5.BackColor = bgc;
-            txtZaiTeika5.BackColor = bgc;
-            txtZaiTnk5.BackColor = bgc;
-            txtZaiRit5.BackColor = bgc;
-            txtKakCd5.BackColor = bgc;
-            txtKakMei5.BackColor = bgc;
-            txtKakTnk5.BackColor = bgc;
-            //txtKakRit5.BackColor = bgc;
-            txtArr5.BackColor = bgc;
-            txtSrrt5.BackColor = bgc;
-        }
-        private void setRowBGColor6(Color bgc)
-        {
-            txtZaiCd6.BackColor = bgc;
-            txtZaiMei6.BackColor = bgc;
-            txtZaiTeika6.BackColor = bgc;
-            txtZaiTnk6.BackColor = bgc;
-            txtZaiRit6.BackColor = bgc;
-            txtKakCd6.BackColor = bgc;
-            txtKakMei6.BackColor = bgc;
-            txtKakTnk6.BackColor = bgc;
-            //txtKakRit6.BackColor = bgc;
-            txtArr6.BackColor = bgc;
-            txtSrrt6.BackColor = bgc;
-        }
-
-        private void dataGridView2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            keyFlgF9 = false;
-            if (ColIndex == 2 && e.KeyCode == Keys.F9)
+            if (gridMitsmori.CurrentCell == null)
             {
-                LabelSet_Daibunrui lDai = new LabelSet_Daibunrui();
-                LabelSet_Chubunrui lChu = new LabelSet_Chubunrui();
-                LabelSet_Maker lMak = new LabelSet_Maker();
-                BaseText tSho = new BaseText();
-                BaseText tKata = new BaseText();
-                BaseText tC1 = new BaseText();
-                BaseText tC2 = new BaseText();
-                BaseText tC3 = new BaseText();
-                BaseText tC4 = new BaseText();
-                BaseText tC5 = new BaseText();
-                BaseText tC6 = new BaseText();
+                return;
+            }
+            int rNum = gridMitsmori.CurrentCell.RowIndex;
+            dt.Rows.InsertAt(dt.NewRow(), rNum);
 
-                ShouhinList sl = new ShouhinList(this);
-                sl.lsDaibunrui = lDai;
-                sl.lsChubunrui = lChu;
-                sl.lsMaker = lMak;
-                sl.btxtShohinCd = tSho;
-                sl.btxtHinC1Hinban = tKata;
-                sl.btxtHinC1 = tC1;
-                sl.btxtHinC2 = tC2;
-                sl.btxtHinC3 = tC3;
-                sl.btxtHinC4 = tC4;
-                sl.btxtHinC5 = tC5;
-                sl.btxtHinC6 = tC6;
-                sl.intFrmKind = 1;
-
-                sl.ShowDialog();
-
-                int intRow = RowIndex;
-                gridMitsmori[2, intRow].Value = tKata.Text;
-                gridMitsmori[87, intRow].Value = lDai.CodeTxtText;
-                gridMitsmori[88, intRow].Value = lDai.CodeTxtText;
-                gridMitsmori[89, intRow].Value = lDai.CodeTxtText;
-                gridMitsmori[86, intRow].Value = tSho.Text;
-                gridMitsmori[93, intRow].Value = tC1.Text;
-                gridMitsmori[94, intRow].Value = tC2.Text;
-                gridMitsmori[95, intRow].Value = tC3.Text;
-                gridMitsmori[96, intRow].Value = tC4.Text;
-                gridMitsmori[97, intRow].Value = tC5.Text;
-                gridMitsmori[98, intRow].Value = tC6.Text;
+            for (int i = 0; i < gridMitsmori.RowCount; i++)
+            {
+                gridMitsmori[0, i].Value = (i + 1).ToString();
             }
         }
 
-        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void delRow()
         {
-            editGrid(e);
+            if (gridMitsmori.CurrentCell == null)
+            {
+                return;
+            }
+            int rNum = gridMitsmori.CurrentCell.RowIndex;
+            dt.Rows.RemoveAt(rNum);
+
+            for (int i = 0; i < gridMitsmori.RowCount; i++)
+            {
+                gridMitsmori[0, i].Value = (i + 1).ToString();
+            }
         }
 
-        private void editGrid(DataGridViewCellEventArgs e)
+        // 見積検索
+        private void txtMNum_Leave(object sender, EventArgs e)
         {
-            // 品名・型番がある時は印刷チェックを入れる
-            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, e.RowIndex], false)))
+            getMitsumoriInfo();
+        }
+
+        private void txtMNum_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                gridMitsmori[1, e.RowIndex].Value = "1";
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-            else
+            else if (e.KeyCode == Keys.F9)
             {
-                gridMitsmori[1, e.RowIndex].Value = "0";
+                Form8_2 f = new Form8_2();
+                openChildForm(f);
+            }
+        }
+
+        private void getMitsumoriInfo()
+        {
+            if (string.IsNullOrWhiteSpace(txtMNum.Text))
+            {
+                return;
             }
 
-            // 見積単価・数量・定価のいずれかが変更された場合
-            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+            if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2"))
             {
-                decimal dSuryo = 0;
-                decimal dTeika = 0;
-                decimal dTanka = 0;
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "見積データをコピーします。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+            }
 
-                decimal dRitsu = 0;
-                decimal dKin = 0;
+            H0210_MitsumoriInput_B mInputB = new H0210_MitsumoriInput_B();
+            try
+            {
+                DataTable dtInfo = mInputB.getMitsumoriInfo(txtMNum.Text);
 
-                dSuryo = Decimal.Parse(getCellValue(gridMitsmori[3, e.RowIndex], true));
-                dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, e.RowIndex], true));
-                dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, e.RowIndex], true));
-
-                if (!dTeika.Equals(0))
+                if (dtInfo == null || dtInfo.Rows.Count == 0)
                 {
-                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "見積データがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                btnF01.Enabled = false;
+                btnF03.Enabled = false;
+
+                txtMYMD.Text = dtInfo.Rows[0]["見積年月日"].ToString();
+                txtKenmei.Text = dtInfo.Rows[0]["標題"].ToString();
+
+                txtTanto.Text = dtInfo.Rows[0]["担当者名"].ToString();
+                cbNoki.Text = dtInfo.Rows[0]["納期"].ToString();
+                cbJoken.Text = dtInfo.Rows[0]["支払条件"].ToString();
+                cbKigen.Text = dtInfo.Rows[0]["有効期限"].ToString();
+                txtBiko.Text = dtInfo.Rows[0]["備考"].ToString();
+                tsTokuisaki.CodeTxtText = dtInfo.Rows[0]["得意先コード"].ToString();
+                tsTokuisaki.valueTextText = dtInfo.Rows[0]["得意先名称"].ToString();
+                lsTantousha.CodeTxtText = dtInfo.Rows[0]["担当者コード"].ToString();
+                lsEigyosho.CodeTxtText = dtInfo.Rows[0]["営業所コード"].ToString();
+                tsNonyusaki.CodeTxtText = dtInfo.Rows[0]["納入先コード"].ToString();
+                tsNonyusaki.valueTextText = dtInfo.Rows[0]["納入先名称"].ToString();
+                txtMemo.Text = dtInfo.Rows[0]["社内メモ"].ToString();
+
+                dt = mInputB.getMitsumoriDetail(txtMNum.Text);
+                int intTrueRows = dt.Rows.Count;
+
+                for (int i = dt.Rows.Count; i < 200; i++)
+                {
+                    dt.Rows.InsertAt(dt.NewRow(), 999);
+                }
+                for (int i = 0; i < 200; i++)
+                {
+                    gridMitsmori[0, i].Value = (i + 1).ToString();
                 }
 
-                dKin = Decimal.Round(dTanka * dSuryo, 0);
+                gridMitsmori.DataSource = dt;
 
-                gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString();
-                gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString();
+                for (int i = 0; i < intTrueRows; i++)
+                {
+                    gridMitsmori[1, i].Value = "1";
+                }
+                gridMitsmori[2, intTrueRows].Value = "以下余白";
 
-                setText(e.RowIndex);
-                calc(1);
-                calc(2);
-                calc(3);
+                gridMitsmori.EndEdit();
+
+                setText(0);
                 changeTotal();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        // 見積更新
+        private void updMitsumori()
+        {
+            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+            try
+            {
+                string strMNum = "";
+                inputB.beginTrance();
+                if (string.IsNullOrWhiteSpace(txtMNum.Text))
+                {
+                    strMNum = inputB.getDenpyoNo("見積");
+                    txtMNum.Text = strMNum;
+                }
+                else
+                {
+                    strMNum = txtMNum.Text;
+                }
+
+                changeTotal();
+
+                Form11 f = new Form11();
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                f.StartPosition = FormStartPosition.Manual;
+                f.Location = s.Bounds.Location;
+
+                for (int i = 0; i < gridMitsmori.RowCount; i++)
+                {
+                    string a = gridMitsmori[1, i].Value.ToString();
+                    if (gridMitsmori[1, i].Value != null && gridMitsmori[1, i].Value.ToString().Equals("1"))
+                    {
+                        UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
+                        uc.Name = "uc" + i.ToString();
+                        uc.txtHin.Text = getCellValue(gridMitsmori[2, i], false);
+
+                        uc.lsDaibun.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
+                        uc.lsChubun.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
+                        uc.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
+
+                        uc.strRow = getCellValue(gridMitsmori[0, i], false);
+                        uc.strShohinCd = getCellValue(gridMitsmori[86, i], false);
+                        uc.strC1 = getCellValue(gridMitsmori[93, i], false);
+                        uc.strC2 = getCellValue(gridMitsmori[94, i], false);
+                        uc.strC3 = getCellValue(gridMitsmori[95, i], false);
+                        uc.strC4 = getCellValue(gridMitsmori[96, i], false);
+                        uc.strC5 = getCellValue(gridMitsmori[97, i], false);
+                        uc.strC6 = getCellValue(gridMitsmori[98, i], false);
+
+                        uc.strSuryo = getCellValue(gridMitsmori[3, i], false);
+                        uc.strTanni = getCellValue(null, true);
+                        uc.strMitsuTanka = getCellValue(gridMitsmori[5, i], true);
+                        uc.strKin = getCellValue(gridMitsmori[7, i], true);
+                        uc.strShiireKin = getCellValue(gridMitsmori[8, i], true);
+                        uc.strArariKin = getCellValue(gridMitsmori[9, i], true);
+                        uc.strArariritsuKin = getCellValue(gridMitsmori[10, i], true);
+                        uc.strBiko = getCellValue(gridMitsmori[11, i], false);
+
+                        uc.strShiiName = getCellValue(gridMitsmori[12, i], false);
+                        uc.strPrint = getCellValue(gridMitsmori[13, i], false);
+
+                        uc.strShiireCd1 = getCellValue(gridMitsmori[14, i], false);
+                        uc.strShiireName1 = getCellValue(gridMitsmori[15, i], false);
+                        uc.strShiireTanka1 = getCellValue(gridMitsmori[16, i], false);
+                        uc.strShiireKin1 = getCellValue(gridMitsmori[17, i], false);
+                        uc.strShiireArari1 = getCellValue(gridMitsmori[18, i], false);
+                        uc.strShiireRitsu1 = getCellValue(gridMitsmori[19, i], false);
+
+                        uc.strShiireCd2 = getCellValue(gridMitsmori[20, i], false);
+                        uc.strShiireName2 = getCellValue(gridMitsmori[21, i], false);
+                        uc.strShiireTanka2 = getCellValue(gridMitsmori[22, i], false);
+                        uc.strShiireKin2 = getCellValue(gridMitsmori[23, i], false);
+                        uc.strShiireArari2 = getCellValue(gridMitsmori[24, i], false);
+                        uc.strShiireRitsu2 = getCellValue(gridMitsmori[25, i], false);
+
+                        uc.strShiireCd3 = getCellValue(gridMitsmori[26, i], false);
+                        uc.strShiireName3 = getCellValue(gridMitsmori[27, i], false);
+                        uc.strShiireTanka3 = getCellValue(gridMitsmori[28, i], false);
+                        uc.strShiireKin3 = getCellValue(gridMitsmori[29, i], false);
+                        uc.strShiireArari3 = getCellValue(gridMitsmori[30, i], false);
+                        uc.strShiireRitsu3 = getCellValue(gridMitsmori[31, i], false);
+
+                        if (!string.IsNullOrWhiteSpace(uc.strShiireName1) && uc.strShiireName1.Equals(uc.strShiiName))
+                        {
+                            uc.strShiireCd = getCellValue(gridMitsmori[14, i], false);
+                        }
+                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName2) && uc.strShiireName1.Equals(uc.strShiiName))
+                        {
+                            uc.strShiireCd = getCellValue(gridMitsmori[20, i], false);
+                        }
+                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName3) && uc.strShiireName1.Equals(uc.strShiiName))
+                        {
+                            uc.strShiireCd = getCellValue(gridMitsmori[26, i], false);
+                        }
+
+                        f.tableLayoutPanel1.Controls.Add(uc);
+                    }
+                }
+
+                f.FrmParent = this;
+                f.ShowDialog();
+                f.Dispose();
+
+                if (printFlg)
+                {
+                    List<String> aryPrm = new List<string>();
+
+                    aryPrm.Add(strMNum);
+                    aryPrm.Add(txtMYMD.Text);
+                    aryPrm.Add(txtKenmei.Text);
+                    aryPrm.Add(txtTanto.Text);
+                    aryPrm.Add(cbNoki.Text);
+                    aryPrm.Add(cbJoken.Text);
+                    aryPrm.Add(cbKigen.Text);
+                    aryPrm.Add(txtBiko.Text);
+                    aryPrm.Add(tsTokuisaki.CodeTxtText);
+                    aryPrm.Add(tsTokuisaki.valueTextText);
+                    aryPrm.Add(lsTantousha.CodeTxtText);
+                    aryPrm.Add(lsEigyosho.CodeTxtText);
+                    aryPrm.Add(txtUriTotal.Text);
+                    aryPrm.Add(txtArariTotal.Text);
+                    aryPrm.Add(tsNonyusaki.CodeTxtText);
+                    aryPrm.Add(tsNonyusaki.valueTextText);
+                    aryPrm.Add(txtMemo.Text);
+                    aryPrm.Add(Environment.UserName);
+
+                    inputB.updMitsumoriH(aryPrm);
+                    inputB.delMitsumoriM(strMNum, Environment.UserName);
+
+                    for (int i = 0; i < gridMitsmori.RowCount; i++)
+                    {
+                        if (getCellValue(gridMitsmori[2, i], false).Equals("以下余白"))
+                        {
+                            break;
+                        }
+
+                        aryPrm = new List<string>();
+                        aryPrm.Add(strMNum);
+                        aryPrm.Add(getCellValue(gridMitsmori[0, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[86, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[2, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[3, i], true));
+                        aryPrm.Add(getCellValue(null, true));
+                        aryPrm.Add(getCellValue(gridMitsmori[5, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[7, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[9, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[10, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[11, i], false));
+
+                        if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[14, i], false)) && getCellValue(gridMitsmori[14, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
+                        {
+                            aryPrm.Add(getCellValue(gridMitsmori[14, i], false));
+                        }
+                        else if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[20, i], false)) && getCellValue(gridMitsmori[20, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
+                        {
+                            aryPrm.Add(getCellValue(gridMitsmori[20, i], false));
+                        }
+                        else if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[26, i], false)) && getCellValue(gridMitsmori[26, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
+                        {
+                            aryPrm.Add(getCellValue(gridMitsmori[26, i], false));
+                        }
+                        else
+                        {
+                            aryPrm.Add("");
+                        }
+
+                        aryPrm.Add(getCellValue(gridMitsmori[12, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[13, i], false));
+
+                        aryPrm.Add(getCellValue(gridMitsmori[14, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[15, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[16, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[17, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[18, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[19, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[20, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[21, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[22, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[23, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[24, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[25, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[26, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[27, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[28, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[29, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[30, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[31, i], false));
+                        aryPrm.Add(Environment.UserName);
+
+                        inputB.updMitsumoriM(aryPrm);
+                    }
+
+                    inputB.commit();
+
+                    PrintDialog pf = new PrintDialog(this);
+                    pf.StartPosition = FormStartPosition.CenterScreen;
+                    pf.Location = s.Bounds.Location;
+                    pf.ShowDialog();
+                    pf.Dispose();
+
+                    if (intPrint > 0)
+                    {
+                        printMitsumori();
+                    }
+                    if (intPrint == 2)
+                    {
+                        printDetail();
+                    }
+
+                    intPrint = 0;
+                    PrintFlg = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                inputB.rollback();
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -2032,438 +2191,35 @@ namespace KATO.Form.H0210_MitsumoriInput
             return true;
         }
 
-        private void addRow()
+        // 見積削除
+        private void delMitsumori()
         {
-            if (gridMitsmori.CurrentCell == null)
-            {
-                return;
-            }
-            int rNum = gridMitsmori.CurrentCell.RowIndex;
-            dt.Rows.InsertAt(dt.NewRow(), rNum);
-
-            for (int i = 0; i < gridMitsmori.RowCount; i++)
-            {
-                gridMitsmori[0, i].Value = (i + 1).ToString();
-            }
-        }
-
-        private void delRow()
-        {
-            if (gridMitsmori.CurrentCell == null)
-            {
-                return;
-            }
-            int rNum = gridMitsmori.CurrentCell.RowIndex;
-            dt.Rows.RemoveAt(rNum);
-
-            for (int i = 0; i < gridMitsmori.RowCount; i++)
-            {
-                gridMitsmori[0, i].Value = (i + 1).ToString();
-            }
-        }
-
-        // 見積検索
-        private void getMitsumoriInfo()
-        {
-            if (string.IsNullOrWhiteSpace(txtMNum.Text))
+            BaseMessageBox basemessageboxSa = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessageboxSa.ShowDialog() == DialogResult.No)
             {
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2"))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "見積データをコピーします。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
-            }
-
-            H0210_MitsumoriInput_B mInputB = new H0210_MitsumoriInput_B();
+            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
             try
             {
-                DataTable dtInfo = mInputB.getMitsumoriInfo(txtMNum.Text);
+                inputB.beginTrance();
 
-                if (dtInfo == null || dtInfo.Rows.Count == 0)
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "見積データがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                inputB.delMitsumoriM(txtMNum.Text, Environment.UserName);
+                inputB.delMitsumoriH(txtMNum.Text, Environment.UserName);
 
-                txtMYMD.Text = dtInfo.Rows[0]["見積年月日"].ToString();
-                txtKenmei.Text = dtInfo.Rows[0]["標題"].ToString();
+                inputB.commit();
 
-                txtTanto.Text = dtInfo.Rows[0]["担当者名"].ToString();
-                cbNoki.Text = dtInfo.Rows[0]["納期"].ToString();
-                cbJoken.Text = dtInfo.Rows[0]["支払条件"].ToString();
-                cbKigen.Text = dtInfo.Rows[0]["有効期限"].ToString();
-                txtBiko.Text = dtInfo.Rows[0]["備考"].ToString();
-                tsTokuisaki.CodeTxtText = dtInfo.Rows[0]["得意先コード"].ToString();
-                tsTokuisaki.valueTextText = dtInfo.Rows[0]["得意先名称"].ToString();
-                lsTantousha.CodeTxtText = dtInfo.Rows[0]["担当者コード"].ToString();
-                lsEigyosho.CodeTxtText = dtInfo.Rows[0]["営業所コード"].ToString();
-                txtNonyuCd.Text = dtInfo.Rows[0]["納入先コード"].ToString();
-                txtNonyuName.Text = dtInfo.Rows[0]["納入先名称"].ToString();
-                txtMemo.Text = dtInfo.Rows[0]["社内メモ"].ToString();
-
-                dt = mInputB.getMitsumoriDetail(txtMNum.Text);
-                int intTrueRows = dt.Rows.Count;
-
-                for (int i = dt.Rows.Count; i < 200; i++)
-                {
-                    dt.Rows.InsertAt(dt.NewRow(), 999);
-                }
-                for (int i = 0; i < 200; i++)
-                {
-                    gridMitsmori[0, i].Value = (i + 1).ToString();
-                }
-
-                gridMitsmori.DataSource = dt;
-
-                for (int i = 0; i < intTrueRows; i++)
-                {
-                    gridMitsmori[1, i].Value = "1";
-                }
-                gridMitsmori[2, intTrueRows].Value = "以下余白";
-
-                setText(0);
-                changeTotal();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
-                return;
-            }
-        }
-
-        private void txtZaiCd1_Leave(object sender, EventArgs e)
-        {
-            setShiiresaki((TextBox)sender, true);
-        }
-
-        private void txtZaiCd1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            keyFlgF9 = false;
-            if (e.KeyCode == Keys.F9)
-            {
-                //setShiiresaki((TextBox)sender, true);
-                LabelSet_Torihikisaki ls = new LabelSet_Torihikisaki();
-                TorihikisakiList tl = new TorihikisakiList(this, ls);
-                tl.ShowDialog();
-
-                if (((TextBox)sender).Name.Equals("txtZaiCd1"))
-                {
-                    txtZaiCd1.Text = ls.CodeTxtText;
-                    txtZaiMei1.Text = ls.ValueLabelText;
-                    gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = ls.CodeTxtText;
-                    gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd2"))
-                {
-                    txtZaiCd2.Text = ls.CodeTxtText;
-                    txtZaiMei1.Text = ls.ValueLabelText;
-                    gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd3"))
-                {
-                    txtZaiCd3.Text = ls.CodeTxtText;
-                    txtZaiMei1.Text = ls.ValueLabelText;
-                    gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd4"))
-                {
-                    txtZaiCd4.Text = ls.CodeTxtText;
-                    txtZaiMei4.Text = ls.ValueLabelText;
-                    gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd5"))
-                {
-                    txtZaiCd5.Text = ls.CodeTxtText;
-                    txtZaiMei5.Text = ls.ValueLabelText;
-                    gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd6"))
-                {
-                    txtZaiCd6.Text = ls.CodeTxtText;
-                    txtZaiMei6.Text = ls.ValueLabelText;
-                    gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd1"))
-                {
-                    txtKakCd1.Text = ls.CodeTxtText;
-                    txtKakMei1.Text = ls.ValueLabelText;
-                    gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd2"))
-                {
-                    txtKakCd2.Text = ls.CodeTxtText;
-                    txtKakMei2.Text = ls.ValueLabelText;
-                    gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd3"))
-                {
-                    txtKakCd3.Text = ls.CodeTxtText;
-                    txtKakMei3.Text = ls.ValueLabelText;
-                    gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd4"))
-                {
-                    txtKakCd4.Text = ls.CodeTxtText;
-                    txtKakMei4.Text = ls.ValueLabelText;
-                    gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd5"))
-                {
-                    txtKakCd5.Text = ls.CodeTxtText;
-                    txtKakMei5.Text = ls.ValueLabelText;
-                    gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-                else if (((TextBox)sender).Name.Equals("txtKakCd6"))
-                {
-                    txtKakCd6.Text = ls.CodeTxtText;
-                    txtKakMei6.Text = ls.ValueLabelText;
-                    gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = null;
-                    gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
-                }
-            }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
-        }
-
-        private void setShiiresaki(TextBox sender, bool b) {
-            if (string.IsNullOrWhiteSpace(sender.Text))
-            {
-                return;
-            }
-
-            sender.Text = sender.Text.Trim();
-            if (sender.Text.Length < 4)
-            {
-                sender.Text = sender.Text.PadLeft(4, '0');
-            }
-
-            List<string> lstStringSQL = new List<string>();
-
-            //データ渡し用
-            lstStringSQL.Add("Common");
-            lstStringSQL.Add("C_LIST_Shiresaki_SELECT_LEAVE");
-
-            OpenSQL opensql = new OpenSQL();
-            try
-            {
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-                if (string.IsNullOrWhiteSpace(strSQLInput))
-                {
-                    return;
-                }
-
-                strSQLInput = string.Format(strSQLInput, sender.Text);
-
-                //SQLのインスタンス作成
-                DBConnective dbconnective = new DBConnective();
-
-                //SQL文を直書き（＋戻り値を受け取る)
-                DataTable dtSetCd = dbconnective.ReadSql(strSQLInput);
-
-                if (dtSetCd.Rows.Count != 0)
-                {
-                    sender.Text = dtSetCd.Rows[0]["仕入先コード"].ToString();
-                    
-                    if (sender.Name.Equals("txtZaiCd1"))
-                    {
-                        txtZaiMei1.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei1.Text;
-                    }
-                    else if (sender.Name.Equals("txtZaiCd2"))
-                    {
-                        txtZaiMei2.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei2.Text;
-                    }
-                    else if (sender.Name.Equals("txtZaiCd3"))
-                    {
-                        txtZaiMei3.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei3.Text;
-                    }
-                    else if (sender.Name.Equals("txtZaiCd4"))
-                    {
-                        txtZaiMei4.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei4.Text;
-                    }
-                    else if (sender.Name.Equals("txtZaiCd5"))
-                    {
-                        txtZaiMei5.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei5.Text;
-                    }
-                    else if (sender.Name.Equals("txtZaiCd6"))
-                    {
-                        txtZaiMei6.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei6.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd1"))
-                    {
-                        txtKakMei1.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei1.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd2"))
-                    {
-                        txtKakMei2.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei2.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd3"))
-                    {
-                        txtKakMei3.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei3.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd4"))
-                    {
-                        txtKakMei4.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei4.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd5"))
-                    {
-                        txtKakMei5.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei5.Text;
-                    }
-                    else if (sender.Name.Equals("txtKakCd"))
-                    {
-                        txtKakMei6.Text = dtSetCd.Rows[0]["仕入先名"].ToString();
-                        gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei6.Text;
-                    }
-                }
-                else
-                {
-                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                    if (b == true) {
-                        if (bCdflg) {
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                            basemessagebox.ShowDialog();
-                            bCdflg = false;
-                        }
-                        else
-                        {
-                            bCdflg = true;
-                        }
-                    }
-
-                    if (sender.Name.Equals("txtZaiCd1"))
-                    {
-                        gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiMei1.Text = "";
-                        txtZaiCd1.Focus();
-                    }
-                    else if (sender.Name.Equals("txtZaiCd2"))
-                    {
-                        gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiMei2.Text = "";
-                        txtZaiCd2.Focus();
-                    }
-                    else if (sender.Name.Equals("txtZaiCd3"))
-                    {
-                        gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiMei3.Text = "";
-                        txtZaiCd3.Focus();
-                    }
-                    else if (sender.Name.Equals("txtZaiCd4"))
-                    {
-                        gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiCd4.Text = "";
-                        txtZaiCd4.Focus();
-                    }
-                    else if (sender.Name.Equals("txtZaiCd5"))
-                    {
-                        gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiCd5.Text = "";
-                        txtZaiCd5.Focus();
-                    }
-                    else if (sender.Name.Equals("txtZaiCd6"))
-                    {
-                        gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtZaiCd6.Text = "";
-                        txtZaiCd6.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd1"))
-                    {
-                        gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei1.Text = "";
-                        txtKakCd1.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd2"))
-                    {
-                        gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei2.Text = "";
-                        txtKakCd2.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd3"))
-                    {
-                        gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei3.Text = "";
-                        txtKakCd3.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd4"))
-                    {
-                        gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei4.Text = "";
-                        txtKakCd4.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd5"))
-                    {
-                        gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei5.Text = "";
-                        txtKakCd5.Focus();
-                    }
-                    else if (sender.Name.Equals("txtKakCd6"))
-                    {
-                        gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
-                        gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = "";
-                        txtKakMei6.Text = "";
-                        txtKakCd6.Focus();
-                    }
-
-                    return;
-                }
-                return;
+                clearInput();
             }
             catch (Exception ex)
             {
                 //データロギング
                 new CommonException(ex);
-
+                inputB.rollback();
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -2471,24 +2227,51 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private void txtMNum_Leave(object sender, EventArgs e)
+        // 入力欄クリア
+        private void clearInput()
         {
-            getMitsumoriInfo();
-        }
+            txtMode.Text = "1";
+            txtMNum.Text = "";
+            tsTokuisaki.CodeTxtText = "";
+            tsTokuisaki.valueTextText = "";
+            tsNonyusaki.CodeTxtText = "";
+            tsNonyusaki.valueTextText = "";
+            txtTanto.Text = "";
+            txtKenmei.Text = "";
+            cbNoki.SelectedIndex = 0;
+            cbKigen.SelectedIndex = 0;
+            cbJoken.SelectedIndex = 0;
+            txtBiko.Text = "";
+            txtMemo.Text = "";
+            rd2.Checked = false;
+            rd1.Checked = true;
+            cbMaker.Checked = true;
+            cbChubun.Checked = false;
 
-        private void txtMNum_KeyUp(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
-            else if (e.KeyCode == Keys.F9)
-            {
-                Form8_2 f = new Form8_2();
-                openChildForm(f);
-            }
-        }
+            txtUriTotal.Text = "";
+            txtSiireTotal.Text = "";
+            txtArariTotal.Text = "";
+            txtArariRitsu.Text = "";
 
+            lsTantousha.CodeTxtText = defUser;
+            lsEigyosho.CodeTxtText = defEigyo;
+            txtMYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
+
+            for (int i = 0; i < 200; i++)
+            {
+                dt.Rows.InsertAt(dt.NewRow(), 0);
+            }
+            gridMitsmori.DataSource = dt;
+            for (int i = 0; i < 200; i++)
+            {
+                gridMitsmori[0, i].Value = (i + 1).ToString();
+            }
+            gridMitsmori.CurrentCell = gridMitsmori[0, 0];
+            RowIndex = 0;
+            ColIndex = 0;
+        }
+        
+        // 見積印刷
         private void printMitsumori()
         {
             string st = null;
@@ -2508,47 +2291,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        private void printDetail()
-        {
-            string st = null;
-            try
-            {
-                st = dbToPdfMeisai(gridMitsmori);
-
-                PDFPreviewM pp = new PDFPreviewM(this, st);
-                pp.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                //データロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
-        }
-
-        private void openChildForm(Form8_2 f)
-        {
-            Screen s = null;
-            Screen[] argScreen = Screen.AllScreens;
-            if (argScreen.Length > 1)
-            {
-                s = argScreen[1];
-            }
-            else
-            {
-                s = argScreen[0];
-            }
-
-            f.StartPosition = FormStartPosition.Manual;
-            f.Location = s.Bounds.Location;
-
-            f.ShowDialog();
-            f.Dispose();
         }
 
         public string dbToPdf(BaseDataGridViewEdit dt)
@@ -2575,12 +2317,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                 currentsheet.Cell(5, "M").Value = txtMNum.Text;
                 currentsheet.Cell(6, "M").Value = txtMYMD.Text;
 
-                if (rd1.Checked) {
+                if (rd1.Checked)
+                {
                     currentsheet.Cell(6, "A").Value = tsTokuisaki.valueTextText;
                 }
                 else
                 {
-                    currentsheet.Cell(6, "A").Value = txtNonyuName.Text;
+                    currentsheet.Cell(6, "A").Value = tsNonyusaki.valueTextText;
                 }
                 currentsheet.Cell(7, "A").Value = txtTanto.Text;
                 currentsheet.Cell(9, "B").Value = txtKenmei.Text;
@@ -2597,7 +2340,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     {
                         continue;
                     }
-                        if (xlsRowCnt == 71)
+                    if (xlsRowCnt == 71)
                     {
                         pageCnt++;
                         xlsRowCnt = 3;
@@ -2677,6 +2420,28 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     //File.Delete(filepath);
                 }
+            }
+        }
+
+        // 仕入詳細印刷
+        private void printDetail()
+        {
+            string st = null;
+            try
+            {
+                st = dbToPdfMeisai(gridMitsmori);
+
+                PDFPreviewM pp = new PDFPreviewM(this, st);
+                pp.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 
@@ -2838,42 +2603,345 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        public decimal getDecValue(string s)
+        // 仕入先
+        private void txtZaiCd1_Leave(object sender, EventArgs e)
         {
-            decimal d = 0;
+            setShiiresaki((TextBox)sender, true);
+        }
 
-            if (!string.IsNullOrWhiteSpace(s))
+        private void txtZaiCd1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            keyFlgF9 = false;
+            if (e.KeyCode == Keys.F9)
             {
-                try
+                //setShiiresaki((TextBox)sender, true);
+                LabelSet_Torihikisaki ls = new LabelSet_Torihikisaki();
+                TorihikisakiList tl = new TorihikisakiList(this, ls);
+                tl.ShowDialog();
+
+                if (((TextBox)sender).Name.Equals("txtZaiCd1"))
                 {
-                    d = decimal.Parse(s);
+                    txtZaiCd1.Text = ls.CodeTxtText;
+                    txtZaiMei1.Text = ls.ValueLabelText;
+                    gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = ls.CodeTxtText;
+                    gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                catch (Exception e)
+                else if (((TextBox)sender).Name.Equals("txtZaiCd2"))
                 {
+                    txtZaiCd2.Text = ls.CodeTxtText;
+                    txtZaiMei1.Text = ls.ValueLabelText;
+                    gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtZaiCd3"))
+                {
+                    txtZaiCd3.Text = ls.CodeTxtText;
+                    txtZaiMei1.Text = ls.ValueLabelText;
+                    gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtZaiCd4"))
+                {
+                    txtZaiCd4.Text = ls.CodeTxtText;
+                    txtZaiMei4.Text = ls.ValueLabelText;
+                    gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtZaiCd5"))
+                {
+                    txtZaiCd5.Text = ls.CodeTxtText;
+                    txtZaiMei5.Text = ls.ValueLabelText;
+                    gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtZaiCd6"))
+                {
+                    txtZaiCd6.Text = ls.CodeTxtText;
+                    txtZaiMei6.Text = ls.ValueLabelText;
+                    gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd1"))
+                {
+                    txtKakCd1.Text = ls.CodeTxtText;
+                    txtKakMei1.Text = ls.ValueLabelText;
+                    gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd2"))
+                {
+                    txtKakCd2.Text = ls.CodeTxtText;
+                    txtKakMei2.Text = ls.ValueLabelText;
+                    gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd3"))
+                {
+                    txtKakCd3.Text = ls.CodeTxtText;
+                    txtKakMei3.Text = ls.ValueLabelText;
+                    gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd4"))
+                {
+                    txtKakCd4.Text = ls.CodeTxtText;
+                    txtKakMei4.Text = ls.ValueLabelText;
+                    gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd5"))
+                {
+                    txtKakCd5.Text = ls.CodeTxtText;
+                    txtKakMei5.Text = ls.ValueLabelText;
+                    gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
+                }
+                else if (((TextBox)sender).Name.Equals("txtKakCd6"))
+                {
+                    txtKakCd6.Text = ls.CodeTxtText;
+                    txtKakMei6.Text = ls.ValueLabelText;
+                    gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = null;
+                    gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
             }
-
-            return d;
+            else if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
         }
 
-        private void txtZaiTnk1_Leave(object sender, EventArgs e)
-        {
-            calc(1);
-            changeTotal();
+        private void setShiiresaki(TextBox sender, bool b) {
+            if (string.IsNullOrWhiteSpace(sender.Text))
+            {
+                return;
+            }
+
+            sender.Text = sender.Text.Trim();
+            if (sender.Text.Length < 4)
+            {
+                sender.Text = sender.Text.PadLeft(4, '0');
+            }
+
+            List<string> lstStringSQL = new List<string>();
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (string.IsNullOrWhiteSpace(strSQLInput))
+                {
+                    return;
+                }
+
+                strSQLInput = string.Format(strSQLInput, sender.Text);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                DataTable dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    sender.Text = dtSetCd.Rows[0]["取引先コード"].ToString();
+                    
+                    if (sender.Name.Equals("txtZaiCd1"))
+                    {
+                        txtZaiMei1.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei1.Text;
+                    }
+                    else if (sender.Name.Equals("txtZaiCd2"))
+                    {
+                        txtZaiMei2.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei2.Text;
+                    }
+                    else if (sender.Name.Equals("txtZaiCd3"))
+                    {
+                        txtZaiMei3.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei3.Text;
+                    }
+                    else if (sender.Name.Equals("txtZaiCd4"))
+                    {
+                        txtZaiMei4.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei4.Text;
+                    }
+                    else if (sender.Name.Equals("txtZaiCd5"))
+                    {
+                        txtZaiMei5.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei5.Text;
+                    }
+                    else if (sender.Name.Equals("txtZaiCd6"))
+                    {
+                        txtZaiMei6.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = txtZaiMei6.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd1"))
+                    {
+                        txtKakMei1.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei1.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd2"))
+                    {
+                        txtKakMei2.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei2.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd3"))
+                    {
+                        txtKakMei3.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei3.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd4"))
+                    {
+                        txtKakMei4.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei4.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd5"))
+                    {
+                        txtKakMei5.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei5.Text;
+                    }
+                    else if (sender.Name.Equals("txtKakCd"))
+                    {
+                        txtKakMei6.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
+                        gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei6.Text;
+                    }
+                    gridMitsmori.EndEdit();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    if (b == true) {
+                        if (bCdflg) {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                            bCdflg = false;
+                        }
+                        else
+                        {
+                            bCdflg = true;
+                        }
+                    }
+
+                    if (sender.Name.Equals("txtZaiCd1"))
+                    {
+                        gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiMei1.Text = "";
+                        txtZaiCd1.Focus();
+                    }
+                    else if (sender.Name.Equals("txtZaiCd2"))
+                    {
+                        gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiMei2.Text = "";
+                        txtZaiCd2.Focus();
+                    }
+                    else if (sender.Name.Equals("txtZaiCd3"))
+                    {
+                        gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiMei3.Text = "";
+                        txtZaiCd3.Focus();
+                    }
+                    else if (sender.Name.Equals("txtZaiCd4"))
+                    {
+                        gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiCd4.Text = "";
+                        txtZaiCd4.Focus();
+                    }
+                    else if (sender.Name.Equals("txtZaiCd5"))
+                    {
+                        gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiCd5.Text = "";
+                        txtZaiCd5.Focus();
+                    }
+                    else if (sender.Name.Equals("txtZaiCd6"))
+                    {
+                        gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtZaiCd6.Text = "";
+                        txtZaiCd6.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd1"))
+                    {
+                        gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei1.Text = "";
+                        txtKakCd1.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd2"))
+                    {
+                        gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei2.Text = "";
+                        txtKakCd2.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd3"))
+                    {
+                        gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei3.Text = "";
+                        txtKakCd3.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd4"))
+                    {
+                        gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei4.Text = "";
+                        txtKakCd4.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd5"))
+                    {
+                        gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei5.Text = "";
+                        txtKakCd5.Focus();
+                    }
+                    else if (sender.Name.Equals("txtKakCd6"))
+                    {
+                        gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
+                        gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = "";
+                        txtKakMei6.Text = "";
+                        txtKakCd6.Focus();
+                    }
+                    gridMitsmori.EndEdit();
+
+                    return;
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
-        private void txtZaiTnk2_Leave(object sender, EventArgs e)
-        {
-            calc(2);
-            changeTotal();
-        }
-
-        private void txtZaiTnk3_Leave(object sender, EventArgs e)
-        {
-            calc(3);
-            changeTotal();
-        }
-
+        // 編集部項目入れ替え
         private void button2_Click(object sender, EventArgs e)
         {
             changeEditItem(txtZaiCd4, txtZaiMei4, txtZaiTnk4, txtZaiCd5, txtZaiMei5, txtZaiTnk5,
@@ -2967,8 +3035,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             cNm1.Value = nm1.Text;
             cCd2.Value = cd2.Text;
             cNm2.Value = nm2.Text;
+            gridMitsmori.EndEdit();
         }
 
+        // 編集部仕入先選択
         private void button13_Click(object sender, EventArgs e)
         {
             selectEditItem(1);
@@ -3001,6 +3071,92 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 gridMitsmori[12, RowIndex].Value = gridMitsmori[27, RowIndex].Value;
             }
+            gridMitsmori.EndEdit();
+        }
+
+        // util系
+        public decimal getDecValue(string s)
+        {
+            decimal d = 0;
+
+            if (!string.IsNullOrWhiteSpace(s))
+            {
+                try
+                {
+                    d = decimal.Parse(s);
+                }
+                catch (Exception e)
+                {
+                }
+            }
+
+            return d;
+        }
+        private string getCellValue(DataGridViewCell c, bool zero)
+        {
+            string ret = "";
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+            }
+            return ret;
+        }
+        private Boolean cellValueChecker(int col, int row)
+        {
+            Boolean flg = false;
+
+            DataGridViewCell nowCell = gridMitsmori[col, row];
+            if (nowCell != null)
+            {
+                if (nowCell.Value != null)
+                {
+                    flg = true;
+                }
+            }
+
+            return flg;
+        }
+        private Boolean cellValueCheckerN(int col, int row)
+        {
+            Boolean flg = false;
+
+            DataGridViewCell nowCell = gridMitsmori[col, row];
+            if (nowCell != null)
+            {
+                if (nowCell.Value != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(nowCell.Value.ToString()))
+                    {
+                        flg = true;
+                    }
+                }
+            }
+
+            return flg;
+        }
+        private void openChildForm(Form8_2 f)
+        {
+            Screen s = null;
+            Screen[] argScreen = Screen.AllScreens;
+            if (argScreen.Length > 1)
+            {
+                s = argScreen[1];
+            }
+            else
+            {
+                s = argScreen[0];
+            }
+
+            f.StartPosition = FormStartPosition.Manual;
+            f.Location = s.Bounds.Location;
+
+            f.ShowDialog();
+            f.Dispose();
         }
 
     }

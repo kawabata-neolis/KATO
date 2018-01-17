@@ -495,6 +495,8 @@ namespace KATO.Form.Z0000
 
                 //支払データチェックリスト
                 case "7":
+                    B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint shiharaiPrint = new B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint(this);
+                    shiharaiPrint.ShowDialog();
                     break;
 
                 //納品書印刷

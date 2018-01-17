@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,9 +46,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cbNoki = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtNonyuName = new System.Windows.Forms.TextBox();
-            this.txtNonyuCd = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.txtBiko = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,6 +57,8 @@
             this.rd2 = new System.Windows.Forms.RadioButton();
             this.rd1 = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.txtZaiTeika6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTeika5 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTeika4 = new KATO.Common.Ctl.BaseTextMoney();
@@ -167,12 +167,13 @@
             this.gridMitsmori = new KATO.Common.Ctl.BaseDataGridViewEdit();
             this.txtMNum = new KATO.Common.Ctl.BaseTextMoney();
             this.txtMYMD = new KATO.Common.Ctl.BaseCalendar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tsNonyusaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMitsmori)).BeginInit();
+            this.tsNonyusaki.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -394,32 +395,6 @@
             this.label10.TabIndex = 160;
             this.label10.Text = "納　　期";
             // 
-            // txtNonyuName
-            // 
-            this.txtNonyuName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtNonyuName.Location = new System.Drawing.Point(192, 64);
-            this.txtNonyuName.Name = "txtNonyuName";
-            this.txtNonyuName.Size = new System.Drawing.Size(391, 22);
-            this.txtNonyuName.TabIndex = 7;
-            // 
-            // txtNonyuCd
-            // 
-            this.txtNonyuCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtNonyuCd.Location = new System.Drawing.Point(147, 64);
-            this.txtNonyuCd.Name = "txtNonyuCd";
-            this.txtNonyuCd.Size = new System.Drawing.Size(40, 22);
-            this.txtNonyuCd.TabIndex = 6;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(38, 67);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 15);
-            this.label11.TabIndex = 162;
-            this.label11.Text = "納入先コード";
-            // 
             // txtBiko
             // 
             this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -624,6 +599,30 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1384, 193);
             this.panel3.TabIndex = 20;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(651, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 22);
+            this.button1.TabIndex = 275;
+            this.button1.TabStop = false;
+            this.button1.Text = "🔄";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button2.Location = new System.Drawing.Point(651, 128);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(23, 22);
+            this.button2.TabIndex = 274;
+            this.button2.TabStop = false;
+            this.button2.Text = "🔄";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtZaiTeika6
             // 
@@ -2027,34 +2026,34 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2091,35 +2090,44 @@
             this.txtMYMD.TabIndex = 2;
             this.txtMYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button1
+            // tsNonyusaki
             // 
-            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(651, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 22);
-            this.button1.TabIndex = 275;
-            this.button1.TabStop = false;
-            this.button1.Text = "🔄";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tsNonyusaki.AppendLabelSize = 40;
+            this.tsNonyusaki.AppendLabelText = "";
+            this.tsNonyusaki.CodeTxtSize = 40;
+            this.tsNonyusaki.CodeTxtText = "";
+            this.tsNonyusaki.Controls.Add(this.nameLabel);
+            this.tsNonyusaki.LabelName = "納入先コード";
+            this.tsNonyusaki.Location = new System.Drawing.Point(36, 64);
+            this.tsNonyusaki.Name = "tsNonyusaki";
+            this.tsNonyusaki.ReadOnlyANDTabStopFlg = false;
+            this.tsNonyusaki.ShowAppendFlg = true;
+            this.tsNonyusaki.Size = new System.Drawing.Size(551, 22);
+            this.tsNonyusaki.SpaceCodeValue = 5;
+            this.tsNonyusaki.SpaceNameCode = 8;
+            this.tsNonyusaki.SpaceValueAppend = 4;
+            this.tsNonyusaki.TabIndex = 6;
+            this.tsNonyusaki.ValueTextSize = 391;
+            this.tsNonyusaki.valueTextText = "";
             // 
-            // button2
+            // nameLabel
             // 
-            this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(651, 128);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 22);
-            this.button2.TabIndex = 274;
-            this.button2.TabStop = false;
-            this.button2.Text = "🔄";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(103, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "得意先コード";
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // H0210_MitsumoriInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.Controls.Add(this.tsNonyusaki);
             this.Controls.Add(this.txtMYMD);
             this.Controls.Add(this.txtMNum);
             this.Controls.Add(this.gridMitsmori);
@@ -2144,9 +2152,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtBiko);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtNonyuName);
-            this.Controls.Add(this.txtNonyuCd);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.cbNoki);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbKigen);
@@ -2180,9 +2185,6 @@
             this.Controls.SetChildIndex(this.cbKigen, 0);
             this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.cbNoki, 0);
-            this.Controls.SetChildIndex(this.label11, 0);
-            this.Controls.SetChildIndex(this.txtNonyuCd, 0);
-            this.Controls.SetChildIndex(this.txtNonyuName, 0);
             this.Controls.SetChildIndex(this.label12, 0);
             this.Controls.SetChildIndex(this.txtBiko, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
@@ -2220,6 +2222,7 @@
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.txtMNum, 0);
             this.Controls.SetChildIndex(this.txtMYMD, 0);
+            this.Controls.SetChildIndex(this.tsNonyusaki, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2227,6 +2230,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMitsmori)).EndInit();
+            this.tsNonyusaki.ResumeLayout(false);
+            this.tsNonyusaki.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2247,9 +2252,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbNoki;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtNonyuName;
-        private System.Windows.Forms.TextBox txtNonyuCd;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtBiko;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
@@ -2371,5 +2373,7 @@
         private Common.Ctl.BaseCalendar txtMYMD;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private Common.Ctl.TextSet_Torihikisaki tsNonyusaki;
+        private Common.Ctl.BaseLabel nameLabel;
     }
 }

@@ -30,6 +30,30 @@ namespace KATO.Business.H0210_MitsumoriInput
             con.DB_Disconnect();
         }
 
+        public DataTable getUserInfo(string strCd)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT *";
+            strQuery += "  FROM 担当者";
+            strQuery += " WHERE ログインＩＤ = '" + strCd + "'";
+            strQuery += "   AND 削除 = 'N'";
+
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
         public DataTable getMitsumoriInfo(string strNum)
         {
             DataTable dt = null;
@@ -81,90 +105,90 @@ namespace KATO.Business.H0210_MitsumoriInput
             strSQL += "       0.0 as 掛率,";
             strSQL += "       null as 金額,";
             strSQL += "       a.仕入単価,";
-            strSQL += "       粗利金額,";
-            strSQL += "       率,";
+            strSQL += "       ROUND(粗利金額, 0) as 粗利金額,";
+            strSQL += "       ROUND(率, 1) as 率,";
             strSQL += "       備考,";
             strSQL += "       仕入先名,";
             strSQL += "       印刷フラグ,";
             strSQL += "       仕入先コード１,";
             strSQL += "       仕入先名１,";
-            strSQL += "       仕入単価１,";
-            strSQL += "       仕入金額１,";
-            strSQL += "       粗利１,";
-            strSQL += "       粗利率１,";
+            strSQL += "       ROUND(仕入単価１, 0) as 仕入単価１,";
+            strSQL += "       ROUND(仕入金額１, 0) as 仕入金額１,";
+            strSQL += "       ROUND(粗利１, 0) as 粗利１,";
+            strSQL += "       ROUND(粗利率１, 0) as 粗利率１,";
             strSQL += "       仕入先コード２,";
             strSQL += "       仕入先名２,";
-            strSQL += "       仕入単価２,";
-            strSQL += "       仕入金額２,";
-            strSQL += "       粗利２,";
-            strSQL += "       粗利率２,";
+            strSQL += "       ROUND(仕入単価２, 0) as 仕入単価２,";
+            strSQL += "       ROUND(仕入金額２, 0) as 仕入金額２,";
+            strSQL += "       ROUND(粗利２, 0) as 粗利２,";
+            strSQL += "       ROUND(粗利率２, 0) as 粗利率２,";
             strSQL += "       仕入先コード３,";
             strSQL += "       仕入先名３,";
-            strSQL += "       仕入単価３,";
-            strSQL += "       仕入金額３,";
-            strSQL += "       粗利３,";
-            strSQL += "       粗利率３,";
+            strSQL += "       ROUND(仕入単価３, 0) as 仕入単価３,";
+            strSQL += "       ROUND(仕入金額３, 0) as 仕入金額３,";
+            strSQL += "       ROUND(粗利３, 0) as 粗利３,";
+            strSQL += "       ROUND(粗利率３, 1) as 粗利率３,";
             strSQL += "       仕入先コード４,";
             strSQL += "       仕入先名４,";
-            strSQL += "       仕入単価４,";
-            strSQL += "       仕入金額４,";
-            strSQL += "       粗利４,";
-            strSQL += "       粗利率４,";
+            strSQL += "       ROUND(仕入単価４, 0) as 仕入単価４,";
+            strSQL += "       ROUND(仕入金額４, 0) as 仕入金額４,";
+            strSQL += "       ROUND(粗利４, 0) as 粗利４,";
+            strSQL += "       ROUND(粗利率４, 1) as 粗利率４,";
             strSQL += "       仕入先コード５,";
             strSQL += "       仕入先名５,";
-            strSQL += "       仕入単価５,";
-            strSQL += "       仕入金額５,";
-            strSQL += "       粗利５,";
-            strSQL += "       粗利率５,";
+            strSQL += "       ROUND(仕入単価５, 0) as 仕入単価５,";
+            strSQL += "       ROUND(仕入金額５, 0) as 仕入金額５,";
+            strSQL += "       ROUND(粗利５, 0) as 粗利５,";
+            strSQL += "       ROUND(粗利率５, 1) as 粗利率５,";
             strSQL += "       仕入先コード６,";
             strSQL += "       仕入先名６,";
-            strSQL += "       仕入単価６,";
-            strSQL += "       仕入金額６,";
-            strSQL += "       粗利６,";
-            strSQL += "       粗利率６,";
+            strSQL += "       ROUND(仕入単価６, 0) as 仕入単価６,";
+            strSQL += "       ROUND(仕入金額６, 0) as 仕入金額６,";
+            strSQL += "       ROUND(粗利６, 0) as 粗利６,";
+            strSQL += "       ROUND(粗利率６, 1) as 粗利率６,";
             strSQL += "       加工仕入先コード１,";
             strSQL += "       加工仕入先名１,";
-            strSQL += "       加工仕入単価１,";
-            strSQL += "       加工仕入金額１,";
-            strSQL += "       加工粗利１,";
-            strSQL += "       加工粗利率１,";
+            strSQL += "       ROUND(加工仕入単価１, 0) as 加工仕入単価１,";
+            strSQL += "       ROUND(加工仕入金額１, 0) as 加工仕入金額１,";
+            strSQL += "       ROUND(加工粗利１, 0) as 加工粗利１,";
+            strSQL += "       ROUND(加工粗利率１, 1) as 加工粗利率１,";
             strSQL += "       加工仕入先コード２,";
             strSQL += "       加工仕入先名２,";
-            strSQL += "       加工仕入単価２,";
-            strSQL += "       加工仕入金額２,";
-            strSQL += "       加工粗利２,";
-            strSQL += "       加工粗利率２,";
+            strSQL += "       ROUND(加工仕入単価２, 0) as 加工仕入単価２,";
+            strSQL += "       ROUND(加工仕入金額２, 0) as 加工仕入金額２,";
+            strSQL += "       ROUND(加工粗利２, 0) as 加工粗利２,";
+            strSQL += "       ROUND(加工粗利率２, 1) as 加工粗利率２,";
             strSQL += "       加工仕入先コード３,";
             strSQL += "       加工仕入先名３,";
-            strSQL += "       加工仕入単価３,";
-            strSQL += "       加工仕入金額３,";
-            strSQL += "       加工粗利３,";
-            strSQL += "       加工粗利率３,";
+            strSQL += "       ROUND(加工仕入単価３, 0) as 加工仕入単価３,";
+            strSQL += "       ROUND(加工仕入金額３, 0) as 加工仕入金額３,";
+            strSQL += "       ROUND(加工粗利３, 0) as 加工粗利３,";
+            strSQL += "       ROUND(加工粗利率３, 1) as 加工粗利率３,";
             strSQL += "       加工仕入先コード４,";
             strSQL += "       加工仕入先名４,";
-            strSQL += "       加工仕入単価４,";
-            strSQL += "       加工仕入金額４,";
-            strSQL += "       加工粗利４,";
-            strSQL += "       加工粗利率４,";
+            strSQL += "       ROUND(加工仕入単価４, 0) as 加工仕入単価４,";
+            strSQL += "       ROUND(加工仕入金額４, 0) as 加工仕入金額４,";
+            strSQL += "       ROUND(加工粗利４, 0) as 加工粗利４,";
+            strSQL += "       ROUND(加工粗利率４, 1) as 加工粗利率４,";
             strSQL += "       加工仕入先コード５,";
             strSQL += "       加工仕入先名５,";
-            strSQL += "       加工仕入単価５,";
-            strSQL += "       加工仕入金額５,";
-            strSQL += "       加工粗利５,";
-            strSQL += "       加工粗利率５,";
+            strSQL += "       ROUND(加工仕入単価５, 0) as 加工仕入単価５,";
+            strSQL += "       ROUND(加工仕入金額５, 0) as 加工仕入金額５,";
+            strSQL += "       ROUND(加工粗利５, 0) as 加工粗利５,";
+            strSQL += "       ROUND(加工粗利率５, 1) as 加工粗利率５,";
             strSQL += "       加工仕入先コード６,";
             strSQL += "       加工仕入先名６,";
-            strSQL += "       加工仕入単価６,";
-            strSQL += "       加工仕入金額６,";
-            strSQL += "       加工粗利６,";
-            strSQL += "       加工粗利率６,";
+            strSQL += "       ROUND(加工仕入単価６, 0) as 加工仕入単価６,";
+            strSQL += "       ROUND(加工仕入金額６, 0) as 加工仕入金額６,";
+            strSQL += "       ROUND(加工粗利６, 0) as 加工粗利６,";
+            strSQL += "       ROUND(加工粗利率６, 1) as 加工粗利率６,";
             strSQL += "       a.商品コード,";
             strSQL += "       a.大分類コード,";
             strSQL += "       a.中分類コード,";
             strSQL += "       a.メーカーコード,";
-            strSQL += "       b.定価 as 定価1,";
-            strSQL += "       b.定価 as 定価2,";
-            strSQL += "       b.定価 as 定価3,";
+            strSQL += "       ROUND(b.定価, 0) as 定価1,";
+            strSQL += "       ROUND(b.定価, 0) as 定価2,";
+            strSQL += "       ROUND(b.定価, 0) as 定価3,";
             strSQL += "       a.Ｃ１,";
             strSQL += "       a.Ｃ２,";
             strSQL += "       a.Ｃ３,";
@@ -245,21 +269,6 @@ namespace KATO.Business.H0210_MitsumoriInput
             }
         }
 
-        public void delMitsumoriM(string strHachuban, string strUserName)
-        {
-            string strSQL = null;
-
-            try
-            {
-                strSQL = "見積明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                con.ReadSql(strSQL);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
         public void updMitsumoriM(List<String> aryPrm)
         {
             List<String> aryCol = new List<string>();
@@ -318,6 +327,36 @@ namespace KATO.Business.H0210_MitsumoriInput
             }
         }
 
+        public void delMitsumoriH(string strNum, string strUserName)
+        {
+            string strSQL = null;
+
+            try
+            {
+                strSQL = "見積ヘッド削除_PROC '" + strNum + "','" + strUserName + "'";
+                con.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        public void delMitsumoriM(string strNum, string strUserName)
+        {
+            string strSQL = null;
+
+            try
+            {
+                strSQL = "見積明細全削除_PROC '" + strNum + "','" + strUserName + "'";
+                con.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
         public DataTable getMitsumoriH(List<String> aryPrm)
         {
             DataTable dt = null;
@@ -334,7 +373,7 @@ namespace KATO.Business.H0210_MitsumoriInput
                 aryCol.Add("@メーカー印刷フラグ");
                 aryCol.Add("@中分類名印刷フラグ");
 
-                dt = dbCon.RunSqlReDT("見積明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol, "");
+                dt = dbCon.RunSqlReDT("見積書印刷_PROC", CommandType.StoredProcedure, aryPrm, aryCol, "");
             }
             catch (Exception ex)
             {
