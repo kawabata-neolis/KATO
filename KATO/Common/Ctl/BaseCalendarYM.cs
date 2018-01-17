@@ -112,6 +112,9 @@ namespace KATO.Common.Ctl
         //
         public Boolean updCalendarLeave(string updCalendarLeave)
         {
+            //日付チェック用
+            DateTime dateCheck = new DateTime();
+
             strY = DateTime.Today.Year.ToString();
             strM = "01";
 
@@ -140,6 +143,31 @@ namespace KATO.Common.Ctl
             {
                 blnDateCheck = true;
                 return(blnDateCheck);
+            }
+
+            //コピーペーストされた時のための数値チェック
+            if (!DateTime.TryParse(this.Text, out dateCheck))
+            {
+                if (this.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+                }
+                else if (this.Parent.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+                }
+
+                blnDateCheck = true;
+
+//ラベルセットのカーソル色が残るのを防ぐ
+//しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
+                SendKeys.Send("+{TAB}");
+
+                return (blnDateCheck);
             }
 
             //リストに追加
@@ -326,7 +354,10 @@ namespace KATO.Common.Ctl
         {
             blnEntry = true;
 
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '/' && e.KeyChar != '.')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '/' && e.KeyChar != '.' && e.KeyChar != '\u0001'
+                                                                                                                  && e.KeyChar != '\u0003'
+                                                                                                                  && e.KeyChar != '\u0016'
+                                                                                                                  && e.KeyChar != '\u0018')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 blnEntry = false;

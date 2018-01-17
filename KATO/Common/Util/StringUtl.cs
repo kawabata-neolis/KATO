@@ -79,7 +79,7 @@ namespace KATO.Common.Util
         //四捨五入させる
         //
         public static string updShishagonyu(string strData, int intShisyagonyu)
-        {
+        { 
             Decimal d = Convert.ToDecimal(strData);
             strData = Convert.ToString(Decimal.Round(d, intShisyagonyu, MidpointRounding.AwayFromZero));
 

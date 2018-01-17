@@ -89,6 +89,78 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///getViewGridRireki
+        ///利益率承認データの取得
+        ///</summary>
+        public DataTable getViewGridRireki(int intShonin)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //分岐WHERE分用
+            string strShonin = "";
+
+            //表示範囲によって分岐
+            if (intShonin == 0)
+            {
+                strShonin = "";
+            }
+            else if (intShonin == 1)
+            {
+                strShonin = "AND 承認フラグ = 0 ";
+            }
+            else
+            {
+                strShonin = "AND 承認フラグ = 0 ";
+            }
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("A1520_Uriageshonin");
+            lstSQL.Add("Uriageshonin_SELECT_Riekiritsu");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strShonin);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
         ///<summary>
         ///getViewGridUriage
         ///売上削除承認入力データの取得
@@ -111,16 +183,16 @@ namespace KATO.Business.A1520_Uriageshonin_B
             }
             else if (lstViewGrid[0] == "1")
             {
-                strShonin = "AND dbo.f_get売上削除承認(a.伝票番号) = 'N' ";
+                strShonin = "AND e.承認 = 'N'";
             }
             else
             {
-                strShonin = "AND dbo.f_get売上削除承認(a.伝票番号) = 'Y' ";
+                strShonin = "AND e.承認 = 'Y'";
             }
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("A1520_Uriageshonin");
-            lstSQL.Add("Uriageshonin_SELECT_Riekiritsu");
+            lstSQL.Add("Uriageshonin_SELECT_Uriage");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
