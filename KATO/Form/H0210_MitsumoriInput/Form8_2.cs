@@ -16,12 +16,14 @@ namespace KATO.Form.H0210_MitsumoriInput
     public partial class Form8_2 : System.Windows.Forms.Form
     {
         string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
+        BaseTextMoney nm;
 
-        public Form8_2()
+        public Form8_2(BaseTextMoney txtNum)
         {
             InitializeComponent();
             axAcroPDF1.setShowToolbar(true);
             axAcroPDF1.setLayoutMode("SinglePage");
+            nm = txtNum;
 
             SetUpGrid();
         }
@@ -248,6 +250,14 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 e.Handled = true;
             }
+        }
+
+        private void gridMitsu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value != null) {
+                nm.Text = gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value.ToString();
+            }
+            this.Close();
         }
     }
 }

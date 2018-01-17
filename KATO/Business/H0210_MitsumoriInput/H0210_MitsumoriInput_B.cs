@@ -60,7 +60,7 @@ namespace KATO.Business.H0210_MitsumoriInput
 
             string strSQL = "";
             strSQL += "SELECT ";
-            strSQL += " FORMAT(見積年月日, 'yyyy/MM/dd') as 見積年月日,標題,担当者名,納期,支払条件,有効期限,備考,";
+            strSQL += " CONVERT(VARCHAR, 見積年月日, 111) as 見積年月日,標題,担当者名,納期,支払条件,有効期限,備考,";
             strSQL += " 得意先コード,得意先名称,担当者コード,営業所コード,";
             strSQL += " 売上金額,納入先コード,納入先名称, 社内メモ";
             strSQL += " FROM 見積ヘッド ";
@@ -571,18 +571,18 @@ namespace KATO.Business.H0210_MitsumoriInput
             string strSQL = "";
 
             strSQL += "SELECT distinct";
-            strSQL += " a.承認フラグ, a.見積書番号, FORMAT(a.見積年月日, 'yyyy/MM/dd') as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額";
+            strSQL += " a.承認フラグ, a.見積書番号, CONVERT(VARCHAR, a.見積年月日, 111) as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額";
             strSQL += " FROM 見積ヘッド a, 見積明細 b";
             strSQL += " WHERE a.削除 = 'N' ";
             strSQL += "   AND a.見積書番号 = b.伝票番号 ";
 
             if (!string.IsNullOrWhiteSpace(strF))
             {
-                strSQL += "   AND FORMAT(a.見積年月日, 'yyyy/MM') >= '" + strF + "'";
+                strSQL += "   AND CONVERT(VARCHAR, a.見積年月日, 111) >= '" + strF + "/01" + "'";
             }
             if (!string.IsNullOrWhiteSpace(strT))
             {
-                strSQL += "   AND FORMAT(a.見積年月日, 'yyyy/MM') <= '" + strT + "'";
+                strSQL += "   AND CONVERT(VARCHAR, a.見積年月日, 111) <= '" + strT + "/31" + "'";
             }
             if (!string.IsNullOrWhiteSpace(strTan))
             {

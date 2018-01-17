@@ -409,6 +409,7 @@
             this.gridMitsu.Size = new System.Drawing.Size(763, 601);
             this.gridMitsu.StandardTab = true;
             this.gridMitsu.TabIndex = 12;
+            this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
             this.gridMitsu.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
             // 

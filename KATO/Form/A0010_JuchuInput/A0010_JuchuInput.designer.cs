@@ -275,8 +275,8 @@
             this.txtSearchStr.Name = "txtSearchStr";
             this.txtSearchStr.Size = new System.Drawing.Size(277, 22);
             this.txtSearchStr.TabIndex = 9;
-            this.txtSearchStr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchStr_KeyDown);
             this.txtSearchStr.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchStr_KeyUp);
+            this.txtSearchStr.Leave += new System.EventHandler(this.txtSearchStr_Leave);
             // 
             // label12
             // 
@@ -468,6 +468,7 @@
             this.gridZaiko.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridZaiko.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridZaiko.AutoGenerateColumns = false;
             this.gridZaiko.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridZaiko.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -565,6 +566,7 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -926,7 +928,6 @@
             this.txtShohinCd.Size = new System.Drawing.Size(162, 22);
             this.txtShohinCd.TabIndex = 130;
             this.txtShohinCd.Visible = false;
-            this.txtShohinCd.TextChanged += new System.EventHandler(this.txtShohinCd_Leave);
             this.txtShohinCd.Leave += new System.EventHandler(this.txtShohinCd_Leave);
             // 
             // baseLabel9

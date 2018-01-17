@@ -54,6 +54,8 @@ namespace KATO.Form.A0010_JuchuInput
 
             //メーカーsetデータを読めるようにする
             lsDaibunrui.Lsmakerdata = lsMaker;
+
+            panel1.Visible = false;
         }
 
         private void A0010JuchuInput_Load(object sender, EventArgs e)
@@ -476,7 +478,11 @@ namespace KATO.Form.A0010_JuchuInput
                 shohinList.blKensaku = true;
             }
             
-            shohinList.Show();
+            shohinList.ShowDialog();
+            txtSearchStr.Text = "";
+            txtHatchuNo.ReadOnly = true;
+            shohinList.Dispose();
+            getShohinInfo();
         }
 
         /// <summary>
@@ -522,37 +528,38 @@ namespace KATO.Form.A0010_JuchuInput
             txtSearchStr.Focus();
         }
 
-        /// <summary>
-        /// setShouhin
-        /// 取り出したデータをテキストボックスに配置（商品リスト）
-        /// </summary>
-        public void setShouhin(DataTable dtShohin)
-        {
-            string strCd = dtShohin.Rows[0]["商品コード"].ToString();
+        ///// <summary>
+        ///// setShouhin
+        ///// 取り出したデータをテキストボックスに配置（商品リスト）
+        ///// </summary>
+        //public void setShouhin(DataTable dtShohin)
+        //{
+        //    string strCd = dtShohin.Rows[0]["商品コード"].ToString();
 
-            if (!string.IsNullOrWhiteSpace(strCd))
-            {
-                txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
-                txtHinmei.ReadOnly = false;
-                txtJuchuSuryo.ReadOnly = false;
-                txtJuchuSuryo.Focus();
+        //    if (!string.IsNullOrWhiteSpace(strCd))
+        //    {
+        //        txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
+        //        getShohinInfo();
+        //        txtHinmei.ReadOnly = false;
+        //        txtJuchuSuryo.ReadOnly = false;
+        //        txtJuchuSuryo.Focus();
 
-            }
-            else
-            {
-                txtSearchStr.Focus();
-            }
-            //lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
-            //lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-            //lblGrayShohin.Text = labelSet_Maker.ValueLabelText +
-            //                     labelSet_Chubunrui.ValueLabelText + " " +
-            //                     dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
-            //                     dtShohin.Rows[0]["Ｃ２"].ToString() + " " +
-            //                     dtShohin.Rows[0]["Ｃ３"].ToString() + " " +
-            //                     dtShohin.Rows[0]["Ｃ４"].ToString() + " " +
-            //                     dtShohin.Rows[0]["Ｃ５"].ToString() + " " +
-            //                     dtShohin.Rows[0]["Ｃ６"].ToString();
-        }
+        //    }
+        //    else
+        //    {
+        //        txtSearchStr.Focus();
+        //    }
+        //    //lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
+        //    //lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
+        //    //lblGrayShohin.Text = labelSet_Maker.ValueLabelText +
+        //    //                     labelSet_Chubunrui.ValueLabelText + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ２"].ToString() + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ３"].ToString() + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ４"].ToString() + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ５"].ToString() + " " +
+        //    //                     dtShohin.Rows[0]["Ｃ６"].ToString();
+        //}
 
         private void txtC1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -664,7 +671,8 @@ namespace KATO.Form.A0010_JuchuInput
                         lsMaker.Enabled = false;
                         txtHinmei.Enabled = false;
                     }
-
+                    getShohinInfo();
+                    
                     DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(strCd);
                     if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0) {
                         if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
@@ -855,8 +863,6 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 lockFlg = false;
-
-                execZaikoDisp();
             }
             catch (Exception ex)
             {
@@ -1177,6 +1183,20 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void txtShohinCd_Leave(object sender, EventArgs e)
         {
+            try
+            {
+                getShohinInfo();
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        private void getShohinInfo() {
             if (string.IsNullOrWhiteSpace(txtShohinCd.Text))
             {
                 return;
@@ -1218,18 +1238,16 @@ namespace KATO.Form.A0010_JuchuInput
                     lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
                     lblGrayTanaSub.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
 
-                    getKinShiireTanka();
+                    getShiireTanka();
                     getJuchuTanka();
                     getKinShiireTanka();
                     updKakeritsu();
+                    execZaikoDisp();
                 }
             }
             catch (Exception ex)
             {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                throw ex;
             }
         }
 
@@ -1310,10 +1328,10 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void addJuchu()
         {
-            if (!chkData())
-            {
-                return;
-            }
+            //if (!chkData())
+            //{
+            //    return;
+            //}
 
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             if (cbChuban.Checked)
@@ -1339,7 +1357,6 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 try
                 {
-
                     juchuB.updNokiOnly(txtChuban.Text
                         ,txtNoki.Text
                         ,txtJuchuSuryo.Text
@@ -1379,12 +1396,12 @@ namespace KATO.Form.A0010_JuchuInput
                     strJuchuNo = txtJuchuNo.Text;
                 }
 
-                string strC1 = null;
-                string strC2 = null;
-                string strC3 = null;
-                string strC4 = null;
-                string strC5 = null;
-                string strC6 = null;
+                string strC1 = "";
+                string strC2 = "";
+                string strC3 = "";
+                string strC4 = "";
+                string strC5 = "";
+                string strC6 = "";
 
                 if (txtHinmei.Enabled)
                 {
@@ -1482,7 +1499,6 @@ namespace KATO.Form.A0010_JuchuInput
                 aryPrm.Add("0");
                 aryPrm.Add(Environment.UserName);
 
-                juchuB.beginTrance();
                 juchuB.updJuchu(aryPrm);
 
                 if (string.IsNullOrWhiteSpace(txtHatchusu.Text) || txtHatchusu.Text.Equals("0"))
@@ -2452,6 +2468,10 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void getZaikoInfo ()
         {
+            if (string.IsNullOrWhiteSpace(txtShohinCd.Text))
+            {
+                return;
+            }
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             try
             {
@@ -2593,6 +2613,15 @@ namespace KATO.Form.A0010_JuchuInput
 
                 f.Show();
             }
+        }
+
+        private void txtSearchStr_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearchStr.Text))
+            {
+                return;
+            }
+            showShohinList();
         }
     }
 }

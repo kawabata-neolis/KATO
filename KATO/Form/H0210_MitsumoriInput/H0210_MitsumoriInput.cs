@@ -268,6 +268,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 this.Close();
             }
+            else if (e.KeyData == Keys.Enter)
+            {
+                //this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
         }
 
         private void btnFKeys_Click(object sender, EventArgs e)
@@ -1334,6 +1338,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 BaseText tC4 = new BaseText();
                 BaseText tC5 = new BaseText();
                 BaseText tC6 = new BaseText();
+                BaseTextMoney tTeikka = new BaseTextMoney();
 
                 ShouhinList sl = new ShouhinList(this);
                 sl.lsDaibunrui = lDai;
@@ -1348,14 +1353,15 @@ namespace KATO.Form.H0210_MitsumoriInput
                 sl.btxtHinC5 = tC5;
                 sl.btxtHinC6 = tC6;
                 sl.intFrmKind = 1;
+                sl.bmtxtTeika = tTeikka;
 
                 sl.ShowDialog();
 
                 int intRow = RowIndex;
                 gridMitsmori[2, intRow].Value = tKata.Text;
                 gridMitsmori[87, intRow].Value = lDai.CodeTxtText;
-                gridMitsmori[88, intRow].Value = lDai.CodeTxtText;
-                gridMitsmori[89, intRow].Value = lDai.CodeTxtText;
+                gridMitsmori[88, intRow].Value = lChu.CodeTxtText;
+                gridMitsmori[89, intRow].Value = lMak.CodeTxtText;
                 gridMitsmori[86, intRow].Value = tSho.Text;
                 gridMitsmori[93, intRow].Value = tC1.Text;
                 gridMitsmori[94, intRow].Value = tC2.Text;
@@ -1363,6 +1369,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[96, intRow].Value = tC4.Text;
                 gridMitsmori[97, intRow].Value = tC5.Text;
                 gridMitsmori[98, intRow].Value = tC6.Text;
+                gridMitsmori[4, intRow].Value = tTeikka.Text;
             }
         }
 
@@ -1478,13 +1485,13 @@ namespace KATO.Form.H0210_MitsumoriInput
             #endregion
 
             #region
-            TextBox txtShiireCd1;
-            TextBox txtShiireName1;
+            BaseText txtShiireCd1;
+            BaseText txtShiireName1;
             BaseTextMoney txtShiireTeika1;
             BaseTextMoney txtShiireTanka1;
             BaseTextMoney txtKakeritsu1;
-            TextBox txtKakoCd1;
-            TextBox txtKakoName1;
+            BaseText txtKakoCd1;
+            BaseText txtKakoName1;
             BaseTextMoney txtKakoTanka1;
             BaseTextMoney txtShiireTanka2;
             BaseTextMoney txtKakoTanka2;
@@ -1810,8 +1817,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyCode == Keys.F9)
             {
-                Form8_2 f = new Form8_2();
+                Form8_2 f = new Form8_2(txtMNum);
                 openChildForm(f);
+                getMitsumoriInfo();
             }
         }
 
@@ -1868,6 +1876,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 for (int i = 0; i < 200; i++)
                 {
                     gridMitsmori[0, i].Value = (i + 1).ToString();
+                    gridMitsmori[1, i].Value = "0";
                 }
 
                 gridMitsmori.DataSource = dt;
@@ -1876,7 +1885,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     gridMitsmori[1, i].Value = "1";
                 }
-                gridMitsmori[2, intTrueRows].Value = "以下余白";
+                if (intTrueRows < 200) {
+                    gridMitsmori[2, intTrueRows].Value = "以下余白";
+                }
 
                 gridMitsmori.EndEdit();
 
@@ -1929,7 +1940,6 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 for (int i = 0; i < gridMitsmori.RowCount; i++)
                 {
-                    string a = gridMitsmori[1, i].Value.ToString();
                     if (gridMitsmori[1, i].Value != null && gridMitsmori[1, i].Value.ToString().Equals("1"))
                     {
                         UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
@@ -2661,7 +2671,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 仕入先
         private void txtZaiCd1_Leave(object sender, EventArgs e)
         {
-            setShiiresaki((TextBox)sender, true);
+            setShiiresaki((BaseText)sender, true);
         }
 
         private void txtZaiCd1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -2669,89 +2679,89 @@ namespace KATO.Form.H0210_MitsumoriInput
             keyFlgF9 = false;
             if (e.KeyCode == Keys.F9)
             {
-                //setShiiresaki((TextBox)sender, true);
+                //setShiiresaki((BaseText)sender, true);
                 LabelSet_Torihikisaki ls = new LabelSet_Torihikisaki();
                 TorihikisakiList tl = new TorihikisakiList(this, ls);
                 tl.ShowDialog();
 
-                if (((TextBox)sender).Name.Equals("txtZaiCd1"))
+                if (((BaseText)sender).Name.Equals("txtZaiCd1"))
                 {
                     txtZaiCd1.Text = ls.CodeTxtText;
                     txtZaiMei1.Text = ls.ValueLabelText;
                     gridMitsmori[14, gridMitsmori.CurrentCell.RowIndex].Value = ls.CodeTxtText;
                     gridMitsmori[15, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd2"))
+                else if (((BaseText)sender).Name.Equals("txtZaiCd2"))
                 {
                     txtZaiCd2.Text = ls.CodeTxtText;
                     txtZaiMei1.Text = ls.ValueLabelText;
                     gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd3"))
+                else if (((BaseText)sender).Name.Equals("txtZaiCd3"))
                 {
                     txtZaiCd3.Text = ls.CodeTxtText;
                     txtZaiMei1.Text = ls.ValueLabelText;
                     gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd4"))
+                else if (((BaseText)sender).Name.Equals("txtZaiCd4"))
                 {
                     txtZaiCd4.Text = ls.CodeTxtText;
                     txtZaiMei4.Text = ls.ValueLabelText;
                     gridMitsmori[32, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[33, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd5"))
+                else if (((BaseText)sender).Name.Equals("txtZaiCd5"))
                 {
                     txtZaiCd5.Text = ls.CodeTxtText;
                     txtZaiMei5.Text = ls.ValueLabelText;
                     gridMitsmori[38, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[39, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtZaiCd6"))
+                else if (((BaseText)sender).Name.Equals("txtZaiCd6"))
                 {
                     txtZaiCd6.Text = ls.CodeTxtText;
                     txtZaiMei6.Text = ls.ValueLabelText;
                     gridMitsmori[44, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[45, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd1"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd1"))
                 {
                     txtKakCd1.Text = ls.CodeTxtText;
                     txtKakMei1.Text = ls.ValueLabelText;
                     gridMitsmori[50, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[51, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd2"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd2"))
                 {
                     txtKakCd2.Text = ls.CodeTxtText;
                     txtKakMei2.Text = ls.ValueLabelText;
                     gridMitsmori[56, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[57, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd3"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd3"))
                 {
                     txtKakCd3.Text = ls.CodeTxtText;
                     txtKakMei3.Text = ls.ValueLabelText;
                     gridMitsmori[62, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[63, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd4"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd4"))
                 {
                     txtKakCd4.Text = ls.CodeTxtText;
                     txtKakMei4.Text = ls.ValueLabelText;
                     gridMitsmori[68, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[69, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd5"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd5"))
                 {
                     txtKakCd5.Text = ls.CodeTxtText;
                     txtKakMei5.Text = ls.ValueLabelText;
                     gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
-                else if (((TextBox)sender).Name.Equals("txtKakCd6"))
+                else if (((BaseText)sender).Name.Equals("txtKakCd6"))
                 {
                     txtKakCd6.Text = ls.CodeTxtText;
                     txtKakMei6.Text = ls.ValueLabelText;
@@ -2761,11 +2771,11 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                //this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
 
-        private void setShiiresaki(TextBox sender, bool b) {
+        private void setShiiresaki(BaseText sender, bool b) {
             if (string.IsNullOrWhiteSpace(sender.Text))
             {
                 return;
@@ -3070,8 +3080,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             changeTotal();
         }
 
-        private void changeEditItem(TextBox cd1, TextBox nm1, BaseTextMoney tan1,
-            TextBox cd2, TextBox nm2, BaseTextMoney tan2,
+        private void changeEditItem(BaseText cd1, BaseText nm1, BaseTextMoney tan1,
+            BaseText cd2, BaseText nm2, BaseTextMoney tan2,
             DataGridViewCell cCd1, DataGridViewCell cNm1, DataGridViewCell cCd2, DataGridViewCell cNm2)
         {
             string tmpCd = cd1.Text;

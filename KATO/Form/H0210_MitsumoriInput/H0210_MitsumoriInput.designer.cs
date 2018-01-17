@@ -33,20 +33,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMode = new System.Windows.Forms.TextBox();
+            this.txtMode = new KATO.Common.Ctl.BaseText();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTanto = new System.Windows.Forms.TextBox();
+            this.txtTanto = new KATO.Common.Ctl.BaseText();
             this.label7 = new System.Windows.Forms.Label();
             this.cbJoken = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtKenmei = new System.Windows.Forms.TextBox();
+            this.txtKenmei = new KATO.Common.Ctl.BaseText();
             this.cbKigen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cbNoki = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtBiko = new System.Windows.Forms.TextBox();
+            this.txtBiko = new KATO.Common.Ctl.BaseText();
             this.label12 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbChubun = new System.Windows.Forms.CheckBox();
@@ -66,23 +66,23 @@
             this.txtZaiTeika2 = new KATO.Common.Ctl.BaseTextMoney();
             this.label30 = new System.Windows.Forms.Label();
             this.txtZaiTeika1 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtIdx = new System.Windows.Forms.TextBox();
+            this.txtIdx = new KATO.Common.Ctl.BaseText();
             this.button29 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button25 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.txtKakTnk6 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei6 = new System.Windows.Forms.TextBox();
-            this.txtKakCd6 = new System.Windows.Forms.TextBox();
+            this.txtKakMei6 = new KATO.Common.Ctl.BaseText();
+            this.txtKakCd6 = new KATO.Common.Ctl.BaseText();
             this.button22 = new System.Windows.Forms.Button();
             this.txtKakTnk5 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei5 = new System.Windows.Forms.TextBox();
-            this.txtKakCd5 = new System.Windows.Forms.TextBox();
+            this.txtKakMei5 = new KATO.Common.Ctl.BaseText();
+            this.txtKakCd5 = new KATO.Common.Ctl.BaseText();
             this.button23 = new System.Windows.Forms.Button();
             this.txtKakTnk4 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei4 = new System.Windows.Forms.TextBox();
-            this.txtKakCd4 = new System.Windows.Forms.TextBox();
+            this.txtKakMei4 = new KATO.Common.Ctl.BaseText();
+            this.txtKakCd4 = new KATO.Common.Ctl.BaseText();
             this.button24 = new System.Windows.Forms.Button();
             this.txtSrrt6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtArr6 = new KATO.Common.Ctl.BaseTextMoney();
@@ -93,33 +93,33 @@
             this.label34 = new System.Windows.Forms.Label();
             this.txtZaiRit6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTnk6 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei6 = new System.Windows.Forms.TextBox();
-            this.txtZaiCd6 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei6 = new KATO.Common.Ctl.BaseText();
+            this.txtZaiCd6 = new KATO.Common.Ctl.BaseText();
             this.button19 = new System.Windows.Forms.Button();
             this.txtZaiRit5 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTnk5 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei5 = new System.Windows.Forms.TextBox();
-            this.txtZaiCd5 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei5 = new KATO.Common.Ctl.BaseText();
+            this.txtZaiCd5 = new KATO.Common.Ctl.BaseText();
             this.button20 = new System.Windows.Forms.Button();
             this.txtZaiRit4 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTnk4 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei4 = new System.Windows.Forms.TextBox();
-            this.txtZaiCd4 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei4 = new KATO.Common.Ctl.BaseText();
+            this.txtZaiCd4 = new KATO.Common.Ctl.BaseText();
             this.button21 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.txtKakTnk3 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei3 = new System.Windows.Forms.TextBox();
-            this.txtKakCd3 = new System.Windows.Forms.TextBox();
+            this.txtKakMei3 = new KATO.Common.Ctl.BaseText();
+            this.txtKakCd3 = new KATO.Common.Ctl.BaseText();
             this.button16 = new System.Windows.Forms.Button();
             this.txtKakTnk2 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei2 = new System.Windows.Forms.TextBox();
-            this.txtKakCd2 = new System.Windows.Forms.TextBox();
+            this.txtKakMei2 = new KATO.Common.Ctl.BaseText();
+            this.txtKakCd2 = new KATO.Common.Ctl.BaseText();
             this.button17 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.txtKakTnk1 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKakMei1 = new System.Windows.Forms.TextBox();
+            this.txtKakMei1 = new KATO.Common.Ctl.BaseText();
             this.label32 = new System.Windows.Forms.Label();
-            this.txtKakCd1 = new System.Windows.Forms.TextBox();
+            this.txtKakCd1 = new KATO.Common.Ctl.BaseText();
             this.button18 = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -128,15 +128,15 @@
             this.txtArr3 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiRit3 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTnk3 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei3 = new System.Windows.Forms.TextBox();
-            this.txtZaiCd3 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei3 = new KATO.Common.Ctl.BaseText();
+            this.txtZaiCd3 = new KATO.Common.Ctl.BaseText();
             this.button15 = new System.Windows.Forms.Button();
             this.txtSrrt2 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtArr2 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiRit2 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtZaiTnk2 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei2 = new System.Windows.Forms.TextBox();
-            this.txtZaiCd2 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei2 = new KATO.Common.Ctl.BaseText();
+            this.txtZaiCd2 = new KATO.Common.Ctl.BaseText();
             this.button14 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.txtSrrt1 = new KATO.Common.Ctl.BaseTextMoney();
@@ -145,21 +145,21 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtZaiTnk1 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtZaiMei1 = new System.Windows.Forms.TextBox();
+            this.txtZaiMei1 = new KATO.Common.Ctl.BaseText();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtZaiCd1 = new System.Windows.Forms.TextBox();
+            this.txtZaiCd1 = new KATO.Common.Ctl.BaseText();
             this.button13 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtMemo = new System.Windows.Forms.TextBox();
+            this.txtMemo = new KATO.Common.Ctl.BaseText();
             this.label21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.txtUriTotal = new System.Windows.Forms.TextBox();
-            this.txtSiireTotal = new System.Windows.Forms.TextBox();
+            this.txtUriTotal = new KATO.Common.Ctl.BaseText();
+            this.txtSiireTotal = new KATO.Common.Ctl.BaseText();
             this.label25 = new System.Windows.Forms.Label();
-            this.txtArariTotal = new System.Windows.Forms.TextBox();
+            this.txtArariTotal = new KATO.Common.Ctl.BaseText();
             this.label26 = new System.Windows.Forms.Label();
-            this.txtArariRitsu = new System.Windows.Forms.TextBox();
+            this.txtArariRitsu = new KATO.Common.Ctl.BaseText();
             this.label27 = new System.Windows.Forms.Label();
             this.tsTokuisaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.lsTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
@@ -179,73 +179,73 @@
             // btnF01
             // 
             this.btnF01.Location = new System.Drawing.Point(4, 789);
-            this.btnF01.TabIndex = 16;
+            this.btnF01.TabIndex = 18;
             this.btnF01.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF12
             // 
             this.btnF12.Location = new System.Drawing.Point(1302, 789);
-            this.btnF12.TabIndex = 27;
+            this.btnF12.TabIndex = 29;
             this.btnF12.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF11
             // 
             this.btnF11.Location = new System.Drawing.Point(1184, 789);
-            this.btnF11.TabIndex = 26;
+            this.btnF11.TabIndex = 28;
             this.btnF11.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF10
             // 
             this.btnF10.Location = new System.Drawing.Point(1066, 789);
-            this.btnF10.TabIndex = 25;
+            this.btnF10.TabIndex = 27;
             this.btnF10.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF09
             // 
             this.btnF09.Location = new System.Drawing.Point(948, 789);
-            this.btnF09.TabIndex = 24;
+            this.btnF09.TabIndex = 26;
             this.btnF09.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF08
             // 
             this.btnF08.Location = new System.Drawing.Point(830, 789);
-            this.btnF08.TabIndex = 23;
+            this.btnF08.TabIndex = 25;
             this.btnF08.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF07
             // 
             this.btnF07.Location = new System.Drawing.Point(712, 789);
-            this.btnF07.TabIndex = 22;
+            this.btnF07.TabIndex = 34;
             this.btnF07.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF06
             // 
             this.btnF06.Location = new System.Drawing.Point(594, 789);
-            this.btnF06.TabIndex = 21;
+            this.btnF06.TabIndex = 23;
             this.btnF06.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF05
             // 
             this.btnF05.Location = new System.Drawing.Point(476, 789);
-            this.btnF05.TabIndex = 20;
+            this.btnF05.TabIndex = 22;
             this.btnF05.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF04
             // 
             this.btnF04.Location = new System.Drawing.Point(358, 789);
-            this.btnF04.TabIndex = 19;
+            this.btnF04.TabIndex = 21;
             this.btnF04.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF03
             // 
             this.btnF03.Location = new System.Drawing.Point(240, 789);
-            this.btnF03.TabIndex = 18;
+            this.btnF03.TabIndex = 20;
             this.btnF03.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // btnF02
             // 
             this.btnF02.Location = new System.Drawing.Point(122, 789);
-            this.btnF02.TabIndex = 17;
+            this.btnF02.TabIndex = 19;
             this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
             // label2
@@ -266,6 +266,7 @@
             this.txtMode.Size = new System.Drawing.Size(23, 22);
             this.txtMode.TabIndex = 0;
             this.txtMode.Text = "1";
+            this.txtMode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label3
             // 
@@ -304,7 +305,8 @@
             this.txtTanto.Location = new System.Drawing.Point(147, 89);
             this.txtTanto.Name = "txtTanto";
             this.txtTanto.Size = new System.Drawing.Size(320, 22);
-            this.txtTanto.TabIndex = 8;
+            this.txtTanto.TabIndex = 7;
+            this.txtTanto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label7
             // 
@@ -326,8 +328,9 @@
             this.cbJoken.Location = new System.Drawing.Point(473, 165);
             this.cbJoken.Name = "cbJoken";
             this.cbJoken.Size = new System.Drawing.Size(192, 23);
-            this.cbJoken.TabIndex = 12;
+            this.cbJoken.TabIndex = 11;
             this.cbJoken.Text = "従来通り";
+            this.cbJoken.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label8
             // 
@@ -345,7 +348,8 @@
             this.txtKenmei.Location = new System.Drawing.Point(147, 114);
             this.txtKenmei.Name = "txtKenmei";
             this.txtKenmei.Size = new System.Drawing.Size(320, 22);
-            this.txtKenmei.TabIndex = 9;
+            this.txtKenmei.TabIndex = 8;
+            this.txtKenmei.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // cbKigen
             // 
@@ -358,8 +362,9 @@
             this.cbKigen.Location = new System.Drawing.Point(147, 165);
             this.cbKigen.Name = "cbKigen";
             this.cbKigen.Size = new System.Drawing.Size(192, 23);
-            this.cbKigen.TabIndex = 11;
+            this.cbKigen.TabIndex = 10;
             this.cbKigen.Text = "３０日間";
+            this.cbKigen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label9
             // 
@@ -382,8 +387,9 @@
             this.cbNoki.Location = new System.Drawing.Point(147, 139);
             this.cbNoki.Name = "cbNoki";
             this.cbNoki.Size = new System.Drawing.Size(192, 23);
-            this.cbNoki.TabIndex = 10;
+            this.cbNoki.TabIndex = 9;
             this.cbNoki.Text = "下記参照願います";
+            this.cbNoki.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label10
             // 
@@ -401,7 +407,8 @@
             this.txtBiko.Location = new System.Drawing.Point(147, 191);
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(320, 22);
-            this.txtBiko.TabIndex = 13;
+            this.txtBiko.TabIndex = 12;
+            this.txtBiko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label12
             // 
@@ -421,7 +428,7 @@
             this.panel1.Location = new System.Drawing.Point(613, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(353, 40);
-            this.panel1.TabIndex = 15;
+            this.panel1.TabIndex = 13;
             // 
             // cbChubun
             // 
@@ -433,6 +440,7 @@
             this.cbChubun.TabIndex = 1;
             this.cbChubun.Text = "中分類名印刷なし";
             this.cbChubun.UseVisualStyleBackColor = true;
+            this.cbChubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // cbMaker
             // 
@@ -444,6 +452,7 @@
             this.cbMaker.TabIndex = 0;
             this.cbMaker.Text = "メーカー名印刷なし";
             this.cbMaker.UseVisualStyleBackColor = true;
+            this.cbMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label13
             // 
@@ -473,7 +482,7 @@
             this.panel2.Location = new System.Drawing.Point(613, 96);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(181, 40);
-            this.panel2.TabIndex = 16;
+            this.panel2.TabIndex = 14;
             // 
             // rd2
             // 
@@ -485,6 +494,7 @@
             this.rd2.TabIndex = 1;
             this.rd2.Text = "納入先";
             this.rd2.UseVisualStyleBackColor = true;
+            this.rd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // rd1
             // 
@@ -498,6 +508,7 @@
             this.rd1.TabStop = true;
             this.rd1.Text = "得意先";
             this.rd1.UseVisualStyleBackColor = true;
+            this.rd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // panel3
             // 
@@ -598,7 +609,7 @@
             this.panel3.Location = new System.Drawing.Point(20, 593);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1384, 193);
-            this.panel3.TabIndex = 20;
+            this.panel3.TabIndex = 17;
             // 
             // button1
             // 
@@ -636,8 +647,10 @@
             this.txtZaiTeika6.Location = new System.Drawing.Point(410, 166);
             this.txtZaiTeika6.MaxLength = 13;
             this.txtZaiTeika6.Name = "txtZaiTeika6";
+            this.txtZaiTeika6.ReadOnly = true;
             this.txtZaiTeika6.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTeika6.TabIndex = 26;
+            this.txtZaiTeika6.TabIndex = 21;
+            this.txtZaiTeika6.TabStop = false;
             this.txtZaiTeika6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtZaiTeika5
@@ -652,8 +665,10 @@
             this.txtZaiTeika5.Location = new System.Drawing.Point(410, 141);
             this.txtZaiTeika5.MaxLength = 13;
             this.txtZaiTeika5.Name = "txtZaiTeika5";
+            this.txtZaiTeika5.ReadOnly = true;
             this.txtZaiTeika5.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTeika5.TabIndex = 21;
+            this.txtZaiTeika5.TabIndex = 17;
+            this.txtZaiTeika5.TabStop = false;
             this.txtZaiTeika5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtZaiTeika4
@@ -668,8 +683,10 @@
             this.txtZaiTeika4.Location = new System.Drawing.Point(410, 116);
             this.txtZaiTeika4.MaxLength = 13;
             this.txtZaiTeika4.Name = "txtZaiTeika4";
+            this.txtZaiTeika4.ReadOnly = true;
             this.txtZaiTeika4.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTeika4.TabIndex = 16;
+            this.txtZaiTeika4.TabIndex = 26;
+            this.txtZaiTeika4.TabStop = false;
             this.txtZaiTeika4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtZaiTeika3
@@ -684,8 +701,10 @@
             this.txtZaiTeika3.Location = new System.Drawing.Point(410, 75);
             this.txtZaiTeika3.MaxLength = 13;
             this.txtZaiTeika3.Name = "txtZaiTeika3";
+            this.txtZaiTeika3.ReadOnly = true;
             this.txtZaiTeika3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika3.TabIndex = 11;
+            this.txtZaiTeika3.TabStop = false;
             this.txtZaiTeika3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtZaiTeika2
@@ -700,8 +719,10 @@
             this.txtZaiTeika2.Location = new System.Drawing.Point(410, 50);
             this.txtZaiTeika2.MaxLength = 13;
             this.txtZaiTeika2.Name = "txtZaiTeika2";
+            this.txtZaiTeika2.ReadOnly = true;
             this.txtZaiTeika2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika2.TabIndex = 6;
+            this.txtZaiTeika2.TabStop = false;
             this.txtZaiTeika2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label30
@@ -726,15 +747,18 @@
             this.txtZaiTeika1.Location = new System.Drawing.Point(410, 25);
             this.txtZaiTeika1.MaxLength = 13;
             this.txtZaiTeika1.Name = "txtZaiTeika1";
+            this.txtZaiTeika1.ReadOnly = true;
             this.txtZaiTeika1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTeika1.TabIndex = 1;
+            this.txtZaiTeika1.TabStop = false;
             this.txtZaiTeika1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtIdx
             // 
+            this.txtIdx.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtIdx.Location = new System.Drawing.Point(1369, 28);
             this.txtIdx.Name = "txtIdx";
-            this.txtIdx.Size = new System.Drawing.Size(10, 19);
+            this.txtIdx.Size = new System.Drawing.Size(10, 22);
             this.txtIdx.TabIndex = 266;
             this.txtIdx.Visible = false;
             // 
@@ -810,8 +834,9 @@
             this.txtKakTnk6.MaxLength = 3;
             this.txtKakTnk6.Name = "txtKakTnk6";
             this.txtKakTnk6.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk6.TabIndex = 29;
+            this.txtKakTnk6.TabIndex = 23;
             this.txtKakTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei6
@@ -831,7 +856,8 @@
             this.txtKakCd6.Location = new System.Drawing.Point(741, 166);
             this.txtKakCd6.Name = "txtKakCd6";
             this.txtKakCd6.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd6.TabIndex = 28;
+            this.txtKakCd6.TabIndex = 22;
+            this.txtKakCd6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -859,8 +885,9 @@
             this.txtKakTnk5.MaxLength = 3;
             this.txtKakTnk5.Name = "txtKakTnk5";
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk5.TabIndex = 24;
+            this.txtKakTnk5.TabIndex = 19;
             this.txtKakTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei5
@@ -880,7 +907,8 @@
             this.txtKakCd5.Location = new System.Drawing.Point(741, 141);
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd5.TabIndex = 23;
+            this.txtKakCd5.TabIndex = 18;
+            this.txtKakCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -908,8 +936,9 @@
             this.txtKakTnk4.MaxLength = 3;
             this.txtKakTnk4.Name = "txtKakTnk4";
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk4.TabIndex = 19;
+            this.txtKakTnk4.TabIndex = 15;
             this.txtKakTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei4
@@ -929,7 +958,8 @@
             this.txtKakCd4.Location = new System.Drawing.Point(741, 116);
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd4.TabIndex = 18;
+            this.txtKakCd4.TabIndex = 14;
+            this.txtKakCd4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1101,8 +1131,9 @@
             this.txtZaiTnk6.MaxLength = 13;
             this.txtZaiTnk6.Name = "txtZaiTnk6";
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk6.TabIndex = 27;
+            this.txtZaiTnk6.TabIndex = 21;
             this.txtZaiTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtZaiMei6
@@ -1122,7 +1153,8 @@
             this.txtZaiCd6.Location = new System.Drawing.Point(62, 166);
             this.txtZaiCd6.Name = "txtZaiCd6";
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd6.TabIndex = 25;
+            this.txtZaiCd6.TabIndex = 20;
+            this.txtZaiCd6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1168,8 +1200,9 @@
             this.txtZaiTnk5.MaxLength = 13;
             this.txtZaiTnk5.Name = "txtZaiTnk5";
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk5.TabIndex = 22;
+            this.txtZaiTnk5.TabIndex = 17;
             this.txtZaiTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtZaiMei5
@@ -1189,7 +1222,8 @@
             this.txtZaiCd5.Location = new System.Drawing.Point(62, 141);
             this.txtZaiCd5.Name = "txtZaiCd5";
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd5.TabIndex = 20;
+            this.txtZaiCd5.TabIndex = 16;
+            this.txtZaiCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1235,8 +1269,9 @@
             this.txtZaiTnk4.MaxLength = 13;
             this.txtZaiTnk4.Name = "txtZaiTnk4";
             this.txtZaiTnk4.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk4.TabIndex = 17;
+            this.txtZaiTnk4.TabIndex = 13;
             this.txtZaiTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtZaiMei4
@@ -1256,7 +1291,8 @@
             this.txtZaiCd4.Location = new System.Drawing.Point(62, 116);
             this.txtZaiCd4.Name = "txtZaiCd4";
             this.txtZaiCd4.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd4.TabIndex = 15;
+            this.txtZaiCd4.TabIndex = 12;
+            this.txtZaiCd4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1296,8 +1332,9 @@
             this.txtKakTnk3.MaxLength = 3;
             this.txtKakTnk3.Name = "txtKakTnk3";
             this.txtKakTnk3.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk3.TabIndex = 14;
+            this.txtKakTnk3.TabIndex = 11;
             this.txtKakTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei3
@@ -1317,7 +1354,8 @@
             this.txtKakCd3.Location = new System.Drawing.Point(741, 75);
             this.txtKakCd3.Name = "txtKakCd3";
             this.txtKakCd3.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd3.TabIndex = 13;
+            this.txtKakCd3.TabIndex = 10;
+            this.txtKakCd3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1345,8 +1383,9 @@
             this.txtKakTnk2.MaxLength = 3;
             this.txtKakTnk2.Name = "txtKakTnk2";
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk2.TabIndex = 9;
+            this.txtKakTnk2.TabIndex = 7;
             this.txtKakTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei2
@@ -1366,7 +1405,8 @@
             this.txtKakCd2.Location = new System.Drawing.Point(741, 50);
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd2.TabIndex = 8;
+            this.txtKakCd2.TabIndex = 6;
+            this.txtKakCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1404,8 +1444,9 @@
             this.txtKakTnk1.MaxLength = 3;
             this.txtKakTnk1.Name = "txtKakTnk1";
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk1.TabIndex = 4;
+            this.txtKakTnk1.TabIndex = 3;
             this.txtKakTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakTnk1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei1
@@ -1435,7 +1476,8 @@
             this.txtKakCd1.Location = new System.Drawing.Point(741, 25);
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd1.TabIndex = 3;
+            this.txtKakCd1.TabIndex = 2;
+            this.txtKakCd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1550,8 +1592,9 @@
             this.txtZaiTnk3.MaxLength = 13;
             this.txtZaiTnk3.Name = "txtZaiTnk3";
             this.txtZaiTnk3.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk3.TabIndex = 12;
+            this.txtZaiTnk3.TabIndex = 9;
             this.txtZaiTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtZaiMei3
@@ -1571,7 +1614,8 @@
             this.txtZaiCd3.Location = new System.Drawing.Point(62, 75);
             this.txtZaiCd3.Name = "txtZaiCd3";
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd3.TabIndex = 10;
+            this.txtZaiCd3.TabIndex = 8;
+            this.txtZaiCd3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1653,8 +1697,9 @@
             this.txtZaiTnk2.MaxLength = 13;
             this.txtZaiTnk2.Name = "txtZaiTnk2";
             this.txtZaiTnk2.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk2.TabIndex = 7;
+            this.txtZaiTnk2.TabIndex = 5;
             this.txtZaiTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtZaiMei2
@@ -1674,7 +1719,8 @@
             this.txtZaiCd2.Location = new System.Drawing.Point(62, 50);
             this.txtZaiCd2.Name = "txtZaiCd2";
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd2.TabIndex = 5;
+            this.txtZaiCd2.TabIndex = 4;
+            this.txtZaiCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1786,8 +1832,9 @@
             this.txtZaiTnk1.MaxLength = 13;
             this.txtZaiTnk1.Name = "txtZaiTnk1";
             this.txtZaiTnk1.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk1.TabIndex = 2;
+            this.txtZaiTnk1.TabIndex = 1;
             this.txtZaiTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtZaiTnk1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtZaiMei1
@@ -1818,6 +1865,7 @@
             this.txtZaiCd1.Name = "txtZaiCd1";
             this.txtZaiCd1.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd1.TabIndex = 0;
+            this.txtZaiCd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1852,7 +1900,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMemo.Size = new System.Drawing.Size(570, 105);
-            this.txtMemo.TabIndex = 14;
+            this.txtMemo.TabIndex = 15;
             // 
             // label21
             // 
@@ -2059,7 +2107,7 @@
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
             this.gridMitsmori.StandardTab = true;
-            this.gridMitsmori.TabIndex = 15;
+            this.gridMitsmori.TabIndex = 16;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
             this.gridMitsmori.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dataGridView2_PreviewKeyDown);
@@ -2239,20 +2287,20 @@
 
         #endregion
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMode;
+        private KATO.Common.Ctl.BaseText txtMode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTanto;
+        private KATO.Common.Ctl.BaseText txtTanto;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbJoken;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtKenmei;
+        private KATO.Common.Ctl.BaseText txtKenmei;
         private System.Windows.Forms.ComboBox cbKigen;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbNoki;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtBiko;
+        private KATO.Common.Ctl.BaseText txtBiko;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox cbChubun;
@@ -2266,79 +2314,79 @@
         private KATO.Common.Ctl.BaseTextMoney txtSrrt3;
         private KATO.Common.Ctl.BaseTextMoney txtArr3;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk3;
-        private System.Windows.Forms.TextBox txtZaiMei3;
-        private System.Windows.Forms.TextBox txtZaiCd3;
+        private KATO.Common.Ctl.BaseText txtZaiMei3;
+        private KATO.Common.Ctl.BaseText txtZaiCd3;
         private System.Windows.Forms.Button button15;
         private KATO.Common.Ctl.BaseTextMoney txtSrrt2;
         private KATO.Common.Ctl.BaseTextMoney txtArr2;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk2;
-        private System.Windows.Forms.TextBox txtZaiMei2;
-        private System.Windows.Forms.TextBox txtZaiCd2;
+        private KATO.Common.Ctl.BaseText txtZaiMei2;
+        private KATO.Common.Ctl.BaseText txtZaiCd2;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label20;
         private KATO.Common.Ctl.BaseTextMoney txtSrrt1;
         private KATO.Common.Ctl.BaseTextMoney txtArr1;
         private System.Windows.Forms.Label label18;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk1;
-        private System.Windows.Forms.TextBox txtZaiMei1;
+        private KATO.Common.Ctl.BaseText txtZaiMei1;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtZaiCd1;
+        private KATO.Common.Ctl.BaseText txtZaiCd1;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtMemo;
+        private KATO.Common.Ctl.BaseText txtMemo;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtUriTotal;
-        private System.Windows.Forms.TextBox txtSiireTotal;
+        private KATO.Common.Ctl.BaseText txtUriTotal;
+        private KATO.Common.Ctl.BaseText txtSiireTotal;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox txtArariTotal;
+        private KATO.Common.Ctl.BaseText txtArariTotal;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtArariRitsu;
+        private KATO.Common.Ctl.BaseText txtArariRitsu;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label34;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk6;
-        private System.Windows.Forms.TextBox txtZaiMei6;
-        private System.Windows.Forms.TextBox txtZaiCd6;
+        private KATO.Common.Ctl.BaseText txtZaiMei6;
+        private KATO.Common.Ctl.BaseText txtZaiCd6;
         private System.Windows.Forms.Button button19;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk5;
-        private System.Windows.Forms.TextBox txtZaiMei5;
-        private System.Windows.Forms.TextBox txtZaiCd5;
+        private KATO.Common.Ctl.BaseText txtZaiMei5;
+        private KATO.Common.Ctl.BaseText txtZaiCd5;
         private System.Windows.Forms.Button button20;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTnk4;
-        private System.Windows.Forms.TextBox txtZaiMei4;
-        private System.Windows.Forms.TextBox txtZaiCd4;
+        private KATO.Common.Ctl.BaseText txtZaiMei4;
+        private KATO.Common.Ctl.BaseText txtZaiCd4;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Label label29;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk3;
-        private System.Windows.Forms.TextBox txtKakMei3;
-        private System.Windows.Forms.TextBox txtKakCd3;
+        private KATO.Common.Ctl.BaseText txtKakMei3;
+        private KATO.Common.Ctl.BaseText txtKakCd3;
         private System.Windows.Forms.Button button16;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk2;
-        private System.Windows.Forms.TextBox txtKakMei2;
-        private System.Windows.Forms.TextBox txtKakCd2;
+        private KATO.Common.Ctl.BaseText txtKakMei2;
+        private KATO.Common.Ctl.BaseText txtKakCd2;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label31;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk1;
-        private System.Windows.Forms.TextBox txtKakMei1;
+        private KATO.Common.Ctl.BaseText txtKakMei1;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtKakCd1;
+        private KATO.Common.Ctl.BaseText txtKakCd1;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label35;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk6;
-        private System.Windows.Forms.TextBox txtKakMei6;
-        private System.Windows.Forms.TextBox txtKakCd6;
+        private KATO.Common.Ctl.BaseText txtKakMei6;
+        private KATO.Common.Ctl.BaseText txtKakCd6;
         private System.Windows.Forms.Button button22;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk5;
-        private System.Windows.Forms.TextBox txtKakMei5;
-        private System.Windows.Forms.TextBox txtKakCd5;
+        private KATO.Common.Ctl.BaseText txtKakMei5;
+        private KATO.Common.Ctl.BaseText txtKakCd5;
         private System.Windows.Forms.Button button23;
         private KATO.Common.Ctl.BaseTextMoney txtKakTnk4;
-        private System.Windows.Forms.TextBox txtKakMei4;
-        private System.Windows.Forms.TextBox txtKakCd4;
+        private KATO.Common.Ctl.BaseText txtKakMei4;
+        private KATO.Common.Ctl.BaseText txtKakCd4;
         private System.Windows.Forms.Button button24;
         private KATO.Common.Ctl.BaseTextMoney txtSrrt6;
         private KATO.Common.Ctl.BaseTextMoney txtArr6;
@@ -2357,7 +2405,7 @@
         private KATO.Common.Ctl.BaseTextMoney txtZaiRit2;
         private KATO.Common.Ctl.BaseTextMoney txtZaiRit1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtIdx;
+        private KATO.Common.Ctl.BaseText txtIdx;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTeika6;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTeika5;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTeika4;
