@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMode = new KATO.Common.Ctl.BaseText();
             this.label3 = new System.Windows.Forms.Label();
@@ -621,6 +621,7 @@
             this.button1.TabStop = false;
             this.button1.Text = "🔄";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -633,6 +634,7 @@
             this.button2.TabStop = false;
             this.button2.Text = "🔄";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtZaiTeika6
@@ -826,7 +828,7 @@
             // 
             this.txtKakTnk6.blnCommaOK = true;
             this.txtKakTnk6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk6.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk6.intDeciSet = 2;
             this.txtKakTnk6.intIntederSet = 0;
             this.txtKakTnk6.intShishagonyu = 0;
@@ -877,7 +879,7 @@
             // 
             this.txtKakTnk5.blnCommaOK = true;
             this.txtKakTnk5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk5.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk5.intDeciSet = 2;
             this.txtKakTnk5.intIntederSet = 0;
             this.txtKakTnk5.intShishagonyu = 0;
@@ -928,7 +930,7 @@
             // 
             this.txtKakTnk4.blnCommaOK = true;
             this.txtKakTnk4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk4.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk4.intDeciSet = 2;
             this.txtKakTnk4.intIntederSet = 0;
             this.txtKakTnk4.intShishagonyu = 0;
@@ -1168,7 +1170,6 @@
             this.button19.TabStop = false;
             this.button19.Text = "選択";
             this.button19.UseVisualStyleBackColor = true;
-            this.button19.Visible = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // txtZaiRit5
@@ -1238,7 +1239,6 @@
             this.button20.TabStop = false;
             this.button20.Text = "選択";
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.Visible = false;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // txtZaiRit4
@@ -1308,7 +1308,6 @@
             this.button21.TabStop = false;
             this.button21.Text = "選択";
             this.button21.UseVisualStyleBackColor = true;
-            this.button21.Visible = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // label29
@@ -1327,7 +1326,7 @@
             // 
             this.txtKakTnk3.blnCommaOK = true;
             this.txtKakTnk3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk3.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk3.intDeciSet = 2;
             this.txtKakTnk3.intIntederSet = 0;
             this.txtKakTnk3.intShishagonyu = 0;
@@ -1378,7 +1377,7 @@
             // 
             this.txtKakTnk2.blnCommaOK = true;
             this.txtKakTnk2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk2.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk2.intDeciSet = 2;
             this.txtKakTnk2.intIntederSet = 0;
             this.txtKakTnk2.intShishagonyu = 0;
@@ -1439,7 +1438,7 @@
             // 
             this.txtKakTnk1.blnCommaOK = true;
             this.txtKakTnk1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtKakTnk1.ImeMode = System.Windows.Forms.ImeMode.Alpha;
             this.txtKakTnk1.intDeciSet = 2;
             this.txtKakTnk1.intIntederSet = 0;
             this.txtKakTnk1.intShishagonyu = 0;
@@ -2077,34 +2076,34 @@
             this.gridMitsmori.AllowUserToAddRows = false;
             this.gridMitsmori.AllowUserToResizeColumns = false;
             this.gridMitsmori.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMitsmori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsmori.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridMitsmori.EnableHeadersVisualStyles = false;
             this.gridMitsmori.Location = new System.Drawing.Point(17, 217);
             this.gridMitsmori.Name = "gridMitsmori";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsmori.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -2119,7 +2118,7 @@
             // 
             this.txtMNum.blnCommaOK = false;
             this.txtMNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMNum.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMNum.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtMNum.intDeciSet = 0;
             this.txtMNum.intIntederSet = 0;
             this.txtMNum.intShishagonyu = 0;
@@ -2135,6 +2134,7 @@
             // txtMYMD
             // 
             this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMYMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtMYMD.Location = new System.Drawing.Point(426, 14);
             this.txtMYMD.Name = "txtMYMD";
             this.txtMYMD.Size = new System.Drawing.Size(86, 22);

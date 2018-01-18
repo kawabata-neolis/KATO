@@ -206,6 +206,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             for (int i = 0; i < 200; i++)
             {
                 gridMitsmori[0, i].Value = (i + 1).ToString();
+                gridMitsmori[1, i].Value = "1";
             }
             gridMitsmori.CurrentCell = gridMitsmori[0, 0];
         }
@@ -1310,15 +1311,15 @@ namespace KATO.Form.H0210_MitsumoriInput
         // gird 更新
         private void editGrid(DataGridViewCellEventArgs e)
         {
-            // 品名・型番がある時は印刷チェックを入れる
-            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, e.RowIndex], false)))
-            {
-                gridMitsmori[1, e.RowIndex].Value = "1";
-            }
-            else
-            {
-                gridMitsmori[1, e.RowIndex].Value = "0";
-            }
+            //// 品名・型番がある時は印刷チェックを入れる
+            //if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, e.RowIndex], false)))
+            //{
+            //    gridMitsmori[1, e.RowIndex].Value = "1";
+            //}
+            //else
+            //{
+            //    gridMitsmori[1, e.RowIndex].Value = "0";
+            //}
 
             // 見積単価・数量・定価のいずれかが変更された場合
             if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
@@ -1750,7 +1751,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2"))
+            if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("1"))
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "見積データをコピーします。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -1796,21 +1797,21 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     dt.Rows.InsertAt(dt.NewRow(), 999);
                 }
-                for (int i = 0; i < 200; i++)
-                {
-                    gridMitsmori[0, i].Value = (i + 1).ToString();
-                    gridMitsmori[1, i].Value = "0";
-                }
 
                 gridMitsmori.DataSource = dt;
 
-                for (int i = 0; i < intTrueRows; i++)
+                for (int i = 0; i < 200; i++)
                 {
+                    gridMitsmori[0, i].Value = (i + 1).ToString();
                     gridMitsmori[1, i].Value = "1";
                 }
-                if (intTrueRows < 200) {
-                    gridMitsmori[2, intTrueRows].Value = "以下余白";
-                }
+                //for (int i = 0; i < intTrueRows; i++)
+                //{
+                //    gridMitsmori[1, i].Value = "1";
+                //}
+                //if (intTrueRows < 200) {
+                //    gridMitsmori[2, intTrueRows].Value = "以下余白";
+                //}
 
                 gridMitsmori.EndEdit();
 
@@ -1829,6 +1830,10 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 見積更新
         private void updMitsumori()
         {
+            if (!chkData())
+            {
+                return;
+            }
             H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
             try
             {
@@ -1861,82 +1866,34 @@ namespace KATO.Form.H0210_MitsumoriInput
                 f.StartPosition = FormStartPosition.Manual;
                 f.Location = s.Bounds.Location;
 
-                for (int i = 0; i < gridMitsmori.RowCount; i++)
+                int intMaxLine = 0;
+                for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
                 {
-                    if (gridMitsmori[1, i].Value != null && gridMitsmori[1, i].Value.ToString().Equals("1"))
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
                     {
-                        UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
-                        uc.Name = "uc" + i.ToString();
-                        uc.txtHin.Text = getCellValue(gridMitsmori[2, i], false);
-
-                        uc.lsDaibun.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
-                        uc.lsChubun.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
-                        uc.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
-
-                        uc.strRow = getCellValue(gridMitsmori[0, i], false);
-                        uc.strShohinCd = getCellValue(gridMitsmori[86, i], false);
-                        uc.strC1 = getCellValue(gridMitsmori[93, i], false);
-                        uc.strC2 = getCellValue(gridMitsmori[94, i], false);
-                        uc.strC3 = getCellValue(gridMitsmori[95, i], false);
-                        uc.strC4 = getCellValue(gridMitsmori[96, i], false);
-                        uc.strC5 = getCellValue(gridMitsmori[97, i], false);
-                        uc.strC6 = getCellValue(gridMitsmori[98, i], false);
-
-                        uc.strSuryo = getCellValue(gridMitsmori[3, i], false);
-                        uc.strTanni = getCellValue(null, true);
-                        uc.strMitsuTanka = getCellValue(gridMitsmori[5, i], true);
-                        uc.strKin = getCellValue(gridMitsmori[7, i], true);
-                        uc.strShiireKin = getCellValue(gridMitsmori[8, i], true);
-                        uc.strArariKin = getCellValue(gridMitsmori[9, i], true);
-                        uc.strArariritsuKin = getCellValue(gridMitsmori[10, i], true);
-                        uc.strBiko = getCellValue(gridMitsmori[11, i], false);
-
-                        uc.strShiiName = getCellValue(gridMitsmori[12, i], false);
-                        uc.strPrint = getCellValue(gridMitsmori[13, i], false);
-
-                        uc.strShiireCd1 = getCellValue(gridMitsmori[14, i], false);
-                        uc.strShiireName1 = getCellValue(gridMitsmori[15, i], false);
-                        uc.strShiireTanka1 = getCellValue(gridMitsmori[16, i], false);
-                        uc.strShiireKin1 = getCellValue(gridMitsmori[17, i], false);
-                        uc.strShiireArari1 = getCellValue(gridMitsmori[18, i], false);
-                        uc.strShiireRitsu1 = getCellValue(gridMitsmori[19, i], false);
-
-                        uc.strShiireCd2 = getCellValue(gridMitsmori[20, i], false);
-                        uc.strShiireName2 = getCellValue(gridMitsmori[21, i], false);
-                        uc.strShiireTanka2 = getCellValue(gridMitsmori[22, i], false);
-                        uc.strShiireKin2 = getCellValue(gridMitsmori[23, i], false);
-                        uc.strShiireArari2 = getCellValue(gridMitsmori[24, i], false);
-                        uc.strShiireRitsu2 = getCellValue(gridMitsmori[25, i], false);
-
-                        uc.strShiireCd3 = getCellValue(gridMitsmori[26, i], false);
-                        uc.strShiireName3 = getCellValue(gridMitsmori[27, i], false);
-                        uc.strShiireTanka3 = getCellValue(gridMitsmori[28, i], false);
-                        uc.strShiireKin3 = getCellValue(gridMitsmori[29, i], false);
-                        uc.strShiireArari3 = getCellValue(gridMitsmori[30, i], false);
-                        uc.strShiireRitsu3 = getCellValue(gridMitsmori[31, i], false);
-
-                        if (!string.IsNullOrWhiteSpace(uc.strShiireName1) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[14, i], false);
-                        }
-                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName2) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[20, i], false);
-                        }
-                        else if (!string.IsNullOrWhiteSpace(uc.strShiireName3) && uc.strShiireName1.Equals(uc.strShiiName))
-                        {
-                            uc.strShiireCd = getCellValue(gridMitsmori[26, i], false);
-                        }
-
-                        f.tableLayoutPanel1.Controls.Add(uc);
+                        intMaxLine = i + 1;
+                        break;
                     }
+                }
+
+                for (int i = 0; i < intMaxLine; i++)
+                {
+                    // 数量、見積単価の両方に値が無いものはコメント行として扱う（分類入力の対象外）
+                    if (getCellValue(gridMitsmori[3, i], false).Equals("") && getCellValue(gridMitsmori[5, i], false).Equals(""))
+                    {
+                        continue;
+                    }
+
+                    UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
+                    uc.Name = "uc" + i.ToString();
+                    f.tableLayoutPanel1.Controls.Add(uc);
                 }
 
                 f.FrmParent = this;
                 f.ShowDialog();
                 f.Dispose();
 
-                if (printFlg)
+                if (PrintFlg)
                 {
                     List<String> aryPrm = new List<string>();
 
@@ -1962,12 +1919,51 @@ namespace KATO.Form.H0210_MitsumoriInput
                     inputB.updMitsumoriH(aryPrm);
                     inputB.delMitsumoriM(strMNum, Environment.UserName);
 
-                    for (int i = 0; i < gridMitsmori.RowCount; i++)
+                    for (int i = 0; i < intMaxLine; i++)
                     {
-                        if (getCellValue(gridMitsmori[2, i], false).Equals("以下余白"))
+                        //if (getCellValue(gridMitsmori[2, i], false).Equals("以下余白"))
+                        //{
+                        //    break;
+                        //}
+
+                        // 商品コードが無い場合は商品登録
+                        if (getCellValue(gridMitsmori[86, i], false).Equals(""))
                         {
-                            break;
+                            aryPrm = new List<string>();
+
+                            aryPrm.Add("");
+                            aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
+                            aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
+                            aryPrm.Add("Y");
+                            aryPrm.Add("0");
+                            aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
+                            aryPrm.Add("0");
+                            //aryPrm.Add(null);
+                            //aryPrm.Add(null);
+                            //aryPrm.Add(null);
+                            aryPrm.Add("");
+                            aryPrm.Add("");
+                            aryPrm.Add("");
+                            aryPrm.Add("0");
+                            aryPrm.Add(getCellValue(gridMitsmori[4, i], true));
+                            aryPrm.Add("0");
+                            aryPrm.Add("0");
+                            //.Add(null);
+                            aryPrm.Add("");
+
+                            //ユーザー名
+                            aryPrm.Add(Environment.UserName);
+
+                            string strNewShohin = inputB.updShohinNew(aryPrm, true);
                         }
+
 
                         aryPrm = new List<string>();
                         aryPrm.Add(strMNum);
@@ -2170,12 +2166,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(gridMitsmori[2, 0].Value.ToString()))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
+            //if (string.IsNullOrWhiteSpace(gridMitsmori[2, 0].Value.ToString()))
+            //{
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。値を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+            //    basemessagebox.ShowDialog();
+            //    return false;
+            //}
 
             return true;
         }
@@ -2303,8 +2299,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 templatesheet1.CopyTo("Page" + pageCnt.ToString());
                 currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                currentsheet.Cell(5, "M").Value = txtMNum.Text;
-                currentsheet.Cell(6, "M").Value = txtMYMD.Text;
+                currentsheet.Cell(5, "N").Value = txtMNum.Text;
+                currentsheet.Cell(6, "N").Value = txtMYMD.Text;
 
                 if (rd1.Checked)
                 {
@@ -2322,17 +2318,27 @@ namespace KATO.Form.H0210_MitsumoriInput
                 currentsheet.Cell(18, "C").Value = cbJoken.Text;
                 currentsheet.Cell(20, "C").Value = txtBiko.Text;
 
+                int intMaxLine = 0;
+                for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
+                {
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
+                    {
+                        intMaxLine = i + 1;
+                        break;
+                    }
+                }
+
                 // ClosedXMLで1行ずつExcelに出力
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < intMaxLine; i++)
                 {
                     if (gridMitsmori[1, i].Value == null || !gridMitsmori[1, i].Value.ToString().Equals("1"))
                     {
                         continue;
                     }
-                    if (xlsRowCnt == 71)
+                    if (xlsRowCnt == 55)
                     {
                         pageCnt++;
-                        xlsRowCnt = 3;
+                        xlsRowCnt = 7;
 
                         // テンプレートシート（明細行のみ）からコピー
                         templatesheet2.CopyTo("Page" + pageCnt.ToString());
@@ -2359,10 +2365,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                     stKata += getCellValue(gridMitsmori[2, i], false);
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
-                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[3, i], true);
-                    currentsheet.Cell(xlsRowCnt, "G").Value = getCellValue(gridMitsmori[5, i], true);
-                    currentsheet.Cell(xlsRowCnt, "J").Value = getCellValue(gridMitsmori[7, i], true);
-                    currentsheet.Cell(xlsRowCnt, "M").Value = getCellValue(gridMitsmori[11, i], false);
+                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[3, i], false);
+                    currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[5, i], false);
+                    currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[7, i], false);
+                    currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[11, i], false);
 
 
                     xlsRowCnt++;
@@ -2375,7 +2381,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("O71").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString();      // No.
+                    workbook.Worksheet(pageCnt).Cell("P56").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("#");      // No.
                 }
 
                 // workbookを保存
@@ -2389,7 +2395,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
                 int[] topRow = { 9 };
-                int[] leftColumn = { 7 };
+                int[] leftColumn = { 6 };
                 pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
 
                 // PDF化の処理
@@ -2465,8 +2471,18 @@ namespace KATO.Form.H0210_MitsumoriInput
                 currentsheet.Cell(12, "B").Value = lsTantousha.ValueLabelText;
                 currentsheet.Cell(13, "B").Value = txtBiko.Text;
 
+                int intMaxLine = 0;
+                for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
+                {
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
+                    {
+                        intMaxLine = i + 1;
+                        break;
+                    }
+                }
+
                 // ClosedXMLで1行ずつExcelに出力
-                for (int i = 0; i < dt.Rows.Count; i++)
+                for (int i = 0; i < intMaxLine; i++)
                 {
                     if (gridMitsmori[1, i].Value == null || !gridMitsmori[1, i].Value.ToString().Equals("1"))
                     {

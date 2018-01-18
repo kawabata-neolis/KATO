@@ -87,6 +87,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             cC = c;
             cM = m;
             InitializeComponent();
+
+            lsDaibun.Lschubundata = lsChubun;
+            lsDaibun.Lsmakerdata = lsMaker;
         }
         
     }

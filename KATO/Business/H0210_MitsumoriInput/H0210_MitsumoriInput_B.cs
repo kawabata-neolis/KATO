@@ -439,132 +439,6 @@ namespace KATO.Business.H0210_MitsumoriInput
             return dt;
         }
 
-
-
-
-        public string dbToPdf(DataTable dtSeikyuMeisai)
-        {
-            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-            string strFilePath = "./Template/B0420_SeikyuMeisaishoPrint.xlsx";
-            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
-
-            try
-            {
-                // excelのインスタンス生成
-                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
-
-                IXLWorksheet templatesheet1 = workbook.Worksheet(1);   // テンプレートシート
-                IXLWorksheet templatesheet2 = workbook.Worksheet(2);   // テンプレートシート（明細行のみ）
-                IXLWorksheet currentsheet = null;  // 処理中シート
-
-                int pageCnt = 0;    // ページ(シート枚数)カウント
-                int xlsRowCnt = 21;  // Excel出力行カウント（開始は出力行）
-                Boolean blnSheetCreate = false;
-                string strTokuisakiCd = "";
-
-                // ClosedXMLで1行ずつExcelに出力
-                foreach (DataRow drSeikyuMeisai in dtSeikyuMeisai.Rows)
-                {
-                    // 得意先コードが前行と同じ場合、かつ、43行目になった場合、テンプレートシート（明細行のみ）作成
-                    if (strTokuisakiCd.Equals(drSeikyuMeisai[0].ToString()) && xlsRowCnt == 43)
-                    {
-                        pageCnt++;
-                        xlsRowCnt = 15;
-                        blnSheetCreate = true;
-
-                        // テンプレートシート（明細行のみ）からコピー
-                        templatesheet2.CopyTo("Page" + pageCnt.ToString());
-                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
-                    }
-
-                    // 得意先コードが前行と違う場合、テンプレートシート作成
-                    if (!strTokuisakiCd.Equals(drSeikyuMeisai[0].ToString()))
-                    {
-                        strTokuisakiCd = drSeikyuMeisai[0].ToString();
-                        pageCnt++;
-                        xlsRowCnt = 21;
-                        blnSheetCreate = true;
-
-                        // テンプレートシートからコピー
-                        templatesheet1.CopyTo("Page" + pageCnt.ToString());
-                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
-
-                        currentsheet.Cell("A18").Value = drSeikyuMeisai[7].ToString();      // 前月御請求額
-                        currentsheet.Cell("C18").Value = drSeikyuMeisai[8].ToString();      // 当月入金額
-                        currentsheet.Cell("F18").Value = drSeikyuMeisai[9].ToString();      // 御支払残高
-                        currentsheet.Cell("G18").Value = drSeikyuMeisai[10].ToString();     // 当月御買上額
-                        currentsheet.Cell("H17").Value = drSeikyuMeisai[11].ToString();     // 内税
-                        currentsheet.Cell("H18").Value = drSeikyuMeisai[12].ToString();     // 消費税額
-                        currentsheet.Cell("I18").Value = drSeikyuMeisai[13].ToString();     // 当月御請求額
-                    }
-
-                    // 最初の明細行の場合
-                    if (blnSheetCreate)
-                    {
-                        blnSheetCreate = false;
-
-                        currentsheet.Cell("B4").Value = drSeikyuMeisai[2].ToString();       // 郵便番号
-                        currentsheet.Cell("B6").Value = drSeikyuMeisai[3].ToString();       // 住所１
-                        currentsheet.Cell("B8").Value = drSeikyuMeisai[4].ToString();       // 住所２
-                        currentsheet.Cell("B10").Value = drSeikyuMeisai[1].ToString();      // 顧客名
-                        currentsheet.Cell("H6").Value = drSeikyuMeisai[5].ToString();       // 請求年月日
-                    }
-
-                    currentsheet.Cell(xlsRowCnt, "A").Value = drSeikyuMeisai[14].ToString();    // 日付
-                    currentsheet.Cell(xlsRowCnt, "B").Value = drSeikyuMeisai[15].ToString();    // 伝票No.
-                    currentsheet.Cell(xlsRowCnt, "D").Value = drSeikyuMeisai[18].ToString();    // 取区
-                    currentsheet.Cell(xlsRowCnt, "E").Value = drSeikyuMeisai[19].ToString();    // 商品名
-                    currentsheet.Cell(xlsRowCnt, "J").Value = drSeikyuMeisai[20].ToString();    // 数量
-                    currentsheet.Cell(xlsRowCnt, "K").Value = drSeikyuMeisai[21].ToString();    // 単価
-                    currentsheet.Cell(xlsRowCnt, "N").Value = drSeikyuMeisai[22].ToString();    // 金額
-                    currentsheet.Cell(xlsRowCnt, "P").Value = drSeikyuMeisai[23].ToString();    // 入金金額
-                    currentsheet.Cell(xlsRowCnt, "Q").Value = "'" + drSeikyuMeisai[24].ToString();    // 備考
-
-                    xlsRowCnt++;
-                }
-
-                // テンプレートシート削除
-                templatesheet1.Delete();
-                templatesheet2.Delete();
-
-                // ページ数設定
-                for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
-                {
-                    workbook.Worksheet(pageCnt).Cell("R2").Value = pageCnt.ToString();      // No.
-                }
-
-                // workbookを保存
-                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
-                workbook.SaveAs(strOutXlsFile);
-
-                // workbookを解放
-                workbook.Dispose();
-
-                // ロゴ貼り付け処理
-                CreatePdf pdf = new CreatePdf();
-                int[] topRow = { 6 };
-                int[] leftColumn = { 15 };
-                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
-
-                // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime, 0);
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                // Workフォルダの全ファイルを取得
-                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
-                // Workフォルダ内のファイル削除
-                foreach (string filepath in files)
-                {
-                    //File.Delete(filepath);
-                }
-            }
-        }
-
         public DataTable getMitsumoriList(string strF, string strT, string strTan, string strTok,
             string strTan2, string strKen, string strBik, string strKat, int s)
         {
@@ -627,6 +501,153 @@ namespace KATO.Business.H0210_MitsumoriInput
             }
 
             return dt;
+        }
+
+        public string updShohinNew(List<string> lstString, Boolean blnKanri)
+        {
+            //データ渡し用
+            List<string> stringSQLAry = new List<string>();
+
+            string strSQLName = null;
+
+            int intNewCd;
+            string strNewCd = "99999";
+
+            if (blnKanri == true)
+            {
+                strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
+            }
+            else
+            {
+                strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
+            }
+
+            //データ渡し用
+            stringSQLAry.Add("Common");
+            stringSQLAry.Add(strSQLName);
+
+            DataTable dtSetCd_B = new DataTable();
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+
+                if (strSQLInput == "")
+                {
+                    return null;
+                }
+
+                strSQLInput = string.Format(strSQLInput);
+
+                dtSetCd_B = con.ReadSql(strSQLInput);
+
+                char chrNewCdHead = ' ';
+                string strNewCdOther = "";
+
+                //中身が空
+                if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
+                {
+                    strNewCd = "00001";
+                    lstString[0] = strNewCd.ToString();
+                }
+                //中身がある
+                else
+                {
+                    chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
+
+                    strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
+
+                    //先頭以外が9999の場合
+                    if (strNewCdOther == "9999")
+                    {
+                        strNewCdOther = "0001";
+
+                        //先頭が9の場合
+                        if (chrNewCdHead == '9')
+                        {
+
+                            chrNewCdHead = 'A';
+                        }
+                        else
+                        {
+                            //アスキーコード取得、加算
+                            int intASCII = chrNewCdHead;
+                            intASCII = intASCII + 1;
+                            chrNewCdHead = (char)intASCII;
+                        }
+                        lstString[0] = chrNewCdHead + strNewCdOther;
+                    }
+                    else
+                    {
+                        intNewCd = int.Parse(strNewCdOther.ToString());
+
+                        intNewCd = intNewCd + 1;
+
+                        lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
+                    }
+                }
+                addShohin(lstString, blnKanri);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            return lstString[0];
+        }
+
+        ///<summary>
+        ///addShohin
+        ///テキストボックス内のデータをDBに登録
+        ///</summary>
+        public void addShohin(List<string> lstString, Boolean blnKanri)
+        {
+            try
+            {
+                string[] aryStr = new string[] {
+                    lstString[0],
+                    lstString[1],
+                    lstString[2],
+                    lstString[3],
+                    lstString[4],
+                    lstString[5],
+                    lstString[6],
+                    lstString[7],
+                    lstString[8],
+                    lstString[9],
+                    lstString[10],
+                    lstString[11],
+                    lstString[12],
+                    lstString[13],
+                    lstString[14],
+                    lstString[15],
+                    lstString[16],
+                    lstString[17],
+                    lstString[18],
+                    lstString[19],
+                    lstString[20],
+                    lstString[21],
+                    "N",
+                    DateTime.Now.ToString(),
+                    lstString[22],
+                    DateTime.Now.ToString(),
+                    lstString[22]
+                };
+
+                if (blnKanri == true)
+                {
+                    con.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
+                }
+                else
+                {
+                    con.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_KARI_UPD, aryStr);
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
         }
     }
 }

@@ -108,6 +108,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyData == Keys.F12)
             {
+                FrmParent.PrintFlg = false;
                 this.Close();
             }
         }
