@@ -45,6 +45,7 @@
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 3;
             this.btnF01.TabStop = false;
             this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
