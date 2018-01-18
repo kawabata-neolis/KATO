@@ -179,9 +179,7 @@ namespace KATO.Common.Ctl
             List<string> lstStringSQL = new List<string>();
 
             DataTable dtSetCd;
-
-            Boolean blnGood;
-
+            
             //情報を投げる必須項目になるため空の情報を作成
             object sender = null;
             EventArgs e = null;
@@ -194,12 +192,12 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (blnGood == false)
+            // 禁止文字チェックと数値チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false ||
+                StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == false)
             {
                 //Parent 内のすべてのコントロールを列挙する
                 foreach (Control cControl in Parent.Controls)
@@ -267,9 +265,6 @@ namespace KATO.Common.Ctl
                 blMessageOn = true;
                 return;
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             if (this.CodeTxtText.Length == 1)
             {
@@ -394,10 +389,7 @@ namespace KATO.Common.Ctl
             List<string> lstStringSQL = new List<string>();
 
             DataTable dtSetCd;
-
-            Boolean blnGood;
-
-
+            
             // 空白、文字数3以上の場合
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true) || this.CodeTxtText.Length > 2)
             {
@@ -406,12 +398,11 @@ namespace KATO.Common.Ctl
                 return false;
             }
 
-            // 禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            // 数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            // 前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (blnGood == false)
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false ||
+                StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == false)
             {
                 // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -423,9 +414,6 @@ namespace KATO.Common.Ctl
 
                 return true;
             }
-
-            // 前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             // ゼロ詰め処理
             if (this.CodeTxtText.Length == 1)

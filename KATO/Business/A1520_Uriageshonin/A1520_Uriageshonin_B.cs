@@ -50,7 +50,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("A1520_Uriageshonin");
-            lstSQL.Add("Uriageshonin_Henpin_SELECT");
+            lstSQL.Add("Uriageshonin_Henpinnebiki_Grid_SELECT");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -116,7 +116,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
             }
             else
             {
-                strShonin = "AND 承認フラグ = 0 ";
+                strShonin = "AND 承認フラグ = 1 ";
             }
 
             //SQLファイルのパスとファイル名を追加
@@ -240,21 +240,21 @@ namespace KATO.Business.A1520_Uriageshonin_B
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQLSelect = new List<string>();
-            List<string> lstSQLUpdate = new List<string>();
             List<string> lstSQLInsert = new List<string>();
+            List<string> lstSQLUpdate = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
             lstSQLSelect.Add("A1520_Uriageshonin");
-            lstSQLSelect.Add("Uriageshonin_SELECT_Henpinnebiki");
-
-            lstSQLUpdate.Add("A1520_Uriageshonin");
-            lstSQLUpdate.Add("Uriageshonin_Henpinnebiki_SELECT");
+            lstSQLSelect.Add("Uriageshonin_Henpinnebiki_SELECT");
 
             lstSQLInsert.Add("A1520_Uriageshonin");
             lstSQLInsert.Add("Uriageshonin_Henpinnebiki_INSERT");
+
+            lstSQLUpdate.Add("A1520_Uriageshonin");
+            lstSQLUpdate.Add("Uriageshonin_Henpinnebiki_UPDATE");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -276,13 +276,13 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, lstGrid[1]);
+                strSQLInput = string.Format(strSQLInput, lstGrid[0]);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
                 //データがなければ
-                if (dtSetCd_B.Rows.Count < 0)
+                if (dtSetCd_B.Rows.Count == 0)
                 {
                     //INSERT
                     //SQLファイルのパス取得
@@ -294,10 +294,13 @@ namespace KATO.Business.A1520_Uriageshonin_B
                         return (dtSetCd_B);
                     }
 
-//表示挙動確認後にINSERT分作成
-
                     //SQLファイルと該当コードでフォーマット
-                    strSQLInput = string.Format(strSQLInput, lstGrid[0], lstGrid[1]);
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                                                             lstGrid[1],    //承認フラグ
+                                                             lstGrid[2],    //登録日時
+                                                             lstGrid[3],    //登録ユーザー名
+                                                             lstGrid[2],    //更新日時
+                                                             lstGrid[3]);   //更新ユーザー名
 
                     //SQL接続後、該当データを取得
                     dbconnective.RunSql(strSQLInput);
@@ -306,6 +309,24 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 else
                 {
                     //UPDATE
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdate);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return (dtSetCd_B);
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                                                             lstGrid[1],    //承認フラグ
+                                                             lstGrid[2],    //更新日時
+                                                             lstGrid[3]);   //更新ユーザー名
+
+                    //SQL接続後、該当データを取得
+                    dbconnective.RunSql(strSQLInput);
+
                 }
 
 
