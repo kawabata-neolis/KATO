@@ -1655,10 +1655,13 @@
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
-    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_UPDATE.sql">
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_INSERT.sql">
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Henpinnebiki_INSERT.sql">
@@ -1670,7 +1673,7 @@
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Henpinnebiki_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_SELECT.sql">
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_Grid_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Henpinnebiki_SELECT.sql">

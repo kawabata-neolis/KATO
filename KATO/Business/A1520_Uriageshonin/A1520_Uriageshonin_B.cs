@@ -121,7 +121,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("A1520_Uriageshonin");
-            lstSQL.Add("Uriageshonin_Riekiritsu_SELECT");
+            lstSQL.Add("Uriageshonin_Riekiritsu_Grid_SELECT");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -328,8 +328,91 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     dbconnective.RunSql(strSQLInput);
 
                 }
+                return;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
 
+        ///<summary>
+        ///updRiekiritsu
+        ///データの取得
+        ///</summary>
+        public void updRiekiritsu(List<string> lstGrid)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLSelect = new List<string>();
+            List<string> lstSQLUpdate = new List<string>();
 
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQLSelect.Add("A1520_Uriageshonin");
+            lstSQLSelect.Add("Uriageshonin_Riekiritsu_SELECT");
+
+            lstSQLUpdate.Add("A1520_Uriageshonin");
+            lstSQLUpdate.Add("Uriageshonin_Riekiritsu_UPDATE");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQLSelect);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, lstGrid[0]);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                //データがなければ
+                if (dtSetCd_B.Rows.Count == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    //UPDATE
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdate);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return;
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                                                             lstGrid[1],    //承認フラグ
+                                                             lstGrid[2],    //更新日時
+                                                             lstGrid[3]);   //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
+
+                }
                 return;
             }
             catch (Exception ex)
