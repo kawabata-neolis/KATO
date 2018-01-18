@@ -687,7 +687,7 @@ namespace KATO.Form.A1520_Uriageshonin
             lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
             lstViewGrid.Add(DateTime.Now.AddMonths(-3).ToString("yyyy/MM/dd"));
 
-            //仮(テスト用)
+            ////仮(テスト用)
             //lstViewGrid.Add("2016/06/01");
             //lstViewGrid.Add("2015/12/01");
 
@@ -818,7 +818,47 @@ namespace KATO.Form.A1520_Uriageshonin
         ///</summary>
         private void updUriagesakujo()
         {
+            //グリッドが空の場合
+            if (gridUriagesakujo.Rows.Count < 0)
+            {
+                return;
+            }
 
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認がNの場合
+            if (gridUriagesakujo.CurrentRow.Cells["承認"].Value.ToString() == "N")
+            {
+                //Yに変更
+                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "Y";
+            }
+            else
+            {
+                //Nに変更
+                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "N";
+            }
+
+            //承認情報
+            lstGrid.Add(gridUriagesakujo.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(gridUriagesakujo.CurrentRow.Cells["承認"].Value.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.updUriagesakujo(lstGrid);
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
 
