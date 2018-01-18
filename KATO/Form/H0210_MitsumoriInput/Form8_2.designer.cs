@@ -108,7 +108,7 @@
             this.txtTanto.Name = "txtTanto";
             this.txtTanto.Size = new System.Drawing.Size(343, 22);
             this.txtTanto.TabIndex = 4;
-            this.txtTanto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.txtTanto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // label6
             // 
@@ -128,7 +128,7 @@
             this.txtKenmei.Name = "txtKenmei";
             this.txtKenmei.Size = new System.Drawing.Size(343, 22);
             this.txtKenmei.TabIndex = 5;
-            this.txtKenmei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.txtKenmei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // label7
             // 
@@ -148,7 +148,7 @@
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(343, 22);
             this.txtBiko.TabIndex = 6;
-            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // label8
             // 
@@ -168,7 +168,7 @@
             this.txtKata.Name = "txtKata";
             this.txtKata.Size = new System.Drawing.Size(343, 22);
             this.txtKata.TabIndex = 7;
-            this.txtKata.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.txtKata.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // label14
             // 
@@ -200,7 +200,7 @@
             this.rdSort2.TabIndex = 1;
             this.rdSort2.Text = "得意先コードの昇順・見積書番号の降順";
             this.rdSort2.UseVisualStyleBackColor = true;
-            this.rdSort2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.rdSort2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // rdSort1
             // 
@@ -214,7 +214,7 @@
             this.rdSort1.TabStop = true;
             this.rdSort1.Text = "見積書番号の降順";
             this.rdSort1.UseVisualStyleBackColor = true;
-            this.rdSort1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.rdSort1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyUp);
             // 
             // label9
             // 
@@ -224,7 +224,7 @@
             this.label9.Location = new System.Drawing.Point(470, 146);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(175, 26);
-            this.label9.TabIndex = 177;
+            this.label9.TabIndex = 9;
             this.label9.Text = "※備考は、明細行の備考に\r\n　ついても検索します。";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -234,7 +234,7 @@
             this.btnF12.Location = new System.Drawing.Point(675, 90);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 9;
+            this.btnF12.TabIndex = 10;
             this.btnF12.Text = "戻る(F12)";
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.button1_Click);
@@ -246,7 +246,7 @@
             this.btnF11.Location = new System.Drawing.Point(675, 118);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
-            this.btnF11.TabIndex = 10;
+            this.btnF11.TabIndex = 11;
             this.btnF11.Text = "検索(F11)";
             this.btnF11.UseVisualStyleBackColor = true;
             this.btnF11.Click += new System.EventHandler(this.button2_Click);
@@ -311,7 +311,7 @@
             this.btnF10.Location = new System.Drawing.Point(675, 146);
             this.btnF10.Name = "btnF10";
             this.btnF10.Size = new System.Drawing.Size(100, 23);
-            this.btnF10.TabIndex = 11;
+            this.btnF10.TabIndex = 12;
             this.btnF10.Text = "詳細(F10)";
             this.btnF10.UseVisualStyleBackColor = true;
             this.btnF10.Click += new System.EventHandler(this.button3_Click);
@@ -340,7 +340,7 @@
             this.lsTokui.SpaceCodeValue = 4;
             this.lsTokui.SpaceNameCode = 7;
             this.lsTokui.SpaceValueAppend = 4;
-            this.lsTokui.TabIndex = 202;
+            this.lsTokui.TabIndex = 3;
             this.lsTokui.ValueLabelSize = 350;
             this.lsTokui.ValueLabelText = "";
             // 
@@ -358,7 +358,7 @@
             this.lsTanto.SpaceCodeValue = 4;
             this.lsTanto.SpaceNameCode = 7;
             this.lsTanto.SpaceValueAppend = 4;
-            this.lsTanto.TabIndex = 201;
+            this.lsTanto.TabIndex = 2;
             this.lsTanto.ValueLabelSize = 120;
             this.lsTanto.ValueLabelText = "";
             // 
@@ -405,10 +405,11 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridMitsu.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridMitsu.RowTemplate.Height = 21;
+            this.gridMitsu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gridMitsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMitsu.Size = new System.Drawing.Size(763, 601);
             this.gridMitsu.StandardTab = true;
-            this.gridMitsu.TabIndex = 12;
+            this.gridMitsu.TabIndex = 13;
             this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
             this.gridMitsu.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
@@ -435,7 +436,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1424, 839);
             this.Controls.Add(this.lsTokui);
             this.Controls.Add(this.lsTanto);
             this.Controls.Add(this.label12);
@@ -463,7 +464,9 @@
             this.Controls.Add(this.txtFrom);
             this.Controls.Add(this.label5);
             this.Name = "Form8_2";
-            this.Text = "frmMitsumorisyoList";
+            this.Text = "見積書検索";
+            this.Load += new System.EventHandler(this.Form8_2_Load);
+            this.Shown += new System.EventHandler(this.Form8_2_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form8_2_KeyDown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -476,19 +479,12 @@
         }
 
         #endregion
-
-        private KATO.Common.Ctl.BaseCalendarYM txtFrom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private KATO.Common.Ctl.BaseCalendarYM txtTo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTanto;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtKenmei;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtBiko;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtKata;
         private KATO.Common.Ctl.BaseDataGridView gridMitsu;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel2;
@@ -503,8 +499,14 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnF10;
         private System.Windows.Forms.Label label12;
-        private Common.Ctl.LabelSet_Tantousha lsTanto;
-        private Common.Ctl.LabelSet_Tokuisaki lsTokui;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
+        public Common.Ctl.BaseCalendarYM txtFrom;
+        public Common.Ctl.BaseCalendarYM txtTo;
+        public System.Windows.Forms.TextBox txtTanto;
+        public System.Windows.Forms.TextBox txtKenmei;
+        public System.Windows.Forms.TextBox txtBiko;
+        public System.Windows.Forms.TextBox txtKata;
+        public Common.Ctl.LabelSet_Tantousha lsTanto;
+        public Common.Ctl.LabelSet_Tokuisaki lsTokui;
     }
 }

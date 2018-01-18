@@ -54,15 +54,15 @@ namespace KATO.Form.H0210_MitsumoriInput
             mYmd.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             DataGridViewTextBoxColumn torihiki = new DataGridViewTextBoxColumn();
-            torihiki.DataPropertyName = "取引先名";
-            torihiki.Name = "取引先名";
+            torihiki.DataPropertyName = "得意先名称";
+            torihiki.Name = "得意先名称";
             torihiki.HeaderText = "取引先名";
             torihiki.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             DataGridViewTextBoxColumn kenmei = new DataGridViewTextBoxColumn();
-            kenmei.DataPropertyName = "件名";
-            kenmei.Name = "件名";
-            kenmei.HeaderText = "件名";
+            kenmei.DataPropertyName = "標題";
+            kenmei.Name = "標題";
+            kenmei.HeaderText = "標題";
             kenmei.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             DataGridViewTextBoxColumn kingaku = new DataGridViewTextBoxColumn();
@@ -250,6 +250,14 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 e.Handled = true;
             }
+            else if (e.KeyData == Keys.F11)
+            {
+                selectMitsumoriList();
+            }
+            else if (e.KeyData == Keys.F12)
+            {
+                this.Close();
+            }
         }
 
         private void gridMitsu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -258,6 +266,44 @@ namespace KATO.Form.H0210_MitsumoriInput
                 nm.Text = gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value.ToString();
             }
             this.Close();
+        }
+
+        private void Form8_2_Load(object sender, EventArgs e)
+        {
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
+
+            this.txtFrom.Text = (DateTime.Now.AddMonths(-3)).ToString("yyyy/MM");
+            this.txtTo.Text = (DateTime.Now).ToString("yyyy/MM");
+            this.Activate();
+            this.ActiveControl = txtFrom;
+        }
+
+        private void txtTanto_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.F10)
+            {
+                changePreview();
+                e.Handled = true;
+            }
+            else if (e.KeyData == Keys.F11)
+            {
+                selectMitsumoriList();
+            }
+            else if (e.KeyData == Keys.F12)
+            {
+                this.Close();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+        }
+
+        private void Form8_2_Shown(object sender, EventArgs e)
+        {
+            this.Activate();
+            this.ActiveControl = txtFrom;
         }
     }
 }

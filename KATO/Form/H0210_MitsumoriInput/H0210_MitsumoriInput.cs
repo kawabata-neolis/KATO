@@ -112,6 +112,9 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         int RowIndex = 0;
         int ColIndex = 0;
+        int intZai1Num = 0;
+        int intZai2Num = 0;
+
         bool keyFlgF9 = true;
         string defUser = "";
         string defEigyo = "";
@@ -425,6 +428,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireCd1.Name = "仕入先コード１";
             shiireCd1.HeaderText = "";
             shiireCd1.ReadOnly = true;
+            shiireCd1.Visible = false;
 
             DataGridViewTextBoxColumn shiireName1 = new DataGridViewTextBoxColumn(); // 15
             shiireName1.DataPropertyName = "仕入先名１";
@@ -461,6 +465,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireCd2.Name = "仕入先コード２";
             shiireCd2.HeaderText = "";
             shiireCd2.ReadOnly = true;
+            shiireCd2.Visible = false;
 
             DataGridViewTextBoxColumn shiireName2 = new DataGridViewTextBoxColumn(); // 21
             shiireName2.DataPropertyName = "仕入先名２";
@@ -497,6 +502,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireCd3.Name = "仕入先コード３";
             shiireCd3.HeaderText = "";
             shiireCd3.ReadOnly = true;
+            shiireCd3.Visible = false;
 
             DataGridViewTextBoxColumn shiireName3 = new DataGridViewTextBoxColumn(); // 27
             shiireName3.DataPropertyName = "仕入先名３";
@@ -540,32 +546,27 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireName4.DataPropertyName = "仕入先名４";
             shiireName4.Name = "仕入先名４";
             shiireName4.HeaderText = "仕入先名４";
-            shiireName4.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireTanka4 = new DataGridViewTextBoxColumn(); // 34
             shiireTanka4.DataPropertyName = "仕入単価４";
             shiireTanka4.Name = "仕入単価４";
             shiireTanka4.HeaderText = "仕入単価４";
-            shiireTanka4.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireKin4 = new DataGridViewTextBoxColumn(); // 35
             shiireKin4.DataPropertyName = "仕入金額４";
             shiireKin4.Name = "仕入金額４";
             shiireKin4.HeaderText = "仕入金額４";
-            shiireKin4.Visible = false;
-
+            
             DataGridViewTextBoxColumn arari4 = new DataGridViewTextBoxColumn(); // 36
             arari4.DataPropertyName = "粗利４";
             arari4.Name = "粗利４";
             arari4.HeaderText = "粗利４";
-            arari4.Visible = false;
-
+            
             DataGridViewTextBoxColumn arariritsu4 = new DataGridViewTextBoxColumn(); // 37
             arariritsu4.DataPropertyName = "粗利率４";
             arariritsu4.Name = "粗利率４";
             arariritsu4.HeaderText = "粗利率４";
-            arariritsu4.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireCd5 = new DataGridViewTextBoxColumn(); // 38
             shiireCd5.DataPropertyName = "仕入先コード５";
             shiireCd5.Name = "仕入先コード５";
@@ -576,32 +577,27 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireName5.DataPropertyName = "仕入先名５";
             shiireName5.Name = "仕入先名５";
             shiireName5.HeaderText = "仕入先名５";
-            shiireName5.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireTanka5 = new DataGridViewTextBoxColumn(); // 40
             shiireTanka5.DataPropertyName = "仕入単価５";
             shiireTanka5.Name = "仕入単価５";
             shiireTanka5.HeaderText = "仕入単価５";
-            shiireTanka5.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireKin5 = new DataGridViewTextBoxColumn(); // 41
             shiireKin5.DataPropertyName = "仕入金額５";
             shiireKin5.Name = "仕入金額５";
             shiireKin5.HeaderText = "仕入金額５";
-            shiireKin5.Visible = false;
-
+            
             DataGridViewTextBoxColumn arari5 = new DataGridViewTextBoxColumn(); // 42
             arari5.DataPropertyName = "粗利５";
             arari5.Name = "粗利５";
             arari5.HeaderText = "粗利５";
-            arari5.Visible = false;
-
+            
             DataGridViewTextBoxColumn arariritsu5 = new DataGridViewTextBoxColumn(); // 43
             arariritsu5.DataPropertyName = "粗利率５";
             arariritsu5.Name = "粗利率５";
             arariritsu5.HeaderText = "粗利率５";
-            arariritsu5.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireCd6 = new DataGridViewTextBoxColumn(); // 44
             shiireCd6.DataPropertyName = "仕入先コード６";
             shiireCd6.Name = "仕入先コード６";
@@ -612,31 +608,26 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireName6.DataPropertyName = "仕入先名６";
             shiireName6.Name = "仕入先名６";
             shiireName6.HeaderText = "仕入先名６";
-            shiireName6.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireTanka6 = new DataGridViewTextBoxColumn(); // 46
             shiireTanka6.DataPropertyName = "仕入単価６";
             shiireTanka6.Name = "仕入単価６";
             shiireTanka6.HeaderText = "仕入単価６";
-            shiireTanka6.Visible = false;
-
+            
             DataGridViewTextBoxColumn shiireKin6 = new DataGridViewTextBoxColumn(); // 47
             shiireKin6.DataPropertyName = "仕入金額６";
             shiireKin6.Name = "仕入金額６";
             shiireKin6.HeaderText = "仕入金額６";
-            shiireKin6.Visible = false;
-
+            
             DataGridViewTextBoxColumn arari6 = new DataGridViewTextBoxColumn(); // 48
             arari6.DataPropertyName = "粗利６";
             arari6.Name = "粗利６";
             arari6.HeaderText = "粗利６";
-            arari6.Visible = false;
-
+            
             DataGridViewTextBoxColumn arariritsu6 = new DataGridViewTextBoxColumn(); // 49
             arariritsu6.DataPropertyName = "粗利率６";
             arariritsu6.Name = "粗利率６";
             arariritsu6.HeaderText = "粗利率６";
-            arariritsu6.Visible = false;
             #endregion
 
             #region
@@ -650,25 +641,21 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName1.DataPropertyName = "加工仕入先名１";
             kakoShiireName1.Name = "加工仕入先名１";
             kakoShiireName1.HeaderText = "加工仕入先名１";
-            kakoShiireName1.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireTanka1 = new DataGridViewTextBoxColumn(); // 52
             kakoShiireTanka1.DataPropertyName = "加工仕入単価１";
             kakoShiireTanka1.Name = "加工仕入単価１";
             kakoShiireTanka1.HeaderText = "加工仕入単価１";
-            kakoShiireTanka1.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireKin1 = new DataGridViewTextBoxColumn(); // 53
             kakoShiireKin1.DataPropertyName = "加工仕入金額１";
             kakoShiireKin1.Name = "加工仕入金額１";
             kakoShiireKin1.HeaderText = "加工仕入金額１";
-            kakoShiireKin1.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireArari1 = new DataGridViewTextBoxColumn(); // 54
             kakoShiireArari1.DataPropertyName = "加工粗利１";
             kakoShiireArari1.Name = "加工粗利１";
             kakoShiireArari1.HeaderText = "加工粗利１";
-            kakoShiireArari1.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireArariritsu1 = new DataGridViewTextBoxColumn(); // 55
             kakoShiireArariritsu1.DataPropertyName = "加工粗利率１";
@@ -686,26 +673,22 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName2.DataPropertyName = "加工仕入先名２";
             kakoShiireName2.Name = "加工仕入先名２";
             kakoShiireName2.HeaderText = "加工仕入先名２";
-            kakoShiireName2.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireTanka2 = new DataGridViewTextBoxColumn(); // 58
             kakoShiireTanka2.DataPropertyName = "加工仕入単価２";
             kakoShiireTanka2.Name = "加工仕入単価２";
             kakoShiireTanka2.HeaderText = "加工仕入単価２";
-            kakoShiireTanka2.Visible = false;
 
             DataGridViewTextBoxColumn kakoShiireKin2 = new DataGridViewTextBoxColumn(); // 59
             kakoShiireKin2.DataPropertyName = "加工仕入金額２";
             kakoShiireKin2.Name = "加工仕入金額２";
             kakoShiireKin2.HeaderText = "加工仕入金額２";
-            kakoShiireKin2.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArari2 = new DataGridViewTextBoxColumn(); // 60
             kakoShiireArari2.DataPropertyName = "加工粗利２";
             kakoShiireArari2.Name = "加工粗利２";
             kakoShiireArari2.HeaderText = "加工粗利２";
-            kakoShiireArari2.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArariritsu2 = new DataGridViewTextBoxColumn(); // 61
             kakoShiireArariritsu2.DataPropertyName = "加工粗利率２";
             kakoShiireArariritsu2.Name = "加工粗利率２";
@@ -722,26 +705,22 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName3.DataPropertyName = "加工仕入先名３";
             kakoShiireName3.Name = "加工仕入先名３";
             kakoShiireName3.HeaderText = "加工仕入先名３";
-            kakoShiireName3.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireTanka3 = new DataGridViewTextBoxColumn(); // 64
             kakoShiireTanka3.DataPropertyName = "加工仕入単価３";
             kakoShiireTanka3.Name = "加工仕入単価３";
             kakoShiireTanka3.HeaderText = "加工仕入単価３";
-            kakoShiireTanka3.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireKin3 = new DataGridViewTextBoxColumn(); // 65
             kakoShiireKin3.DataPropertyName = "加工仕入金額３";
             kakoShiireKin3.Name = "加工仕入金額３";
             kakoShiireKin3.HeaderText = "加工仕入金額３";
-            kakoShiireKin3.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArari3 = new DataGridViewTextBoxColumn(); // 66
             kakoShiireArari3.DataPropertyName = "加工粗利３";
             kakoShiireArari3.Name = "加工粗利３";
             kakoShiireArari3.HeaderText = "加工粗利３";
-            kakoShiireArari3.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArariritsu3 = new DataGridViewTextBoxColumn(); //67 
             kakoShiireArariritsu3.DataPropertyName = "加工粗利率３";
             kakoShiireArariritsu3.Name = "加工粗利率３";
@@ -758,26 +737,22 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName4.DataPropertyName = "加工仕入先名４";
             kakoShiireName4.Name = "加工仕入先名４";
             kakoShiireName4.HeaderText = "加工仕入先名４";
-            kakoShiireName4.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireTanka4 = new DataGridViewTextBoxColumn(); // 70
             kakoShiireTanka4.DataPropertyName = "加工仕入単価４";
             kakoShiireTanka4.Name = "加工仕入単価４";
             kakoShiireTanka4.HeaderText = "加工仕入単価４";
-            kakoShiireTanka4.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireKin4 = new DataGridViewTextBoxColumn(); // 71
             kakoShiireKin4.DataPropertyName = "加工仕入金額４";
             kakoShiireKin4.Name = "加工仕入金額４";
             kakoShiireKin4.HeaderText = "加工仕入金額４";
-            kakoShiireKin4.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArari4 = new DataGridViewTextBoxColumn(); // 72
             kakoShiireArari4.DataPropertyName = "加工粗利４";
             kakoShiireArari4.Name = "加工粗利４";
             kakoShiireArari4.HeaderText = "加工粗利４";
-            kakoShiireArari4.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArariritsu4 = new DataGridViewTextBoxColumn(); // 73
             kakoShiireArariritsu4.DataPropertyName = "加工粗利率４";
             kakoShiireArariritsu4.Name = "加工粗利率４";
@@ -794,26 +769,22 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName5.DataPropertyName = "加工仕入先名５";
             kakoShiireName5.Name = "加工仕入先名５";
             kakoShiireName5.HeaderText = "加工仕入先名５";
-            kakoShiireName5.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireTanka5 = new DataGridViewTextBoxColumn(); // 76
             kakoShiireTanka5.DataPropertyName = "加工仕入単価５";
             kakoShiireTanka5.Name = "加工仕入単価５";
             kakoShiireTanka5.HeaderText = "加工仕入単価５";
-            kakoShiireTanka5.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireKin5 = new DataGridViewTextBoxColumn(); // 77
             kakoShiireKin5.DataPropertyName = "加工仕入金額５";
             kakoShiireKin5.Name = "加工仕入金額５";
             kakoShiireKin5.HeaderText = "加工仕入金額５";
-            kakoShiireKin5.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArari5 = new DataGridViewTextBoxColumn(); // 78
             kakoShiireArari5.DataPropertyName = "加工粗利５";
             kakoShiireArari5.Name = "加工粗利５";
             kakoShiireArari5.HeaderText = "加工粗利５";
-            kakoShiireArari5.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArariritsu5 = new DataGridViewTextBoxColumn(); // 79
             kakoShiireArariritsu5.DataPropertyName = "加工粗利率５";
             kakoShiireArariritsu5.Name = "加工粗利率５";
@@ -830,26 +801,22 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireName6.DataPropertyName = "加工仕入先名６";
             kakoShiireName6.Name = "加工仕入先名６";
             kakoShiireName6.HeaderText = "加工仕入先名６";
-            kakoShiireName6.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireTanka6 = new DataGridViewTextBoxColumn(); // 82
             kakoShiireTanka6.DataPropertyName = "加工仕入単価６";
             kakoShiireTanka6.Name = "加工仕入単価６";
             kakoShiireTanka6.HeaderText = "加工仕入単価６";
-            kakoShiireTanka6.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireKin6 = new DataGridViewTextBoxColumn(); // 83
             kakoShiireKin6.DataPropertyName = "加工仕入金額６";
             kakoShiireKin6.Name = "加工仕入金額６";
             kakoShiireKin6.HeaderText = "加工仕入金額６";
-            kakoShiireKin6.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArari6 = new DataGridViewTextBoxColumn(); // 84
             kakoShiireArari6.DataPropertyName = "加工粗利６";
             kakoShiireArari6.Name = "加工粗利６";
             kakoShiireArari6.HeaderText = "加工粗利６";
-            kakoShiireArari6.Visible = false;
-
+            
             DataGridViewTextBoxColumn kakoShiireArariritsu6 = new DataGridViewTextBoxColumn(); // 85
             kakoShiireArariritsu6.DataPropertyName = "加工粗利率６";
             kakoShiireArariritsu6.Name = "加工粗利率６";
@@ -887,18 +854,21 @@ namespace KATO.Form.H0210_MitsumoriInput
             teika1.Name = "定価1";
             teika1.HeaderText = "定価1";
             teika1.ReadOnly = true;
+            teika1.Visible = false;
 
             DataGridViewTextBoxColumn teika2 = new DataGridViewTextBoxColumn(); // 91
             teika2.DataPropertyName = "定価2";
             teika2.Name = "定価2";
             teika2.HeaderText = "定価2";
             teika2.ReadOnly = true;
+            teika2.Visible = false;
 
             DataGridViewTextBoxColumn teika3 = new DataGridViewTextBoxColumn(); // 92
             teika3.DataPropertyName = "定価3";
             teika3.Name = "定価3";
             teika3.HeaderText = "定価3";
             teika3.ReadOnly = true;
+            teika3.Visible = false;
 
             DataGridViewTextBoxColumn c1 = new DataGridViewTextBoxColumn(); // 93
             c1.DataPropertyName = "Ｃ１";
@@ -931,44 +901,16 @@ namespace KATO.Form.H0210_MitsumoriInput
             c6.Name = "Ｃ６";
             c6.HeaderText = "Ｃ６";
             c6.Visible = false;
+            DataGridViewTextBoxColumn shiireMeiZai2 = new DataGridViewTextBoxColumn(); // 99
+            shiireMeiZai2.DataPropertyName = "仕入先名材料２";
+            shiireMeiZai2.Name = "仕入先名材料２";
+            shiireMeiZai2.HeaderText = "仕入先名材料２";
+            shiireMeiZai2.Visible = false;
             #endregion
             #endregion
 
             //バインド、個々の幅、文章の寄せの設定
             #region
-            //setColumn(gridMitsmori, txtRowNum, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 36);
-            //gridMitsmori.Columns.Add(cbRow);
-            //setColumn(gridMitsmori, hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
-            //setColumn(gridMitsmori, suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
-            //setColumn(gridMitsmori, teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            //setColumn(gridMitsmori, mitsumoriTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
-            //setColumn(gridMitsmori, kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
-            //setColumn(gridMitsmori, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, shiireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
-            //setColumn(gridMitsmori, arari, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
-            //setColumn(gridMitsmori, biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            //setColumn(gridMitsmori, shiiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            //setColumn(gridMitsmori, insatsu, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 20);
-            //setColumn(gridMitsmori, shiireCd1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
-            //setColumn(gridMitsmori, shiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            //setColumn(gridMitsmori, shiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
-            //setColumn(gridMitsmori, shiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
-            //setColumn(gridMitsmori, shiireCd2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
-            //setColumn(gridMitsmori, shiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            //setColumn(gridMitsmori, shiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
-            //setColumn(gridMitsmori, shiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
-            //setColumn(gridMitsmori, shiireCd3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
-            //setColumn(gridMitsmori, shiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            //setColumn(gridMitsmori, shiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
-            //setColumn(gridMitsmori, shiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 97);
-            //setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
-            //setColumn(gridMitsmori, shiireCd4);
             setColumn(gridMitsmori, txtRowNum, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 36);
             gridMitsmori.Columns.Add(cbRow);
             setColumn(gridMitsmori, hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
@@ -1002,59 +944,59 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd4);
-            setColumn(gridMitsmori, shiireName4);
+            setColumn(gridMitsmori, shiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd5);
-            setColumn(gridMitsmori, shiireName5);
+            setColumn(gridMitsmori, shiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shiireCd6);
-            setColumn(gridMitsmori, shiireName6);
+            setColumn(gridMitsmori, shiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd1);
-            setColumn(gridMitsmori, kakoShiireName1);
+            setColumn(gridMitsmori, kakoShiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd2);
-            setColumn(gridMitsmori, kakoShiireName2);
+            setColumn(gridMitsmori, kakoShiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd3);
-            setColumn(gridMitsmori, kakoShiireName3);
+            setColumn(gridMitsmori, kakoShiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd4);
-            setColumn(gridMitsmori, kakoShiireName4);
+            setColumn(gridMitsmori, kakoShiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd5);
-            setColumn(gridMitsmori, kakoShiireName5);
+            setColumn(gridMitsmori, kakoShiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, kakoShiireCd6);
-            setColumn(gridMitsmori, kakoShiireName6);
+            setColumn(gridMitsmori, kakoShiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
+            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, shohin);
             setColumn(gridMitsmori, daibunrui);
             setColumn(gridMitsmori, chubunrui);
@@ -1068,8 +1010,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, c4);
             setColumn(gridMitsmori, c5);
             setColumn(gridMitsmori, c6);
-
-
+            setColumn(gridMitsmori, shiireMeiZai2);
             #endregion
         }
 
@@ -1155,10 +1096,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                 txtKakMei6.Text = getCellValue(gridMitsmori[81, rowIdx], false);
                 txtKakTnk6.Text = getCellValue(gridMitsmori[82, rowIdx], false);
 
-                calc(1);
-                calc(2);
-                calc(3);
-
                 #region
                 if (cellValueChecker(12, rowIdx))
                 {
@@ -1167,57 +1104,49 @@ namespace KATO.Form.H0210_MitsumoriInput
                         setRowBGColor1(Color.FromArgb(0x66, 0xFF, 0x66));
                         setRowBGColor2(Color.White);
                         setRowBGColor3(Color.White);
-                        setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
-                        setRowBGColor5(Color.White);
-                        setRowBGColor6(Color.White);
+                        intZai1Num = 1;
                     }
                     else if (gridMitsmori[12, rowIdx].Value.ToString().Equals(txtZaiMei2.Text))
                     {
                         setRowBGColor1(Color.White);
                         setRowBGColor2(Color.FromArgb(0x66, 0xFF, 0x66));
                         setRowBGColor3(Color.White);
-                        setRowBGColor4(Color.White);
-                        setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
-                        setRowBGColor6(Color.White);
+                        intZai1Num = 2;
                     }
                     else if (gridMitsmori[12, rowIdx].Value.ToString().Equals(txtZaiMei3.Text))
                     {
                         setRowBGColor1(Color.White);
                         setRowBGColor2(Color.White);
                         setRowBGColor3(Color.FromArgb(0x66, 0xFF, 0x66));
+                        intZai1Num = 3;
+                    }
+                    else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei4.Text))
+                    {
+                        setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
+                        setRowBGColor5(Color.White);
+                        setRowBGColor6(Color.White);
+                        intZai2Num = 4;
+                    }
+                    else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei5.Text))
+                    {
+                        setRowBGColor4(Color.White);
+                        setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
+                        setRowBGColor6(Color.White);
+                        intZai2Num = 5;
+                    }
+                    else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei6.Text))
+                    {
                         setRowBGColor4(Color.White);
                         setRowBGColor5(Color.White);
                         setRowBGColor6(Color.FromArgb(0x66, 0xFF, 0x66));
+                        intZai2Num = 6;
                     }
-                    //else if (gridMitsmori[12, rowIdx].Value.ToString().Equals(txtZaiMei4.Text))
-                    //{
-                    //    setRowBGColor1(Color.White);
-                    //    setRowBGColor2(Color.White);
-                    //    setRowBGColor3(Color.White);
-                    //    setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
-                    //    setRowBGColor5(Color.White);
-                    //    setRowBGColor6(Color.White);
-                    //}
-                    //else if (gridMitsmori[12, rowIdx].Value.ToString().Equals(txtZaiMei5.Text))
-                    //{
-                    //    setRowBGColor1(Color.White);
-                    //    setRowBGColor2(Color.White);
-                    //    setRowBGColor3(Color.White);
-                    //    setRowBGColor4(Color.White);
-                    //    setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
-                    //    setRowBGColor6(Color.White);
-                    //}
-                    //else if (gridMitsmori[12, rowIdx].Value.ToString().Equals(txtZaiMei6.Text))
-                    //{
-                    //    setRowBGColor1(Color.White);
-                    //    setRowBGColor2(Color.White);
-                    //    setRowBGColor3(Color.White);
-                    //    setRowBGColor4(Color.White);
-                    //    setRowBGColor5(Color.White);
-                    //    setRowBGColor6(Color.FromArgb(0x66, 0xFF, 0x66));
-                    //}
                 }
                 #endregion
+
+                calc(1, intZai2Num);
+                calc(2, intZai2Num);
+                calc(3, intZai2Num);
             }
             catch (Exception ex)
             {
@@ -1418,33 +1347,36 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori.EndEdit();
 
                 setText(e.RowIndex);
-                calc(1);
-                calc(2);
-                calc(3);
+                calc(1, intZai2Num);
+                calc(2, intZai2Num);
+                calc(3, intZai2Num);
                 changeTotal();
             }
         }
 
         private void txtZaiTnk1_Leave(object sender, EventArgs e)
         {
-            calc(1);
+            calc(1, 1);
+            calc(1, intZai2Num);
             changeTotal();
         }
 
         private void txtZaiTnk2_Leave(object sender, EventArgs e)
         {
-            calc(2);
+            calc(2, 2);
+            calc(2, intZai2Num);
             changeTotal();
         }
 
         private void txtZaiTnk3_Leave(object sender, EventArgs e)
         {
-            calc(3);
+            calc(3, 3);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
         // 下部編集部計算
-        private void calc(int rowNum)
+        private void calc(int rowNum, int zaiNum)
         {
             decimal dSuryo = 0;
             decimal dTeika = 0;
@@ -1464,40 +1396,32 @@ namespace KATO.Form.H0210_MitsumoriInput
             decimal dKakoKin2 = 0;
 
             #region
-            DataGridViewCell cellShiireTanka1;
-            DataGridViewCell cellShiireKin1;
-            DataGridViewCell cellShiireArari1;
-            DataGridViewCell cellShiireArariRitsu1;
-            DataGridViewCell cellShiireTanka2;
-            DataGridViewCell cellShiireKin2;
-            //DataGridViewCell cellShiireArari2;
-            //DataGridViewCell cellShiireArariRitsu2;
-            DataGridViewCell cellKakoTanka1;
-            DataGridViewCell cellKakoKin1;
-            //DataGridViewCell cellKakoArari1;
-            //DataGridViewCell cellKakoArariRitsu1;
-            DataGridViewCell cellKakoTanka2;
-            DataGridViewCell cellKakoKin2;
-            //DataGridViewCell cellKakoArari2;
-            //DataGridViewCell cellKakoArariRitsu2;
-            //DataGridViewCell cellArariM;
-            //DataGridViewCell cellArariRitsuM;
+            DataGridViewCell cellShiireTanka1 = null;
+            DataGridViewCell cellShiireKin1 = null;
+            DataGridViewCell cellShiireArari1 = null;
+            DataGridViewCell cellShiireArariRitsu1 = null;
+            DataGridViewCell cellShiireTanka2 = null;
+            DataGridViewCell cellShiireKin2 = null;
+            DataGridViewCell cellKakoTanka1 = null;
+            DataGridViewCell cellKakoKin1 = null;
+            DataGridViewCell cellKakoTanka2 = null;
+            DataGridViewCell cellKakoKin2 = null;
             #endregion
 
             #region
-            BaseText txtShiireCd1;
-            BaseText txtShiireName1;
-            BaseTextMoney txtShiireTeika1;
-            BaseTextMoney txtShiireTanka1;
-            BaseTextMoney txtKakeritsu1;
-            BaseText txtKakoCd1;
-            BaseText txtKakoName1;
-            BaseTextMoney txtKakoTanka1;
-            BaseTextMoney txtShiireTanka2;
-            BaseTextMoney txtKakoTanka2;
-            BaseTextMoney txtKakeritsu2;
-            BaseTextMoney txtArari;
-            BaseTextMoney txtArariRitsu;
+            BaseText txtShiireCd1 = null;
+            BaseText txtShiireName1 = null;
+            BaseTextMoney txtShiireTeika1 = null;
+            BaseTextMoney txtShiireTanka1 = null;
+            BaseTextMoney txtKakeritsu1 = null;
+            BaseText txtKakoCd1 = null;
+            BaseText txtKakoName1 = null;
+            BaseTextMoney txtKakoTanka1 = null;
+            BaseTextMoney txtShiireTanka2 = null;
+            BaseTextMoney txtKakoTanka2 = null;
+            BaseTextMoney txtKakeritsu2 = null;
+            BaseTextMoney txtArari = null;
+            BaseTextMoney txtArariRitsu = null;
             #endregion
 
             Color color = Color.Black;
@@ -1516,9 +1440,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                     txtKakoCd1 = txtKakCd1;
                     txtKakoName1 = txtKakMei1;
                     txtKakoTanka1 = txtKakTnk1;
-                    txtShiireTanka2 = txtZaiTnk4;
-                    txtKakeritsu2 = txtZaiRit4;
-                    txtKakoTanka2 = txtKakTnk4;
                     txtArari = txtArr1;
                     txtArariRitsu = txtSrrt1;
 
@@ -1527,20 +1448,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellShiireArari1 = gridMitsmori[18, rowIdx];
                     cellShiireArariRitsu1 = gridMitsmori[19, rowIdx];
 
-                    cellShiireTanka2 = gridMitsmori[34, rowIdx];
-                    cellShiireKin2 = gridMitsmori[35, rowIdx];
-                    //cellShiireArari2 = gridMitsmori[36, rowIdx];
-                    //cellShiireArariRitsu2 = gridMitsmori[37, rowIdx];
-
                     cellKakoTanka1 = gridMitsmori[52, rowIdx];
                     cellKakoKin1 = gridMitsmori[53, rowIdx];
-                    //cellKakoArari1 = gridMitsmori[54, rowIdx];
-                    //cellKakoArariRitsu1 = gridMitsmori[55, rowIdx];
-
-                    cellKakoTanka2 = gridMitsmori[70, rowIdx];
-                    cellKakoKin2 = gridMitsmori[71, rowIdx];
-                    //cellKakoArari2 = gridMitsmori[72, rowIdx];
-                    //cellKakoArariRitsu2 = gridMitsmori[73, rowIdx];
                 }
                 else if (rowNum == 2)
                 {
@@ -1552,9 +1461,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                     txtKakoCd1 = txtKakCd2;
                     txtKakoName1 = txtKakMei2;
                     txtKakoTanka1 = txtKakTnk2;
-                    txtShiireTanka2 = txtZaiTnk5;
-                    txtKakeritsu2 = txtZaiRit5;
-                    txtKakoTanka2 = txtKakTnk5;
                     txtArari = txtArr2;
                     txtArariRitsu = txtSrrt2;
 
@@ -1562,21 +1468,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellShiireKin1 = gridMitsmori[23, rowIdx];
                     cellShiireArari1 = gridMitsmori[24, rowIdx];
                     cellShiireArariRitsu1 = gridMitsmori[25, rowIdx];
-
-                    cellShiireTanka2 = gridMitsmori[40, rowIdx];
-                    cellShiireKin2 = gridMitsmori[41, rowIdx];
-                    //cellShiireArari2 = gridMitsmori[42, rowIdx];
-                    //cellShiireArariRitsu2 = gridMitsmori[43, rowIdx];
-
+                    
                     cellKakoTanka1 = gridMitsmori[58, rowIdx];
                     cellKakoKin1 = gridMitsmori[59, rowIdx];
-                    //cellKakoArari1 = gridMitsmori[60, rowIdx];
-                    //cellKakoArariRitsu1 = gridMitsmori[61, rowIdx];
-
-                    cellKakoTanka2 = gridMitsmori[76, rowIdx];
-                    cellKakoKin2 = gridMitsmori[77, rowIdx];
-                    //cellKakoArari2 = gridMitsmori[78, rowIdx];
-                    //cellKakoArariRitsu2 = gridMitsmori[79, rowIdx];
                 }
                 else if (rowNum == 3)
                 {
@@ -1588,9 +1482,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                     txtKakoCd1 = txtKakCd3;
                     txtKakoName1 = txtKakMei3;
                     txtKakoTanka1 = txtKakTnk3;
-                    txtShiireTanka2 = txtZaiTnk6;
-                    txtKakeritsu2 = txtZaiRit6;
-                    txtKakoTanka2 = txtKakTnk6;
                     txtArari = txtArr3;
                     txtArariRitsu = txtSrrt3;
 
@@ -1599,38 +1490,62 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellShiireArari1 = gridMitsmori[30, rowIdx];
                     cellShiireArariRitsu1 = gridMitsmori[31, rowIdx];
 
-                    cellShiireTanka2 = gridMitsmori[46, rowIdx];
-                    cellShiireKin2 = gridMitsmori[47, rowIdx];
-                    //cellShiireArari2 = gridMitsmori[48, rowIdx];
-                    //cellShiireArariRitsu2 = gridMitsmori[49, rowIdx];
-
                     cellKakoTanka1 = gridMitsmori[64, rowIdx];
                     cellKakoKin1 = gridMitsmori[65, rowIdx];
-                    //cellKakoArari1 = gridMitsmori[66, rowIdx];
-                    //cellKakoArariRitsu1 = gridMitsmori[67, rowIdx];
-
-                    cellKakoTanka2 = gridMitsmori[82, rowIdx];
-                    cellKakoKin2 = gridMitsmori[83, rowIdx];
-                    //cellKakoArari2 = gridMitsmori[84, rowIdx];
-                    //cellKakoArariRitsu2 = gridMitsmori[85, rowIdx];
                 }
                 else
                 {
                     return;
                 }
-                #endregion
 
-                //cellArariM = gridMitsmori[9, rowIdx];
-                //cellArariRitsuM = gridMitsmori[10, rowIdx];
+                if (zaiNum == 1 || zaiNum == 4)
+                {
+                    txtShiireTanka2 = txtZaiTnk4;
+                    txtKakeritsu2 = txtZaiRit4;
+                    txtKakoTanka2 = txtKakTnk4;
+
+                    cellShiireTanka2 = gridMitsmori[34, rowIdx];
+                    cellShiireKin2 = gridMitsmori[35, rowIdx];
+
+                    cellKakoTanka2 = gridMitsmori[70, rowIdx];
+                    cellKakoKin2 = gridMitsmori[71, rowIdx];
+                }
+                else if (zaiNum == 2 || zaiNum == 5)
+                {
+                    txtShiireTanka2 = txtZaiTnk5;
+                    txtKakeritsu2 = txtZaiRit5;
+                    txtKakoTanka2 = txtKakTnk5;
+
+                    cellShiireTanka2 = gridMitsmori[40, rowIdx];
+                    cellShiireKin2 = gridMitsmori[41, rowIdx];
+
+                    cellKakoTanka2 = gridMitsmori[76, rowIdx];
+                    cellKakoKin2 = gridMitsmori[77, rowIdx];
+                }
+                else if (zaiNum == 3 || zaiNum == 6)
+                {
+                    txtShiireTanka2 = txtZaiTnk6;
+                    txtKakeritsu2 = txtZaiRit6;
+                    txtKakoTanka2 = txtKakTnk6;
+
+                    cellShiireTanka2 = gridMitsmori[46, rowIdx];
+                    cellShiireKin2 = gridMitsmori[47, rowIdx];
+
+                    cellKakoTanka2 = gridMitsmori[82, rowIdx];
+                    cellKakoKin2 = gridMitsmori[83, rowIdx];
+                }
+                #endregion
 
                 dSuryo = decimal.Parse(getCellValue(gridMitsmori[3, rowIdx], true));
                 dTeika = decimal.Parse(getCellValue(gridMitsmori[4, rowIdx], true));
                 dMitsuTanka = decimal.Parse(getCellValue(gridMitsmori[5, rowIdx], true));
 
                 dShiireTanka1 = getDecValue(txtShiireTanka1.Text);
-                dShiireTanka2 = getDecValue(txtShiireTanka2.Text);
                 dKakoTanka1 = getDecValue(txtKakoTanka1.Text);
-                dKakoTanka2 = getDecValue(txtKakoTanka2.Text);
+                if (zaiNum != 0) {
+                    dShiireTanka2 = getDecValue(txtShiireTanka2.Text);
+                    dKakoTanka2 = getDecValue(txtKakoTanka2.Text);
+                }
 
                 // 掛率
                 if (dTeika != 0)
@@ -1639,7 +1554,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                     dKakeritsu2 = Decimal.Round((dShiireTanka2 / dTeika) * 100, 1);
                 }
                 txtKakeritsu1.Text = dKakeritsu1.ToString();
-                txtKakeritsu2.Text = dKakeritsu2.ToString();
+                if (zaiNum != 0)
+                {
+                    txtKakeritsu2.Text = dKakeritsu2.ToString();
+                }
 
                 // 粗利
                 dShiireKin1 = dShiireTanka1 * dSuryo;
@@ -1663,14 +1581,16 @@ namespace KATO.Form.H0210_MitsumoriInput
                 cellShiireArari1.Value = dArariM.ToString();
                 cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
 
-                cellShiireTanka2.Value = dShiireTanka2.ToString();
-                cellShiireKin2.Value = dShiireKin2.ToString();
-
-                cellKakoTanka2.Value = dKakoTanka2.ToString();
+                cellKakoTanka1.Value = dKakoTanka1.ToString();
                 cellKakoKin1.Value = dKakoKin1.ToString();
 
-                cellKakoTanka2.Value = dKakoTanka2.ToString();
-                cellKakoKin2.Value = dKakoKin2.ToString();
+                if (zaiNum != 0) {
+                    cellShiireTanka2.Value = dShiireTanka2.ToString();
+                    cellShiireKin2.Value = dShiireKin2.ToString();
+
+                    cellKakoTanka2.Value = dKakoTanka2.ToString();
+                    cellKakoKin2.Value = dKakoKin2.ToString();
+                }
 
                 gridMitsmori.EndEdit();
 
@@ -1835,6 +1755,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "見積データをコピーします。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
             }
+
+            intZai1Num = 0;
+            intZai2Num = 0;
 
             H0210_MitsumoriInput_B mInputB = new H0210_MitsumoriInput_B();
             try
@@ -2161,7 +2084,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                         aryPrm.Add(getCellValue(gridMitsmori[83, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[84, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[85, i], false));
-                        
+                        aryPrm.Add(getCellValue(gridMitsmori[99, i], false));
+
                         aryPrm.Add(Environment.UserName);
 
                         inputB.updMitsumoriM(aryPrm);
@@ -2466,7 +2390,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 CreatePdf pdf = new CreatePdf();
                 int[] topRow = { 9 };
                 int[] leftColumn = { 7 };
-                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
+                pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
 
                 // PDF化の処理
                 //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
@@ -3013,9 +2937,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                gridMitsmori[32, RowIndex], gridMitsmori[33, RowIndex],
                gridMitsmori[38, RowIndex], gridMitsmori[39, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
@@ -3025,9 +2949,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[38, RowIndex], gridMitsmori[39, RowIndex],
                 gridMitsmori[44, RowIndex], gridMitsmori[45, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
 
         }
@@ -3038,9 +2962,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[50, RowIndex], gridMitsmori[51, RowIndex],
                 gridMitsmori[56, RowIndex], gridMitsmori[57, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
@@ -3050,9 +2974,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[56, RowIndex], gridMitsmori[57, RowIndex],
                 gridMitsmori[62, RowIndex], gridMitsmori[63, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
@@ -3062,9 +2986,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                gridMitsmori[68, RowIndex], gridMitsmori[69, RowIndex],
                gridMitsmori[74, RowIndex], gridMitsmori[75, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
@@ -3074,9 +2998,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                gridMitsmori[74, RowIndex], gridMitsmori[75, RowIndex],
                gridMitsmori[80, RowIndex], gridMitsmori[81, RowIndex]);
 
-            calc(1);
-            calc(2);
-            calc(3);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
             changeTotal();
         }
 
@@ -3106,36 +3030,134 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 編集部仕入先選択
         private void button13_Click(object sender, EventArgs e)
         {
-            selectEditItem(1);
+            setRowBGColor1(Color.FromArgb(0x66, 0xFF, 0x66));
+            setRowBGColor2(Color.White);
+            setRowBGColor3(Color.White);
+
+            intZai1Num = 1;
+            selectEditItem(1, intZai2Num);
             changeTotal();
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-            selectEditItem(2);
+            setRowBGColor1(Color.White);
+            setRowBGColor2(Color.FromArgb(0x66, 0xFF, 0x66));
+            setRowBGColor3(Color.White);
+
+            intZai1Num = 2;
+            selectEditItem(2, intZai2Num);
             changeTotal();
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
-            selectEditItem(3);
+            setRowBGColor1(Color.White);
+            setRowBGColor2(Color.White);
+            setRowBGColor3(Color.FromArgb(0x66, 0xFF, 0x66));
+
+            intZai1Num = 3;
+            selectEditItem(3, intZai2Num);
             changeTotal();
         }
 
-        private void selectEditItem(int num)
+        private void button21_Click(object sender, EventArgs e)
         {
-            if (num == 1)
+            setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
+            setRowBGColor5(Color.White);
+            setRowBGColor6(Color.White);
+
+            intZai2Num = 4;
+            selectEditItem(intZai1Num, 4);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
+            changeTotal();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            setRowBGColor4(Color.White);
+            setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
+            setRowBGColor6(Color.White);
+
+            intZai2Num = 5;
+            selectEditItem(intZai1Num, 5);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
+            changeTotal();
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            setRowBGColor4(Color.White);
+            setRowBGColor5(Color.White);
+            setRowBGColor6(Color.FromArgb(0x66, 0xFF, 0x66));
+
+            intZai2Num = 6;
+            selectEditItem(intZai1Num, 6);
+            calc(1, intZai2Num);
+            calc(2, intZai2Num);
+            calc(3, intZai2Num);
+            changeTotal();
+        }
+
+        private void selectEditItem(int numZai1, int numZai2)
+        {
+            decimal dZai1 = 0;
+            decimal dKak1 = 0;
+            decimal dZai2 = 0;
+            decimal dKak2 = 0;
+
+            if (numZai1 == 1)
             {
+                dZai1 = decimal.Parse(getCellValue(gridMitsmori[16, RowIndex], true));
+                dKak1 = decimal.Parse(getCellValue(gridMitsmori[52, RowIndex], true));
+
                 gridMitsmori[12, RowIndex].Value = gridMitsmori[15, RowIndex].Value;
             }
-            else if (num == 2)
+            else if (numZai1 == 2)
             {
+                dZai1 = decimal.Parse(getCellValue(gridMitsmori[22, RowIndex], true));
+                dKak1 = decimal.Parse(getCellValue(gridMitsmori[58, RowIndex], true));
+
                 gridMitsmori[12, RowIndex].Value = gridMitsmori[21, RowIndex].Value;
             }
-            else if (num == 3)
+            else if (numZai1 == 3)
             {
+                dZai1 = decimal.Parse(getCellValue(gridMitsmori[28, RowIndex], true));
+                dKak1 = decimal.Parse(getCellValue(gridMitsmori[64, RowIndex], true));
+
                 gridMitsmori[12, RowIndex].Value = gridMitsmori[27, RowIndex].Value;
             }
+
+            if (numZai2 == 4)
+            {
+                dZai2 = decimal.Parse(getCellValue(gridMitsmori[34, RowIndex], true));
+                dKak2 = decimal.Parse(getCellValue(gridMitsmori[70, RowIndex], true));
+
+                gridMitsmori[99, RowIndex].Value = gridMitsmori[33, RowIndex].Value;
+            }
+            else if (numZai2 == 5)
+            {
+                dZai2 = decimal.Parse(getCellValue(gridMitsmori[40, RowIndex], true));
+                dKak2 = decimal.Parse(getCellValue(gridMitsmori[76, RowIndex], true));
+
+                gridMitsmori[99, RowIndex].Value = gridMitsmori[39, RowIndex].Value;
+            }
+            else if (numZai2 == 6)
+            {
+                dZai2 = decimal.Parse(getCellValue(gridMitsmori[46, RowIndex], true));
+                dKak2 = decimal.Parse(getCellValue(gridMitsmori[82, RowIndex], true));
+
+                gridMitsmori[99, RowIndex].Value = gridMitsmori[45, RowIndex].Value;
+            }
+            if (numZai1 > 0 || numZai2 > 0)
+            {
+                gridMitsmori[8, RowIndex].Value = (decimal.Round(dZai1 + dKak1 + dZai2 + dKak2, 0)).ToString();
+            }
+
             gridMitsmori.EndEdit();
         }
 
@@ -3219,6 +3241,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             f.StartPosition = FormStartPosition.Manual;
             f.Location = s.Bounds.Location;
+            f.lsTanto.CodeTxtText = lsTantousha.CodeTxtText;
 
             f.ShowDialog();
             f.Dispose();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KATO.Common.Form;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,10 +11,11 @@ using System.Windows.Forms;
 
 namespace KATO.Form.H0210_MitsumoriInput
 {
-    public partial class PDFPreviewM : System.Windows.Forms.Form
+    public partial class PDFPreviewM : KATO.Common.Ctl.BaseForm
     {
         private int oldWidth;
         private int oldHeight;
+        string strPath = null;
 
         public PDFPreviewM(Control c, string path)
         {
@@ -24,7 +26,11 @@ namespace KATO.Form.H0210_MitsumoriInput
             if (System.IO.File.Exists(path))
             {
                 axAcroPDF1.LoadFile(path);
+                strPath = path;
             }
+
+            // フォームでもキーイベントを受け取る
+            this.KeyPreview = true;
 
             //画面位置の指定
             int intWindowWidth = c.Width;
@@ -38,12 +44,29 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             oldWidth = this.Width;
             oldHeight = this.Height;
+            this.HScroll = false;
+            this.VScroll = false;
 
         }
 
         private void PDFPreview_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F12)
+            if (e.KeyCode == Keys.F11)
+            {
+                PrintForm pf = new PrintForm(this, strPath, Common.Util.CommonTeisu.SIZE_A4, false);
+                pf.ShowDialog(this);
+                if (this.printFlg == Common.Util.CommonTeisu.ACTION_PREVIEW)
+                {
+                    pf.execPreview(strPath);
+                    pf.ShowDialog(this);
+                }
+                else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
+                {
+                    pf.execPrint(null, strPath, Common.Util.CommonTeisu.SIZE_B4, Common.Util.CommonTeisu.YOKO, false);
+
+                }
+            }
+            else if (e.KeyCode == Keys.F12)
             {
                 this.Close();
             }
@@ -51,7 +74,22 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void axAcroPDF1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.F12)
+            if (e.KeyCode == Keys.F11)
+            {
+                PrintForm pf = new PrintForm(this, strPath, Common.Util.CommonTeisu.SIZE_A4, false);
+                pf.ShowDialog(this);
+                if (this.printFlg == Common.Util.CommonTeisu.ACTION_PREVIEW)
+                {
+                    pf.execPreview(strPath);
+                    pf.ShowDialog(this);
+                }
+                else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
+                {
+                    pf.execPrint(null, strPath, Common.Util.CommonTeisu.SIZE_B4, Common.Util.CommonTeisu.YOKO, false);
+
+                }
+            }
+            else if (e.KeyCode == Keys.F12)
             {
                 this.Close();
             }
@@ -64,6 +102,27 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             oldWidth = this.Width;
             oldHeight = this.Height;
+        }
+
+        private void baseButton1_Click(object sender, EventArgs e)
+        {
+            PrintForm pf = new PrintForm(this, strPath, Common.Util.CommonTeisu.SIZE_A4, false);
+            pf.ShowDialog(this);
+            if (this.printFlg == Common.Util.CommonTeisu.ACTION_PREVIEW)
+            {
+                pf.execPreview(strPath);
+                pf.ShowDialog(this);
+            }
+            else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
+            {
+                pf.execPrint(null, strPath, Common.Util.CommonTeisu.SIZE_B4, Common.Util.CommonTeisu.YOKO, false);
+
+            }
+        }
+
+        private void baseButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

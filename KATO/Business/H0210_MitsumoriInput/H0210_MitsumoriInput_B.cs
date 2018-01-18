@@ -194,7 +194,8 @@ namespace KATO.Business.H0210_MitsumoriInput
             strSQL += "       a.Ｃ３,";
             strSQL += "       a.Ｃ４,";
             strSQL += "       a.Ｃ５,";
-            strSQL += "       a.Ｃ６";
+            strSQL += "       a.Ｃ６,";
+            strSQL += "       a.仕入先名材料２";
             strSQL += "  from 見積明細 as a left join 商品 as b on a.商品コード = b.商品コード and b.削除 = 'N'";
             strSQL += " where a.削除 = 'N'";
             strSQL += "   and 伝票番号 = " + strNum;
@@ -369,6 +370,7 @@ namespace KATO.Business.H0210_MitsumoriInput
             aryCol.Add("@加工仕入金額６");
             aryCol.Add("@加工粗利６");
             aryCol.Add("@加工粗利率６");
+            aryCol.Add("@仕入先名材料２");
             aryCol.Add("@ユーザー名");
 
             try

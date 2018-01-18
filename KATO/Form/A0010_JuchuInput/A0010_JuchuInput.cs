@@ -494,12 +494,18 @@ namespace KATO.Form.A0010_JuchuInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    //this.addHachu();
+                    if (btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addJuchu();
+                    }
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    //this.delHachu();
+                    if (btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delJuchu();
+                    }
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -510,8 +516,10 @@ namespace KATO.Form.A0010_JuchuInput
                     //this.setRireki();
                     break;
                 case STR_BTN_F09: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    //this.setRireki();
+                    if (btnF09.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -611,7 +619,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "加工品の受注です。加工品受注画面で修正してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessageboxEr.ShowDialog();
-                    return;
+                    //return;
                 }
 
                 DataTable dtJuchuNoInfo = juchuInput.getJuchuNoInfo(strCd);
