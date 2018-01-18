@@ -16,4 +16,4 @@ FROM 請求履歴
 {1} 
 {2} 
 {3} 
-ORDER BY 請求年月日 DESC, 得意先コード DESC
+ORDER BY 請求年月日 DESC, 得意先コード ASC

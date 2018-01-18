@@ -63,10 +63,21 @@ namespace KATO.Common.Ctl
                 //親画面がBaseFormの場合
                 else if (this.Parent is BaseForm)
                 {
-                    MenuList menulist = new MenuList(this.Parent, this);
-                    menulist.StartPosition = FormStartPosition.Manual;
-                    menulist.intFrmKind = CommonTeisu.FRM_MENUKENGEN2;
-                    menulist.ShowDialog();
+                    //MenuList menulist = new MenuList(this.Parent, this);
+                    //menulist.StartPosition = FormStartPosition.Manual;
+                    //menulist.intFrmKind = CommonTeisu.FRM_MENU;
+                    //menulist.ShowDialog();
+                }
+                //親画面がLIST画面の場合
+                else
+                {
+                    ////他と判別させるために空のオブジェクトを作成する
+                    //object obj = new object();
+
+                    //TorihikisakiList torihikisakiList = new TorihikisakiList(this.Parent, this, obj);
+                    //torihikisakiList.StartPosition = FormStartPosition.Manual;
+                    //torihikisakiList.intFrmKind = CommonTeisu.FRM_TOKUISAKI;
+                    //torihikisakiList.ShowDialog();
                 }
             }
             else if (e.KeyCode == Keys.Enter)
@@ -129,12 +140,12 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (blnGood == false)
+            //禁止文字チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false ||
+                StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == false)
             {
                 this.ValueLabelText = "";
 
@@ -158,9 +169,6 @@ namespace KATO.Common.Ctl
                 CodeTxtText = "0";
                 return;
             }
-
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
             //データ渡し用
             lstStringSQL.Add("Common");

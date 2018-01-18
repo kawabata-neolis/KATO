@@ -75,13 +75,10 @@ namespace KATO.Form.B1510_SeikyuRireki
             this._Title = "請求履歴";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
+            this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
-
-            //初期値
-            this.txtDenpyoYMDopen.setUp(0);
-            this.txtDenpyoYMDclose.setUp(2);
 
             //DataGridView初期設定
             SetUpGrid();
@@ -204,6 +201,8 @@ namespace KATO.Form.B1510_SeikyuRireki
                 case Keys.Enter:
                     break;
                 case Keys.F1:
+                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
+                    this.setGridRirekiTokui();
                     break;
                 case Keys.F2:
                     break;
@@ -305,6 +304,10 @@ namespace KATO.Form.B1510_SeikyuRireki
             //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
+                case STR_BTN_F01: // 表示
+                    logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
+                    this.setGridRirekiTokui();
+                    break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
@@ -326,10 +329,6 @@ namespace KATO.Form.B1510_SeikyuRireki
         {
             //画面内のデータを空にする
             this.delFormClear(this, gridRireki);
-
-            //伝票年月日を初期値に
-            this.txtDenpyoYMDopen.setUp(0);
-            this.txtDenpyoYMDclose.setUp(2);
 
             //初期位置に移動
             this.txtDenpyoYMDopen.Focus();
@@ -382,6 +381,15 @@ namespace KATO.Form.B1510_SeikyuRireki
                 //データがなかった場合
                 if (dtSetView.Rows.Count == 0)
                 {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+
+                    //グリッドを空にする
+                    gridRireki.DataSource = "";
+
+                    //開始年月日にフォーカス
+                    txtDenpyoYMDopen.Focus();
                     return;
                 }
 
@@ -390,6 +398,8 @@ namespace KATO.Form.B1510_SeikyuRireki
 
                 //グリッドの色変え
                 setGridColor();
+
+                this.gridRireki.Focus();
             }
             catch (Exception ex)
             {

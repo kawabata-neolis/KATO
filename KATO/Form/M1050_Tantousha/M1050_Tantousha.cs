@@ -971,6 +971,9 @@ namespace KATO.Form.M1050_Tantousha
                 return true;
             }
 
+            // 全角数字を半角数字に変換
+            txtTantoushaCd.Text = StringUtl.JudZenToHanNum(txtTantoushaCd.Text);
+
             // 数値チェック
             if (StringUtl.JudBanSelect(txtTantoushaCd.Text, CommonTeisu.NUMBER_ONLY) == true)
             {

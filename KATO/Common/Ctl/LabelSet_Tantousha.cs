@@ -107,8 +107,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            Boolean blnGood;
-
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
@@ -116,12 +114,11 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (blnGood == false)
+            //禁止文字チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
             {
                 //Parent 内のすべてのコントロールを列挙する
                 foreach (Control cControl in Parent.Controls)
@@ -182,12 +179,17 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //前後の空白を取り除く
-            this.CodeTxtText = this.CodeTxtText.Trim();
 
-            if (this.CodeTxtText.Length < 4)
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
             {
-                this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
             }
 
             //データ渡し用
@@ -268,6 +270,110 @@ namespace KATO.Common.Ctl
                     SendKeys.Send("+{TAB}");
                     return;
                 }
+            }
+        }
+
+        ///<summary>
+        /// chkTxtTantosha
+        /// ファンクション機能の担当者コードエラーチェック処理
+        /// 引数　：なし
+        /// 戻り値：エラー発生【true】
+        ///</summary>
+        public bool chkTxtTantosha()
+        {
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.ValueLabelText = "";
+                this.AppendLabelText = "";
+                return false;
+            }
+
+            //前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
+            //禁止文字チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
+            {
+                //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.ValueLabelText = "";
+                this.CodeTxtText = "";
+                this.AppendLabelText = "";
+
+                //エラーメッセージを表示された
+                return true;
+            }
+
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
+            }
+
+            //データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_Tantousha_SELECT_LEAVE");
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return false;
+                }
+
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
+
+                //SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                //SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["担当者コード"].ToString();
+                    this.ValueLabelText = dtSetCd.Rows[0]["担当者名"].ToString();
+                }
+                else
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    this.ValueLabelText = "";
+                    this.CodeTxtText = "";
+                    this.AppendLabelText = "";
+
+                    //エラーメッセージを表示された
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return true;
             }
         }
 

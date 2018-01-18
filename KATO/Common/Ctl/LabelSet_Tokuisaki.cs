@@ -98,8 +98,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            Boolean blnGood;
-
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
@@ -108,11 +106,7 @@ namespace KATO.Common.Ctl
             }
 
             //禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            //数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
             {
                 //Parent 内のすべてのコントロールを列挙する
                 foreach (Control cControl in Parent.Controls)
@@ -178,6 +172,19 @@ namespace KATO.Common.Ctl
                 //エラーメッセージを表示された
                 blMessageOn = true;
                 return;
+            }
+
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                //4文字以下の場合0パティング
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
             }
 
             //データ渡し用
@@ -271,8 +278,6 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            Boolean blnGood;
-
             if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
             {
                 this.ValueLabelText = "";
@@ -281,11 +286,7 @@ namespace KATO.Common.Ctl
             }
 
             // 禁止文字チェック
-            blnGood = StringUtl.JudBanChr(this.CodeTxtText);
-            // 数字のみを許可する
-            blnGood = StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY);
-
-            if (blnGood == false)
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
             {
                 // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -296,6 +297,19 @@ namespace KATO.Common.Ctl
                 this.CodeTxtText = "";
 
                 return true;
+            }
+
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                //4文字以下の場合0パティング
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
             }
 
             // データ渡し用

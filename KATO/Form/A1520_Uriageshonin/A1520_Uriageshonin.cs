@@ -566,9 +566,6 @@ namespace KATO.Form.A1520_Uriageshonin
                 }
                 else
                 {
-                    //データ存在なしメッセージ（OK）
-                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this, "売上承認", CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox_Nodata.ShowDialog();
                     gridHenpinNebiki.DataSource = "";
                     return;
                 }
@@ -632,9 +629,6 @@ namespace KATO.Form.A1520_Uriageshonin
                 }
                 else
                 {
-                    //データ存在なしメッセージ（OK）
-                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this, "売上承認", CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox_Nodata.ShowDialog();
                     gridRiekiritsu.DataSource = "";
                     return;
                 }
@@ -685,9 +679,9 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //本日から三か月前
             lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
-            lstViewGrid.Add(DateTime.Now.AddMonths(-1).ToString("yyyy/MM/dd"));
+            lstViewGrid.Add(DateTime.Now.AddMonths(-3).ToString("yyyy/MM/dd"));
 
-            //仮(テスト用)
+            ////仮(テスト用)
             //lstViewGrid.Add("2016/06/01");
             //lstViewGrid.Add("2015/12/01");
 
@@ -704,9 +698,6 @@ namespace KATO.Form.A1520_Uriageshonin
                 }
                 else
                 {
-                    //データ存在なしメッセージ（OK）
-                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this, "売上承認", CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox_Nodata.ShowDialog();
                     gridUriagesakujo.DataSource = "";
                     return;
                 }
@@ -746,31 +737,33 @@ namespace KATO.Form.A1520_Uriageshonin
             //データ登録用
             List<string> lstGrid = new List<string>();
 
+            //承認フラグ登録用
+            int intShoninFlg = 0;
+
             //承認がNの場合
             if(gridHenpinNebiki.CurrentRow.Cells["承認"].Value.ToString() == "N")
             {
                 //Yに変更
                 gridHenpinNebiki.CurrentRow.Cells["承認"].Value = "Y";
+                intShoninFlg = 1;
             }
             else
             {
                 //Nに変更
                 gridHenpinNebiki.CurrentRow.Cells["承認"].Value = "N";
+                intShoninFlg = 0;
             }
 
             //承認情報
-            lstGrid.Add(gridHenpinNebiki.CurrentRow.Cells["承認"].Value.ToString());
             lstGrid.Add(gridHenpinNebiki.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(intShoninFlg.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
 
             A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
             try
             {
                 uriageshoninB.updHenpinNebiki(lstGrid);
-
-//メッセージはいらない説
-                ////メッセージボックスの処理、登録完了のウィンドウ（OK）
-                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                //basemessagebox.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -798,7 +791,52 @@ namespace KATO.Form.A1520_Uriageshonin
         ///</summary>
         private void updRiekiritsu()
         {
+            //グリッドが空の場合
+            if (gridRiekiritsu.Rows.Count < 0)
+            {
+                return;
+            }
 
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認フラグ登録用
+            int intShoninFlg = 0;
+
+            //承認がNの場合
+            if (gridRiekiritsu.CurrentRow.Cells["承認"].Value.ToString() == "N")
+            {
+                //Yに変更
+                gridRiekiritsu.CurrentRow.Cells["承認"].Value = "Y";
+                intShoninFlg = 1;
+            }
+            else
+            {
+                //Nに変更
+                gridRiekiritsu.CurrentRow.Cells["承認"].Value = "N";
+                intShoninFlg = 0;
+            }
+
+            //承認情報
+            lstGrid.Add(gridRiekiritsu.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(intShoninFlg.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.updRiekiritsu(lstGrid);
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         ///<summary>
@@ -816,7 +854,47 @@ namespace KATO.Form.A1520_Uriageshonin
         ///</summary>
         private void updUriagesakujo()
         {
+            //グリッドが空の場合
+            if (gridUriagesakujo.Rows.Count < 0)
+            {
+                return;
+            }
 
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認がNの場合
+            if (gridUriagesakujo.CurrentRow.Cells["承認"].Value.ToString() == "N")
+            {
+                //Yに変更
+                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "Y";
+            }
+            else
+            {
+                //Nに変更
+                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "N";
+            }
+
+            //承認情報
+            lstGrid.Add(gridUriagesakujo.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(gridUriagesakujo.CurrentRow.Cells["承認"].Value.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.updUriagesakujo(lstGrid);
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
 

@@ -117,6 +117,10 @@ namespace KATO.Common.Ctl
 
             strY = DateTime.Today.Year.ToString();
             strM = DateTime.Today.Month.ToString();
+
+            //二桁に修正
+            strM = strM.PadLeft(2, '0');
+
             strD = DateTime.Today.Day.ToString();
 
             Boolean blnDateCheck = false;
@@ -146,30 +150,30 @@ namespace KATO.Common.Ctl
                 return(blnDateCheck);
             }
 
-            //コピーペーストされた時のための数値チェック
-            if (!DateTime.TryParse(this.Text, out dateCheck))
-            {
-                if (this.Parent is BaseForm)
-                {
-                    //データ存在なしメッセージ（OK）
-                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox_Nodata.ShowDialog();
-                }
-                else if (this.Parent.Parent is BaseForm)
-                {
-                    //データ存在なしメッセージ（OK）
-                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox_Nodata.ShowDialog();
-                }
+//            //コピーペーストされた時のための数値チェック
+//            if (!DateTime.TryParse(this.Text, out dateCheck))
+//            {
+//                if (this.Parent is BaseForm)
+//                {
+//                    //データ存在なしメッセージ（OK）
+//                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "年月日を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+//                    basemessagebox_Nodata.ShowDialog();
+//                }
+//                else if (this.Parent.Parent is BaseForm)
+//                {
+//                    //データ存在なしメッセージ（OK）
+//                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "年月日を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+//                    basemessagebox_Nodata.ShowDialog();
+//                }
 
-                blnDateCheck = true;
+//                blnDateCheck = true;
 
-//ラベルセットのカーソル色が残るのを防ぐ
-//しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
-                SendKeys.Send("+{TAB}");
+////ラベルセットのカーソル色が残るのを防ぐ
+////しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
+//                SendKeys.Send("+{TAB}");
 
-                return (blnDateCheck);
-            }
+//                return (blnDateCheck);
+//            }
 
             //リストに追加
             checklist.Add(this.Text);
