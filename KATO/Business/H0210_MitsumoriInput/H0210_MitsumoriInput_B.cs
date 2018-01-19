@@ -657,5 +657,19 @@ namespace KATO.Business.H0210_MitsumoriInput
                 throw (ex);
             }
         }
+
+        public void updShoninFlg(string stMitsumoriNo, string strFlg)
+        {
+            string strQuery = "UPDATE 見積ヘッド SET 承認フラグ = '" + strFlg + "' WHERE 見積書番号=" + stMitsumoriNo;
+
+            try
+            {
+                con.RunSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

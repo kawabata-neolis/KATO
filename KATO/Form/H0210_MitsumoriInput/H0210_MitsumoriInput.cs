@@ -458,31 +458,31 @@ namespace KATO.Form.H0210_MitsumoriInput
             DataGridViewTextBoxColumn shiireName1 = new DataGridViewTextBoxColumn(); // 15
             shiireName1.DataPropertyName = "仕入先名１";
             shiireName1.Name = "仕入先名１";
-            shiireName1.HeaderText = "仕入先名１";
+            shiireName1.HeaderText = "材料１\r\n仕入先名１";
             shiireName1.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireTanka1 = new DataGridViewTextBoxColumn(); // 16
             shiireTanka1.DataPropertyName = "仕入単価１";
             shiireTanka1.Name = "仕入単価１";
-            shiireTanka1.HeaderText = "仕入単価１";
+            shiireTanka1.HeaderText = "材料１\r\n仕入単価１";
             shiireTanka1.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireKin1 = new DataGridViewTextBoxColumn(); // 17
             shiireKin1.DataPropertyName = "仕入金額１";
             shiireKin1.Name = "仕入金額１";
-            shiireKin1.HeaderText = "仕入金額１";
+            shiireKin1.HeaderText = "材料１\r\n仕入金額１";
             shiireKin1.ReadOnly = true;
 
             DataGridViewTextBoxColumn arari1 = new DataGridViewTextBoxColumn(); // 18
             arari1.DataPropertyName = "粗利１";
             arari1.Name = "粗利１";
-            arari1.HeaderText = "粗利１";
+            arari1.HeaderText = "材料１\r\n粗利１";
             arari1.ReadOnly = true;
 
             DataGridViewTextBoxColumn arariritsu1 = new DataGridViewTextBoxColumn(); // 19
             arariritsu1.DataPropertyName = "粗利率１";
             arariritsu1.Name = "粗利率１";
-            arariritsu1.HeaderText = "率１";
+            arariritsu1.HeaderText = "材料１\r\n率１";
             arariritsu1.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireCd2 = new DataGridViewTextBoxColumn(); // 20
@@ -495,31 +495,31 @@ namespace KATO.Form.H0210_MitsumoriInput
             DataGridViewTextBoxColumn shiireName2 = new DataGridViewTextBoxColumn(); // 21
             shiireName2.DataPropertyName = "仕入先名２";
             shiireName2.Name = "仕入先名２";
-            shiireName2.HeaderText = "仕入先名２";
+            shiireName2.HeaderText = "材料１\r\n仕入先名２";
             shiireName2.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireTanka2 = new DataGridViewTextBoxColumn(); // 22
             shiireTanka2.DataPropertyName = "仕入単価２";
             shiireTanka2.Name = "仕入単価２";
-            shiireTanka2.HeaderText = "仕入単価２";
+            shiireTanka2.HeaderText = "材料１\r\n仕入単価２";
             shiireTanka2.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireKin2 = new DataGridViewTextBoxColumn(); // 23
             shiireKin2.DataPropertyName = "仕入金額２";
             shiireKin2.Name = "仕入金額２";
-            shiireKin2.HeaderText = "仕入金額２";
+            shiireKin2.HeaderText = "材料１\r\n仕入金額２";
             shiireKin2.ReadOnly = true;
 
             DataGridViewTextBoxColumn arari2 = new DataGridViewTextBoxColumn(); // 24
             arari2.DataPropertyName = "粗利２";
             arari2.Name = "粗利２";
-            arari2.HeaderText = "粗利２";
+            arari2.HeaderText = "材料１\r\n粗利２";
             arari2.ReadOnly = true;
 
             DataGridViewTextBoxColumn arariritsu2 = new DataGridViewTextBoxColumn(); // 25
             arariritsu2.DataPropertyName = "粗利率２";
             arariritsu2.Name = "粗利率２";
-            arariritsu2.HeaderText = "率２";
+            arariritsu2.HeaderText = "材料１\r\n率２";
             arariritsu2.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireCd3 = new DataGridViewTextBoxColumn(); // 26
@@ -532,31 +532,31 @@ namespace KATO.Form.H0210_MitsumoriInput
             DataGridViewTextBoxColumn shiireName3 = new DataGridViewTextBoxColumn(); // 27
             shiireName3.DataPropertyName = "仕入先名３";
             shiireName3.Name = "仕入先名３";
-            shiireName3.HeaderText = "仕入先名３";
+            shiireName3.HeaderText = "材料１\r\n仕入先名３";
             shiireName3.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireTanka3 = new DataGridViewTextBoxColumn(); // 28
             shiireTanka3.DataPropertyName = "仕入単価３";
             shiireTanka3.Name = "仕入単価３";
-            shiireTanka3.HeaderText = "仕入単価３";
+            shiireTanka3.HeaderText = "材料１\r\n仕入単価３";
             shiireTanka3.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireKin3 = new DataGridViewTextBoxColumn(); // 29
             shiireKin3.DataPropertyName = "仕入金額３";
             shiireKin3.Name = "仕入金額３";
-            shiireKin3.HeaderText = "仕入金額３";
+            shiireKin3.HeaderText = "材料１\r\n仕入金額３";
             shiireKin3.ReadOnly = true;
 
             DataGridViewTextBoxColumn arari3 = new DataGridViewTextBoxColumn(); // 30
             arari3.DataPropertyName = "粗利３";
             arari3.Name = "粗利３";
-            arari3.HeaderText = "粗利３";
+            arari3.HeaderText = "材料１\r\n粗利３";
             arari3.ReadOnly = true;
 
             DataGridViewTextBoxColumn arariritsu3 = new DataGridViewTextBoxColumn(); // 31
             arariritsu3.DataPropertyName = "粗利率３";
             arariritsu3.Name = "粗利率３";
-            arariritsu3.HeaderText = "率３";
+            arariritsu3.HeaderText = "材料１\r\n率３";
             arariritsu3.ReadOnly = true;
             #endregion
 
@@ -566,93 +566,111 @@ namespace KATO.Form.H0210_MitsumoriInput
             shiireCd4.Name = "仕入先コード４";
             shiireCd4.HeaderText = "仕入先コード４";
             shiireCd4.Visible = false;
+            shiireCd4.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireName4 = new DataGridViewTextBoxColumn(); // 33
             shiireName4.DataPropertyName = "仕入先名４";
             shiireName4.Name = "仕入先名４";
-            shiireName4.HeaderText = "仕入先名４";
-            
+            shiireName4.HeaderText = "材料２\r\n仕入先名１";
+            shiireName4.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireTanka4 = new DataGridViewTextBoxColumn(); // 34
             shiireTanka4.DataPropertyName = "仕入単価４";
             shiireTanka4.Name = "仕入単価４";
-            shiireTanka4.HeaderText = "仕入単価４";
-            
+            shiireTanka4.HeaderText = "材料２\r\n仕入単価１";
+            shiireTanka4.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireKin4 = new DataGridViewTextBoxColumn(); // 35
             shiireKin4.DataPropertyName = "仕入金額４";
             shiireKin4.Name = "仕入金額４";
-            shiireKin4.HeaderText = "仕入金額４";
-            
+            shiireKin4.HeaderText = "材料２\r\n仕入金額１";
+            shiireKin4.ReadOnly = true;
+
             DataGridViewTextBoxColumn arari4 = new DataGridViewTextBoxColumn(); // 36
             arari4.DataPropertyName = "粗利４";
             arari4.Name = "粗利４";
-            arari4.HeaderText = "粗利４";
-            
+            arari4.HeaderText = "材料２\r\n粗利１";
+            arari4.ReadOnly = true;
+
             DataGridViewTextBoxColumn arariritsu4 = new DataGridViewTextBoxColumn(); // 37
             arariritsu4.DataPropertyName = "粗利率４";
             arariritsu4.Name = "粗利率４";
-            arariritsu4.HeaderText = "粗利率４";
-            
+            arariritsu4.HeaderText = "材料２\r\n率１";
+            arariritsu4.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireCd5 = new DataGridViewTextBoxColumn(); // 38
             shiireCd5.DataPropertyName = "仕入先コード５";
             shiireCd5.Name = "仕入先コード５";
             shiireCd5.HeaderText = "仕入先コード５";
             shiireCd5.Visible = false;
+            shiireCd5.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireName5 = new DataGridViewTextBoxColumn(); // 39
             shiireName5.DataPropertyName = "仕入先名５";
             shiireName5.Name = "仕入先名５";
-            shiireName5.HeaderText = "仕入先名５";
-            
+            shiireName5.HeaderText = "材料２\r\n仕入先名２";
+            shiireName5.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireTanka5 = new DataGridViewTextBoxColumn(); // 40
             shiireTanka5.DataPropertyName = "仕入単価５";
             shiireTanka5.Name = "仕入単価５";
-            shiireTanka5.HeaderText = "仕入単価５";
-            
+            shiireTanka5.HeaderText = "材料２\r\n仕入単価２";
+            shiireTanka5.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireKin5 = new DataGridViewTextBoxColumn(); // 41
             shiireKin5.DataPropertyName = "仕入金額５";
             shiireKin5.Name = "仕入金額５";
-            shiireKin5.HeaderText = "仕入金額５";
-            
+            shiireKin5.HeaderText = "材料２\r\n仕入金額２";
+            shiireKin5.ReadOnly = true;
+
             DataGridViewTextBoxColumn arari5 = new DataGridViewTextBoxColumn(); // 42
             arari5.DataPropertyName = "粗利５";
             arari5.Name = "粗利５";
-            arari5.HeaderText = "粗利５";
-            
+            arari5.HeaderText = "材料２\r\n粗利２";
+            arari5.ReadOnly = true;
+
             DataGridViewTextBoxColumn arariritsu5 = new DataGridViewTextBoxColumn(); // 43
             arariritsu5.DataPropertyName = "粗利率５";
             arariritsu5.Name = "粗利率５";
-            arariritsu5.HeaderText = "粗利率５";
-            
+            arariritsu5.HeaderText = "材料２\r\n率２";
+            arariritsu5.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireCd6 = new DataGridViewTextBoxColumn(); // 44
             shiireCd6.DataPropertyName = "仕入先コード６";
             shiireCd6.Name = "仕入先コード６";
             shiireCd6.HeaderText = "仕入先コード６";
             shiireCd6.Visible = false;
+            shiireCd6.ReadOnly = true;
 
             DataGridViewTextBoxColumn shiireName6 = new DataGridViewTextBoxColumn(); // 45
             shiireName6.DataPropertyName = "仕入先名６";
             shiireName6.Name = "仕入先名６";
-            shiireName6.HeaderText = "仕入先名６";
-            
+            shiireName6.HeaderText = "材料２\r\n仕入先名３";
+            shiireName6.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireTanka6 = new DataGridViewTextBoxColumn(); // 46
             shiireTanka6.DataPropertyName = "仕入単価６";
             shiireTanka6.Name = "仕入単価６";
-            shiireTanka6.HeaderText = "仕入単価６";
-            
+            shiireTanka6.HeaderText = "材料２\r\n仕入単価３";
+            shiireTanka6.ReadOnly = true;
+
             DataGridViewTextBoxColumn shiireKin6 = new DataGridViewTextBoxColumn(); // 47
             shiireKin6.DataPropertyName = "仕入金額６";
             shiireKin6.Name = "仕入金額６";
-            shiireKin6.HeaderText = "仕入金額６";
-            
+            shiireKin6.HeaderText = "材料２\r\n仕入金額３";
+            shiireKin6.ReadOnly = true;
+
             DataGridViewTextBoxColumn arari6 = new DataGridViewTextBoxColumn(); // 48
             arari6.DataPropertyName = "粗利６";
             arari6.Name = "粗利６";
-            arari6.HeaderText = "粗利６";
-            
+            arari6.HeaderText = "材料２\r\n粗利３";
+            arari6.ReadOnly = true;
+
             DataGridViewTextBoxColumn arariritsu6 = new DataGridViewTextBoxColumn(); // 49
             arariritsu6.DataPropertyName = "粗利率６";
             arariritsu6.Name = "粗利率６";
-            arariritsu6.HeaderText = "粗利率６";
+            arariritsu6.HeaderText = "材料２\r\n率３";
+            arariritsu6.ReadOnly = true;
             #endregion
 
             #region
@@ -661,192 +679,228 @@ namespace KATO.Form.H0210_MitsumoriInput
             kakoShiireCd1.Name = "加工仕入先コード１";
             kakoShiireCd1.HeaderText = "加工仕入先コード１";
             kakoShiireCd1.Visible = false;
+            kakoShiireCd1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName1 = new DataGridViewTextBoxColumn(); // 51
             kakoShiireName1.DataPropertyName = "加工仕入先名１";
             kakoShiireName1.Name = "加工仕入先名１";
-            kakoShiireName1.HeaderText = "加工仕入先名１";
+            kakoShiireName1.HeaderText = "加工１\r\n仕入先名１";
+            kakoShiireName1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireTanka1 = new DataGridViewTextBoxColumn(); // 52
             kakoShiireTanka1.DataPropertyName = "加工仕入単価１";
             kakoShiireTanka1.Name = "加工仕入単価１";
-            kakoShiireTanka1.HeaderText = "加工仕入単価１";
+            kakoShiireTanka1.HeaderText = "加工１\r\n仕入単価１";
+            kakoShiireTanka1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireKin1 = new DataGridViewTextBoxColumn(); // 53
             kakoShiireKin1.DataPropertyName = "加工仕入金額１";
             kakoShiireKin1.Name = "加工仕入金額１";
-            kakoShiireKin1.HeaderText = "加工仕入金額１";
+            kakoShiireKin1.HeaderText = "加工１\r\n仕入金額１";
+            kakoShiireKin1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireArari1 = new DataGridViewTextBoxColumn(); // 54
             kakoShiireArari1.DataPropertyName = "加工粗利１";
             kakoShiireArari1.Name = "加工粗利１";
-            kakoShiireArari1.HeaderText = "加工粗利１";
+            kakoShiireArari1.HeaderText = "加工１\r\n粗利１";
+            kakoShiireArari1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireArariritsu1 = new DataGridViewTextBoxColumn(); // 55
             kakoShiireArariritsu1.DataPropertyName = "加工粗利率１";
             kakoShiireArariritsu1.Name = "加工粗利率１";
-            kakoShiireArariritsu1.HeaderText = "加工粗利率１";
+            kakoShiireArariritsu1.HeaderText = "加工１\r\n率１";
             kakoShiireArariritsu1.Visible = false;
+            kakoShiireArariritsu1.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireCd2 = new DataGridViewTextBoxColumn(); // 56
             kakoShiireCd2.DataPropertyName = "加工仕入先コード２";
             kakoShiireCd2.Name = "加工仕入先コード２";
             kakoShiireCd2.HeaderText = "加工仕入先コード２";
             kakoShiireCd2.Visible = false;
+            kakoShiireCd2.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName2 = new DataGridViewTextBoxColumn(); // 57
             kakoShiireName2.DataPropertyName = "加工仕入先名２";
             kakoShiireName2.Name = "加工仕入先名２";
-            kakoShiireName2.HeaderText = "加工仕入先名２";
+            kakoShiireName2.HeaderText = "加工１\r\n仕入先名２";
+            kakoShiireName2.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireTanka2 = new DataGridViewTextBoxColumn(); // 58
             kakoShiireTanka2.DataPropertyName = "加工仕入単価２";
             kakoShiireTanka2.Name = "加工仕入単価２";
-            kakoShiireTanka2.HeaderText = "加工仕入単価２";
+            kakoShiireTanka2.HeaderText = "加工１\r\n仕入単価２";
+            kakoShiireTanka2.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireKin2 = new DataGridViewTextBoxColumn(); // 59
             kakoShiireKin2.DataPropertyName = "加工仕入金額２";
             kakoShiireKin2.Name = "加工仕入金額２";
-            kakoShiireKin2.HeaderText = "加工仕入金額２";
-            
+            kakoShiireKin2.HeaderText = "加工１\r\n仕入金額２";
+            kakoShiireKin2.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArari2 = new DataGridViewTextBoxColumn(); // 60
             kakoShiireArari2.DataPropertyName = "加工粗利２";
             kakoShiireArari2.Name = "加工粗利２";
-            kakoShiireArari2.HeaderText = "加工粗利２";
-            
+            kakoShiireArari2.HeaderText = "加工１\r\n粗利２";
+            kakoShiireArari2.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArariritsu2 = new DataGridViewTextBoxColumn(); // 61
             kakoShiireArariritsu2.DataPropertyName = "加工粗利率２";
             kakoShiireArariritsu2.Name = "加工粗利率２";
-            kakoShiireArariritsu2.HeaderText = "加工粗利率２";
+            kakoShiireArariritsu2.HeaderText = "加工１\r\n率２";
             kakoShiireArariritsu2.Visible = false;
+            kakoShiireArariritsu2.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireCd3 = new DataGridViewTextBoxColumn(); // 62
             kakoShiireCd3.DataPropertyName = "加工仕入先コード３";
             kakoShiireCd3.Name = "加工仕入先コード３";
             kakoShiireCd3.HeaderText = "加工仕入先コード３";
             kakoShiireCd3.Visible = false;
+            kakoShiireCd3.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName3 = new DataGridViewTextBoxColumn(); // 63
             kakoShiireName3.DataPropertyName = "加工仕入先名３";
             kakoShiireName3.Name = "加工仕入先名３";
-            kakoShiireName3.HeaderText = "加工仕入先名３";
-            
+            kakoShiireName3.HeaderText = "加工１\r\n仕入先名３";
+            kakoShiireName3.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireTanka3 = new DataGridViewTextBoxColumn(); // 64
             kakoShiireTanka3.DataPropertyName = "加工仕入単価３";
             kakoShiireTanka3.Name = "加工仕入単価３";
-            kakoShiireTanka3.HeaderText = "加工仕入単価３";
-            
+            kakoShiireTanka3.HeaderText = "加工１\r\n仕入単価３";
+            kakoShiireTanka3.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireKin3 = new DataGridViewTextBoxColumn(); // 65
             kakoShiireKin3.DataPropertyName = "加工仕入金額３";
             kakoShiireKin3.Name = "加工仕入金額３";
-            kakoShiireKin3.HeaderText = "加工仕入金額３";
-            
+            kakoShiireKin3.HeaderText = "加工１\r\n仕入金額３";
+            kakoShiireKin3.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArari3 = new DataGridViewTextBoxColumn(); // 66
             kakoShiireArari3.DataPropertyName = "加工粗利３";
             kakoShiireArari3.Name = "加工粗利３";
-            kakoShiireArari3.HeaderText = "加工粗利３";
-            
+            kakoShiireArari3.HeaderText = "加工１\r\n粗利３";
+            kakoShiireArari3.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArariritsu3 = new DataGridViewTextBoxColumn(); //67 
             kakoShiireArariritsu3.DataPropertyName = "加工粗利率３";
             kakoShiireArariritsu3.Name = "加工粗利率３";
-            kakoShiireArariritsu3.HeaderText = "加工粗利率３";
+            kakoShiireArariritsu3.HeaderText = "加工１\r\n率３";
             kakoShiireArariritsu3.Visible = false;
+            kakoShiireArariritsu3.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireCd4 = new DataGridViewTextBoxColumn(); // 68
             kakoShiireCd4.DataPropertyName = "加工仕入先コード４";
             kakoShiireCd4.Name = "加工仕入先コード４";
             kakoShiireCd4.HeaderText = "加工仕入先コード４";
             kakoShiireCd4.Visible = false;
+            kakoShiireCd4.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName4 = new DataGridViewTextBoxColumn(); // 69
             kakoShiireName4.DataPropertyName = "加工仕入先名４";
             kakoShiireName4.Name = "加工仕入先名４";
-            kakoShiireName4.HeaderText = "加工仕入先名４";
-            
+            kakoShiireName4.HeaderText = "加工２\r\n仕入先名１";
+            kakoShiireName4.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireTanka4 = new DataGridViewTextBoxColumn(); // 70
             kakoShiireTanka4.DataPropertyName = "加工仕入単価４";
             kakoShiireTanka4.Name = "加工仕入単価４";
-            kakoShiireTanka4.HeaderText = "加工仕入単価４";
-            
+            kakoShiireTanka4.HeaderText = "加工２\r\n仕入単価１";
+            kakoShiireTanka4.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireKin4 = new DataGridViewTextBoxColumn(); // 71
             kakoShiireKin4.DataPropertyName = "加工仕入金額４";
             kakoShiireKin4.Name = "加工仕入金額４";
-            kakoShiireKin4.HeaderText = "加工仕入金額４";
-            
+            kakoShiireKin4.HeaderText = "加工２\r\n仕入金額１";
+            kakoShiireKin4.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArari4 = new DataGridViewTextBoxColumn(); // 72
             kakoShiireArari4.DataPropertyName = "加工粗利４";
             kakoShiireArari4.Name = "加工粗利４";
-            kakoShiireArari4.HeaderText = "加工粗利４";
-            
+            kakoShiireArari4.HeaderText = "加工２\r\n粗利１";
+            kakoShiireArari4.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArariritsu4 = new DataGridViewTextBoxColumn(); // 73
             kakoShiireArariritsu4.DataPropertyName = "加工粗利率４";
             kakoShiireArariritsu4.Name = "加工粗利率４";
-            kakoShiireArariritsu4.HeaderText = "加工粗利率４";
+            kakoShiireArariritsu4.HeaderText = "加工２\r\n率１";
             kakoShiireArariritsu4.Visible = false;
+            kakoShiireArariritsu4.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireCd5 = new DataGridViewTextBoxColumn(); // 74
             kakoShiireCd5.DataPropertyName = "加工仕入先コード５";
             kakoShiireCd5.Name = "加工仕入先コード５";
             kakoShiireCd5.HeaderText = "加工仕入先コード５";
             kakoShiireCd5.Visible = false;
+            kakoShiireCd5.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName5 = new DataGridViewTextBoxColumn(); // 75
             kakoShiireName5.DataPropertyName = "加工仕入先名５";
             kakoShiireName5.Name = "加工仕入先名５";
-            kakoShiireName5.HeaderText = "加工仕入先名５";
-            
+            kakoShiireName5.HeaderText = "加工２\r\n仕入先名２";
+            kakoShiireName5.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireTanka5 = new DataGridViewTextBoxColumn(); // 76
             kakoShiireTanka5.DataPropertyName = "加工仕入単価５";
             kakoShiireTanka5.Name = "加工仕入単価５";
-            kakoShiireTanka5.HeaderText = "加工仕入単価５";
-            
+            kakoShiireTanka5.HeaderText = "加工２\r\n仕入単価２";
+            kakoShiireTanka5.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireKin5 = new DataGridViewTextBoxColumn(); // 77
             kakoShiireKin5.DataPropertyName = "加工仕入金額５";
             kakoShiireKin5.Name = "加工仕入金額５";
-            kakoShiireKin5.HeaderText = "加工仕入金額５";
-            
+            kakoShiireKin5.HeaderText = "加工２\r\n仕入金額２";
+            kakoShiireKin5.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArari5 = new DataGridViewTextBoxColumn(); // 78
             kakoShiireArari5.DataPropertyName = "加工粗利５";
             kakoShiireArari5.Name = "加工粗利５";
-            kakoShiireArari5.HeaderText = "加工粗利５";
-            
+            kakoShiireArari5.HeaderText = "加工２\r\n粗利２";
+            kakoShiireArari5.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArariritsu5 = new DataGridViewTextBoxColumn(); // 79
             kakoShiireArariritsu5.DataPropertyName = "加工粗利率５";
             kakoShiireArariritsu5.Name = "加工粗利率５";
-            kakoShiireArariritsu5.HeaderText = "加工粗利率５";
+            kakoShiireArariritsu5.HeaderText = "加工２\r\n率２";
             kakoShiireArariritsu5.Visible = false;
+            kakoShiireArariritsu5.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireCd6 = new DataGridViewTextBoxColumn(); // 80
             kakoShiireCd6.DataPropertyName = "加工仕入先コード６";
             kakoShiireCd6.Name = "加工仕入先コード６";
             kakoShiireCd6.HeaderText = "加工仕入先コード６";
             kakoShiireCd6.Visible = false;
+            kakoShiireCd6.ReadOnly = true;
 
             DataGridViewTextBoxColumn kakoShiireName6 = new DataGridViewTextBoxColumn(); // 81
             kakoShiireName6.DataPropertyName = "加工仕入先名６";
             kakoShiireName6.Name = "加工仕入先名６";
-            kakoShiireName6.HeaderText = "加工仕入先名６";
-            
+            kakoShiireName6.HeaderText = "加工２\r\n仕入先名３";
+            kakoShiireName6.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireTanka6 = new DataGridViewTextBoxColumn(); // 82
             kakoShiireTanka6.DataPropertyName = "加工仕入単価６";
             kakoShiireTanka6.Name = "加工仕入単価６";
-            kakoShiireTanka6.HeaderText = "加工仕入単価６";
-            
+            kakoShiireTanka6.HeaderText = "加工２\r\n仕入単価３";
+            kakoShiireTanka6.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireKin6 = new DataGridViewTextBoxColumn(); // 83
             kakoShiireKin6.DataPropertyName = "加工仕入金額６";
             kakoShiireKin6.Name = "加工仕入金額６";
-            kakoShiireKin6.HeaderText = "加工仕入金額６";
-            
+            kakoShiireKin6.HeaderText = "加工２\r\n仕入金額３";
+            kakoShiireKin6.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArari6 = new DataGridViewTextBoxColumn(); // 84
             kakoShiireArari6.DataPropertyName = "加工粗利６";
             kakoShiireArari6.Name = "加工粗利６";
-            kakoShiireArari6.HeaderText = "加工粗利６";
-            
+            kakoShiireArari6.HeaderText = "加工２\r\n粗利３";
+            kakoShiireArari6.ReadOnly = true;
+
             DataGridViewTextBoxColumn kakoShiireArariritsu6 = new DataGridViewTextBoxColumn(); // 85
             kakoShiireArariritsu6.DataPropertyName = "加工粗利率６";
             kakoShiireArariritsu6.Name = "加工粗利率６";
-            kakoShiireArariritsu6.HeaderText = "加工粗利率６";
+            kakoShiireArariritsu6.HeaderText = "加工粗利加工２\r\n率３";
             kakoShiireArariritsu6.Visible = false;
+            kakoShiireArariritsu6.ReadOnly = true;
             #endregion
 
             #region
@@ -949,79 +1003,79 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
             setColumn(gridMitsmori, biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(gridMitsmori, insatsu, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 20);
+            setColumn(gridMitsmori, insatsu, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 26);
             setColumn(gridMitsmori, shiireCd1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shiireCd2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shiireCd3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shiireCd4);
             setColumn(gridMitsmori, shiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shiireCd5);
             setColumn(gridMitsmori, shiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shiireCd6);
             setColumn(gridMitsmori, shiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd1);
             setColumn(gridMitsmori, kakoShiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd2);
             setColumn(gridMitsmori, kakoShiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd3);
             setColumn(gridMitsmori, kakoShiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd4);
             setColumn(gridMitsmori, kakoShiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd5);
             setColumn(gridMitsmori, kakoShiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, kakoShiireCd6);
             setColumn(gridMitsmori, kakoShiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
             setColumn(gridMitsmori, shohin);
             setColumn(gridMitsmori, daibunrui);
             setColumn(gridMitsmori, chubunrui);
@@ -2452,7 +2506,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                     currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[7, i], false);
                     currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[11, i], false);
 
-
                     xlsRowCnt++;
                 }
 
@@ -3363,7 +3416,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             f.Location = s.Bounds.Location;
             f.lsTanto.CodeTxtText = lsTantousha.CodeTxtText;
 
-            f.ShowDialog();
+            f.ShowDialog(this);
             f.Dispose();
         }
 

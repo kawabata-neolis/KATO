@@ -57,21 +57,23 @@
             this.label11 = new System.Windows.Forms.Label();
             this.btnF10 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.rdShoninNo = new System.Windows.Forms.RadioButton();
+            this.rdShoninYes = new System.Windows.Forms.RadioButton();
+            this.rdShoninAll = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.lsTokui = new KATO.Common.Ctl.LabelSet_Tokuisaki();
             this.lsTanto = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.gridMitsu = new KATO.Common.Ctl.BaseDataGridView();
             this.txtTo = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtFrom = new KATO.Common.Ctl.BaseCalendarYM();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.rdShoninAll = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rdShoninYes = new System.Windows.Forms.RadioButton();
-            this.rdShoninNo = new System.Windows.Forms.RadioButton();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMitsu)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMitsu)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -241,7 +243,7 @@
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 10;
-            this.btnF12.Text = "戻る(F12)";
+            this.btnF12.Text = "F12:戻る";
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.button1_Click);
             this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
@@ -253,7 +255,7 @@
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 11;
-            this.btnF11.Text = "検索(F11)";
+            this.btnF11.Text = "F11:検索";
             this.btnF11.UseVisualStyleBackColor = true;
             this.btnF11.Click += new System.EventHandler(this.button2_Click);
             this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
@@ -263,6 +265,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.axAcroPDF1);
+            this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(781, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(634, 796);
@@ -276,6 +279,8 @@
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
             this.axAcroPDF1.Size = new System.Drawing.Size(624, 776);
             this.axAcroPDF1.TabIndex = 0;
+            this.axAcroPDF1.TabStop = false;
+            this.axAcroPDF1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.axAcroPDF1_PreviewKeyDown);
             // 
             // label10
             // 
@@ -318,7 +323,7 @@
             this.btnF10.Name = "btnF10";
             this.btnF10.Size = new System.Drawing.Size(100, 23);
             this.btnF10.TabIndex = 12;
-            this.btnF10.Text = "詳細(F10)";
+            this.btnF10.Text = "F10:詳細";
             this.btnF10.UseVisualStyleBackColor = true;
             this.btnF10.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -331,6 +336,73 @@
             this.label12.Size = new System.Drawing.Size(87, 15);
             this.label12.TabIndex = 200;
             this.label12.Text = "プレビュー";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.rdShoninNo);
+            this.panel3.Controls.Add(this.rdShoninYes);
+            this.panel3.Controls.Add(this.rdShoninAll);
+            this.panel3.Location = new System.Drawing.Point(471, 81);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(229, 31);
+            this.panel3.TabIndex = 9;
+            // 
+            // rdShoninNo
+            // 
+            this.rdShoninNo.AutoSize = true;
+            this.rdShoninNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rdShoninNo.Location = new System.Drawing.Point(153, 8);
+            this.rdShoninNo.Name = "rdShoninNo";
+            this.rdShoninNo.Size = new System.Drawing.Size(67, 17);
+            this.rdShoninNo.TabIndex = 2;
+            this.rdShoninNo.Text = "未承認";
+            this.rdShoninNo.UseVisualStyleBackColor = true;
+            // 
+            // rdShoninYes
+            // 
+            this.rdShoninYes.AutoSize = true;
+            this.rdShoninYes.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rdShoninYes.Location = new System.Drawing.Point(77, 8);
+            this.rdShoninYes.Name = "rdShoninYes";
+            this.rdShoninYes.Size = new System.Drawing.Size(67, 17);
+            this.rdShoninYes.TabIndex = 1;
+            this.rdShoninYes.Text = "承認済";
+            this.rdShoninYes.UseVisualStyleBackColor = true;
+            // 
+            // rdShoninAll
+            // 
+            this.rdShoninAll.AutoSize = true;
+            this.rdShoninAll.Checked = true;
+            this.rdShoninAll.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rdShoninAll.Location = new System.Drawing.Point(15, 8);
+            this.rdShoninAll.Name = "rdShoninAll";
+            this.rdShoninAll.Size = new System.Drawing.Size(53, 17);
+            this.rdShoninAll.TabIndex = 0;
+            this.rdShoninAll.TabStop = true;
+            this.rdShoninAll.Text = "全て";
+            this.rdShoninAll.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(478, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.TabIndex = 202;
+            this.label2.Text = "承認";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Location = new System.Drawing.Point(473, 174);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 23);
+            this.button1.TabIndex = 203;
+            this.button1.Text = "F1:承認";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // lsTokui
             // 
@@ -415,7 +487,7 @@
             this.gridMitsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMitsu.Size = new System.Drawing.Size(763, 601);
             this.gridMitsu.StandardTab = true;
-            this.gridMitsu.TabIndex = 13;
+            this.gridMitsu.TabIndex = 14;
             this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
             this.gridMitsu.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
@@ -438,66 +510,24 @@
             this.txtFrom.TabIndex = 0;
             this.txtFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
             // 
-            // panel3
+            // button2
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.rdShoninNo);
-            this.panel3.Controls.Add(this.rdShoninYes);
-            this.panel3.Controls.Add(this.rdShoninAll);
-            this.panel3.Location = new System.Drawing.Point(471, 81);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(174, 31);
-            this.panel3.TabIndex = 201;
-            // 
-            // rdShoninAll
-            // 
-            this.rdShoninAll.AutoSize = true;
-            this.rdShoninAll.Checked = true;
-            this.rdShoninAll.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rdShoninAll.Location = new System.Drawing.Point(15, 9);
-            this.rdShoninAll.Name = "rdShoninAll";
-            this.rdShoninAll.Size = new System.Drawing.Size(53, 17);
-            this.rdShoninAll.TabIndex = 0;
-            this.rdShoninAll.Text = "全て";
-            this.rdShoninAll.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(478, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 202;
-            this.label2.Text = "承認";
-            // 
-            // rdShoninYes
-            // 
-            this.rdShoninYes.AutoSize = true;
-            this.rdShoninYes.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rdShoninYes.Location = new System.Drawing.Point(77, 9);
-            this.rdShoninYes.Name = "rdShoninYes";
-            this.rdShoninYes.Size = new System.Drawing.Size(39, 17);
-            this.rdShoninYes.TabIndex = 203;
-            this.rdShoninYes.Text = "済";
-            this.rdShoninYes.UseVisualStyleBackColor = true;
-            // 
-            // rdShoninNo
-            // 
-            this.rdShoninNo.AutoSize = true;
-            this.rdShoninNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rdShoninNo.Location = new System.Drawing.Point(128, 9);
-            this.rdShoninNo.Name = "rdShoninNo";
-            this.rdShoninNo.Size = new System.Drawing.Size(39, 17);
-            this.rdShoninNo.TabIndex = 204;
-            this.rdShoninNo.Text = "未";
-            this.rdShoninNo.UseVisualStyleBackColor = true;
+            this.button2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button2.Location = new System.Drawing.Point(565, 174);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(82, 23);
+            this.button2.TabIndex = 204;
+            this.button2.Text = "F3:否認";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Form8_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 839);
+            this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.lsTokui);
@@ -526,6 +556,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFrom);
             this.Controls.Add(this.label5);
+            this.KeyPreview = true;
             this.Name = "Form8_2";
             this.Text = "見積書検索";
             this.Load += new System.EventHandler(this.Form8_2_Load);
@@ -535,9 +566,9 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMitsu)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMitsu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -578,5 +609,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton rdShoninNo;
         private System.Windows.Forms.RadioButton rdShoninYes;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

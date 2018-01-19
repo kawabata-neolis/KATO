@@ -108,14 +108,32 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            int intRowIdx = e.RowIndex;
-            axAcroPDF1.LoadFile("NUL");
-            axAcroPDF1.setLayoutMode("SinglePage");
-            axAcroPDF1.Refresh();
-            string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + ".pdf";
-            //string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
-            if (System.IO.File.Exists(path)) {
-                axAcroPDF1.LoadFile(path);
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                int intRowIdx = e.RowIndex;
+                axAcroPDF1.LoadFile("NUL");
+                axAcroPDF1.setLayoutMode("SinglePage");
+                axAcroPDF1.Refresh();
+                string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + ".pdf";
+                //string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
+                if (System.IO.File.Exists(path))
+                {
+                    axAcroPDF1.LoadFile(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            finally {
+                this.Cursor = Cursors.Default;
             }
 
         }
@@ -132,23 +150,23 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void textBox5_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.F10)
-            {
-                changePreview();
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.F11)
-            {
-                selectMitsumoriList();
-            }
-            else if (e.KeyData == Keys.F12)
-            {
-                this.Close();
-            }
-            else
-            {
+            //if (e.KeyData == Keys.F10)
+            //{
+            //    changePreview();
+            //    e.Handled = true;
+            //}
+            //else if (e.KeyData == Keys.F11)
+            //{
+            //    selectMitsumoriList();
+            //}
+            //else if (e.KeyData == Keys.F12)
+            //{
+            //    this.Close();
+            //}
+            //else
+            //{
 
-            }
+            //}
         }
 
         private void selectMitsumoriList()
@@ -157,6 +175,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 int iRd1 = 1;
                 if (rdSort2.Checked)
                 {
@@ -176,6 +195,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     txtTanto.Text, txtKenmei.Text, txtBiko.Text, txtKata.Text, iRd1, iRd2);
 
                 gridMitsu.DataSource = dt;
+                gridMitsu.Focus();
             }
             catch (Exception ex)
             {
@@ -186,8 +206,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
             }
-
-            gridMitsu.Focus();
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -206,8 +228,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             if (frm9 == null || frm9.IsDisposed)
             {
-                //string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + ".pdf";
-                string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + "_M.pdf";
+                string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + ".pdf";
+                //string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + "_M.pdf";
                 if (System.IO.File.Exists(path))
                 {
                     if (gridMitsu.Rows.Count > 0)
@@ -244,9 +266,17 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void Form8_2_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F10)
+            if (e.KeyCode == Keys.F1)
             {
-                e.Handled = true;
+                updShonin("1");
+            }
+            else if (e.KeyCode == Keys.F3)
+            {
+                updShonin("0");
+            }
+            else if (e.KeyCode == Keys.F10)
+            {
+                changePreview();
             }
             else if (e.KeyData == Keys.F11)
             {
@@ -279,23 +309,22 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void txtTanto_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.F10)
-            {
-                changePreview();
-                e.Handled = true;
-            }
-            else if (e.KeyData == Keys.F11)
-            {
-                selectMitsumoriList();
-            }
-            else if (e.KeyData == Keys.F12)
-            {
-                this.Close();
-            }
-            else if (e.KeyCode == Keys.Enter)
-            {
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
+            //if (e.KeyData == Keys.F10)
+            //{
+            //    changePreview();
+            //}
+            //else if (e.KeyData == Keys.F11)
+            //{
+            //    selectMitsumoriList();
+            //}
+            //else if (e.KeyData == Keys.F12)
+            //{
+            //    this.Close();
+            //}
+            //else if (e.KeyCode == Keys.Enter)
+            //{
+            //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            //}
         }
 
         private void Form8_2_Shown(object sender, EventArgs e)
@@ -303,5 +332,79 @@ namespace KATO.Form.H0210_MitsumoriInput
             this.Activate();
             this.ActiveControl = txtFrom;
         }
+
+        private void axAcroPDF1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //if (e.KeyData == Keys.F10)
+            //{
+            //    changePreview();
+            //}
+            //else if (e.KeyData == Keys.F11)
+            //{
+            //    selectMitsumoriList();
+            //}
+            //else if (e.KeyData == Keys.F12)
+            //{
+            //    this.Close();
+            //}
+            //else
+            //{
+
+            //}
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            updShonin("1");
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            updShonin("0");
+        }
+
+        private void updShonin(string strFlg)
+        {
+            int intRowNum = gridMitsu.CurrentCell.RowIndex;
+            DataGridViewSelectedRowCollection rc = gridMitsu.SelectedRows;
+
+            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                inputB.beginTrance();
+
+                int intRowIdx = 0;
+
+                for (int i = 0; i < rc.Count; i++)
+                {
+                    intRowIdx = rc[i].Index;
+
+                    if (gridMitsu[1, intRowIdx].Value != null) {
+                        inputB.updShoninFlg((gridMitsu[1, intRowIdx].Value).ToString(), strFlg);
+                    }
+                }
+
+                if (rc.Count > 0)
+                {
+                    inputB.commit();
+                }
+                selectMitsumoriList();
+            }
+            catch (Exception ex)
+            {
+                inputB.rollback();
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
     }
 }

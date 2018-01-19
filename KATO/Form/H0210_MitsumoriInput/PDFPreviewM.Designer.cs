@@ -32,7 +32,9 @@
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.baseButton1 = new KATO.Common.Ctl.BaseButton();
             this.baseButton2 = new KATO.Common.Ctl.BaseButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -117,21 +119,29 @@
             this.baseButton2.UseVisualStyleBackColor = true;
             this.baseButton2.Click += new System.EventHandler(this.baseButton2_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.axAcroPDF1);
+            this.panel1.Enabled = false;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1049, 826);
+            this.panel1.TabIndex = 87;
+            // 
             // PDFPreviewM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1179, 843);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.baseButton2);
             this.Controls.Add(this.baseButton1);
-            this.Controls.Add(this.axAcroPDF1);
             this.KeyPreview = true;
             this.Name = "PDFPreviewM";
             this.Text = "プレビュー";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PDFPreview_KeyDown);
             this.Resize += new System.EventHandler(this.PDFPreview_Resize);
-            this.Controls.SetChildIndex(this.axAcroPDF1, 0);
             this.Controls.SetChildIndex(this.baseButton1, 0);
             this.Controls.SetChildIndex(this.baseButton2, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
@@ -147,7 +157,9 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +170,6 @@
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         private Common.Ctl.BaseButton baseButton1;
         private Common.Ctl.BaseButton baseButton2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
