@@ -35,8 +35,8 @@ namespace KATO.Common.Ctl
             //選択モードを行単位での選択のみにする
             this.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            //DataGridView1の列の幅をユーザーが変更できるようにする
-            this.AllowUserToResizeColumns = false;
+            ////DataGridView1の列の幅をユーザーが変更できるようにする
+            //this.AllowUserToResizeColumns = false;
 
             //DataGridView1の行の高さをユーザーが変更できないようにする
             this.AllowUserToResizeRows = false;
