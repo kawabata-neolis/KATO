@@ -13,9 +13,6 @@ using KATO.Form.A0010_JuchuInput;
 using KATO.Form.A0100_HachuInput;
 using KATO.Form.M1210_ShohinbetsuRiekiritsuSettei;
 using KATO.Form.M1160_TokuteimukesakiTanka;
-using KATO.Business.M1020_Maker_B;
-using KATO.Business.M1010_Daibunrui;
-using KATO.Business.M1110_Chubunrui;
 
 namespace KATO.Common.Business
 {
@@ -38,49 +35,49 @@ namespace KATO.Common.Business
         ///</summary>
         public DataTable getShohinView(List<int> lstInt, List<string> lstString, List<Boolean> lstBoolean, Boolean blnZaikoKensaku)
         {
-            string strWhere = "";
+            //string strWhere = "";
 
-            strWhere = "WHERE a.削除 = 'N'";
+            //strWhere = "WHERE a.削除 = 'N'";
 
-            if (lstString[0] != "")
-            {
-                strWhere = strWhere + " AND a.大分類コード='" + lstString[0] + "'";
-            }
-            if (lstString[1] != "")
-            {
-                strWhere = strWhere + " AND a.中分類コード='" + lstString[1] + "'";
-            }
-            if (lstString[2] != "")
-            {
-                strWhere = strWhere + " AND a.メーカーコード='" + lstString[2] + "'";
-            }
-            //検索文字列があり、部分検索の場合
-            if (lstString[3] != "" && lstBoolean[1] == true)
-            {
-                strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
-            }
-            //検索文字列があり、完全一致検索の場合
-            else if (lstString[3] != "" && lstBoolean[1] == false)
-            {
-                strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '" + lstString[3] + "'";
-            }
+            //if (lstString[0] != "")
+            //{
+            //    strWhere = strWhere + " AND a.大分類コード='" + lstString[0] + "'";
+            //}
+            //if (lstString[1] != "")
+            //{
+            //    strWhere = strWhere + " AND a.中分類コード='" + lstString[1] + "'";
+            //}
+            //if (lstString[2] != "")
+            //{
+            //    strWhere = strWhere + " AND a.メーカーコード='" + lstString[2] + "'";
+            //}
+            ////検索文字列があり、部分検索の場合
+            //if (lstString[3] != "" && lstBoolean[1] == true)
+            //{
+            //    strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
+            //}
+            ////検索文字列があり、完全一致検索の場合
+            //else if (lstString[3] != "" && lstBoolean[1] == false)
+            //{
+            //    strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '" + lstString[3] + "'";
+            //}
 
-            if (lstString[4] == "" && lstString[5] == "" && blnZaikoKensaku == true)
-            {
-                lstInt[1] = 0;
-            }
-            else if (lstString[5] == "" && blnZaikoKensaku == true)
-            {
-                lstInt[1] = 1;
-            }
-            else if (lstString[4] == "" && blnZaikoKensaku == true)
-            {
-                lstInt[1] = 2;
-            }
-            else
-            {
-                lstInt[1] = 3;
-            }
+            //if (lstString[4] == "" && lstString[5] == "" && blnZaikoKensaku == true)
+            //{
+            //    lstInt[1] = 0;
+            //}
+            //else if (lstString[5] == "" && blnZaikoKensaku == true)
+            //{
+            //    lstInt[1] = 1;
+            //}
+            //else if (lstString[4] == "" && blnZaikoKensaku == true)
+            //{
+            //    lstInt[1] = 2;
+            //}
+            //else
+            //{
+            //    lstInt[1] = 3;
+            //}
 
             //SQL用に移動
             DBConnective dbConnective = new DBConnective();

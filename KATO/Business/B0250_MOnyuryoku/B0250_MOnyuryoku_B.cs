@@ -14,9 +14,9 @@ namespace KATO.Business.B0250_MOnyuryoku
     ///B0250_MOnyuryoku_B
     ///MO入力のビジネス層
     ///作成者：大河内
-    ///作成日：2017/5/1
+    ///作成日：2017/1/15
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2017/1/15
     ///カラム論理名
     ///</summary>
     class B0250_MOnyuryoku_B

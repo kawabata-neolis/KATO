@@ -41,7 +41,13 @@
             this.codeTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judTokuisakiKeyUp);
             this.codeTxt.Leave += new System.EventHandler(this.updTxtTokuisakiLeave);
             // 
-            // TextSet_Torihikisaki
+            // valueText
+            // 
+            this.valueText.Location = new System.Drawing.Point(151, 0);
+            this.valueText.Size = new System.Drawing.Size(350, 22);
+            this.valueText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.valueText_KeyDown);
+            // 
+            // TextSet_Tokuisaki
             // 
             this.AppendLabelSize = 40;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
