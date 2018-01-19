@@ -12,9 +12,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
     ///A1520_Uriageshonin_B
     ///売上承認のビジネス層
     ///作成者：大河内
-    ///作成日：2017/5/1
+    ///作成日：2018/1/19
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2017/1/19
     ///カラム論理名
     ///</summary>
     class A1520_Uriageshonin_B
@@ -22,6 +22,8 @@ namespace KATO.Business.A1520_Uriageshonin_B
         ///<summary>
         ///getViewGridHenpin
         ///返品値引分売上承認入力データの取得
+        ///引数　：すべて = 0,未承認のみ = 1, 承認済みのみ = 2
+        ///戻り値：DataTable(画面表示用)
         ///</summary>
         public DataTable getViewGridHenpin(int intShonin)
         {
@@ -89,10 +91,12 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 dbconnective.DB_Disconnect();
             }
         }
-
+        
         ///<summary>
         ///getViewGridRireki
         ///利益率承認データの取得
+        ///引数　：すべて = 0,未承認のみ = 1, 承認済みのみ = 2
+        ///戻り値：DataTable(画面表示用)
         ///</summary>
         public DataTable getViewGridRireki(int intShonin)
         {
@@ -164,6 +168,8 @@ namespace KATO.Business.A1520_Uriageshonin_B
         ///<summary>
         ///getViewGridUriage
         ///売上削除承認入力データの取得
+        ///引数　：List[0](すべて = 0,未承認のみ = 1, 承認済みのみ = 2),[1](終了年月日),[2](開始年月日)
+        ///戻り値：DataTable(画面表示用)
         ///</summary>
         public DataTable getViewGridUriage(List<string> lstViewGrid)
         {
@@ -234,7 +240,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
         ///<summary>
         ///updHenpinNebiki
-        ///売上削除承認入力データの取得
+        ///返品値引売上承認の登録
+        ///引数　：List[0](受注番号),[1](承認 = Y, 未承認 = N)
+        ///戻り値：なし
         ///</summary>
         public void updHenpinNebiki(List<string> lstGrid)
         {
@@ -343,7 +351,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
         ///<summary>
         ///updRiekiritsu
-        ///データの取得
+        ///利益率承認の登録
+        ///引数　：List[0](受注番号),[1](承認 = Y, 未承認 = N)
+        ///戻り値：なし
         ///</summary>
         public void updRiekiritsu(List<string> lstGrid)
         {
@@ -428,7 +438,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
         ///<summary>
         ///updUriagesakujo
-        ///売上削除承認入力データの取得
+        ///売上削除承認入力の登録
+        ///引数　：List[0](受注番号),[1](承認 = Y, 未承認 = N)
+        ///戻り値：なし
         ///</summary>
         public void updUriagesakujo(List<string> lstGrid)
         {

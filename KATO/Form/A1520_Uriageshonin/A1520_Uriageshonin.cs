@@ -19,9 +19,9 @@ namespace KATO.Form.A1520_Uriageshonin
     ///A1520_Uriageshonin
     ///売上承認フォーム
     ///作成者：大河内
-    ///作成日：2017/2/2
+    ///作成日：2018/1/19
     ///更新者：大河内
-    ///更新日：2017/2/2
+    ///更新日：2017/1/19
     ///カラム論理名
     ///</summary>
     public partial class A1520_Uriageshonin : BaseForm
@@ -29,9 +29,12 @@ namespace KATO.Form.A1520_Uriageshonin
         //ロギングの設定
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+
         ///<summary>
         ///A1520_Uriageshonin
         ///フォームの初期設定
+        ///引数　：前画面情報
+        ///戻り値：なし
         ///</summary>
         public A1520_Uriageshonin(Control c)
         {
@@ -65,6 +68,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///A1520_Uriageshonin_Load
         ///画面レイアウト設定
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void A1520_Uriageshonin_Load(object sender, EventArgs e)
         {
@@ -73,14 +78,13 @@ namespace KATO.Form.A1520_Uriageshonin
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF04.Text = STR_FUNC_F4;
-
-            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             this.radHenpin.radbtn1.Checked = true;
             this.radRiekiritsu.radbtn1.Checked = true;
             this.radUriagesakujo.radbtn1.Checked = true;
 
+            //グリッドの設定
             SetUpGrid();
 
             //返品値引分売上承認入力の表示
@@ -95,6 +99,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///SetUpGrid
         ///DataGridView初期設定
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void SetUpGrid()
         {
@@ -168,9 +174,8 @@ namespace KATO.Form.A1520_Uriageshonin
             setColumnHenpin(HJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnHenpin(HShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
             setColumnHenpin(HNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
-            setColumnHenpin(HTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330
-            setColumnHenpin(HMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100); //元200
-
+            setColumnHenpin(HTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
+            setColumnHenpin(HMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100); //元200、省略記号がつく
             setColumnHenpin(HKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
             setColumnHenpin(HSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
             setColumnHenpin(HJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
@@ -192,7 +197,7 @@ namespace KATO.Form.A1520_Uriageshonin
             DataGridViewTextBoxColumn RShonin = new DataGridViewTextBoxColumn();
             RShonin.DataPropertyName = "承認";
             RShonin.Name = "承認";
-            RShonin.HeaderText = "承認";
+            RShonin.HeaderText = "認";
 
             DataGridViewTextBoxColumn RNoki = new DataGridViewTextBoxColumn();
             RNoki.DataPropertyName = "納期";
@@ -251,18 +256,18 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //個々の幅、文章の寄せ
             setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnRiekiritsu(RShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumnRiekiritsu(RNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnRiekiritsu(RTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnRiekiritsu(RMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnRiekiritsu(RKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnRiekiritsu(RSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnRiekiritsu(RJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnRiekiritsu(RShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnRiekiritsu(RRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 200);
-            setColumnRiekiritsu(RChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnRiekiritsu(RShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
+            setColumnRiekiritsu(RNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
+            setColumnRiekiritsu(RTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
+            setColumnRiekiritsu(RMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);//元200、省略記号がつく
+            setColumnRiekiritsu(RKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
+            setColumnRiekiritsu(RSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
+            setColumnRiekiritsu(RJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnRiekiritsu(RShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnRiekiritsu(RRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnRiekiritsu(RChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnRiekiritsu(RShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
 
             //受注番号非表示
             RJuchuNo.Visible = false;
@@ -281,7 +286,7 @@ namespace KATO.Form.A1520_Uriageshonin
             DataGridViewTextBoxColumn UShonin = new DataGridViewTextBoxColumn();
             UShonin.DataPropertyName = "承認";
             UShonin.Name = "承認";
-            UShonin.HeaderText = "承認";
+            UShonin.HeaderText = "認";
 
             DataGridViewTextBoxColumn UNoki = new DataGridViewTextBoxColumn();
             UNoki.DataPropertyName = "納期";
@@ -341,18 +346,18 @@ namespace KATO.Form.A1520_Uriageshonin
             //個々の幅、文章の寄せ
             setColumnUriage(UJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnUriage(UDenpyoYMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnUriage(UShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumnUriage(UNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnUriage(UTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnUriage(UMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnUriage(UKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnUriage(USu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnUriage(UJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnUriage(UShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnUriage(URiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 200);
-            setColumnUriage(UChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnUriage(UShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
+            setColumnUriage(UNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
+            setColumnUriage(UTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
+            setColumnUriage(UMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);//元200、省略記号がつく
+            setColumnUriage(UKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
+            setColumnUriage(USu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
+            setColumnUriage(UJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnUriage(UShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnUriage(URiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnUriage(UChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnUriage(UShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnUriage(UTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnUriage(UTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
 
             //受注番号、伝票年月日非表示
             UJuchuNo.Visible = false;
@@ -362,6 +367,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///setColumnHenpin
         ///DataGridViewの内部設定（返品値引分売上承認入力）
+        ///引数　：設定カラム、セル内寄せ方向、カラム内寄せ方向、文字フォーマット、カラムサイズ
+        ///戻り値：なし
         ///</summary>
         private void setColumnHenpin(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -382,6 +389,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///setColumnRiekiritsu
         ///DataGridViewの内部設定（利益率承認）
+        ///引数　：設定カラム、セル内寄せ方向、カラム内寄せ方向、文字フォーマット、カラムサイズ
+        ///戻り値：なし
         ///</summary>
         private void setColumnRiekiritsu(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -402,6 +411,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///setColumnRiekiritsu
         ///DataGridViewの内部設定（売上削除承認入力）
+        ///引数　：設定カラム、セル内寄せ方向、カラム内寄せ方向、文字フォーマット、カラムサイズ
+        ///戻り値：なし
         ///</summary>
         private void setColumnUriage(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -422,6 +433,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///A1520_Uriageshonin_KeyDown
         ///キー入力判定（画面全般）
+        ///引数　：キー情報
+        ///戻り値：なし
         ///</summary>
         private void A1520_Uriageshonin_KeyDown(object sender, KeyEventArgs e)
         {
@@ -445,40 +458,26 @@ namespace KATO.Form.A1520_Uriageshonin
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    //logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    //this.addMO();
                     break;
                 case Keys.F2:
-                    //logger.Info(LogUtil.getMessage(this._Title, "確定実行"));
-                    //this.addMOKakutei();
                     break;
                 case Keys.F3:
-                    //logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    //this.delMO();
                     break;
                 case Keys.F4:
-                    //logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    //this.delText();
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delView();
                     break;
                 case Keys.F5:
                     break;
                 case Keys.F6:
-                    //logger.Info(LogUtil.getMessage(this._Title, "再計算実行"));
-                    //updSaikesan();
                     break;
                 case Keys.F7:
-                    //logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ発行"));
-                    //saveCSV();
                     break;
                 case Keys.F8:
-                    //logger.Info(LogUtil.getMessage(this._Title, "特値実行"));
-                    //showTokune();
                     break;
                 case Keys.F9:
                     break;
                 case Keys.F10:
-                    //logger.Info(LogUtil.getMessage(this._Title, "ｴｸｾﾙ取込実行"));
-                    //setExcelData();
                     break;
                 case Keys.F11:
                     break;
@@ -495,23 +494,17 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///judFuncBtnClick
         ///ファンクションボタンの反応
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void judFuncBtnClick(object sender, EventArgs e)
         {
             //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
-                case STR_BTN_F01: // 登録
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    //this.addMO();
-                    break;
-                case STR_BTN_F03: // 削除
-                    //logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                    //this.delMO();
-                    break;
                 case STR_BTN_F04: // 取消
-                    //logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    //this.delText();
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delView();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -523,6 +516,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///btnSaihyojiHenpin_Click
         ///返品値引分売上承認の再表示ボタンを押す
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void btnSaihyojiHenpin_Click(object sender, EventArgs e)
         {
@@ -533,6 +528,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///showGirdHenpin
         ///返品値引分売上承認のグリッド表示
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void showGirdHenpin()
         {
@@ -586,6 +583,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///btnSaihyojiHenpin_Click
         ///利益率承認の再表示ボタンを押す
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void btnSaihyojiRiekiritsu_Click(object sender, EventArgs e)
         {
@@ -596,6 +595,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///showGirdRiekiritsu
         ///利益率承認のグリッド表示
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void showGirdRiekiritsu()
         {
@@ -648,6 +649,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///btnSaihyojiUriagesakujo_Click
         ///売上削除承認入力の再表示ボタンを押す
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void btnSaihyojiUriagesakujo_Click(object sender, EventArgs e)
         {
@@ -657,6 +660,8 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///showGirdUriage
         ///売上削除承認入力のグリッド表示
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void showGirdUriage()
         {
@@ -681,10 +686,6 @@ namespace KATO.Form.A1520_Uriageshonin
             //本日から三か月前
             lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
             lstViewGrid.Add(DateTime.Now.AddMonths(-3).ToString("yyyy/MM/dd"));
-
-            ////仮(テスト用)
-            //lstViewGrid.Add("2016/06/01");
-            //lstViewGrid.Add("2015/12/01");
 
             A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
             try
@@ -717,15 +718,20 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///gridHenpinNebiki_DoubleClick
         ///返品値引分売上承認入力グリッドビュー内のデータをダブルクリックしたとき
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void gridHenpinNebiki_DoubleClick(object sender, EventArgs e)
         {
+            //返品値引分売上承認入力の登録
             updHenpinNebiki();
         }
 
         ///<summary>
         ///updHenpinNebiki
         ///返品値引分売上承認入力の登録
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void updHenpinNebiki()
         {
@@ -780,15 +786,20 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///gridRiekiritsu_DoubleClick
         ///利益率承認グリッドビュー内のデータをダブルクリックしたとき
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void gridRiekiritsu_DoubleClick(object sender, EventArgs e)
         {
+            //利益率承認の登録
             updRiekiritsu();
         }
 
         ///<summary>
         ///updHenpinNebiki
         ///利益率承認の登録
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void updRiekiritsu()
         {
@@ -843,15 +854,20 @@ namespace KATO.Form.A1520_Uriageshonin
         ///<summary>
         ///gridUriagesakujo_DoubleClick
         ///売上削除承認入力グリッドビュー内のデータをダブルクリックしたとき
+        ///引数　：イベント情報
+        ///戻り値：なし
         ///</summary>
         private void gridUriagesakujo_DoubleClick(object sender, EventArgs e)
         {
+            //売上削除承認入力の登録
             updUriagesakujo();
         }
 
         ///<summary>
         ///updHenpinNebiki
         ///売上削除承認入力の登録
+        ///引数　：なし
+        ///戻り値：なし
         ///</summary>
         private void updUriagesakujo()
         {
@@ -898,6 +914,31 @@ namespace KATO.Form.A1520_Uriageshonin
             }
         }
 
+        ///<summary>
+        ///delView
+        ///取り消し機能
+        ///引数　：なし
+        ///戻り値：なし
+        ///</summary>
+        private void delView()
+        {
+            //各グリッドを空白
+            gridHenpinNebiki.DataSource = "";
+            gridRiekiritsu.DataSource = "";
+            gridUriagesakujo.DataSource = "";
 
+            //ラジオボタンの初期位置
+            radHenpin.radbtn1.Checked = true;
+            radRiekiritsu.radbtn1.Checked = true;
+            radUriagesakujo.radbtn1.Checked = true;
+
+            //再表示
+            showGirdHenpin();
+            showGirdRiekiritsu();
+            showGirdUriage();
+
+            //初期フォーカス位置
+            radHenpin.Focus();
+        }
     }
 }
