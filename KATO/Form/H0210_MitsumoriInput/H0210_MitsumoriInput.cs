@@ -95,16 +95,16 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         }
 
-        private Boolean printFlg = false;
-        public Boolean PrintFlg
+        private Boolean updFlg = false;
+        public Boolean UpdFlg
         {
             get
             {
-                return printFlg;
+                return updFlg;
             }
             set
             {
-                printFlg = value;
+                updFlg = value;
             }
         }
 
@@ -116,6 +116,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         int intZai2Num = 0;
 
         bool keyFlgF9 = true;
+        bool editFlg = true;
         string defUser = "";
         string defEigyo = "";
 
@@ -216,19 +217,11 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             if (e.KeyData == Keys.F1)
             {
-                if (!btnF01.Enabled)
-                {
-                    return;
-                }
                 btnF01.Focus();
                 updMitsumori();
             }
             else if (e.KeyData == Keys.F3)
             {
-                if (!btnF03.Enabled)
-                {
-                    return;
-                }
                 delMitsumori();
             }
             else if (e.KeyData == Keys.F4)
@@ -245,8 +238,6 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyData == Keys.F8)
             {
-                btnF01.Enabled = true;
-                btnF03.Enabled = true;
             }
             else if (e.KeyData == Keys.F9)
             {
@@ -262,11 +253,29 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyData == Keys.F10)
             {
-                printDetail();
+                if (editFlg == false)
+                {
+                    logger.Info(LogUtil.getMessage(this._Title, "仕入詳細印刷実行"));
+                    printDetail();
+                }
+                else
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                }
             }
             else if (e.KeyData == Keys.F11)
             {
-                printMitsumori();
+                if (editFlg == false)
+                {
+                    logger.Info(LogUtil.getMessage(this._Title, "見積書印刷実行"));
+                    printMitsumori();
+                }
+                else
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                }
             }
             else if (e.KeyData == Keys.F12)
             {
@@ -282,8 +291,9 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             switch (((Button)sender).Name)
             {
-                case STR_BTN_F01: // 一覧表示
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    updMitsumori();
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
@@ -302,20 +312,34 @@ namespace KATO.Form.H0210_MitsumoriInput
                     addRow();
                     break;
                 case STR_BTN_F08: // 終わり
-                    btnF01.Enabled = true;
-                    btnF03.Enabled = true;
                     break;
                 case STR_BTN_F09: // 検索
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     getMitsumoriInfo();
                     break;
                 case STR_BTN_F10:
-                    logger.Info(LogUtil.getMessage(this._Title, "仕入詳細印刷実行"));
-                    printDetail();
+                    if (editFlg == false)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "仕入詳細印刷実行"));
+                        printDetail();
+                    }
+                    else
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                    }
                     break;
                 case STR_BTN_F11: // 印刷
-                    logger.Info(LogUtil.getMessage(this._Title, "見積書印刷実行"));
-                    printMitsumori();
+                    if (editFlg == false)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "見積書印刷実行"));
+                        printMitsumori();
+                    }
+                    else
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -1300,6 +1324,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[97, intRow].Value = tC5.Text;
                 gridMitsmori[98, intRow].Value = tC6.Text;
                 gridMitsmori[4, intRow].Value = tTeikka.Text;
+                gridMitsmori.EndEdit();
+                editFlg = true;
             }
         }
 
@@ -1353,6 +1379,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 calc(3, intZai2Num);
                 changeTotal();
             }
+            editFlg = true;
         }
 
         private void txtZaiTnk1_Leave(object sender, EventArgs e)
@@ -1594,6 +1621,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
                 gridMitsmori.EndEdit();
+                editFlg = true;
 
                 // 粗利率が閾値未満の場合、フォントカラーを変更
                 if (dArariRitsuM < 15)
@@ -1661,6 +1689,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         }
                     }
                     gridMitsmori.EndEdit();
+                    editFlg = true;
                 }
                 #endregion
 
@@ -1769,10 +1798,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "見積データがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
+                    txtMNum.Text = "";
                     return;
                 }
-                btnF01.Enabled = false;
-                btnF03.Enabled = false;
 
                 txtMYMD.Text = dtInfo.Rows[0]["見積年月日"].ToString();
                 txtKenmei.Text = dtInfo.Rows[0]["標題"].ToString();
@@ -1814,9 +1842,16 @@ namespace KATO.Form.H0210_MitsumoriInput
                 //}
 
                 gridMitsmori.EndEdit();
+                editFlg = false;
 
                 setText(0);
                 changeTotal();
+                // 変更時、検索直後は未編集のため、印刷可能とする。
+                if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2"))
+                {
+                    editFlg = false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -1884,17 +1919,28 @@ namespace KATO.Form.H0210_MitsumoriInput
                         continue;
                     }
 
-                    UserControl2 uc = new UserControl2(gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
+                    UserControl2 uc = new UserControl2(gridMitsmori[2, i], gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
                     uc.Name = "uc" + i.ToString();
                     f.tableLayoutPanel1.Controls.Add(uc);
                 }
 
-                f.FrmParent = this;
-                f.ShowDialog();
-                f.Dispose();
-
-                if (PrintFlg)
+                // 分類入力の必要がある場合のみ分類入力を表示
+                if (f.tableLayoutPanel1.Controls.Count > 0) {
+                    f.FrmParent = this;
+                    f.ShowDialog();
+                    f.Dispose();
+                }
+                else
                 {
+                    UpdFlg = true;
+                }
+
+                if (UpdFlg)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    //見積ヘッダ登録
+                    #region
                     List<String> aryPrm = new List<string>();
 
                     aryPrm.Add(strMNum);
@@ -1917,6 +1963,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                     aryPrm.Add(Environment.UserName);
 
                     inputB.updMitsumoriH(aryPrm);
+                    #endregion
+                    // 見積明細 洗い替え
+                    #region
                     inputB.delMitsumoriM(strMNum, Environment.UserName);
 
                     for (int i = 0; i < intMaxLine; i++)
@@ -2086,8 +2135,12 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                         inputB.updMitsumoriM(aryPrm);
                     }
+                    #endregion
 
                     inputB.commit();
+
+                    editFlg = false;
+                    this.Cursor = Cursors.Default;
 
                     PrintDialog pf = new PrintDialog(this);
                     pf.StartPosition = FormStartPosition.CenterScreen;
@@ -2095,17 +2148,18 @@ namespace KATO.Form.H0210_MitsumoriInput
                     pf.ShowDialog();
                     pf.Dispose();
 
+                    // 見積書印刷、または見積書＋見積明細印刷時    
                     if (intPrint > 0)
                     {
                         printMitsumori();
                     }
+                    // 見積書＋見積明細印刷時
                     if (intPrint == 2)
                     {
                         printDetail();
                     }
 
                     intPrint = 0;
-                    PrintFlg = false;
                 }
             }
             catch (Exception ex)
@@ -2117,6 +2171,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                UpdFlg = false;
             }
         }
 
@@ -2264,8 +2323,20 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 st = dbToPdf(gridMitsmori);
 
-                PDFPreviewM pp = new PDFPreviewM(this, st);
-                pp.ShowDialog();
+                //PDFPreviewM pp = new PDFPreviewM(this, st);
+                //pp.ShowDialog();
+                PrintForm pf = new PrintForm(this, st, Common.Util.CommonTeisu.SIZE_A4, true);
+                pf.ShowDialog(this);
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    pf.execPreview(st);
+                    pf.ShowDialog(this);
+                }
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
+
+                }
             }
             catch (Exception ex)
             {
@@ -2286,6 +2357,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 // excelのインスタンス生成
                 XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
 
@@ -2329,6 +2401,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
                 // ClosedXMLで1行ずつExcelに出力
+                LabelSet_Chubunrui lc = new LabelSet_Chubunrui();
+                LabelSet_Maker lm = new LabelSet_Maker();
                 for (int i = 0; i < intMaxLine; i++)
                 {
                     if (gridMitsmori[1, i].Value == null || !gridMitsmori[1, i].Value.ToString().Equals("1"))
@@ -2346,17 +2420,25 @@ namespace KATO.Form.H0210_MitsumoriInput
                     }
                     string stKata = "";
 
-                    if (cbMaker.Checked)
+                    if (!cbMaker.Checked)
                     {
-                        stKata += getCellValue(gridMitsmori[89, i], false);
+                        lm.strDaibunCd = getCellValue(gridMitsmori[87, i], false);
+                        lm.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
+                        lm.chkTxtMaker();
+
+                        stKata += lm.ValueLabelText;
                         if (!string.IsNullOrWhiteSpace(stKata))
                         {
                             stKata += " ";
                         }
                     }
-                    if (cbChubun.Checked)
+                    if (!cbChubun.Checked)
                     {
-                        stKata += getCellValue(gridMitsmori[88, i], false);
+                        lc.strDaibunCd = getCellValue(gridMitsmori[87, i], false);
+                        lc.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
+                        lc.chkTxtChubunrui(getCellValue(gridMitsmori[87, i], false));
+
+                        stKata += lc.ValueLabelText;
                         if (!string.IsNullOrWhiteSpace(stKata))
                         {
                             stKata += " ";
@@ -2415,7 +2497,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     //File.Delete(filepath);
                 }
+                this.Cursor = Cursors.Default;
             }
+
         }
 
         // 仕入詳細印刷
@@ -2426,8 +2510,20 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 st = dbToPdfMeisai(gridMitsmori);
 
-                PDFPreviewM pp = new PDFPreviewM(this, st);
-                pp.ShowDialog();
+                //PDFPreviewM pp = new PDFPreviewM(this, st);
+                //pp.ShowDialog();
+                PrintForm pf = new PrintForm(this, st, CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+                pf.ShowDialog(this);
+                if (this.printFlg == Common.Util.CommonTeisu.ACTION_PREVIEW)
+                {
+                    pf.execPreview(st);
+                    pf.ShowDialog(this);
+                }
+                else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
+                {
+                    pf.execPrint(null, st, Common.Util.CommonTeisu.SIZE_A4, Common.Util.CommonTeisu.YOKO, false);
+
+                }
             }
             catch (Exception ex)
             {
@@ -2448,6 +2544,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 // excelのインスタンス生成
                 XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
 
@@ -2512,9 +2609,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                     stKata += getCellValue(gridMitsmori[2, i], false);
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
-                    currentsheet.Cell(xlsRowCnt, "C").Value = getCellValue(gridMitsmori[3, i], true);
+                    currentsheet.Cell(xlsRowCnt, "C").Value = getCellValue(gridMitsmori[3, i], false);
                     currentsheet.Cell(xlsRowCnt, "D").Value = "";
-                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[5, i], true);
+                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[5, i], false);
                     currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsmori[7, i], false);
                     currentsheet.Cell(xlsRowCnt, "G").Value = getCellValue(gridMitsmori[11, i], false);
 
@@ -2605,6 +2702,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     //File.Delete(filepath);
                 }
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -2828,6 +2926,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei6.Text;
                     }
                     gridMitsmori.EndEdit();
+                    editFlg = false;
                 }
                 else
                 {
@@ -2929,6 +3028,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         txtKakCd6.Focus();
                     }
                     gridMitsmori.EndEdit();
+                    editFlg = false;
 
                     return;
                 }
@@ -3041,6 +3141,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             cCd2.Value = cd2.Text;
             cNm2.Value = nm2.Text;
             gridMitsmori.EndEdit();
+            editFlg = false;
+
         }
 
         // 編集部仕入先選択
@@ -3175,6 +3277,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
 
             gridMitsmori.EndEdit();
+            editFlg = false;
+
         }
 
         // util系
@@ -3263,6 +3367,13 @@ namespace KATO.Form.H0210_MitsumoriInput
             f.Dispose();
         }
 
+        private void txtTanto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{tab}");
+            }
+        }
     }
 
 }

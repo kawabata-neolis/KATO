@@ -62,7 +62,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             DataGridViewTextBoxColumn kenmei = new DataGridViewTextBoxColumn();
             kenmei.DataPropertyName = "標題";
             kenmei.Name = "標題";
-            kenmei.HeaderText = "標題";
+            kenmei.HeaderText = "件名";
             kenmei.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             DataGridViewTextBoxColumn kingaku = new DataGridViewTextBoxColumn();
@@ -112,7 +112,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             axAcroPDF1.LoadFile("NUL");
             axAcroPDF1.setLayoutMode("SinglePage");
             axAcroPDF1.Refresh();
-            string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
+            string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + ".pdf";
+            //string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
             if (System.IO.File.Exists(path)) {
                 axAcroPDF1.LoadFile(path);
             }
@@ -156,28 +157,24 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             try
             {
-                int iRd = 1;
+                int iRd1 = 1;
                 if (rdSort2.Checked)
                 {
-                    iRd = 2;
+                    iRd1 = 2;
+                }
+                int iRd2 = 0;
+                if (rdShoninYes.Checked)
+                {
+                    iRd2 = 1;
+                }
+                else if (rdShoninNo.Checked)
+                {
+                    iRd2 = 2;
                 }
 
                 DataTable dt = inputB.getMitsumoriList(txtFrom.Text, txtTo.Text, lsTanto.CodeTxtText, lsTokui.CodeTxtText,
-                    txtTanto.Text, txtKenmei.Text, txtBiko.Text, txtKata.Text, iRd);
+                    txtTanto.Text, txtKenmei.Text, txtBiko.Text, txtKata.Text, iRd1, iRd2);
 
-                if (dt != null) {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        if (dt.Rows[0]["承認フラグ"] != null && (dt.Rows[0]["承認フラグ"].ToString()).Equals('Y'))
-                        {
-                            dt.Rows[0]["承認フラグ"] = "済";
-                        }
-                        else
-                        {
-                            dt.Rows[0]["承認フラグ"] = "";
-                        }
-                    }
-                }
                 gridMitsu.DataSource = dt;
             }
             catch (Exception ex)
@@ -209,6 +206,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             if (frm9 == null || frm9.IsDisposed)
             {
+                //string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + ".pdf";
                 string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + "_M.pdf";
                 if (System.IO.File.Exists(path))
                 {

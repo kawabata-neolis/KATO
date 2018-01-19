@@ -77,7 +77,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             if (f)
             {
-                FrmParent.PrintFlg = true;
+                FrmParent.UpdFlg = true;
                 this.Close();
             }
         }
@@ -102,13 +102,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
                 if (f) {
-                    FrmParent.PrintFlg = true;
+                    FrmParent.UpdFlg = true;
                     this.Close();
                 }
             }
             else if (e.KeyData == Keys.F12)
             {
-                FrmParent.PrintFlg = false;
+                FrmParent.UpdFlg = false;
                 this.Close();
             }
         }

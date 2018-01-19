@@ -440,14 +440,15 @@ namespace KATO.Business.H0210_MitsumoriInput
         }
 
         public DataTable getMitsumoriList(string strF, string strT, string strTan, string strTok,
-            string strTan2, string strKen, string strBik, string strKat, int s)
+            string strTan2, string strKen, string strBik, string strKat, int s, int iShonin)
         {
             DataTable dt = null;
 
             string strSQL = "";
 
             strSQL += "SELECT distinct";
-            strSQL += " a.承認フラグ, a.見積書番号, CONVERT(VARCHAR, a.見積年月日, 111) as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額";
+            strSQL += " (CASE a.承認フラグ WHEN '1' THEN '済' ELSE '未' END) AS 承認フラグ,";
+            strSQL += " a.見積書番号, CONVERT(VARCHAR, a.見積年月日, 111) as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額";
             strSQL += " FROM 見積ヘッド a, 見積明細 b";
             strSQL += " WHERE a.削除 = 'N' ";
             strSQL += "   AND a.見積書番号 = b.伝票番号 ";
@@ -474,11 +475,19 @@ namespace KATO.Business.H0210_MitsumoriInput
             }
             if (!string.IsNullOrWhiteSpace(strBik))
             {
-                strSQL += "   AND a.備考 like '%" + strBik + "%'";
+                strSQL += "   AND (a.備考 like '%" + strBik + "%' OR b.備考 like '%" + strBik + "%')";
             }
             if (!string.IsNullOrWhiteSpace(strBik))
             {
                 strSQL += "   AND b.品名型式 like '%" + strKat + "%'";
+            }
+            if (iShonin == 1)
+            {
+                strSQL += "   AND a.承認フラグ = '1'";
+            }
+            else if (iShonin == 2)
+            {
+                strSQL += "   AND a.承認フラグ = '0'";
             }
             if (s == 1)
             {
@@ -488,7 +497,6 @@ namespace KATO.Business.H0210_MitsumoriInput
             {
                 strSQL += " ORDER BY 得意先コード ASC, 見積書番号 DESC";
             }
-
 
             DBConnective dbCon = new DBConnective();
             try

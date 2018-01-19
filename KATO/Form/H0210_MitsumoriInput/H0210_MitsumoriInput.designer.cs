@@ -306,7 +306,7 @@
             this.txtTanto.Name = "txtTanto";
             this.txtTanto.Size = new System.Drawing.Size(320, 22);
             this.txtTanto.TabIndex = 7;
-            this.txtTanto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtTanto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label7
             // 
@@ -330,7 +330,7 @@
             this.cbJoken.Size = new System.Drawing.Size(192, 23);
             this.cbJoken.TabIndex = 11;
             this.cbJoken.Text = "従来通り";
-            this.cbJoken.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.cbJoken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label8
             // 
@@ -349,7 +349,7 @@
             this.txtKenmei.Name = "txtKenmei";
             this.txtKenmei.Size = new System.Drawing.Size(320, 22);
             this.txtKenmei.TabIndex = 8;
-            this.txtKenmei.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKenmei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // cbKigen
             // 
@@ -364,7 +364,7 @@
             this.cbKigen.Size = new System.Drawing.Size(192, 23);
             this.cbKigen.TabIndex = 10;
             this.cbKigen.Text = "３０日間";
-            this.cbKigen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.cbKigen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label9
             // 
@@ -389,7 +389,7 @@
             this.cbNoki.Size = new System.Drawing.Size(192, 23);
             this.cbNoki.TabIndex = 9;
             this.cbNoki.Text = "下記参照願います";
-            this.cbNoki.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.cbNoki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label10
             // 
@@ -408,7 +408,7 @@
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(320, 22);
             this.txtBiko.TabIndex = 12;
-            this.txtBiko.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label12
             // 
@@ -440,11 +440,12 @@
             this.cbChubun.TabIndex = 1;
             this.cbChubun.Text = "中分類名印刷なし";
             this.cbChubun.UseVisualStyleBackColor = true;
-            this.cbChubun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // cbMaker
             // 
             this.cbMaker.AutoSize = true;
+            this.cbMaker.Checked = true;
+            this.cbMaker.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbMaker.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbMaker.Location = new System.Drawing.Point(17, 11);
             this.cbMaker.Name = "cbMaker";
@@ -452,7 +453,6 @@
             this.cbMaker.TabIndex = 0;
             this.cbMaker.Text = "メーカー名印刷なし";
             this.cbMaker.UseVisualStyleBackColor = true;
-            this.cbMaker.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // label13
             // 
@@ -494,7 +494,6 @@
             this.rd2.TabIndex = 1;
             this.rd2.Text = "納入先";
             this.rd2.UseVisualStyleBackColor = true;
-            this.rd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // rd1
             // 
@@ -508,7 +507,6 @@
             this.rd1.TabStop = true;
             this.rd1.Text = "得意先";
             this.rd1.UseVisualStyleBackColor = true;
-            this.rd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             // 
             // panel3
             // 

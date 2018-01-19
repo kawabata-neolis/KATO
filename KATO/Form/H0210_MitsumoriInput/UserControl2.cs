@@ -55,6 +55,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         public string strShiireArari3 = null;
         public string strShiireRitsu3 = null;
 
+        public DataGridViewCell cH = null;
         public DataGridViewCell cD = null;
         public DataGridViewCell cC = null;
         public DataGridViewCell cM = null;
@@ -81,8 +82,9 @@ namespace KATO.Form.H0210_MitsumoriInput
         //public string strShiireRitsu6 = null;
 
 
-        public UserControl2(DataGridViewCell d, DataGridViewCell c, DataGridViewCell m)
+        public UserControl2(DataGridViewCell h, DataGridViewCell d, DataGridViewCell c, DataGridViewCell m)
         {
+            cH = h;
             cD = d;
             cC = c;
             cM = m;
@@ -90,7 +92,29 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             lsDaibun.Lschubundata = lsChubun;
             lsDaibun.Lsmakerdata = lsMaker;
+
+            txtHin.Text = h.Value.ToString();
+            lsDaibun.CodeTxtText = getValueString(d.Value);
+            lsChubun.CodeTxtText = getValueString(c.Value);
+            lsMaker.CodeTxtText = getValueString(m.Value);
+
+            lsDaibun.chkTxtDaibunrui();
+            lsChubun.strDaibunCd = lsDaibun.CodeTxtText;
+            lsChubun.chkTxtChubunrui(lsDaibun.CodeTxtText);
+            lsMaker.chkTxtMaker();
         }
-        
+
+        private string getValueString(object o)
+        {
+            string ret = "";
+
+            if (o != null)
+            {
+                ret = o.ToString();
+            }
+
+            return ret;
+        }
+
     }
 }
