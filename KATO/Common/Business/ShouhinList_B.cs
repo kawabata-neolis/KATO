@@ -35,93 +35,73 @@ namespace KATO.Common.Business
         ///</summary>
         public DataTable getShohinView(List<int> lstInt, List<string> lstString, List<Boolean> lstBoolean, Boolean blnZaikoKensaku)
         {
-            //string strWhere = "";
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
 
-            //strWhere = "WHERE a.削除 = 'N'";
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
 
-            //if (lstString[0] != "")
-            //{
-            //    strWhere = strWhere + " AND a.大分類コード='" + lstString[0] + "'";
-            //}
-            //if (lstString[1] != "")
-            //{
-            //    strWhere = strWhere + " AND a.中分類コード='" + lstString[1] + "'";
-            //}
-            //if (lstString[2] != "")
-            //{
-            //    strWhere = strWhere + " AND a.メーカーコード='" + lstString[2] + "'";
-            //}
-            ////検索文字列があり、部分検索の場合
-            //if (lstString[3] != "" && lstBoolean[1] == true)
-            //{
-            //    strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
-            //}
-            ////検索文字列があり、完全一致検索の場合
-            //else if (lstString[3] != "" && lstBoolean[1] == false)
-            //{
-            //    strWhere = strWhere + " AND REPLACE(( ISNULL(a.Ｃ１,'') + ISNULL(a.Ｃ２,'') + ISNULL(a.Ｃ３,'') + ISNULL(a.Ｃ４,'') + ISNULL(a.Ｃ５,'') + ISNULL(a.Ｃ６,'') ),' ' ,'') LIKE '" + lstString[3] + "'";
-            //}
+            //分岐WHERE分用
+            string strWhere = "";
 
-            //if (lstString[4] == "" && lstString[5] == "" && blnZaikoKensaku == true)
-            //{
-            //    lstInt[1] = 0;
-            //}
-            //else if (lstString[5] == "" && blnZaikoKensaku == true)
-            //{
-            //    lstInt[1] = 1;
-            //}
-            //else if (lstString[4] == "" && blnZaikoKensaku == true)
-            //{
-            //    lstInt[1] = 2;
-            //}
-            //else
-            //{
-            //    lstInt[1] = 3;
-            //}
+            //大分類あり
+            if (lstString[0] != "")
+            {
+                strWhere = strWhere + " AND 商品.大分類コード = " + lstString[0];
+            }
+
+            //大分類と中分類共に記入されている場合
+            if (lstString[0] != "" && lstString[1] != "")
+            {
+                strWhere = strWhere + " AND 商品.中分類コード = " + lstString[1];
+            }
+
+            //メーカーと大分類あり
+            if (lstString[2] != "")
+            {
+                strWhere = strWhere + " AND 商品.メーカーコード = " + lstString[2];
+            }
+
+            //検索文字列と大分類またはメーカーがあり、部分検索の場合
+            if (lstString[3] != "" && lstBoolean[1] == true)
+            {
+                strWhere = strWhere + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
+            }
+            //検索文字列と大分類またはメーカーがあり、完全一致検索の場合
+            else if (lstString[3] != "" && lstBoolean[1] == false)
+            {
+                strWhere = strWhere + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[3] + "'";
+            }
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Common");
+            lstSQL.Add("CommonForm");
+            lstSQL.Add("ShohinList_View");
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
 
             //SQL用に移動
             DBConnective dbConnective = new DBConnective();
 
             //商品テーブルから取り出すデータ
             DataTable dtShohin = new DataTable();
-
             try
             {
-                string strSELECT = "SELECT 商品.商品コード,大分類.大分類名,中分類.中分類名,メーカー.メーカー名 AS メーカー,ISNULL(商品.Ｃ１, '') AS 品名,本社在庫.在庫数 AS 本社在庫, 本社在庫.フリー在庫数 AS 本社ﾌﾘｰ, 岐阜在庫.在庫数 AS 岐阜在庫, 岐阜在庫.フリー在庫数 AS 岐阜ﾌﾘｰ, 商品.メモ,商品.定価,商品.仕入単価,商品.コメント";
-                strSELECT = strSELECT + " FROM 大分類,中分類,メーカー,商品 LEFT OUTER JOIN 在庫数 AS 本社在庫 ON 商品.商品コード = 本社在庫.商品コード and 本社在庫.営業所コード = '0001' LEFT OUTER JOIN 在庫数 AS 岐阜在庫 ON 商品.商品コード = 岐阜在庫.商品コード and 岐阜在庫.営業所コード = '0002'";
-                strSELECT = strSELECT + " WHERE 商品.大分類コード = 大分類.大分類コード AND 商品.大分類コード = 中分類.大分類コード AND 商品.中分類コード = 中分類.中分類コード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.メーカーコード = メーカー.メーカーコード AND 商品.削除 = 'N' ";
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
 
-                //大分類あり
-                if (lstString[0] != "")
+                //パスがなければ返す
+                if (strSQLInput == "")
                 {
-                    strSELECT = strSELECT + " AND 商品.大分類コード = " + lstString[0];
-                }
-
-                //大分類と中分類共に記入されている場合
-                if (lstString[0] != "" && lstString[1] != "")
-                {
-                    strSELECT = strSELECT + " AND 商品.中分類コード = " + lstString[1];
+                    return (dtShohin);
                 }
 
-                //メーカーと大分類あり
-                if (lstString[2] != "")
-                {
-                    strSELECT = strSELECT + " AND 商品.メーカーコード = " + lstString[2];
-                }
-
-                //検索文字列と大分類またはメーカーがあり、部分検索の場合
-                if (lstString[3] != "" && lstBoolean[1] == true)
-                {
-                    strSELECT = strSELECT + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
-                }
-                //検索文字列と大分類またはメーカーがあり、完全一致検索の場合
-                else if (lstString[3] != "" && lstBoolean[1] == false)
-                {
-                    strSELECT = strSELECT + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[3] + "'";
-                }
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strWhere);
 
                 //SQL発行
-                dtShohin = dbConnective.ReadSql(strSELECT);
+                dtShohin = dbConnective.ReadSql(strSQLInput);
 
                 //データがあった場合
                 if (dtShohin.Rows.Count > 0)
@@ -133,6 +113,46 @@ namespace KATO.Common.Business
 
                     for (int intShohinCnt = 0; intShohinCnt < dtShohin.Rows.Count; intShohinCnt++)
                     {
+                        //本社在庫が空でない時
+                        if (dtShohin.Rows[intShohinCnt]["本社在庫"].ToString() != "")
+                        {
+                            //本社在庫が0の時
+                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["本社在庫"].ToString()) == 0)
+                            {
+                                dtShohin.Rows[intShohinCnt]["本社在庫"] = DBNull.Value;
+                            }
+                        }
+
+                        //本社ﾌﾘｰが空でない時
+                        if (dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"].ToString() != "")
+                        {
+                            //本社ﾌﾘｰが0の時
+                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"].ToString()) == 0)
+                            {
+                                dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"] = DBNull.Value;
+                            }
+                        }
+
+                        //岐阜在庫が空でない時
+                        if (dtShohin.Rows[intShohinCnt]["岐阜在庫"].ToString() != "")
+                        {
+                            //岐阜在庫が0の時
+                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["岐阜在庫"].ToString()) == 0)
+                            {
+                                dtShohin.Rows[intShohinCnt]["岐阜在庫"] = DBNull.Value;
+                            }
+                        }
+
+                        //岐阜ﾌﾘｰが空でない時
+                        if (dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"].ToString() != "")
+                        {
+                            //岐阜ﾌﾘｰが0の時
+                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"].ToString()) == 0)
+                            {
+                                dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"] = DBNull.Value;
+                            }
+                        }
+                        
                         //定価を取り出す
                         string strTeika = string.Format("{0:#,0}", decimal.Parse(dtShohin.Rows[intShohinCnt]["定価"].ToString()));
                         //仕入単価を取り出す
@@ -156,8 +176,7 @@ namespace KATO.Common.Business
                         //仕入単価を挿入
                         dtShohin.Rows[intShohinCnt]["仕入単価"] = strShireTanka;
 
-                        //メモ挿入
-                        dtShohin.Rows[intShohinCnt]["メモ"] = dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+
                     }
                 }
             }

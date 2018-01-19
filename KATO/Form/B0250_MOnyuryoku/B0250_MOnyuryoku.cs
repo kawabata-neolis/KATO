@@ -21,9 +21,9 @@ namespace KATO.Form.B0250_MOnyuryoku
     ///MOnyuryoku
     ///MO入力フォーム
     ///作成者：大河内
-    ///作成日：2017/1/15
+    ///作成日：2017/2/2
     ///更新者：大河内
-    ///更新日：2017/1/15
+    ///更新日：2017/2/2
     ///カラム論理名
     ///</summary>
     public partial class B0250_MOnyuryoku : BaseForm
@@ -238,17 +238,17 @@ namespace KATO.Form.B0250_MOnyuryoku
             KHachuTantoshaCd.HeaderText = "発注担当者コード";
             
 
-            //個々の幅、文章の寄せ（納期非表示）
-            setColumnKataban(KKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
-            setColumnKataban(KFreezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban(KUriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban(KShiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban(KHachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
+            //個々の幅、文章の寄せ
+            setColumnKataban(KKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+            setColumnKataban(KFreezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 90);
+            setColumnKataban(KUriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban(KShiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban(KHachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
 
-            setColumnKataban(KJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban(KHachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban(KTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 96);
-            setColumnKataban(KKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnKataban(KJuchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban(KHachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban(KTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 115);
+            setColumnKataban(KKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 115);
 
             setColumnKataban(KNoki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 0);
 
@@ -409,20 +409,20 @@ namespace KATO.Form.B0250_MOnyuryoku
             K2Saishushire.Name = "最終仕入日";
             K2Saishushire.HeaderText = "最終仕入日";
 
-            //個々の幅、文章の寄せ（売上数非表示）
-            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
-            setColumnKataban2(K2Freezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Uriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Shiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Hachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
+            //個々の幅、文章の寄せ
+            setColumnKataban2(K2Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+            setColumnKataban2(K2Freezaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Uriagesu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Shiresu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
 
-            setColumnKataban2(K2Juchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Hachushi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 64);
-            setColumnKataban2(K2Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 96);
-            setColumnKataban2(K2Kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnKataban2(K2Juchuzan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachushi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumnKataban2(K2Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 115);
+            setColumnKataban2(K2Kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 115);
 
-            setColumnKataban2(K2Noki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 88);
+            setColumnKataban2(K2Noki, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumnKataban2(K2Code, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 65);
             setColumnKataban2(K2ShimukesakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumnKataban2(K2HachuTantoCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
@@ -442,7 +442,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             setColumnKataban2(K2Saishushire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 120);
 
             //対象列を非表示
-            gridKataban2.Columns["売上数"].Visible = false;
             gridKataban2.Columns["商品コード"].Visible = false;
             gridKataban2.Columns["Ｃ１"].Visible = false;
             gridKataban2.Columns["Ｃ２"].Visible = false;
@@ -489,7 +488,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             RirekiJuchuzan.Name = "受注残";
             RirekiJuchuzan.HeaderText = "受注残";
 
-            //個々の幅、文章の寄せ（売上数非表示）
+            //個々の幅、文章の寄せ
             setColumnRireki(RirekiYM, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 70);
             setColumnRireki(RirekiUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumnRireki(RirekiShuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
@@ -1295,8 +1294,17 @@ namespace KATO.Form.B0250_MOnyuryoku
                     return;
                 }
 
+                //メッセージボックスを閉じる
+                basemessagebox.Close();
+
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
                 //ＭＯデータ作成_PROCの実行
                 insertMOdata();
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
             }
 
             //下段の表示
@@ -1476,7 +1484,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
                 try
                 {
-                    dtGridViewKataban = monyuryokuB.setGridKataban2(lstStringViewData);
+                    dtGridViewKataban = monyuryokuB.setGridKataban2(lstStringViewData);                    
 
                     //テーブルがある場合
                     if (dtGridViewKataban.Rows.Count > 0)
@@ -1566,7 +1574,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             //年月度以外を初期に戻す
 
             //表示テキスト、ラジオボタン部分
-            txtShukeiM.Clear();
+            txtYM.setUp(3);
             lblSetDaibunrui.codeTxt.Clear();
             lblSetDaibunrui.chkTxtDaibunrui();
             lblSetChubunrui.codeTxt.Clear();
@@ -1593,6 +1601,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             //非表示部分
             txtKingaku.Clear();
             txtShohinCd.Clear();
+
+            //
 
             //集計月数にフォーカス
             txtShukeiM.Focus();
@@ -2011,9 +2021,19 @@ namespace KATO.Form.B0250_MOnyuryoku
                 txtNoki.Text = gridKataban2.CurrentRow.Cells["納期"].Value.ToString();
             }
 
-            //選択行の仕向先取得
-            lblSetShimukesaki.CodeTxtText = (string)gridKataban2.CurrentRow.Cells["ｺｰﾄﾞ"].Value.ToString();
-            lblSetShimukesaki.ValueLabelText = (string)gridKataban2.CurrentRow.Cells["仕向け先名"].Value.ToString();
+            //仕向け先コードが「....」の場合
+            if ((string)gridKataban2.CurrentRow.Cells["ｺｰﾄﾞ"].Value.ToString() == "....")
+            {
+                //空白を追加
+                lblSetShimukesaki.CodeTxtText = "";
+                lblSetShimukesaki.ValueLabelText = "";
+            }
+            else
+            {
+                //選択行の仕向先取得
+                lblSetShimukesaki.CodeTxtText = (string)gridKataban2.CurrentRow.Cells["ｺｰﾄﾞ"].Value.ToString();
+                lblSetShimukesaki.ValueLabelText = (string)gridKataban2.CurrentRow.Cells["仕向け先名"].Value.ToString();
+            }
 
             //選択行の商品コード取得
             txtShohinCd.Text = (string)gridKataban2.CurrentRow.Cells["商品コード"].Value.ToString();

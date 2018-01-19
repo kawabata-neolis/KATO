@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtZaikoYMD = new KATO.Common.Ctl.BaseCalendar();
             this.txtYM = new KATO.Common.Ctl.BaseCalendarYM();
             this.lblSetDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
@@ -84,12 +84,12 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 8;
+            this.btnF12.TabIndex = 9;
             this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.TabIndex = 7;
+            this.btnF11.TabIndex = 8;
             this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
@@ -99,37 +99,37 @@
             // 
             // btnF09
             // 
-            this.btnF09.TabIndex = 15;
+            this.btnF09.TabIndex = 16;
             this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
-            this.btnF08.TabIndex = 14;
+            this.btnF08.TabIndex = 15;
             this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
-            this.btnF07.TabIndex = 13;
+            this.btnF07.TabIndex = 14;
             this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
-            this.btnF06.TabIndex = 12;
+            this.btnF06.TabIndex = 13;
             this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.TabIndex = 11;
+            this.btnF05.TabIndex = 12;
             this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 9;
+            this.btnF04.TabIndex = 10;
             this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.TabIndex = 10;
+            this.btnF03.TabIndex = 11;
             this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
@@ -264,35 +264,35 @@
             this.gridKataban.AllowUserToResizeColumns = false;
             this.gridKataban.AllowUserToResizeRows = false;
             this.gridKataban.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridKataban.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridKataban.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.gridKataban.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridKataban.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridKataban.DefaultCellStyle = dataGridViewCellStyle20;
             this.gridKataban.EnableHeadersVisualStyles = false;
             this.gridKataban.Location = new System.Drawing.Point(16, 115);
             this.gridKataban.Name = "gridKataban";
             this.gridKataban.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridKataban.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridKataban.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.gridKataban.RowHeadersVisible = false;
             this.gridKataban.RowTemplate.Height = 21;
             this.gridKataban.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -306,41 +306,41 @@
             this.gridKataban2.AllowUserToResizeColumns = false;
             this.gridKataban2.AllowUserToResizeRows = false;
             this.gridKataban2.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridKataban2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridKataban2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.gridKataban2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridKataban2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridKataban2.DefaultCellStyle = dataGridViewCellStyle23;
             this.gridKataban2.EnableHeadersVisualStyles = false;
             this.gridKataban2.Location = new System.Drawing.Point(15, 304);
             this.gridKataban2.Name = "gridKataban2";
             this.gridKataban2.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridKataban2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridKataban2.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.gridKataban2.RowHeadersVisible = false;
             this.gridKataban2.RowTemplate.Height = 21;
             this.gridKataban2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridKataban2.Size = new System.Drawing.Size(1391, 236);
             this.gridKataban2.StandardTab = true;
-            this.gridKataban2.TabIndex = 19;
+            this.gridKataban2.TabIndex = 7;
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
             this.gridKataban2.SelectionChanged += new System.EventHandler(this.gridKataban2_SelectionChanged);
             this.gridKataban2.Sorted += new System.EventHandler(this.gridKataban2_Sorted);
@@ -374,7 +374,7 @@
             // 
             this.lblTanka.AutoSize = true;
             this.lblTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka.Location = new System.Drawing.Point(227, 755);
+            this.lblTanka.Location = new System.Drawing.Point(237, 755);
             this.lblTanka.Name = "lblTanka";
             this.lblTanka.Size = new System.Drawing.Size(39, 15);
             this.lblTanka.strToolTip = null;
@@ -386,7 +386,7 @@
             // 
             this.lblNoki.AutoSize = true;
             this.lblNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblNoki.Location = new System.Drawing.Point(386, 755);
+            this.lblNoki.Location = new System.Drawing.Point(397, 755);
             this.lblNoki.Name = "lblNoki";
             this.lblNoki.Size = new System.Drawing.Size(39, 15);
             this.lblNoki.strToolTip = null;
@@ -411,10 +411,10 @@
             // 
             this.txtNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtNoki.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtNoki.Location = new System.Drawing.Point(427, 752);
+            this.txtNoki.Location = new System.Drawing.Point(438, 752);
             this.txtNoki.MaxLength = 10;
             this.txtNoki.Name = "txtNoki";
-            this.txtNoki.Size = new System.Drawing.Size(100, 22);
+            this.txtNoki.Size = new System.Drawing.Size(85, 22);
             this.txtNoki.TabIndex = 23;
             this.txtNoki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNoki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
@@ -484,7 +484,7 @@
             this.radSet_2btn_PrintCheck.Radbtn1Text = "ﾏｲﾅｽの型番";
             this.radSet_2btn_PrintCheck.Radbtn2Text = "すべて";
             this.radSet_2btn_PrintCheck.Size = new System.Drawing.Size(185, 21);
-            this.radSet_2btn_PrintCheck.TabIndex = 26;
+            this.radSet_2btn_PrintCheck.TabIndex = 37;
             // 
             // lblSetHachuTantousha
             // 
@@ -510,35 +510,35 @@
             this.gridRireki.AllowUserToResizeColumns = false;
             this.gridRireki.AllowUserToResizeRows = false;
             this.gridRireki.AutoGenerateColumns = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.gridRireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridRireki.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRireki.DefaultCellStyle = dataGridViewCellStyle26;
             this.gridRireki.EnableHeadersVisualStyles = false;
             this.gridRireki.Location = new System.Drawing.Point(15, 546);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.gridRireki.RowHeadersVisible = false;
             this.gridRireki.RowTemplate.Height = 21;
             this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -645,10 +645,10 @@
             this.txtTanka.intDeciSet = 2;
             this.txtTanka.intIntederSet = 0;
             this.txtTanka.intShishagonyu = 2;
-            this.txtTanka.Location = new System.Drawing.Point(269, 752);
+            this.txtTanka.Location = new System.Drawing.Point(279, 752);
             this.txtTanka.MaxLength = 3;
             this.txtTanka.Name = "txtTanka";
-            this.txtTanka.Size = new System.Drawing.Size(100, 22);
+            this.txtTanka.Size = new System.Drawing.Size(105, 22);
             this.txtTanka.TabIndex = 22;
             this.txtTanka.TabStop = false;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -766,6 +766,8 @@
             this.Controls.SetChildIndex(this.lblSetHachuTantousha, 0);
             this.Controls.SetChildIndex(this.gridRireki, 0);
             this.Controls.SetChildIndex(this.lblSetShiresaki, 0);
+            this.Controls.SetChildIndex(this.txtTanka, 0);
+            this.Controls.SetChildIndex(this.txtShukeiM, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
@@ -779,8 +781,6 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.txtTanka, 0);
-            this.Controls.SetChildIndex(this.txtShukeiM, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).EndInit();
             this.gbPrintCheck.ResumeLayout(false);
