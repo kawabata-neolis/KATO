@@ -4,14 +4,7 @@ a.伝票年月日,
 a.伝票年月日 AS 納期, 
 a.得意先名  AS 得意先, 
 c.メーカー名 AS ﾒｰｶｰ, 
-RTRIM(ISNULL(d.中分類名,'')) +  ' ' + 
-RTRIM(ISNULL(b.Ｃ１,'')) + ' ' +
-RTRIM(ISNULL(b.Ｃ１,'')) + ' ' + 
-RTRIM(ISNULL(b.Ｃ２,'')) + ' ' + 
-RTRIM(ISNULL(b.Ｃ３,'')) + ' ' + 
-RTRIM(ISNULL(b.Ｃ４,'')) + ' ' + 
-RTRIM(ISNULL(b.Ｃ５,'')) + ' ' + 
-RTRIM(ISNULL(b.Ｃ６,'')) AS 型番,  
+RTRIM(ISNULL(b.Ｃ１,''))AS 型番,  
 b.数量, 
 b.売上単価 AS 受注単価, 
 b.仕入単価, 

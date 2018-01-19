@@ -69,7 +69,7 @@ namespace KATO.Form.A1520_Uriageshonin
         private void A1520_Uriageshonin_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "ＭＯ入力";
+            this._Title = "売上承認";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
             this.btnF04.Text = STR_FUNC_F4;
@@ -166,16 +166,17 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //個々の幅、文章の寄せ
             setColumnHenpin(HJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumnHenpin(HShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumnHenpin(HNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnHenpin(HTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumnHenpin(HShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 64);
+            setColumnHenpin(HNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
+            setColumnHenpin(HTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 410);
             setColumnHenpin(HMaker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumnHenpin(HKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
-            setColumnHenpin(HSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnHenpin(HJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnHenpin(HShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 200);
-            setColumnHenpin(HRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 200);
-            setColumnHenpin(HChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+
+            setColumnHenpin(HKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
+            setColumnHenpin(HSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 113);
+            setColumnHenpin(HJuchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 113);
+            setColumnHenpin(HShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 113);
+            setColumnHenpin(HRiekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 80);
+            setColumnHenpin(HChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnHenpin(HShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
             setColumnHenpin(HTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
 
