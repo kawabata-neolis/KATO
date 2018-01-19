@@ -363,5 +363,18 @@ namespace KATO.Common.Ctl
                 this.codeTxt.BackColor = Color.White;
             }
         }
+
+        ///<summary>
+        ///valueText_KeyDown
+        ///名称入力項目でのキー入力判定
+        ///</summary>
+        private void valueText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //TABボタンと同じ効果
+                SendKeys.Send("{TAB}");
+            }
+        }
     }
 }

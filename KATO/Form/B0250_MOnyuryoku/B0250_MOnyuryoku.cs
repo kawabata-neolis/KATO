@@ -21,9 +21,9 @@ namespace KATO.Form.B0250_MOnyuryoku
     ///MOnyuryoku
     ///MO入力フォーム
     ///作成者：大河内
-    ///作成日：2017/2/2
+    ///作成日：2017/1/15
     ///更新者：大河内
-    ///更新日：2017/2/2
+    ///更新日：2017/1/15
     ///カラム論理名
     ///</summary>
     public partial class B0250_MOnyuryoku : BaseForm

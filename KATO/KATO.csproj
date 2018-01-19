@@ -1736,6 +1736,9 @@
     <Content Include="SQL\Common\CommonForm\MenuList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\ShohinList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\ShiharaiList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
