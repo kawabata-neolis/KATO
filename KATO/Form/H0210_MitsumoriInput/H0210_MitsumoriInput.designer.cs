@@ -885,7 +885,7 @@
             this.txtKakTnk5.MaxLength = 3;
             this.txtKakTnk5.Name = "txtKakTnk5";
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk5.TabIndex = 19;
+            this.txtKakTnk5.TabIndex = 21;
             this.txtKakTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKakTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
@@ -907,7 +907,7 @@
             this.txtKakCd5.Location = new System.Drawing.Point(741, 141);
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd5.TabIndex = 18;
+            this.txtKakCd5.TabIndex = 20;
             this.txtKakCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -936,7 +936,7 @@
             this.txtKakTnk4.MaxLength = 3;
             this.txtKakTnk4.Name = "txtKakTnk4";
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk4.TabIndex = 15;
+            this.txtKakTnk4.TabIndex = 19;
             this.txtKakTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKakTnk4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
@@ -958,7 +958,7 @@
             this.txtKakCd4.Location = new System.Drawing.Point(741, 116);
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd4.TabIndex = 14;
+            this.txtKakCd4.TabIndex = 18;
             this.txtKakCd4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1131,7 +1131,7 @@
             this.txtZaiTnk6.MaxLength = 13;
             this.txtZaiTnk6.Name = "txtZaiTnk6";
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk6.TabIndex = 21;
+            this.txtZaiTnk6.TabIndex = 17;
             this.txtZaiTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
@@ -1153,7 +1153,7 @@
             this.txtZaiCd6.Location = new System.Drawing.Point(62, 166);
             this.txtZaiCd6.Name = "txtZaiCd6";
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd6.TabIndex = 20;
+            this.txtZaiCd6.TabIndex = 16;
             this.txtZaiCd6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1200,7 +1200,7 @@
             this.txtZaiTnk5.MaxLength = 13;
             this.txtZaiTnk5.Name = "txtZaiTnk5";
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk5.TabIndex = 17;
+            this.txtZaiTnk5.TabIndex = 15;
             this.txtZaiTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
@@ -1222,7 +1222,7 @@
             this.txtZaiCd5.Location = new System.Drawing.Point(62, 141);
             this.txtZaiCd5.Name = "txtZaiCd5";
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd5.TabIndex = 16;
+            this.txtZaiCd5.TabIndex = 14;
             this.txtZaiCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1383,7 +1383,7 @@
             this.txtKakTnk2.MaxLength = 3;
             this.txtKakTnk2.Name = "txtKakTnk2";
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk2.TabIndex = 7;
+            this.txtKakTnk2.TabIndex = 9;
             this.txtKakTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKakTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
@@ -1405,7 +1405,7 @@
             this.txtKakCd2.Location = new System.Drawing.Point(741, 50);
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd2.TabIndex = 6;
+            this.txtKakCd2.TabIndex = 8;
             this.txtKakCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1444,7 +1444,7 @@
             this.txtKakTnk1.MaxLength = 3;
             this.txtKakTnk1.Name = "txtKakTnk1";
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
-            this.txtKakTnk1.TabIndex = 3;
+            this.txtKakTnk1.TabIndex = 7;
             this.txtKakTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKakTnk1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
@@ -1476,7 +1476,7 @@
             this.txtKakCd1.Location = new System.Drawing.Point(741, 25);
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
-            this.txtKakCd1.TabIndex = 2;
+            this.txtKakCd1.TabIndex = 6;
             this.txtKakCd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1592,7 +1592,7 @@
             this.txtZaiTnk3.MaxLength = 13;
             this.txtZaiTnk3.Name = "txtZaiTnk3";
             this.txtZaiTnk3.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk3.TabIndex = 9;
+            this.txtZaiTnk3.TabIndex = 5;
             this.txtZaiTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
@@ -1614,7 +1614,7 @@
             this.txtZaiCd3.Location = new System.Drawing.Point(62, 75);
             this.txtZaiCd3.Name = "txtZaiCd3";
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd3.TabIndex = 8;
+            this.txtZaiCd3.TabIndex = 4;
             this.txtZaiCd3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -1697,7 +1697,7 @@
             this.txtZaiTnk2.MaxLength = 13;
             this.txtZaiTnk2.Name = "txtZaiTnk2";
             this.txtZaiTnk2.Size = new System.Drawing.Size(95, 22);
-            this.txtZaiTnk2.TabIndex = 5;
+            this.txtZaiTnk2.TabIndex = 3;
             this.txtZaiTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtZaiTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
@@ -1719,7 +1719,7 @@
             this.txtZaiCd2.Location = new System.Drawing.Point(62, 50);
             this.txtZaiCd2.Name = "txtZaiCd2";
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
-            this.txtZaiCd2.TabIndex = 4;
+            this.txtZaiCd2.TabIndex = 2;
             this.txtZaiCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
@@ -2106,7 +2106,6 @@
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
-            this.gridMitsmori.StandardTab = true;
             this.gridMitsmori.TabIndex = 16;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
@@ -2126,7 +2125,7 @@
             this.txtMNum.Size = new System.Drawing.Size(62, 22);
             this.txtMNum.TabIndex = 1;
             this.txtMNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtMNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtMNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtMNum.Leave += new System.EventHandler(this.txtMNum_Leave);
             // 
             // txtMYMD

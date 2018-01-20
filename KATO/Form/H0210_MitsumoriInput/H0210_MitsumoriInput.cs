@@ -183,8 +183,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                     defEigyo = dt.Rows[0]["営業所コード"].ToString();
                 }
                 lsTantousha.CodeTxtText = defUser;
+                lsTantousha.chkTxtTantosha();
                 lsEigyosho.CodeTxtText = defEigyo;
-
+                lsEigyosho.chkTxtEigyousho();
             }
             catch (Exception ex)
             {
@@ -1815,16 +1816,17 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void txtMNum_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.SelectNextControl(this.ActiveControl, true, true, true, true);
-            }
-            else if (e.KeyCode == Keys.F9)
+            if (e.KeyCode == Keys.F9)
             {
                 Form8_2 f = new Form8_2(txtMNum);
                 openChildForm(f);
                 getMitsumoriInfo();
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
+            
         }
 
         private void getMitsumoriInfo()
@@ -1867,7 +1869,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 tsTokuisaki.CodeTxtText = dtInfo.Rows[0]["得意先コード"].ToString();
                 tsTokuisaki.valueTextText = dtInfo.Rows[0]["得意先名称"].ToString();
                 lsTantousha.CodeTxtText = dtInfo.Rows[0]["担当者コード"].ToString();
+                lsTantousha.chkTxtTantosha();
                 lsEigyosho.CodeTxtText = dtInfo.Rows[0]["営業所コード"].ToString();
+                lsEigyosho.chkTxtEigyousho();
                 tsNonyusaki.CodeTxtText = dtInfo.Rows[0]["納入先コード"].ToString();
                 tsNonyusaki.valueTextText = dtInfo.Rows[0]["納入先名称"].ToString();
                 txtMemo.Text = dtInfo.Rows[0]["社内メモ"].ToString();
@@ -2328,6 +2332,19 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 入力欄クリア
         private void clearInput()
         {
+            dt = new DataTable();
+
+            for (int i = 0; i < 200; i++)
+            {
+                dt.Rows.InsertAt(dt.NewRow(), 0);
+            }
+            gridMitsmori.DataSource = dt;
+            for (int i = 0; i < 200; i++)
+            {
+                gridMitsmori[0, i].Value = (i + 1).ToString();
+                gridMitsmori[1, i].Value = "1";
+            }
+
             txtMode.Text = "1";
             txtMNum.Text = "";
             tsTokuisaki.CodeTxtText = "";
@@ -2351,22 +2368,82 @@ namespace KATO.Form.H0210_MitsumoriInput
             txtArariTotal.Text = "";
             txtArariRitsu.Text = "";
 
-            lsTantousha.CodeTxtText = defUser;
-            lsEigyosho.CodeTxtText = defEigyo;
             txtMYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            lsTantousha.CodeTxtText = defUser;
+            lsTantousha.chkTxtTantosha();
+            lsEigyosho.CodeTxtText = defEigyo;
+            lsEigyosho.chkTxtEigyousho();
 
-            for (int i = 0; i < 200; i++)
-            {
-                dt.Rows.InsertAt(dt.NewRow(), 0);
-            }
-            gridMitsmori.DataSource = dt;
-            for (int i = 0; i < 200; i++)
-            {
-                gridMitsmori[0, i].Value = (i + 1).ToString();
-            }
+            txtZaiCd1.Text = "";
+            txtZaiMei1.Text = "";
+            txtZaiTeika1.Text = "";
+            txtZaiTnk1.Text = "";
+            txtZaiRit1.Text = "";
+            txtKakCd1.Text = "";
+            txtKakMei1.Text = "";
+            txtKakTnk1.Text = "";
+            txtArr1.Text = "";
+            txtSrrt1.Text = "";
+
+            txtZaiCd2.Text = "";
+            txtZaiMei2.Text = "";
+            txtZaiTeika2.Text = "";
+            txtZaiTnk2.Text = "";
+            txtZaiRit2.Text = "";
+            txtKakCd2.Text = "";
+            txtKakMei2.Text = "";
+            txtKakTnk2.Text = "";
+            txtArr2.Text = "";
+            txtSrrt2.Text = "";
+
+            txtZaiCd3.Text = "";
+            txtZaiMei3.Text = "";
+            txtZaiTeika3.Text = "";
+            txtZaiTnk3.Text = "";
+            txtZaiRit3.Text = "";
+            txtKakCd3.Text = "";
+            txtKakMei3.Text = "";
+            txtKakTnk3.Text = "";
+            txtArr3.Text = "";
+            txtSrrt3.Text = "";
+
+            txtZaiCd4.Text = "";
+            txtZaiMei4.Text = "";
+            txtZaiTeika4.Text = "";
+            txtZaiTnk4.Text = "";
+            txtZaiRit4.Text = "";
+            txtKakCd4.Text = "";
+            txtKakMei4.Text = "";
+            txtKakTnk4.Text = "";
+            txtArr4.Text = "";
+            txtSrrt4.Text = "";
+
+            txtZaiCd5.Text = "";
+            txtZaiMei5.Text = "";
+            txtZaiTeika5.Text = "";
+            txtZaiTnk5.Text = "";
+            txtZaiRit5.Text = "";
+            txtKakCd5.Text = "";
+            txtKakMei5.Text = "";
+            txtKakTnk5.Text = "";
+            txtArr5.Text = "";
+            txtSrrt5.Text = "";
+
+            txtZaiCd6.Text = "";
+            txtZaiMei6.Text = "";
+            txtZaiTeika6.Text = "";
+            txtZaiTnk6.Text = "";
+            txtZaiRit6.Text = "";
+            txtKakCd6.Text = "";
+            txtKakMei6.Text = "";
+            txtKakTnk6.Text = "";
+            txtArr6.Text = "";
+            txtSrrt6.Text = "";
+
             gridMitsmori.CurrentCell = gridMitsmori[0, 0];
             RowIndex = 0;
             ColIndex = 0;
+            txtMode.Focus();
         }
         
         // 見積印刷

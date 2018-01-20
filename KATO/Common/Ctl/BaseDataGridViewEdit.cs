@@ -21,14 +21,14 @@ namespace KATO.Common.Ctl
         {
             base.OnPaint(pe);
 
-            //dataGridViewを編集させない
+            //dataGridView 編集可能
             this.ReadOnly = false;
 
             //最下行を選択できないようにする
             this.AllowUserToAddRows = false;
 
-            //TAB使用時に別のセルに移動させない
-            this.StandardTab = true;
+            //TAB使用許可
+            this.StandardTab = false;
 
             //選択モードをセル単位での選択のみにする
             this.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -55,5 +55,33 @@ namespace KATO.Common.Ctl
             this.RowHeadersVisible = false;
 
         }
+
+        // tabキー押下時にセルの移動を下から右に変更する
+        [System.Security.Permissions.UIPermission(
+        System.Security.Permissions.SecurityAction.Demand,
+        Window = System.Security.Permissions.UIPermissionWindow.AllWindows)]
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            //Enterキーが押された時は、Tabキーが押されたようにする
+            if ((keyData & Keys.KeyCode) == Keys.Enter)
+            {
+                return this.ProcessTabKey(keyData);
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
+        [System.Security.Permissions.SecurityPermission(
+        System.Security.Permissions.SecurityAction.Demand,
+        Flags = System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode)]
+        protected override bool ProcessDataGridViewKey(KeyEventArgs e)
+        {
+            //Enterキーが押された時は、Tabキーが押されたようにする
+            if (e.KeyCode == Keys.Enter)
+            {
+                return this.ProcessTabKey(e.KeyCode);
+            }
+            return base.ProcessDataGridViewKey(e);
+        }
+
     }
 }
