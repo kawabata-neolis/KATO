@@ -90,23 +90,12 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
-            ////登録かの判定（仮）
-            //        if (SystemInformation.UserName != "admin")
-            //        {
-            //            this.btnF01.Text = STR_FUNC_F1_KARITOROKU;
-            //            blnKanri = false;
-            //        }
-            //        else
-            //        {
-            //            this.btnF01.Text = STR_FUNC_F1;
-            //            blnKanri = true;
-            //        }
-
             blnKanri = true;
 
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
+            this.btnF01.Text = STR_FUNC_F1;
             this.btnF03.Text = STR_FUNC_F3;
 
             if (blnKanri == false)
@@ -119,6 +108,10 @@ namespace KATO.Form.M1030_Shohin
             this.btnF10.Text = STR_FUNC_F10_SHOHIN;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
+
+            this.btnF09.Enabled = false;
+            this.btnF11.Enabled = false;
+
         }
 
         ///<summary>
@@ -273,8 +266,16 @@ namespace KATO.Form.M1030_Shohin
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
+                    if(txtKensaku.Text == "")
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
+                    else
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        this.showShohinList();
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -838,7 +839,7 @@ namespace KATO.Form.M1030_Shohin
         ///updCtxtLeave
         ///code入力箇所からフォーカスが外れた時
         ///</summary>
-        private void updCtxtLeave(object sender, EventArgs e)
+        private void updCtxtLeave()
         {
             //空白を削除
             labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();

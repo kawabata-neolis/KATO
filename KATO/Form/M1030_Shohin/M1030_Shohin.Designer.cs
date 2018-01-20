@@ -394,7 +394,6 @@
             this.txtData6.TabIndex = 9;
             this.txtData6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData6.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData5
             // 
@@ -408,7 +407,6 @@
             this.txtData5.Enter += new System.EventHandler(this.shohin_Enter);
             this.txtData5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData5.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData4
             // 
@@ -422,7 +420,6 @@
             this.txtData4.Enter += new System.EventHandler(this.shohin_Enter);
             this.txtData4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData4.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData3
             // 
@@ -436,7 +433,6 @@
             this.txtData3.Enter += new System.EventHandler(this.shohin_Enter);
             this.txtData3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData3.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData2
             // 
@@ -450,7 +446,6 @@
             this.txtData2.Enter += new System.EventHandler(this.shohin_Enter);
             this.txtData2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtData2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData2.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtData1
             // 
@@ -464,7 +459,6 @@
             this.txtData1.Enter += new System.EventHandler(this.shohin_Enter);
             this.txtData1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKenKataTxtKeyDown);
             this.txtData1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
-            this.txtData1.Leave += new System.EventHandler(this.updCtxtLeave);
             // 
             // txtHyoka
             // 
@@ -543,7 +537,7 @@
             this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtMemo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtMemo.Location = new System.Drawing.Point(143, 644);
-            this.txtMemo.MaxLength = 10;
+            this.txtMemo.MaxLength = 100;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(815, 22);
             this.txtMemo.TabIndex = 20;
@@ -902,7 +896,7 @@
             this.txtComment.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtComment.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtComment.Location = new System.Drawing.Point(143, 674);
-            this.txtComment.MaxLength = 100;
+            this.txtComment.MaxLength = 500;
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(815, 90);

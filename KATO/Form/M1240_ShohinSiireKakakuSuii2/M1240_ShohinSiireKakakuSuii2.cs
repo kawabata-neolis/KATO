@@ -65,6 +65,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
             // メーカーsetデータを読めるようにする
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+
         }
 
         /// <summary>
@@ -84,6 +85,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             this.btnF10.Text = "F10:EXCEL";
             this.btnF12.Text = STR_FUNC_F12;
 
+            this.btnF10.Enabled = false;
+
             // 基準年月日を設定
             txtKijunYmd.Text = this.getMaxZaikoDate();
 
@@ -102,8 +105,11 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             SetUpGridShohin();
             SetUpGridSiire();
             SetUpGridUriage();
+
+            //gridShohin.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
+        #region 各グリッドのカラム設定（3grid分）
         /// <summary>
         /// SetUpGridShohin
         /// DataGridView初期設定
@@ -113,7 +119,6 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             // 列自動生成禁止
             gridShohin.AutoGenerateColumns = false;
 
-            // データをバインド
             DataGridViewTextBoxColumn shohinCd = new DataGridViewTextBoxColumn();
             shohinCd.DataPropertyName = "商品コード";
             shohinCd.Name = "商品コード";
@@ -218,6 +223,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             setColumnShohin(siireRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 70);
             setColumnShohin(siireDate, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 120);
 
+            // 商品コードのカラム非表示
             gridShohin.Columns[0].Visible = false;
         }
 
@@ -230,7 +236,11 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             // 列自動生成禁止
             gridSiire.AutoGenerateColumns = false;
 
-            // データをバインド
+            DataGridViewTextBoxColumn shohinCd = new DataGridViewTextBoxColumn();
+            shohinCd.DataPropertyName = "商品コード";
+            shohinCd.Name = "商品コード";
+            shohinCd.HeaderText = "商品コード";
+
             DataGridViewTextBoxColumn siireDate = new DataGridViewTextBoxColumn();
             siireDate.DataPropertyName = "仕入日";
             siireDate.Name = "仕入日";
@@ -242,8 +252,12 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             siireTanka.HeaderText = "仕入単価";
 
             // 個々の幅、文字の寄せ
+            setColumnSiire(shohinCd, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnSiire(siireDate, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 100);
             setColumnSiire(siireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 120);
+            
+            // 商品コードのカラム非表示
+            gridSiire.Columns[0].Visible = false;
         }
 
         /// <summary>
@@ -255,7 +269,11 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             // 列自動生成禁止
             gridUriage.AutoGenerateColumns = false;
 
-            // データをバインド
+            DataGridViewTextBoxColumn shohinCd = new DataGridViewTextBoxColumn();
+            shohinCd.DataPropertyName = "商品コード";
+            shohinCd.Name = "商品コード";
+            shohinCd.HeaderText = "商品コード";
+
             DataGridViewTextBoxColumn uriageDate = new DataGridViewTextBoxColumn();
             uriageDate.DataPropertyName = "売上日";
             uriageDate.Name = "売上日";
@@ -267,10 +285,16 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             uriageTanka.HeaderText = "売上単価";
 
             // 個々の幅、文字の寄せ
+            setColumnUriage(shohinCd, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnUriage(uriageDate, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 100);
             setColumnUriage(uriageTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 120);
+
+            // 商品コードのカラム非表示
+            gridUriage.Columns[0].Visible = false;
         }
-        
+        #endregion
+
+        #region 各グリッドのスタイル設定メソッド（3grid分）
         /// <summary>
         /// setColumn
         /// DataGridViewの内部設定
@@ -330,6 +354,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 }
             }
         }
+        #endregion
 
         /// <summary>
         /// M1240_ShohinSiireKakakuSuii2_KeyDown
@@ -379,8 +404,11 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 case Keys.F9:
                     break;
                 case Keys.F10:
-                    logger.Info(LogUtil.getMessage(this._Title, "Excel実行"));
-                    this.outputExcel();
+                    if (this.btnF10.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel実行"));
+                        this.outputExcel();
+                    }
                     break;
                 case Keys.F11:
                     break;
@@ -396,7 +424,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
         /// <summary>
         /// judBtnClick
-        /// ボタンの反応
+        /// Form上のFunctionボタンクリック
         /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -411,8 +439,11 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                     this.updHyokaTanka();
                     break;
                 case STR_BTN_F10: // Excel
-                    logger.Info(LogUtil.getMessage(this._Title, "Excel実行"));
-                    this.outputExcel();
+                    if (this.btnF10.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "Excel実行"));
+                        this.outputExcel();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -427,8 +458,22 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         /// </summary>
         private void btnSerach_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             // 検索
             this.search();
+
+            // grid上に1件でもデータが存在すればF10を許可
+            if (this.gridShohin.Rows.Count > 0)
+            {
+                this.btnF10.Enabled = true;
+            }
+            else
+            {
+                this.btnF10.Enabled = false;
+            }
+
+            this.Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -512,8 +557,20 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             txtKingakuHyoka.Text = "";
             txtKingakuSettei.Text = "";
 
-            // 在庫金額合計にセット
-            this.setZaikoKingaku();
+            try
+            {
+                // 在庫金額合計にセット
+                this.setZaikoKingaku();
+            }
+            catch(Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -604,6 +661,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 {
                     strMaxZaikoDate = dtMaxZaikoDate.Rows[0][0].ToString();
                 }
+
+                return strMaxZaikoDate;
             }
             catch (Exception ex)
             {
@@ -616,7 +675,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 return strMaxZaikoDate;
             }
-            return strMaxZaikoDate;
+
         }
 
         /// <summary>
@@ -625,15 +684,22 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         /// </summary>
         private void delText()
         {
+            // F4：取消をしても全項目クリアはしないので
+            // 個別に空にする
             gridShohin.DataSource = "";
             gridSiire.DataSource = "";
             gridUriage.DataSource = "";
             labelSet_Daibunrui.CodeTxtText = "";
+            labelSet_Daibunrui.ValueLabelText = "";
             labelSet_Chubunrui.CodeTxtText = "";
+            labelSet_Chubunrui.ValueLabelText = "";
             labelSet_Maker.CodeTxtText = "";
+            labelSet_Maker.ValueLabelText = "";
             txtHyokaTanka.Text = "";
             txtSetteiTanka.Text = "";
-
+            // grid情報もクリアするため、EXCEL出力ボタンを無効化
+            this.btnF10.Enabled = false;
+            // 大分類のラベルセットにフォーカス
             labelSet_Daibunrui.Focus();
         }
 
@@ -713,12 +779,12 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 // データ検索用にデータをセット
-                lstSearchItem.Add(txtKijunYmd.Text);
-                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
-                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
-                lstSearchItem.Add(labelSet_Maker.CodeTxtText);
-                lstSearchItem.Add(chkAll.Checked.ToString());
-                // 期間内売上
+                lstSearchItem.Add(txtKijunYmd.Text);                // 基準年月日
+                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
+                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+                lstSearchItem.Add(labelSet_Maker.CodeTxtText);      // メーカーコード
+                lstSearchItem.Add(chkAll.Checked.ToString());       // チェックボックス
+                // 期間内売上（ラジオボタン）
                 if (radUriageAri.Checked)
                 {
                     lstSearchItem.Add("0");
@@ -731,7 +797,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 {
                     lstSearchItem.Add("");
                 }
-                // 期間内仕入
+                // 期間内仕入（ラジオボタン）
                 if (radSiireAri.Checked)
                 {
                     lstSearchItem.Add("0");
@@ -747,14 +813,14 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 lstSearchItem.Add(radZaiko.judCheckBtn().ToString());
 
                 // Excel出力用にデータをセット
-                lstExcelItem.Add(labelSet_Daibunrui.ValueLabelText);
-                lstExcelItem.Add(labelSet_Chubunrui.ValueLabelText);
-                lstExcelItem.Add(labelSet_Maker.ValueLabelText);
-                lstExcelItem.Add(txtYmdFrom.Text);
-                lstExcelItem.Add(txtYmdTo.Text);
-                lstExcelItem.Add(txtKijunYmd.Text);
-                lstExcelItem.Add(chkAll.Checked.ToString());
-                // 期間内売上
+                lstExcelItem.Add(labelSet_Daibunrui.ValueLabelText);    // 大分類名称
+                lstExcelItem.Add(labelSet_Chubunrui.ValueLabelText);    // 中分類名称
+                lstExcelItem.Add(labelSet_Maker.ValueLabelText);        // メーカー名称
+                lstExcelItem.Add(txtYmdFrom.Text);                      // 期間From
+                lstExcelItem.Add(txtYmdTo.Text);                        // 期間To
+                lstExcelItem.Add(txtKijunYmd.Text);                     // 基準年月日
+                lstExcelItem.Add(chkAll.Checked.ToString());            // チェックボックス
+                // 期間内売上（ラジオボタン）
                 if (radUriageAri.Checked)
                 {
                     lstExcelItem.Add("0");
@@ -767,7 +833,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 {
                     lstExcelItem.Add("");
                 }
-                // 期間内仕入
+                // 期間内仕入（ラジオボタン）
                 if (radSiireAri.Checked)
                 {
                     lstExcelItem.Add("0");
@@ -878,10 +944,10 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             txtSetteiTanka.Text = "";
 
             // データ更新用にデータをセット
-            lstUpdateItem.Add(txtKijunYmd.Text);
-            lstUpdateItem.Add(txtYmdFrom.Text);
-            lstUpdateItem.Add(txtYmdTo.Text);
-            lstUpdateItem.Add(Environment.UserName);
+            lstUpdateItem.Add(txtKijunYmd.Text);            // 基準年月日
+            lstUpdateItem.Add(txtYmdFrom.Text);             // 期間From
+            lstUpdateItem.Add(txtYmdTo.Text);               // 期間To
+            lstUpdateItem.Add(Environment.UserName);        // ユーザ名
 
             // ビジネス層のインスタンス生成
             M1240_ShohinSiireKakakuSuii2_B suii_B = new M1240_ShohinSiireKakakuSuii2_B();
@@ -916,12 +982,12 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             List<string> lstSearchItem = new List<string>();
 
             // データ検索用にデータをセット
-            lstSearchItem.Add(txtKijunYmd.Text);
-            lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
-            lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
-            lstSearchItem.Add(labelSet_Maker.CodeTxtText);
-            lstSearchItem.Add(chkAll.Checked.ToString());
-            // 期間内売上
+            lstSearchItem.Add(txtKijunYmd.Text);                // 基準年月日
+            lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
+            lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+            lstSearchItem.Add(labelSet_Maker.CodeTxtText);      // メーカーコード
+            lstSearchItem.Add(chkAll.Checked.ToString());       // チェックボックス
+            // 期間内売上（ラジオボタン）
             if (radUriageAri.Checked)
             {
                 lstSearchItem.Add("0");
@@ -934,7 +1000,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 lstSearchItem.Add("");
             }
-            // 期間内仕入
+            // 期間内仕入（ラジオボタン）
             if (radSiireAri.Checked)
             {
                 lstSearchItem.Add("0");
@@ -958,7 +1024,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 if (dtShohin != null && dtShohin.Rows.Count > 0)
                 {
-                    // データテーブルからデータグリッドへセット
+                    // データテーブルをグリッドへセット
                     gridShohin.DataSource = dtShohin;
 
                     // 在庫金額合計にセット
@@ -1008,8 +1074,18 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 if (dtKingaku != null && dtKingaku.Rows.Count > 0)
                 {
-                    txtKingakuHyoka.Text = string.Format("{0:#,##0}", decimal.Parse(dtKingaku.Rows[0]["評価金額"].ToString()));
-                    txtKingakuSettei.Text = string.Format("{0:#,##0}", decimal.Parse(dtKingaku.Rows[0]["仮金額"].ToString()));
+                    string hyoka = dtKingaku.Rows[0]["評価金額"].ToString();
+                    string kari = dtKingaku.Rows[0]["仮金額"].ToString();
+                    // 評価金額が空でなかった場合、カンマ付きのフォーマットにしてテキストボックスへ
+                    if (hyoka != "")
+                    {
+                        txtKingakuHyoka.Text = string.Format("{0:#,##0}", decimal.Parse(hyoka));
+                    }
+                    // 仮金額が空でなかった場合、カンマ付きのフォーマットにしてテキストボックスへ
+                    if (kari != "")
+                    {
+                        txtKingakuSettei.Text = string.Format("{0:#,##0}", decimal.Parse(kari));
+                    }                    
                 }
 
                 // グリッドビューに何も表示されていない場合
@@ -1019,24 +1095,33 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 }
 
                 // データ検索用にデータをセット
-                lstSearchItem.Add(txtKijunYmd.Text);
-                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
-                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
-                lstSearchItem.Add(labelSet_Maker.CodeTxtText);
+                lstSearchItem.Add(txtKijunYmd.Text);                // 基準在庫日
+                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
+                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+                lstSearchItem.Add(labelSet_Maker.CodeTxtText);      // メーカーコード
 
                 // 直近金額を取得
                 dtKingaku = suii_B.getCyokkinKingaku(lstSearchItem);
-
                 if (dtKingaku != null && dtKingaku.Rows.Count > 0)
                 {
-                    decCyokkin = decimal.Parse(dtKingaku.Rows[0][0].ToString());
+                    string strCyokkin = dtKingaku.Rows[0][0].ToString();
+                    // 直近金額が空でない場合、decimalにキャスト
+                    if (strCyokkin != "")
+                    {
+                        decCyokkin = decimal.Parse(strCyokkin);
+                    }
                 }
 
                 // 仮金額を取得
                 dtKingaku = suii_B.getKariKingaku(lstSearchItem);
                 if (dtKingaku != null && dtKingaku.Rows.Count > 0)
                 {
-                    decKari = decimal.Parse(dtKingaku.Rows[0][0].ToString());
+                    string strKari = dtKingaku.Rows[0][0].ToString();
+                    // 仮金額が空でない場合、decimalにキャスト
+                    if (strKari != "")
+                    {
+                        decKari = decimal.Parse(strKari);
+                    }
                 }
 
                 txtKingakuCyokkin.Text = string.Format("{0:#,##0}", decCyokkin + decKari);
@@ -1071,10 +1156,12 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 BaseMessageBox basemessagebox;
 
-                // 在庫金額を取得
-                DataTable dtShohin = suii_B.getCount(txtKijunYmd.Text);
+                // データ件数を取得
+                //DataTable dtShohin = suii_B.getCount(txtKijunYmd.Text);
+                int cnt = suii_B.getRecordCount(txtKijunYmd.Text);
 
-                if (dtShohin != null && dtShohin.Rows.Count > 0)
+                //if (dtShohin != null && dtShohin.Rows.Count > 0)
+                if (cnt > 0)
                 {
 
                     // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
@@ -1092,10 +1179,10 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 suii_B.addZaikoData_Proc(txtKijunYmd.Text);
 
                 // 商品仕入価格推移2_PROC用にデータをセット
-                lstProcItem.Add(txtKijunYmd.Text);
-                lstProcItem.Add(txtYmdFrom.Text);
-                lstProcItem.Add(txtYmdTo.Text);
-                lstProcItem.Add(Environment.UserName);
+                lstProcItem.Add(txtKijunYmd.Text);      // 基準在庫日
+                lstProcItem.Add(txtYmdFrom.Text);       // 期間From
+                lstProcItem.Add(txtYmdTo.Text);         // 期間To
+                lstProcItem.Add(Environment.UserName);  // ユーザ名
 
                 // 商品仕入価格推移2_PROCを実行
                 suii_B.suii2_Proc(lstProcItem);
@@ -1158,16 +1245,16 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             }
 
             // データ更新用にデータをセット
-            lstUpdateItem.Add(txtKijunYmd.Text);
-            lstUpdateItem.Add(txtSetteiTanka.Text);
-            lstUpdateItem.Add(gridShohin.Rows[rowIndex].Cells[10].Value.ToString());
-            lstUpdateItem.Add(gridShohin.Rows[rowIndex].Cells[0].Value.ToString().Trim());
+            lstUpdateItem.Add(txtKijunYmd.Text);                                            // 基準在庫日
+            lstUpdateItem.Add(txtSetteiTanka.Text);                                         // 設定単価
+            lstUpdateItem.Add(gridShohin.Rows[rowIndex].Cells[10].Value.ToString());        // 仮掛率
+            lstUpdateItem.Add(gridShohin.Rows[rowIndex].Cells[0].Value.ToString().Trim());  // 商品コード
 
             // ビジネス層のインスタンス生成
             M1240_ShohinSiireKakakuSuii2_B suii_B = new M1240_ShohinSiireKakakuSuii2_B();
             try
             {
-                // 直近単価を更新
+                // 設定単価を更新
                 suii_B.updSetteiTanka(lstUpdateItem);
 
                 // 在庫金額を取得
@@ -1175,7 +1262,13 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 if (dtKingaku != null && dtKingaku.Rows.Count > 0)
                 {
-                    txtKingakuSettei.Text = string.Format("{0:#,##0}", decimal.Parse(dtKingaku.Rows[0]["仮金額"].ToString()));
+                    string kari = dtKingaku.Rows[0]["仮金額"].ToString();
+                    // 仮金額が空でなかった場合、カンマ付きのフォーマットにしてテキストボックスへ
+                    if (kari != "")
+                    {
+                        txtKingakuSettei.Text = string.Format("{0:#,##0}", decimal.Parse(kari));
+                    }
+                    
                 }
 
                 gridShohin.Focus();
@@ -1224,10 +1317,10 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             }
 
             // データ更新用にデータをセット
-            lstUpdateItem.Add(txtKijunYmd.Text);
-            lstUpdateItem.Add(labelSet_Daibunrui.CodeTxtText);
-            lstUpdateItem.Add(labelSet_Chubunrui.CodeTxtText);
-            lstUpdateItem.Add(labelSet_Maker.CodeTxtText);
+            lstUpdateItem.Add(txtKijunYmd.Text);                // 基準在庫日
+            lstUpdateItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
+            lstUpdateItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+            lstUpdateItem.Add(labelSet_Maker.CodeTxtText);      // メーカーコード
 
             // ビジネス層のインスタンス生成
             M1240_ShohinSiireKakakuSuii2_B suii_B = new M1240_ShohinSiireKakakuSuii2_B();
@@ -1328,6 +1421,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         {
             return CreateObject(progId, null);
         }
+
 
     }
 }

@@ -76,7 +76,10 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             this.btnF04.Text = STR_FUNC_F4;
             
             this.btnF06.Text = "F6:売上実績確認";
+            this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
+
+            this.btnF09.Enabled = false;
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -145,9 +148,9 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
 
 
             //個々の幅、文章の寄せ
-            setColumn(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
-            setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
-            setColumn(Shinamei_kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
+            setColumn(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
+            setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+            setColumn(Shinamei_kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
             setColumn(Riekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 100);
             setColumn(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(SetteiOrKaijo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
@@ -417,6 +420,62 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             }
         }
 
+        ///<summary>
+        ///txtBox_KeyDown
+        ///キー入力判定（無機能テキストボックス_BaseText）
+        ///</summary>
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
         /// <summary>
         /// showUriageJissekiKakunin
         /// 売上実績確認フォームを開く処理
@@ -466,6 +525,29 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 return;
             }
 
+            // 空文字判定（掛率、単価）
+            if (txtRiekiritsu.Text.Equals("") && txtTanka.Text.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "掛率、単価はいずれかを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 掛率にフォーカスがある場合
+            if (txtRiekiritsu.Focused)
+            {
+                // 単価を再計算
+                ChangetxtRiekiritsu();
+            }
+
+            // 単価にフォーカスがある場合
+            if (txtTanka.Focused)
+            {
+                // 掛率を再計算
+                ChangetxtTanka();
+            }
+
             // ビジネス層のインスタンス生成
             M1210_ShohinbetsuRiekiritsuSettei_B riekiritsuB = new M1210_ShohinbetsuRiekiritsuSettei_B();
             try
@@ -493,12 +575,20 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
+                // 検索条件を格納
+                string strBfTokuisakiS = labelSet_TokuisakiS.CodeTxtText;
+                string strBfTantoushaS = labelSet_TantoushaS.CodeTxtText;
+                string strBfSinamei_Kataban = txtSinamei_KatabanS.Text;
+
                 // テキストボックス内の文字を削除
                 delText();
 
+                labelSet_TokuisakiS.CodeTxtText = strBfTokuisakiS;
+                labelSet_TantoushaS.CodeTxtText = strBfTantoushaS;
+                txtSinamei_KatabanS.Text = strBfSinamei_Kataban;
+
                 // データグリッドビューにデータを表示
                 setViewGrid();
-
             }
             catch (Exception ex)
             {
@@ -528,6 +618,15 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 labelSet_Tokuisaki.Focus();
                 return false;
             }
+            // 存在チェック（得意先）
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Tokuisaki.Focus();
+                return false;
+            }
 
             // 空文字判定（商品CD）
             if (txtShohinCd.Text.Equals(""))
@@ -539,24 +638,6 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 return false;
             }
 
-            // 空文字判定（品名）
-            if (txtKataban.Text.Equals(""))
-            {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                labelSet_Tokuisaki.Focus();
-                return false;
-            }
-
-            // 空文字判定（掛率、単価）
-            if (txtRiekiritsu.Text.Equals("") && txtTanka.Text.Equals(""))
-            {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "掛率、単価はいずれかを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return false;
-            }
 
             return true;
             
@@ -568,6 +649,12 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
         /// </summary>
         private void delRiekiritsu()
         {
+            // データチェック処理
+            if (!dataCheack())
+            {
+                return;
+            }
+
             M1210_ShohinbetsuRiekiritsuSettei_B riekiritsuB = new M1210_ShohinbetsuRiekiritsuSettei_B();
             try
             {
@@ -650,8 +737,17 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //入力文字で商品検索
-                    this.setShohinList();
+                    // 検索文字列に値が入っている場合、商品検索を呼び出す
+                    if (txtKensakuS.Text != "")
+                    {
+                        //入力文字で商品検索
+                        this.setShohinList();
+                    }
+                    else
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -783,7 +879,6 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
 
 
                 gridShohinbetsuRiekiritsu.Visible = true;
-
             }
             catch (Exception ex)
             {
@@ -834,9 +929,13 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
                     txtRiekiritsu.Text = (decimal.Parse(txtTanka.Text) / decimal.Parse(txtTeika.Text) * 100).ToString("0.0");
                 }
             }
+            // 大分類名ラベル取得
+            labelSet_Daibunrui.chkTxtDaibunrui();
+
+            // 中分類名ラベル取得
+            labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText);
 
             //ラジオボタン設定
-            
             if (gridShohinbetsuRiekiritsu.CurrentRow.Cells[5].Value.ToString() == "  1")
             {
                 razioSettei.radbtn0.Checked = true;

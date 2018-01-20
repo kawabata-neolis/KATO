@@ -157,6 +157,7 @@
             this.txtSinamei_KatabanS.Name = "txtSinamei_KatabanS";
             this.txtSinamei_KatabanS.Size = new System.Drawing.Size(353, 22);
             this.txtSinamei_KatabanS.TabIndex = 2;
+            this.txtSinamei_KatabanS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // baseButton_kensaku
             // 
@@ -236,6 +237,7 @@
             this.gridShohinbetsuRiekiritsu.AllowUserToAddRows = false;
             this.gridShohinbetsuRiekiritsu.AllowUserToResizeColumns = false;
             this.gridShohinbetsuRiekiritsu.AllowUserToResizeRows = false;
+            this.gridShohinbetsuRiekiritsu.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -379,7 +381,7 @@
             this.txtKensakuS.MaxLength = 40;
             this.txtKensakuS.Name = "txtKensakuS";
             this.txtKensakuS.Size = new System.Drawing.Size(297, 22);
-            this.txtKensakuS.TabIndex = 19;
+            this.txtKensakuS.TabIndex = 5;
             this.txtKensakuS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKensaku_KeyDown);
             // 
             // txtKataban
@@ -450,8 +452,9 @@
             this.txtRiekiritsu.MaxLength = 5;
             this.txtRiekiritsu.Name = "txtRiekiritsu";
             this.txtRiekiritsu.Size = new System.Drawing.Size(66, 22);
-            this.txtRiekiritsu.TabIndex = 5;
+            this.txtRiekiritsu.TabIndex = 6;
             this.txtRiekiritsu.Leave += new System.EventHandler(this.txtRiekiritsu_Leave);
+            this.txtRiekiritsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // razioOrderS2
             // 
@@ -498,8 +501,10 @@
             this.txtTeika.Location = new System.Drawing.Point(288, 589);
             this.txtTeika.MaxLength = 9;
             this.txtTeika.Name = "txtTeika";
+            this.txtTeika.ReadOnly = true;
             this.txtTeika.Size = new System.Drawing.Size(128, 22);
             this.txtTeika.TabIndex = 105;
+            this.txtTeika.TabStop = false;
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTanka
@@ -514,9 +519,10 @@
             this.txtTanka.MaxLength = 9;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
-            this.txtTanka.TabIndex = 6;
+            this.txtTanka.TabIndex =7;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTanka.Leave += new System.EventHandler(this.txtTanka_Leave);
+            this.txtTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // labelSet_Tokuisaki
             // 

@@ -79,13 +79,13 @@ namespace KATO.Business.B0250_MOnyuryoku
         ///updMO
         ///MOデータ変更の処理（戻り値は現行の名残）
         ///</summary>
-        public int updMO(string strYMD,
+        public void updMO(string strYMD,
                                 string strCode,
-                                object objSijisU,
+                                string strSijisU,
                                 decimal decSu,
                                 decimal decTanka,
-                                object objNouki,
-                                object objTorihiki,
+                                string strNouki,
+                                string strTorihiki,
                                 int intDenNo,
                                 string strUserID
                                 )
@@ -104,15 +104,13 @@ namespace KATO.Business.B0250_MOnyuryoku
             List<string> lstDataName = new List<string>();
             lstDataName.Add(strYMD);
             lstDataName.Add(strCode);
-            lstDataName.Add(objSijisU.ToString());
+            lstDataName.Add(strSijisU.ToString());
             lstDataName.Add(decSu.ToString());
             lstDataName.Add(decTanka.ToString());
-            lstDataName.Add(objNouki.ToString());
-            lstDataName.Add(objTorihiki.ToString());
+            lstDataName.Add(strNouki.ToString());
+            lstDataName.Add(strTorihiki.ToString());
             lstDataName.Add(intDenNo.ToString());
             lstDataName.Add(strUserID);
-
-            int intExec;
 
             DBConnective dbconnective = new DBConnective();
 
@@ -121,7 +119,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             try
             {
                 //ＭＯデータ変更_PROCを実行
-                intExec = int.Parse(dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName));
+                dbconnective.RunSqlRe("ＭＯデータ変更_PROC", CommandType.StoredProcedure, lstDataName, lstTableName);
 
                 //コミット
                 dbconnective.Commit();
@@ -137,7 +135,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
-            return intExec;
+            return;
         }
 
         ///<summary>
@@ -986,7 +984,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 var outDataAll = dtSetCd_B_Input.AsEnumerable()
                     .Select(dat => new
                     {
-                        MOHin = dat["品名・規格"],
+                        MOHin = dat["品名規格"],
                         MOSu = dat["数量"],
                         MOHachuTanka = dat["発注単価"],
                         MONoki = dat["納期"],

@@ -454,6 +454,7 @@
             this.txtRitsu.Size = new System.Drawing.Size(30, 22);
             this.txtRitsu.TabIndex = 11;
             this.txtRitsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // lblKakeritsu
             // 
@@ -476,6 +477,7 @@
             this.txtKakeritsu.Size = new System.Drawing.Size(30, 22);
             this.txtKakeritsu.TabIndex = 12;
             this.txtKakeritsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKakeritsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // radSetting
             // 
@@ -493,6 +495,7 @@
             this.radSetting.Radbtn1Text = "設定";
             this.radSetting.Radbtn2Text = "解除";
             this.radSetting.Size = new System.Drawing.Size(201, 19);
+            this.radSetting.TabStop = false;
             this.radSetting.TabIndex = 13;
             // 
             // lblTitle
