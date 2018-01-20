@@ -717,7 +717,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 case Keys.Enter:
                     //TABボタンと同じ効果
                     SendKeys.Send("{TAB}");
-                    txtKensaku_Leave();
+                    setKensaku();
                     break;
                 case Keys.F1:
                     break;
@@ -1257,12 +1257,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             //仕入先コード
             if (lblSetShiresaki.CodeTxtText == "")
             {
-
-                //記入漏れ発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                lblSetShiresaki.Focus();
                 return;
             }
 
@@ -2057,7 +2051,7 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///txtKensaku_Leave
         ///中段グリッド内検索（型番先頭文字から）
         ///</summary>
-        private void txtKensaku_Leave()
+        private void setKensaku()
         {
             //中段グリッドの中身がない場合
             if (gridKataban2.Rows.Count <= 0)
