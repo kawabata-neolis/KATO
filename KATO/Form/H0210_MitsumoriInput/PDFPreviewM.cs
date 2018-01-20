@@ -124,5 +124,10 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             this.Close();
         }
+
+        private void PDFPreviewM_Load(object sender, EventArgs e)
+        {
+            baseButton2.Focus();
+        }
     }
 }

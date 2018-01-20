@@ -134,6 +134,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             finally {
                 this.Cursor = Cursors.Default;
+                gridMitsu.Focus();
             }
 
         }
@@ -228,8 +229,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             if (frm9 == null || frm9.IsDisposed)
             {
-                string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + ".pdf";
-                //string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + "_M.pdf";
+                //string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + ".pdf";
+                string path = (strPdfPath + "_" + gridMitsu[1, gridMitsu.CurrentRow.Index].Value).ToString() + "_M.pdf";
                 if (System.IO.File.Exists(path))
                 {
                     if (gridMitsu.Rows.Count > 0)
@@ -325,6 +326,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             //{
             //    this.SelectNextControl(this.ActiveControl, true, true, true, true);
             //}
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
         }
 
         private void Form8_2_Shown(object sender, EventArgs e)
@@ -405,6 +410,5 @@ namespace KATO.Form.H0210_MitsumoriInput
                 this.Cursor = Cursors.Default;
             }
         }
-
     }
 }
