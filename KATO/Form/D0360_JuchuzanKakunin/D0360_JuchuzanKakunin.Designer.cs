@@ -68,8 +68,8 @@
             this.lsTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.object_d2b63371_4f97_415f_8922_a9c0cd989fcc = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel16 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lsTokuisaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.lsShiiresaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
+            this.lsTokuisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lsShiiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.object_17ec1a19_74bf_4208_895a_c635553e2d63 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lsDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.lsChubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
@@ -1178,8 +1178,8 @@
         private Common.Ctl.LabelSet_Tantousha lsTantousha;
         private Common.Ctl.BaseLabel object_d2b63371_4f97_415f_8922_a9c0cd989fcc;
         private Common.Ctl.BaseLabel baseLabel16;
-        private Common.Ctl.LabelSet_Tokuisaki lsTokuisaki;
-        private Common.Ctl.LabelSet_Tokuisaki lsShiiresaki;
+        private Common.Ctl.LabelSet_Torihikisaki lsTokuisaki;
+        private Common.Ctl.LabelSet_Torihikisaki lsShiiresaki;
         private Common.Ctl.BaseLabel object_17ec1a19_74bf_4208_895a_c635553e2d63;
         private Common.Ctl.LabelSet_Daibunrui lsDaibunrui;
         private Common.Ctl.LabelSet_Chubunrui lsChubunrui;

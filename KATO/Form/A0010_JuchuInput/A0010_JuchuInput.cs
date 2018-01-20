@@ -325,6 +325,48 @@ namespace KATO.Form.A0010_JuchuInput
         }
 
         /// <summary>
+        /// judBtnClick
+        /// ボタンの反応
+        /// </summary>
+        private void judBtnClick(object sender, EventArgs e)
+        {
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F01: // 登録
+                    if (btnF01.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        this.addJuchu();
+                    }
+                    break;
+                case STR_BTN_F03: // 削除
+                    if (btnF03.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                        this.delJuchu();
+                    }
+                    break;
+                case STR_BTN_F04: // 取り消し
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delFormClear(this);
+                    break;
+                case STR_BTN_F08: // 履歴
+                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.setRireki();
+                    break;
+                case STR_BTN_F09: // 履歴
+                    if (btnF09.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    }
+                    break;
+                case STR_BTN_F12: // 終了
+                    this.Close();
+                    break;
+            }
+        }
+
+        /// <summary>
         /// delJuchu
         /// 受注削除
         /// </summary>
@@ -349,8 +391,8 @@ namespace KATO.Form.A0010_JuchuInput
                 DataTable dt = juchuB.getUriagezumisuryo(strJuchuNo);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    if (chkDigit(dt.Rows[0]["仕入済数量"].ToString())) {
-                        uriageSu = decimal.Parse(dt.Rows[0]["仕入済数量"].ToString());
+                    if (chkDigit(dt.Rows[0]["売上済数量"].ToString())) {
+                        uriageSu = decimal.Parse(dt.Rows[0]["売上済数量"].ToString());
                     }
                     if (uriageSu > 0)
                     {
@@ -415,7 +457,7 @@ namespace KATO.Form.A0010_JuchuInput
         {
             txtJuchuYMD.ReadOnly = true;
             lsJuchusha.codeTxt.ReadOnly = false;
-            txtJuchuNo.ReadOnly = false;
+            //txtJuchuNo.ReadOnly = false;
             tsTokuisaki.ReadOnlyANDTabStopFlg = false;
             txtSearchStr.ReadOnly = false;
             txtJuchuSuryo.ReadOnly = false;
@@ -443,6 +485,19 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 txtJuchuNo.Text = (gridJuchuZanMeisai.CurrentRow.Cells[0].Value).ToString();
                 getJuchuInfo();
+            }
+        }
+
+        private void txtC1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F9:
+                    showShohinList();
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -483,102 +538,14 @@ namespace KATO.Form.A0010_JuchuInput
             txtHatchuNo.ReadOnly = true;
             shohinList.Dispose();
             getShohinInfo();
-        }
 
-        /// <summary>
-        /// judBtnClick
-        /// ボタンの反応
-        /// </summary>
-        private void judBtnClick(object sender, EventArgs e)
-        {
-            switch (((Button)sender).Name)
+            if (!string.IsNullOrWhiteSpace(txtShohinCd.Text))
             {
-                case STR_BTN_F01: // 登録
-                    if (btnF01.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                        this.addJuchu();
-                    }
-                    break;
-                case STR_BTN_F03: // 削除
-                    if (btnF03.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                        this.delJuchu();
-                    }
-                    break;
-                case STR_BTN_F04: // 取り消し
-                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
-                    this.delFormClear(this);
-                    break;
-                case STR_BTN_F08: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    //this.setRireki();
-                    break;
-                case STR_BTN_F09: // 履歴
-                    if (btnF09.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    }
-                    break;
-                case STR_BTN_F12: // 終了
-                    this.Close();
-                    break;
+                txtJuchuNo.Focus();
             }
-        }
-
-        /// <summary>
-        /// setShohinClose
-        /// setShohinListが閉じたらコード記入欄にフォーカス
-        /// </summary>
-        public void setShohinClose()
-        {
-            txtSearchStr.Focus();
-        }
-
-        ///// <summary>
-        ///// setShouhin
-        ///// 取り出したデータをテキストボックスに配置（商品リスト）
-        ///// </summary>
-        //public void setShouhin(DataTable dtShohin)
-        //{
-        //    string strCd = dtShohin.Rows[0]["商品コード"].ToString();
-
-        //    if (!string.IsNullOrWhiteSpace(strCd))
-        //    {
-        //        txtShohinCd.Text = dtShohin.Rows[0]["商品コード"].ToString();
-        //        getShohinInfo();
-        //        txtHinmei.ReadOnly = false;
-        //        txtJuchuSuryo.ReadOnly = false;
-        //        txtJuchuSuryo.Focus();
-
-        //    }
-        //    else
-        //    {
-        //        txtSearchStr.Focus();
-        //    }
-        //    //lblGrayTanaHon.Text = dtShohin.Rows[0]["棚番本社"].ToString();
-        //    //lblGrayTanaGihu.Text = dtShohin.Rows[0]["棚番岐阜"].ToString();
-        //    //lblGrayShohin.Text = labelSet_Maker.ValueLabelText +
-        //    //                     labelSet_Chubunrui.ValueLabelText + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ１"].ToString() + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ２"].ToString() + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ３"].ToString() + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ４"].ToString() + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ５"].ToString() + " " +
-        //    //                     dtShohin.Rows[0]["Ｃ６"].ToString();
-        //}
-
-        private void txtC1_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
+            else
             {
-                case Keys.F9:
-                    showShohinList();
-                    break;
-
-                default:
-                    break;
+                txtSearchStr.Focus();
             }
         }
 
@@ -601,6 +568,7 @@ namespace KATO.Form.A0010_JuchuInput
             getJuchuInfo();
         }
 
+        // 受注情報検索
         private void getJuchuInfo() {
             string strCd = txtJuchuNo.Text;
 
@@ -628,10 +596,14 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     txtJuchuYMD.Text = dtJuchuNoInfo.Rows[0]["受注年月日"].ToString();
                     lsJuchusha.CodeTxtText = dtJuchuNoInfo.Rows[0]["受注者コード"].ToString();
+                    lsJuchusha.chkTxtTantosha();
                     tsTokuisaki.CodeTxtText = dtJuchuNoInfo.Rows[0]["得意先コード"].ToString();
                     lsDaibunrui.CodeTxtText = dtJuchuNoInfo.Rows[0]["大分類コード"].ToString();
+                    lsDaibunrui.chkTxtDaibunrui();
                     lsChubunrui.CodeTxtText = dtJuchuNoInfo.Rows[0]["中分類コード"].ToString();
+                    lsChubunrui.chkTxtChubunrui(lsDaibunrui.CodeTxtText);
                     lsMaker.CodeTxtText = dtJuchuNoInfo.Rows[0]["メーカーコード"].ToString();
+                    lsMaker.chkTxtMaker();
                     txtC1.Text = dtJuchuNoInfo.Rows[0]["Ｃ１"].ToString();
                     txtC2.Text = dtJuchuNoInfo.Rows[0]["Ｃ２"].ToString();
                     txtC3.Text = dtJuchuNoInfo.Rows[0]["Ｃ３"].ToString();
@@ -653,13 +625,15 @@ namespace KATO.Form.A0010_JuchuInput
                     txtZaikoHikiate.Text = dtJuchuNoInfo.Rows[0]["在庫引当フラグ"].ToString();
                     txtUriage.Text = dtJuchuNoInfo.Rows[0]["売上フラグ"].ToString();
 
-                    string strHinmei = txtC1.Text.Trim() + " "
-                        + txtC2.Text.Trim() + " "
-                        + txtC3.Text.Trim() + " "
-                        + txtC4.Text.Trim() + " "
-                        + txtC5.Text.Trim() + " "
-                        + txtC6.Text.Trim();
-                    txtHinmei.Text = strHinmei.Trim();
+                    //string strHinmei = txtC1.Text.Trim() + " "
+                    //    + txtC2.Text.Trim() + " "
+                    //    + txtC3.Text.Trim() + " "
+                    //    + txtC4.Text.Trim() + " "
+                    //    + txtC5.Text.Trim() + " "
+                    //    + txtC6.Text.Trim();
+                    //txtHinmei.Text = strHinmei.Trim();
+                    string strHinmei = txtC1.Text.Trim();
+                    txtHinmei.Text = strHinmei;
 
                     txtJuchuSuryo.ReadOnly = false;
                     cbJuchuTanka.Enabled = true;
@@ -674,10 +648,10 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     else
                     {
-                        lsDaibunrui.Enabled = false;
-                        lsChubunrui.Enabled = false;
-                        lsMaker.Enabled = false;
-                        txtHinmei.Enabled = false;
+                        lsDaibunrui.codeTxt.ReadOnly = true;
+                        lsChubunrui.codeTxt.ReadOnly = true;
+                        lsMaker.codeTxt.ReadOnly = true;
+                        txtHinmei.ReadOnly = true;
                     }
                     getShohinInfo();
                     
@@ -686,6 +660,7 @@ namespace KATO.Form.A0010_JuchuInput
                         if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
                         {
                             txtHatchuNo.Text = dtHatchuNo.Rows[0]["発注番号"].ToString();
+                            getHatchuInfo();
                         }
                         else
                         {
@@ -694,7 +669,8 @@ namespace KATO.Form.A0010_JuchuInput
                     }
 
                     decimal decUriSuryo = 0;
-                    if (chkDigit(dtJuchuNoInfo.Rows[0]["売上済数量"].ToString())) {
+                    if (chkDigit(dtJuchuNoInfo.Rows[0]["売上済数量"].ToString()))
+                    {
                         decUriSuryo = decimal.Parse(dtJuchuNoInfo.Rows[0]["売上済数量"].ToString());
                     }
 
@@ -703,11 +679,12 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         decJuchuSuryo = decimal.Parse(dtJuchuNoInfo.Rows[0]["受注数量"].ToString());
                     }
-                    if (decUriSuryo == 0)
+
+                    if (decUriSuryo.Equals(0))
                     {
                         lockFlg = false;
                     }
-                    else if (decUriSuryo == decJuchuSuryo)
+                    else if (decUriSuryo.Equals(decJuchuSuryo))
                     {
                         btnF01.Enabled = false;
                         btnF03.Enabled = false;
@@ -719,7 +696,7 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     else if (decUriSuryo > 0)
                     {
-                        txtUriSuryo.Text = decUriSuryo.ToString();
+                        txtUriSuryo.Text = decUriSuryo.ToString("0,.00");
                         txtJuchuNo.ReadOnly = true;
                         txtJuchuYMD.ReadOnly = true;
 
@@ -757,7 +734,7 @@ namespace KATO.Form.A0010_JuchuInput
                                 decShiireSuryo = decimal.Parse(dtHatchuNo.Rows[0]["仕入済数量"].ToString());
                             }
 
-                            if (decUriSuryo == decShiireSuryo)
+                            if (decUriSuryo.Equals(decShiireSuryo))
                             {
                                 nokiFlg = true;
                                 txtJuchuSuryo.Enabled = true;
@@ -768,7 +745,6 @@ namespace KATO.Form.A0010_JuchuInput
                         }
 
                         nokiFlg = true;
-                        txtJuchuSuryo.Enabled = true;
                         BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                         basemessageboxEr.ShowDialog();
                         //txtNoki.Focus();
@@ -778,12 +754,14 @@ namespace KATO.Form.A0010_JuchuInput
                     if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
                     {
                         decimal decShiireSuryo = 0;
-                        if (chkDigit(dtHatchuNo.Rows[0]["仕入済数量"].ToString())) {
+                        if (chkDigit(dtHatchuNo.Rows[0]["仕入済数量"].ToString()))
+                        {
                             decShiireSuryo = decimal.Parse(dtHatchuNo.Rows[0]["仕入済数量"].ToString());
                         }
 
                         if (decShiireSuryo > 0)
                         {
+                            nokiFlg = true;
                             BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                             basemessageboxEr.ShowDialog();
 
@@ -863,7 +841,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (!lsDaibunrui.CodeTxtText.Equals("28"))
                     {
-                        if (string.IsNullOrWhiteSpace(txtJuchuSuryo.Text) && decimal.Parse(txtJuchuSuryo.Text).Equals(0))
+                        if (!string.IsNullOrWhiteSpace(txtHatchusu.Text) && decimal.Parse(txtHatchusu.Text).Equals(0))
                         {
                             cbSiireTanka.Enabled = false;
                         }
@@ -871,6 +849,9 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 lockFlg = false;
+
+                // 在庫呼び出し
+                getZaikoInfo();
             }
             catch (Exception ex)
             {
@@ -903,9 +884,41 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
-        private void txtHatchuNo_TextChanged(object sender, EventArgs e)
+        private void txtHatchuNo_Leave(object sender, EventArgs e)
         {
-            
+            getHatchuInfo();
+        }
+
+        private void getHatchuInfo()
+        {
+            if (txtHatchuNo.Text == null || string.IsNullOrWhiteSpace(txtHatchuNo.Text))
+            {
+                return;
+            }
+
+            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+            try
+            {
+                DataTable dtHatchu = juchuB.getHatchuData(txtHatchuNo.Text);
+
+                if (dtHatchu != null && dtHatchu.Rows.Count > 0)
+                {
+                    txtHatchusu.Text = dtHatchu.Rows[0]["発注数量"].ToString();
+                    tsShiiresaki.CodeTxtText = dtHatchu.Rows[0]["仕入先コード"].ToString();
+                    txtShiireNoki.Text = dtHatchu.Rows[0]["納期"].ToString();
+                    txtShiireChuban.Text = dtHatchu.Rows[0]["注番"].ToString();
+                    txtShiireTanto.Text = dtHatchu.Rows[0]["担当者コード"].ToString();
+                    tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         private void cbJuchuTanka_SelectedIndexChanged(object sender, EventArgs e)
@@ -1218,14 +1231,12 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (dtShohin != null && dtShohin.Rows.Count > 0)
                 {
-                    //lsDaibunrui.codeTxt.Focus();
                     lsDaibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
-                    //lsChubunrui.codeTxt.Focus();
+                    lsDaibunrui.chkTxtDaibunrui();
                     lsChubunrui.CodeTxtText = dtShohin.Rows[0]["中分類コード"].ToString();
-                    //lsMaker.codeTxt.Focus();
+                    lsChubunrui.chkTxtChubunrui(lsDaibunrui.CodeTxtText);
                     lsMaker.CodeTxtText = dtShohin.Rows[0]["メーカーコード"].ToString();
-
-                    //txtJuchuSuryo.Focus();
+                    lsMaker.chkTxtMaker();
 
                     txtC1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
                     txtC2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
@@ -1234,7 +1245,8 @@ namespace KATO.Form.A0010_JuchuInput
                     txtC5.Text = dtShohin.Rows[0]["Ｃ５"].ToString();
                     txtC6.Text = dtShohin.Rows[0]["Ｃ６"].ToString();
 
-                    txtHinmei.Text = txtC1.Text + " " + txtC2.Text + " " + txtC3.Text + " " + txtC4.Text + " " + txtC5.Text + " " + txtC6.Text + " ";
+                    //txtHinmei.Text = txtC1.Text + " " + txtC2.Text + " " + txtC3.Text + " " + txtC4.Text + " " + txtC5.Text + " " + txtC6.Text + " ";
+                    txtHinmei.Text = txtC1.Text;
 
                     lsDaibunrui.codeTxt.ReadOnly = true;
                     lsChubunrui.codeTxt.ReadOnly = true;
@@ -2582,41 +2594,6 @@ namespace KATO.Form.A0010_JuchuInput
             catch (Exception ex) { }
 
             return b;
-        }
-
-        private void txtHatchuNo_Leave(object sender, EventArgs e)
-        {
-            getHatchuInfo();
-        }
-        private void getHatchuInfo() {
-            if (txtHatchuNo.Text == null || string.IsNullOrWhiteSpace(txtHatchuNo.Text))
-            {
-                return;
-            }
-
-            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-            try
-            {
-                DataTable dtHatchu = juchuB.getHatchuData(txtHatchuNo.Text);
-
-                if (dtHatchu != null && dtHatchu.Rows.Count > 0)
-                {
-                    txtHatchusu.Text = dtHatchu.Rows[0]["発注数量"].ToString();
-                    tsShiiresaki.CodeTxtText = dtHatchu.Rows[0]["仕入先コード"].ToString();
-                    txtShiireNoki.Text = dtHatchu.Rows[0]["納期"].ToString();
-                    txtShiireChuban.Text = dtHatchu.Rows[0]["注番"].ToString();
-                    txtShiireTanto.Text = dtHatchu.Rows[0]["担当者コード"].ToString();
-                    tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
         }
 
         private void cmbSubWinShow_SelectedIndexChanged(object sender, EventArgs e)
