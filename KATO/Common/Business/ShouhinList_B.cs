@@ -480,14 +480,6 @@ namespace KATO.Common.Business
                     shohinmotochokakunin.setShohinClose();
                     break;
                 }
-                //受注入力のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_JUCHUINPUT && frm.Name == "A0010_JuchuInput")
-                {
-                    //データを連れてくるため、newをしないこと
-                    A0010_JuchuInput juchuInput = (A0010_JuchuInput)frm;
-                    juchuInput.setShohinClose();
-                    break;
-                }
                 //発注入力のフォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_HACHUINPUT && frm.Name == "A0100_HachuInput")
                 {
