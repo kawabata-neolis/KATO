@@ -46,7 +46,7 @@ namespace KATO.Common.Ctl
 
         ///<summary>
         ///judDaibunruiKeyDown
-        ///コード入力項目でのキー入力判定（大分類）
+        ///コード入力項目でのキー入力判定（棚番）
         ///</summary>
         private void judTanabanKeyDown(object sender, KeyEventArgs e)
         {
@@ -402,20 +402,6 @@ namespace KATO.Common.Ctl
             else
             {
                 this.codeTxt.BackColor = Color.White;
-            }
-        }
-
-        ///<summary>
-        ///codeTxt_Validating
-        ///Leave後のエラーメッセージ判定
-        ///</summary>
-        private void codeTxt_Validating(object sender, CancelEventArgs e)
-        {
-            //エラーメッセージが出た場合
-            if (blMessageOn == true)
-            {
-                //全ての処理のキャンセル
-                e.Cancel = true;
             }
         }
     }

@@ -72,6 +72,10 @@ namespace KATO.Common.Business
             {
                 strWhere = strWhere + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[3] + "'";
             }
+            else
+            {
+                strWhere = strWhere + "";
+            }
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
@@ -318,99 +322,30 @@ namespace KATO.Common.Business
 
         ///<summary>
         ///getSelectItem
-        ///各画面へのデータ渡し
+        ///商品データの取得
         ///</summary>
-        public DataTable getSelectItem(List<int> lstInt, List<string> lstString)
+        public DataTable getSelectItem(string strSelectShohinCD)
         {
-            List<string> lstStringItem = new List<string>();
-
-            List<DataTable> lstDTTana = new List<DataTable>();
-
-            DataTable dtMaker = new DataTable();
-            DataTable dtDaibun = new DataTable();
-            DataTable dtChubun = new DataTable();
             DataTable dtShohin = new DataTable();
-
-            DataTable dtShohinTanaID = new DataTable();
-            DataTable dtShohinTanaIDMAX = new DataTable();
-            DataTable dtShohinTanaName = new DataTable();
 
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
-            string strSQLNameM = null;
-            string strSQLNameD = null;
-            string strSQLNameC = null;
-            string strSQLNameS = null;
+            //商品の処理
+            lstStringSQL = new List<string>();
 
-            strSQLNameM = "C_LIST_Maker_SELECT_LEAVE_NAME";
-            strSQLNameD = "C_LIST_Daibun_SELECT_LEAVE_NAME";
-            strSQLNameC = "C_LIST_Chubun_SELECT_LEAVE_NAME";
-            strSQLNameS = "C_LIST_Shohin_SELECT_LEAVE";
-
-            //配列設定
-            string[] aryStr = { lstString[3] };
-
-            //Makerの処理
-            //データ渡し用
             lstStringSQL.Add("Common");
-            lstStringSQL.Add(strSQLNameM);
+            lstStringSQL.Add("C_LIST_Shohin_SELECT_LEAVE");
+
+            OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                OpenSQL opensql = new OpenSQL();
-                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-                strSQLInput = string.Format(strSQLInput, aryStr);
-
-                dtMaker = dbconnective.ReadSql(strSQLInput);
-
-                //大分類の処理
-                lstStringSQL = new List<string>();
-
-                string[] aryStrD = { lstString[4] };
-
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLNameD);
-
-                strSQLInput = null;
-
-                opensql = new OpenSQL();
                 strSQLInput = opensql.setOpenSQL(lstStringSQL);
-
-                strSQLInput = string.Format(strSQLInput, aryStrD);
-
-                dtDaibun = dbconnective.ReadSql(strSQLInput);
-
-                //中分類の処理
-                lstStringSQL = new List<string>();
-
-                string[] aryStrC = { lstString[5] };
-
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLNameC);
-
-                strSQLInput = null;
-
-                strSQLInput = opensql.setOpenSQL(lstStringSQL);
-                strSQLInput = string.Format(strSQLInput, aryStrC);
-
-                dtChubun = dbconnective.ReadSql(strSQLInput);
-
-                //商品の処理
-                lstStringSQL = new List<string>();
-
-                string[] aryStrS = { lstString[2] };
-
-                lstStringSQL.Add("Common");
-                lstStringSQL.Add(strSQLNameS);
-
-                strSQLInput = null;
-
-                strSQLInput = opensql.setOpenSQL(lstStringSQL);
-                strSQLInput = string.Format(strSQLInput, aryStrS);
+                strSQLInput = string.Format(strSQLInput, strSelectShohinCD); //商品コード
 
                 dtShohin = dbconnective.ReadSql(strSQLInput);
 
@@ -432,7 +367,6 @@ namespace KATO.Common.Business
                     dtShohin.Rows[cnt]["建値仕入単価"] = decTatene.ToString();
                 }
 
-                //テスト完了後復帰
                 return (dtShohin);
             }
             catch (Exception ex)

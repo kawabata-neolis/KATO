@@ -45,10 +45,6 @@ namespace KATO.Common.Form
             this.gridTorihiki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblGihu = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblHon = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtGihu = new KATO.Common.Ctl.BaseText();
-            this.txtHon = new KATO.Common.Ctl.BaseText();
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,6 +177,7 @@ namespace KATO.Common.Form
             this.gridTorihiki.AllowUserToAddRows = false;
             this.gridTorihiki.AllowUserToResizeColumns = false;
             this.gridTorihiki.AllowUserToResizeRows = false;
+            this.gridTorihiki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -240,55 +237,6 @@ namespace KATO.Common.Form
             this.lblKensaku.Text = "検索文字列";
             this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblGihu
-            // 
-            this.lblGihu.AutoSize = true;
-            this.lblGihu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGihu.Location = new System.Drawing.Point(712, 56);
-            this.lblGihu.Name = "lblGihu";
-            this.lblGihu.Size = new System.Drawing.Size(39, 15);
-            this.lblGihu.strToolTip = null;
-            this.lblGihu.TabIndex = 99;
-            this.lblGihu.Text = "岐阜";
-            this.lblGihu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblGihu.Visible = false;
-            // 
-            // lblHon
-            // 
-            this.lblHon.AutoSize = true;
-            this.lblHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHon.Location = new System.Drawing.Point(609, 56);
-            this.lblHon.Name = "lblHon";
-            this.lblHon.Size = new System.Drawing.Size(39, 15);
-            this.lblHon.strToolTip = null;
-            this.lblHon.TabIndex = 99;
-            this.lblHon.Text = "本社";
-            this.lblHon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblHon.Visible = false;
-            // 
-            // txtGihu
-            // 
-            this.txtGihu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtGihu.Location = new System.Drawing.Point(759, 52);
-            this.txtGihu.MaxLength = 2;
-            this.txtGihu.Name = "txtGihu";
-            this.txtGihu.Size = new System.Drawing.Size(32, 22);
-            this.txtGihu.TabIndex = 92;
-            this.txtGihu.Tag = "";
-            this.txtGihu.Visible = false;
-            this.txtGihu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);
-            // 
-            // txtHon
-            // 
-            this.txtHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHon.Location = new System.Drawing.Point(657, 52);
-            this.txtHon.MaxLength = 2;
-            this.txtHon.Name = "txtHon";
-            this.txtHon.Size = new System.Drawing.Size(32, 22);
-            this.txtHon.TabIndex = 92;
-            this.txtHon.Visible = false;
-            this.txtHon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);
-            // 
             // ShouhinList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -305,10 +253,6 @@ namespace KATO.Common.Form
             this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.lblKensaku);
-            this.Controls.Add(this.lblGihu);
-            this.Controls.Add(this.lblHon);
-            this.Controls.Add(this.txtGihu);
-            this.Controls.Add(this.txtHon);
             this.Name = "ShouhinList";
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
@@ -327,10 +271,6 @@ namespace KATO.Common.Form
         private BaseButton btnF11;
         private BaseButton btnF12;
         private System.Windows.Forms.CheckBox chkNotToroku;
-        private BaseText txtHon;
-        private BaseText txtGihu;
-        private BaseLabel lblHon;
-        private BaseLabel lblGihu;
         private LabelSet_Daibunrui labelSet_Daibunrui;
         private LabelSet_Chubunrui labelSet_Chubunrui;
         private LabelSet_Maker labelSet_Maker;
