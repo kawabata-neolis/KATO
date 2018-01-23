@@ -67,7 +67,12 @@ namespace KATO.Business.A0010_JuchuInput
 
             if (dtSuryo != null && dtSuryo.Rows.Count > 0)
             {
-                retSuryo = (int)dtSuryo.Rows[0]["仕入済数量"];
+                decimal d = 0;
+                if (dtSuryo.Rows[0]["仕入済数量"] != null)
+                {
+                    d = decimal.Parse(dtSuryo.Rows[0]["仕入済数量"].ToString());
+                }
+                retSuryo = int.Parse((decimal.Round(d,0)).ToString());
             }
 
             return retSuryo;
@@ -109,19 +114,48 @@ namespace KATO.Business.A0010_JuchuInput
             aryPrm.Add(strUser);
             aryPrm.Add(strJuchuNo);
 
-            //DBConnective dbCon = new DBConnective();
             try
             {
-                //dbCon.BeginTrans();
                 dbConGr.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
-                //dbCon.Commit();
+
+                // 加工品受注情報を削除
+                String strSQL = "";
+                strSQL += "UPDATE 発注 ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " WHERE 受注番号= " + strJuchuNo;
+                dbConGr.RunSql(strSQL);
+
+                strSQL = "UPDATE 出庫ヘッダ  ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " FROM 出庫明細 ";
+                strSQL += " WHERE 出庫明細.受注番号= " + strJuchuNo;
+                strSQL += " AND 出庫ヘッダ.伝票番号=出庫明細.伝票番号";
+                dbConGr.RunSql(strSQL);
+
+                strSQL = "UPDATE 出庫明細  ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " WHERE 受注番号= " + strJuchuNo;
+                dbConGr.RunSql(strSQL);
             }
             catch (Exception ex)
             {
-                //dbCon.Rollback();
                 throw ex;
             }
 
+        }
+
+        public void delHachu(string strHachuban, string strUserName)
+        {
+            string strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
+
+            try
+            {
+                dbConGr.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         public void restoreDeadStock(string strDsNo)
@@ -437,7 +471,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT 営業所コード, 在庫数, フリー在庫数";
+            strQuery += "SELECT 営業所コード, 在庫数, フリー在庫数, 在庫数未来, フリー在庫数未来";
             strQuery += "  FROM 在庫数";
             strQuery += " WHERE 商品コード = '" + strShohinNo + "'";
             if (strEigyouCd != null)
@@ -537,7 +571,7 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void updChubanOnly(string strJuchuNo, string strChuban)
         {
-            string strQuery = "UPDATE 受注 SET 注番 = '" + strChuban + "' WHERE 受注番号 = " + strJuchuNo;
+            string strQuery = "UPDATE 受注 SET 注番 = '" + strChuban + "' WHERE 受注番号 = " + strJuchuNo + " AND 削除 = 'N'";
 
             DBConnective dbCon = new DBConnective();
             dbCon.BeginTrans();
@@ -630,10 +664,9 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "   AND メーカーコード = '" + strMaker + "'";
             strQuery += "   AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'') = '" + strHinmei + "'";
 
-            DBConnective dbCon = new DBConnective();
             try
             {
-                dtRet = dbCon.ReadSql(strQuery);
+                dtRet = dbConGr.ReadSql(strQuery);
             }
             catch (Exception ex)
             {
@@ -733,20 +766,6 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void delHachu(string strHachuban, string strUserName)
-        {
-            string strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
-
-            try
-            {
-                dbConGr.ReadSql(strSQL);
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
         public string getChubanName(string cd)
         {
             DataTable dtRet = null;
@@ -825,7 +844,7 @@ namespace KATO.Business.A0010_JuchuInput
             //strQuery += "           RTRIM(ISNULL(a.Ｃ４,'')) + ' ' + ";
             //strQuery += "           RTRIM(ISNULL(a.Ｃ５,'')) + ' ' + ";
             //strQuery += "           RTRIM(ISNULL(a.Ｃ６,'')) AS 型番";
-            strQuery += "           RTRIM(ISNULL(a.Ｃ１,'')) AS 型番";
+            strQuery += "      ,RTRIM(ISNULL(a.Ｃ１,'')) AS 型番";
             strQuery += "      ,a.受注数量 AS 受注数量";
             strQuery += "      ,CONVERT(VARCHAR, a.納期, 111) as 納期";
             strQuery += "      ,a.本社出庫数 AS 本社出庫";
@@ -876,13 +895,46 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void updZaiko(bool bPlus, string eigyo, string shohin, string sSu)
         {
-            string strQuery = "UPDATE 在庫数 SET ";
+            string strQuery = "";
+
+            strQuery = "SELECT * FROM 在庫数";
+            strQuery += " WHERE 商品コード = '" + shohin + "'";
+            strQuery += "   AND 営業所コード = '" + eigyo + "'";
+
+
+            try
+            {
+                DataTable dt = dbConGr.ReadSql(strQuery);
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    strQuery = "INSERT INTO 在庫数";
+                    strQuery += "(商品コード, 営業所コード, 在庫数, フリー在庫数, 在庫数未来, フリー在庫数未来, 登録日時, 登録ユーザー名, 更新日時, 更新ユーザー名) ";
+                    strQuery += " VALUES ";
+                    if (bPlus)
+                    {
+                        strQuery += "('" + shohin + "', '" + eigyo + "', " + sSu + ", " + sSu + ", 0, 0, '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "', '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "')";
+                    }
+                    else
+                    {
+                        strQuery += "('" + shohin + "', '" + eigyo + "', -" + sSu + ", -" + sSu + ", 0, 0, '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "', '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "')";
+                    }
+                    dbConGr.RunSql(strQuery);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            strQuery = "UPDATE 在庫数 SET ";
             if (bPlus) {
-                strQuery += "フリー在庫数 = フリー在庫数 + " + sSu;
+                strQuery += "在庫数 = 在庫数 + " + sSu;
+                strQuery += ", フリー在庫数 = フリー在庫数 + " + sSu;
             }
             else
             {
-                strQuery += "フリー在庫数 = フリー在庫数 - " + sSu;
+                strQuery += "在庫数 = 在庫数 - " + sSu;
+                strQuery += ", フリー在庫数 = フリー在庫数 - " + sSu;
             }
             strQuery += " WHERE 商品コード = '" + shohin + "'";
             strQuery += "   AND 営業所コード = '" + eigyo + "'";

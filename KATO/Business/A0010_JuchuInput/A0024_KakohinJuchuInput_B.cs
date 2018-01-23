@@ -189,56 +189,56 @@ namespace KATO.Business.A0010_JuchuInput
             return retFlg;
         }
 
-        public void delJuchu(string strJuchuNo, string strUser)
-        {
-            List<String> aryPrm = new List<string>();
-            List<String> aryCol = new List<string>();
+        //public void delJuchu(string strJuchuNo, string strUser)
+        //{
+        //    List<String> aryPrm = new List<string>();
+        //    List<String> aryCol = new List<string>();
 
-            aryCol.Add("@ユーザー名");
-            aryCol.Add("@受注番号");
+        //    aryCol.Add("@ユーザー名");
+        //    aryCol.Add("@受注番号");
 
-            aryPrm.Add(strUser);
-            aryPrm.Add(strJuchuNo);
+        //    aryPrm.Add(strUser);
+        //    aryPrm.Add(strJuchuNo);
 
-            DBConnective dbCon = new DBConnective();
-            dbCon.DB_Connect();
-            dbCon.BeginTrans();
-            try
-            {
-                dbCon.BeginTrans();
-                dbCon.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+        //    DBConnective dbCon = new DBConnective();
+        //    dbCon.DB_Connect();
+        //    dbCon.BeginTrans();
+        //    try
+        //    {
+        //        dbCon.BeginTrans();
+        //        dbCon.RunSql("受注入力削除_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
                 
-                String strSQL = "";
-                strSQL += "UPDATE 発注 ";
-                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
-                strSQL += " WHERE 受注番号= " + strJuchuNo;
-                dbCon.RunSql(strSQL);
+        //        String strSQL = "";
+        //        strSQL += "UPDATE 発注 ";
+        //        strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+        //        strSQL += " WHERE 受注番号= " + strJuchuNo;
+        //        dbCon.RunSql(strSQL);
 
-                strSQL = "UPDATE 出庫ヘッダ  ";
-                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
-                strSQL += " FROM 出庫明細 ";
-                strSQL += " WHERE 出庫明細.受注番号= " + strJuchuNo;
-                strSQL += " AND 出庫ヘッダ.伝票番号=出庫明細.伝票番号";
-                dbCon.RunSql(strSQL);
+        //        strSQL = "UPDATE 出庫ヘッダ  ";
+        //        strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+        //        strSQL += " FROM 出庫明細 ";
+        //        strSQL += " WHERE 出庫明細.受注番号= " + strJuchuNo;
+        //        strSQL += " AND 出庫ヘッダ.伝票番号=出庫明細.伝票番号";
+        //        dbCon.RunSql(strSQL);
 
-                strSQL = "UPDATE 出庫明細  ";
-                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
-                strSQL += " WHERE 受注番号= " + strJuchuNo;
-                dbCon.RunSql(strSQL);
+        //        strSQL = "UPDATE 出庫明細  ";
+        //        strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+        //        strSQL += " WHERE 受注番号= " + strJuchuNo;
+        //        dbCon.RunSql(strSQL);
                 
-                dbCon.Commit();
-            }
-            catch (Exception ex)
-            {
-                dbCon.Rollback();
-                throw ex;
-            }
-            finally
-            {
-                dbCon.DB_Disconnect();
-            }
+        //        dbCon.Commit();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        dbCon.Rollback();
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        dbCon.DB_Disconnect();
+        //    }
 
-        }
+        //}
 
 
         public void updateShiireTanka(string strJuchuNo, string strTanka)
@@ -993,7 +993,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void delHachuS(string strHachuban, string strUserName)
+        public void delHachuS(string strHachuban, string strUserName,bool hatchuFlg)
         {
             string strSQL = null;
 
@@ -1005,17 +1005,17 @@ namespace KATO.Business.A0010_JuchuInput
             dbconnective.BeginTrans();
             try
             {
-                strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
+                if (hatchuFlg) {
+                    strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    dbconnective.ReadSql(strSQL);
+                }
+                else {
+                    strSQL = "出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    dbconnective.ReadSql(strSQL);
 
-                strSQL = "仮加工削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
-
-                strSQL = "出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
-
-                strSQL = "出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
+                    strSQL = "出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    dbconnective.ReadSql(strSQL);
+                }
 
                 //コミット開始
                 dbconnective.Commit();

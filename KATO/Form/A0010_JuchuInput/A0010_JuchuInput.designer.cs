@@ -127,6 +127,7 @@
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 19;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -230,7 +231,8 @@
             this.txtEigyoshoCd.Location = new System.Drawing.Point(943, 10);
             this.txtEigyoshoCd.Name = "txtEigyoshoCd";
             this.txtEigyoshoCd.Size = new System.Drawing.Size(38, 22);
-            this.txtEigyoshoCd.TabIndex = 4;
+            this.txtEigyoshoCd.TabIndex = 46;
+            this.txtEigyoshoCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // lblHinmei
             // 
@@ -274,8 +276,8 @@
             this.txtSearchStr.Location = new System.Drawing.Point(377, 140);
             this.txtSearchStr.Name = "txtSearchStr";
             this.txtSearchStr.Size = new System.Drawing.Size(277, 22);
-            this.txtSearchStr.TabIndex = 9;
-            this.txtSearchStr.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchStr_KeyUp);
+            this.txtSearchStr.TabIndex = 8;
+            this.txtSearchStr.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchStr_KeyDown);
             this.txtSearchStr.Leave += new System.EventHandler(this.txtSearchStr_Leave);
             // 
             // label12
@@ -296,7 +298,8 @@
             this.txtHinmei.Location = new System.Drawing.Point(96, 168);
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(440, 22);
-            this.txtHinmei.TabIndex = 10;
+            this.txtHinmei.TabIndex = 9;
+            this.txtHinmei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // lblTanaban
             // 
@@ -340,7 +343,7 @@
             this.txtJuchuTankaSub.Location = new System.Drawing.Point(435, 198);
             this.txtJuchuTankaSub.Name = "txtJuchuTankaSub";
             this.txtJuchuTankaSub.Size = new System.Drawing.Size(38, 22);
-            this.txtJuchuTankaSub.TabIndex = 14;
+            this.txtJuchuTankaSub.TabIndex = 61;
             // 
             // lblSiireTanka
             // 
@@ -360,7 +363,7 @@
             this.txtSiireTankaSub.Location = new System.Drawing.Point(729, 198);
             this.txtSiireTankaSub.Name = "txtSiireTankaSub";
             this.txtSiireTankaSub.Size = new System.Drawing.Size(38, 22);
-            this.txtSiireTankaSub.TabIndex = 16;
+            this.txtSiireTankaSub.TabIndex = 62;
             // 
             // lblKinSiireTanka
             // 
@@ -380,7 +383,7 @@
             this.txtKinSiireTankaSub.Location = new System.Drawing.Point(1059, 198);
             this.txtKinSiireTankaSub.Name = "txtKinSiireTankaSub";
             this.txtKinSiireTankaSub.Size = new System.Drawing.Size(38, 22);
-            this.txtKinSiireTankaSub.TabIndex = 18;
+            this.txtKinSiireTankaSub.TabIndex = 63;
             // 
             // lblNoki
             // 
@@ -436,7 +439,8 @@
             this.txtChuban.Location = new System.Drawing.Point(96, 256);
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(264, 22);
-            this.txtChuban.TabIndex = 17;
+            this.txtChuban.TabIndex = 15;
+            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // cbChuban
             // 
@@ -444,7 +448,7 @@
             this.cbChuban.Location = new System.Drawing.Point(366, 260);
             this.cbChuban.Name = "cbChuban";
             this.cbChuban.Size = new System.Drawing.Size(96, 16);
-            this.cbChuban.TabIndex = 18;
+            this.cbChuban.TabIndex = 58;
             this.cbChuban.TabStop = false;
             this.cbChuban.Text = "注番のみ更新";
             this.cbChuban.UseVisualStyleBackColor = true;
@@ -507,7 +511,7 @@
             this.gridZaiko.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridZaiko.Size = new System.Drawing.Size(432, 63);
             this.gridZaiko.StandardTab = true;
-            this.gridZaiko.TabIndex = 55;
+            this.gridZaiko.TabIndex = 45;
             this.gridZaiko.TabStop = false;
             // 
             // txtFreeZaiko
@@ -518,7 +522,7 @@
             this.txtFreeZaiko.Name = "txtFreeZaiko";
             this.txtFreeZaiko.ReadOnly = true;
             this.txtFreeZaiko.Size = new System.Drawing.Size(129, 22);
-            this.txtFreeZaiko.TabIndex = 56;
+            this.txtFreeZaiko.TabIndex = 53;
             this.txtFreeZaiko.TabStop = false;
             this.txtFreeZaiko.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -566,6 +570,7 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -606,7 +611,7 @@
             this.gridJuchuZanMeisai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridJuchuZanMeisai.Size = new System.Drawing.Size(1071, 342);
             this.gridJuchuZanMeisai.StandardTab = true;
-            this.gridJuchuZanMeisai.TabIndex = 25;
+            this.gridJuchuZanMeisai.TabIndex = 43;
             this.gridJuchuZanMeisai.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridJuchuZanMeisai_CellDoubleClick);
             // 
             // lblMeisaiGuide
@@ -639,7 +644,7 @@
             this.lsDaibunrui.SpaceCodeValue = 15;
             this.lsDaibunrui.SpaceNameCode = 23;
             this.lsDaibunrui.SpaceValueAppend = 4;
-            this.lsDaibunrui.TabIndex = 6;
+            this.lsDaibunrui.TabIndex = 5;
             this.lsDaibunrui.ValueLabelSize = 129;
             this.lsDaibunrui.ValueLabelText = "";
             // 
@@ -658,7 +663,7 @@
             this.lsChubunrui.SpaceNameCode = 23;
             this.lsChubunrui.SpaceValueAppend = 4;
             this.lsChubunrui.strDaibunCd = null;
-            this.lsChubunrui.TabIndex = 7;
+            this.lsChubunrui.TabIndex = 6;
             this.lsChubunrui.ValueLabelSize = 129;
             this.lsChubunrui.ValueLabelText = "";
             // 
@@ -677,7 +682,7 @@
             this.lsMaker.SpaceNameCode = 7;
             this.lsMaker.SpaceValueAppend = 4;
             this.lsMaker.strDaibunCd = null;
-            this.lsMaker.TabIndex = 8;
+            this.lsMaker.TabIndex = 7;
             this.lsMaker.ValueLabelSize = 129;
             this.lsMaker.ValueLabelText = "";
             // 
@@ -691,6 +696,7 @@
             this.cbSiireTanka.Name = "cbSiireTanka";
             this.cbSiireTanka.Size = new System.Drawing.Size(146, 23);
             this.cbSiireTanka.TabIndex = 13;
+            this.cbSiireTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbJuchuTanka_KeyDown_1);
             // 
             // cbJuchuTanka
             // 
@@ -703,7 +709,7 @@
             this.cbJuchuTanka.Size = new System.Drawing.Size(146, 23);
             this.cbJuchuTanka.TabIndex = 12;
             this.cbJuchuTanka.SelectedIndexChanged += new System.EventHandler(this.cbJuchuTanka_SelectedIndexChanged);
-            this.cbJuchuTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbJuchuTanka_KeyDown);
+            this.cbJuchuTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbJuchuTanka_KeyDown_1);
             this.cbJuchuTanka.Leave += new System.EventHandler(this.cbJuchuTanka_Leave);
             // 
             // txtNoki
@@ -712,7 +718,7 @@
             this.txtNoki.Location = new System.Drawing.Point(96, 227);
             this.txtNoki.Name = "txtNoki";
             this.txtNoki.Size = new System.Drawing.Size(100, 22);
-            this.txtNoki.TabIndex = 15;
+            this.txtNoki.TabIndex = 14;
             this.txtNoki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNoki.Leave += new System.EventHandler(this.txtNoki_Leave);
             // 
@@ -731,6 +737,7 @@
             this.txtJuchuSuryo.TabIndex = 11;
             this.txtJuchuSuryo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchuSuryo.Enter += new System.EventHandler(this.txtJuchuSuryo_Enter);
+            this.txtJuchuSuryo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJuchuSuryo_KeyDown);
             this.txtJuchuSuryo.Leave += new System.EventHandler(this.txtJuchuSuryo_Leave);
             // 
             // lsJuchusha
@@ -747,7 +754,7 @@
             this.lsJuchusha.SpaceCodeValue = 5;
             this.lsJuchusha.SpaceNameCode = 7;
             this.lsJuchusha.SpaceValueAppend = 4;
-            this.lsJuchusha.TabIndex = 3;
+            this.lsJuchusha.TabIndex = 2;
             this.lsJuchusha.ValueLabelSize = 129;
             this.lsJuchusha.ValueLabelText = "";
             // 
@@ -763,7 +770,7 @@
             this.txtTeika.MaxLength = 8;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(129, 22);
-            this.txtTeika.TabIndex = 16;
+            this.txtTeika.TabIndex = 59;
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHonshaShukko
@@ -778,8 +785,9 @@
             this.txtHonshaShukko.MaxLength = 10;
             this.txtHonshaShukko.Name = "txtHonshaShukko";
             this.txtHonshaShukko.Size = new System.Drawing.Size(129, 22);
-            this.txtHonshaShukko.TabIndex = 19;
+            this.txtHonshaShukko.TabIndex = 16;
             this.txtHonshaShukko.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHonshaShukko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHonshaShukko_KeyDown);
             // 
             // txtGihuShukko
             // 
@@ -793,8 +801,9 @@
             this.txtGihuShukko.MaxLength = 10;
             this.txtGihuShukko.Name = "txtGihuShukko";
             this.txtGihuShukko.Size = new System.Drawing.Size(129, 22);
-            this.txtGihuShukko.TabIndex = 20;
+            this.txtGihuShukko.TabIndex = 17;
             this.txtGihuShukko.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGihuShukko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHonshaShukko_KeyDown);
             // 
             // txtHatchusu
             // 
@@ -808,8 +817,9 @@
             this.txtHatchusu.MaxLength = 10;
             this.txtHatchusu.Name = "txtHatchusu";
             this.txtHatchusu.Size = new System.Drawing.Size(129, 22);
-            this.txtHatchusu.TabIndex = 21;
+            this.txtHatchusu.TabIndex = 18;
             this.txtHatchusu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHatchusu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHonshaShukko_KeyDown);
             this.txtHatchusu.Leave += new System.EventHandler(this.txtHatchusu_Leave);
             // 
             // tsTokuisaki
@@ -827,7 +837,7 @@
             this.tsTokuisaki.SpaceCodeValue = 5;
             this.tsTokuisaki.SpaceNameCode = 8;
             this.tsTokuisaki.SpaceValueAppend = 4;
-            this.tsTokuisaki.TabIndex = 0;
+            this.tsTokuisaki.TabIndex = 3;
             this.tsTokuisaki.ValueTextSize = 423;
             this.tsTokuisaki.valueTextText = "";
             this.tsTokuisaki.Leave += new System.EventHandler(this.tsTokuisaki_Leave);
@@ -864,7 +874,7 @@
             this.txtJuchuYMD.Location = new System.Drawing.Point(121, 10);
             this.txtJuchuYMD.Name = "txtJuchuYMD";
             this.txtJuchuYMD.Size = new System.Drawing.Size(100, 22);
-            this.txtJuchuYMD.TabIndex = 2;
+            this.txtJuchuYMD.TabIndex = 0;
             this.txtJuchuYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHatchushiji
@@ -873,7 +883,8 @@
             this.txtHatchushiji.Location = new System.Drawing.Point(135, 5);
             this.txtHatchushiji.Name = "txtHatchushiji";
             this.txtHatchushiji.Size = new System.Drawing.Size(19, 22);
-            this.txtHatchushiji.TabIndex = 0;
+            this.txtHatchushiji.TabIndex = 49;
+            this.txtHatchushiji.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHatchushiji_KeyDown);
             // 
             // baseLabel1
             // 
@@ -905,7 +916,8 @@
             this.txtTantosha.Location = new System.Drawing.Point(943, 38);
             this.txtTantosha.Name = "txtTantosha";
             this.txtTantosha.Size = new System.Drawing.Size(38, 22);
-            this.txtTantosha.TabIndex = 5;
+            this.txtTantosha.TabIndex = 47;
+            this.txtTantosha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // baseLabel6
             // 
@@ -925,7 +937,7 @@
             this.txtShohinCd.Location = new System.Drawing.Point(377, 112);
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.Size = new System.Drawing.Size(162, 22);
-            this.txtShohinCd.TabIndex = 130;
+            this.txtShohinCd.TabIndex = 44;
             this.txtShohinCd.Leave += new System.EventHandler(this.txtShohinCd_Leave);
             // 
             // baseLabel9
@@ -948,6 +960,7 @@
             this.txtShukkaShiji.Name = "txtShukkaShiji";
             this.txtShukkaShiji.Size = new System.Drawing.Size(19, 22);
             this.txtShukkaShiji.TabIndex = 132;
+            this.txtShukkaShiji.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // baseLabel10
             // 
@@ -968,6 +981,7 @@
             this.txtZaikoHikiate.Name = "txtZaikoHikiate";
             this.txtZaikoHikiate.Size = new System.Drawing.Size(19, 22);
             this.txtZaikoHikiate.TabIndex = 134;
+            this.txtZaikoHikiate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // baseLabel11
             // 
@@ -988,6 +1002,7 @@
             this.txtUriage.Name = "txtUriage";
             this.txtUriage.Size = new System.Drawing.Size(19, 22);
             this.txtUriage.TabIndex = 136;
+            this.txtUriage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // baseLabel12
             // 
@@ -1013,7 +1028,7 @@
             this.txtUriSuryo.MaxLength = 10;
             this.txtUriSuryo.Name = "txtUriSuryo";
             this.txtUriSuryo.Size = new System.Drawing.Size(129, 22);
-            this.txtUriSuryo.TabIndex = 22;
+            this.txtUriSuryo.TabIndex = 54;
             this.txtUriSuryo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel13
@@ -1046,7 +1061,8 @@
             this.txtHatchuNo.Location = new System.Drawing.Point(135, 33);
             this.txtHatchuNo.Name = "txtHatchuNo";
             this.txtHatchuNo.Size = new System.Drawing.Size(70, 22);
-            this.txtHatchuNo.TabIndex = 1;
+            this.txtHatchuNo.TabIndex = 50;
+            this.txtHatchuNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJuchuSuryo_KeyDown);
             this.txtHatchuNo.Leave += new System.EventHandler(this.txtHatchuNo_Leave);
             // 
             // tsShiiresaki
@@ -1064,7 +1080,7 @@
             this.tsShiiresaki.SpaceCodeValue = 5;
             this.tsShiiresaki.SpaceNameCode = 72;
             this.tsShiiresaki.SpaceValueAppend = 4;
-            this.tsShiiresaki.TabIndex = 3;
+            this.tsShiiresaki.TabIndex = 20;
             this.tsShiiresaki.ValueTextSize = 423;
             this.tsShiiresaki.valueTextText = "";
             this.tsShiiresaki.Leave += new System.EventHandler(this.tsShiiresaki_Leave);
@@ -1087,7 +1103,7 @@
             this.txtShiireNoki.Location = new System.Drawing.Point(135, 90);
             this.txtShiireNoki.Name = "txtShiireNoki";
             this.txtShiireNoki.Size = new System.Drawing.Size(100, 22);
-            this.txtShiireNoki.TabIndex = 4;
+            this.txtShiireNoki.TabIndex = 22;
             this.txtShiireNoki.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiireNoki.Leave += new System.EventHandler(this.txtShiireNoki_Leave);
             // 
@@ -1109,7 +1125,8 @@
             this.txtShiireChuban.Location = new System.Drawing.Point(135, 118);
             this.txtShiireChuban.Name = "txtShiireChuban";
             this.txtShiireChuban.Size = new System.Drawing.Size(264, 22);
-            this.txtShiireChuban.TabIndex = 5;
+            this.txtShiireChuban.TabIndex = 23;
+            this.txtShiireChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
             // 
             // baseLabel7
             // 
@@ -1129,7 +1146,8 @@
             this.txtShiireTanto.Location = new System.Drawing.Point(324, 33);
             this.txtShiireTanto.Name = "txtShiireTanto";
             this.txtShiireTanto.Size = new System.Drawing.Size(38, 22);
-            this.txtShiireTanto.TabIndex = 2;
+            this.txtShiireTanto.TabIndex = 51;
+            this.txtShiireTanto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJuchuSuryo_KeyDown);
             // 
             // baseLabel8
             // 
@@ -1150,7 +1168,7 @@
             this.txtC1.Location = new System.Drawing.Point(135, 144);
             this.txtC1.Name = "txtC1";
             this.txtC1.Size = new System.Drawing.Size(60, 22);
-            this.txtC1.TabIndex = 124;
+            this.txtC1.TabIndex = 24;
             this.txtC1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtC1_KeyDown);
             // 
             // txtC2
@@ -1159,7 +1177,7 @@
             this.txtC2.Location = new System.Drawing.Point(201, 144);
             this.txtC2.Name = "txtC2";
             this.txtC2.Size = new System.Drawing.Size(60, 22);
-            this.txtC2.TabIndex = 125;
+            this.txtC2.TabIndex = 25;
             // 
             // txtC3
             // 
@@ -1167,7 +1185,7 @@
             this.txtC3.Location = new System.Drawing.Point(267, 144);
             this.txtC3.Name = "txtC3";
             this.txtC3.Size = new System.Drawing.Size(60, 22);
-            this.txtC3.TabIndex = 126;
+            this.txtC3.TabIndex = 26;
             // 
             // txtC4
             // 
@@ -1175,7 +1193,7 @@
             this.txtC4.Location = new System.Drawing.Point(333, 144);
             this.txtC4.Name = "txtC4";
             this.txtC4.Size = new System.Drawing.Size(60, 22);
-            this.txtC4.TabIndex = 127;
+            this.txtC4.TabIndex = 27;
             // 
             // txtC5
             // 
@@ -1183,7 +1201,7 @@
             this.txtC5.Location = new System.Drawing.Point(399, 144);
             this.txtC5.Name = "txtC5";
             this.txtC5.Size = new System.Drawing.Size(60, 22);
-            this.txtC5.TabIndex = 128;
+            this.txtC5.TabIndex = 28;
             // 
             // txtC6
             // 
@@ -1191,7 +1209,7 @@
             this.txtC6.Location = new System.Drawing.Point(465, 144);
             this.txtC6.Name = "txtC6";
             this.txtC6.Size = new System.Drawing.Size(60, 22);
-            this.txtC6.TabIndex = 129;
+            this.txtC6.TabIndex = 29;
             // 
             // panel1
             // 
@@ -1217,7 +1235,7 @@
             this.panel1.Location = new System.Drawing.Point(772, 222);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(623, 170);
-            this.panel1.TabIndex = 140;
+            this.panel1.TabIndex = 20;
             // 
             // cbKinShiireTanka
             // 
@@ -1228,7 +1246,8 @@
             this.cbKinShiireTanka.Location = new System.Drawing.Point(907, 198);
             this.cbKinShiireTanka.Name = "cbKinShiireTanka";
             this.cbKinShiireTanka.Size = new System.Drawing.Size(146, 23);
-            this.cbKinShiireTanka.TabIndex = 14;
+            this.cbKinShiireTanka.TabIndex = 60;
+            this.cbKinShiireTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJuchuSuryo_KeyDown);
             this.cbKinShiireTanka.Leave += new System.EventHandler(this.cbKinShiireTanka_Leave);
             // 
             // A0010_JuchuInput

@@ -261,7 +261,7 @@ namespace KATO.Form.A0010_JuchuInput
             //}
         }
 
-                // 入力欄削除
+        // 入力欄削除
         private void btnDelRow_Click(object sender, EventArgs e)
         {
             bool flg = true;
@@ -1371,11 +1371,11 @@ namespace KATO.Form.A0010_JuchuInput
             }
             else if (e.KeyCode == Keys.F3)
             {
-                delKakoJuchu();
+                //delKakoJuchu();
             }
             else if (e.KeyCode == Keys.F4)
             {
-                clearInput();
+                //clearInput();
             }
             else if (e.KeyCode == Keys.F6)
             {
@@ -1387,90 +1387,13 @@ namespace KATO.Form.A0010_JuchuInput
             }
             else if (e.KeyCode == Keys.F12)
             {
+                a0010JInput.f6 = null;
                 this.Close();
-                this.Dispose();
+                // this.Dispose();
             }
         }
 
-
-        private void delKakoJuchu()
-        {
-            BaseMessageBox basemessage;
-
-            if (string.IsNullOrWhiteSpace(strJuchuNo))
-            {
-                basemessage = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "削除する伝票を呼び出してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessage.ShowDialog();
-                return;
-            }
-
-            A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
-            try
-            {
-                BaseMessageBox basemessagebox;
-
-                decimal decSuryo = juchuB.getUriagezumisuryo(strJuchuNo);
-                if (decSuryo > 0)
-                {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに売上済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
-                decSuryo = juchuB.getShiirezumisuryo(strJuchuNo);
-                if (decSuryo > 0)
-                {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
-                string strFlg = juchuB.getZaikoHikiateFlg(strJuchuNo);
-                if (strFlg.Equals("1"))
-                {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
-                strFlg = juchuB.getShukkoFlg(strJuchuNo);
-                if (strFlg.Equals("1"))
-                {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
-                decSuryo = juchuB.getShukkoToroku(strJuchuNo);
-                if (decSuryo > 0)
-                {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫登録が残っています。先に出庫データを削除してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-
-                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-                //NOが押された場合
-                if (basemessageboxSa.ShowDialog() == DialogResult.No)
-                {
-                    return;
-                }
-
-                juchuB.delJuchu(strJuchuNo, lblStatusUser.Text);
-
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
-                //clearInput();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
-        }
-
+        // 加工品受注個別削除
         private void delKakoJuchuS(Panel c, bool f)
         {
             strHachuNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
@@ -1481,17 +1404,18 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             string cate = ((Label)c.Controls["cate"]).Text;
+            bool hatchuFlg = false;
             A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
 
             try
             {
-                BaseMessageBox basemessagebox;
                 if (cate.Equals(labels[0]) || cate.Equals(labels[2]))
                 {
-                    decimal intSuryo = juchuB.getShiirezumisuryoH(strHachuNo);
-                    if (intSuryo > 0)
+                    hatchuFlg = true;
+                    decimal decSuryo = juchuB.getShiirezumisuryoH(strHachuNo);
+                    if (decSuryo > 0)
                     {
-                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "すでに仕入済みです。削除できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
                         return;
                     }
@@ -1500,7 +1424,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string strFlg = juchuB.getZaikoHikiateFlg(strJuchuNo);
                 if (strFlg.Equals("1"))
                 {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                     return;
                 }
@@ -1508,7 +1432,7 @@ namespace KATO.Form.A0010_JuchuInput
                 strFlg = juchuB.getShukkoFlg(strJuchuNo);
                 if (strFlg.Equals("1"))
                 {
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。変更・削除は禁止です", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                     return;
                 }
@@ -1521,7 +1445,7 @@ namespace KATO.Form.A0010_JuchuInput
                         return;
                     }
                 }
-                juchuB.delHachuS(strHachuNo, Environment.UserName);
+                juchuB.delHachuS(strHachuNo, Environment.UserName, hatchuFlg);
 
             }
             catch (Exception ex)
@@ -1533,6 +1457,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
+        // 加工品登録
         private void updKakoInput()
         {
             if (!chkData())
@@ -1541,56 +1466,10 @@ namespace KATO.Form.A0010_JuchuInput
             }
             string strShoCd = "88888";
             decimal JucyuKin = 0;
-            decimal Arari = 0;
-            decimal dTotal = 0;
 
             if (!string.IsNullOrWhiteSpace(strShohin))
             {
                 strShoCd = strShohin;
-            }
-
-            if (!string.IsNullOrWhiteSpace(strJuchuTanka) && string.IsNullOrWhiteSpace(strJuchuSu))
-            {
-                JucyuKin = decimal.Parse(strJuchuTanka) * decimal.Parse(strJuchuSu);
-            }
-            if (!string.IsNullOrWhiteSpace(strShiireTanka) && string.IsNullOrWhiteSpace(strJuchuSu))
-            {
-                Arari = JucyuKin - decimal.Parse(strShiireTanka) * decimal.Parse(strJuchuSu);
-            }
-
-            TableLayoutControlCollection c = tableLayoutPanel1.Controls;
-
-            foreach (Control cc in c)
-            {
-                string sLbl = ((Label)cc.Controls["cate"]).Text;
-                string sHSha = ((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText;
-                string sHYMD = ((BaseCalendar)cc.Controls["txtHYMD"]).Text;
-                string sHShiire = ((LabelSet_Shiresaki)cc.Controls["lsShiire"]).CodeTxtText;
-                string sHNo = ((BaseTextMoney)cc.Controls["txtHNo"]).Text;
-                string sHDai = ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText;
-                string sHChubun = ((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText;
-                string sHMak = ((LabelSet_Maker)cc.Controls["lsMaker"]).CodeTxtText;
-                string sHHin = ((BaseText)cc.Controls["txtHinmei"]).Text;
-                string sHTanaL = ((BaseLabelGray)cc.Controls["txtTanabanL"]).Text;
-                string sHTanaR = ((BaseLabelGray)cc.Controls["txtTanabanR"]).Text;
-                string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
-                string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
-                string sHNoki = ((BaseCalendar)cc.Controls["txtNohki"]).Text;
-                string sHChuban = ((BaseText)cc.Controls["txtChuban"]).Text;
-                string sShohin = ((BaseText)cc.Controls["txtShohin"]).Text;
-                string sShiireSu = ((BaseText)cc.Controls["txtShiireSu"]).Text;
-                string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
-                string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
-                string sTmpSu = ((BaseText)cc.Controls["tmpSuryo"]).Text;
-
-                if (!sLbl.Equals(labels[0]) && !string.IsNullOrWhiteSpace(sHTanka) && !string.IsNullOrWhiteSpace(sHSu))
-                {
-                    dTotal += decimal.Parse(sHTanka) * decimal.Parse(sHSu);
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(strJuchuSu)) {
-                strShiireTanka = (dTotal / decimal.Parse(strJuchuSu)).ToString();
             }
 
             DBConnective con = new DBConnective();
@@ -1602,43 +1481,7 @@ namespace KATO.Form.A0010_JuchuInput
                 con.DB_Connect();
                 con.BeginTrans();
 
-                List<String> aryPrm = new List<string>();
-
-                aryPrm.Add(strTokuiCd);
-                aryPrm.Add(strTokuiName);
-                aryPrm.Add(txtJuchuYMD.Text);
-                aryPrm.Add(strJuchuNo);
-                aryPrm.Add(strJuchusha);
-                aryPrm.Add(strEigyosho);
-                aryPrm.Add(strTantosha);
-                aryPrm.Add(strShoCd);
-                aryPrm.Add(lsMakerM.CodeTxtText);
-                aryPrm.Add(lsDaibunruiM.CodeTxtText);
-                aryPrm.Add(lsChubunruiM.CodeTxtText);
-                aryPrm.Add(strC1);
-                aryPrm.Add(strC2);
-                aryPrm.Add(strC3);
-                aryPrm.Add(strC4);
-                aryPrm.Add(strC5);
-                aryPrm.Add(strC6);
-                aryPrm.Add(strJuchuSu);
-                aryPrm.Add(strJuchuTanka);
-                aryPrm.Add(JucyuKin.ToString());
-                aryPrm.Add(strShiireTanka);
-                aryPrm.Add(Arari.ToString());
-                aryPrm.Add(strNoki);
-                aryPrm.Add("0");
-                aryPrm.Add("0");
-                aryPrm.Add("0");
-                aryPrm.Add(strChuban);
-                aryPrm.Add("1");
-                aryPrm.Add("0");
-                aryPrm.Add("0");
-                aryPrm.Add("1");
-                aryPrm.Add(Environment.UserName);
-
-                juchuB.updJuchu(aryPrm, con);
-
+                TableLayoutControlCollection c = tableLayoutPanel1.Controls;
                 foreach (Control cc in c)
                 {
                     if (changeVal((Panel)cc))
@@ -2326,120 +2169,6 @@ namespace KATO.Form.A0010_JuchuInput
 
         private bool chkData()
         {
-            if (!string.IsNullOrWhiteSpace(strJuchuNo) && strJuchuNo.Equals("0"))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "伝票番号＝０は無効です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtJuchuYMD.Text))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                txtJuchuYMD.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strJuchusha))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strTokuiCd))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(lsDaibunruiM.CodeTxtText))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                lsDaibunruiM.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(lsChubunruiM.CodeTxtText))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                lsChubunruiM.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(lsMakerM.CodeTxtText))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                lsMakerM.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtHinmei.Text))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                txtHinmei.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strJuchuSu))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strJuchuTanka))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strShiireTanka))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strNoki))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(strJuchuSu))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                return false;
-            }
-
-            if (!string.IsNullOrWhiteSpace(strJuchuNo))
-            {
-                A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
-                try
-                {
-                    DataTable dtHikiate = juchuB.getHikiate(strJuchuNo);
-
-                    if (dtHikiate != null && dtHikiate.Rows.Count > 0)
-                    {
-                        String strHikiate = dtHikiate.Rows[0]["在庫引当フラグ"].ToString();
-                        if (strHikiate.Equals("1"))
-                        {
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。納期以外の変更は禁止です\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_EXCLAMATION);
-                            //NOが押された場合
-                            if (basemessagebox.ShowDialog() == DialogResult.No)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
-            }
-
             TableLayoutControlCollection c = tableLayoutPanel1.Controls;
             bool flg = false;
             if (flg == false)
@@ -2877,67 +2606,6 @@ namespace KATO.Form.A0010_JuchuInput
                 return false;
             }
 
-            //if () {
-
-            int intRiekiFlg = 0;
-
-            intRiekiFlg = judRiekiritsu();
-
-            if (intRiekiFlg == 0)
-            {
-                bool blKokohin = true;
-                double dblRitsu = 0;
-                string strRitsuMsg = "";
-                decimal decTotal = Decimal.Parse(strJuchuTanka) * Decimal.Parse(strJuchuSu);
-
-                if (blKokohin)
-                {
-                    if (decTotal <= 2000)
-                    {
-                        dblRitsu = 0.5;
-                        strRitsuMsg = "利益率が５０％を割っています。（販売価格\\2000以下）\r\n続行しますか？";
-                    }
-                    else
-                    {
-                        dblRitsu = 0.75;
-                        strRitsuMsg = "利益率が２５％を割っています。\r\n続行しますか？";
-                    }
-                }
-                else
-                {
-                    dblRitsu = 0.85;
-                    strRitsuMsg = "利益率が１５％を割っています。\r\n続行しますか？";
-                }
-
-                //if ()
-                //{
-                bool blRieki10 = true;
-
-                if (blRieki10)
-                {
-                    if (Math.Abs(Double.Parse(strJuchuTanka)) < Math.Abs(Double.Parse(strShiireTanka)) / dblRitsu)
-                    {
-                        BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", strRitsuMsg, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-                        //NOが押された場合
-                        if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
-                        {
-                            return false;
-                        }
-                    }
-                }
-
-                //}
-            }
-            else if (intRiekiFlg == 1)
-            {
-
-            }
-            else if (intRiekiFlg == 2)
-            {
-                return false;
-            }
-            // }
-
             return true;
         }
 
@@ -3262,6 +2930,69 @@ namespace KATO.Form.A0010_JuchuInput
             button16.Enabled = true;
 
             getInfo();
+        }
+
+        // util 系
+        private decimal getDecValue(string s)
+        {
+            decimal ret = 0;
+
+            if (string.IsNullOrWhiteSpace(s))
+            {
+                return ret;
+            }
+
+            try
+            {
+                ret = decimal.Parse(s);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return ret;
+        }
+
+        // 加工入力の入力件数存在チェック
+        public bool isExistInput ()
+        {
+            bool ret = false;
+            TableLayoutControlCollection c = tableLayoutPanel1.Controls;
+
+            foreach (Control cc in c)
+            {
+                ret = true;
+                break;
+            }
+            return ret;
+        }
+
+        public string updTanka (string stJSu)
+        {
+            string ret = "";
+            decimal dTotal = 0;
+
+            TableLayoutControlCollection c = tableLayoutPanel1.Controls;
+
+            foreach (Control cc in c)
+            {
+                string sLbl = ((Label)cc.Controls["cate"]).Text;
+                string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
+                string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
+
+                if (!sLbl.Equals(labels[0]))
+                {
+                    dTotal += getDecValue(sHTanka) * getDecValue(sHSu);
+                }
+            }
+
+            if (!getDecValue(stJSu).Equals(0))
+            {
+                dTotal = decimal.Round(dTotal / getDecValue(stJSu), 2);
+            }
+
+            ret = dTotal.ToString();
+            return ret;
         }
     }
 }
