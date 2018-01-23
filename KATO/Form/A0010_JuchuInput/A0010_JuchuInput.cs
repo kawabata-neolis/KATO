@@ -2838,12 +2838,18 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void txtHonshaShukko_KeyDown(object sender, KeyEventArgs e)
         {
-            this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
         }
 
         private void txtChuban_KeyDown(object sender, KeyEventArgs e)
         {
-            this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
+            }
         }
     }
 }
