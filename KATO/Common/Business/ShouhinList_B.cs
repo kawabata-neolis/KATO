@@ -446,8 +446,8 @@ namespace KATO.Common.Business
             List<string> lstSQLSelect = new List<string>();
 
             //SQLファイルのパスとファイル名を追加(メニュー権限取得)
-            lstSQLSelect.Add("M1030_Shohin");
-            lstSQLSelect.Add("Shohin_SELECT_ShireTanka");
+            lstSQLSelect.Add("Common");
+            lstSQLSelect.Add("C_LIST_Shohin_SELECT_ShireTanka");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();

@@ -2430,10 +2430,10 @@
     <Content Include="SQL\M1020_Maker\Maker_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_ShireTanka.sql">
+    <Content Include="SQL\Common\C_LIST_Shohin_SELECT_ShireTanka.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\M1030_Shohin\Shohin_SELECT_SetC.sql">
+    <Content Include="SQL\M1030_Shohin\Shohin_Data_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1040_Torihikikbn\Torihikikbn_PrintData_SELECT.sql">

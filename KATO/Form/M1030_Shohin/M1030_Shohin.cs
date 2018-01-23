@@ -105,10 +105,6 @@ namespace KATO.Form.M1030_Shohin
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF10.Text = STR_FUNC_F10_SHOHIN;
             this.btnF12.Text = STR_FUNC_F12;
-
-            this.btnF09.Enabled = false;
-            this.btnF11.Enabled = false;
-
         }
 
         ///<summary>
@@ -444,6 +440,12 @@ namespace KATO.Form.M1030_Shohin
 
 
                     shouhinlist.ShowDialog();
+
+                    //初回時用、二回目以降は無くても動作する
+                    if (txtShohinCd.Text != "")
+                    {
+                        txtData1.Focus();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -507,8 +509,8 @@ namespace KATO.Form.M1030_Shohin
             //フォーカス位置の確保
             cActiveBefore = this.ActiveControl;
 
-            ////一度登録ボタンに移動して各データをチェック
-            //btnF01.Focus();
+            //商品コードからデータ取り出し（確認メッセージ用）
+            DataTable dtShohin = new DataTable();
 
             //空文字削除
             labelSet_Daibunrui.CodeTxtText.Trim();
@@ -665,8 +667,31 @@ namespace KATO.Form.M1030_Shohin
                 //修正登録
                 else
                 {
+                    //商品コードからデータの読み込み
+                    dtShohin = shohinB.getShohin(txtShohinCd.Text);
+
+                    //商品データがある場合
+                    if (dtShohin.Rows.Count > 0)
+                    {
+                        //一行目にデータがない場合
+                        if (dtShohin.Rows[0][0].ToString() == "")
+                        {
+                            return;
+                        }
+                    }
+
+
+
                     //メッセージボックスの処理、登録完了のウィンドウ（OK）
-                    BaseMessageBox basemessageboxUwagaki = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, lblGrayShohin.Text + "\r\n" + CommonTeisu.LABEL_TOUROKU_UWAGAKi, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_EXCLAMATION);
+                    BaseMessageBox basemessageboxUwagaki = new BaseMessageBox(this, 
+                                                                              CommonTeisu.TEXT_TOUROKU,
+                                                                              //dtShohin.Rows[0]["メーカー"].ToString().Trim() + " " + 
+                                                                              //dtShohin.Rows[0]["中分類名"].ToString().Trim() + " " + 
+                                                                              dtShohin.Rows[0]["品名"].ToString().Trim() + 
+                                                                              "\r\n" + 
+                                                                              CommonTeisu.LABEL_TOUROKU_UWAGAKi, 
+                                                                              CommonTeisu.BTN_YESNO, 
+                                                                              CommonTeisu.DIAG_EXCLAMATION);
                     //NOが押された場合
                     if (basemessageboxUwagaki.ShowDialog() == DialogResult.No)
                     {
@@ -700,6 +725,8 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void delText()
         {
+            string strToroku = lblGrayToroku.Text;
+
             delFormClear(this);
             txtHyojun.Text = "";
             txtShire.Text = "";
@@ -709,6 +736,8 @@ namespace KATO.Form.M1030_Shohin
             txtHako.Text = "";
             labelSet_Daibunrui.Focus();
             radSet_2btn_Toroku.radbtn0.Checked = true;
+
+            lblGrayToroku.Text = strToroku;
 
             txtZaiko.Text = "0";
         }
@@ -945,6 +974,8 @@ namespace KATO.Form.M1030_Shohin
             if (txtShohinCd.Text != "")
             {
                 txtData1.Focus();
+                //編集登録にチェック
+                radSet_2btn_Toroku.radbtn1.Checked = true;
             }
         }
 

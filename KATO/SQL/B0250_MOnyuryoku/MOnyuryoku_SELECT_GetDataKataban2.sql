@@ -23,7 +23,7 @@ SELECT Rtrim(ISNULL(ＭＯ.Ｃ１, '')) AS 型番,
        Rtrim(ISNULL(ＭＯ.Ｃ６,'')) AS Ｃ６,
        商品.箱入数,
        仕入.最終仕入日
-FROM ＭＯ join (
+FROM ＭＯ left join (
 	SELECT M.商品コード, MAX(H.伝票年月日) as 最終仕入日
 	FROM 仕入ヘッダ H,仕入明細 M
  	WHERE H.削除 = 'N'

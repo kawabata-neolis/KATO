@@ -248,5 +248,54 @@ namespace KATO.Business.M1030_Shohin
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///getShohin
+        ///商品コードから商品データを取得（編集登録メッセージ表示用）
+        ///</summary>
+        public DataTable getShohin(string strShohinCd)
+        {
+            DataTable dtShohin = new DataTable();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            //商品の処理
+            lstStringSQL = new List<string>();
+
+            lstStringSQL.Add("M1030_Shohin");
+            lstStringSQL.Add("Shohin_Data_SELECT");
+
+            OpenSQL opensql = new OpenSQL();
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLSelect = opensql.setOpenSQL(lstStringSQL);
+
+                //パスがなければ返す
+                if (strSQLSelect == "")
+                {
+                    return (dtShohin);
+                }
+
+                strSQLSelect = string.Format(strSQLSelect, strShohinCd); //商品コード
+
+                dtShohin = dbconnective.ReadSql(strSQLSelect);
+
+                return (dtShohin);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }

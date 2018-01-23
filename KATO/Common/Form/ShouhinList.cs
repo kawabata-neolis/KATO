@@ -1032,6 +1032,8 @@ namespace KATO.Common.Form
             //画面を隠す
             this.Hide();
 
+
+
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
@@ -1230,16 +1232,6 @@ namespace KATO.Common.Form
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        ///<summary>
-        ///ZaikoClick
-        ///岐阜在庫ボタン
-        ///</summary>
-        private void ZaikoClick(string mode)
-        {
-            string strWhere;
-
         }
 
         ///<summary>
