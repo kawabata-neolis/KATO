@@ -807,15 +807,6 @@ namespace KATO.Form.M1030_Shohin
         }
 
         ///<summary>
-        ///closeShohinList
-        ///setShohinListが閉じたらコード記入欄にフォーカス
-        ///</summary>
-        public void closeShohinList()
-        {
-            txtKensaku.Focus();
-        }
-
-        ///<summary>
         ///judtxtShohinKeyUp
         ///入力項目上でのキー判定と文字数判定（）
         ///</summary>
@@ -834,34 +825,15 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void txtMemo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (txtMemo.Lines.Length > 5)
+            //エンターキーを押した場合
+            if (e.KeyCode == Keys.Enter)
             {
-                e.Handled = true;
+                if (txtMemo.Lines.Length > 5)
+                {
+                    e.Handled = true;
+                }
             }
         }
-
-        /////<summary>
-        /////updCtxtLeave
-        /////code入力箇所からフォーカスが外れた時
-        /////</summary>
-        //private void updCtxtLeave()
-        //{
-        //    //空白を削除
-        //    labelSet_Maker.ValueLabelText = labelSet_Maker.ValueLabelText.Trim();
-        //    labelSet_Daibunrui.CodeTxtText = labelSet_Daibunrui.CodeTxtText.Trim();
-        //    labelSet_Chubunrui.CodeTxtText = labelSet_Chubunrui.CodeTxtText.Trim();
-
-        //    lblGrayShohin.Text =
-        //        labelSet_Maker.ValueLabelText + " " +
-        //        labelSet_Daibunrui.CodeTxtText + " " +
-        //        labelSet_Chubunrui.CodeTxtText + " " +
-        //        txtData1.Text + " " +
-        //        txtData2.Text + " " +
-        //        txtData3.Text + " " +
-        //        txtData4.Text + " " +
-        //        txtData5.Text + " " +
-        //        txtData6.Text + " ";
-        //}
 
         ///<summary>
         ///setMaker
@@ -920,44 +892,41 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void setShohinName()
         {
-            //商品コードにデータがない場合
-            if (txtShohinCd.Text == "")
+            //大分類、中分類、メーカーにデータがない場合
+            if (labelSet_Daibunrui.ValueLabelText != "" && 
+                labelSet_Chubunrui.ValueLabelText != "" &&
+                labelSet_Maker.ValueLabelText != "")
             {
-                return;
+                //商品名に書き込み
+                lblGrayShohin.Text = labelSet_Maker.ValueLabelText.Trim() +
+                                   " " +
+                                   labelSet_Daibunrui.codeTxt.Text +
+                                   " " +
+                                   labelSet_Chubunrui.codeTxt.Text +
+                                   " " +
+                                   txtData1.Text +
+                                   " " +
+                                   txtData2.Text +
+                                   " " +
+                                   txtData3.Text +
+                                   " " +
+                                   txtData4.Text +
+                                   " " +
+                                   txtData5.Text +
+                                   " " +
+                                   txtData6.Text;
             }
 
-            //商品名に書き込み
-            lblGrayShohin.Text = labelSet_Maker.ValueLabelText.Trim() +
-                               " " +
-                               labelSet_Daibunrui.codeTxt.Text +
-                               " " +
-                               labelSet_Chubunrui.codeTxt.Text +
-                               " " +
-                               txtData1.Text +
-                               " " +
-                               txtData2.Text +
-                               " " +
-                               txtData3.Text +
-                               " " +
-                               txtData4.Text +
-                               " " +
-                               txtData5.Text +
-                               " " +
-                               txtData6.Text;
         }
 
         ///<summary>
         ///txtComment_TextChanged
-        ///コメント分を修正した場合
+        ///コメントに変化があった場合
         ///</summary>
         private void txtComment_TextChanged(object sender, EventArgs e)
         {
-            string strNoNewLine = "";
-
-            strNoNewLine =  txtComment.Text.Replace(Environment.NewLine, "");
-
-            //改行コード含めずに500文字に達した場合
-            if (strNoNewLine.Length == 500)
+            //改行コード含めて500文字に達した場合
+            if (txtComment.Text.Length == 500)
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
@@ -965,15 +934,110 @@ namespace KATO.Form.M1030_Shohin
         }
 
         ///<summary>
-        ///txtHyojun_TextChanged
-        ///コメント分を修正した場合
+        ///txtShohinCd_TextChanged
+        ///商品コードに変化があった場合
         ///</summary>
-        private void txtHyojun_TextChanged(object sender, EventArgs e)
+        private void txtShohinCd_TextChanged(object sender, EventArgs e)
         {
-            //カンマと小数点以下を抜いて長さ9以上の場合
+            //商品コードにデータがある場合
+            if (txtShohinCd.Text != "")
+            {
+                txtData1.Focus();
+            }
+        }
 
-            //入力された数値が正しくありません。のメッセージ
+        ///<summary>
+        ///chkMoneyText
+        ///値段、数量の文字数チェック
+        ///</summary>
+        private void chkMoneyText(string strText, string strTextName)
+        {
+            //箱入数の場合
+            if (strTextName == "txtHako")
+            {
+                //文字数が8を超える場合
+                if (strText.Length > 8)
+                {
+                    //メッセージボックスの処理、項目の数値が正しくない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISSNUM, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
+                    return;
+                }
+            }
+            else
+            {
+                //文字数が13を超える場合
+                if (strText.Length > 13)
+                {
+                    //メッセージボックスの処理、項目の数値が正しくない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISSNUM, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
+                    return;
+                }
+            }
+        }
 
+        ///<summary>
+        ///txtHyojun_Leave
+        ///標準売価から離れた時
+        ///</summary>
+        private void txtHyojun_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtHyojun.Text, txtHyojun.Name);
+        }
+
+        ///<summary>
+        ///txtShire_Leave
+        ///仕入単価から離れた時
+        ///</summary>
+        private void txtShire_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtShire.Text, txtShire.Name);
+
+        }
+
+        ///<summary>
+        ///txtHyoka_Leave
+        ///評価単価から離れた時
+        ///</summary>
+        private void txtHyoka_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtHyoka.Text, txtHyoka.Name);
+        }
+
+        ///<summary>
+        ///txtTatene_Leave
+        ///建値仕入単価から離れた時
+        ///</summary>
+        private void txtTatene_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtTatene.Text, txtTatene.Name);
+        }
+
+        ///<summary>
+        ///txtTeika_Leave
+        ///定価から離れた時
+        ///</summary>
+        private void txtTeika_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtTeika.Text, txtTeika.Name);
+        }
+
+        ///<summary>
+        ///txtHako_Leave
+        ///箱入数から離れた時
+        ///</summary>
+        private void txtHako_Leave(object sender, EventArgs e)
+        {
+            //データの文字数チェック
+            chkMoneyText(txtHako.Text, txtHako.Name);
         }
     }
 }

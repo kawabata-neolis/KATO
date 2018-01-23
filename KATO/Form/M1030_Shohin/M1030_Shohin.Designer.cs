@@ -333,9 +333,9 @@
             // gbShohin
             // 
             this.gbShohin.Controls.Add(this.lblGrayShohin);
-            this.gbShohin.Location = new System.Drawing.Point(414, 116);
+            this.gbShohin.Location = new System.Drawing.Point(498, 116);
             this.gbShohin.Name = "gbShohin";
-            this.gbShohin.Size = new System.Drawing.Size(557, 53);
+            this.gbShohin.Size = new System.Drawing.Size(557, 101);
             this.gbShohin.TabIndex = 104;
             this.gbShohin.TabStop = false;
             this.gbShohin.Text = "商品名";
@@ -349,7 +349,7 @@
             this.lblGrayShohin.Location = new System.Drawing.Point(23, 20);
             this.lblGrayShohin.Name = "lblGrayShohin";
             this.lblGrayShohin.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblGrayShohin.Size = new System.Drawing.Size(518, 22);
+            this.lblGrayShohin.Size = new System.Drawing.Size(518, 66);
             this.lblGrayShohin.TabIndex = 99;
             this.lblGrayShohin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -357,7 +357,7 @@
             // 
             this.lblShohinCd.AutoSize = true;
             this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinCd.Location = new System.Drawing.Point(408, 88);
+            this.lblShohinCd.Location = new System.Drawing.Point(492, 88);
             this.lblShohinCd.Name = "lblShohinCd";
             this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
             this.lblShohinCd.strToolTip = null;
@@ -369,12 +369,13 @@
             // 
             this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShohinCd.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtShohinCd.Location = new System.Drawing.Point(517, 85);
+            this.txtShohinCd.Location = new System.Drawing.Point(601, 85);
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.ReadOnly = true;
             this.txtShohinCd.Size = new System.Drawing.Size(100, 22);
             this.txtShohinCd.TabIndex = 20;
             this.txtShohinCd.TabStop = false;
+            this.txtShohinCd.TextChanged += new System.EventHandler(this.txtShohinCd_TextChanged);
             // 
             // txtData6
             // 
@@ -461,7 +462,7 @@
             this.txtHyoka.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHyoka.intDeciSet = 2;
             this.txtHyoka.intIntederSet = 0;
-            this.txtHyoka.intShishagonyu = 0;
+            this.txtHyoka.intShishagonyu = 2;
             this.txtHyoka.Location = new System.Drawing.Point(143, 494);
             this.txtHyoka.MaxLength = 18;
             this.txtHyoka.Name = "txtHyoka";
@@ -470,6 +471,7 @@
             this.txtHyoka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHyoka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtHyoka.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtHyoka.Leave += new System.EventHandler(this.txtHyoka_Leave);
             // 
             // txtShire
             // 
@@ -478,7 +480,7 @@
             this.txtShire.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShire.intDeciSet = 2;
             this.txtShire.intIntederSet = 0;
-            this.txtShire.intShishagonyu = 0;
+            this.txtShire.intShishagonyu = 2;
             this.txtShire.Location = new System.Drawing.Point(143, 464);
             this.txtShire.MaxLength = 18;
             this.txtShire.Name = "txtShire";
@@ -487,6 +489,7 @@
             this.txtShire.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShire.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtShire.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtShire.Leave += new System.EventHandler(this.txtShire_Leave);
             // 
             // txtTeika
             // 
@@ -495,7 +498,7 @@
             this.txtTeika.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTeika.intDeciSet = 2;
             this.txtTeika.intIntederSet = 0;
-            this.txtTeika.intShishagonyu = 0;
+            this.txtTeika.intShishagonyu = 2;
             this.txtTeika.Location = new System.Drawing.Point(426, 434);
             this.txtTeika.MaxLength = 18;
             this.txtTeika.Name = "txtTeika";
@@ -504,6 +507,7 @@
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTeika.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtTeika.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtTeika.Leave += new System.EventHandler(this.txtTeika_Leave);
             // 
             // txtHyojun
             // 
@@ -512,16 +516,16 @@
             this.txtHyojun.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHyojun.intDeciSet = 2;
             this.txtHyojun.intIntederSet = 0;
-            this.txtHyojun.intShishagonyu = 0;
+            this.txtHyojun.intShishagonyu = 2;
             this.txtHyojun.Location = new System.Drawing.Point(143, 434);
             this.txtHyojun.MaxLength = 13;
             this.txtHyojun.Name = "txtHyojun";
             this.txtHyojun.Size = new System.Drawing.Size(111, 22);
             this.txtHyojun.TabIndex = 11;
             this.txtHyojun.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtHyojun.TextChanged += new System.EventHandler(this.txtHyojun_TextChanged);
             this.txtHyojun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtHyojun.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtHyojun.Leave += new System.EventHandler(this.txtHyojun_Leave);
             // 
             // txtMemo
             // 
@@ -784,6 +788,7 @@
             this.txtHako.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHako.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtHako.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtHako.Leave += new System.EventHandler(this.txtHako_Leave);
             // 
             // lblC2
             // 
@@ -864,7 +869,7 @@
             this.txtTatene.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTatene.intDeciSet = 2;
             this.txtTatene.intIntederSet = 0;
-            this.txtTatene.intShishagonyu = 0;
+            this.txtTatene.intShishagonyu = 2;
             this.txtTatene.Location = new System.Drawing.Point(143, 524);
             this.txtTatene.MaxLength = 18;
             this.txtTatene.Name = "txtTatene";
@@ -873,6 +878,7 @@
             this.txtTatene.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTatene.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);
             this.txtTatene.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShohinKeyUp);
+            this.txtTatene.Leave += new System.EventHandler(this.txtTatene_Leave);
             // 
             // txtComment
             // 

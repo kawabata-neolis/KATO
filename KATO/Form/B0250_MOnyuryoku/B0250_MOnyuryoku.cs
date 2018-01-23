@@ -1287,13 +1287,13 @@ namespace KATO.Form.B0250_MOnyuryoku
                 Cursor.Current = Cursors.Default;
             }
 
-            //下段の表示
+            //中段グリッドの表示
             if (!showGridKataban2())
             {
                 return;
             }
 
-            //上段グリッド
+            //上段グリッドの表示
             showGridKataban1();
 
             //履歴情報確保
@@ -1486,6 +1486,9 @@ namespace KATO.Form.B0250_MOnyuryoku
                         //例外発生メッセージ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力", "全て確定されています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
+
+                        btnF01.Enabled = false;
+                        btnF03.Enabled = false;
 
                         //グリッド部分のみ初期化
                         gridKataban.DataSource = "";
