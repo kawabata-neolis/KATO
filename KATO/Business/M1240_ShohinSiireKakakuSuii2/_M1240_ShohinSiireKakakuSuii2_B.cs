@@ -85,16 +85,6 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
         /// getShohin
         /// 履歴から商品単価を取得
         /// </summary>
-        /// <param name = "lstItem">
-        ///     検索条件格納しているLIST
-        ///     lstItem[0] 基準在庫日
-        ///     lstItem[1] 大分類コード
-        ///     lstItem[2] 中分類コード
-        ///     lstItem[3] メーカーコード
-        ///     lstItem[4] 全項目チェックボックス
-        ///     lstItem[5] 期間内売上あり・なしラジオボタン
-        ///     lstItem[6] 期間内仕入あり・なしラジオボタン
-        ///     lstItem[7] 在庫あり・なしラジオボタン</param>
         public DataTable getShohin(List<string> lstItem)
         {
             string strSql;
@@ -377,7 +367,7 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
             strSql = " UPDATE 商品仕入単価履歴TMP2";
             strSql += " SET 仮単価 = " + decimal.Parse(lstItem[1]).ToString();
 
-            // 仮掛率が空でない場合
+            // が空でない場合
             if (!lstItem[2].Equals(""))
             {
                 strSql += "     ,仮掛率=" + lstItem[2];
@@ -534,11 +524,10 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
         /// getCount
         /// 件数を取得
         /// </summary>
-        public int getRecordCount(string strKijunYmd)
+        public DataTable getCount(string strKijunYmd)
         {
             string strSql = "";
-            int cnt = 0;
-            DataTable dtCnt = new DataTable();
+            DataTable dtRireki = new DataTable();
 
             strSql = "SELECT COUNT(商品コード)";
             strSql += " FROM 商品仕入単価履歴TMP2 ";
@@ -548,9 +537,9 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
             try
             {
                 // 検索データをテーブルへ格納
-                dtCnt = dbconnective.ReadSql(strSql);
-                cnt = int.Parse(dtCnt.Rows[0][0].ToString());
-                return cnt;
+                dtRireki = dbconnective.ReadSql(strSql);
+
+                return dtRireki;
             }
             catch
             {
@@ -646,7 +635,6 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                 strSql += " WHERE 在庫年月日='" + strKijunYmd + "'";
                 strSql += " ORDER BY 商品コード";
 
-                // 商品仕入単価履歴TMP2テーブルの仮単価取得
                 DataTable dtKariTanka = dbconnective.ReadSql(strSql);
 
                 if (dtKariTanka != null)
@@ -657,7 +645,6 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                         strSql += " FROM 商品";
                         strSql += " WHERE 商品コード='" + dr["商品コード"].ToString().Trim() + "'";
 
-                        // 商品テーブルの評価単価取得
                         DataTable dtHyokaTanka = dbconnective.ReadSql(strSql);
 
                         if (dtHyokaTanka != null && dtHyokaTanka.Rows.Count > 0)
@@ -710,21 +697,21 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
             string strFilePath = "./Template/商品単価一覧.xlsx";
             string strShu = "";
 
-            // excelのインスタンス生成
-            XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
-
             try
             {
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+
                 IXLWorksheet currentsheet = workbook.Worksheet(1);   // 処理中シート
 
                 int xlsRowCnt = 14;  // Excel出力行カウント（開始は出力行）
 
-                currentsheet.Cell("F3").Value = lstItem[0].ToString();  // 大分類
-                currentsheet.Cell("H3").Value = lstItem[1].ToString();  // 中分類
-                currentsheet.Cell("K3").Value = lstItem[2].ToString();  // メーカー
-                currentsheet.Cell("G5").Value = lstItem[3].ToString();  // 期間From
-                currentsheet.Cell("I5").Value = lstItem[4].ToString();  // 期間To
-                currentsheet.Cell("G6").Value = lstItem[5].ToString();  // 基準在庫日
+                currentsheet.Cell("F3").Value = lstItem[0].ToString();
+                currentsheet.Cell("H3").Value = lstItem[1].ToString();
+                currentsheet.Cell("K3").Value = lstItem[2].ToString();
+                currentsheet.Cell("G5").Value = lstItem[3].ToString();
+                currentsheet.Cell("I5").Value = lstItem[4].ToString();
+                currentsheet.Cell("G6").Value = lstItem[5].ToString();
 
                 // 全項目にチェックが入っている場合
                 if (bool.Parse(lstItem[6]) == true)
@@ -756,12 +743,11 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                     }
                 }
 
-                currentsheet.Cell("K5").Value = strShu;                     // 検索条件
-                currentsheet.Cell("H9").Value = lstItem[9].ToString();      // 在庫金額合計（商品マスタ評価単価）
-                currentsheet.Cell("H10").Value = lstItem[10].ToString();    // 在庫金額合計（設定単価）
-                currentsheet.Cell("H11").Value = lstItem[11].ToString();    // 在庫金額合計（直近仕入単価）
+                currentsheet.Cell("K5").Value = strShu;
+                currentsheet.Cell("H9").Value = lstItem[9].ToString();
+                currentsheet.Cell("H10").Value = lstItem[10].ToString();
+                currentsheet.Cell("H11").Value = lstItem[11].ToString();
 
-                // 出力に必要な分Excelに行を追加
                 for (int rowCnt = 1; rowCnt < dtShohin.Rows.Count; rowCnt++)
                 {
                     currentsheet.Range(14, 1, 14, 16).CopyTo(currentsheet.Range(14 + rowCnt, 1, 14 + rowCnt, 16));
@@ -781,15 +767,12 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                 // workbookを保存
                 workbook.SaveAs(strExcelFilePath);
 
+                // workbookを解放
+                workbook.Dispose();
             }
             catch
             {
                 throw;
-            }
-            finally
-            {
-                // workbookを解放
-                workbook.Dispose();
             }
         }
     }

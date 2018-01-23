@@ -264,7 +264,7 @@ namespace KATO.Common.Ctl
 
             DataTable dtSetCd;
 
-            if (this.strdaibunCd == null)
+            if (daibunrui == null)
             {
                 return false;
             }

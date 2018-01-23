@@ -134,33 +134,33 @@ namespace KATO.Business.M1030_Shohin
             try
             {
                 string[] aryStr = new string[] {
-                    lstString[0],
-                    lstString[1],
-                    lstString[2],
-                    lstString[3],
-                    lstString[4],
-                    lstString[5],
-                    lstString[6],
-                    lstString[7],
-                    lstString[8],
-                    lstString[9],
-                    lstString[10],
-                    lstString[11],
-                    lstString[12],
-                    lstString[13],
-                    lstString[14],
-                    lstString[15],
-                    lstString[16],
-                    lstString[17],
-                    lstString[18],
-                    lstString[19],
-                    lstString[20],
-                    lstString[21],
-                    "N",
-                    DateTime.Now.ToString(),
-                    lstString[22],
-                    DateTime.Now.ToString(),
-                    lstString[22]
+                    lstString[0],                    //商品コード
+                    lstString[1],                    //メーカーコード
+                    lstString[2],                    //大分類コード
+                    lstString[3],                    //中分類コード
+                    lstString[4],                    //Ｃ１
+                    lstString[5],                    //Ｃ２
+                    lstString[6],                    //Ｃ３
+                    lstString[7],                    //Ｃ４
+                    lstString[8],                    //Ｃ５
+                    lstString[9],                    //Ｃ６
+                    "",                              //発注区分
+                    lstString[10],                   //標準売価
+                    lstString[11],                   //仕入単価
+                    lstString[12],                   //在庫管理区分
+                    lstString[13],                   //棚番本社
+                    lstString[14],                   //棚番岐阜
+                    lstString[15],                   //メモ
+                    lstString[16],                   //評価単価
+                    lstString[17],                   //定価
+                    lstString[18],                   //箱入数
+                    lstString[19],                   //建値仕入単価
+                    lstString[20],                   //コメント
+                    "N",                             //削除
+                    DateTime.Now.ToString(),         //登録日時
+                    lstString[21],                   //登録ユーザー名
+                    DateTime.Now.ToString(),         //更新日時
+                    lstString[21]                    //更新ユーザー名
                 };
 
                 if (blnKanri == true)
@@ -202,33 +202,33 @@ namespace KATO.Business.M1030_Shohin
             try
             {
                 string[] aryStr = new string[] {
-                    lstString[0],
-                    lstString[1],
-                    lstString[2],
-                    lstString[3],
-                    lstString[4],
-                    lstString[5],
-                    lstString[6],
-                    lstString[7],
-                    lstString[8],
-                    lstString[9],
-                    lstString[10],
-                    lstString[11],
-                    lstString[12],
-                    lstString[13],
-                    lstString[14],
-                    lstString[15],
-                    lstString[16],
-                    lstString[17],
-                    lstString[18],
-                    lstString[19],
-                    lstString[20],
-                    lstString[21],
-                    "Y",
-                    DateTime.Now.ToString(),
-                    lstString[22],
-                    DateTime.Now.ToString(),
-                    lstString[22]
+                    lstString[0],                     //商品コード
+                    lstString[1],                     //メーカーコード
+                    lstString[2],                     //大分類コード
+                    lstString[3],                     //中分類コード
+                    lstString[4],                     //Ｃ１
+                    lstString[5],                     //Ｃ２
+                    lstString[6],                     //Ｃ３
+                    lstString[7],                     //Ｃ４
+                    lstString[8],                     //Ｃ５
+                    lstString[9],                     //Ｃ６
+                    "",                               //発注区分
+                    lstString[10],                    //標準売価
+                    lstString[11],                    //仕入単価
+                    lstString[12],                    //在庫管理区分
+                    lstString[13],                    //棚番本社
+                    lstString[14],                    //棚番岐阜
+                    lstString[15],                    //メモ
+                    lstString[16],                    //評価単価
+                    lstString[17],                    //定価
+                    lstString[18],                    //箱入数
+                    lstString[19],                    //建値仕入単価
+                    lstString[20],                    //コメント
+                    "Y",                              //削除
+                    DateTime.Now.ToString(),          //登録日時
+                    lstString[21],                    //登録ユーザー名
+                    DateTime.Now.ToString(),          //更新日時
+                    lstString[21]                     //更新ユーザー名
                 };
 
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
@@ -240,6 +240,55 @@ namespace KATO.Business.M1030_Shohin
                 //ロールバック開始
                 dbconnective.Rollback();
 
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getShohin
+        ///商品コードから商品データを取得（編集登録メッセージ表示用）
+        ///</summary>
+        public DataTable getShohin(string strShohinCd)
+        {
+            DataTable dtShohin = new DataTable();
+
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            //商品の処理
+            lstStringSQL = new List<string>();
+
+            lstStringSQL.Add("M1030_Shohin");
+            lstStringSQL.Add("Shohin_Data_SELECT");
+
+            OpenSQL opensql = new OpenSQL();
+
+            //SQLのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLSelect = opensql.setOpenSQL(lstStringSQL);
+
+                //パスがなければ返す
+                if (strSQLSelect == "")
+                {
+                    return (dtShohin);
+                }
+
+                strSQLSelect = string.Format(strSQLSelect, strShohinCd); //商品コード
+
+                dtShohin = dbconnective.ReadSql(strSQLSelect);
+
+                return (dtShohin);
+            }
+            catch (Exception ex)
+            {
                 new CommonException(ex);
                 throw (ex);
             }

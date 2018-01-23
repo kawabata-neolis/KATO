@@ -84,6 +84,9 @@ namespace KATO.Form.A1520_Uriageshonin
             this.radRiekiritsu.radbtn1.Checked = true;
             this.radUriagesakujo.radbtn1.Checked = true;
 
+            //カラムサイズを手動で変えれるようにする
+            gridHenpinNebiki.AllowUserToResizeColumns = true;
+
             //グリッドの設定
             SetUpGrid();
 

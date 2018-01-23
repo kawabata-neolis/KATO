@@ -537,7 +537,6 @@ namespace KATO.Form.M1020_Maker
                 }
                 else
                 {
-                    txtMaker.Text = "";
                     txtName.Text = "";
 
                     // ファンクションボタン制御

@@ -168,16 +168,16 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
 
             // 個々の幅、文字の寄せ
             setColumn(tokuisakiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumn(tokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(daibunruiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 140);
-            setColumn(chubunruiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 140);
-            setColumn(makerName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 140);
+            setColumn(tokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+            setColumn(daibunruiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(chubunruiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(makerName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(riekiritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(setting, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 140);
-            setColumn(daibunruiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 140);
-            setColumn(chubunruiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 140);
-            setColumn(makerCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 180);
+            setColumn(daibunruiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 130);
+            setColumn(chubunruiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 130);
+            setColumn(makerCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 145);
             setColumn(id, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 100);
         }
 
@@ -295,6 +295,62 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             }
         }
 
+        ///<summary>
+        ///txtBox_KeyDown
+        ///キー入力判定（無機能テキストボックス_BaseText）
+        ///</summary>
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
         /// <summary>
         /// delText
@@ -341,8 +397,8 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             // データ更新用
             List<string> lstItem = new List<string>();
 
-            // データチェック処理
-            if (!dataCheack())
+            // 入力チェック
+            if(dataCheack() == false)
             {
                 return;
             }
@@ -411,6 +467,11 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
                 labelSet_Tokuisaki.Focus();
                 return false;
             }
+            // 文字チェック（得意先）
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                return false;
+            }
 
             // 空文字判定（大分類）
             if (labelSet_Daibunrui.CodeTxtText.Equals(""))
@@ -420,6 +481,11 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
                 basemessagebox.ShowDialog();
                 return false;
             }
+            // 文字チェック（大分類）
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return false;
+            }
 
             // 空文字判定（中分類、メーカー）
             if (labelSet_Chubunrui.CodeTxtText.Equals("") && labelSet_Maker.CodeTxtText.Equals(""))
@@ -427,6 +493,18 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "中分類またはメーカーを指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                return false;
+            }
+
+            // 文字チェック（中分類）
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                return false;
+            }
+
+            // 文字チェック（メーカー）
+            if (labelSet_Maker.chkTxtMaker())
+            {
                 return false;
             }
 
@@ -487,6 +565,30 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
         /// </summary>
         private void delRiekiritsu()
         {
+            // 文字チェック（得意先）
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+
+            // 文字チェック（大分類）
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return;
+            }
+
+            // 文字チェック（中分類）
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                return;
+            }
+
+            // 文字チェック（メーカー）
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                return;
+            }
+
             M1220_SyohinBunruiRiekiritsu_B riekiritsuB = new M1220_SyohinBunruiRiekiritsu_B();
             try
             {
@@ -672,6 +774,27 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             else
             {
                 radSetting.radbtn0.Checked = true;
+            }
+
+            // 文字チェック（得意先）
+            if(labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                return;
+            }
+            // 文字チェック（大分類）
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return;
+            }
+            // 文字チェック（中分類）
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                return;
+            }
+            // 文字チェック（メーカー）
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                return;
             }
 
             return;

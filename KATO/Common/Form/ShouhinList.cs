@@ -83,6 +83,9 @@ namespace KATO.Common.Form
         //前画面から品名を取り出す枠（品名初期値）（メーカー名 + 中分類名 + 大分類名 + Ｃ１~Ｃ６）（グレイラベル）
         public BaseLabelGray lblGrayHinMakerChuDaiHinban = null;
 
+        //前画面から品名を取り出す枠（品名初期値）（メーカー名 + 中分類コード + 大分類コード + Ｃ１~Ｃ６）（グレイラベル）
+        public BaseLabelGray lblGrayHinMakerDaiCdChuCdHinban = null;
+
         //前画面から棚番（本社）を取り出す枠（棚番本社初期値）（ラベルセット）
         public LabelSet_Tanaban lsTanabanH = null;
 
@@ -299,6 +302,11 @@ namespace KATO.Common.Form
                 lblGrayHinMakerChuDaiHinban = new BaseLabelGray();
             }
 
+            // 品名の引き渡しチェック（メーカー名 + 中分類コード + 大分類コード + Ｃ１~Ｃ６）（グレイラベル）
+            if (lblGrayHinMakerDaiCdChuCdHinban == null)
+            {
+                lblGrayHinMakerDaiCdChuCdHinban = new BaseLabelGray();
+            }
 
             // 棚番本社（本社）の引き渡しチェック（ラベルセット）
             if (lsTanabanH == null)
@@ -743,7 +751,6 @@ namespace KATO.Common.Form
         private void setSelectItem()
         {
             //データ渡し用
-            List<string> lstString = new List<string>();
             List<int> lstInt = new List<int>();
 
             //商品検索結果を格納用
@@ -765,21 +772,10 @@ namespace KATO.Common.Form
             //選択行の中分類名取得
             string strSelectChubunName = (string)gridTorihiki.CurrentRow.Cells["中分類名"].Value;
 
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-
-            lstString.Add(strYMD);
-            lstString.Add(strEigyoushoCode);
-            lstString.Add(strSelectShohinCD);
-            lstString.Add(strSelectMakerCD);
-            lstString.Add(strSelectDaibunName);
-            lstString.Add(strSelectChubunName);
-            lstString.Add(strSelectid);
-
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                dtShohin = shohinlistB.getSelectItem(lstInt, lstString);
+                dtShohin = shohinlistB.getSelectItem(strSelectShohinCD);
 
                 //検索結果がない場合
                 if (dtShohin.Rows.Count <= 0)
@@ -903,12 +899,12 @@ namespace KATO.Common.Form
                                                     " " +
                                                     this.btxtHinC6.Text;
 
-            //品名（（メーカー名 + 中分類名 + 大分類 + Ｃ１~Ｃ６）（グレイラベル）
-            this.lblGrayHinMakerChuDaiHinban.Text = lsMaker.ValueLabelText.Trim() +
+            //品名（（メーカー名 + 大分類コード + 中分類コード + Ｃ１~Ｃ６）（グレイラベル）
+            this.lblGrayHinMakerDaiCdChuCdHinban.Text = lsMaker.ValueLabelText.Trim() +
                                                     " " +
-                                                    lsChubunrui.ValueLabelText.Trim() +
+                                                    lsDaibunrui.CodeTxtText +
                                                     " " +
-                                                    lsDaibunrui.ValueLabelText +
+                                                    lsChubunrui.CodeTxtText +
                                                     " " +
                                                     this.btxtHinC1.Text +
                                                     " " +
@@ -963,6 +959,7 @@ namespace KATO.Common.Form
 
             //建値仕入単価（ベーステキストマネー）
             this.bmtxtTateneShire.Text = dtShohin.Rows[0]["建値仕入単価"].ToString();
+            this.bmtxtTateneShire.updPriceMethod();
 
             //箱入数初期値（ベーステキストマネー）
             this.bmtxtHakosu.Text = dtShohin.Rows[0]["箱入数"].ToString();
@@ -1006,7 +1003,7 @@ namespace KATO.Common.Form
                 intDBjud = 2;
                 setLabel(intDBjud);
             }
-            if (lsChubunrui.CodeTxtText.ToString().Length >= 1)
+            if (lsMaker.CodeTxtText.ToString().Length >= 1)
             {
                 labelSet_Maker.CodeTxtText = lsMaker.CodeTxtText.ToString();
                 intDBjud = 3;
@@ -1035,6 +1032,8 @@ namespace KATO.Common.Form
             //画面を隠す
             this.Hide();
 
+
+
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
@@ -1056,9 +1055,6 @@ namespace KATO.Common.Form
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
         {
-            txtHon.Text = "";
-            txtGihu.Text = "";
-
             gridTorihiki.Columns.Clear();
 
             //DataGridViewの初期設定
@@ -1095,8 +1091,6 @@ namespace KATO.Common.Form
             lstString.Add(labelSet_Chubunrui.CodeTxtText);
             lstString.Add(labelSet_Maker.CodeTxtText);
             lstString.Add(txtKensaku.Text);
-            lstString.Add(txtHon.Text);
-            lstString.Add(txtGihu.Text);
 
             lstBoolean.Add(chkNotToroku.Checked);
             lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);
@@ -1238,16 +1232,6 @@ namespace KATO.Common.Form
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        ///<summary>
-        ///ZaikoClick
-        ///岐阜在庫ボタン
-        ///</summary>
-        private void ZaikoClick(string mode)
-        {
-            string strWhere;
-
         }
 
         ///<summary>

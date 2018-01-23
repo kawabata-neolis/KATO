@@ -93,6 +93,11 @@
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -147,11 +152,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabStop = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Daibunrui
             // 
@@ -347,6 +347,7 @@
             this.gridShohin.AllowUserToAddRows = false;
             this.gridShohin.AllowUserToResizeColumns = false;
             this.gridShohin.AllowUserToResizeRows = false;
+            this.gridShohin.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -890,6 +891,7 @@
             this.Text = "M1240_ShohinSiireKakakuSuii2";
             this.Load += new System.EventHandler(this.M1240_ShohinSiireKakakuSuii2_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1240_ShohinSiireKakakuSuii2_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);

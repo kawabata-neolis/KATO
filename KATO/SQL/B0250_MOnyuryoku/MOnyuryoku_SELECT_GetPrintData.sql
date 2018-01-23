@@ -3,7 +3,7 @@ SELECT Rtrim(ISNULL(Ｃ１,'')) + ' ' +
 	   Rtrim(ISNULL(Ｃ３,'')) + ' ' +
 	   Rtrim(ISNULL(Ｃ４,'')) + ' ' +
 	   Rtrim(ISNULL(Ｃ５,'')) + ' ' +
-	   Rtrim(ISNULL(Ｃ６,'')) AS 品名・規格, 
+	   Rtrim(ISNULL(Ｃ６,'')) AS 品名規格, 
 	   ＭＯ発注数 AS 数量, 
 	   ＭＯ発注単価 AS 発注単価, 
 	   納期, 
