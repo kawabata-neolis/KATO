@@ -1685,6 +1685,9 @@
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Henpinnebiki_Grid_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_Chuban.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_GetPrintData.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

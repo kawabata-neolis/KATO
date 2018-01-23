@@ -2929,5 +2929,19 @@ namespace KATO.Form.B0250_MOnyuryoku
             //グリッドの文字色指定
             setGridColor();
         }
+
+        ///<summary>
+        ///txtHachusu_Leave
+        ///数量の文字数チェック
+        ///</summary>
+        private void txtHachusu_Leave(object sender, EventArgs e)
+        {
+            //文字数が7を超える場合
+            if (txtHachusu.Text.Length > 7)
+            {
+                SendKeys.Send("+{TAB}");
+                return;
+            }
+        }
     }
 }

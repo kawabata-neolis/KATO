@@ -374,7 +374,7 @@
             // 
             this.lblTanka.AutoSize = true;
             this.lblTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka.Location = new System.Drawing.Point(233, 755);
+            this.lblTanka.Location = new System.Drawing.Point(197, 755);
             this.lblTanka.Name = "lblTanka";
             this.lblTanka.Size = new System.Drawing.Size(39, 15);
             this.lblTanka.strToolTip = null;
@@ -386,7 +386,7 @@
             // 
             this.lblNoki.AutoSize = true;
             this.lblNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblNoki.Location = new System.Drawing.Point(408, 755);
+            this.lblNoki.Location = new System.Drawing.Point(372, 755);
             this.lblNoki.Name = "lblNoki";
             this.lblNoki.Size = new System.Drawing.Size(39, 15);
             this.lblNoki.strToolTip = null;
@@ -411,7 +411,7 @@
             // 
             this.txtNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtNoki.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtNoki.Location = new System.Drawing.Point(449, 752);
+            this.txtNoki.Location = new System.Drawing.Point(413, 752);
             this.txtNoki.MaxLength = 10;
             this.txtNoki.Name = "txtNoki";
             this.txtNoki.Size = new System.Drawing.Size(85, 22);
@@ -425,7 +425,7 @@
             this.lblSetShimukesaki.CodeTxtSize = 40;
             this.lblSetShimukesaki.CodeTxtText = "";
             this.lblSetShimukesaki.LabelName = "仕向先";
-            this.lblSetShimukesaki.Location = new System.Drawing.Point(547, 752);
+            this.lblSetShimukesaki.Location = new System.Drawing.Point(511, 752);
             this.lblSetShimukesaki.Name = "lblSetShimukesaki";
             this.lblSetShimukesaki.ShowAppendFlg = false;
             this.lblSetShimukesaki.Size = new System.Drawing.Size(412, 22);
@@ -492,7 +492,7 @@
             this.lblSetHachuTantousha.CodeTxtSize = 40;
             this.lblSetHachuTantousha.CodeTxtText = "";
             this.lblSetHachuTantousha.LabelName = "担当者コード";
-            this.lblSetHachuTantousha.Location = new System.Drawing.Point(965, 752);
+            this.lblSetHachuTantousha.Location = new System.Drawing.Point(942, 752);
             this.lblSetHachuTantousha.Name = "lblSetHachuTantousha";
             this.lblSetHachuTantousha.ShowAppendFlg = false;
             this.lblSetHachuTantousha.Size = new System.Drawing.Size(289, 22);
@@ -626,13 +626,14 @@
             this.txtHachusu.intIntederSet = 0;
             this.txtHachusu.intShishagonyu = 0;
             this.txtHachusu.Location = new System.Drawing.Point(90, 752);
-            this.txtHachusu.MaxLength = 15;
+            this.txtHachusu.MaxLength = 8;
             this.txtHachusu.Name = "txtHachusu";
-            this.txtHachusu.Size = new System.Drawing.Size(124, 22);
+            this.txtHachusu.Size = new System.Drawing.Size(63, 22);
             this.txtHachusu.TabIndex = 21;
             this.txtHachusu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHachusu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             this.txtHachusu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMOKeyUp);
+            this.txtHachusu.Leave += new System.EventHandler(this.txtHachusu_Leave);
             // 
             // txtTanka
             // 
@@ -642,7 +643,7 @@
             this.txtTanka.intDeciSet = 2;
             this.txtTanka.intIntederSet = 0;
             this.txtTanka.intShishagonyu = 2;
-            this.txtTanka.Location = new System.Drawing.Point(275, 752);
+            this.txtTanka.Location = new System.Drawing.Point(239, 752);
             this.txtTanka.MaxLength = 3;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(112, 22);

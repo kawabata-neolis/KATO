@@ -398,14 +398,6 @@ namespace KATO.Common.Business
                     tanaorosiinput.setShohinClose();
                     break;
                 }
-                ////商品フォームを探す
-                //else if (intFrmKind == CommonTeisu.FRM_SHOHIN && frm.Name == "M1030_Shohin")
-                //{
-                //    //データを連れてくるため、newをしないこと
-                //    M1030_Shohin shohin = (M1030_Shohin)frm;
-                //    shohin.closeShohinList();
-                //    break;
-                //}
                 //商品元帳確認フォームを探す
                 else if (intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN && frm.Name == "D0380_ShohinMotochoKakunin")
                 {

@@ -891,7 +891,7 @@
             this.txtComment.Size = new System.Drawing.Size(815, 90);
             this.txtComment.TabIndex = 21;
             this.txtComment.TextChanged += new System.EventHandler(this.txtComment_TextChanged);
-            this.txtComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMemo_KeyDown);
+            this.txtComment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComment_KeyDown);
             // 
             // lblComment
             // 

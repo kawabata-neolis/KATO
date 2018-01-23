@@ -823,14 +823,16 @@ namespace KATO.Form.M1030_Shohin
         ///txtMemo_KeyDown
         ///エンターでの改行で5行以上いった場合動作を止める
         ///</summary>
-        private void txtMemo_KeyDown(object sender, KeyEventArgs e)
+        private void txtComment_KeyDown(object sender, KeyEventArgs e)
         {
             //エンターキーを押した場合
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtMemo.Lines.Length > 5)
+                //5行以上の改行の場合
+                if (txtComment.Lines.Length > 4)
                 {
-                    e.Handled = true;
+                    //改行させない
+                    e.SuppressKeyPress = true;
                 }
             }
         }
@@ -955,8 +957,8 @@ namespace KATO.Form.M1030_Shohin
             //箱入数の場合
             if (strTextName == "txtHako")
             {
-                //文字数が8を超える場合
-                if (strText.Length > 8)
+                //文字数が7を超える場合
+                if (strText.Length > 7)
                 {
                     //メッセージボックスの処理、項目の数値が正しくない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISSNUM, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
