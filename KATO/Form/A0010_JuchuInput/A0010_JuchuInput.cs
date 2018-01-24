@@ -1435,6 +1435,37 @@ namespace KATO.Form.A0010_JuchuInput
 
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
 
+            // 加工品受注の入力が存在する状態で仕入先、型番ともに空欄なら受注のみの登録とみなす
+            #region
+            if (f6 != null && string.IsNullOrEmpty(txtHatchuNo.Text) && string.IsNullOrEmpty(tsShiiresaki.CodeTxtText))
+            {
+                try
+                {
+                    DataTable dt = juchuB.getHatchuNoInfo(txtJuchuNo.Text);
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                    decimal dSu = juchuB.getShukkoToroku(txtJuchuNo.Text);
+                    if (dSu == 0)
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            #endregion
+
             // 注番のみチェックが入っている場合、注番のみ更新
             #region
             if (cbChuban.Checked)
@@ -2829,11 +2860,14 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void cbJuchuTanka_KeyDown_1(object sender, KeyEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(((BaseComboBox)sender).Text))
+            if (e.KeyCode == Keys.Enter)
             {
-                return;
+                if (string.IsNullOrWhiteSpace(((BaseComboBox)sender).Text))
+                {
+                    return;
+                }
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-            this.SelectNextControl(this.ActiveControl, true, true, true, true);
         }
 
         private void txtHonshaShukko_KeyDown(object sender, KeyEventArgs e)
@@ -2851,5 +2885,11 @@ namespace KATO.Form.A0010_JuchuInput
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
+
+        private void cbSiireTanka_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

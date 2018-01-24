@@ -568,10 +568,12 @@ namespace KATO.Form.A0030_ShireInput
                                     lstShireMesaiKoshin.Add(bvg[intCnt].txtTanka.Text);     //評価単価
                                     lstShireMesaiKoshin.Add("0");                           //定価
                                     lstShireMesaiKoshin.Add("1");                           //箱入数
+                                    lstShireMesaiKoshin.Add("0");                           //建値仕入単価
+                                    lstShireMesaiKoshin.Add("");                            //コメント
                                     lstShireMesaiKoshin.Add(SystemInformation.UserName);    //ユーザー名
 
                                     //商品マスタ更新
-                                    shireinputBadd.addShireMesaiKoshin(lstShireMesaiKoshin);
+                                    shireinputBadd.addMasterKoshin(lstShireMesaiKoshin);
                                 }
                                 catch (Exception ex)
                                 {

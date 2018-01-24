@@ -91,6 +91,7 @@
             this.gridZaiko.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridZaiko.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridZaiko.AutoGenerateColumns = false;
             this.gridZaiko.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridZaiko.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -150,7 +151,7 @@
             this.txtSearchStr.Name = "txtSearchStr";
             this.txtSearchStr.Size = new System.Drawing.Size(271, 22);
             this.txtSearchStr.TabIndex = 4;
-            this.txtSearchStr.Leave += new System.EventHandler(this.txtSearchStr_Leave_1);
+            this.txtSearchStr.Visible = false;
             // 
             // label20
             // 
@@ -169,6 +170,7 @@
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(331, 22);
             this.txtHinmei.TabIndex = 7;
+            this.txtHinmei.Visible = false;
             // 
             // textBox32
             // 
@@ -177,6 +179,7 @@
             this.textBox32.Name = "textBox32";
             this.textBox32.Size = new System.Drawing.Size(169, 22);
             this.textBox32.TabIndex = 8;
+            this.textBox32.Visible = false;
             // 
             // button13
             // 
@@ -249,6 +252,7 @@
             this.label5.Size = new System.Drawing.Size(87, 15);
             this.label5.TabIndex = 278;
             this.label5.Text = "検索文字列";
+            this.label5.Visible = false;
             // 
             // tableLayoutPanel1
             // 
@@ -273,6 +277,7 @@
             this.checkBox1.TabIndex = 9;
             this.checkBox1.Text = "入力内容をを転記";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // lsDaibunruiM
             // 
@@ -297,6 +302,7 @@
             this.lsDaibunruiM.TabIndex = 88;
             this.lsDaibunruiM.ValueLabelSize = 129;
             this.lsDaibunruiM.ValueLabelText = "";
+            this.lsDaibunruiM.Visible = false;
             // 
             // nameLabel
             // 
@@ -329,6 +335,7 @@
             this.lsChubunruiM.TabIndex = 2147483647;
             this.lsChubunruiM.ValueLabelSize = 129;
             this.lsChubunruiM.ValueLabelText = "";
+            this.lsChubunruiM.Visible = false;
             // 
             // object_cb750ffa_609a_4cea_a625_b693587a1341
             // 
@@ -361,6 +368,7 @@
             this.lsMakerM.TabIndex = 2147483647;
             this.lsMakerM.ValueLabelSize = 129;
             this.lsMakerM.ValueLabelText = "";
+            this.lsMakerM.Visible = false;
             // 
             // object_673b3833_2995_43df_b2c7_78bfee9dd2c6
             // 

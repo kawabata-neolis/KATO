@@ -948,5 +948,35 @@ namespace KATO.Business.A0010_JuchuInput
                 throw ex;
             }
         }
+
+        public decimal getShukkoToroku(string strJuchuNo)
+        {
+            decimal retSuryo = 0;
+            DataTable dtSuryo = null;
+
+            string strQuery = "SELECT COUNT(*) AS 数 FROM 出庫明細 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtSuryo = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (dtSuryo != null)
+            {
+                string st = dtSuryo.Rows[0]["数"].ToString();
+                if (!string.IsNullOrWhiteSpace(st))
+                {
+                    retSuryo = decimal.Parse(st);
+                }
+            }
+
+            return retSuryo;
+        }
+
     }
 }

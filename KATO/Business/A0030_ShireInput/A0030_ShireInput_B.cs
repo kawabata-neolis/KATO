@@ -702,6 +702,8 @@ namespace KATO.Business.A0030_ShireInput
             lstMasterKoshinName.Add("@評価単価");
             lstMasterKoshinName.Add("@定価");
             lstMasterKoshinName.Add("@箱入数");
+            lstMasterKoshinName.Add("@建値仕入単価");
+            lstMasterKoshinName.Add("@コメント");
             lstMasterKoshinName.Add("@ユーザー名");
 
             try

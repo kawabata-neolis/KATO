@@ -828,7 +828,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void updJuchuH(List<String> aryPrm, DBConnective con)
+        public void updJuchuH(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
             List<String> aryCol = new List<string>();
 
@@ -871,7 +871,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void updShukkoHead(List<String> aryPrm, DBConnective con)
+        public void updShukkoHead(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
             List<String> aryCol = new List<string>();
 
@@ -921,6 +921,8 @@ namespace KATO.Business.A0010_JuchuInput
             aryCol.Add("@評価単価");
             aryCol.Add("@定価");
             aryCol.Add("@箱入数");
+            aryCol.Add("@建値仕入単価");
+            aryCol.Add("@コメント");
             aryCol.Add("@ユーザー名");
 
             try
@@ -933,7 +935,7 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void updShukkoMeisai(List<String> aryPrm, DBConnective con)
+        public void updShukkoMeisai(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
             List<String> aryCol = new List<string>();
 
@@ -993,43 +995,29 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void delHachuS(string strHachuban, string strUserName,bool hatchuFlg)
+        public void delHachuS(string strHachuban, string strUserName, DBConnective con, bool hatchuFlg)
         {
             string strSQL = null;
 
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-            dbconnective.DB_Connect();
-
-            //トランザクション開始
-            dbconnective.BeginTrans();
             try
             {
                 if (hatchuFlg) {
                     strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                    dbconnective.ReadSql(strSQL);
+                    con.ReadSql(strSQL);
                 }
                 else {
                     strSQL = "出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                    dbconnective.ReadSql(strSQL);
+                    con.ReadSql(strSQL);
 
                     strSQL = "出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                    dbconnective.ReadSql(strSQL);
+                    con.ReadSql(strSQL);
                 }
 
-                //コミット開始
-                dbconnective.Commit();
                 return;
             }
             catch (Exception ex)
             {
-                //ロールバック開始
-                dbconnective.Rollback();
                 throw (ex);
-            }
-            finally
-            {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1147,7 +1135,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "a.メーカーコード,";
             strSelect += "c.棚番本社,";
             strSelect += "c.棚番岐阜,";
-            strSelect += "RTRIM(dbo.f_get注番文字FROM担当者 (発注者コード)) + CAST(発注番号 AS varchar(8)) AS 注番, ";
+            strSelect += "RTRIM(dbo.f_get注番文字FROM担当者 (a.発注者コード)) + CAST(a.発注番号 AS varchar(8)) AS 注番, ";
             strSelect += "dbo.f_getメーカー名(a.メーカーコード)  ";
             strSelect += " + ' ' + dbo.f_get中分類名(a.大分類コード,a.中分類コード) +  ' '  +  Rtrim(ISNULL(a.Ｃ１,'')) ";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ２,''))";

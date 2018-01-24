@@ -570,7 +570,6 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -696,6 +695,7 @@
             this.cbSiireTanka.Name = "cbSiireTanka";
             this.cbSiireTanka.Size = new System.Drawing.Size(146, 23);
             this.cbSiireTanka.TabIndex = 13;
+            this.cbSiireTanka.SelectedIndexChanged += new System.EventHandler(this.cbSiireTanka_SelectedIndexChanged);
             this.cbSiireTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbJuchuTanka_KeyDown_1);
             // 
             // cbJuchuTanka
@@ -1448,7 +1448,6 @@
         private Common.Ctl.LabelSet_Daibunrui lsDaibunrui;
         private Common.Ctl.LabelSet_Chubunrui lsChubunrui;
         private Common.Ctl.LabelSet_Maker lsMaker;
-        private Common.Ctl.BaseComboBox cbSiireTanka;
         private Common.Ctl.BaseComboBox cbJuchuTanka;
         private Common.Ctl.BaseCalendar txtNoki;
         private Common.Ctl.BaseTextMoney txtTeika;
@@ -1496,5 +1495,6 @@
         public Common.Ctl.TextSet_Torihikisaki tsShiiresaki;
         public Common.Ctl.BaseText txtJuchuNo;
         public Common.Ctl.BaseTextMoney txtJuchuSuryo;
+        public Common.Ctl.BaseComboBox cbSiireTanka;
     }
 }
