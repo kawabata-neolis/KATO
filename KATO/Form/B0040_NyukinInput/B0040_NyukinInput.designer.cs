@@ -153,6 +153,7 @@
             this.baseLabel64 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtSyukinKbn = new KATO.Common.Ctl.BaseText();
             this.baseLabel65 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel66 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbNyukinInput.SuspendLayout();
             this.labelSet_Torihikikbn9.SuspendLayout();
             this.labelSet_Torihikikbn8.SuspendLayout();
@@ -166,6 +167,10 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSeikyuRireki)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -191,15 +196,11 @@
             // 
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // lblKikan
             // 
             this.lblKikan.AutoSize = true;
             this.lblKikan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKikan.Location = new System.Drawing.Point(161, 26);
+            this.lblKikan.Location = new System.Drawing.Point(112, 38);
             this.lblKikan.Name = "lblKikan";
             this.lblKikan.Size = new System.Drawing.Size(87, 15);
             this.lblKikan.strToolTip = null;
@@ -214,7 +215,7 @@
             this.labelSet_Tantousha.CodeTxtSize = 40;
             this.labelSet_Tantousha.CodeTxtText = "";
             this.labelSet_Tantousha.LabelName = "担当者コード";
-            this.labelSet_Tantousha.Location = new System.Drawing.Point(657, 23);
+            this.labelSet_Tantousha.Location = new System.Drawing.Point(535, 35);
             this.labelSet_Tantousha.Name = "labelSet_Tantousha";
             this.labelSet_Tantousha.ShowAppendFlg = false;
             this.labelSet_Tantousha.Size = new System.Drawing.Size(273, 22);
@@ -222,6 +223,7 @@
             this.labelSet_Tantousha.SpaceNameCode = 4;
             this.labelSet_Tantousha.SpaceValueAppend = 4;
             this.labelSet_Tantousha.TabIndex = 2;
+            this.labelSet_Tantousha.TabStop = false;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
             // 
@@ -232,10 +234,10 @@
             this.labelSet_Eigyosho.CodeTxtSize = 40;
             this.labelSet_Eigyosho.CodeTxtText = "";
             this.labelSet_Eigyosho.LabelName = "営業所コード";
-            this.labelSet_Eigyosho.Location = new System.Drawing.Point(950, 23);
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(828, 35);
             this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
             this.labelSet_Eigyosho.ShowAppendFlg = false;
-            this.labelSet_Eigyosho.Size = new System.Drawing.Size(152, 22);
+            this.labelSet_Eigyosho.Size = new System.Drawing.Size(148, 22);
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 4;
             this.labelSet_Eigyosho.SpaceValueAppend = 4;
@@ -293,10 +295,10 @@
             this.gbNyukinInput.Controls.Add(this.baseLabel3);
             this.gbNyukinInput.Controls.Add(this.baseLabel2);
             this.gbNyukinInput.Controls.Add(this.baseLabel1);
-            this.gbNyukinInput.Location = new System.Drawing.Point(210, 95);
+            this.gbNyukinInput.Location = new System.Drawing.Point(210, 105);
             this.gbNyukinInput.Name = "gbNyukinInput";
-            this.gbNyukinInput.Size = new System.Drawing.Size(707, 388);
-            this.gbNyukinInput.TabIndex = 5;
+            this.gbNyukinInput.Size = new System.Drawing.Size(777, 388);
+            this.gbNyukinInput.TabIndex = 2;
             this.gbNyukinInput.TabStop = false;
             // 
             // baseTextMoney_Nyukingaku9
@@ -307,14 +309,15 @@
             this.baseTextMoney_Nyukingaku9.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku9.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku9.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku9.Location = new System.Drawing.Point(216, 306);
-            this.baseTextMoney_Nyukingaku9.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku9.Location = new System.Drawing.Point(230, 306);
+            this.baseTextMoney_Nyukingaku9.MaxLength = 8;
             this.baseTextMoney_Nyukingaku9.Name = "baseTextMoney_Nyukingaku9";
-            this.baseTextMoney_Nyukingaku9.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku9.Size = new System.Drawing.Size(86, 22);
             this.baseTextMoney_Nyukingaku9.TabIndex = 37;
             this.baseTextMoney_Nyukingaku9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku9.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku9.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku8
@@ -325,14 +328,15 @@
             this.baseTextMoney_Nyukingaku8.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku8.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku8.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku8.Location = new System.Drawing.Point(217, 278);
-            this.baseTextMoney_Nyukingaku8.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku8.Location = new System.Drawing.Point(231, 278);
+            this.baseTextMoney_Nyukingaku8.MaxLength = 8;
             this.baseTextMoney_Nyukingaku8.Name = "baseTextMoney_Nyukingaku8";
-            this.baseTextMoney_Nyukingaku8.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku8.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku8.TabIndex = 33;
             this.baseTextMoney_Nyukingaku8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku8.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku8.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku7
@@ -343,14 +347,15 @@
             this.baseTextMoney_Nyukingaku7.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku7.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku7.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku7.Location = new System.Drawing.Point(217, 250);
-            this.baseTextMoney_Nyukingaku7.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku7.Location = new System.Drawing.Point(231, 250);
+            this.baseTextMoney_Nyukingaku7.MaxLength = 8;
             this.baseTextMoney_Nyukingaku7.Name = "baseTextMoney_Nyukingaku7";
-            this.baseTextMoney_Nyukingaku7.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku7.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku7.TabIndex = 29;
             this.baseTextMoney_Nyukingaku7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku7.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku7.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku6
@@ -361,14 +366,15 @@
             this.baseTextMoney_Nyukingaku6.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku6.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku6.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku6.Location = new System.Drawing.Point(217, 222);
-            this.baseTextMoney_Nyukingaku6.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku6.Location = new System.Drawing.Point(231, 222);
+            this.baseTextMoney_Nyukingaku6.MaxLength = 8;
             this.baseTextMoney_Nyukingaku6.Name = "baseTextMoney_Nyukingaku6";
-            this.baseTextMoney_Nyukingaku6.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku6.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku6.TabIndex = 25;
             this.baseTextMoney_Nyukingaku6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku6.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku6.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku5
@@ -379,14 +385,15 @@
             this.baseTextMoney_Nyukingaku5.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku5.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku5.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku5.Location = new System.Drawing.Point(217, 194);
-            this.baseTextMoney_Nyukingaku5.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku5.Location = new System.Drawing.Point(231, 194);
+            this.baseTextMoney_Nyukingaku5.MaxLength = 8;
             this.baseTextMoney_Nyukingaku5.Name = "baseTextMoney_Nyukingaku5";
-            this.baseTextMoney_Nyukingaku5.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku5.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku5.TabIndex = 21;
             this.baseTextMoney_Nyukingaku5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku5.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku5.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku4
@@ -397,14 +404,15 @@
             this.baseTextMoney_Nyukingaku4.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku4.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku4.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku4.Location = new System.Drawing.Point(217, 166);
-            this.baseTextMoney_Nyukingaku4.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku4.Location = new System.Drawing.Point(231, 166);
+            this.baseTextMoney_Nyukingaku4.MaxLength = 8;
             this.baseTextMoney_Nyukingaku4.Name = "baseTextMoney_Nyukingaku4";
-            this.baseTextMoney_Nyukingaku4.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku4.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku4.TabIndex = 17;
             this.baseTextMoney_Nyukingaku4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku4.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku4.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku3
@@ -415,14 +423,15 @@
             this.baseTextMoney_Nyukingaku3.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku3.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku3.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku3.Location = new System.Drawing.Point(217, 138);
-            this.baseTextMoney_Nyukingaku3.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku3.Location = new System.Drawing.Point(231, 138);
+            this.baseTextMoney_Nyukingaku3.MaxLength = 8;
             this.baseTextMoney_Nyukingaku3.Name = "baseTextMoney_Nyukingaku3";
-            this.baseTextMoney_Nyukingaku3.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku3.Size = new System.Drawing.Size(85, 22);
             this.baseTextMoney_Nyukingaku3.TabIndex = 13;
             this.baseTextMoney_Nyukingaku3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku3.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku3.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku2
@@ -433,14 +442,15 @@
             this.baseTextMoney_Nyukingaku2.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku2.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku2.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku2.Location = new System.Drawing.Point(216, 110);
-            this.baseTextMoney_Nyukingaku2.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku2.Location = new System.Drawing.Point(230, 110);
+            this.baseTextMoney_Nyukingaku2.MaxLength = 8;
             this.baseTextMoney_Nyukingaku2.Name = "baseTextMoney_Nyukingaku2";
-            this.baseTextMoney_Nyukingaku2.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku2.Size = new System.Drawing.Size(86, 22);
             this.baseTextMoney_Nyukingaku2.TabIndex = 9;
             this.baseTextMoney_Nyukingaku2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku2.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku2.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku1
@@ -451,14 +461,15 @@
             this.baseTextMoney_Nyukingaku1.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku1.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku1.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku1.Location = new System.Drawing.Point(216, 82);
-            this.baseTextMoney_Nyukingaku1.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku1.Location = new System.Drawing.Point(230, 82);
+            this.baseTextMoney_Nyukingaku1.MaxLength = 8;
             this.baseTextMoney_Nyukingaku1.Name = "baseTextMoney_Nyukingaku1";
-            this.baseTextMoney_Nyukingaku1.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku1.Size = new System.Drawing.Size(86, 22);
             this.baseTextMoney_Nyukingaku1.TabIndex = 5;
             this.baseTextMoney_Nyukingaku1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku1.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku1.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // baseTextMoney_Nyukingaku0
@@ -469,131 +480,142 @@
             this.baseTextMoney_Nyukingaku0.intDeciSet = 0;
             this.baseTextMoney_Nyukingaku0.intIntederSet = 0;
             this.baseTextMoney_Nyukingaku0.intShishagonyu = 0;
-            this.baseTextMoney_Nyukingaku0.Location = new System.Drawing.Point(216, 54);
-            this.baseTextMoney_Nyukingaku0.MaxLength = 9;
+            this.baseTextMoney_Nyukingaku0.Location = new System.Drawing.Point(230, 54);
+            this.baseTextMoney_Nyukingaku0.MaxLength = 8;
             this.baseTextMoney_Nyukingaku0.Name = "baseTextMoney_Nyukingaku0";
-            this.baseTextMoney_Nyukingaku0.Size = new System.Drawing.Size(153, 22);
+            this.baseTextMoney_Nyukingaku0.Size = new System.Drawing.Size(86, 22);
             this.baseTextMoney_Nyukingaku0.TabIndex = 1;
             this.baseTextMoney_Nyukingaku0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseTextMoney_Nyukingaku0.Click += new System.EventHandler(this.getCurrentRow);
             this.baseTextMoney_Nyukingaku0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.baseTextMoney_Nyukingaku_KeyDown);
+            this.baseTextMoney_Nyukingaku0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.baseTextMoney_Nyukingaku0.Leave += new System.EventHandler(this.baseTextMoney_NyukingakuX_Leave);
             // 
             // txtTegatakizitu9
             // 
             this.txtTegatakizitu9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu9.Location = new System.Drawing.Point(376, 306);
+            this.txtTegatakizitu9.Location = new System.Drawing.Point(321, 306);
             this.txtTegatakizitu9.MaxLength = 10;
             this.txtTegatakizitu9.Name = "txtTegatakizitu9";
-            this.txtTegatakizitu9.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu9.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu9.TabIndex = 38;
             this.txtTegatakizitu9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu9.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu8
             // 
             this.txtTegatakizitu8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu8.Location = new System.Drawing.Point(376, 278);
+            this.txtTegatakizitu8.Location = new System.Drawing.Point(321, 278);
             this.txtTegatakizitu8.MaxLength = 10;
             this.txtTegatakizitu8.Name = "txtTegatakizitu8";
-            this.txtTegatakizitu8.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu8.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu8.TabIndex = 34;
             this.txtTegatakizitu8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu8.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu7
             // 
             this.txtTegatakizitu7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu7.Location = new System.Drawing.Point(376, 250);
+            this.txtTegatakizitu7.Location = new System.Drawing.Point(321, 250);
             this.txtTegatakizitu7.MaxLength = 10;
             this.txtTegatakizitu7.Name = "txtTegatakizitu7";
-            this.txtTegatakizitu7.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu7.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu7.TabIndex = 30;
             this.txtTegatakizitu7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu7.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu6
             // 
             this.txtTegatakizitu6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu6.Location = new System.Drawing.Point(376, 222);
+            this.txtTegatakizitu6.Location = new System.Drawing.Point(321, 222);
             this.txtTegatakizitu6.MaxLength = 10;
             this.txtTegatakizitu6.Name = "txtTegatakizitu6";
-            this.txtTegatakizitu6.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu6.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu6.TabIndex = 26;
             this.txtTegatakizitu6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu6.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu5
             // 
             this.txtTegatakizitu5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu5.Location = new System.Drawing.Point(376, 194);
+            this.txtTegatakizitu5.Location = new System.Drawing.Point(321, 194);
             this.txtTegatakizitu5.MaxLength = 10;
             this.txtTegatakizitu5.Name = "txtTegatakizitu5";
-            this.txtTegatakizitu5.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu5.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu5.TabIndex = 22;
             this.txtTegatakizitu5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu5.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu4
             // 
             this.txtTegatakizitu4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu4.Location = new System.Drawing.Point(376, 166);
+            this.txtTegatakizitu4.Location = new System.Drawing.Point(321, 166);
             this.txtTegatakizitu4.MaxLength = 10;
             this.txtTegatakizitu4.Name = "txtTegatakizitu4";
-            this.txtTegatakizitu4.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu4.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu4.TabIndex = 18;
             this.txtTegatakizitu4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu4.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu3
             // 
             this.txtTegatakizitu3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu3.Location = new System.Drawing.Point(376, 138);
+            this.txtTegatakizitu3.Location = new System.Drawing.Point(321, 138);
             this.txtTegatakizitu3.MaxLength = 10;
             this.txtTegatakizitu3.Name = "txtTegatakizitu3";
-            this.txtTegatakizitu3.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu3.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu3.TabIndex = 14;
             this.txtTegatakizitu3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu3.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu2
             // 
             this.txtTegatakizitu2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu2.Location = new System.Drawing.Point(376, 110);
+            this.txtTegatakizitu2.Location = new System.Drawing.Point(321, 110);
             this.txtTegatakizitu2.MaxLength = 10;
             this.txtTegatakizitu2.Name = "txtTegatakizitu2";
-            this.txtTegatakizitu2.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu2.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu2.TabIndex = 10;
             this.txtTegatakizitu2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu2.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu1
             // 
             this.txtTegatakizitu1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu1.Location = new System.Drawing.Point(376, 82);
+            this.txtTegatakizitu1.Location = new System.Drawing.Point(321, 82);
             this.txtTegatakizitu1.MaxLength = 10;
             this.txtTegatakizitu1.Name = "txtTegatakizitu1";
-            this.txtTegatakizitu1.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu1.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu1.TabIndex = 6;
             this.txtTegatakizitu1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu1.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegatakizitu0
             // 
             this.txtTegatakizitu0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTegatakizitu0.Location = new System.Drawing.Point(376, 54);
+            this.txtTegatakizitu0.Location = new System.Drawing.Point(321, 54);
             this.txtTegatakizitu0.MaxLength = 10;
             this.txtTegatakizitu0.Name = "txtTegatakizitu0";
-            this.txtTegatakizitu0.Size = new System.Drawing.Size(145, 22);
+            this.txtTegatakizitu0.Size = new System.Drawing.Size(89, 22);
             this.txtTegatakizitu0.TabIndex = 2;
             this.txtTegatakizitu0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegatakizitu0.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegatakizitu0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // labelSet_Torihikikbn9
             // 
             this.labelSet_Torihikikbn9.AppendLabelSize = 40;
             this.labelSet_Torihikikbn9.AppendLabelText = "";
-            this.labelSet_Torihikikbn9.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn9.CodeTxtSize = 22;
             this.labelSet_Torihikikbn9.CodeTxtText = "";
             this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel60);
             this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel51);
@@ -608,13 +630,13 @@
             this.labelSet_Torihikikbn9.LabelName = "";
             this.labelSet_Torihikikbn9.Location = new System.Drawing.Point(25, 306);
             this.labelSet_Torihikikbn9.Name = "labelSet_Torihikikbn9";
-            this.labelSet_Torihikikbn9.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn9.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn9.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn9.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn9.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn9.SpaceNameCode = 4;
             this.labelSet_Torihikikbn9.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn9.TabIndex = 36;
-            this.labelSet_Torihikikbn9.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn9.ValueLabelSize = 170;
             this.labelSet_Torihikikbn9.ValueLabelText = "";
             this.labelSet_Torihikikbn9.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -734,7 +756,7 @@
             // 
             this.labelSet_Torihikikbn8.AppendLabelSize = 40;
             this.labelSet_Torihikikbn8.AppendLabelText = "";
-            this.labelSet_Torihikikbn8.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn8.CodeTxtSize = 22;
             this.labelSet_Torihikikbn8.CodeTxtText = "";
             this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel50);
             this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel42);
@@ -748,13 +770,13 @@
             this.labelSet_Torihikikbn8.LabelName = "";
             this.labelSet_Torihikikbn8.Location = new System.Drawing.Point(25, 278);
             this.labelSet_Torihikikbn8.Name = "labelSet_Torihikikbn8";
-            this.labelSet_Torihikikbn8.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn8.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn8.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn8.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn8.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn8.SpaceNameCode = 4;
             this.labelSet_Torihikikbn8.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn8.TabIndex = 32;
-            this.labelSet_Torihikikbn8.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn8.ValueLabelSize = 170;
             this.labelSet_Torihikikbn8.ValueLabelText = "";
             this.labelSet_Torihikikbn8.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -863,7 +885,7 @@
             // 
             this.labelSet_Torihikikbn7.AppendLabelSize = 40;
             this.labelSet_Torihikikbn7.AppendLabelText = "";
-            this.labelSet_Torihikikbn7.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn7.CodeTxtSize = 22;
             this.labelSet_Torihikikbn7.CodeTxtText = "";
             this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel41);
             this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel34);
@@ -876,13 +898,13 @@
             this.labelSet_Torihikikbn7.LabelName = "";
             this.labelSet_Torihikikbn7.Location = new System.Drawing.Point(25, 250);
             this.labelSet_Torihikikbn7.Name = "labelSet_Torihikikbn7";
-            this.labelSet_Torihikikbn7.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn7.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn7.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn7.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn7.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn7.SpaceNameCode = 4;
             this.labelSet_Torihikikbn7.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn7.TabIndex = 28;
-            this.labelSet_Torihikikbn7.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn7.ValueLabelSize = 170;
             this.labelSet_Torihikikbn7.ValueLabelText = "";
             this.labelSet_Torihikikbn7.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -980,7 +1002,7 @@
             // 
             this.labelSet_Torihikikbn6.AppendLabelSize = 40;
             this.labelSet_Torihikikbn6.AppendLabelText = "";
-            this.labelSet_Torihikikbn6.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn6.CodeTxtSize = 22;
             this.labelSet_Torihikikbn6.CodeTxtText = "";
             this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel33);
             this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel27);
@@ -992,13 +1014,13 @@
             this.labelSet_Torihikikbn6.LabelName = "";
             this.labelSet_Torihikikbn6.Location = new System.Drawing.Point(25, 222);
             this.labelSet_Torihikikbn6.Name = "labelSet_Torihikikbn6";
-            this.labelSet_Torihikikbn6.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn6.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn6.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn6.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn6.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn6.SpaceNameCode = 4;
             this.labelSet_Torihikikbn6.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn6.TabIndex = 24;
-            this.labelSet_Torihikikbn6.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn6.ValueLabelSize = 170;
             this.labelSet_Torihikikbn6.ValueLabelText = "";
             this.labelSet_Torihikikbn6.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1085,7 +1107,7 @@
             // 
             this.labelSet_Torihikikbn5.AppendLabelSize = 40;
             this.labelSet_Torihikikbn5.AppendLabelText = "";
-            this.labelSet_Torihikikbn5.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn5.CodeTxtSize = 22;
             this.labelSet_Torihikikbn5.CodeTxtText = "";
             this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel26);
             this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel21);
@@ -1096,13 +1118,13 @@
             this.labelSet_Torihikikbn5.LabelName = "";
             this.labelSet_Torihikikbn5.Location = new System.Drawing.Point(25, 194);
             this.labelSet_Torihikikbn5.Name = "labelSet_Torihikikbn5";
-            this.labelSet_Torihikikbn5.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn5.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn5.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn5.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn5.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn5.SpaceNameCode = 4;
             this.labelSet_Torihikikbn5.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn5.TabIndex = 20;
-            this.labelSet_Torihikikbn5.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn5.ValueLabelSize = 170;
             this.labelSet_Torihikikbn5.ValueLabelText = "";
             this.labelSet_Torihikikbn5.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1178,7 +1200,7 @@
             // 
             this.labelSet_Torihikikbn4.AppendLabelSize = 40;
             this.labelSet_Torihikikbn4.AppendLabelText = "";
-            this.labelSet_Torihikikbn4.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn4.CodeTxtSize = 22;
             this.labelSet_Torihikikbn4.CodeTxtText = "";
             this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel20);
             this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel16);
@@ -1188,13 +1210,13 @@
             this.labelSet_Torihikikbn4.LabelName = "";
             this.labelSet_Torihikikbn4.Location = new System.Drawing.Point(25, 166);
             this.labelSet_Torihikikbn4.Name = "labelSet_Torihikikbn4";
-            this.labelSet_Torihikikbn4.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn4.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn4.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn4.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn4.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn4.SpaceNameCode = 4;
             this.labelSet_Torihikikbn4.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn4.TabIndex = 16;
-            this.labelSet_Torihikikbn4.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn4.ValueLabelSize = 170;
             this.labelSet_Torihikikbn4.ValueLabelText = "";
             this.labelSet_Torihikikbn4.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1259,7 +1281,7 @@
             // 
             this.labelSet_Torihikikbn3.AppendLabelSize = 40;
             this.labelSet_Torihikikbn3.AppendLabelText = "";
-            this.labelSet_Torihikikbn3.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn3.CodeTxtSize = 22;
             this.labelSet_Torihikikbn3.CodeTxtText = "";
             this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel15);
             this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel12);
@@ -1268,13 +1290,13 @@
             this.labelSet_Torihikikbn3.LabelName = "";
             this.labelSet_Torihikikbn3.Location = new System.Drawing.Point(25, 138);
             this.labelSet_Torihikikbn3.Name = "labelSet_Torihikikbn3";
-            this.labelSet_Torihikikbn3.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn3.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn3.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn3.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn3.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn3.SpaceNameCode = 4;
             this.labelSet_Torihikikbn3.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn3.TabIndex = 12;
-            this.labelSet_Torihikikbn3.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn3.ValueLabelSize = 170;
             this.labelSet_Torihikikbn3.ValueLabelText = "";
             this.labelSet_Torihikikbn3.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1328,7 +1350,7 @@
             // 
             this.labelSet_Torihikikbn2.AppendLabelSize = 40;
             this.labelSet_Torihikikbn2.AppendLabelText = "";
-            this.labelSet_Torihikikbn2.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn2.CodeTxtSize = 22;
             this.labelSet_Torihikikbn2.CodeTxtText = "";
             this.labelSet_Torihikikbn2.Controls.Add(this.baseLabel11);
             this.labelSet_Torihikikbn2.Controls.Add(this.baseLabel9);
@@ -1336,13 +1358,13 @@
             this.labelSet_Torihikikbn2.LabelName = "";
             this.labelSet_Torihikikbn2.Location = new System.Drawing.Point(25, 110);
             this.labelSet_Torihikikbn2.Name = "labelSet_Torihikikbn2";
-            this.labelSet_Torihikikbn2.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn2.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn2.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn2.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn2.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn2.SpaceNameCode = 4;
             this.labelSet_Torihikikbn2.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn2.TabIndex = 8;
-            this.labelSet_Torihikikbn2.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn2.ValueLabelSize = 170;
             this.labelSet_Torihikikbn2.ValueLabelText = "";
             this.labelSet_Torihikikbn2.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1385,20 +1407,20 @@
             // 
             this.labelSet_Torihikikbn1.AppendLabelSize = 40;
             this.labelSet_Torihikikbn1.AppendLabelText = "";
-            this.labelSet_Torihikikbn1.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn1.CodeTxtSize = 22;
             this.labelSet_Torihikikbn1.CodeTxtText = "";
             this.labelSet_Torihikikbn1.Controls.Add(this.baseLabel8);
             this.labelSet_Torihikikbn1.Controls.Add(this.nameLabel);
             this.labelSet_Torihikikbn1.LabelName = "";
             this.labelSet_Torihikikbn1.Location = new System.Drawing.Point(25, 82);
             this.labelSet_Torihikikbn1.Name = "labelSet_Torihikikbn1";
-            this.labelSet_Torihikikbn1.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn1.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn1.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn1.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn1.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn1.SpaceNameCode = 4;
             this.labelSet_Torihikikbn1.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn1.TabIndex = 4;
-            this.labelSet_Torihikikbn1.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn1.ValueLabelSize = 170;
             this.labelSet_Torihikikbn1.ValueLabelText = "";
             this.labelSet_Torihikikbn1.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1430,18 +1452,18 @@
             // 
             this.labelSet_Torihikikbn0.AppendLabelSize = 40;
             this.labelSet_Torihikikbn0.AppendLabelText = "";
-            this.labelSet_Torihikikbn0.CodeTxtSize = 40;
+            this.labelSet_Torihikikbn0.CodeTxtSize = 22;
             this.labelSet_Torihikikbn0.CodeTxtText = "";
             this.labelSet_Torihikikbn0.LabelName = "";
             this.labelSet_Torihikikbn0.Location = new System.Drawing.Point(25, 54);
             this.labelSet_Torihikikbn0.Name = "labelSet_Torihikikbn0";
-            this.labelSet_Torihikikbn0.ShowAppendFlg = true;
-            this.labelSet_Torihikikbn0.Size = new System.Drawing.Size(185, 22);
+            this.labelSet_Torihikikbn0.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn0.Size = new System.Drawing.Size(247, 22);
             this.labelSet_Torihikikbn0.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn0.SpaceNameCode = 4;
             this.labelSet_Torihikikbn0.SpaceValueAppend = 4;
             this.labelSet_Torihikikbn0.TabIndex = 0;
-            this.labelSet_Torihikikbn0.ValueLabelSize = 350;
+            this.labelSet_Torihikikbn0.ValueLabelSize = 170;
             this.labelSet_Torihikikbn0.ValueLabelText = "";
             this.labelSet_Torihikikbn0.Click += new System.EventHandler(this.getCurrentRow);
             this.labelSet_Torihikikbn0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelSet_Torihikikbn_KeyDown);
@@ -1453,10 +1475,10 @@
             this.LabelGray_Goukei.BackColor = System.Drawing.Color.Gainsboro;
             this.LabelGray_Goukei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.LabelGray_Goukei.ForeColor = System.Drawing.Color.Blue;
-            this.LabelGray_Goukei.Location = new System.Drawing.Point(181, 348);
+            this.LabelGray_Goukei.Location = new System.Drawing.Point(229, 348);
             this.LabelGray_Goukei.Name = "LabelGray_Goukei";
             this.LabelGray_Goukei.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LabelGray_Goukei.Size = new System.Drawing.Size(189, 23);
+            this.LabelGray_Goukei.Size = new System.Drawing.Size(181, 23);
             this.LabelGray_Goukei.TabIndex = 40;
             this.LabelGray_Goukei.Text = " ";
             this.LabelGray_Goukei.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1465,7 +1487,7 @@
             // 
             this.baseLabel6.AutoSize = true;
             this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(120, 352);
+            this.baseLabel6.Location = new System.Drawing.Point(168, 352);
             this.baseLabel6.Name = "baseLabel6";
             this.baseLabel6.Size = new System.Drawing.Size(55, 15);
             this.baseLabel6.strToolTip = null;
@@ -1476,118 +1498,128 @@
             // txtBikou9
             // 
             this.txtBikou9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou9.Location = new System.Drawing.Point(527, 306);
+            this.txtBikou9.Location = new System.Drawing.Point(415, 306);
             this.txtBikou9.MaxLength = 40;
             this.txtBikou9.Name = "txtBikou9";
-            this.txtBikou9.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou9.Size = new System.Drawing.Size(330, 22);
             this.txtBikou9.TabIndex = 39;
             this.txtBikou9.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou8
             // 
             this.txtBikou8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou8.Location = new System.Drawing.Point(527, 278);
+            this.txtBikou8.Location = new System.Drawing.Point(415, 278);
             this.txtBikou8.MaxLength = 40;
             this.txtBikou8.Name = "txtBikou8";
-            this.txtBikou8.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou8.Size = new System.Drawing.Size(330, 22);
             this.txtBikou8.TabIndex = 35;
             this.txtBikou8.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou7
             // 
             this.txtBikou7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou7.Location = new System.Drawing.Point(527, 250);
+            this.txtBikou7.Location = new System.Drawing.Point(415, 250);
             this.txtBikou7.MaxLength = 40;
             this.txtBikou7.Name = "txtBikou7";
-            this.txtBikou7.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou7.Size = new System.Drawing.Size(330, 22);
             this.txtBikou7.TabIndex = 31;
             this.txtBikou7.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou6
             // 
             this.txtBikou6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou6.Location = new System.Drawing.Point(527, 222);
+            this.txtBikou6.Location = new System.Drawing.Point(415, 222);
             this.txtBikou6.MaxLength = 40;
             this.txtBikou6.Name = "txtBikou6";
-            this.txtBikou6.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou6.Size = new System.Drawing.Size(330, 22);
             this.txtBikou6.TabIndex = 27;
             this.txtBikou6.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou5
             // 
             this.txtBikou5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou5.Location = new System.Drawing.Point(527, 194);
+            this.txtBikou5.Location = new System.Drawing.Point(415, 194);
             this.txtBikou5.MaxLength = 40;
             this.txtBikou5.Name = "txtBikou5";
-            this.txtBikou5.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou5.Size = new System.Drawing.Size(330, 22);
             this.txtBikou5.TabIndex = 23;
             this.txtBikou5.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou4
             // 
             this.txtBikou4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou4.Location = new System.Drawing.Point(527, 166);
+            this.txtBikou4.Location = new System.Drawing.Point(415, 166);
             this.txtBikou4.MaxLength = 40;
             this.txtBikou4.Name = "txtBikou4";
-            this.txtBikou4.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou4.Size = new System.Drawing.Size(330, 22);
             this.txtBikou4.TabIndex = 19;
             this.txtBikou4.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou3
             // 
             this.txtBikou3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou3.Location = new System.Drawing.Point(527, 138);
+            this.txtBikou3.Location = new System.Drawing.Point(415, 138);
             this.txtBikou3.MaxLength = 40;
             this.txtBikou3.Name = "txtBikou3";
-            this.txtBikou3.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou3.Size = new System.Drawing.Size(330, 22);
             this.txtBikou3.TabIndex = 15;
             this.txtBikou3.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou2
             // 
             this.txtBikou2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou2.Location = new System.Drawing.Point(527, 110);
+            this.txtBikou2.Location = new System.Drawing.Point(415, 110);
             this.txtBikou2.MaxLength = 40;
             this.txtBikou2.Name = "txtBikou2";
-            this.txtBikou2.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou2.Size = new System.Drawing.Size(330, 22);
             this.txtBikou2.TabIndex = 11;
             this.txtBikou2.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou1
             // 
             this.txtBikou1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou1.Location = new System.Drawing.Point(527, 82);
+            this.txtBikou1.Location = new System.Drawing.Point(415, 82);
             this.txtBikou1.MaxLength = 40;
             this.txtBikou1.Name = "txtBikou1";
-            this.txtBikou1.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou1.Size = new System.Drawing.Size(330, 22);
             this.txtBikou1.TabIndex = 7;
             this.txtBikou1.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtBikou0
             // 
             this.txtBikou0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBikou0.Location = new System.Drawing.Point(527, 54);
+            this.txtBikou0.Location = new System.Drawing.Point(415, 54);
             this.txtBikou0.MaxLength = 40;
             this.txtBikou0.Name = "txtBikou0";
-            this.txtBikou0.Size = new System.Drawing.Size(145, 22);
+            this.txtBikou0.Size = new System.Drawing.Size(330, 22);
             this.txtBikou0.TabIndex = 3;
             this.txtBikou0.Click += new System.EventHandler(this.getCurrentRow);
             this.txtBikou0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
+            this.txtBikou0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // baseLabel5
             // 
             this.baseLabel5.AutoSize = true;
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(583, 26);
+            this.baseLabel5.Location = new System.Drawing.Point(542, 26);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(39, 15);
             this.baseLabel5.strToolTip = null;
@@ -1599,7 +1631,7 @@
             // 
             this.baseLabel4.AutoSize = true;
             this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(416, 26);
+            this.baseLabel4.Location = new System.Drawing.Point(331, 26);
             this.baseLabel4.Name = "baseLabel4";
             this.baseLabel4.Size = new System.Drawing.Size(71, 15);
             this.baseLabel4.strToolTip = null;
@@ -1611,7 +1643,7 @@
             // 
             this.baseLabel3.AutoSize = true;
             this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(279, 26);
+            this.baseLabel3.Location = new System.Drawing.Point(246, 26);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(55, 15);
             this.baseLabel3.strToolTip = null;
@@ -1623,7 +1655,7 @@
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(99, 26);
+            this.baseLabel2.Location = new System.Drawing.Point(108, 26);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(55, 15);
             this.baseLabel2.strToolTip = null;
@@ -1635,7 +1667,7 @@
             // 
             this.baseLabel1.AutoSize = true;
             this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(22, 26);
+            this.baseLabel1.Location = new System.Drawing.Point(13, 26);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(55, 15);
             this.baseLabel1.strToolTip = null;
@@ -1648,7 +1680,7 @@
             this.groupBox2.Controls.Add(this.gridSeikyuRireki);
             this.groupBox2.Location = new System.Drawing.Point(122, 547);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(955, 212);
+            this.groupBox2.Size = new System.Drawing.Size(977, 219);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "請求履歴";
@@ -1659,6 +1691,7 @@
             this.gridSeikyuRireki.AllowUserToDeleteRows = false;
             this.gridSeikyuRireki.AllowUserToResizeColumns = false;
             this.gridSeikyuRireki.AllowUserToResizeRows = false;
+            this.gridSeikyuRireki.AutoGenerateColumns = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -1699,7 +1732,7 @@
             // 
             this.baseLabel7.AutoSize = true;
             this.baseLabel7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel7.Location = new System.Drawing.Point(387, 26);
+            this.baseLabel7.Location = new System.Drawing.Point(338, 38);
             this.baseLabel7.Name = "baseLabel7";
             this.baseLabel7.Size = new System.Drawing.Size(71, 15);
             this.baseLabel7.strToolTip = null;
@@ -1710,24 +1743,27 @@
             // txtDenpyoNo
             // 
             this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoNo.Location = new System.Drawing.Point(464, 23);
+            this.txtDenpyoNo.Location = new System.Drawing.Point(415, 35);
             this.txtDenpyoNo.MaxLength = 8;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
-            this.txtDenpyoNo.Size = new System.Drawing.Size(171, 22);
+            this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
             this.txtDenpyoNo.TabIndex = 1;
+            this.txtDenpyoNo.TabStop = false;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);
+            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtDenpyoNo.Leave += new System.EventHandler(this.txtDenpyoNo_Leave);
             // 
             // txtYMD
             // 
             this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYMD.Location = new System.Drawing.Point(254, 23);
+            this.txtYMD.Location = new System.Drawing.Point(218, 35);
             this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
-            this.txtYMD.Size = new System.Drawing.Size(127, 22);
+            this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
             this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtYMDKeyDown);
+            this.txtYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtYMD.Leave += new System.EventHandler(this.updtxtYMD_Leave);
             // 
             // labelSet_Tokuisaki
@@ -1737,14 +1773,14 @@
             this.labelSet_Tokuisaki.CodeTxtSize = 40;
             this.labelSet_Tokuisaki.CodeTxtText = "";
             this.labelSet_Tokuisaki.LabelName = "得意先コード";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(111, 66);
+            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(111, 72);
             this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
             this.labelSet_Tokuisaki.ShowAppendFlg = false;
             this.labelSet_Tokuisaki.Size = new System.Drawing.Size(446, 22);
             this.labelSet_Tokuisaki.SpaceCodeValue = 4;
             this.labelSet_Tokuisaki.SpaceNameCode = 4;
             this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 89;
+            this.labelSet_Tokuisaki.TabIndex = 1;
             this.labelSet_Tokuisaki.ValueLabelSize = 300;
             this.labelSet_Tokuisaki.ValueLabelText = "";
             this.labelSet_Tokuisaki.Leave += new System.EventHandler(this.labelSet_Tokuisaki_Leave);
@@ -1753,17 +1789,19 @@
             // 
             this.txtSimekiribi.BackColor = System.Drawing.SystemColors.Window;
             this.txtSimekiribi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSimekiribi.Location = new System.Drawing.Point(111, 499);
+            this.txtSimekiribi.Location = new System.Drawing.Point(175, 510);
             this.txtSimekiribi.Name = "txtSimekiribi";
             this.txtSimekiribi.ReadOnly = true;
             this.txtSimekiribi.Size = new System.Drawing.Size(100, 22);
             this.txtSimekiribi.TabIndex = 90;
+            this.txtSimekiribi.TabStop = false;
+            this.txtSimekiribi.Text = "11";
             // 
             // baseLabel61
             // 
             this.baseLabel61.AutoSize = true;
             this.baseLabel61.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel61.Location = new System.Drawing.Point(50, 502);
+            this.baseLabel61.Location = new System.Drawing.Point(112, 513);
             this.baseLabel61.Name = "baseLabel61";
             this.baseLabel61.Size = new System.Drawing.Size(55, 15);
             this.baseLabel61.strToolTip = null;
@@ -1775,17 +1813,19 @@
             // 
             this.txtSiharaiGessuu.BackColor = System.Drawing.SystemColors.Window;
             this.txtSiharaiGessuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSiharaiGessuu.Location = new System.Drawing.Point(294, 498);
+            this.txtSiharaiGessuu.Location = new System.Drawing.Point(367, 509);
             this.txtSiharaiGessuu.Name = "txtSiharaiGessuu";
             this.txtSiharaiGessuu.ReadOnly = true;
             this.txtSiharaiGessuu.Size = new System.Drawing.Size(100, 22);
             this.txtSiharaiGessuu.TabIndex = 90;
+            this.txtSiharaiGessuu.TabStop = false;
+            this.txtSiharaiGessuu.Text = "22";
             // 
             // baseLabel62
             // 
             this.baseLabel62.AutoSize = true;
             this.baseLabel62.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel62.Location = new System.Drawing.Point(217, 502);
+            this.baseLabel62.Location = new System.Drawing.Point(290, 513);
             this.baseLabel62.Name = "baseLabel62";
             this.baseLabel62.Size = new System.Drawing.Size(71, 15);
             this.baseLabel62.strToolTip = null;
@@ -1797,17 +1837,19 @@
             // 
             this.txtSiharaibi.BackColor = System.Drawing.SystemColors.Window;
             this.txtSiharaibi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSiharaibi.Location = new System.Drawing.Point(461, 498);
+            this.txtSiharaibi.Location = new System.Drawing.Point(546, 509);
             this.txtSiharaibi.Name = "txtSiharaibi";
             this.txtSiharaibi.ReadOnly = true;
             this.txtSiharaibi.Size = new System.Drawing.Size(100, 22);
             this.txtSiharaibi.TabIndex = 90;
+            this.txtSiharaibi.TabStop = false;
+            this.txtSiharaibi.Text = "21";
             // 
             // baseLabel63
             // 
             this.baseLabel63.AutoSize = true;
             this.baseLabel63.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel63.Location = new System.Drawing.Point(400, 501);
+            this.baseLabel63.Location = new System.Drawing.Point(485, 512);
             this.baseLabel63.Name = "baseLabel63";
             this.baseLabel63.Size = new System.Drawing.Size(55, 15);
             this.baseLabel63.strToolTip = null;
@@ -1819,17 +1861,18 @@
             // 
             this.txtSiharaiJoken.BackColor = System.Drawing.SystemColors.Window;
             this.txtSiharaiJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSiharaiJoken.Location = new System.Drawing.Point(644, 498);
+            this.txtSiharaiJoken.Location = new System.Drawing.Point(740, 509);
             this.txtSiharaiJoken.Name = "txtSiharaiJoken";
             this.txtSiharaiJoken.ReadOnly = true;
-            this.txtSiharaiJoken.Size = new System.Drawing.Size(355, 22);
+            this.txtSiharaiJoken.Size = new System.Drawing.Size(330, 22);
             this.txtSiharaiJoken.TabIndex = 90;
+            this.txtSiharaiJoken.TabStop = false;
             // 
             // baseLabel64
             // 
             this.baseLabel64.AutoSize = true;
             this.baseLabel64.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel64.Location = new System.Drawing.Point(567, 501);
+            this.baseLabel64.Location = new System.Drawing.Point(663, 512);
             this.baseLabel64.Name = "baseLabel64";
             this.baseLabel64.Size = new System.Drawing.Size(71, 15);
             this.baseLabel64.strToolTip = null;
@@ -1841,17 +1884,18 @@
             // 
             this.txtSyukinKbn.BackColor = System.Drawing.SystemColors.Window;
             this.txtSyukinKbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSyukinKbn.Location = new System.Drawing.Point(1083, 499);
+            this.txtSyukinKbn.Location = new System.Drawing.Point(1172, 509);
             this.txtSyukinKbn.Name = "txtSyukinKbn";
             this.txtSyukinKbn.ReadOnly = true;
             this.txtSyukinKbn.Size = new System.Drawing.Size(100, 22);
             this.txtSyukinKbn.TabIndex = 90;
+            this.txtSyukinKbn.TabStop = false;
             // 
             // baseLabel65
             // 
             this.baseLabel65.AutoSize = true;
             this.baseLabel65.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel65.Location = new System.Drawing.Point(1006, 502);
+            this.baseLabel65.Location = new System.Drawing.Point(1095, 512);
             this.baseLabel65.Name = "baseLabel65";
             this.baseLabel65.Size = new System.Drawing.Size(71, 15);
             this.baseLabel65.strToolTip = null;
@@ -1859,11 +1903,24 @@
             this.baseLabel65.Text = "集金区分";
             this.baseLabel65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // baseLabel66
+            // 
+            this.baseLabel66.AutoSize = true;
+            this.baseLabel66.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel66.Location = new System.Drawing.Point(1088, 535);
+            this.baseLabel66.Name = "baseLabel66";
+            this.baseLabel66.Size = new System.Drawing.Size(89, 12);
+            this.baseLabel66.strToolTip = "";
+            this.baseLabel66.TabIndex = 92;
+            this.baseLabel66.Text = "(0：無　1：有)";
+            this.baseLabel66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // B0040_NyukinInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.baseLabel66);
             this.Controls.Add(this.baseLabel65);
             this.Controls.Add(this.baseLabel64);
             this.Controls.Add(this.baseLabel63);
@@ -1887,6 +1944,7 @@
             this.Text = "";
             this.Load += new System.EventHandler(this.B0040_NyukinInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0040_NyukinInput_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.lblKikan, 0);
             this.Controls.SetChildIndex(this.baseLabel7, 0);
             this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
@@ -1918,6 +1976,7 @@
             this.Controls.SetChildIndex(this.baseLabel63, 0);
             this.Controls.SetChildIndex(this.baseLabel64, 0);
             this.Controls.SetChildIndex(this.baseLabel65, 0);
+            this.Controls.SetChildIndex(this.baseLabel66, 0);
             this.gbNyukinInput.ResumeLayout(false);
             this.gbNyukinInput.PerformLayout();
             this.labelSet_Torihikikbn9.ResumeLayout(false);
@@ -2067,5 +2126,6 @@
         private Common.Ctl.BaseLabel baseLabel64;
         private Common.Ctl.BaseText txtSyukinKbn;
         private Common.Ctl.BaseLabel baseLabel65;
+        private Common.Ctl.BaseLabel baseLabel66;
     }
 }

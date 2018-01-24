@@ -19,9 +19,9 @@ namespace KATO.Common.Form
     ///ShouhinList
     ///商品リストフォーム
     ///作成者：大河内
-    ///作成日：2017/5/1
+    ///作成日：2017/05/01
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2017/01/24
     ///カラム論理名
     ///</summary>
     public partial class ShouhinList : System.Windows.Forms.Form
@@ -137,6 +137,8 @@ namespace KATO.Common.Form
         //前画面から仕入単価を取り出す枠（仕入単価初期値）（コンボボックス）
         public ComboBox cbShireTanka = null;
 
+        //商品マスタからかどうかの判定
+        public bool blShohinMaster = false;
 
         //検索項目が記入されているかどうか
         public bool blKensaku = false;
@@ -409,16 +411,6 @@ namespace KATO.Common.Form
             {
                 cbShireTanka = new ComboBox();
             }
-
-            // 未登録棚を表示する場合
-            if (blNoTana == true)
-            {
-                chkNotToroku.Checked = false;
-            }
-            else
-            {
-                chkNotToroku.Checked = true;
-            }
         }
 
         /// <summary>
@@ -442,6 +434,26 @@ namespace KATO.Common.Form
             if (blKensaku == true)
             {
                 setShohinView();
+            }
+
+            // 商品マスタからの場合
+            if (blShohinMaster == true)
+            {
+                chkNotToroku.Visible = true;
+            }
+            else
+            {
+                chkNotToroku.Visible = false;
+            }
+
+            // 未登録棚を表示する場合
+            if (blNoTana == true)
+            {
+                chkNotToroku.Checked = true;
+            }
+            else
+            {
+                chkNotToroku.Checked = false;
             }
         }
 
@@ -1081,16 +1093,42 @@ namespace KATO.Common.Form
             gridTorihiki.DataSource = null;
             DataTable dtView = new DataTable();
 
-            decimal decHonsha = 0;
+            //数値チェックに使う
+            double dblKensaku = 0;
+
+            //数値チェック後に確保用
+            string strUkata = "";
+            
+            //検索文字列がある場合の処理
+            if (txtKensaku.blIsEmpty())
+            {
+                //数値チェック
+                if (!double.TryParse(txtKensaku.Text, out dblKensaku))
+                {
+                    //そのまま確保
+                    strUkata = txtKensaku.Text;
+                }
+                else
+                {
+                    //空白削除
+                    strUkata = txtKensaku.Text.Trim();
+                }
+
+                //英字を大文字に
+                strUkata = strUkata.ToUpper();
+
+                strUkata = strUkata.Replace(" ", "");
+            }
 
             //データ渡し用
             lstInt.Add(intFrmKind);
             lstInt.Add(0);
 
-            lstString.Add(labelSet_Daibunrui.CodeTxtText);
-            lstString.Add(labelSet_Chubunrui.CodeTxtText);
-            lstString.Add(labelSet_Maker.CodeTxtText);
-            lstString.Add(txtKensaku.Text);
+            lstString.Add(labelSet_Daibunrui.CodeTxtText);      //大分類コード
+            lstString.Add(labelSet_Chubunrui.CodeTxtText);      //中分類コード
+            lstString.Add(labelSet_Maker.CodeTxtText);          //メーカーコード
+            lstString.Add(strUkata);                            //型番
+            lstString.Add(DateTime.Now.ToString("yyyy/MM/dd")); //今日のYMD
 
             lstBoolean.Add(chkNotToroku.Checked);
             lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);
@@ -1332,6 +1370,11 @@ namespace KATO.Common.Form
         public void setChubun()
         {
             labelSet_Chubunrui.setTxtChubunruiLeave();
+        }
+
+        private void chkNotToroku_VisibleChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,13 +16,15 @@ using System.IO;
 
 namespace KATO.Form.B0250_MOnyuryoku
 {
+    //列91にデバッグ用のコードがあるため最終的に削除
+
     ///<summary>
     ///MOnyuryoku
     ///MO入力フォーム
     ///作成者：大河内
     ///作成日：2017/1/15
     ///更新者：大河内
-    ///更新日：2017/1/20
+    ///更新日：2017/1/23
     ///カラム論理名
     ///</summary>
     public partial class B0250_MOnyuryoku : BaseForm
@@ -862,18 +864,18 @@ namespace KATO.Form.B0250_MOnyuryoku
                             strNouki = gridKataban2.Rows[intCnt].Cells["納期"].Value.ToString().Substring(0, 10);
                             strTorihiki = gridKataban2.Rows[intCnt].Cells["ｺｰﾄﾞ"].Value.ToString();
 
-                            strCode = gridKataban2.Rows[intCnt].Cells["商品コード"].Value.ToString();
+                            //strCode = gridKataban2.Rows[intCnt].Cells["商品コード"].Value.ToString();
                         }
 
                         //発注指が空白もしくは0の場合
                         if (StringUtl.blIsEmpty(gridKataban2.Rows[intCnt].Cells["発注指"].Value.ToString()) == false ||
                             gridKataban2.Rows[intCnt].Cells["発注指"].Value.ToString() == "0")
                         {
-                            strSijisU = "";
+                            strSijisU = gridKataban2.Rows[intCnt].Cells["発注指"].Value.ToString();
                         }
                         else
                         {
-                            strSijisU = gridKataban2.Rows[intCnt].Cells["発注指"].Value.ToString();
+                            strSijisU = "";
                         }
 
                         //発注番号が空白の場合
@@ -1286,6 +1288,11 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //元に戻す
                 Cursor.Current = Cursors.Default;
             }
+
+            //グリッドの初期化
+            gridKataban.DataSource = "";
+            gridKataban2.DataSource = "";
+            gridRireki.DataSource = "";
 
             //中段グリッドの表示
             if (!showGridKataban2())
@@ -2398,7 +2405,6 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void btnChancel_Click(object sender, EventArgs e)
         {
-            //bool Cancel = e.Cancel;
             int intRow;
             int intR1;
             int intR2;
@@ -2508,6 +2514,10 @@ namespace KATO.Form.B0250_MOnyuryoku
                 txtNoki.Text = "";
                 lblSetShimukesaki.codeTxt.Clear();
                 lblSetShimukesaki.ValueLabelText = "";
+                lblSetHachuTantousha.codeTxt.Clear();
+                lblSetHachuTantousha.ValueLabelText = "";
+                txtShohinCd.Clear();
+                txtTanka.Clear();
             }
         }
 

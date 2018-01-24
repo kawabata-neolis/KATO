@@ -588,7 +588,7 @@
             this.txtKingaku.Location = new System.Drawing.Point(65, 79);
             this.txtKingaku.MaxLength = 3;
             this.txtKingaku.Name = "txtKingaku";
-            this.txtKingaku.Size = new System.Drawing.Size(10, 22);
+            this.txtKingaku.Size = new System.Drawing.Size(75, 22);
             this.txtKingaku.TabIndex = 9;
             this.txtKingaku.TabStop = false;
             this.txtKingaku.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -598,7 +598,7 @@
             // 
             this.lblShohinCd.AutoSize = true;
             this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinCd.Location = new System.Drawing.Point(78, 82);
+            this.lblShohinCd.Location = new System.Drawing.Point(146, 81);
             this.lblShohinCd.Name = "lblShohinCd";
             this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
             this.lblShohinCd.strToolTip = null;
@@ -610,12 +610,11 @@
             // txtShohinCd
             // 
             this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShohinCd.Location = new System.Drawing.Point(171, 79);
+            this.txtShohinCd.Location = new System.Drawing.Point(239, 78);
             this.txtShohinCd.Name = "txtShohinCd";
-            this.txtShohinCd.Size = new System.Drawing.Size(10, 22);
+            this.txtShohinCd.Size = new System.Drawing.Size(84, 22);
             this.txtShohinCd.TabIndex = 89;
             this.txtShohinCd.TabStop = false;
-            this.txtShohinCd.Visible = false;
             // 
             // txtHachusu
             // 

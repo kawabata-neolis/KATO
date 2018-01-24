@@ -2402,6 +2402,9 @@
     <Content Include="SQL\Common\C_SQL_ZENNENURIAGEJISSEKI_UPD.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\C_TantoshaCd_Select.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\JuchuInput_DataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

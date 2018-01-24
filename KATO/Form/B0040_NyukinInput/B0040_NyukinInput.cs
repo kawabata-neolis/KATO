@@ -20,8 +20,8 @@ namespace KATO.Form.B0040_NyukinInput
     ///入金入力フォーム
     ///作成者：太田
     ///作成日：2017/06/23
-    ///更新者：
-    ///更新日：
+    ///更新者：大河内
+    ///更新日：2018/01/24
     ///</summary>
     public partial class B0040_NyukinInput : BaseForm
     {
@@ -80,18 +80,50 @@ namespace KATO.Form.B0040_NyukinInput
             this.btnF06.Text = "F6:終り";
             this.btnF07.Text = "F7:行削除";
             this.btnF08.Text = "F8:元帳";
+            this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // 初期表示
-            this.btnF01.Enabled = false;
-            this.btnF03.Enabled = false;
-            labelSet_Tantousha.Focus();
+            //// 初期表示
+            //this.btnF01.Enabled = false;
+            //this.btnF03.Enabled = false;
+
+            //labelSet_Tantousha.Focus();
+
+            DataTable dtTantoshaCd = new DataTable();
+
+            B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = nyukininputB.getTantoshaCd(SystemInformation.UserName);
+                
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.chkTxtTantosha();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
 
             txtYMD.setUp(0);
 			
 			// テスト用に【営業所コード】へ'0001'をセット
             labelSet_Eigyosho.CodeTxtText = "0001";
-
             
             //DataGridViewの初期設定
             SetUpGrid();
@@ -1312,6 +1344,18 @@ namespace KATO.Form.B0040_NyukinInput
 
             }
             return false;
+        }
+
+        ///<summary>
+        ///judtxtNyukinKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtNyukinKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

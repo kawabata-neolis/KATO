@@ -20,9 +20,9 @@ namespace KATO.Common.Business
     ///ShouhinList_B
     ///商品リストフォーム
     ///作成者：大河内
-    ///作成日：2017/3/23
+    ///作成日：2017/05/01
     ///更新者：大河内
-    ///更新日：2017/4/7
+    ///更新日：2018/01/24
     ///カラム論理名
     ///</summary>
     class ShouhinList_B
@@ -77,6 +77,15 @@ namespace KATO.Common.Business
                 strWhere = strWhere + "";
             }
 
+            //未登録棚の場合
+            if (lstBoolean[0] == true)
+            {
+                strWhere = strWhere + "AND  (";
+                strWhere = strWhere + " ((SELECT 棚番名 FROM 棚番 WHERE 商品.棚番本社=棚番.棚番)  IS NULL)";
+                strWhere = strWhere + " OR ((SELECT 棚番名 FROM 棚番 WHERE 商品.棚番岐阜=棚番.棚番)  IS NULL)";
+                strWhere = strWhere + " )";
+            }
+            
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("Common");
             lstSQL.Add("CommonForm");
@@ -102,7 +111,7 @@ namespace KATO.Common.Business
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strWhere);
+                strSQLInput = string.Format(strSQLInput, strWhere, lstString[4]);
 
                 //SQL発行
                 dtShohin = dbConnective.ReadSql(strSQLInput);
