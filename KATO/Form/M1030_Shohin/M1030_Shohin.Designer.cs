@@ -783,7 +783,7 @@
             this.txtHako.Location = new System.Drawing.Point(426, 464);
             this.txtHako.MaxLength = 15;
             this.txtHako.Name = "txtHako";
-            this.txtHako.Size = new System.Drawing.Size(111, 22);
+            this.txtHako.Size = new System.Drawing.Size(55, 22);
             this.txtHako.TabIndex = 16;
             this.txtHako.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtHako.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohinTxtKeyDown);

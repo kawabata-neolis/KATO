@@ -20,9 +20,9 @@ namespace KATO.Form.M1030_Shohin
     ///M1030_Shohin
     ///商品フォーム
     ///作成者：大河内
-    ///作成日：2017/5/1
+    ///作成日：2017/05/01
     ///更新者：大河内
-    ///更新日：2017/1/22
+    ///更新日：2017/01/24
     ///カラム論理名
     ///</summary>
     public partial class M1030_Shohin : BaseForm
@@ -385,6 +385,8 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayYM = lblGrayToroku;
                     shouhinlist.btxtShohinCd = txtShohinCd;
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+                    shouhinlist.blNoTana = false;
+                    shouhinlist.blShohinMaster = true;
 
                     frm.Show();
                     break;
@@ -437,6 +439,8 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayYM = lblGrayToroku;
                     shouhinlist.btxtShohinCd = txtShohinCd;
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+                    shouhinlist.blNoTana = false;
+                    shouhinlist.blShohinMaster = true;
 
 
                     shouhinlist.ShowDialog();
@@ -470,33 +474,132 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void showShohinListTana()
         {
-            ShouhinList shouhinlist = new ShouhinList(this);
-            try
+            //全てのフォームの中から
+            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
             {
-                shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN_TANA;
-                shouhinlist.strYMD = "";
-                shouhinlist.strEigyoushoCode = "";
-                shouhinlist.lsDaibunrui = labelSet_Daibunrui;
-                shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                shouhinlist.lsMaker = labelSet_Maker;
-                shouhinlist.btxtKensaku = txtKensaku;
-                shouhinlist.blNoTana = true;
-                shouhinlist.lblGrayYM = lblGrayToroku;
-                shouhinlist.lblGrayHinMakerChuDaiHinban = lblGrayShohin;
-                shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
-                shouhinlist.lsTanabanG = labelSet_TanabanGihu;
-                
+                //目的のフォームを探す
+                if (frm.Name == "ShohinList")
+                {
+                    //検索項目に一つでも記入がある場合
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
+                    {
+                        shouhinlist.blKensaku = true;
+                    }
 
-                shouhinlist.ShowDialog();
+                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                    shouhinlist.strYMD = "";
+                    shouhinlist.strEigyoushoCode = "";
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                    shouhinlist.lsMaker = labelSet_Maker;
+                    shouhinlist.btxtKensaku = txtKensaku;
+                    shouhinlist.btxtHinC1 = txtData1;
+                    shouhinlist.btxtHinC2 = txtData2;
+                    shouhinlist.btxtHinC3 = txtData3;
+                    shouhinlist.btxtHinC4 = txtData4;
+                    shouhinlist.btxtHinC5 = txtData5;
+                    shouhinlist.btxtHinC6 = txtData6;
+                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
+                    shouhinlist.bmtxtShireTanka = txtShire;
+                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
+                    shouhinlist.bmtxtTateneShire = txtTatene;
+                    shouhinlist.btxtZaikokbn = txtZaiko;
+                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
+                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
+                    shouhinlist.btxtMemo = txtMemo;
+                    shouhinlist.bmtxtTeika = txtTeika;
+                    shouhinlist.bmtxtHakosu = txtHako;
+                    shouhinlist.btxtComment = txtComment;
+                    shouhinlist.lblGrayYM = lblGrayToroku;
+                    shouhinlist.btxtShohinCd = txtShohinCd;
+                    shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+                    shouhinlist.blNoTana = true;
+                    shouhinlist.blShohinMaster = true;
+
+                    frm.Show();
+                    break;
+                }
             }
-            catch (Exception ex)
+
+            //商品リストが一回以上開いたことがない場合
+            if (shouhinlist == null)
             {
-                //データロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                shouhinlist = new ShouhinList(this);
+                try
+                {
+                    //検索項目に一つでも記入がある場合
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        shouhinlist.blKensaku = false;
+                    }
+                    else
+                    {
+                        shouhinlist.blKensaku = true;
+                    }
+
+                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                    shouhinlist.strYMD = "";
+                    shouhinlist.strEigyoushoCode = "";
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
+                    shouhinlist.lsMaker = labelSet_Maker;
+                    shouhinlist.btxtKensaku = txtKensaku;
+                    shouhinlist.btxtHinC1 = txtData1;
+                    shouhinlist.btxtHinC2 = txtData2;
+                    shouhinlist.btxtHinC3 = txtData3;
+                    shouhinlist.btxtHinC4 = txtData4;
+                    shouhinlist.btxtHinC5 = txtData5;
+                    shouhinlist.btxtHinC6 = txtData6;
+                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
+                    shouhinlist.bmtxtShireTanka = txtShire;
+                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
+                    shouhinlist.bmtxtTateneShire = txtTatene;
+                    shouhinlist.btxtZaikokbn = txtZaiko;
+                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
+                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
+                    shouhinlist.btxtMemo = txtMemo;
+                    shouhinlist.bmtxtTeika = txtTeika;
+                    shouhinlist.bmtxtHakosu = txtHako;
+                    shouhinlist.btxtComment = txtComment;
+                    shouhinlist.lblGrayYM = lblGrayToroku;
+                    shouhinlist.btxtShohinCd = txtShohinCd;
+                    shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+                    shouhinlist.blNoTana = true;
+                    shouhinlist.blShohinMaster = true;
+
+
+                    shouhinlist.ShowDialog();
+
+                    //初回時用、二回目以降は無くても動作する
+                    if (txtShohinCd.Text != "")
+                    {
+                        txtData1.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            else
+            {
+                // 既に１回以上商品リストを表示しているので、hideを元に戻す
+                shouhinlist.Show();
             }
         }
 
