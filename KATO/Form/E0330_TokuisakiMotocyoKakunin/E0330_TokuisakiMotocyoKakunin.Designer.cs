@@ -51,6 +51,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 3;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 10;
@@ -60,11 +65,6 @@
             // 
             this.btnF04.TabIndex = 4;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 3;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Tokuisaki
             // 
@@ -244,6 +244,7 @@
             this.gridTorihiki.AllowUserToDeleteRows = false;
             this.gridTorihiki.AllowUserToResizeColumns = false;
             this.gridTorihiki.AllowUserToResizeRows = false;
+            this.gridTorihiki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -306,6 +307,7 @@
             this.Load += new System.EventHandler(this.E0330_TokuisakiMotocyoKakunin_Load);
             this.Shown += new System.EventHandler(this.E0330_TokuisakiMotocyoKakunin_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.E0330_TokuisakiMotocyoKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

@@ -37,7 +37,10 @@ namespace KATO.Common.Form
 
         //前画面から伝票番号を取り出す枠（伝票番号初期値）（ベーステキストマネー）
         public BaseTextMoney bmDenpyo = null;
-        
+
+        //前画面からリストからデータを取り出した判定を取り出す枠（ラジオボタン）
+        public RadSet_2btn radListInput = null;
+
         //画面タイトル設定
         private string Title = "";
         public string _Title
@@ -275,6 +278,8 @@ namespace KATO.Common.Form
 
             bmDenpyo.Text = dtNyukin.Rows[0]["伝票番号"].ToString();
 
+            //リストからデータを取り出した判定
+            radListInput.radbtn1.Checked = true;
         }
 
         ///<summary>
