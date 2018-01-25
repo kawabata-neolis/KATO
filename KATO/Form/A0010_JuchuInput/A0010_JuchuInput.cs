@@ -392,6 +392,7 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
+            DBConnective con = new DBConnective();
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
 
             try
@@ -436,11 +437,11 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 //削除
-                juchuB.beginTrance();
-                juchuB.delJuchu(strJuchuNo, lblStatusUser.Text);
+                con.BeginTrans();
+                juchuB.delJuchu(strJuchuNo, lblStatusUser.Text,con);
                 // 受発注の在庫数を変更
-                juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString());
-                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString());
+                juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString(), con);
+                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString(),con);
 
                 //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, dSearchSu.ToString());
 
@@ -450,14 +451,14 @@ namespace KATO.Form.A0010_JuchuInput
                 //    juchuB.restoreDeadStock(txtDeadStockNo.Text);
                 //}
 
-                juchuB.commit();
+                con.Commit();
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 this.delFormClear(this);
             }
             catch (Exception ex)
             {
-                juchuB.rollback();
+                con.Rollback();
                 new CommonException(ex);
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -1425,6 +1426,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 cbSiireTanka.Text = f6.updTanka(txtJuchuSuryo.Text);
+                txtHatchushiji.Text = "1";
             }
             #endregion
 
@@ -1432,39 +1434,47 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 return;
             }
+            if (f6 != null)
+            {
+                //if (!f6.chkData())
+                //{
+                //    return;
+                //}
+            }
 
+            DBConnective con = new DBConnective();
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
 
-            // 加工品受注の入力が存在する状態で仕入先、型番ともに空欄なら受注のみの登録とみなす
-            #region
-            if (f6 != null && string.IsNullOrEmpty(txtHatchuNo.Text) && string.IsNullOrEmpty(tsShiiresaki.CodeTxtText))
-            {
-                try
-                {
-                    DataTable dt = juchuB.getHatchuNoInfo(txtJuchuNo.Text);
-                    if (dt == null || dt.Rows.Count == 0)
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        return;
-                    }
-                    decimal dSu = juchuB.getShukkoToroku(txtJuchuNo.Text);
-                    if (dSu == 0)
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        return;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-            #endregion
+            //// 加工品受注の入力が存在する状態で仕入先、型番ともに空欄なら受注のみの登録とみなす
+            //#region
+            //if (f6 != null && string.IsNullOrEmpty(txtHatchuNo.Text) && string.IsNullOrEmpty(tsShiiresaki.CodeTxtText))
+            //{
+            //    try
+            //    {
+            //        DataTable dt = juchuB.getHatchuNoInfo(txtJuchuNo.Text);
+            //        if (dt == null || dt.Rows.Count == 0)
+            //        {
+            //            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+            //            basemessagebox.ShowDialog();
+            //            return;
+            //        }
+            //        decimal dSu = juchuB.getShukkoToroku(txtJuchuNo.Text);
+            //        if (dSu == 0)
+            //        {
+            //            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注のみの登録は出来ません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+            //            basemessagebox.ShowDialog();
+            //            return;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        new CommonException(ex);
+            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //        basemessagebox.ShowDialog();
+            //        return;
+            //    }
+            //}
+            //#endregion
 
             // 注番のみチェックが入っている場合、注番のみ更新
             #region
@@ -1505,7 +1515,13 @@ namespace KATO.Form.A0010_JuchuInput
                         ,lsJuchusha.CodeTxtText
                         ,txtJuchuNo.Text
                         ,txtHatchuNo.Text
-                        ,txtShiireNoki.Text);
+                        ,txtShiireNoki.Text,
+                        con);
+                    decimal d = getDecValue(txtJuchuSuryo.Text);
+
+                    juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
+
+                    con.Commit();
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "数量・納期・注番を更新しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                     clearInput2();
@@ -1514,17 +1530,22 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 catch (Exception ex)
                 {
+                    con.Rollback();
                     new CommonException(ex);
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
                     return;
+                }
+                finally
+                {
+                    con.DB_Disconnect();
                 }
             }
             #endregion
 
             try
             {
-                juchuB.beginTrance();
+                con.BeginTrans();
 
                 // 受注更新
                 #region
@@ -1640,14 +1661,15 @@ namespace KATO.Form.A0010_JuchuInput
                 aryPrm.Add(txtHonshaShukko.Text);
                 aryPrm.Add(txtGihuShukko.Text);
                 aryPrm.Add("0");
+                aryPrm.Add("");
                 aryPrm.Add(Environment.UserName);
 
-                juchuB.updJuchu(aryPrm);
+                juchuB.updJuchu(aryPrm, con);
                 #endregion
 
                 decimal d = getDecValue(txtJuchuSuryo.Text);
 
-                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString());
+                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
 
                 // 発注数0の場合、既に発注があれば削除、発注があれば更新
                 #region
@@ -1657,22 +1679,23 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (dtHachu != null && dtHachu.Rows.Count > 0)
                     {
-                        juchuB.delHachu(dtHachu.Rows[0]["発注番号"].ToString(), Environment.UserName);
+                        juchuB.delHachu(dtHachu.Rows[0]["発注番号"].ToString(), Environment.UserName, con);
 
                         string hNum = "0";
                         if (dtHachu.Rows[0]["発注数量"] != null && !string.IsNullOrWhiteSpace(dtHachu.Rows[0]["発注数量"].ToString()))
                         {
                             hNum = dtHachu.Rows[0]["発注数量"].ToString();
                         }
-                        juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, hNum);
+                        juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, hNum, con);
                     }
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                 }
                 else
                 {
-                    string strHachuNo = addJuchuH(strJuchuNo, juchuB);
-                    juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, txtHatchusu.Text);
+                    string strHachuNo = addJuchuH(strJuchuNo, juchuB, con);
+                    d = getDecValue(txtHatchusu.Text);
+                    juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSuH).ToString(), con);
                     string strMsg = juchuB.getChubanName(lsJuchusha.CodeTxtText);
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました\r\n注番:" + strMsg.TrimEnd() + strHachuNo, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -1680,7 +1703,11 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 #endregion
 
-                juchuB.commit();
+                if (f6 != null)
+                {
+                    f6.updKakoInput(con);
+                }
+                con.Commit();
                 clearInput2();
                 tsTokuisaki.codeTxt.Focus();
             }
@@ -1689,11 +1716,15 @@ namespace KATO.Form.A0010_JuchuInput
                 new CommonException(ex);
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                juchuB.rollback();
+                con.Rollback();
                 return;
             }
+            finally
+            {
+                con.DB_Disconnect();
+            }
         }
-        private string addJuchuH(string strJuchuNo, A0010_JuchuInput_B juchuB)
+        private string addJuchuH(string strJuchuNo, A0010_JuchuInput_B juchuB, DBConnective con)
         {
             string ret = "";
 
@@ -1775,7 +1806,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             try
             {
-                juchuB.updJuchuH(aryPrm);
+                juchuB.updJuchuH(aryPrm, con);
             }
             catch (Exception ex)
             {
@@ -2366,7 +2397,10 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 decShiire = getDecValue(cbSiireTanka.Text);
             }
-            decimal decRitsu = ((getDecValue(cbJuchuTanka.Text) - decShiire) / getDecValue(cbJuchuTanka.Text)) * 100;
+            decimal decRitsu = 0;
+            if (!(getDecValue(cbJuchuTanka.Text)).Equals(0)) {
+                decRitsu = ((getDecValue(cbJuchuTanka.Text) - decShiire) / getDecValue(cbJuchuTanka.Text)) * 100;
+            }
 
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             try

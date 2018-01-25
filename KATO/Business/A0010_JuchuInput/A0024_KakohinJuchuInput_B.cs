@@ -781,52 +781,52 @@ namespace KATO.Business.A0010_JuchuInput
             return dtRet;
         }
 
-        public void updJuchu(List<String> aryPrm, DBConnective con)
-        {
-            List<String> aryCol = new List<string>();
+        //public void updJuchu(List<String> aryPrm, DBConnective con)
+        //{
+        //    List<String> aryCol = new List<string>();
 
-            aryCol.Add("@得意先コード");
-            aryCol.Add("@得意先名称");
-            aryCol.Add("@受注年月日");
-            aryCol.Add("@受注番号");
-            aryCol.Add("@受注者コード");
-            aryCol.Add("@営業所コード");
-            aryCol.Add("@担当者コード");
-            aryCol.Add("@商品コード");
-            aryCol.Add("@メーカーコード");
-            aryCol.Add("@大分類コード");
-            aryCol.Add("@中分類コード");
-            aryCol.Add("@Ｃ１");
-            aryCol.Add("@Ｃ２");
-            aryCol.Add("@Ｃ３");
-            aryCol.Add("@Ｃ４");
-            aryCol.Add("@Ｃ５");
-            aryCol.Add("@Ｃ６");
-            aryCol.Add("@受注数量");
-            aryCol.Add("@受注単価");
-            aryCol.Add("@受注金額");
-            aryCol.Add("@仕入単価");
-            aryCol.Add("@粗利金額");
-            aryCol.Add("@納期");
-            aryCol.Add("@出荷指示区分");
-            aryCol.Add("@在庫引当フラグ");
-            aryCol.Add("@売上フラグ");
-            aryCol.Add("@注番");
-            aryCol.Add("@発注指示区分");
-            aryCol.Add("@本社出庫数");
-            aryCol.Add("@岐阜出庫数");
-            aryCol.Add("@加工区分");
-            aryCol.Add("@ユーザー名");
+        //    aryCol.Add("@得意先コード");
+        //    aryCol.Add("@得意先名称");
+        //    aryCol.Add("@受注年月日");
+        //    aryCol.Add("@受注番号");
+        //    aryCol.Add("@受注者コード");
+        //    aryCol.Add("@営業所コード");
+        //    aryCol.Add("@担当者コード");
+        //    aryCol.Add("@商品コード");
+        //    aryCol.Add("@メーカーコード");
+        //    aryCol.Add("@大分類コード");
+        //    aryCol.Add("@中分類コード");
+        //    aryCol.Add("@Ｃ１");
+        //    aryCol.Add("@Ｃ２");
+        //    aryCol.Add("@Ｃ３");
+        //    aryCol.Add("@Ｃ４");
+        //    aryCol.Add("@Ｃ５");
+        //    aryCol.Add("@Ｃ６");
+        //    aryCol.Add("@受注数量");
+        //    aryCol.Add("@受注単価");
+        //    aryCol.Add("@受注金額");
+        //    aryCol.Add("@仕入単価");
+        //    aryCol.Add("@粗利金額");
+        //    aryCol.Add("@納期");
+        //    aryCol.Add("@出荷指示区分");
+        //    aryCol.Add("@在庫引当フラグ");
+        //    aryCol.Add("@売上フラグ");
+        //    aryCol.Add("@注番");
+        //    aryCol.Add("@発注指示区分");
+        //    aryCol.Add("@本社出庫数");
+        //    aryCol.Add("@岐阜出庫数");
+        //    aryCol.Add("@加工区分");
+        //    aryCol.Add("@ユーザー名");
 
-            try
-            {
-                con.RunSql("受注入力更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //    try
+        //    {
+        //        con.RunSql("受注入力更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public void updJuchuH(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
@@ -863,7 +863,11 @@ namespace KATO.Business.A0010_JuchuInput
 
             try
             {
-                con.RunSql("発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                con.RunSql("仮発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                if (!kariFlg)
+                {
+                    con.RunSql("発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                }
             }
             catch (Exception ex)
             {
@@ -886,10 +890,12 @@ namespace KATO.Business.A0010_JuchuInput
 
             try
             {
-                con.RunSql("出庫ヘッダ更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                con.RunSql("仮出庫ヘッダ更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                if (!kariFlg)
+                {
+                    con.RunSql("出庫ヘッダ更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                }
 
-                string strSQL = "出庫明細全削除_PROC '" + aryCol[0] + "'";
-                con.ReadSql(strSQL);
             }
             catch (Exception ex)
             {
@@ -937,6 +943,9 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void updShukkoMeisai(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
+            string strSQL = "仮出庫明細全削除_PROC '" + aryPrm[0] + "'";
+            con.ReadSql(strSQL);
+
             List<String> aryCol = new List<string>();
 
             aryCol.Add("@伝票番号");
@@ -961,7 +970,14 @@ namespace KATO.Business.A0010_JuchuInput
 
             try
             {
-                con.RunSql("出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                con.RunSql("仮出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                if (!kariFlg)
+                {
+                    strSQL = "出庫明細全削除_PROC '" + aryPrm[0] + "'";
+                    con.ReadSql(strSQL);
+
+                    con.RunSql("出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+                }
             }
             catch (Exception ex)
             {
@@ -969,31 +985,31 @@ namespace KATO.Business.A0010_JuchuInput
             }
         }
 
-        public void delHachu(string strHachuban, string strUserName)
-        {
-            string strSQL = null;
+        //public void delHachu(string strHachuban, string strUserName)
+        //{
+        //    string strSQL = null;
 
-            //SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
+        //    //SQLのインスタンス作成
+        //    DBConnective dbconnective = new DBConnective();
 
-            //トランザクション開始
-            dbconnective.BeginTrans();
-            try
-            {
-                strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
-                dbconnective.ReadSql(strSQL);
+        //    //トランザクション開始
+        //    dbconnective.BeginTrans();
+        //    try
+        //    {
+        //        strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
+        //        dbconnective.ReadSql(strSQL);
 
-                //コミット開始
-                dbconnective.Commit();
-                return;
-            }
-            catch (Exception ex)
-            {
-                //ロールバック開始
-                dbconnective.Rollback();
-                throw (ex);
-            }
-        }
+        //        //コミット開始
+        //        dbconnective.Commit();
+        //        return;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //ロールバック開始
+        //        dbconnective.Rollback();
+        //        throw (ex);
+        //    }
+        //}
 
         public void delHachuS(string strHachuban, string strUserName, DBConnective con, bool hatchuFlg)
         {
@@ -1002,13 +1018,19 @@ namespace KATO.Business.A0010_JuchuInput
             try
             {
                 if (hatchuFlg) {
+                    strSQL = "仮発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    con.ReadSql(strSQL);
                     strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
                 }
                 else {
+                    strSQL = "仮出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    con.ReadSql(strSQL);
                     strSQL = "出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
 
+                    strSQL = "仮出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
+                    con.ReadSql(strSQL);
                     strSQL = "出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
                 }
@@ -1163,7 +1185,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 型番,";
             strSelect += "a.商品コード AS 商品コード";
-            strSelect += " FROM 発注 a, 商品 c";
+            strSelect += " FROM 仮発注 a, 商品 c";
             strSelect += " WHERE a.受注番号 = " + strJuchuNo;
             strSelect += " AND a.削除 ='N'";
             strSelect += " AND c.削除 ='N'";
@@ -1206,7 +1228,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 型番,";
             strSelect += "b.商品コード AS 商品コード";
-            strSelect += " FROM 出庫ヘッダ a,出庫明細 b, 商品 c";
+            strSelect += " FROM 仮出庫ヘッダ a, 仮出庫明細 b, 商品 c";
             strSelect += " WHERE a.伝票番号 = b.伝票番号 ";
             strSelect += " AND a.削除 ='N'";
             strSelect += " AND b.削除 ='N'";
@@ -1417,6 +1439,56 @@ namespace KATO.Business.A0010_JuchuInput
             }
 
             return dtRet;
+        }
+
+        public void updZaiko(bool bPlus, string eigyo, string shohin, string sSu, DBConnective con)
+        {
+            string strQuery = "";
+
+            strQuery = "SELECT * FROM 在庫数";
+            strQuery += " WHERE 商品コード = '" + shohin + "'";
+            strQuery += "   AND 営業所コード = '" + eigyo + "'";
+
+            try
+            {
+                DataTable dt = con.ReadSql(strQuery);
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    strQuery = "INSERT INTO 在庫数";
+                    strQuery += "(商品コード, 営業所コード, 在庫数, フリー在庫数, 在庫数未来, フリー在庫数未来, 登録日時, 登録ユーザー名, 更新日時, 更新ユーザー名) ";
+                    strQuery += " VALUES ";
+                    if (bPlus)
+                    {
+                        strQuery += "('" + shohin + "', '" + eigyo + "', " + sSu + ", " + sSu + ", 0, 0, '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "', '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "')";
+                    }
+                    else
+                    {
+                        strQuery += "('" + shohin + "', '" + eigyo + "', -" + sSu + ", -" + sSu + ", 0, 0, '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "', '" + DateTime.Now.ToString() + "', '" + Environment.UserName + "')";
+                    }
+                }
+                else
+                {
+                    strQuery = "UPDATE 在庫数 SET ";
+                    if (bPlus)
+                    {
+                        strQuery += "在庫数 = 在庫数 + " + sSu;
+                        strQuery += ", フリー在庫数 = フリー在庫数 + " + sSu;
+                    }
+                    else
+                    {
+                        strQuery += "在庫数 = 在庫数 - " + sSu;
+                        strQuery += ", フリー在庫数 = フリー在庫数 - " + sSu;
+                    }
+                    strQuery += " WHERE 商品コード = '" + shohin + "'";
+                    strQuery += "   AND 営業所コード = '" + eigyo + "'";
+                }
+
+                con.RunSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

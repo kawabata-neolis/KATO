@@ -78,6 +78,8 @@ namespace KATO.Form.A0010_JuchuInput
             strJuchuNo = a0010JInput.txtJuchuNo.Text;
             strJuchuSu = a0010JInput.txtJuchuSuryo.Text;
 
+            txtJuchuYMD.Text = (DateTime.Now).ToString("yyyy/MM/dd");
+
             SetUpGrid();
             getInfo();
         }
@@ -1283,7 +1285,7 @@ namespace KATO.Form.A0010_JuchuInput
         }
 
         // 加工品登録
-        private void updKakoInput()
+        public void updKakoInput(DBConnective con)
         {
             //if (!chkData())
             //{
@@ -1297,21 +1299,20 @@ namespace KATO.Form.A0010_JuchuInput
                 strShoCd = strShohin;
             }
 
-            DBConnective con = new DBConnective();
             BaseMessageBox basemessagebox;
             A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
 
             try
             {
-                con.DB_Connect();
-                con.BeginTrans();
+                //con.DB_Connect();
+                //con.BeginTrans();
 
                 TableLayoutControlCollection c = tableLayoutPanel1.Controls;
                 foreach (Control cc in c)
                 {
                     updKakoInputS((Panel)cc, juchuB, con, true);
                 }
-                con.Commit();
+                //con.Commit();
             }
             catch (Exception ex)
             {
@@ -1323,7 +1324,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             finally
             {
-                con.DB_Disconnect();
+                //con.DB_Disconnect();
             }
 
             basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1332,16 +1333,16 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void updKakoInputS(Panel cc, A0024_KakohinJuchuInput_B juchuB, DBConnective con, bool kariFlg)
         {
-            if (!chkData())
-            {
-                return;
-            }
+            //if (!chkData())
+            //{
+            //    return;
+            //}
 
             string strShoCd = "88888";
             decimal JucyuKin = 0;
 
             try {
-                if (changeVal((Panel)cc))
+                if (!changeVal((Panel)cc))
                 {
                     return;
                 }
@@ -1366,7 +1367,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sShiireSu = ((BaseText)cc.Controls["txtShiireSu"]).Text;
                 string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
                 string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
-                string sTmpSu = ((BaseText)cc.Controls["tmpSuryo"]).Text;
+                string sTmpSu = ((BaseTextMoney)cc.Controls["tmpSuryo"]).Text;
                 string sShiireMei = ((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).ValueLabelText;
                 string sEigyo = ((BaseText)cc.Controls["txtEigyo"]).Text;
                 string sC1 = ((BaseText)cc.Controls["txtC1"]).Text;
@@ -1414,7 +1415,7 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmH.Add(strJuchuNo);
                     aryPrmH.Add("0");
                     aryPrmH.Add("0");
-                    aryPrmH.Add(strShohin);
+                    aryPrmH.Add(sShohin);
                     aryPrmH.Add(sHMak);
                     aryPrmH.Add(sHChubun);
                     aryPrmH.Add(sHDai);
@@ -1434,14 +1435,14 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmH.Add(sShiireMei);
                     aryPrmH.Add(Environment.UserName);
 
-                    // 発注時は仮テーブルへの登録は無し。直接発注テーブルを更新する
-                    if (sLbl.Equals(labels[0])) {
-                        juchuB.updJuchuH(aryPrmH, con, false);
-                    }
-                    else {
-                        juchuB.updJuchuH(aryPrmH, con, kariFlg);
-                    }
+                    juchuB.updJuchuH(aryPrmH, con, kariFlg);
 
+                    // 発注なら在庫数を変更
+                    if (sLbl.Equals(labels[0])) {
+                        decimal d = getDecValue(sHSu);
+                        decimal dTmp = getDecValue(sTmpSu);
+                        juchuB.updZaiko(true, sEigyo, sShohin, (d - dTmp).ToString(), con);
+                    }
                 }
                 #endregion
                 // 出庫/加工品出庫
@@ -1972,7 +1973,7 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
-            if (sNoki.CompareTo(string.Format("yyyy/MM/dd", DateTime.Now)) < 0)
+            if (sNoki.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
@@ -1982,7 +1983,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = string.Format("yyyy/MM/dd", endDateTime.AddYears(1));
+            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
 
             if (!string.IsNullOrWhiteSpace(strJuchuNo))
             {
@@ -1996,7 +1997,7 @@ namespace KATO.Form.A0010_JuchuInput
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
                         if (decimal.Parse(strSuryo) > 0)
                         {
-                            strEndDay = string.Format("yyyy/MM/dd", endDateTime.AddMonths(6));
+                            strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
                         }
                     }
                 }
@@ -2034,7 +2035,7 @@ namespace KATO.Form.A0010_JuchuInput
             ((BaseText)c.Controls["txtSouko"]).Text = ((BaseText)c.Controls["txtEigyo"]).Text;
         }
 
-        private bool chkData()
+        public bool chkData()
         {
             TableLayoutControlCollection c = tableLayoutPanel1.Controls;
             bool flg = false;
@@ -2043,7 +2044,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
 
             DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
-            string strEndDay = string.Format("yyyy/MM/dd", endDateTime.AddYears(1));
+            string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
 
             if (!string.IsNullOrWhiteSpace(strJuchuNo))
             {
@@ -2057,7 +2058,7 @@ namespace KATO.Form.A0010_JuchuInput
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
                         if (decimal.Parse(strSuryo) > 0)
                         {
-                            strEndDay = string.Format("yyyy/MM/dd", endDateTime.AddMonths(6));
+                            strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
                         }
                     }
                 }
@@ -2072,11 +2073,11 @@ namespace KATO.Form.A0010_JuchuInput
 
             foreach (Control cc in c)
             {
-                if (changeVal((Panel)cc)) {
+                if (!changeVal((Panel)cc)) {
                     continue;
                 }
                 string sYMD = ((BaseCalendar)cc.Controls["txtNohki"]).Text;
-                if (sYMD.CompareTo(string.Format("yyyy/MM/dd", DateTime.Now)) < 0)
+                if (sYMD.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
@@ -2099,7 +2100,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 if ((((Label)cc.Controls["cate"]).Text).Equals(labels[1]))
                 {
-                    string sLimit = string.Format("yyyy/MM/dd", (DateTime.Now).AddDays(7));
+                    string sLimit = ((DateTime.Now).AddDays(7)).ToString();
 
                     if (sYMD.CompareTo(sLimit) < 0)
                     {
@@ -2143,7 +2144,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sShiireSu = ((BaseText)cc.Controls["txtShiireSu"]).Text;
                 string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
                 string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
-                string sTmpSu = ((BaseText)cc.Controls["tmpSuryo"]).Text; 
+                string sTmpSu = ((BaseTextMoney)cc.Controls["tmpSuryo"]).Text; 
 
                 if (string.IsNullOrWhiteSpace(sHYMD))
                 {
@@ -2159,13 +2160,13 @@ namespace KATO.Form.A0010_JuchuInput
                     ((LabelSet_Tantousha)cc.Controls["lsHSha"]).Focus();
                     return false;
                 }
-                if (string.IsNullOrWhiteSpace(sHNo))
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    ((BaseTextMoney)cc.Controls["txtHNo"]).Focus();
-                    return false;
-                }
+                //if (string.IsNullOrWhiteSpace(sHNo))
+                //{
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                //    basemessagebox.ShowDialog();
+                //    ((BaseTextMoney)cc.Controls["txtHNo"]).Focus();
+                //    return false;
+                //}
                 if (string.IsNullOrWhiteSpace(sHShiire))
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
@@ -2724,7 +2725,8 @@ namespace KATO.Form.A0010_JuchuInput
             shohinList.lsMaker = (LabelSet_Maker)c.Controls["lsMaker"];
             shohinList.btxtKensaku = (BaseText)c.Controls["txtSearchStr"];
             shohinList.btxtShohinCd = (BaseText)c.Controls["txtShohin"];
-            shohinList.btxtHinC1Hinban = (BaseText)c.Controls["txtKataban"];
+            //shohinList.btxtHinC1Hinban = (BaseText)c.Controls["txtKataban"];
+            shohinList.btxtHinC1Hinban = (BaseText)c.Controls["txtHinmei"];
             shohinList.btxtHinC1 = (BaseText)c.Controls["txtC1"];
             shohinList.btxtHinC2 = (BaseText)c.Controls["txtC2"];
             shohinList.btxtHinC3 = (BaseText)c.Controls["txtC3"];
@@ -2759,6 +2761,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 ((BaseText)c.Controls["txtSearchStr"]).Text = "";
                 getZaikoInfo(((BaseText)c.Controls["txtShohin"]).Text);
+                ((BaseTextMoney)c.Controls["txtSuryo"]).Focus();
             }
         }
 
