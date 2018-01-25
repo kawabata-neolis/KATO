@@ -1,6 +1,7 @@
 ﻿using KATO.Business.D0310_UriageJissekiKakunin;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
+using KATO.Form.H0210_MitsumoriInput;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,6 +80,45 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
         }
 
+        public D0310_UriageJissekiKakunin(H0210_MitsumoriInput.H0210_MitsumoriInput c)
+        {
+            if (c == null)
+            {
+                return;
+            }
+
+            // 画面IDをセット
+            this.intFrm = -1;
+            // 得意先コードをセット
+            this.labelSet_Tokuisaki.CodeTxtText = c.tsTokuisaki.CodeTxtText;
+
+            this.labelSet_Tantousha.CodeTxtText = c.lsTantousha.CodeTxtText;
+
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            InitializeComponent();
+
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
+
+            //最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //中分類setデータを読めるようにする
+            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+        }
+
         //フォームが最初に開いた場合の処理
         private void D0310_UriageJissekiKakunin_Shown(object sender, EventArgs e)
         {
@@ -114,7 +154,13 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
                 gridUriageJisseki.Focus();
             }
-            
+            else if (intFrm == -1)
+            {
+                this.setUriageJissekikakunin();
+
+                gridUriageJisseki.Focus();
+            }
+
         }
 
         private void D0310_UriageJissekiKakunin_Load(object sender, EventArgs e)
@@ -1057,10 +1103,10 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                     //目的のフォームを探す
                     if (frm.Name == "A0010_JuchuInput")
                     {
-                        ////データを連れてくるため、newをしないこと
-                        //A0010_JuchuInput.A0010JuchuInput JuchuInputReturn = (A0010_JuchuInput.A0010JuchuInput)frm;
-                        //JuchuInputReturn.setShouhin(ShohinCd, JuchuTanka);
-                        //break;
+                        //データを連れてくるため、newをしないこと
+                        A0010_JuchuInput.A0010_JuchuInput JuchuInputReturn = (A0010_JuchuInput.A0010_JuchuInput)frm;
+                        JuchuInputReturn.setShouhin(ShohinCd, JuchuTanka);
+                        break;
                     }
                 }
 

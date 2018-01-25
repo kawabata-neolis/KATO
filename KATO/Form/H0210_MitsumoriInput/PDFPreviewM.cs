@@ -63,7 +63,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
                 {
                     pf.execPrint(null, strPath, Common.Util.CommonTeisu.SIZE_B4, Common.Util.CommonTeisu.YOKO, false);
-
+                    pf.Close();
+                    pf.Dispose();
                 }
             }
             else if (e.KeyCode == Keys.F12)

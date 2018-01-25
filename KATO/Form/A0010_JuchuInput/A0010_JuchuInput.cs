@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.A0010_JuchuInput;
 using KATO.Common.Ctl;
-using KATO.Business.Z0000_B;
+using KATO.Form.D0310_UriageJissekiKakunin;
 
 namespace KATO.Form.A0010_JuchuInput
 {
@@ -28,6 +28,7 @@ namespace KATO.Form.A0010_JuchuInput
         string defaultEigyo = "";
 
         public Form6 f6 = null;
+        D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriKakunin = null;
 
         public A0010_JuchuInput(Control c)
         {
@@ -554,14 +555,15 @@ namespace KATO.Form.A0010_JuchuInput
             shohinList.Dispose();
             getShohinInfo();
 
-            if (!string.IsNullOrWhiteSpace(txtShohinCd.Text))
-            {
-                txtJuchuNo.Focus();
-            }
-            else
-            {
-                txtSearchStr.Focus();
-            }
+            //if (!string.IsNullOrWhiteSpace(txtShohinCd.Text))
+            //{
+            //    txtJuchuNo.Focus();
+            //}
+            //else
+            //{
+            //    txtSearchStr.Focus();
+            //}
+            txtJuchuSuryo.Focus();
         }
 
         private void tsShiiresaki_Leave(object sender, EventArgs e)
@@ -625,9 +627,19 @@ namespace KATO.Form.A0010_JuchuInput
                     txtC4.Text = dtJuchuNoInfo.Rows[0]["Ｃ４"].ToString();
                     txtC5.Text = dtJuchuNoInfo.Rows[0]["Ｃ５"].ToString();
                     txtC6.Text = dtJuchuNoInfo.Rows[0]["Ｃ６"].ToString();
-                    txtJuchuSuryo.Text = dtJuchuNoInfo.Rows[0]["受注数量"].ToString();
-                    dSearchSu = getDecValue(txtJuchuSuryo.Text);
-                    cbJuchuTanka.Text = dtJuchuNoInfo.Rows[0]["受注単価"].ToString();
+                    decimal dJSu = 0;
+                    if (dtJuchuNoInfo.Rows[0]["受注数量"] != null)
+                    {
+                        dJSu = getDecValue(dtJuchuNoInfo.Rows[0]["受注数量"].ToString());
+                    }
+                    txtJuchuSuryo.Text = (decimal.Round(dJSu, 0)).ToString();
+                    dSearchSu = (decimal.Round(dJSu, 0));
+                    decimal dJTanka = 0;
+                    if (dtJuchuNoInfo.Rows[0]["受注単価"] != null)
+                    {
+                        dJTanka = getDecValue(dtJuchuNoInfo.Rows[0]["受注単価"].ToString());
+                    }
+                    cbJuchuTanka.Text = (decimal.Round(dJTanka, 0)).ToString();
                     cbSiireTanka.Text = dtJuchuNoInfo.Rows[0]["仕入単価"].ToString();
                     txtNoki.Text = dtJuchuNoInfo.Rows[0]["納期"].ToString();
                     txtChuban.Text = (dtJuchuNoInfo.Rows[0]["注番"].ToString()).Trim();
@@ -1272,7 +1284,13 @@ namespace KATO.Form.A0010_JuchuInput
                     //txtHinmei.Text = txtC1.Text + " " + txtC2.Text + " " + txtC3.Text + " " + txtC4.Text + " " + txtC5.Text + " " + txtC6.Text + " ";
                     txtHinmei.Text = txtC1.Text;
 
-                    txtTeika.Text = dtShohin.Rows[0]["定価"].ToString();
+                    decimal dTeika = 0;
+                    if (dtShohin.Rows[0]["定価"] != null)
+                    {
+                        dTeika = getDecValue(dtShohin.Rows[0]["定価"].ToString());
+                    }
+
+                    txtTeika.Text = (decimal.Round(dTeika, 0)).ToString();
                     
                     txtHinmei.ReadOnly = true;
 
@@ -1287,8 +1305,8 @@ namespace KATO.Form.A0010_JuchuInput
                     decimal d = 0;
                     if (dtShohin.Rows[0]["標準売価"] != null)
                     {
-                        d = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2);
-                        cbJuchuTanka.Text = d.ToString("0.,00");
+                        d = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 0);
+                        cbJuchuTanka.Text = d.ToString();
                     }
                     else
                     {
@@ -1414,6 +1432,14 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void addJuchu()
         {
+            if (string.IsNullOrWhiteSpace(txtHatchusu.Text) || (getDecValue(txtHatchusu.Text)).Equals(0))
+            {
+                txtHatchushiji.Text = "0";
+            }
+            else
+            {
+                txtHatchushiji.Text = "1";
+            }
             // 加工品受注入力の画面が開いている場合、入力存在チェックと仕入単価更新を行う。
             #region
             if (f6 != null)
@@ -1557,6 +1583,10 @@ namespace KATO.Form.A0010_JuchuInput
                 else
                 {
                     strJuchuNo = txtJuchuNo.Text;
+                }
+                if (f6 != null)
+                {
+                    f6.strJuchuNo = strJuchuNo;
                 }
 
                 string strC1 = "";
@@ -2075,7 +2105,7 @@ namespace KATO.Form.A0010_JuchuInput
             #region
             if (!nokiFlg)
             {
-                if (txtHatchushiji.Equals("0"))
+                if (string.IsNullOrWhiteSpace(txtHatchushiji.Text) || txtHatchushiji.Text.Equals("0"))
                 {
                     // 出庫数チェック
                     if (!(getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)).Equals(getDecValue(txtJuchuSuryo.Text)))
@@ -2800,7 +2830,28 @@ namespace KATO.Form.A0010_JuchuInput
         {
             ComboBox c = (ComboBox)sender;
 
-            if (c.SelectedIndex == 1)
+            if (cmbSubWinShow.SelectedIndex == 0)
+            {
+                uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                uriKakunin.StartPosition = FormStartPosition.Manual;
+                uriKakunin.Location = s.Bounds.Location;
+
+                uriKakunin.ShowDialog();
+                uriKakunin.Dispose();
+            }
+            else if (c.SelectedIndex == 1)
             {
                 f6 = new Form6(this);
                 f6.strJuchuNo = txtJuchuNo.Text;
@@ -2925,5 +2976,14 @@ namespace KATO.Form.A0010_JuchuInput
 
         }
 
+        public void setShouhin(string shoCd, string Tanka)
+        {
+            if (btnF01.Enabled) {
+                txtShohinCd.Text = shoCd;
+                getShohinInfo();
+                decimal d = getDecValue(Tanka);
+                cbJuchuTanka.Text = (decimal.Round(d, 0)).ToString();
+            }
+        }
     }
 }

@@ -120,6 +120,8 @@ namespace KATO.Form.H0210_MitsumoriInput
         string defUser = "";
         string defEigyo = "";
 
+        D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriKakunin = null;
+
         public H0210_MitsumoriInput(Control c)
         {
             if (c == null)
@@ -1138,7 +1140,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 txtZaiTeika2.Text = getCellValue(gridMitsmori[4, rowIdx], false);
                 txtZaiCd2.Text = getCellValue(gridMitsmori[20, rowIdx], false);
-                txtZaiTnk2.Text = getCellValue(gridMitsmori[21, rowIdx], false);
+                txtZaiMei2.Text = getCellValue(gridMitsmori[21, rowIdx], false);
                 txtZaiTnk2.Text = getCellValue(gridMitsmori[22, rowIdx], false);
                 txtKakCd2.Text = getCellValue(gridMitsmori[56, rowIdx], false);
                 txtKakMei2.Text = getCellValue(gridMitsmori[57, rowIdx], false);
@@ -1654,7 +1656,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // 粗利率
                 if (dMitsuTanka != 0)
                 {
-                    dArariRitsuM = decimal.Round((dArariM / dMitsuTanka * dSuryo) * 100, 1);
+                    dArariRitsuM = decimal.Round((dArariM / (dMitsuTanka * dSuryo)) * 100, 1);
                 }
                 txtArariRitsu.Text = dArariRitsuM.ToString();
 
@@ -1890,6 +1892,21 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     gridMitsmori[0, i].Value = (i + 1).ToString();
                     gridMitsmori[1, i].Value = "1";
+
+                    decimal dTeika = 0;
+                    decimal dTanka = 0;
+
+                    decimal dRitsu = 0;
+
+                    dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
+                    dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
+
+                    if (!dTeika.Equals(0))
+                    {
+                        dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                    }
+
+                    gridMitsmori[6, i].Value = (Decimal.Round(dRitsu, 1)).ToString();
                 }
                 //for (int i = 0; i < intTrueRows; i++)
                 //{
@@ -2466,7 +2483,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
-
+                    pf.Close();
+                    pf.Dispose();
                 }
             }
             catch (Exception ex)
@@ -2644,15 +2662,16 @@ namespace KATO.Form.H0210_MitsumoriInput
                 //pp.ShowDialog();
                 PrintForm pf = new PrintForm(this, st, CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
                 pf.ShowDialog(this);
-                if (this.printFlg == Common.Util.CommonTeisu.ACTION_PREVIEW)
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
                     pf.execPreview(st);
                     pf.ShowDialog(this);
                 }
-                else if (this.printFlg == Common.Util.CommonTeisu.ACTION_PRINT)
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
-                    pf.execPrint(null, st, Common.Util.CommonTeisu.SIZE_A4, Common.Util.CommonTeisu.YOKO, false);
-
+                    pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, false);
+                    pf.Close();
+                    pf.Dispose();
                 }
             }
             catch (Exception ex)
@@ -3502,6 +3521,31 @@ namespace KATO.Form.H0210_MitsumoriInput
             if (e.KeyCode == Keys.Enter)
             {
                 SendKeys.Send("{tab}");
+            }
+        }
+
+        private void cmbSubWinShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSubWinShow.SelectedIndex == 0)
+            {
+                uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this);
+                
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                uriKakunin.StartPosition = FormStartPosition.Manual;
+                uriKakunin.Location = s.Bounds.Location;
+
+                uriKakunin.ShowDialog();
+                uriKakunin.Dispose();
             }
         }
     }

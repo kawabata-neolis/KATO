@@ -632,6 +632,9 @@ namespace KATO.Form.A0010_JuchuInput
             lsMaker.TabIndex = tabIdx;
             tabIdx++;
 
+            lsDaibun.Lschubundata = lsChubun;
+            lsDaibun.Lsmakerdata = lsMaker;
+
             BaseLabel lblSearchStr = new BaseLabel();
             lblSearchStr.AutoSize = true;
             //lblSearchStr.BackColor = Color.Transparent;
@@ -1388,7 +1391,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         shoCd = sShohin;
                     }
-                    string juchuNo = "0";
+                    string juchuNo = "";
                     if (!string.IsNullOrWhiteSpace(strJuchuNo))
                     {
                         juchuNo = strJuchuNo;
@@ -1403,6 +1406,15 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         kakoKbn = "0";
                     }
+                    string strDenpyoNo = null;
+                    if (string.IsNullOrWhiteSpace(sHNo))
+                    {
+                        strDenpyoNo = juchuB.getDenpyoNo("発注番号", con);
+                    }
+                    else
+                    {
+                        strDenpyoNo = sHNo;
+                    }
 
                     List<String> aryPrmH = new List<string>();
 
@@ -1412,7 +1424,7 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmH.Add(sHSha);
                     aryPrmH.Add(sEigyo);
                     aryPrmH.Add(sHSha);
-                    aryPrmH.Add(strJuchuNo);
+                    aryPrmH.Add(juchuNo);
                     aryPrmH.Add("0");
                     aryPrmH.Add("0");
                     aryPrmH.Add(sShohin);

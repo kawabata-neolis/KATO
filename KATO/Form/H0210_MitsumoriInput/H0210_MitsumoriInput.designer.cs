@@ -248,6 +248,10 @@
             this.btnF02.TabIndex = 19;
             this.btnF02.Click += new System.EventHandler(this.btnFKeys_Click);
             // 
+            // cmbSubWinShow
+            // 
+            this.cmbSubWinShow.SelectedIndexChanged += new System.EventHandler(this.cmbSubWinShow_SelectedIndexChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -428,7 +432,7 @@
             this.panel1.Location = new System.Drawing.Point(613, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(353, 40);
-            this.panel1.TabIndex = 13;
+            this.panel1.TabIndex = 14;
             // 
             // cbChubun
             // 
@@ -482,7 +486,7 @@
             this.panel2.Location = new System.Drawing.Point(613, 96);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(181, 40);
-            this.panel2.TabIndex = 14;
+            this.panel2.TabIndex = 15;
             // 
             // rd2
             // 
@@ -1900,7 +1904,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMemo.Size = new System.Drawing.Size(570, 105);
-            this.txtMemo.TabIndex = 15;
+            this.txtMemo.TabIndex = 13;
             // 
             // label21
             // 
@@ -2413,15 +2417,15 @@
         private KATO.Common.Ctl.BaseTextMoney txtZaiTeika2;
         private System.Windows.Forms.Label label30;
         private KATO.Common.Ctl.BaseTextMoney txtZaiTeika1;
-        private Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
-        private Common.Ctl.LabelSet_Tantousha lsTantousha;
         private Common.Ctl.LabelSet_Eigyosho lsEigyosho;
         private Common.Ctl.BaseDataGridViewEdit gridMitsmori;
-        private Common.Ctl.BaseTextMoney txtMNum;
         private Common.Ctl.BaseCalendar txtMYMD;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private Common.Ctl.TextSet_Torihikisaki tsNonyusaki;
         private Common.Ctl.BaseLabel nameLabel;
+        public Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
+        public Common.Ctl.BaseTextMoney txtMNum;
+        public Common.Ctl.LabelSet_Tantousha lsTantousha;
     }
 }
