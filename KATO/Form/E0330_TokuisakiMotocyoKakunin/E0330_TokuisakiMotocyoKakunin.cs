@@ -19,8 +19,8 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
     ///得意先元帳確認
     ///作成者：太田
     ///作成日：2017/07/12
-    ///更新者：
-    ///更新日：
+    ///更新者：大河内
+    ///更新日：2018/01/25
     ///</summary>
     public partial class E0330_TokuisakiMotocyoKakunin : BaseForm
     {
@@ -53,7 +53,10 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;

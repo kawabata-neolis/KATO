@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblKikan = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.labelSet_Eigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
@@ -140,7 +140,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridSeikyuRireki = new KATO.Common.Ctl.BaseDataGridView();
             this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtDenpyoNo = new KATO.Common.Ctl.BaseText();
+            this.txtDenpyoNosub = new KATO.Common.Ctl.BaseText();
             this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
             this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.txtSimekiribi = new KATO.Common.Ctl.BaseText();
@@ -154,6 +154,8 @@
             this.txtSyukinKbn = new KATO.Common.Ctl.BaseText();
             this.baseLabel65 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel66 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtDenpyoNo = new KATO.Common.Ctl.BaseTextMoney();
+            this.radSet_chkListDataInput = new KATO.Common.Ctl.RadSet_2btn();
             this.gbNyukinInput.SuspendLayout();
             this.labelSet_Torihikikbn9.SuspendLayout();
             this.labelSet_Torihikikbn8.SuspendLayout();
@@ -1692,35 +1694,35 @@
             this.gridSeikyuRireki.AllowUserToResizeColumns = false;
             this.gridSeikyuRireki.AllowUserToResizeRows = false;
             this.gridSeikyuRireki.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeikyuRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSeikyuRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridSeikyuRireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSeikyuRireki.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSeikyuRireki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSeikyuRireki.EnableHeadersVisualStyles = false;
             this.gridSeikyuRireki.Location = new System.Drawing.Point(25, 18);
             this.gridSeikyuRireki.Name = "gridSeikyuRireki";
             this.gridSeikyuRireki.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSeikyuRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSeikyuRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridSeikyuRireki.RowHeadersVisible = false;
             this.gridSeikyuRireki.RowTemplate.Height = 21;
             this.gridSeikyuRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1740,18 +1742,18 @@
             this.baseLabel7.Text = "伝票番号";
             this.baseLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtDenpyoNo
+            // txtDenpyoNosub
             // 
-            this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoNo.Location = new System.Drawing.Point(415, 35);
-            this.txtDenpyoNo.MaxLength = 8;
-            this.txtDenpyoNo.Name = "txtDenpyoNo";
-            this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
-            this.txtDenpyoNo.TabIndex = 1;
-            this.txtDenpyoNo.TabStop = false;
-            this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);
-            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
-            this.txtDenpyoNo.Leave += new System.EventHandler(this.txtDenpyoNo_Leave);
+            this.txtDenpyoNosub.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenpyoNosub.Location = new System.Drawing.Point(1154, 72);
+            this.txtDenpyoNosub.MaxLength = 8;
+            this.txtDenpyoNosub.Name = "txtDenpyoNosub";
+            this.txtDenpyoNosub.Size = new System.Drawing.Size(70, 22);
+            this.txtDenpyoNosub.TabIndex = 100;
+            this.txtDenpyoNosub.TabStop = false;
+            this.txtDenpyoNosub.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);
+            this.txtDenpyoNosub.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
+            this.txtDenpyoNosub.Leave += new System.EventHandler(this.txtDenpyoNo_Leave);
             // 
             // txtYMD
             // 
@@ -1915,11 +1917,50 @@
             this.baseLabel66.Text = "(0：無　1：有)";
             this.baseLabel66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtDenpyoNo
+            // 
+            this.txtDenpyoNo.blnCommaOK = false;
+            this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenpyoNo.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtDenpyoNo.intDeciSet = 0;
+            this.txtDenpyoNo.intIntederSet = 0;
+            this.txtDenpyoNo.intShishagonyu = 0;
+            this.txtDenpyoNo.Location = new System.Drawing.Point(415, 35);
+            this.txtDenpyoNo.MaxLength = 8;
+            this.txtDenpyoNo.Name = "txtDenpyoNo";
+            this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
+            this.txtDenpyoNo.TabIndex = 1;
+            this.txtDenpyoNo.TabStop = false;
+            this.txtDenpyoNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);
+            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
+            this.txtDenpyoNo.Leave += new System.EventHandler(this.txtDenpyoNo_Leave);
+            // 
+            // radSet_chkListDataInput
+            // 
+            this.radSet_chkListDataInput.intJudBtn = 0;
+            this.radSet_chkListDataInput.LabelTitle = "";
+            this.radSet_chkListDataInput.Location = new System.Drawing.Point(341, 12);
+            this.radSet_chkListDataInput.Name = "radSet_chkListDataInput";
+            this.radSet_chkListDataInput.PositionLabelTitle_X = 0;
+            this.radSet_chkListDataInput.PositionLabelTitle_Y = 0;
+            this.radSet_chkListDataInput.PositionRadbtn1_X = 0;
+            this.radSet_chkListDataInput.PositionRadbtn1_Y = 0;
+            this.radSet_chkListDataInput.PositionRadbtn2_X = 115;
+            this.radSet_chkListDataInput.PositionRadbtn2_Y = 0;
+            this.radSet_chkListDataInput.Radbtn1Text = "ListNoInput";
+            this.radSet_chkListDataInput.Radbtn2Text = "ListInput";
+            this.radSet_chkListDataInput.Size = new System.Drawing.Size(216, 17);
+            this.radSet_chkListDataInput.TabIndex = 101;
+            this.radSet_chkListDataInput.Visible = false;
+            // 
             // B0040_NyukinInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.radSet_chkListDataInput);
+            this.Controls.Add(this.txtDenpyoNo);
             this.Controls.Add(this.baseLabel66);
             this.Controls.Add(this.baseLabel65);
             this.Controls.Add(this.baseLabel64);
@@ -1933,7 +1974,7 @@
             this.Controls.Add(this.txtSimekiribi);
             this.Controls.Add(this.labelSet_Tokuisaki);
             this.Controls.Add(this.txtYMD);
-            this.Controls.Add(this.txtDenpyoNo);
+            this.Controls.Add(this.txtDenpyoNosub);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbNyukinInput);
             this.Controls.Add(this.labelSet_Eigyosho);
@@ -1963,7 +2004,7 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.txtDenpyoNo, 0);
+            this.Controls.SetChildIndex(this.txtDenpyoNosub, 0);
             this.Controls.SetChildIndex(this.txtYMD, 0);
             this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);
             this.Controls.SetChildIndex(this.txtSimekiribi, 0);
@@ -1977,6 +2018,8 @@
             this.Controls.SetChildIndex(this.baseLabel64, 0);
             this.Controls.SetChildIndex(this.baseLabel65, 0);
             this.Controls.SetChildIndex(this.baseLabel66, 0);
+            this.Controls.SetChildIndex(this.txtDenpyoNo, 0);
+            this.Controls.SetChildIndex(this.radSet_chkListDataInput, 0);
             this.gbNyukinInput.ResumeLayout(false);
             this.gbNyukinInput.PerformLayout();
             this.labelSet_Torihikikbn9.ResumeLayout(false);
@@ -2113,7 +2156,7 @@
         private Common.Ctl.BaseTextMoney baseTextMoney_Nyukingaku1;
         private Common.Ctl.BaseTextMoney baseTextMoney_Nyukingaku0;
         private Common.Ctl.BaseLabel baseLabel7;
-        private Common.Ctl.BaseText txtDenpyoNo;
+        private Common.Ctl.BaseText txtDenpyoNosub;
         private Common.Ctl.BaseCalendar txtYMD;
         private Common.Ctl.LabelSet_Torihikisaki labelSet_Tokuisaki;
         private Common.Ctl.BaseText txtSimekiribi;
@@ -2127,5 +2170,7 @@
         private Common.Ctl.BaseText txtSyukinKbn;
         private Common.Ctl.BaseLabel baseLabel65;
         private Common.Ctl.BaseLabel baseLabel66;
+        private Common.Ctl.BaseTextMoney txtDenpyoNo;
+        private Common.Ctl.RadSet_2btn radSet_chkListDataInput;
     }
 }

@@ -89,6 +89,9 @@ namespace KATO.Form.B0040_NyukinInput
 
             //labelSet_Tantousha.Focus();
 
+            //リストからデータを取り出したかどうかのチェックの初期値(リストから取り出していない状態)
+            radSet_chkListDataInput.radbtn0.Checked = true;
+            
             DataTable dtTantoshaCd = new DataTable();
 
             B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
@@ -368,13 +371,15 @@ namespace KATO.Form.B0040_NyukinInput
         /// </summary>
         private void frmOpenTokuisakiMotocho()
         {
-            //空文字判定（得意先コード）
-            if (labelSet_Tokuisaki.CodeTxtText == "")
-            {
-                return;
-            }
-
             //ここで得意先コードを引数に指定し、得意先元帳を開きます。
+            // 得意先コードがある場合
+            if (labelSet_Tokuisaki.CodeTxtText != "")
+            {
+                // 得意先元帳確認フォームを開く
+                E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisaki =
+                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, labelSet_Tokuisaki.CodeTxtText);
+                tokuisaki.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -386,8 +391,7 @@ namespace KATO.Form.B0040_NyukinInput
             // 日付制限チェック
             dateCheck();
         }
-
-
+        
         /// <summary>
         /// txtYMDKeyDown
         /// 伝票年月日のKeyDownイベント
@@ -627,13 +631,25 @@ namespace KATO.Form.B0040_NyukinInput
         ///</summary>
         private void setNyukinList()
         {
+            //初期化
+            radSet_chkListDataInput.radbtn0.Checked = true;
+
             NyukinList nyukinlist = new NyukinList(this);
             try
             {
             	// 【入金リスト用の画面ID】
                 //商品リストの表示、画面IDを渡す
                 nyukinlist.intFrmKind = CommonTeisu.FRM_TEST;
+                nyukinlist.bmDenpyo = txtDenpyoNo;
+                nyukinlist.radListInput = radSet_chkListDataInput;
                 nyukinlist.ShowDialog();
+
+                //リストからデータを取り出した場合
+                if (radSet_chkListDataInput.radbtn1.Checked == true)
+                {
+                    //伝票データを入れる 
+                    setDenpyoData();
+                }
             }
             catch (Exception ex)
             {
@@ -647,14 +663,30 @@ namespace KATO.Form.B0040_NyukinInput
         }
 
         ///<summary>
-        ///txtDenpyoNo_Leave
-        ///伝票番号を入力した場合の処理
+        ///setDenpyoData
+        ///伝票番号からデータを表示
         ///</summary>
-        private void txtDenpyoNo_Leave(object sender, EventArgs e)
+        private void setDenpyoData()
         {
             //伝票番号は空白だった場合は、処理終了
             if (txtDenpyoNo.Text == "")
             {
+                //各データの初期化
+                txtDenpyoNo.Text = "";
+                labelSet_Tokuisaki.CodeTxtText = "";
+                labelSet_Tokuisaki.ValueLabelText = "";
+
+                //区分データの初期化
+                delKbnData();
+
+                //表示のみの項目の初期化
+                txtSimekiribi.Text = "";
+                txtSiharaiGessuu.Text = "";
+                txtSiharaibi.Text = "";
+                txtSiharaiJoken.Text = "";
+                txtSyukinKbn.Text = "";
+
+                txtYMD.Focus();
                 return;
             }
 
@@ -706,7 +738,9 @@ namespace KATO.Form.B0040_NyukinInput
                 //取得した得意先コードが2件以上あった場合、メッセージを表示し、処理を終了する。
                 if (dtSetView.Rows.Count > 1)
                 {
-                    MessageBox.Show("１枚の伝票に複数の取引先が登録されているので表示できません。\r\nNO.71 入金入力（部門別）を使用してください。");
+                    //複数取引先ありのメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "１枚の伝票に複数の取引先が登録されているので表示できません。\r\nNO.71 入金入力（部門別）を使用してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                     return;
                 }
 
@@ -759,13 +793,29 @@ namespace KATO.Form.B0040_NyukinInput
                 }
                 else
                 {
-                    MessageBox.Show("入力した伝票番号は見つかりません。");
-                    //表示内容をクリアする。
-                    delText();
-                    
+                    //複数取引先ありのメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //伝票番号とグリッドと担当者以外初期化
+
+                    //得意先コードの初期化
+                    labelSet_Tokuisaki.CodeTxtText = "";
+                    labelSet_Tokuisaki.ValueLabelText = "";
+
+                    //区分データの初期化
+                    delKbnData();
+
+                    //表示のみの項目の初期化
+                    txtSimekiribi.Text = "";
+                    txtSiharaiGessuu.Text = "";
+                    txtSiharaibi.Text = "";
+                    txtSiharaiJoken.Text = "";
+                    txtSyukinKbn.Text = "";
+
+                    txtDenpyoNo.Focus();
                     return;
                 }
-
             }
             catch (Exception ex)
             {
@@ -774,9 +824,95 @@ namespace KATO.Form.B0040_NyukinInput
                 new CommonException(ex);
                 return;
             }
+        }
 
+        ///<summary>
+        ///delKbnData
+        ///区分のデータを初期化
+        ///</summary>
+        private void delKbnData()
+        {
+            //１行目
+            labelSet_Torihikikbn0.CodeTxtText = "";
+            labelSet_Torihikikbn0.ValueLabelText = "";
+            baseTextMoney_Nyukingaku0.Text = "";
+            txtTegatakizitu0.Text = "";
+            txtBikou0.Text = "";
 
+            //２行目
+            labelSet_Torihikikbn1.CodeTxtText = "";
+            labelSet_Torihikikbn1.ValueLabelText = "";
+            baseTextMoney_Nyukingaku1.Text = "";
+            txtTegatakizitu1.Text = "";
+            txtBikou1.Text = "";
 
+            //３行目
+            labelSet_Torihikikbn2.CodeTxtText = "";
+            labelSet_Torihikikbn2.ValueLabelText = "";
+            baseTextMoney_Nyukingaku2.Text = "";
+            txtTegatakizitu2.Text = "";
+            txtBikou2.Text = "";
+
+            //４行目
+            labelSet_Torihikikbn3.CodeTxtText = "";
+            labelSet_Torihikikbn3.ValueLabelText = "";
+            baseTextMoney_Nyukingaku3.Text = "";
+            txtTegatakizitu3.Text = "";
+            txtBikou3.Text = "";
+
+            //５行目
+            labelSet_Torihikikbn4.CodeTxtText = "";
+            labelSet_Torihikikbn4.ValueLabelText = "";
+            baseTextMoney_Nyukingaku4.Text = "";
+            txtTegatakizitu4.Text = "";
+            txtBikou4.Text = "";
+
+            //６行目
+            labelSet_Torihikikbn5.CodeTxtText = "";
+            labelSet_Torihikikbn5.ValueLabelText = "";
+            baseTextMoney_Nyukingaku5.Text = "";
+            txtTegatakizitu5.Text = "";
+            txtBikou5.Text = "";
+
+            //７行目
+            labelSet_Torihikikbn6.CodeTxtText = "";
+            labelSet_Torihikikbn6.ValueLabelText = "";
+            baseTextMoney_Nyukingaku6.Text = "";
+            txtTegatakizitu6.Text = "";
+            txtBikou6.Text = "";
+
+            //８行目
+            labelSet_Torihikikbn7.CodeTxtText = "";
+            labelSet_Torihikikbn7.ValueLabelText = "";
+            baseTextMoney_Nyukingaku7.Text = "";
+            txtTegatakizitu7.Text = "";
+            txtBikou7.Text = "";
+
+            //９行目
+            labelSet_Torihikikbn8.CodeTxtText = "";
+            labelSet_Torihikikbn8.ValueLabelText = "";
+            baseTextMoney_Nyukingaku8.Text = "";
+            txtTegatakizitu0.Text = "";
+            txtBikou8.Text = "";
+
+            //１０行目
+            labelSet_Torihikikbn9.CodeTxtText = "";
+            labelSet_Torihikikbn9.ValueLabelText = "";
+            baseTextMoney_Nyukingaku9.Text = "";
+            txtTegatakizitu9.Text = "";
+            txtBikou9.Text = "";
+
+            //合計の初期化
+            LabelGray_Goukei.Text = "";
+        }
+
+        ///<summary>
+        ///txtDenpyoNo_Leave
+        ///伝票番号を入力した場合の処理
+        ///</summary>
+        private void txtDenpyoNo_Leave(object sender, EventArgs e)
+        {
+            setDenpyoData();
         }
 
         /// <summary>
@@ -833,7 +969,7 @@ namespace KATO.Form.B0040_NyukinInput
             Control ctlGb = this.Controls["gbNyukinInput"];
 
             // 空文字判定（伝票年月日、得意先コード）
-            //if (txtDenpyoNo.blIsEmpty() == false || labelSet_Tokuisaki.CodeTxtText.Equals(""))
+            //if (txtDenpyo.blIsEmpty() == false || labelSet_Tokuisaki.CodeTxtText.Equals(""))
             if (labelSet_Tokuisaki.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -931,7 +1067,7 @@ namespace KATO.Form.B0040_NyukinInput
             try
             {
                 //伝票年月日が空欄の場合は処理終了
-                if (txtDenpyoNo.Text == "")
+                if (txtDenpyoNosub.Text == "")
                 {
                     return;
                 }
@@ -964,9 +1100,13 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                //// メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //basemessagebox.ShowDialog();
 
             }
             return;
@@ -1017,15 +1157,10 @@ namespace KATO.Form.B0040_NyukinInput
                     return;
                 }
 
-                //メッセージボックスを表示する
-                DialogResult result = MessageBox.Show("選択行（" + (CurrentRow + 1).ToString() + "行目）を削除します。\r\nよろしいですか。",
-                    "質問",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button2);
-
+                //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択行を削除します。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //何が選択されたか調べる
-                if (result == DialogResult.No)
+                if (basemessagebox.ShowDialog() == DialogResult.No)
                 {
                     //「いいえ」が選択された場合は処理終了
                     return;
@@ -1146,6 +1281,10 @@ namespace KATO.Form.B0040_NyukinInput
                 //エラーロギング
                 gridSeikyuRireki.Visible = true;
                 new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -1206,6 +1345,10 @@ namespace KATO.Form.B0040_NyukinInput
                 //エラーロギング
                 gridSeikyuRireki.Visible = true;
                 new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -1245,9 +1388,13 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                //// メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //basemessagebox.ShowDialog();
 
         }
             return "";
@@ -1288,9 +1435,13 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                //// メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //basemessagebox.ShowDialog();
 
             }
             return "";
@@ -1338,9 +1489,13 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                //// メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //basemessagebox.ShowDialog();
 
             }
             return false;
