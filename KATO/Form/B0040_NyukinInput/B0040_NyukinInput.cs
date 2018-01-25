@@ -60,6 +60,9 @@ namespace KATO.Form.B0040_NyukinInput
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //左寄せ
+            txtDenpyoNo.TextAlign = HorizontalAlignment.Left;
         }
 
         /// <summary>

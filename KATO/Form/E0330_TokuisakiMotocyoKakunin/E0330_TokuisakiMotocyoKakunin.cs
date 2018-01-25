@@ -69,28 +69,36 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         //フォームが最初に開いた場合の処理
         private void E0330_TokuisakiMotocyoKakunin_Shown(object sender, EventArgs e)
         {
-            //【暫定】
+            labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
 
-            //画面名不明（gMode=1）
-            if (intFrm == 1)
-            {
-                labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
+            this.setTokuisakimotocho();
 
-                //this.setUriageJissekikakunin();
+            gridTorihiki.Focus();
 
-                gridTorihiki.Focus();
 
-            }
-            //入金入力からの要求
-            else if (intFrm == 2)
-            {
 
-                labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
+            ////【暫定】
 
-                //this.setUriageJissekikakunin();
+            ////画面名不明（gMode=1）
+            //if (intFrm == 1)
+            //{
+            //    labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
 
-                gridTorihiki.Focus();
-            }
+            //    this.setTokuisakimotocho();
+
+            //    gridTorihiki.Focus();
+
+            //}
+            ////入金入力からの要求
+            //else if (intFrm == 2)
+            //{
+
+            //    labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
+
+            //    this.setTokuisakimotocho();
+
+            //    gridTorihiki.Focus();
+            //}
         }
 
         private void E0330_TokuisakiMotocyoKakunin_Load(object sender, EventArgs e)
