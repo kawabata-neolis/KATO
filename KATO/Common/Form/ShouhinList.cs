@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KATO.Form.F0140_TanaorosiInput;
 using KATO.Common.Util;
 using KATO.Common.Business;
 using static KATO.Common.Util.CommonTeisu;

@@ -962,7 +962,11 @@ namespace KATO.Form.Z0000
                     uriageshonin.ShowDialog();
                     break;
 
-
+                //担当者別売上管理表（年間）
+                case "153":
+                    C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan tantouriageY = new C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan(this);
+                    tantouriageY.ShowDialog();
+                    break;
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();

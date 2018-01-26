@@ -986,6 +986,9 @@ namespace KATO.Form.B0040_NyukinInput
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
+
+                        //対象の列の金額にフォーカス
+                        ctlGb.Controls["baseTextMoney_Nyukingaku" + cnt.ToString()].Focus();
                         return;
                     }
                 }

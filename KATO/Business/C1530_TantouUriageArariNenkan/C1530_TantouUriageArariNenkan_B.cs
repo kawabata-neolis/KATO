@@ -6,10 +6,10 @@ using System.Linq;
 
 using ClosedXML.Excel;
 
-namespace KATO.Business.C0140_TantouUriageArariNenkan
+namespace KATO.Business.C1530_TantouUriageArariNenkan_B
 {
     /// <summary>
-    /// C0140_TantouUriageArariNenkan_B
+    /// C1530_TantouUriageArariNenkan_B
     /// 担当者別売上管理表（年間） ビジネスロジック
     /// 作成者：多田
     /// 作成日：2017/8/3
@@ -17,7 +17,7 @@ namespace KATO.Business.C0140_TantouUriageArariNenkan
     /// 更新日：2017/8/3
     /// カラム論理名
     /// </summary>
-    class C0140_TantouUriageArariNenkan_B
+    class C1530_TantouUriageArariNenkan_B
     {
         /// <summary>
         /// getUriage

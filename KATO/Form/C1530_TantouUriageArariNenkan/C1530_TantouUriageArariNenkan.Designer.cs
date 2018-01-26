@@ -1,6 +1,6 @@
-﻿namespace KATO.Form.C0140_TantouUriageArariNenkan
+﻿namespace KATO.Form.C1530_TantouUriageArariNenkan
 {
-    partial class C0140_TantouUriageArariNenkan
+    partial class C1530_TantouUriageArariNenkan
     {
         /// <summary>
         /// Required designer variable.
