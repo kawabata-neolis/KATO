@@ -696,14 +696,19 @@ namespace KATO.Form.Z0000
 
                 //売掛金残高一覧確認
                 case "50":
+                    C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin urikakekakunin = new C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin(this);
+                    urikakekakunin.ShowDialog();
                     break;
 
                 //売掛金残高一覧表
                 case "51":
+                    //削除
                     break;
 
-                //買掛金残高一覧表
+                //買掛金残高一覧確認(旧：買掛金残高一覧表)
                 case "52":
+                    C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin kaikakekakunin = new C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin(this);
+                    kaikakekakunin.ShowDialog();
                     break;
 
                 //得意先別売上粗利推移表
@@ -962,7 +967,11 @@ namespace KATO.Form.Z0000
                     uriageshonin.ShowDialog();
                     break;
 
-
+                //担当者別売上管理表（年間）
+                case "153":
+                    C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan tantouriageY = new C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan(this);
+                    tantouriageY.ShowDialog();
+                    break;
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();

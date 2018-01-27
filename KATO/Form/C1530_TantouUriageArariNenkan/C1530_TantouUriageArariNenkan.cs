@@ -5,12 +5,12 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Business.C0140_TantouUriageArariNenkan;
+using KATO.Business.C1530_TantouUriageArariNenkan_B;
 
-namespace KATO.Form.C0140_TantouUriageArariNenkan
+namespace KATO.Form.C1530_TantouUriageArariNenkan
 {
     /// <summary>
-    /// C0140_TantouUriageArariNenkan
+    /// C1530_TantouUriageArariNenkan
     /// 担当者別売上管理表（年間）フォーム
     /// 作成者：多田
     /// 作成日：2017/8/3
@@ -18,15 +18,15 @@ namespace KATO.Form.C0140_TantouUriageArariNenkan
     /// 更新日：2017/8/3
     /// カラム論理名
     /// </summary>
-    public partial class C0140_TantouUriageArariNenkan : BaseForm
+    public partial class C1530_TantouUriageArariNenkan : BaseForm
     {
-        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog logger = log4net.LogManager.  GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// C0140_TantouUriageArariNenkan
         /// フォーム関係の設定
         /// </summary>
-        public C0140_TantouUriageArariNenkan(Control c)
+        public C1530_TantouUriageArariNenkan(Control c)
         {
             if (c == null)
             {
@@ -495,7 +495,7 @@ namespace KATO.Form.C0140_TantouUriageArariNenkan
             lstSearchItem.Add(txtYear.Text);
 
             // ビジネス層のインスタンス生成
-            C0140_TantouUriageArariNenkan_B uriagePrint_B = new C0140_TantouUriageArariNenkan_B();
+            C1530_TantouUriageArariNenkan_B uriagePrint_B = new C1530_TantouUriageArariNenkan_B();
             try
             {
                 // 検索実行
@@ -673,7 +673,7 @@ namespace KATO.Form.C0140_TantouUriageArariNenkan
             lstSearchItem.Add(txtYear.Text);
 
             // ビジネス層のインスタンス生成
-            C0140_TantouUriageArariNenkan_B uriagePrint_B = new C0140_TantouUriageArariNenkan_B();
+            C1530_TantouUriageArariNenkan_B uriagePrint_B = new C1530_TantouUriageArariNenkan_B();
             try
             {
                 // 検索実行

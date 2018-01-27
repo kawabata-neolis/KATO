@@ -30,8 +30,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         private string strSPAdminUser = Environment.UserName;
 
         /// <summary>
-        /// M1240_ShohinSiireKakakuSuii2
-        /// フォーム関係の設定
+        ///     M1240_ShohinSiireKakakuSuii2
+        ///     フォーム関係の設定
         /// </summary>
         public M1240_ShohinSiireKakakuSuii2(Control c)
         {
@@ -69,8 +69,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// M1240_ShohinSiireKakakuSuii2_Load
-        /// 読み込み時
+        ///     M1240_ShohinSiireKakakuSuii2_Load
+        ///     読み込み時
         /// </summary>
         private void M1240_ShohinSiireKakakuSuii2_Load(object sender, EventArgs e)
         {
@@ -111,8 +111,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
         #region 各グリッドのカラム設定（3grid分）
         /// <summary>
-        /// SetUpGridShohin
-        /// DataGridView初期設定
+        ///     SetUpGridShohin
+        ///     DataGridView初期設定
         /// </summary>
         private void SetUpGridShohin()
         {
@@ -208,19 +208,19 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             setColumnShohin(shohinCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnShohin(uriage, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 30);
             setColumnShohin(siire, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 30);
-            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 160);
-            setColumnShohin(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 360);
+            setColumnShohin(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnShohin(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 530);
             setColumnShohin(zaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 80);
             setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 100);
             setColumnShohin(hyokaTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 100);
             setColumnShohin(ritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 70);
             setColumnShohin(kariTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 100);
-            setColumnShohin(kariRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 70);
+            setColumnShohin(kariRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 80);
             setColumnShohin(uriageTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 100);
-            setColumnShohin(uriageRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 70);
+            setColumnShohin(uriageRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 80);
             setColumnShohin(uriageDate, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 120);
             setColumnShohin(siireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,##0", 100);
-            setColumnShohin(siireRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 70);
+            setColumnShohin(siireRitsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.0", 80);
             setColumnShohin(siireDate, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 120);
 
             // 商品コードのカラム非表示
@@ -228,8 +228,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// SetUpGridSiire
-        /// DataGridView初期設定
+        ///     SetUpGridSiire
+        ///     DataGridView初期設定
         /// </summary>
         private void SetUpGridSiire()
         {
@@ -261,8 +261,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// SetUpGridUriage
-        /// DataGridView初期設定
+        ///     SetUpGridUriage
+        ///     DataGridView初期設定
         /// </summary>
         private void SetUpGridUriage()
         {
@@ -296,8 +296,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
         #region 各グリッドのスタイル設定メソッド（3grid分）
         /// <summary>
-        /// setColumn
-        /// DataGridViewの内部設定
+        ///     setColumn
+        ///     DataGridViewの内部設定
         /// </summary>
         private void setColumnShohin(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -316,8 +316,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// setColumnSiire
-        /// DataGridViewの内部設定
+        ///     setColumnSiire
+        ///     DataGridViewの内部設定
         /// </summary>
         private void setColumnSiire(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -336,8 +336,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// setColumn
-        /// DataGridViewの内部設定
+        ///     setColumn
+        ///     DataGridViewの内部設定
         /// </summary>
         private void setColumnUriage(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -357,8 +357,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         #endregion
 
         /// <summary>
-        /// M1240_ShohinSiireKakakuSuii2_KeyDown
-        /// キー入力判定
+        ///     M1240_ShohinSiireKakakuSuii2_KeyDown
+        ///     キー入力判定
         /// </summary>
         private void M1240_ShohinSiireKakakuSuii2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -423,8 +423,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// judBtnClick
-        /// Form上のFunctionボタンクリック
+        ///     judBtnClick
+        ///     Form上のFunctionボタンクリック
         /// </summary>
         private void judBtnClick(object sender, EventArgs e)
         {
@@ -453,11 +453,12 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// btnCyokkinUpdate_Click
-        /// 検索ボタンを押した時の処理
+        ///     btnCyokkinUpdate_Click
+        ///     検索ボタンを押した時の処理
         /// </summary>
         private void btnSerach_Click(object sender, EventArgs e)
         {
+            // カーソルを待機状態にする
             this.Cursor = Cursors.WaitCursor;
 
             // 検索
@@ -472,13 +473,13 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 this.btnF10.Enabled = false;
             }
-
+            // カーソルを元に戻す
             this.Cursor = Cursors.Default;
         }
 
         /// <summary>
-        /// btnCyokkinUpdate_Click
-        /// データ作成ボタンを押した時の処理
+        ///     btnCyokkinUpdate_Click
+        ///     データ作成ボタンを押した時の処理
         /// </summary>
         private void btnDataCreate_Click(object sender, EventArgs e)
         {
@@ -487,8 +488,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// btnCyokkinUpdate_Click
-        /// 更新ボタンを押した時の処理
+        ///     btnCyokkinUpdate_Click
+        ///     更新ボタンを押した時の処理
         /// </summary>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -497,8 +498,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// btnCyokkinUpdate_Click
-        /// 一覧の型番の設定単価に直近仕入単価をセットボタンを押した時の処理
+        ///     btnCyokkinUpdate_Click
+        ///     一覧の型番の設定単価に直近仕入単価をセットボタンを押した時の処理
         /// </summary>
         private void btnCyokkinUpdate_Click(object sender, EventArgs e)
         {
@@ -507,8 +508,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// gridShohin_RowEnter
-        /// グリッドビューの行が選択されたときの処理
+        ///     gridShohin_RowEnter
+        ///     グリッドビューの行が選択されたときの処理
         /// </summary>
         private void gridShohin_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -549,8 +550,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// txtKijunYmd_Leave
-        /// 基準年月日からフォーカスが外れた時
+        ///     txtKijunYmd_Leave
+        ///     基準年月日からフォーカスが外れた時
         /// </summary>
         private void txtKijunYmd_Leave(object sender, EventArgs e)
         {
@@ -574,8 +575,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// chkAll_CheckedChanged
-        /// 全項目のCheckプロパティが変更された時の処理
+        ///     chkAll_CheckedChanged
+        ///     全項目のCheckプロパティが変更された時の処理
         /// </summary>
         private void chkAll_CheckedChanged(object sender, EventArgs e)
         {
@@ -591,8 +592,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// radUriageAri_CheckedChanged
-        /// 期間内売上ありのCheckプロパティが変更された時の処理
+        ///     radUriageAri_CheckedChanged
+        ///     期間内売上ありのCheckプロパティが変更された時の処理
         /// </summary>
         private void radUriageAri_CheckedChanged(object sender, EventArgs e)
         {
@@ -604,8 +605,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// radUriageNasi_CheckedChanged
-        /// 期間内売上なしのCheckプロパティが変更された時の処理
+        ///     radUriageNasi_CheckedChanged
+        ///     期間内売上なしのCheckプロパティが変更された時の処理
         /// </summary>
         private void radUriageNasi_CheckedChanged(object sender, EventArgs e)
         {
@@ -617,8 +618,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// radSiireAri_CheckedChanged
-        /// 期間内仕入ありのCheckプロパティが変更された時の処理
+        ///     radSiireAri_CheckedChanged
+        ///     期間内仕入ありのCheckプロパティが変更された時の処理
         /// </summary>
         private void radSiireAri_CheckedChanged(object sender, EventArgs e)
         {
@@ -630,8 +631,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// radSiireNasi_CheckedChanged
-        /// 期間内仕入なしのCheckプロパティが変更された時の処理
+        ///     radSiireNasi_CheckedChanged
+        ///     期間内仕入なしのCheckプロパティが変更された時の処理
         /// </summary>
         private void radSiireNasi_CheckedChanged(object sender, EventArgs e)
         {
@@ -643,8 +644,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// getMaxZaikoDate
-        /// 最大の在庫年月日を取得
+        ///     getMaxZaikoDate
+        ///     最大の在庫年月日を取得
         /// </summary>
         private string getMaxZaikoDate()
         {
@@ -679,8 +680,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// delText
-        /// テキストボックス内の文字を削除
+        ///     delText
+        ///     テキストボックス内の文字を削除
         /// </summary>
         private void delText()
         {
@@ -704,8 +705,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// updHyokaTanaka
-        /// 評価単価を更新
+        ///     updHyokaTanaka
+        ///     評価単価を更新
         /// </summary>
         private void updHyokaTanka()
         {
@@ -749,8 +750,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// outputExcel
-        /// エクセルへ出力し、作成したファイルを開く
+        ///     outputExcel
+        ///     エクセルへ出力し、作成したファイルを開く
         /// </summary>
         private void outputExcel()
         {
@@ -854,6 +855,9 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 M1240_ShohinSiireKakakuSuii2_B suii_B = new M1240_ShohinSiireKakakuSuii2_B();
                 try
                 {
+                    // カーソルを待機状態にする
+                    this.Cursor = Cursors.WaitCursor;
+
                     // 検索実行
                     DataTable dtShohin = suii_B.getShohin(lstSearchItem);
 
@@ -863,18 +867,21 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                         string strFilePath = sfd.FileName;
 
                         // Excel出力
-                        suii_B.dbToExcel(dtShohin, lstExcelItem, strFilePath);
+                        bool xlsResult = suii_B.dbToExcel(dtShohin, lstExcelItem, strFilePath);
 
-                        // Excelのクラスのタイプとインスタンスを取得
-                        object xlsApp = CreateObject("Excel.Application");
+                        // Excel出力が正常にできれば処理
+                        if (xlsResult == true)
+                        {
+                            // Excelのクラスのタイプとインスタンスを取得
+                            object xlsApp = CreateObject("Excel.Application");
 
-                        // ワークブックコレクションオブジェクト
-                        object xlsBooks = xlsApp.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, xlsApp, null);
+                            // ワークブックコレクションオブジェクト
+                            object xlsBooks = xlsApp.GetType().InvokeMember("Workbooks", BindingFlags.GetProperty, null, xlsApp, null);
 
-                        // Excelファイルのオープン
-                        object xlsBook = xlsBooks.GetType().InvokeMember(
-                                              "Open", BindingFlags.InvokeMethod, null,
-                                              xlsBooks, new object[] {
+                            // Excelファイルのオープン
+                            object xlsBook = xlsBooks.GetType().InvokeMember(
+                                                  "Open", BindingFlags.InvokeMethod, null,
+                                                  xlsBooks, new object[] {
                                                                strFilePath
                                                              , Type.Missing
                                                              , Type.Missing
@@ -888,14 +895,32 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                                                              , Type.Missing
                                                              , Type.Missing
                                                              , Type.Missing
-                                                                        });
+                                                                            });
 
-                        // Excelファイルの表示
-                        xlsApp.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, xlsApp, new object[] { true });
+                            // Excelファイルの表示
+                            xlsApp.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, xlsApp, new object[] { true });
+
+                            // カーソルの状態を元に戻す
+                            this.Cursor = Cursors.Default;
+                        }
+                        else
+                        {
+                            // カーソルの状態を元に戻す
+                            this.Cursor = Cursors.Default;
+
+                            // メッセージボックスの処理、Excel作成失敗の場合のウィンドウ（OK）
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "テンプレート：商品単価一覧.xlsxが存在しません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                        }
+
+
                     }
                 }
                 catch (Exception ex)
                 {
+                    // カーソルの状態を元に戻す
+                    this.Cursor = Cursors.Default;
+
                     // エラーロギング
                     new CommonException(ex);
 
@@ -911,8 +936,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// search
-        /// 検索
+        ///     search
+        ///     検索
         /// </summary>
         private void search()
         {
@@ -944,7 +969,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             txtSetteiTanka.Text = "";
 
             // データ更新用にデータをセット
-            lstUpdateItem.Add(txtKijunYmd.Text);            // 基準年月日
+            lstUpdateItem.Add(txtKijunYmd.Text);            // 基準在庫日
             lstUpdateItem.Add(txtYmdFrom.Text);             // 期間From
             lstUpdateItem.Add(txtYmdTo.Text);               // 期間To
             lstUpdateItem.Add(Environment.UserName);        // ユーザ名
@@ -973,8 +998,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// getShohinTanka
-        /// 履歴から商品単価を取得し、在庫金額合計にセット
+        ///     getShohinTanka
+        ///     履歴から商品単価を取得し、在庫金額合計にセット
         /// </summary>
         private void getShohinTanka()
         {
@@ -1043,8 +1068,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// setZaikoKingaku
-        /// 在庫金額合計にセット
+        ///     setZaikoKingaku
+        ///     在庫金額合計にセット
         /// </summary>
         private void setZaikoKingaku()
         {
@@ -1136,8 +1161,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// dataCreate
-        /// データ作成
+        ///     dataCreate
+        ///     データ作成
         /// </summary>
         private void dataCreate()
         {
@@ -1174,6 +1199,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                     }
 
                 }
+                // カーソルを待機状態にする
+                this.Cursor = Cursors.WaitCursor;
 
                 // 在庫一覧データ作成_PROCを実行
                 suii_B.addZaikoData_Proc(txtKijunYmd.Text);
@@ -1189,6 +1216,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 // 履歴から商品単価を取得し、在庫金額合計にセット
                 this.getShohinTanka();
+                // カーソルを元に戻す
+                this.Cursor = Cursors.Default;
 
                 // メッセージボックスの処理、作成完了の場合のウィンドウ（OK）
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "データ作成が完了しました。条件を入力して検索してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1198,6 +1227,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             }
             catch (Exception ex)
             {
+                // カーソルを元に戻す
+                this.Cursor = Cursors.Default;
                 // エラーロギング
                 new CommonException(ex);
 
@@ -1210,8 +1241,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// updSetteiTanka
-        /// 設定単価更新
+        ///     updSetteiTanka
+        ///     設定単価更新
         /// </summary>
         private void updSetteiTanka()
         {
@@ -1287,8 +1318,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// updCyokkinTanka
-        /// 直近単価更新
+        ///     updCyokkinTanka
+        ///     直近単価更新
         /// </summary>
         private void updCyokkinTanka()
         {
@@ -1350,8 +1381,8 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// blnDataCheck
-        /// データチェック
+        ///     blnDataCheck
+        ///     データチェック
         /// </summary>
         private Boolean blnDataCheck()
         {
@@ -1395,13 +1426,17 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// COMオブジェクトへの参照を作成および取得する
+        ///     COMオブジェクトへの参照を作成および取得する
         /// </summary>
-        /// <param name="progId">作成するオブジェクトのプログラムID</param>
-        /// <param name="serverName">
-        /// オブジェクトが作成されるネットワーク サーバーの名前
+        /// <param name="progId">
+        ///     作成するオブジェクトのプログラムID
         /// </param>
-        /// <returns>作成されたCOMオブジェクト</returns>
+        /// <param name="serverName">
+        ///     オブジェクトが作成されるネットワーク サーバーの名前
+        /// </param>
+        /// <returns>
+        ///     作成されたCOMオブジェクト
+        /// </returns>
         private static object CreateObject(string progId, string serverName)
         {
             Type t;
@@ -1413,10 +1448,14 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         }
 
         /// <summary>
-        /// COMオブジェクトへの参照を作成および取得する
+        ///     COMオブジェクトへの参照を作成および取得する
         /// </summary>
-        /// <param name="progId">作成するオブジェクトのプログラムID</param>
-        /// <returns>作成されたCOMオブジェクト</returns>
+        /// <param name="progId">
+        ///     作成するオブジェクトのプログラムID
+        /// </param>
+        /// <returns>
+        ///     作成されたCOMオブジェクト
+        /// </returns>
         private static object CreateObject(string progId)
         {
             return CreateObject(progId, null);
