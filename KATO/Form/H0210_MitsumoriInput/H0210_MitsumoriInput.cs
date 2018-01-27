@@ -19,9 +19,12 @@ namespace KATO.Form.H0210_MitsumoriInput
     public partial class H0210_MitsumoriInput : BaseForm
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
 
         private Boolean bFirst = true;
         private Boolean bCdflg = true;
+
+        string oldHinmei = "";
 
         private DataTable dt = new DataTable();
 
@@ -119,6 +122,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         bool editFlg = true;
         string defUser = "";
         string defEigyo = "";
+        string oldNum = "";
 
         D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriKakunin = null;
 
@@ -247,7 +251,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                 if (keyFlgF9 == true)
                 {
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    if (this.ActiveControl != null && this.ActiveControl.Name.Equals("txtMNum"))
+                    {
+                        return;
+                    }
+                    oldNum = txtMNum.Text;
                     getMitsumoriInfo();
+                    txtMYMD.Focus();
                 }
                 else
                 {
@@ -259,7 +269,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 if (editFlg == false)
                 {
                     logger.Info(LogUtil.getMessage(this._Title, "仕入詳細印刷実行"));
-                    printDetail();
+                    printDetail(strPdfPath + "_" + txtMNum.Text + "_M.pdf");
                 }
                 else
                 {
@@ -272,7 +282,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 if (editFlg == false)
                 {
                     logger.Info(LogUtil.getMessage(this._Title, "見積書印刷実行"));
-                    printMitsumori();
+                    printMitsumori(strPdfPath + "_" + txtMNum.Text + ".pdf");
                 }
                 else
                 {
@@ -318,13 +328,19 @@ namespace KATO.Form.H0210_MitsumoriInput
                     break;
                 case STR_BTN_F09: // 検索
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    if (this.ActiveControl != null && this.ActiveControl.Name.Equals("txtMNum"))
+                    {
+                        break;
+                    }
+                    oldNum = txtMNum.Text;
                     getMitsumoriInfo();
+                    txtMYMD.Focus();
                     break;
                 case STR_BTN_F10:
                     if (editFlg == false)
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "仕入詳細印刷実行"));
-                        printDetail();
+                        printDetail(strPdfPath + "_" + txtMNum.Text + "_M.pdf");
                     }
                     else
                     {
@@ -336,7 +352,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     if (editFlg == false)
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "見積書印刷実行"));
-                        printMitsumori();
+                        printMitsumori(strPdfPath + "_" + txtMNum.Text + ".pdf");
                     }
                     else
                     {
@@ -1383,6 +1399,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[4, intRow].Value = tTeikka.Text;
                 gridMitsmori.EndEdit();
                 editFlg = true;
+                oldHinmei = tKata.Text;
             }
         }
 
@@ -1404,8 +1421,25 @@ namespace KATO.Form.H0210_MitsumoriInput
             //    gridMitsmori[1, e.RowIndex].Value = "0";
             //}
 
+            // 品名・型番に対して直接編集で値を変えた場合
+            if (e.ColumnIndex == 2) {
+                if (!oldHinmei.Equals(getCellValue(gridMitsmori[2, e.RowIndex], false))) {
+                    gridMitsmori[87, e.RowIndex].Value = "";
+                    gridMitsmori[88, e.RowIndex].Value = "";
+                    gridMitsmori[89, e.RowIndex].Value = "";
+                    gridMitsmori[86, e.RowIndex].Value = "";
+                    gridMitsmori[93, e.RowIndex].Value = "";
+                    gridMitsmori[94, e.RowIndex].Value = "";
+                    gridMitsmori[95, e.RowIndex].Value = "";
+                    gridMitsmori[96, e.RowIndex].Value = "";
+                    gridMitsmori[97, e.RowIndex].Value = "";
+                    gridMitsmori[98, e.RowIndex].Value = "";
+                    gridMitsmori[4, e.RowIndex].Value = DBNull.Value;
+                }
+                oldHinmei = getCellValue(gridMitsmori[2, e.RowIndex], false);
+            }
             // 見積単価・数量・定価のいずれかが変更された場合
-            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
+            else if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
             {
                 decimal dSuryo = 0;
                 decimal dTeika = 0;
@@ -1425,8 +1459,14 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 dKin = Decimal.Round(dTanka * dSuryo, 0);
 
-                gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString();
-                gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString();
+                if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
+                {
+                    gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                }
+                if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[3, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
+                {
+                    gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString();
+                }
 
                 gridMitsmori.EndEdit();
 
@@ -1633,7 +1673,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
                 // 掛率
-                if (dTeika != 0)
+                if (!dTeika.Equals(0))
                 {
                     dKakeritsu1 = Decimal.Round((dShiireTanka1 / dTeika) * 100, 1);
                     dKakeritsu2 = Decimal.Round((dShiireTanka2 / dTeika) * 100, 1);
@@ -1654,11 +1694,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                 txtArari.Text = dArariM.ToString();
 
                 // 粗利率
-                if (dMitsuTanka != 0)
+                if (!(dMitsuTanka * dSuryo).Equals(0))
                 {
-                    dArariRitsuM = decimal.Round((dArariM / (dMitsuTanka * dSuryo)) * 100, 1);
+                    dArariRitsuM = (dArariM / (dMitsuTanka * dSuryo)) * 100;
                 }
-                txtArariRitsu.Text = dArariRitsuM.ToString();
+                txtArariRitsu.Text = (decimal.Round(dArariRitsuM, 1)).ToString();
 
                 //gridに反映
                 cellShiireTanka1.Value = dShiireTanka1.ToString();
@@ -1745,6 +1785,18 @@ namespace KATO.Form.H0210_MitsumoriInput
                             gridMitsmori[10, i].Value = gridMitsmori[31, i].Value;
                         }
                     }
+
+                    // 入力可能項目に値が無い場合、空行とみなす
+                    if (string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false))
+                        && string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[3, i], false))
+                        && string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, i], false))
+                        && string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, i], false))
+                        && string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[11, i], false)))
+                    {
+                        gridMitsmori[9, i].Value = DBNull.Value;
+                        gridMitsmori[10, i].Value = DBNull.Value;
+                    }
+
                     gridMitsmori.EndEdit();
                     editFlg = true;
                 }
@@ -1813,16 +1865,25 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 見積検索
         private void txtMNum_Leave(object sender, EventArgs e)
         {
-            getMitsumoriInfo();
+            if (!txtMNum.Text.Equals(oldNum)) {
+                oldNum = txtMNum.Text;
+                getMitsumoriInfo();
+            }
         }
 
         private void txtMNum_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F9)
             {
+                oldNum = txtMNum.Text;
                 Form8_2 f = new Form8_2(txtMNum);
                 openChildForm(f);
-                getMitsumoriInfo();
+                if (!txtMNum.Text.Equals(oldNum))
+                {
+                    oldNum = txtMNum.Text;
+                    getMitsumoriInfo();
+                }
+                txtMYMD.Focus();
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -1898,15 +1959,31 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     decimal dRitsu = 0;
 
-                    dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
-                    dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
-
-                    if (!dTeika.Equals(0))
+                    if (getDecValue(getCellValue(gridMitsmori[3, i], true)).Equals(0)
+                        && getDecValue(getCellValue(gridMitsmori[4, i], true)).Equals(0)
+                        && getDecValue(getCellValue(gridMitsmori[5, i], true)).Equals(0))
                     {
-                        dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                        gridMitsmori[3, i].Value = DBNull.Value;
+                        gridMitsmori[4, i].Value = DBNull.Value;
+                        gridMitsmori[5, i].Value = DBNull.Value;
+                        gridMitsmori[6, i].Value = DBNull.Value;
+                        gridMitsmori[7, i].Value = DBNull.Value;
+                        gridMitsmori[8, i].Value = DBNull.Value;
+                        gridMitsmori[9, i].Value = DBNull.Value;
+                        gridMitsmori[10, i].Value = DBNull.Value;
+                        continue;
                     }
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, i], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, i], false))) {
+                        dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
+                        dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
 
-                    gridMitsmori[6, i].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                        if (!dTeika.Equals(0))
+                        {
+                            dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                        }
+
+                        gridMitsmori[6, i].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                    }
                 }
                 //for (int i = 0; i < intTrueRows; i++)
                 //{
@@ -1926,7 +2003,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     editFlg = false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -2085,7 +2161,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                             //ユーザー名
                             aryPrm.Add(Environment.UserName);
 
-                            string strNewShohin = inputB.updShohinNew(aryPrm, true);
+                            string strNewShohin = inputB.updShohinNew(aryPrm, false);
                         }
 
 
@@ -2103,13 +2179,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                         aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[2, i], false));
-                        aryPrm.Add(getCellValue(gridMitsmori[3, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[3, i], false));
                         aryPrm.Add(getCellValue(null, true));
-                        aryPrm.Add(getCellValue(gridMitsmori[5, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[7, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[9, i], true));
-                        aryPrm.Add(getCellValue(gridMitsmori[10, i], true));
+                        aryPrm.Add(getCellValue(gridMitsmori[5, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[7, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[8, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[9, i], false));
+                        aryPrm.Add(getCellValue(gridMitsmori[10, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[11, i], false));
 
                         if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[14, i], false)) && getCellValue(gridMitsmori[14, i], false).Equals(getCellValue(gridMitsmori[12, i], false)))
@@ -2140,16 +2216,20 @@ namespace KATO.Form.H0210_MitsumoriInput
                         aryPrm.Add(getCellValue(gridMitsmori[19, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[20, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[21, i], false));
+
                         aryPrm.Add(getCellValue(gridMitsmori[22, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[23, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[24, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[25, i], false));
+
                         aryPrm.Add(getCellValue(gridMitsmori[26, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[27, i], false));
+
                         aryPrm.Add(getCellValue(gridMitsmori[28, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[29, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[30, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[31, i], false));
+
                         aryPrm.Add(getCellValue(gridMitsmori[32, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[33, i], false));
                         aryPrm.Add(getCellValue(gridMitsmori[34, i], false));
@@ -2214,6 +2294,11 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     inputB.commit();
 
+                    string stMitsumori;
+                    string stMeisai;
+                    stMitsumori = dbToPdf(gridMitsmori);
+                    stMeisai = dbToPdfMeisai(gridMitsmori);
+
                     editFlg = false;
                     this.Cursor = Cursors.Default;
 
@@ -2226,12 +2311,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                     // 見積書印刷、または見積書＋見積明細印刷時    
                     if (intPrint > 0)
                     {
-                        printMitsumori();
+                        printMitsumori(stMitsumori);
                     }
                     // 見積書＋見積明細印刷時
                     if (intPrint == 2)
                     {
-                        printDetail();
+                        printDetail(stMeisai);
                     }
 
                     intPrint = 0;
@@ -2464,12 +2549,12 @@ namespace KATO.Form.H0210_MitsumoriInput
         }
         
         // 見積印刷
-        private void printMitsumori()
+        private void printMitsumori(string st)
         {
-            string st = null;
+            //string st = null;
             try
             {
-                st = dbToPdf(gridMitsmori);
+                //st = dbToPdf(gridMitsmori);
 
                 //PDFPreviewM pp = new PDFPreviewM(this, st);
                 //pp.ShowDialog();
@@ -2651,12 +2736,12 @@ namespace KATO.Form.H0210_MitsumoriInput
         }
 
         // 仕入詳細印刷
-        private void printDetail()
+        private void printDetail(string st)
         {
-            string st = null;
+            //string st = null;
             try
             {
-                st = dbToPdfMeisai(gridMitsmori);
+                //st = dbToPdfMeisai(gridMitsmori);
 
                 //PDFPreviewM pp = new PDFPreviewM(this, st);
                 //pp.ShowDialog();
@@ -3449,6 +3534,20 @@ namespace KATO.Form.H0210_MitsumoriInput
             return d;
         }
         private string getCellValue(DataGridViewCell c, bool zero)
+        {
+            string ret = "";
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+            }
+            return ret;
+        }
+        private string getCellValueDBNull(DataGridViewCell c, bool zero)
         {
             string ret = "";
             if (zero)

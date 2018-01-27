@@ -71,6 +71,12 @@ namespace KATO.Form.H0210_MitsumoriInput
             kingaku.HeaderText = "見積金額";
             kingaku.SortMode = DataGridViewColumnSortMode.NotSortable;
 
+            DataGridViewTextBoxColumn memo = new DataGridViewTextBoxColumn();
+            memo.DataPropertyName = "社内メモ";
+            memo.Name = "社内メモ";
+            memo.HeaderText = "社内メモ";
+            memo.Visible = false;
+
             #endregion
 
             //バインド、個々の幅、文章の寄せの設定
@@ -81,6 +87,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsu, torihiki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 183);
             setColumn(gridMitsu, kenmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 268);
             setColumn(gridMitsu, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 108);
+            setColumn(gridMitsu, memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
 
             #endregion
         }
@@ -113,6 +120,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                 this.Cursor = Cursors.WaitCursor;
 
                 int intRowIdx = e.RowIndex;
+
+                if (gridMitsu[6, intRowIdx].Value != null) {
+                    txtMemo.Text = (gridMitsu[6, intRowIdx].Value).ToString();
+                }
+
                 axAcroPDF1.LoadFile("NUL");
                 axAcroPDF1.setLayoutMode("SinglePage");
                 axAcroPDF1.Refresh();
@@ -364,7 +376,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
-            updShonin("0");
+            updShonin("9");
         }
 
         private void updShonin(string strFlg)
@@ -385,7 +397,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     intRowIdx = rc[i].Index;
 
                     if (gridMitsu[1, intRowIdx].Value != null) {
-                        inputB.updShoninFlg((gridMitsu[1, intRowIdx].Value).ToString(), strFlg);
+                        inputB.updShoninFlg((gridMitsu[1, intRowIdx].Value).ToString(), strFlg, txtMemo.Text);
                     }
                 }
 
