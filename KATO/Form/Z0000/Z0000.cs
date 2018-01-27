@@ -705,9 +705,10 @@ namespace KATO.Form.Z0000
                     //削除
                     break;
 
-                //買掛金残高一覧確認(元：買掛金残高一覧表)
+                //買掛金残高一覧確認(旧：買掛金残高一覧表)
                 case "52":
-
+                    C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin kaikakekakunin = new C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin(this);
+                    kaikakekakunin.ShowDialog();
                     break;
 
                 //得意先別売上粗利推移表
