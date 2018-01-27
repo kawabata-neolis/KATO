@@ -696,14 +696,18 @@ namespace KATO.Form.Z0000
 
                 //売掛金残高一覧確認
                 case "50":
+                    C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin urikakekakunin = new C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin(this);
+                    urikakekakunin.ShowDialog();
                     break;
 
                 //売掛金残高一覧表
                 case "51":
+                    //削除
                     break;
 
-                //買掛金残高一覧表
+                //買掛金残高一覧確認(元：買掛金残高一覧表)
                 case "52":
+
                     break;
 
                 //得意先別売上粗利推移表

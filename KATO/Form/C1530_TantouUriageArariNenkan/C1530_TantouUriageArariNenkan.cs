@@ -20,7 +20,7 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
     /// </summary>
     public partial class C1530_TantouUriageArariNenkan : BaseForm
     {
-        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog logger = log4net.LogManager.  GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// C0140_TantouUriageArariNenkan

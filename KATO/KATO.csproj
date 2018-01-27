@@ -132,6 +132,7 @@
     <Compile Include="Business\B0410_SeikyuItiranPrint\B0410_SeikyuItiranPrint_B.cs" />
     <Compile Include="Business\B0420_SeikyuMeisaishoPrint\B0420_SeikyuMeisaishoPrint_B.cs" />
     <Compile Include="Business\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint_B.cs" />
+    <Compile Include="Business\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZandakaIchiranKakunin_B.cs" />
     <Compile Include="Business\C1530_TantouUriageArariNenkan\C1530_TantouUriageArariNenkan_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0480_SiireSuiiHyo_B.cs" />
     <Compile Include="Business\C0480_SiireSuiiHyo\C0481_SiireSuiiHyoLevel2_B.cs" />
@@ -688,6 +689,12 @@
     </Compile>
     <Compile Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.Designer.cs">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZandakaIchiranKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZandakaIchiranKakunin.Designer.cs">
+      <DependentUpon>C0500_UrikakekinZandakaIchiranKakunin.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\C1530_TantouUriageArariNenkan\C1530_TantouUriageArariNenkan.cs">
       <SubType>Form</SubType>
@@ -1335,6 +1342,9 @@
     <EmbeddedResource Include="Form\C0130_TantouUriageArariPrint\C0130_TantouUriageArariPrint.resx">
       <DependentUpon>C0130_TantouUriageArariPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZandakaIchiranKakunin.resx">
+      <DependentUpon>C0500_UrikakekinZandakaIchiranKakunin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\C1530_TantouUriageArariNenkan\C1530_TantouUriageArariNenkan.resx">
       <DependentUpon>C1530_TantouUriageArariNenkan.cs</DependentUpon>
     </EmbeddedResource>
@@ -1728,6 +1738,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\B1510_SeikyuRireki\SeikyuRireki_SELECT_SetDataGridView.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\C6000_TantoshabetuDenpyoCount\DenpyoCount_SELECT_SetDataGridView.sql">

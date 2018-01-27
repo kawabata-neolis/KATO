@@ -1,0 +1,325 @@
+﻿namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
+{
+    partial class C0500_UrikakekinZandakaIchiranKakunin
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.txtTantoshaCdopen = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTantoshaCdclose = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
+            this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
+            this.lblHani1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lbl2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTokuisakiCd = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblYM = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.gridTokuisaki = new KATO.Common.Ctl.BaseDataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radSet_2btn1 = new KATO.Common.Ctl.RadSet_2btn();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // txtTantoshaCdopen
+            // 
+            this.txtTantoshaCdopen.blnCommaOK = false;
+            this.txtTantoshaCdopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoshaCdopen.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTantoshaCdopen.intDeciSet = 0;
+            this.txtTantoshaCdopen.intIntederSet = 0;
+            this.txtTantoshaCdopen.intShishagonyu = 0;
+            this.txtTantoshaCdopen.Location = new System.Drawing.Point(124, 15);
+            this.txtTantoshaCdopen.MaxLength = 4;
+            this.txtTantoshaCdopen.Name = "txtTantoshaCdopen";
+            this.txtTantoshaCdopen.Size = new System.Drawing.Size(100, 22);
+            this.txtTantoshaCdopen.TabIndex = 0;
+            this.txtTantoshaCdopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtTantoshaCdclose
+            // 
+            this.txtTantoshaCdclose.blnCommaOK = false;
+            this.txtTantoshaCdclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTantoshaCdclose.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTantoshaCdclose.intDeciSet = 0;
+            this.txtTantoshaCdclose.intIntederSet = 0;
+            this.txtTantoshaCdclose.intShishagonyu = 0;
+            this.txtTantoshaCdclose.Location = new System.Drawing.Point(254, 15);
+            this.txtTantoshaCdclose.MaxLength = 4;
+            this.txtTantoshaCdclose.Name = "txtTantoshaCdclose";
+            this.txtTantoshaCdclose.Size = new System.Drawing.Size(100, 22);
+            this.txtTantoshaCdclose.TabIndex = 1;
+            this.txtTantoshaCdclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtYMopen
+            // 
+            this.txtYMopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYMopen.Location = new System.Drawing.Point(124, 51);
+            this.txtYMopen.Name = "txtYMopen";
+            this.txtYMopen.Size = new System.Drawing.Size(65, 22);
+            this.txtYMopen.TabIndex = 2;
+            // 
+            // txtYMclose
+            // 
+            this.txtYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYMclose.Location = new System.Drawing.Point(222, 51);
+            this.txtYMclose.Name = "txtYMclose";
+            this.txtYMclose.Size = new System.Drawing.Size(65, 22);
+            this.txtYMclose.TabIndex = 3;
+            // 
+            // lblHani1
+            // 
+            this.lblHani1.AutoSize = true;
+            this.lblHani1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHani1.Location = new System.Drawing.Point(228, 18);
+            this.lblHani1.Name = "lblHani1";
+            this.lblHani1.Size = new System.Drawing.Size(23, 15);
+            this.lblHani1.strToolTip = null;
+            this.lblHani1.TabIndex = 91;
+            this.lblHani1.Text = "～";
+            this.lblHani1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lbl2.Location = new System.Drawing.Point(194, 54);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(23, 15);
+            this.lbl2.strToolTip = null;
+            this.lbl2.TabIndex = 91;
+            this.lbl2.Text = "～";
+            this.lbl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTokuisakiCd
+            // 
+            this.lblTokuisakiCd.AutoSize = true;
+            this.lblTokuisakiCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTokuisakiCd.Location = new System.Drawing.Point(12, 18);
+            this.lblTokuisakiCd.Name = "lblTokuisakiCd";
+            this.lblTokuisakiCd.Size = new System.Drawing.Size(103, 15);
+            this.lblTokuisakiCd.strToolTip = null;
+            this.lblTokuisakiCd.TabIndex = 91;
+            this.lblTokuisakiCd.Text = "得意先コード";
+            this.lblTokuisakiCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblYM
+            // 
+            this.lblYM.AutoSize = true;
+            this.lblYM.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblYM.Location = new System.Drawing.Point(12, 54);
+            this.lblYM.Name = "lblYM";
+            this.lblYM.Size = new System.Drawing.Size(55, 15);
+            this.lblYM.strToolTip = null;
+            this.lblYM.TabIndex = 91;
+            this.lblYM.Text = "年月度";
+            this.lblYM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // gridTokuisaki
+            // 
+            this.gridTokuisaki.AllowUserToAddRows = false;
+            this.gridTokuisaki.AllowUserToResizeColumns = false;
+            this.gridTokuisaki.AllowUserToResizeRows = false;
+            this.gridTokuisaki.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridTokuisaki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gridTokuisaki.EnableHeadersVisualStyles = false;
+            this.gridTokuisaki.Location = new System.Drawing.Point(14, 102);
+            this.gridTokuisaki.Name = "gridTokuisaki";
+            this.gridTokuisaki.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridTokuisaki.RowHeadersVisible = false;
+            this.gridTokuisaki.RowTemplate.Height = 21;
+            this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridTokuisaki.Size = new System.Drawing.Size(1397, 662);
+            this.gridTokuisaki.StandardTab = true;
+            this.gridTokuisaki.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radSet_2btn1);
+            this.groupBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.groupBox1.Location = new System.Drawing.Point(382, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(195, 84);
+            this.groupBox1.TabIndex = 93;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "出力順";
+            // 
+            // radSet_2btn1
+            // 
+            this.radSet_2btn1.intJudBtn = 25;
+            this.radSet_2btn1.LabelTitle = null;
+            this.radSet_2btn1.Location = new System.Drawing.Point(11, 25);
+            this.radSet_2btn1.Name = "radSet_2btn1";
+            this.radSet_2btn1.PositionLabelTitle_X = 0;
+            this.radSet_2btn1.PositionLabelTitle_Y = 0;
+            this.radSet_2btn1.PositionRadbtn1_X = 0;
+            this.radSet_2btn1.PositionRadbtn1_Y = 0;
+            this.radSet_2btn1.PositionRadbtn2_X = 0;
+            this.radSet_2btn1.PositionRadbtn2_Y = 25;
+            this.radSet_2btn1.Radbtn1Text = "得意先コードの昇順";
+            this.radSet_2btn1.Radbtn2Text = "フリガナの昇順";
+            this.radSet_2btn1.Size = new System.Drawing.Size(178, 53);
+            this.radSet_2btn1.TabIndex = 0;
+            // 
+            // C0500_UrikakekinZandakaIchiranKakunin
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gridTokuisaki);
+            this.Controls.Add(this.lblYM);
+            this.Controls.Add(this.lblTokuisakiCd);
+            this.Controls.Add(this.lbl2);
+            this.Controls.Add(this.lblHani1);
+            this.Controls.Add(this.txtYMclose);
+            this.Controls.Add(this.txtYMopen);
+            this.Controls.Add(this.txtTantoshaCdclose);
+            this.Controls.Add(this.txtTantoshaCdopen);
+            this.Name = "C0500_UrikakekinZandakaIchiranKakunin";
+            this.Text = "";
+            this.Load += new System.EventHandler(this.C1500_UrikakekinanKakunin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0500_UrikakekinanKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.btnF01, 0);
+            this.Controls.SetChildIndex(this.btnF02, 0);
+            this.Controls.SetChildIndex(this.btnF03, 0);
+            this.Controls.SetChildIndex(this.btnF04, 0);
+            this.Controls.SetChildIndex(this.btnF05, 0);
+            this.Controls.SetChildIndex(this.btnF06, 0);
+            this.Controls.SetChildIndex(this.btnF07, 0);
+            this.Controls.SetChildIndex(this.btnF08, 0);
+            this.Controls.SetChildIndex(this.btnF09, 0);
+            this.Controls.SetChildIndex(this.btnF10, 0);
+            this.Controls.SetChildIndex(this.btnF11, 0);
+            this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
+            this.Controls.SetChildIndex(this.txtTantoshaCdopen, 0);
+            this.Controls.SetChildIndex(this.txtTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.txtYMopen, 0);
+            this.Controls.SetChildIndex(this.txtYMclose, 0);
+            this.Controls.SetChildIndex(this.lblHani1, 0);
+            this.Controls.SetChildIndex(this.lbl2, 0);
+            this.Controls.SetChildIndex(this.lblTokuisakiCd, 0);
+            this.Controls.SetChildIndex(this.lblYM, 0);
+            this.Controls.SetChildIndex(this.gridTokuisaki, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private Common.Ctl.BaseTextMoney txtTantoshaCdopen;
+        private Common.Ctl.BaseTextMoney txtTantoshaCdclose;
+        private Common.Ctl.BaseCalendarYM txtYMopen;
+        private Common.Ctl.BaseCalendarYM txtYMclose;
+        private Common.Ctl.BaseLabel lblHani1;
+        private Common.Ctl.BaseLabel lbl2;
+        private Common.Ctl.BaseLabel lblTokuisakiCd;
+        private Common.Ctl.BaseLabel lblYM;
+        private Common.Ctl.BaseDataGridView gridTokuisaki;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Common.Ctl.RadSet_2btn radSet_2btn1;
+    }
+}
