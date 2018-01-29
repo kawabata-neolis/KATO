@@ -78,10 +78,26 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //デバッグ用            
-            this.powerUserFlg = true;
-            //            this.powerUserFlg = false;
+////本番用
+//            //パワーユーザーの場合
+//            if(this.powerUserFlg == true)
+//            {
+//                //読み取り専用
+//                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
+//                //タブ移動しない
+//                lblsetTantoshaCdclose.TabStop = true;
+//            }
+//            else
+//            {
+//                //読み取り専用
+//                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
+//                //タブ移動しない
+//                lblsetTantoshaCdclose.TabStop = false;
+//            }
 
+//テスト用
+            this.powerUserFlg = true;
+            
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;
 
@@ -356,10 +372,10 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 return;
             }
 
-            if (txtYMopen.blIsEmpty() == false)
-            {
-                return;
-            }
+            //if (txtYMopen)
+            //{
+            //    return;
+            //}
 
             if (txtYMclose.blIsEmpty() == false)
             {
@@ -370,10 +386,32 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
 
             List<string> lstStringViewData = new List<string>();
 
-            lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
-            lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
-            lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
-            lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            //パワーユーザーの場合
+            if (this.powerUserFlg == true)
+            {
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
+
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            }
+            else
+            {
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+
+                //同じ年月度の場合
+                if (DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd") == DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"))
+                {
+                    //エラーメッセージ？
+                    return;
+                }
+                else
+                {
+                    lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                    lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+                }
+            }
 
             C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
             try

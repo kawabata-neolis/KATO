@@ -855,6 +855,10 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //ＭＯデータ削除_PROCを実行
                 dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
 
+
+                //ＭＯデータの確定処理
+                                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+
                 //コミット
                 dbconnective.Commit();
             }

@@ -1034,23 +1034,23 @@ namespace KATO.Form.B0250_MOnyuryoku
             {
                 return;
             }
-            
-            //上段グリッドのループ
-            for (int intCnt = 0; intCnt < gridKataban.Rows.Count; intCnt++)
-            {
-                //商品コードの取得
-                strShohinCd = gridKataban.Rows[intCnt].Cells["商品コード"].Value.ToString();
 
-                //発注数が空もしくは
-                if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells["発注数"].Value.ToString()) == false ||
-                    Math.Floor(double.Parse(gridKataban.Rows[intCnt].Cells["発注数"].Value.ToString())) == 0)
+            B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
+            try
+            {
+                //上段グリッドのループ
+                for (int intCnt = 0; intCnt < gridKataban.Rows.Count; intCnt++)
                 {
-                    //スルー
-                }
-                else
-                {
-                    B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
-                    try
+                    //商品コードの取得
+                    strShohinCd = gridKataban.Rows[intCnt].Cells["商品コード"].Value.ToString();
+
+                    //発注数が空もしくは
+                    if (StringUtl.blIsEmpty(gridKataban.Rows[intCnt].Cells["発注数"].Value.ToString()) == false ||
+                        Math.Floor(double.Parse(gridKataban.Rows[intCnt].Cells["発注数"].Value.ToString())) == 0)
+                    {
+                        //スルー
+                    }
+                    else
                     {
                         //発注更新をするデータを初期化
                         lstStringHachukoshin.Clear();
@@ -1114,7 +1114,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         {
                             //端数
                             decHasu = decimal.Parse(dtMesaikbn.Rows[0][0].ToString());
-                            
+
                             if (decHasu == 2)
                             {
                                 //金額(切り上げ)
@@ -1131,7 +1131,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                                 decKin = decimal.Parse(StringUtl.updShishagonyu((decSu * decTanka).ToString(), 0));
                             }
                         }
-                                                
+
                         //発注更新処理をするデータを入れる
                         lstStringHachukoshin.Add(strShiresakiCd);                   //仕入先コード
                         lstStringHachukoshin.Add(strHachuYMD);                      //発注年月日
@@ -1165,34 +1165,33 @@ namespace KATO.Form.B0250_MOnyuryoku
                         //発注更新処理
                         monyuryokuB.updHachukoshin(lstStringHachukoshin);
 
-                        //ＭＯ確定処理をするデータを入れる
-                        lstStringMOkakutei.Add(DateTime.Parse(txtYM.Text).ToString("yyyy/MM")); //年月度
-                        lstStringMOkakutei.Add(strShohinCd);                                    //商品コード
-                        lstStringMOkakutei.Add(SystemInformation.UserName);                     //ユーザー名
-
-                        //ＭＯデータ確定処理
-                        monyuryokuB.updMOdataKakutei(lstStringMOkakutei);
-
-                        //グリッドの初期化
-                        gridKataban.DataSource = "";
-                        gridKataban2.DataSource = "";
-
-                        //中段グリッドの表示
-                        showGridKataban2();
-
-                        //上段グリッドの表示
-                        showGridKataban1();
-                    }
-                    catch (Exception ex)
-                    {
-                        //データロギング
-                        new CommonException(ex);
-                        //例外発生メッセージ（OK）
-                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                        basemessagebox.ShowDialog();
-                        return;
                     }
                 }
+
+                //中段グリッドのループ
+                for (int intCnt = 0; intCnt < gridKataban2.Rows.Count; intCnt++)
+                {
+                    lstStringMOkakutei.Clear();
+
+                    //ＭＯ確定処理をするデータを入れる
+                    lstStringMOkakutei.Add(DateTime.Parse(txtYM.Text).ToString("yyyy/MM"));                  //年月度
+                    lstStringMOkakutei.Add(gridKataban2.Rows[intCnt].Cells["商品コード"].Value.ToString());  //商品コード                                   //商品コード
+                    lstStringMOkakutei.Add(SystemInformation.UserName);                                      //ユーザー名
+
+                    //ＭＯデータ確定処理
+                    monyuryokuB.updMOdataKakutei(lstStringMOkakutei);
+                }
+
+                //取り消しの挙動
+                delText();
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
         }
 
@@ -1491,9 +1490,6 @@ namespace KATO.Form.B0250_MOnyuryoku
                     //テーブルがある場合
                     if (dtGridViewKataban.Rows.Count > 0)
                     {
-                        btnF01.Enabled = true;
-                        btnF03.Enabled = true;
-
                         //グリッドビューの表示
                         gridKataban2.DataSource = dtGridViewKataban;
 
@@ -1509,14 +1505,10 @@ namespace KATO.Form.B0250_MOnyuryoku
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力", "全て確定されています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
 
-                        btnF01.Enabled = false;
-                        btnF03.Enabled = false;
-
                         //グリッド部分のみ初期化
                         gridKataban.DataSource = "";
                         gridKataban2.DataSource = "";
                         gridRireki.DataSource = "";
-
                     }
                 }
                 catch (Exception ex)
@@ -1576,10 +1568,11 @@ namespace KATO.Form.B0250_MOnyuryoku
         ///</summary>
         private void delText()
         {
-            //年月度以外を初期に戻す
+            //年月度確保
+            string strYM = txtYM.Text;
 
             //表示テキスト、ラジオボタン部分
-            txtYM.setUp(3);
+            txtShukeiM.Clear();
             lblSetDaibunrui.codeTxt.Clear();
             lblSetDaibunrui.chkTxtDaibunrui();
             lblSetChubunrui.codeTxt.Clear();
@@ -1607,7 +1600,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             txtKingaku.Clear();
             txtShohinCd.Clear();
 
-            //
+            //年月度を戻す
+            txtYM.Text = strYM;
 
             //集計月数にフォーカス
             txtShukeiM.Focus();
