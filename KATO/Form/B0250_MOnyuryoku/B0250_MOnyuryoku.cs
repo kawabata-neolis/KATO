@@ -893,7 +893,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         Business.B0250_MOnyuryoku.B0250_MOnyuryoku_B monyuB = new B0250_MOnyuryoku_B();
 
                         //戻り値は、エラーかどうか。既にエクセプションで受け取っているため不使用
-                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName);
+                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName, gridKataban2.Rows[intCnt].Cells["発注担当者コード"].Value.ToString());
                     }
                     else
                     {
@@ -944,7 +944,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         Business.B0250_MOnyuryoku.B0250_MOnyuryoku_B monyuB = new B0250_MOnyuryoku_B();
 
                         //戻り値は、エラーかどうか。既にエクセプションで受け取っているため不使用
-                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName);
+                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName,gridKataban2.Rows[intCnt].Cells["発注担当者コード"].Value.ToString());
                     }
                 }
 
@@ -963,10 +963,14 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //初期フォーカス位置に移動
                 lblSetDaibunrui.Focus();
 
-                //中段グリッド再表示
+                //グリッドの初期化
+                gridKataban.DataSource = "";
+                gridKataban2.DataSource = "";
+
+                //中段グリッドの表示
                 showGridKataban2();
 
-                //上段グリッド再表示
+                //上段グリッドの表示
                 showGridKataban1();
             }
             catch (Exception ex)
@@ -1064,7 +1068,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         intDenNo = int.Parse(gridKataban.Rows[intCnt].Cells["発注番号2"].Value.ToString());
 
                         //発注担当者コード
-                        strHachuTanto = gridKataban.Rows[intCnt].Cells["発注担当者"].Value.ToString();
+                        strHachuTanto = gridKataban.Rows[intCnt].Cells["発注担当者コード"].Value.ToString();
 
                         //発注数
                         decSu = decimal.Parse(gridKataban.Rows[intCnt].Cells["発注数"].Value.ToString());
@@ -1168,6 +1172,16 @@ namespace KATO.Form.B0250_MOnyuryoku
 
                         //ＭＯデータ確定処理
                         monyuryokuB.updMOdataKakutei(lstStringMOkakutei);
+
+                        //グリッドの初期化
+                        gridKataban.DataSource = "";
+                        gridKataban2.DataSource = "";
+
+                        //中段グリッドの表示
+                        showGridKataban2();
+
+                        //上段グリッドの表示
+                        showGridKataban1();
                     }
                     catch (Exception ex)
                     {
