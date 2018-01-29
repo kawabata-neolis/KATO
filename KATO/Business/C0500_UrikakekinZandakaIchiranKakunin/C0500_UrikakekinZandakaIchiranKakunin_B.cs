@@ -1,4 +1,5 @@
-﻿using KATO.Common.Util;
+﻿using ClosedXML.Excel;
+using KATO.Common.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -79,218 +80,387 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
             }
         }
 
-        ///// -----------------------------------------------------------------------------
-        ///// <summary>
-        /////     DataTableをもとにxlsxファイルを作成しPDF化</summary>
-        ///// <param name="dtSetCd_B_Input">
-        /////     ＭＯの印刷データテーブル</param>
-        ///// -----------------------------------------------------------------------------
-        //public string dbToPdf(DataTable dtSetCd_B_Input, List<string> lstPrintHeader)
-        //{
-        //    string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-        //    string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
-        //    string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
+        /// <param name="dtSetCd_B_Input">
+        ///     売掛金残高一覧確認の印刷データテーブル</param>
+        /// -----------------------------------------------------------------------------
+        public string dbToPdf(DataTable dtSetCd_B_Input)
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-        //    try
-        //    {
-        //        CreatePdf pdf = new CreatePdf();
+            //合計値の確保用
+            decimal decUriYM = 0;
+            decimal decZenUrikakeZan = 0;
+            decimal decNyukinGenkin = 0;
+            decimal decNyukinKogitte = 0;
+            decimal decNyukinHurikomi = 0;
+            decimal decNyukinTegata = 0;
+            decimal decNyukinSosai = 0;
+            decimal decNyukinTesuryo = 0;
+            decimal decNyukinSonota = 0;
+            decimal decKurikoshiZan = 0;
+            decimal decTogetuUriage = 0;
+            decimal decTogetuShohizei = 0;
+            decimal decTogetuZan = 0;
+            
+            try
+            {
+                CreatePdf pdf = new CreatePdf();
 
-        //        // ワークブックのデフォルトフォント、フォントサイズの指定
-        //        XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
-        //        XLWorkbook.DefaultStyle.Font.FontSize = 9;
+                // ワークブックのデフォルトフォント、フォントサイズの指定
+                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
+                XLWorkbook.DefaultStyle.Font.FontSize = 6.6;
 
 
-        //        // excelのインスタンス生成
-        //        XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
 
-        //        IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
-        //        IXLWorksheet headersheet = worksheet;   // ヘッダーシート
-        //        IXLWorksheet currentsheet = worksheet;  // 処理中シート
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
+                IXLWorksheet headersheet = worksheet;   // ヘッダーシート
+                IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
-        //        // Linqで必要なデータをselect
-        //        var outDataAll = dtSetCd_B_Input.AsEnumerable()
-        //            .Select(dat => new
-        //            {
-        //                MOHin = dat["品名規格"],
-        //                MOSu = dat["数量"],
-        //                MOHachuTanka = dat["発注単価"],
-        //                MONoki = dat["納期"],
-        //                MOShimukesaki = dat["仕向け先"],
-        //                MOChuban = dat["注番"],
-        //            }).ToList();
+                // Linqで必要なデータをselect
+                var outDataAll = dtSetCd_B_Input.AsEnumerable()
+                    .Select(dat => new
+                    {
+                        UriCd = dat["コード"],
+                        UriTokuiName = dat["得意先名"],
+                        UriYM = dat["年月"],
+                        UriZenUrikakeZan = dat["前月売掛残"],
+                        UriNyukinGenkin = dat["入金現金"],
+                        UriNyukinKogitte = dat["入金小切手"],
+                        UriNyukinHurikomi = dat["入金振込"],
+                        UriNyukinTegata= dat["入金手形"],
+                        UriNyukinSosai = dat["入金相殺"],
+                        UriNyukinTesuryo = dat["入金手数料"],
+                        UriNyukinSonota = dat["入金その他"],
+                        UriKurikoshiZan = dat["繰越残高"],
+                        UriTogetuUriage = dat["当月売上高"],
+                        UriTogetuShohizei = dat["当月消費税"],
+                        UriTogetuZan = dat["当月残高"],
+                        UriZeiku = dat["税区"],
+                    }).ToList();
 
-        //        // リストをデータテーブルに変換
-        //        DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
+                // リストをデータテーブルに変換
+                DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
-        //        int maxRowCnt = dtChkList.Rows.Count + 1;
-        //        int maxColCnt = dtChkList.Columns.Count;
-        //        int pageCnt = 0;    // ページ(シート枚数)カウント
-        //        int rowCnt = 1;     // datatable処理行カウント
-        //        int xlsRowCnt = 5;  // Excel出力行カウント（開始は出力行）
-        //        int maxPage = 0;    // 最大ページ数
+                int maxRowCnt = dtChkList.Rows.Count + 1;
+                int maxColCnt = dtChkList.Columns.Count;
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int rowCnt = 1;     // datatable処理行カウント
+                int xlsRowCnt = 4;  // Excel出力行カウント（開始は出力行）
+                int maxPage = 0;    // 最大ページ数
 
-        //        // ページ数計算
-        //        double page = 1.0 * maxRowCnt / 47;
-        //        double decimalpart = page % 1;
-        //        if (decimalpart != 0)
-        //        {
-        //            //小数点以下が0でない場合、+1
-        //            maxPage = (int)Math.Floor(page) + 1;
-        //        }
-        //        else
-        //        {
-        //            maxPage = (int)page;
-        //        }
+                // ページ数計算
+                double page = 1.0 * maxRowCnt / 47;
+                double decimalpart = page % 1;
+                if (decimalpart != 0)
+                {
+                    //小数点以下が0でない場合、+1
+                    maxPage = (int)Math.Floor(page) + 1;
+                }
+                else
+                {
+                    maxPage = (int)page;
+                }
 
-        //        // ClosedXMLで1行ずつExcelに出力
-        //        foreach (DataRow drSiireCheak in dtChkList.Rows)
-        //        {
-        //            //1ページ目のシート作成
-        //            if (rowCnt == 1)
-        //            {
-        //                pageCnt++;
+                // ClosedXMLで1行ずつExcelに出力
+                foreach (DataRow drTokuisakiCheak in dtChkList.Rows)
+                {
+                    //1ページ目のシート作成
+                    if (rowCnt == 1)
+                    {
+                        pageCnt++;
 
-        //                // タイトル出力（中央揃え、セル結合）
-        //                IXLCell titleCell = headersheet.Cell("A1");
-        //                titleCell.Value = "ＭＯリスト";
-        //                titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-        //                titleCell.Style.Font.FontSize = 16;
-        //                headersheet.Range("A1", "H1").Merge();
+                        // タイトル出力（中央揃え、セル結合）
+                        IXLCell titleCell = headersheet.Cell("A1");
+                        titleCell.Value = "売掛金残高一覧表";
+                        titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        titleCell.Style.Font.FontSize = 16;
+                        headersheet.Range("A1", "P1").Merge();
 
-        //                // ヘッダー出力(表ヘッダー上）
-        //                headersheet.Cell("A3").Value = lstPrintHeader[0];   //年月度
-        //                headersheet.Cell("B3").Value = lstPrintHeader[1];   //仕向け元名
+                        // ヘッダー出力(表ヘッダー)
+                        headersheet.Cell("A3").Value = "ｺｰﾄﾞ";
+                        headersheet.Cell("B3").Value = "得意先名";
+                        headersheet.Cell("C3").Value = "年月";
+                        headersheet.Cell("D3").Value = "前月売掛残";
+                        headersheet.Cell("E3").Value = "入金現金";
 
-        //                // ヘッダー出力(表ヘッダー)
-        //                headersheet.Cell("A4").Value = "品   名   ・   規   格";
-        //                headersheet.Cell("D4").Value = "数 量";
-        //                headersheet.Cell("E4").Value = "発注単価";
-        //                headersheet.Cell("F4").Value = "納 期";
-        //                headersheet.Cell("G4").Value = "仕 向 け 先";
-        //                headersheet.Cell("H4").Value = "注 番";
+                        headersheet.Cell("F3").Value = "入金小切手";
+                        headersheet.Cell("G3").Value = "入金振込";
+                        headersheet.Cell("H3").Value = "入金手形";
+                        headersheet.Cell("I3").Value = "入金相殺";
+                        headersheet.Cell("J3").Value = "入金手数料";
 
-        //                headersheet.Range("A4", "C4").Merge();
+                        headersheet.Cell("K3").Value = "入金その他";
+                        headersheet.Cell("M3").Value = "繰越残高";
+                        headersheet.Cell("L3").Value = "当月売上高";
+                        headersheet.Cell("N3").Value = "当月消費税";
+                        headersheet.Cell("O3").Value = "当月残高";
 
-        //                // ヘッダー列
-        //                headersheet.Range("A3", "B3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-        //                headersheet.Range("A4", "H4").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        headersheet.Cell("P3").Value = "税区";
 
-        //                // 列幅の指定
-        //                headersheet.Column(1).Width = 20;
-        //                headersheet.Column(2).Width = 20;
-        //                headersheet.Column(3).Width = 20;
-        //                headersheet.Column(4).Width = 10;
-        //                headersheet.Column(5).Width = 15;
-        //                headersheet.Column(6).Width = 11;
-        //                headersheet.Column(7).Width = 50;
-        //                headersheet.Column(8).Width = 11;
+                        //行高さの指定
+                        headersheet.Row(3).Height = 10;    
 
-        //                // セルの周囲に罫線を引く
-        //                headersheet.Range("A4", "H4").Style
-        //                    .Border.SetTopBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetRightBorder(XLBorderStyleValues.Thin);
+                        //列幅の指定
+                        headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
+                        headersheet.Column(2).Width = 65;   //得意先名
+                        headersheet.Column(3).Width = 8;    //年月
+                        headersheet.Column(4).Width = 12;   //前月売掛残
+                        headersheet.Column(5).Width = 12;   //入金現金
+                        headersheet.Column(6).Width = 12;   //入金小切手
+                        headersheet.Column(7).Width = 12;   //入金振込
+                        headersheet.Column(8).Width = 12;   //入金手形
+                        headersheet.Column(9).Width = 12;   //入金相殺
+                        headersheet.Column(10).Width = 12;  //入金手数料
+                        headersheet.Column(11).Width = 12;  //入金その他
+                        headersheet.Column(12).Width = 12;  //繰越残高
+                        headersheet.Column(13).Width = 12;  //当月売上高
+                        headersheet.Column(14).Width = 12;  //当月消費税
+                        headersheet.Column(15).Width = 12;  //当月残高
+                        headersheet.Column(16).Width = 10;  //税区
 
-        //                //背景を灰色にする
-        //                headersheet.Range("A4", "H4").Style.Fill.BackgroundColor = XLColor.LightGray;
+                        //ヘッダー文字位置の指定
+                        headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //ｺｰﾄﾞ
+                        headersheet.Column(2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //得意先名
+                        headersheet.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //年月
+                        headersheet.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //前月売掛残
+                        headersheet.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金現金
+                        headersheet.Column(6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金小切手
+                        headersheet.Column(7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金振込
+                        headersheet.Column(8).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金手形
+                        headersheet.Column(9).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金相殺
+                        headersheet.Column(10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //入金手数料
+                        headersheet.Column(11).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //入金その他
+                        headersheet.Column(12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //繰越残高
+                        headersheet.Column(13).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月売上高
+                        headersheet.Column(14).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月消費税
+                        headersheet.Column(15).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月残高
+                        headersheet.Column(16).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;	 //税区
+                        
+                        // セルの周囲に罫線を引く
+                        headersheet.Range("A3", "P3").Style
+                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-        //                // 印刷体裁（A4横、印刷範囲）
-        //                headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
-        //                headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                        //背景を灰色にする
+                        headersheet.Range("A3", "P3").Style.Fill.BackgroundColor = XLColor.LightGray;
 
-        //                // ヘッダー部の指定（番号）
-        //                headersheet.PageSetup.Header.Left.AddText("（№26）");
+                        // 印刷体裁（A4横、印刷範囲）
+                        headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
+                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
 
-        //                //ヘッダーシートのコピー、ヘッダー部の指定
-        //                pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
-        //            }
+                        // ヘッダー部の指定（番号）
+                        headersheet.PageSetup.Header.Left.AddText("（№50）");
 
-        //            // 1セルずつデータ出力
-        //            for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
-        //            {
-        //                //マージ
-        //                currentsheet.Range("A" + xlsRowCnt, "C" + xlsRowCnt).Merge();
+                        //ヘッダーシートのコピー、ヘッダー部の指定
+                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                    }
 
-        //                string str = drSiireCheak[colCnt - 1].ToString();
+                    // 1セルずつデータ出力
+                    for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
+                    {
+                        string str = drTokuisakiCheak[colCnt - 1].ToString();
 
-        //                //行の高さ指定
-        //                currentsheet.Row(xlsRowCnt).Height = 20;
+                        //行の高さ指定
+                        currentsheet.Row(xlsRowCnt).Height = 10;
 
-        //                //品名・規格の場合
-        //                if (colCnt == 1)
-        //                {
-        //                    currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-        //                    currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-        //                }
-        //                //数量、発注単価の場合
-        //                else if (colCnt == 2 || colCnt == 3)
-        //                {
-        //                    //小数点以下第二位まで表示
-        //                    currentsheet.Cell(xlsRowCnt, colCnt + 2).Style.NumberFormat.Format = "#,0.00";
+                        //年月の場合
+                        if (colCnt == 3)
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.DateFormat.Format = "yyyy/MM";
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
+                        else if (colCnt == 4 ||     //前月売掛残
+                                 colCnt == 5 ||     //入金現金
+                                 colCnt == 6 ||     //入金小切手
+                                 colCnt == 7 ||     //入金振込
+                                 colCnt == 8 ||     //入金手形
+                                 colCnt == 9 ||     //入金相殺
+                                 colCnt == 10 ||    //入金手数料
+                                 colCnt == 11 ||    //入金その他
+                                 colCnt == 12 ||    //繰越残高
+                                 colCnt == 13 ||    //当月売上高
+                                 colCnt == 14 ||    //当月消費税
+                                 colCnt == 15)      //当月残高
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
 
-        //                    //マージされた分をずらす
-        //                    currentsheet.Cell(xlsRowCnt, colCnt + 2).Value = str;
-        //                    currentsheet.Cell(xlsRowCnt, colCnt + 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-        //                }
-        //                //納期、仕向け先、注番の場合
-        //                else
-        //                {
-        //                    //マージされた分をずらす
-        //                    currentsheet.Cell(xlsRowCnt, colCnt + 2).Value = str;
-        //                    currentsheet.Cell(xlsRowCnt, colCnt + 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-        //                }
-        //            }
+                            //カンマ処理
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.Format = "#,0";
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+                        else
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
+                    }
 
-        //            // 1行分のセルの周囲に罫線を引く
-        //            currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 8).Style
-        //                    .Border.SetTopBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-        //                    .Border.SetRightBorder(XLBorderStyleValues.Thin);
+                    // 1行分のセルの周囲に罫線を引く
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Style
+                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-        //            // 24行毎（ヘッダーを除いた行数）にシート作成
-        //            if (xlsRowCnt == 24)
-        //            {
-        //                pageCnt++;
+                    // 40行毎（ヘッダーを除いた行数）にシート作成
+                    if (xlsRowCnt == 40)
+                    {
+                        pageCnt++;
 
-        //                xlsRowCnt = 4;
+                        xlsRowCnt = 3;
 
-        //                // ヘッダーシートのコピー、ヘッダー部の指定
-        //                pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
-        //            }
+                        // ヘッダーシートのコピー、ヘッダー部の指定
+                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                    }
 
-        //            rowCnt++;
-        //            xlsRowCnt++;
-        //        }
+                    //各合計値を入れる
+                    decZenUrikakeZan = decZenUrikakeZan + decimal.Parse(drTokuisakiCheak[3].ToString());
+                    decNyukinGenkin = decNyukinGenkin + decimal.Parse(drTokuisakiCheak[4].ToString());
+                    decNyukinKogitte = decNyukinKogitte + decimal.Parse(drTokuisakiCheak[5].ToString());
+                    decNyukinHurikomi = decNyukinHurikomi + decimal.Parse(drTokuisakiCheak[6].ToString());
+                    decNyukinTegata = decNyukinTegata + decimal.Parse(drTokuisakiCheak[7].ToString());
+                    decNyukinSosai = decNyukinSosai + decimal.Parse(drTokuisakiCheak[8].ToString());
+                    decNyukinTesuryo = decNyukinTesuryo + decimal.Parse(drTokuisakiCheak[9].ToString());
+                    decNyukinSonota = decNyukinSonota + decimal.Parse(drTokuisakiCheak[10].ToString());
+                    decKurikoshiZan = decKurikoshiZan + decimal.Parse(drTokuisakiCheak[11].ToString());
+                    decTogetuUriage = decTogetuUriage + decimal.Parse(drTokuisakiCheak[12].ToString());
+                    decTogetuShohizei = decTogetuShohizei + decimal.Parse(drTokuisakiCheak[13].ToString());
+                    decTogetuZan = decTogetuZan + decimal.Parse(drTokuisakiCheak[14].ToString());
 
-        //        // ヘッダーシート削除
-        //        headersheet.Delete();
+                    rowCnt++;
+                    xlsRowCnt++;
 
-        //        // workbookを保存
-        //        string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
-        //        workbook.SaveAs(strOutXlsFile);
+                    //最終行の場合
+                    if (rowCnt > dtChkList.Rows.Count)
+                    {
 
-        //        // workbookを解放
-        //        workbook.Dispose();
+                        //マージ
+                        currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
 
-        //        // PDF化の処理
-        //        return pdf.createPdf(strOutXlsFile, strDateTime, 1);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        // Workフォルダの全ファイルを取得
-        //        string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
-        //        // Workフォルダ内のファイル削除
-        //        foreach (string filepath in files)
-        //        {
-        //            //File.Delete(filepath);
-        //        }
-        //    }
-        //}
+                        currentsheet.Row(xlsRowCnt).Height = 10;
+
+                        currentsheet.Cell(xlsRowCnt, 1).Value = "◆◆◆ 合 計 ◆◆◆";
+                        currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        currentsheet.Cell(xlsRowCnt, 3).Value = decUriYM.ToString();            //年月(必然的に0)
+                        currentsheet.Cell(xlsRowCnt, 4).Value = decZenUrikakeZan.ToString();    //前月売掛残
+                        currentsheet.Cell(xlsRowCnt, 5).Value = decNyukinGenkin.ToString();     //入金現金
+                        currentsheet.Cell(xlsRowCnt, 6).Value = decNyukinKogitte.ToString();    //入金小切手
+                        currentsheet.Cell(xlsRowCnt, 7).Value = decNyukinHurikomi.ToString();   //入金振込
+                        currentsheet.Cell(xlsRowCnt, 8).Value = decNyukinTegata.ToString();     //入金手形
+                        currentsheet.Cell(xlsRowCnt, 9).Value = decNyukinSosai.ToString();      //入金相殺
+                        currentsheet.Cell(xlsRowCnt, 10).Value = decNyukinTesuryo.ToString();    //入金手数料
+                        currentsheet.Cell(xlsRowCnt, 11).Value = decNyukinSonota.ToString();    //入金その他
+                        currentsheet.Cell(xlsRowCnt, 12).Value = decKurikoshiZan.ToString();    //繰越残高
+                        currentsheet.Cell(xlsRowCnt, 13).Value = decTogetuUriage.ToString();    //当月売上高
+                        currentsheet.Cell(xlsRowCnt, 14).Value = decTogetuShohizei.ToString();  //当月消費税
+                        currentsheet.Cell(xlsRowCnt, 15).Value = decTogetuZan.ToString();       //当月残高
+                        
+                        //最終行、各項目のカンマ処理と文字寄せ
+                        for (int intCnt = 3; intCnt < 16; intCnt++)
+                        {
+                            currentsheet.Cell(xlsRowCnt, intCnt).Style.NumberFormat.Format = "#,0";
+                            currentsheet.Cell(xlsRowCnt, intCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+
+                        ////カンマ処理
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 4).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 5).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 6).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 7).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 8).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 9).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, ).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
+
+
+                        ////最終行、各項目の文字寄せ
+                        //currentsheet.Cell(xlsRowCnt, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 8).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 9).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 11).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 13).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 14).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //currentsheet.Cell(xlsRowCnt, 15).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        
+                        // 1行分のセルの周囲に罫線を引く
+                        currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Style
+                                .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                                .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                                .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                    }
+                }
+
+                ////マージ
+                //currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
+
+                //currentsheet.Cell(xlsRowCnt, 1).Value = "🔶🔶🔶 合 計 🔶🔶🔶";
+                //currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                //currentsheet.Cell(xlsRowCnt, 2).Value = decUriYM.ToString();            //年月(必然的に0)
+                //currentsheet.Cell(xlsRowCnt, 3).Value = decZenUrikakeZan.ToString();    //前月売掛残
+                //currentsheet.Cell(xlsRowCnt, 4).Value = decNyukinGenkin.ToString();     //入金現金
+                //currentsheet.Cell(xlsRowCnt, 5).Value = decNyukinKogitte.ToString();    //入金小切手
+                //currentsheet.Cell(xlsRowCnt, 6).Value = decNyukinHurikomi.ToString();   //入金振込
+                //currentsheet.Cell(xlsRowCnt, 7).Value = decNyukinTegata.ToString();     //入金手形
+                //currentsheet.Cell(xlsRowCnt, 8).Value = decNyukinSosai.ToString();      //入金相殺
+                //currentsheet.Cell(xlsRowCnt, 9).Value = decNyukinTesuryo.ToString();    //入金手数料
+                //currentsheet.Cell(xlsRowCnt, 10).Value = decNyukinSonota.ToString();    //入金その他
+                //currentsheet.Cell(xlsRowCnt, 11).Value = decKurikoshiZan.ToString();    //繰越残高
+                //currentsheet.Cell(xlsRowCnt, 12).Value = decTogetuUriage.ToString();    //当月売上高
+                //currentsheet.Cell(xlsRowCnt, 13).Value = decTogetuShohizei.ToString();  //当月消費税
+                //currentsheet.Cell(xlsRowCnt, 14).Value = decTogetuZan.ToString();       //当月残高
+
+                // ヘッダーシート削除
+                headersheet.Delete();
+
+                // workbookを保存
+                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                workbook.SaveAs(strOutXlsFile);
+
+                // workbookを解放
+                workbook.Dispose();
+
+                // PDF化の処理
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                // Workフォルダの全ファイルを取得
+                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    //File.Delete(filepath);
+                }
+            }
+        }
     }
 }

@@ -171,6 +171,11 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             TougetsuZan.Name = "当月残高";
             TougetsuZan.HeaderText = "当月残高";
 
+            DataGridViewTextBoxColumn Zeiku = new DataGridViewTextBoxColumn();
+            Zeiku.DataPropertyName = "税区";
+            Zeiku.Name = "税区";
+            Zeiku.HeaderText = "税区";
+
             DataGridViewTextBoxColumn Hurigana = new DataGridViewTextBoxColumn();
             Hurigana.DataPropertyName = "フリガナ";
             Hurigana.Name = "フリガナ";
@@ -192,9 +197,11 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             setColumngridTokuisaki(TougetsuUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuShohizei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(Zeiku, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumngridTokuisaki(Hurigana, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
 
-            //フリガナ非表示
+            //非表示項目
+            gridTokuisaki.Columns["税区"].Visible = false;
             gridTokuisaki.Columns["フリガナ"].Visible = false;
         }
 
@@ -411,9 +418,20 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 return;
             }
 
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //データの取り出し用
             DataTable dtPrintData = new DataTable();
 
+            //データの並び替えと印刷データ用
+            DataTable dtPrintDataClone = new DataTable();
+
+            //列情報を取得
             DataGridViewColumnCollection cols = gridTokuisaki.Columns;
+
+            //行情報を取得
+            DataGridViewRowCollection rows = gridTokuisaki.Rows;
 
             foreach (DataGridViewColumn c in cols)
             {
@@ -427,7 +445,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 }
             }
 
-            DataGridViewRowCollection rows = gridTokuisaki.Rows;
+            //列情報のみをコピーしたデータを作る
+            dtPrintDataClone = dtPrintData.Clone();
 
             foreach (DataGridViewRow r in rows)
             {
@@ -462,12 +481,35 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             foreach (DataRowView drv in dvGridViewTokuisaki)
             {
                 //エラるんで詳細確認
-                dtPrintData.ImportRow(drv.Row);
+                dtPrintDataClone.ImportRow(drv.Row);
             }
 
             C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
             try
             {
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //結果セットをレコードセットに
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
 
             }
             catch (Exception ex)
