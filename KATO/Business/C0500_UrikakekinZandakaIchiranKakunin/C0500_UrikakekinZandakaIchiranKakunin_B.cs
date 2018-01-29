@@ -113,7 +113,7 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
-                XLWorkbook.DefaultStyle.Font.FontSize = 6.6;
+                XLWorkbook.DefaultStyle.Font.FontSize = 6.9;
 
 
                 // excelのインスタンス生成
@@ -209,21 +209,21 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
 
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
-                        headersheet.Column(2).Width = 65;   //得意先名
-                        headersheet.Column(3).Width = 8;    //年月
-                        headersheet.Column(4).Width = 12;   //前月売掛残
-                        headersheet.Column(5).Width = 12;   //入金現金
-                        headersheet.Column(6).Width = 12;   //入金小切手
-                        headersheet.Column(7).Width = 12;   //入金振込
-                        headersheet.Column(8).Width = 12;   //入金手形
-                        headersheet.Column(9).Width = 12;   //入金相殺
-                        headersheet.Column(10).Width = 12;  //入金手数料
-                        headersheet.Column(11).Width = 12;  //入金その他
-                        headersheet.Column(12).Width = 12;  //繰越残高
-                        headersheet.Column(13).Width = 12;  //当月売上高
-                        headersheet.Column(14).Width = 12;  //当月消費税
-                        headersheet.Column(15).Width = 12;  //当月残高
-                        headersheet.Column(16).Width = 10;  //税区
+                        headersheet.Column(2).Width = 30;   //得意先名
+                        headersheet.Column(3).Width = 7;    //年月
+                        headersheet.Column(4).Width = 11;   //前月売掛残
+                        headersheet.Column(5).Width = 11;   //入金現金
+                        headersheet.Column(6).Width = 11;   //入金小切手
+                        headersheet.Column(7).Width = 11;   //入金振込
+                        headersheet.Column(8).Width = 11;   //入金手形
+                        headersheet.Column(9).Width = 11;   //入金相殺
+                        headersheet.Column(10).Width = 11;  //入金手数料
+                        headersheet.Column(11).Width = 11;  //入金その他
+                        headersheet.Column(12).Width = 11;  //繰越残高
+                        headersheet.Column(13).Width = 11;  //当月売上高
+                        headersheet.Column(14).Width = 11;  //当月消費税
+                        headersheet.Column(15).Width = 11;  //当月残高
+                        headersheet.Column(16).Width = 4;  //税区
 
                         //ヘッダー文字位置の指定
                         headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //ｺｰﾄﾞ
@@ -372,37 +372,6 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                             currentsheet.Cell(xlsRowCnt, intCnt).Style.NumberFormat.Format = "#,0";
                             currentsheet.Cell(xlsRowCnt, intCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                         }
-
-                        ////カンマ処理
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 4).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 5).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 6).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 7).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 8).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 9).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, ).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.NumberFormat.Format = "#,0";
-
-
-                        ////最終行、各項目の文字寄せ
-                        //currentsheet.Cell(xlsRowCnt, 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 8).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 9).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 11).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 13).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 14).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        //currentsheet.Cell(xlsRowCnt, 15).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                         
                         // 1行分のセルの周囲に罫線を引く
                         currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 16).Style
@@ -413,26 +382,6 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
 
                     }
                 }
-
-                ////マージ
-                //currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
-
-                //currentsheet.Cell(xlsRowCnt, 1).Value = "🔶🔶🔶 合 計 🔶🔶🔶";
-                //currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                //currentsheet.Cell(xlsRowCnt, 2).Value = decUriYM.ToString();            //年月(必然的に0)
-                //currentsheet.Cell(xlsRowCnt, 3).Value = decZenUrikakeZan.ToString();    //前月売掛残
-                //currentsheet.Cell(xlsRowCnt, 4).Value = decNyukinGenkin.ToString();     //入金現金
-                //currentsheet.Cell(xlsRowCnt, 5).Value = decNyukinKogitte.ToString();    //入金小切手
-                //currentsheet.Cell(xlsRowCnt, 6).Value = decNyukinHurikomi.ToString();   //入金振込
-                //currentsheet.Cell(xlsRowCnt, 7).Value = decNyukinTegata.ToString();     //入金手形
-                //currentsheet.Cell(xlsRowCnt, 8).Value = decNyukinSosai.ToString();      //入金相殺
-                //currentsheet.Cell(xlsRowCnt, 9).Value = decNyukinTesuryo.ToString();    //入金手数料
-                //currentsheet.Cell(xlsRowCnt, 10).Value = decNyukinSonota.ToString();    //入金その他
-                //currentsheet.Cell(xlsRowCnt, 11).Value = decKurikoshiZan.ToString();    //繰越残高
-                //currentsheet.Cell(xlsRowCnt, 12).Value = decTogetuUriage.ToString();    //当月売上高
-                //currentsheet.Cell(xlsRowCnt, 13).Value = decTogetuShohizei.ToString();  //当月消費税
-                //currentsheet.Cell(xlsRowCnt, 14).Value = decTogetuZan.ToString();       //当月残高
 
                 // ヘッダーシート削除
                 headersheet.Delete();

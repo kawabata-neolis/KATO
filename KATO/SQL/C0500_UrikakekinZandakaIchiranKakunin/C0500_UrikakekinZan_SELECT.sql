@@ -53,7 +53,7 @@ SELECT T.取引先コード As コード ,
 	   			dbo.f_get売掛残高一覧表_売上ヘッダ_消費税(T.取引先コード,DATEADD(d,1,K.年月日), dbo.f_月末日(DATEADD(m,1,K.年月日)))
 	   		END
 	   	)  AS 当月残高 ,
-	   	CASE WHEN 消費税区分=1 THEN '内税' ELSE '' END 税区,
+	   	CASE WHEN 消費税区分=0 THEN '内税' ELSE '' END 税区,
 		T.カナ AS フリガナ
 FROM 取引先 T, 取引先経理情報 K
 WHERE T.削除 = 'N'
@@ -62,7 +62,7 @@ WHERE T.削除 = 'N'
 	  AND T.取引先コード>='{0}'
 	  AND T.取引先コード<='{1}'
 	  AND T.取引先コード=K.取引先コード	  
-	  AND K.年月日 >= '{2}'
-	  AND K.年月日 <= '{3}'	  
+	  AND DATEADD(d,1,K.年月日) >= '{2}'
+	  AND DATEADD(d,1,K.年月日) <= '{3}'	  
 	  AND K.情報区分='21'
 ORDER BY T.取引先コード,K.年月日

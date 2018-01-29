@@ -198,9 +198,9 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             Hurigana.HeaderText = "フリガナ";
 
             //個々の幅、文章の寄せ
-            setColumngridTokuisaki(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumngridTokuisaki(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumngridTokuisaki(TokuiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
-            setColumngridTokuisaki(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 75);
+            setColumngridTokuisaki(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
             setColumngridTokuisaki(ZengetuUrikakeZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(NyukinGenkin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(NyukinKogitte, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
@@ -361,25 +361,62 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
         ///</summary>
         private void setTokuisakiView()
         {
-            //データチェック
-            if (lblsetTantoshaCdopen.chkTxtTorihikisaki() == true)
+            //パワーユーザーの場合
+            if (powerUserFlg == true)
             {
-                return;
+                //データチェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
+                {
+                    lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                //データチェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.ValueLabelText) == false)
+                {
+                    lblsetTantoshaCdclose.Focus();
+                    return;
+                }
+                //データチェック（開始年月日）
+                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
+                {
+                    txtYMopen.Focus();
+                    return;
+                }
+                //データチェック（終了年月日）
+                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
+                {
+                    txtYMclose.Focus();
+                    return;
+                }
             }
-
-            if (lblsetTantoshaCdclose.chkTxtTorihikisaki() == true)
+            else
             {
-                return;
-            }
+                //データチェック
+                if (lblsetTantoshaCdopen.chkTxtTorihikisaki() == true)
+                {
+                    lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                //データチェック（開始年月日）
+                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
+                {
+                    txtYMopen.Focus();
+                    return;
+                }
+                //データチェック（終了年月日）
+                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
+                {
+                    txtYMclose.Focus();
+                    return;
+                }
 
-            //if (txtYMopen)
-            //{
-            //    return;
-            //}
+                //データチェック（年月度が同じの場合）
+                if (txtYMopen.Text == txtYMclose.Text)
+                {
+                    //メッセージ
 
-            if (txtYMclose.blIsEmpty() == false)
-            {
-                return;
+                    return;
+                }
             }
 
             DataTable dtGridViewTokusaki = new DataTable();
@@ -400,17 +437,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
                 lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
 
-                //同じ年月度の場合
-                if (DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd") == DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"))
-                {
-                    //エラーメッセージ？
-                    return;
-                }
-                else
-                {
-                    lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
-                    lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
-                }
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
             }
 
             C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
