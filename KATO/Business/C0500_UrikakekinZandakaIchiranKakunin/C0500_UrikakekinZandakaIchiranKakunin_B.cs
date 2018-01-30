@@ -65,6 +65,14 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                 //データ取得（ここから取得）
                 dtKataban = dbconnective.ReadSql(strSQLInput);
 
+                //データ存在チェック
+                if (dtKataban.Rows.Count == 0)
+                {
+                    return (dtKataban);
+                }
+
+
+
                 return (dtKataban);
             }
             catch (Exception ex)
@@ -156,7 +164,7 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                 int maxPage = 0;    // 最大ページ数
 
                 // ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 40;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {

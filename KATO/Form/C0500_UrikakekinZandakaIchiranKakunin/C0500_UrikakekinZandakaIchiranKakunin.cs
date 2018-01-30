@@ -464,11 +464,15 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 }
                 else
                 {
-                    //グリッドを空にする
-                    gridTokuisaki.DataSource = "";
-
                     //元に戻す
                     Cursor.Current = Cursors.Default;
+
+                    //データがないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //グリッドを空にする
+                    gridTokuisaki.DataSource = "";
                 }
             }
             catch (Exception ex)

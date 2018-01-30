@@ -7,15 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
+namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 {
     ///<summary>
     ///C0520_KaikakekinZandakaIchiranKakunin_B
     ///買掛金残高一覧確認
     ///作成者：大河内
-    ///作成日：2018/01/28
+    ///作成日：2018/01/30
     ///更新者：大河内
-    ///更新日：2018/01/28
+    ///更新日：2018/01/30
     ///</summary>
     class C0520_KaikakekinZandakaIchiranKakunin_B
     {
@@ -35,8 +35,8 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("");
-            lstSQL.Add("");
+            lstSQL.Add("C0520_KaikakekinZandakaIchiranKakunin");
+            lstSQL.Add("C0520_KaikakekinZan_SELECT");
 
             //SQL発行
             OpenSQL opensql = new OpenSQL();
@@ -84,7 +84,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
         /// <summary>
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
         /// <param name="dtSetCd_B_Input">
-        ///     売掛金残高一覧確認の印刷データテーブル</param>
+        ///     買掛金残高一覧確認の印刷データテーブル</param>
         /// -----------------------------------------------------------------------------
         public string dbToPdf(DataTable dtSetCd_B_Input)
         {
@@ -130,16 +130,16 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                         UriCd = dat["コード"],
                         UriTokuiName = dat["得意先名"],
                         UriYM = dat["年月"],
-                        UriZenUrikakeZan = dat["前月売掛残"],
-                        UriNyukinGenkin = dat["入金現金"],
-                        UriNyukinKogitte = dat["入金小切手"],
-                        UriNyukinHurikomi = dat["入金振込"],
-                        UriNyukinTegata = dat["入金手形"],
-                        UriNyukinSosai = dat["入金相殺"],
-                        UriNyukinTesuryo = dat["入金手数料"],
-                        UriNyukinSonota = dat["入金その他"],
+                        UriZenUrikakeZan = dat["前月買掛残"],
+                        UriNyukinGenkin = dat["支払現金"],
+                        UriNyukinKogitte = dat["支払小切手"],
+                        UriNyukinHurikomi = dat["支払振込"],
+                        UriNyukinTegata = dat["支払手形"],
+                        UriNyukinSosai = dat["支払相殺"],
+                        UriNyukinTesuryo = dat["支払手数料"],
+                        UriNyukinSonota = dat["支払その他"],
                         UriKurikoshiZan = dat["繰越残高"],
-                        UriTogetuUriage = dat["当月売上高"],
+                        UriTogetuUriage = dat["当月仕入高"],
                         UriTogetuShohizei = dat["当月消費税"],
                         UriTogetuZan = dat["当月残高"],
                         UriZeiku = dat["税区"],
@@ -156,7 +156,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                 int maxPage = 0;    // 最大ページ数
 
                 // ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 40;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -178,7 +178,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
 
                         // タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");
-                        titleCell.Value = "売掛金残高一覧表";
+                        titleCell.Value = "買掛金残高一覧表";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
                         headersheet.Range("A1", "P1").Merge();
@@ -187,18 +187,18 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                         headersheet.Cell("A3").Value = "ｺｰﾄﾞ";
                         headersheet.Cell("B3").Value = "得意先名";
                         headersheet.Cell("C3").Value = "年月";
-                        headersheet.Cell("D3").Value = "前月売掛残";
-                        headersheet.Cell("E3").Value = "入金現金";
+                        headersheet.Cell("D3").Value = "前月買掛残";
+                        headersheet.Cell("E3").Value = "支払現金";
 
-                        headersheet.Cell("F3").Value = "入金小切手";
-                        headersheet.Cell("G3").Value = "入金振込";
-                        headersheet.Cell("H3").Value = "入金手形";
-                        headersheet.Cell("I3").Value = "入金相殺";
-                        headersheet.Cell("J3").Value = "入金手数料";
+                        headersheet.Cell("F3").Value = "支払小切手";
+                        headersheet.Cell("G3").Value = "支払振込";
+                        headersheet.Cell("H3").Value = "支払手形";
+                        headersheet.Cell("I3").Value = "支払相殺";
+                        headersheet.Cell("J3").Value = "支払手数料";
 
-                        headersheet.Cell("K3").Value = "入金その他";
+                        headersheet.Cell("K3").Value = "支払その他";
                         headersheet.Cell("M3").Value = "繰越残高";
-                        headersheet.Cell("L3").Value = "当月売上高";
+                        headersheet.Cell("L3").Value = "当月仕入高";
                         headersheet.Cell("N3").Value = "当月消費税";
                         headersheet.Cell("O3").Value = "当月残高";
 
@@ -211,34 +211,34 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
                         headersheet.Column(2).Width = 30;   //得意先名
                         headersheet.Column(3).Width = 7;    //年月
-                        headersheet.Column(4).Width = 11;   //前月売掛残
-                        headersheet.Column(5).Width = 11;   //入金現金
-                        headersheet.Column(6).Width = 11;   //入金小切手
-                        headersheet.Column(7).Width = 11;   //入金振込
-                        headersheet.Column(8).Width = 11;   //入金手形
-                        headersheet.Column(9).Width = 11;   //入金相殺
-                        headersheet.Column(10).Width = 11;  //入金手数料
-                        headersheet.Column(11).Width = 11;  //入金その他
+                        headersheet.Column(4).Width = 11;   //前月買掛残
+                        headersheet.Column(5).Width = 11;   //支払現金
+                        headersheet.Column(6).Width = 11;   //支払小切手
+                        headersheet.Column(7).Width = 11;   //支払振込
+                        headersheet.Column(8).Width = 11;   //支払手形
+                        headersheet.Column(9).Width = 11;   //支払相殺
+                        headersheet.Column(10).Width = 11;  //支払手数料
+                        headersheet.Column(11).Width = 11;  //支払その他
                         headersheet.Column(12).Width = 11;  //繰越残高
-                        headersheet.Column(13).Width = 11;  //当月売上高
+                        headersheet.Column(13).Width = 11;  //当月仕入高
                         headersheet.Column(14).Width = 11;  //当月消費税
                         headersheet.Column(15).Width = 11;  //当月残高
-                        headersheet.Column(16).Width = 4;  //税区
+                        headersheet.Column(16).Width = 4;   //税区
 
                         //ヘッダー文字位置の指定
                         headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //ｺｰﾄﾞ
                         headersheet.Column(2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //得意先名
                         headersheet.Column(3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //年月
-                        headersheet.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //前月売掛残
-                        headersheet.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金現金
-                        headersheet.Column(6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金小切手
-                        headersheet.Column(7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金振込
-                        headersheet.Column(8).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金手形
-                        headersheet.Column(9).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //入金相殺
-                        headersheet.Column(10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //入金手数料
-                        headersheet.Column(11).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //入金その他
+                        headersheet.Column(4).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //前月買掛残
+                        headersheet.Column(5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //支払現金
+                        headersheet.Column(6).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //支払小切手
+                        headersheet.Column(7).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //支払振込
+                        headersheet.Column(8).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //支払手形
+                        headersheet.Column(9).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //支払相殺
+                        headersheet.Column(10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //支払手数料
+                        headersheet.Column(11).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //支払その他
                         headersheet.Column(12).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //繰越残高
-                        headersheet.Column(13).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月売上高
+                        headersheet.Column(13).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月仕入高
                         headersheet.Column(14).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月消費税
                         headersheet.Column(15).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //当月残高
                         headersheet.Column(16).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //税区
@@ -258,7 +258,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№50）");
+                        headersheet.PageSetup.Header.Left.AddText("（№52）");
 
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
@@ -279,16 +279,16 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                             currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                             currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
                         }
-                        else if (colCnt == 4 ||     //前月売掛残
-                                 colCnt == 5 ||     //入金現金
-                                 colCnt == 6 ||     //入金小切手
-                                 colCnt == 7 ||     //入金振込
-                                 colCnt == 8 ||     //入金手形
-                                 colCnt == 9 ||     //入金相殺
-                                 colCnt == 10 ||    //入金手数料
-                                 colCnt == 11 ||    //入金その他
+                        else if (colCnt == 4 ||     //前月買掛残
+                                 colCnt == 5 ||     //支払現金
+                                 colCnt == 6 ||     //支払小切手
+                                 colCnt == 7 ||     //支払振込
+                                 colCnt == 8 ||     //支払手形
+                                 colCnt == 9 ||     //支払相殺
+                                 colCnt == 10 ||    //支払手数料
+                                 colCnt == 11 ||    //支払その他
                                  colCnt == 12 ||    //繰越残高
-                                 colCnt == 13 ||    //当月売上高
+                                 colCnt == 13 ||    //当月仕入高
                                  colCnt == 14 ||    //当月消費税
                                  colCnt == 15)      //当月残高
                         {
@@ -353,16 +353,16 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin
                         currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         currentsheet.Cell(xlsRowCnt, 3).Value = decUriYM.ToString();            //年月(必然的に0)
-                        currentsheet.Cell(xlsRowCnt, 4).Value = decZenUrikakeZan.ToString();    //前月売掛残
-                        currentsheet.Cell(xlsRowCnt, 5).Value = decNyukinGenkin.ToString();     //入金現金
-                        currentsheet.Cell(xlsRowCnt, 6).Value = decNyukinKogitte.ToString();    //入金小切手
-                        currentsheet.Cell(xlsRowCnt, 7).Value = decNyukinHurikomi.ToString();   //入金振込
-                        currentsheet.Cell(xlsRowCnt, 8).Value = decNyukinTegata.ToString();     //入金手形
-                        currentsheet.Cell(xlsRowCnt, 9).Value = decNyukinSosai.ToString();      //入金相殺
-                        currentsheet.Cell(xlsRowCnt, 10).Value = decNyukinTesuryo.ToString();    //入金手数料
-                        currentsheet.Cell(xlsRowCnt, 11).Value = decNyukinSonota.ToString();    //入金その他
+                        currentsheet.Cell(xlsRowCnt, 4).Value = decZenUrikakeZan.ToString();    //前月買掛残
+                        currentsheet.Cell(xlsRowCnt, 5).Value = decNyukinGenkin.ToString();     //支払現金
+                        currentsheet.Cell(xlsRowCnt, 6).Value = decNyukinKogitte.ToString();    //支払小切手
+                        currentsheet.Cell(xlsRowCnt, 7).Value = decNyukinHurikomi.ToString();   //支払振込
+                        currentsheet.Cell(xlsRowCnt, 8).Value = decNyukinTegata.ToString();     //支払手形
+                        currentsheet.Cell(xlsRowCnt, 9).Value = decNyukinSosai.ToString();      //支払相殺
+                        currentsheet.Cell(xlsRowCnt, 10).Value = decNyukinTesuryo.ToString();   //支払手数料
+                        currentsheet.Cell(xlsRowCnt, 11).Value = decNyukinSonota.ToString();    //支払その他
                         currentsheet.Cell(xlsRowCnt, 12).Value = decKurikoshiZan.ToString();    //繰越残高
-                        currentsheet.Cell(xlsRowCnt, 13).Value = decTogetuUriage.ToString();    //当月売上高
+                        currentsheet.Cell(xlsRowCnt, 13).Value = decTogetuUriage.ToString();    //当月仕入高
                         currentsheet.Cell(xlsRowCnt, 14).Value = decTogetuShohizei.ToString();  //当月消費税
                         currentsheet.Cell(xlsRowCnt, 15).Value = decTogetuZan.ToString();       //当月残高
 

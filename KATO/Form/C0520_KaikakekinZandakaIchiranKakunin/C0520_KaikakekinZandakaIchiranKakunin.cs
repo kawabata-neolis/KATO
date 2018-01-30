@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using KATO.Common.Ctl;
 using KATO.Common.Form;
 using KATO.Common.Util;
-using KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B;
+using KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B;
 using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
@@ -77,25 +77,25 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //////本番用
-            ////パワーユーザーの場合
-            //if (this.powerUserFlg == true)
-            //{
-            //    //読み取り専用
-            //    lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
-            //    //タブ移動しない
-            //    lblsetTantoshaCdclose.TabStop = true;
-            //}
-            //else
-            //{
-            //    //読み取り専用
-            //    lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
-            //    //タブ移動しない
-            //    lblsetTantoshaCdclose.TabStop = false;
-            //}
+            ////本番用
+            //パワーユーザーの場合
+            if (this.powerUserFlg == true)
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = true;
+            }
+            else
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = false;
+            }
 
-            //テスト用
-            this.powerUserFlg = true;
+            ////テスト用
+            //this.powerUserFlg = true;
 
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;
@@ -126,55 +126,55 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             YM.Name = "年月";
             YM.HeaderText = "年月";
 
-            DataGridViewTextBoxColumn ZengetuUrikakeZan = new DataGridViewTextBoxColumn();
-            ZengetuUrikakeZan.DataPropertyName = "前月売掛残";
-            ZengetuUrikakeZan.Name = "前月売掛残";
-            ZengetuUrikakeZan.HeaderText = "前月売掛残";
+            DataGridViewTextBoxColumn ZengetuKaikakeZan = new DataGridViewTextBoxColumn();
+            ZengetuKaikakeZan.DataPropertyName = "前月買掛残";
+            ZengetuKaikakeZan.Name = "前月買掛残";
+            ZengetuKaikakeZan.HeaderText = "前月買掛残";
 
-            DataGridViewTextBoxColumn NyukinGenkin = new DataGridViewTextBoxColumn();
-            NyukinGenkin.DataPropertyName = "入金現金";
-            NyukinGenkin.Name = "入金現金";
-            NyukinGenkin.HeaderText = "入金現金";
+            DataGridViewTextBoxColumn ShiharaiGenkin = new DataGridViewTextBoxColumn();
+            ShiharaiGenkin.DataPropertyName = "支払現金";
+            ShiharaiGenkin.Name = "支払現金";
+            ShiharaiGenkin.HeaderText = "支払現金";
 
-            DataGridViewTextBoxColumn NyukinKogitte = new DataGridViewTextBoxColumn();
-            NyukinKogitte.DataPropertyName = "入金小切手";
-            NyukinKogitte.Name = "入金小切手";
-            NyukinKogitte.HeaderText = "入金小切手";
+            DataGridViewTextBoxColumn ShiharaiKogitte = new DataGridViewTextBoxColumn();
+            ShiharaiKogitte.DataPropertyName = "支払小切手";
+            ShiharaiKogitte.Name = "支払小切手";
+            ShiharaiKogitte.HeaderText = "支払小切手";
 
-            DataGridViewTextBoxColumn NyukinHurikomi = new DataGridViewTextBoxColumn();
-            NyukinHurikomi.DataPropertyName = "入金振込";
-            NyukinHurikomi.Name = "入金振込";
-            NyukinHurikomi.HeaderText = "入金振込";
+            DataGridViewTextBoxColumn ShiharaiHurikomi = new DataGridViewTextBoxColumn();
+            ShiharaiHurikomi.DataPropertyName = "支払振込";
+            ShiharaiHurikomi.Name = "支払振込";
+            ShiharaiHurikomi.HeaderText = "支払振込";
 
-            DataGridViewTextBoxColumn NyukinTegata = new DataGridViewTextBoxColumn();
-            NyukinTegata.DataPropertyName = "入金手形";
-            NyukinTegata.Name = "入金手形";
-            NyukinTegata.HeaderText = "入金手形";
+            DataGridViewTextBoxColumn ShiharaiTegata = new DataGridViewTextBoxColumn();
+            ShiharaiTegata.DataPropertyName = "支払手形";
+            ShiharaiTegata.Name = "支払手形";
+            ShiharaiTegata.HeaderText = "支払手形";
 
-            DataGridViewTextBoxColumn NyukinSosai = new DataGridViewTextBoxColumn();
-            NyukinSosai.DataPropertyName = "入金相殺";
-            NyukinSosai.Name = "入金相殺";
-            NyukinSosai.HeaderText = "入金相殺";
+            DataGridViewTextBoxColumn ShiharaiSosai = new DataGridViewTextBoxColumn();
+            ShiharaiSosai.DataPropertyName = "支払相殺";
+            ShiharaiSosai.Name = "支払相殺";
+            ShiharaiSosai.HeaderText = "支払相殺";
 
-            DataGridViewTextBoxColumn NyukinTesuryo = new DataGridViewTextBoxColumn();
-            NyukinTesuryo.DataPropertyName = "入金手数料";
-            NyukinTesuryo.Name = "入金手数料";
-            NyukinTesuryo.HeaderText = "入金手数料";
+            DataGridViewTextBoxColumn ShiharaiTesuryo = new DataGridViewTextBoxColumn();
+            ShiharaiTesuryo.DataPropertyName = "支払手数料";
+            ShiharaiTesuryo.Name = "支払手数料";
+            ShiharaiTesuryo.HeaderText = "支払手数料";
 
-            DataGridViewTextBoxColumn NyukinSonota = new DataGridViewTextBoxColumn();
-            NyukinSonota.DataPropertyName = "入金その他";
-            NyukinSonota.Name = "入金その他";
-            NyukinSonota.HeaderText = "入金その他";
+            DataGridViewTextBoxColumn ShiharaiSonota = new DataGridViewTextBoxColumn();
+            ShiharaiSonota.DataPropertyName = "支払その他";
+            ShiharaiSonota.Name = "支払その他";
+            ShiharaiSonota.HeaderText = "支払その他";
 
             DataGridViewTextBoxColumn Kurikosizan = new DataGridViewTextBoxColumn();
             Kurikosizan.DataPropertyName = "繰越残高";
             Kurikosizan.Name = "繰越残高";
             Kurikosizan.HeaderText = "繰越残高";
 
-            DataGridViewTextBoxColumn TougetsuUriage = new DataGridViewTextBoxColumn();
-            TougetsuUriage.DataPropertyName = "当月売上高";
-            TougetsuUriage.Name = "当月売上高";
-            TougetsuUriage.HeaderText = "当月売上高";
+            DataGridViewTextBoxColumn TougetsuShire = new DataGridViewTextBoxColumn();
+            TougetsuShire.DataPropertyName = "当月仕入高";
+            TougetsuShire.Name = "当月仕入高";
+            TougetsuShire.HeaderText = "当月仕入高";
 
             DataGridViewTextBoxColumn TougetsuShohizei = new DataGridViewTextBoxColumn();
             TougetsuShohizei.DataPropertyName = "当月消費税";
@@ -200,16 +200,16 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             setColumngridTokuisaki(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumngridTokuisaki(TokuiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
             setColumngridTokuisaki(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
-            setColumngridTokuisaki(ZengetuUrikakeZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinGenkin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinKogitte, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinHurikomi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinTegata, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinSosai, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinTesuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(NyukinSonota, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ZengetuKaikakeZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiGenkin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiKogitte, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiHurikomi, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiTegata, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiSosai, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiTesuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(ShiharaiSonota, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(Kurikosizan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
-            setColumngridTokuisaki(TougetsuUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(TougetsuShire, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuShohizei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(Zeiku, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
@@ -442,13 +442,13 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
             }
 
-            C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
+            C0520_KaikakekinZandakaIchiranKakunin_B kaikakekakuninB = new C0520_KaikakekinZandakaIchiranKakunin_B();
             try
             {
                 //待機状態
                 Cursor.Current = Cursors.WaitCursor;
 
-                dtGridViewTokusaki = urikakekakuninB.setGridTokusaiki(lstStringViewData);
+                dtGridViewTokusaki = kaikakekakuninB.setGridTokusaiki(lstStringViewData);
 
                 //テーブルがある場合
                 if (dtGridViewTokusaki.Rows.Count > 0)
@@ -463,11 +463,15 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 }
                 else
                 {
-                    //グリッドを空にする
-                    gridTokuisaki.DataSource = "";
-
                     //元に戻す
                     Cursor.Current = Cursors.Default;
+
+                    //データがないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //グリッドを空にする
+                    gridTokuisaki.DataSource = "";
                 }
             }
             catch (Exception ex)
@@ -558,7 +562,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 dtPrintDataClone.ImportRow(drv.Row);
             }
 
-            C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
+            C0520_KaikakekinZandakaIchiranKakunin_B kaikakekakuninB = new C0520_KaikakekinZandakaIchiranKakunin_B();
             try
             {
                 //初期値
@@ -570,7 +574,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
                     //結果セットをレコードセットに
-                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+                    strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone);
 
                     // プレビュー
                     pf.execPreview(strFile);
@@ -579,7 +583,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     // PDF作成
-                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+                    strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone);
 
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
