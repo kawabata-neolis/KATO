@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
             this.lblHani1 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -43,8 +43,9 @@
             this.radShuturyoku = new KATO.Common.Ctl.RadSet_2btn();
             this.lblsetTantoshaCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.lblsetTantoshaCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
-            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblMessage = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.lblsetTantoshaCdclose.SuspendLayout();
@@ -114,6 +115,7 @@
             // 
             this.txtYMopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMopen.Location = new System.Drawing.Point(124, 51);
+            this.txtYMopen.MaxLength = 7;
             this.txtYMopen.Name = "txtYMopen";
             this.txtYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtYMopen.TabIndex = 2;
@@ -123,6 +125,7 @@
             // 
             this.txtYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMclose.Location = new System.Drawing.Point(222, 51);
+            this.txtYMclose.MaxLength = 7;
             this.txtYMclose.Name = "txtYMclose";
             this.txtYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtYMclose.TabIndex = 3;
@@ -182,35 +185,35 @@
             this.gridTokuisaki.AllowUserToResizeColumns = false;
             this.gridTokuisaki.AllowUserToResizeRows = false;
             this.gridTokuisaki.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridTokuisaki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridTokuisaki.EnableHeadersVisualStyles = false;
             this.gridTokuisaki.Location = new System.Drawing.Point(14, 96);
             this.gridTokuisaki.Name = "gridTokuisaki";
             this.gridTokuisaki.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridTokuisaki.RowHeadersVisible = false;
             this.gridTokuisaki.RowTemplate.Height = 21;
             this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -244,7 +247,7 @@
             this.radShuturyoku.Radbtn1Text = "得意先コードの昇順";
             this.radShuturyoku.Radbtn2Text = "フリガナの昇順";
             this.radShuturyoku.Size = new System.Drawing.Size(178, 53);
-            this.radShuturyoku.TabIndex = 0;
+            this.radShuturyoku.TabIndex = 7;
             // 
             // lblsetTantoshaCdopen
             // 
@@ -284,17 +287,6 @@
             this.lblsetTantoshaCdclose.ValueLabelSize = 0;
             this.lblsetTantoshaCdclose.ValueLabelText = "";
             // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.nameLabel.Location = new System.Drawing.Point(2, 3);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(0, 15);
-            this.nameLabel.strToolTip = null;
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // baseLabel1
             // 
             this.baseLabel1.AutoSize = true;
@@ -306,11 +298,35 @@
             this.baseLabel1.TabIndex = 0;
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(0, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMessage.Location = new System.Drawing.Point(615, 20);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(295, 15);
+            this.lblMessage.strToolTip = null;
+            this.lblMessage.TabIndex = 105;
+            this.lblMessage.Text = "※締め後の金額は印刷時に更新されます";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // C0500_UrikakekinZandakaIchiranKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblsetTantoshaCdclose);
             this.Controls.Add(this.lblsetTantoshaCdopen);
             this.Controls.Add(this.groupBox1);
@@ -348,6 +364,7 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdopen, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.lblMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.lblsetTantoshaCdclose.ResumeLayout(false);
@@ -371,5 +388,6 @@
         private Common.Ctl.LabelSet_Torihikisaki lblsetTantoshaCdclose;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel nameLabel;
+        private Common.Ctl.BaseLabel lblMessage;
     }
 }

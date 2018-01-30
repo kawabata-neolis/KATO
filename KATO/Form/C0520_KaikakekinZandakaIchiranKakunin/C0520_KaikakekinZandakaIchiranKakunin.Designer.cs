@@ -48,12 +48,73 @@
             this.lblHani1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
+            this.lblMessage = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblsetTantoshaCdclose.SuspendLayout();
             this.lblsetTantoshaCdopen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.radShuturyoku.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 4;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF12
+            // 
+            this.btnF12.TabStop = false;
+            this.btnF12.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.TabStop = false;
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.TabStop = false;
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.TabStop = false;
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.TabStop = false;
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabStop = false;
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.TabStop = false;
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.TabStop = false;
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.TabIndex = 6;
+            this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.TabStop = false;
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.TabStop = false;
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblsetTantoshaCdclose
             // 
@@ -72,9 +133,10 @@
             this.lblsetTantoshaCdclose.SpaceCodeValue = 4;
             this.lblsetTantoshaCdclose.SpaceNameCode = 4;
             this.lblsetTantoshaCdclose.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdclose.TabIndex = 95;
+            this.lblsetTantoshaCdclose.TabIndex = 1;
             this.lblsetTantoshaCdclose.ValueLabelSize = 0;
             this.lblsetTantoshaCdclose.ValueLabelText = "";
+            this.lblsetTantoshaCdclose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
             // nameLabel
             // 
@@ -124,9 +186,10 @@
             this.lblsetTantoshaCdopen.SpaceCodeValue = 4;
             this.lblsetTantoshaCdopen.SpaceNameCode = 4;
             this.lblsetTantoshaCdopen.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdopen.TabIndex = 94;
+            this.lblsetTantoshaCdopen.TabIndex = 0;
             this.lblsetTantoshaCdopen.ValueLabelSize = 0;
             this.lblsetTantoshaCdopen.ValueLabelText = "";
+            this.lblsetTantoshaCdopen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
             // object_8da96029_fc47_4531_a095_ac7601f1a6ea
             // 
@@ -166,14 +229,14 @@
             this.radShuturyoku.Radbtn1Text = "得意先コードの昇順";
             this.radShuturyoku.Radbtn2Text = "フリガナの昇順";
             this.radShuturyoku.Size = new System.Drawing.Size(178, 53);
-            this.radShuturyoku.TabIndex = 0;
+            this.radShuturyoku.TabIndex = 7;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(21, 0, 21, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -220,7 +283,7 @@
             this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTokuisaki.Size = new System.Drawing.Size(1397, 668);
             this.gridTokuisaki.StandardTab = true;
-            this.gridTokuisaki.TabIndex = 98;
+            this.gridTokuisaki.TabIndex = 5;
             // 
             // lblYM
             // 
@@ -274,23 +337,40 @@
             // 
             this.txtYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMclose.Location = new System.Drawing.Point(222, 51);
+            this.txtYMclose.MaxLength = 7;
             this.txtYMclose.Name = "txtYMclose";
             this.txtYMclose.Size = new System.Drawing.Size(65, 22);
-            this.txtYMclose.TabIndex = 97;
+            this.txtYMclose.TabIndex = 3;
+            this.txtYMclose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
             // txtYMopen
             // 
             this.txtYMopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMopen.Location = new System.Drawing.Point(124, 51);
+            this.txtYMopen.MaxLength = 7;
             this.txtYMopen.Name = "txtYMopen";
             this.txtYMopen.Size = new System.Drawing.Size(65, 22);
-            this.txtYMopen.TabIndex = 96;
+            this.txtYMopen.TabIndex = 2;
+            this.txtYMopen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMessage.Location = new System.Drawing.Point(615, 20);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(295, 15);
+            this.lblMessage.strToolTip = null;
+            this.lblMessage.TabIndex = 104;
+            this.lblMessage.Text = "※締め後の金額は印刷時に更新されます";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // C0520_KaikakekinZandakaIchiranKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblsetTantoshaCdclose);
             this.Controls.Add(this.lblsetTantoshaCdopen);
             this.Controls.Add(this.groupBox1);
@@ -303,6 +383,8 @@
             this.Controls.Add(this.txtYMopen);
             this.Name = "C0520_KaikakekinZandakaIchiranKakunin";
             this.Text = "C0520_KaikakekinZandakaIchiranKakunin";
+            this.Load += new System.EventHandler(this.C0520_KaikakekinZandakaIchiranKakunin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0520_KaikakekinZandakaIchiranKakunin_KeyDown);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -326,6 +408,7 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdopen, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.lblMessage, 0);
             this.lblsetTantoshaCdclose.ResumeLayout(false);
             this.lblsetTantoshaCdclose.PerformLayout();
             this.lblsetTantoshaCdopen.ResumeLayout(false);
@@ -357,5 +440,6 @@
         private Common.Ctl.BaseLabel lblHani1;
         private Common.Ctl.BaseCalendarYM txtYMclose;
         private Common.Ctl.BaseCalendarYM txtYMopen;
+        private Common.Ctl.BaseLabel lblMessage;
     }
 }

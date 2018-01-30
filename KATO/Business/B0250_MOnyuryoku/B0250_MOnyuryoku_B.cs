@@ -87,7 +87,8 @@ namespace KATO.Business.B0250_MOnyuryoku
                                 string strNouki,
                                 string strTorihiki,
                                 int intDenNo,
-                                string strUserID
+                                string strUserID,
+                                string strHachutantoCd
                                 )
         {
             List<string> lstTableName = new List<string>();
@@ -100,6 +101,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             lstTableName.Add("@取引先コード");
             lstTableName.Add("@発注番号");
             lstTableName.Add("@ユーザー名");
+            lstTableName.Add("@発注担当者コード");
 
             List<string> lstDataName = new List<string>();
             lstDataName.Add(strYMD);
@@ -111,6 +113,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             lstDataName.Add(strTorihiki.ToString());
             lstDataName.Add(intDenNo.ToString());
             lstDataName.Add(strUserID);
+            lstDataName.Add(strHachutantoCd);
 
             DBConnective dbconnective = new DBConnective();
 
@@ -124,7 +127,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //コミット
                 dbconnective.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
@@ -164,7 +167,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 //コミット
                 dbconnective.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 //ロールバック開始
                 dbconnective.Rollback();
@@ -851,6 +854,10 @@ namespace KATO.Business.B0250_MOnyuryoku
             {
                 //ＭＯデータ削除_PROCを実行
                 dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+
+
+                //ＭＯデータの確定処理
+                                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
 
                 //コミット
                 dbconnective.Commit();

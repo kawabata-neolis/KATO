@@ -88,6 +88,13 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
+//本番用
+            //if( this.powerUserFlg == true)
+            //{
+            //    blnKanri = true;
+            //}
+
+            //テスト用
             blnKanri = true;
 
             // フォームでもキーイベントを受け取る

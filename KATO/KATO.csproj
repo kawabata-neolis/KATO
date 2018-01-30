@@ -1753,6 +1753,15 @@
     <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_DELETE_INSERT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_DELETE_INSERT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\C6000_TantoshabetuDenpyoCount\DenpyoCount_SELECT_SetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2490,6 +2499,54 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1120_Tanaban\Tanaban_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_COUNT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_chokkin.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_hyoka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_kari.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_karitanka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_kijun.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_kingaku.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_setteitanka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_siire.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_SELECT_uriage.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_UPDATE_chokkin.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_UPDATE_hyokatanka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1240_ShohinSiireKakakuSuii2\M1240_ShohinSiireKakakuSuii2_UPDATE_setteitanka.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1490_Menukengen2\M1490_Menukengen2_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1490_Menukengen2\M1490_Menukengen2_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Z0000\MainMenu_Data_SELECT.sql">

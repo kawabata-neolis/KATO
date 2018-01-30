@@ -20,9 +20,9 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
     ///C0500_UrikakekinZandakaIchiranKakunin
     ///売掛金残高一覧確認
     ///作成者：大河内
-    ///作成日：2018/01/27
+    ///作成日：2018/01/30
     ///更新者：大河内
-    ///更新日：2018/01/27
+    ///更新日：2018/01/30
     ///</summary>
     public partial class C0500_UrikakekinZandakaIchiranKakunin : BaseForm
     {
@@ -62,7 +62,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
         }
 
         ///<summary>
-        ///MOnyuryoku_Load
+        ///C1500_UrikakekinanKakunin_Load
         ///画面レイアウト設定
         ///</summary>
         private void C1500_UrikakekinanKakunin_Load(object sender, EventArgs e)
@@ -78,9 +78,25 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //デバッグ用            
-            this.powerUserFlg = true;
-            //            this.powerUserFlg = false;
+            ////本番用
+            //パワーユーザーの場合
+            if (this.powerUserFlg == true)
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = true;
+            }
+            else
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = false;
+            }
+
+            ////テスト用
+            //this.powerUserFlg = true;
 
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;
@@ -171,15 +187,20 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             TougetsuZan.Name = "当月残高";
             TougetsuZan.HeaderText = "当月残高";
 
+            DataGridViewTextBoxColumn Zeiku = new DataGridViewTextBoxColumn();
+            Zeiku.DataPropertyName = "税区";
+            Zeiku.Name = "税区";
+            Zeiku.HeaderText = "税区";
+
             DataGridViewTextBoxColumn Hurigana = new DataGridViewTextBoxColumn();
             Hurigana.DataPropertyName = "フリガナ";
             Hurigana.Name = "フリガナ";
             Hurigana.HeaderText = "フリガナ";
 
             //個々の幅、文章の寄せ
-            setColumngridTokuisaki(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumngridTokuisaki(Code, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumngridTokuisaki(TokuiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
-            setColumngridTokuisaki(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 75);
+            setColumngridTokuisaki(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
             setColumngridTokuisaki(ZengetuUrikakeZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(NyukinGenkin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(NyukinKogitte, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
@@ -192,9 +213,11 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             setColumngridTokuisaki(TougetsuUriage, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuShohizei, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
             setColumngridTokuisaki(TougetsuZan, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 112);
+            setColumngridTokuisaki(Zeiku, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumngridTokuisaki(Hurigana, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
 
-            //フリガナ非表示
+            //非表示項目
+            gridTokuisaki.Columns["税区"].Visible = false;
             gridTokuisaki.Columns["フリガナ"].Visible = false;
         }
 
@@ -338,35 +361,87 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
         ///</summary>
         private void setTokuisakiView()
         {
-            //データチェック
-            if (lblsetTantoshaCdopen.chkTxtTorihikisaki() == true)
+            //パワーユーザーの場合
+            if (powerUserFlg == true)
             {
-                return;
+                //データチェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
+                {
+                    lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                //データチェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.ValueLabelText) == false)
+                {
+                    lblsetTantoshaCdclose.Focus();
+                    return;
+                }
+                //データチェック（開始年月日）
+                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
+                {
+                    txtYMopen.Focus();
+                    return;
+                }
+                //データチェック（終了年月日）
+                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
+                {
+                    txtYMclose.Focus();
+                    return;
+                }
             }
-
-            if (lblsetTantoshaCdclose.chkTxtTorihikisaki() == true)
+            else
             {
-                return;
-            }
+                //データチェック
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
+                {
+                    lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                //データチェック（開始年月日）
+                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
+                {
+                    txtYMopen.Focus();
+                    return;
+                }
+                //データチェック（終了年月日）
+                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
+                {
+                    txtYMclose.Focus();
+                    return;
+                }
 
-            if (txtYMopen.blIsEmpty() == false)
-            {
-                return;
-            }
-
-            if (txtYMclose.blIsEmpty() == false)
-            {
-                return;
+                //データチェック（年月度が同じの場合）
+                if (txtYMopen.Text == txtYMclose.Text)
+                {
+                    //一か月単位は出来ないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMopen.Focus();
+                    return;
+                }
             }
 
             DataTable dtGridViewTokusaki = new DataTable();
 
             List<string> lstStringViewData = new List<string>();
 
-            lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
-            lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
-            lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
-            lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            //パワーユーザーの場合
+            if (this.powerUserFlg == true)
+            {
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
+
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            }
+            else
+            {
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+
+                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            }
 
             C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
             try
@@ -386,6 +461,18 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                     Cursor.Current = Cursors.Default;
 
                     gridTokuisaki.Focus();
+                }
+                else
+                {
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+
+                    //データがないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //グリッドを空にする
+                    gridTokuisaki.DataSource = "";
                 }
             }
             catch (Exception ex)
@@ -411,9 +498,23 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 return;
             }
 
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //データの取り出し用
             DataTable dtPrintData = new DataTable();
 
+            //データの並び替えと印刷データ用
+            DataTable dtPrintDataClone = new DataTable();
+
+            //列情報を取得
             DataGridViewColumnCollection cols = gridTokuisaki.Columns;
+
+            //行情報を取得
+            DataGridViewRowCollection rows = gridTokuisaki.Rows;
+
+            //取引先経理情報登録時の情報
+            List<string> lstTorihiki = new List<string>();
 
             foreach (DataGridViewColumn c in cols)
             {
@@ -427,7 +528,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 }
             }
 
-            DataGridViewRowCollection rows = gridTokuisaki.Rows;
+            //列情報のみをコピーしたデータを作る
+            dtPrintDataClone = dtPrintData.Clone();
 
             foreach (DataGridViewRow r in rows)
             {
@@ -461,13 +563,64 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             //戻す
             foreach (DataRowView drv in dvGridViewTokuisaki)
             {
-                //エラるんで詳細確認
-                dtPrintData.ImportRow(drv.Row);
+                //データテーブルに戻す
+                dtPrintDataClone.ImportRow(drv.Row);
             }
 
             C0500_UrikakekinZandakaIchiranKakunin_B urikakekakuninB = new C0500_UrikakekinZandakaIchiranKakunin_B();
             try
             {
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
 
             }
             catch (Exception ex)
@@ -480,6 +633,5 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 return;
             }
         }
-
     }
 }
