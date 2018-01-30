@@ -20,9 +20,9 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
     ///C0500_UrikakekinZandakaIchiranKakunin
     ///売掛金残高一覧確認
     ///作成者：大河内
-    ///作成日：2018/01/27
+    ///作成日：2018/01/30
     ///更新者：大河内
-    ///更新日：2018/01/27
+    ///更新日：2018/01/30
     ///</summary>
     public partial class C0500_UrikakekinZandakaIchiranKakunin : BaseForm
     {
@@ -62,7 +62,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
         }
 
         ///<summary>
-        ///MOnyuryoku_Load
+        ///C1500_UrikakekinanKakunin_Load
         ///画面レイアウト設定
         ///</summary>
         private void C1500_UrikakekinanKakunin_Load(object sender, EventArgs e)
@@ -78,26 +78,26 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-////本番用
-//            //パワーユーザーの場合
-//            if(this.powerUserFlg == true)
-//            {
-//                //読み取り専用
-//                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
-//                //タブ移動しない
-//                lblsetTantoshaCdclose.TabStop = true;
-//            }
-//            else
-//            {
-//                //読み取り専用
-//                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
-//                //タブ移動しない
-//                lblsetTantoshaCdclose.TabStop = false;
-//            }
+            ////本番用
+            //パワーユーザーの場合
+            if (this.powerUserFlg == true)
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = true;
+            }
+            else
+            {
+                //読み取り専用
+                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
+                //タブ移動しない
+                lblsetTantoshaCdclose.TabStop = false;
+            }
 
-//テスト用
-            this.powerUserFlg = true;
-            
+            ////テスト用
+            //this.powerUserFlg = true;
+
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;
 
@@ -392,7 +392,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             else
             {
                 //データチェック
-                if (lblsetTantoshaCdopen.chkTxtTorihikisaki() == true)
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
                 {
                     lblsetTantoshaCdopen.Focus();
                     return;
@@ -413,8 +413,10 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 //データチェック（年月度が同じの場合）
                 if (txtYMopen.Text == txtYMclose.Text)
                 {
-                    //メッセージ
-
+                    //一か月単位は出来ないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMopen.Focus();
                     return;
                 }
             }
@@ -459,6 +461,14 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                     Cursor.Current = Cursors.Default;
 
                     gridTokuisaki.Focus();
+                }
+                else
+                {
+                    //グリッドを空にする
+                    gridTokuisaki.DataSource = "";
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
                 }
             }
             catch (Exception ex)
@@ -546,7 +556,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             //戻す
             foreach (DataRowView drv in dvGridViewTokuisaki)
             {
-                //エラるんで詳細確認
+                //データテーブルに戻す
                 dtPrintDataClone.ImportRow(drv.Row);
             }
 
@@ -588,6 +598,5 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 return;
             }
         }
-
     }
 }

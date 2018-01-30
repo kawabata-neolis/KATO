@@ -43,8 +43,8 @@
             this.radShuturyoku = new KATO.Common.Ctl.RadSet_2btn();
             this.lblsetTantoshaCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.lblsetTantoshaCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
-            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.lblsetTantoshaCdclose.SuspendLayout();
@@ -114,6 +114,7 @@
             // 
             this.txtYMopen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMopen.Location = new System.Drawing.Point(124, 51);
+            this.txtYMopen.MaxLength = 7;
             this.txtYMopen.Name = "txtYMopen";
             this.txtYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtYMopen.TabIndex = 2;
@@ -123,6 +124,7 @@
             // 
             this.txtYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMclose.Location = new System.Drawing.Point(222, 51);
+            this.txtYMclose.MaxLength = 7;
             this.txtYMclose.Name = "txtYMclose";
             this.txtYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtYMclose.TabIndex = 3;
@@ -244,7 +246,7 @@
             this.radShuturyoku.Radbtn1Text = "得意先コードの昇順";
             this.radShuturyoku.Radbtn2Text = "フリガナの昇順";
             this.radShuturyoku.Size = new System.Drawing.Size(178, 53);
-            this.radShuturyoku.TabIndex = 0;
+            this.radShuturyoku.TabIndex = 7;
             // 
             // lblsetTantoshaCdopen
             // 
@@ -284,17 +286,6 @@
             this.lblsetTantoshaCdclose.ValueLabelSize = 0;
             this.lblsetTantoshaCdclose.ValueLabelText = "";
             // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.nameLabel.Location = new System.Drawing.Point(2, 3);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(0, 15);
-            this.nameLabel.strToolTip = null;
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // baseLabel1
             // 
             this.baseLabel1.AutoSize = true;
@@ -305,6 +296,17 @@
             this.baseLabel1.strToolTip = null;
             this.baseLabel1.TabIndex = 0;
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(0, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // C0500_UrikakekinZandakaIchiranKakunin
             // 
