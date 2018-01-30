@@ -1753,6 +1753,12 @@
     <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_DELETE_INSERT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_DELETE_INSERT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

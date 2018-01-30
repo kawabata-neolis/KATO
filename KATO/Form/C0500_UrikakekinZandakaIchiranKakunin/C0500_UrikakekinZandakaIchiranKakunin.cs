@@ -513,6 +513,9 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             //行情報を取得
             DataGridViewRowCollection rows = gridTokuisaki.Rows;
 
+            //取引先経理情報登録時の情報
+            List<string> lstTorihiki = new List<string>();
+
             foreach (DataGridViewColumn c in cols)
             {
                 if (c.ValueType != null)
@@ -575,8 +578,22 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 //プレビューの場合
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
                     //結果セットをレコードセットに
-                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
 
                     // プレビュー
                     pf.execPreview(strFile);
@@ -584,8 +601,22 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 // 一括印刷の場合
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
-                    // PDF作成
-                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone);
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
 
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);

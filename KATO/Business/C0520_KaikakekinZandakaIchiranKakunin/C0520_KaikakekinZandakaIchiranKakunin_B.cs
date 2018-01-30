@@ -82,11 +82,11 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
         /// -----------------------------------------------------------------------------
         /// <summary>
-        ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
+        ///     DataTableをもとにxlsxファイルを作成しPDF化と取引先経理情報DBへの追加</summary>
         /// <param name="dtSetCd_B_Input">
         ///     買掛金残高一覧確認の印刷データテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtSetCd_B_Input)
+        public string dbToPdf(DataTable dtSetCd_B_Input, List<string> lstlstTorihiki)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -107,6 +107,30 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
             decimal decTogetuShohizei = 0;
             decimal decTogetuZan = 0;
 
+            //締め日用（月の最終日）
+            DateTime dateYMDLastDay = new DateTime();
+
+            //締め日用（その月の日数）
+            int intDays = 0;
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("C0520_KaikakekinZandakaIchiranKakunin");
+            lstSQL.Add("C0520_KaikakekinZan_DELETE_INSERT");
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
             try
             {
                 CreatePdf pdf = new CreatePdf();
@@ -337,6 +361,44 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                     decTogetuShohizei = decTogetuShohizei + decimal.Parse(drTokuisakiCheak[13].ToString());
                     decTogetuZan = decTogetuZan + decimal.Parse(drTokuisakiCheak[14].ToString());
 
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return ("");
+                    }
+
+                    //その月の日数を作成
+                    intDays = DateTime.DaysInMonth(DateTime.Parse(drTokuisakiCheak[2].ToString()).Year,
+                                                   DateTime.Parse(drTokuisakiCheak[2].ToString()).Month);
+                    //その月の最終日を作成
+                    dateYMDLastDay = new DateTime(DateTime.Parse(drTokuisakiCheak[2].ToString()).Year,
+                                                   DateTime.Parse(drTokuisakiCheak[2].ToString()).Month,
+                                                   intDays);
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput,
+                                                dateYMDLastDay,                                 //年月日[0]
+                                                drTokuisakiCheak[0].ToString(),                 //コード[1]
+                                                drTokuisakiCheak[14].ToString(),                //残高[2]
+                                                drTokuisakiCheak[12].ToString(),                //金額１[3]
+                                                drTokuisakiCheak[13].ToString(),                //金額２[4]
+                                                decimal.Parse(drTokuisakiCheak[4].ToString())+
+                                                decimal.Parse(drTokuisakiCheak[5].ToString()) +
+                                                decimal.Parse(drTokuisakiCheak[6].ToString()) +
+                                                decimal.Parse(drTokuisakiCheak[7].ToString()) +
+                                                decimal.Parse(drTokuisakiCheak[8].ToString()) +
+                                                decimal.Parse(drTokuisakiCheak[9].ToString()) +
+                                                decimal.Parse(drTokuisakiCheak[10].ToString()), //金額３[5]
+                                                lstlstTorihiki[0],                              //登録日、更新日[6]
+                                                lstlstTorihiki[1]                               //登録ユーザー名、更新ユーザー名[7]
+                                                );
+
+                    //SQL接続、追加
+                    dbconnective.RunSql(strSQLInput);
+
                     rowCnt++;
                     xlsRowCnt++;
 
@@ -398,6 +460,8 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
             }
             catch (Exception ex)
             {
+                //ロールバック開始
+                dbconnective.Rollback();
                 throw (ex);
             }
             finally
@@ -409,6 +473,9 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                 {
                     //File.Delete(filepath);
                 }
+
+                //コミット開始
+                dbconnective.Commit();
             }
         }
     }

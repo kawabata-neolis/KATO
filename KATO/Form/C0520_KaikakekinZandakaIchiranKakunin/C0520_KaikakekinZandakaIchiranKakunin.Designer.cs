@@ -48,6 +48,7 @@
             this.lblHani1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
+            this.lblMessage = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblsetTantoshaCdclose.SuspendLayout();
             this.lblsetTantoshaCdopen.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -235,7 +236,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(16, 0, 16, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(21, 0, 21, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -352,11 +353,24 @@
             this.txtYMopen.TabIndex = 2;
             this.txtYMopen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblMessage.Location = new System.Drawing.Point(615, 20);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(295, 15);
+            this.lblMessage.strToolTip = null;
+            this.lblMessage.TabIndex = 104;
+            this.lblMessage.Text = "※締め後の金額は印刷時に更新されます";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // C0520_KaikakekinZandakaIchiranKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblsetTantoshaCdclose);
             this.Controls.Add(this.lblsetTantoshaCdopen);
             this.Controls.Add(this.groupBox1);
@@ -394,6 +408,7 @@
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdopen, 0);
             this.Controls.SetChildIndex(this.lblsetTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.lblMessage, 0);
             this.lblsetTantoshaCdclose.ResumeLayout(false);
             this.lblsetTantoshaCdclose.PerformLayout();
             this.lblsetTantoshaCdopen.ResumeLayout(false);
@@ -425,5 +440,6 @@
         private Common.Ctl.BaseLabel lblHani1;
         private Common.Ctl.BaseCalendarYM txtYMclose;
         private Common.Ctl.BaseCalendarYM txtYMopen;
+        private Common.Ctl.BaseLabel lblMessage;
     }
 }
