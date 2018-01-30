@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KATO.Business.B0060_ShiharaiInput
+namespace KATO.Business.B0060_ShiharaiInput_B
 {
     /// <summary>
     /// B0060_ShiharaiInput_B
     /// 支払入力 ビジネスロジック
     /// 作成者：多田
     /// 作成日：2017/6/23
-    /// 更新者：多田
-    /// 更新日：2017/6/23
+    /// 更新者：大河内
+    /// 更新日：2018/01/30
     /// カラム論理名
     /// </summary>
     class B0060_ShiharaiInput_B
