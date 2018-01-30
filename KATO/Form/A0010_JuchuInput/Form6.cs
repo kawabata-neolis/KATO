@@ -32,6 +32,7 @@ namespace KATO.Form.A0010_JuchuInput
 
         A0010_JuchuInput a0010JInput;
         public String strJuchuNo = "";
+        public String strEigyoCd = ""; 
         String strHachuNo = "";
         String strJuchuSu = "";
 
@@ -138,7 +139,7 @@ namespace KATO.Form.A0010_JuchuInput
         ///setColumn
         ///Grid列設定
         ///</summary>
-        private void setColumn(Common.Ctl.BaseDataGridView gr, DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        private void setColumn(BaseDataGridView gr, DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
             gr.Columns.Add(col);
             if (gr.Columns[col.Name] != null)
@@ -1002,6 +1003,7 @@ namespace KATO.Form.A0010_JuchuInput
             BaseText txtEigyo = new BaseText();
             txtEigyo.Name = "txtEigyo";
             basePanel.Controls.Add(txtEigyo);
+            txtEigyo.Text = strEigyoCd;
             txtEigyo.TextChanged += new EventHandler(txtEigyo_TextChanged);
             txtEigyo.SendToBack();
             txtEigyo.Visible = false;
@@ -1382,6 +1384,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sKataban = ((BaseText)cc.Controls["txtKataban"]).Text;
                 #endregion
                 string shoCd = "88888";
+                string shohinCd;
 
                 // 発注/本加工
                 #region
@@ -1420,7 +1423,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     aryPrmH.Add(sHShiire);
                     aryPrmH.Add(sHYMD);
-                    aryPrmH.Add(sHNo);
+                    aryPrmH.Add(strDenpyoNo);
                     aryPrmH.Add(sHSha);
                     aryPrmH.Add(sEigyo);
                     aryPrmH.Add(sHSha);
@@ -1447,7 +1450,14 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmH.Add(sShiireMei);
                     aryPrmH.Add(Environment.UserName);
 
-                    juchuB.updJuchuH(aryPrmH, con, kariFlg);
+                    // 発注時は無条件で仮・本登録両方を実行
+                    if (sLbl.Equals(labels[0]))
+                    {
+                        juchuB.updJuchuH(aryPrmH, con, false);
+                    } else
+                    {
+                        juchuB.updJuchuH(aryPrmH, con, kariFlg);
+                    }
 
                     // 発注なら在庫数を変更
                     if (sLbl.Equals(labels[0])) {
@@ -1455,6 +1465,8 @@ namespace KATO.Form.A0010_JuchuInput
                         decimal dTmp = getDecValue(sTmpSu);
                         juchuB.updZaiko(true, sEigyo, sShohin, (d - dTmp).ToString(), con);
                     }
+                    shohinCd = sShohin;
+                    ((BaseTextMoney)cc.Controls["txtHNo"]).Text = strDenpyoNo;
                 }
                 #endregion
                 // 出庫/加工品出庫
@@ -1489,7 +1501,7 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmSH.Add(sShiireMei);
 
                     juchuB.updShukkoHead(aryPrmSH, con, kariFlg);
-                    string shohinCd;
+                    
 
                     // 既存商品にない場合は商品を新規登録
                     #region
@@ -1585,6 +1597,8 @@ namespace KATO.Form.A0010_JuchuInput
                     juchuB.updShukkoMeisai(aryPrmShukko, con, kariFlg);
                 }
                 #endregion
+                ((BaseText)cc.Controls["txtShohin"]).Text = shohinCd;
+                ((BaseText)cc.Controls["notNewPanel"]).Text = "1";
             }
             catch (Exception ex)
             {

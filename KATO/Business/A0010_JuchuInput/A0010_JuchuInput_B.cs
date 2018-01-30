@@ -120,9 +120,22 @@ namespace KATO.Business.A0010_JuchuInput
 
                 // 加工品受注情報を削除
                 String strSQL = "";
-                strSQL += "UPDATE 発注 ";
+
+                strSQL = "UPDATE 仮発注 ";
                 strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
                 strSQL += " WHERE 受注番号= " + strJuchuNo;
+                con.RunSql(strSQL);
+
+                strSQL = "UPDATE 発注 ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " WHERE 受注番号= " + strJuchuNo;
+                con.RunSql(strSQL);
+
+                strSQL = "UPDATE 仮出庫ヘッダ  ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " FROM 仮出庫明細 ";
+                strSQL += " WHERE 仮出庫明細.受注番号= " + strJuchuNo;
+                strSQL += " AND 仮出庫ヘッダ.伝票番号=仮出庫明細.伝票番号";
                 con.RunSql(strSQL);
 
                 strSQL = "UPDATE 出庫ヘッダ  ";
@@ -130,6 +143,11 @@ namespace KATO.Business.A0010_JuchuInput
                 strSQL += " FROM 出庫明細 ";
                 strSQL += " WHERE 出庫明細.受注番号= " + strJuchuNo;
                 strSQL += " AND 出庫ヘッダ.伝票番号=出庫明細.伝票番号";
+                con.RunSql(strSQL);
+
+                strSQL = "UPDATE 仮出庫明細  ";
+                strSQL += " SET 削除='Y' ,更新ユーザー名='" + strUser + "',更新日時=GETDATE()";
+                strSQL += " WHERE 受注番号= " + strJuchuNo;
                 con.RunSql(strSQL);
 
                 strSQL = "UPDATE 出庫明細  ";
@@ -970,5 +988,25 @@ namespace KATO.Business.A0010_JuchuInput
             return retSuryo;
         }
 
+        public DataTable getTanto(string s)
+        {
+            DataTable dt = null;
+
+            string strQuery = "";
+
+            strQuery += "SELECT 担当者コード FROM 取引先 WHERE 削除 = 'N' AND 取引先コード = '" + s + "'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dt = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dt;
+        }
     }
 }
