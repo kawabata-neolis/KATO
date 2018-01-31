@@ -87,10 +87,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF06.Text = "F6:再計算";
 
-//デバッグ用
-            //強制的にＣＳＶを表示させる
-            this.powerUserFlg = true;
-
             //powerUserの場合
             if (this.powerUserFlg)
             {

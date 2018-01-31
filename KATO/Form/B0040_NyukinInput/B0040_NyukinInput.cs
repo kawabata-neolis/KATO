@@ -120,10 +120,8 @@ namespace KATO.Form.B0040_NyukinInput
                 basemessagebox.ShowDialog();
             }
 
-            txtYMD.setUp(0);
-			
-			// テスト用に【営業所コード】へ'0001'をセット
-            labelSet_Eigyosho.CodeTxtText = "0001";
+            //伝票年月日の設定
+            txtYMD.setUp(0);			
             
             //DataGridViewの初期設定
             SetUpGrid();
@@ -429,6 +427,9 @@ namespace KATO.Form.B0040_NyukinInput
                     {
                         //TABボタンと同じ効果
                         SendKeys.Send("{TAB}");
+
+                        //日付制限チェック
+                        dateCheck();
                     }
                     break;
                 case Keys.F1:
@@ -636,9 +637,7 @@ namespace KATO.Form.B0040_NyukinInput
             NyukinList nyukinlist = new NyukinList(this);
             try
             {
-            	// 【入金リスト用の画面ID】
-                //商品リストの表示、画面IDを渡す
-                nyukinlist.intFrmKind = CommonTeisu.FRM_TEST;
+                //入金リストの表示
                 nyukinlist.bmDenpyo = txtDenpyoNo;
                 nyukinlist.radListInput = radSet_chkListDataInput;
                 nyukinlist.ShowDialog();
@@ -648,6 +647,7 @@ namespace KATO.Form.B0040_NyukinInput
                 {
                     //伝票データを入れる 
                     setDenpyoData();
+                    dateCheck();
                 }
             }
             catch (Exception ex)
@@ -670,22 +670,6 @@ namespace KATO.Form.B0040_NyukinInput
             //伝票番号は空白だった場合は、処理終了
             if (txtDenpyoNo.Text == "")
             {
-                //各データの初期化
-                txtDenpyoNo.Text = "";
-                labelSet_Tokuisaki.CodeTxtText = "";
-                labelSet_Tokuisaki.ValueLabelText = "";
-
-                //区分データの初期化
-                delKbnData();
-
-                //表示のみの項目の初期化
-                txtSimekiribi.Text = "";
-                txtShiharaiGessu.Text = "";
-                txtShiharaibi.Text = "";
-                txtShiharaiJojen.Text = "";
-                txtShukunkbn.Text = "";
-
-                txtYMD.Focus();
                 return;
             }
 
@@ -751,6 +735,7 @@ namespace KATO.Form.B0040_NyukinInput
                 {
                     txtYMD.Text = dtSetView.Rows[0]["入金年月日"].ToString();
                     labelSet_Tokuisaki.CodeTxtText = dtSetView.Rows[0]["得意先コード"].ToString();
+                    labelSet_Tokuisaki.chkTxtTorihikisaki();
 
                     //行番号を基にデータをテキストボックスに設定する。
                     foreach (DataRow datarow in dtSetView.Rows)
@@ -769,8 +754,6 @@ namespace KATO.Form.B0040_NyukinInput
                         Control[] cs5 = this.Controls.Find("txtTegataYMD" + gyoNo.ToString(), true);
 
                         ((TextBox)cs5[0]).Text = datarow["手形期日"].ToString();
-                        //テスト
-                        //((TextBox)cs5[0]).Text = string.Format("0:yyyy/MM/dd}", DateTime.Now);
 
                         Control[] cs7 = this.Controls.Find("txtBikou" + gyoNo.ToString(), true);
 
@@ -792,7 +775,7 @@ namespace KATO.Form.B0040_NyukinInput
                 }
                 else
                 {
-                    //複数取引先ありのメッセージ（OK）
+                    //伝票が見つからないメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
 
@@ -812,16 +795,20 @@ namespace KATO.Form.B0040_NyukinInput
                     txtShiharaiJojen.Text = "";
                     txtShukunkbn.Text = "";
 
+                    SendKeys.Send("{TAB}");
+
                     txtDenpyoNo.Focus();
                     return;
                 }
             }
             catch (Exception ex)
             {
-                //エラーロギング
-                gridSeikyuRireki.Visible = true;
+                // エラーロギング
                 new CommonException(ex);
-                return;
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
         }
 
@@ -1036,8 +1023,8 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、追加失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
             }
