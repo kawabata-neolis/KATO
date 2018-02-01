@@ -19,7 +19,7 @@ namespace KATO.Common.Business
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2018/01/31
     ///カラム論理名
     ///</summary>
     class ShiharaiList_B
@@ -98,7 +98,7 @@ namespace KATO.Common.Business
         ///getSelectItem
         ///データグリッドビュー内のデータ選択後の処理
         ///</summary>
-        public void getSelectItem(int intFrmKind, string strDenpyo)
+        public DataTable getSelectItem(int intFrmKind, string strDenpyo)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -123,7 +123,7 @@ namespace KATO.Common.Business
                 //パスがなければ返す
                 if (strSQLInput == "")
                 {
-                    return;
+                    return(dtSelectData);
                 }
 
                 //SQLファイルと該当コードでフォーマット
@@ -132,28 +132,7 @@ namespace KATO.Common.Business
                 //SQL接続後、該当データを取得
                 dtSelectData = dbconnective.ReadSql(strSQLInput);
 
-                //移動元フォームの検索
-                switch (intFrmKind)
-                {
-                    //テスト用
-                    case CommonTeisu.FRM_TEST:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {
-                            //テスト用
-                            if (frm.Name == "B0060_ShiharaiInput")
-                            {
-                                //データを連れてくるため、newをしないこと
-                                B0060_ShiharaiInput shiharai = (B0060_ShiharaiInput)frm;
-                                shiharai.setShiharaiDenpyo(dtSelectData);
-                                break;
-                            }
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
+                return (dtSelectData);
             }
             catch (Exception ex)
             {

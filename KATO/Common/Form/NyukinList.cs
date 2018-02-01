@@ -87,6 +87,11 @@ namespace KATO.Common.Form
                 bmDenpyo = new BaseTextMoney();
             }
 
+            //リストからデータを取り出したかどうかの判定の引き渡しチェック
+            if (radListInput == null)
+            {
+                radListInput = new RadSet_2btn();
+            }
         }
 
         ///<summary>
@@ -312,7 +317,7 @@ namespace KATO.Common.Form
         ///</summary>        
         private void setSelectItem()
         {
-            //取引コードを入れる用
+            //伝票番号を入れる用
             DataTable dtNyukin = new DataTable();
 
             //検索結果にデータが存在しなければ終了

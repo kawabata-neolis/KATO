@@ -16,8 +16,6 @@ using System.IO;
 
 namespace KATO.Form.B0250_MOnyuryoku
 {
-    //列91にデバッグ用のコードがあるため最終的に削除
-
     ///<summary>
     ///MOnyuryoku
     ///MO入力フォーム
@@ -86,10 +84,6 @@ namespace KATO.Form.B0250_MOnyuryoku
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF06.Text = "F6:再計算";
-
-//デバッグ用
-            //強制的にＣＳＶを表示させる
-            this.powerUserFlg = true;
 
             //powerUserの場合
             if (this.powerUserFlg)

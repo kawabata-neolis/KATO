@@ -11,7 +11,7 @@ using KATO.Common.Ctl;
 using KATO.Common.Util;
 using KATO.Common.Form;
 using static KATO.Common.Util.CommonTeisu;
-using KATO.Business.B0060_ShiharaiInput;
+using KATO.Business.B0060_ShiharaiInput_B;
 
 namespace KATO.Form.B0060_ShiharaiInput
 {
@@ -20,8 +20,8 @@ namespace KATO.Form.B0060_ShiharaiInput
     /// 支払入力フォーム
     /// 作成者：多田
     /// 作成日：2017/6/23
-    /// 更新者：多田
-    /// 更新日：2017/6/23
+    /// 更新者：大河内
+    /// 更新日：2018/01/31
     /// カラム論理名
     /// </summary>
     public partial class B0060_ShiharaiInput : BaseForm
@@ -58,6 +58,9 @@ namespace KATO.Form.B0060_ShiharaiInput
             // 親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+            
+            //左寄せ
+            txtDenpyoNo.TextAlign = HorizontalAlignment.Left;
         }
 
         /// <summary>
@@ -78,18 +81,45 @@ namespace KATO.Form.B0060_ShiharaiInput
             this.btnF06.Text = "F6:終り";
             this.btnF07.Text = "F7:行削除";
             this.btnF08.Text = "F8:元帳";
+            this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // 初期表示
-            this.btnF01.Enabled = false;
-            this.btnF03.Enabled = false;
-            labelSet_Siiresaki.Focus();
+            //リストからデータを取り出したかどうかのチェックの初期値(リストから取り出していない状態)
+            radSet_chkListDataInput.radbtn0.Checked = true;
 
-            // 伝票年月日の設定
-            txtDenpyoYMD.setUp(0);
+            DataTable dtTantoshaCd = new DataTable();
 
-            // テスト用に【営業所コード】へ'0001'をセット
-            labelSet_Eigyosho.CodeTxtText = "0001";
+            B0060_ShiharaiInput_B shiharaiinputB = new B0060_ShiharaiInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = shiharaiinputB.getTantoshaCd(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.chkTxtTantosha();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
+            //伝票年月日の設定
+            txtYMD.setUp(0);
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -102,7 +132,7 @@ namespace KATO.Form.B0060_ShiharaiInput
         private void SetUpGrid()
         {
             // 列自動生成禁止
-            gridSiireJisseki.AutoGenerateColumns = false;
+            gridShireJisseki.AutoGenerateColumns = false;
 
             // データをバインド
             DataGridViewTextBoxColumn hiduke = new DataGridViewTextBoxColumn();
@@ -138,16 +168,16 @@ namespace KATO.Form.B0060_ShiharaiInput
         /// </summary>
         private void setColumn(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
-            gridSiireJisseki.Columns.Add(col);
-            if (gridSiireJisseki.Columns[col.Name] != null)
+            gridShireJisseki.Columns.Add(col);
+            if (gridShireJisseki.Columns[col.Name] != null)
             {
-                gridSiireJisseki.Columns[col.Name].Width = intLen;
-                gridSiireJisseki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
-                gridSiireJisseki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+                gridShireJisseki.Columns[col.Name].Width = intLen;
+                gridShireJisseki.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridShireJisseki.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
 
                 if (fmt != null)
                 {
-                    gridSiireJisseki.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                    gridShireJisseki.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
         }
@@ -284,38 +314,129 @@ namespace KATO.Form.B0060_ShiharaiInput
 
         /// <summary>
         /// updDenpyoNoLeave
-        /// 伝票番号のテキストボックスからフォーカスが外れた時
+        /// 伝票番号を入力した場合の処理
         /// </summary>
         private void updDenpyoNoLeave(object sender, EventArgs e)
+        {
+            setDenpyoData();
+        }
+
+        ///<summary>
+        ///setDenpyoData
+        ///伝票番号からデータを表示
+        ///</summary>
+        private void setDenpyoData()
         {
             // 伝票番号がない場合
             if (txtDenpyoNo.Text.Equals(""))
             {
-                labelSet_Siiresaki.CodeTxtText = "";
-                txtShimekiribi.Text = "";
-                txtShiharaiGessuu.Text = "";
-                txtShiharaibi.Text = "";
-                txtShiharaiJoken.Text = "";
-                txtSyukinKbn.Text = "";
-                txtZeiHasuuKubun.Text = "";
-                gridSiireJisseki.DataSource = "";
-
-                // グループボックス内のテキストボックス内の文字を削除
-                delMeisai();
-
-                txtDenpyoYMD.Focus();
+                return;
             }
-            else
+
+            txtYMD.Text = "";
+            lblset_Siiresaki.CodeTxtText = "";
+            lblGoukeiDisp.Text = "";
+
+            //全行をクリアする。
+            for (int i = 0; i <= 9; i++)
             {
-                // 伝票番号から支払データを取得し、テキストボックスへ配置
-                setShiharai();
+
+                Control[] cs1 = this.Controls.Find("labelSet_Torihikikbn" + i.ToString(), true);
+
+                ((BaseTextLabelSet)cs1[0]).CodeTxtText = "";
+
+                Control[] cs3 = this.Controls.Find("txtShiharai" + i.ToString(), true);
+
+                ((TextBox)cs3[0]).Text = "";
+
+                Control[] cs5 = this.Controls.Find("txtTegataYMD" + i.ToString(), true);
+
+                ((TextBox)cs5[0]).Text = "";
+
+                Control[] cs7 = this.Controls.Find("txtBikou" + i.ToString(), true);
+
+                ((TextBox)cs7[0]).Text = "";
+
             }
 
-            // 機能追加_締切日、支払月数、支払日、支払条件、集金区分表示
-            getSiiresakiData();
+            //伝票番号をキーに得意先コードを取得する。
 
-            // 仕入実績表示
-            setSiireJisseki();
+            //ビジネス層のインスタンス生成
+            B0060_ShiharaiInput_B shiharaiinputB = new B0060_ShiharaiInput_B();
+            try
+            {
+                // 伝票番号から支払を取得
+                DataTable dtGetShiharai = shiharaiinputB.getShiharai(txtDenpyoNo.Text);
+
+                if (dtGetShiharai.Rows.Count > 0)
+                {
+                    txtYMD.Text = string.Format(dtGetShiharai.Rows[0]["支払年月日"].ToString(), "yyyy/MM/dd");
+                    lblset_Siiresaki.CodeTxtText = dtGetShiharai.Rows[0]["仕入先コード"].ToString();
+                    lblset_Siiresaki.chkTxtTorihikisaki();
+
+                    foreach (DataRow drData in dtGetShiharai.Rows)
+                    {
+                        //行番号－1した変数を保持
+                        int gyoNo = int.Parse(drData["行番号"].ToString()) - 1;
+
+                        Control[] cs1 = this.Controls.Find("labelSet_Torihikikbn" + gyoNo.ToString(), true);
+
+                        ((BaseTextLabelSet)cs1[0]).CodeTxtText = drData["取引区分コード"].ToString();
+
+                        Control[] cs3 = this.Controls.Find("txtShiharai" + gyoNo.ToString(), true);
+
+                        ((TextBox)cs3[0]).Text = decimal.Parse(drData["支払額"].ToString()).ToString("#,0");
+
+                        Control[] cs5 = this.Controls.Find("txtTegataYMD" + gyoNo.ToString(), true);
+
+                        ((TextBox)cs5[0]).Text = drData["手形期日"].ToString();
+
+                        Control[] cs7 = this.Controls.Find("txtBikou" + gyoNo.ToString(), true);
+
+                        ((TextBox)cs7[0]).Text = drData["備考"].ToString();
+                    }
+
+                    // 合計を計算
+                    setGoukei();
+
+                    // 取引先データを表示
+                    getSiiresakiData();
+
+                    // 仕入実績表示
+                    setSiireJisseki();                    
+                }
+                else
+                {
+                    //伝票が見つからないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    //伝票番号とグリッドと担当者以外初期化
+
+                    //得意先コードの初期化
+                    lblset_Siiresaki.CodeTxtText = "";
+                    lblset_Siiresaki.ValueLabelText = "";
+
+                    //表示のみの項目の初期化
+                    txtShimekiribi.Text = "";
+                    txtShiharaiGessu.Text = "";
+                    txtShiharaibi.Text = "";
+                    txtShiharaiJojen.Text = "";
+                    txtShukunkbn.Text = "";
+
+                    txtDenpyoNo.Focus();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -361,21 +482,28 @@ namespace KATO.Form.B0060_ShiharaiInput
                     // 伝票番号の最小値を取得し、伝票番号へセット
                     this.getNextDenpyoNo();
                     txtDenpyoNo.Focus();
-                    txtDenpyoYMD.Focus();
+                    txtYMD.Focus();
                     break;
                 case Keys.PageDown:
                     // 伝票番号の最大値を取得し、伝票番号へセット
                     this.getPrevDenpyoNo();
                     txtDenpyoNo.Focus();
-                    txtDenpyoYMD.Focus();
+                    txtYMD.Focus();
                     break;
                 case Keys.Delete:
                     break;
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
+                    //最大桁数ではない場合
+                    if (txtYMD.Text.Length < 10)
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+
+                        //日付制限チェック
+                        dateCheck();
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -428,12 +556,12 @@ namespace KATO.Form.B0060_ShiharaiInput
                 case Keys.PageUp:
                     // 伝票番号の最小値を取得し、伝票番号へセット
                     this.getNextDenpyoNo();
-                    txtDenpyoYMD.Focus();
+                    txtYMD.Focus();
                     break;
                 case Keys.PageDown:
                     // 伝票番号の最大値を取得し、伝票番号へセット
                     this.getPrevDenpyoNo();
-                    txtDenpyoYMD.Focus();
+                    txtYMD.Focus();
                     break;
                 case Keys.Delete:
                     break;
@@ -461,7 +589,6 @@ namespace KATO.Form.B0060_ShiharaiInput
                     break;
                 case Keys.F9:
                     this.setShiharaiList();  // 支払リスト表示
-                    this.dateCheck();  // 日付制限チェック
                     break;
                 case Keys.F10:
                     break;
@@ -475,10 +602,10 @@ namespace KATO.Form.B0060_ShiharaiInput
         }
 
         /// <summary>
-        /// txtKingakuKeyDown
+        /// txtShiharaiKeyDown
         /// 支払額のKeyDownイベント
         /// </summary>
-        private void txtKingakuKeyDown(object sender, KeyEventArgs e)
+        private void txtShiharaiKeyDown(object sender, KeyEventArgs e)
         {
             // キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -541,10 +668,18 @@ namespace KATO.Form.B0060_ShiharaiInput
             ShiharaiList shiharailist = new ShiharaiList(this);
             try
             {
-                // 【支払リスト用の画面ID】
-                // 支払リストの表示、画面IDを渡す
-                shiharailist.intFrmKind = CommonTeisu.FRM_TEST;
+                // 支払リストの表示
+                shiharailist.bmDenpyo = txtDenpyoNo;
+                shiharailist.radListInput = radSet_chkListDataInput;
                 shiharailist.ShowDialog();
+
+                //リストからデータを取り出した場合
+                if (radSet_chkListDataInput.radbtn1.Checked == true)
+                {
+                    //伝票データを入れる 
+                    setDenpyoData();
+                    dateCheck();
+                }
             }
             catch (Exception ex)
             {
@@ -560,126 +695,29 @@ namespace KATO.Form.B0060_ShiharaiInput
         }
 
         /// <summary>
-        /// setShiharai
-        /// 伝票番号からデータを取得し、テキストボックスに配置
-        /// </summary>
-        public void setShiharai()
-        {
-            txtDenpyoYMD.Text = "";
-            labelSet_Siiresaki.CodeTxtText = "";
-            txtShimekiribi.Text = "";
-            txtShiharaiGessuu.Text = "";
-            txtShiharaibi.Text = "";
-            txtShiharaiJoken.Text = "";
-            txtSyukinKbn.Text = "";
-            txtZeiHasuuKubun.Text = "";
-            gridSiireJisseki.DataSource = "";
-
-            // グループボックス内のテキストボックス内の文字を削除
-            delMeisai();
-
-            B0060_ShiharaiInput_B shiharaiinputB = new B0060_ShiharaiInput_B();
-            try
-            {
-                // 伝票番号から支払を取得
-                DataTable dtGetShiharai = shiharaiinputB.getShiharai(txtDenpyoNo.Text);
-
-                if (dtGetShiharai.Rows.Count > 0)
-                {
-                    txtDenpyoYMD.Text = string.Format(dtGetShiharai.Rows[0]["支払年月日"].ToString(), "yyyy/MM/dd");
-                    labelSet_Siiresaki.CodeTxtText = dtGetShiharai.Rows[0]["仕入先コード"].ToString();
-
-                    Control ctlGb = this.Controls["gbSiharaiInput"];
-                    foreach (DataRow drData in dtGetShiharai.Rows)
-                    {
-                        int cnt = int.Parse(drData["行番号"].ToString()) - 1;
-                        ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text = drData["取引区分コード"].ToString(); ;
-                        ctlGb.Controls["txtKingaku" + cnt.ToString()].Text = decimal.Parse(drData["支払額"].ToString()).ToString("#,#");
-                        ctlGb.Controls["txtKijitsuYMD" + cnt.ToString()].Text = string.Format(drData["手形期日"].ToString(), "yyyy/MM/dd");
-                        ctlGb.Controls["txtBikou" + cnt.ToString()].Text = drData["備考"].ToString();
-                    }
-
-                    // 合計を計算
-                    setGoukei();
-
-                    this.btnF01.Enabled = true;
-                    this.btnF03.Enabled = true;
-                }
-                else
-                {
-                    // メッセージボックスの処理、失敗の場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-
-                    txtDenpyoNo.Focus();
-                }
-
-            }
-            catch(Exception ex)
-            {
-                // エラーロギング
-                new CommonException(ex);
-                // メッセージボックスの処理、失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                txtDenpyoNo.Focus();
-            }
-        }
-
-        /// <summary>
-        /// setShiharaiDenpyo
-        /// 取り出したデータをテキストボックスに配置
-        /// </summary>
-        public void setShiharaiDenpyo(DataTable dtSelectData)
-        {
-            txtDenpyoNo.Text = dtSelectData.Rows[0]["伝票番号"].ToString();
-
-            // 伝票番号がある場合
-            if (!txtDenpyoNo.Text.Equals(""))
-            {
-                // 伝票番号から支払データを取得し、テキストボックスへ配置
-                setShiharai();
-
-                object sender = new object();
-                EventArgs e = new EventArgs();
-                updDenpyoNoLeave(sender, e);
-           }
-        }
-
-        /// <summary>
-        /// setShiharaiListClose    
-        /// setShiharaiListCloseが閉じたらコード記入欄にフォーカス
-        /// </summary>
-        public void setShiharaiListClose()
-        {
-            txtDenpyoNo.Focus();
-        }
-
-        /// <summary>
         /// delText
         /// テキストボックス内の文字を削除
         /// </summary>
         private void delText()
         {
             // 削除するデータ以外を確保
-            string strDenpyoYMD = txtDenpyoYMD.Text;
+            string strDenpyoYMD = txtYMD.Text;
             string strDenpyoNo = txtDenpyoNo.Text;
             string strTantousha = labelSet_Tantousha.CodeTxtText;
             string strEigyosho = labelSet_Eigyosho.CodeTxtText;
 
             // 画面の項目内を白紙にする
-            delFormClear(this, gridSiireJisseki);
+            delFormClear(this, gridShireJisseki);
 
             this.btnF01.Enabled = false;
             this.btnF03.Enabled = false;
 
-            txtDenpyoYMD.Text = strDenpyoYMD;
+            txtYMD.Text = strDenpyoYMD;
             txtDenpyoNo.Text = strDenpyoNo;
             labelSet_Tantousha.CodeTxtText = strTantousha;
             labelSet_Eigyosho.CodeTxtText = strEigyosho;
 
-            labelSet_Siiresaki.Focus();
+            lblset_Siiresaki.Focus();
         }
 
         /// <summary>
@@ -692,8 +730,8 @@ namespace KATO.Form.B0060_ShiharaiInput
             for (int cnt = 0; cnt <= 9; cnt++)
             {
                 ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text = "";
-                ctlGb.Controls["txtKingaku" + cnt.ToString()].Text = "";
-                ctlGb.Controls["txtKijitsuYMD" + cnt.ToString()].Text = "";
+                ctlGb.Controls["txtShiharai" + cnt.ToString()].Text = "";
+                ctlGb.Controls["txtTegataYMD" + cnt.ToString()].Text = "";
                 ctlGb.Controls["txtBikou" + cnt.ToString()].Text = "";
             }
             lblGoukeiDisp.Text = "";
@@ -709,7 +747,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             Control ctlGb = this.Controls["gbSiharaiInput"];
 
             // 空文字判定（伝票年月日、仕入先コード）
-            if (txtDenpyoYMD.blIsEmpty() == false || labelSet_Siiresaki.CodeTxtText.Equals(""))
+            if (txtYMD.blIsEmpty() == false || lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -722,7 +760,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             {
                 if (!ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
                 {
-                    if (ctlGb.Controls["txtKingaku" + cnt.ToString()].Text.Equals(""))
+                    if (ctlGb.Controls["txtShiharai" + cnt.ToString()].Text.Equals(""))
                     {
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -735,7 +773,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             // 日付制限チェック
             if (!dateCheck())
             {
-                txtDenpyoYMD.Focus();
+                txtYMD.Focus();
                 return;
             }
 
@@ -757,14 +795,14 @@ namespace KATO.Form.B0060_ShiharaiInput
 
                 strCommontItem[0] = strDenpyoNo;
                 strCommontItem[1] = Environment.UserName;
-                strCommontItem[2] = txtDenpyoYMD.Text;
-                strCommontItem[3] = labelSet_Siiresaki.CodeTxtText;
+                strCommontItem[2] = txtYMD.Text;
+                strCommontItem[3] = lblset_Siiresaki.CodeTxtText;
 
                 for (int cnt = 0; cnt <= 9; cnt++)
                 {
                     strInsertItem[cnt, 0] = ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text;
-                    strInsertItem[cnt, 1] = ctlGb.Controls["txtKingaku" + cnt.ToString()].Text;
-                    strInsertItem[cnt, 2] = ctlGb.Controls["txtKijitsuYMD" + cnt.ToString()].Text;
+                    strInsertItem[cnt, 1] = ctlGb.Controls["txtShiharai" + cnt.ToString()].Text;
+                    strInsertItem[cnt, 2] = ctlGb.Controls["txtTegataYMD" + cnt.ToString()].Text;
                     strInsertItem[cnt, 3] = ctlGb.Controls["txtBikou" + cnt.ToString()].Text;
                 }
 
@@ -883,14 +921,14 @@ namespace KATO.Form.B0060_ShiharaiInput
                 {
                     ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text = 
                         ((LabelSet_Torihikikbn)ctlGb.Controls["labelSet_TorihikiKbn" + (cnt + 1).ToString()]).Controls["codeTxt"].Text;
-                    ctlGb.Controls["txtKingaku" + cnt.ToString()].Text = ((BaseTextMoney)ctlGb.Controls["txtKingaku" + (cnt + 1).ToString()]).Text;
-                    ctlGb.Controls["txtKijitsuYMD" + cnt.ToString()].Text = ((TextBox)ctlGb.Controls["txtKijitsuYMD" + (cnt + 1).ToString()]).Text;
+                    ctlGb.Controls["txtShiharai" + cnt.ToString()].Text = ((BaseTextMoney)ctlGb.Controls["txtShiharai" + (cnt + 1).ToString()]).Text;
+                    ctlGb.Controls["txtTegataYMD" + cnt.ToString()].Text = ((TextBox)ctlGb.Controls["txtTegataYMD" + (cnt + 1).ToString()]).Text;
                     ctlGb.Controls["txtBikou" + cnt.ToString()].Text = ((TextBox)ctlGb.Controls["txtBikou" + (cnt + 1).ToString()]).Text;
                 }
 
-                this.labelSet_TorihikiKbn9.CodeTxtText = "";
-                this.txtKingaku9.Text = "";
-                this.txtKijitsuYMD9.Text = "";
+                this.labelSet_Torihikikbn9.CodeTxtText = "";
+                this.txtShiharai9.Text = "";
+                this.txtTegataYMD9.Text = "";
                 this.txtBikou9.Text = "";
 
                 // 合計を再計算
@@ -905,11 +943,11 @@ namespace KATO.Form.B0060_ShiharaiInput
         private void showMotocyou()
         {
             // 仕入先コードがある場合
-            if (!labelSet_Siiresaki.CodeTxtText.Equals(""))
+            if (!lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 // 得意先元帳確認フォームを開く
                 E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisaki = 
-                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, labelSet_Siiresaki.CodeTxtText);
+                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, lblset_Siiresaki.CodeTxtText);
                 tokuisaki.ShowDialog();
             }
         }
@@ -921,7 +959,7 @@ namespace KATO.Form.B0060_ShiharaiInput
         private void setGoukei()
         {
             // 仕入先コードがない場合
-            if (labelSet_Siiresaki.CodeTxtText.Equals(""))
+            if (lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 return;
             }
@@ -930,7 +968,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             decimal decGoukei = 0;
             for (int cnt = 0; cnt <= 9; cnt++)
             {
-                string strKingaku = ((BaseTextMoney)ctlGb.Controls["txtKingaku" + cnt.ToString()]).Text;
+                string strKingaku = ((BaseTextMoney)ctlGb.Controls["txtShiharai" + cnt.ToString()]).Text;
                 decimal decKingaku;
                 if (decimal.TryParse(strKingaku, out decKingaku))
                 {
@@ -1027,7 +1065,7 @@ namespace KATO.Form.B0060_ShiharaiInput
         /// </summary>
         private Boolean dateCheck()
         {
-            if (txtDenpyoYMD.Text.Equals(""))
+            if (txtYMD.Text.Equals(""))
             {
                 return false;
             }
@@ -1042,7 +1080,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 {
                     DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
                     DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
-                    DateTime dtDenpyoYMD = DateTime.Parse(txtDenpyoYMD.Text);
+                    DateTime dtDenpyoYMD = DateTime.Parse(txtYMD.Text);
 
                     // 伝票年月日が最小年月日から最大年月日の間の場合
                     if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
@@ -1084,7 +1122,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             DataTable dtSetView;
 
             // 空文字判定（仕入先コード）
-            if (labelSet_Siiresaki.CodeTxtText.Equals(""))
+            if (lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 return;
             }
@@ -1095,7 +1133,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             {
                 // データの存在確認を検索する情報を入れる
                 /* [0]仕入先コード */
-                lstSiiresakiDataLoad.Add(labelSet_Siiresaki.CodeTxtText);
+                lstSiiresakiDataLoad.Add(lblset_Siiresaki.CodeTxtText);
 
                 // ビジネス層、取引先情報表示用ロジックに移動
                 dtSetView = shiharaiInputB.getSiiresakiData(lstSiiresakiDataLoad);
@@ -1103,21 +1141,21 @@ namespace KATO.Form.B0060_ShiharaiInput
                 if (dtSetView.Rows.Count > 0)
                 {
                     txtShimekiribi.Text = dtSetView.Rows[0]["締切日"].ToString();
-                    txtShiharaiGessuu.Text = dtSetView.Rows[0]["支払月数"].ToString();
+                    txtShiharaiGessu.Text = dtSetView.Rows[0]["支払月数"].ToString();
                     txtShiharaibi.Text = dtSetView.Rows[0]["支払日"].ToString();
-                    txtShiharaiJoken.Text = dtSetView.Rows[0]["支払条件"].ToString().Trim();
-                    txtSyukinKbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
+                    txtShiharaiJojen.Text = dtSetView.Rows[0]["支払条件"].ToString().Trim();
+                    txtShukunkbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
                     txtZeiHasuuKubun.Text = dtSetView.Rows[0]["消費税端数計算区分"].ToString();
                 }
                 else
                 {
                     txtShimekiribi.Text = "";
-                    txtShiharaiGessuu.Text = "";
+                    txtShiharaiGessu.Text = "";
                     txtShiharaibi.Text = "";
-                    txtShiharaiJoken.Text = "";
-                    txtSyukinKbn.Text = "";
+                    txtShiharaiJojen.Text = "";
+                    txtShukunkbn.Text = "";
                     txtZeiHasuuKubun.Text = "";
-                    gridSiireJisseki.DataSource = "";
+                    gridShireJisseki.DataSource = "";
                 }
 
             }
@@ -1144,20 +1182,20 @@ namespace KATO.Form.B0060_ShiharaiInput
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            lstSearchItem.Add(labelSet_Siiresaki.CodeTxtText);      // 仕入先コード
+            lstSearchItem.Add(lblset_Siiresaki.CodeTxtText);      // 仕入先コード
             lstSearchItem.Add(txtShimekiribi.Text);                 // 締切日
             lstSearchItem.Add(txtZeiHasuuKubun.Text);               // 消費税端数計算区分
 
             // 仕入先コードが空の場合
-            if (labelSet_Siiresaki.CodeTxtText.Equals(""))
+            if (lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 txtShimekiribi.Text = "";
-                txtShiharaiGessuu.Text = "";
+                txtShiharaiGessu.Text = "";
                 txtShiharaibi.Text = "";
-                txtShiharaiJoken.Text = "";
-                txtSyukinKbn.Text = "";
+                txtShiharaiJojen.Text = "";
+                txtShukunkbn.Text = "";
                 txtZeiHasuuKubun.Text = "";
-                gridSiireJisseki.DataSource = "";
+                gridShireJisseki.DataSource = "";
 
                 return;
             }
@@ -1176,7 +1214,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem);
 
                 // データテーブルからデータグリッドへセット
-                gridSiireJisseki.DataSource = dtSiireJissekiList;
+                gridShireJisseki.DataSource = dtSiireJissekiList;
 
                 Control cNow = this.ActiveControl;
                 cNow.Focus();
@@ -1196,5 +1234,16 @@ namespace KATO.Form.B0060_ShiharaiInput
             return;
         }
 
+        ///<summary>
+        ///judtxtShiharaiKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtShiharaiKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
     }
 }

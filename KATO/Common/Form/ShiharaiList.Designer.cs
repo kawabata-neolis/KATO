@@ -28,18 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridTokui = new KATO.Common.Ctl.BaseDataGridView();
-            this.labelSet_Tokuisaki = new KATO.Common.Ctl.LabelSet_Tokuisaki();
-            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.btnF12 = new KATO.Common.Ctl.BaseButton();
             this.btnF11 = new KATO.Common.Ctl.BaseButton();
             this.lblRecords = new System.Windows.Forms.Label();
+            this.lblset_Shiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             ((System.ComponentModel.ISupportInitialize)(this.gridTokui)).BeginInit();
-            this.labelSet_Tokuisaki.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridTokui
@@ -47,6 +44,7 @@
             this.gridTokui.AllowUserToAddRows = false;
             this.gridTokui.AllowUserToResizeColumns = false;
             this.gridTokui.AllowUserToResizeRows = false;
+            this.gridTokui.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -85,38 +83,6 @@
             this.gridTokui.DoubleClick += new System.EventHandler(this.gridTokui_DoubleClick);
             this.gridTokui.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTokui_KeyDown);
             // 
-            // labelSet_Tokuisaki
-            // 
-            this.labelSet_Tokuisaki.AppendLabelSize = 40;
-            this.labelSet_Tokuisaki.AppendLabelText = "";
-            this.labelSet_Tokuisaki.CodeTxtSize = 40;
-            this.labelSet_Tokuisaki.CodeTxtText = "";
-            this.labelSet_Tokuisaki.Controls.Add(this.nameLabel);
-            this.labelSet_Tokuisaki.LabelName = "仕入先";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(31, 29);
-            this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
-            this.labelSet_Tokuisaki.ShowAppendFlg = false;
-            this.labelSet_Tokuisaki.Size = new System.Drawing.Size(442, 22);
-            this.labelSet_Tokuisaki.SpaceCodeValue = 4;
-            this.labelSet_Tokuisaki.SpaceNameCode = 4;
-            this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 0;
-            this.labelSet_Tokuisaki.ValueLabelSize = 300;
-            this.labelSet_Tokuisaki.ValueLabelText = "";
-            this.labelSet_Tokuisaki.Leave += new System.EventHandler(this.labelSet_Tokuisaki_Leave);
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.nameLabel.Location = new System.Drawing.Point(2, 3);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(55, 15);
-            this.nameLabel.strToolTip = null;
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "得意先";
-            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -148,23 +114,39 @@
             this.lblRecords.TabIndex = 20;
             this.lblRecords.Text = "該当件数(ありません)";
             // 
+            // lblset_Shiresaki
+            // 
+            this.lblset_Shiresaki.AppendLabelSize = 0;
+            this.lblset_Shiresaki.AppendLabelText = "";
+            this.lblset_Shiresaki.CodeTxtSize = 40;
+            this.lblset_Shiresaki.CodeTxtText = "";
+            this.lblset_Shiresaki.LabelName = "取引先コード";
+            this.lblset_Shiresaki.Location = new System.Drawing.Point(31, 22);
+            this.lblset_Shiresaki.Name = "lblset_Shiresaki";
+            this.lblset_Shiresaki.ShowAppendFlg = false;
+            this.lblset_Shiresaki.Size = new System.Drawing.Size(472, 22);
+            this.lblset_Shiresaki.SpaceCodeValue = 4;
+            this.lblset_Shiresaki.SpaceNameCode = 4;
+            this.lblset_Shiresaki.SpaceValueAppend = 4;
+            this.lblset_Shiresaki.TabIndex = 0;
+            this.lblset_Shiresaki.ValueLabelSize = 300;
+            this.lblset_Shiresaki.ValueLabelText = "";
+            // 
             // ShiharaiList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.lblset_Shiresaki);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.btnF11);
             this.Controls.Add(this.btnF12);
-            this.Controls.Add(this.labelSet_Tokuisaki);
             this.Controls.Add(this.gridTokui);
             this.Name = "ShiharaiList";
             this.Text = "ShiharaiList";
             this.Load += new System.EventHandler(this.ShiharaiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShiharaiList_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokui)).EndInit();
-            this.labelSet_Tokuisaki.ResumeLayout(false);
-            this.labelSet_Tokuisaki.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,10 +155,9 @@
         #endregion
 
         private Ctl.BaseDataGridView gridTokui;
-        private Ctl.LabelSet_Tokuisaki labelSet_Tokuisaki;
-        private Ctl.BaseLabel nameLabel;
         private Ctl.BaseButton btnF12;
         private Ctl.BaseButton btnF11;
         private System.Windows.Forms.Label lblRecords;
+        private Ctl.LabelSet_Torihikisaki lblset_Shiresaki;
     }
 }

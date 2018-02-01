@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KATO.Business.B0060_ShiharaiInput
+namespace KATO.Business.B0060_ShiharaiInput_B
 {
     /// <summary>
     /// B0060_ShiharaiInput_B
     /// 支払入力 ビジネスロジック
     /// 作成者：多田
     /// 作成日：2017/6/23
-    /// 更新者：多田
-    /// 更新日：2017/6/23
+    /// 更新者：大河内
+    /// 更新日：2018/01/30
     /// カラム論理名
     /// </summary>
     class B0060_ShiharaiInput_B
@@ -407,6 +407,63 @@ namespace KATO.Business.B0060_ShiharaiInput
             {
                 dbconnective.DB_Disconnect();
             }
+        }
+
+        ///<summary>
+        ///getTantoshaCd
+        ///担当者データの取得
+        ///</summary>
+        public DataTable getTantoshaCd(string strUserID)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtTantoshaCd = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Common");
+            lstSQL.Add("C_TantoshaCd_Select");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtTantoshaCd);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            strUserID   //ログインＩＤ
+                                            );
+
+                //データ取得（ここから取得）
+                dtTantoshaCd = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return (dtTantoshaCd);
         }
     }
 }

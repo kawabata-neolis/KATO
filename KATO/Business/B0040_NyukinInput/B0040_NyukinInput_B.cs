@@ -422,8 +422,8 @@ namespace KATO.Business.B0040_NyukinInput
         }
 
         ///<summary>
-        ///getViewGrid
-        ///code入力箇所からフォーカスが外れた時
+        ///getTantoshaCd
+        ///担当者データの取得
         ///</summary>
         public DataTable getTantoshaCd(string strUserID)
         {

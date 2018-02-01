@@ -29,18 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
-            this.labelSet_Siiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
-            this.txtDenpyoYMD = new KATO.Common.Ctl.BaseCalendar();
-            this.lblYM = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtDenpyoNo = new KATO.Common.Ctl.BaseText();
+            this.lblset_Siiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
+            this.lblYMD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblDenpyoNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_Eigyosho = new KATO.Common.Ctl.LabelSet_Eigyosho();
             this.gbSiharaiInput = new System.Windows.Forms.GroupBox();
-            this.labelSet_TorihikiKbn9 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.labelSet_Torihikikbn9 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel52 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel43 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel44 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -52,7 +51,7 @@
             this.baseLabel50 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel51 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou9 = new KATO.Common.Ctl.BaseText();
-            this.labelSet_TorihikiKbn8 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.labelSet_Torihikikbn8 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel42 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel34 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel35 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -63,7 +62,7 @@
             this.baseLabel40 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel41 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou8 = new KATO.Common.Ctl.BaseText();
-            this.labelSet_TorihikiKbn7 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.labelSet_Torihikikbn7 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel33 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel26 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel27 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -73,7 +72,7 @@
             this.baseLabel31 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel32 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou7 = new KATO.Common.Ctl.BaseText();
-            this.labelSet_TorihikiKbn6 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.labelSet_Torihikikbn6 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel25 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel19 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel20 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -82,7 +81,7 @@
             this.baseLabel23 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel24 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou6 = new KATO.Common.Ctl.BaseText();
-            this.labelSet_TorihikiKbn5 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.labelSet_Torihikikbn5 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel18 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel13 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel14 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -90,84 +89,93 @@
             this.baseLabel16 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel17 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtBikou5 = new KATO.Common.Ctl.BaseText();
-            this.txtKingaku9 = new KATO.Common.Ctl.BaseTextMoney();
-            this.labelSet_TorihikiKbn4 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtShiharai9 = new KATO.Common.Ctl.BaseTextMoney();
+            this.labelSet_Torihikikbn4 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel12 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel8 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel9 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel10 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel11 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtKingaku8 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtShiharai8 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtBikou4 = new KATO.Common.Ctl.BaseText();
-            this.txtKingaku7 = new KATO.Common.Ctl.BaseTextMoney();
-            this.labelSet_TorihikiKbn3 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtShiharai7 = new KATO.Common.Ctl.BaseTextMoney();
+            this.labelSet_Torihikikbn3 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel7 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtKingaku6 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtShiharai6 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtBikou3 = new KATO.Common.Ctl.BaseText();
-            this.txtKingaku5 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKijitsuYMD9 = new KATO.Common.Ctl.BaseCalendar();
-            this.labelSet_TorihikiKbn2 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtShiharai5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTegataYMD9 = new KATO.Common.Ctl.BaseCalendar();
+            this.labelSet_Torihikikbn2 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.object_c9ff61bc_8795_4818_9a65_e12dd8ec5c54 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtKijitsuYMD8 = new KATO.Common.Ctl.BaseCalendar();
-            this.txtKingaku4 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKijitsuYMD7 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtTegataYMD8 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtShiharai4 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTegataYMD7 = new KATO.Common.Ctl.BaseCalendar();
             this.txtBikou2 = new KATO.Common.Ctl.BaseText();
-            this.txtKijitsuYMD6 = new KATO.Common.Ctl.BaseCalendar();
-            this.txtKingaku3 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKijitsuYMD5 = new KATO.Common.Ctl.BaseCalendar();
-            this.labelSet_TorihikiKbn1 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtTegataYMD6 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtShiharai3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTegataYMD5 = new KATO.Common.Ctl.BaseCalendar();
+            this.labelSet_Torihikikbn1 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtKijitsuYMD4 = new KATO.Common.Ctl.BaseCalendar();
-            this.txtKingaku2 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKijitsuYMD3 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtTegataYMD4 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtShiharai2 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTegataYMD3 = new KATO.Common.Ctl.BaseCalendar();
             this.txtBikou1 = new KATO.Common.Ctl.BaseText();
-            this.txtKijitsuYMD2 = new KATO.Common.Ctl.BaseCalendar();
-            this.txtKingaku1 = new KATO.Common.Ctl.BaseTextMoney();
-            this.txtKijitsuYMD1 = new KATO.Common.Ctl.BaseCalendar();
-            this.labelSet_TorihikiKbn0 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
+            this.txtTegataYMD2 = new KATO.Common.Ctl.BaseCalendar();
+            this.txtShiharai1 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTegataYMD1 = new KATO.Common.Ctl.BaseCalendar();
+            this.labelSet_Torihikikbn0 = new KATO.Common.Ctl.LabelSet_Torihikikbn();
             this.txtBikou0 = new KATO.Common.Ctl.BaseText();
-            this.txtKingaku0 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtShiharai0 = new KATO.Common.Ctl.BaseTextMoney();
             this.lblGoukeiName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGoukeiDisp = new KATO.Common.Ctl.BaseLabelGray();
-            this.lblBikou = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblKijitu = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblKingaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblKubunName = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblKubunCd = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtKijitsuYMD0 = new KATO.Common.Ctl.BaseCalendar();
-            this.lblSyukinKbn = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblShiharaiJoken = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBiko = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTegataYMD = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblShiharai = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblkbnName = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblCd = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtTegataYMD0 = new KATO.Common.Ctl.BaseCalendar();
+            this.lblShukunkbn = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblShiharaiJojen = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShiharaibi = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtSyukinKbn = new KATO.Common.Ctl.BaseText();
-            this.lblShiharaiGessuu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtShukunkbn = new KATO.Common.Ctl.BaseText();
+            this.lblShiharaiGessu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSimekiribi = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtShiharaiJoken = new KATO.Common.Ctl.BaseText();
+            this.txtShiharaiJojen = new KATO.Common.Ctl.BaseText();
             this.txtShiharaibi = new KATO.Common.Ctl.BaseText();
-            this.txtShiharaiGessuu = new KATO.Common.Ctl.BaseText();
+            this.txtShiharaiGessu = new KATO.Common.Ctl.BaseText();
             this.txtShimekiribi = new KATO.Common.Ctl.BaseText();
-            this.bgSiireJisseki = new System.Windows.Forms.GroupBox();
-            this.gridSiireJisseki = new KATO.Common.Ctl.BaseDataGridView();
-            this.lblSiireJisseki = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.gbShireJisseki = new System.Windows.Forms.GroupBox();
+            this.gridShireJisseki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtZeiHasuuKubun = new KATO.Common.Ctl.BaseText();
             this.lblZeiHasuuKubun = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblShukinkbnMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.radSet_chkListDataInput = new KATO.Common.Ctl.RadSet_2btn();
+            this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtDenpyoNo = new KATO.Common.Ctl.BaseTextMoney();
             this.gbSiharaiInput.SuspendLayout();
-            this.labelSet_TorihikiKbn9.SuspendLayout();
-            this.labelSet_TorihikiKbn8.SuspendLayout();
-            this.labelSet_TorihikiKbn7.SuspendLayout();
-            this.labelSet_TorihikiKbn6.SuspendLayout();
-            this.labelSet_TorihikiKbn5.SuspendLayout();
-            this.labelSet_TorihikiKbn4.SuspendLayout();
-            this.labelSet_TorihikiKbn3.SuspendLayout();
-            this.labelSet_TorihikiKbn2.SuspendLayout();
-            this.labelSet_TorihikiKbn1.SuspendLayout();
-            this.bgSiireJisseki.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).BeginInit();
+            this.labelSet_Torihikikbn9.SuspendLayout();
+            this.labelSet_Torihikikbn8.SuspendLayout();
+            this.labelSet_Torihikikbn7.SuspendLayout();
+            this.labelSet_Torihikikbn6.SuspendLayout();
+            this.labelSet_Torihikikbn5.SuspendLayout();
+            this.labelSet_Torihikikbn4.SuspendLayout();
+            this.labelSet_Torihikikbn3.SuspendLayout();
+            this.labelSet_Torihikikbn2.SuspendLayout();
+            this.labelSet_Torihikikbn1.SuspendLayout();
+            this.gbShireJisseki.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridShireJisseki)).BeginInit();
+            this.radSet_chkListDataInput.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 2;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -211,20 +219,18 @@
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 4;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabIndex = 3;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Tantousha
             // 
@@ -233,84 +239,71 @@
             this.labelSet_Tantousha.CodeTxtSize = 40;
             this.labelSet_Tantousha.CodeTxtText = "";
             this.labelSet_Tantousha.LabelName = "担当者コード";
-            this.labelSet_Tantousha.Location = new System.Drawing.Point(595, 44);
+            this.labelSet_Tantousha.Location = new System.Drawing.Point(663, 35);
             this.labelSet_Tantousha.Name = "labelSet_Tantousha";
             this.labelSet_Tantousha.ShowAppendFlg = false;
-            this.labelSet_Tantousha.Size = new System.Drawing.Size(281, 22);
+            this.labelSet_Tantousha.Size = new System.Drawing.Size(273, 22);
             this.labelSet_Tantousha.SpaceCodeValue = 4;
             this.labelSet_Tantousha.SpaceNameCode = 4;
             this.labelSet_Tantousha.SpaceValueAppend = 4;
-            this.labelSet_Tantousha.TabIndex = 3;
+            this.labelSet_Tantousha.TabIndex = 7;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
             // 
-            // labelSet_Siiresaki
+            // lblset_Siiresaki
             // 
-            this.labelSet_Siiresaki.AppendLabelSize = 40;
-            this.labelSet_Siiresaki.AppendLabelText = "";
-            this.labelSet_Siiresaki.CodeTxtSize = 40;
-            this.labelSet_Siiresaki.CodeTxtText = "";
-            this.labelSet_Siiresaki.LabelName = "仕入先コード";
-            this.labelSet_Siiresaki.Location = new System.Drawing.Point(199, 85);
-            this.labelSet_Siiresaki.Name = "labelSet_Siiresaki";
-            this.labelSet_Siiresaki.ShowAppendFlg = false;
-            this.labelSet_Siiresaki.Size = new System.Drawing.Size(508, 22);
-            this.labelSet_Siiresaki.SpaceCodeValue = 4;
-            this.labelSet_Siiresaki.SpaceNameCode = 4;
-            this.labelSet_Siiresaki.SpaceValueAppend = 4;
-            this.labelSet_Siiresaki.TabIndex = 4;
-            this.labelSet_Siiresaki.ValueLabelSize = 350;
-            this.labelSet_Siiresaki.ValueLabelText = "";
-            this.labelSet_Siiresaki.Leave += new System.EventHandler(this.labelSet_Siiresaki_Leave);
+            this.lblset_Siiresaki.AppendLabelSize = 0;
+            this.lblset_Siiresaki.AppendLabelText = "";
+            this.lblset_Siiresaki.CodeTxtSize = 40;
+            this.lblset_Siiresaki.CodeTxtText = "";
+            this.lblset_Siiresaki.LabelName = "仕入先コード";
+            this.lblset_Siiresaki.Location = new System.Drawing.Point(192, 72);
+            this.lblset_Siiresaki.Name = "lblset_Siiresaki";
+            this.lblset_Siiresaki.ShowAppendFlg = false;
+            this.lblset_Siiresaki.Size = new System.Drawing.Size(464, 22);
+            this.lblset_Siiresaki.SpaceCodeValue = 4;
+            this.lblset_Siiresaki.SpaceNameCode = 4;
+            this.lblset_Siiresaki.SpaceValueAppend = 4;
+            this.lblset_Siiresaki.TabIndex = 0;
+            this.lblset_Siiresaki.ValueLabelSize = 300;
+            this.lblset_Siiresaki.ValueLabelText = "";
+            this.lblset_Siiresaki.Leave += new System.EventHandler(this.labelSet_Siiresaki_Leave);
             // 
-            // txtDenpyoYMD
+            // txtYMD
             // 
-            this.txtDenpyoYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMD.Location = new System.Drawing.Point(295, 44);
-            this.txtDenpyoYMD.MaxLength = 10;
-            this.txtDenpyoYMD.Name = "txtDenpyoYMD";
-            this.txtDenpyoYMD.Size = new System.Drawing.Size(88, 22);
-            this.txtDenpyoYMD.TabIndex = 1;
-            this.txtDenpyoYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtDenpyoYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoYMDKeyDown);
-            this.txtDenpyoYMD.Leave += new System.EventHandler(this.updDenpyoYMDLeave);
+            this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtYMD.Location = new System.Drawing.Point(299, 35);
+            this.txtYMD.MaxLength = 10;
+            this.txtYMD.Name = "txtYMD";
+            this.txtYMD.Size = new System.Drawing.Size(87, 22);
+            this.txtYMD.TabIndex = 6;
+            this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoYMDKeyDown);
+            this.txtYMD.Leave += new System.EventHandler(this.updDenpyoYMDLeave);
             // 
-            // lblYM
+            // lblYMD
             // 
-            this.lblYM.AutoSize = true;
-            this.lblYM.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblYM.Location = new System.Drawing.Point(202, 46);
-            this.lblYM.Name = "lblYM";
-            this.lblYM.Size = new System.Drawing.Size(87, 15);
-            this.lblYM.strToolTip = null;
-            this.lblYM.TabIndex = 108;
-            this.lblYM.Text = "伝票年月日";
-            this.lblYM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblYMD.AutoSize = true;
+            this.lblYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblYMD.Location = new System.Drawing.Point(193, 38);
+            this.lblYMD.Name = "lblYMD";
+            this.lblYMD.Size = new System.Drawing.Size(87, 15);
+            this.lblYMD.strToolTip = null;
+            this.lblYMD.TabIndex = 108;
+            this.lblYMD.Text = "伝票年月日";
+            this.lblYMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel1
+            // lblDenpyoNo
             // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(401, 46);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(71, 15);
-            this.baseLabel1.strToolTip = null;
-            this.baseLabel1.TabIndex = 108;
-            this.baseLabel1.Text = "伝票番号";
-            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtDenpyoNo
-            // 
-            this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoNo.Location = new System.Drawing.Point(478, 44);
-            this.txtDenpyoNo.MaxLength = 8;
-            this.txtDenpyoNo.Name = "txtDenpyoNo";
-            this.txtDenpyoNo.Size = new System.Drawing.Size(78, 22);
-            this.txtDenpyoNo.TabIndex = 2;
-            this.txtDenpyoNo.TabStop = false;
-            this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
-            this.txtDenpyoNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDenpyoNoKeyPress);
-            this.txtDenpyoNo.Leave += new System.EventHandler(this.updDenpyoNoLeave);
+            this.lblDenpyoNo.AutoSize = true;
+            this.lblDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblDenpyoNo.Location = new System.Drawing.Point(449, 38);
+            this.lblDenpyoNo.Name = "lblDenpyoNo";
+            this.lblDenpyoNo.Size = new System.Drawing.Size(71, 15);
+            this.lblDenpyoNo.strToolTip = null;
+            this.lblDenpyoNo.TabIndex = 108;
+            this.lblDenpyoNo.Text = "伝票番号";
+            this.lblDenpyoNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_Eigyosho
             // 
@@ -319,10 +312,10 @@
             this.labelSet_Eigyosho.CodeTxtSize = 40;
             this.labelSet_Eigyosho.CodeTxtText = "";
             this.labelSet_Eigyosho.LabelName = "営業所コード";
-            this.labelSet_Eigyosho.Location = new System.Drawing.Point(901, 44);
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(985, 35);
             this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
             this.labelSet_Eigyosho.ShowAppendFlg = false;
-            this.labelSet_Eigyosho.Size = new System.Drawing.Size(235, 22);
+            this.labelSet_Eigyosho.Size = new System.Drawing.Size(149, 22);
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 4;
             this.labelSet_Eigyosho.SpaceValueAppend = 4;
@@ -333,87 +326,87 @@
             // 
             // gbSiharaiInput
             // 
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn9);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn9);
             this.gbSiharaiInput.Controls.Add(this.txtBikou9);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn8);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn8);
             this.gbSiharaiInput.Controls.Add(this.txtBikou8);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn7);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn7);
             this.gbSiharaiInput.Controls.Add(this.txtBikou7);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn6);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn6);
             this.gbSiharaiInput.Controls.Add(this.txtBikou6);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn5);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn5);
             this.gbSiharaiInput.Controls.Add(this.txtBikou5);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku9);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn4);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku8);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai9);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn4);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai8);
             this.gbSiharaiInput.Controls.Add(this.txtBikou4);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku7);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn3);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku6);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai7);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn3);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai6);
             this.gbSiharaiInput.Controls.Add(this.txtBikou3);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku5);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD9);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn2);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD8);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku4);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD7);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai5);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD9);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn2);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD8);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai4);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD7);
             this.gbSiharaiInput.Controls.Add(this.txtBikou2);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD6);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku3);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD5);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn1);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD4);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku2);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD3);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD6);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai3);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD5);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn1);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD4);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai2);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD3);
             this.gbSiharaiInput.Controls.Add(this.txtBikou1);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD2);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku1);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD1);
-            this.gbSiharaiInput.Controls.Add(this.labelSet_TorihikiKbn0);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD2);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai1);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD1);
+            this.gbSiharaiInput.Controls.Add(this.labelSet_Torihikikbn0);
             this.gbSiharaiInput.Controls.Add(this.txtBikou0);
-            this.gbSiharaiInput.Controls.Add(this.txtKingaku0);
+            this.gbSiharaiInput.Controls.Add(this.txtShiharai0);
             this.gbSiharaiInput.Controls.Add(this.lblGoukeiName);
             this.gbSiharaiInput.Controls.Add(this.lblGoukeiDisp);
-            this.gbSiharaiInput.Controls.Add(this.lblBikou);
-            this.gbSiharaiInput.Controls.Add(this.lblKijitu);
-            this.gbSiharaiInput.Controls.Add(this.lblKingaku);
-            this.gbSiharaiInput.Controls.Add(this.lblKubunName);
-            this.gbSiharaiInput.Controls.Add(this.lblKubunCd);
-            this.gbSiharaiInput.Controls.Add(this.txtKijitsuYMD0);
-            this.gbSiharaiInput.Location = new System.Drawing.Point(179, 206);
+            this.gbSiharaiInput.Controls.Add(this.lblBiko);
+            this.gbSiharaiInput.Controls.Add(this.lblTegataYMD);
+            this.gbSiharaiInput.Controls.Add(this.lblShiharai);
+            this.gbSiharaiInput.Controls.Add(this.lblkbnName);
+            this.gbSiharaiInput.Controls.Add(this.lblCd);
+            this.gbSiharaiInput.Controls.Add(this.txtTegataYMD0);
+            this.gbSiharaiInput.Location = new System.Drawing.Point(341, 105);
             this.gbSiharaiInput.Name = "gbSiharaiInput";
-            this.gbSiharaiInput.Size = new System.Drawing.Size(728, 389);
-            this.gbSiharaiInput.TabIndex = 10;
+            this.gbSiharaiInput.Size = new System.Drawing.Size(777, 376);
+            this.gbSiharaiInput.TabIndex = 1;
             this.gbSiharaiInput.TabStop = false;
             // 
-            // labelSet_TorihikiKbn9
+            // labelSet_Torihikikbn9
             // 
-            this.labelSet_TorihikiKbn9.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn9.AppendLabelText = "";
-            this.labelSet_TorihikiKbn9.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn9.CodeTxtText = "";
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel52);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel43);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel44);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel45);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel46);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel47);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel48);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel49);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel50);
-            this.labelSet_TorihikiKbn9.Controls.Add(this.baseLabel51);
-            this.labelSet_TorihikiKbn9.LabelName = "";
-            this.labelSet_TorihikiKbn9.Location = new System.Drawing.Point(36, 312);
-            this.labelSet_TorihikiKbn9.Name = "labelSet_TorihikiKbn9";
-            this.labelSet_TorihikiKbn9.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn9.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn9.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn9.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn9.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn9.TabIndex = 41;
-            this.labelSet_TorihikiKbn9.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn9.ValueLabelText = "";
-            this.labelSet_TorihikiKbn9.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn9.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn9.AppendLabelText = "";
+            this.labelSet_Torihikikbn9.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn9.CodeTxtText = "";
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel52);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel43);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel44);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel45);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel46);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel47);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel48);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel49);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel50);
+            this.labelSet_Torihikikbn9.Controls.Add(this.baseLabel51);
+            this.labelSet_Torihikikbn9.LabelName = "";
+            this.labelSet_Torihikikbn9.Location = new System.Drawing.Point(25, 298);
+            this.labelSet_Torihikikbn9.Name = "labelSet_Torihikikbn9";
+            this.labelSet_Torihikikbn9.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn9.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn9.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn9.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn9.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn9.TabIndex = 41;
+            this.labelSet_Torihikikbn9.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn9.ValueLabelText = "";
+            this.labelSet_Torihikikbn9.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel52
             // 
@@ -529,40 +522,41 @@
             // 
             this.txtBikou9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou9.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou9.Location = new System.Drawing.Point(498, 312);
+            this.txtBikou9.Location = new System.Drawing.Point(415, 298);
             this.txtBikou9.MaxLength = 40;
             this.txtBikou9.Name = "txtBikou9";
-            this.txtBikou9.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou9.Size = new System.Drawing.Size(330, 22);
             this.txtBikou9.TabIndex = 44;
             this.txtBikou9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn8
+            // labelSet_Torihikikbn8
             // 
-            this.labelSet_TorihikiKbn8.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn8.AppendLabelText = "";
-            this.labelSet_TorihikiKbn8.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn8.CodeTxtText = "";
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel42);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel34);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel35);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel36);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel37);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel38);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel39);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel40);
-            this.labelSet_TorihikiKbn8.Controls.Add(this.baseLabel41);
-            this.labelSet_TorihikiKbn8.LabelName = "";
-            this.labelSet_TorihikiKbn8.Location = new System.Drawing.Point(36, 284);
-            this.labelSet_TorihikiKbn8.Name = "labelSet_TorihikiKbn8";
-            this.labelSet_TorihikiKbn8.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn8.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn8.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn8.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn8.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn8.TabIndex = 37;
-            this.labelSet_TorihikiKbn8.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn8.ValueLabelText = "";
-            this.labelSet_TorihikiKbn8.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn8.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn8.AppendLabelText = "";
+            this.labelSet_Torihikikbn8.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn8.CodeTxtText = "";
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel42);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel34);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel35);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel36);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel37);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel38);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel39);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel40);
+            this.labelSet_Torihikikbn8.Controls.Add(this.baseLabel41);
+            this.labelSet_Torihikikbn8.LabelName = "";
+            this.labelSet_Torihikikbn8.Location = new System.Drawing.Point(25, 270);
+            this.labelSet_Torihikikbn8.Name = "labelSet_Torihikikbn8";
+            this.labelSet_Torihikikbn8.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn8.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn8.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn8.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn8.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn8.TabIndex = 37;
+            this.labelSet_Torihikikbn8.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn8.ValueLabelText = "";
+            this.labelSet_Torihikikbn8.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel42
             // 
@@ -667,39 +661,40 @@
             // 
             this.txtBikou8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou8.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou8.Location = new System.Drawing.Point(498, 284);
+            this.txtBikou8.Location = new System.Drawing.Point(415, 270);
             this.txtBikou8.MaxLength = 40;
             this.txtBikou8.Name = "txtBikou8";
-            this.txtBikou8.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou8.Size = new System.Drawing.Size(330, 22);
             this.txtBikou8.TabIndex = 40;
             this.txtBikou8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn7
+            // labelSet_Torihikikbn7
             // 
-            this.labelSet_TorihikiKbn7.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn7.AppendLabelText = "";
-            this.labelSet_TorihikiKbn7.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn7.CodeTxtText = "";
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel33);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel26);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel27);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel28);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel29);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel30);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel31);
-            this.labelSet_TorihikiKbn7.Controls.Add(this.baseLabel32);
-            this.labelSet_TorihikiKbn7.LabelName = "";
-            this.labelSet_TorihikiKbn7.Location = new System.Drawing.Point(36, 256);
-            this.labelSet_TorihikiKbn7.Name = "labelSet_TorihikiKbn7";
-            this.labelSet_TorihikiKbn7.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn7.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn7.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn7.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn7.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn7.TabIndex = 33;
-            this.labelSet_TorihikiKbn7.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn7.ValueLabelText = "";
-            this.labelSet_TorihikiKbn7.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn7.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn7.AppendLabelText = "";
+            this.labelSet_Torihikikbn7.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn7.CodeTxtText = "";
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel33);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel26);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel27);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel28);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel29);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel30);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel31);
+            this.labelSet_Torihikikbn7.Controls.Add(this.baseLabel32);
+            this.labelSet_Torihikikbn7.LabelName = "";
+            this.labelSet_Torihikikbn7.Location = new System.Drawing.Point(25, 242);
+            this.labelSet_Torihikikbn7.Name = "labelSet_Torihikikbn7";
+            this.labelSet_Torihikikbn7.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn7.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn7.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn7.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn7.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn7.TabIndex = 33;
+            this.labelSet_Torihikikbn7.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn7.ValueLabelText = "";
+            this.labelSet_Torihikikbn7.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel33
             // 
@@ -793,38 +788,39 @@
             // 
             this.txtBikou7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou7.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou7.Location = new System.Drawing.Point(498, 256);
+            this.txtBikou7.Location = new System.Drawing.Point(415, 242);
             this.txtBikou7.MaxLength = 40;
             this.txtBikou7.Name = "txtBikou7";
-            this.txtBikou7.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou7.Size = new System.Drawing.Size(330, 22);
             this.txtBikou7.TabIndex = 36;
             this.txtBikou7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn6
+            // labelSet_Torihikikbn6
             // 
-            this.labelSet_TorihikiKbn6.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn6.AppendLabelText = "";
-            this.labelSet_TorihikiKbn6.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn6.CodeTxtText = "";
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel25);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel19);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel20);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel21);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel22);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel23);
-            this.labelSet_TorihikiKbn6.Controls.Add(this.baseLabel24);
-            this.labelSet_TorihikiKbn6.LabelName = "";
-            this.labelSet_TorihikiKbn6.Location = new System.Drawing.Point(36, 228);
-            this.labelSet_TorihikiKbn6.Name = "labelSet_TorihikiKbn6";
-            this.labelSet_TorihikiKbn6.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn6.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn6.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn6.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn6.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn6.TabIndex = 29;
-            this.labelSet_TorihikiKbn6.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn6.ValueLabelText = "";
-            this.labelSet_TorihikiKbn6.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn6.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn6.AppendLabelText = "";
+            this.labelSet_Torihikikbn6.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn6.CodeTxtText = "";
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel25);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel19);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel20);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel21);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel22);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel23);
+            this.labelSet_Torihikikbn6.Controls.Add(this.baseLabel24);
+            this.labelSet_Torihikikbn6.LabelName = "";
+            this.labelSet_Torihikikbn6.Location = new System.Drawing.Point(25, 214);
+            this.labelSet_Torihikikbn6.Name = "labelSet_Torihikikbn6";
+            this.labelSet_Torihikikbn6.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn6.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn6.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn6.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn6.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn6.TabIndex = 29;
+            this.labelSet_Torihikikbn6.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn6.ValueLabelText = "";
+            this.labelSet_Torihikikbn6.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel25
             // 
@@ -907,37 +903,38 @@
             // 
             this.txtBikou6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou6.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou6.Location = new System.Drawing.Point(498, 228);
+            this.txtBikou6.Location = new System.Drawing.Point(415, 214);
             this.txtBikou6.MaxLength = 40;
             this.txtBikou6.Name = "txtBikou6";
-            this.txtBikou6.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou6.Size = new System.Drawing.Size(330, 22);
             this.txtBikou6.TabIndex = 32;
             this.txtBikou6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn5
+            // labelSet_Torihikikbn5
             // 
-            this.labelSet_TorihikiKbn5.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn5.AppendLabelText = "";
-            this.labelSet_TorihikiKbn5.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn5.CodeTxtText = "";
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel18);
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel13);
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel14);
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel15);
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel16);
-            this.labelSet_TorihikiKbn5.Controls.Add(this.baseLabel17);
-            this.labelSet_TorihikiKbn5.LabelName = "";
-            this.labelSet_TorihikiKbn5.Location = new System.Drawing.Point(36, 200);
-            this.labelSet_TorihikiKbn5.Name = "labelSet_TorihikiKbn5";
-            this.labelSet_TorihikiKbn5.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn5.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn5.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn5.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn5.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn5.TabIndex = 25;
-            this.labelSet_TorihikiKbn5.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn5.ValueLabelText = "";
-            this.labelSet_TorihikiKbn5.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn5.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn5.AppendLabelText = "";
+            this.labelSet_Torihikikbn5.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn5.CodeTxtText = "";
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel18);
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel13);
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel14);
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel15);
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel16);
+            this.labelSet_Torihikikbn5.Controls.Add(this.baseLabel17);
+            this.labelSet_Torihikikbn5.LabelName = "";
+            this.labelSet_Torihikikbn5.Location = new System.Drawing.Point(25, 186);
+            this.labelSet_Torihikikbn5.Name = "labelSet_Torihikikbn5";
+            this.labelSet_Torihikikbn5.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn5.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn5.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn5.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn5.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn5.TabIndex = 25;
+            this.labelSet_Torihikikbn5.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn5.ValueLabelText = "";
+            this.labelSet_Torihikikbn5.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel18
             // 
@@ -1009,53 +1006,55 @@
             // 
             this.txtBikou5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou5.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou5.Location = new System.Drawing.Point(498, 200);
+            this.txtBikou5.Location = new System.Drawing.Point(415, 186);
             this.txtBikou5.MaxLength = 40;
             this.txtBikou5.Name = "txtBikou5";
-            this.txtBikou5.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou5.Size = new System.Drawing.Size(330, 22);
             this.txtBikou5.TabIndex = 28;
             this.txtBikou5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku9
+            // txtShiharai9
             // 
-            this.txtKingaku9.blnCommaOK = true;
-            this.txtKingaku9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku9.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku9.intDeciSet = 0;
-            this.txtKingaku9.intIntederSet = 0;
-            this.txtKingaku9.intShishagonyu = 0;
-            this.txtKingaku9.Location = new System.Drawing.Point(242, 312);
-            this.txtKingaku9.MaxLength = 9;
-            this.txtKingaku9.Name = "txtKingaku9";
-            this.txtKingaku9.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku9.TabIndex = 42;
-            this.txtKingaku9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku9.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai9.blnCommaOK = true;
+            this.txtShiharai9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai9.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai9.intDeciSet = 0;
+            this.txtShiharai9.intIntederSet = 0;
+            this.txtShiharai9.intShishagonyu = 0;
+            this.txtShiharai9.Location = new System.Drawing.Point(230, 298);
+            this.txtShiharai9.MaxLength = 8;
+            this.txtShiharai9.Name = "txtShiharai9";
+            this.txtShiharai9.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai9.TabIndex = 42;
+            this.txtShiharai9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai9.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // labelSet_TorihikiKbn4
+            // labelSet_Torihikikbn4
             // 
-            this.labelSet_TorihikiKbn4.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn4.AppendLabelText = "";
-            this.labelSet_TorihikiKbn4.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn4.CodeTxtText = "";
-            this.labelSet_TorihikiKbn4.Controls.Add(this.baseLabel12);
-            this.labelSet_TorihikiKbn4.Controls.Add(this.baseLabel8);
-            this.labelSet_TorihikiKbn4.Controls.Add(this.baseLabel9);
-            this.labelSet_TorihikiKbn4.Controls.Add(this.baseLabel10);
-            this.labelSet_TorihikiKbn4.Controls.Add(this.baseLabel11);
-            this.labelSet_TorihikiKbn4.LabelName = "";
-            this.labelSet_TorihikiKbn4.Location = new System.Drawing.Point(36, 172);
-            this.labelSet_TorihikiKbn4.Name = "labelSet_TorihikiKbn4";
-            this.labelSet_TorihikiKbn4.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn4.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn4.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn4.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn4.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn4.TabIndex = 21;
-            this.labelSet_TorihikiKbn4.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn4.ValueLabelText = "";
-            this.labelSet_TorihikiKbn4.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn4.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn4.AppendLabelText = "";
+            this.labelSet_Torihikikbn4.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn4.CodeTxtText = "";
+            this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel12);
+            this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel8);
+            this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel9);
+            this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel10);
+            this.labelSet_Torihikikbn4.Controls.Add(this.baseLabel11);
+            this.labelSet_Torihikikbn4.LabelName = "";
+            this.labelSet_Torihikikbn4.Location = new System.Drawing.Point(25, 158);
+            this.labelSet_Torihikikbn4.Name = "labelSet_Torihikikbn4";
+            this.labelSet_Torihikikbn4.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn4.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn4.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn4.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn4.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn4.TabIndex = 21;
+            this.labelSet_Torihikikbn4.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn4.ValueLabelText = "";
+            this.labelSet_Torihikikbn4.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel12
             // 
@@ -1112,73 +1111,76 @@
             this.baseLabel11.TabIndex = 0;
             this.baseLabel11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtKingaku8
+            // txtShiharai8
             // 
-            this.txtKingaku8.blnCommaOK = true;
-            this.txtKingaku8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku8.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku8.intDeciSet = 0;
-            this.txtKingaku8.intIntederSet = 0;
-            this.txtKingaku8.intShishagonyu = 0;
-            this.txtKingaku8.Location = new System.Drawing.Point(242, 284);
-            this.txtKingaku8.MaxLength = 9;
-            this.txtKingaku8.Name = "txtKingaku8";
-            this.txtKingaku8.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku8.TabIndex = 38;
-            this.txtKingaku8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku8.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai8.blnCommaOK = true;
+            this.txtShiharai8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai8.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai8.intDeciSet = 0;
+            this.txtShiharai8.intIntederSet = 0;
+            this.txtShiharai8.intShishagonyu = 0;
+            this.txtShiharai8.Location = new System.Drawing.Point(230, 270);
+            this.txtShiharai8.MaxLength = 8;
+            this.txtShiharai8.Name = "txtShiharai8";
+            this.txtShiharai8.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai8.TabIndex = 38;
+            this.txtShiharai8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai8.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
             // txtBikou4
             // 
             this.txtBikou4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou4.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou4.Location = new System.Drawing.Point(498, 172);
+            this.txtBikou4.Location = new System.Drawing.Point(415, 158);
             this.txtBikou4.MaxLength = 40;
             this.txtBikou4.Name = "txtBikou4";
-            this.txtBikou4.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou4.Size = new System.Drawing.Size(330, 22);
             this.txtBikou4.TabIndex = 24;
             this.txtBikou4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku7
+            // txtShiharai7
             // 
-            this.txtKingaku7.blnCommaOK = true;
-            this.txtKingaku7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku7.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku7.intDeciSet = 0;
-            this.txtKingaku7.intIntederSet = 0;
-            this.txtKingaku7.intShishagonyu = 0;
-            this.txtKingaku7.Location = new System.Drawing.Point(242, 256);
-            this.txtKingaku7.MaxLength = 9;
-            this.txtKingaku7.Name = "txtKingaku7";
-            this.txtKingaku7.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku7.TabIndex = 34;
-            this.txtKingaku7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku7.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai7.blnCommaOK = true;
+            this.txtShiharai7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai7.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai7.intDeciSet = 0;
+            this.txtShiharai7.intIntederSet = 0;
+            this.txtShiharai7.intShishagonyu = 0;
+            this.txtShiharai7.Location = new System.Drawing.Point(230, 242);
+            this.txtShiharai7.MaxLength = 8;
+            this.txtShiharai7.Name = "txtShiharai7";
+            this.txtShiharai7.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai7.TabIndex = 34;
+            this.txtShiharai7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai7.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // labelSet_TorihikiKbn3
+            // labelSet_Torihikikbn3
             // 
-            this.labelSet_TorihikiKbn3.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn3.AppendLabelText = "";
-            this.labelSet_TorihikiKbn3.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn3.CodeTxtText = "";
-            this.labelSet_TorihikiKbn3.Controls.Add(this.baseLabel7);
-            this.labelSet_TorihikiKbn3.Controls.Add(this.baseLabel4);
-            this.labelSet_TorihikiKbn3.Controls.Add(this.baseLabel5);
-            this.labelSet_TorihikiKbn3.Controls.Add(this.baseLabel6);
-            this.labelSet_TorihikiKbn3.LabelName = "";
-            this.labelSet_TorihikiKbn3.Location = new System.Drawing.Point(36, 144);
-            this.labelSet_TorihikiKbn3.Name = "labelSet_TorihikiKbn3";
-            this.labelSet_TorihikiKbn3.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn3.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn3.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn3.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn3.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn3.TabIndex = 17;
-            this.labelSet_TorihikiKbn3.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn3.ValueLabelText = "";
-            this.labelSet_TorihikiKbn3.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn3.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn3.AppendLabelText = "";
+            this.labelSet_Torihikikbn3.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn3.CodeTxtText = "";
+            this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel7);
+            this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel4);
+            this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel5);
+            this.labelSet_Torihikikbn3.Controls.Add(this.baseLabel6);
+            this.labelSet_Torihikikbn3.LabelName = "";
+            this.labelSet_Torihikikbn3.Location = new System.Drawing.Point(25, 130);
+            this.labelSet_Torihikikbn3.Name = "labelSet_Torihikikbn3";
+            this.labelSet_Torihikikbn3.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn3.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn3.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn3.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn3.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn3.TabIndex = 17;
+            this.labelSet_Torihikikbn3.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn3.ValueLabelText = "";
+            this.labelSet_Torihikikbn3.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel7
             // 
@@ -1224,82 +1226,86 @@
             this.baseLabel6.TabIndex = 0;
             this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtKingaku6
+            // txtShiharai6
             // 
-            this.txtKingaku6.blnCommaOK = true;
-            this.txtKingaku6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku6.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku6.intDeciSet = 0;
-            this.txtKingaku6.intIntederSet = 0;
-            this.txtKingaku6.intShishagonyu = 0;
-            this.txtKingaku6.Location = new System.Drawing.Point(242, 228);
-            this.txtKingaku6.MaxLength = 9;
-            this.txtKingaku6.Name = "txtKingaku6";
-            this.txtKingaku6.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku6.TabIndex = 30;
-            this.txtKingaku6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku6.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai6.blnCommaOK = true;
+            this.txtShiharai6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai6.intDeciSet = 0;
+            this.txtShiharai6.intIntederSet = 0;
+            this.txtShiharai6.intShishagonyu = 0;
+            this.txtShiharai6.Location = new System.Drawing.Point(230, 214);
+            this.txtShiharai6.MaxLength = 8;
+            this.txtShiharai6.Name = "txtShiharai6";
+            this.txtShiharai6.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai6.TabIndex = 30;
+            this.txtShiharai6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai6.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
             // txtBikou3
             // 
             this.txtBikou3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou3.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou3.Location = new System.Drawing.Point(498, 144);
+            this.txtBikou3.Location = new System.Drawing.Point(415, 130);
             this.txtBikou3.MaxLength = 40;
             this.txtBikou3.Name = "txtBikou3";
-            this.txtBikou3.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou3.Size = new System.Drawing.Size(330, 22);
             this.txtBikou3.TabIndex = 20;
             this.txtBikou3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku5
+            // txtShiharai5
             // 
-            this.txtKingaku5.blnCommaOK = true;
-            this.txtKingaku5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku5.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku5.intDeciSet = 0;
-            this.txtKingaku5.intIntederSet = 0;
-            this.txtKingaku5.intShishagonyu = 0;
-            this.txtKingaku5.Location = new System.Drawing.Point(242, 200);
-            this.txtKingaku5.MaxLength = 9;
-            this.txtKingaku5.Name = "txtKingaku5";
-            this.txtKingaku5.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku5.TabIndex = 26;
-            this.txtKingaku5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku5.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai5.blnCommaOK = true;
+            this.txtShiharai5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai5.intDeciSet = 0;
+            this.txtShiharai5.intIntederSet = 0;
+            this.txtShiharai5.intShishagonyu = 0;
+            this.txtShiharai5.Location = new System.Drawing.Point(230, 186);
+            this.txtShiharai5.MaxLength = 8;
+            this.txtShiharai5.Name = "txtShiharai5";
+            this.txtShiharai5.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai5.TabIndex = 26;
+            this.txtShiharai5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai5.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // txtKijitsuYMD9
+            // txtTegataYMD9
             // 
-            this.txtKijitsuYMD9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD9.Location = new System.Drawing.Point(372, 312);
-            this.txtKijitsuYMD9.MaxLength = 10;
-            this.txtKijitsuYMD9.Name = "txtKijitsuYMD9";
-            this.txtKijitsuYMD9.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD9.TabIndex = 43;
-            this.txtKijitsuYMD9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD9.Location = new System.Drawing.Point(320, 298);
+            this.txtTegataYMD9.MaxLength = 10;
+            this.txtTegataYMD9.Name = "txtTegataYMD9";
+            this.txtTegataYMD9.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD9.TabIndex = 43;
+            this.txtTegataYMD9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn2
+            // labelSet_Torihikikbn2
             // 
-            this.labelSet_TorihikiKbn2.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn2.AppendLabelText = "";
-            this.labelSet_TorihikiKbn2.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn2.CodeTxtText = "";
-            this.labelSet_TorihikiKbn2.Controls.Add(this.baseLabel3);
-            this.labelSet_TorihikiKbn2.Controls.Add(this.object_c9ff61bc_8795_4818_9a65_e12dd8ec5c54);
-            this.labelSet_TorihikiKbn2.Controls.Add(this.baseLabel2);
-            this.labelSet_TorihikiKbn2.LabelName = "";
-            this.labelSet_TorihikiKbn2.Location = new System.Drawing.Point(36, 116);
-            this.labelSet_TorihikiKbn2.Name = "labelSet_TorihikiKbn2";
-            this.labelSet_TorihikiKbn2.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn2.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn2.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn2.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn2.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn2.TabIndex = 13;
-            this.labelSet_TorihikiKbn2.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn2.ValueLabelText = "";
-            this.labelSet_TorihikiKbn2.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn2.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn2.AppendLabelText = "";
+            this.labelSet_Torihikikbn2.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn2.CodeTxtText = "";
+            this.labelSet_Torihikikbn2.Controls.Add(this.baseLabel3);
+            this.labelSet_Torihikikbn2.Controls.Add(this.object_c9ff61bc_8795_4818_9a65_e12dd8ec5c54);
+            this.labelSet_Torihikikbn2.Controls.Add(this.baseLabel2);
+            this.labelSet_Torihikikbn2.LabelName = "";
+            this.labelSet_Torihikikbn2.Location = new System.Drawing.Point(25, 102);
+            this.labelSet_Torihikikbn2.Name = "labelSet_Torihikikbn2";
+            this.labelSet_Torihikikbn2.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn2.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn2.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn2.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn2.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn2.TabIndex = 13;
+            this.labelSet_Torihikikbn2.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn2.ValueLabelText = "";
+            this.labelSet_Torihikikbn2.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel3
             // 
@@ -1334,110 +1340,117 @@
             this.baseLabel2.TabIndex = 0;
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtKijitsuYMD8
+            // txtTegataYMD8
             // 
-            this.txtKijitsuYMD8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD8.Location = new System.Drawing.Point(372, 284);
-            this.txtKijitsuYMD8.MaxLength = 10;
-            this.txtKijitsuYMD8.Name = "txtKijitsuYMD8";
-            this.txtKijitsuYMD8.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD8.TabIndex = 39;
-            this.txtKijitsuYMD8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD8.Location = new System.Drawing.Point(320, 270);
+            this.txtTegataYMD8.MaxLength = 10;
+            this.txtTegataYMD8.Name = "txtTegataYMD8";
+            this.txtTegataYMD8.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD8.TabIndex = 39;
+            this.txtTegataYMD8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku4
+            // txtShiharai4
             // 
-            this.txtKingaku4.blnCommaOK = true;
-            this.txtKingaku4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku4.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku4.intDeciSet = 0;
-            this.txtKingaku4.intIntederSet = 0;
-            this.txtKingaku4.intShishagonyu = 0;
-            this.txtKingaku4.Location = new System.Drawing.Point(242, 172);
-            this.txtKingaku4.MaxLength = 9;
-            this.txtKingaku4.Name = "txtKingaku4";
-            this.txtKingaku4.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku4.TabIndex = 22;
-            this.txtKingaku4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku4.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai4.blnCommaOK = true;
+            this.txtShiharai4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai4.intDeciSet = 0;
+            this.txtShiharai4.intIntederSet = 0;
+            this.txtShiharai4.intShishagonyu = 0;
+            this.txtShiharai4.Location = new System.Drawing.Point(230, 158);
+            this.txtShiharai4.MaxLength = 8;
+            this.txtShiharai4.Name = "txtShiharai4";
+            this.txtShiharai4.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai4.TabIndex = 22;
+            this.txtShiharai4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai4.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // txtKijitsuYMD7
+            // txtTegataYMD7
             // 
-            this.txtKijitsuYMD7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD7.Location = new System.Drawing.Point(372, 256);
-            this.txtKijitsuYMD7.MaxLength = 10;
-            this.txtKijitsuYMD7.Name = "txtKijitsuYMD7";
-            this.txtKijitsuYMD7.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD7.TabIndex = 35;
-            this.txtKijitsuYMD7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD7.Location = new System.Drawing.Point(320, 242);
+            this.txtTegataYMD7.MaxLength = 10;
+            this.txtTegataYMD7.Name = "txtTegataYMD7";
+            this.txtTegataYMD7.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD7.TabIndex = 35;
+            this.txtTegataYMD7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
             // txtBikou2
             // 
             this.txtBikou2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou2.Location = new System.Drawing.Point(498, 116);
+            this.txtBikou2.Location = new System.Drawing.Point(415, 102);
             this.txtBikou2.MaxLength = 40;
             this.txtBikou2.Name = "txtBikou2";
-            this.txtBikou2.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou2.Size = new System.Drawing.Size(330, 22);
             this.txtBikou2.TabIndex = 16;
             this.txtBikou2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKijitsuYMD6
+            // txtTegataYMD6
             // 
-            this.txtKijitsuYMD6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD6.Location = new System.Drawing.Point(372, 228);
-            this.txtKijitsuYMD6.MaxLength = 10;
-            this.txtKijitsuYMD6.Name = "txtKijitsuYMD6";
-            this.txtKijitsuYMD6.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD6.TabIndex = 31;
-            this.txtKijitsuYMD6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD6.Location = new System.Drawing.Point(320, 214);
+            this.txtTegataYMD6.MaxLength = 10;
+            this.txtTegataYMD6.Name = "txtTegataYMD6";
+            this.txtTegataYMD6.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD6.TabIndex = 31;
+            this.txtTegataYMD6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku3
+            // txtShiharai3
             // 
-            this.txtKingaku3.blnCommaOK = true;
-            this.txtKingaku3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku3.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku3.intDeciSet = 0;
-            this.txtKingaku3.intIntederSet = 0;
-            this.txtKingaku3.intShishagonyu = 0;
-            this.txtKingaku3.Location = new System.Drawing.Point(242, 144);
-            this.txtKingaku3.MaxLength = 9;
-            this.txtKingaku3.Name = "txtKingaku3";
-            this.txtKingaku3.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku3.TabIndex = 18;
-            this.txtKingaku3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku3.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai3.blnCommaOK = true;
+            this.txtShiharai3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai3.intDeciSet = 0;
+            this.txtShiharai3.intIntederSet = 0;
+            this.txtShiharai3.intShishagonyu = 0;
+            this.txtShiharai3.Location = new System.Drawing.Point(230, 130);
+            this.txtShiharai3.MaxLength = 8;
+            this.txtShiharai3.Name = "txtShiharai3";
+            this.txtShiharai3.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai3.TabIndex = 18;
+            this.txtShiharai3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai3.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // txtKijitsuYMD5
+            // txtTegataYMD5
             // 
-            this.txtKijitsuYMD5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD5.Location = new System.Drawing.Point(372, 200);
-            this.txtKijitsuYMD5.MaxLength = 10;
-            this.txtKijitsuYMD5.Name = "txtKijitsuYMD5";
-            this.txtKijitsuYMD5.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD5.TabIndex = 27;
-            this.txtKijitsuYMD5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD5.Location = new System.Drawing.Point(320, 186);
+            this.txtTegataYMD5.MaxLength = 10;
+            this.txtTegataYMD5.Name = "txtTegataYMD5";
+            this.txtTegataYMD5.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD5.TabIndex = 27;
+            this.txtTegataYMD5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn1
+            // labelSet_Torihikikbn1
             // 
-            this.labelSet_TorihikiKbn1.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn1.AppendLabelText = "";
-            this.labelSet_TorihikiKbn1.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn1.CodeTxtText = "";
-            this.labelSet_TorihikiKbn1.Controls.Add(this.nameLabel);
-            this.labelSet_TorihikiKbn1.LabelName = "";
-            this.labelSet_TorihikiKbn1.Location = new System.Drawing.Point(36, 88);
-            this.labelSet_TorihikiKbn1.Name = "labelSet_TorihikiKbn1";
-            this.labelSet_TorihikiKbn1.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn1.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn1.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn1.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn1.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn1.TabIndex = 9;
-            this.labelSet_TorihikiKbn1.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn1.ValueLabelText = "";
-            this.labelSet_TorihikiKbn1.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn1.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn1.AppendLabelText = "";
+            this.labelSet_Torihikikbn1.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn1.CodeTxtText = "";
+            this.labelSet_Torihikikbn1.Controls.Add(this.nameLabel);
+            this.labelSet_Torihikikbn1.LabelName = "";
+            this.labelSet_Torihikikbn1.Location = new System.Drawing.Point(25, 74);
+            this.labelSet_Torihikikbn1.Name = "labelSet_Torihikikbn1";
+            this.labelSet_Torihikikbn1.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn1.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn1.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn1.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn1.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn1.TabIndex = 9;
+            this.labelSet_Torihikikbn1.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn1.ValueLabelText = "";
+            this.labelSet_Torihikikbn1.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // nameLabel
             // 
@@ -1450,143 +1463,152 @@
             this.nameLabel.TabIndex = 0;
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtKijitsuYMD4
+            // txtTegataYMD4
             // 
-            this.txtKijitsuYMD4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD4.Location = new System.Drawing.Point(372, 172);
-            this.txtKijitsuYMD4.MaxLength = 10;
-            this.txtKijitsuYMD4.Name = "txtKijitsuYMD4";
-            this.txtKijitsuYMD4.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD4.TabIndex = 23;
-            this.txtKijitsuYMD4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD4.Location = new System.Drawing.Point(320, 158);
+            this.txtTegataYMD4.MaxLength = 10;
+            this.txtTegataYMD4.Name = "txtTegataYMD4";
+            this.txtTegataYMD4.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD4.TabIndex = 23;
+            this.txtTegataYMD4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku2
+            // txtShiharai2
             // 
-            this.txtKingaku2.blnCommaOK = true;
-            this.txtKingaku2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku2.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku2.intDeciSet = 0;
-            this.txtKingaku2.intIntederSet = 0;
-            this.txtKingaku2.intShishagonyu = 0;
-            this.txtKingaku2.Location = new System.Drawing.Point(242, 116);
-            this.txtKingaku2.MaxLength = 9;
-            this.txtKingaku2.Name = "txtKingaku2";
-            this.txtKingaku2.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku2.TabIndex = 14;
-            this.txtKingaku2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku2.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai2.blnCommaOK = true;
+            this.txtShiharai2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai2.intDeciSet = 0;
+            this.txtShiharai2.intIntederSet = 0;
+            this.txtShiharai2.intShishagonyu = 0;
+            this.txtShiharai2.Location = new System.Drawing.Point(230, 102);
+            this.txtShiharai2.MaxLength = 8;
+            this.txtShiharai2.Name = "txtShiharai2";
+            this.txtShiharai2.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai2.TabIndex = 14;
+            this.txtShiharai2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai2.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // txtKijitsuYMD3
+            // txtTegataYMD3
             // 
-            this.txtKijitsuYMD3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD3.Location = new System.Drawing.Point(372, 144);
-            this.txtKijitsuYMD3.MaxLength = 10;
-            this.txtKijitsuYMD3.Name = "txtKijitsuYMD3";
-            this.txtKijitsuYMD3.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD3.TabIndex = 19;
-            this.txtKijitsuYMD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD3.Location = new System.Drawing.Point(320, 130);
+            this.txtTegataYMD3.MaxLength = 10;
+            this.txtTegataYMD3.Name = "txtTegataYMD3";
+            this.txtTegataYMD3.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD3.TabIndex = 19;
+            this.txtTegataYMD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
             // txtBikou1
             // 
             this.txtBikou1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou1.Location = new System.Drawing.Point(498, 88);
+            this.txtBikou1.Location = new System.Drawing.Point(415, 74);
             this.txtBikou1.MaxLength = 40;
             this.txtBikou1.Name = "txtBikou1";
-            this.txtBikou1.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou1.Size = new System.Drawing.Size(330, 22);
             this.txtBikou1.TabIndex = 12;
             this.txtBikou1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKijitsuYMD2
+            // txtTegataYMD2
             // 
-            this.txtKijitsuYMD2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD2.Location = new System.Drawing.Point(372, 116);
-            this.txtKijitsuYMD2.MaxLength = 10;
-            this.txtKijitsuYMD2.Name = "txtKijitsuYMD2";
-            this.txtKijitsuYMD2.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD2.TabIndex = 15;
-            this.txtKijitsuYMD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD2.Location = new System.Drawing.Point(320, 102);
+            this.txtTegataYMD2.MaxLength = 10;
+            this.txtTegataYMD2.Name = "txtTegataYMD2";
+            this.txtTegataYMD2.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD2.TabIndex = 15;
+            this.txtTegataYMD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku1
+            // txtShiharai1
             // 
-            this.txtKingaku1.blnCommaOK = true;
-            this.txtKingaku1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku1.intDeciSet = 0;
-            this.txtKingaku1.intIntederSet = 0;
-            this.txtKingaku1.intShishagonyu = 0;
-            this.txtKingaku1.Location = new System.Drawing.Point(242, 88);
-            this.txtKingaku1.MaxLength = 9;
-            this.txtKingaku1.Name = "txtKingaku1";
-            this.txtKingaku1.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku1.TabIndex = 10;
-            this.txtKingaku1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku1.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai1.blnCommaOK = true;
+            this.txtShiharai1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai1.intDeciSet = 0;
+            this.txtShiharai1.intIntederSet = 0;
+            this.txtShiharai1.intShishagonyu = 0;
+            this.txtShiharai1.Location = new System.Drawing.Point(230, 74);
+            this.txtShiharai1.MaxLength = 8;
+            this.txtShiharai1.Name = "txtShiharai1";
+            this.txtShiharai1.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai1.TabIndex = 10;
+            this.txtShiharai1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai1.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
-            // txtKijitsuYMD1
+            // txtTegataYMD1
             // 
-            this.txtKijitsuYMD1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD1.Location = new System.Drawing.Point(372, 88);
-            this.txtKijitsuYMD1.MaxLength = 10;
-            this.txtKijitsuYMD1.Name = "txtKijitsuYMD1";
-            this.txtKijitsuYMD1.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD1.TabIndex = 11;
-            this.txtKijitsuYMD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD1.Location = new System.Drawing.Point(320, 74);
+            this.txtTegataYMD1.MaxLength = 10;
+            this.txtTegataYMD1.Name = "txtTegataYMD1";
+            this.txtTegataYMD1.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD1.TabIndex = 11;
+            this.txtTegataYMD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // labelSet_TorihikiKbn0
+            // labelSet_Torihikikbn0
             // 
-            this.labelSet_TorihikiKbn0.AppendLabelSize = 40;
-            this.labelSet_TorihikiKbn0.AppendLabelText = "";
-            this.labelSet_TorihikiKbn0.CodeTxtSize = 40;
-            this.labelSet_TorihikiKbn0.CodeTxtText = "";
-            this.labelSet_TorihikiKbn0.LabelName = "";
-            this.labelSet_TorihikiKbn0.Location = new System.Drawing.Point(36, 60);
-            this.labelSet_TorihikiKbn0.Name = "labelSet_TorihikiKbn0";
-            this.labelSet_TorihikiKbn0.ShowAppendFlg = false;
-            this.labelSet_TorihikiKbn0.Size = new System.Drawing.Size(176, 22);
-            this.labelSet_TorihikiKbn0.SpaceCodeValue = 4;
-            this.labelSet_TorihikiKbn0.SpaceNameCode = 4;
-            this.labelSet_TorihikiKbn0.SpaceValueAppend = 4;
-            this.labelSet_TorihikiKbn0.TabIndex = 5;
-            this.labelSet_TorihikiKbn0.ValueLabelSize = 350;
-            this.labelSet_TorihikiKbn0.ValueLabelText = "";
-            this.labelSet_TorihikiKbn0.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
+            this.labelSet_Torihikikbn0.AppendLabelSize = 40;
+            this.labelSet_Torihikikbn0.AppendLabelText = "";
+            this.labelSet_Torihikikbn0.CodeTxtSize = 22;
+            this.labelSet_Torihikikbn0.CodeTxtText = "";
+            this.labelSet_Torihikikbn0.LabelName = "";
+            this.labelSet_Torihikikbn0.Location = new System.Drawing.Point(25, 46);
+            this.labelSet_Torihikikbn0.Name = "labelSet_Torihikikbn0";
+            this.labelSet_Torihikikbn0.ShowAppendFlg = false;
+            this.labelSet_Torihikikbn0.Size = new System.Drawing.Size(200, 22);
+            this.labelSet_Torihikikbn0.SpaceCodeValue = 4;
+            this.labelSet_Torihikikbn0.SpaceNameCode = 4;
+            this.labelSet_Torihikikbn0.SpaceValueAppend = 4;
+            this.labelSet_Torihikikbn0.TabIndex = 5;
+            this.labelSet_Torihikikbn0.ValueLabelSize = 170;
+            this.labelSet_Torihikikbn0.ValueLabelText = "";
+            this.labelSet_Torihikikbn0.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // txtBikou0
             // 
             this.txtBikou0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikou0.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBikou0.Location = new System.Drawing.Point(498, 60);
+            this.txtBikou0.Location = new System.Drawing.Point(415, 46);
             this.txtBikou0.MaxLength = 40;
             this.txtBikou0.Name = "txtBikou0";
-            this.txtBikou0.Size = new System.Drawing.Size(189, 22);
+            this.txtBikou0.Size = new System.Drawing.Size(330, 22);
             this.txtBikou0.TabIndex = 8;
             this.txtBikou0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
+            this.txtBikou0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // txtKingaku0
+            // txtShiharai0
             // 
-            this.txtKingaku0.blnCommaOK = true;
-            this.txtKingaku0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku0.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKingaku0.intDeciSet = 0;
-            this.txtKingaku0.intIntederSet = 0;
-            this.txtKingaku0.intShishagonyu = 0;
-            this.txtKingaku0.Location = new System.Drawing.Point(242, 60);
-            this.txtKingaku0.MaxLength = 9;
-            this.txtKingaku0.Name = "txtKingaku0";
-            this.txtKingaku0.Size = new System.Drawing.Size(100, 22);
-            this.txtKingaku0.TabIndex = 6;
-            this.txtKingaku0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKingaku0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKingakuKeyDown);
-            this.txtKingaku0.Leave += new System.EventHandler(this.updKingakuLeave);
+            this.txtShiharai0.blnCommaOK = true;
+            this.txtShiharai0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharai0.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtShiharai0.intDeciSet = 0;
+            this.txtShiharai0.intIntederSet = 0;
+            this.txtShiharai0.intShishagonyu = 0;
+            this.txtShiharai0.Location = new System.Drawing.Point(230, 46);
+            this.txtShiharai0.MaxLength = 8;
+            this.txtShiharai0.Name = "txtShiharai0";
+            this.txtShiharai0.Size = new System.Drawing.Size(85, 22);
+            this.txtShiharai0.TabIndex = 6;
+            this.txtShiharai0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharai0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
+            this.txtShiharai0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
+            this.txtShiharai0.Leave += new System.EventHandler(this.updKingakuLeave);
             // 
             // lblGoukeiName
             // 
             this.lblGoukeiName.AutoSize = true;
             this.lblGoukeiName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGoukeiName.Location = new System.Drawing.Point(121, 353);
+            this.lblGoukeiName.Location = new System.Drawing.Point(168, 340);
             this.lblGoukeiName.Name = "lblGoukeiName";
             this.lblGoukeiName.Size = new System.Drawing.Size(55, 15);
             this.lblGoukeiName.strToolTip = null;
@@ -1597,117 +1619,117 @@
             // lblGoukeiDisp
             // 
             this.lblGoukeiDisp.AutoEllipsis = true;
-            this.lblGoukeiDisp.AutoSize = true;
             this.lblGoukeiDisp.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGoukeiDisp.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGoukeiDisp.ForeColor = System.Drawing.Color.Blue;
-            this.lblGoukeiDisp.Location = new System.Drawing.Point(232, 353);
-            this.lblGoukeiDisp.MinimumSize = new System.Drawing.Size(110, 0);
+            this.lblGoukeiDisp.Location = new System.Drawing.Point(229, 336);
             this.lblGoukeiDisp.Name = "lblGoukeiDisp";
             this.lblGoukeiDisp.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblGoukeiDisp.Size = new System.Drawing.Size(110, 15);
+            this.lblGoukeiDisp.Size = new System.Drawing.Size(181, 23);
             this.lblGoukeiDisp.TabIndex = 99;
+            this.lblGoukeiDisp.Text = " ";
             this.lblGoukeiDisp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblBikou
+            // lblBiko
             // 
-            this.lblBikou.AutoSize = true;
-            this.lblBikou.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblBikou.Location = new System.Drawing.Point(548, 29);
-            this.lblBikou.Name = "lblBikou";
-            this.lblBikou.Size = new System.Drawing.Size(71, 15);
-            this.lblBikou.strToolTip = null;
-            this.lblBikou.TabIndex = 5;
-            this.lblBikou.Text = "備　　考";
-            this.lblBikou.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBiko.AutoSize = true;
+            this.lblBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBiko.Location = new System.Drawing.Point(542, 18);
+            this.lblBiko.Name = "lblBiko";
+            this.lblBiko.Size = new System.Drawing.Size(71, 15);
+            this.lblBiko.strToolTip = null;
+            this.lblBiko.TabIndex = 5;
+            this.lblBiko.Text = "備　　考";
+            this.lblBiko.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblKijitu
+            // lblTegataYMD
             // 
-            this.lblKijitu.AutoSize = true;
-            this.lblKijitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKijitu.Location = new System.Drawing.Point(385, 29);
-            this.lblKijitu.Name = "lblKijitu";
-            this.lblKijitu.Size = new System.Drawing.Size(71, 15);
-            this.lblKijitu.strToolTip = null;
-            this.lblKijitu.TabIndex = 4;
-            this.lblKijitu.Text = "手形期日";
-            this.lblKijitu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTegataYMD.AutoSize = true;
+            this.lblTegataYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTegataYMD.Location = new System.Drawing.Point(331, 18);
+            this.lblTegataYMD.Name = "lblTegataYMD";
+            this.lblTegataYMD.Size = new System.Drawing.Size(71, 15);
+            this.lblTegataYMD.strToolTip = null;
+            this.lblTegataYMD.TabIndex = 4;
+            this.lblTegataYMD.Text = "手形期日";
+            this.lblTegataYMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblKingaku
+            // lblShiharai
             // 
-            this.lblKingaku.AutoSize = true;
-            this.lblKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKingaku.Location = new System.Drawing.Point(259, 29);
-            this.lblKingaku.Name = "lblKingaku";
-            this.lblKingaku.Size = new System.Drawing.Size(55, 15);
-            this.lblKingaku.strToolTip = null;
-            this.lblKingaku.TabIndex = 3;
-            this.lblKingaku.Text = "支払額";
-            this.lblKingaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShiharai.AutoSize = true;
+            this.lblShiharai.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShiharai.Location = new System.Drawing.Point(246, 18);
+            this.lblShiharai.Name = "lblShiharai";
+            this.lblShiharai.Size = new System.Drawing.Size(55, 15);
+            this.lblShiharai.strToolTip = null;
+            this.lblShiharai.TabIndex = 3;
+            this.lblShiharai.Text = "支払額";
+            this.lblShiharai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblKubunName
+            // lblkbnName
             // 
-            this.lblKubunName.AutoSize = true;
-            this.lblKubunName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKubunName.Location = new System.Drawing.Point(121, 29);
-            this.lblKubunName.Name = "lblKubunName";
-            this.lblKubunName.Size = new System.Drawing.Size(55, 15);
-            this.lblKubunName.strToolTip = null;
-            this.lblKubunName.TabIndex = 2;
-            this.lblKubunName.Text = "区分名";
-            this.lblKubunName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblkbnName.AutoSize = true;
+            this.lblkbnName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblkbnName.Location = new System.Drawing.Point(108, 18);
+            this.lblkbnName.Name = "lblkbnName";
+            this.lblkbnName.Size = new System.Drawing.Size(55, 15);
+            this.lblkbnName.strToolTip = null;
+            this.lblkbnName.TabIndex = 2;
+            this.lblkbnName.Text = "区分名";
+            this.lblkbnName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblKubunCd
+            // lblCd
             // 
-            this.lblKubunCd.AutoSize = true;
-            this.lblKubunCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKubunCd.Location = new System.Drawing.Point(29, 29);
-            this.lblKubunCd.Name = "lblKubunCd";
-            this.lblKubunCd.Size = new System.Drawing.Size(55, 15);
-            this.lblKubunCd.strToolTip = null;
-            this.lblKubunCd.TabIndex = 1;
-            this.lblKubunCd.Text = "コード";
-            this.lblKubunCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCd.AutoSize = true;
+            this.lblCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblCd.Location = new System.Drawing.Point(13, 18);
+            this.lblCd.Name = "lblCd";
+            this.lblCd.Size = new System.Drawing.Size(55, 15);
+            this.lblCd.strToolTip = null;
+            this.lblCd.TabIndex = 1;
+            this.lblCd.Text = "コード";
+            this.lblCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtKijitsuYMD0
+            // txtTegataYMD0
             // 
-            this.txtKijitsuYMD0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKijitsuYMD0.Location = new System.Drawing.Point(372, 60);
-            this.txtKijitsuYMD0.MaxLength = 10;
-            this.txtKijitsuYMD0.Name = "txtKijitsuYMD0";
-            this.txtKijitsuYMD0.Size = new System.Drawing.Size(100, 22);
-            this.txtKijitsuYMD0.TabIndex = 7;
-            this.txtKijitsuYMD0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD0.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTegataYMD0.Location = new System.Drawing.Point(321, 46);
+            this.txtTegataYMD0.MaxLength = 10;
+            this.txtTegataYMD0.Name = "txtTegataYMD0";
+            this.txtTegataYMD0.Size = new System.Drawing.Size(90, 22);
+            this.txtTegataYMD0.TabIndex = 7;
+            this.txtTegataYMD0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTegataYMD0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
-            // lblSyukinKbn
+            // lblShukunkbn
             // 
-            this.lblSyukinKbn.AutoSize = true;
-            this.lblSyukinKbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSyukinKbn.Location = new System.Drawing.Point(660, 173);
-            this.lblSyukinKbn.Name = "lblSyukinKbn";
-            this.lblSyukinKbn.Size = new System.Drawing.Size(71, 15);
-            this.lblSyukinKbn.strToolTip = null;
-            this.lblSyukinKbn.TabIndex = 116;
-            this.lblSyukinKbn.Text = "集金区分";
-            this.lblSyukinKbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShukunkbn.AutoSize = true;
+            this.lblShukunkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShukunkbn.Location = new System.Drawing.Point(1137, 503);
+            this.lblShukunkbn.Name = "lblShukunkbn";
+            this.lblShukunkbn.Size = new System.Drawing.Size(71, 15);
+            this.lblShukunkbn.strToolTip = null;
+            this.lblShukunkbn.TabIndex = 116;
+            this.lblShukunkbn.Text = "集金区分";
+            this.lblShukunkbn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblShiharaiJoken
+            // lblShiharaiJojen
             // 
-            this.lblShiharaiJoken.AutoSize = true;
-            this.lblShiharaiJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShiharaiJoken.Location = new System.Drawing.Point(202, 173);
-            this.lblShiharaiJoken.Name = "lblShiharaiJoken";
-            this.lblShiharaiJoken.Size = new System.Drawing.Size(71, 15);
-            this.lblShiharaiJoken.strToolTip = null;
-            this.lblShiharaiJoken.TabIndex = 117;
-            this.lblShiharaiJoken.Text = "支払条件";
-            this.lblShiharaiJoken.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShiharaiJojen.AutoSize = true;
+            this.lblShiharaiJojen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShiharaiJojen.Location = new System.Drawing.Point(674, 503);
+            this.lblShiharaiJojen.Name = "lblShiharaiJojen";
+            this.lblShiharaiJojen.Size = new System.Drawing.Size(71, 15);
+            this.lblShiharaiJojen.strToolTip = null;
+            this.lblShiharaiJojen.TabIndex = 117;
+            this.lblShiharaiJojen.Text = "支払条件";
+            this.lblShiharaiJojen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblShiharaibi
             // 
             this.lblShiharaibi.AutoSize = true;
             this.lblShiharaibi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShiharaibi.Location = new System.Drawing.Point(438, 130);
+            this.lblShiharaibi.Location = new System.Drawing.Point(523, 503);
             this.lblShiharaibi.Name = "lblShiharaibi";
             this.lblShiharaibi.Size = new System.Drawing.Size(55, 15);
             this.lblShiharaibi.strToolTip = null;
@@ -1715,34 +1737,35 @@
             this.lblShiharaibi.Text = "支払日";
             this.lblShiharaibi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtSyukinKbn
+            // txtShukunkbn
             // 
-            this.txtSyukinKbn.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSyukinKbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSyukinKbn.Location = new System.Drawing.Point(737, 170);
-            this.txtSyukinKbn.MaxLength = 1;
-            this.txtSyukinKbn.Name = "txtSyukinKbn";
-            this.txtSyukinKbn.ReadOnly = true;
-            this.txtSyukinKbn.Size = new System.Drawing.Size(38, 22);
-            this.txtSyukinKbn.TabIndex = 9;
+            this.txtShukunkbn.BackColor = System.Drawing.SystemColors.Window;
+            this.txtShukunkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShukunkbn.Location = new System.Drawing.Point(1214, 500);
+            this.txtShukunkbn.MaxLength = 1;
+            this.txtShukunkbn.Name = "txtShukunkbn";
+            this.txtShukunkbn.ReadOnly = true;
+            this.txtShukunkbn.Size = new System.Drawing.Size(15, 22);
+            this.txtShukunkbn.TabIndex = 9;
+            this.txtShukunkbn.TabStop = false;
             // 
-            // lblShiharaiGessuu
+            // lblShiharaiGessu
             // 
-            this.lblShiharaiGessuu.AutoSize = true;
-            this.lblShiharaiGessuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShiharaiGessuu.Location = new System.Drawing.Point(312, 130);
-            this.lblShiharaiGessuu.Name = "lblShiharaiGessuu";
-            this.lblShiharaiGessuu.Size = new System.Drawing.Size(71, 15);
-            this.lblShiharaiGessuu.strToolTip = null;
-            this.lblShiharaiGessuu.TabIndex = 119;
-            this.lblShiharaiGessuu.Text = "支払月数";
-            this.lblShiharaiGessuu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShiharaiGessu.AutoSize = true;
+            this.lblShiharaiGessu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShiharaiGessu.Location = new System.Drawing.Point(365, 504);
+            this.lblShiharaiGessu.Name = "lblShiharaiGessu";
+            this.lblShiharaiGessu.Size = new System.Drawing.Size(71, 15);
+            this.lblShiharaiGessu.strToolTip = null;
+            this.lblShiharaiGessu.TabIndex = 119;
+            this.lblShiharaiGessu.Text = "支払月数";
+            this.lblShiharaiGessu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSimekiribi
             // 
             this.lblSimekiribi.AutoSize = true;
             this.lblSimekiribi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSimekiribi.Location = new System.Drawing.Point(201, 130);
+            this.lblSimekiribi.Location = new System.Drawing.Point(226, 503);
             this.lblSimekiribi.Name = "lblSimekiribi";
             this.lblSimekiribi.Size = new System.Drawing.Size(55, 15);
             this.lblSimekiribi.strToolTip = null;
@@ -1750,120 +1773,114 @@
             this.lblSimekiribi.Text = "締切日";
             this.lblSimekiribi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtShiharaiJoken
+            // txtShiharaiJojen
             // 
-            this.txtShiharaiJoken.BackColor = System.Drawing.SystemColors.Window;
-            this.txtShiharaiJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShiharaiJoken.Location = new System.Drawing.Point(279, 170);
-            this.txtShiharaiJoken.Name = "txtShiharaiJoken";
-            this.txtShiharaiJoken.ReadOnly = true;
-            this.txtShiharaiJoken.Size = new System.Drawing.Size(355, 22);
-            this.txtShiharaiJoken.TabIndex = 8;
+            this.txtShiharaiJojen.BackColor = System.Drawing.SystemColors.Window;
+            this.txtShiharaiJojen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharaiJojen.Location = new System.Drawing.Point(751, 500);
+            this.txtShiharaiJojen.MaxLength = 40;
+            this.txtShiharaiJojen.Name = "txtShiharaiJojen";
+            this.txtShiharaiJojen.ReadOnly = true;
+            this.txtShiharaiJojen.Size = new System.Drawing.Size(330, 22);
+            this.txtShiharaiJojen.TabIndex = 8;
+            this.txtShiharaiJojen.TabStop = false;
             // 
             // txtShiharaibi
             // 
             this.txtShiharaibi.BackColor = System.Drawing.SystemColors.Window;
             this.txtShiharaibi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShiharaibi.Location = new System.Drawing.Point(499, 127);
+            this.txtShiharaibi.Location = new System.Drawing.Point(584, 500);
             this.txtShiharaibi.MaxLength = 2;
             this.txtShiharaibi.Name = "txtShiharaibi";
             this.txtShiharaibi.ReadOnly = true;
-            this.txtShiharaibi.Size = new System.Drawing.Size(38, 22);
+            this.txtShiharaibi.Size = new System.Drawing.Size(24, 22);
             this.txtShiharaibi.TabIndex = 7;
+            this.txtShiharaibi.TabStop = false;
             this.txtShiharaibi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtShiharaiGessuu
+            // txtShiharaiGessu
             // 
-            this.txtShiharaiGessuu.BackColor = System.Drawing.SystemColors.Window;
-            this.txtShiharaiGessuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShiharaiGessuu.Location = new System.Drawing.Point(389, 126);
-            this.txtShiharaiGessuu.MaxLength = 2;
-            this.txtShiharaiGessuu.Name = "txtShiharaiGessuu";
-            this.txtShiharaiGessuu.ReadOnly = true;
-            this.txtShiharaiGessuu.Size = new System.Drawing.Size(38, 22);
-            this.txtShiharaiGessuu.TabIndex = 6;
-            this.txtShiharaiGessuu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShiharaiGessu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtShiharaiGessu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiharaiGessu.Location = new System.Drawing.Point(442, 500);
+            this.txtShiharaiGessu.MaxLength = 2;
+            this.txtShiharaiGessu.Name = "txtShiharaiGessu";
+            this.txtShiharaiGessu.ReadOnly = true;
+            this.txtShiharaiGessu.Size = new System.Drawing.Size(24, 22);
+            this.txtShiharaiGessu.TabIndex = 6;
+            this.txtShiharaiGessu.TabStop = false;
+            this.txtShiharaiGessu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtShimekiribi
             // 
             this.txtShimekiribi.BackColor = System.Drawing.SystemColors.Window;
             this.txtShimekiribi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShimekiribi.Location = new System.Drawing.Point(262, 127);
+            this.txtShimekiribi.Location = new System.Drawing.Point(287, 500);
             this.txtShimekiribi.MaxLength = 2;
             this.txtShimekiribi.Name = "txtShimekiribi";
             this.txtShimekiribi.ReadOnly = true;
-            this.txtShimekiribi.Size = new System.Drawing.Size(38, 22);
+            this.txtShimekiribi.Size = new System.Drawing.Size(24, 22);
             this.txtShimekiribi.TabIndex = 5;
+            this.txtShimekiribi.TabStop = false;
             this.txtShimekiribi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // bgSiireJisseki
+            // gbShireJisseki
             // 
-            this.bgSiireJisseki.Controls.Add(this.gridSiireJisseki);
-            this.bgSiireJisseki.Controls.Add(this.lblSiireJisseki);
-            this.bgSiireJisseki.Location = new System.Drawing.Point(179, 612);
-            this.bgSiireJisseki.Name = "bgSiireJisseki";
-            this.bgSiireJisseki.Size = new System.Drawing.Size(728, 165);
-            this.bgSiireJisseki.TabIndex = 11;
-            this.bgSiireJisseki.TabStop = false;
+            this.gbShireJisseki.Controls.Add(this.gridShireJisseki);
+            this.gbShireJisseki.Location = new System.Drawing.Point(241, 547);
+            this.gbShireJisseki.Name = "gbShireJisseki";
+            this.gbShireJisseki.Size = new System.Drawing.Size(977, 219);
+            this.gbShireJisseki.TabIndex = 5;
+            this.gbShireJisseki.TabStop = false;
+            this.gbShireJisseki.Text = "仕入実績";
             // 
-            // gridSiireJisseki
+            // gridShireJisseki
             // 
-            this.gridSiireJisseki.AllowUserToAddRows = false;
-            this.gridSiireJisseki.AllowUserToResizeColumns = false;
-            this.gridSiireJisseki.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridSiireJisseki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSiireJisseki.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gridSiireJisseki.EnableHeadersVisualStyles = false;
-            this.gridSiireJisseki.Location = new System.Drawing.Point(9, 18);
-            this.gridSiireJisseki.Name = "gridSiireJisseki";
-            this.gridSiireJisseki.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridSiireJisseki.RowHeadersVisible = false;
-            this.gridSiireJisseki.RowTemplate.Height = 21;
-            this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireJisseki.Size = new System.Drawing.Size(713, 138);
-            this.gridSiireJisseki.StandardTab = true;
-            this.gridSiireJisseki.TabIndex = 123;
-            // 
-            // lblSiireJisseki
-            // 
-            this.lblSiireJisseki.AutoSize = true;
-            this.lblSiireJisseki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSiireJisseki.Location = new System.Drawing.Point(6, 0);
-            this.lblSiireJisseki.Name = "lblSiireJisseki";
-            this.lblSiireJisseki.Size = new System.Drawing.Size(71, 15);
-            this.lblSiireJisseki.strToolTip = null;
-            this.lblSiireJisseki.TabIndex = 122;
-            this.lblSiireJisseki.Text = "仕入実績";
-            this.lblSiireJisseki.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.gridShireJisseki.AllowUserToAddRows = false;
+            this.gridShireJisseki.AllowUserToResizeColumns = false;
+            this.gridShireJisseki.AllowUserToResizeRows = false;
+            this.gridShireJisseki.AutoGenerateColumns = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.gridShireJisseki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridShireJisseki.DefaultCellStyle = dataGridViewCellStyle8;
+            this.gridShireJisseki.EnableHeadersVisualStyles = false;
+            this.gridShireJisseki.Location = new System.Drawing.Point(25, 18);
+            this.gridShireJisseki.Name = "gridShireJisseki";
+            this.gridShireJisseki.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.gridShireJisseki.RowHeadersVisible = false;
+            this.gridShireJisseki.RowTemplate.Height = 21;
+            this.gridShireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridShireJisseki.Size = new System.Drawing.Size(924, 188);
+            this.gridShireJisseki.StandardTab = true;
+            this.gridShireJisseki.TabIndex = 123;
             // 
             // txtZeiHasuuKubun
             // 
             this.txtZeiHasuuKubun.BackColor = System.Drawing.SystemColors.Window;
             this.txtZeiHasuuKubun.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtZeiHasuuKubun.Location = new System.Drawing.Point(1142, 99);
+            this.txtZeiHasuuKubun.Location = new System.Drawing.Point(1268, 74);
             this.txtZeiHasuuKubun.MaxLength = 1;
             this.txtZeiHasuuKubun.Name = "txtZeiHasuuKubun";
             this.txtZeiHasuuKubun.ReadOnly = true;
@@ -1875,7 +1892,7 @@
             // 
             this.lblZeiHasuuKubun.AutoSize = true;
             this.lblZeiHasuuKubun.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblZeiHasuuKubun.Location = new System.Drawing.Point(985, 102);
+            this.lblZeiHasuuKubun.Location = new System.Drawing.Point(1111, 77);
             this.lblZeiHasuuKubun.Name = "lblZeiHasuuKubun";
             this.lblZeiHasuuKubun.Size = new System.Drawing.Size(151, 15);
             this.lblZeiHasuuKubun.strToolTip = null;
@@ -1884,42 +1901,105 @@
             this.lblZeiHasuuKubun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblZeiHasuuKubun.Visible = false;
             // 
+            // lblShukinkbnMemo
+            // 
+            this.lblShukinkbnMemo.AutoSize = true;
+            this.lblShukinkbnMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.lblShukinkbnMemo.Location = new System.Drawing.Point(1126, 525);
+            this.lblShukinkbnMemo.Name = "lblShukinkbnMemo";
+            this.lblShukinkbnMemo.Size = new System.Drawing.Size(89, 12);
+            this.lblShukinkbnMemo.strToolTip = "";
+            this.lblShukinkbnMemo.TabIndex = 121;
+            this.lblShukinkbnMemo.Text = "(0：無　1：有)";
+            this.lblShukinkbnMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // radSet_chkListDataInput
+            // 
+            this.radSet_chkListDataInput.Controls.Add(this.lblTitle);
+            this.radSet_chkListDataInput.intJudBtn = 0;
+            this.radSet_chkListDataInput.LabelTitle = "";
+            this.radSet_chkListDataInput.Location = new System.Drawing.Point(422, 12);
+            this.radSet_chkListDataInput.Name = "radSet_chkListDataInput";
+            this.radSet_chkListDataInput.PositionLabelTitle_X = 0;
+            this.radSet_chkListDataInput.PositionLabelTitle_Y = 0;
+            this.radSet_chkListDataInput.PositionRadbtn1_X = 0;
+            this.radSet_chkListDataInput.PositionRadbtn1_Y = 0;
+            this.radSet_chkListDataInput.PositionRadbtn2_X = 115;
+            this.radSet_chkListDataInput.PositionRadbtn2_Y = 0;
+            this.radSet_chkListDataInput.Radbtn1Text = "ListNoInput";
+            this.radSet_chkListDataInput.Radbtn2Text = "ListInput";
+            this.radSet_chkListDataInput.Size = new System.Drawing.Size(216, 17);
+            this.radSet_chkListDataInput.TabIndex = 122;
+            this.radSet_chkListDataInput.Visible = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(0, 15);
+            this.lblTitle.strToolTip = null;
+            this.lblTitle.TabIndex = 6;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtDenpyoNo
+            // 
+            this.txtDenpyoNo.blnCommaOK = false;
+            this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtDenpyoNo.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtDenpyoNo.intDeciSet = 0;
+            this.txtDenpyoNo.intIntederSet = 0;
+            this.txtDenpyoNo.intShishagonyu = 0;
+            this.txtDenpyoNo.Location = new System.Drawing.Point(523, 35);
+            this.txtDenpyoNo.MaxLength = 8;
+            this.txtDenpyoNo.Name = "txtDenpyoNo";
+            this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
+            this.txtDenpyoNo.TabIndex = 8;
+            this.txtDenpyoNo.TabStop = false;
+            this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
+            this.txtDenpyoNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDenpyoNoKeyPress);
+            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
+            this.txtDenpyoNo.Leave += new System.EventHandler(this.updDenpyoNoLeave);
+            // 
             // B0060_ShiharaiInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
-            this.Controls.Add(this.bgSiireJisseki);
+            this.Controls.Add(this.txtDenpyoNo);
+            this.Controls.Add(this.radSet_chkListDataInput);
+            this.Controls.Add(this.lblShukinkbnMemo);
+            this.Controls.Add(this.gbShireJisseki);
             this.Controls.Add(this.lblZeiHasuuKubun);
-            this.Controls.Add(this.lblSyukinKbn);
+            this.Controls.Add(this.lblShukunkbn);
             this.Controls.Add(this.txtZeiHasuuKubun);
-            this.Controls.Add(this.lblShiharaiJoken);
+            this.Controls.Add(this.lblShiharaiJojen);
             this.Controls.Add(this.lblShiharaibi);
-            this.Controls.Add(this.txtSyukinKbn);
-            this.Controls.Add(this.lblShiharaiGessuu);
+            this.Controls.Add(this.txtShukunkbn);
+            this.Controls.Add(this.lblShiharaiGessu);
             this.Controls.Add(this.lblSimekiribi);
-            this.Controls.Add(this.txtShiharaiJoken);
+            this.Controls.Add(this.txtShiharaiJojen);
             this.Controls.Add(this.txtShiharaibi);
-            this.Controls.Add(this.txtShiharaiGessuu);
+            this.Controls.Add(this.txtShiharaiGessu);
             this.Controls.Add(this.txtShimekiribi);
             this.Controls.Add(this.gbSiharaiInput);
             this.Controls.Add(this.labelSet_Eigyosho);
-            this.Controls.Add(this.txtDenpyoNo);
-            this.Controls.Add(this.baseLabel1);
-            this.Controls.Add(this.lblYM);
-            this.Controls.Add(this.txtDenpyoYMD);
-            this.Controls.Add(this.labelSet_Siiresaki);
+            this.Controls.Add(this.lblDenpyoNo);
+            this.Controls.Add(this.lblYMD);
+            this.Controls.Add(this.txtYMD);
+            this.Controls.Add(this.lblset_Siiresaki);
             this.Controls.Add(this.labelSet_Tantousha);
             this.Name = "B0060_ShiharaiInput";
             this.Text = "B0060_ShiharaiInput";
             this.Load += new System.EventHandler(this.B0060_ShiharaiInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0060_ShiharaiInput_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
-            this.Controls.SetChildIndex(this.labelSet_Siiresaki, 0);
-            this.Controls.SetChildIndex(this.txtDenpyoYMD, 0);
-            this.Controls.SetChildIndex(this.lblYM, 0);
-            this.Controls.SetChildIndex(this.baseLabel1, 0);
-            this.Controls.SetChildIndex(this.txtDenpyoNo, 0);
+            this.Controls.SetChildIndex(this.lblset_Siiresaki, 0);
+            this.Controls.SetChildIndex(this.txtYMD, 0);
+            this.Controls.SetChildIndex(this.lblYMD, 0);
+            this.Controls.SetChildIndex(this.lblDenpyoNo, 0);
             this.Controls.SetChildIndex(this.labelSet_Eigyosho, 0);
             this.Controls.SetChildIndex(this.gbSiharaiInput, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
@@ -1935,41 +2015,45 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.txtShimekiribi, 0);
-            this.Controls.SetChildIndex(this.txtShiharaiGessuu, 0);
+            this.Controls.SetChildIndex(this.txtShiharaiGessu, 0);
             this.Controls.SetChildIndex(this.txtShiharaibi, 0);
-            this.Controls.SetChildIndex(this.txtShiharaiJoken, 0);
+            this.Controls.SetChildIndex(this.txtShiharaiJojen, 0);
             this.Controls.SetChildIndex(this.lblSimekiribi, 0);
-            this.Controls.SetChildIndex(this.lblShiharaiGessuu, 0);
-            this.Controls.SetChildIndex(this.txtSyukinKbn, 0);
+            this.Controls.SetChildIndex(this.lblShiharaiGessu, 0);
+            this.Controls.SetChildIndex(this.txtShukunkbn, 0);
             this.Controls.SetChildIndex(this.lblShiharaibi, 0);
-            this.Controls.SetChildIndex(this.lblShiharaiJoken, 0);
+            this.Controls.SetChildIndex(this.lblShiharaiJojen, 0);
             this.Controls.SetChildIndex(this.txtZeiHasuuKubun, 0);
-            this.Controls.SetChildIndex(this.lblSyukinKbn, 0);
+            this.Controls.SetChildIndex(this.lblShukunkbn, 0);
             this.Controls.SetChildIndex(this.lblZeiHasuuKubun, 0);
-            this.Controls.SetChildIndex(this.bgSiireJisseki, 0);
+            this.Controls.SetChildIndex(this.gbShireJisseki, 0);
+            this.Controls.SetChildIndex(this.lblShukinkbnMemo, 0);
+            this.Controls.SetChildIndex(this.radSet_chkListDataInput, 0);
+            this.Controls.SetChildIndex(this.txtDenpyoNo, 0);
             this.gbSiharaiInput.ResumeLayout(false);
             this.gbSiharaiInput.PerformLayout();
-            this.labelSet_TorihikiKbn9.ResumeLayout(false);
-            this.labelSet_TorihikiKbn9.PerformLayout();
-            this.labelSet_TorihikiKbn8.ResumeLayout(false);
-            this.labelSet_TorihikiKbn8.PerformLayout();
-            this.labelSet_TorihikiKbn7.ResumeLayout(false);
-            this.labelSet_TorihikiKbn7.PerformLayout();
-            this.labelSet_TorihikiKbn6.ResumeLayout(false);
-            this.labelSet_TorihikiKbn6.PerformLayout();
-            this.labelSet_TorihikiKbn5.ResumeLayout(false);
-            this.labelSet_TorihikiKbn5.PerformLayout();
-            this.labelSet_TorihikiKbn4.ResumeLayout(false);
-            this.labelSet_TorihikiKbn4.PerformLayout();
-            this.labelSet_TorihikiKbn3.ResumeLayout(false);
-            this.labelSet_TorihikiKbn3.PerformLayout();
-            this.labelSet_TorihikiKbn2.ResumeLayout(false);
-            this.labelSet_TorihikiKbn2.PerformLayout();
-            this.labelSet_TorihikiKbn1.ResumeLayout(false);
-            this.labelSet_TorihikiKbn1.PerformLayout();
-            this.bgSiireJisseki.ResumeLayout(false);
-            this.bgSiireJisseki.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).EndInit();
+            this.labelSet_Torihikikbn9.ResumeLayout(false);
+            this.labelSet_Torihikikbn9.PerformLayout();
+            this.labelSet_Torihikikbn8.ResumeLayout(false);
+            this.labelSet_Torihikikbn8.PerformLayout();
+            this.labelSet_Torihikikbn7.ResumeLayout(false);
+            this.labelSet_Torihikikbn7.PerformLayout();
+            this.labelSet_Torihikikbn6.ResumeLayout(false);
+            this.labelSet_Torihikikbn6.PerformLayout();
+            this.labelSet_Torihikikbn5.ResumeLayout(false);
+            this.labelSet_Torihikikbn5.PerformLayout();
+            this.labelSet_Torihikikbn4.ResumeLayout(false);
+            this.labelSet_Torihikikbn4.PerformLayout();
+            this.labelSet_Torihikikbn3.ResumeLayout(false);
+            this.labelSet_Torihikikbn3.PerformLayout();
+            this.labelSet_Torihikikbn2.ResumeLayout(false);
+            this.labelSet_Torihikikbn2.PerformLayout();
+            this.labelSet_Torihikikbn1.ResumeLayout(false);
+            this.labelSet_Torihikikbn1.PerformLayout();
+            this.gbShireJisseki.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridShireJisseki)).EndInit();
+            this.radSet_chkListDataInput.ResumeLayout(false);
+            this.radSet_chkListDataInput.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1978,25 +2062,24 @@
         #endregion
 
         private Common.Ctl.LabelSet_Tantousha labelSet_Tantousha;
-        private Common.Ctl.LabelSet_Torihikisaki labelSet_Siiresaki;
-        private Common.Ctl.BaseCalendar txtDenpyoYMD;
-        private Common.Ctl.BaseLabel lblYM;
-        private Common.Ctl.BaseLabel baseLabel1;
-        private Common.Ctl.BaseText txtDenpyoNo;
+        private Common.Ctl.LabelSet_Torihikisaki lblset_Siiresaki;
+        private Common.Ctl.BaseCalendar txtYMD;
+        private Common.Ctl.BaseLabel lblYMD;
+        private Common.Ctl.BaseLabel lblDenpyoNo;
         private Common.Ctl.LabelSet_Eigyosho labelSet_Eigyosho;
         private System.Windows.Forms.GroupBox gbSiharaiInput;
         private Common.Ctl.BaseLabel lblGoukeiName;
         private Common.Ctl.BaseLabelGray lblGoukeiDisp;
-        private Common.Ctl.BaseLabel lblBikou;
-        private Common.Ctl.BaseLabel lblKijitu;
-        private Common.Ctl.BaseLabel lblKingaku;
-        private Common.Ctl.BaseLabel lblKubunName;
-        private Common.Ctl.BaseLabel lblKubunCd;
+        private Common.Ctl.BaseLabel lblBiko;
+        private Common.Ctl.BaseLabel lblTegataYMD;
+        private Common.Ctl.BaseLabel lblShiharai;
+        private Common.Ctl.BaseLabel lblkbnName;
+        private Common.Ctl.BaseLabel lblCd;
         private Common.Ctl.BaseText txtBikou0;
-        private Common.Ctl.BaseTextMoney txtKingaku0;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD0;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn0;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn9;
+        private Common.Ctl.BaseTextMoney txtShiharai0;
+        private Common.Ctl.BaseCalendar txtTegataYMD0;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn0;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn9;
         private Common.Ctl.BaseLabel baseLabel52;
         private Common.Ctl.BaseLabel baseLabel43;
         private Common.Ctl.BaseLabel baseLabel44;
@@ -2008,7 +2091,7 @@
         private Common.Ctl.BaseLabel baseLabel50;
         private Common.Ctl.BaseLabel baseLabel51;
         private Common.Ctl.BaseText txtBikou9;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn8;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn8;
         private Common.Ctl.BaseLabel baseLabel42;
         private Common.Ctl.BaseLabel baseLabel34;
         private Common.Ctl.BaseLabel baseLabel35;
@@ -2019,7 +2102,7 @@
         private Common.Ctl.BaseLabel baseLabel40;
         private Common.Ctl.BaseLabel baseLabel41;
         private Common.Ctl.BaseText txtBikou8;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn7;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn7;
         private Common.Ctl.BaseLabel baseLabel33;
         private Common.Ctl.BaseLabel baseLabel26;
         private Common.Ctl.BaseLabel baseLabel27;
@@ -2029,7 +2112,7 @@
         private Common.Ctl.BaseLabel baseLabel31;
         private Common.Ctl.BaseLabel baseLabel32;
         private Common.Ctl.BaseText txtBikou7;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn6;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn6;
         private Common.Ctl.BaseLabel baseLabel25;
         private Common.Ctl.BaseLabel baseLabel19;
         private Common.Ctl.BaseLabel baseLabel20;
@@ -2038,7 +2121,7 @@
         private Common.Ctl.BaseLabel baseLabel23;
         private Common.Ctl.BaseLabel baseLabel24;
         private Common.Ctl.BaseText txtBikou6;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn5;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn5;
         private Common.Ctl.BaseLabel baseLabel18;
         private Common.Ctl.BaseLabel baseLabel13;
         private Common.Ctl.BaseLabel baseLabel14;
@@ -2046,59 +2129,62 @@
         private Common.Ctl.BaseLabel baseLabel16;
         private Common.Ctl.BaseLabel baseLabel17;
         private Common.Ctl.BaseText txtBikou5;
-        private Common.Ctl.BaseTextMoney txtKingaku9;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn4;
+        private Common.Ctl.BaseTextMoney txtShiharai9;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn4;
         private Common.Ctl.BaseLabel baseLabel12;
         private Common.Ctl.BaseLabel baseLabel8;
         private Common.Ctl.BaseLabel baseLabel9;
         private Common.Ctl.BaseLabel baseLabel10;
         private Common.Ctl.BaseLabel baseLabel11;
-        private Common.Ctl.BaseTextMoney txtKingaku8;
+        private Common.Ctl.BaseTextMoney txtShiharai8;
         private Common.Ctl.BaseText txtBikou4;
-        private Common.Ctl.BaseTextMoney txtKingaku7;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn3;
+        private Common.Ctl.BaseTextMoney txtShiharai7;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn3;
         private Common.Ctl.BaseLabel baseLabel7;
         private Common.Ctl.BaseLabel baseLabel4;
         private Common.Ctl.BaseLabel baseLabel5;
         private Common.Ctl.BaseLabel baseLabel6;
-        private Common.Ctl.BaseTextMoney txtKingaku6;
+        private Common.Ctl.BaseTextMoney txtShiharai6;
         private Common.Ctl.BaseText txtBikou3;
-        private Common.Ctl.BaseTextMoney txtKingaku5;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD9;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn2;
+        private Common.Ctl.BaseTextMoney txtShiharai5;
+        private Common.Ctl.BaseCalendar txtTegataYMD9;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn2;
         private Common.Ctl.BaseLabel baseLabel3;
         private Common.Ctl.BaseLabel object_c9ff61bc_8795_4818_9a65_e12dd8ec5c54;
         private Common.Ctl.BaseLabel baseLabel2;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD8;
-        private Common.Ctl.BaseTextMoney txtKingaku4;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD7;
+        private Common.Ctl.BaseCalendar txtTegataYMD8;
+        private Common.Ctl.BaseTextMoney txtShiharai4;
+        private Common.Ctl.BaseCalendar txtTegataYMD7;
         private Common.Ctl.BaseText txtBikou2;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD6;
-        private Common.Ctl.BaseTextMoney txtKingaku3;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD5;
-        private Common.Ctl.LabelSet_Torihikikbn labelSet_TorihikiKbn1;
+        private Common.Ctl.BaseCalendar txtTegataYMD6;
+        private Common.Ctl.BaseTextMoney txtShiharai3;
+        private Common.Ctl.BaseCalendar txtTegataYMD5;
+        private Common.Ctl.LabelSet_Torihikikbn labelSet_Torihikikbn1;
         private Common.Ctl.BaseLabel nameLabel;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD4;
-        private Common.Ctl.BaseTextMoney txtKingaku2;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD3;
+        private Common.Ctl.BaseCalendar txtTegataYMD4;
+        private Common.Ctl.BaseTextMoney txtShiharai2;
+        private Common.Ctl.BaseCalendar txtTegataYMD3;
         private Common.Ctl.BaseText txtBikou1;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD2;
-        private Common.Ctl.BaseTextMoney txtKingaku1;
-        private Common.Ctl.BaseCalendar txtKijitsuYMD1;
-        private Common.Ctl.BaseLabel lblSyukinKbn;
-        private Common.Ctl.BaseLabel lblShiharaiJoken;
+        private Common.Ctl.BaseCalendar txtTegataYMD2;
+        private Common.Ctl.BaseTextMoney txtShiharai1;
+        private Common.Ctl.BaseCalendar txtTegataYMD1;
+        private Common.Ctl.BaseLabel lblShukunkbn;
+        private Common.Ctl.BaseLabel lblShiharaiJojen;
         private Common.Ctl.BaseLabel lblShiharaibi;
-        private Common.Ctl.BaseText txtSyukinKbn;
-        private Common.Ctl.BaseLabel lblShiharaiGessuu;
+        private Common.Ctl.BaseText txtShukunkbn;
+        private Common.Ctl.BaseLabel lblShiharaiGessu;
         private Common.Ctl.BaseLabel lblSimekiribi;
-        private Common.Ctl.BaseText txtShiharaiJoken;
+        private Common.Ctl.BaseText txtShiharaiJojen;
         private Common.Ctl.BaseText txtShiharaibi;
-        private Common.Ctl.BaseText txtShiharaiGessuu;
+        private Common.Ctl.BaseText txtShiharaiGessu;
         private Common.Ctl.BaseText txtShimekiribi;
-        private System.Windows.Forms.GroupBox bgSiireJisseki;
-        private Common.Ctl.BaseDataGridView gridSiireJisseki;
-        private Common.Ctl.BaseLabel lblSiireJisseki;
+        private System.Windows.Forms.GroupBox gbShireJisseki;
+        private Common.Ctl.BaseDataGridView gridShireJisseki;
         private Common.Ctl.BaseText txtZeiHasuuKubun;
         private Common.Ctl.BaseLabel lblZeiHasuuKubun;
+        private Common.Ctl.BaseLabel lblShukinkbnMemo;
+        private Common.Ctl.RadSet_2btn radSet_chkListDataInput;
+        private Common.Ctl.BaseLabel lblTitle;
+        private Common.Ctl.BaseTextMoney txtDenpyoNo;
     }
 }

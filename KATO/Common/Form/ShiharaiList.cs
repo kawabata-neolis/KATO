@@ -21,7 +21,7 @@ namespace KATO.Common.Form
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2018/01/31
     ///カラム論理名
     ///</summary>
     public partial class ShiharaiList : System.Windows.Forms.Form
@@ -34,6 +34,12 @@ namespace KATO.Common.Form
 
         //どこのウィンドウかの判定（初期値）
         public int intFrmKind = 0;
+
+        //前画面から伝票番号を取り出す枠（伝票番号初期値）（ベーステキストマネー）
+        public BaseTextMoney bmDenpyo = null;
+
+        //前画面からリストからデータを取り出した判定を取り出す枠（ラジオボタン）
+        public RadSet_2btn radListInput = null;
 
         //画面タイトル設定
         private string Title = "";
@@ -74,6 +80,18 @@ namespace KATO.Common.Form
             //親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + 150;
+
+            //伝票番号の引き渡しチェック
+            if (bmDenpyo == null)
+            {
+                bmDenpyo = new BaseTextMoney();
+            }
+
+            //リストからデータを取り出したかどうかの判定の引き渡しチェック
+            if (radListInput == null)
+            {
+                radListInput = new RadSet_2btn();
+            }
         }
 
         ///<summary>
@@ -171,7 +189,7 @@ namespace KATO.Common.Form
             try
             {
                 //データグリッドビュー部分
-                gridTokui.DataSource = shiharailistB.getDatagridView(labelSet_Tokuisaki.CodeTxtText);
+                gridTokui.DataSource = shiharailistB.getDatagridView(lblset_Shiresaki.CodeTxtText);
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridTokui.RowCount.ToString() + "件)";
@@ -256,33 +274,21 @@ namespace KATO.Common.Form
         public void btnEndClick(object sender, EventArgs e)
         {
             logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-            EndAction();
+            this.Close();
         }
 
         ///<summary>
-        ///EndAction
+        ///setEndAction
         ///戻るボタンの処理
         ///</summary>
-        private void EndAction()
+        private void setEndAction(DataTable dtShiharai)
         {
             this.Close();
 
-            //ビジネス層のインスタンス生成
-            ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
-            try
-            {
-                //ビジネス層、移動元フォームに移動するロジックに移動
-                chokusosakilistB.FormMove(intFrmKind);
-            }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            bmDenpyo.Text = dtShiharai.Rows[0]["伝票番号"].ToString();
+
+            //リストからデータを取り出した判定
+            radListInput.radbtn1.Checked = true;
         }
 
         ///<summary>
@@ -295,7 +301,7 @@ namespace KATO.Common.Form
 
             setDatagridView();
 
-            strTokuiCdsub = labelSet_Tokuisaki.CodeTxtText;
+            strTokuiCdsub = lblset_Shiresaki.CodeTxtText;
 
             gridTokui.Focus();
         }
@@ -377,7 +383,7 @@ namespace KATO.Common.Form
         private void setSelectItem()
         {
             //取引コードを入れる用
-            DataTable dtTorihikiCd = new DataTable();
+            DataTable dtShiharai = new DataTable();
 
             //検索結果にデータが存在しなければ終了
             if (gridTokui.RowCount == 0)
@@ -390,9 +396,15 @@ namespace KATO.Common.Form
             try
             {
                 //ビジネス層、検索ロジックに移動
-                shiharailistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
+                dtShiharai = shiharailistB.getSelectItem(intFrmKind, (gridTokui.CurrentRow.Cells["伝票番号"].Value).ToString());
 
-                EndAction();
+                //検索結果がない場合
+                if (dtShiharai.Rows.Count <= 0)
+                {
+                    return;
+                }
+
+                setEndAction(dtShiharai);
             }
             catch (Exception ex)
             {
@@ -430,18 +442,18 @@ namespace KATO.Common.Form
         private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
         {
             //得意先コードがない場合
-            if (labelSet_Tokuisaki.CodeTxtText == "" ||
-                StringUtl.blIsEmpty(labelSet_Tokuisaki.CodeTxtText) == false)
+            if (lblset_Shiresaki.CodeTxtText == "" ||
+                StringUtl.blIsEmpty(lblset_Shiresaki.CodeTxtText) == false)
             {
                 return; 
             }
 
             //得意先の名前が白紙の場合
-            if (labelSet_Tokuisaki.ValueLabelText == "" ||
-                StringUtl.blIsEmpty(labelSet_Tokuisaki.ValueLabelText) == false)
+            if (lblset_Shiresaki.ValueLabelText == "" ||
+                StringUtl.blIsEmpty(lblset_Shiresaki.ValueLabelText) == false)
             {
                 gridTokui.DataSource = null;
-                labelSet_Tokuisaki.Focus();
+                lblset_Shiresaki.Focus();
             }
         }
     }

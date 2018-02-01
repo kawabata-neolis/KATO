@@ -120,10 +120,8 @@ namespace KATO.Form.B0040_NyukinInput
                 basemessagebox.ShowDialog();
             }
 
-            txtYMD.setUp(0);
-			
-			// テスト用に【営業所コード】へ'0001'をセット
-            labelSet_Eigyosho.CodeTxtText = "0001";
+            //伝票年月日の設定
+            txtYMD.setUp(0);			
             
             //DataGridViewの初期設定
             SetUpGrid();
@@ -346,7 +344,7 @@ namespace KATO.Form.B0040_NyukinInput
         }
 
         //入金額テキストボックスを入力した場合の処理
-        private void baseTextMoney_NyukingakuX_Leave(object sender, EventArgs e)
+        private void txtNyukinX_Leave(object sender, EventArgs e)
         {
             //金額計算メソッドへ移動
             sumKingakuGoukei();
@@ -429,6 +427,9 @@ namespace KATO.Form.B0040_NyukinInput
                     {
                         //TABボタンと同じ効果
                         SendKeys.Send("{TAB}");
+
+                        //日付制限チェック
+                        dateCheck();
                     }
                     break;
                 case Keys.F1:
@@ -528,15 +529,15 @@ namespace KATO.Form.B0040_NyukinInput
         }
 
         /// <summary>
-        /// labelSet_Torihikikbn_KeyDown
+        /// lblsetTorihikikbn_KeyDown
         /// 取引区分コードのKeyDownイベント
         /// </summary>
-        private void labelSet_Torihikikbn_KeyDown(object sender, KeyEventArgs e)
+        private void lblsetTorihikikbn_KeyDown(object sender, KeyEventArgs e)
         {
             string strSenderName = ((TextBox)(sender)).Name;
 
             // 入金額のベース名、長さの取得に使用
-            string strBaseName = "labelSet_TorihikiKbn";
+            string strBaseName = "lblsetTorihikikbn";
 
             // txtKingakuXXのXXを取得して数字に直す
             int index = int.Parse(strSenderName.Substring(strBaseName.Length, strSenderName.Length - strBaseName.Length));
@@ -554,39 +555,39 @@ namespace KATO.Form.B0040_NyukinInput
                 case Keys.Down:
                     if (index <= 8)
                     {
-                        this.Controls["gbNyukinInput"].Controls["labelSet_TorihikiKbn" + (index + 1).ToString()].Controls["codeTxt"].Focus();
+                        this.Controls["gbNyukinInput"].Controls["lblsetTorihikikbn" + (index + 1).ToString()].Controls["codeTxt"].Focus();
                     }
                     else
                     {
-                        this.baseTextMoney_Nyukingaku0.Focus();
+                        this.txtNyukin0.Focus();
                     }
                     break;
                 case Keys.Up:
                     if (index > 1)
                     {
-                        this.Controls["gbNyukinInput"].Controls["labelSet_TorihikiKbn" + (index - 1).ToString()].Controls["codeTxt"].Focus();
+                        this.Controls["gbNyukinInput"].Controls["lblsetTorihikikbn" + (index - 1).ToString()].Controls["codeTxt"].Focus();
                     }
                     else
                     {
-                        this.baseTextMoney_Nyukingaku9.Focus();
+                        this.txtNyukin9.Focus();
                     }
                     break;
             }
         }
 
         /// <summary>
-        /// baseTextMoney_Nyukingaku_KeyDown
+        /// txtNyukin_KeyDown
         /// 入金額のKeyDownイベント
         /// </summary>
-        private void baseTextMoney_Nyukingaku_KeyDown(object sender, KeyEventArgs e)
+        private void txtNyukin_KeyDown(object sender, KeyEventArgs e)
         {
-            string strSenderName = ((TextBox)(sender)).Name;
+            //string strSenderName = ((TextBox)(sender)).Name;
 
-            // 入金額のベース名、長さの取得に使用
-            string strBaseName = "baseTextMoney_Nyukingaku";
+            //// 入金額のベース名、長さの取得に使用
+            //string strBaseName = "txtNyukin";
 
-            // txtKingakuXXのXXを取得して数字に直す
-            int index = int.Parse(strSenderName.Substring(strBaseName.Length, strSenderName.Length - strBaseName.Length));
+            //// txtKingakuXXのXXを取得して数字に直す
+            //int index = int.Parse(strSenderName.Substring(strBaseName.Length, strSenderName.Length - strBaseName.Length));
 
             // キー入力情報によって動作を変える
             switch (e.KeyCode)
@@ -636,9 +637,7 @@ namespace KATO.Form.B0040_NyukinInput
             NyukinList nyukinlist = new NyukinList(this);
             try
             {
-            	// 【入金リスト用の画面ID】
-                //商品リストの表示、画面IDを渡す
-                nyukinlist.intFrmKind = CommonTeisu.FRM_TEST;
+                //入金リストの表示
                 nyukinlist.bmDenpyo = txtDenpyoNo;
                 nyukinlist.radListInput = radSet_chkListDataInput;
                 nyukinlist.ShowDialog();
@@ -648,6 +647,7 @@ namespace KATO.Form.B0040_NyukinInput
                 {
                     //伝票データを入れる 
                     setDenpyoData();
+                    dateCheck();
                 }
             }
             catch (Exception ex)
@@ -670,22 +670,6 @@ namespace KATO.Form.B0040_NyukinInput
             //伝票番号は空白だった場合は、処理終了
             if (txtDenpyoNo.Text == "")
             {
-                //各データの初期化
-                txtDenpyoNo.Text = "";
-                labelSet_Tokuisaki.CodeTxtText = "";
-                labelSet_Tokuisaki.ValueLabelText = "";
-
-                //区分データの初期化
-                delKbnData();
-
-                //表示のみの項目の初期化
-                txtSimekiribi.Text = "";
-                txtSiharaiGessuu.Text = "";
-                txtSiharaibi.Text = "";
-                txtSiharaiJoken.Text = "";
-                txtSyukinKbn.Text = "";
-
-                txtYMD.Focus();
                 return;
             }
 
@@ -697,15 +681,15 @@ namespace KATO.Form.B0040_NyukinInput
             for (int i = 0; i <= 9; i++)
             {
 
-                Control[] cs1 = this.Controls.Find("labelSet_Torihikikbn" + i.ToString(), true);
+                Control[] cs1 = this.Controls.Find("lblsetTorihikikbn" + i.ToString(), true);
 
                 ((BaseTextLabelSet)cs1[0]).CodeTxtText = "";
 
-                Control[] cs3 = this.Controls.Find("baseTextMoney_Nyukingaku" + i.ToString(), true);
+                Control[] cs3 = this.Controls.Find("txtNyukin" + i.ToString(), true);
 
                 ((TextBox)cs3[0]).Text = "";
 
-                Control[] cs5 = this.Controls.Find("txtTegatakizitu" + i.ToString(), true);
+                Control[] cs5 = this.Controls.Find("txtTegataYMD" + i.ToString(), true);
 
                 ((TextBox)cs5[0]).Text = "";
 
@@ -751,6 +735,7 @@ namespace KATO.Form.B0040_NyukinInput
                 {
                     txtYMD.Text = dtSetView.Rows[0]["入金年月日"].ToString();
                     labelSet_Tokuisaki.CodeTxtText = dtSetView.Rows[0]["得意先コード"].ToString();
+                    labelSet_Tokuisaki.chkTxtTorihikisaki();
 
                     //行番号を基にデータをテキストボックスに設定する。
                     foreach (DataRow datarow in dtSetView.Rows)
@@ -758,19 +743,17 @@ namespace KATO.Form.B0040_NyukinInput
                         //行番号－1した変数を保持
                         int gyoNo = int.Parse(datarow["行番号"].ToString()) - 1;
 
-                        Control[] cs1 = this.Controls.Find("labelSet_Torihikikbn" + gyoNo.ToString(), true);
+                        Control[] cs1 = this.Controls.Find("lblsetTorihikikbn" + gyoNo.ToString(), true);
 
                         ((BaseTextLabelSet)cs1[0]).CodeTxtText = datarow["取引区分コード"].ToString();
 
-                        Control[] cs3 = this.Controls.Find("baseTextMoney_Nyukingaku" + gyoNo.ToString(), true);
+                        Control[] cs3 = this.Controls.Find("txtNyukin" + gyoNo.ToString(), true);
 
                         ((TextBox)cs3[0]).Text = decimal.Parse(datarow["入金額"].ToString()).ToString("#,0");
 
-                        Control[] cs5 = this.Controls.Find("txtTegatakizitu" + gyoNo.ToString(), true);
+                        Control[] cs5 = this.Controls.Find("txtTegataYMD" + gyoNo.ToString(), true);
 
                         ((TextBox)cs5[0]).Text = datarow["手形期日"].ToString();
-                        //テスト
-                        //((TextBox)cs5[0]).Text = string.Format("0:yyyy/MM/dd}", DateTime.Now);
 
                         Control[] cs7 = this.Controls.Find("txtBikou" + gyoNo.ToString(), true);
 
@@ -792,7 +775,7 @@ namespace KATO.Form.B0040_NyukinInput
                 }
                 else
                 {
-                    //複数取引先ありのメッセージ（OK）
+                    //伝票が見つからないメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
 
@@ -807,10 +790,12 @@ namespace KATO.Form.B0040_NyukinInput
 
                     //表示のみの項目の初期化
                     txtSimekiribi.Text = "";
-                    txtSiharaiGessuu.Text = "";
-                    txtSiharaibi.Text = "";
-                    txtSiharaiJoken.Text = "";
-                    txtSyukinKbn.Text = "";
+                    txtShiharaiGessu.Text = "";
+                    txtShiharaibi.Text = "";
+                    txtShiharaiJojen.Text = "";
+                    txtShukunkbn.Text = "";
+
+                    SendKeys.Send("{TAB}");
 
                     txtDenpyoNo.Focus();
                     return;
@@ -818,10 +803,12 @@ namespace KATO.Form.B0040_NyukinInput
             }
             catch (Exception ex)
             {
-                //エラーロギング
-                gridSeikyuRireki.Visible = true;
+                // エラーロギング
                 new CommonException(ex);
-                return;
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
         }
 
@@ -832,73 +819,73 @@ namespace KATO.Form.B0040_NyukinInput
         private void delKbnData()
         {
             //１行目
-            labelSet_Torihikikbn0.CodeTxtText = "";
-            labelSet_Torihikikbn0.ValueLabelText = "";
-            baseTextMoney_Nyukingaku0.Text = "";
-            txtTegatakizitu0.Text = "";
+            lblsetTorihikikbn0.CodeTxtText = "";
+            lblsetTorihikikbn0.ValueLabelText = "";
+            txtNyukin0.Text = "";
+            txtTegataYMD0.Text = "";
             txtBikou0.Text = "";
 
             //２行目
-            labelSet_Torihikikbn1.CodeTxtText = "";
-            labelSet_Torihikikbn1.ValueLabelText = "";
-            baseTextMoney_Nyukingaku1.Text = "";
-            txtTegatakizitu1.Text = "";
+            lblsetTorihikikbn1.CodeTxtText = "";
+            lblsetTorihikikbn1.ValueLabelText = "";
+            txtNyukin1.Text = "";
+            txtTegataYMD1.Text = "";
             txtBikou1.Text = "";
 
             //３行目
-            labelSet_Torihikikbn2.CodeTxtText = "";
-            labelSet_Torihikikbn2.ValueLabelText = "";
-            baseTextMoney_Nyukingaku2.Text = "";
-            txtTegatakizitu2.Text = "";
+            lblsetTorihikikbn2.CodeTxtText = "";
+            lblsetTorihikikbn2.ValueLabelText = "";
+            txtNyukin2.Text = "";
+            txtTegataYMD2.Text = "";
             txtBikou2.Text = "";
 
             //４行目
-            labelSet_Torihikikbn3.CodeTxtText = "";
-            labelSet_Torihikikbn3.ValueLabelText = "";
-            baseTextMoney_Nyukingaku3.Text = "";
-            txtTegatakizitu3.Text = "";
+            lblsetTorihikikbn3.CodeTxtText = "";
+            lblsetTorihikikbn3.ValueLabelText = "";
+            txtNyukin3.Text = "";
+            txtTegataYMD3.Text = "";
             txtBikou3.Text = "";
 
             //５行目
-            labelSet_Torihikikbn4.CodeTxtText = "";
-            labelSet_Torihikikbn4.ValueLabelText = "";
-            baseTextMoney_Nyukingaku4.Text = "";
-            txtTegatakizitu4.Text = "";
+            lblsetTorihikikbn4.CodeTxtText = "";
+            lblsetTorihikikbn4.ValueLabelText = "";
+            txtNyukin4.Text = "";
+            txtTegataYMD4.Text = "";
             txtBikou4.Text = "";
 
             //６行目
-            labelSet_Torihikikbn5.CodeTxtText = "";
-            labelSet_Torihikikbn5.ValueLabelText = "";
-            baseTextMoney_Nyukingaku5.Text = "";
-            txtTegatakizitu5.Text = "";
+            lblsetTorihikikbn5.CodeTxtText = "";
+            lblsetTorihikikbn5.ValueLabelText = "";
+            txtNyukin5.Text = "";
+            txtTegataYMD5.Text = "";
             txtBikou5.Text = "";
 
             //７行目
-            labelSet_Torihikikbn6.CodeTxtText = "";
-            labelSet_Torihikikbn6.ValueLabelText = "";
-            baseTextMoney_Nyukingaku6.Text = "";
-            txtTegatakizitu6.Text = "";
+            lblsetTorihikikbn6.CodeTxtText = "";
+            lblsetTorihikikbn6.ValueLabelText = "";
+            txtNyukin6.Text = "";
+            txtTegataYMD6.Text = "";
             txtBikou6.Text = "";
 
             //８行目
-            labelSet_Torihikikbn7.CodeTxtText = "";
-            labelSet_Torihikikbn7.ValueLabelText = "";
-            baseTextMoney_Nyukingaku7.Text = "";
-            txtTegatakizitu7.Text = "";
+            lblsetTorihikikbn7.CodeTxtText = "";
+            lblsetTorihikikbn7.ValueLabelText = "";
+            txtNyukin7.Text = "";
+            txtTegataYMD7.Text = "";
             txtBikou7.Text = "";
 
             //９行目
-            labelSet_Torihikikbn8.CodeTxtText = "";
-            labelSet_Torihikikbn8.ValueLabelText = "";
-            baseTextMoney_Nyukingaku8.Text = "";
-            txtTegatakizitu0.Text = "";
+            lblsetTorihikikbn8.CodeTxtText = "";
+            lblsetTorihikikbn8.ValueLabelText = "";
+            txtNyukin8.Text = "";
+            txtTegataYMD0.Text = "";
             txtBikou8.Text = "";
 
             //１０行目
-            labelSet_Torihikikbn9.CodeTxtText = "";
-            labelSet_Torihikikbn9.ValueLabelText = "";
-            baseTextMoney_Nyukingaku9.Text = "";
-            txtTegatakizitu9.Text = "";
+            lblsetTorihikikbn9.CodeTxtText = "";
+            lblsetTorihikikbn9.ValueLabelText = "";
+            txtNyukin9.Text = "";
+            txtTegataYMD9.Text = "";
             txtBikou9.Text = "";
 
             //合計の初期化
@@ -979,16 +966,16 @@ namespace KATO.Form.B0040_NyukinInput
             // 空文字判定（取引区分コードがある場合の金額）
             for (int cnt = 0; cnt <= 9; cnt++)
             {
-                if (!ctlGb.Controls["labelSet_Torihikikbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
+                if (!ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
                 {
-                    if (ctlGb.Controls["baseTextMoney_Nyukingaku" + cnt.ToString()].Text.Equals(""))
+                    if (ctlGb.Controls["txtNyukin" + cnt.ToString()].Text.Equals(""))
                     {
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
 
                         //対象の列の金額にフォーカス
-                        ctlGb.Controls["baseTextMoney_Nyukingaku" + cnt.ToString()].Focus();
+                        ctlGb.Controls["txtNyukin" + cnt.ToString()].Focus();
                         return;
                     }
                 }
@@ -1017,9 +1004,9 @@ namespace KATO.Form.B0040_NyukinInput
 
                 for (int cnt = 0; cnt <= 9; cnt++)
                 {
-                    strInsertItem[cnt, 0] = ctlGb.Controls["labelSet_Torihikikbn" + cnt.ToString()].Controls["codeTxt"].Text;
-                    strInsertItem[cnt, 1] = ctlGb.Controls["baseTextMoney_Nyukingaku" + cnt.ToString()].Text;
-                    strInsertItem[cnt, 2] = ctlGb.Controls["txtTegatakizitu" + cnt.ToString()].Text;
+                    strInsertItem[cnt, 0] = ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()].Controls["codeTxt"].Text;
+                    strInsertItem[cnt, 1] = ctlGb.Controls["txtNyukin" + cnt.ToString()].Text;
+                    strInsertItem[cnt, 2] = ctlGb.Controls["txtTegataYMD" + cnt.ToString()].Text;
                     strInsertItem[cnt, 3] = ctlGb.Controls["txtBikou" + cnt.ToString()].Text;
                 }
 
@@ -1036,8 +1023,8 @@ namespace KATO.Form.B0040_NyukinInput
                 // エラーロギング
                 new CommonException(ex);
 
-                // メッセージボックスの処理、追加失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
             }
@@ -1158,18 +1145,18 @@ namespace KATO.Form.B0040_NyukinInput
                 for (int i = CurrentRow; i <= 8; i++)
                 {
 
-                    Control[] cs1 = this.Controls.Find("labelSet_Torihikikbn" + i.ToString(), true);
-                    Control[] cs2 = this.Controls.Find("labelSet_Torihikikbn" + (i + 1).ToString(), true);
+                    Control[] cs1 = this.Controls.Find("lblsetTorihikikbn" + i.ToString(), true);
+                    Control[] cs2 = this.Controls.Find("lblsetTorihikikbn" + (i + 1).ToString(), true);
 
                     ((BaseTextLabelSet)cs1[0]).CodeTxtText = ((BaseTextLabelSet)cs2[0]).CodeTxtText;
 
-                    Control[] cs3 = this.Controls.Find("baseTextMoney_Nyukingaku" + i.ToString(), true);
-                    Control[] cs4 = this.Controls.Find("baseTextMoney_Nyukingaku" + (i + 1).ToString(), true);
+                    Control[] cs3 = this.Controls.Find("txtNyukin" + i.ToString(), true);
+                    Control[] cs4 = this.Controls.Find("txtNyukin" + (i + 1).ToString(), true);
 
                     ((TextBox)cs3[0]).Text = ((TextBox)cs4[0]).Text;
 
-                    Control[] cs5 = this.Controls.Find("txtTegatakizitu" + i.ToString(), true);
-                    Control[] cs6 = this.Controls.Find("txtTegatakizitu" + (i + 1).ToString(), true);
+                    Control[] cs5 = this.Controls.Find("txtTegataYMD" + i.ToString(), true);
+                    Control[] cs6 = this.Controls.Find("txtTegataYMD" + (i + 1).ToString(), true);
 
                     ((TextBox)cs5[0]).Text = ((TextBox)cs6[0]).Text;
 
@@ -1181,9 +1168,9 @@ namespace KATO.Form.B0040_NyukinInput
                 }
 
                 //一番下の行の内容をクリア
-                labelSet_Torihikikbn9.CodeTxtText = "";
-                baseTextMoney_Nyukingaku9.Text = "";
-                txtTegatakizitu9.Text = "";
+                lblsetTorihikikbn9.CodeTxtText = "";
+                txtNyukin9.Text = "";
+                txtTegataYMD9.Text = "";
                 txtBikou9.Text = "";
 
                 //合計計算メソッドへ
@@ -1205,7 +1192,7 @@ namespace KATO.Form.B0040_NyukinInput
 
             for (int i = 0; i <= 9; i++)
             {
-                Control[] cs3 = this.Controls.Find("baseTextMoney_Nyukingaku" + i.ToString(), true);
+                Control[] cs3 = this.Controls.Find("txtNyukin" + i.ToString(), true);
                 //金額がNULLの場合は計算しない。
                 if (((TextBox)cs3[0]).Text != "")
                 {
@@ -1243,10 +1230,10 @@ namespace KATO.Form.B0040_NyukinInput
             {
                 //表示のみの項目を削除
                 txtSimekiribi.Text = "";
-                txtSiharaiGessuu.Text = "";
-                txtSiharaibi.Text = "";
-                txtSiharaiJoken.Text = "";
-                txtSyukinKbn.Text = "";
+                txtShiharaiGessu.Text = "";
+                txtShiharaibi.Text = "";
+                txtShiharaiJojen.Text = "";
+                txtShukunkbn.Text = "";
 
                 //グリッド内容を削除
                 gridSeikyuRireki.DataSource = "";
@@ -1320,18 +1307,18 @@ namespace KATO.Form.B0040_NyukinInput
                 if (dtSetView.Rows.Count > 0)
                 {
                     txtSimekiribi.Text = dtSetView.Rows[0]["締切日"].ToString();
-                    txtSiharaiGessuu.Text = dtSetView.Rows[0]["支払月数"].ToString();
-                    txtSiharaibi.Text = dtSetView.Rows[0]["支払日"].ToString();
-                    txtSiharaiJoken.Text = dtSetView.Rows[0]["支払条件"].ToString();
-                    txtSyukinKbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
+                    txtShiharaiGessu.Text = dtSetView.Rows[0]["支払月数"].ToString();
+                    txtShiharaibi.Text = dtSetView.Rows[0]["支払日"].ToString();
+                    txtShiharaiJojen.Text = dtSetView.Rows[0]["支払条件"].ToString();
+                    txtShukunkbn.Text = dtSetView.Rows[0]["集金区分"].ToString();
                 }
                 else
                 {
                     txtSimekiribi.Text = "";
-                    txtSiharaiGessuu.Text = "";
-                    txtSiharaibi.Text = "";
-                    txtSiharaiJoken.Text = "";
-                    txtSyukinKbn.Text = "";
+                    txtShiharaiGessu.Text = "";
+                    txtShiharaibi.Text = "";
+                    txtShiharaiJojen.Text = "";
+                    txtShukunkbn.Text = "";
                 }
 
 

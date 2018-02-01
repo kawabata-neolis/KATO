@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
-            this.labelSet_Shiresaki = new KATO.Common.Ctl.LabelSet_Shiresaki();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.lblYMD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtDenpyoYMDStart = new KATO.Common.Ctl.BaseCalendar();
@@ -55,6 +54,7 @@
             this.lblInputTotal = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtInputTotal = new KATO.Common.Ctl.BaseText();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelSet_Shiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireKensyu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,24 +140,6 @@
             this.labelSet_Daibunrui.TabIndex = 3;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
-            // 
-            // labelSet_Shiresaki
-            // 
-            this.labelSet_Shiresaki.AppendLabelSize = 0;
-            this.labelSet_Shiresaki.AppendLabelText = "";
-            this.labelSet_Shiresaki.CodeTxtSize = 40;
-            this.labelSet_Shiresaki.CodeTxtText = "";
-            this.labelSet_Shiresaki.LabelName = "仕入先コード";
-            this.labelSet_Shiresaki.Location = new System.Drawing.Point(12, 65);
-            this.labelSet_Shiresaki.Name = "labelSet_Shiresaki";
-            this.labelSet_Shiresaki.ShowAppendFlg = false;
-            this.labelSet_Shiresaki.Size = new System.Drawing.Size(483, 22);
-            this.labelSet_Shiresaki.SpaceCodeValue = 4;
-            this.labelSet_Shiresaki.SpaceNameCode = 4;
-            this.labelSet_Shiresaki.SpaceValueAppend = 4;
-            this.labelSet_Shiresaki.TabIndex = 0;
-            this.labelSet_Shiresaki.ValueLabelSize = 300;
-            this.labelSet_Shiresaki.ValueLabelText = "";
             // 
             // labelSet_Chubunrui
             // 
@@ -327,6 +309,7 @@
             this.gridSiireKensyu.AllowUserToAddRows = false;
             this.gridSiireKensyu.AllowUserToResizeColumns = false;
             this.gridSiireKensyu.AllowUserToResizeRows = false;
+            this.gridSiireKensyu.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -446,11 +429,30 @@
             this.groupBox3.TabIndex = 109;
             this.groupBox3.TabStop = false;
             // 
+            // labelSet_Shiresaki
+            // 
+            this.labelSet_Shiresaki.AppendLabelSize = 0;
+            this.labelSet_Shiresaki.AppendLabelText = "";
+            this.labelSet_Shiresaki.CodeTxtSize = 40;
+            this.labelSet_Shiresaki.CodeTxtText = "";
+            this.labelSet_Shiresaki.LabelName = "仕入先コード";
+            this.labelSet_Shiresaki.Location = new System.Drawing.Point(12, 64);
+            this.labelSet_Shiresaki.Name = "labelSet_Shiresaki";
+            this.labelSet_Shiresaki.ShowAppendFlg = false;
+            this.labelSet_Shiresaki.Size = new System.Drawing.Size(637, 22);
+            this.labelSet_Shiresaki.SpaceCodeValue = 4;
+            this.labelSet_Shiresaki.SpaceNameCode = 4;
+            this.labelSet_Shiresaki.SpaceValueAppend = 4;
+            this.labelSet_Shiresaki.TabIndex = 0;
+            this.labelSet_Shiresaki.ValueLabelSize = 300;
+            this.labelSet_Shiresaki.ValueLabelText = "";
+            // 
             // A0670_SiiresakiSiirekakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Shiresaki);
             this.Controls.Add(this.txtInputTotal);
             this.Controls.Add(this.lblInputTotal);
             this.Controls.Add(this.txtMikensyuTotal);
@@ -469,7 +471,6 @@
             this.Controls.Add(this.txtDenpyoYMDStart);
             this.Controls.Add(this.lblYMD);
             this.Controls.Add(this.labelSet_Chubunrui);
-            this.Controls.Add(this.labelSet_Shiresaki);
             this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -483,7 +484,6 @@
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
-            this.Controls.SetChildIndex(this.labelSet_Shiresaki, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.lblYMD, 0);
             this.Controls.SetChildIndex(this.txtDenpyoYMDStart, 0);
@@ -514,6 +514,7 @@
             this.Controls.SetChildIndex(this.txtMikensyuTotal, 0);
             this.Controls.SetChildIndex(this.lblInputTotal, 0);
             this.Controls.SetChildIndex(this.txtInputTotal, 0);
+            this.Controls.SetChildIndex(this.labelSet_Shiresaki, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireKensyu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -523,7 +524,6 @@
         #endregion
 
         private Common.Ctl.LabelSet_Daibunrui labelSet_Daibunrui;
-        private Common.Ctl.LabelSet_Shiresaki labelSet_Shiresaki;
         private Common.Ctl.LabelSet_Chubunrui labelSet_Chubunrui;
         private Common.Ctl.BaseLabel lblYMD;
         private Common.Ctl.BaseCalendar txtDenpyoYMDStart;
@@ -545,5 +545,6 @@
         private Common.Ctl.BaseLabel lblInputTotal;
         private Common.Ctl.BaseText txtInputTotal;
         private System.Windows.Forms.GroupBox groupBox3;
+        private Common.Ctl.LabelSet_Torihikisaki labelSet_Shiresaki;
     }
 }
