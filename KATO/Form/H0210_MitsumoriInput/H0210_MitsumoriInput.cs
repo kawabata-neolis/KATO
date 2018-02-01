@@ -2696,7 +2696,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("P56").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("#");      // No.
+                    workbook.Worksheet(pageCnt).Cell("P56").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
                 }
 
                 // workbookを保存
@@ -2907,7 +2907,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("AQ49").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString();      // No.
+                    workbook.Worksheet(pageCnt).Cell("AQ49").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
                 }
 
                 // workbookを保存

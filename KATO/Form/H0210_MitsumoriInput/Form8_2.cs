@@ -1,5 +1,7 @@
-﻿using KATO.Business.H0210_MitsumoriInput;
+﻿using ClosedXML.Excel;
+using KATO.Business.H0210_MitsumoriInput;
 using KATO.Common.Ctl;
+using KATO.Common.Form;
 using KATO.Common.Util;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,11 @@ using System.Windows.Forms;
 
 namespace KATO.Form.H0210_MitsumoriInput
 {
-    public partial class Form8_2 : System.Windows.Forms.Form
+    public partial class Form8_2 : BaseForm
     {
         string strPdfPath = System.Configuration.ConfigurationManager.AppSettings["pdfpath"];
         BaseTextMoney nm;
+        public int printFlg = 0;
 
         public Form8_2(BaseTextMoney txtNum)
         {
@@ -66,8 +69,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             kenmei.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             DataGridViewTextBoxColumn kingaku = new DataGridViewTextBoxColumn();
-            kingaku.DataPropertyName = "見積金額";
-            kingaku.Name = "見積金額";
+            kingaku.DataPropertyName = "売上金額";
+            kingaku.Name = "売上金額";
             kingaku.HeaderText = "見積金額";
             kingaku.SortMode = DataGridViewColumnSortMode.NotSortable;
 
@@ -76,6 +79,12 @@ namespace KATO.Form.H0210_MitsumoriInput
             memo.Name = "社内メモ";
             memo.HeaderText = "社内メモ";
             memo.Visible = false;
+
+            DataGridViewTextBoxColumn tanto = new DataGridViewTextBoxColumn();
+            tanto.DataPropertyName = "担当者名";
+            tanto.Name = "担当者名";
+            tanto.HeaderText = "担当者名";
+            tanto.Visible = false;
 
             #endregion
 
@@ -88,6 +97,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsu, kenmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 268);
             setColumn(gridMitsu, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 108);
             setColumn(gridMitsu, memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumn(gridMitsu, tanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
 
             #endregion
         }
@@ -121,7 +131,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 int intRowIdx = e.RowIndex;
 
-                if (gridMitsu[6, intRowIdx].Value != null) {
+                if (gridMitsu[6, intRowIdx].Value != null)
+                {
                     txtMemo.Text = (gridMitsu[6, intRowIdx].Value).ToString();
                 }
 
@@ -144,7 +155,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 basemessagebox.ShowDialog();
                 return;
             }
-            finally {
+            finally
+            {
                 this.Cursor = Cursors.Default;
                 gridMitsu.Focus();
             }
@@ -303,7 +315,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void gridMitsu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value != null) {
+            if (gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value != null)
+            {
                 nm.Text = gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value.ToString();
             }
             this.Close();
@@ -396,7 +409,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     intRowIdx = rc[i].Index;
 
-                    if (gridMitsu[1, intRowIdx].Value != null) {
+                    if (gridMitsu[1, intRowIdx].Value != null)
+                    {
                         inputB.updShoninFlg((gridMitsu[1, intRowIdx].Value).ToString(), strFlg, txtMemo.Text);
                     }
                 }
@@ -421,6 +435,157 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string st = printSakuseiList();
+
+                PrintForm pf = new PrintForm(this, st, Common.Util.CommonTeisu.SIZE_A4, true);
+                pf.ShowDialog(this);
+                //if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                //{
+                //    pf.execPreview(st);
+                //    pf.ShowDialog(this);
+                //}
+                //else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                //{
+                //    pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
+                //    pf.Close();
+                //    pf.Dispose();
+                //}
+                pf.Dispose();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        private string printSakuseiList()
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/H0210_MitsumoriSakuseiList.xlsx";
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+
+                IXLWorksheet templatesheet1 = workbook.Worksheet(1);   // テンプレートシート
+                //IXLWorksheet templatesheet2 = workbook.Worksheet(2);   // テンプレートシート（明細行のみ）
+                IXLWorksheet currentsheet = null;  // 処理中シート
+
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int xlsRowCnt = 11;  // Excel出力行カウント（開始は出力行）
+
+                templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+
+                string strKikan = "";
+                if (!string.IsNullOrWhiteSpace(txtFrom.Text))
+                {
+                    strKikan += txtFrom.Text;
+                    if (!string.IsNullOrWhiteSpace(txtTo.Text))
+                    {
+                        strKikan += "～";
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(txtTo.Text))
+                {
+                    strKikan += txtTo.Text;
+                }
+                currentsheet.Cell(8, "B").Value = strKikan;
+
+                for (int i = 0; i < gridMitsu.RowCount; i++)
+                {
+                    if (xlsRowCnt == 55)
+                    {
+                        pageCnt++;
+                        xlsRowCnt = 11;
+
+                        // テンプレートシート（明細行のみ）からコピー
+                        templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+                    }
+                    currentsheet.Cell(xlsRowCnt, "A").Value = getCellValue(gridMitsu[7, i], false);
+                    currentsheet.Cell(xlsRowCnt, "C").Value = getCellValue(gridMitsu[3, i], false);
+                    currentsheet.Cell(xlsRowCnt, "D").Value = getCellValue(gridMitsu[2, i], false);
+                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsu[4, i], false);
+                    currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsu[5, i], false);
+
+                    xlsRowCnt++;
+                }
+
+                // テンプレートシート削除
+                templatesheet1.Delete();
+                //templatesheet2.Delete();
+
+                // ページ数設定
+                for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
+                {
+                    workbook.Worksheet(pageCnt).Cell("F3").Value = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
+                }
+
+                // workbookを保存
+                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                //string strOutXlsFile = strWorkPath + "_" + txtMNum.Text + ".xlsx";
+                workbook.SaveAs(strOutXlsFile);
+
+                // workbookを解放
+                workbook.Dispose();
+
+                // PDF化の処理
+                CreatePdf pdf = new CreatePdf();
+                return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                //return pdf.createPdf(strOutXlsFile, "_" + txtMNum.Text, 0);
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                // Workフォルダの全ファイルを取得
+                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    System.IO.File.Delete(filepath);
+                }
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private string getCellValue(DataGridViewCell c, bool zero)
+        {
+            string ret = "";
+            if (zero)
+            {
+                ret = "0";
+            }
+
+            if (c != null && c.Value != null && !string.IsNullOrWhiteSpace(c.Value.ToString()))
+            {
+                ret = c.Value.ToString();
+            }
+            return ret;
+        }
+
+        private void btnF012_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

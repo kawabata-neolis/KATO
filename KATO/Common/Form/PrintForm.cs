@@ -281,7 +281,7 @@ namespace KATO.Common.Form
             int intIdx = 0;
             foreach (string item in oPrinter)
             {
-                prtList.Items.Add(item);
+                //prtList.Items.Add(item);
                 if (item.Equals(pd.PrinterSettings.PrinterName))
                 {
                     prtList.SelectedIndex = intIdx;

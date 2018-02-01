@@ -1412,99 +1412,99 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void getKinShiireTanka()
         {
-            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-            try
-            {
-                DataTable dtTanka = juchuB.getKinShiireTanka(txtShohinCd.Text);
+            //A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+            //try
+            //{
+            //    DataTable dtTanka = juchuB.getKinShiireTanka(txtShohinCd.Text);
 
-                cbKinShiireTanka.Items.Clear();
-                cbKinShiireTanka.Items.Add("");
+            //    cbKinShiireTanka.Items.Clear();
+            //    cbKinShiireTanka.Items.Add("");
 
-                decimal d = 0;
+            //    decimal d = 0;
 
-                if (dtTanka != null) {
-                    for (int i = 0; i < dtTanka.Rows.Count; i++)
-                    {
-                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2);
+            //    if (dtTanka != null) {
+            //        for (int i = 0; i < dtTanka.Rows.Count; i++)
+            //        {
+            //            d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2);
 
-                        if (i == 0)
-                        {
-                            cbKinShiireTanka.Text = d.ToString("0,.00");
-                        }
-                        cbKinShiireTanka.Items.Add(d.ToString("0,.00") + ":" + dtTanka.Rows[0]["仕入先名称"].ToString() + ":" + dtTanka.Rows[0]["伝票年月日"].ToString());
-                    }
-                }
-                cbKinShiireTanka.Refresh();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            //            if (i == 0)
+            //            {
+            //                cbKinShiireTanka.Text = d.ToString("0,.00");
+            //            }
+            //            cbKinShiireTanka.Items.Add(d.ToString("0,.00") + ":" + dtTanka.Rows[0]["仕入先名称"].ToString() + ":" + dtTanka.Rows[0]["伝票年月日"].ToString());
+            //        }
+            //    }
+            //    cbKinShiireTanka.Refresh();
+            //}
+            //catch (Exception ex)
+            //{
+            //    new CommonException(ex);
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return;
+            //}
         }
 
         private void getJuchuTanka()
         {
-            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-            try
-            {
-                DataTable dtTanka = juchuB.getJuchuTanka(txtShohinCd.Text, tsTokuisaki.CodeTxtText);
+            //A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+            //try
+            //{
+            //    DataTable dtTanka = juchuB.getJuchuTanka(txtShohinCd.Text, tsTokuisaki.CodeTxtText);
 
-                cbJuchuTanka.Items.Clear();
-                cbJuchuTanka.Items.Add("");
+            //    cbJuchuTanka.Items.Clear();
+            //    cbJuchuTanka.Items.Add("");
 
-                decimal d = 0;
+            //    decimal d = 0;
 
-                if (dtTanka != null)
-                {
-                    for (int i = 0; i < dtTanka.Rows.Count; i++)
-                    {
-                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["受注単価"].ToString()), 2);
-                        cbJuchuTanka.Items.Add(d.ToString("0,.00") + ":" + dtTanka.Rows[0]["受注日"].ToString());
-                    }
-                }
-                cbJuchuTanka.Refresh();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            //    if (dtTanka != null)
+            //    {
+            //        for (int i = 0; i < dtTanka.Rows.Count; i++)
+            //        {
+            //            d = decimal.Round(getDecValue(dtTanka.Rows[0]["受注単価"].ToString()), 2);
+            //            cbJuchuTanka.Items.Add(d.ToString("0,.00") + ":" + dtTanka.Rows[0]["受注日"].ToString());
+            //        }
+            //    }
+            //    cbJuchuTanka.Refresh();
+            //}
+            //catch (Exception ex)
+            //{
+            //    new CommonException(ex);
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return;
+            //}
         }
 
         private void getShiireTanka()
         {
-            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-            try
-            {
-                DataTable dtTanka = juchuB.getShiireTanka(txtShohinCd.Text);
+            //A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+            //try
+            //{
+            //    DataTable dtTanka = juchuB.getShiireTanka(txtShohinCd.Text);
 
-                cbSiireTanka.Items.Clear();
-                cbSiireTanka.Items.Add("");
+            //    cbSiireTanka.Items.Clear();
+            //    cbSiireTanka.Items.Add("");
 
-                decimal d = 0;
+            //    decimal d = 0;
 
-                if (dtTanka != null)
-                {
-                    for (int i = 0; i < dtTanka.Rows.Count; i++)
-                    {
-                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2);
-                        cbSiireTanka.Items.Add(d.ToString("0,.00").ToString() + ":" + dtTanka.Rows[0]["仕入日"].ToString());
-                    }
-                }
-                cbSiireTanka.Refresh();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            //    if (dtTanka != null)
+            //    {
+            //        for (int i = 0; i < dtTanka.Rows.Count; i++)
+            //        {
+            //            d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2);
+            //            cbSiireTanka.Items.Add(d.ToString("0,.00").ToString() + ":" + dtTanka.Rows[0]["仕入日"].ToString());
+            //        }
+            //    }
+            //    cbSiireTanka.Refresh();
+            //}
+            //catch (Exception ex)
+            //{
+            //    new CommonException(ex);
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return;
+            //}
         }
 
         private void addJuchu()

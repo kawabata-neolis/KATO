@@ -448,8 +448,8 @@ namespace KATO.Business.H0210_MitsumoriInput
 
             strSQL += "SELECT distinct";
             strSQL += " (CASE a.承認フラグ WHEN '1' THEN '済'  WHEN '9' THEN '否' ELSE '未' END) AS 承認フラグ,";
-            strSQL += " a.見積書番号, CONVERT(VARCHAR, a.見積年月日, 111) as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額,a.社内メモ";
-            strSQL += " FROM 見積ヘッド a, 見積明細 b";
+            strSQL += " a.見積書番号, CONVERT(VARCHAR, a.見積年月日, 111) as 見積年月日,a.得意先コード,a.得意先名称,a.標題,a.売上金額,a.社内メモ,t.担当者名";
+            strSQL += " FROM 見積ヘッド a left join 担当者 t on a.担当者コード = t.担当者コード, 見積明細 b";
             strSQL += " WHERE a.削除 = 'N' ";
             strSQL += "   AND a.見積書番号 = b.伝票番号 ";
 
@@ -473,11 +473,15 @@ namespace KATO.Business.H0210_MitsumoriInput
             {
                 strSQL += "   AND a.担当者名 like '%" + strTan2 + "%'";
             }
+            if (!string.IsNullOrWhiteSpace(strKen))
+            {
+                strSQL += "   AND a.標題 like '%" + strKen + "%'";
+            }
             if (!string.IsNullOrWhiteSpace(strBik))
             {
                 strSQL += "   AND (a.備考 like '%" + strBik + "%' OR b.備考 like '%" + strBik + "%')";
             }
-            if (!string.IsNullOrWhiteSpace(strBik))
+            if (!string.IsNullOrWhiteSpace(strKat))
             {
                 strSQL += "   AND b.品名型式 like '%" + strKat + "%'";
             }

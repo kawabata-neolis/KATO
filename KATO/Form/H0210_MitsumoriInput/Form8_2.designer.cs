@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form8_2));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,14 +49,13 @@
             this.rdSort2 = new System.Windows.Forms.RadioButton();
             this.rdSort1 = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnF12 = new System.Windows.Forms.Button();
-            this.btnF11 = new System.Windows.Forms.Button();
+            this.btnF011 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnF10 = new System.Windows.Forms.Button();
+            this.btnF010 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rdShoninNo = new System.Windows.Forms.RadioButton();
@@ -72,12 +71,58 @@
             this.button2 = new System.Windows.Forms.Button();
             this.txtMemo = new KATO.Common.Ctl.BaseText();
             this.lblMemo = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnF012 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMitsu)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Visible = false;
+            // 
+            // btnF11
+            // 
+            this.btnF11.Visible = false;
+            // 
+            // btnF10
+            // 
+            this.btnF10.Visible = false;
+            // 
+            // btnF09
+            // 
+            this.btnF09.Visible = false;
+            // 
+            // btnF08
+            // 
+            this.btnF08.Visible = false;
+            // 
+            // btnF07
+            // 
+            this.btnF07.Visible = false;
+            // 
+            // btnF06
+            // 
+            this.btnF06.Visible = false;
+            // 
+            // btnF05
+            // 
+            this.btnF05.Visible = false;
+            // 
+            // btnF04
+            // 
+            this.btnF04.Visible = false;
+            // 
+            // btnF03
+            // 
+            this.btnF03.Visible = false;
+            // 
+            // btnF02
+            // 
+            this.btnF02.Visible = false;
             // 
             // label5
             // 
@@ -239,30 +284,18 @@
             this.label9.Text = "※備考は、明細行の備考に\r\n　ついても検索します。";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnF12
+            // btnF011
             // 
-            this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnF12.Location = new System.Drawing.Point(675, 118);
-            this.btnF12.Name = "btnF12";
-            this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 10;
-            this.btnF12.Text = "戻る";
-            this.btnF12.UseVisualStyleBackColor = true;
-            this.btnF12.Click += new System.EventHandler(this.button1_Click);
-            this.btnF12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
-            // 
-            // btnF11
-            // 
-            this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnF11.Location = new System.Drawing.Point(675, 146);
-            this.btnF11.Name = "btnF11";
-            this.btnF11.Size = new System.Drawing.Size(100, 23);
-            this.btnF11.TabIndex = 11;
-            this.btnF11.Text = "検索";
-            this.btnF11.UseVisualStyleBackColor = true;
-            this.btnF11.Click += new System.EventHandler(this.button2_Click);
-            this.btnF11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
-            this.btnF11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button2_KeyPress);
+            this.btnF011.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnF011.Location = new System.Drawing.Point(675, 146);
+            this.btnF011.Name = "btnF011";
+            this.btnF011.Size = new System.Drawing.Size(100, 23);
+            this.btnF011.TabIndex = 11;
+            this.btnF011.Text = "検索";
+            this.btnF011.UseVisualStyleBackColor = true;
+            this.btnF011.Click += new System.EventHandler(this.button2_Click);
+            this.btnF011.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.btnF011.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.button2_KeyPress);
             // 
             // panel1
             // 
@@ -318,16 +351,16 @@
             this.label11.Text = "件)";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnF10
+            // btnF010
             // 
-            this.btnF10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnF10.Location = new System.Drawing.Point(675, 174);
-            this.btnF10.Name = "btnF10";
-            this.btnF10.Size = new System.Drawing.Size(100, 23);
-            this.btnF10.TabIndex = 12;
-            this.btnF10.Text = "詳細";
-            this.btnF10.UseVisualStyleBackColor = true;
-            this.btnF10.Click += new System.EventHandler(this.button3_Click);
+            this.btnF010.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnF010.Location = new System.Drawing.Point(675, 174);
+            this.btnF010.Name = "btnF010";
+            this.btnF010.Size = new System.Drawing.Size(100, 23);
+            this.btnF010.TabIndex = 12;
+            this.btnF010.Text = "詳細";
+            this.btnF010.UseVisualStyleBackColor = true;
+            this.btnF010.Click += new System.EventHandler(this.button3_Click);
             // 
             // label12
             // 
@@ -450,40 +483,40 @@
             this.gridMitsu.AllowUserToResizeRows = false;
             this.gridMitsu.AutoGenerateColumns = false;
             this.gridMitsu.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMitsu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridMitsu.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridMitsu.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridMitsu.EnableHeadersVisualStyles = false;
             this.gridMitsu.Location = new System.Drawing.Point(12, 212);
             this.gridMitsu.MultiSelect = false;
             this.gridMitsu.Name = "gridMitsu";
             this.gridMitsu.ReadOnly = true;
             this.gridMitsu.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMitsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMitsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridMitsu.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.gridMitsu.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.gridMitsu.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridMitsu.RowTemplate.Height = 21;
             this.gridMitsu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gridMitsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -545,11 +578,35 @@
             this.lblMemo.Text = "社内メモ";
             this.lblMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button3.Location = new System.Drawing.Point(625, 704);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(150, 23);
+            this.button3.TabIndex = 207;
+            this.button3.Text = "見積作成一覧印刷";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // btnF012
+            // 
+            this.btnF012.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnF012.Location = new System.Drawing.Point(675, 117);
+            this.btnF012.Name = "btnF012";
+            this.btnF012.Size = new System.Drawing.Size(100, 23);
+            this.btnF012.TabIndex = 208;
+            this.btnF012.Text = "閉じる";
+            this.btnF012.UseVisualStyleBackColor = true;
+            this.btnF012.Click += new System.EventHandler(this.btnF012_Click);
+            // 
             // Form8_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.Controls.Add(this.btnF012);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.lblMemo);
             this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.button2);
@@ -559,13 +616,12 @@
             this.Controls.Add(this.lsTokui);
             this.Controls.Add(this.lsTanto);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.btnF10);
+            this.Controls.Add(this.btnF010);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnF11);
-            this.Controls.Add(this.btnF12);
+            this.Controls.Add(this.btnF011);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.panel2);
@@ -588,6 +644,52 @@
             this.Load += new System.EventHandler(this.Form8_2_Load);
             this.Shown += new System.EventHandler(this.Form8_2_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form8_2_KeyDown);
+            this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.txtFrom, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.txtTo, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txtTanto, 0);
+            this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.txtKenmei, 0);
+            this.Controls.SetChildIndex(this.label7, 0);
+            this.Controls.SetChildIndex(this.txtBiko, 0);
+            this.Controls.SetChildIndex(this.label8, 0);
+            this.Controls.SetChildIndex(this.txtKata, 0);
+            this.Controls.SetChildIndex(this.gridMitsu, 0);
+            this.Controls.SetChildIndex(this.panel2, 0);
+            this.Controls.SetChildIndex(this.label14, 0);
+            this.Controls.SetChildIndex(this.label9, 0);
+            this.Controls.SetChildIndex(this.btnF011, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
+            this.Controls.SetChildIndex(this.textBox10, 0);
+            this.Controls.SetChildIndex(this.label11, 0);
+            this.Controls.SetChildIndex(this.btnF010, 0);
+            this.Controls.SetChildIndex(this.label12, 0);
+            this.Controls.SetChildIndex(this.lsTanto, 0);
+            this.Controls.SetChildIndex(this.lsTokui, 0);
+            this.Controls.SetChildIndex(this.panel3, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.button2, 0);
+            this.Controls.SetChildIndex(this.txtMemo, 0);
+            this.Controls.SetChildIndex(this.lblMemo, 0);
+            this.Controls.SetChildIndex(this.button3, 0);
+            this.Controls.SetChildIndex(this.btnF01, 0);
+            this.Controls.SetChildIndex(this.btnF02, 0);
+            this.Controls.SetChildIndex(this.btnF03, 0);
+            this.Controls.SetChildIndex(this.btnF04, 0);
+            this.Controls.SetChildIndex(this.btnF05, 0);
+            this.Controls.SetChildIndex(this.btnF06, 0);
+            this.Controls.SetChildIndex(this.btnF07, 0);
+            this.Controls.SetChildIndex(this.btnF08, 0);
+            this.Controls.SetChildIndex(this.btnF09, 0);
+            this.Controls.SetChildIndex(this.btnF10, 0);
+            this.Controls.SetChildIndex(this.btnF11, 0);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
+            this.Controls.SetChildIndex(this.btnF012, 0);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -613,13 +715,13 @@
         private System.Windows.Forms.RadioButton rdSort2;
         private System.Windows.Forms.RadioButton rdSort1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnF12;
-        private System.Windows.Forms.Button btnF11;
+        //private System.Windows.Forms.Button btnF12;
+        private System.Windows.Forms.Button btnF011;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnF10;
+        private System.Windows.Forms.Button btnF010;
         private System.Windows.Forms.Label label12;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
         public Common.Ctl.BaseCalendarYM txtFrom;
@@ -639,5 +741,7 @@
         private System.Windows.Forms.Button button2;
         private Common.Ctl.BaseText txtMemo;
         private Common.Ctl.BaseLabel lblMemo;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnF012;
     }
 }
