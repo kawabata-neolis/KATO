@@ -20,8 +20,8 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
     /// 仕入検収入力＆確認
     ///     作成者：山本
     ///     作成日：2017/12/21
-    ///     更新者：山本
-    ///     更新日：2017/12/21
+    ///     更新者：大河内
+    ///     更新日：2018/02/01
     ///</summary>
     public partial class A0670_SiiresakiSiirekakunin : BaseForm
     {

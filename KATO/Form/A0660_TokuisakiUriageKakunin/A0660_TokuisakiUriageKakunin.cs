@@ -20,8 +20,8 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
     /// 得意先売上検収入力＆確認
     ///     作成者：山本
     ///     作成日：2017/12/22
-    ///     更新者：山本
-    ///     更新日：2017/12/22
+    ///     更新者：大河内
+    ///     更新日：2017/02/01
     ///</summary>
     public partial class A0660_TokuisakiUriageKakunin : BaseForm
     {

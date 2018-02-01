@@ -20,7 +20,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
     ///作成者：太田
     ///作成日：2017/07/12
     ///更新者：大河内
-    ///更新日：2018/01/25
+    ///更新日：2018/02/01
     ///</summary>
     public partial class E0330_TokuisakiMotocyoKakunin : BaseForm
     {
@@ -112,6 +112,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             //初期表示
@@ -662,6 +663,92 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 return;
             }
             return;
+        }
+
+        ///<summary>
+        ///printTokuisakiMotocyoKakunin
+        ///印刷ダイアログ
+        ///</summary>
+        private void printTokuisakiMotocyoKakunin()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtPrintData = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            ////上段入力項目チェック
+            //if (chkTxtData() == false)
+            //{
+            //    return;
+            //}
+
+            //印刷用データを入れる用
+            List<string> lstPrintData = new List<string>();
+
+            ////印刷用データを入れる
+            //lstPrintData.Add(txtYM.Text);
+            //lstPrintData.Add(lblSetMaker.CodeTxtText);
+            //lstPrintData.Add(lblSetDaibunrui.CodeTxtText);
+            //lstPrintData.Add(lblSetChubunrui.CodeTxtText);
+
+            ////印刷ヘッダーに記載する用
+            //List<string> lstPrintHeader = new List<string>();
+
+            //DateTime dateYM = DateTime.Parse(txtYM.Text);
+
+            ////印刷ヘッダーに記載する
+            //lstPrintHeader.Add(dateYM.Year + "年" + dateYM.Month + "月度");
+            //lstPrintHeader.Add(lblSetShiresaki.ValueLabelText);
+
+            //E0330_TokuisakiMotocyoKakunin_B tokuisakimotocyokakuninB = new E0330_TokuisakiMotocyoKakunin_B();
+            //try
+            //{
+            //    //印刷データの取得(各データを渡す)
+            //    dtPrintData = tokuisakimotocyokakuninB.getPrintData(lstPrintData);
+
+            //    //印刷データにない場合
+            //    if (dtPrintData.Rows.Count == 0)
+            //    {
+            //        //データ存在なしメッセージ（OK）
+            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, "", "該当データはありません。。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //        basemessagebox.ShowDialog();
+            //        return;
+            //    }
+
+            //    //初期値
+            //    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+            //    pf.ShowDialog(this);
+
+            //    //プレビューの場合
+            //    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+            //    {
+            //        //結果セットをレコードセットに
+            //        strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+
+            //        // プレビュー
+            //        pf.execPreview(strFile);
+            //    }
+            //    // 一括印刷の場合
+            //    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+            //    {
+            //        // PDF作成
+            //        strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+
+            //        // 一括印刷
+            //        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    //データロギング
+            //    new CommonException(ex);
+            //    //例外発生メッセージ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //    return;
+            //}
         }
     }
 }

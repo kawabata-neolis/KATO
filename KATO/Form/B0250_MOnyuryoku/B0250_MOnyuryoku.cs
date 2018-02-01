@@ -16,8 +16,6 @@ using System.IO;
 
 namespace KATO.Form.B0250_MOnyuryoku
 {
-    //列91にデバッグ用のコードがあるため最終的に削除
-
     ///<summary>
     ///MOnyuryoku
     ///MO入力フォーム
