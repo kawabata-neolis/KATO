@@ -639,7 +639,7 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                 // ClosedXMLで1行ずつExcelに出力
                 foreach (DataRow drTokuiCheak in dtChkList.Rows)
                 {
-                    //
+//調査
                     if (rowCnt > 1)
                     {
                         //次の得意先が違う場合にシート作成
