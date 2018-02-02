@@ -94,7 +94,7 @@ namespace KATO.Form.A0010_JuchuInput
                     defaultUser = lsJuchusha.CodeTxtText;
                     defaultEigyo = txtEigyoshoCd.Text;
                 }
-
+                lsJuchusha.codeTxt.Focus();
             }
             catch (Exception ex)
             {
@@ -106,6 +106,7 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
+            tsTokuisaki.codeTxt.Leave += new EventHandler(tsTokuisaki_Leave);
             txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
             cmbSubWinShow.Items.Add("売上実績確認");
@@ -665,28 +666,51 @@ namespace KATO.Form.A0010_JuchuInput
                     txtC4.Text = dtJuchuNoInfo.Rows[0]["Ｃ４"].ToString();
                     txtC5.Text = dtJuchuNoInfo.Rows[0]["Ｃ５"].ToString();
                     txtC6.Text = dtJuchuNoInfo.Rows[0]["Ｃ６"].ToString();
+
                     decimal dJSu = 0;
                     if (dtJuchuNoInfo.Rows[0]["受注数量"] != null)
                     {
                         dJSu = getDecValue(dtJuchuNoInfo.Rows[0]["受注数量"].ToString());
                     }
                     txtJuchuSuryo.Text = (decimal.Round(dJSu, 0)).ToString();
+
                     dSearchSu = (decimal.Round(dJSu, 0));
+
                     decimal dJTanka = 0;
                     if (dtJuchuNoInfo.Rows[0]["受注単価"] != null)
                     {
                         dJTanka = getDecValue(dtJuchuNoInfo.Rows[0]["受注単価"].ToString());
                     }
                     cbJuchuTanka.Text = (decimal.Round(dJTanka, 0)).ToString();
-                    cbSiireTanka.Text = dtJuchuNoInfo.Rows[0]["仕入単価"].ToString();
+
+                    decimal dSTanka = 0;
+                    if (dtJuchuNoInfo.Rows[0]["仕入単価"] != null)
+                    {
+                        dSTanka = getDecValue(dtJuchuNoInfo.Rows[0]["仕入単価"].ToString());
+                    }
+                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2)).ToString();
+
                     txtNoki.Text = dtJuchuNoInfo.Rows[0]["納期"].ToString();
                     txtChuban.Text = (dtJuchuNoInfo.Rows[0]["注番"].ToString()).Trim();
                     txtEigyoshoCd.Text = dtJuchuNoInfo.Rows[0]["営業所コード"].ToString();
                     txtTantosha.Text = dtJuchuNoInfo.Rows[0]["担当者コード"].ToString();
                     txtHatchushiji.Text = dtJuchuNoInfo.Rows[0]["発注指示区分"].ToString();
                     txtShohinCd.Text = dtJuchuNoInfo.Rows[0]["商品コード"].ToString();
-                    txtHonshaShukko.Text = dtJuchuNoInfo.Rows[0]["本社出庫数"].ToString();
-                    txtGihuShukko.Text = dtJuchuNoInfo.Rows[0]["岐阜出庫数"].ToString();
+
+                    decimal dHonSu = 0;
+                    if (dtJuchuNoInfo.Rows[0]["本社出庫数"] != null)
+                    {
+                        dHonSu = getDecValue(dtJuchuNoInfo.Rows[0]["本社出庫数"].ToString());
+                    }
+                    txtHonshaShukko.Text = (decimal.Round(dHonSu, 0)).ToString();
+
+                    decimal dGihSu = 0;
+                    if (dtJuchuNoInfo.Rows[0]["岐阜出庫数"] != null)
+                    {
+                        dGihSu = getDecValue(dtJuchuNoInfo.Rows[0]["岐阜出庫数"].ToString());
+                    }
+                    txtGihuShukko.Text = (decimal.Round(dGihSu, 0)).ToString();
+
                     txtShukkaShiji.Text = dtJuchuNoInfo.Rows[0]["出荷指示区分"].ToString();
                     txtZaikoHikiate.Text = dtJuchuNoInfo.Rows[0]["在庫引当フラグ"].ToString();
                     txtUriage.Text = dtJuchuNoInfo.Rows[0]["売上フラグ"].ToString();
@@ -720,7 +744,10 @@ namespace KATO.Form.A0010_JuchuInput
                         txtHinmei.ReadOnly = true;
                     }
                     getShohinInfo();
-                    
+
+                    cbJuchuTanka.Text = (decimal.Round(dJTanka, 0)).ToString();
+                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2)).ToString();
+
                     DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(strCd);
                     if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0) {
                         if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()) && !selKakoFlg)
@@ -731,6 +758,14 @@ namespace KATO.Form.A0010_JuchuInput
                         else
                         {
                             txtHatchusu.Text = "0";
+
+                            panel1.Visible = false;
+                            txtHatchushiji.Text = "0";
+                            tsShiiresaki.CodeTxtText = "";
+                            tsShiiresaki.valueTextText = "";
+                            txtShiireNoki.Text = "";
+                            txtShiireChuban.Text = "";
+                            txtHatchuNo.Text = "";
                         }
                     }
 
@@ -974,7 +1009,13 @@ namespace KATO.Form.A0010_JuchuInput
                 if (dtHatchu != null && dtHatchu.Rows.Count > 0)
                 {
                     panel1.Visible = true;
-                    txtHatchusu.Text = dtHatchu.Rows[0]["発注数量"].ToString();
+
+                    decimal dHatSu = 0;
+                    if (dtHatchu.Rows[0]["発注数量"] != null)
+                    {
+                        dHatSu = getDecValue(dtHatchu.Rows[0]["発注数量"].ToString());
+                    }
+                    txtHatchusu.Text = (decimal.Round(dHatSu, 0)).ToString();
                     dSearchSuH = getDecValue(txtHatchusu.Text);
                     tsShiiresaki.CodeTxtText = dtHatchu.Rows[0]["仕入先コード"].ToString();
                     txtShiireNoki.Text = dtHatchu.Rows[0]["納期"].ToString();
@@ -1350,7 +1391,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                     lsDaibunrui.codeTxt.ReadOnly = true;
                     lsChubunrui.codeTxt.ReadOnly = true;
-                    lsChubunrui.codeTxt.ReadOnly = true;
+                    lsMaker.codeTxt.ReadOnly = true;
 
                     txtC1.Text = dtShohin.Rows[0]["Ｃ１"].ToString();
                     txtC2.Text = dtShohin.Rows[0]["Ｃ２"].ToString();
@@ -2844,6 +2885,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtSiireTankaSub.Text = "";
             cbKinShiireTanka.Text = "";
             txtKinSiireTankaSub.Text = "";
+            txtUriSuryo.Text = "";
 
             txtJuchuYMD.ReadOnly = false;
             lsJuchusha.codeTxt.ReadOnly = false;
@@ -2909,6 +2951,13 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(tsTokuisaki.valueTextText))
+            {
+                tsTokuisaki.CodeTxtText = "";
+                tsTokuisaki.codeTxt.Focus();
+                return;
+            }
+
             getJuchuZanInfo();
             if (tsTokuisaki.CodeTxtText.Equals("6666") || tsTokuisaki.CodeTxtText.Equals("7777") || tsTokuisaki.CodeTxtText.Equals("8888"))
             {
@@ -2928,7 +2977,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     txtTantosha.Text = dt.Rows[0]["担当者コード"].ToString();
                 }
-                
+                lsDaibunrui.codeTxt.Focus();
             }
             catch (Exception ex)
             {
@@ -3115,6 +3164,44 @@ namespace KATO.Form.A0010_JuchuInput
                 getShohinInfo();
                 decimal d = getDecValue(Tanka);
                 cbJuchuTanka.Text = (decimal.Round(d, 0)).ToString();
+            }
+        }
+
+        private void gridJuchuZanMeisai_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtJuchuYMD.ReadOnly = true;
+                lsJuchusha.codeTxt.ReadOnly = false;
+                //txtJuchuNo.ReadOnly = false;
+                tsTokuisaki.ReadOnlyANDTabStopFlg = false;
+                txtSearchStr.ReadOnly = false;
+                txtJuchuSuryo.ReadOnly = false;
+
+                cbJuchuTanka.Enabled = true;
+                cbSiireTanka.Enabled = true;
+
+                txtHatchushiji.ReadOnly = false;
+                txtHonshaShukko.ReadOnly = false;
+                txtGihuShukko.ReadOnly = false;
+                txtHatchusu.ReadOnly = false;
+                txtChuban.ReadOnly = false;
+                tsShiiresaki.ReadOnlyANDTabStopFlg = false;
+                txtShiireTanto.ReadOnly = false;
+                txtShiireChuban.ReadOnly = false;
+
+                lsDaibunrui.codeTxt.ReadOnly = true;
+                lsChubunrui.codeTxt.ReadOnly = true;
+                lsMaker.codeTxt.ReadOnly = true;
+
+                txtJuchuNo.Text = "";
+                txtHatchuNo.Text = "";
+
+                if (gridJuchuZanMeisai.CurrentRow.Cells[0] != null)
+                {
+                    txtJuchuNo.Text = (gridJuchuZanMeisai.CurrentRow.Cells[0].Value).ToString();
+                    getJuchuInfo();
+                }
             }
         }
     }

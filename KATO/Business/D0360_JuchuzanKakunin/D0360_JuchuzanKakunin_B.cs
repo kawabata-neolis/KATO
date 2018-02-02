@@ -38,8 +38,9 @@ namespace KATO.Business.D0360_JuchuzanKakunin
             };
 
             // 受注残が検索対象となる場合
-            if (int.Parse(listParam[29]) == 0 || int.Parse(listParam[29]) == 1)
-            {
+            //if (int.Parse(listParam[29]) == 0 || int.Parse(listParam[29]) == 1)
+            if (int.Parse(listParam[29]) == 0)
+                {
                 // 受注残
                 strQuery = "SELECT a.受注年月日 AS 受注日";
                 strQuery += "      ,a.納期";
@@ -181,16 +182,18 @@ namespace KATO.Business.D0360_JuchuzanKakunin
             }
 
             // 受注残・発注残共に検索する場合
-            if (int.Parse(listParam[29]) == 0)
-            {
-                strQuery += " UNION ";
-            }
+            //if (int.Parse(listParam[29]) == 0)
+            //{
+            //    strQuery += " UNION ";
+            //}
 
             // 発注残が検索対象となる場合
-            if (int.Parse(listParam[29]) == 0 || int.Parse(listParam[29]) == 2)
+            //if (int.Parse(listParam[29]) == 0 || int.Parse(listParam[29]) == 2)
+            if (int.Parse(listParam[29]) == 1)
             {
                 //発注残
-                strQuery += "SELECT '' AS 受注日";
+                //strQuery += "SELECT '' AS 受注日";
+                strQuery = "SELECT '' AS 受注日";
                 strQuery += "      ,a.納期";
                 strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
                 strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";

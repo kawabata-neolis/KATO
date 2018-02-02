@@ -14,6 +14,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private BaseText bBox = null;
+        private bool searchedFlg = false;
 
         ///<summary>
         ///D0360_JuchuzanKakunin
@@ -84,11 +85,14 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             this.bBox = baseTxtBox;
             this.lsTokuisaki.CodeTxtText = stTokuisaki;
-            this.rsSearchKind.radbtn0.Checked = false;
-            this.rsSearchKind.radbtn2.Checked = false;
-            this.rsSearchKind.radbtn1.Checked = true;
-            txtJuchuNo.Focus();
+            this.rsSearchKind.radbtn1.Checked = false;
+            this.rsSearchKind.radbtn0.Checked = true;
+            //txtJuchuNo.Focus();
+            gridZanList.Focus();
             this.selZanList();
+            searchedFlg = true;
+            
+            
         }
 
         ///<summary>
@@ -97,6 +101,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         ///</summary>
         private void JuchuzanKakunin_Load(object sender, EventArgs e)
         {
+            btnF01.Text = CommonTeisu.STR_FUNC_F1_HYOJII;
+            btnF04.Text = CommonTeisu.STR_FUNC_F4;
+            btnF12.Text = CommonTeisu.STR_FUNC_F12;
             SetUpGrid();
         }
 
@@ -246,9 +253,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
             setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
             setColumn(hatchuzan,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
-            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0,.#", 100);
+            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 100);
             setColumn(uriKingaku,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
-            setColumn(siireTanka,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0,.#", 100);
+            setColumn(siireTanka,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 100);
             setColumn(siireKingaku,      DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
             setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
             setColumn(siireGokeiKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  140);
@@ -357,6 +364,28 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         {
             //フォーム上のデータを白紙
             this.delFormClear(this, gridZanList);
+
+            rsSearchKind.radbtn1.Checked = false;
+            rsSearchKind.radbtn0.Checked = true;
+
+            rsGroup.radbtn4.Checked = false;
+            rsGroup.radbtn3.Checked = false;
+            rsGroup.radbtn2.Checked = false;
+            rsGroup.radbtn1.Checked = false;
+            rsGroup.radbtn0.Checked = true;
+
+            rsNyukazumi.radbtn2.Checked = false;
+            rsNyukazumi.radbtn1.Checked = false;
+            rsNyukazumi.radbtn0.Checked = true;
+
+            rsJuchuShubetsu.radbtn2.Checked = false;
+            rsJuchuShubetsu.radbtn1.Checked = false;
+            rsJuchuShubetsu.radbtn0.Checked = true;
+
+            rsKyoten.radbtn2.Checked = false;
+            rsKyoten.radbtn1.Checked = false;
+            rsKyoten.radbtn0.Checked = true;
+
             txtJuchuNo.Focus();
         }
 
@@ -451,7 +480,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     }
 
                     // 受注残が検索された場合は単価合計を算出
-                    if (rsSearchKind.judCheckBtn() != 2)
+                    if (rsSearchKind.judCheckBtn() != 1)
                     {
                         txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
                         txtGokeiUriage.Focus();
@@ -487,9 +516,32 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             int intIdx = gridZanList.CurrentCell.RowIndex;
             if (this.bBox != null) {
                 bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                this.Close();
             }
-
-            this.Close();
         }
+
+        private void gridZanList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                int intIdx = gridZanList.CurrentCell.RowIndex;
+                if (this.bBox != null)
+                {
+                    bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                    this.Close();
+                }
+            }
+        }
+
+        private void D0360_JuchuzanKakunin_Shown(object sender, EventArgs e)
+        {
+            if (gridZanList.RowCount > 0 && searchedFlg)
+            {
+                gridZanList.Focus();
+                gridZanList.CurrentCell = gridZanList[0, 0];
+            }
+        }
+
+
     }
 }

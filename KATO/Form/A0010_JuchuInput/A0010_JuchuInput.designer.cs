@@ -616,6 +616,7 @@
             this.gridJuchuZanMeisai.StandardTab = true;
             this.gridJuchuZanMeisai.TabIndex = 43;
             this.gridJuchuZanMeisai.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridJuchuZanMeisai_CellDoubleClick);
+            this.gridJuchuZanMeisai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridJuchuZanMeisai_KeyDown);
             // 
             // lblMeisaiGuide
             // 
@@ -844,7 +845,6 @@
             this.tsTokuisaki.TabIndex = 3;
             this.tsTokuisaki.ValueTextSize = 423;
             this.tsTokuisaki.valueTextText = "";
-            this.tsTokuisaki.Leave += new System.EventHandler(this.tsTokuisaki_Leave);
             // 
             // lblGrayTanaHon
             // 
@@ -877,7 +877,7 @@
             this.txtJuchuYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchuYMD.Location = new System.Drawing.Point(121, 10);
             this.txtJuchuYMD.Name = "txtJuchuYMD";
-            this.txtJuchuYMD.Size = new System.Drawing.Size(100, 22);
+            this.txtJuchuYMD.Size = new System.Drawing.Size(87, 22);
             this.txtJuchuYMD.TabIndex = 0;
             this.txtJuchuYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
