@@ -4,13 +4,21 @@ using System.Drawing;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using static KATO.Common.Util.CommonTeisu;
+using KATO.Common.Business;
+using System.Data;
+using KATO.Common.Util;
 
 namespace KATO.Common.Ctl
 {
     public partial class BaseForm : System.Windows.Forms.Form
     {
-        protected bool adminUserFlg = false;
+        //マスタ権限
+        protected bool masterUserflg = false;
+        //閲覧権限
         protected bool powerUserFlg = false;
+        //利益率権限
+        protected bool riekiUserFlg = false;
+
 
         private int intMsgCnt = -1;
 
@@ -101,7 +109,6 @@ namespace KATO.Common.Ctl
             }
         }
 
-
         // テスト用文字列
         private List<String> strMgsList = new List<String>();
 
@@ -112,26 +119,41 @@ namespace KATO.Common.Ctl
             lblStatusMessage.Text = "";
             lblStatusUser.Text = Environment.UserName;
 
-            //ユーザによってフラグを立てる(adminUserFlg)
-            if (lblStatusUser.Text == "nakashima" ||
-                lblStatusUser.Text == "takaxx9" ||
-                lblStatusUser.Text == "adminstrator" ||
-                lblStatusUser.Text == "jic"
-                )
-            {
-                adminUserFlg = true;
-            }
+            DataTable dtUserKengen = new DataTable();
 
-            //ユーザによってフラグを立てる(powerUserFlg)
-            if (lblStatusUser.Text == "nakashima" ||
-                lblStatusUser.Text == "takaxx9" ||
-                lblStatusUser.Text == "h.kato" ||
-                lblStatusUser.Text == "s.kato" ||
-                lblStatusUser.Text == "adminstrator" ||
-                lblStatusUser.Text == "jic"
-                )
+            BaseForm_B baseformB = new Business.BaseForm_B();
+            try
             {
-                powerUserFlg = true;
+                dtUserKengen = baseformB.getTantoKengen(Environment.UserName);
+
+                //データがある場合
+                if( dtUserKengen.Rows.Count > 0)
+                {
+                    //メニュー権限が1の場合
+                    if (dtUserKengen.Rows[0]["マスタ権限"].ToString() == "1")
+                    {
+                        masterUserflg = true;
+                    }
+                    //閲覧権限が1の場合
+                    if (dtUserKengen.Rows[0]["閲覧権限"].ToString() == "1")
+                    {
+                        powerUserFlg = true;
+                    }
+                    //履歴率権限が1の場合
+                    if (dtUserKengen.Rows[0]["利益率権限"].ToString() == "1")
+                    {
+                        riekiUserFlg = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

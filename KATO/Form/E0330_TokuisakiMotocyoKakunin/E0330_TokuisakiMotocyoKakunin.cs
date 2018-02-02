@@ -20,7 +20,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
     ///作成者：太田
     ///作成日：2017/07/12
     ///更新者：大河内
-    ///更新日：2018/02/01
+    ///更新日：2018/02/02
     ///</summary>
     public partial class E0330_TokuisakiMotocyoKakunin : BaseForm
     {
@@ -64,18 +64,21 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
 
+            //印刷対象の初期値
+            radSet_Insatsu.radbtn1.Checked = true;
         }
 
         //フォームが最初に開いた場合の処理
         private void E0330_TokuisakiMotocyoKakunin_Shown(object sender, EventArgs e)
         {
-            labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
-
-            this.setTokuisakimotocho();
-
-            gridTorihiki.Focus();
-
-
+            //得意先コードが他画面から連れてきた場合(入金入力と支払入力から専用)
+            if (strTokuisakiCd != "")
+            {
+                labelSet_TokuisakiEnd.CodeTxtText = strTokuisakiCd;
+                this.setTokuisakimotocho();
+                gridTorihiki.Focus();
+            }
+            
 
             ////【暫定】
 
@@ -285,6 +288,8 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printTokuisakiMotocyoKakunin();
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -311,6 +316,10 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printTokuisakiMotocyoKakunin();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -339,7 +348,8 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         private void setTokuisakimotocho()
         {
             //記入項目の空白削除
-            labelSet_Tokuisaki.CodeTxtText.Trim();
+            labelSet_TokuisakiOpen.CodeTxtText.Trim();
+            labelSet_TokuisakiEnd.CodeTxtText.Trim();
             txtStartYM.Text.Trim();
             txtEndYM.Text.Trim();
             txtZenZan.Text.Trim();
@@ -348,12 +358,36 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             txtZei.Text.Trim();
             txtZandaka.Text.Trim();
             
-            //検索時に必須条件を満たさない場合
-            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false ||
-                txtStartYM.blIsEmpty() == false ||
-                txtEndYM.blIsEmpty() == false)
+            //得意先コードの検索開始項目
+            if (labelSet_TokuisakiOpen.codeTxt.blIsEmpty() == false ||
+                StringUtl.blIsEmpty(labelSet_TokuisakiOpen.ValueLabelText) == false ||
+                labelSet_TokuisakiOpen.chkTxtTorihikisaki() == true)
             {
+                labelSet_TokuisakiOpen.Focus();
                 return;
+            }
+
+            //得意先コードの終了開始項目
+            if (labelSet_TokuisakiEnd.codeTxt.blIsEmpty() == true)
+            {
+                //得意先コードの範囲指定は出来ないメッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "複数の得意先コードは指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_TokuisakiEnd.Focus();
+                return;
+            }
+
+            //年月日の検索開始項目
+            if (txtStartYM.blIsEmpty() == false)
+            {
+                txtStartYM.Focus();
+                return;
+            }
+
+            //年月日の検索終了項目
+            if (txtEndYM.blIsEmpty() == false)
+            {
+                txtEndYM.Focus();
             }
 
             //データ検索用
@@ -385,7 +419,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             //データの存在確認を検索する情報を入れる
             /*[0]得意先コード*/
-            lstUriageSuiiLoad.Add(labelSet_Tokuisaki.CodeTxtText);
+            lstUriageSuiiLoad.Add(labelSet_TokuisakiEnd.CodeTxtText);
             /*[1]スタート日付（yyyy/MM/dd）*/
             lstUriageSuiiLoad.Add(StartYMD);
             /*[2]スタート日付（yyyy/MM/dd）*/
@@ -454,11 +488,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 txtZei.Text = wkin1.ToString();
 
                 //内税か外税で処理を変更
-                if (labelSet_Tokuisaki.AppendLabelText == "外税")
+                if (labelSet_TokuisakiEnd.AppendLabelText == "外税")
                 {
                     //何もしない
                 }
-                else if (labelSet_Tokuisaki.AppendLabelText == "内税")
+                else if (labelSet_TokuisakiEnd.AppendLabelText == "内税")
                 {
                     //内税の場合売上金額から内税を減算
                     txtUriage.Text = (decimal.Parse(txtUriage.Text) - wkin1).ToString();
@@ -657,9 +691,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             }
             catch (Exception ex)
             {
-                //エラーロギング
-                gridTorihiki.Visible = true;
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -677,78 +713,145 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             //PDF作成後の入れ物
             string strFile = "";
 
-            ////上段入力項目チェック
-            //if (chkTxtData() == false)
-            //{
-            //    return;
-            //}
+            //印刷対象の選択用
+            string strInsatsuSelect = "";
+
+            //得意先コードの検索開始項目のチェック
+            if (labelSet_TokuisakiOpen.codeTxt.blIsEmpty() == false ||
+                StringUtl.blIsEmpty(labelSet_TokuisakiOpen.ValueLabelText) == false ||
+                labelSet_TokuisakiOpen.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiOpen.Focus();
+                return;
+            }
+
+            //得意先コードの終了開始項目のチェック
+            if (labelSet_TokuisakiEnd.codeTxt.blIsEmpty() == false ||
+                StringUtl.blIsEmpty(labelSet_TokuisakiEnd.ValueLabelText) == false ||
+                labelSet_TokuisakiEnd.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiEnd.Focus();
+                return;
+            }
+
+            //年月日の検索開始項目のチェック
+            if (txtStartYM.blIsEmpty() == false)
+            {
+                txtStartYM.Focus();
+                return;
+            }
+
+            //年月日の検索終了項目のチェック
+            if (txtEndYM.blIsEmpty() == false)
+            {
+                txtEndYM.Focus();
+            }
+
+            //印刷対象の範囲指定をする場合
+            if (radSet_Insatsu.radbtn1.Checked == true)
+            {
+                strInsatsuSelect = "0";
+            }
+            else
+            {
+               strInsatsuSelect = "1";
+            }
+
+            //その月の最終日を求める（年月日検索終了項目用）
+            int intDay = DateTime.DaysInMonth(DateTime.Parse(txtEndYM.Text).Year, DateTime.Parse(txtEndYM.Text).Month);
 
             //印刷用データを入れる用
             List<string> lstPrintData = new List<string>();
 
-            ////印刷用データを入れる
-            //lstPrintData.Add(txtYM.Text);
-            //lstPrintData.Add(lblSetMaker.CodeTxtText);
-            //lstPrintData.Add(lblSetDaibunrui.CodeTxtText);
-            //lstPrintData.Add(lblSetChubunrui.CodeTxtText);
+            //印刷用データを入れる
+            lstPrintData.Add(labelSet_TokuisakiOpen.Text);
+            lstPrintData.Add(labelSet_TokuisakiEnd.CodeTxtText);
+            lstPrintData.Add(DateTime.Parse(txtStartYM.Text).ToString("yyyy/MM/dd"));
+            lstPrintData.Add(DateTime.Parse(txtEndYM.Text).ToString("yyyy/MM/") + intDay.ToString());
+            lstPrintData.Add(strInsatsuSelect);
 
-            ////印刷ヘッダーに記載する用
-            //List<string> lstPrintHeader = new List<string>();
+            //得意先コード範囲内の取引先を取得
+            E0330_TokuisakiMotocyoKakunin_B tokuisakimotocyokakuninB = new E0330_TokuisakiMotocyoKakunin_B();
+            try
+            {
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
 
-            //DateTime dateYM = DateTime.Parse(txtYM.Text);
+                dtPrintData = tokuisakimotocyokakuninB.getPrintData(lstPrintData);
 
-            ////印刷ヘッダーに記載する
-            //lstPrintHeader.Add(dateYM.Year + "年" + dateYM.Month + "月度");
-            //lstPrintHeader.Add(lblSetShiresaki.ValueLabelText);
+                //元に戻す
+                Cursor.Current = Cursors.Default;
 
-            //E0330_TokuisakiMotocyoKakunin_B tokuisakimotocyokakuninB = new E0330_TokuisakiMotocyoKakunin_B();
-            //try
-            //{
-            //    //印刷データの取得(各データを渡す)
-            //    dtPrintData = tokuisakimotocyokakuninB.getPrintData(lstPrintData);
+                //データが無ければ
+                if (dtPrintData.Rows.Count < 1)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "対象のデータがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
 
-            //    //印刷データにない場合
-            //    if (dtPrintData.Rows.Count == 0)
-            //    {
-            //        //データ存在なしメッセージ（OK）
-            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, "", "該当データはありません。。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //        basemessagebox.ShowDialog();
-            //        return;
-            //    }
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
 
-            //    //初期値
-            //    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+                pf.ShowDialog(this);
 
-            //    pf.ShowDialog(this);
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
 
-            //    //プレビューの場合
-            //    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
-            //    {
-            //        //結果セットをレコードセットに
-            //        strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+                    //結果セットをレコードセットに
+                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData);
 
-            //        // プレビュー
-            //        pf.execPreview(strFile);
-            //    }
-            //    // 一括印刷の場合
-            //    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
-            //    {
-            //        // PDF作成
-            //        strFile = monyuryokuB.dbToPdf(dtPrintData, lstPrintHeader);
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
 
-            //        // 一括印刷
-            //        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    //データロギング
-            //    new CommonException(ex);
-            //    //例外発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
-            //    return;
-            //}
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+
         }
     }
 }
