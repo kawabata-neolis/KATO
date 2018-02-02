@@ -88,8 +88,8 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
-            //powerUserの場合
-            if (this.powerUserFlg == true)
+            //masterUserの場合
+            if (this.masterUserflg == true)
             {
                 blnKanri = true;
             }
