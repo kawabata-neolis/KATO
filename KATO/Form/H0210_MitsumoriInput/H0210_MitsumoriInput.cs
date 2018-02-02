@@ -167,6 +167,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             this.KeyPreview = true;
 
             btnF01.Text = STR_FUNC_F1;
+            btnF02.Text = "受注入力";
             btnF03.Text = STR_FUNC_F3;
             btnF04.Text = STR_FUNC_F4;
             //btnF05.Text = "選択";
@@ -226,6 +227,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 btnF01.Focus();
                 updMitsumori();
+            }
+            else if (e.KeyData == Keys.F2)
+            {
+                openJuchu();
             }
             else if (e.KeyData == Keys.F3)
             {
@@ -307,6 +312,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                 case STR_BTN_F01: // 登録
                     logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     updMitsumori();
+                    break;
+                case STR_BTN_F02: // 受注入力
+                    logger.Info(LogUtil.getMessage(this._Title, "受注入力"));
+                    openJuchu();
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
@@ -3645,6 +3654,44 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 uriKakunin.ShowDialog();
                 uriKakunin.Dispose();
+            }
+        }
+
+        private void openJuchu()
+        {
+            BaseMessageBox bb = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "受注入力を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_INFOMATION);
+            if (bb.ShowDialog() == DialogResult.Yes)
+            {
+                A0010_JuchuInput.A0010_JuchuInput jInput = new A0010_JuchuInput.A0010_JuchuInput(this);
+
+                jInput.tsTokuisaki.CodeTxtText = tsTokuisaki.CodeTxtText;
+
+                for (int i = 0; i < gridMitsmori.RowCount; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[86, i], false)))
+                    {
+                        jInput.txtShohinCd.Text = getCellValue(gridMitsmori[86, i], false);
+                        jInput.lsDaibunrui.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
+                        jInput.lsDaibunrui.chkTxtDaibunrui();
+                        jInput.lsChubunrui.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
+                        jInput.lsChubunrui.chkTxtChubunrui(jInput.lsDaibunrui.CodeTxtText);
+                        jInput.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
+                        jInput.lsMaker.chkTxtMaker();
+                        jInput.txtHinmei.Text = getCellValue(gridMitsmori[2, i], false);
+                        jInput.txtJuchuSuryo.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[3, i], false)), 0).ToString("#,0");
+                        jInput.txtTeika.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[4, i], false)),0).ToString("#,0");
+                        jInput.cbJuchuTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[5, i], false)), 0).ToString("#");
+                        jInput.cbSiireTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[8, i], false)), 0).ToString("0.00");
+                        jInput.txtC1.Text = getCellValue(gridMitsmori[93, i], false);
+                        jInput.txtC2.Text = getCellValue(gridMitsmori[94, i], false);
+                        jInput.txtC3.Text = getCellValue(gridMitsmori[95, i], false);
+                        jInput.txtC4.Text = getCellValue(gridMitsmori[96, i], false);
+                        jInput.txtC5.Text = getCellValue(gridMitsmori[97, i], false);
+                        jInput.txtC6.Text = getCellValue(gridMitsmori[98, i], false);
+                        break;
+                    }
+                }
+                jInput.Show();
             }
         }
     }

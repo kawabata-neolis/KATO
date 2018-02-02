@@ -573,6 +573,7 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1472,16 +1473,10 @@
         private Common.Ctl.BaseLabel lblHatchusu;
         private Common.Ctl.BaseDataGridView gridJuchuZanMeisai;
         private Common.Ctl.BaseLabel lblMeisaiGuide;
-        private Common.Ctl.LabelSet_Daibunrui lsDaibunrui;
-        private Common.Ctl.LabelSet_Chubunrui lsChubunrui;
-        private Common.Ctl.LabelSet_Maker lsMaker;
-        private Common.Ctl.BaseComboBox cbJuchuTanka;
         private Common.Ctl.BaseCalendar txtNoki;
-        private Common.Ctl.BaseTextMoney txtTeika;
         private Common.Ctl.BaseTextMoney txtHonshaShukko;
         private Common.Ctl.BaseTextMoney txtGihuShukko;
         private Common.Ctl.BaseTextMoney txtHatchusu;
-        private Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
         private Common.Ctl.BaseLabelGray lblGrayTanaHon;
         private Common.Ctl.BaseLabelGray lblGrayTanaSub;
         private Common.Ctl.BaseCalendar txtJuchuYMD;
@@ -1490,7 +1485,6 @@
         private Common.Ctl.BaseLabel baseLabel2;
         private Common.Ctl.BaseText txtTantosha;
         private Common.Ctl.BaseLabel baseLabel6;
-        private Common.Ctl.BaseText txtShohinCd;
         private Common.Ctl.BaseLabel baseLabel9;
         private Common.Ctl.BaseText txtShukkaShiji;
         private Common.Ctl.BaseLabel baseLabel10;
@@ -1509,12 +1503,6 @@
         private Common.Ctl.BaseLabel baseLabel7;
         private Common.Ctl.BaseText txtShiireTanto;
         private Common.Ctl.BaseLabel baseLabel8;
-        private Common.Ctl.BaseText txtC1;
-        private Common.Ctl.BaseText txtC2;
-        private Common.Ctl.BaseText txtC3;
-        private Common.Ctl.BaseText txtC4;
-        private Common.Ctl.BaseText txtC5;
-        private Common.Ctl.BaseText txtC6;
         private System.Windows.Forms.Panel panel1;
         private Common.Ctl.BaseComboBox cbKinShiireTanka;
         public Common.Ctl.BaseText txtHinmei;
@@ -1523,5 +1511,18 @@
         public Common.Ctl.BaseText txtJuchuNo;
         public Common.Ctl.BaseTextMoney txtJuchuSuryo;
         public Common.Ctl.BaseComboBox cbSiireTanka;
+        public Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
+        public Common.Ctl.LabelSet_Daibunrui lsDaibunrui;
+        public Common.Ctl.LabelSet_Chubunrui lsChubunrui;
+        public Common.Ctl.LabelSet_Maker lsMaker;
+        public Common.Ctl.BaseComboBox cbJuchuTanka;
+        public Common.Ctl.BaseTextMoney txtTeika;
+        public Common.Ctl.BaseText txtShohinCd;
+        public Common.Ctl.BaseText txtC1;
+        public Common.Ctl.BaseText txtC2;
+        public Common.Ctl.BaseText txtC3;
+        public Common.Ctl.BaseText txtC4;
+        public Common.Ctl.BaseText txtC5;
+        public Common.Ctl.BaseText txtC6;
     }
 }

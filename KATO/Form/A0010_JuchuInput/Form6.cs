@@ -1332,8 +1332,8 @@ namespace KATO.Form.A0010_JuchuInput
                 //con.DB_Disconnect();
             }
 
-            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-            basemessagebox.ShowDialog();
+//            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+//            basemessagebox.ShowDialog();
         }
 
         private void updKakoInputS(Panel cc, A0024_KakohinJuchuInput_B juchuB, DBConnective con, bool kariFlg)

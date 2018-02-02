@@ -68,11 +68,16 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
                 strQuery += "      ,dbo.f_get担当者名(b.発注者コード) AS 発注者";
                 strQuery += "  FROM 受注 a LEFT OUTER JOIN 発注 b ON a.受注番号 = b.受注番号";
-                strQuery += " WHERE a.削除 = 'N'";
-                strQuery += "   AND ((a.売上済数量 = 0) OR (a.売上済数量 < a.受注数量))";
+
                 strQuery += "   AND b.削除 = 'N'";
                 strQuery += "   AND b.発注数量 <> 0";
                 strQuery += "   AND b.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(a.受注番号)";
+
+                strQuery += " WHERE a.削除 = 'N'";
+                strQuery += "   AND ((a.売上済数量 = 0) OR (a.売上済数量 < a.受注数量))";
+                //strQuery += "   AND b.削除 = 'N'";
+                //strQuery += "   AND b.発注数量 <> 0";
+                //strQuery += "   AND b.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(a.受注番号)";
 
                 if (!string.IsNullOrWhiteSpace(listParam[0]))
                 {
