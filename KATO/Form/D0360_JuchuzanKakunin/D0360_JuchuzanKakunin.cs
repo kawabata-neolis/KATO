@@ -91,8 +91,6 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             gridZanList.Focus();
             this.selZanList();
             searchedFlg = true;
-            
-            
         }
 
         ///<summary>

@@ -15,6 +15,8 @@ namespace KATO.Common.Ctl
 {
     public partial class TextSet_Jucyu : UserControl
     {
+        public BaseText btbTokuiCd;
+
         public String strNo
         {
             get
@@ -270,6 +272,7 @@ namespace KATO.Common.Ctl
         public TextSet_Jucyu()
         {
             InitializeComponent();
+            this.TabStop = true;
         }
 
         //テキストボックスをクリックした場合
@@ -299,11 +302,10 @@ namespace KATO.Common.Ctl
             //注文Noが未入力の場合は合計計算処理を行う。
             if (txtJucyuNoElem2.Text.Equals(""))
             {
-
                 //合計計算処理へ。
                 GokeiKeisan();
+                txtJucyuNoElem2.Focus();
                 return;
-
             }
             
             try
@@ -711,7 +713,6 @@ namespace KATO.Common.Ctl
                 }
             }
         }
-
 
         //中分類名を得るメソッド
         public Boolean GetCyubunruiName(string Dai, string Cyu, ref string Name)
@@ -1291,7 +1292,6 @@ namespace KATO.Common.Ctl
             KakerituKosin();
         }
 
-
         //商品コードテキストボックス（非表示項目）のテキストボックスが外れた場合
         private void txtSyohinCdElem11_Leave(object sender, EventArgs e)
         {
@@ -1704,6 +1704,12 @@ namespace KATO.Common.Ctl
                     //受注残確認を開く
                     this.setJyucyuZanKakunin();
                     break;
+                case Keys.Enter:
+                    if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
+                    {
+                        SendKeys.Send("{TAB}");
+                    }
+                    break;
                 default:
                     break;
             }
@@ -1724,8 +1730,26 @@ namespace KATO.Common.Ctl
             //受注残確認フォームを開く処理
             int intFrmKind = 0020;
 
-            D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this);
+            //D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this);
+            D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this.Parent, btbTokuiCd.Text, txtJucyuNoElem2);
             jucyuzankakunin.ShowDialog();
+            if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
+            {
+                //SendKeys.Send("{TAB}");
+                //txtSuuryoElem4.Focus();
+            }
+        }
+
+        private void txtSuuryoElem4_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    SendKeys.Send("{TAB}");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

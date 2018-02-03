@@ -1292,6 +1292,9 @@
     <EmbeddedResource Include="Form\A0010_JuchuInput\Form6.resx">
       <DependentUpon>Form6.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0020_UriageInput\A0020_UriageInput.resx">
+      <DependentUpon>A0020_UriageInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0030_ShireInput\A0030_ShireInput.resx">
       <DependentUpon>A0030_ShireInput.cs</DependentUpon>
     </EmbeddedResource>

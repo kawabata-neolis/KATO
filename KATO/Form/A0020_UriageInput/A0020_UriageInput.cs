@@ -74,6 +74,14 @@ namespace KATO.Form.A0020_UriageInput
             PrinterSettings.StringCollection oPrinter;
             oPrinter = PrinterSettings.InstalledPrinters;
 
+            textSet_Jucyu1.btbTokuiCd = labelSet_txtCD.codeTxt;
+            textSet_Jucyu2.btbTokuiCd = labelSet_txtCD.codeTxt;
+            textSet_Jucyu3.btbTokuiCd = labelSet_txtCD.codeTxt;
+            textSet_Jucyu4.btbTokuiCd = labelSet_txtCD.codeTxt;
+            textSet_Jucyu5.btbTokuiCd = labelSet_txtCD.codeTxt;
+
+            labelSet_Torihikikbn.codeTxt.Leave += new EventHandler(labelSet_Torihikikbn_Leave);
+
             int intIdx = 0;
             foreach (string item in oPrinter)
             {
@@ -84,6 +92,13 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 intIdx++;
             }
+        }
+
+        private void labelSet_Torihikikbn_Leave(object sender, EventArgs e)
+        {
+            //textSet_Jucyu1.txtJucyuNoElem2.Focus();
+            //this.ActiveControl = textSet_Jucyu1.txtJucyuNoElem2;
+            this.SelectNextControl(this.ActiveControl,true, true, true, true);
         }
 
         ///<summary>
