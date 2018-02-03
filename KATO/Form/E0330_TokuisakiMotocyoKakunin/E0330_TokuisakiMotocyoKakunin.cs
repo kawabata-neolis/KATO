@@ -735,16 +735,17 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             }
 
             //年月日の検索開始項目のチェック
-            if (txtStartYM.blIsEmpty() == false)
+            if (txtEndYM.chkDateYMDataFormat(txtStartYM.Text) == "")
             {
                 txtStartYM.Focus();
                 return;
             }
 
             //年月日の検索終了項目のチェック
-            if (txtEndYM.blIsEmpty() == false)
+            if (txtEndYM.chkDateYMDataFormat(txtEndYM.Text) == "")
             {
                 txtEndYM.Focus();
+                return;
             }
 
             //印刷対象の範囲指定をする場合
@@ -803,7 +804,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                     Cursor.Current = Cursors.WaitCursor;
 
                     //結果セットをレコードセットに
-                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData);
+                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData, lstPrintData);
 
                     //元に戻す
                     Cursor.Current = Cursors.Default;
@@ -825,7 +826,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     // PDF作成
-                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData);
+                    strFile = tokuisakimotocyokakuninB.dbToPdf(dtPrintData, lstPrintData);
 
                     //印刷できなかった場合
                     if (strFile == "")

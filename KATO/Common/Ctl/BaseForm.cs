@@ -12,14 +12,14 @@ namespace KATO.Common.Ctl
 {
     public partial class BaseForm : System.Windows.Forms.Form
     {
+        //ToDo:権限使用画面の修正後に削除(大河内)
         //マスタ権限
         protected bool masterUserflg = false;
         //閲覧権限
         protected bool powerUserFlg = false;
         //利益率権限
         protected bool riekiUserFlg = false;
-
-
+        
         private int intMsgCnt = -1;
 
         private const string defaultMessage = "　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　";
@@ -119,42 +119,42 @@ namespace KATO.Common.Ctl
             lblStatusMessage.Text = "";
             lblStatusUser.Text = Environment.UserName;
 
-            DataTable dtUserKengen = new DataTable();
+            //DataTable dtUserKengen = new DataTable();
 
-            BaseForm_B baseformB = new Business.BaseForm_B();
-            try
-            {
-                dtUserKengen = baseformB.getTantoKengen(Environment.UserName);
+            //BaseForm_B baseformB = new Business.BaseForm_B();
+            //try
+            //{
+            //    dtUserKengen = baseformB.getTantoKengen(Environment.UserName);
 
-                //データがある場合
-                if( dtUserKengen.Rows.Count > 0)
-                {
-                    //メニュー権限が1の場合
-                    if (dtUserKengen.Rows[0]["マスタ権限"].ToString() == "1")
-                    {
-                        masterUserflg = true;
-                    }
-                    //閲覧権限が1の場合
-                    if (dtUserKengen.Rows[0]["閲覧権限"].ToString() == "1")
-                    {
-                        powerUserFlg = true;
-                    }
-                    //履歴率権限が1の場合
-                    if (dtUserKengen.Rows[0]["利益率権限"].ToString() == "1")
-                    {
-                        riekiUserFlg = true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                //データロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
+            //    //データがある場合
+            //    if (dtUserKengen.Rows.Count > 0)
+            //    {
+            //        //メニュー権限が1の場合
+            //        if (dtUserKengen.Rows[0]["マスタ権限"].ToString() == "1")
+            //        {
+            //            masterUserflg = true;
+            //        }
+            //        //閲覧権限が1の場合
+            //        if (dtUserKengen.Rows[0]["閲覧権限"].ToString() == "1")
+            //        {
+            //            powerUserFlg = true;
+            //        }
+            //        //履歴率権限が1の場合
+            //        if (dtUserKengen.Rows[0]["利益率権限"].ToString() == "1")
+            //        {
+            //            riekiUserFlg = true;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ////データロギング
+            //    //new CommonException(ex);
+            //    ////例外発生メッセージ（OK）
+            //    //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    //basemessagebox.ShowDialog();
+            //    return;
+            //}
         }
 
         /// <summary>
