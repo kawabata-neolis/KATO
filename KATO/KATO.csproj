@@ -199,12 +199,12 @@
     <Compile Include="Common\Business\ShohizeiritsuList_B.cs" />
     <Compile Include="Common\Business\ShouhinList_B.cs" />
     <Compile Include="Common\Business\TanabanList_B.cs" />
+    <Compile Include="Common\Business\Tantosya_Kengen.cs" />
     <Compile Include="Common\Business\TantoushaList_B.cs" />
     <Compile Include="Common\Business\TokuisakiList_B.cs" />
     <Compile Include="Common\Business\TorihikiCdList_B.cs" />
     <Compile Include="Common\Business\TorihikikbnList_B.cs" />
     <Compile Include="Common\Business\TorihikisakiList_B.cs" />
-    <Compile Include="Common\Business\BaseForm_B.cs" />
     <Compile Include="Common\Business\UriageList_B.cs" />
     <Compile Include="Common\Ctl\BaseButton.cs">
       <SubType>Component</SubType>

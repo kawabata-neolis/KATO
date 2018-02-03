@@ -34,6 +34,8 @@ namespace KATO.Form.Z0000
         string[] PG_Comment = new string[999];
         string[] PG_NO = new string[999];
 
+        public string test = "test";
+
         ///<summary>
         ///Z0000
         ///フォームの初期設定
