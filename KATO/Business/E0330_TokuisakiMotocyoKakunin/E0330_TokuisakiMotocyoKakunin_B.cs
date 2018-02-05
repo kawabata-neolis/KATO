@@ -796,13 +796,13 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
 
                         //マージ
                         currentsheet.Range("A3", "C3").Merge();
-                        currentsheet.Range("D3", "F3").Merge();
-                        currentsheet.Range("G3", "H3").Merge();
+                        currentsheet.Range("D3", "E3").Merge();
+                        currentsheet.Range("F3", "G3").Merge();
 
                         // ヘッダー出力(表ヘッダー上）
                         headersheet.Cell("A3").Value = strTokuiCd + " " + strTokuiName;   //取引先名と取引先コード
                         headersheet.Cell("D3").Value = "担当者： " + strTantoName;   //担当者名
-                        headersheet.Cell("G3").Value = "（外税 請求単位）";   //（外税 請求単位）の記入
+                        headersheet.Cell("F3").Value = "（外税 請求単位）";   //（外税 請求単位）の記入
                         headersheet.Cell("I3").Value = "対象期間："+ lstPrintData[2] + " ～ " + lstPrintData[3];   //対象期間
 
                         // ヘッダー列
