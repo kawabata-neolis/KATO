@@ -629,23 +629,22 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
 
                 // 最大ページ数の行数カウント用
                 int rowCntMaxPage = 1;
+                int xlsRowCntMaxPage = 5;
 
-
-//修正
 
                 // 最大ページ数の取得
                 foreach (DataRow drTokuiCheak in dtChkList.Rows)
                 {
                     // 2ページ目以降
-                    if (rowCntMaxPage > 1 && rowCntMaxPage % 44 != 0)
+                    if (rowCntMaxPage > 1)
                     {
                         // 次の得意先が違う場合にシート作成
                         if (strTokuiCd != drTokuiCheak[0].ToString())
                         {
                             strTokuiCd = drTokuiCheak[0].ToString();
                             //合計分の行を追加
-                            rowCntMaxPage++;
                             maxPage++;
+                            xlsRowCntMaxPage = 5;
                         }
                     }
 
@@ -657,14 +656,15 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                     }
 
                     //44行に達した場合
-                    if (rowCntMaxPage % 44 == 0)
+                    if (xlsRowCntMaxPage == 44)
                     {
                         maxPage++;
+
+                        xlsRowCntMaxPage = 4;
                     }
-                    else
-                    {
-                        rowCntMaxPage++;
-                    }
+                    //maxPage++;
+                    rowCntMaxPage++;
+                    xlsRowCntMaxPage++;
                 }
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -758,13 +758,13 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                         // 列幅の指定
                         headersheet.Column(1).Width = 10;   //年月日
                         headersheet.Column(2).Width = 9;   //区分
-                        headersheet.Column(3).Width = 50;   //商品名
+                        headersheet.Column(3).Width = 80;   //商品名
                         headersheet.Column(4).Width = 11.5;   //数量
                         headersheet.Column(5).Width = 11.5;   //単価
                         headersheet.Column(6).Width = 11.5;   //売上金額
                         headersheet.Column(7).Width = 11.5;   //入金金額
                         headersheet.Column(8).Width = 11.5;   //差引残高
-                        headersheet.Column(9).Width = 60;   //備考
+                        headersheet.Column(9).Width = 30;   //備考
 
                         //ヘッダー文字位置の指定
                         headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;  //年月日   
