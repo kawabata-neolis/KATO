@@ -1023,6 +1023,18 @@ namespace KATO.Form.A0010_JuchuInput
                     txtShiireTanto.Text = dtHatchu.Rows[0]["担当者コード"].ToString();
                     tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
                 }
+                else
+                {
+                    panel1.Visible = false;
+                    txtHatchusu.Text = "0";
+                    dSearchSuH = 0;
+                    tsShiiresaki.CodeTxtText = "";
+                    txtShiireNoki.Text = "";
+                    txtShiireChuban.Text = "";
+                    txtShiireTanto.Text = "";
+                    tsShiiresaki.valueTextText = "";
+
+                }
 
             }
             catch (Exception ex)
@@ -1128,6 +1140,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 showShohinList();
             }
+            lsDaibunrui.codeTxt.BackColor = SystemColors.Window;
         }
 
         private void txtNoki_Leave(object sender, EventArgs e)
@@ -2910,6 +2923,7 @@ namespace KATO.Form.A0010_JuchuInput
             lsJuchusha.CodeTxtText = defaultUser;
             lsJuchusha.chkTxtTantosha();
             txtEigyoshoCd.Text = defaultEigyo;
+            panel1.Visible = false;
             lsJuchusha.Focus();
         }
 
@@ -3202,6 +3216,19 @@ namespace KATO.Form.A0010_JuchuInput
                     txtJuchuNo.Text = (gridJuchuZanMeisai.CurrentRow.Cells[0].Value).ToString();
                     getJuchuInfo();
                 }
+            }
+        }
+
+        private void txtShiireChuban_Leave(object sender, EventArgs e)
+        {
+            btnF01.Focus();
+        }
+
+        private void txtChuban_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if ((e.Modifiers & Keys.Alt) == Keys.Alt && e.KeyCode == Keys.Enter)
+            {
+                this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
         }
     }

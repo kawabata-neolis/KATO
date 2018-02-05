@@ -437,12 +437,12 @@
             // 
             this.txtChuban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtChuban.Location = new System.Drawing.Point(96, 256);
-            this.txtChuban.MaxLength = 61;
+            this.txtChuban.MaxLength = 60;
             this.txtChuban.Multiline = true;
             this.txtChuban.Name = "txtChuban";
             this.txtChuban.Size = new System.Drawing.Size(316, 36);
             this.txtChuban.TabIndex = 15;
-            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
+            this.txtChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown_1);
             // 
             // cbChuban
             // 
@@ -573,7 +573,6 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1147,6 +1146,7 @@
             this.txtShiireChuban.Size = new System.Drawing.Size(264, 22);
             this.txtShiireChuban.TabIndex = 23;
             this.txtShiireChuban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuban_KeyDown);
+            this.txtShiireChuban.Leave += new System.EventHandler(this.txtShiireChuban_Leave);
             // 
             // baseLabel7
             // 
