@@ -813,6 +813,9 @@ namespace KATO.Form.A0020_UriageInput
                             //印刷済みにする。（プロシージャー）
                             Flag = 0;
                             uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+
+                            //ラベルプリンターで印刷
+                            uriageinput_B.dbToExcel();
                         }
                     }
                     else
@@ -824,6 +827,9 @@ namespace KATO.Form.A0020_UriageInput
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+
+                        //ラベルプリンターで印刷
+
                     }
 
                     pf.Dispose();

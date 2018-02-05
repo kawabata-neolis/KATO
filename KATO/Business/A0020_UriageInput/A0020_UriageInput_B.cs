@@ -6,6 +6,10 @@ using System.Linq;
 
 using ClosedXML.Excel;
 
+//using System.Runtime.InteropServices;
+
+//using NetOffice.ExcelApi;
+
 namespace KATO.Business.A0020_UriageInput
 {
     ///<summary>
@@ -2158,6 +2162,56 @@ namespace KATO.Business.A0020_UriageInput
 
                 // PDF化の処理
                 return pdf.createPdf(strOutXlsFile, strDateTime, 1);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                // Workフォルダの全ファイルを取得
+                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    //File.Delete(filepath);
+                }
+            }
+        }
+
+        ///------------------------------------------------
+        /// <summary>
+        ///     DataTableをもとにxlsxファイルを作成しPDF化
+        /// </summary>
+        ///// <param name="dtNouhinHikae">納品書（控）のデータテーブル</param>
+        ///// <param name="dtNouhin">納品書のデータテーブル</param>
+        ///// <param name="dtJuryo">受領書のデータテーブル</param>
+        ///// <param name="lstItem">検索に使用するデータリスト</param>
+        /// <returns>ファイルパス</returns>
+        /// -----------------------------------------------
+        public void dbToExcel()
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/A0020_UriageInput.xlsx";
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+
+            //Ex
+
+            try
+            {
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+
+                IXLWorksheet currentsheet = workbook.Worksheet(1);  // 処理中シート
+
+                //int pageCnt = 0;    // ページ(シート枚数)カウント
+                //int xlsRowCnt = 15;  // Excel出力行カウント（開始は出力行）
+                //Boolean blnSheetCreate = true;
+
+
+                
+
             }
             catch
             {
