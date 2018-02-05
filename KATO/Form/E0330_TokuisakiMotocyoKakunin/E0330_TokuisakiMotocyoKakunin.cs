@@ -419,7 +419,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             //データの存在確認を検索する情報を入れる
             /*[0]得意先コード*/
-            lstUriageSuiiLoad.Add(labelSet_TokuisakiEnd.CodeTxtText);
+            lstUriageSuiiLoad.Add(labelSet_TokuisakiOpen.CodeTxtText);
             /*[1]スタート日付（yyyy/MM/dd）*/
             lstUriageSuiiLoad.Add(StartYMD);
             /*[2]スタート日付（yyyy/MM/dd）*/
@@ -488,11 +488,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 txtZei.Text = wkin1.ToString();
 
                 //内税か外税で処理を変更
-                if (labelSet_TokuisakiEnd.AppendLabelText == "外税")
+                if (labelSet_TokuisakiOpen.AppendLabelText == "外税")
                 {
                     //何もしない
                 }
-                else if (labelSet_TokuisakiEnd.AppendLabelText == "内税")
+                else if (labelSet_TokuisakiOpen.AppendLabelText == "内税")
                 {
                     //内税の場合売上金額から内税を減算
                     txtUriage.Text = (decimal.Parse(txtUriage.Text) - wkin1).ToString();
@@ -765,7 +765,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             List<string> lstPrintData = new List<string>();
 
             //印刷用データを入れる
-            lstPrintData.Add(labelSet_TokuisakiOpen.Text);
+            lstPrintData.Add(labelSet_TokuisakiOpen.CodeTxtText);
             lstPrintData.Add(labelSet_TokuisakiEnd.CodeTxtText);
             lstPrintData.Add(DateTime.Parse(txtStartYM.Text).ToString("yyyy/MM/dd"));
             lstPrintData.Add(DateTime.Parse(txtEndYM.Text).ToString("yyyy/MM/") + intDay.ToString());
@@ -782,7 +782,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
                 //元に戻す
                 Cursor.Current = Cursors.Default;
-
+                
                 //データが無ければ
                 if (dtPrintData.Rows.Count < 1)
                 {

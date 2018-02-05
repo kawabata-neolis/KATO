@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtStartYM = new KATO.Common.Ctl.BaseCalendarYM();
             this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -279,35 +279,35 @@
             this.gridTorihiki.AllowUserToResizeColumns = false;
             this.gridTorihiki.AllowUserToResizeRows = false;
             this.gridTorihiki.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTorihiki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridTorihiki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridTorihiki.EnableHeadersVisualStyles = false;
             this.gridTorihiki.Location = new System.Drawing.Point(36, 118);
             this.gridTorihiki.Name = "gridTorihiki";
             this.gridTorihiki.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTorihiki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -348,7 +348,7 @@
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(499, 18);
+            this.baseLabel2.Location = new System.Drawing.Point(528, 18);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(23, 15);
             this.baseLabel2.strToolTip = null;
@@ -360,7 +360,7 @@
             // 
             this.lblInsasuMemo.AutoSize = true;
             this.lblInsasuMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblInsasuMemo.Location = new System.Drawing.Point(529, 40);
+            this.lblInsasuMemo.Location = new System.Drawing.Point(558, 40);
             this.lblInsasuMemo.Name = "lblInsasuMemo";
             this.lblInsasuMemo.Size = new System.Drawing.Size(295, 15);
             this.lblInsasuMemo.strToolTip = null;
@@ -378,12 +378,12 @@
             this.labelSet_TokuisakiOpen.Location = new System.Drawing.Point(36, 15);
             this.labelSet_TokuisakiOpen.Name = "labelSet_TokuisakiOpen";
             this.labelSet_TokuisakiOpen.ShowAppendFlg = false;
-            this.labelSet_TokuisakiOpen.Size = new System.Drawing.Size(457, 22);
+            this.labelSet_TokuisakiOpen.Size = new System.Drawing.Size(486, 22);
             this.labelSet_TokuisakiOpen.SpaceCodeValue = 4;
             this.labelSet_TokuisakiOpen.SpaceNameCode = 4;
             this.labelSet_TokuisakiOpen.SpaceValueAppend = 4;
             this.labelSet_TokuisakiOpen.TabIndex = 0;
-            this.labelSet_TokuisakiOpen.ValueLabelSize = 300;
+            this.labelSet_TokuisakiOpen.ValueLabelSize = 330;
             this.labelSet_TokuisakiOpen.ValueLabelText = "";
             // 
             // labelSet_TokuisakiEnd
@@ -393,15 +393,15 @@
             this.labelSet_TokuisakiEnd.CodeTxtSize = 40;
             this.labelSet_TokuisakiEnd.CodeTxtText = "";
             this.labelSet_TokuisakiEnd.LabelName = "得意先コード";
-            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(532, 15);
+            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(561, 15);
             this.labelSet_TokuisakiEnd.Name = "labelSet_TokuisakiEnd";
             this.labelSet_TokuisakiEnd.ShowAppendFlg = false;
-            this.labelSet_TokuisakiEnd.Size = new System.Drawing.Size(458, 22);
+            this.labelSet_TokuisakiEnd.Size = new System.Drawing.Size(488, 22);
             this.labelSet_TokuisakiEnd.SpaceCodeValue = 4;
             this.labelSet_TokuisakiEnd.SpaceNameCode = 4;
             this.labelSet_TokuisakiEnd.SpaceValueAppend = 4;
             this.labelSet_TokuisakiEnd.TabIndex = 1;
-            this.labelSet_TokuisakiEnd.ValueLabelSize = 300;
+            this.labelSet_TokuisakiEnd.ValueLabelSize = 330;
             this.labelSet_TokuisakiEnd.ValueLabelText = "";
             // 
             // E0330_TokuisakiMotocyoKakunin
