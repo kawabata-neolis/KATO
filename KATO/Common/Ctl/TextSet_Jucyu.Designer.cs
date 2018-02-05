@@ -364,6 +364,7 @@
             this.txtRitsuElem21.Size = new System.Drawing.Size(51, 22);
             this.txtRitsuElem21.TabIndex = 0;
             this.txtRitsuElem21.TabStop = false;
+            this.txtRitsuElem21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRitsuElem21.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiireRitu
@@ -376,6 +377,7 @@
             this.txtCyokkinSiireRitu.Size = new System.Drawing.Size(51, 22);
             this.txtCyokkinSiireRitu.TabIndex = 0;
             this.txtCyokkinSiireRitu.TabStop = false;
+            this.txtCyokkinSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCyokkinSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiireRituA
@@ -388,6 +390,7 @@
             this.txtCyokkinSiireRituA.Size = new System.Drawing.Size(51, 22);
             this.txtCyokkinSiireRituA.TabIndex = 0;
             this.txtCyokkinSiireRituA.TabStop = false;
+            this.txtCyokkinSiireRituA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCyokkinSiireRituA.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiire
@@ -536,6 +539,7 @@
             this.txtJucyuRitu.Size = new System.Drawing.Size(59, 22);
             this.txtJucyuRitu.TabIndex = 0;
             this.txtJucyuRitu.TabStop = false;
+            this.txtJucyuRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJucyuRitu.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtTeika
@@ -571,6 +575,7 @@
             this.txtSiireRitu.Size = new System.Drawing.Size(59, 22);
             this.txtSiireRitu.TabIndex = 0;
             this.txtSiireRitu.TabStop = false;
+            this.txtSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtGenkaElem7
@@ -595,6 +600,7 @@
             this.txtMasterSiireRituA.Size = new System.Drawing.Size(51, 22);
             this.txtMasterSiireRituA.TabIndex = 0;
             this.txtMasterSiireRituA.TabStop = false;
+            this.txtMasterSiireRituA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMasterSiireRituA.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtMasterSiireRitu
@@ -607,6 +613,7 @@
             this.txtMasterSiireRitu.Size = new System.Drawing.Size(51, 22);
             this.txtMasterSiireRitu.TabIndex = 0;
             this.txtMasterSiireRitu.TabStop = false;
+            this.txtMasterSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMasterSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
             // 
             // txtMasterSiire

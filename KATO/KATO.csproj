@@ -596,6 +596,10 @@
     <Compile Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.Designer.cs">
       <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\A1540_KariHachuInput\A1540_KariHachuInput.cs" />
+    <Compile Include="Form\A1540_KariHachuInput\A1540_KariHachuInput.Designer.cs">
+      <DependentUpon>A1540_KariHachuInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\A0100_HachuInput\A0100_HachuInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1303,6 +1307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0090_SiireCheckPrint\A0090_SiireCheckPrint.resx">
       <DependentUpon>A0090_SiireCheckPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A1540_KariHachuInput\A1540_KariHachuInput.resx">
+      <DependentUpon>A1540_KariHachuInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\A0100_HachuInput\A0100_HachuInput.resx">
       <DependentUpon>A0100_HachuInput.cs</DependentUpon>

@@ -1356,29 +1356,36 @@ namespace KATO.Common.Ctl
 
             try
             {
-                string strSQLInput = "";
+                if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text)) {
+                    string strSQLInput = "";
 
-                strSQLInput += " SELECT";
-                strSQLInput += "         受注.仕入単価 AS　仕入単価";
-                strSQLInput += " FROM";
-                strSQLInput += "         受注 INNER JOIN 発注 ";
-                strSQLInput += "     ON (発注.商品コード = 受注.商品コード) ";
-                strSQLInput += "     AND (受注.受注番号 = 発注.受注番号)";
-                strSQLInput += " WHERE";
-                strSQLInput += "     発注.削除 ='N' AND";
-                strSQLInput += "     受注.削除 ='N' AND";
-                strSQLInput += "     発注.加工区分 ='1' AND";
-                strSQLInput += "     受注.受注番号 =" + txtJucyuNoElem2.Text;
-                
-                //SQLのインスタンス作成
-                DBConnective dbconnective = new DBConnective();
+                    strSQLInput += " SELECT";
+                    strSQLInput += "         受注.仕入単価 AS　仕入単価";
+                    strSQLInput += " FROM";
+                    strSQLInput += "         受注 INNER JOIN 発注 ";
+                    strSQLInput += "     ON (発注.商品コード = 受注.商品コード) ";
+                    strSQLInput += "     AND (受注.受注番号 = 発注.受注番号)";
+                    strSQLInput += " WHERE";
+                    strSQLInput += "     発注.削除 ='N' AND";
+                    strSQLInput += "     受注.削除 ='N' AND";
+                    strSQLInput += "     発注.加工区分 ='1' AND";
+                    strSQLInput += "     受注.受注番号 =" + txtJucyuNoElem2.Text;
 
-                //SQL文を直書き（＋戻り値を受け取る)
-                rs8 = dbconnective.ReadSql(strSQLInput);
+                    //SQLのインスタンス作成
+                    DBConnective dbconnective = new DBConnective();
 
-                if (rs8.Rows.Count > 0)
-                {
-                    return decimal.Parse(rs8.Rows[0]["仕入単価"].ToString());
+                    //SQL文を直書き（＋戻り値を受け取る)
+                    rs8 = dbconnective.ReadSql(strSQLInput);
+
+                    if (rs8.Rows.Count > 0)
+                    {
+                        return decimal.Parse(rs8.Rows[0]["仕入単価"].ToString());
+                    }
+                    else
+                    {
+                        //商品コードから直近仕入単価を得るメソッドへ
+                        return GetCyokkinSiireTanka(txtSyohinCdElem11.Text);
+                    }
                 }
                 else
                 {
@@ -1731,7 +1738,8 @@ namespace KATO.Common.Ctl
             int intFrmKind = 0020;
 
             //D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this);
-            D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this.Parent, btbTokuiCd.Text, txtJucyuNoElem2);
+            D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(C_uriageInput, btbTokuiCd.Text, txtJucyuNoElem2);
+
             jucyuzankakunin.ShowDialog();
             if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
             {
