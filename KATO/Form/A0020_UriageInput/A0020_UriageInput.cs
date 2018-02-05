@@ -790,39 +790,49 @@ namespace KATO.Form.A0020_UriageInput
                     lstSearchItem.Add(txtName_C.Text);
 
                     
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.TATE);
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.TATE);
              
 
                     //SPAdminUserの場合は印刷ﾀﾞｲｱﾛｸﾞを表示、それ以外は直印刷
                     if (Environment.UserName != "SPAdminUser")
                     {
-                        pf.ShowDialog(this);
-                        if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
-                        {
-                            //PDF作成
-                            String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
-                            pf.execPreview(@strFile);
-                            pf.ShowDialog(this);
-                        }
-                        else if (this.printFlg == CommonTeisu.ACTION_PRINT)
-                        {
-                            //PDF作成
-                            String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
-                            pf.execPrint(null, @strFile, CommonTeisu.SIZE_B4, CommonTeisu.TATE, true);
+                        //pf.ShowDialog(this);
+                        //if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                        //{
+                        //    //PDF作成
+                        //    String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                        //    pf.execPreview(@strFile);
+                        //    pf.ShowDialog(this);
+                        //}
+                        //else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                        //{
+                        //    //PDF作成
+                        //    String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                        //    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
 
-                            //印刷済みにする。（プロシージャー）
-                            Flag = 0;
-                            uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+                        //    //印刷済みにする。（プロシージャー）
+                        //    Flag = 0;
+                        //    uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
-                            //ラベルプリンターで印刷
-                            uriageinput_B.dbToExcel();
-                        }
+                        //    //ラベルプリンターで印刷
+                        //    uriageinput_B.dbToExcel();
+                        //}
+                        String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_B4, CommonTeisu.TATE, true);
+
+                        //印刷済みにする。（プロシージャー）
+                        Flag = 0;
+                        uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+
+                        //ラベルプリンターで印刷
+                        uriageinput_B.dbToExcel();
+
                     }
                     else
                     {
                         //PDF作成
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
-                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE,false);
+                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_B4, CommonTeisu.TATE,false);
 
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;

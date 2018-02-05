@@ -139,7 +139,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 axAcroPDF1.LoadFile("NUL");
                 axAcroPDF1.setLayoutMode("SinglePage");
                 axAcroPDF1.Refresh();
-                string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + ".pdf";
+                string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_H.pdf";
                 //string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
                 if (System.IO.File.Exists(path))
                 {

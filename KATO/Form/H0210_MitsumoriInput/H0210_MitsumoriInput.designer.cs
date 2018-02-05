@@ -270,7 +270,7 @@
             this.txtMode.Size = new System.Drawing.Size(23, 22);
             this.txtMode.TabIndex = 0;
             this.txtMode.Text = "1";
-            this.txtMode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtMode.Leave += new System.EventHandler(this.txtMode_Leave);
             // 
             // label3
             // 
@@ -412,7 +412,7 @@
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(320, 22);
             this.txtBiko.TabIndex = 12;
-            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
+            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBiko_KeyDown);
             // 
             // label12
             // 
@@ -432,7 +432,7 @@
             this.panel1.Location = new System.Drawing.Point(613, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(353, 40);
-            this.panel1.TabIndex = 14;
+            this.panel1.TabIndex = 15;
             // 
             // cbChubun
             // 
@@ -486,7 +486,7 @@
             this.panel2.Location = new System.Drawing.Point(613, 96);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(181, 40);
-            this.panel2.TabIndex = 15;
+            this.panel2.TabIndex = 16;
             // 
             // rd2
             // 
@@ -1904,7 +1904,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMemo.Size = new System.Drawing.Size(570, 105);
-            this.txtMemo.TabIndex = 13;
+            this.txtMemo.TabIndex = 14;
             // 
             // label21
             // 
@@ -2110,7 +2110,7 @@
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
-            this.gridMitsmori.TabIndex = 16;
+            this.gridMitsmori.TabIndex = 13;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
             this.gridMitsmori.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dataGridView2_PreviewKeyDown);
