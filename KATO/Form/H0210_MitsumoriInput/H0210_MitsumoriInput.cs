@@ -2184,7 +2184,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                             //ユーザー名
                             aryPrm.Add(Environment.UserName);
 
-                            string strNewShohin = inputB.updShohinNew(aryPrm, false);
+                            string strNewShohin = inputB.updShohinNew(aryPrm, true);
                         }
 
 
