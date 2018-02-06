@@ -88,8 +88,31 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
+            string master = "";
+            string etsuran = "";
+            string riekiritsu = "";
+            string admin = "";
+            try
+            {
+                Tantosya_Kengen tk = new Tantosya_Kengen(SystemInformation.UserName);
+                master = tk.master;
+                etsuran = tk.etsuran;
+                riekiritsu = tk.riekiritsu;
+                admin = tk.admin;
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
+
             //masterUserの場合
-            if (this.masterUserflg == true)
+            if (master == "1")
             {
                 blnKanri = true;
             }
