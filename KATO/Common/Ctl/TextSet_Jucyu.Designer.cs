@@ -87,10 +87,10 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label14.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label14.Location = new System.Drawing.Point(463, 42);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 16);
+            this.label14.Size = new System.Drawing.Size(37, 15);
             this.label14.TabIndex = 0;
             this.label14.Text = "定価";
             // 
@@ -227,9 +227,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(598, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 12);
+            this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 0;
-            this.label7.Text = "原　価";
+            this.label7.Text = "仕入単価";
             // 
             // label19
             // 
@@ -238,7 +238,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(79, 12);
             this.label19.TabIndex = 0;
-            this.label19.Text = "マスタ仕入単価";
+            this.label19.Text = "仕入マスタ単価";
             // 
             // label18
             // 
@@ -247,7 +247,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(53, 12);
             this.label18.TabIndex = 0;
-            this.label18.Text = "原価掛率";
+            this.label18.Text = "仕入掛率";
             // 
             // label17
             // 

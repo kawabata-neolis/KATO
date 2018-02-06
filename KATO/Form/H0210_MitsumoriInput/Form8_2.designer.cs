@@ -321,7 +321,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label10.Location = new System.Drawing.Point(12, 816);
+            this.label10.Location = new System.Drawing.Point(12, 795);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 15);
             this.label10.TabIndex = 197;
@@ -333,7 +333,7 @@
             this.textBox10.BackColor = System.Drawing.SystemColors.Control;
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox10.Location = new System.Drawing.Point(88, 816);
+            this.textBox10.Location = new System.Drawing.Point(80, 795);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(49, 15);
             this.textBox10.TabIndex = 198;
@@ -344,7 +344,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(135, 816);
+            this.label11.Location = new System.Drawing.Point(135, 795);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(31, 15);
             this.label11.TabIndex = 199;
@@ -520,7 +520,7 @@
             this.gridMitsu.RowTemplate.Height = 21;
             this.gridMitsu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gridMitsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridMitsu.Size = new System.Drawing.Size(763, 470);
+            this.gridMitsu.Size = new System.Drawing.Size(763, 452);
             this.gridMitsu.StandardTab = true;
             this.gridMitsu.TabIndex = 14;
             this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
@@ -559,18 +559,18 @@
             // txtMemo
             // 
             this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMemo.Location = new System.Drawing.Point(12, 704);
+            this.txtMemo.Location = new System.Drawing.Point(12, 686);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMemo.Size = new System.Drawing.Size(570, 105);
+            this.txtMemo.Size = new System.Drawing.Size(570, 106);
             this.txtMemo.TabIndex = 205;
             // 
             // lblMemo
             // 
             this.lblMemo.AutoSize = true;
             this.lblMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblMemo.Location = new System.Drawing.Point(9, 685);
+            this.lblMemo.Location = new System.Drawing.Point(9, 667);
             this.lblMemo.Name = "lblMemo";
             this.lblMemo.Size = new System.Drawing.Size(71, 15);
             this.lblMemo.strToolTip = null;
@@ -581,7 +581,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(625, 704);
+            this.button3.Location = new System.Drawing.Point(625, 686);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 23);
             this.button3.TabIndex = 207;

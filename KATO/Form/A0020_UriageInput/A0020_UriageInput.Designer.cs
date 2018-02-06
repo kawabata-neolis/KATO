@@ -307,11 +307,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(605, 30);
+            this.label7.Location = new System.Drawing.Point(606, 30);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 12);
+            this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 0;
-            this.label7.Text = "原　価";
+            this.label7.Text = "仕入単価";
             this.label7.UseWaitCursor = true;
             // 
             // label19
@@ -321,7 +321,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(79, 12);
             this.label19.TabIndex = 0;
-            this.label19.Text = "マスタ仕入単価";
+            this.label19.Text = "仕入マスタ単価";
             this.label19.UseWaitCursor = true;
             // 
             // label18
@@ -331,7 +331,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(53, 12);
             this.label18.TabIndex = 0;
-            this.label18.Text = "原価掛率";
+            this.label18.Text = "仕入掛率";
             this.label18.UseWaitCursor = true;
             // 
             // label17

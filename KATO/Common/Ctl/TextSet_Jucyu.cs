@@ -300,7 +300,7 @@ namespace KATO.Common.Ctl
             OneLineClear2();
 
             //注文Noが未入力の場合は合計計算処理を行う。
-            if (txtJucyuNoElem2.Text.Equals(""))
+            if (string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
             {
                 //合計計算処理へ。
                 GokeiKeisan();
@@ -327,7 +327,7 @@ namespace KATO.Common.Ctl
                 if (rs.Rows.Count > 0)
                 {
                     //取得得意先コードが入力した得意先コードと異なる場合はメッセージを表示し、終了。
-                    if (rs.Rows[0]["得意先コード"].ToString() != C_uriageInput.labelSet_txtCD.CodeTxtText)
+                    if (!(rs.Rows[0]["得意先コード"].ToString()).Equals(C_uriageInput.labelSet_txtCD.CodeTxtText))
                     {
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "指定した取引先の受注データではありません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
@@ -399,19 +399,19 @@ namespace KATO.Common.Ctl
                     string Hinmei = "";
                     string NM = "";
 
-                    if (rs.Rows[0]["商品コード"].ToString() != null)
+                    if (rs.Rows[0]["商品コード"] != null && !string.IsNullOrWhiteSpace(rs.Rows[0]["商品コード"].ToString()))
                     {
                         txtSyohinCdElem11.Text = rs.Rows[0]["商品コード"].ToString();
                         //商品コードからフォーカスを外れた場合の処理へ
                         txtSyohinCdElem11_func();
                     }
 
-                    if (rs.Rows[0]["メーカーコード"].ToString() != null)
+                    if (rs.Rows[0]["メーカーコード"] != null && !string.IsNullOrWhiteSpace(rs.Rows[0]["メーカーコード"].ToString()))
                     {
                         txtElem12.Text = rs.Rows[0]["メーカーコード"].ToString();
                     }
 
-                    if (rs.Rows[0]["大分類コード"].ToString() != null)
+                    if (rs.Rows[0]["大分類コード"] != null && !string.IsNullOrWhiteSpace(rs.Rows[0]["大分類コード"].ToString()))
                     {
                         txtElem13.Text = rs.Rows[0]["大分類コード"].ToString();
                     }
@@ -475,7 +475,12 @@ namespace KATO.Common.Ctl
 
                     txtElem22.Text = txtSuuryoElem4.Text;
 
-                    txtTankaElem5.Text = rs.Rows[0]["受注単価"].ToString();
+                    string st = "";
+                    if (rs.Rows[0]["受注単価"] != null && !string.IsNullOrWhiteSpace(rs.Rows[0]["受注単価"].ToString()))
+                    {
+                        st = (decimal.Parse(rs.Rows[0]["受注単価"].ToString())).ToString("#,0");
+                    }
+                    txtTankaElem5.Text = st;
                     //単価が変更した場合の処理へ。
                     txtTankaElem5_func();
 
@@ -500,7 +505,7 @@ namespace KATO.Common.Ctl
 
                     C_uriageInput.txtTname.ReadOnly = true;
 
-                    if (C_uriageInput.labelSet_txtCD.CodeTxtText == "8888" || C_uriageInput.labelSet_txtCD.CodeTxtText == "6666" || C_uriageInput.labelSet_txtCD.CodeTxtText == "7777")
+                    if (C_uriageInput.labelSet_txtCD.CodeTxtText.Equals("8888") || C_uriageInput.labelSet_txtCD.CodeTxtText.Equals("6666") || C_uriageInput.labelSet_txtCD.CodeTxtText.Equals("7777"))
                     {
                         C_uriageInput.txtTname.Text = rs.Rows[0]["得意先名称"].ToString();
                         C_uriageInput.txtTname.ReadOnly = false;
@@ -509,7 +514,9 @@ namespace KATO.Common.Ctl
                     C_uriageInput.labelSet_Tantousha.CodeTxtText = rs.Rows[0]["受注者コード"].ToString();
 
                     txtSinaBanElem3.ReadOnly = true;
+                    txtSinaBanElem3.BackColor = SystemColors.Window;
                     txtGenkaElem7.ReadOnly = true;
+                    txtGenkaElem7.BackColor = SystemColors.Window;
                     C_uriageInput.labelSet_txtCD.Enabled = false;
 
                     //返品承認済みは編集不可
@@ -568,7 +575,8 @@ namespace KATO.Common.Ctl
 
                     //カンマのある形へ整形
                     txtSuuryoElem4.Text = decimal.Parse(txtSuuryoElem4.Text).ToString("#,0");
-                    txtTankaElem5.Text = decimal.Parse(txtTankaElem5.Text).ToString("#,0.00");
+                    //txtTankaElem5.Text = decimal.Parse(txtTankaElem5.Text).ToString("#,0.00");
+                    txtTankaElem5.Text = decimal.Parse(txtTankaElem5.Text).ToString("#,0");
                     txtGenkaElem7.Text = decimal.Parse(txtGenkaElem7.Text).ToString("#,0.00");
                     txtKingakuElem6.Text = decimal.Parse(txtKingakuElem6.Text).ToString("#,0");
                     txtArariElem8.Text = decimal.Parse(txtArariElem8.Text).ToString("#,0");
@@ -576,10 +584,19 @@ namespace KATO.Common.Ctl
                     txtMasterSiire.Text = decimal.Parse(PutIsNull(txtMasterSiire.Text,"0")).ToString("#,0");
                     txtTeika.Text = decimal.Parse(PutIsNull(txtTeika.Text,"0")).ToString("#,0");
 
-
                     txtRitsuElem21.Text = decimal.Parse(txtRitsuElem21.Text).ToString("0.0");
                     txtCyokkinSiireRituA.Text = decimal.Parse(PutIsNull(txtCyokkinSiireRituA.Text,"0")).ToString("0.0");
                     txtMasterSiireRituA.Text = decimal.Parse(PutIsNull(txtMasterSiireRituA.Text,"0")).ToString("0.0");
+
+                    txtTankaElem5.ReadOnly = true;
+                    txtGenkaElem7.ReadOnly = true;
+                    txtKingakuElem6.ReadOnly = true;
+                    txtArariElem8.ReadOnly = true;
+                    txtTankaElem5.BackColor = SystemColors.Window;
+                    txtGenkaElem7.BackColor = SystemColors.Window;
+                    txtKingakuElem6.BackColor = SystemColors.Window;
+                    txtArariElem8.BackColor = SystemColors.Window;
+
                 }
                 else
                 {
@@ -616,7 +633,7 @@ namespace KATO.Common.Ctl
         //商品マスタより仕入れ単価を得る
         private decimal GetSyohinSiireTanka(string SyouhinCD)
         {
-            if (SyouhinCD == "" || SyouhinCD == null)
+            if (string.IsNullOrWhiteSpace(SyouhinCD))
             {
                 return 0;
             }
@@ -720,7 +737,7 @@ namespace KATO.Common.Ctl
             string strSQL;
             bool re = true;
 
-            if (Dai == "" || Dai == null || Cyu == "" || Cyu == null)
+            if (string.IsNullOrWhiteSpace(Dai) || string.IsNullOrWhiteSpace(Cyu))
             {
                 Name = "";
                 return re;
@@ -779,7 +796,7 @@ namespace KATO.Common.Ctl
             A0020_UriageInput C_uriageInput = (A0020_UriageInput)this.Parent;
 
             //コードが未入力の場合は処理を終了する。
-            if (C_uriageInput.labelSet_txtCD.CodeTxtText.Equals(""))
+            if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))
             {
                 return;
             }
@@ -1078,10 +1095,16 @@ namespace KATO.Common.Ctl
             //データ取得用テーブルを初期化
             DataTable dtSetCd;
             decimal Syohizeiritu = 0;
+            string strYMD = DateTime.Now.ToString("yyyy/MM/dd");
+
+            if (!string.IsNullOrWhiteSpace(txtYMD))
+            {
+                strYMD = txtYMD;
+            }
 
             try
             {
-                string strSQLInput = " SELECT 消費税率 FROM 消費税率 WHERE 適用開始年月日= (SELECT MAX(適用開始年月日) FROM 消費税率 WHERE 適用開始年月日 <= '" + txtYMD + "')";
+                string strSQLInput = " SELECT 消費税率 FROM 消費税率 WHERE 適用開始年月日= (SELECT MAX(適用開始年月日) FROM 消費税率 WHERE 適用開始年月日 <= '" + strYMD + "')";
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();
@@ -1124,7 +1147,7 @@ namespace KATO.Common.Ctl
         ///</summary>
         private String PutIsNull(string CheckColumn, String ChangeValue)
         {
-            if (CheckColumn == null || CheckColumn == "")
+            if (string.IsNullOrWhiteSpace(CheckColumn))
             {
                 //値の差し替え
                 CheckColumn = ChangeValue;
@@ -1166,6 +1189,11 @@ namespace KATO.Common.Ctl
             txtCyokkinSiireRitu.Text = "";
             txtMasterSiire.Text = "";
             txtMasterSiireRitu.Text = "";
+
+            txtTankaElem5.ReadOnly = false;
+            txtGenkaElem7.ReadOnly = false;
+            txtKingakuElem6.ReadOnly = false;
+            txtArariElem8.ReadOnly = false;
         }
 
         //数量テキストボックスからフォーカスが外れた場合
@@ -1181,19 +1209,19 @@ namespace KATO.Common.Ctl
             A0020_UriageInput C_uriageInput = (A0020_UriageInput)this.Parent;
 
             //コードが未入力の場合は処理を終了。
-            if (C_uriageInput.labelSet_txtCD.CodeTxtText == null || C_uriageInput.labelSet_txtCD.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))
             {
                 return;
             }
 
             //数量が未入力の場合は処理を終了
-            if (txtSuuryoElem4.Text == null || txtSuuryoElem4.Text == "")
+            if (string.IsNullOrWhiteSpace(txtSuuryoElem4.Text))
             {
                 return;
             }
 
             //単価が未入力の場合は処理を終了
-            if (txtTankaElem5.Text == null || txtTankaElem5.Text == "")
+            if (string.IsNullOrWhiteSpace(txtTankaElem5.Text))
             {
                 return;
             }
@@ -1218,19 +1246,19 @@ namespace KATO.Common.Ctl
             A0020_UriageInput C_uriageInput = (A0020_UriageInput)this.Parent;
 
             //コードが未入力の場合は処理を終了。
-            if (C_uriageInput.labelSet_txtCD.CodeTxtText == null || C_uriageInput.labelSet_txtCD.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))
             {
                 return;
             }
 
             //数量が未入力の場合は処理を終了
-            if (txtSuuryoElem4.Text == null || txtSuuryoElem4.Text == "")
+            if (string.IsNullOrWhiteSpace(txtSuuryoElem4.Text))
             {
                 return;
             }
 
             //単価が未入力の場合は処理を終了
-            if (txtTankaElem5.Text == null || txtTankaElem5.Text == "")
+            if (string.IsNullOrWhiteSpace(txtTankaElem5.Text))
             {
                 return;
             }
@@ -1259,25 +1287,25 @@ namespace KATO.Common.Ctl
 
 
             //数量が未入力の場合は処理を終了
-            if (txtSuuryoElem4.Text == null || txtSuuryoElem4.Text == "")
+            if (string.IsNullOrWhiteSpace(txtSuuryoElem4.Text))
             {
                 return;
             }
 
             //単価が未入力の場合は処理を終了
-            if (txtTankaElem5.Text == null || txtTankaElem5.Text == "")
+            if (string.IsNullOrWhiteSpace(txtTankaElem5.Text))
             {
                 return;
             }
 
             //原価が未入力の場合は処理を終了
-            if (txtGenkaElem7.Text == null || txtGenkaElem7.Text == "")
+            if (string.IsNullOrWhiteSpace(txtGenkaElem7.Text))
             {
                 return;
             }
 
             //コードが未入力の場合は処理を終了。
-            if (C_uriageInput.labelSet_txtCD.CodeTxtText == null || C_uriageInput.labelSet_txtCD.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))
             {
                 return;
             }
@@ -1301,6 +1329,10 @@ namespace KATO.Common.Ctl
         //商品コードテキストボックス（非表示項目）のテキストボックスが外れた場合の処理。
         public void txtSyohinCdElem11_func()
         {
+            if (string.IsNullOrWhiteSpace(txtSyohinCdElem11.Text))
+            {
+                return;
+            }
             //データ取得用テーブルを初期化
             DataTable rs9;
 
@@ -1420,7 +1452,7 @@ namespace KATO.Common.Ctl
         //商品コードより直近仕入単価を得る。
         private decimal GetCyokkinSiireTanka(string SyouhinCD)
         {
-            if (SyouhinCD == null && SyouhinCD == "")
+            if (string.IsNullOrWhiteSpace(SyouhinCD))
             {
                 return 0;
             }
@@ -1546,7 +1578,7 @@ namespace KATO.Common.Ctl
             }
 
             //率算出
-            if (txtKingakuElem6.Text == "0")
+            if (string.IsNullOrWhiteSpace(txtKingakuElem6.Text) || decimal.Parse(txtKingakuElem6.Text).Equals(0))
             {
                 txtRitsuElem21.Text = "0";
             }
@@ -1647,12 +1679,16 @@ namespace KATO.Common.Ctl
                     
                 }
             }
-            
         }
 
         //取引先の端数区分を得る     0：切捨て　1：四捨五入　2：切上
         private int GetTokuisakiHasuSyori(string TokuisakiCd)
         {
+            if (string.IsNullOrWhiteSpace(TokuisakiCd))
+            {
+                return 0;
+            }
+            
             //データ取得用テーブルを初期化
             DataTable dtSetCd;
 
@@ -1729,7 +1765,7 @@ namespace KATO.Common.Ctl
             A0020_UriageInput C_uriageInput = (A0020_UriageInput)this.Parent;
 
             //コードが空欄の場合は処理終了。
-            if (C_uriageInput.labelSet_txtCD.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))
             {
                 return;
             }
