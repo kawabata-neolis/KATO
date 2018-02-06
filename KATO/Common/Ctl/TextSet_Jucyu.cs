@@ -1392,7 +1392,7 @@ namespace KATO.Common.Ctl
                     string strSQLInput = "";
 
                     strSQLInput += " SELECT";
-                    strSQLInput += "         受注.仕入単価 AS　仕入単価";
+                    strSQLInput += "         受注.仕入単価 AS 仕入単価";
                     strSQLInput += " FROM";
                     strSQLInput += "         受注 INNER JOIN 発注 ";
                     strSQLInput += "     ON (発注.商品コード = 受注.商品コード) ";
