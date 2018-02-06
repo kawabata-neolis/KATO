@@ -1053,7 +1053,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         lstStringMOkakutei.Clear();
 
                         //仕入先コード
-                        strShiresakiCd = gridKataban.Rows[intCnt].Cells["ｺｰﾄﾞ"].Value.ToString();
+                        strShiresakiCd = lblSetShiresaki.CodeTxtText;
 
                         //発注年月日
                         strHachuYMD = txtHachuYMD.Text;
@@ -1100,7 +1100,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         strShimuke = gridKataban.Rows[intCnt].Cells["仕向け先名"].Value.ToString();
 
                         //注番
-                        strChuban = "MO" + DateTime.Parse(txtYM.Text).ToString("yyyy/MM") + " " + strShimuke;
+                        strChuban = "MO" + DateTime.Parse(txtYM.Text).ToString("yyyyMM") + " " + strShimuke;
                         dtMesaikbn = monyuryokuB.getTorihikiHasu(lblSetShiresaki.CodeTxtText);
 
                         //データがある場合
