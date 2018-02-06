@@ -1991,11 +1991,11 @@ namespace KATO.Business.A0020_UriageInput
                         //得意先コードが８８８８だった場合は納品書の文言変更
                         if (lstItem[4] == "8888")
                         {
-                            currentsheet.Cell("A3").Value = "納品書（控）現金売り";       // 見出し
+                            currentsheet.Cell("H3").Value = "納品書（控）現金売り";       // 見出し
                         }
                         else
                         {
-                            currentsheet.Cell("A3").Value = "納　品　書（控）";       // 見出し
+                            currentsheet.Cell("H3").Value = "納　品　書（控）";       // 見出し
                         }
 
                         currentsheet.Cell("B6").Value = drNouhinHikae[2].ToString();       // 郵便番号
@@ -2003,30 +2003,30 @@ namespace KATO.Business.A0020_UriageInput
                         currentsheet.Cell("B8").Value = drNouhinHikae[4].ToString();       // 住所２
                         currentsheet.Cell("B10").Value = drNouhinHikae[1].ToString();      // 得意先名
                         currentsheet.Cell("H6").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R2").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("R3").Value = drNouhinHikae[8].ToString();       // 伝票番号
 
                         currentsheet.Cell("N25").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
-                        currentsheet.Cell("N26").Value = drNouhinHikae[18].ToString();      // 消費税
-                        currentsheet.Cell("N28").Value = drNouhinHikae[19].ToString();       // 税込合計金額
+                        currentsheet.Cell("N27").Value = drNouhinHikae[18].ToString();      // 消費税
+                        currentsheet.Cell("N29").Value = drNouhinHikae[19].ToString();       // 税込合計金額
                         currentsheet.Cell("D25").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B27").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("B28").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B29").Value = "";       // 直送先
+                            currentsheet.Cell("B30").Value = "";       // 直送先
                         }
                         else
                         {
                             //直送先名称が空欄の場合はSKIP
                             if (lstItem[5] != "")
                             {
-                                currentsheet.Cell("B29").Value = lstItem[5] + "様 直送";       // 直送先
+                                currentsheet.Cell("B30").Value = lstItem[5] + "様 直送";       // 直送先
                             }
                         }
 
                         currentsheet.Cell("R27").Value = drNouhinHikae[5].ToString();      // 担当者名
-                        currentsheet.Cell("S27").Value = drNouhinHikae[6].ToString();       // 発行者
+                        currentsheet.Cell("T27").Value = drNouhinHikae[6].ToString();       // 発行者
                         
                     }
 
@@ -2041,7 +2041,7 @@ namespace KATO.Business.A0020_UriageInput
                 }
 
                 
-                 xlsRowCnt = 45;  // Excel出力行カウント（開始は出力行）
+                 xlsRowCnt = 46;  // Excel出力行カウント（開始は出力行）
                 blnSheetCreate = true;
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -2053,38 +2053,38 @@ namespace KATO.Business.A0020_UriageInput
                     {
                         blnSheetCreate = false;
 
-                        currentsheet.Cell("B36").Value = drNouhinHikae[2].ToString();       // 郵便番号
-                        currentsheet.Cell("B37").Value = drNouhinHikae[3].ToString();       // 住所１
-                        currentsheet.Cell("B38").Value = drNouhinHikae[4].ToString();       // 住所２
-                        currentsheet.Cell("B40").Value = drNouhinHikae[1].ToString();      // 得意先名
-                        currentsheet.Cell("H36").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R32").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("B37").Value = drNouhinHikae[2].ToString();       // 郵便番号
+                        currentsheet.Cell("B38").Value = drNouhinHikae[3].ToString();       // 住所１
+                        currentsheet.Cell("B39").Value = drNouhinHikae[4].ToString();       // 住所２
+                        currentsheet.Cell("B41").Value = drNouhinHikae[1].ToString();      // 得意先名
+                        currentsheet.Cell("H37").Value = drNouhinHikae[7].ToString();       // 伝票年月日
+                        currentsheet.Cell("R34").Value = drNouhinHikae[8].ToString();       // 伝票番号
 
-                        currentsheet.Cell("N55").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
-                        currentsheet.Cell("N56").Value = drNouhinHikae[18].ToString();      // 消費税
-                        currentsheet.Cell("N58").Value = drNouhinHikae[19].ToString();       // 税込合計金額
-                        currentsheet.Cell("D55").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B57").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("N56").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
+                        currentsheet.Cell("N58").Value = drNouhinHikae[18].ToString();      // 消費税
+                        currentsheet.Cell("N60").Value = drNouhinHikae[19].ToString();       // 税込合計金額
+                        currentsheet.Cell("D56").Value = drNouhinHikae[20].ToString();       // 摘要欄
+                        currentsheet.Cell("B59").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B59").Value = "";       // 直送先
+                            currentsheet.Cell("B61").Value = "";       // 直送先
                         }
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B36").Value = "";      // 郵便番号
-                            currentsheet.Cell("B37").Value = "";      // 住所１
-                            currentsheet.Cell("B38").Value = "";      // 住所２
-                            currentsheet.Cell("B40").Value = "";      // 得意先名
-                            currentsheet.Cell("N55").Value = "";      // 税抜合計金額
-                            currentsheet.Cell("N56").Value = "";      // 消費税
-                            currentsheet.Cell("N58").Value = "";      // 税込合計金額
+                            currentsheet.Cell("B37").Value = "";      // 郵便番号
+                            currentsheet.Cell("B38").Value = "";      // 住所１
+                            currentsheet.Cell("B39").Value = "";      // 住所２
+                            currentsheet.Cell("B41").Value = "";      // 得意先名
+                            currentsheet.Cell("N56").Value = "";      // 税抜合計金額
+                            currentsheet.Cell("N58").Value = "";      // 消費税
+                            currentsheet.Cell("N60").Value = "";      // 税込合計金額
                         }
 
-                        currentsheet.Cell("R57").Value = drNouhinHikae[5].ToString();      // 担当者名
-                        currentsheet.Cell("S57").Value = drNouhinHikae[6].ToString();       // 発行者
+                        currentsheet.Cell("R58").Value = drNouhinHikae[5].ToString();      // 担当者名
+                        currentsheet.Cell("T58").Value = drNouhinHikae[6].ToString();       // 発行者
 
                     }
 
@@ -2101,7 +2101,7 @@ namespace KATO.Business.A0020_UriageInput
                     xlsRowCnt += 2;
                 }
 
-                xlsRowCnt = 75;  // Excel出力行カウント（開始は出力行）
+                xlsRowCnt = 77;  // Excel出力行カウント（開始は出力行）
                 blnSheetCreate = true;
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -2113,28 +2113,28 @@ namespace KATO.Business.A0020_UriageInput
                     {
                         blnSheetCreate = false;
 
-                        currentsheet.Cell("B66").Value = drNouhinHikae[2].ToString();       // 郵便番号
-                        currentsheet.Cell("B67").Value = drNouhinHikae[3].ToString();       // 住所１
-                        currentsheet.Cell("B68").Value = drNouhinHikae[4].ToString();       // 住所２
-                        currentsheet.Cell("B70").Value = drNouhinHikae[1].ToString();      // 得意先名
-                        currentsheet.Cell("H66").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R62").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("B68").Value = drNouhinHikae[2].ToString();       // 郵便番号
+                        currentsheet.Cell("B69").Value = drNouhinHikae[3].ToString();       // 住所１
+                        currentsheet.Cell("B70").Value = drNouhinHikae[4].ToString();       // 住所２
+                        currentsheet.Cell("B72").Value = drNouhinHikae[1].ToString();      // 得意先名
+                        currentsheet.Cell("H68").Value = drNouhinHikae[7].ToString();       // 伝票年月日
+                        currentsheet.Cell("R65").Value = drNouhinHikae[8].ToString();       // 伝票番号
                         
-                        currentsheet.Cell("D85").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B87").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("D87").Value = drNouhinHikae[20].ToString();       // 摘要欄
+                        currentsheet.Cell("B91").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B89").Value = "";       // 直送先
+                            currentsheet.Cell("B93").Value = "";       // 直送先
                         }
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B66").Value = "";       // 郵便番号
-                            currentsheet.Cell("B67").Value = "";       // 住所１
-                            currentsheet.Cell("B68").Value = "";       // 住所２
-                            currentsheet.Cell("B70").Value = "";      // 得意先名
+                            currentsheet.Cell("B68").Value = "";       // 郵便番号
+                            currentsheet.Cell("B69").Value = "";       // 住所１
+                            currentsheet.Cell("B70").Value = "";       // 住所２
+                            currentsheet.Cell("B72").Value = "";      // 得意先名
                         }
 
                     }
@@ -2156,9 +2156,9 @@ namespace KATO.Business.A0020_UriageInput
 
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
-                int[] topRow = { 6,36,66 };
+                int[] topRow = { 5,36,67 };
                 int[] leftColumn = { 15,15,15};
-                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
+                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 60);
 
                 // PDF化の処理
                 return pdf.createPdf(strOutXlsFile, strDateTime, 1);

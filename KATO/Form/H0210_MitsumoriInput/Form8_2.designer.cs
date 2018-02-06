@@ -84,6 +84,10 @@
             // 
             this.btnF01.Visible = false;
             // 
+            // btnF12
+            // 
+            this.btnF12.Visible = false;
+            // 
             // btnF11
             // 
             this.btnF11.Visible = false;

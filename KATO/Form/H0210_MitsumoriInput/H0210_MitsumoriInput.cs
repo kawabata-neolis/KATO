@@ -206,7 +206,12 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             txtMYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
+            gridMitsmori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            gridMitsmori.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
             SetUpGrid();
+            gridMitsmori.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
             for (int i = 0; i < 200; i++)
             {
                 dt.Rows.InsertAt(dt.NewRow(), 0);
@@ -1024,11 +1029,11 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, suryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumn(gridMitsmori, teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, mitsumoriTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(gridMitsmori, kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, kakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 50);
             setColumn(gridMitsmori, kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, shiireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, arari, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 50);
+            setColumn(gridMitsmori, arariritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 50);
             setColumn(gridMitsmori, biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, insatsu, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, null, 26);
@@ -1037,73 +1042,73 @@ namespace KATO.Form.H0210_MitsumoriInput
             setColumn(gridMitsmori, shiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shiireCd2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shiireCd3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 40);
             setColumn(gridMitsmori, shiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shiireCd4);
             setColumn(gridMitsmori, shiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shiireCd5);
             setColumn(gridMitsmori, shiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shiireCd6);
             setColumn(gridMitsmori, shiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, shiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, shiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, arari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, arariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd1);
             setColumn(gridMitsmori, kakoShiireName1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu1, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd2);
             setColumn(gridMitsmori, kakoShiireName2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu2, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd3);
             setColumn(gridMitsmori, kakoShiireName3, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu3, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd4);
             setColumn(gridMitsmori, kakoShiireName4, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu4, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd5);
             setColumn(gridMitsmori, kakoShiireName5, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu5, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, kakoShiireCd6);
             setColumn(gridMitsmori, kakoShiireName6, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(gridMitsmori, kakoShiireTanka6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
             setColumn(gridMitsmori, kakoShiireKin6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
             setColumn(gridMitsmori, kakoShiireArari6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 97);
-            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 68);
+            setColumn(gridMitsmori, kakoShiireArariritsu6, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 68);
             setColumn(gridMitsmori, shohin);
             setColumn(gridMitsmori, daibunrui);
             setColumn(gridMitsmori, chubunrui);
@@ -1710,20 +1715,22 @@ namespace KATO.Form.H0210_MitsumoriInput
                 txtArariRitsu.Text = (decimal.Round(dArariRitsuM, 1)).ToString();
 
                 //gridに反映
-                cellShiireTanka1.Value = dShiireTanka1.ToString();
-                cellShiireKin1.Value = dShiireKin1.ToString();
-                cellShiireArari1.Value = dArariM.ToString();
-                cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
+                if (!dShiireTanka1.Equals(0)) {
+                    cellShiireTanka1.Value = dShiireTanka1.ToString();
+                    cellShiireKin1.Value = dShiireKin1.ToString();
+                    cellShiireArari1.Value = dArariM.ToString();
+                    cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
 
-                cellKakoTanka1.Value = dKakoTanka1.ToString();
-                cellKakoKin1.Value = dKakoKin1.ToString();
+                    cellKakoTanka1.Value = dKakoTanka1.ToString();
+                    cellKakoKin1.Value = dKakoKin1.ToString();
 
-                if (zaiNum != 0) {
-                    cellShiireTanka2.Value = dShiireTanka2.ToString();
-                    cellShiireKin2.Value = dShiireKin2.ToString();
+                    if (zaiNum != 0) {
+                        cellShiireTanka2.Value = dShiireTanka2.ToString();
+                        cellShiireKin2.Value = dShiireKin2.ToString();
 
-                    cellKakoTanka2.Value = dKakoTanka2.ToString();
-                    cellKakoKin2.Value = dKakoKin2.ToString();
+                        cellKakoTanka2.Value = dKakoTanka2.ToString();
+                        cellKakoKin2.Value = dKakoKin2.ToString();
+                    }
                 }
 
                 gridMitsmori.EndEdit();
@@ -1770,6 +1777,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 #region
                 for (int i = 0; i < gridMitsmori.RowCount; i++)
                 {
+                    gridMitsmori[9, i].Value = DBNull.Value;
+                    gridMitsmori[10, i].Value = DBNull.Value;
+                    //gridMitsmori[10, i].Value = gridMitsmori[19, i].Value;
                     if (string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[12, i], false)))
                     {
                         gridMitsmori[9, i].Value = gridMitsmori[18, i].Value;
@@ -2696,9 +2706,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                     stKata += getCellValue(gridMitsmori[2, i], false);
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
-                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[3, i], false);
-                    currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[5, i], false);
-                    currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[7, i], false);
+                    currentsheet.Cell(xlsRowCnt, "E").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false));
+                    currentsheet.Cell(xlsRowCnt, "H").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false));
+                    currentsheet.Cell(xlsRowCnt, "K").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false));
                     currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[11, i], false);
 
                     xlsRowCnt++;
@@ -2725,8 +2735,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
                 int[] topRow = { 9 };
-                int[] leftColumn = { 6 };
-                pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
+                int[] leftColumn = { 8 };
+                pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 57);
 
                 // PDF化の処理
                 //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
@@ -2858,59 +2868,59 @@ namespace KATO.Form.H0210_MitsumoriInput
                     stKata += getCellValue(gridMitsmori[2, i], false);
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
-                    currentsheet.Cell(xlsRowCnt, "C").Value = getCellValue(gridMitsmori[3, i], false);
+                    currentsheet.Cell(xlsRowCnt, "C").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false));
                     currentsheet.Cell(xlsRowCnt, "D").Value = "";
-                    currentsheet.Cell(xlsRowCnt, "E").Value = getCellValue(gridMitsmori[5, i], false);
-                    currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsmori[7, i], false);
+                    currentsheet.Cell(xlsRowCnt, "E").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false));
+                    currentsheet.Cell(xlsRowCnt, "F").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false));
                     currentsheet.Cell(xlsRowCnt, "G").Value = getCellValue(gridMitsmori[11, i], false);
 
                     currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[15, i], false);
-                    currentsheet.Cell(xlsRowCnt, "I").Value = getCellValue(gridMitsmori[16, i], false);
-                    currentsheet.Cell(xlsRowCnt, "J").Value = getCellValue(gridMitsmori[19, i], false);
+                    currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(getCellValue(gridMitsmori[16, i], false));
+                    currentsheet.Cell(xlsRowCnt, "J").Value = zeroToBlank(getCellValue(gridMitsmori[19, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[21, i], false);
-                    currentsheet.Cell(xlsRowCnt, "L").Value = getCellValue(gridMitsmori[22, i], false);
-                    currentsheet.Cell(xlsRowCnt, "M").Value = getCellValue(gridMitsmori[25, i], false);
+                    currentsheet.Cell(xlsRowCnt, "L").Value = zeroToBlank(getCellValue(gridMitsmori[22, i], false));
+                    currentsheet.Cell(xlsRowCnt, "M").Value = zeroToBlank(getCellValue(gridMitsmori[25, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[27, i], false);
-                    currentsheet.Cell(xlsRowCnt, "O").Value = getCellValue(gridMitsmori[28, i], false);
-                    currentsheet.Cell(xlsRowCnt, "P").Value = getCellValue(gridMitsmori[31, i], false);
+                    currentsheet.Cell(xlsRowCnt, "O").Value = zeroToBlank(getCellValue(gridMitsmori[28, i], false));
+                    currentsheet.Cell(xlsRowCnt, "P").Value = zeroToBlank(getCellValue(gridMitsmori[31, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "Q").Value = getCellValue(gridMitsmori[33, i], false);
-                    currentsheet.Cell(xlsRowCnt, "R").Value = getCellValue(gridMitsmori[34, i], false);
-                    currentsheet.Cell(xlsRowCnt, "S").Value = getCellValue(gridMitsmori[37, i], false);
+                    currentsheet.Cell(xlsRowCnt, "R").Value = zeroToBlank(getCellValue(gridMitsmori[34, i], false));
+                    currentsheet.Cell(xlsRowCnt, "S").Value = zeroToBlank(getCellValue(gridMitsmori[37, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "T").Value = getCellValue(gridMitsmori[39, i], false);
-                    currentsheet.Cell(xlsRowCnt, "U").Value = getCellValue(gridMitsmori[40, i], false);
-                    currentsheet.Cell(xlsRowCnt, "V").Value = getCellValue(gridMitsmori[43, i], false);
+                    currentsheet.Cell(xlsRowCnt, "U").Value = zeroToBlank(getCellValue(gridMitsmori[40, i], false));
+                    currentsheet.Cell(xlsRowCnt, "V").Value = zeroToBlank(getCellValue(gridMitsmori[43, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "W").Value = getCellValue(gridMitsmori[45, i], false);
-                    currentsheet.Cell(xlsRowCnt, "X").Value = getCellValue(gridMitsmori[46, i], false);
-                    currentsheet.Cell(xlsRowCnt, "Y").Value = getCellValue(gridMitsmori[49, i], false);
+                    currentsheet.Cell(xlsRowCnt, "X").Value = zeroToBlank(getCellValue(gridMitsmori[46, i], false));
+                    currentsheet.Cell(xlsRowCnt, "Y").Value = zeroToBlank(getCellValue(gridMitsmori[49, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "Z").Value = getCellValue(gridMitsmori[51, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AA").Value = getCellValue(gridMitsmori[52, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AB").Value = getCellValue(gridMitsmori[55, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AA").Value = zeroToBlank(getCellValue(gridMitsmori[52, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AB").Value = zeroToBlank(getCellValue(gridMitsmori[55, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "AC").Value = getCellValue(gridMitsmori[57, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AD").Value = getCellValue(gridMitsmori[58, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AE").Value = getCellValue(gridMitsmori[61, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AD").Value = zeroToBlank(getCellValue(gridMitsmori[58, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AE").Value = zeroToBlank(getCellValue(gridMitsmori[61, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "AF").Value = getCellValue(gridMitsmori[63, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AG").Value = getCellValue(gridMitsmori[64, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AH").Value = getCellValue(gridMitsmori[67, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AG").Value = zeroToBlank(getCellValue(gridMitsmori[64, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AH").Value = zeroToBlank(getCellValue(gridMitsmori[67, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "AI").Value = getCellValue(gridMitsmori[69, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AJ").Value = getCellValue(gridMitsmori[70, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AK").Value = getCellValue(gridMitsmori[73, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AJ").Value = zeroToBlank(getCellValue(gridMitsmori[70, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AK").Value = zeroToBlank(getCellValue(gridMitsmori[73, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "AL").Value = getCellValue(gridMitsmori[75, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AM").Value = getCellValue(gridMitsmori[76, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AN").Value = getCellValue(gridMitsmori[79, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AM").Value = zeroToBlank(getCellValue(gridMitsmori[76, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AN").Value = zeroToBlank(getCellValue(gridMitsmori[79, i], false));
 
                     currentsheet.Cell(xlsRowCnt, "AO").Value = getCellValue(gridMitsmori[81, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AP").Value = getCellValue(gridMitsmori[82, i], false);
-                    currentsheet.Cell(xlsRowCnt, "AQ").Value = getCellValue(gridMitsmori[85, i], false);
+                    currentsheet.Cell(xlsRowCnt, "AP").Value = zeroToBlank(getCellValue(gridMitsmori[82, i], false));
+                    currentsheet.Cell(xlsRowCnt, "AQ").Value = zeroToBlank(getCellValue(gridMitsmori[85, i], false));
 
                     xlsRowCnt++;
                 }
@@ -3608,6 +3618,30 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
 
             return flg;
+        }
+        private string zeroToBlank(String s)
+        {
+            string ret = "";
+            decimal d = 0;
+
+            if (!string.IsNullOrEmpty(s))
+            {
+                try
+                {
+                    d = decimal.Parse(s);
+                }
+                catch (Exception e)
+                {
+                    // 数値以外の値なのでそのまま返す
+                    return s;
+                }
+            }
+            if (!d.Equals(0))
+            {
+                ret = s;
+            }
+            return ret;
+            
         }
         private void openChildForm(Form8_2 f)
         {

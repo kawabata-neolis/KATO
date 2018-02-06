@@ -198,6 +198,8 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
 
+            textBox10.Text = "";
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -218,6 +220,14 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 DataTable dt = inputB.getMitsumoriList(txtFrom.Text, txtTo.Text, lsTanto.CodeTxtText, lsTokui.CodeTxtText,
                     txtTanto.Text, txtKenmei.Text, txtBiko.Text, txtKata.Text, iRd1, iRd2);
+
+                int intCnt = 0;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    intCnt = dt.Rows.Count;
+                }
+
+                textBox10.Text = intCnt.ToString();
 
                 gridMitsu.DataSource = dt;
                 gridMitsu.Focus();
@@ -324,6 +334,13 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void Form8_2_Load(object sender, EventArgs e)
         {
+            // TODO debug
+            powerUserFlg = true;
+            if (!powerUserFlg)
+            {
+                button1.Visible = false;
+                button2.Visible = false;
+            }
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
