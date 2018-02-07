@@ -208,9 +208,9 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             gridMitsmori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             gridMitsmori.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            gridMitsmori.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             SetUpGrid();
-            gridMitsmori.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             for (int i = 0; i < 200; i++)
             {
