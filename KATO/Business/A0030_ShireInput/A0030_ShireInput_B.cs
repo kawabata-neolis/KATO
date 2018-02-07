@@ -653,7 +653,6 @@ namespace KATO.Business.A0030_ShireInput
             List<String> lstSaveDataShokyo = new List<string>();
             //伝票番号
             lstSaveDataShokyo.Add(lstSaveData[0]);
-//伝票番号が空白になっている。
             try
             {
                 DBConnective dbconnective = new DBConnective();

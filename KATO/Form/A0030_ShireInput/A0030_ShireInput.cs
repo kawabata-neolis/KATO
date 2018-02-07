@@ -49,6 +49,9 @@ namespace KATO.Form.A0030_ShireInput
         //どこのGroupDataにフォーカスされているか
         public short shotCnt = 0;
 
+        //伝票番号のあるデータが表示されているかどうか
+        public Boolean blMODYflg = false;
+
         ///<summary>
         ///A0030_ShireInput
         ///フォームの初期設定
@@ -137,6 +140,9 @@ namespace KATO.Form.A0030_ShireInput
 
             labelSet_Torihikikbn.CodeTxtText = "21";
             labelSet_Torihikikbn.chkTxtTorihikikbn();
+
+            //伝票Noを触れるようにする
+            txtDenpyoNo.Enabled = true;
         }
 
         ///<summary>
@@ -450,7 +456,7 @@ namespace KATO.Form.A0030_ShireInput
             }
 
             //伝票番号[0]
-            lstSaveData.Add(txtDenpyoNo.Text);
+            lstSaveData.Add(intDenpyoNo.ToString());
             //年月日[1]
             lstSaveData.Add(txtYMD.Text);
             //コード[2]
@@ -523,8 +529,7 @@ namespace KATO.Form.A0030_ShireInput
             DataTable dtJuchuDataCnt = new DataTable();
             //受注データカウント(受注番号が1以上の場合の処理)の確保用
             DataTable dtJuchuDataCntNO = new DataTable();
-
-
+            
             //型番確保用
             string strKataban = "";
 
@@ -1130,11 +1135,26 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void delText()
         {
+            //テキスト確保
+            string strYMD = txtYMD.Text;
+            string strTantoCd = labelSet_Tantousha.CodeTxtText;
+            string strKbnCd = labelSet_Torihikikbn.CodeTxtText;
+
             //画面の項目内を白紙にする
             delFormClear(this);
             btnF01.Enabled = true;
             btnF03.Enabled = true;
             btnF07.Enabled = true;
+
+            txtYMD.Text = strYMD;
+            labelSet_Tantousha.CodeTxtText = strTantoCd;
+            labelSet_Tantousha.chkTxtTantosha();
+            labelSet_Torihikikbn.CodeTxtText = strKbnCd;
+            labelSet_Torihikikbn.chkTxtTorihikikbn();
+
+            //伝票Noを触れるようにする
+            txtDenpyoNo.Enabled = true;
+
             txtYMD.Focus();
         }
 
@@ -1164,6 +1184,9 @@ namespace KATO.Form.A0030_ShireInput
         {
             //次のフォーカス位置を確保
             Control cActiveBefore = this.ActiveControl;
+
+            //初期値に戻す
+            blMODYflg = true;
 
             //伝票番号の処理が1度でもあった場合
             if (blDenpyoLeave == true)
@@ -1447,6 +1470,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 txtTanka1.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka1.updPriceMethod();
+
                             }
                         }
                         //行番号-1が1の場合(2行目)
@@ -1467,6 +1491,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 txtTanka2.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka2.updPriceMethod();
+
                             }
                         }
                         //行番号-1が2の場合(3行目)
@@ -1487,6 +1512,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 txtTanka3.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka3.updPriceMethod();
+
                             }
                         }
                         //行番号-1が3の場合(4行目)
@@ -1507,6 +1533,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 txtTanka4.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka4.updPriceMethod();
+
                             }
                         }
                         //行番号-1が4の場合(5行目)
@@ -1527,6 +1554,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 txtTanka5.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka5.updPriceMethod();
+
                             }
                         }
                     }
@@ -1565,6 +1593,11 @@ namespace KATO.Form.A0030_ShireInput
                 txtSogokei.Text = StringUtl.updShishagonyu(txtSogokei.Text, 0);
                 txtSogokei.updPriceMethod();
 
+                //伝票番号ありのデータの証明
+                blMODYflg = false;
+
+                //伝票Noを触らせない
+                txtDenpyoNo.Enabled = false;
             }
             catch (Exception ex)
             {

@@ -47,12 +47,12 @@
             this.lblCD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblDenpyoNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblYMD = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblBiko = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblKin = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTanka = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblSu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblHin = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblChumonNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtEigyouCd = new KATO.Common.Ctl.BaseText();
             this.lblEigyouCd = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -397,77 +397,77 @@
             this.lblYMD.Text = "年月日";
             this.lblYMD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel6
+            // lblBiko
             // 
-            this.baseLabel6.AutoSize = true;
-            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(1132, 4);
-            this.baseLabel6.Name = "baseLabel6";
-            this.baseLabel6.Size = new System.Drawing.Size(95, 15);
-            this.baseLabel6.strToolTip = null;
-            this.baseLabel6.TabIndex = 0;
-            this.baseLabel6.Text = "備考/得意先";
-            this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBiko.AutoSize = true;
+            this.lblBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblBiko.Location = new System.Drawing.Point(1132, 4);
+            this.lblBiko.Name = "lblBiko";
+            this.lblBiko.Size = new System.Drawing.Size(95, 15);
+            this.lblBiko.strToolTip = null;
+            this.lblBiko.TabIndex = 0;
+            this.lblBiko.Text = "備考/得意先";
+            this.lblBiko.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel5
+            // lblKin
             // 
-            this.baseLabel5.AutoSize = true;
-            this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(873, 4);
-            this.baseLabel5.Name = "baseLabel5";
-            this.baseLabel5.Size = new System.Drawing.Size(103, 15);
-            this.baseLabel5.strToolTip = null;
-            this.baseLabel5.TabIndex = 0;
-            this.baseLabel5.Text = "全額/ﾏｽﾀ単価";
-            this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKin.AutoSize = true;
+            this.lblKin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKin.Location = new System.Drawing.Point(873, 4);
+            this.lblKin.Name = "lblKin";
+            this.lblKin.Size = new System.Drawing.Size(103, 15);
+            this.lblKin.strToolTip = null;
+            this.lblKin.TabIndex = 0;
+            this.lblKin.Text = "金額/ﾏｽﾀ単価";
+            this.lblKin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel4
+            // lblTanka
             // 
-            this.baseLabel4.AutoSize = true;
-            this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(713, 4);
-            this.baseLabel4.Name = "baseLabel4";
-            this.baseLabel4.Size = new System.Drawing.Size(111, 15);
-            this.baseLabel4.strToolTip = null;
-            this.baseLabel4.TabIndex = 0;
-            this.baseLabel4.Text = "単価/直近単価";
-            this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTanka.AutoSize = true;
+            this.lblTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTanka.Location = new System.Drawing.Point(713, 4);
+            this.lblTanka.Name = "lblTanka";
+            this.lblTanka.Size = new System.Drawing.Size(111, 15);
+            this.lblTanka.strToolTip = null;
+            this.lblTanka.TabIndex = 0;
+            this.lblTanka.Text = "単価/直近単価";
+            this.lblTanka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel3
+            // lblSu
             // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(609, 4);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(39, 15);
-            this.baseLabel3.strToolTip = null;
-            this.baseLabel3.TabIndex = 0;
-            this.baseLabel3.Text = "数量";
-            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSu.AutoSize = true;
+            this.lblSu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblSu.Location = new System.Drawing.Point(609, 4);
+            this.lblSu.Name = "lblSu";
+            this.lblSu.Size = new System.Drawing.Size(39, 15);
+            this.lblSu.strToolTip = null;
+            this.lblSu.TabIndex = 0;
+            this.lblSu.Text = "数量";
+            this.lblSu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel2
+            // lblHin
             // 
-            this.baseLabel2.AutoSize = true;
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(237, 4);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(215, 15);
-            this.baseLabel2.strToolTip = null;
-            this.baseLabel2.TabIndex = 0;
-            this.baseLabel2.Text = "メーカー・品   名・型   番";
-            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHin.AutoSize = true;
+            this.lblHin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHin.Location = new System.Drawing.Point(237, 4);
+            this.lblHin.Name = "lblHin";
+            this.lblHin.Size = new System.Drawing.Size(215, 15);
+            this.lblHin.strToolTip = null;
+            this.lblHin.TabIndex = 0;
+            this.lblHin.Text = "メーカー・品   名・型   番";
+            this.lblHin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel1
+            // lblChumonNo
             // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(58, 4);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(63, 15);
-            this.baseLabel1.strToolTip = null;
-            this.baseLabel1.TabIndex = 0;
-            this.baseLabel1.Text = "注文No.";
-            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblChumonNo.AutoSize = true;
+            this.lblChumonNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblChumonNo.Location = new System.Drawing.Point(58, 4);
+            this.lblChumonNo.Name = "lblChumonNo";
+            this.lblChumonNo.Size = new System.Drawing.Size(63, 15);
+            this.lblChumonNo.strToolTip = null;
+            this.lblChumonNo.TabIndex = 0;
+            this.lblChumonNo.Text = "注文No.";
+            this.lblChumonNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblNo
             // 
@@ -513,12 +513,12 @@
             this.panelView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelView.Controls.Add(this.panel1);
             this.panelView.Controls.Add(this.lblNo);
-            this.panelView.Controls.Add(this.baseLabel1);
-            this.panelView.Controls.Add(this.baseLabel6);
-            this.panelView.Controls.Add(this.baseLabel2);
-            this.panelView.Controls.Add(this.baseLabel5);
-            this.panelView.Controls.Add(this.baseLabel3);
-            this.panelView.Controls.Add(this.baseLabel4);
+            this.panelView.Controls.Add(this.lblChumonNo);
+            this.panelView.Controls.Add(this.lblBiko);
+            this.panelView.Controls.Add(this.lblHin);
+            this.panelView.Controls.Add(this.lblKin);
+            this.panelView.Controls.Add(this.lblSu);
+            this.panelView.Controls.Add(this.lblTanka);
             this.panelView.Location = new System.Drawing.Point(12, 146);
             this.panelView.Name = "panelView";
             this.panelView.Size = new System.Drawing.Size(1395, 24);
@@ -1361,12 +1361,12 @@
         private Common.Ctl.BaseLabel lblTorihikikbn;
         private Common.Ctl.BaseLabel lblTantosha;
         private Common.Ctl.BaseLabel lblCD;
-        private Common.Ctl.BaseLabel baseLabel6;
-        private Common.Ctl.BaseLabel baseLabel5;
-        private Common.Ctl.BaseLabel baseLabel4;
-        private Common.Ctl.BaseLabel baseLabel3;
-        private Common.Ctl.BaseLabel baseLabel2;
-        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseLabel lblBiko;
+        private Common.Ctl.BaseLabel lblKin;
+        private Common.Ctl.BaseLabel lblTanka;
+        private Common.Ctl.BaseLabel lblSu;
+        private Common.Ctl.BaseLabel lblHin;
+        private Common.Ctl.BaseLabel lblChumonNo;
         private Common.Ctl.BaseLabel lblNo;
         private Common.Ctl.BaseLabel lblEigyouCd;
         private System.Windows.Forms.Panel panelView;
