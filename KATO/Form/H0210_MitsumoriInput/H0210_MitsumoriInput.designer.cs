@@ -830,7 +830,7 @@
             // 
             this.txtKakTnk6.blnCommaOK = true;
             this.txtKakTnk6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk6.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk6.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk6.intDeciSet = 2;
             this.txtKakTnk6.intIntederSet = 0;
             this.txtKakTnk6.intShishagonyu = 0;
@@ -881,7 +881,7 @@
             // 
             this.txtKakTnk5.blnCommaOK = true;
             this.txtKakTnk5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk5.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk5.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk5.intDeciSet = 2;
             this.txtKakTnk5.intIntederSet = 0;
             this.txtKakTnk5.intShishagonyu = 0;
@@ -932,7 +932,7 @@
             // 
             this.txtKakTnk4.blnCommaOK = true;
             this.txtKakTnk4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk4.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk4.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk4.intDeciSet = 2;
             this.txtKakTnk4.intIntederSet = 0;
             this.txtKakTnk4.intShishagonyu = 0;
@@ -1328,7 +1328,7 @@
             // 
             this.txtKakTnk3.blnCommaOK = true;
             this.txtKakTnk3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk3.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk3.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk3.intDeciSet = 2;
             this.txtKakTnk3.intIntederSet = 0;
             this.txtKakTnk3.intShishagonyu = 0;
@@ -1379,7 +1379,7 @@
             // 
             this.txtKakTnk2.blnCommaOK = true;
             this.txtKakTnk2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk2.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk2.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk2.intDeciSet = 2;
             this.txtKakTnk2.intIntederSet = 0;
             this.txtKakTnk2.intShishagonyu = 0;
@@ -1440,7 +1440,7 @@
             // 
             this.txtKakTnk1.blnCommaOK = true;
             this.txtKakTnk1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakTnk1.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtKakTnk1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtKakTnk1.intDeciSet = 2;
             this.txtKakTnk1.intIntederSet = 0;
             this.txtKakTnk1.intShishagonyu = 0;

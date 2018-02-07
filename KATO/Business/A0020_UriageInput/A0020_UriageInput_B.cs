@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 
 using ClosedXML.Excel;
+using System.Runtime.InteropServices;
 
 //using System.Runtime.InteropServices;
 
@@ -1991,11 +1992,11 @@ namespace KATO.Business.A0020_UriageInput
                         //得意先コードが８８８８だった場合は納品書の文言変更
                         if (lstItem[4] == "8888")
                         {
-                            currentsheet.Cell("A3").Value = "納品書（控）現金売り";       // 見出し
+                            currentsheet.Cell("H3").Value = "納品書（控）現金売り";       // 見出し
                         }
                         else
                         {
-                            currentsheet.Cell("A3").Value = "納　品　書（控）";       // 見出し
+                            currentsheet.Cell("H3").Value = "納　品　書（控）";       // 見出し
                         }
 
                         currentsheet.Cell("B6").Value = drNouhinHikae[2].ToString();       // 郵便番号
@@ -2003,30 +2004,30 @@ namespace KATO.Business.A0020_UriageInput
                         currentsheet.Cell("B8").Value = drNouhinHikae[4].ToString();       // 住所２
                         currentsheet.Cell("B10").Value = drNouhinHikae[1].ToString();      // 得意先名
                         currentsheet.Cell("H6").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R2").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("R3").Value = drNouhinHikae[8].ToString();       // 伝票番号
 
                         currentsheet.Cell("N25").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
-                        currentsheet.Cell("N26").Value = drNouhinHikae[18].ToString();      // 消費税
-                        currentsheet.Cell("N28").Value = drNouhinHikae[19].ToString();       // 税込合計金額
+                        currentsheet.Cell("N27").Value = drNouhinHikae[18].ToString();      // 消費税
+                        currentsheet.Cell("N29").Value = drNouhinHikae[19].ToString();       // 税込合計金額
                         currentsheet.Cell("D25").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B27").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("B28").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B29").Value = "";       // 直送先
+                            currentsheet.Cell("B30").Value = "";       // 直送先
                         }
                         else
                         {
                             //直送先名称が空欄の場合はSKIP
                             if (lstItem[5] != "")
                             {
-                                currentsheet.Cell("B29").Value = lstItem[5] + "様 直送";       // 直送先
+                                currentsheet.Cell("B30").Value = lstItem[5] + "様 直送";       // 直送先
                             }
                         }
 
                         currentsheet.Cell("R27").Value = drNouhinHikae[5].ToString();      // 担当者名
-                        currentsheet.Cell("S27").Value = drNouhinHikae[6].ToString();       // 発行者
+                        currentsheet.Cell("T27").Value = drNouhinHikae[6].ToString();       // 発行者
                         
                     }
 
@@ -2041,7 +2042,7 @@ namespace KATO.Business.A0020_UriageInput
                 }
 
                 
-                 xlsRowCnt = 45;  // Excel出力行カウント（開始は出力行）
+                 xlsRowCnt = 46;  // Excel出力行カウント（開始は出力行）
                 blnSheetCreate = true;
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -2053,38 +2054,38 @@ namespace KATO.Business.A0020_UriageInput
                     {
                         blnSheetCreate = false;
 
-                        currentsheet.Cell("B36").Value = drNouhinHikae[2].ToString();       // 郵便番号
-                        currentsheet.Cell("B37").Value = drNouhinHikae[3].ToString();       // 住所１
-                        currentsheet.Cell("B38").Value = drNouhinHikae[4].ToString();       // 住所２
-                        currentsheet.Cell("B40").Value = drNouhinHikae[1].ToString();      // 得意先名
-                        currentsheet.Cell("H36").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R32").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("B37").Value = drNouhinHikae[2].ToString();       // 郵便番号
+                        currentsheet.Cell("B38").Value = drNouhinHikae[3].ToString();       // 住所１
+                        currentsheet.Cell("B39").Value = drNouhinHikae[4].ToString();       // 住所２
+                        currentsheet.Cell("B41").Value = drNouhinHikae[1].ToString();      // 得意先名
+                        currentsheet.Cell("H37").Value = drNouhinHikae[7].ToString();       // 伝票年月日
+                        currentsheet.Cell("R34").Value = drNouhinHikae[8].ToString();       // 伝票番号
 
-                        currentsheet.Cell("N55").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
-                        currentsheet.Cell("N56").Value = drNouhinHikae[18].ToString();      // 消費税
-                        currentsheet.Cell("N58").Value = drNouhinHikae[19].ToString();       // 税込合計金額
-                        currentsheet.Cell("D55").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B57").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("N56").Value = drNouhinHikae[17].ToString();       // 税抜合計金額
+                        currentsheet.Cell("N58").Value = drNouhinHikae[18].ToString();      // 消費税
+                        currentsheet.Cell("N60").Value = drNouhinHikae[19].ToString();       // 税込合計金額
+                        currentsheet.Cell("D56").Value = drNouhinHikae[20].ToString();       // 摘要欄
+                        currentsheet.Cell("B59").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B59").Value = "";       // 直送先
+                            currentsheet.Cell("B61").Value = "";       // 直送先
                         }
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B36").Value = "";      // 郵便番号
-                            currentsheet.Cell("B37").Value = "";      // 住所１
-                            currentsheet.Cell("B38").Value = "";      // 住所２
-                            currentsheet.Cell("B40").Value = "";      // 得意先名
-                            currentsheet.Cell("N55").Value = "";      // 税抜合計金額
-                            currentsheet.Cell("N56").Value = "";      // 消費税
-                            currentsheet.Cell("N58").Value = "";      // 税込合計金額
+                            currentsheet.Cell("B37").Value = "";      // 郵便番号
+                            currentsheet.Cell("B38").Value = "";      // 住所１
+                            currentsheet.Cell("B39").Value = "";      // 住所２
+                            currentsheet.Cell("B41").Value = "";      // 得意先名
+                            currentsheet.Cell("N56").Value = "";      // 税抜合計金額
+                            currentsheet.Cell("N58").Value = "";      // 消費税
+                            currentsheet.Cell("N60").Value = "";      // 税込合計金額
                         }
 
-                        currentsheet.Cell("R57").Value = drNouhinHikae[5].ToString();      // 担当者名
-                        currentsheet.Cell("S57").Value = drNouhinHikae[6].ToString();       // 発行者
+                        currentsheet.Cell("R58").Value = drNouhinHikae[5].ToString();      // 担当者名
+                        currentsheet.Cell("T58").Value = drNouhinHikae[6].ToString();       // 発行者
 
                     }
 
@@ -2101,7 +2102,7 @@ namespace KATO.Business.A0020_UriageInput
                     xlsRowCnt += 2;
                 }
 
-                xlsRowCnt = 75;  // Excel出力行カウント（開始は出力行）
+                xlsRowCnt = 77;  // Excel出力行カウント（開始は出力行）
                 blnSheetCreate = true;
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -2113,28 +2114,28 @@ namespace KATO.Business.A0020_UriageInput
                     {
                         blnSheetCreate = false;
 
-                        currentsheet.Cell("B66").Value = drNouhinHikae[2].ToString();       // 郵便番号
-                        currentsheet.Cell("B67").Value = drNouhinHikae[3].ToString();       // 住所１
-                        currentsheet.Cell("B68").Value = drNouhinHikae[4].ToString();       // 住所２
-                        currentsheet.Cell("B70").Value = drNouhinHikae[1].ToString();      // 得意先名
-                        currentsheet.Cell("H66").Value = drNouhinHikae[7].ToString();       // 伝票年月日
-                        currentsheet.Cell("R62").Value = drNouhinHikae[8].ToString();       // 伝票番号
+                        currentsheet.Cell("B68").Value = drNouhinHikae[2].ToString();       // 郵便番号
+                        currentsheet.Cell("B69").Value = drNouhinHikae[3].ToString();       // 住所１
+                        currentsheet.Cell("B70").Value = drNouhinHikae[4].ToString();       // 住所２
+                        currentsheet.Cell("B72").Value = drNouhinHikae[1].ToString();      // 得意先名
+                        currentsheet.Cell("H68").Value = drNouhinHikae[7].ToString();       // 伝票年月日
+                        currentsheet.Cell("R65").Value = drNouhinHikae[8].ToString();       // 伝票番号
                         
-                        currentsheet.Cell("D85").Value = drNouhinHikae[20].ToString();       // 摘要欄
-                        currentsheet.Cell("B87").Value = drNouhinHikae[21].ToString();       // 納入方法
+                        currentsheet.Cell("D87").Value = drNouhinHikae[20].ToString();       // 摘要欄
+                        currentsheet.Cell("B91").Value = drNouhinHikae[21].ToString();       // 納入方法
 
                         //通常・代納のチェックの状態によって値を変更する。
                         if (lstItem[3] == "0")
                         {
-                            currentsheet.Cell("B89").Value = "";       // 直送先
+                            currentsheet.Cell("B93").Value = "";       // 直送先
                         }
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B66").Value = "";       // 郵便番号
-                            currentsheet.Cell("B67").Value = "";       // 住所１
-                            currentsheet.Cell("B68").Value = "";       // 住所２
-                            currentsheet.Cell("B70").Value = "";      // 得意先名
+                            currentsheet.Cell("B68").Value = "";       // 郵便番号
+                            currentsheet.Cell("B69").Value = "";       // 住所１
+                            currentsheet.Cell("B70").Value = "";       // 住所２
+                            currentsheet.Cell("B72").Value = "";      // 得意先名
                         }
 
                     }
@@ -2156,9 +2157,9 @@ namespace KATO.Business.A0020_UriageInput
 
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
-                int[] topRow = { 6,36,66 };
+                int[] topRow = { 5,36,67 };
                 int[] leftColumn = { 15,15,15};
-                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
+                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 60);
 
                 // PDF化の処理
                 return pdf.createPdf(strOutXlsFile, strDateTime, 1);
@@ -2228,5 +2229,181 @@ namespace KATO.Business.A0020_UriageInput
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        public String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
+        public int _sheetNo = 1;                        // シートNo.
+        public int _col = 2;                            // データ書き込みカラム
+        public int _line = 2;                           // データ書き込み開始行
+        public String _printer = "Brother TD-4100N";    // 出力プリンター
+
+        public String strJuchusaki = "";                // 受注先
+        public String strNohinsaki = "";                // 納品先
+        public String strNohinbi = "";                  // 納品日
+        public String strKataban = "";                  // 型番
+        public String strTanaban = "";                  // 棚番
+        public String strSu = "";                       // 数量
+        public String strBiko = "";                     // 備考
+
+
+        public void printout()
+        {
+
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/A0020_UriageInput.xlsx";
+
+
+            // Excel.Applicationを有効にするため参照の追加を行なってください
+            // [参照の追加],[COM],[Microsoft Excel *.* Object Library]
+            // 参照設定に[Excel](ファイル名:Interop.Excel.dll)が追加されます
+            Microsoft.Office.Interop.Excel.Application objExcel = null;
+            Microsoft.Office.Interop.Excel.Workbooks objWorkBooks = null;
+            Microsoft.Office.Interop.Excel.Workbook objWorkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
+            Microsoft.Office.Interop.Excel.Range objRange = null;
+            object objCell = null;
+
+            try
+            {
+                // EXCEL開始処理
+                try
+                {
+                    objExcel = new Microsoft.Office.Interop.Excel.Application();
+                }
+                catch
+                {
+                    throw new Exception(
+                        "Microsoft Office Excelがインストールされていないため\n" +
+                        "印刷できません。");
+                }
+
+                objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                objExcel.Visible = false;
+                objExcel.DisplayAlerts = false;
+
+                objWorkBooks = objExcel.Workbooks;
+                objWorkBook = objWorkBooks.Open(_xslFile,     // FileName:ファイル名
+                                                Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
+                                                Type.Missing, // ReadOnly:ReadOnlyにするかどうか
+                                                Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
+                                                Type.Missing, // Password:開く際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // WriteResPassword:書き込む際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // IgnoreReadOnlyRecommended:[読み取り専用を推奨する]チェックがオンの場合でも[読み取り専用を推奨する]メッセージを非表示
+                                                Type.Missing, // Origin:テキストファイルの場合、プラットフォームを指定
+                                                Type.Missing, // Delimiter:テキストファイルで且つ引数Formatが6の場合に区切り文字を指定
+                                                Type.Missing, // Editable:Excel4.0アドインの場合、アドインウィンドウを出すか指定
+                                                Type.Missing, // Notify:ファイルが読み取りor書き込みモードで開けない場合に通知リストに追加するか指定
+                                                Type.Missing, // Converter:ファイルを開くときに最初に使用するファイルコンバーターのインデックス番号を指定
+                                                Type.Missing, // AddToMru:最近使用したファイルの一覧にブックを追加するか指定
+                                                Type.Missing, // Local:Excel言語設定に合わせてファイルを保存するか指定
+                                                Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
+                                                );
+
+                objWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)objWorkBook.Sheets[_sheetNo];
+
+                // EXCEL出力処理
+                objCell = objWorkSheet.Cells[_line + 0, _col];          // 受注先
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strJuchusaki;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 1, _col];          // 納品先
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strNohinsaki;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 2, _col];          // 納品日
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strNohinbi;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 3, _col];          // 型番
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strKataban;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 4, _col];          // 棚番
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strTanaban;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 5, _col];          // 数量
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strSu;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 7, _col];          // 備考
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strBiko;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                // 印刷実行
+                objWorkSheet.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                      Type.Missing, // To:印刷終了のページ番号
+                                      1,            // Copies:印刷部数
+                                      Type.Missing, // Preview:印刷プレビューをするか指定
+                                      Type.Missing, // ActivePrinter:プリンターの名称
+                                      Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                      true,         // Collate:部単位で印刷するか指定
+                                      Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                      );
+
+                objWorkBook.Saved = true;   // 保存済みとする
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
+            }
+        }
+
+
     }
 }

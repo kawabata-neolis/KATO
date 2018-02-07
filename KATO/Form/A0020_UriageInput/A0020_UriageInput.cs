@@ -818,7 +818,7 @@ namespace KATO.Form.A0020_UriageInput
                         //    uriageinput_B.dbToExcel();
                         //}
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
-                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_B4, CommonTeisu.TATE, true);
+                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
 
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
@@ -832,7 +832,7 @@ namespace KATO.Form.A0020_UriageInput
                     {
                         //PDF作成
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
-                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_B4, CommonTeisu.TATE,false);
+                        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE,false);
 
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
