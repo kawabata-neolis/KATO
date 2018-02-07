@@ -103,6 +103,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             btnF04.Text = CommonTeisu.STR_FUNC_F4;
             btnF12.Text = CommonTeisu.STR_FUNC_F12;
             SetUpGrid();
+            rsSortOrder.radbtn0.Checked = false;
+            rsSortOrder.radbtn1.Checked = true;
         }
 
         ///<summary>
@@ -315,7 +317,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    SendKeys.Send("{TAB}");
+                    //SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
@@ -540,6 +542,14 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             }
         }
 
+        private void txtJuchuNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+
+        }
 
     }
 }
