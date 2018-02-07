@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KATO.Common.Util;
 using KATO.Common.Ctl;
 using KATO.Business.M1110_Chubunrui;
+using KATO.Form.D0360_JuchuzanKakunin;
 
 namespace KATO.Form.A0030_ShireInput
 {
@@ -345,6 +346,15 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         private void txtChumonNo_Leave(object sender, EventArgs e)
         {
+            getData();
+        }
+
+        ///<summary>
+        ///getData
+        ///注文Noからデータを取得
+        ///</summary>
+        private void getData()
+        {
             //品名確保
             string strHinmei;
 
@@ -419,7 +429,7 @@ namespace KATO.Form.A0030_ShireInput
                     for (int intCnt = 0; intCnt < dtSetCd_B_Hachu.Rows.Count; intCnt++)
                     {
 
-//今後、修正するべき
+                        //今後、修正するべき
                         ////注文コードが仕入コードと一致しない場合
                         //if (txtChumonNo.Text != shireinput.txtCD.Text)
                         //{
@@ -742,7 +752,7 @@ namespace KATO.Form.A0030_ShireInput
 
 
 
-//個々の処理をはじめに持っていくのも手
+                //個々の処理をはじめに持っていくのも手
 
 
                 return;
@@ -1122,68 +1132,6 @@ namespace KATO.Form.A0030_ShireInput
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
-            }
-        }
-
-
-
-        ///<summary>
-        ///txtChumonNo_KeyDown
-        ///注文Noでのキー判定
-        ///</summary>
-        private void txtChumonNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            //キー入力情報によって動作を変える
-            switch (e.KeyCode)
-            {
-                case Keys.Tab:
-                    break;
-                case Keys.Left:
-                    break;
-                case Keys.Right:
-                    break;
-                case Keys.Up:
-                    break;
-                case Keys.Down:
-                    break;
-                case Keys.Delete:
-                    break;
-                case Keys.Back:
-                    break;
-                case Keys.Enter:
-                    if (!StringUtl.blIsEmpty(txtChumonNo.Text))
-                    {
-                        txtChumonNo.Focus();
-                        return;
-                    }
-                    break;
-                case Keys.F1:
-                    break;
-                case Keys.F2:
-                    break;
-                case Keys.F3:
-                    break;
-                case Keys.F4:
-                    break;
-                case Keys.F5:
-                    break;
-                case Keys.F6:
-                    break;
-                case Keys.F7:
-                    break;
-                case Keys.F8:
-                    break;
-                case Keys.F9:
-                    break;
-                case Keys.F10:
-                    break;
-                case Keys.F11:
-                    break;
-                case Keys.F12:
-                    break;
-
-                default:
-                    break;
             }
         }
 
@@ -1791,6 +1739,147 @@ namespace KATO.Form.A0030_ShireInput
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///txtKeyDown
+        ///キー入力判定（各テキストボックス）
+        ///</summary>
+        private void txtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///txtChumonNo_KeyDown
+        ///キー入力判定（注文番号）
+        ///</summary>
+        private void txtChumonNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+
+                    //親画面の情報取得
+                    A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
+
+                    //仕入入力のコードテキストに記入がある場合
+                    if (shireinput.txtCD.blIsEmpty() == true)
+                    {
+                        //発注残確認に移動
+                        Form.D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this.Parent, shireinput.txtCD.Text, txtChumonNo);
+                        try
+                        {
+                            juchuzankakunin.ShowDialog();
+                            juchuzankakunin.Dispose();
+
+                            //注文Noにデータがある場合
+                            if (txtChumonNo.blIsEmpty() == true)
+                            {
+                                getData();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            //エラーロギング
+                            new CommonException(ex);
+                            return;
+                        }
+                    }
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
             }
         }
     }

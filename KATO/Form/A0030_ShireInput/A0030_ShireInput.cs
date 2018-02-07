@@ -103,8 +103,40 @@ namespace KATO.Form.A0030_ShireInput
 
             //初期値の設定
             txtYMD.Text = DateTime.Today.ToString();
-            labelSet_Tantousha.CodeTxtText = "0022";
+
+            DataTable dtTantoshaCd = new DataTable();
+
+            A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = shireinputB.getTantoshaCd(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.chkTxtTantosha();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
             labelSet_Torihikikbn.CodeTxtText = "21";
+            labelSet_Torihikikbn.chkTxtTorihikikbn();
         }
 
         ///<summary>
@@ -175,7 +207,7 @@ namespace KATO.Form.A0030_ShireInput
 
         ///<summary>
         ///txtCD_KeyDown
-        ///ボタンの反応(コード入力)
+        ///キー入力判定(コード入力)
         ///</summary>
         private void txtCD_KeyDown(object sender, KeyEventArgs e)
         {
@@ -197,6 +229,8 @@ namespace KATO.Form.A0030_ShireInput
                 case Keys.Back:
                     break;
                 case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     break;
@@ -1631,17 +1665,78 @@ namespace KATO.Form.A0030_ShireInput
 
         ///<summary>
         ///txtDenpyoNo_KeyDown
-        ///ボタンの反応(伝票入力項目)
+        ///キー入力判定(伝票番号)
         ///</summary>
         private void txtDenpyoNo_KeyDown(object sender, KeyEventArgs e)
         {
             //キー入力情報によって動作を変える
             switch (e.KeyCode)
             {
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
                 case Keys.F9:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     showShireList();
                     break;
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
+        ///txtDenpyoNo_KeyDown
+        ///キー入力判定（各テキストボックス）
+        ///</summary>
+        private void txtKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
                 default:
                     break;
             }

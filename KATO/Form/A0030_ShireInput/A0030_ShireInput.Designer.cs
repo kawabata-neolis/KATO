@@ -174,6 +174,7 @@
             this.txtYubinView.Name = "txtYubinView";
             this.txtYubinView.Size = new System.Drawing.Size(100, 22);
             this.txtYubinView.TabIndex = 11;
+            this.txtYubinView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtYubinView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblYubinKensaku
@@ -197,6 +198,7 @@
             this.txtJusho1View.Name = "txtJusho1View";
             this.txtJusho1View.Size = new System.Drawing.Size(250, 22);
             this.txtJusho1View.TabIndex = 12;
+            this.txtJusho1View.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtJusho1View.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblJusho1Kensaku
@@ -220,6 +222,7 @@
             this.txtJusho2View.Name = "txtJusho2View";
             this.txtJusho2View.Size = new System.Drawing.Size(250, 22);
             this.txtJusho2View.TabIndex = 13;
+            this.txtJusho2View.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtJusho2View.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblJusho2Kensaku
@@ -244,6 +247,7 @@
             this.txtShireNameView.Size = new System.Drawing.Size(250, 22);
             this.txtShireNameView.TabIndex = 14;
             this.txtShireNameView.TabStop = false;
+            this.txtShireNameView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtShireNameView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lbShiresakiKensaku
@@ -265,7 +269,7 @@
             this.labelSet_Torihikikbn.CodeTxtSize = 40;
             this.labelSet_Torihikikbn.CodeTxtText = "";
             this.labelSet_Torihikikbn.LabelName = "";
-            this.labelSet_Torihikikbn.Location = new System.Drawing.Point(502, 24);
+            this.labelSet_Torihikikbn.Location = new System.Drawing.Point(451, 24);
             this.labelSet_Torihikikbn.Name = "labelSet_Torihikikbn";
             this.labelSet_Torihikikbn.ShowAppendFlg = false;
             this.labelSet_Torihikikbn.Size = new System.Drawing.Size(154, 22);
@@ -283,7 +287,7 @@
             this.labelSet_Tantousha.CodeTxtSize = 40;
             this.labelSet_Tantousha.CodeTxtText = "";
             this.labelSet_Tantousha.LabelName = "";
-            this.labelSet_Tantousha.Location = new System.Drawing.Point(346, 24);
+            this.labelSet_Tantousha.Location = new System.Drawing.Point(295, 24);
             this.labelSet_Tantousha.Name = "labelSet_Tantousha";
             this.labelSet_Tantousha.ShowAppendFlg = false;
             this.labelSet_Tantousha.Size = new System.Drawing.Size(167, 22);
@@ -298,10 +302,10 @@
             // 
             this.txtCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCD.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtCD.Location = new System.Drawing.Point(240, 24);
+            this.txtCD.Location = new System.Drawing.Point(249, 23);
             this.txtCD.MaxLength = 4;
             this.txtCD.Name = "txtCD";
-            this.txtCD.Size = new System.Drawing.Size(100, 22);
+            this.txtCD.Size = new System.Drawing.Size(38, 22);
             this.txtCD.TabIndex = 3;
             this.txtCD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCD_KeyDown);
             this.txtCD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
@@ -311,7 +315,7 @@
             // 
             this.txtDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDenpyoNo.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtDenpyoNo.Location = new System.Drawing.Point(126, 24);
+            this.txtDenpyoNo.Location = new System.Drawing.Point(133, 24);
             this.txtDenpyoNo.MaxLength = 8;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(100, 22);
@@ -324,19 +328,20 @@
             // txtYMD
             // 
             this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYMD.Location = new System.Drawing.Point(7, 24);
+            this.txtYMD.Location = new System.Drawing.Point(14, 24);
             this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(100, 22);
             this.txtYMD.TabIndex = 1;
             this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblTorihikikbn
             // 
             this.lblTorihikikbn.AutoSize = true;
             this.lblTorihikikbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTorihikikbn.Location = new System.Drawing.Point(541, 4);
+            this.lblTorihikikbn.Location = new System.Drawing.Point(490, 4);
             this.lblTorihikikbn.Name = "lblTorihikikbn";
             this.lblTorihikikbn.Size = new System.Drawing.Size(71, 15);
             this.lblTorihikikbn.strToolTip = null;
@@ -348,7 +353,7 @@
             // 
             this.lblTantosha.AutoSize = true;
             this.lblTantosha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTantosha.Location = new System.Drawing.Point(393, 4);
+            this.lblTantosha.Location = new System.Drawing.Point(342, 4);
             this.lblTantosha.Name = "lblTantosha";
             this.lblTantosha.Size = new System.Drawing.Size(55, 15);
             this.lblTantosha.strToolTip = null;
@@ -360,7 +365,7 @@
             // 
             this.lblCD.AutoSize = true;
             this.lblCD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblCD.Location = new System.Drawing.Point(262, 4);
+            this.lblCD.Location = new System.Drawing.Point(242, 4);
             this.lblCD.Name = "lblCD";
             this.lblCD.Size = new System.Drawing.Size(55, 15);
             this.lblCD.strToolTip = null;
@@ -372,7 +377,7 @@
             // 
             this.lblDenpyoNo.AutoSize = true;
             this.lblDenpyoNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblDenpyoNo.Location = new System.Drawing.Point(148, 4);
+            this.lblDenpyoNo.Location = new System.Drawing.Point(155, 4);
             this.lblDenpyoNo.Name = "lblDenpyoNo";
             this.lblDenpyoNo.Size = new System.Drawing.Size(55, 15);
             this.lblDenpyoNo.strToolTip = null;
@@ -384,7 +389,7 @@
             // 
             this.lblYMD.AutoSize = true;
             this.lblYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblYMD.Location = new System.Drawing.Point(28, 4);
+            this.lblYMD.Location = new System.Drawing.Point(35, 4);
             this.lblYMD.Name = "lblYMD";
             this.lblYMD.Size = new System.Drawing.Size(55, 15);
             this.lblYMD.strToolTip = null;
@@ -566,9 +571,9 @@
             this.panelKensaku.Controls.Add(this.lblTorihikikbn);
             this.panelKensaku.Controls.Add(this.txtDenpyoNo);
             this.panelKensaku.Controls.Add(this.txtYMD);
-            this.panelKensaku.Location = new System.Drawing.Point(736, 55);
+            this.panelKensaku.Location = new System.Drawing.Point(792, 55);
             this.panelKensaku.Name = "panelKensaku";
-            this.panelKensaku.Size = new System.Drawing.Size(659, 57);
+            this.panelKensaku.Size = new System.Drawing.Size(614, 57);
             this.panelKensaku.TabIndex = 0;
             // 
             // lblTekiyo
@@ -591,6 +596,7 @@
             this.txtTekiyo.Name = "txtTekiyo";
             this.txtTekiyo.Size = new System.Drawing.Size(250, 22);
             this.txtTekiyo.TabIndex = 6;
+            this.txtTekiyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTekiyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblGokei
@@ -658,6 +664,7 @@
             this.txtGokei.TabIndex = 7;
             this.txtGokei.TabStop = false;
             this.txtGokei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGokei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtShohizei
             // 
@@ -676,6 +683,7 @@
             this.txtShohizei.TabIndex = 8;
             this.txtShohizei.TabStop = false;
             this.txtShohizei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShohizei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtSogokei
             // 
@@ -694,6 +702,7 @@
             this.txtSogokei.TabIndex = 9;
             this.txtSogokei.TabStop = false;
             this.txtSogokei.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSogokei.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtUnchin
             // 
@@ -710,6 +719,7 @@
             this.txtUnchin.Size = new System.Drawing.Size(133, 22);
             this.txtUnchin.TabIndex = 10;
             this.txtUnchin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtUnchin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtUnchin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // txtTanka1
@@ -727,6 +737,7 @@
             this.txtTanka1.TabIndex = 16;
             this.txtTanka1.TabStop = false;
             this.txtTanka1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // txtTanka2
@@ -744,6 +755,7 @@
             this.txtTanka2.TabIndex = 17;
             this.txtTanka2.TabStop = false;
             this.txtTanka2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // txtTanka3
@@ -761,6 +773,7 @@
             this.txtTanka3.TabIndex = 18;
             this.txtTanka3.TabStop = false;
             this.txtTanka3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // txtTanka4
@@ -778,6 +791,7 @@
             this.txtTanka4.TabIndex = 19;
             this.txtTanka4.TabStop = false;
             this.txtTanka4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // txtTanka5
@@ -795,6 +809,7 @@
             this.txtTanka5.TabIndex = 20;
             this.txtTanka5.TabStop = false;
             this.txtTanka5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireInput_KeyUp);
             // 
             // lblTanka1
@@ -930,6 +945,7 @@
             this.txtJuchu1.TabStop = false;
             this.txtJuchu1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchu1.TextChanged += new System.EventHandler(this.txtJuchu1_TextChanged);
+            this.txtJuchu1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtJuchu2
             // 
@@ -944,6 +960,7 @@
             this.txtJuchu2.TabStop = false;
             this.txtJuchu2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchu2.TextChanged += new System.EventHandler(this.txtJuchu2_TextChanged);
+            this.txtJuchu2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtJuchu3
             // 
@@ -958,6 +975,7 @@
             this.txtJuchu3.TabStop = false;
             this.txtJuchu3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchu3.TextChanged += new System.EventHandler(this.txtJuchu3_TextChanged);
+            this.txtJuchu3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtJuchu4
             // 
@@ -972,6 +990,7 @@
             this.txtJuchu4.TabStop = false;
             this.txtJuchu4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchu4.TextChanged += new System.EventHandler(this.txtJuchu4_TextChanged);
+            this.txtJuchu4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtJuchu5
             // 
@@ -986,6 +1005,7 @@
             this.txtJuchu5.TabStop = false;
             this.txtJuchu5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJuchu5.TextChanged += new System.EventHandler(this.txtJuchu5_TextChanged);
+            this.txtJuchu5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // baseLabel11
             // 
@@ -1254,6 +1274,7 @@
             this.Text = "A0030_ShireInput";
             this.Load += new System.EventHandler(this.A0030_ShireInput_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0030_ShireInput_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.txtYubinView, 0);
             this.Controls.SetChildIndex(this.txtEigyouCd, 0);
             this.Controls.SetChildIndex(this.lblYubinKensaku, 0);
