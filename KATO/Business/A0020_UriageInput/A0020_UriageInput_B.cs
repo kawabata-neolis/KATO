@@ -2259,7 +2259,7 @@ namespace KATO.Business.A0020_UriageInput
         {
 
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-            string strFilePath = "./Template/A0020_UriageInput.xlsx";
+            string strFilePath = "./Template/A0020_Genpinhyo.xls";
 
 
             // Excel.Applicationを有効にするため参照の追加を行なってください

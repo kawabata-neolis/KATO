@@ -270,6 +270,7 @@
             this.txtMode.Size = new System.Drawing.Size(23, 22);
             this.txtMode.TabIndex = 0;
             this.txtMode.Text = "1";
+            this.txtMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtMode.Leave += new System.EventHandler(this.txtMode_Leave);
             // 
             // label3
@@ -333,7 +334,6 @@
             this.cbJoken.Name = "cbJoken";
             this.cbJoken.Size = new System.Drawing.Size(192, 23);
             this.cbJoken.TabIndex = 11;
-            this.cbJoken.Text = "従来通り";
             this.cbJoken.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label8
@@ -367,7 +367,6 @@
             this.cbKigen.Name = "cbKigen";
             this.cbKigen.Size = new System.Drawing.Size(192, 23);
             this.cbKigen.TabIndex = 10;
-            this.cbKigen.Text = "３０日間";
             this.cbKigen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label9
@@ -392,7 +391,6 @@
             this.cbNoki.Name = "cbNoki";
             this.cbNoki.Size = new System.Drawing.Size(192, 23);
             this.cbNoki.TabIndex = 9;
-            this.cbNoki.Text = "下記参照願います";
             this.cbNoki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             // 
             // label10

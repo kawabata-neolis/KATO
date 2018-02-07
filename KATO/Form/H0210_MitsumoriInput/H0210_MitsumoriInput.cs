@@ -1466,20 +1466,15 @@ namespace KATO.Form.H0210_MitsumoriInput
                 dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, e.RowIndex], true));
                 dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, e.RowIndex], true));
 
-                if (!dTeika.Equals(0))
-                {
-                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
-                }
-
                 dKin = Decimal.Round(dTanka * dSuryo, 0);
 
                 if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
                 {
-                    gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                    gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString("#,0");
                 }
                 if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[3, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
                 {
-                    gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString();
+                    gridMitsmori[7, e.RowIndex].Value = (Decimal.Round(dKin, 0)).ToString("#,0");
                 }
 
                 gridMitsmori.EndEdit();
@@ -1705,31 +1700,31 @@ namespace KATO.Form.H0210_MitsumoriInput
                 dKakoKin2 = dKakoTanka2 * dSuryo;
                 dArariM = Decimal.Round((dMitsuTanka * dSuryo) - (dShiireKin1 + dKakoKin1 + dShiireKin2 + dKakoKin2), 0);
 
-                txtArari.Text = dArariM.ToString();
+                txtArari.Text = dArariM.ToString("#,0");
 
                 // 粗利率
                 if (!(dMitsuTanka * dSuryo).Equals(0))
                 {
-                    dArariRitsuM = (dArariM / (dMitsuTanka * dSuryo)) * 100;
+                    dArariRitsuM = decimal.Round((dArariM / (dMitsuTanka * dSuryo)) * 100, 1);
                 }
-                txtArariRitsu.Text = (decimal.Round(dArariRitsuM, 1)).ToString();
+                txtArariRitsu.Text = dArariRitsuM.ToString();
 
                 //gridに反映
                 if (!dShiireTanka1.Equals(0)) {
-                    cellShiireTanka1.Value = dShiireTanka1.ToString();
-                    cellShiireKin1.Value = dShiireKin1.ToString();
-                    cellShiireArari1.Value = dArariM.ToString();
+                    cellShiireTanka1.Value = dShiireTanka1.ToString("#,0");
+                    cellShiireKin1.Value = dShiireKin1.ToString("#,0");
+                    cellShiireArari1.Value = dArariM.ToString("#,0");
                     cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
 
-                    cellKakoTanka1.Value = dKakoTanka1.ToString();
-                    cellKakoKin1.Value = dKakoKin1.ToString();
+                    cellKakoTanka1.Value = dKakoTanka1.ToString("#,0");
+                    cellKakoKin1.Value = dKakoKin1.ToString("#,0");
 
                     if (zaiNum != 0) {
-                        cellShiireTanka2.Value = dShiireTanka2.ToString();
-                        cellShiireKin2.Value = dShiireKin2.ToString();
+                        cellShiireTanka2.Value = dShiireTanka2.ToString("#,0");
+                        cellShiireKin2.Value = dShiireKin2.ToString("#,0");
 
-                        cellKakoTanka2.Value = dKakoTanka2.ToString();
-                        cellKakoKin2.Value = dKakoKin2.ToString();
+                        cellKakoTanka2.Value = dKakoTanka2.ToString("#,0");
+                        cellKakoKin2.Value = dKakoKin2.ToString("#,0");
                     }
                 }
 
@@ -1770,13 +1765,35 @@ namespace KATO.Form.H0210_MitsumoriInput
             decimal dMitsuTotal = 0;
             decimal dArariTotal = 0;
             decimal dArariRitsu = 0;
+            decimal dSuryo = 0;
+            decimal dTeika = 0;
+            decimal dTanka = 0;
 
             try
             {
+
                 // 粗利、粗利率を更新
                 #region
                 for (int i = 0; i < gridMitsmori.RowCount; i++)
                 {
+                    dSuryo = Decimal.Parse(getCellValue(gridMitsmori[3, i], true));
+                    dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
+                    dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
+
+                    if (!dSuryo.Equals(0))
+                    {
+                        gridMitsmori[3, i].Value = (decimal.Round(dSuryo, 0)).ToString("#,0");
+                    }
+
+                    if (!dTeika.Equals(0))
+                    {
+                        gridMitsmori[4, i].Value = (decimal.Round(dTeika, 0)).ToString("#,0");
+                    }
+                    if (!dTanka.Equals(0))
+                    {
+                        gridMitsmori[5, i].Value = (decimal.Round(dTanka, 0)).ToString("#,0");
+                    }
+
                     gridMitsmori[9, i].Value = DBNull.Value;
                     gridMitsmori[10, i].Value = DBNull.Value;
                     //gridMitsmori[10, i].Value = gridMitsmori[19, i].Value;
@@ -1827,16 +1844,16 @@ namespace KATO.Form.H0210_MitsumoriInput
                     dShiireTotal += getDecValue(getCellValue(gridMitsmori[8, i], true)) * getDecValue(getCellValue(gridMitsmori[3, i], true));
                     dMitsuTotal += getDecValue(getCellValue(gridMitsmori[5, i], true)) * getDecValue(getCellValue(gridMitsmori[3, i], true));
                 }
-                txtSiireTotal.Text = (Decimal.Round(dShiireTotal, 0)).ToString();
-                txtUriTotal.Text = (Decimal.Round(dMitsuTotal, 0)).ToString();
+                txtSiireTotal.Text = (Decimal.Round(dShiireTotal, 0)).ToString("#,0");
+                txtUriTotal.Text = (Decimal.Round(dMitsuTotal, 0)).ToString("#,0");
 
                 // 粗利・粗利率
                 dArariTotal = dMitsuTotal - dShiireTotal;
-                txtArariTotal.Text = (Decimal.Round(dArariTotal, 0)).ToString();
+                txtArariTotal.Text = (Decimal.Round(dArariTotal, 0)).ToString("#,0");
 
                 if (!dMitsuTotal.Equals(0))
                 {
-                    dArariRitsu = dArariTotal / dMitsuTotal;
+                    dArariRitsu = (dArariTotal / dMitsuTotal) * 100;
                 }
                 txtArariRitsu.Text = (Decimal.Round(dArariRitsu, 1)).ToString();
             }
@@ -2152,39 +2169,47 @@ namespace KATO.Form.H0210_MitsumoriInput
                         // 商品コードが無い場合は商品登録
                         if (getCellValue(gridMitsmori[86, i], false).Equals(""))
                         {
-                            aryPrm = new List<string>();
+                            if (getCellValue(gridMitsmori[3, i], false).Equals("") && getCellValue(gridMitsmori[5, i], false).Equals(""))
+                            {
+                                // コメント行扱いの行は商品登録なし
+                            }
+                            else
+                            {
+                                aryPrm = new List<string>();
 
-                            aryPrm.Add("");
-                            aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
-                            aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
-                            aryPrm.Add("Y");
-                            aryPrm.Add("0");
-                            aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
-                            aryPrm.Add("0");
-                            //aryPrm.Add(null);
-                            //aryPrm.Add(null);
-                            //aryPrm.Add(null);
-                            aryPrm.Add("");
-                            aryPrm.Add("");
-                            aryPrm.Add("");
-                            aryPrm.Add("0");
-                            aryPrm.Add(getCellValue(gridMitsmori[4, i], true));
-                            aryPrm.Add("0");
-                            aryPrm.Add("0");
-                            //.Add(null);
-                            aryPrm.Add("");
+                                aryPrm.Add("");
+                                aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[97, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[98, i], false));
+                                aryPrm.Add("Y");
+                                aryPrm.Add("0");
+                                aryPrm.Add(getCellValue(gridMitsmori[8, i], true));
+                                aryPrm.Add("0");
+                                //aryPrm.Add(null);
+                                //aryPrm.Add(null);
+                                //aryPrm.Add(null);
+                                aryPrm.Add("");
+                                aryPrm.Add("");
+                                aryPrm.Add("");
+                                aryPrm.Add("0");
+                                aryPrm.Add(getCellValue(gridMitsmori[4, i], true));
+                                aryPrm.Add("0");
+                                aryPrm.Add("0");
+                                //.Add(null);
+                                aryPrm.Add("");
 
-                            //ユーザー名
-                            aryPrm.Add(Environment.UserName);
+                                //ユーザー名
+                                aryPrm.Add(Environment.UserName);
 
-                            string strNewShohin = inputB.updShohinNew(aryPrm, true);
+                                string strNewShohin = inputB.updShohinNew(aryPrm, true);
+                                gridMitsmori[86, i].Value = strNewShohin;
+                            }
                         }
 
 
@@ -2594,8 +2619,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
                     pf.Close();
-                    pf.Dispose();
                 }
+                pf.Dispose();
             }
             catch (Exception ex)
             {
@@ -2721,7 +2746,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("P56").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
+                    string s = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString();
+                    workbook.Worksheet(pageCnt).Cell("P56").Value = s;      // No.
+                    //workbook.Worksheet(pageCnt).Cell("N56").Value = pageCnt.ToString();
+                    //workbook.Worksheet(pageCnt).Cell("P56").Value = (workbook.Worksheets.Count).ToString();
                 }
 
                 // workbookを保存
@@ -2781,8 +2809,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, false);
                     pf.Close();
-                    pf.Dispose();
                 }
+                pf.Dispose();
             }
             catch (Exception ex)
             {
@@ -2932,7 +2960,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("AQ49").Value = pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
+                    workbook.Worksheet(pageCnt).Cell("AQ49").Value = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
                 }
 
                 // workbookを保存
