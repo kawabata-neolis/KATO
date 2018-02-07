@@ -105,6 +105,7 @@
             this.txtKin.Size = new System.Drawing.Size(149, 22);
             this.txtKin.TabIndex = 5;
             this.txtKin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtTanka
             // 
@@ -120,6 +121,7 @@
             this.txtTanka.Size = new System.Drawing.Size(150, 22);
             this.txtTanka.TabIndex = 4;
             this.txtTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtTanka.Leave += new System.EventHandler(this.txtTanka_Leave);
             // 
             // txtTokuisaki
@@ -132,6 +134,7 @@
             this.txtTokuisaki.Size = new System.Drawing.Size(380, 22);
             this.txtTokuisaki.TabIndex = 12;
             this.txtTokuisaki.TabStop = false;
+            this.txtTokuisaki.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtC6
             // 
@@ -266,6 +269,7 @@
             this.txtMasterTanka.TabIndex = 11;
             this.txtMasterTanka.TabStop = false;
             this.txtMasterTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMasterTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtChokinTanka
             // 
@@ -284,6 +288,7 @@
             this.txtChokinTanka.TabIndex = 10;
             this.txtChokinTanka.TabStop = false;
             this.txtChokinTanka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtChokinTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtSu
             // 
@@ -301,6 +306,7 @@
             this.txtSu.Size = new System.Drawing.Size(111, 22);
             this.txtSu.TabIndex = 3;
             this.txtSu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             this.txtSu.Leave += new System.EventHandler(this.txtSu_Leave);
             // 
             // txtShireritsu
@@ -320,6 +326,7 @@
             this.txtShireritsu.TabIndex = 9;
             this.txtShireritsu.TabStop = false;
             this.txtShireritsu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtShireritsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // lblShireritsu
             // 
@@ -350,6 +357,7 @@
             this.txtTeka.TabIndex = 8;
             this.txtTeka.TabStop = false;
             this.txtTeka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTeka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // lblTeka
             // 
@@ -371,6 +379,7 @@
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(380, 22);
             this.txtBiko.TabIndex = 6;
+            this.txtBiko.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtHin
             // 
@@ -382,6 +391,7 @@
             this.txtHin.ReadOnly = true;
             this.txtHin.Size = new System.Drawing.Size(428, 22);
             this.txtHin.TabIndex = 2;
+            this.txtHin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // txtChumonNo
             // 
@@ -407,6 +417,7 @@
             this.txtNo.TabIndex = 0;
             this.txtNo.TabStop = false;
             this.txtNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
             // BaseViewDataGroup
             // 
