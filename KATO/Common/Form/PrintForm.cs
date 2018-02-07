@@ -189,6 +189,7 @@ namespace KATO.Common.Form
             PDFPreview pv = new PDFPreview(this, stPath);
             pv.ShowDialog();
             pv.Dispose();
+            this.Close();
         }
 
         public void execPrint()

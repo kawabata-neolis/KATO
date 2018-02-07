@@ -208,6 +208,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
             gridMitsmori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             gridMitsmori.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            gridMitsmori.ColumnHeadersHeight = 36;
             gridMitsmori.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             SetUpGrid();
@@ -1466,6 +1467,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                 dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, e.RowIndex], true));
                 dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, e.RowIndex], true));
 
+                if (!dTeika.Equals(0))
+                {
+                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                }
+
                 dKin = Decimal.Round(dTanka * dSuryo, 0);
 
                 if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
@@ -1768,10 +1774,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             decimal dSuryo = 0;
             decimal dTeika = 0;
             decimal dTanka = 0;
+            decimal dKin = 0;
 
             try
             {
-
                 // 粗利、粗利率を更新
                 #region
                 for (int i = 0; i < gridMitsmori.RowCount; i++)
@@ -1779,20 +1785,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     dSuryo = Decimal.Parse(getCellValue(gridMitsmori[3, i], true));
                     dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
                     dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
-
-                    if (!dSuryo.Equals(0))
-                    {
-                        gridMitsmori[3, i].Value = (decimal.Round(dSuryo, 0)).ToString("#,0");
-                    }
-
-                    if (!dTeika.Equals(0))
-                    {
-                        gridMitsmori[4, i].Value = (decimal.Round(dTeika, 0)).ToString("#,0");
-                    }
-                    if (!dTanka.Equals(0))
-                    {
-                        gridMitsmori[5, i].Value = (decimal.Round(dTanka, 0)).ToString("#,0");
-                    }
+                    dKin = Decimal.Parse(getCellValue(gridMitsmori[7, i], true));
 
                     gridMitsmori[9, i].Value = DBNull.Value;
                     gridMitsmori[10, i].Value = DBNull.Value;
@@ -1832,6 +1825,80 @@ namespace KATO.Form.H0210_MitsumoriInput
                         gridMitsmori[9, i].Value = DBNull.Value;
                         gridMitsmori[10, i].Value = DBNull.Value;
                     }
+
+                    // グリッドの表示情報の桁を整理
+                    #region
+                    setNumString(gridMitsmori[3, i], "#,0");
+                    setNumString(gridMitsmori[4, i], "#,0");
+                    setNumString(gridMitsmori[5, i], "#,0");
+                    setNumString(gridMitsmori[6, i], "0.0");
+                    setNumString(gridMitsmori[7, i], "#,0");
+                    setNumString(gridMitsmori[8, i], "#,0.00");
+
+
+                    setNumString(gridMitsmori[9, i], "#,0");
+                    setPerString(gridMitsmori[10, i]);
+
+                    setNumString(gridMitsmori[16, i], "#,0.00");
+                    setNumString(gridMitsmori[17, i], "#,0");
+                    setNumString(gridMitsmori[18, i], "#,0");
+                    setPerString(gridMitsmori[19, i]);
+
+                    setNumString(gridMitsmori[22, i], "#,0.00");
+                    setNumString(gridMitsmori[23, i], "#,0");
+                    setNumString(gridMitsmori[24, i], "#,0");
+                    setPerString(gridMitsmori[25, i]);
+
+                    setNumString(gridMitsmori[28, i], "#,0.00");
+                    setNumString(gridMitsmori[29, i], "#,0");
+                    setNumString(gridMitsmori[30, i], "#,0");
+                    setPerString(gridMitsmori[31, i]);
+
+                    setNumString(gridMitsmori[34, i], "#,0.00");
+                    setNumString(gridMitsmori[35, i], "#,0");
+                    setNumString(gridMitsmori[36, i], "#,0");
+                    setPerString(gridMitsmori[37, i]);
+
+                    setNumString(gridMitsmori[40, i], "#,0.00");
+                    setNumString(gridMitsmori[41, i], "#,0");
+                    setNumString(gridMitsmori[42, i], "#,0");
+                    setPerString(gridMitsmori[43, i]);
+
+                    setNumString(gridMitsmori[46, i], "#,0.00");
+                    setNumString(gridMitsmori[47, i], "#,0");
+                    setNumString(gridMitsmori[48, i], "#,0");
+                    setPerString(gridMitsmori[49, i]);
+
+                    setNumString(gridMitsmori[52, i], "#,0.00");
+                    setNumString(gridMitsmori[53, i], "#,0");
+                    setNumString(gridMitsmori[54, i], "#,0");
+                    setPerString(gridMitsmori[55, i]);
+
+                    setNumString(gridMitsmori[58, i], "#,0.00");
+                    setNumString(gridMitsmori[59, i], "#,0");
+                    setNumString(gridMitsmori[60, i], "#,0");
+                    setPerString(gridMitsmori[61, i]);
+
+                    setNumString(gridMitsmori[64, i], "#,0.00");
+                    setNumString(gridMitsmori[65, i], "#,0");
+                    setNumString(gridMitsmori[66, i], "#,0");
+                    setPerString(gridMitsmori[67, i]);
+
+                    setNumString(gridMitsmori[70, i], "#,0.00");
+                    setNumString(gridMitsmori[71, i], "#,0");
+                    setNumString(gridMitsmori[72, i], "#,0");
+                    setPerString(gridMitsmori[73, i]);
+
+                    setNumString(gridMitsmori[76, i], "#,0.00");
+                    setNumString(gridMitsmori[77, i], "#,0");
+                    setNumString(gridMitsmori[78, i], "#,0");
+                    setPerString(gridMitsmori[79, i]);
+
+                    setNumString(gridMitsmori[82, i], "#,0.00");
+                    setNumString(gridMitsmori[83, i], "#,0");
+                    setNumString(gridMitsmori[84, i], "#,0");
+                    setPerString(gridMitsmori[85, i]);
+                    #endregion
 
                     gridMitsmori.EndEdit();
                     editFlg = true;
@@ -2110,6 +2177,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                         continue;
                     }
 
+                    // 大分類・中分類・メーカー全てに登録のある場合は入力不要のため、分類入力の対象外にする
+                    if (!getCellValue(gridMitsmori[87, i], false).Equals("") && !getCellValue(gridMitsmori[88, i], false).Equals("") && !getCellValue(gridMitsmori[89, i], false).Equals(""))
+                    {
+                        continue;
+                    }
+
                     UserControl2 uc = new UserControl2(gridMitsmori[2, i], gridMitsmori[87, i], gridMitsmori[88, i], gridMitsmori[89, i]);
                     uc.Name = "uc" + i.ToString();
                     f.tableLayoutPanel1.Controls.Add(uc);
@@ -2181,7 +2254,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                                 aryPrm.Add(getCellValue(gridMitsmori[89, i], false));
                                 aryPrm.Add(getCellValue(gridMitsmori[87, i], false));
                                 aryPrm.Add(getCellValue(gridMitsmori[88, i], false));
-                                aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
+                                //aryPrm.Add(getCellValue(gridMitsmori[93, i], false));
+                                aryPrm.Add(getCellValue(gridMitsmori[2, i], false));
                                 aryPrm.Add(getCellValue(gridMitsmori[94, i], false));
                                 aryPrm.Add(getCellValue(gridMitsmori[95, i], false));
                                 aryPrm.Add(getCellValue(gridMitsmori[96, i], false));
@@ -2211,7 +2285,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                                 gridMitsmori[86, i].Value = strNewShohin;
                             }
                         }
-
 
                         aryPrm = new List<string>();
                         aryPrm.Add(strMNum);
@@ -2614,6 +2687,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPreview(st);
                     //pf.ShowDialog(this);
+                    pf.Close();
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
@@ -2655,8 +2729,11 @@ namespace KATO.Form.H0210_MitsumoriInput
                 templatesheet1.CopyTo("Page" + pageCnt.ToString());
                 currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                currentsheet.Cell(5, "N").Value = txtMNum.Text;
-                currentsheet.Cell(6, "N").Value = txtMYMD.Text;
+                currentsheet.Cell(5, "O").Value = txtMNum.Text;
+                //currentsheet.Cell(6, "N").Value = txtMYMD.Text;
+                //string stD = txtMYMD.Text;
+                //currentsheet.Cell(6, "N").Value = stD.Substring(0, 4) + "年" + stD.Substring(5, 2) + "月" + stD.Substring(8) + "日";
+                currentsheet.Cell(6, "O").Value = "'" + (DateTime.Parse(txtMYMD.Text)).ToString("yyyy年MM月dd日");
 
                 if (rd1.Checked)
                 {
@@ -2732,9 +2809,9 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
                     currentsheet.Cell(xlsRowCnt, "E").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false));
-                    currentsheet.Cell(xlsRowCnt, "H").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false));
-                    currentsheet.Cell(xlsRowCnt, "K").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false));
-                    currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[11, i], false);
+                    currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false));
+                    currentsheet.Cell(xlsRowCnt, "L").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false));
+                    currentsheet.Cell(xlsRowCnt, "O").Value = getCellValue(gridMitsmori[11, i], false);
 
                     xlsRowCnt++;
                 }
@@ -2763,7 +2840,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
                 int[] topRow = { 9 };
-                int[] leftColumn = { 8 };
+                int[] leftColumn = { 9 };
                 pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 57);
 
                 // PDF化の処理
@@ -2804,6 +2881,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPreview(st);
                     //pf.ShowDialog(this);
+                    pf.Close();
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
@@ -3782,6 +3860,31 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             oldNum = "";
             oldHinmei = "";
+        }
+
+        private void setNumString(DataGridViewCell c, string s)
+        {
+            decimal d = 0;
+
+            if (string.IsNullOrWhiteSpace((getCellValue(c, false))))
+            {
+                return;
+            }
+
+            d = Decimal.Parse(getCellValue(c, true));
+            c.Value = (decimal.Round(d, 0)).ToString(s);
+        }
+        private void setPerString(DataGridViewCell c)
+        {
+            decimal d = 0;
+
+            if (string.IsNullOrWhiteSpace((getCellValue(c, false))))
+            {
+                return;
+            }
+
+            d = Decimal.Parse(getCellValue(c, true));
+            c.Value = (decimal.Round(d, 0)).ToString("0.0");
         }
     }
 

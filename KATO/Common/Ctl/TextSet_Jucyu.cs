@@ -304,7 +304,7 @@ namespace KATO.Common.Ctl
             {
                 //合計計算処理へ。
                 GokeiKeisan();
-                txtJucyuNoElem2.Focus();
+                //txtJucyuNoElem2.Focus();
                 return;
             }
             

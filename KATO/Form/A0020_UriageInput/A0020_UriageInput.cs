@@ -96,7 +96,7 @@ namespace KATO.Form.A0020_UriageInput
 
         private void labelSet_Torihikikbn_Leave(object sender, EventArgs e)
         {
-            //textSet_Jucyu1.txtJucyuNoElem2.Focus();
+            //textSet_Jucyu1.txtJucyuNoElem2.SelectAll();
             //this.ActiveControl = textSet_Jucyu1.txtJucyuNoElem2;
             this.SelectNextControl(this.ActiveControl,true, true, true, true);
         }
