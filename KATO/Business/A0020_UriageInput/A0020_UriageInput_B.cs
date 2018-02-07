@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 
 using ClosedXML.Excel;
+using System.Runtime.InteropServices;
 
 //using System.Runtime.InteropServices;
 
@@ -2228,5 +2229,181 @@ namespace KATO.Business.A0020_UriageInput
                 }
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+        public String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
+        public int _sheetNo = 1;                        // シートNo.
+        public int _col = 2;                            // データ書き込みカラム
+        public int _line = 2;                           // データ書き込み開始行
+        public String _printer = "Brother TD-4100N";    // 出力プリンター
+
+        public String strJuchusaki = "";                // 受注先
+        public String strNohinsaki = "";                // 納品先
+        public String strNohinbi = "";                  // 納品日
+        public String strKataban = "";                  // 型番
+        public String strTanaban = "";                  // 棚番
+        public String strSu = "";                       // 数量
+        public String strBiko = "";                     // 備考
+
+
+        public void printout()
+        {
+
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/A0020_UriageInput.xlsx";
+
+
+            // Excel.Applicationを有効にするため参照の追加を行なってください
+            // [参照の追加],[COM],[Microsoft Excel *.* Object Library]
+            // 参照設定に[Excel](ファイル名:Interop.Excel.dll)が追加されます
+            Microsoft.Office.Interop.Excel.Application objExcel = null;
+            Microsoft.Office.Interop.Excel.Workbooks objWorkBooks = null;
+            Microsoft.Office.Interop.Excel.Workbook objWorkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
+            Microsoft.Office.Interop.Excel.Range objRange = null;
+            object objCell = null;
+
+            try
+            {
+                // EXCEL開始処理
+                try
+                {
+                    objExcel = new Microsoft.Office.Interop.Excel.Application();
+                }
+                catch
+                {
+                    throw new Exception(
+                        "Microsoft Office Excelがインストールされていないため\n" +
+                        "印刷できません。");
+                }
+
+                objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                objExcel.Visible = false;
+                objExcel.DisplayAlerts = false;
+
+                objWorkBooks = objExcel.Workbooks;
+                objWorkBook = objWorkBooks.Open(_xslFile,     // FileName:ファイル名
+                                                Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
+                                                Type.Missing, // ReadOnly:ReadOnlyにするかどうか
+                                                Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
+                                                Type.Missing, // Password:開く際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // WriteResPassword:書き込む際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // IgnoreReadOnlyRecommended:[読み取り専用を推奨する]チェックがオンの場合でも[読み取り専用を推奨する]メッセージを非表示
+                                                Type.Missing, // Origin:テキストファイルの場合、プラットフォームを指定
+                                                Type.Missing, // Delimiter:テキストファイルで且つ引数Formatが6の場合に区切り文字を指定
+                                                Type.Missing, // Editable:Excel4.0アドインの場合、アドインウィンドウを出すか指定
+                                                Type.Missing, // Notify:ファイルが読み取りor書き込みモードで開けない場合に通知リストに追加するか指定
+                                                Type.Missing, // Converter:ファイルを開くときに最初に使用するファイルコンバーターのインデックス番号を指定
+                                                Type.Missing, // AddToMru:最近使用したファイルの一覧にブックを追加するか指定
+                                                Type.Missing, // Local:Excel言語設定に合わせてファイルを保存するか指定
+                                                Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
+                                                );
+
+                objWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)objWorkBook.Sheets[_sheetNo];
+
+                // EXCEL出力処理
+                objCell = objWorkSheet.Cells[_line + 0, _col];          // 受注先
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strJuchusaki;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 1, _col];          // 納品先
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strNohinsaki;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 2, _col];          // 納品日
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strNohinbi;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 3, _col];          // 型番
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strKataban;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 4, _col];          // 棚番
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strTanaban;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 5, _col];          // 数量
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strSu;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 7, _col];          // 備考
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strBiko;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                // 印刷実行
+                objWorkSheet.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                      Type.Missing, // To:印刷終了のページ番号
+                                      1,            // Copies:印刷部数
+                                      Type.Missing, // Preview:印刷プレビューをするか指定
+                                      Type.Missing, // ActivePrinter:プリンターの名称
+                                      Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                      true,         // Collate:部単位で印刷するか指定
+                                      Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                      );
+
+                objWorkBook.Saved = true;   // 保存済みとする
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
+            }
+        }
+
+
     }
 }
