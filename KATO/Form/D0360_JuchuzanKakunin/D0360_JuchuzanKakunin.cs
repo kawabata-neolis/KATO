@@ -16,6 +16,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         private BaseText bBox = null;
         private bool searchedFlg = false;
 
+        private bool blShireInput = false;
+
         ///<summary>
         ///D0360_JuchuzanKakunin
         ///フォーム初期設定
@@ -91,6 +93,50 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             gridZanList.Focus();
             this.selZanList();
             searchedFlg = true;
+        }
+
+        public D0360_JuchuzanKakunin(Control c, string stTokuisaki, BaseText baseTxtBox, bool blShire)
+        {
+            // 引数のコントロールが無い場合は画面を開かない
+            if (c == null)
+            {
+                return;
+            }
+
+            this._Title = "残確認";
+            int intWindowWidth = c.Width;
+            int intWindowHeight = c.Height;
+
+            InitializeComponent();
+
+            //フォームの最大化・最小化を禁止
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            //最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
+
+            //ウィンドウ位置をマニュアル
+            this.StartPosition = FormStartPosition.Manual;
+            //親画面の中央を指定
+            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+
+            //中分類setデータを読めるようにする
+            lsDaibunrui.Lschubundata = lsChubunrui;
+
+            this.bBox = baseTxtBox;
+            this.lsShiiresaki.CodeTxtText = stTokuisaki;
+            this.rsSearchKind.radbtn1.Checked = true;
+            this.rsSearchKind.radbtn0.Checked = false;
+            //txtJuchuNo.Focus();
+            gridZanList.Focus();
+            this.selZanList();
+            searchedFlg = true;
+
+            //仕入入力から来た証明
+            blShireInput = blShire;
         }
 
         ///<summary>
@@ -242,6 +288,11 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             hatchusha.DataPropertyName = "発注者";
             hatchusha.Name = "発注者";
             hatchusha.HeaderText = "発注者";
+
+            DataGridViewTextBoxColumn hachuNo = new DataGridViewTextBoxColumn();
+            hachuNo.DataPropertyName = "発注番号";
+            hachuNo.Name = "発注番号";
+            hachuNo.HeaderText = "発注番号";
             #endregion
 
             //バインド、個々の幅、文章の寄せの設定
@@ -271,7 +322,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setColumn(juchusha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
             setColumn(tantosha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
             setColumn(hatchusha,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
+            setColumn(hachuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     0);
+
             #endregion
+
+            //発注番号カラムの非表示
+            gridZanList.Columns["発注番号"].Visible = false;
         }
 
         ///<summary>
@@ -515,7 +571,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         {
             int intIdx = gridZanList.CurrentCell.RowIndex;
             if (this.bBox != null) {
-                bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+
+                //仕入入力から来た場合
+                if (blShireInput == true)
+                {
+                    bBox.Text = (gridZanList[25, intIdx].Value).ToString();
+                }
+                else
+                {
+                    bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                }
                 this.Close();
             }
         }
@@ -527,7 +592,15 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 int intIdx = gridZanList.CurrentCell.RowIndex;
                 if (this.bBox != null)
                 {
-                    bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                    //仕入入力から来た場合
+                    if (blShireInput == true)
+                    {
+                        bBox.Text = (gridZanList[25, intIdx].Value).ToString();
+                    }
+                    else
+                    {
+                        bBox.Text = (gridZanList[21, intIdx].Value).ToString();
+                    }
                     this.Close();
                 }
             }

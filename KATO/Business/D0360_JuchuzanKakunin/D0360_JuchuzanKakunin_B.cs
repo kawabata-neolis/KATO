@@ -197,7 +197,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,a.納期";
                 strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
                 strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
-                strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, ''))";
+                strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, '')) AS 品名";
                 strQuery += "      ,'' AS 受注数";
                 strQuery += "      ,'' AS 受注残";
                 strQuery += "      ,(a.発注数量 - a.仕入済数量) AS 発注残";
@@ -219,6 +219,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,'' AS 受注者";
                 strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
                 strQuery += "      ,dbo.f_get担当者名(a.発注者コード) AS 発注者";
+                strQuery += "      ,a.発注番号";
 
                 strQuery += "  FROM 発注 a";
 
