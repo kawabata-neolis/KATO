@@ -1108,25 +1108,24 @@ namespace KATO.Form.A0030_ShireInput
 
             if (cActiveBefore.Name.ToString() == "gbData1")
             {
-                gbData1.delData();
+                gbData1.delText();
             }
             if (cActiveBefore.Name.ToString() == "gbData2")
             {
-                gbData2.delData();
+                gbData2.delText();
             }
             if (cActiveBefore.Name.ToString() == "gbData3")
             {
-                gbData3.delData();
+                gbData3.delText();
             }
             if (cActiveBefore.Name.ToString() == "gbData4")
             {
-                gbData4.delData();
+                gbData4.delText();
             }
             if (cActiveBefore.Name.ToString() == "gbData5")
             {
-                gbData5.delData();
+                gbData5.delText();
             }
-
         }
 
         ///<summary>
@@ -1620,22 +1619,27 @@ namespace KATO.Form.A0030_ShireInput
             //一行目
             if (intRow == 1)
             {
-                gbData1.delData();
+                gbData1.delText();
             }
             //二行目
             else if (intRow == 2)
             {
-                gbData2.delData();
+                gbData2.delText();
             }
             //三行目
             else if (intRow == 3)
             {
-                gbData3.delData();
+                gbData3.delText();
             }
             //四行目
+            else if (intRow == 4)
+            {
+                gbData4.delText();
+            }
+            //五行目
             else
             {
-                gbData4.delData();
+                gbData5.delText();
             }
         }
 
