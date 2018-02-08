@@ -477,6 +477,8 @@ namespace KATO.Common.Business
                     return(dtShireTanka);
                 }
 
+                strSQLSelect = string.Format(strSQLSelect, strShohinCd);
+
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
 

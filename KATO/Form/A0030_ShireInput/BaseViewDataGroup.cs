@@ -368,10 +368,18 @@ namespace KATO.Form.A0030_ShireInput
                 txtBiko.Clear();
                 labelSet_Eigyosho.codeTxt.Clear();
                 labelSet_Eigyosho.chkTxtEigyousho();
+                txtTeka.Text = "0";
+                txtChokinTanka.Text = "0";
+                txtChokinTanka.updPriceMethod();
+                txtMasterTanka.Text = "0";
+                txtMasterTanka.updPriceMethod();
+                txtJuchuNo.Clear();
+                txtJuchuTanka.Clear();
+                txtTankaSub.Clear();
 
-                setGokeiKesan();
                 strShireChuNo = null;
                 txtHin.TabStop = true;
+                txtHin.Enabled = true;
                 return;
             }
 
@@ -452,11 +460,15 @@ namespace KATO.Form.A0030_ShireInput
                             txtChokinTanka.updPriceMethod();
                             txtMasterTanka.Text = "0";
                             txtMasterTanka.updPriceMethod();
+                            txtJuchuNo.Clear();
+                            txtJuchuTanka.Clear();
+                            txtTankaSub.Clear();
 
                             txtChumonNo.Focus();
 
                             strShireChuNo = null;
                             txtHin.TabStop = true;
+                            txtHin.Enabled = true;
                             return;
                         }
 
@@ -487,11 +499,15 @@ namespace KATO.Form.A0030_ShireInput
                                     txtChokinTanka.updPriceMethod();
                                     txtMasterTanka.Text = "0";
                                     txtMasterTanka.updPriceMethod();
+                                    txtJuchuNo.Clear();
+                                    txtJuchuTanka.Clear();
+                                    txtTankaSub.Clear();
 
                                     txtChumonNo.Focus();
 
                                     strShireChuNo = null;
                                     txtHin.TabStop = true;
+                                    txtHin.Enabled = true;
                                     return;
                                 }
                                 else
@@ -639,6 +655,13 @@ namespace KATO.Form.A0030_ShireInput
 
                     txtHin.Text = strHinmei;
                     txtHin.TabStop = false;
+                    txtHin.Enabled = false;
+
+                    //フォーカスがtxtHinの場合
+                    if (ActiveControl.Name == "txtHin")
+                    {
+                        SendKeys.Send("{TAB}");
+                    }
 
                     //発注数量から仕入済数量を引く
                     txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
@@ -784,12 +807,6 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-            //数量と単価、四捨五入による計算、金額に記入
-            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
-            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
-
-
-//要確認
             txtKin.Text = (int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
             txtKin.updPriceMethod();
 
@@ -827,7 +844,6 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-//要確認
             txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
             txtKin.updPriceMethod();
 
@@ -1240,6 +1256,7 @@ namespace KATO.Form.A0030_ShireInput
             txtMasterTanka.Clear();
             txtTokuisaki.Clear();
             txtHin.TabStop = true;
+            txtHin.Enabled = true;
         }
 
         ///<summary>
@@ -1308,7 +1325,7 @@ namespace KATO.Form.A0030_ShireInput
         ///setGokeiKesan
         ///合計計算
         ///</summary>
-        private void setGokeiKesan()
+        public void setGokeiKesan()
         {
             //親画面の情報取得
             A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
@@ -1884,6 +1901,72 @@ namespace KATO.Form.A0030_ShireInput
 
                 default:
                     break;
+            }
+        }
+
+        ///<summary>
+        ///txtJuchuNo_TextChanged
+        ///受注番号が変わった場合
+        ///</summary>
+        private void txtJuchuNo_TextChanged(object sender, EventArgs e)
+        {
+            //受注単価の初期化
+            txtJuchuTanka.Clear();
+
+            //受注番号が空白の場合
+            if (txtJuchuNo.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            DataTable dtJuchuTanka = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
+                // dbo.f_get受注番号から受注単価を実行
+                dtJuchuTanka = dbconnective.ReadSql("dbo.f_get受注番号から受注単価 '" + txtJuchuNo.Text + "'");
+
+                //データがあるなら
+                if (dtJuchuTanka.Rows.Count > 0)
+                {
+                    txtJuchuTanka.Text = dtJuchuTanka.Rows[0][0].ToString();
+                }
+                
+                return;
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///txtKeyPress
+        ///No.と注文Noでの入力キー処理
+        ///</summary>
+        private void txtKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
             }
         }
     }

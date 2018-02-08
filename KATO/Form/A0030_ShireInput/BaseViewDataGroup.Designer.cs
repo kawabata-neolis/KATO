@@ -37,6 +37,7 @@
             this.txtC6 = new KATO.Common.Ctl.BaseText();
             this.txtC5 = new KATO.Common.Ctl.BaseText();
             this.txtC4 = new KATO.Common.Ctl.BaseText();
+            this.txtJuchuTanka = new KATO.Common.Ctl.BaseText();
             this.txtJuchuNo = new KATO.Common.Ctl.BaseText();
             this.txtC3 = new KATO.Common.Ctl.BaseText();
             this.txtC2 = new KATO.Common.Ctl.BaseText();
@@ -163,6 +164,15 @@
             this.txtC4.TabIndex = 17;
             this.txtC4.Visible = false;
             // 
+            // txtJuchuTanka
+            // 
+            this.txtJuchuTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJuchuTanka.Location = new System.Drawing.Point(154, 45);
+            this.txtJuchuTanka.Name = "txtJuchuTanka";
+            this.txtJuchuTanka.Size = new System.Drawing.Size(10, 22);
+            this.txtJuchuTanka.TabIndex = 17;
+            this.txtJuchuTanka.Visible = false;
+            // 
             // txtJuchuNo
             // 
             this.txtJuchuNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -171,6 +181,7 @@
             this.txtJuchuNo.Size = new System.Drawing.Size(10, 22);
             this.txtJuchuNo.TabIndex = 17;
             this.txtJuchuNo.Visible = false;
+            this.txtJuchuNo.TextChanged += new System.EventHandler(this.txtJuchuNo_TextChanged);
             // 
             // txtC3
             // 
@@ -395,14 +406,17 @@
             // 
             // txtChumonNo
             // 
+            this.txtChumonNo.BackColor = System.Drawing.SystemColors.Window;
             this.txtChumonNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtChumonNo.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtChumonNo.Location = new System.Drawing.Point(38, 13);
+            this.txtChumonNo.Location = new System.Drawing.Point(40, 13);
+            this.txtChumonNo.MaxLength = 15;
             this.txtChumonNo.Name = "txtChumonNo";
-            this.txtChumonNo.Size = new System.Drawing.Size(100, 22);
+            this.txtChumonNo.Size = new System.Drawing.Size(96, 22);
             this.txtChumonNo.TabIndex = 1;
             this.txtChumonNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtChumonNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChumonNo_KeyDown);
+            this.txtChumonNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKeyPress);
             this.txtChumonNo.Leave += new System.EventHandler(this.txtChumonNo_Leave);
             // 
             // txtNo
@@ -432,6 +446,7 @@
             this.Controls.Add(this.txtC6);
             this.Controls.Add(this.txtC5);
             this.Controls.Add(this.txtC4);
+            this.Controls.Add(this.txtJuchuTanka);
             this.Controls.Add(this.txtJuchuNo);
             this.Controls.Add(this.txtC3);
             this.Controls.Add(this.txtC2);
@@ -486,7 +501,8 @@
         public Common.Ctl.BaseTextMoney txtKin;
         public Common.Ctl.BaseTextMoney txtTankaSub;
         public Common.Ctl.BaseTextMoney txtTekaSub;
-        public Common.Ctl.BaseText txtChumonNo;
         public Common.Ctl.BaseText txtJuchuNo;
+        public Common.Ctl.BaseText txtJuchuTanka;
+        public Common.Ctl.BaseText txtChumonNo;
     }
 }

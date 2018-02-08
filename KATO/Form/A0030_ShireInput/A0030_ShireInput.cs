@@ -125,8 +125,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                 }
 
-                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
                 labelSet_Tantousha.chkTxtTantosha();
+
+                txtEigyouCd.Text = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
             }
             catch (Exception ex)
             {
@@ -547,7 +549,7 @@ namespace KATO.Form.A0030_ShireInput
                 shireinputB.addShire(lstSaveData);
 
                 //各行のチェック
-                for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
+                for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
                 {
                     //注文番号に記入がある場合
                     if (StringUtl.blIsEmpty(bvg[intCnt].txtChumonNo.Text))
@@ -619,8 +621,8 @@ namespace KATO.Form.A0030_ShireInput
                                     //データロギング
                                     new CommonException(ex);
                                     //例外発生メッセージ（OK）
-                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                    basemessagebox.ShowDialog();
+                                    BaseMessageBox basemessageboxToroku = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessageboxToroku.ShowDialog();
                                     return;
                                 }
                             }
@@ -879,14 +881,14 @@ namespace KATO.Form.A0030_ShireInput
                         //運賃を仕入明細に追加
                         shireinputB.addShireUnchinKoshin(lstShireUnchin);
                     }
-
-                    //登録完了メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                    basemessagebox.ShowDialog();
-
-                    //テキストボックスを白紙にする
-                    delText();
                 }
+
+                //登録完了メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+
+                //テキストボックスを白紙にする
+                delText();
             }
             catch (Exception ex)
             {
@@ -2121,7 +2123,11 @@ namespace KATO.Form.A0030_ShireInput
             if (intChumonCnt == 0)
             {
                 //有効な明細行がないというメッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "有効な明細行がありません。\r\n伝票が不要な場合は伝票削除（F3)を行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, 
+                                                                   CommonTeisu.TEXT_VIEW, 
+                                                                   "有効な明細行がありません。\r\n伝票が不要な場合は伝票削除（F3)を行ってください。", 
+                                                                   CommonTeisu.BTN_OK, 
+                                                                   CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 blgood = false;
@@ -2143,138 +2149,195 @@ namespace KATO.Form.A0030_ShireInput
                 if (decUnchin != 0)
                 {
                     //入力されている行数分チェック
-                    for (int intCnt = 1; intCnt <= bvg.Length; intCnt++)
+                    for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
                     {
                         //受注番号が空白以外で且つ１以上の場合
                         if (StringUtl.blIsEmpty(bvg[intCnt].txtJuchuNo.Text) && int.Parse(bvg[intCnt].txtJuchuNo.Text) > 0)
                         {
                             intUnchinCnt = intUnchinCnt + 1;
                         }
+                    }
 
-                        //運賃カウントが0の場合
-                        if (intUnchinCnt == 0)
+                    //運賃カウントが0の場合
+                    if (intUnchinCnt == 0)
+                    {
+                        //"関連する受注データがないとメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "関連する受注データがありません。明細行で運賃を入力して下さい。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        blgood = false;
+                    }
+                }
+            }
+
+            if (blgood)
+            {
+                //年月として扱えない場合
+                if (txtYMD.chkDateDataFormat(txtYMD.Text) == "")
+                {
+                    blgood = false;
+                }
+            }
+
+            if (blgood)
+            {
+                //コードが空の場合
+                if (txtCD.blIsEmpty() == false)
+                {
+                    blgood = false;
+                }
+            }
+
+            if (blgood)
+            {
+                labelSet_Tantousha.chkTxtTantosha();
+
+                //担当者名が空の場合
+                if (labelSet_Tantousha.ValueLabelText == "")
+                {
+                    blgood = false;
+                }
+            }
+
+            if (blgood)
+            {
+                labelSet_Torihikikbn.chkTxtTorihikikbn();
+
+                //取引区分が空の場合
+                if (labelSet_Torihikikbn.ValueLabelText == "")
+                {
+                    blgood = false;
+                }
+            }
+
+            //各gbDataのチェック
+            //false判定でない場合
+            if (blgood == true)
+            {
+                //各行のチェック
+                for (int intgbCnt = 0; intgbCnt < bvg.Length; intgbCnt++)
+                {
+                    //注文番号がある場合
+                    if (StringUtl.blIsEmpty(bvg[intgbCnt].txtChumonNo.Text))
+                    {
+                        //数量がない場合
+                        if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtSu.Text))
                         {
-                            //"関連する受注データがないとメッセージ（OK）
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "関連する受注データがありません。明細行で運賃を入力して下さい。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                            basemessagebox.ShowDialog();
-
                             blgood = false;
                         }
-
-                        //各gbDataのチェック
-                        //false判定でない場合
-                        if (blgood == true)
+                        //単価がない場合
+                        if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtTanka.Text))
                         {
-                            //各行のチェック
-                            for (int intgbCnt = 1; intgbCnt <= bvg.Length; intgbCnt++)
+                            blgood = false;
+                        }
+                        //倉庫番号がない場合
+                        if (!StringUtl.blIsEmpty(bvg[intgbCnt].labelSet_Eigyosho.ValueLabelText))
+                        {
+                            blgood = false;
+                        }
+                    }
+
+                    //各行のチェック
+                    for (int intCntJuhuku = 0; intCntJuhuku < bvg.Length; intCntJuhuku++)
+                    {
+                        //注文番号がある場合
+                        if (StringUtl.blIsEmpty(bvg[intgbCnt].txtChumonNo.Text))
+                        {
+                            //同じ列同士の検索被りをしないようにする
+                            if (intgbCnt != intCntJuhuku)
                             {
-                                //注文番号がない場合
-                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtChumonNo.Text))
+                                //注文番号重複チェック
+                                if (bvg[intgbCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
                                 {
+                                    //"関連する受注データがないとメッセージ（OK）
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+
                                     blgood = false;
+                                    return (blgood);
                                 }
-                                //数量がない場合
-                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtSu.Text))
+                            }
+                        }
+                    }
+
+                    //発注原価のチェック
+                    if (bvg[intgbCnt].txtTankaSub.Text != "0" && bvg[intgbCnt].txtTankaSub.Text != "")
+                    {
+                        //商品マスタから仕入単価を得る
+                        ShouhinList_B shohinlistB = new ShouhinList_B();
+                        dtShireTanka = shohinlistB.getShireTanka(bvg[intgbCnt].txtShohinCd.Text);
+
+                        //仕入単価がある場合
+                        if (dtShireTanka.Rows.Count > 0)
+                        {
+                            //発注単価より値段が高い場合
+                            if (int.Parse(bvg[intgbCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
+                            {
+                                //"関連する受注データがないとメッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                basemessagebox.ShowDialog();
+
+                                blgood = false;
+
+                                bvg[intgbCnt].txtTanka.Focus();
+                            }
+                        }
+                        else
+                        {
+                            blgood = false;
+                        }
+                    }
+
+                    //発注数>=仕入数量のチェック
+                    if (bvg[intgbCnt].txtChumonNo.blIsEmpty() == true)
+                    {
+                        if (blgood)
+                        {
+                            try
+                            {
+                                //商品マスタから仕入単価を得る
+                                A0030_ShireInput_B shireB = new A0030_ShireInput_B();
+                                dtHachusu = shireB.getHachusu(bvg[intgbCnt].txtChumonNo.Text);
+
+                                //発注数がある場合
+                                if (dtHachusu.Rows.Count > 0)
                                 {
+                                    objSu = dtHachusu.Rows[0][0].ToString();
+                                }
+
+                                //発注数と仕入数量の比較
+                                if (decimal.Parse(bvg[intgbCnt].txtSu.Text) > decimal.Parse(objSu.ToString()))
+                                {
+                                    //"関連する受注データがないとメッセージ（OK）
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+
                                     blgood = false;
+                                    bvg[intgbCnt].txtSu.Focus();
                                 }
-                                //単価がない場合
-                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].txtTanka.Text))
-                                {
-                                    blgood = false;
-                                }
-                                //倉庫番号がない場合
-                                if (!StringUtl.blIsEmpty(bvg[intgbCnt].labelSet_Eigyosho.ValueLabelText))
-                                {
-                                    blgood = false;
-                                }
-
-                                //各行のチェック
-                                for (int intCntJuhuku = 1; intCnt <= bvg.Length; intCntJuhuku++)
-                                {
-                                    //同じ列同士の検索被りをしないようにする
-                                    if (intCnt != intCntJuhuku)
-                                    {
-                                        //注文番号重複チェック
-                                        if (bvg[intCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
-                                        {
-                                            //"関連する受注データがないとメッセージ（OK）
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                            basemessagebox.ShowDialog();
-
-                                            blgood = false;
-                                            return (blgood);
-                                        }
-                                    }
-                                }
-
-                                //発注原価のチェック
-                                if (bvg[intCnt].txtTankaSub.Text != "0")
-                                {
-                                    //商品マスタから仕入単価を得る
-                                    ShouhinList_B shohinlistB = new ShouhinList_B();
-                                    dtShireTanka = shohinlistB.getShireTanka(bvg[intCnt].txtShohinCd.Text);
-
-                                    //仕入単価がある場合
-                                    if (dtShireTanka.Rows.Count > 0)
-                                    {
-                                        //発注単価より値段が高い場合
-                                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
-                                        {
-                                            //"関連する受注データがないとメッセージ（OK）
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                            basemessagebox.ShowDialog();
-
-                                            blgood = false;
-
-                                            bvg[intCnt].txtTanka.Focus();
-                                        }
-                                    }
-                                    else
-                                    {
-                                        blgood = false;
-                                    }
-                                }
-
-                                //発注数>=仕入数量のチェック
-                                if (bvg[intCnt].txtChumonNo.blIsEmpty() == true)
-                                {
-                                    if (blgood)
-                                    {
-                                        //商品マスタから仕入単価を得る
-                                        A0030_ShireInput_B shireB = new A0030_ShireInput_B();
-                                        dtHachusu = shireB.getHachusu(bvg[intCnt].txtChumonNo.Text);
-
-                                        //発注数がある場合
-                                        if (dtHachusu.Rows.Count > 0)
-                                        {
-                                            objSu = dtHachusu.Rows[0][0].ToString();
-                                        }
-
-                                        //発注数と仕入数量の比較
-                                        if (int.Parse(bvg[intCnt].txtSu.Text) > int.Parse(objSu.ToString()))
-                                        {
-                                            //"関連する受注データがないとメッセージ（OK）
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                            basemessagebox.ShowDialog();
-
-                                            blgood = false;
-                                            bvg[intCnt].txtSu.Focus();
-                                            return(blgood);
-                                        }
-                                    }
-                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                //データロギング
+                                new CommonException(ex);
+                                //例外発生メッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                basemessagebox.ShowDialog();
                             }
                         }
                     }
                 }
             }
 
-            //発注原価チェック
+            //売上単価チェック
             if (blgood)
             {
                 //受注単価内に０がある場合
-                if (txtJuchu1.Text == "0" || txtJuchu2.Text == "0" || txtJuchu3.Text == "0" || txtJuchu4.Text == "0" || txtJuchu5.Text == "0")
+                if (gbData1.txtJuchuTanka.Text == "0" || 
+                    gbData2.txtJuchuTanka.Text == "0" || 
+                    gbData3.txtJuchuTanka.Text == "0" || 
+                    gbData4.txtJuchuTanka.Text == "0" || 
+                    gbData5.txtJuchuTanka.Text == "0")
                 {
                     //"関連する受注データがないとメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上単価が￥０の受注が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -2284,7 +2347,7 @@ namespace KATO.Form.A0030_ShireInput
                 }
             }
 
-            //年月日チェックをしたときにfalseの場合
+            //日付制限チェックをしたときにfalseの場合
             if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
             {
                 txtYMD.Focus();
@@ -2292,18 +2355,19 @@ namespace KATO.Form.A0030_ShireInput
             }
 
             //合計計算式を入れる（未定）
+            gbData1.setGokeiKesan();
 
             //good判定の判定
             if (blgood == false)
             {
                 return(blgood);
             }
-            
-            //使用ユーザーがSPPowerUserの場合
-            if (SystemInformation.UserName != "nakashima" && SystemInformation.UserName != "takaxx9" && SystemInformation.UserName != "administrator" && SystemInformation.UserName != "jic")
+
+            //使用ユーザーがpowerUserFlgの場合
+            if (this.powerUserFlg == true)
             {
                 //各行のデータ
-                for (int intCnt = 1; intCnt <= 5; intCnt++)
+                for (int intCnt = 0; intCnt < 5; intCnt++)
                 {
                     if(bvg[intCnt].txtChumonNo.blIsEmpty() == false)
                     {
