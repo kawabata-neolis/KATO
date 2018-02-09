@@ -265,6 +265,7 @@
             // txtMode
             // 
             this.txtMode.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtMode.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMode.Location = new System.Drawing.Point(147, 14);
             this.txtMode.Name = "txtMode";
             this.txtMode.Size = new System.Drawing.Size(23, 22);
@@ -307,6 +308,7 @@
             // txtTanto
             // 
             this.txtTanto.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtTanto.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtTanto.Location = new System.Drawing.Point(147, 89);
             this.txtTanto.Name = "txtTanto";
             this.txtTanto.Size = new System.Drawing.Size(320, 22);
@@ -327,6 +329,7 @@
             // 
             this.cbJoken.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbJoken.FormattingEnabled = true;
+            this.cbJoken.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.cbJoken.Items.AddRange(new object[] {
             "従来通り",
             "別途打合せ"});
@@ -349,6 +352,7 @@
             // txtKenmei
             // 
             this.txtKenmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtKenmei.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtKenmei.Location = new System.Drawing.Point(147, 114);
             this.txtKenmei.Name = "txtKenmei";
             this.txtKenmei.Size = new System.Drawing.Size(320, 22);
@@ -359,6 +363,7 @@
             // 
             this.cbKigen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbKigen.FormattingEnabled = true;
+            this.cbKigen.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.cbKigen.Items.AddRange(new object[] {
             "１０日間",
             "２０日間",
@@ -383,6 +388,7 @@
             // 
             this.cbNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbNoki.FormattingEnabled = true;
+            this.cbNoki.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.cbNoki.Items.AddRange(new object[] {
             "受注後　日",
             "下記参照願います",
@@ -406,6 +412,7 @@
             // txtBiko
             // 
             this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtBiko.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtBiko.Location = new System.Drawing.Point(147, 191);
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(320, 22);
@@ -1897,6 +1904,7 @@
             // txtMemo
             // 
             this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtMemo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtMemo.Location = new System.Drawing.Point(834, 105);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
@@ -2117,7 +2125,7 @@
             // 
             this.txtMNum.blnCommaOK = false;
             this.txtMNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMNum.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtMNum.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMNum.intDeciSet = 0;
             this.txtMNum.intIntederSet = 0;
             this.txtMNum.intShishagonyu = 0;
@@ -2133,7 +2141,7 @@
             // txtMYMD
             // 
             this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtMYMD.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtMYMD.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtMYMD.Location = new System.Drawing.Point(426, 14);
             this.txtMYMD.Name = "txtMYMD";
             this.txtMYMD.Size = new System.Drawing.Size(86, 22);

@@ -1362,6 +1362,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             RowIndex = e.RowIndex;
             ColIndex = e.ColumnIndex;
             setText(e.RowIndex);
+
+            if (e.ColumnIndex == 0)
+            { }
         }
 
         private void dataGridView2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -3886,6 +3889,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             d = Decimal.Parse(getCellValue(c, true));
             c.Value = (decimal.Round(d, 0)).ToString("0.0");
         }
+
     }
 
 }
