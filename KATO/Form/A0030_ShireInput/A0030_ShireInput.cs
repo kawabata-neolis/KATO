@@ -335,7 +335,6 @@ namespace KATO.Form.A0030_ShireInput
         public void addShireInput()
         {
             object o;
-            int theErr;
 
             //伝票番号の確保
             int intDenpyoNo;
@@ -347,13 +346,6 @@ namespace KATO.Form.A0030_ShireInput
 
             //記入情報登録用
             List<string> lstSaveData = new List<string>();
-
-            //データのチェック
-            if (ChkData() == false)
-            {
-                return;
-            }
-
 
             //伝票番号がない場合
             if (!StringUtl.blIsEmpty(txtDenpyoNo.Text))
@@ -379,6 +371,12 @@ namespace KATO.Form.A0030_ShireInput
             else
             {
                 intDenpyoNo = int.Parse(txtDenpyoNo.Text);
+            }
+
+            //データのチェック
+            if (ChkData() == false)
+            {
+                return;
             }
 
             //運賃の確保
@@ -1140,6 +1138,7 @@ namespace KATO.Form.A0030_ShireInput
             string strYMD = txtYMD.Text;
             string strTantoCd = labelSet_Tantousha.CodeTxtText;
             string strKbnCd = labelSet_Torihikikbn.CodeTxtText;
+            string strEigyoshoCd = txtEigyouCd.Text;
 
             //画面の項目内を白紙にする
             delFormClear(this);
@@ -1152,6 +1151,7 @@ namespace KATO.Form.A0030_ShireInput
             labelSet_Tantousha.chkTxtTantosha();
             labelSet_Torihikikbn.CodeTxtText = strKbnCd;
             labelSet_Torihikikbn.chkTxtTorihikikbn();
+            txtEigyouCd.Text = strEigyoshoCd;
 
             //伝票Noを触れるようにする
             txtDenpyoNo.Enabled = true;
