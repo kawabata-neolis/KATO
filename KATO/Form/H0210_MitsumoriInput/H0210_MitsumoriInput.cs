@@ -1363,8 +1363,14 @@ namespace KATO.Form.H0210_MitsumoriInput
             ColIndex = e.ColumnIndex;
             setText(e.RowIndex);
 
-            if (e.ColumnIndex == 0)
-            { }
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 11)
+            {
+                gridMitsmori.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            }
+            else
+            {
+                gridMitsmori.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            }
         }
 
         private void dataGridView2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -1946,6 +1952,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             int rNum = gridMitsmori.CurrentCell.RowIndex;
             dt.Rows.InsertAt(dt.NewRow(), rNum);
+            gridMitsmori[1, rNum].Value = "1";
 
             for (int i = 0; i < gridMitsmori.RowCount; i++)
             {
@@ -2582,6 +2589,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             cbNoki.SelectedIndex = 0;
             cbKigen.SelectedIndex = 0;
             cbJoken.SelectedIndex = 0;
+            cbNoki.Text = "";
+            cbKigen.Text = "";
+            cbJoken.Text = "";
             txtBiko.Text = "";
             txtMemo.Text = "";
             rd2.Checked = false;

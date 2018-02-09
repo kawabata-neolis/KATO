@@ -50,7 +50,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,a.受注数量 AS 受注数";
                 strQuery += "      ,(a.受注数量 - a.売上済数量) AS 受注残";
                 strQuery += "      ,(b.発注数量 - b.仕入済数量) AS 発注残";
-                strQuery += "      ,a.受注単価 AS 売上単価";
+                strQuery += "      ,ROUND(a.受注単価, 0, 1) AS 売上単価";
                 strQuery += "      ,ROUND(((a.受注数量 - a.売上済数量 ) * a.受注単価), 0, 1) AS 売上金額";
                 strQuery += "      ,a.仕入単価 AS 仕入単価";
                 strQuery += "      ,ROUND(((a.受注数量 - a.売上済数量 ) * a.仕入単価), 0, 1) AS 仕入金額";
@@ -102,6 +102,11 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 {
                     strQuery += "   AND a.得意先コード = '" + listParam[18] + "'";
                 }
+                if (!string.IsNullOrWhiteSpace(listParam[19]))
+                {
+                    strQuery += "   AND b.仕入先コード = '" + listParam[19] + "'";
+                }
+
                 if (!string.IsNullOrWhiteSpace(listParam[15]))
                 {
                     strQuery += "   AND a.受注者コード = '" + listParam[15] + "'";
@@ -193,41 +198,74 @@ namespace KATO.Business.D0360_JuchuzanKakunin
             {
                 //発注残
                 //strQuery += "SELECT '' AS 受注日";
-                strQuery = "SELECT '' AS 受注日";
-                strQuery += "      ,a.納期";
+                //strQuery = "SELECT '' AS 受注日";
+                //strQuery += "      ,a.納期";
+                //strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
+                //strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
+                //strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, '')) AS 品名";
+                //strQuery += "      ,'' AS 受注数";
+                //strQuery += "      ,'' AS 受注残";
+                //strQuery += "      ,(a.発注数量 - a.仕入済数量) AS 発注残";
+                //strQuery += "      ,'' AS 売上単価";
+                //strQuery += "      ,'' AS 売上金額";
+                //strQuery += "      ,'' AS 仕入単価";
+                //strQuery += "      ,'' AS 仕入金額";
+                //strQuery += "      ,a.注番";
+                //strQuery += "      ,'' AS 仕入合計金額";
+                //strQuery += "      ,'' AS 客先注番";
+                //strQuery += "      ,'' AS 得意先名";
+                //strQuery += "      ,'' AS 仕入日";
+                //strQuery += "      ,a.仕入先名称 AS 仕入先名";
+                //strQuery += "      ,'' AS 売上済";
+                //strQuery += "      ,a.仕入済数量 AS 仕入済";
+                //strQuery += "      ,a.発注年月日 AS 発注日";
+                //strQuery += "      ,dbo.f_get受注番号_発注状態(a.受注番号) AS 状態";
+                //strQuery += "      ,a.受注番号";
+                //strQuery += "      ,'' AS 受注者";
+                //strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
+                //strQuery += "      ,dbo.f_get担当者名(a.発注者コード) AS 発注者";
+                //strQuery += "      ,a.発注番号";
+
+                //strQuery += "  FROM 発注 a";
+
+                strQuery = "SELECT b.受注年月日 AS 受注日";
+                strQuery += "      ,b.納期";
                 strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
-                strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
+                strQuery += "      ,dbo.f_get中分類名(a.大分類コード, b.中分類コード)";
                 strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, '')) AS 品名";
-                strQuery += "      ,'' AS 受注数";
-                strQuery += "      ,'' AS 受注残";
+                strQuery += "      ,b.受注数量 AS 受注数";
+                strQuery += "      ,(b.受注数量 - b.売上済数量) AS 受注残";
                 strQuery += "      ,(a.発注数量 - a.仕入済数量) AS 発注残";
-                strQuery += "      ,'' AS 売上単価";
-                strQuery += "      ,'' AS 売上金額";
-                strQuery += "      ,'' AS 仕入単価";
-                strQuery += "      ,'' AS 仕入金額";
-                strQuery += "      ,a.注番";
+                strQuery += "      ,ROUND(b.受注単価, 0, 1) AS 売上単価";
+                strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.受注単価), 0, 1) AS 売上金額";
+                strQuery += "      ,b.仕入単価 AS 仕入単価";
+                strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.仕入単価), 0, 1) AS 仕入金額";
+                strQuery += "      ,b.注番";
                 strQuery += "      ,'' AS 仕入合計金額";
                 strQuery += "      ,'' AS 客先注番";
-                strQuery += "      ,'' AS 得意先名";
-                strQuery += "      ,'' AS 仕入日";
+                strQuery += "      ,b.得意先名称 AS 得意先名";
+                strQuery += "      ,dbo.f_get発注番号から仕入日(a.発注番号) AS 仕入日";
                 strQuery += "      ,a.仕入先名称 AS 仕入先名";
-                strQuery += "      ,'' AS 売上済";
+                strQuery += "      ,b.売上済数量 AS 売上済";
                 strQuery += "      ,a.仕入済数量 AS 仕入済";
                 strQuery += "      ,a.発注年月日 AS 発注日";
-                strQuery += "      ,dbo.f_get受注番号_発注状態(a.受注番号) AS 状態";
-                strQuery += "      ,a.受注番号";
-                strQuery += "      ,'' AS 受注者";
+                strQuery += "      ,dbo.f_get受注番号_発注状態(b.受注番号) AS 状態";
+                strQuery += "      ,b.受注番号";
+                strQuery += "      ,dbo.f_get担当者名(b.受注者コード) AS 受注者";
                 strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
                 strQuery += "      ,dbo.f_get担当者名(a.発注者コード) AS 発注者";
                 strQuery += "      ,a.発注番号";
+                strQuery += "  FROM 発注 a LEFT OUTER JOIN 受注 b ON a.受注番号 = b.受注番号";
 
-                strQuery += "  FROM 発注 a";
+                strQuery += "   AND b.削除 = 'N'";
+                strQuery += "   AND a.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(b.受注番号)";
 
                 strQuery += " WHERE a.削除 = 'N'";
                 strQuery += "   AND a.発注数量 <> 0 ";
                 strQuery += "   AND ((a.仕入済数量 = 0) OR (abs(a.仕入済数量) < abs(a.発注数量))) ";
-                strQuery += "   AND a.仕入先コード <> '7777'";
-                strQuery += "   AND a.仕入先コード <> '9999'";
+                //strQuery += "   AND a.仕入先コード <> '7777'";
+                //strQuery += "   AND a.仕入先コード <> '9999'";
+                strQuery += "   AND a.仕入先コード NOT IN ('7777', '9999')";
 
                 if (!string.IsNullOrWhiteSpace(listParam[1]))
                 {
@@ -251,9 +289,14 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 {
                     strQuery += "   AND a.発注者コード = '" + listParam[16] + "'";
                 }
+
                 if (!string.IsNullOrWhiteSpace(listParam[19]))
                 {
                     strQuery += "   AND a.仕入先コード = '" + listParam[19] + "'";
+                }
+                if (!string.IsNullOrWhiteSpace(listParam[18]))
+                {
+                    strQuery += "   AND b.得意先コード = '" + listParam[18] + "'";
                 }
 
                 if (!string.IsNullOrWhiteSpace(listParam[0]))
@@ -340,8 +383,33 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                     }
                 }
             }
+            //string s = listSortItem[int.Parse(listParam[27])] + listSortOrder[int.Parse(listParam[28])];
+            //strQuery += " ORDER BY " + listSortItem[int.Parse(listParam[27])] + listSortOrder[int.Parse(listParam[28])];
 
-            strQuery += " ORDER BY " + listSortItem[int.Parse(listParam[27])] + listSortOrder[int.Parse(listParam[28])];
+            string stDay = "受注日";
+            if (int.Parse(listParam[29]) == 1)
+            {
+                stDay = "発注日";
+            }
+
+            string stOrder = listSortOrder[int.Parse(listParam[28])];
+
+            if (int.Parse(listParam[27]) == 0)
+            {
+                strQuery += " ORDER BY 受注日" + stOrder + ", 納期 ASC, 注番 ASC";
+            }
+            else if (int.Parse(listParam[27]) == 1)
+            {
+                strQuery += " ORDER BY 発注日" + stOrder + ", 納期 ASC, 注番 ASC";
+            }
+            else if (int.Parse(listParam[27]) == 2)
+            {
+                strQuery += " ORDER BY 納期" + stOrder + ", " + stDay + " ASC, 注番 ASC";
+            }
+            else if (int.Parse(listParam[27]) == 3)
+            {
+                strQuery += " ORDER BY 注番" + stOrder + ", 納期 ASC, " + stDay + " ASC";
+            }
 
             // SQL検索実行
             try

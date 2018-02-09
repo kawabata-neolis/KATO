@@ -34,6 +34,8 @@ namespace KATO.Form.A0020_UriageInput
 
         public Boolean MODY_FLAG = false;
 
+        public bool editFlg = false;
+
 
         //現在の選択行を初期化
         private int CurrentRow = 99;
@@ -80,6 +82,9 @@ namespace KATO.Form.A0020_UriageInput
             textSet_Jucyu4.btbTokuiCd = labelSet_txtCD.codeTxt;
             textSet_Jucyu5.btbTokuiCd = labelSet_txtCD.codeTxt;
 
+            labelSet_txtCD.codeTxt.ModifiedChanged += new EventHandler(txtModified);
+            labelSet_txtCD.codeTxt.ModifiedChanged += new EventHandler(txtModified);
+            labelSet_Tantousha.codeTxt.ModifiedChanged += new EventHandler(txtModified);
             labelSet_Torihikikbn.codeTxt.Leave += new EventHandler(labelSet_Torihikikbn_Leave);
 
             int intIdx = 0;
@@ -99,6 +104,7 @@ namespace KATO.Form.A0020_UriageInput
             //textSet_Jucyu1.txtJucyuNoElem2.SelectAll();
             //this.ActiveControl = textSet_Jucyu1.txtJucyuNoElem2;
             this.SelectNextControl(this.ActiveControl,true, true, true, true);
+            editFlg = true;
         }
 
         ///<summary>
@@ -223,6 +229,7 @@ namespace KATO.Form.A0020_UriageInput
                     break;
                 case Keys.F1:
                     logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    btnF01.Focus();
                     this.addJucyu();
                     break;
                 case Keys.F2:
@@ -323,80 +330,68 @@ namespace KATO.Form.A0020_UriageInput
             string Denno;
             int i;
 
-            //倉庫間移動処理
-            if (txtDenNo.Text == "")
+            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
+            try
             {
-                if (textSet_Jucyu1.txtJucyuNoElem2.Text != "")
+                this.Cursor = Cursors.WaitCursor;
+                //倉庫間移動処理
+                if (txtDenNo.Text == "")
                 {
-                    //処理済の更新＆倉庫間移動データの追加処理へ。
-                    Data_Create(textSet_Jucyu1.txtJucyuNoElem2.Text);
+                    if (textSet_Jucyu1.txtJucyuNoElem2.Text != "")
+                    {
+                        //処理済の更新＆倉庫間移動データの追加処理へ。
+                        Data_Create(textSet_Jucyu1.txtJucyuNoElem2.Text);
+                    }
+
+                    if (textSet_Jucyu2.txtJucyuNoElem2.Text != "")
+                    {
+                        //処理済の更新＆倉庫間移動データの追加処理へ。
+                        Data_Create(textSet_Jucyu2.txtJucyuNoElem2.Text);
+                    }
+
+                    if (textSet_Jucyu3.txtJucyuNoElem2.Text != "")
+                    {
+                        //処理済の更新＆倉庫間移動データの追加処理へ。
+                        Data_Create(textSet_Jucyu3.txtJucyuNoElem2.Text);
+                    }
+
+
+                    if (textSet_Jucyu4.txtJucyuNoElem2.Text != "")
+                    {
+                        //処理済の更新＆倉庫間移動データの追加処理へ。
+                        Data_Create(textSet_Jucyu4.txtJucyuNoElem2.Text);
+                    }
+
+                    if (textSet_Jucyu5.txtJucyuNoElem2.Text != "")
+                    {
+                        //処理済の更新＆倉庫間移動データの追加処理へ。
+                        Data_Create(textSet_Jucyu5.txtJucyuNoElem2.Text);
+                    }
                 }
 
-                if (textSet_Jucyu2.txtJucyuNoElem2.Text != "")
+                //データチェック処理を行うメソッドへ。
+                if (!DataCheack())
                 {
-                    //処理済の更新＆倉庫間移動データの追加処理へ。
-                    Data_Create(textSet_Jucyu2.txtJucyuNoElem2.Text);
-                }
-
-                if (textSet_Jucyu3.txtJucyuNoElem2.Text != "")
-                {
-                    //処理済の更新＆倉庫間移動データの追加処理へ。
-                    Data_Create(textSet_Jucyu3.txtJucyuNoElem2.Text);
-                }
-
-
-                if (textSet_Jucyu4.txtJucyuNoElem2.Text != "")
-                {
-                    //処理済の更新＆倉庫間移動データの追加処理へ。
-                    Data_Create(textSet_Jucyu4.txtJucyuNoElem2.Text);
-                }
-
-                if (textSet_Jucyu5.txtJucyuNoElem2.Text != "")
-                {
-                    //処理済の更新＆倉庫間移動データの追加処理へ。
-                    Data_Create(textSet_Jucyu5.txtJucyuNoElem2.Text);
-                }
-            }
-
-            //データチェック処理を行うメソッドへ。
-            if (!DataCheack())
-            {
-                //データチェックがfalseの場合はデータベースをロールバックして終了。
-
-                //ビジネス層のインスタンス生成
-                A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
-                try
-                {
-                    //ビジネス層、データベースをロールバックする。
+                    //データチェックがfalseの場合はデータベースをロールバックして終了。
                     uriageinputB.DBROLLBACK();
                     return;
                     
                 }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                }
-                return;
-            }
 
-            //伝票の記述がない場合は、伝票取得メソッドへ
-            if (txtDenNo.Text == "")
-            {
-                //伝票取得メソッドへ
-                Denno = GetDenpyoNo("売上伝票");
-            }
-            else
-            {
-                Denno = txtDenNo.Text;
-            }
+                //伝票の記述がない場合は、伝票取得メソッドへ
+                if (txtDenNo.Text == "")
+                {
+                    //伝票取得メソッドへ
+                    Denno = GetDenpyoNo("売上伝票");
+                }
+                else
+                {
+                    Denno = txtDenNo.Text;
+                }
 
             
-            //データ追加プロシージャー始動
-            try
-            {
+                //データ追加プロシージャー始動
                 //ビジネス層のインスタンス生成
-                A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
 
                 //検索時のデータ取り出し先
                 DataTable dtSetView;
@@ -617,6 +612,8 @@ namespace KATO.Form.A0020_UriageInput
                     }
                 }
 
+                txtDenNo.Text = Denno;
+                editFlg = false;
 
                 //印刷しないにチェックがない場合は印刷メソッドへ
                 if (chkInsatu.Checked == false)
@@ -635,8 +632,13 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
                 //エラーロギング
                 new CommonException(ex);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -754,6 +756,19 @@ namespace KATO.Form.A0020_UriageInput
         /// <param name="Flag">再印刷フラグ 0:通常　1:再印刷</param>
         private void PrintReport(string Denno,int Flag)
         {
+            this.Cursor = Cursors.WaitCursor;
+            if (string.IsNullOrWhiteSpace(txtDenNo.Text))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "伝票を選択してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            if (editFlg)
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                return;
+            }
 
             // ビジネス層のインスタンス生成
             A0020_UriageInput_B uriageinput_B = new A0020_UriageInput_B();
@@ -863,6 +878,10 @@ namespace KATO.Form.A0020_UriageInput
                 basemessagebox.ShowDialog();
 
                 return;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -1423,6 +1442,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1476,6 +1496,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1517,6 +1538,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1571,6 +1593,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1611,6 +1634,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1654,6 +1678,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1704,6 +1729,7 @@ namespace KATO.Form.A0020_UriageInput
                         }
                         catch (Exception ex)
                         {
+                            
                             //エラーロギング
                             new CommonException(ex);
                         }
@@ -1746,6 +1772,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1789,6 +1816,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -1825,6 +1853,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -2059,6 +2088,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     catch (Exception ex)
                     {
+                        
                         //エラーロギング
                         new CommonException(ex);
                     }
@@ -2117,6 +2147,7 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                
                 //エラーロギング
                 new CommonException(ex);
                 return reGet_ZaikoSu2;
@@ -2225,6 +2256,7 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                
                 //エラーロギング
                 new CommonException(ex);
                 return 0;
@@ -2384,6 +2416,7 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                
                 //エラーロギング
                 new CommonException(ex);
                 return 0;
@@ -2528,8 +2561,8 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
-                
 
+                
                 //エラーロギング
                 new CommonException(ex);
             }
@@ -2571,6 +2604,9 @@ namespace KATO.Form.A0020_UriageInput
             btnF01.Enabled = true;
             btnF03.Enabled = true;
             btnF07.Enabled = true;
+
+            OneLineClear();
+            editFlg = false;
 
             txtYMD.Focus();
 
@@ -2710,6 +2746,16 @@ namespace KATO.Form.A0020_UriageInput
             textSet_Jucyu5.txtMasterSiire.Text = "";
             textSet_Jucyu5.txtMasterSiireRitu.Text = "";
             textSet_Jucyu5.txtMasterSiireRituA.Text = "";
+
+            textSet_Jucyu5.oldNo = "";
+            textSet_Jucyu5.oldSuryo = "";
+            textSet_Jucyu5.oldTanka = "";
+            textSet_Jucyu5.oldKin = "";
+            textSet_Jucyu5.oldGenka = "";
+            textSet_Jucyu5.oldTeika = "";
+            textSet_Jucyu5.oldArari = "";
+            textSet_Jucyu5.oldSouko = "";
+            textSet_Jucyu5.oldBiko = "";
 
             //合計計算メソッドへ
             textSet_Jucyu1.GokeiKeisan();
@@ -3072,6 +3118,7 @@ namespace KATO.Form.A0020_UriageInput
             txtDenNo.Enabled = false;
 
             MODY_FLAG = false;
+            editFlg = false;
         }
 
         /// <summary>
@@ -3104,6 +3151,7 @@ namespace KATO.Form.A0020_UriageInput
             A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 //売上ヘッダの情報取得
                 rs1 = uriageinputB.GetUriageInput(lstUriageInputLoad);
 
@@ -3163,6 +3211,7 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
                 //エラーロギング
                 new CommonException(ex);
                 return;
@@ -3328,6 +3377,10 @@ namespace KATO.Form.A0020_UriageInput
                 new CommonException(ex);
                 return;
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
             
             btnF01.Enabled = true;
             btnF03.Enabled = true;
@@ -3430,6 +3483,17 @@ namespace KATO.Form.A0020_UriageInput
                 ((TextSet_Jucyu)cs1[0]).txtCyokkinSiireRitu.Text = "";
                 ((TextSet_Jucyu)cs1[0]).txtMasterSiire.Text = "";
                 ((TextSet_Jucyu)cs1[0]).txtMasterSiireRitu.Text = "";
+
+                ((TextSet_Jucyu)cs1[0]).oldNo = "";
+                ((TextSet_Jucyu)cs1[0]).oldSuryo = "";
+                ((TextSet_Jucyu)cs1[0]).oldTanka = "";
+                ((TextSet_Jucyu)cs1[0]).oldKin = "";
+                ((TextSet_Jucyu)cs1[0]).oldGenka = "";
+                ((TextSet_Jucyu)cs1[0]).oldTeika = "";
+                ((TextSet_Jucyu)cs1[0]).oldArari = "";
+                ((TextSet_Jucyu)cs1[0]).oldSouko = "";
+                ((TextSet_Jucyu)cs1[0]).oldBiko = "";
+
             }
         }
 
@@ -3582,6 +3646,11 @@ namespace KATO.Form.A0020_UriageInput
                 //エラーロギング
                 new CommonException(ex);
             }
+        }
+
+        private void txtModified(object sender, EventArgs e)
+        {
+            editFlg = true;
         }
     }
 }

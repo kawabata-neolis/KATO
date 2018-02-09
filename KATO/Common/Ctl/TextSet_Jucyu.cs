@@ -269,10 +269,41 @@ namespace KATO.Common.Ctl
             }
         }
 
+        public string oldNo = "";
+        public string oldSuryo = "";
+        public string oldTanka = "";
+        public string oldKin = "";
+        public string oldGenka = "";
+        public string oldTeika = "";
+        public string oldArari = "";
+        public string oldSouko = "";
+        public string oldBiko = "";
+
         public TextSet_Jucyu()
         {
             InitializeComponent();
+            labelSet_SoukoNoElem10.codeTxt.Leave += new EventHandler(labelSet_SoukoNo_Leave);
+            txtBikouElem9.Leave += new EventHandler(txtBikou_Leave);
+
             this.TabStop = true;
+        }
+
+        private void txtBikou_Leave(object sender, EventArgs e)
+        {
+            if (!oldBiko.Equals(txtBikouElem9.Text))
+            {
+                ((A0020_UriageInput)this.Parent).editFlg = true;
+                oldBiko = txtBikouElem9.Text;
+            }
+        }
+
+        private void labelSet_SoukoNo_Leave(object sender, EventArgs e)
+        {
+            if (!oldSouko.Equals(labelSet_SoukoNoElem10.codeTxt))
+            {
+                ((A0020_UriageInput)this.Parent).editFlg = true;
+                oldSouko = labelSet_SoukoNoElem10.CodeTxtText;
+            }
         }
 
         //テキストボックスをクリックした場合
@@ -287,7 +318,9 @@ namespace KATO.Common.Ctl
         //注文Noのフォーカスが外れた場合
         private void txtJucyuNoElem2_Leave(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             txtJucyuNoElem2_func();
+            this.Cursor = Cursors.Default;
         }
 
         //注文Noのフォーカスが外れた場合の処理
@@ -794,6 +827,47 @@ namespace KATO.Common.Ctl
         {
             //メインフォームのコントロールを取得。
             A0020_UriageInput C_uriageInput = (A0020_UriageInput)this.Parent;
+
+            if (!oldNo.Equals(txtJucyuNoElem2.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldNo = txtJucyuNoElem2.Text;
+            }
+
+            if (!oldSuryo.Equals(txtSuuryoElem4.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldSuryo = txtSuuryoElem4.Text;
+            }
+
+            if (!oldTanka.Equals(txtTankaElem5.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldTanka = txtTankaElem5.Text;
+            }
+
+            if (!oldKin.Equals(txtKingakuElem6.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldKin = txtKingakuElem6.Text;
+            }
+
+            if (!oldGenka.Equals(txtGenkaElem7.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldGenka = txtGenkaElem7.Text;
+            }
+            if (!oldTeika.Equals(txtTeika.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldTeika = txtTeika.Text;
+            }
+            if (!oldArari.Equals(txtArariElem8.Text))
+            {
+                C_uriageInput.editFlg = true;
+                oldArari = txtArariElem8.Text;
+            }
+
 
             //コードが未入力の場合は処理を終了する。
             if (string.IsNullOrWhiteSpace(C_uriageInput.labelSet_txtCD.CodeTxtText))

@@ -299,21 +299,21 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             #region
             setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
             setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
             setColumn(hinmei,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
             setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
             setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
             setColumn(hatchuzan,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
-            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 100);
+            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumn(uriKingaku,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
             setColumn(siireTanka,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 100);
             setColumn(siireKingaku,      DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
             setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
             setColumn(siireGokeiKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  140);
             setColumn(kyakusakiChuban,   DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
-            setColumn(tokuiName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(tokuiName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
             setColumn(siirebi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(siireName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   150);
+            setColumn(siireName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
             setColumn(uriagezumi,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
             setColumn(siirezumi,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
             setColumn(hatchubi,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
@@ -341,6 +341,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 gridZanList.Columns[col.Name].Width = intLen;
                 gridZanList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
                 gridZanList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+                gridZanList.Columns[col.Name].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 if (fmt != null)
                 {
@@ -538,9 +539,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     // 受注残が検索された場合は単価合計を算出
                     if (rsSearchKind.judCheckBtn() != 1)
                     {
-                        txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上単価)", null)).ToString();
+                        txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上金額)", null)).ToString();
                         txtGokeiUriage.Focus();
-                        txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入単価)", null)).ToString();
+                        txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入金額)", null)).ToString();
                         txtGokeiGenka.Focus();
                     }
                     if (this.bBox == null)

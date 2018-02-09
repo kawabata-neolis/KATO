@@ -633,7 +633,7 @@
             // 
             this.txtBikouElem9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBikouElem9.Location = new System.Drawing.Point(1139, 4);
-            this.txtBikouElem9.MaxLength = 30;
+            this.txtBikouElem9.MaxLength = 60;
             this.txtBikouElem9.Multiline = true;
             this.txtBikouElem9.Name = "txtBikouElem9";
             this.txtBikouElem9.Size = new System.Drawing.Size(258, 57);

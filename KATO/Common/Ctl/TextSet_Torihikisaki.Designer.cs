@@ -43,6 +43,7 @@
             // 
             // valueText
             // 
+            this.valueText.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.valueText.Location = new System.Drawing.Point(151, 0);
             this.valueText.Size = new System.Drawing.Size(350, 22);
             this.valueText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.valueText_KeyDown);

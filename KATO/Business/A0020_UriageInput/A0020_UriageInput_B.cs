@@ -2047,7 +2047,7 @@ namespace KATO.Business.A0020_UriageInput
 
                 // ClosedXMLで1行ずつExcelに出力
                 //納品書の出力
-                foreach (DataRow drNouhinHikae in dtNouhinHikae.Rows)
+                foreach (DataRow drNouhinHikae in dtNouhin.Rows)
                 {
                     // 最初の明細行の場合
                     if (blnSheetCreate)
@@ -2075,10 +2075,10 @@ namespace KATO.Business.A0020_UriageInput
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B37").Value = "";      // 郵便番号
-                            currentsheet.Cell("B38").Value = "";      // 住所１
-                            currentsheet.Cell("B39").Value = "";      // 住所２
-                            currentsheet.Cell("B41").Value = "";      // 得意先名
+                            //currentsheet.Cell("B37").Value = "";      // 郵便番号
+                            //currentsheet.Cell("B38").Value = "";      // 住所１
+                            //currentsheet.Cell("B39").Value = "";      // 住所２
+                            //currentsheet.Cell("B41").Value = "";      // 得意先名
                             currentsheet.Cell("N56").Value = "";      // 税抜合計金額
                             currentsheet.Cell("N58").Value = "";      // 消費税
                             currentsheet.Cell("N60").Value = "";      // 税込合計金額
@@ -2107,7 +2107,7 @@ namespace KATO.Business.A0020_UriageInput
 
                 // ClosedXMLで1行ずつExcelに出力
                 //受領書の出力
-                foreach (DataRow drNouhinHikae in dtNouhinHikae.Rows)
+                foreach (DataRow drNouhinHikae in dtJuryo.Rows)
                 {
                     // 最初の明細行の場合
                     if (blnSheetCreate)
@@ -2132,10 +2132,10 @@ namespace KATO.Business.A0020_UriageInput
                         else
                         {
                             //代納の場合は以下の値を空欄にする。
-                            currentsheet.Cell("B68").Value = "";       // 郵便番号
-                            currentsheet.Cell("B69").Value = "";       // 住所１
-                            currentsheet.Cell("B70").Value = "";       // 住所２
-                            currentsheet.Cell("B72").Value = "";      // 得意先名
+                            //currentsheet.Cell("B68").Value = "";       // 郵便番号
+                            //currentsheet.Cell("B69").Value = "";       // 住所１
+                            //currentsheet.Cell("B70").Value = "";       // 住所２
+                            //currentsheet.Cell("B72").Value = "";      // 得意先名
                         }
 
                     }

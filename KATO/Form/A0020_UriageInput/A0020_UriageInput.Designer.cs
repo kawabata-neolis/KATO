@@ -414,6 +414,7 @@
             this.txtYubin.Size = new System.Drawing.Size(134, 22);
             this.txtYubin.TabIndex = 90;
             this.txtYubin.TabStop = false;
+            this.txtYubin.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // txtAdr1
             // 
@@ -423,6 +424,7 @@
             this.txtAdr1.Size = new System.Drawing.Size(329, 22);
             this.txtAdr1.TabIndex = 92;
             this.txtAdr1.TabStop = false;
+            this.txtAdr1.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel2
             // 
@@ -444,6 +446,7 @@
             this.txtAdr2.Size = new System.Drawing.Size(329, 22);
             this.txtAdr2.TabIndex = 94;
             this.txtAdr2.TabStop = false;
+            this.txtAdr2.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel3
             // 
@@ -465,6 +468,7 @@
             this.txtTname.Size = new System.Drawing.Size(329, 22);
             this.txtTname.TabIndex = 96;
             this.txtTname.TabStop = false;
+            this.txtTname.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel4
             // 
@@ -554,10 +558,11 @@
             // txtTekiyo
             // 
             this.txtTekiyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTekiyo.Location = new System.Drawing.Point(146, 550);
+            this.txtTekiyo.Location = new System.Drawing.Point(142, 550);
             this.txtTekiyo.Name = "txtTekiyo";
             this.txtTekiyo.Size = new System.Drawing.Size(329, 22);
             this.txtTekiyo.TabIndex = 6;
+            this.txtTekiyo.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel11
             // 
@@ -600,6 +605,7 @@
             this.txtBusyo_C.Name = "txtBusyo_C";
             this.txtBusyo_C.Size = new System.Drawing.Size(141, 22);
             this.txtBusyo_C.TabIndex = 6;
+            this.txtBusyo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // txtName_C
             // 
@@ -608,6 +614,7 @@
             this.txtName_C.Name = "txtName_C";
             this.txtName_C.Size = new System.Drawing.Size(319, 22);
             this.txtName_C.TabIndex = 4;
+            this.txtName_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // txtTelNo_C
             // 
@@ -616,6 +623,7 @@
             this.txtTelNo_C.Name = "txtTelNo_C";
             this.txtTelNo_C.Size = new System.Drawing.Size(141, 22);
             this.txtTelNo_C.TabIndex = 5;
+            this.txtTelNo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // txtAdr2_C
             // 
@@ -624,6 +632,7 @@
             this.txtAdr2_C.Name = "txtAdr2_C";
             this.txtAdr2_C.Size = new System.Drawing.Size(319, 22);
             this.txtAdr2_C.TabIndex = 3;
+            this.txtAdr2_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel23
             // 
@@ -656,6 +665,7 @@
             this.txtAdr1_C.Name = "txtAdr1_C";
             this.txtAdr1_C.Size = new System.Drawing.Size(319, 22);
             this.txtAdr1_C.TabIndex = 2;
+            this.txtAdr1_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // baseLabel22
             // 
@@ -688,6 +698,7 @@
             this.txtCyoku.Name = "txtCyoku";
             this.txtCyoku.Size = new System.Drawing.Size(141, 22);
             this.txtCyoku.TabIndex = 0;
+            this.txtCyoku.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCyoku_KeyDown);
             this.txtCyoku.Leave += new System.EventHandler(this.txtCyoku_Leave);
             // 
@@ -734,14 +745,17 @@
             this.txtYubin_C.Name = "txtYubin_C";
             this.txtYubin_C.Size = new System.Drawing.Size(82, 22);
             this.txtYubin_C.TabIndex = 1;
+            this.txtYubin_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             // 
             // cboNounyu
             // 
             this.cboNounyu.FormattingEnabled = true;
-            this.cboNounyu.Location = new System.Drawing.Point(146, 587);
+            this.cboNounyu.Location = new System.Drawing.Point(142, 587);
             this.cboNounyu.Name = "cboNounyu";
             this.cboNounyu.Size = new System.Drawing.Size(329, 20);
             this.cboNounyu.TabIndex = 7;
+            this.cboNounyu.SelectedIndexChanged += new System.EventHandler(this.txtModified);
+            this.cboNounyu.TextUpdate += new System.EventHandler(this.txtModified);
             // 
             // baseLabel17
             // 
@@ -1131,6 +1145,7 @@
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
+            this.txtYMD.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtYMD.Leave += new System.EventHandler(this.txtYMD_Leave);
             // 
             // labelSet_Tantousha
