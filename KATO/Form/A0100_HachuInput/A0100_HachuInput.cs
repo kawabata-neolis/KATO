@@ -86,6 +86,7 @@ namespace KATO.Form.A0100_HachuInput
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF08.Text = STR_FUNC_F8_RIREKI;
             this.btnF09.Text = STR_FUNC_F9;
+            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             txtHachuYMD.Text = DateTime.Today.ToString();
@@ -272,6 +273,8 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    printHachuInput();
                     break;
                 case Keys.F12:
                     this.Close();
@@ -1569,6 +1572,84 @@ namespace KATO.Form.A0100_HachuInput
 
             //規定の計算で掛け率を記入
             txtKakeritsu.Text = ((decTanka / decTeka) * 100).ToString("0.0");
+        }
+
+        ///<summary>
+        ///printHachuInput
+        ///印刷ダイアログ
+        ///</summary>
+        private void printHachuInput()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtPrintData = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //年月日として使える入力項目かチェック
+            txtHachuYMD.chkDateDataFormat(txtHachuYMD.Text);
+
+            //取引先コードがない場合(新規登録のロジックを入れる)
+            if (txtHachuban.blIsEmpty() == false)
+            {
+                //
+
+
+                return;
+            }
+
+            //ビジネス層のインスタンス生成
+            A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtPrintData = hachuB.getHachu(textSet_Torihikisaki.CodeTxtText);
+
+                //１件以上データがない場合
+                if (dtPrintData.Rows.Count < 1)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                ////プレビューの場合
+                //if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                //{
+                //    //結果セットをレコードセットに
+                //    strFile = hachuB.dbToPdf(dtPrintData, dtPrintData);
+
+                //    // プレビュー
+                //    pf.execPreview(strFile);
+                //}
+                //// 一括印刷の場合
+                //else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                //{
+                //    // PDF作成
+                //    strFile = hachuB.dbToPdf(dtPrintData, dtPrintData);
+
+                //    // 一括印刷
+                //    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                //}
+
+
+                //発注テーブルの該当発注番号の印刷フラグを立てる
+
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
         }
 
         ///<summary>
