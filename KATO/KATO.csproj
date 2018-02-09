@@ -1683,6 +1683,12 @@
     <Content Include="SQL\A0030_ShireInput\ShireInput_Shiremeisai_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0100_HachuInput\HachuInput_JuchuInputData_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0100_HachuInput\HachuInput_TantoshaData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
     <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_UPDATE.sql">
