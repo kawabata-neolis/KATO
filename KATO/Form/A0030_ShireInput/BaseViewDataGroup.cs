@@ -28,27 +28,6 @@ namespace KATO.Form.A0030_ShireInput
         }
 
         ///<summary>
-        ///delData
-        ///入力項目削除
-        ///</summary>
-        public void delData()
-        {
-            txtNo.Clear();
-            txtChumonNo.Clear();
-            txtHin.Clear();
-            txtSu.Clear();
-            txtTanka.Clear();
-            txtKin.Clear();
-            txtBiko.Clear();
-            labelSet_Eigyosho.codeTxt.Clear();
-            txtTeka.Clear();
-            txtShireritsu.Clear();
-            txtChokinTanka.Clear();
-            txtMasterTanka.Clear();
-            txtTokuisaki.Clear();
-        }
-
-        ///<summary>
         ///setData
         ///項目にデータを入れる
         ///</summary>
@@ -389,9 +368,18 @@ namespace KATO.Form.A0030_ShireInput
                 txtBiko.Clear();
                 labelSet_Eigyosho.codeTxt.Clear();
                 labelSet_Eigyosho.chkTxtEigyousho();
+                txtTeka.Text = "0";
+                txtChokinTanka.Text = "0";
+                txtChokinTanka.updPriceMethod();
+                txtMasterTanka.Text = "0";
+                txtMasterTanka.updPriceMethod();
+                txtJuchuNo.Clear();
+                txtJuchuTanka.Clear();
+                txtTankaSub.Clear();
 
-                setGokeiKesan();
                 strShireChuNo = null;
+                txtHin.TabStop = true;
+                txtHin.Enabled = true;
                 return;
             }
 
@@ -472,10 +460,15 @@ namespace KATO.Form.A0030_ShireInput
                             txtChokinTanka.updPriceMethod();
                             txtMasterTanka.Text = "0";
                             txtMasterTanka.updPriceMethod();
+                            txtJuchuNo.Clear();
+                            txtJuchuTanka.Clear();
+                            txtTankaSub.Clear();
 
                             txtChumonNo.Focus();
 
                             strShireChuNo = null;
+                            txtHin.TabStop = true;
+                            txtHin.Enabled = true;
                             return;
                         }
 
@@ -506,10 +499,15 @@ namespace KATO.Form.A0030_ShireInput
                                     txtChokinTanka.updPriceMethod();
                                     txtMasterTanka.Text = "0";
                                     txtMasterTanka.updPriceMethod();
+                                    txtJuchuNo.Clear();
+                                    txtJuchuTanka.Clear();
+                                    txtTankaSub.Clear();
 
                                     txtChumonNo.Focus();
 
                                     strShireChuNo = null;
+                                    txtHin.TabStop = true;
+                                    txtHin.Enabled = true;
                                     return;
                                 }
                                 else
@@ -545,30 +543,35 @@ namespace KATO.Form.A0030_ShireInput
                         {
                             shireinput.gbData1.txtNo.Text = shortCntG.ToString();
                             shireinput.gbData1.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                            shireinput.txtJuchu1.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数２の場合
                         else if (shireinput.shotCnt == 2)
                         {
                             shireinput.gbData2.txtNo.Text = shortCntG.ToString();
                             shireinput.gbData2.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                            shireinput.txtJuchu2.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数３の場合
                         else if (shireinput.shotCnt == 3)
                         {
                             shireinput.gbData3.txtNo.Text = shortCntG.ToString();
                             shireinput.gbData3.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                            shireinput.txtJuchu3.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数４の場合
                         else if (shireinput.shotCnt == 4)
                         {
                             shireinput.gbData4.txtNo.Text = shortCntG.ToString();
                             shireinput.gbData4.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                            shireinput.txtJuchu4.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数５の場合
                         else if (shireinput.shotCnt == 5)
                         {
                             shireinput.gbData5.txtNo.Text = shortCntG.ToString();
                             shireinput.gbData5.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
+                            shireinput.txtJuchu5.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                     }
 
@@ -651,6 +654,14 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     txtHin.Text = strHinmei;
+                    txtHin.TabStop = false;
+                    txtHin.Enabled = false;
+
+                    //フォーカスがtxtHinの場合
+                    if (ActiveControl.Name == "txtHin")
+                    {
+                        SendKeys.Send("{TAB}");
+                    }
 
                     //発注数量から仕入済数量を引く
                     txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
@@ -730,103 +741,6 @@ namespace KATO.Form.A0030_ShireInput
                     return;
                 }
 
-                ////ヘッダー
-                ////SQLファイルのパス取得
-                //strSQLInput = opensql.setOpenSQL(lstSQLHeader);
-
-                ////パスがなければ返す
-                //if (strSQLInput == "")
-                //{
-                //    return;
-                //}
-
-                ////SQLファイルと該当コードでフォーマット
-                //strSQLInput = string.Format(strSQLInput, shireinput.txtDenpyoNo.Text);
-
-                ////SQL接続後、該当データを取得
-                //dtSetCd_B_Header = dbconnective.ReadSql(strSQLInput);
-
-                ////データがある場合
-                //if (dtSetCd_B_Header.Rows.Count > 0)
-                //{
-                //    shireinput.txtYMD.Text = dtSetCd_B_Header.Rows[0]["伝票年月日"].ToString();
-                //    shireinput.txtCD.Text = dtSetCd_B_Header.Rows[0]["仕入先コード"].ToString();
-                //    shireinput.txtYubinView.Text = dtSetCd_B_Header.Rows[0]["郵便番号"].ToString();
-                //    shireinput.txtJusho1View.Text = dtSetCd_B_Header.Rows[0]["住所１"].ToString();
-                //    shireinput.txtJusho2View.Text = dtSetCd_B_Header.Rows[0]["住所２"].ToString();
-                //    shireinput.labelSet_Torihikikbn.CodeTxtText = dtSetCd_B_Header.Rows[0]["取引区分"].ToString();
-                //    shireinput.labelSet_Tantousha.CodeTxtText = dtSetCd_B_Header.Rows[0]["担当者コード"].ToString();
-                //    shireinput.txtEigyouCd.Text = dtSetCd_B_Header.Rows[0]["営業所コード"].ToString();
-                //    shireinput.txtTekiyo.Text = dtSetCd_B_Header.Rows[0]["摘要欄"].ToString();
-                //    shireinput.txtGokei.Text = dtSetCd_B_Header.Rows[0]["税抜合計金額"].ToString();
-                //    shireinput.txtShohizei.Text = dtSetCd_B_Header.Rows[0]["消費税"].ToString();
-                //    shireinput.txtSogokei.Text = dtSetCd_B_Header.Rows[0]["税込合計金額"].ToString();
-                //    shireinput.txtUnchin.Text = dtSetCd_B_Header.Rows[0]["運賃"].ToString();
-
-                //    //金額系の表示修正
-                //    shireinput.txtGokei.updPriceMethod();
-                //    shireinput.txtShohizei.updPriceMethod();
-                //    shireinput.txtSogokei.updPriceMethod();
-                //    shireinput.txtUnchin.updPriceMethod();
-
-                //    //初期化
-                //    strSQLInput = "";
-
-                //    //カウント
-                //    //SQLファイルのパス取得
-                //    strSQLInput = opensql.setOpenSQL(lstSQLCount);
-
-                //    //パスがなければ返す
-                //    if (strSQLInput == "")
-                //    {
-                //        return;
-                //    }
-
-                //    //SQLファイルと該当コードでフォーマット
-                //    strSQLInput = string.Format(strSQLInput, txtChumonNo.Text);
-
-                //    //SQL接続後、該当データを取得
-                //    dtSetCd_B_Count = dbconnective.ReadSql(strSQLInput);
-
-                //    //データがある場合
-                //    if (int.Parse(dtSetCd_B_Count.Rows[0][0].ToString()) > 0)
-                //    {
-                //        //メッセージ
-                //        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, "検収済みの収入です。変更は不可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //        basemessagebox.ShowDialog();
-
-                //        shireinput.btnF01.Enabled = false;
-                //        shireinput.btnF03.Enabled = false;
-                //        shireinput.btnF07.Enabled = false;
-                //    }
-                //}
-                //else
-                //{
-                //    //メッセージ
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
-
-                //    shireinput.blRock = false;
-
-                //    txtNo.Clear();
-                //    txtChumonNo.Clear();
-                //    txtHin.Clear();
-                //    txtSu.Clear();
-                //    txtTanka.Clear();
-                //    txtKin.Clear();
-                //    txtBiko.Clear();
-                //    labelSet_Eigyosho.codeTxt.Clear();
-                //    labelSet_Eigyosho.chkTxtEigyousho();
-                //    txtTeka.Text = "0";
-
-                //    setGokeiKesan();
-
-                //    txtChumonNo.Focus();
-
-                //    strShireChuNo = null;
-                //    return;
-                //}
-
                 //初期化 
                 strSQLInput = "";
 
@@ -893,12 +807,6 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-            //数量と単価、四捨五入による計算、金額に記入
-            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
-            //txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
-
-
-//要確認
             txtKin.Text = (int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
             txtKin.updPriceMethod();
 
@@ -936,7 +844,6 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-//要確認
             txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
             txtKin.updPriceMethod();
 
@@ -1319,7 +1226,7 @@ namespace KATO.Form.A0030_ShireInput
         ///delText
         ///全てのテキストを白紙にする
         ///</summary>
-        private void delText()
+        public void delText()
         {
             txtNo.Clear();
             txtChumonNo.Clear();
@@ -1348,6 +1255,8 @@ namespace KATO.Form.A0030_ShireInput
             txtChokinTanka.Clear();
             txtMasterTanka.Clear();
             txtTokuisaki.Clear();
+            txtHin.TabStop = true;
+            txtHin.Enabled = true;
         }
 
         ///<summary>
@@ -1416,7 +1325,7 @@ namespace KATO.Form.A0030_ShireInput
         ///setGokeiKesan
         ///合計計算
         ///</summary>
-        private void setGokeiKesan()
+        public void setGokeiKesan()
         {
             //親画面の情報取得
             A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
@@ -1467,19 +1376,29 @@ namespace KATO.Form.A0030_ShireInput
                 decGokei = decGokei + decimal.Parse(shireinput.gbData1.txtKin.Text.Trim());
             }
 
+            //2行目
+            if (decimal.TryParse(shireinput.gbData2.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData2.txtKin.Text.Trim());
+            }
 
-            decGokei = decGokei + decimal.Parse(shireinput.gbData1.txtKin.Text.Trim());
-            decGokei = decGokei + decimal.Parse(shireinput.gbData2.txtKin.Text.Trim());
-            decGokei = decGokei + decimal.Parse(shireinput.gbData3.txtKin.Text.Trim());
-            decGokei = decGokei + decimal.Parse(shireinput.gbData4.txtKin.Text.Trim());
-            decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
+            //3行目
+            if (decimal.TryParse(shireinput.gbData3.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData3.txtKin.Text.Trim());
+            }
 
-            ////入力されている行数分ループ
-            //for (intCnt = 0; intCnt <= shireinput.intMaxRow; intCnt++)
-            //{
-            //    //各行の入力金額を追加
-            //    decGokei = decGokei + decimal.Parse(txtKin.Text.Trim());
-            //}
+            //4行目
+            if (decimal.TryParse(shireinput.gbData4.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData4.txtKin.Text.Trim());
+            }
+
+            //5行目
+            if (decimal.TryParse(shireinput.gbData5.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
+            }
 
             //運賃が記入されていない場合
             if (!StringUtl.blIsEmpty(shireinput.txtUnchin.Text)) {
@@ -1491,6 +1410,7 @@ namespace KATO.Form.A0030_ShireInput
                 
             //合計に入れる
             shireinput.txtGokei.Text = decGokei.ToString();
+            shireinput.txtGokei.updPriceMethod();
 
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -1546,6 +1466,7 @@ namespace KATO.Form.A0030_ShireInput
                         shireinput.txtShohizei.Text = "0";
                         //総合計を合計と同じ数値
                         shireinput.txtSogokei.Text = decGokei.ToString();
+                        shireinput.txtSogokei.updPriceMethod();
                         return;
                     }
 
@@ -1556,6 +1477,7 @@ namespace KATO.Form.A0030_ShireInput
                         shireinput.txtShohizei.Text = "0";
                         //総合計を合計と同じ数値
                         shireinput.txtSogokei.Text = decGokei.ToString();
+                        shireinput.txtSogokei.updPriceMethod();
                         return;
                     }
 
@@ -1642,6 +1564,7 @@ namespace KATO.Form.A0030_ShireInput
 
                     //仕入入力画面の総合計に記入
                     shireinput.txtSogokei.Text = (int.Parse(shireinput.txtGokei.Text) + int.Parse(shireinput.txtShohizei.Text)).ToString();
+                    shireinput.txtSogokei.updPriceMethod();
                 }
                 return;
             }
@@ -1978,6 +1901,72 @@ namespace KATO.Form.A0030_ShireInput
 
                 default:
                     break;
+            }
+        }
+
+        ///<summary>
+        ///txtJuchuNo_TextChanged
+        ///受注番号が変わった場合
+        ///</summary>
+        private void txtJuchuNo_TextChanged(object sender, EventArgs e)
+        {
+            //受注単価の初期化
+            txtJuchuTanka.Clear();
+
+            //受注番号が空白の場合
+            if (txtJuchuNo.blIsEmpty() == false)
+            {
+                return;
+            }
+
+            DataTable dtJuchuTanka = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
+                // dbo.f_get受注番号から受注単価を実行
+                dtJuchuTanka = dbconnective.ReadSql("dbo.f_get受注番号から受注単価 '" + txtJuchuNo.Text + "'");
+
+                //データがあるなら
+                if (dtJuchuTanka.Rows.Count > 0)
+                {
+                    txtJuchuTanka.Text = dtJuchuTanka.Rows[0][0].ToString();
+                }
+                
+                return;
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///txtKeyPress
+        ///No.と注文Noでの入力キー処理
+        ///</summary>
+        private void txtKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
             }
         }
     }

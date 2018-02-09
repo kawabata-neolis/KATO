@@ -1650,6 +1650,9 @@
     <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuTokusaikimei_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_Tantosha_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_ShohinCd_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

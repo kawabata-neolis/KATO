@@ -1668,8 +1668,8 @@ namespace KATO.Business.A0030_ShireInput
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("Common");
-            lstSQL.Add("C_TantoshaCd_Select");
+            lstSQL.Add("A0030_ShireInput");
+            lstSQL.Add("ShireInput_Tantosha_SELECT");
 
             //SQL発行
             OpenSQL opensql = new OpenSQL();
