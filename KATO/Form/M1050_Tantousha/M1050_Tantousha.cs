@@ -545,10 +545,24 @@ namespace KATO.Form.M1050_Tantousha
 
             //ビジネス層のインスタンス生成
             M1050_Tantousha_B tantouB = new M1050_Tantousha_B();
+            //検索時のデータ取り出し先
+            DataTable dtSetCd;
+            // データ存在チェック用フラグ【新規登録以外の場合、メニュー権限の登録を行わない】
+            bool dataflag = false;
             try
             {
+
+                //戻り値のDatatableを取り込む
+                dtSetCd = tantouB.getTxtTantoshaLeave(txtTantoushaCd.Text);
+
+                //検索結果にデータが存在しなければ終了
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    dataflag = true;
+                }
+
                 //登録
-                tantouB.addTantousha(lstTantousha);
+                tantouB.addTantousha(lstTantousha, dataflag);
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);

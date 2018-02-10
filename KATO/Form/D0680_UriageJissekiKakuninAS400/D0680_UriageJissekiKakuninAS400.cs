@@ -85,9 +85,9 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
             labelSet_Tokuisaki.Focus();
 
             // 伝票年月日の設定
-            txtCalendarYMDStart.Text = "2005/04/30";
-            DateTime dateYMDStart = DateTime.Parse(txtCalendarYMDStart.Text);
-            txtCalendarYMDStart.Text = dateYMDStart.AddMonths(-1).ToString().Substring(0, 8) + "01";
+            txtCalendarYMDEnd.Text = "2005/04/30";
+            DateTime dateYMDEnd = DateTime.Parse(txtCalendarYMDEnd.Text);
+            txtCalendarYMDStart.Text = dateYMDEnd.AddMonths(-1).ToString().Substring(0, 8) + "01";
 
             // DataGridViewの初期設定
             SetUpGrid();
@@ -183,7 +183,62 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
                 }
             }
         }
+        /// <summary>
+        /// judTextboxKeyDown
+        /// キー入力判定(テキストボックス【labelset及びカレンダ以外全て】)
+        /// </summary>
+        private void judTextboxKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    // タブ機能
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
 
+                default:
+                    break;
+            }
+        }
         /// <summary>
         /// D0680_UriageJissekiKakuninAS400
         /// キー入力判定

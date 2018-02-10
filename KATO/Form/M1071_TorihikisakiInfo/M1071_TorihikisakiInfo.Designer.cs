@@ -101,6 +101,9 @@
             this.lblNameS = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbSeikyu = new System.Windows.Forms.GroupBox();
             this.gbSime = new System.Windows.Forms.GroupBox();
+            this.txtNohinnshoumu = new KATO.Common.Ctl.BaseText();
+            this.lblNohinnshoumu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel15 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtSihabi = new KATO.Common.Ctl.BaseText();
             this.lblSihabi = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtSihatuki = new KATO.Common.Ctl.BaseText();
@@ -1199,6 +1202,9 @@
             // 
             // gbSime
             // 
+            this.gbSime.Controls.Add(this.txtNohinnshoumu);
+            this.gbSime.Controls.Add(this.lblNohinnshoumu);
+            this.gbSime.Controls.Add(this.baseLabel15);
             this.gbSime.Controls.Add(this.txtSihabi);
             this.gbSime.Controls.Add(this.lblSihabi);
             this.gbSime.Controls.Add(this.txtSihatuki);
@@ -1223,12 +1229,49 @@
             this.gbSime.TabIndex = 95;
             this.gbSime.TabStop = false;
             // 
+            // txtNohinnshoumu
+            // 
+            this.txtNohinnshoumu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNohinnshoumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtNohinnshoumu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtNohinnshoumu.Location = new System.Drawing.Point(383, 82);
+            this.txtNohinnshoumu.MaxLength = 1;
+            this.txtNohinnshoumu.Name = "txtNohinnshoumu";
+            this.txtNohinnshoumu.ReadOnly = true;
+            this.txtNohinnshoumu.Size = new System.Drawing.Size(24, 22);
+            this.txtNohinnshoumu.TabIndex = 97;
+            this.txtNohinnshoumu.TabStop = false;
+            // 
+            // lblNohinnshoumu
+            // 
+            this.lblNohinnshoumu.AutoSize = true;
+            this.lblNohinnshoumu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblNohinnshoumu.Location = new System.Drawing.Point(292, 85);
+            this.lblNohinnshoumu.Name = "lblNohinnshoumu";
+            this.lblNohinnshoumu.Size = new System.Drawing.Size(87, 15);
+            this.lblNohinnshoumu.strToolTip = "０：無　１：有";
+            this.lblNohinnshoumu.TabIndex = 98;
+            this.lblNohinnshoumu.Text = "請求書有無";
+            this.lblNohinnshoumu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel15
+            // 
+            this.baseLabel15.AutoSize = true;
+            this.baseLabel15.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F);
+            this.baseLabel15.Location = new System.Drawing.Point(293, 106);
+            this.baseLabel15.Name = "baseLabel15";
+            this.baseLabel15.Size = new System.Drawing.Size(89, 12);
+            this.baseLabel15.strToolTip = "";
+            this.baseLabel15.TabIndex = 99;
+            this.baseLabel15.Text = "(0：無　1：有)";
+            this.baseLabel15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // txtSihabi
             // 
             this.txtSihabi.BackColor = System.Drawing.SystemColors.Window;
             this.txtSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihabi.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSihabi.Location = new System.Drawing.Point(394, 13);
+            this.txtSihabi.Location = new System.Drawing.Point(384, 10);
             this.txtSihabi.MaxLength = 2;
             this.txtSihabi.Name = "txtSihabi";
             this.txtSihabi.ReadOnly = true;
@@ -1240,7 +1283,7 @@
             // 
             this.lblSihabi.AutoSize = true;
             this.lblSihabi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSihabi.Location = new System.Drawing.Point(337, 16);
+            this.lblSihabi.Location = new System.Drawing.Point(327, 13);
             this.lblSihabi.Name = "lblSihabi";
             this.lblSihabi.Size = new System.Drawing.Size(55, 15);
             this.lblSihabi.strToolTip = "月末払いは３１";
@@ -1253,7 +1296,7 @@
             this.txtSihatuki.BackColor = System.Drawing.SystemColors.Window;
             this.txtSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihatuki.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtSihatuki.Location = new System.Drawing.Point(218, 13);
+            this.txtSihatuki.Location = new System.Drawing.Point(233, 12);
             this.txtSihatuki.MaxLength = 2;
             this.txtSihatuki.Name = "txtSihatuki";
             this.txtSihatuki.ReadOnly = true;
@@ -1265,7 +1308,7 @@
             // 
             this.lblSihatuki.AutoSize = true;
             this.lblSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSihatuki.Location = new System.Drawing.Point(141, 16);
+            this.lblSihatuki.Location = new System.Drawing.Point(156, 15);
             this.lblSihatuki.Name = "lblSihatuki";
             this.lblSihatuki.Size = new System.Drawing.Size(71, 15);
             this.lblSihatuki.strToolTip = "当月：０　翌月：１　翌々月：２";
@@ -2254,6 +2297,7 @@
             this.Text = "M1071_TorihikisakiInfo";
             this.Load += new System.EventHandler(this.M1071_TorihikisakiInfo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTorihikiKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -2453,5 +2497,8 @@
         private Common.Ctl.BaseLabel baseLabel13;
         private Common.Ctl.BaseLabel lblZeikbn;
         private System.Windows.Forms.GroupBox gbSohusaki;
+        private Common.Ctl.BaseText txtNohinnshoumu;
+        private Common.Ctl.BaseLabel lblNohinnshoumu;
+        private Common.Ctl.BaseLabel baseLabel15;
     }
 }

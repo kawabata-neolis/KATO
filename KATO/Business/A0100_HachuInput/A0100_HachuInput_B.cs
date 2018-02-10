@@ -637,10 +637,6 @@ namespace KATO.Business.A0100_HachuInput_B
             strSql += " WHERE 削除 = 'N' ";
             strSql += " AND 発注番号='" + strHachuNo + "'";
 
-            //strSql += " AND 印刷フラグ = '0' ";
-            //strSql += " AND CONVERT(VARCHAR(10),更新日時,111) ='" + DateTime.Now.ToShortDateString() + "'";
-            //strSql += " AND 更新ユーザー名='" + Environment.UserName + "'";
-            //strSql += " AND 仕入先コード='" + strShireCd + "'";
             strSql += " ORDER BY 仕入先コード,仕入先名称,発注番号";
 
             // DBConnectiveのインスタンス作成
@@ -709,7 +705,6 @@ namespace KATO.Business.A0100_HachuInput_B
 
                                 // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
                                 templatesheet.CopyTo(templatesheet.Name);
-                                //templatesheet.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
                             }
 
                             // 不要な明細行を削除
@@ -742,7 +737,6 @@ namespace KATO.Business.A0100_HachuInput_B
 
                         // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
                         templatesheet.CopyTo(templatesheet.Name);
-                        //this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
                     }
 
                     // 最初の明細行の場合
@@ -810,7 +804,6 @@ namespace KATO.Business.A0100_HachuInput_B
                 int[] topRow = { 2 };
                 int[] leftColumn = { 8 };
                 pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 57);
-                //pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 160, 0, 80);
 
                 // PDF化の処理
                 return pdf.createPdf(strOutXlsFile, strDateTime);

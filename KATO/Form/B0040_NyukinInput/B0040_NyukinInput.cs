@@ -101,14 +101,15 @@ namespace KATO.Form.B0040_NyukinInput
                 if (dtTantoshaCd.Rows.Count > 0)
                 {
                     //一行目にデータがない場合
-                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    if (dtTantoshaCd.Rows[0]["担当者コード"].ToString() == "")
                     {
                         return;
                     }
                 }
 
-                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
                 labelSet_Tantousha.chkTxtTantosha();
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
             }
             catch (Exception ex)
             {
@@ -116,7 +117,7 @@ namespace KATO.Form.B0040_NyukinInput
                 new CommonException(ex);
 
                 // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
             }
 
@@ -956,10 +957,27 @@ namespace KATO.Form.B0040_NyukinInput
             string strDenpyoNo = "";
             Control ctlGb = this.Controls["gbNyukinInput"];
 
-            // 日付制限チェック
-            if (!dateCheck())
+            // 空文字判定（伝票年月日）
+            if (txtYMD.blIsEmpty() == false)
             {
-                txtYMD.Focus();
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 空文字判定（得意先コード）
+            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 入力チェック（得意先コード（取引先））
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
                 return;
             }
 
@@ -979,6 +997,13 @@ namespace KATO.Form.B0040_NyukinInput
                         return;
                     }
                 }
+            }
+
+            // 日付制限チェック
+            if (!dateCheck())
+            {
+                txtYMD.Focus();
+                return;
             }
 
             B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
@@ -1434,6 +1459,7 @@ namespace KATO.Form.B0040_NyukinInput
             {
                 return false;
             }
+
             B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
             try
             {

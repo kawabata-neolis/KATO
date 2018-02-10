@@ -206,6 +206,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // 非表示項目（商品コード）
             setColumn(shohinCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "#", 0);
             gridShohin.Columns[12].Visible = false;
+
         }
 
         /// <summary>
@@ -346,6 +347,38 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             }
         }
 
+
+        /// <summary>
+        /// gridShohin_EditingConShow
+        /// グリッドが編集モードに切り替わるときの処理
+        /// 数値のみの入力規制
+        /// </summary>
+        private void gridShohin_EditingConShow(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            //表示されているコントロールがDataGridViewTextBoxEditingControlか調べる
+            if (e.Control is DataGridViewTextBoxEditingControl)
+            {
+                DataGridView dgv = (DataGridView)sender;
+
+                //編集のために表示されているコントロールを取得
+                DataGridViewTextBoxEditingControl tb =
+                    (DataGridViewTextBoxEditingControl)e.Control;
+
+                //イベントハンドラを削除
+                tb.KeyPress -=
+                    new KeyPressEventHandler(tb_KeyPress);
+
+                //該当する列か調べる
+                if (dgv.CurrentCell.OwningColumn.Name == "定価")
+                {
+                    //KeyPressイベントハンドラを追加
+                    tb.KeyPress +=
+                        new KeyPressEventHandler(tb_KeyPress);
+                }
+            }
+        }
+
+
         /// <summary>
         /// btnHyoji_Click
         /// 一覧表示ボタン
@@ -356,6 +389,19 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 
             this.setShohin();
 
+        }
+
+        /// <summary>
+        /// tb_KeyPress
+        /// グリッドのセルのKeyPressイベント
+        /// </summary>
+        private void tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //0-9の文字のみを許可する
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            {
+                e.Handled = true;
+            }
         }
 
         /// <summary>

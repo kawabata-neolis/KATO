@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Tantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.lblset_Siiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.txtYMD = new KATO.Common.Ctl.BaseCalendar();
@@ -246,7 +246,7 @@
             this.labelSet_Tantousha.SpaceCodeValue = 4;
             this.labelSet_Tantousha.SpaceNameCode = 4;
             this.labelSet_Tantousha.SpaceValueAppend = 4;
-            this.labelSet_Tantousha.TabIndex = 7;
+            this.labelSet_Tantousha.TabIndex = 8;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
             // 
@@ -264,7 +264,7 @@
             this.lblset_Siiresaki.SpaceCodeValue = 4;
             this.lblset_Siiresaki.SpaceNameCode = 4;
             this.lblset_Siiresaki.SpaceValueAppend = 4;
-            this.lblset_Siiresaki.TabIndex = 0;
+            this.lblset_Siiresaki.TabIndex = 1;
             this.lblset_Siiresaki.ValueLabelSize = 300;
             this.lblset_Siiresaki.ValueLabelText = "";
             this.lblset_Siiresaki.Leave += new System.EventHandler(this.labelSet_Siiresaki_Leave);
@@ -276,7 +276,7 @@
             this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(87, 22);
-            this.txtYMD.TabIndex = 6;
+            this.txtYMD.TabIndex = 0;
             this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoYMDKeyDown);
             this.txtYMD.Leave += new System.EventHandler(this.updDenpyoYMDLeave);
@@ -376,7 +376,7 @@
             this.gbSiharaiInput.Location = new System.Drawing.Point(341, 105);
             this.gbSiharaiInput.Name = "gbSiharaiInput";
             this.gbSiharaiInput.Size = new System.Drawing.Size(777, 376);
-            this.gbSiharaiInput.TabIndex = 1;
+            this.gbSiharaiInput.TabIndex = 2;
             this.gbSiharaiInput.TabStop = false;
             // 
             // labelSet_Torihikikbn9
@@ -403,7 +403,7 @@
             this.labelSet_Torihikikbn9.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn9.SpaceNameCode = 4;
             this.labelSet_Torihikikbn9.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn9.TabIndex = 41;
+            this.labelSet_Torihikikbn9.TabIndex = 36;
             this.labelSet_Torihikikbn9.ValueLabelSize = 170;
             this.labelSet_Torihikikbn9.ValueLabelText = "";
             this.labelSet_Torihikikbn9.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -526,7 +526,7 @@
             this.txtBikou9.MaxLength = 40;
             this.txtBikou9.Name = "txtBikou9";
             this.txtBikou9.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou9.TabIndex = 44;
+            this.txtBikou9.TabIndex = 39;
             this.txtBikou9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -553,7 +553,7 @@
             this.labelSet_Torihikikbn8.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn8.SpaceNameCode = 4;
             this.labelSet_Torihikikbn8.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn8.TabIndex = 37;
+            this.labelSet_Torihikikbn8.TabIndex = 32;
             this.labelSet_Torihikikbn8.ValueLabelSize = 170;
             this.labelSet_Torihikikbn8.ValueLabelText = "";
             this.labelSet_Torihikikbn8.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -665,7 +665,7 @@
             this.txtBikou8.MaxLength = 40;
             this.txtBikou8.Name = "txtBikou8";
             this.txtBikou8.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou8.TabIndex = 40;
+            this.txtBikou8.TabIndex = 35;
             this.txtBikou8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -691,7 +691,7 @@
             this.labelSet_Torihikikbn7.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn7.SpaceNameCode = 4;
             this.labelSet_Torihikikbn7.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn7.TabIndex = 33;
+            this.labelSet_Torihikikbn7.TabIndex = 28;
             this.labelSet_Torihikikbn7.ValueLabelSize = 170;
             this.labelSet_Torihikikbn7.ValueLabelText = "";
             this.labelSet_Torihikikbn7.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -792,7 +792,7 @@
             this.txtBikou7.MaxLength = 40;
             this.txtBikou7.Name = "txtBikou7";
             this.txtBikou7.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou7.TabIndex = 36;
+            this.txtBikou7.TabIndex = 31;
             this.txtBikou7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -817,7 +817,7 @@
             this.labelSet_Torihikikbn6.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn6.SpaceNameCode = 4;
             this.labelSet_Torihikikbn6.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn6.TabIndex = 29;
+            this.labelSet_Torihikikbn6.TabIndex = 24;
             this.labelSet_Torihikikbn6.ValueLabelSize = 170;
             this.labelSet_Torihikikbn6.ValueLabelText = "";
             this.labelSet_Torihikikbn6.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -907,7 +907,7 @@
             this.txtBikou6.MaxLength = 40;
             this.txtBikou6.Name = "txtBikou6";
             this.txtBikou6.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou6.TabIndex = 32;
+            this.txtBikou6.TabIndex = 27;
             this.txtBikou6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -931,7 +931,7 @@
             this.labelSet_Torihikikbn5.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn5.SpaceNameCode = 4;
             this.labelSet_Torihikikbn5.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn5.TabIndex = 25;
+            this.labelSet_Torihikikbn5.TabIndex = 20;
             this.labelSet_Torihikikbn5.ValueLabelSize = 170;
             this.labelSet_Torihikikbn5.ValueLabelText = "";
             this.labelSet_Torihikikbn5.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1010,7 +1010,7 @@
             this.txtBikou5.MaxLength = 40;
             this.txtBikou5.Name = "txtBikou5";
             this.txtBikou5.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou5.TabIndex = 28;
+            this.txtBikou5.TabIndex = 23;
             this.txtBikou5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1026,7 +1026,7 @@
             this.txtShiharai9.MaxLength = 8;
             this.txtShiharai9.Name = "txtShiharai9";
             this.txtShiharai9.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai9.TabIndex = 42;
+            this.txtShiharai9.TabIndex = 37;
             this.txtShiharai9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1051,7 +1051,7 @@
             this.labelSet_Torihikikbn4.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn4.SpaceNameCode = 4;
             this.labelSet_Torihikikbn4.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn4.TabIndex = 21;
+            this.labelSet_Torihikikbn4.TabIndex = 16;
             this.labelSet_Torihikikbn4.ValueLabelSize = 170;
             this.labelSet_Torihikikbn4.ValueLabelText = "";
             this.labelSet_Torihikikbn4.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1123,7 +1123,7 @@
             this.txtShiharai8.MaxLength = 8;
             this.txtShiharai8.Name = "txtShiharai8";
             this.txtShiharai8.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai8.TabIndex = 38;
+            this.txtShiharai8.TabIndex = 33;
             this.txtShiharai8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1137,7 +1137,7 @@
             this.txtBikou4.MaxLength = 40;
             this.txtBikou4.Name = "txtBikou4";
             this.txtBikou4.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou4.TabIndex = 24;
+            this.txtBikou4.TabIndex = 19;
             this.txtBikou4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1153,7 +1153,7 @@
             this.txtShiharai7.MaxLength = 8;
             this.txtShiharai7.Name = "txtShiharai7";
             this.txtShiharai7.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai7.TabIndex = 34;
+            this.txtShiharai7.TabIndex = 29;
             this.txtShiharai7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1177,7 +1177,7 @@
             this.labelSet_Torihikikbn3.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn3.SpaceNameCode = 4;
             this.labelSet_Torihikikbn3.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn3.TabIndex = 17;
+            this.labelSet_Torihikikbn3.TabIndex = 12;
             this.labelSet_Torihikikbn3.ValueLabelSize = 170;
             this.labelSet_Torihikikbn3.ValueLabelText = "";
             this.labelSet_Torihikikbn3.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1238,7 +1238,7 @@
             this.txtShiharai6.MaxLength = 8;
             this.txtShiharai6.Name = "txtShiharai6";
             this.txtShiharai6.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai6.TabIndex = 30;
+            this.txtShiharai6.TabIndex = 25;
             this.txtShiharai6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1252,7 +1252,7 @@
             this.txtBikou3.MaxLength = 40;
             this.txtBikou3.Name = "txtBikou3";
             this.txtBikou3.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou3.TabIndex = 20;
+            this.txtBikou3.TabIndex = 15;
             this.txtBikou3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1268,7 +1268,7 @@
             this.txtShiharai5.MaxLength = 8;
             this.txtShiharai5.Name = "txtShiharai5";
             this.txtShiharai5.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai5.TabIndex = 26;
+            this.txtShiharai5.TabIndex = 21;
             this.txtShiharai5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1281,7 +1281,7 @@
             this.txtTegataYMD9.MaxLength = 10;
             this.txtTegataYMD9.Name = "txtTegataYMD9";
             this.txtTegataYMD9.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD9.TabIndex = 43;
+            this.txtTegataYMD9.TabIndex = 38;
             this.txtTegataYMD9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1302,7 +1302,7 @@
             this.labelSet_Torihikikbn2.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn2.SpaceNameCode = 4;
             this.labelSet_Torihikikbn2.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn2.TabIndex = 13;
+            this.labelSet_Torihikikbn2.TabIndex = 8;
             this.labelSet_Torihikikbn2.ValueLabelSize = 170;
             this.labelSet_Torihikikbn2.ValueLabelText = "";
             this.labelSet_Torihikikbn2.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1347,7 +1347,7 @@
             this.txtTegataYMD8.MaxLength = 10;
             this.txtTegataYMD8.Name = "txtTegataYMD8";
             this.txtTegataYMD8.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD8.TabIndex = 39;
+            this.txtTegataYMD8.TabIndex = 34;
             this.txtTegataYMD8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1363,7 +1363,7 @@
             this.txtShiharai4.MaxLength = 8;
             this.txtShiharai4.Name = "txtShiharai4";
             this.txtShiharai4.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai4.TabIndex = 22;
+            this.txtShiharai4.TabIndex = 17;
             this.txtShiharai4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1376,7 +1376,7 @@
             this.txtTegataYMD7.MaxLength = 10;
             this.txtTegataYMD7.Name = "txtTegataYMD7";
             this.txtTegataYMD7.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD7.TabIndex = 35;
+            this.txtTegataYMD7.TabIndex = 30;
             this.txtTegataYMD7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1388,7 +1388,7 @@
             this.txtBikou2.MaxLength = 40;
             this.txtBikou2.Name = "txtBikou2";
             this.txtBikou2.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou2.TabIndex = 16;
+            this.txtBikou2.TabIndex = 11;
             this.txtBikou2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1399,7 +1399,7 @@
             this.txtTegataYMD6.MaxLength = 10;
             this.txtTegataYMD6.Name = "txtTegataYMD6";
             this.txtTegataYMD6.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD6.TabIndex = 31;
+            this.txtTegataYMD6.TabIndex = 26;
             this.txtTegataYMD6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1415,7 +1415,7 @@
             this.txtShiharai3.MaxLength = 8;
             this.txtShiharai3.Name = "txtShiharai3";
             this.txtShiharai3.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai3.TabIndex = 18;
+            this.txtShiharai3.TabIndex = 13;
             this.txtShiharai3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1428,7 +1428,7 @@
             this.txtTegataYMD5.MaxLength = 10;
             this.txtTegataYMD5.Name = "txtTegataYMD5";
             this.txtTegataYMD5.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD5.TabIndex = 27;
+            this.txtTegataYMD5.TabIndex = 22;
             this.txtTegataYMD5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1447,7 +1447,7 @@
             this.labelSet_Torihikikbn1.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn1.SpaceNameCode = 4;
             this.labelSet_Torihikikbn1.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn1.TabIndex = 9;
+            this.labelSet_Torihikikbn1.TabIndex = 4;
             this.labelSet_Torihikikbn1.ValueLabelSize = 170;
             this.labelSet_Torihikikbn1.ValueLabelText = "";
             this.labelSet_Torihikikbn1.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1470,7 +1470,7 @@
             this.txtTegataYMD4.MaxLength = 10;
             this.txtTegataYMD4.Name = "txtTegataYMD4";
             this.txtTegataYMD4.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD4.TabIndex = 23;
+            this.txtTegataYMD4.TabIndex = 18;
             this.txtTegataYMD4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1486,7 +1486,7 @@
             this.txtShiharai2.MaxLength = 8;
             this.txtShiharai2.Name = "txtShiharai2";
             this.txtShiharai2.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai2.TabIndex = 14;
+            this.txtShiharai2.TabIndex = 9;
             this.txtShiharai2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1499,7 +1499,7 @@
             this.txtTegataYMD3.MaxLength = 10;
             this.txtTegataYMD3.Name = "txtTegataYMD3";
             this.txtTegataYMD3.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD3.TabIndex = 19;
+            this.txtTegataYMD3.TabIndex = 14;
             this.txtTegataYMD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1511,7 +1511,7 @@
             this.txtBikou1.MaxLength = 40;
             this.txtBikou1.Name = "txtBikou1";
             this.txtBikou1.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou1.TabIndex = 12;
+            this.txtBikou1.TabIndex = 7;
             this.txtBikou1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1522,7 +1522,7 @@
             this.txtTegataYMD2.MaxLength = 10;
             this.txtTegataYMD2.Name = "txtTegataYMD2";
             this.txtTegataYMD2.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD2.TabIndex = 15;
+            this.txtTegataYMD2.TabIndex = 10;
             this.txtTegataYMD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1538,7 +1538,7 @@
             this.txtShiharai1.MaxLength = 8;
             this.txtShiharai1.Name = "txtShiharai1";
             this.txtShiharai1.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai1.TabIndex = 10;
+            this.txtShiharai1.TabIndex = 5;
             this.txtShiharai1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1551,7 +1551,7 @@
             this.txtTegataYMD1.MaxLength = 10;
             this.txtTegataYMD1.Name = "txtTegataYMD1";
             this.txtTegataYMD1.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD1.TabIndex = 11;
+            this.txtTegataYMD1.TabIndex = 6;
             this.txtTegataYMD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1569,7 +1569,7 @@
             this.labelSet_Torihikikbn0.SpaceCodeValue = 4;
             this.labelSet_Torihikikbn0.SpaceNameCode = 4;
             this.labelSet_Torihikikbn0.SpaceValueAppend = 4;
-            this.labelSet_Torihikikbn0.TabIndex = 5;
+            this.labelSet_Torihikikbn0.TabIndex = 0;
             this.labelSet_Torihikikbn0.ValueLabelSize = 170;
             this.labelSet_Torihikikbn0.ValueLabelText = "";
             this.labelSet_Torihikikbn0.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
@@ -1582,7 +1582,7 @@
             this.txtBikou0.MaxLength = 40;
             this.txtBikou0.Name = "txtBikou0";
             this.txtBikou0.Size = new System.Drawing.Size(330, 22);
-            this.txtBikou0.TabIndex = 8;
+            this.txtBikou0.TabIndex = 3;
             this.txtBikou0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikouKeyDown);
             this.txtBikou0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1598,7 +1598,7 @@
             this.txtShiharai0.MaxLength = 8;
             this.txtShiharai0.Name = "txtShiharai0";
             this.txtShiharai0.Size = new System.Drawing.Size(85, 22);
-            this.txtShiharai0.TabIndex = 6;
+            this.txtShiharai0.TabIndex = 1;
             this.txtShiharai0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtShiharai0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShiharaiKeyDown);
             this.txtShiharai0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
@@ -1697,7 +1697,7 @@
             this.txtTegataYMD0.MaxLength = 10;
             this.txtTegataYMD0.Name = "txtTegataYMD0";
             this.txtTegataYMD0.Size = new System.Drawing.Size(90, 22);
-            this.txtTegataYMD0.TabIndex = 7;
+            this.txtTegataYMD0.TabIndex = 2;
             this.txtTegataYMD0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             // 
@@ -1746,7 +1746,7 @@
             this.txtShukunkbn.Name = "txtShukunkbn";
             this.txtShukunkbn.ReadOnly = true;
             this.txtShukunkbn.Size = new System.Drawing.Size(15, 22);
-            this.txtShukunkbn.TabIndex = 9;
+            this.txtShukunkbn.TabIndex = 124;
             this.txtShukunkbn.TabStop = false;
             // 
             // lblShiharaiGessu
@@ -1782,7 +1782,7 @@
             this.txtShiharaiJojen.Name = "txtShiharaiJojen";
             this.txtShiharaiJojen.ReadOnly = true;
             this.txtShiharaiJojen.Size = new System.Drawing.Size(330, 22);
-            this.txtShiharaiJojen.TabIndex = 8;
+            this.txtShiharaiJojen.TabIndex = 125;
             this.txtShiharaiJojen.TabStop = false;
             // 
             // txtShiharaibi
@@ -1794,7 +1794,7 @@
             this.txtShiharaibi.Name = "txtShiharaibi";
             this.txtShiharaibi.ReadOnly = true;
             this.txtShiharaibi.Size = new System.Drawing.Size(24, 22);
-            this.txtShiharaibi.TabIndex = 7;
+            this.txtShiharaibi.TabIndex = 126;
             this.txtShiharaibi.TabStop = false;
             this.txtShiharaibi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1807,7 +1807,7 @@
             this.txtShiharaiGessu.Name = "txtShiharaiGessu";
             this.txtShiharaiGessu.ReadOnly = true;
             this.txtShiharaiGessu.Size = new System.Drawing.Size(24, 22);
-            this.txtShiharaiGessu.TabIndex = 6;
+            this.txtShiharaiGessu.TabIndex = 127;
             this.txtShiharaiGessu.TabStop = false;
             this.txtShiharaiGessu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1820,7 +1820,7 @@
             this.txtShimekiribi.Name = "txtShimekiribi";
             this.txtShimekiribi.ReadOnly = true;
             this.txtShimekiribi.Size = new System.Drawing.Size(24, 22);
-            this.txtShimekiribi.TabIndex = 5;
+            this.txtShimekiribi.TabIndex = 128;
             this.txtShimekiribi.TabStop = false;
             this.txtShimekiribi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -1830,7 +1830,7 @@
             this.gbShireJisseki.Location = new System.Drawing.Point(241, 547);
             this.gbShireJisseki.Name = "gbShireJisseki";
             this.gbShireJisseki.Size = new System.Drawing.Size(977, 219);
-            this.gbShireJisseki.TabIndex = 5;
+            this.gbShireJisseki.TabIndex = 123;
             this.gbShireJisseki.TabStop = false;
             this.gbShireJisseki.Text = "仕入実績";
             // 
@@ -1840,35 +1840,35 @@
             this.gridShireJisseki.AllowUserToResizeColumns = false;
             this.gridShireJisseki.AllowUserToResizeRows = false;
             this.gridShireJisseki.AutoGenerateColumns = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridShireJisseki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridShireJisseki.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridShireJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridShireJisseki.EnableHeadersVisualStyles = false;
             this.gridShireJisseki.Location = new System.Drawing.Point(25, 18);
             this.gridShireJisseki.Name = "gridShireJisseki";
             this.gridShireJisseki.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridShireJisseki.RowHeadersVisible = false;
             this.gridShireJisseki.RowTemplate.Height = 21;
             this.gridShireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1955,8 +1955,9 @@
             this.txtDenpyoNo.MaxLength = 8;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
-            this.txtDenpyoNo.TabIndex = 8;
+            this.txtDenpyoNo.TabIndex = 87;
             this.txtDenpyoNo.TabStop = false;
+            this.txtDenpyoNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
             this.txtDenpyoNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDenpyoNoKeyPress);
             this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);

@@ -1,4 +1,6 @@
-﻿namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
+﻿using System;
+
+namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 {
     partial class M1150_ShohinTankaIkkatsuUpdate
     {
@@ -66,6 +68,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridShohin)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -119,10 +125,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Daibunrui
             // 
@@ -490,8 +492,8 @@
             this.gridShohin.RowTemplate.Height = 21;
             this.gridShohin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridShohin.Size = new System.Drawing.Size(1395, 528);
-            this.gridShohin.StandardTab = true;
             this.gridShohin.TabIndex = 21;
+            this.gridShohin.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.gridShohin_EditingConShow);
             // 
             // txtSiireKingaku
             // 
@@ -575,6 +577,7 @@
             this.Text = "M1150_ShohinTankaIkkatsuUpdate";
             this.Load += new System.EventHandler(this.M1150_ShohinTankaIkkatsuUpdate_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1150_ShohinTankaIkkatsuUpdate_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
