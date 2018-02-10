@@ -122,28 +122,28 @@ namespace KATO.Common.Ctl
 
         public BaseForm()
         {
-            // ユーザ名取得
-            string strUserId = Environment.UserName;
-            try
-            {
-                // 権限取得
-                Tantosya_Kengen tk = new Tantosya_Kengen(strUserId);
-                masterFlg = tk.master;
-                etsuranFlg = tk.etsuran;
-                riekiritsuFlg = tk.riekiritsu;
-                adminFlg = tk.admin;
-                eigyoCode = tk.eigyocd;
-                groupCode = tk.groupcd;
-            }
-            catch(Exception ex)
-            {
-                // エラーロギング
-                new CommonException(ex);
+            //// ユーザ名取得
+            //string strUserId = Environment.UserName;
+            //try
+            //{
+            //    // 権限取得
+            //    Tantosya_Kengen tk = new Tantosya_Kengen(strUserId);
+            //    masterFlg = tk.master;
+            //    etsuranFlg = tk.etsuran;
+            //    riekiritsuFlg = tk.riekiritsu;
+            //    adminFlg = tk.admin;
+            //    eigyoCode = tk.eigyocd;
+            //    groupCode = tk.groupcd;
+            //}
+            //catch(Exception ex)
+            //{
+            //    // エラーロギング
+            //    new CommonException(ex);
 
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-            }
+            //    //例外発生メッセージ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+            //}
 
 
             InitializeComponent();
@@ -314,6 +314,28 @@ namespace KATO.Common.Ctl
         ///</summary>
         private void BaseForm_Load(object sender, EventArgs e)
         {
+            // ユーザ名取得
+            string strUserId = Environment.UserName;
+            try
+            {
+                // 権限取得
+                Tantosya_Kengen tk = new Tantosya_Kengen(strUserId);
+                masterFlg = tk.master;
+                etsuranFlg = tk.etsuran;
+                riekiritsuFlg = tk.riekiritsu;
+                adminFlg = tk.admin;
+                eigyoCode = tk.eigyocd;
+                groupCode = tk.groupcd;
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
 
         }
 

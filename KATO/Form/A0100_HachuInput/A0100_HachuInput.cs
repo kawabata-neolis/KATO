@@ -1418,7 +1418,7 @@ namespace KATO.Form.A0100_HachuInput
                     textSet_Torihikisaki.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
                     txtShohinCd.Text = dtSetCd.Rows[0]["商品コード"].ToString();
                     txtHachusu.Text = ((decimal)dtSetCd.Rows[0]["発注数量"]).ToString("#,#");
-                    cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,#.0000");
+                    cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,0.0000");
                     txtNoki.Text = dtSetCd.Rows[0]["納期"].ToString();
                     txtChuban.Text = dtSetCd.Rows[0]["注番"].ToString();
 
@@ -1493,32 +1493,41 @@ namespace KATO.Form.A0100_HachuInput
                         //商品
                         dtSetShohin = hachuB.getShohin(txtShohinCd.Text);
 
-                        //商品データの取り出し
-
-                        //発注単価のピリオド取り
-                        decimal decHachu = decimal.Parse(dtSetCd.Rows[0]["発注単価"].ToString().Split('.')[0]);
-
-                        //定価のピリオド取り
-                        decimal decTeika = decimal.Parse(dtSetShohin.Rows[0]["定価"].ToString().Split('.')[0]);
-
-                        //定価の確保
-                        txtTeka.Text = decTeika.ToString();
-                        txtTeka.updPriceMethod();
-
-                        //定価が0以下の場合
-                        if (decTeika < 1)
+                        //商品データがある場合
+                        if (dtSetShohin.Rows.Count > 0)
                         {
-                            //掛け率0.0
-                            txtKakeritsu.Text = "0.0";
+                            //発注単価のピリオド取り
+                            decimal decHachu = decimal.Parse(dtSetCd.Rows[0]["発注単価"].ToString().Split('.')[0]);
+
+                            //定価のピリオド取り
+                            decimal decTeika = decimal.Parse(dtSetShohin.Rows[0]["定価"].ToString().Split('.')[0]);
+
+                            //定価の確保
+                            txtTeka.Text = decTeika.ToString();
+                            txtTeka.updPriceMethod();
+
+                            //定価が0以下の場合
+                            if (decTeika < 1)
+                            {
+                                //掛け率0.0
+                                txtKakeritsu.Text = "0.0";
+                            }
+                            else
+                            {
+                                //規定の計算で掛け率を記入
+                                txtKakeritsu.Text = ((decHachu / decTeika) * 100).ToString("0.0");
+                            }
+                            lblGrayTanaHon.Text = dtSetShohin.Rows[0]["棚番本社"].ToString();
+                            lblGrayTanaGihu.Text = dtSetShohin.Rows[0]["棚番岐阜"].ToString();
                         }
                         else
                         {
-                            //規定の計算で掛け率を記入
-                            txtKakeritsu.Text = ((decHachu / decTeika) * 100).ToString("0.0");
+                            //商品データがない処理
+                            txtTeka.Text = "";
+                            txtKakeritsu.Text = "";
+                            lblGrayTanaHon.Text = "";
+                            lblGrayTanaGihu.Text = "";
                         }
-
-                        lblGrayTanaHon.Text = dtSetShohin.Rows[0]["棚番本社"].ToString();
-                        lblGrayTanaGihu.Text = dtSetShohin.Rows[0]["棚番岐阜"].ToString();
                     }
                 }
             }

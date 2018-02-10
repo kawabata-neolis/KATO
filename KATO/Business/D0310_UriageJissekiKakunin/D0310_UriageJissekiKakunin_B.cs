@@ -69,194 +69,297 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
         /// getUriageJisseki
         /// 売上実績のグリッドビューを表示する。
         /// </summary>
-        public DataTable getUriageJisseki(List<string> lstString)
+        /// <param name="lstItem">
+        ///     検索条件List  
+        ///     lstItem[0]  伝票年月日Start,
+        ///     lstItem[1]  伝票年月日End,
+        ///     lstItem[2]  入力者コード,
+        ///     lstItem[3]  受注者コード,
+        ///     lstItem[4]  営業担当者コード,
+        ///     lstItem[5]  仕入先コード,
+        ///     lstItem[6]  大分類,
+        ///     lstItem[7]  中分類,
+        ///     lstItem[8]  品名・型番,
+        ///     lstItem[9]  備考,
+        ///     lstItem[10] 得意先,
+        ///     lstItem[11] メーカー,
+        ///     lstItem[12] 受注番号,
+        ///     lstItem[13] 発注番号
+        /// </param>
+        /// <param name="lstItem2">
+        ///     検索条件（ラジオボタン・チェックボックス）List
+        ///     各要素の詳細は"param"タグに記載
+        ///     lstItem[0]  営業所ラジオボタン,
+        ///     lstItem[1]  グループコードラジオボタン,
+        ///     lstItem[2]  出力順,
+        ///     lstItem[3]  出力順（A-Z, Z-A）,
+        ///     lstItem[4]  チェックボックス,
+        ///     lstItem[5]  受注タイプ（加工区分）
+        /// </param>
+        /// <param name="arrDispEigyo">
+        ///     表示条件（営業所）
+        ///     arrDispEigyo[0] すべて,
+        ///     arrDispEigyo[0] 本社,
+        ///     arrDispEigyo[0] 岐阜
+        /// </param>
+        /// <param name="arrDispGroup">
+        ///     表示条件（グループコード）
+        ///     arrDispGroup[0] すべて,
+        ///     arrDispGroup[1] 共通,
+        ///     arrDispGroup[2] １,
+        ///     arrDispGroup[3] ２,
+        ///     arrDispGroup[4] ３
+        /// </param>
+        /// <param name="arrOrder">
+        ///     並び順
+        ///     arrOrder[0] 売上日,
+        ///     arrOrder[1] 仕入日
+        /// </param>
+        /// <param name="arrOrderAtoZ">
+        ///     並び順（A-Z, Z-A）
+        ///     arrOrderAtoZ[0] A-Z,
+        ///     arrOrderAtoZ[1] Z-A
+        /// </param>
+        /// <param name="arrCheckBox">
+        ///     arrCheckBox[0] 逆鞘分のみ
+        /// </param>
+        /// <param name="arrJuchuType">
+        ///     加工区分
+        ///     arrJuchuType[0] 両方,
+        ///     arrJuchuType[1] 通常受注,
+        ///     arrJuchuType[2] 加工受注
+        /// </param>
+        public DataTable getUriageJisseki(List<string> lstItem, List<Array> lstItem2)
         {
-            DataTable dtGetTableGrid = new DataTable();
-            string strSQLInput = "";
+            // 表示条件取得用(営業所)
+            string[] arrDispEigyo = (string[])lstItem2[0];
+            // 表示条件取得用(グループコード)
+            string[] arrDispGroup = (string[])lstItem2[1];
+            // 出力順条件取得用
+            string[] arrOrder = (string[])lstItem2[2];
+            // 出力順条件取得用(A-Z,Z-A)
+            string[] arrOrderAtoZ = (string[])lstItem2[3];
+            // チェックボックス用
+            string[] arrCheckBox = (string[])lstItem2[4];
+            // 受注タイプ
+            string[] arrJuchuType = (string[])lstItem2[5];
 
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
+            string andSql = "";
+            string orderbySql = "";
+
+            DataTable dtGetTableGrid = new DataTable();
+
+            // 伝票年月日のStartとEnd取得
+            string startYmd = lstItem[0];
+            string endYmd = lstItem[1];
+
+            // SQLのパス指定用List
+            List<string> listSqlPath = new List<string>();
+            listSqlPath.Add("D0310_UriageJissekiKakunin");
+            listSqlPath.Add("D0310_UriageJissekiKakunin_SELECT");
 
             //SQL文 売上実績
 
-            strSQLInput = strSQLInput + " SELECT ";
-            strSQLInput = strSQLInput + " (CASE WHEN a.伝票発行フラグ = '1' THEN '済' ELSE '' END) AS 印 ";
-            strSQLInput = strSQLInput + " , a.伝票年月日 ";
-            strSQLInput = strSQLInput + " , a.伝票番号 ";
-            strSQLInput = strSQLInput + " , b.行番号 ";
-            strSQLInput = strSQLInput + " , c.メーカー名 AS メーカー ";
-            strSQLInput = strSQLInput + " , RTRIM(ISNULL(d.中分類名, '')) + ' ' + Rtrim(ISNULL(b.Ｃ１, '')) + ' ' + Rtrim(ISNULL(b.Ｃ２, '')) + ' ' + Rtrim(ISNULL(b.Ｃ３, '')) + ' ' + Rtrim(ISNULL(b.Ｃ４, '')) + ' ' + Rtrim(ISNULL(b.Ｃ５, '')) + ' ' + Rtrim(ISNULL(b.Ｃ６, '')) AS 品名型式 ";
-            strSQLInput = strSQLInput + " , b.数量 ";
-            strSQLInput = strSQLInput + " , b.売上単価 AS 単価 ";
-            strSQLInput = strSQLInput + " , b.売上金額 ";
-            strSQLInput = strSQLInput + " , dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価 ";
-            strSQLInput = strSQLInput + " , b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価金額 ";
-            strSQLInput = strSQLInput + " , b.売上金額 - b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 粗利額 ";
-            strSQLInput = strSQLInput + " , dbo.f_get受注番号_運賃FROM運賃(b.受注番号) AS 運賃 ";
-            strSQLInput = strSQLInput + " , b.商品コード ";
-            strSQLInput = strSQLInput + " , b.備考 ";
-            strSQLInput = strSQLInput + " , dbo.f_get受注番号_発注先名FROM発注(b.受注番号) AS 仕入先名 ";
-            strSQLInput = strSQLInput + " , a.得意先名 ";
-            strSQLInput = strSQLInput + " , b.受注番号 ";
-            strSQLInput = strSQLInput + " , dbo.f_get担当者名(a.担当者コード) AS 入力者名 ";　//グリッドでは担当者で表記されている。
-            strSQLInput = strSQLInput + " , dbo.f_get受注番号から最終仕入先日(b.受注番号) AS 仕入日 "; 
+            //strSQLInput = strSQLInput + " SELECT ";
+            //strSQLInput = strSQLInput + " (CASE WHEN a.伝票発行フラグ = '1' THEN '済' ELSE '' END) AS 印 ";
+            //strSQLInput = strSQLInput + " , a.伝票年月日 ";
+            //strSQLInput = strSQLInput + " , a.伝票番号 ";
+            //strSQLInput = strSQLInput + " , b.行番号 ";
+            //strSQLInput = strSQLInput + " , c.メーカー名 AS メーカー ";
+            //strSQLInput = strSQLInput + " , RTRIM(ISNULL(d.中分類名, '')) + ' ' + Rtrim(ISNULL(b.Ｃ１, '')) + ' ' + Rtrim(ISNULL(b.Ｃ２, '')) + ' ' + Rtrim(ISNULL(b.Ｃ３, '')) + ' ' + Rtrim(ISNULL(b.Ｃ４, '')) + ' ' + Rtrim(ISNULL(b.Ｃ５, '')) + ' ' + Rtrim(ISNULL(b.Ｃ６, '')) AS 品名型式 ";
+            //strSQLInput = strSQLInput + " , b.数量 ";
+            //strSQLInput = strSQLInput + " , b.売上単価 AS 単価 ";
+            //strSQLInput = strSQLInput + " , b.売上金額 ";
+            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価 ";
+            //strSQLInput = strSQLInput + " , b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価金額 ";
+            //strSQLInput = strSQLInput + " , b.売上金額 - b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 粗利額 ";
+            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_運賃FROM運賃(b.受注番号) AS 運賃 ";
+            //strSQLInput = strSQLInput + " , b.商品コード ";
+            //strSQLInput = strSQLInput + " , b.備考 ";
+            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_発注先名FROM発注(b.受注番号) AS 仕入先名 ";
+            //strSQLInput = strSQLInput + " , a.得意先名 ";
+            //strSQLInput = strSQLInput + " , b.受注番号 ";
+            //strSQLInput = strSQLInput + " , dbo.f_get担当者名(a.担当者コード) AS 入力者名 ";　//グリッドでは担当者で表記されている。
+            //strSQLInput = strSQLInput + " , dbo.f_get受注番号から最終仕入先日(b.受注番号) AS 仕入日 "; 
 
-            strSQLInput = strSQLInput + " FROM ";
-            strSQLInput = strSQLInput + " 売上ヘッダ a ";
-            strSQLInput = strSQLInput + " , 売上明細 b ";
-            strSQLInput = strSQLInput + " , メーカー c ";
-            strSQLInput = strSQLInput + " , 中分類 d ";
+            //strSQLInput = strSQLInput + " FROM ";
+            //strSQLInput = strSQLInput + " 売上ヘッダ a ";
+            //strSQLInput = strSQLInput + " , 売上明細 b ";
+            //strSQLInput = strSQLInput + " , メーカー c ";
+            //strSQLInput = strSQLInput + " , 中分類 d ";
 
-            strSQLInput = strSQLInput + " WHERE ";
-            strSQLInput = strSQLInput + " a.削除 = 'N' ";
-            strSQLInput = strSQLInput + " AND b.削除 = 'N' ";
-            strSQLInput = strSQLInput + " AND a.伝票番号 = b.伝票番号 ";
-            strSQLInput = strSQLInput + " AND b.メーカーコード = c.メーカーコード ";
-            strSQLInput = strSQLInput + " AND b.大分類コード = d.大分類コード ";
-            strSQLInput = strSQLInput + " AND b.中分類コード = d.中分類コード ";
+            //strSQLInput = strSQLInput + " WHERE ";
+            //strSQLInput = strSQLInput + " a.削除 = 'N' ";
+            //strSQLInput = strSQLInput + " AND b.削除 = 'N' ";
+            //strSQLInput = strSQLInput + " AND a.伝票番号 = b.伝票番号 ";
+            //strSQLInput = strSQLInput + " AND b.メーカーコード = c.メーカーコード ";
+            //strSQLInput = strSQLInput + " AND b.大分類コード = d.大分類コード ";
+            //strSQLInput = strSQLInput + " AND b.中分類コード = d.中分類コード ";
 
-            //開始伝票年月日を記述した場合
-            if (lstString[0] != "")
+            // 受注者コードがある場合
+            if (!lstItem[2].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND a.伝票年月日 >= '" + lstString[0] + "' ";
+                andSql += " AND dbo.f_get受注番号_受注者コードFROM受注(um.受注番号) = '" + lstItem[2] + "'";
             }
 
-            //終了伝票年月日を記述した場合
-            if (lstString[1] != "")
+            // 営業担当者コードがある場合
+            if (!lstItem[3].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND a.伝票年月日 <= '" + lstString[1] + "' ";
+                andSql += " AND t.担当者コード = '" + lstItem[3] + "'";
             }
 
-            //得意先コードを記述した場合
-            if (lstString[2] != "")
+            // 入力者コードがある場合
+            if (!lstItem[4].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND a.得意先コード = '" + lstString[2] + "' ";
+                andSql += " AND uh.担当者コード = '" + lstItem[4] + "'";
             }
 
-            //入力者コードを記述した場合
-            if (lstString[3] != "")
+            // 仕入先コードがある場合
+            if (!lstItem[5].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND a.担当者コード = '" + lstString[3] + "' ";
+                andSql += " AND dbo.f_get受注番号_発注先コードFROM発注(um.受注番号) = '" + lstItem[5] + "' ";
             }
 
-            //担当者コードを記述した場合
-            if (lstString[4] != "")
+            // 大分類コードがある場合
+            if (!lstItem[6].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND dbo.f_get取引先マスタ担当者(a.得意先コード) = '" + lstString[4] + "' ";
+                andSql += " AND um.大分類コード = '" + lstItem[6] + "' ";
             }
 
-            //大分類コードを記述した場合
-            if (lstString[5] != "")
+            // 中分類コードがある場合
+            if (!lstItem[7].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND b.大分類コード = '" + lstString[5] + "' ";
+                andSql += " AND um.中分類コード = '" + lstItem[7] + "' ";
             }
 
-            //中分類コードを記述した場合
-            if (lstString[6] != "")
+            // 品名・型番がある場合
+            if (!lstItem[8].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND b.中分類コード = '" + lstString[6] + "' ";
+                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(um.Ｃ１,'')) ";
+                andSql += " +  Rtrim(ISNULL(um.Ｃ２,''))";
+                andSql += " +  Rtrim(ISNULL(um.Ｃ３,''))";
+                andSql += " +  Rtrim(ISNULL(um.Ｃ４,''))";
+                andSql += " +  Rtrim(ISNULL(um.Ｃ５,''))";
+                andSql += " +  Rtrim(ISNULL(um.Ｃ６,'')) ) LIKE '%" + lstItem[8] + "%' )";
             }
 
-            //品名・型番を記述した場合
-            if (lstString[7] != "")
+            // 備考がある場合
+            if (!lstItem[9].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND (REPLACE (ISNULL(d.中分類名, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ１, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ２, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ３, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ４, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ５, ''), ' ', '') + REPLACE (ISNULL(b.Ｃ６, ''), ' ', '')) LIKE '%" + lstString[7] + "%' ";
+                andSql += " AND um.備考 LIKE '%" + lstItem[9] + "%' ";
             }
 
-            //備考を記述した場合
-            if (lstString[8] != "")
+            // 得意先コードがある場合
+            if (!lstItem[10].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND b.備考 LIKE '%" + lstString[8] + "%' ";
+                andSql += " AND uh.得意先コード = '" + lstItem[10] + "'";
             }
 
-            //逆鞘分のみをチェックした場合(値が1)
-            if (lstString[9] == "1")
+            // メーカーコードがある場合
+            if (!lstItem[11].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND (b.売上金額 - b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号)) < 0 ";
+                andSql += " AND um.メーカーコード = '" + lstItem[11] + "'";
             }
 
-            //仕入未入力分のみをチェックした場合(値が1)
-            if (lstString[10] == "1")
+            // 受注番号がある場合
+            if (!lstItem[12].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND dbo.f_get受注番号から発注番号FROM発注(b.受注番号) IS NOT NULL ";
-                strSQLInput = strSQLInput + " AND(ISNULL(dbo.f_get発注数量_発注(b.受注番号), 0) - ISNULL(dbo.f_get仕入済数量_発注(b.受注番号), 0)) > 0 ";
+                andSql += " AND um.受注番号 = '" + lstItem[12] + "'";
             }
 
-            //メーカーを記述した場合
-            if (lstString[11] != "")
+            // 発注番号がある場合
+            if (!lstItem[13].Equals(""))
             {
-                strSQLInput = strSQLInput + " AND b.メーカーコード = '" + lstString[11] + "' ";
+                andSql += " AND dbo.f_get受注番号から発注番号FROM発注(um.受注番号) = '" + lstItem[13] + "'";
             }
 
-            //受注番号を記述した場合
-            if (lstString[12] != "")
+            // 逆鞘分のみをチェックした場合
+            if (arrCheckBox[0].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND b.受注番号 = '" + lstString[12] + "' ";
+                andSql += " AND (um.売上金額 - um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号)) < 0 ";
             }
 
-            //仕入先コードを記述した場合
-            if (lstString[13] != "")
+            // 営業所が本社の場合
+            if (arrDispEigyo[1].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND dbo.f_get受注番号_発注先コードFROM発注(b.受注番号) = '" + lstString[13] + "' ";
+                andSql += " AND uh.営業所コード = '0001' ";
+            }
+            // 営業所が岐阜の場合
+            else if (arrDispEigyo[2].Equals("TRUE"))
+            {
+                andSql += " AND uh.営業所コード = '0002' ";
             }
 
-            //ラジオボタン加工区分([0]両方、[1]通常受注、[2]加工品受注)
-            if (lstString[14] == "1")
+            // グループコードが共通の場合
+            if (arrDispGroup[1].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND dbo.f_get受注番号から加工区分(b.受注番号)='0' ";
+                andSql += " AND dbo.f_getグループコード(dbo.f_get受注番号_受注者コードFROM受注(um.受注番号)) = '0000' ";
             }
-            else if (lstString[14] == "2")
+            // グループコードが１の場合
+            else if (arrDispGroup[2].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND dbo.f_get受注番号から加工区分(b.受注番号)='1' ";
+                andSql += " AND dbo.f_getグループコード(dbo.f_get受注番号_受注者コードFROM受注(um.受注番号)) = '0001' ";
+            }
+            // グループコードが２の場合
+            else if (arrDispGroup[3].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(dbo.f_get受注番号_受注者コードFROM受注(um.受注番号)) = '0002' ";
+            }
+            // グループコードが３の場合
+            else if (arrDispGroup[4].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(dbo.f_get受注番号_受注者コードFROM受注(um.受注番号)) = '0003' ";
             }
 
-            //ラジオボタン営業所([0]すべて、[1]本社、[2]岐阜)
-            if (lstString[15] == "1")
+            // ラジオボタンで通常受注を選択した場合
+            if (arrJuchuType[1].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND a.営業所コード = '0001' ";
+                andSql += " AND dbo.f_get受注番号から加工区分(um.受注番号)='0' ";
             }
-            else if (lstString[15] == "2")
+            // ラジオボタンで加工品受注を選択した場合
+            else if (arrJuchuType[2].Equals("TRUE"))
             {
-                strSQLInput = strSQLInput + " AND a.営業所コード = '0002' ";
+                andSql += " AND dbo.f_get受注番号から加工区分(um.受注番号)='1' ";
             }
 
             //ラジオボタン並び順の指定（上段は名前を取得、下段：[0]A-Z、[1]Z-A）
 
-            switch (lstString[16])
+            // 並び順（売上日）
+            if (arrOrder[0].Equals("TRUE"))
             {
-                case "売上日":
-
-                    if (lstString[17] == "0")
-                    {
-                        strSQLInput = strSQLInput + " ORDER BY a.伝票年月日, b.メーカーコード, dbo.f_get中分類名(b.大分類コード, b.中分類コード) + Rtrim(ISNULL(b.Ｃ１, '')) + Rtrim(ISNULL(b.Ｃ２, '')) + Rtrim(ISNULL(b.Ｃ３, '')) + Rtrim(ISNULL(b.Ｃ４, '')) + Rtrim(ISNULL(b.Ｃ５, '')) + Rtrim(ISNULL(b.Ｃ６, '')) ";
-                    }
-                    else
-                    {
-                        strSQLInput = strSQLInput + " ORDER BY a.伝票年月日 DESC,b.メーカーコード,dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  Rtrim(ISNULL(b.Ｃ１,'')) + Rtrim(ISNULL(b.Ｃ２,''))  + Rtrim(ISNULL(b.Ｃ３,'')) + Rtrim(ISNULL(b.Ｃ４,'')) + Rtrim(ISNULL(b.Ｃ５,'')) + Rtrim(ISNULL(b.Ｃ６,'')) ";
-                    }
-                    
-                    break;
-                case "仕入日":
-
-                    if (lstString[17] == "0")
-                    {
-                        strSQLInput = strSQLInput + " ORDER BY 仕入日,a.得意先コード,a.担当者コード ";
-                    }
-                    else
-                    {
-                        strSQLInput = strSQLInput + " ORDER BY 仕入日 DESC,a.得意先コード,a.担当者コード ";
-                    }
-
-                    break;
-                
+                // 並び順（A-Z）の場合
+                if (arrOrderAtoZ[0].Equals("TRUE"))
+                {
+                    orderbySql += " ORDER BY TBL.伝票年月日, TBL.メーカーコード, TBL.品名型式";
+                }
+                else
+                {
+                    orderbySql += " ORDER BY TBL.伝票年月日 DESC, TBL.メーカーコード, TBL.品名型式";
+                }
+            }
+            // 並び順（仕入日）
+            else if (arrOrder[1].Equals("TRUE"))
+            {
+                // 並び順（A-Z）の場合
+                if (arrOrderAtoZ[0].Equals("TRUE"))
+                {
+                    orderbySql += " ORDER BY TBL.仕入日, TBL.メーカーコード, TBL.品名型式";
+                }
+                else
+                {
+                    orderbySql += " ORDER BY TBL.仕入日 DESC, TBL.メーカーコード, TBL.品名型式";
+                }
             }
             
-            //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
-
             try
             {
-                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, startYmd, endYmd, andSql, orderbySql);
+
+                dtGetTableGrid = dbconnective.ReadSql(sql);
             }
             catch (Exception ex)
             {
@@ -311,7 +414,7 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
                     strDetail += drSiireJisseki["仕入先名"].ToString().Trim() + ",";
                     strDetail += drSiireJisseki["得意先名"].ToString() + ",";
                     strDetail += drSiireJisseki["受注番号"].ToString().Trim() + ",";
-                    strDetail += drSiireJisseki["入力者名"].ToString();
+                    strDetail += drSiireJisseki["受注担当"].ToString();
 
                     sw.Write(strDetail);
                     sw.Write("\r\n");
@@ -331,10 +434,27 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
         /// -----------------------------------------------------------------------------
         /// <summary>
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
-        /// <param name="dtUriageJissekiList">
+        /// <param name="dtUriageJisseki">
         ///     売上実績確認のデータテーブル</param>
+        /// <param name="lstItem">
+        ///     検索条件List  
+        ///     lstItem[0]  伝票年月日Start,
+        ///     lstItem[1]  伝票年月日End,
+        ///     lstItem[2]  受注者コード,
+        ///     lstItem[3]  営業担当者コード,
+        ///     lstItem[4]  担当者コード,
+        ///     lstItem[5]  仕入先コード,
+        ///     lstItem[6]  大分類,
+        ///     lstItem[7]  中分類,
+        ///     lstItem[8]  品名・型番,
+        ///     lstItem[9]  備考,
+        ///     lstItem[10] 得意先,
+        ///     lstItem[11] メーカー,
+        ///     lstItem[12] 受注番号,
+        ///     lstItem[13] 発注番号
+        /// </param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtUriageJissekiList, List<string> lstItem)
+        public string dbToPdf(DataTable dtUriageJisseki, List<string> lstItem)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -357,7 +477,7 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
 
 
                 //Linqで必要なデータをselect
-                var outDataAll = dtUriageJissekiList.AsEnumerable()
+                var outDataAll = dtUriageJisseki.AsEnumerable()
                     .Select(dat => new
                     {
                         denpyoYMD = dat["伝票年月日"],
@@ -375,7 +495,7 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
                         siiresakimei = dat["仕入先名"],
                         tokuisakimei = dat["得意先名"],
                         juchuNo = dat["受注番号"],
-                        tantousyamei = dat["入力者名"]  //グリッドビューの表記は担当者
+                        tantousyamei = dat["受注担当"]  //グリッドビューの表記は担当者
                     }).ToList();
 
                 // linqで売上合計、原価合計、粗利額合計、運賃合計を算出する。
@@ -425,13 +545,15 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
 
                         // 入力日、伝票年月日出力（A2のセル）
                         IXLCell unitCell = headersheet.Cell("A2");
-                        unitCell.Value = "  担当者：" + lstItem[18] + " 得意先: "+ lstItem[19] + 
-                            "伝票年月日：" + string.Format(lstItem[0], "yyyy年MM月dd日") + " ～ " +
-                            string.Format(lstItem[1], "yyyy年MM月dd日") + 
-                            " 大分類 ：" + lstItem[20] +
-                            " 中分類 ：" + lstItem[21] +
-                            " 品名・型番：" + lstItem[7] +
-                            " 備考：" + lstItem[8];
+                        unitCell.Value = "  担当者：" + lstItem[2] 
+                            + " 得意先: "+ lstItem[10] 
+                            + "伝票年月日：" 
+                            + string.Format(lstItem[0], "yyyy年MM月dd日") + " ～ "
+                            + string.Format(lstItem[1], "yyyy年MM月dd日")
+                            + " 大分類 ：" + lstItem[6]
+                            + " 中分類 ：" + lstItem[7]
+                            + " 品名・型番：" + lstItem[8]
+                            + " 備考：" + lstItem[9];
                         unitCell.Style.Font.FontSize = 10;
 
                         // ヘッダー出力（3行目のセル）

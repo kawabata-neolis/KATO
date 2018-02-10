@@ -59,158 +59,270 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
         }
 
         /// <summary>
-        /// getSiireJissekiList
-        /// 仕入実績を取得
+        ///     getSiireJissekiList
+        ///     仕入実績を取得
         /// </summary>
-        public DataTable getSiireJissekiList(List<string> lstItem)
+        /// <param name="lstItem">
+        ///     検索条件List  
+        ///     lstItem[0]  伝票年月日Start,
+        ///     lstItem[1]  伝票年月日End,
+        ///     lstItem[2]  営業担当者コード,
+        ///     lstItem[3]  発注者コード,
+        ///     lstItem[4]  受注者コード,
+        ///     lstItem[5]  仕入先コード,
+        ///     lstItem[6]  大分類,
+        ///     lstItem[7]  中分類,
+        ///     lstItem[8]  型番１,
+        ///     lstItem[9]  型番２,
+        ///     lstItem[10] 型番３,
+        ///     lstItem[11] 備考,
+        ///     lstItem[12] 得意先コード
+        /// </param>
+        /// <param name="lstItem2">
+        ///     検索条件（ラジオボタン）List
+        ///     各要素の詳細は"param"タグに記載
+        ///     lstItem[0]  営業所ラジオボタン,
+        ///     lstItem[1]  グループコードラジオボタン,
+        ///     lstItem[2]  出力順,
+        ///     lstItem[3]  出力順（A-Z, Z-A）
+        /// </param>
+        /// <param name="arrDispEigyo">
+        ///     表示条件（営業所）
+        ///     arrDispEigyo[0] すべて,
+        ///     arrDispEigyo[0] 本社,
+        ///     arrDispEigyo[0] 岐阜,
+        /// </param>
+        /// <param name="arrDispGroup">
+        ///     表示条件（グループコード）
+        ///     arrDispGroup[0] すべて,
+        ///     arrDispGroup[1] 共通,
+        ///     arrDispGroup[2] １,
+        ///     arrDispGroup[3] ２,
+        ///     arrDispGroup[4] ３,
+        /// </param>
+        /// <param name="arrOrder">
+        ///     並び順
+        ///     arrOrder[0] 仕入日,
+        ///     arrOrder[1] 注番,
+        ///     arrOrder[2] 金額,
+        ///     arrOrder[3] 受注日,
+        /// </param>
+        /// <param name="arrOrderAtoZ">
+        ///     並び順（A-Z, Z-A）
+        ///     arrOrderAtoZ[0] A-Z,
+        ///     arrOrderAtoZ[1] Z-A
+        /// </param>
+        public DataTable getSiireJissekiList(List<string> lstItem, List<Array> lstItem2)
         {
-            string strSql;
+            string andSql = "";
+            string orderbySql = "";
+            //string kataban2 = "";
+            //string kataban3 = "";
+
+            // 表示条件取得用(営業所)
+            string[] arrDispEigyo = (string[])lstItem2[0];
+            // 表示条件取得用(グループコード)
+            string[] arrDispGroup = (string[])lstItem2[1];
+            // 出力順条件取得用
+            string[] arrOrder = (string[])lstItem2[2];
+            // 出力順条件取得用(A-Z,Z-A)
+            string[] arrOrderAtoZ = (string[])lstItem2[3];
+
             DataTable dtGetTableGrid = new DataTable();
 
+            // 伝票年月日のStartとEnd取得
+            string startYmd = lstItem[0];
+            string endYmd = lstItem[1];
 
-            strSql = "SELECT a.伝票年月日,a.伝票番号,b.行番号,";
-            strSql += "c.メーカー名 AS メーカー,";
-            strSql += "RTRIM(ISNULL(d.中分類名,'')) +  ' '  +  Rtrim(ISNULL(b.Ｃ１,'')) ";
-            strSql += " + ' ' + Rtrim(ISNULL(b.Ｃ２,''))";
-            strSql += " + ' ' + Rtrim(ISNULL(b.Ｃ３,''))";
-            strSql += " + ' ' + Rtrim(ISNULL(b.Ｃ４,''))";
-            strSql += " + ' ' + Rtrim(ISNULL(b.Ｃ５,''))";
-            strSql += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 品名型式 ,";
-            strSql += "b.数量,b.仕入単価,b.仕入金額,b.備考,";
-            strSql += "dbo.f_get受注番号_得意先名FROM受注 (dbo.f_get発注番号_受注番号FROM発注(b.発注番号)) AS 出荷先名,";
-            strSql += "a.仕入先名,";
-            strSql += "b.発注番号,";
-            strSql += "b.備考,";
-            strSql += "dbo.f_get発注番号から発注担当者(b.発注番号) AS 発注担当,";
-            strSql += "dbo.f_get担当者名(a.担当者コード) AS 仕入担当,";
-            strSql += "dbo.f_get発注番号_受注番号FROM発注(b.発注番号) AS 受注番号,";
-            strSql += "dbo.f_get受注番号から受注単価(dbo.f_get発注番号_受注番号FROM発注(b.発注番号)) AS 受注単価,";
-            strSql += "dbo.f_get受注番号から受注金額(dbo.f_get発注番号_受注番号FROM発注(b.発注番号)) AS 受注金額";
+            // SQLのパス指定用List
+            List<string> listSqlPath = new List<string>();
+            listSqlPath.Add("D0320_SiireJissekiKakunin");
+            listSqlPath.Add("D0320_SiireJissekiKakunin_SELECT");
 
-            strSql += " FROM 仕入ヘッダ a ,仕入明細 b, メーカー c, 中分類 d ";
-
-            strSql += " WHERE a.削除 = 'N' AND a.伝票番号 = b.伝票番号 ";
-            strSql += " AND b.メーカーコード = c.メーカーコード ";
-            strSql += " AND b.大分類コード = d.大分類コード ";
-            strSql += " AND b.中分類コード = d.中分類コード ";
-            strSql += " AND a.伝票年月日 >='" + lstItem[0] + "'";
-            strSql += " AND a.伝票年月日 <='" + lstItem[1] + "'";
-
-            // 発注担当者がある場合
+            // 営業担当者コードがある場合
             if (!lstItem[2].Equals(""))
             {
-                strSql += " AND dbo.f_get発注番号から発注担当者(b.発注番号) = '" + lstItem[2] + "'";
+                andSql += " AND t.担当者コード = '" + lstItem[2] + "'";
+            }
+
+            // 発注者コードがある場合
+            if (!lstItem[3].Equals(""))
+            {
+                andSql += " AND dbo.f_get発注番号から発注者コード(sm.発注番号) = '" + lstItem[3] + "'";
+            }
+
+            // 受注者コードがある場合
+            if (!lstItem[4].Equals(""))
+            {
+                andSql += " AND dbo.f_get受注番号_受注者コードFROM受注(dbo.f_get発注番号_受注番号FROM発注(sm.発注番号)) = '" + lstItem[4] + "'";
             }
 
             // 仕入先コードがある場合
-            if (!lstItem[3].Equals(""))
+            if (!lstItem[5].Equals(""))
             {
-                strSql += " AND a.仕入先コード = '" + lstItem[3] + "'";
+                andSql += " AND sh.仕入先コード = '" + lstItem[5] + "'";
             }
 
             // 大分類コードがある場合
-            if (!lstItem[4].Equals(""))
+            if (!lstItem[6].Equals(""))
             {
-                strSql += " AND b.大分類コード = '" + lstItem[4] + "'";
+                andSql += " AND sm.大分類コード = '" + lstItem[6] + "'";
             }
 
             // 中分類コードがある場合
-            if (!lstItem[5].Equals(""))
+            if (!lstItem[7].Equals(""))
             {
-                strSql += " AND b.中分類コード = '" + lstItem[5] + "'";
+                andSql += " AND sm.中分類コード = '" + lstItem[7] + "'";
             }
 
             // 型番がある場合
-            if (!lstItem[6].Equals(""))
+            if (!lstItem[8].Equals(""))
             {
-                strSql += " AND (RTRIM(ISNULL(d.中分類名,'')) +  Rtrim(ISNULL(b.Ｃ１,'')) ";
-                strSql += " +  Rtrim(ISNULL(b.Ｃ２,''))";
-                strSql += " +  Rtrim(ISNULL(b.Ｃ３,''))";
-                strSql += " +  Rtrim(ISNULL(b.Ｃ４,''))";
-                strSql += " +  Rtrim(ISNULL(b.Ｃ５,''))";
-                strSql += " +  Rtrim(ISNULL(b.Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%' ";
+                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[8] + "%' )";
             }
 
-            // 備考がある場合
-            if (!lstItem[7].Equals(""))
+            if (!lstItem[9].Equals(""))
             {
-                strSql += " AND b.備考 LIKE '%" + lstItem[7] + "%'";
+                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[9] + "%' )";
+            }
+
+            if (!lstItem[10].Equals(""))
+            {
+                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[10] + "%' )";
+            }
+            // AND条件にkataban2とkataban3のOR条件を反映
+            //andSql = string.Format(andSql, kataban2, kataban3);
+
+            // 備考がある場合
+            if (!lstItem[11].Equals(""))
+            {
+                andSql += " AND sm.備考 LIKE '%" + lstItem[11] + "%'";
             }
 
             // 得意先がある場合
-            if (!lstItem[8].Equals(""))
+            if (!lstItem[12].Equals(""))
             {
-                strSql += " AND dbo.f_get受注番号_得意先コードFROM受注(dbo.f_get発注番号_受注番号FROM発注(b.発注番号)) = '" + lstItem[8] + "'";
+                andSql += " AND dbo.f_get受注番号_得意先コードFROM受注(dbo.f_get発注番号_受注番号FROM発注(sm.発注番号)) = '" + lstItem[12] + "'";
             }
 
             // 営業所が本社の場合
-            if (lstItem[9].Equals("1"))
+            if (arrDispEigyo[1].Equals("TRUE"))
             {
-                strSql += " AND dbo.f_get発注番号から営業所コード(b.発注番号)='0001' ";
+                andSql += " AND dbo.f_get発注番号から営業所コード(sm.発注番号)='0001' ";
             }
             // 営業所が岐阜の場合
-            else if (lstItem[9].Equals("2"))
+            else if (arrDispEigyo[2].Equals("TRUE"))
             {
-                strSql += " AND dbo.f_get発注番号から営業所コード(b.発注番号)='0002' ";
+                andSql += " AND dbo.f_get発注番号から営業所コード(sm.発注番号)='0002' ";
+            }
+
+            // グループコードが共通の場合
+            if (arrDispGroup[1].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(kato.dbo.f_get発注番号から発注者コード(sm.発注番号)) = '0000' ";
+            }
+            // グループコードが１の場合
+            else if (arrDispGroup[2].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(kato.dbo.f_get発注番号から発注者コード(sm.発注番号)) = '0001' ";
+            }
+            // グループコードが２の場合
+            else if (arrDispGroup[3].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(kato.dbo.f_get発注番号から発注者コード(sm.発注番号)) = '0002' ";
+            }
+            // グループコードが３の場合
+            else if (arrDispGroup[4].Equals("TRUE"))
+            {
+                andSql += " AND dbo.f_getグループコード(kato.dbo.f_get発注番号から発注者コード(sm.発注番号)) = '0003' ";
             }
 
             // 並び順（仕入日）の場合
-            if (lstItem[10].Equals("0"))
+            if (arrOrder[0].Equals("TRUE"))
             {
                 // 並び順（A-Z）の場合
-                if (lstItem[11].Equals("0"))
+                if (arrOrderAtoZ[0].Equals("TRUE"))
                 {
-                    strSql += " ORDER BY a.伝票年月日 ,b.発注番号,b.メーカーコード," +
-                        "dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  Rtrim(ISNULL(b.Ｃ１,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ２,''))  + Rtrim(ISNULL(b.Ｃ３,'')) + Rtrim(ISNULL(b.Ｃ４,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ５,'')) + Rtrim(ISNULL(b.Ｃ６,''))";
+                    orderbySql += " ORDER BY TBL.伝票年月日, TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
                 }
                 else
                 {
-                    strSql += " ORDER BY a.伝票年月日 DESC,b.発注番号,b.メーカーコード," +
-                        "dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  Rtrim(ISNULL(b.Ｃ１,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ２,''))  + Rtrim(ISNULL(b.Ｃ３,'')) + Rtrim(ISNULL(b.Ｃ４,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ５,'')) + Rtrim(ISNULL(b.Ｃ６,''))";
+                    orderbySql += " ORDER BY TBL.伝票年月日 DESC, TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
                 }
             }
             // 並び順（注番）
-            else if (lstItem[10].Equals("1"))
+            else if (arrOrder[1].Equals("TRUE"))
             {
                 // 並び順（A-Z）の場合
-                if (lstItem[11].Equals("0"))
+                if (arrOrderAtoZ[0].Equals("TRUE"))
                 {
-                    strSql += " ORDER BY b.発注番号 ,b.メーカーコード," +
-                        "dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  Rtrim(ISNULL(b.Ｃ１,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ２,''))  + Rtrim(ISNULL(b.Ｃ３,'')) + Rtrim(ISNULL(b.Ｃ４,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ５,'')) + Rtrim(ISNULL(b.Ｃ６,''))";
+                    orderbySql += " ORDER BY TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
                 }
                 else
                 {
-                    strSql += " ORDER BY b.発注番号  DESC,b.メーカーコード," +
-                        "dbo.f_get中分類名(b.大分類コード,b.中分類コード) +  Rtrim(ISNULL(b.Ｃ１,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ２,''))  + Rtrim(ISNULL(b.Ｃ３,'')) + Rtrim(ISNULL(b.Ｃ４,''))" +
-                        " + Rtrim(ISNULL(b.Ｃ５,'')) + Rtrim(ISNULL(b.Ｃ６,''))";
+                    orderbySql += " ORDER BY TBL.発注番号 DESC, TBL.メーカーコード, TBL.品名型式";
                 }
             }
             // 並び順（金額）
-            else if (lstItem[10].Equals("2"))
+            else if (arrOrder[2].Equals("TRUE"))
             {
                 // 並び順（A-Z）の場合
-                if (lstItem[11].Equals("0"))
+                if (arrOrderAtoZ[0].Equals("TRUE"))
                 {
-                    strSql += " ORDER BY b.仕入金額,a.仕入先コード,dbo.f_get発注番号から発注担当者(b.発注番号)";
+                    orderbySql += " ORDER BY TBL.仕入金額, TBL.仕入先コード, TBL.発注担当";
                 }
                 else
                 {
-                    strSql += " ORDER BY b.仕入金額 DESC,a.仕入先コード,dbo.f_get発注番号から発注担当者(b.発注番号)";
+                    orderbySql += " ORDER BY TBL.仕入金額 DESC, TBL.仕入先コード, TBL.発注担当";
+                }
+            }
+            // 並び順（受注日）
+            else if (arrOrder[3].Equals("TRUE"))
+            {
+                // 並び順（A-Z）の場合
+                if (arrOrderAtoZ[0].Equals("TRUE"))
+                {
+                    // 受注日がNULLのレコードは最下部に表示させるORDER BY
+                    //orderbySql += " ORDER BY CASE WHEN TBL.受注日 IS NULL THEN 0 ELSE 1 END DESC, "
+                    //    + "TBL.受注日 ,TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
+
+                    orderbySql += "ORDER BY TBL.受注日 ,TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
+                }
+                else
+                {
+                    // 受注日がNULLのレコードは最下部に表示させるORDER BY
+                    //orderbySql += " ORDER BY CASE WHEN TBL.受注日 IS NULL THEN 0 ELSE 1 END DESC, "
+                    //    + "TBL.受注日 DESC ,TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
+
+                    orderbySql += "ORDER BY TBL.受注日 DESC,TBL.発注番号, TBL.メーカーコード, TBL.品名型式";
                 }
             }
 
             DBConnective dbconnective = new DBConnective();
             try
             {
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, startYmd, endYmd, andSql, orderbySql);
+
                 // 検索データをデータテーブルへ格納
-                dtGetTableGrid = dbconnective.ReadSql(strSql);
+                dtGetTableGrid = dbconnective.ReadSql(sql);
 
                 return dtGetTableGrid;
             }
@@ -229,6 +341,22 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>
         /// <param name="dtSiireJisseki">
         ///     仕入実績確認のデータテーブル</param>
+        /// <param name="lstItem">
+        ///     検索条件List  
+        ///     lstItem[0]  伝票年月日Start,
+        ///     lstItem[1]  伝票年月日End,
+        ///     lstItem[2]  営業担当者名,
+        ///     lstItem[3]  発注者名,
+        ///     lstItem[4]  受注者名,
+        ///     lstItem[5]  仕入先名称,
+        ///     lstItem[6]  大分類名称,
+        ///     lstItem[7]  中分類名称,
+        ///     lstItem[8]  品名・型番１,
+        ///     lstItem[9]  品名・型番２,
+        ///     lstItem[10] 品名・型番３,
+        ///     lstItem[11] 備考,
+        ///     lstItem[12] 得意先名称
+        /// </param>
         /// -----------------------------------------------------------------------------
         public string dbToPdf(DataTable dtSiireJisseki, List<string> lstItem)
         {
@@ -315,9 +443,10 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
 
                         // 担当者名、仕入先名、伝票年月日、大分類名、中分類名、品名・型番、備考出力（A2のセル）
                         IXLCell unitCell = headersheet.Cell("A2");
-                        unitCell.Value = "担当者：" + lstItem[2] + " 仕入先：" + lstItem[12] +
-                            " 伝票年月日：" + lstItem[0] + "～" + lstItem[1] + " 大分類：" + lstItem[13] +
-                            " 中分類：" + lstItem[14] + " 品名・型番：" + lstItem[6] + " 備考：" + lstItem[7];
+                        unitCell.Value = "担当者：" + lstItem[3] + " 仕入先：" + lstItem[5] +
+                            " 伝票年月日：" + lstItem[0] + "～" + lstItem[1] + " 大分類：" + lstItem[6] +
+                            " 中分類：" + lstItem[7] + " 品名・型番1：" + lstItem[8] + " 品名・型番2：" + lstItem[9] + " 品名・型番3：" + lstItem[10] + 
+                            " 備考：" + lstItem[11];
                         unitCell.Style.Font.FontSize = 10;
 
                         // ヘッダー出力（3行目のセル）

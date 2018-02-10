@@ -85,8 +85,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF06.Text = "F6:再計算";
 
-            //powerUserの場合
-            if (this.powerUserFlg)
+            //閲覧権限がある場合
+            if (("1").Equals(etsuranFlg))
             {
                 this.btnF07.Text = "F7:ＣＳＶ";
                 this.btnF07.Enabled = true;
@@ -775,8 +775,12 @@ namespace KATO.Form.B0250_MOnyuryoku
                     this.updSaikesan();
                     break;
                 case STR_BTN_F07: //ＣＳＶ
-                    logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ"));
-                    this.saveCSV();
+                    //閲覧権限がある場合
+                    if (("1").Equals(this.etsuranFlg))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ"));
+                        this.saveCSV();
+                    }
                     break;
                 case STR_BTN_F08: //特値
                     logger.Info(LogUtil.getMessage(this._Title, "特値実行"));

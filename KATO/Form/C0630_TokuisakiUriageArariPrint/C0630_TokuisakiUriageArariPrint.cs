@@ -22,10 +22,6 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        // SPPowerUser
-        private string strSPPowerUser = Environment.UserName;
-        //private string strSPPowerUser = "ooba";
-
         /// <summary>
         /// C0630_TokuisakiUriageArariPrint
         /// フォーム関係の設定
@@ -75,8 +71,8 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // SPPowerUserの場合
-            if (strSPPowerUser.Equals("ゲストユーザー"))
+            // 閲覧権限がある場合
+            if (("1").Equals(this.etsuranFlg))
             {
                 txtYmdFrom.ReadOnly = false;
                 txtYmdTo.ReadOnly = false;
@@ -361,8 +357,8 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
                 return false;
             }
 
-            // SPPowerUserでない場合
-            if (!strSPPowerUser.Equals("ゲストユーザー"))
+            // 閲覧権限がない場合
+            if (!("1").Equals(etsuranFlg))
             {
                 // 空文字判定（グループコード（開始））
                 if (labelSet_GroupCdFrom.CodeTxtText.Equals(""))

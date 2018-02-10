@@ -79,7 +79,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
 
             ////本番用
             //パワーユーザーの場合
-            if (this.powerUserFlg == true)
+            if ("1".Equals(this.etsuranFlg))
             {
                 //読み取り専用
                 lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
@@ -361,18 +361,28 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
         private void setTokuisakiView()
         {
             //パワーユーザーの場合
-            if (powerUserFlg == true)
+            if ("1".Equals(this.etsuranFlg))
             {
-                //データチェック（開始得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
+                //空チェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
                 {
                     lblsetTantoshaCdopen.Focus();
                     return;
                 }
-                //データチェック（終了得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.ValueLabelText) == false)
+                // データフォーマットチェック（開始得意先コード）
+                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
                 {
-                    lblsetTantoshaCdclose.Focus();
+                    return;
+                }
+                //空チェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.CodeTxtText) == false)
+                {
+                    lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                // データフォーマットチェック（終了得意先コード）
+                if (lblsetTantoshaCdclose.chkTxtTorihikisaki())
+                {
                     return;
                 }
                 //データチェック（開始年月日）
@@ -390,10 +400,15 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             }
             else
             {
-                //データチェック
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.ValueLabelText) == false)
+                //空チェック（開始得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
                 {
                     lblsetTantoshaCdopen.Focus();
+                    return;
+                }
+                // データフォーマットチェック（開始得意先コード）
+                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
+                {
                     return;
                 }
                 //データチェック（開始年月日）
@@ -424,23 +439,19 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
 
             List<string> lstStringViewData = new List<string>();
 
+            lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
             //パワーユーザーの場合
-            if (this.powerUserFlg == true)
+            if ("1".Equals(this.etsuranFlg))
             {
-                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
                 lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
-
-                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
-                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
             }
             else
             {
                 lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
-                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
-
-                lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
-                lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
             }
+
+            lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+            lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
 
             C0520_KaikakekinZandakaIchiranKakunin_B kaikakekakuninB = new C0520_KaikakekinZandakaIchiranKakunin_B();
             try

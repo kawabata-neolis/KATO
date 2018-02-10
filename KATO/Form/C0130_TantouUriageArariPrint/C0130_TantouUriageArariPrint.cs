@@ -22,10 +22,6 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        // SPPowerUser
-        private string strSPPowerUser = Environment.UserName;
-        //private string strSPPowerUser = "ooba";
-
         /// <summary>
         /// C0130_TantouUriageArariPrint
         /// フォーム関係の設定
@@ -72,24 +68,30 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
             this.KeyPreview = true;
 
             this.btnF04.Text = STR_FUNC_F4;
-            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // SPPowerUserの場合
-            if (strSPPowerUser.Equals("ゲストユーザー"))
+            // 閲覧権限がある場合
+            if ("1".Equals(etsuranFlg))
             {
                 txtYmdFrom.ReadOnly = false;
                 txtYmdTo.ReadOnly = false;
+                // F11;印刷表示
+                this.btnF11.Text = STR_FUNC_F11;
             }
             else
             {
                 txtYmdFrom.ReadOnly = true;
                 txtYmdTo.ReadOnly = true;
+                // F11;印刷非表示
+                this.btnF11.Text = "";
             }
 
             // 開始年月日、終了年月日の設定
             txtYmdFrom.setUp(1);
             txtYmdTo.setUp(2);
+
+            // ステータスバーにメッセージ
+            this.lblStatusMessage.Text = "F9を押すと、一覧選択または検索ができます";
         }
 
         /// <summary>
@@ -140,8 +142,11 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    this.printReport();
+                    if ("1".Equals(etsuranFlg))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                        this.printReport();
+                    }
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -166,8 +171,11 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                     this.delText();
                     break;
                 case STR_BTN_F11: // 印刷
-                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    this.printReport();
+                    if ("1".Equals(etsuranFlg))
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                        this.printReport();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -289,6 +297,9 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
+                        // カーソルを待機状態にする
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
 
@@ -299,17 +310,25 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
+                        // カーソルを待機状態にする
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
                     }
+                    // カーソルの状態を元に戻す
+                    this.Cursor = Cursors.Default;
 
                     pf.Dispose();
                 }
                 else
                 {
+                    // カーソルの状態を元に戻す
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -318,6 +337,9 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
             }
             catch (Exception ex)
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 
@@ -359,8 +381,8 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 return false;
             }
 
-            // SPPowerUserでない場合
-            if (!strSPPowerUser.Equals("ゲストユーザー"))
+            // 閲覧権限がない場合
+            if (!"1".Equals(etsuranFlg))
             {
                 // 空文字判定（営業所コード（開始））
                 if (labelSet_EigyoshoCdFrom.CodeTxtText.Equals(""))
