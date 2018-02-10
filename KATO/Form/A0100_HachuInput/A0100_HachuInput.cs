@@ -22,7 +22,7 @@ namespace KATO.Form.A0100_HachuInput
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2017/5/1
+    ///更新日：2017/5/10
     ///カラム論理名
     ///</summary>
     public partial class A0100_HachuInput : BaseForm
@@ -726,6 +726,12 @@ namespace KATO.Form.A0100_HachuInput
             //データ追加用（データ内容）
             List<string> lstData = new List<string>();
 
+            //受注伝票があるものは弾く
+            if (btnF01.Enabled == false)
+            {
+                return (blAddEnd);
+            }
+
             //文字判定(発注年月日)
             if (txtHachuYMD.blIsEmpty() == false)
             {
@@ -1098,6 +1104,10 @@ namespace KATO.Form.A0100_HachuInput
             txtHinmei.Enabled = true;
             lblHinmei.Enabled = true;
 
+            //初期化
+            btnF01.Enabled = true;
+            btnF03.Enabled = true;
+
             labelSet_Hachusha.CodeTxtText = strHachusha;
             labelSet_Hachusha.chkTxtTantosha();
 
@@ -1356,18 +1366,18 @@ namespace KATO.Form.A0100_HachuInput
                             //受注番号があるので、受注入力に誘導のコメント（OK）
                             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_HACHU_JUCHUNO_SHUSEI, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                             basemessagebox.ShowDialog();
-                            txtHachuban.Clear();
-                            txtHachuban.Focus();
-                            return;
+
+                            //登録削除をさせない
+                            btnF01.Enabled = false;
+                            btnF03.Enabled = false;
                         }
                     }
 
-                    //発注単価を取り出してコンボボックスに入れる
                     //戻り値のDatatableを取り込む
                     dtSetTanka = hachuB.getTanka(dtSetCd.Rows[0]["商品コード"].ToString());
 
                     //条件付き単価が１件以上ある場合
-                    if (dtSetTanka.Rows.Count != 0)
+                    if (dtSetTanka.Rows.Count > 0)
                     {
                         //条件付き単価の行数分
                         for (int cnt = 0; cnt < dtSetTanka.Rows.Count; cnt++)
@@ -1396,6 +1406,10 @@ namespace KATO.Form.A0100_HachuInput
 
                             cmbHachutan.Items.Add(((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,#.0000") + ":" + (((DateTime)dtSetTanka.Rows[cnt]["日時"]).Year.ToString()).Substring(2) + "/" + strMonth + "/" + strDay);
                         }
+                    }
+                    else
+                    {
+                        cmbHachutan.Items.Add("0.0000");
                     }
 
                     txtHachuYMD.Text = dtSetCd.Rows[0]["発注年月日"].ToString();
@@ -1478,6 +1492,8 @@ namespace KATO.Form.A0100_HachuInput
                     {
                         //商品
                         dtSetShohin = hachuB.getShohin(txtShohinCd.Text);
+
+                        //商品データの取り出し
 
                         //発注単価のピリオド取り
                         decimal decHachu = decimal.Parse(dtSetCd.Rows[0]["発注単価"].ToString().Split('.')[0]);

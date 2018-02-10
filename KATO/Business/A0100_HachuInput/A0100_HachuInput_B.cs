@@ -16,7 +16,7 @@ namespace KATO.Business.A0100_HachuInput_B
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2018/2/9
+    ///更新日：2018/2/10
     ///カラム論理名
     ///</summary>
     class A0100_HachuInput_B
