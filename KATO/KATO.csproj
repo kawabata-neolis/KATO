@@ -1572,6 +1572,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template\A0020_Genpinhyo.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Template\A0020_UriageInput.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -759,13 +759,13 @@ namespace KATO.Form.A0020_UriageInput
             this.Cursor = Cursors.WaitCursor;
             if (string.IsNullOrWhiteSpace(txtDenNo.Text))
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "伝票を選択してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 return;
             }
             if (editFlg)
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 return;
             }
@@ -840,7 +840,8 @@ namespace KATO.Form.A0020_UriageInput
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
                         //ラベルプリンターで印刷
-                        uriageinput_B.dbToExcel();
+                        uriageinput_B.printGenpinhyo(Denno, false);
+
 
                     }
                     else
@@ -849,11 +850,13 @@ namespace KATO.Form.A0020_UriageInput
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
                         pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE,false);
 
+                        //ラベルプリンターで印刷
+                        uriageinput_B.printGenpinhyo(Denno, false);
+
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
-                        //ラベルプリンターで印刷
 
                     }
 
