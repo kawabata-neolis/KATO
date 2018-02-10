@@ -662,171 +662,173 @@ namespace KATO.Business.A0100_HachuInput_B
             return dtHachu;
         }
 
-        ///// -----------------------------------------------------------------------------
-        ///// <summary>
-        ///// DataTableをもとにxlsxファイルを作成し、PDFファイルを作成
-        ///// </summary>
-        ///// <param name="dtHachu">発注のデータテーブル</param>
-        ///// <returns>結合PDFファイル</returns>
-        ///// -----------------------------------------------------------------------------
-        //public string dbToPdf(DataTable dtHachu)
-        //{
-        //    string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
-        //    string strFilePath = "./Template/A0120_ChumonShoPrint.xlsx";
-        //    string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// DataTableをもとにxlsxファイルを作成し、PDFファイルを作成
+        /// </summary>
+        /// <param name="dtHachu">発注のデータテーブル</param>
+        /// <returns>結合PDFファイル</returns>
+        /// -----------------------------------------------------------------------------
+        public string dbToPdf(DataTable dtHachu)
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/A0120_ChumonShoPrint.xlsx";
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-        //    try
-        //    {
-        //        CreatePdf pdf = new CreatePdf();
+            try
+            {
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
 
-        //        // excelのインスタンス生成
-        //        XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+                IXLWorksheet templatesheet = workbook.Worksheet(1);   // テンプレートシート
+                IXLWorksheet currentsheet = null;  // 処理中シート
 
-        //        IXLWorksheet templatesheet = workbook.Worksheet(1);   // テンプレートシート
-        //        IXLWorksheet currentsheet = null;  // 処理中シート
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int xlsRowCnt = 11;  // Excel出力行カウント（開始は出力行）
+                Boolean blnSheetCreate = false;
+                string strTorihikisakiCd = "";
+                string strHachusha = "";
 
-        //        int pageCnt = 0;    // ページ(シート枚数)カウント
-        //        int xlsRowCnt = 11;  // Excel出力行カウント（開始は出力行）
-        //        Boolean blnSheetCreate = false;
-        //        string strTorihikisakiCd = "";
-        //        string strHachusha = "";
+                // ClosedXMLで1行ずつExcelに出力
+                foreach (DataRow drHachu in dtHachu.Rows)
+                {
+                    // 取引先コードが前行と違う場合、テンプレートシート作成
+                    if (!strTorihikisakiCd.Equals(drHachu[1].ToString()))
+                    {
+                        // 取引先コードが空でない場合
+                        if (!strTorihikisakiCd.Equals(""))
+                        {
+                            // 明細行が17行、18行の場合
+                            if (xlsRowCnt == 28 || xlsRowCnt == 29)
+                            {
+                                // 不要な明細行、発注者行を削除
+                                currentsheet.Rows(xlsRowCnt, 33).Delete();
 
-        //        // ClosedXMLで1行ずつExcelに出力
-        //        foreach (DataRow drHachu in dtHachu.Rows)
-        //        {
-        //            // 取引先コードが前行と違う場合、テンプレートシート作成
-        //            if (!strTorihikisakiCd.Equals(drHachu[1].ToString()))
-        //            {
-        //                // 取引先コードが空でない場合
-        //                if (!strTorihikisakiCd.Equals(""))
-        //                {
-        //                    // 明細行が17行、18行の場合
-        //                    if (xlsRowCnt == 28 || xlsRowCnt == 29)
-        //                    {
-        //                        // 不要な明細行、発注者行を削除
-        //                        currentsheet.Rows(xlsRowCnt, 33).Delete();
+                                pageCnt++;
+                                xlsRowCnt = 11;
 
-        //                        pageCnt++;
-        //                        xlsRowCnt = 11;
+                                // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
+                                templatesheet.CopyTo(templatesheet.Name);
+                                //templatesheet.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
+                            }
 
-        //                        // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
-        //                        this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
-        //                    }
+                            // 不要な明細行を削除
+                            currentsheet.Rows(xlsRowCnt, 28).Delete();
 
-        //                    // 不要な明細行を削除
-        //                    currentsheet.Rows(xlsRowCnt, 28).Delete();
+                            // 発注者
+                            currentsheet.Cell(xlsRowCnt + 2, "K").Value = strHachusha;
+                            currentsheet.Range(xlsRowCnt + 2, 11, xlsRowCnt + 4, 11).Merge();
+                        }
 
-        //                    // 発注者
-        //                    currentsheet.Cell(xlsRowCnt + 2, "K").Value = strHachusha;
-        //                    currentsheet.Range(xlsRowCnt + 2, 11, xlsRowCnt + 4, 11).Merge();
-        //                }
+                        strTorihikisakiCd = drHachu[1].ToString();      // 取引先コード
+                        strHachusha = drHachu[11].ToString();           // 発注者
+                        pageCnt++;
+                        xlsRowCnt = 11;
+                        blnSheetCreate = true;
 
-        //                strTorihikisakiCd = drHachu[1].ToString();      // 取引先コード
-        //                strHachusha = drHachu[11].ToString();           // 発注者
-        //                pageCnt++;
-        //                xlsRowCnt = 11;
-        //                blnSheetCreate = true;
+                        // テンプレートシートからコピー
+                        templatesheet.CopyTo("Page" + pageCnt.ToString());
+                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+                    }
 
-        //                // テンプレートシートからコピー
-        //                templatesheet.CopyTo("Page" + pageCnt.ToString());
-        //                currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
-        //            }
+                    // 明細行が19行になった場合
+                    if (xlsRowCnt == 29)
+                    {
+                        // 発注者行を削除
+                        currentsheet.Rows(xlsRowCnt, 33).Delete();
 
-        //            // 明細行が19行になった場合
-        //            if (xlsRowCnt == 29)
-        //            {
-        //                // 発注者行を削除
-        //                currentsheet.Rows(xlsRowCnt, 33).Delete();
+                        pageCnt++;
+                        xlsRowCnt = 11;
 
-        //                pageCnt++;
-        //                xlsRowCnt = 11;
+                        // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
+                        templatesheet.CopyTo(templatesheet.Name);
+                        //this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
+                    }
 
-        //                // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
-        //                this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
-        //            }
+                    // 最初の明細行の場合
+                    if (blnSheetCreate)
+                    {
+                        blnSheetCreate = false;
 
-        //            // 最初の明細行の場合
-        //            if (blnSheetCreate)
-        //            {
-        //                blnSheetCreate = false;
+                        currentsheet.Cell("A4").Value = drHachu[2].ToString();       // 取引先名
+                        currentsheet.Cell("B6").Value = drHachu[3].ToString();       // 電話番号
+                        currentsheet.Cell("B7").Value = drHachu[4].ToString();       // FAX
+                        currentsheet.Cell("E3").Value = drHachu[0].ToString();       // 年月日
+                        currentsheet.Cell("K3").Value = drHachu[13].ToString();      // 営業所名
+                    }
 
-        //                currentsheet.Cell("A4").Value = drHachu[2].ToString();       // 取引先名
-        //                currentsheet.Cell("B6").Value = drHachu[3].ToString();       // 電話番号
-        //                currentsheet.Cell("B7").Value = drHachu[4].ToString();       // FAX
-        //                currentsheet.Cell("E3").Value = drHachu[0].ToString();       // 年月日
-        //                currentsheet.Cell("K3").Value = drHachu[13].ToString();      // 営業所名
-        //            }
+                    currentsheet.Cell(xlsRowCnt, "A").Value = drHachu[5].ToString();    // 商品名
+                    currentsheet.Cell(xlsRowCnt, "E").Value = drHachu[6].ToString();    // 数量
+                    currentsheet.Cell(xlsRowCnt, "F").Value = drHachu[7].ToString();    // 単価
+                    currentsheet.Cell(xlsRowCnt, "G").Value = drHachu[8].ToString();    // 金額
+                    currentsheet.Cell(xlsRowCnt, "I").Value = drHachu[9].ToString();    // 納期
+                    currentsheet.Cell(xlsRowCnt, "J").Value = drHachu[10].ToString();    // 注文番号
+                    currentsheet.Cell(xlsRowCnt, "K").Value = "'" + drHachu[12].ToString();    // 備考
 
-        //            currentsheet.Cell(xlsRowCnt, "A").Value = drHachu[5].ToString();    // 商品名
-        //            currentsheet.Cell(xlsRowCnt, "E").Value = drHachu[6].ToString();    // 数量
-        //            currentsheet.Cell(xlsRowCnt, "F").Value = drHachu[7].ToString();    // 単価
-        //            currentsheet.Cell(xlsRowCnt, "G").Value = drHachu[8].ToString();    // 金額
-        //            currentsheet.Cell(xlsRowCnt, "I").Value = drHachu[9].ToString();    // 納期
-        //            currentsheet.Cell(xlsRowCnt, "J").Value = drHachu[10].ToString();    // 注文番号
-        //            currentsheet.Cell(xlsRowCnt, "K").Value = "'" + drHachu[12].ToString();    // 備考
+                    xlsRowCnt++;
+                }
 
-        //            xlsRowCnt++;
-        //        }
+                // 発注データがある場合
+                if (dtHachu.Rows.Count > 0)
+                {
+                    // 明細行が17行、18行の場合
+                    if (xlsRowCnt == 28 || xlsRowCnt == 29)
+                    {
+                        // 不要な明細行、発注者行を削除
+                        currentsheet.Rows(xlsRowCnt, 33).Delete();
 
-        //        // 発注データがある場合
-        //        if (dtHachu.Rows.Count > 0)
-        //        {
-        //            // 明細行が17行、18行の場合
-        //            if (xlsRowCnt == 28 || xlsRowCnt == 29)
-        //            {
-        //                // 不要な明細行、発注者行を削除
-        //                currentsheet.Rows(xlsRowCnt, 33).Delete();
+                        pageCnt++;
+                        xlsRowCnt = 11;
 
-        //                pageCnt++;
-        //                xlsRowCnt = 11;
+                        // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
+                        templatesheet.CopyTo(templatesheet.Name);
+                        //this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
+                    }
 
-        //                // テンプレートシートをコピーし、1つ前のシートから取引先名などをコピー
-        //                this.sheetCopy(ref workbook, ref currentsheet, templatesheet, pageCnt);
-        //            }
+                    // 不要な明細行を削除
+                    currentsheet.Rows(xlsRowCnt, 28).Delete();
 
-        //            // 不要な明細行を削除
-        //            currentsheet.Rows(xlsRowCnt, 28).Delete();
+                    // 発注者
+                    currentsheet.Cell(xlsRowCnt + 2, "K").Value = strHachusha;
+                    currentsheet.Range(xlsRowCnt + 2, 11, xlsRowCnt + 4, 11).Merge();
+                }
 
-        //            // 発注者
-        //            currentsheet.Cell(xlsRowCnt + 2, "K").Value = strHachusha;
-        //            currentsheet.Range(xlsRowCnt + 2, 11, xlsRowCnt + 4, 11).Merge();
-        //        }
+                // テンプレートシート削除
+                templatesheet.Delete();
 
-        //        // テンプレートシート削除
-        //        templatesheet.Delete();
+                // workbookを保存
+                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                workbook.SaveAs(strOutXlsFile);
 
-        //        // workbookを保存
-        //        string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
-        //        workbook.SaveAs(strOutXlsFile);
+                // workbookを解放
+                workbook.Dispose();
 
-        //        // workbookを解放
-        //        workbook.Dispose();
+                // CreatePdfのインスタンス生成
+                CreatePdf pdf = new CreatePdf();
 
-        //        // CreatePdfのインスタンス生成
-        //        CreatePdf pdf = new CreatePdf();
+                // ロゴ貼り付け処理
+                int[] topRow = { 2 };
+                int[] leftColumn = { 8 };
+                pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 57);
+                //pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 160, 0, 80);
 
-        //        // ロゴ貼り付け処理
-        //        int[] topRow = { 2 };
-        //        int[] leftColumn = { 8 };
-        //        pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 160, 0, 80);
-
-        //        // PDF化の処理
-        //        return pdf.createPdf(strOutXlsFile, strDateTime);
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        // Workフォルダの作成日時ファイルを取得
-        //        string[] files = Directory.GetFiles(strWorkPath, strDateTime + "*", SearchOption.AllDirectories);
-        //        // Workフォルダ内のファイル削除
-        //        foreach (string filepath in files)
-        //        {
-        //            File.Delete(filepath);
-        //        }
-        //    }
-        //}
+                // PDF化の処理
+                return pdf.createPdf(strOutXlsFile, strDateTime);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                // Workフォルダの作成日時ファイルを取得
+                string[] files = Directory.GetFiles(strWorkPath, strDateTime + "*", SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    File.Delete(filepath);
+                }
+            }
+        }
     }
 }

@@ -698,7 +698,7 @@ namespace KATO.Form.A0100_HachuInput
 
         ///<summary>
         ///showRireki
-        ///売上実績確認の実行
+        ///仕入実績確認の実行
         ///</summary>
         private void showRireki()
         {
@@ -708,8 +708,8 @@ namespace KATO.Form.A0100_HachuInput
                 return;
             }
 
-            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 10, textSet_Torihikisaki.CodeTxtText,txtShohinCd.Text);
-            uriage.ShowDialog();
+            D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin shire = new D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this, 10, textSet_Torihikisaki.CodeTxtText);
+            shire.ShowDialog();
         }
 
         ///<summary>
@@ -1476,6 +1476,7 @@ namespace KATO.Form.A0100_HachuInput
 
                         //定価の確保
                         txtTeka.Text = decTeika.ToString();
+                        txtTeka.updPriceMethod();
 
                         //定価が0以下の場合
                         if (decTeika < 1)
@@ -1619,24 +1620,24 @@ namespace KATO.Form.A0100_HachuInput
 
                 pf.ShowDialog(this);
 
-                ////プレビューの場合
-                //if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
-                //{
-                //    //結果セットをレコードセットに
-                //    strFile = hachuB.dbToPdf(dtPrintData, dtPrintData);
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //結果セットをレコードセットに
+                    strFile = hachuB.dbToPdf(dtPrintData);
 
-                //    // プレビュー
-                //    pf.execPreview(strFile);
-                //}
-                //// 一括印刷の場合
-                //else if (this.printFlg == CommonTeisu.ACTION_PRINT)
-                //{
-                //    // PDF作成
-                //    strFile = hachuB.dbToPdf(dtPrintData, dtPrintData);
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    // PDF作成
+                    strFile = hachuB.dbToPdf(dtPrintData);
 
-                //    // 一括印刷
-                //    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
-                //}
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
 
 
                 //発注テーブルの該当発注番号の印刷フラグを立てる
