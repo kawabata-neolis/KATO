@@ -830,5 +830,43 @@ namespace KATO.Business.A0100_HachuInput_B
                 }
             }
         }
+
+        /// <summary>
+        /// updHachu
+        /// 発注を更新
+        /// </summary>
+        public void updHachu(string strHachuCd)
+        {
+            string strSql;
+
+            strSql = "UPDATE 発注 ";
+            strSql += "SET 印刷フラグ = '1' ";
+            strSql += " WHERE 削除 = 'N' ";
+            strSql += " AND 発注番号='" + strHachuCd + "'";
+
+            // DBConnectiveのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
+                // 更新
+                dbconnective.RunSql(strSql);
+
+                // コミット
+                dbconnective.Commit();
+            }
+            catch
+            {
+                // ロールバック処理
+                dbconnective.Rollback();
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }
