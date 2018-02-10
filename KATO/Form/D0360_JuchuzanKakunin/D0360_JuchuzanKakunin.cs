@@ -148,6 +148,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             btnF01.Text = CommonTeisu.STR_FUNC_F1_HYOJII;
             btnF04.Text = CommonTeisu.STR_FUNC_F4;
             btnF12.Text = CommonTeisu.STR_FUNC_F12;
+            if (!"1".Equals(etsuranFlg))
+            {
+                btnF09.Enabled = false;
+            }
             SetUpGrid();
             rsSortOrder.radbtn0.Checked = false;
             rsSortOrder.radbtn1.Checked = true;
@@ -397,12 +401,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case Keys.F8:
                     break;
                 case Keys.F9:
-                    //印刷
-                    //PrintReport();
+                    
                     break;
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    //印刷
+                    if ("1".Equals(etsuranFlg))
+                    {
+                        //PrintReport();
+                    }
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));

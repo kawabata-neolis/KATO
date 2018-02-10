@@ -1691,7 +1691,7 @@ namespace KATO.Form.A0020_UriageInput
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //部長は処理をSKIP
-                    if (Environment.UserName != "SPPowerUser")
+                    if (!"1".Equals(riekiritsuFlg))
                     {
                         //検索アイテムをリストデータで保持
                         List<string> lstString = new List<string>();
@@ -1890,7 +1890,7 @@ namespace KATO.Form.A0020_UriageInput
             }
 
             //在庫チェックは部長は除外。
-            if (Environment.UserName != "SPPowerUser")
+            if (!"1".Equals(riekiritsuFlg))
             {
                 //変数を初期化
                 decimal sU = 0;
@@ -1993,7 +1993,7 @@ namespace KATO.Form.A0020_UriageInput
                         //利益率のガード　売値＞＝仕入値÷０．９
                         //赤伝は除外
                         //部長の場合は処理をSKIP
-                        if (Environment.UserName != "SPPowerUser")
+                        if (!"1".Equals(riekiritsuFlg))
                         {
                             //メソッドRieki10へ
                             if (Rieki10())
@@ -2174,7 +2174,7 @@ namespace KATO.Form.A0020_UriageInput
             int getSyohinbetuCheck = 0 ;    //戻り値 
 
             //部長の場合はPASS
-            if (Environment.UserName == "SPPowerUser")
+            if (!"1".Equals(riekiritsuFlg))
             {
                 getSyohinbetuCheck = 1;
                 return getSyohinbetuCheck;
@@ -3389,8 +3389,8 @@ namespace KATO.Form.A0020_UriageInput
             btnF03.Enabled = true;
             btnF07.Enabled = true;
 
-            //売上削除承認確認、SPPowerUser【暫定】の場合は行わない。
-            if (Environment.UserName != "SPPowerUser")
+            //売上削除承認確認、閲覧権限ユーザー【暫定】の場合は行わない。
+            if (!"1".Equals(etsuranFlg))
             {
                 //売上削除承認確認へ。
                 if (!UriageSakujoCheck(txtDenNo.Text))

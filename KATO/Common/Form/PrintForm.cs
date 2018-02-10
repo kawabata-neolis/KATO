@@ -161,6 +161,7 @@ namespace KATO.Common.Form
             {
                 execPrint();
             }
+            this.Close();
         }
 
         public void execPrint(string p, string path, string size, bool tFlg, bool dFlg, int pNum)
@@ -180,6 +181,7 @@ namespace KATO.Common.Form
             {
                 execPrint();
             }
+            this.Close();
         }
 
         public void execPreview(string path)

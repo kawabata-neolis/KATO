@@ -910,8 +910,9 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                strChokinShireTanka = string.Format("{0:0.00}", double.Parse(dtSetCd_B.Rows[0]["仕入単価"].ToString()));
-
+                if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0) {
+                    strChokinShireTanka = string.Format("{0:0.00}", double.Parse(dtSetCd_B.Rows[0]["仕入単価"].ToString()));
+                }
                 return strChokinShireTanka;
             }
             catch (Exception ex)
