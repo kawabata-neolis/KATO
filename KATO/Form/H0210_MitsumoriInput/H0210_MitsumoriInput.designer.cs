@@ -863,10 +863,10 @@
             // 
             this.txtKakCd6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd6.Location = new System.Drawing.Point(741, 166);
+            this.txtKakCd6.MaxLength = 4;
             this.txtKakCd6.Name = "txtKakCd6";
             this.txtKakCd6.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd6.TabIndex = 22;
-            this.txtKakCd6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -914,10 +914,10 @@
             // 
             this.txtKakCd5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd5.Location = new System.Drawing.Point(741, 141);
+            this.txtKakCd5.MaxLength = 4;
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd5.TabIndex = 20;
-            this.txtKakCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -965,10 +965,10 @@
             // 
             this.txtKakCd4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd4.Location = new System.Drawing.Point(741, 116);
+            this.txtKakCd4.MaxLength = 4;
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd4.TabIndex = 18;
-            this.txtKakCd4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1160,10 +1160,10 @@
             // 
             this.txtZaiCd6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd6.Location = new System.Drawing.Point(62, 166);
+            this.txtZaiCd6.MaxLength = 4;
             this.txtZaiCd6.Name = "txtZaiCd6";
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd6.TabIndex = 16;
-            this.txtZaiCd6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1229,10 +1229,10 @@
             // 
             this.txtZaiCd5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd5.Location = new System.Drawing.Point(62, 141);
+            this.txtZaiCd5.MaxLength = 4;
             this.txtZaiCd5.Name = "txtZaiCd5";
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd5.TabIndex = 14;
-            this.txtZaiCd5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1298,10 +1298,10 @@
             // 
             this.txtZaiCd4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd4.Location = new System.Drawing.Point(62, 116);
+            this.txtZaiCd4.MaxLength = 4;
             this.txtZaiCd4.Name = "txtZaiCd4";
             this.txtZaiCd4.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd4.TabIndex = 12;
-            this.txtZaiCd4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1361,10 +1361,10 @@
             // 
             this.txtKakCd3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd3.Location = new System.Drawing.Point(741, 75);
+            this.txtKakCd3.MaxLength = 4;
             this.txtKakCd3.Name = "txtKakCd3";
             this.txtKakCd3.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd3.TabIndex = 10;
-            this.txtKakCd3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1412,10 +1412,10 @@
             // 
             this.txtKakCd2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd2.Location = new System.Drawing.Point(741, 50);
+            this.txtKakCd2.MaxLength = 4;
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd2.TabIndex = 8;
-            this.txtKakCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1483,10 +1483,10 @@
             // 
             this.txtKakCd1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtKakCd1.Location = new System.Drawing.Point(741, 25);
+            this.txtKakCd1.MaxLength = 4;
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd1.TabIndex = 6;
-            this.txtKakCd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtKakCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1621,10 +1621,10 @@
             // 
             this.txtZaiCd3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd3.Location = new System.Drawing.Point(62, 75);
+            this.txtZaiCd3.MaxLength = 4;
             this.txtZaiCd3.Name = "txtZaiCd3";
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd3.TabIndex = 4;
-            this.txtZaiCd3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1726,10 +1726,10 @@
             // 
             this.txtZaiCd2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd2.Location = new System.Drawing.Point(62, 50);
+            this.txtZaiCd2.MaxLength = 4;
             this.txtZaiCd2.Name = "txtZaiCd2";
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd2.TabIndex = 2;
-            this.txtZaiCd2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
@@ -1871,10 +1871,10 @@
             // 
             this.txtZaiCd1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtZaiCd1.Location = new System.Drawing.Point(62, 25);
+            this.txtZaiCd1.MaxLength = 4;
             this.txtZaiCd1.Name = "txtZaiCd1";
             this.txtZaiCd1.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd1.TabIndex = 0;
-            this.txtZaiCd1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
             this.txtZaiCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
             this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 

@@ -759,13 +759,13 @@ namespace KATO.Form.A0020_UriageInput
             this.Cursor = Cursors.WaitCursor;
             if (string.IsNullOrWhiteSpace(txtDenNo.Text))
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "伝票を選択してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 return;
             }
             if (editFlg)
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
                 return;
             }
@@ -840,7 +840,8 @@ namespace KATO.Form.A0020_UriageInput
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
                         //ラベルプリンターで印刷
-                        uriageinput_B.dbToExcel();
+                        uriageinput_B.printGenpinhyo(Denno, false);
+
 
                     }
                     else
@@ -849,11 +850,13 @@ namespace KATO.Form.A0020_UriageInput
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
                         pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE,false);
 
+                        //ラベルプリンターで印刷
+                        uriageinput_B.printGenpinhyo(Denno, false);
+
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
-                        //ラベルプリンターで印刷
 
                     }
 
@@ -1688,7 +1691,7 @@ namespace KATO.Form.A0020_UriageInput
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //部長は処理をSKIP
-                    if (Environment.UserName != "SPPowerUser")
+                    if (!"1".Equals(riekiritsuFlg))
                     {
                         //検索アイテムをリストデータで保持
                         List<string> lstString = new List<string>();
@@ -1887,7 +1890,7 @@ namespace KATO.Form.A0020_UriageInput
             }
 
             //在庫チェックは部長は除外。
-            if (Environment.UserName != "SPPowerUser")
+            if (!"1".Equals(riekiritsuFlg))
             {
                 //変数を初期化
                 decimal sU = 0;
@@ -1990,7 +1993,7 @@ namespace KATO.Form.A0020_UriageInput
                         //利益率のガード　売値＞＝仕入値÷０．９
                         //赤伝は除外
                         //部長の場合は処理をSKIP
-                        if (Environment.UserName != "SPPowerUser")
+                        if (!"1".Equals(riekiritsuFlg))
                         {
                             //メソッドRieki10へ
                             if (Rieki10())
@@ -2171,7 +2174,7 @@ namespace KATO.Form.A0020_UriageInput
             int getSyohinbetuCheck = 0 ;    //戻り値 
 
             //部長の場合はPASS
-            if (Environment.UserName == "SPPowerUser")
+            if (!"1".Equals(riekiritsuFlg))
             {
                 getSyohinbetuCheck = 1;
                 return getSyohinbetuCheck;
@@ -3386,8 +3389,8 @@ namespace KATO.Form.A0020_UriageInput
             btnF03.Enabled = true;
             btnF07.Enabled = true;
 
-            //売上削除承認確認、SPPowerUser【暫定】の場合は行わない。
-            if (Environment.UserName != "SPPowerUser")
+            //売上削除承認確認、閲覧権限ユーザー【暫定】の場合は行わない。
+            if (!"1".Equals(etsuranFlg))
             {
                 //売上削除承認確認へ。
                 if (!UriageSakujoCheck(txtDenNo.Text))

@@ -2700,12 +2700,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPreview(st);
                     //pf.ShowDialog(this);
-                    pf.Close();
+                    //pf.Close();
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
-                    pf.Close();
+                    //pf.Close();
                 }
                 pf.Dispose();
             }
@@ -2894,12 +2894,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     pf.execPreview(st);
                     //pf.ShowDialog(this);
-                    pf.Close();
+                    //pf.Close();
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
                     pf.execPrint(null, st, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, false);
-                    pf.Close();
+                    //pf.Close();
                 }
                 pf.Dispose();
             }
@@ -3900,6 +3900,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             c.Value = (decimal.Round(d, 0)).ToString("0.0");
         }
 
+        
     }
 
 }

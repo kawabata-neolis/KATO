@@ -2240,23 +2240,107 @@ namespace KATO.Business.A0020_UriageInput
 
 
 
-        public String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
-        public int _sheetNo = 1;                        // シートNo.
-        public int _col = 2;                            // データ書き込みカラム
-        public int _line = 2;                           // データ書き込み開始行
-        public String _printer = "Brother TD-4100N";    // 出力プリンター
 
-        public String strJuchusaki = "";                // 受注先
-        public String strNohinsaki = "";                // 納品先
-        public String strNohinbi = "";                  // 納品日
-        public String strKataban = "";                  // 型番
-        public String strTanaban = "";                  // 棚番
-        public String strSu = "";                       // 数量
-        public String strBiko = "";                     // 備考
-
-
-        public void printout()
+        public void printGenpinhyo(string stDenno, bool blNotPrintedOnly)
         {
+            try
+            {
+                DataTable dt = getGenpinhyoInfo(stDenno, blNotPrintedOnly);
+
+                String strJuchusaki = "";                // 受注先
+                String strNohinsaki = "";                // 納品先
+                String strNohinbi = "";                  // 納品日
+                String strKataban = "";                  // 型番
+                String strTanaban = "";                  // 棚番
+                String strSu = "";                       // 数量
+                String strBiko = "";                     // 備考
+
+                if (dt != null)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        DataRow dr = dt.Rows[i];
+
+                        strJuchusaki = dt.Rows[i]["得意先名"].ToString();
+                        strNohinsaki = dt.Rows[i]["直送先名"].ToString();
+                        if (string.IsNullOrWhiteSpace(strNohinsaki))
+                        {
+                            strNohinsaki = strJuchusaki;
+                        }
+                        strNohinbi = dt.Rows[i]["伝票年月日"].ToString();
+                        strKataban = dt.Rows[i]["型番"].ToString();
+                        strTanaban = dt.Rows[i]["棚番"].ToString();
+                        strSu = dt.Rows[i]["数量"].ToString();
+                        strBiko = dt.Rows[i]["備考"].ToString();
+
+                        printout(strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private DataTable getGenpinhyoInfo(string stDenno, bool blNotPrintedOnly)
+        {
+            DataTable dt = null;
+
+            string strSQL = "";
+            strSQL += "SELECT 売上ヘッダ.得意先名";
+            strSQL += "      ,売上ヘッダ.直送先名";
+            strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
+            strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
+            strSQL += "      ,dbo.f_get商品コードから棚番(売上明細.商品コード, dbo.f_get受注時の出庫場所(売上明細.受注番号)) AS 棚番";
+            strSQL += "      ,売上明細.数量";
+            strSQL += "      ,売上明細.備考";
+            strSQL += "  FROM 売上ヘッダ, 売上明細";
+            strSQL += " WHERE 売上ヘッダ.削除 = 'N'";
+            strSQL += "   AND 売上明細.削除 = 'N'";
+            strSQL += "   AND 売上ヘッダ.伝票番号 = 売上明細.伝票番号";
+
+            if (!string.IsNullOrWhiteSpace(stDenno))
+            {
+                strSQL += "   AND 売上ヘッダ.伝票番号 = " + stDenno;
+            }
+
+            if (blNotPrintedOnly)
+            {
+                strSQL += "   AND 売上ヘッダ.伝票発行フラグ = '0'";
+            }
+
+            DBConnective dtCon = new DBConnective();
+            try
+            {
+                dt = dtCon.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dt;
+        }
+
+        public void printout(String strJuchusaki, String strNohinsaki, String strNohinbi, String strKataban,
+            String strTanaban, String strSu, String strBiko)
+        {
+
+            //String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
+            int _sheetNo = 1;                        // シートNo.
+            int _col = 2;                            // データ書き込みカラム
+            int _line = 2;                           // データ書き込み開始行
+            String _printer = "Brother TD-4100N";    // 出力プリンター
+
+            //String strJuchusaki = "";                // 受注先
+            //String strNohinsaki = "";                // 納品先
+            //String strNohinbi = "";                  // 納品日
+            //String strKataban = "";                  // 型番
+            //String strTanaban = "";                  // 棚番
+            //String strSu = "";                       // 数量
+            //String strBiko = "";                     // 備考
+
 
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strFilePath = "./Template/A0020_Genpinhyo.xls";
@@ -2291,7 +2375,10 @@ namespace KATO.Business.A0020_UriageInput
                 objExcel.DisplayAlerts = false;
 
                 objWorkBooks = objExcel.Workbooks;
-                objWorkBook = objWorkBooks.Open(_xslFile,     // FileName:ファイル名
+
+                strFilePath = System.IO.Path.GetFullPath(strFilePath);
+
+                objWorkBook = objWorkBooks.Open(strFilePath, //_xslFile,     // FileName:ファイル名
                                                 Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
                                                 Type.Missing, // ReadOnly:ReadOnlyにするかどうか
                                                 Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
@@ -2358,7 +2445,7 @@ namespace KATO.Business.A0020_UriageInput
                                       Type.Missing, // To:印刷終了のページ番号
                                       1,            // Copies:印刷部数
                                       Type.Missing, // Preview:印刷プレビューをするか指定
-                                      Type.Missing, // ActivePrinter:プリンターの名称
+                                      _printer, // ActivePrinter:プリンターの名称
                                       Type.Missing, // PrintToFile:ファイル出力をするか指定
                                       true,         // Collate:部単位で印刷するか指定
                                       Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか

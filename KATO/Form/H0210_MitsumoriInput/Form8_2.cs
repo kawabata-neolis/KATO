@@ -336,10 +336,11 @@ namespace KATO.Form.H0210_MitsumoriInput
         {
             // TODO debug
             powerUserFlg = true;
-            if (!powerUserFlg)
+            if (!"1".Equals(etsuranFlg))
             {
                 button1.Visible = false;
                 button2.Visible = false;
+                button3.Visible = false;
             }
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;

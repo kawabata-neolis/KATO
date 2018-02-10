@@ -652,12 +652,12 @@
             this.lsDaibunrui.LsSubmakerdata = null;
             this.lsDaibunrui.Name = "lsDaibunrui";
             this.lsDaibunrui.ShowAppendFlg = false;
-            this.lsDaibunrui.Size = new System.Drawing.Size(357, 22);
+            this.lsDaibunrui.Size = new System.Drawing.Size(388, 22);
             this.lsDaibunrui.SpaceCodeValue = 13;
             this.lsDaibunrui.SpaceNameCode = 46;
             this.lsDaibunrui.SpaceValueAppend = 4;
             this.lsDaibunrui.TabIndex = 20;
-            this.lsDaibunrui.ValueLabelSize = 150;
+            this.lsDaibunrui.ValueLabelSize = 236;
             this.lsDaibunrui.ValueLabelText = "";
             // 
             // lsChubunrui
@@ -670,13 +670,13 @@
             this.lsChubunrui.Location = new System.Drawing.Point(9, 149);
             this.lsChubunrui.Name = "lsChubunrui";
             this.lsChubunrui.ShowAppendFlg = false;
-            this.lsChubunrui.Size = new System.Drawing.Size(357, 22);
+            this.lsChubunrui.Size = new System.Drawing.Size(388, 22);
             this.lsChubunrui.SpaceCodeValue = 13;
             this.lsChubunrui.SpaceNameCode = 46;
             this.lsChubunrui.SpaceValueAppend = 4;
             this.lsChubunrui.strDaibunCd = null;
             this.lsChubunrui.TabIndex = 21;
-            this.lsChubunrui.ValueLabelSize = 150;
+            this.lsChubunrui.ValueLabelSize = 236;
             this.lsChubunrui.ValueLabelText = "";
             // 
             // lsMaker
@@ -689,13 +689,13 @@
             this.lsMaker.Location = new System.Drawing.Point(9, 177);
             this.lsMaker.Name = "lsMaker";
             this.lsMaker.ShowAppendFlg = false;
-            this.lsMaker.Size = new System.Drawing.Size(347, 22);
+            this.lsMaker.Size = new System.Drawing.Size(388, 22);
             this.lsMaker.SpaceCodeValue = 4;
             this.lsMaker.SpaceNameCode = 30;
             this.lsMaker.SpaceValueAppend = 4;
             this.lsMaker.strDaibunCd = null;
             this.lsMaker.TabIndex = 22;
-            this.lsMaker.ValueLabelSize = 150;
+            this.lsMaker.ValueLabelSize = 236;
             this.lsMaker.ValueLabelText = "";
             // 
             // gridZanList
