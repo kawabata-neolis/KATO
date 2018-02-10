@@ -128,6 +128,7 @@
             this.txtSinamei_KatabanS.Name = "txtSinamei_KatabanS";
             this.txtSinamei_KatabanS.Size = new System.Drawing.Size(353, 22);
             this.txtSinamei_KatabanS.TabIndex = 3;
+            this.txtSinamei_KatabanS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTextboxKeyDown);
             // 
             // lblKataban
             // 
@@ -149,6 +150,7 @@
             this.txtBikouS.Name = "txtBikouS";
             this.txtBikouS.Size = new System.Drawing.Size(353, 22);
             this.txtBikouS.TabIndex = 4;
+            this.txtBikouS.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTextboxKeyDown);
             // 
             // baseLabel1
             // 

@@ -218,6 +218,8 @@ namespace KATO.Form.M1071_TorihikisakiInfo
             cmbNonyu.Text = dtSelectData.Rows[0]["納入方法"].ToString();
             //業務担当者
             labelSet_GyomuTantousha.CodeTxtText = dtSelectData.Rows[0]["業務担当者コード"].ToString();
+            // 納品書有無
+            txtNohinnshoumu.Text = dtSelectData.Rows[0]["納品書印刷"].ToString();
         }
 
         ///<summary>
@@ -431,8 +433,6 @@ namespace KATO.Form.M1071_TorihikisakiInfo
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;
-            //文字チェック用
-            Boolean blnGood = false;
 
             //前後の空白を取り除く
             txtCdT.Text = txtCdT.Text.Trim();
@@ -442,73 +442,83 @@ namespace KATO.Form.M1071_TorihikisakiInfo
             {
                 return;
             }
-            else
+
+            // 文字列チェック
+            if (chkToriikisaki())
             {
-                // 取引先コード取得
-                string torihikiCode = txtCdT.Text;
-                // SQL禁止文字チェック
-                blnGood = StringUtl.JudBanSQL(torihikiCode);
+                return;
+            }
 
-                if (blnGood == true)
+            // 取引先コード取得
+            string torihikiCode = txtCdT.Text;
+            //ビジネス層のインスタンス生成
+            M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(torihikiCode);
+
+                //Datatable内のデータが存在する場合
+                if (dtSetCd.Rows.Count != 0)
                 {
-                    // 数字チェック
-                    blnGood = StringUtl.JudBanSelect(torihikiCode, CommonTeisu.NUMBER_ONLY);
+                    setTorihikisaki(dtSetCd);
 
-                    if (blnGood == true)
-                    {
-                        //文字数が足りなかった場合0パティング
-                        if (torihikiCode.Length < 4)
-                        {
-                            // 検索結果がない場合、画面クリアするが、取引先コードは保持するため
-                            // 変数に入れておく
-                            torihikiCode = torihikiCode.PadLeft(4, '0');
-
-                            txtCdT.Text = torihikiCode;
-                        }
-                    }
-
-                    //ビジネス層のインスタンス生成
-                    M1070_Torihikisaki_B torihikisakiB = new M1070_Torihikisaki_B();
-                    try
-                    {
-                        //戻り値のDatatableを取り込む
-                        dtSetCd = torihikisakiB.getTxtTorihikiCdLeave(torihikiCode);
-
-                        //Datatable内のデータが存在する場合
-                        if (dtSetCd.Rows.Count != 0)
-                        {
-                            setTorihikisaki(dtSetCd);
-
-                            // データ表示後、下記ボタン有効化
-                            this.btnF01.Enabled = true;
-                            this.btnF03.Enabled = true;
-                            this.btnF04.Enabled = true;
-                        }
-                        else
-                        {
-                            delText();
-                            // 画面クリアしても取引先コードは残す
-                            txtCdT.Text = torihikiCode;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        //エラーロギング
-                        new CommonException(ex);
-                        return;
-                    }
                 }
                 else
                 {
-                    //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-
-                    txtCdT.Focus();
+                    delText();
+                    // 画面クリアしても取引先コードは残す
+                    txtCdT.Text = torihikiCode;
                 }
-
-                txtCdT.Focus();
             }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
+            }
+            txtCdT.Focus();
+
+        }
+        ///<summary>
+        ///chkToriikisaki
+        ///code入力箇所からフォーカスがついた時
+        ///</summary>
+        private bool chkToriikisaki()
+        {
+
+            if (txtCdT.Text == "" || String.IsNullOrWhiteSpace(txtCdT.Text).Equals(true))
+            {
+                return false;
+            }
+
+            // 前後の空白を取り除く
+            txtCdT.Text = txtCdT.Text.Trim();
+
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(txtCdT.Text) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return true;
+            }
+
+
+            // 全角数字を半角数字に変換
+            txtCdT.Text = StringUtl.JudZenToHanNum(txtCdT.Text);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(txtCdT.Text, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                // 4文字以下の場合0パティング
+                if (txtCdT.Text.Length < 4)
+                {
+                    txtCdT.Text = txtCdT.Text.ToString().PadLeft(4, '0');
+                }
+            }
+            return false;
         }
     }
 }

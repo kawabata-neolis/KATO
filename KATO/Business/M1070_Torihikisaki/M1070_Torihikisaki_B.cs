@@ -109,11 +109,12 @@ namespace KATO.Business.M1070_Torihikisaki
                     lstString[72],
                     lstString[73],
                     lstString[74],
+                    lstString[75],
                     "N",
                     DateTime.Now.ToString(),
-                    lstString[75],
+                    lstString[76],
                     DateTime.Now.ToString(),
-                    lstString[75]
+                    lstString[76]
                 };
 
                 //SQL接続、追加
@@ -223,12 +224,12 @@ namespace KATO.Business.M1070_Torihikisaki
                     lstString[71],
                     lstString[72],
                     lstString[73],
-                    lstString[74],
+                    lstString[75],
                     "Y",
                     DateTime.Now.ToString(),
-                    lstString[75],
+                    lstString[76],
                     DateTime.Now.ToString(),
-                    lstString[75]
+                    lstString[76]
                 };
 
                 //SQL接続、削除
@@ -433,7 +434,7 @@ namespace KATO.Business.M1070_Torihikisaki
 
                         //タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");
-                        titleCell.Value = "取  引  区  分  一  覧  表";
+                        titleCell.Value = "取　引　先　マ　ス　タ　リ　ス　ト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
                         headersheet.Range("A1", "H1").Merge();

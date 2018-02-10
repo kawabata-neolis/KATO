@@ -548,16 +548,6 @@ namespace KATO.Form.M1000_Kaishajyoken
                 }
             }
 
-            // メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-            basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_BEFORE, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
-            {
-                return;
-            }
-
-
             // Ｂ層クラス宣言【会社条件】
             M1000_Kaishajyoken_B kaishajyokenB = new M1000_Kaishajyoken_B();
 

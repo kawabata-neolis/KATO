@@ -99,14 +99,15 @@ namespace KATO.Form.B0060_ShiharaiInput
                 if (dtTantoshaCd.Rows.Count > 0)
                 {
                     //一行目にデータがない場合
-                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    if (dtTantoshaCd.Rows[0]["担当者コード"].ToString() == "")
                     {
                         return;
                     }
                 }
 
-                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0][0].ToString();
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
                 labelSet_Tantousha.chkTxtTantosha();
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
             }
             catch (Exception ex)
             {
@@ -114,7 +115,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 new CommonException(ex);
 
                 // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
             }
 
@@ -746,12 +747,27 @@ namespace KATO.Form.B0060_ShiharaiInput
             string strDenpyoNo = "";
             Control ctlGb = this.Controls["gbSiharaiInput"];
 
-            // 空文字判定（伝票年月日、仕入先コード）
-            if (txtYMD.blIsEmpty() == false || lblset_Siiresaki.CodeTxtText.Equals(""))
+            // 空文字判定（伝票年月日）
+            if (txtYMD.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 空文字判定（仕入先コード（取引先））
+            if (lblset_Siiresaki.codeTxt.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 入力チェック（仕入先コード（取引先））
+            if (lblset_Siiresaki.chkTxtTorihikisaki())
+            {
                 return;
             }
 

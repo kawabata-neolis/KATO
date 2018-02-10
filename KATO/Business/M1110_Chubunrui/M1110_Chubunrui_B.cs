@@ -275,7 +275,7 @@ namespace KATO.Business.M1110_Chubunrui
 
                         //タイトル出力（中央揃え、セル結合）
                         IXLCell titleCell = headersheet.Cell("A1");
-                        titleCell.Value = "大分類マスタリスト";
+                        titleCell.Value = "中分類マスタリスト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
                         headersheet.Range("A1", "B1").Merge();

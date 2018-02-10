@@ -341,14 +341,14 @@ namespace KATO.Business.B0060_ShiharaiInput_B
             // 締切日が31の場合
             if (lstItem[1].Equals("31"))
             {
-                strSql += " FORMAT(伝票年月日,'yyyy/MM') AS 年月,";
+                strSql += " CONVERT(VARCHAR(7), 伝票年月日, 111) AS 年月,";
             }
             else
             {
-                strSql += " FORMAT(DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 'yyyy/MM') AS 年月,";
+                strSql += " CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日), 111) AS 年月,";
             }
 
-            strSql += " SUM(税抜合計金額)AS 税抜合計金額,";
+            strSql += " SUM(税抜合計金額) AS 税抜合計金額,";
             strSql += " SUM(消費税) AS 消費税,";
             strSql += " SUM(税抜合計金額 + 消費税) AS 税込合計金額";
             strSql += " FROM";
@@ -380,14 +380,14 @@ namespace KATO.Business.B0060_ShiharaiInput_B
             strSql += " ) AS Z";
 
             // 締切日が31の場合
-            if (lstItem[1].Equals("31"))
-            {
-                strSql += " GROUP BY FORMAT(伝票年月日,'yyyy/MM')";
-            }
-            else
-            {
-                strSql += " GROUP BY FORMAT(DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 'yyyy/MM')";
-            }
+               if (lstItem[1].Equals("31"))
+               {
+                   strSql += " GROUP BY CONVERT(VARCHAR(7), 伝票年月日, 111)";
+               }
+               else
+               {
+                   strSql += " GROUP BY CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日), 111)";
+               }
             strSql += " ORDER BY 年月 DESC";
 
 

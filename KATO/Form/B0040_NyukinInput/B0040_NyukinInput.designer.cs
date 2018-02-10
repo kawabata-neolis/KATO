@@ -171,8 +171,7 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 2;
-            this.btnF01.TabStop = false;
+            this.btnF01.TabIndex = 3;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -213,13 +212,12 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 4;
+            this.btnF04.TabIndex = 5;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.TabIndex = 3;
-            this.btnF03.TabStop = false;
+            this.btnF03.TabIndex = 4;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
@@ -270,7 +268,7 @@
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 4;
             this.labelSet_Eigyosho.SpaceValueAppend = 4;
-            this.labelSet_Eigyosho.TabIndex = 5;
+            this.labelSet_Eigyosho.TabIndex = 107;
             this.labelSet_Eigyosho.ValueLabelSize = 250;
             this.labelSet_Eigyosho.ValueLabelText = "";
             this.labelSet_Eigyosho.Visible = false;
@@ -327,7 +325,7 @@
             this.gbNyukinInput.Location = new System.Drawing.Point(341, 105);
             this.gbNyukinInput.Name = "gbNyukinInput";
             this.gbNyukinInput.Size = new System.Drawing.Size(777, 376);
-            this.gbNyukinInput.TabIndex = 1;
+            this.gbNyukinInput.TabIndex = 2;
             this.gbNyukinInput.TabStop = false;
             // 
             // txtNyukin9
@@ -1720,6 +1718,7 @@
             this.gridSeikyuRireki.AllowUserToDeleteRows = false;
             this.gridSeikyuRireki.AllowUserToResizeColumns = false;
             this.gridSeikyuRireki.AllowUserToResizeRows = false;
+            this.gridSeikyuRireki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -1794,7 +1793,7 @@
             this.labelSet_Tokuisaki.SpaceCodeValue = 4;
             this.labelSet_Tokuisaki.SpaceNameCode = 4;
             this.labelSet_Tokuisaki.SpaceValueAppend = 4;
-            this.labelSet_Tokuisaki.TabIndex = 0;
+            this.labelSet_Tokuisaki.TabIndex = 1;
             this.labelSet_Tokuisaki.ValueLabelSize = 300;
             this.labelSet_Tokuisaki.ValueLabelText = "";
             this.labelSet_Tokuisaki.Leave += new System.EventHandler(this.labelSet_Tokuisaki_Leave);
@@ -1808,7 +1807,7 @@
             this.txtSimekiribi.Name = "txtSimekiribi";
             this.txtSimekiribi.ReadOnly = true;
             this.txtSimekiribi.Size = new System.Drawing.Size(24, 22);
-            this.txtSimekiribi.TabIndex = 90;
+            this.txtSimekiribi.TabIndex = 106;
             this.txtSimekiribi.TabStop = false;
             // 
             // lblSimekiribi
@@ -1832,7 +1831,7 @@
             this.txtShiharaiGessu.Name = "txtShiharaiGessu";
             this.txtShiharaiGessu.ReadOnly = true;
             this.txtShiharaiGessu.Size = new System.Drawing.Size(24, 22);
-            this.txtShiharaiGessu.TabIndex = 90;
+            this.txtShiharaiGessu.TabIndex = 105;
             this.txtShiharaiGessu.TabStop = false;
             // 
             // lblShiharaiGessu
@@ -1856,7 +1855,7 @@
             this.txtShiharaibi.Name = "txtShiharaibi";
             this.txtShiharaibi.ReadOnly = true;
             this.txtShiharaibi.Size = new System.Drawing.Size(24, 22);
-            this.txtShiharaibi.TabIndex = 90;
+            this.txtShiharaibi.TabIndex = 104;
             this.txtShiharaibi.TabStop = false;
             // 
             // lblShiharaibi
@@ -1880,7 +1879,7 @@
             this.txtShiharaiJojen.Name = "txtShiharaiJojen";
             this.txtShiharaiJojen.ReadOnly = true;
             this.txtShiharaiJojen.Size = new System.Drawing.Size(330, 22);
-            this.txtShiharaiJojen.TabIndex = 90;
+            this.txtShiharaiJojen.TabIndex = 103;
             this.txtShiharaiJojen.TabStop = false;
             // 
             // lblShiharaiJojen
@@ -1943,7 +1942,7 @@
             this.txtDenpyoNo.MaxLength = 8;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
-            this.txtDenpyoNo.TabIndex = 7;
+            this.txtDenpyoNo.TabIndex = 102;
             this.txtDenpyoNo.TabStop = false;
             this.txtDenpyoNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNo_KeyDown);

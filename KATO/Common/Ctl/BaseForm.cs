@@ -7,6 +7,7 @@ using static KATO.Common.Util.CommonTeisu;
 using KATO.Common.Business;
 using System.Data;
 using KATO.Common.Util;
+using KATO.Common.Business;
 
 namespace KATO.Common.Ctl
 {
@@ -19,7 +20,14 @@ namespace KATO.Common.Ctl
         protected bool powerUserFlg = false;
         //利益率権限
         protected bool riekiUserFlg = false;
-        
+
+        protected string masterFlg = "";     // マスタ権限
+        protected string etsuranFlg = "";    // 閲覧権限
+        protected string riekiritsuFlg = ""; // 利益率権限
+        protected string adminFlg = "";      // 開発者権限
+        protected string eigyoCode = "";     // 営業所コード
+        protected string groupCode = "";     // グループコード
+
         private int intMsgCnt = -1;
 
         private const string defaultMessage = "　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　";
@@ -114,47 +122,36 @@ namespace KATO.Common.Ctl
 
         public BaseForm()
         {
+            // ユーザ名取得
+            string strUserId = Environment.UserName;
+            try
+            {
+                // 権限取得
+                Tantosya_Kengen tk = new Tantosya_Kengen(strUserId);
+                masterFlg = tk.master;
+                etsuranFlg = tk.etsuran;
+                riekiritsuFlg = tk.riekiritsu;
+                adminFlg = tk.admin;
+                eigyoCode = tk.eigyocd;
+                groupCode = tk.groupcd;
+            }
+            catch(Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
+
             InitializeComponent();
             // ユーザ名表示
             lblStatusMessage.Text = "";
             lblStatusUser.Text = Environment.UserName;
 
-            //DataTable dtUserKengen = new DataTable();
 
-            //BaseForm_B baseformB = new Business.BaseForm_B();
-            //try
-            //{
-            //    dtUserKengen = baseformB.getTantoKengen(Environment.UserName);
-
-            //    //データがある場合
-            //    if (dtUserKengen.Rows.Count > 0)
-            //    {
-            //        //メニュー権限が1の場合
-            //        if (dtUserKengen.Rows[0]["マスタ権限"].ToString() == "1")
-            //        {
-            //            masterUserflg = true;
-            //        }
-            //        //閲覧権限が1の場合
-            //        if (dtUserKengen.Rows[0]["閲覧権限"].ToString() == "1")
-            //        {
-            //            powerUserFlg = true;
-            //        }
-            //        //履歴率権限が1の場合
-            //        if (dtUserKengen.Rows[0]["利益率権限"].ToString() == "1")
-            //        {
-            //            riekiUserFlg = true;
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ////データロギング
-            //    //new CommonException(ex);
-            //    ////例外発生メッセージ（OK）
-            //    //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    //basemessagebox.ShowDialog();
-            //    return;
-            //}
         }
 
         /// <summary>

@@ -166,6 +166,7 @@
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(324, 22);
             this.txtKataban.TabIndex = 4;
+            this.txtKataban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTextboxKeyDown);
             // 
             // lblBikou
             // 
@@ -187,6 +188,7 @@
             this.txtBikou.Name = "txtBikou";
             this.txtBikou.Size = new System.Drawing.Size(324, 22);
             this.txtBikou.TabIndex = 5;
+            this.txtBikou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTextboxKeyDown);
             // 
             // gridSiireJisseki
             // 

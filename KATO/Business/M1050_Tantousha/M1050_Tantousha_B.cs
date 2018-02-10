@@ -22,7 +22,7 @@ namespace KATO.Business.M1050_Tantousha
         ///addDaibunrui
         ///テキストボックス内のデータをDBに登録
         ///</summary>
-        public void addTantousha(List<string> lstString)
+        public void addTantousha(List<string> lstString, bool dataFlag)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -58,7 +58,10 @@ namespace KATO.Business.M1050_Tantousha
                 dbconnective.Commit();
 
                 //新規でメニュー権限を追加
-                addKengen(lstString);
+                if (dataFlag)
+                {
+                    addKengen(lstString);
+                }
             }
             catch (Exception ex)
             {

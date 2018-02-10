@@ -725,6 +725,7 @@ namespace KATO.Common.Util
             ,SqlDbType.NChar
             ,SqlDbType.NChar
             ,SqlDbType.Char
+            ,SqlDbType.SmallInt
             ,SqlDbType.Char
             ,SqlDbType.DateTime
             ,SqlDbType.NChar
