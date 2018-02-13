@@ -191,6 +191,48 @@ namespace KATO.Form.A0010_JuchuInput
             Panel inputPanel = createPanel(cats[4], idx, "", c);
             tableLayoutPanel1.Controls.Add(inputPanel, 0, idx);
 
+            ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
+            ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
+            ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
+            ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = "";
+            ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
+            ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
+            ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).CodeTxtText = ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText;
+            ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).chkTxtChubunrui(((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText);
+            ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).CodeTxtText = ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["txtHinmei"]).Text = ((BaseText)c.Controls["txtHinmei"]).Text;
+            ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = ((BaseLabelGray)c.Controls["txtTanabanL"]).Text;
+            ((BaseLabelGray)inputPanel.Controls["txtTanabanR"]).Text = ((BaseLabelGray)c.Controls["txtTanabanR"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = ((BaseTextMoney)c.Controls["txtSuryo"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = ((BaseTextMoney)c.Controls["txtTanka"]).Text;
+            ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = "";
+            ((BaseText)inputPanel.Controls["txtChuban"]).Text = ((BaseText)c.Controls["txtChuban"]).Text;
+
+            ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
+            ((BaseText)inputPanel.Controls["tmpHSha"]).Text = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpShiire"]).Text = "";
+            ((BaseTextMoney)inputPanel.Controls["tmpHNo"]).Text = "";
+            ((BaseText)inputPanel.Controls["tmpDaibun"]).Text = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpChubun"]).Text = ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpMaker"]).Text = ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpHinmei"]).Text = ((BaseText)c.Controls["txtHinmei"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["tmpSuryo"]).Text = ((BaseTextMoney)c.Controls["txtSuryo"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["tmpTanka"]).Text = ((BaseTextMoney)c.Controls["txtTanka"]).Text;
+            ((BaseCalendar)inputPanel.Controls["tmpNohki"]).Text = "";
+            ((BaseText)inputPanel.Controls["tmpChuban"]).Text = ((BaseText)c.Controls["txtChuban"]).Text;
+
+            ((BaseText)inputPanel.Controls["txtC1"]).Text = ((BaseText)c.Controls["txtC1"]).Text;
+            ((BaseText)inputPanel.Controls["txtC2"]).Text = ((BaseText)c.Controls["txtC2"]).Text;
+            ((BaseText)inputPanel.Controls["txtC3"]).Text = ((BaseText)c.Controls["txtC3"]).Text;
+            ((BaseText)inputPanel.Controls["txtC4"]).Text = ((BaseText)c.Controls["txtC4"]).Text;
+            ((BaseText)inputPanel.Controls["txtC5"]).Text = ((BaseText)c.Controls["txtC5"]).Text;
+            ((BaseText)inputPanel.Controls["txtC6"]).Text = ((BaseText)c.Controls["txtC6"]).Text;
+            ((BaseText)inputPanel.Controls["txtShohin"]).Text = ((BaseText)c.Controls["txtShohin"]).Text;
+            ((BaseText)inputPanel.Controls["txtShiireSu"]).Text = ((BaseText)c.Controls["txtShiireSu"]).Text;
+            ((BaseText)inputPanel.Controls["txtShiireBi"]).Text = ((BaseText)c.Controls["txtShiireBi"]).Text;
+            ((BaseText)inputPanel.Controls["txtKataban"]).Text = ((BaseText)c.Controls["txtKataban"]).Text;
+            ((BaseText)inputPanel.Controls["notNewPanel"]).Text = "0";
+
             foreach (Control cc in inputPanel.Controls)
             {
                 //if (cc.Name != null && cc.Name == "txtHYMD" + idx.ToString(zeroPad))
@@ -239,6 +281,47 @@ namespace KATO.Form.A0010_JuchuInput
             Panel inputPanel = createPanel(cats[5], idx, s, c);
             tableLayoutPanel1.Controls.Add(inputPanel, 0, idx);
 
+            ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
+            ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
+            ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
+            ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = "";
+            ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
+            ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
+            ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).CodeTxtText = ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText;
+            ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).chkTxtChubunrui(((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText);
+            ((LabelSet_Maker)inputPanel.Controls["lsMaker"]).CodeTxtText = ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["txtHinmei"]).Text = ((BaseText)c.Controls["txtHinmei"]).Text;
+            ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = ((BaseLabelGray)c.Controls["txtTanabanL"]).Text;
+            ((BaseLabelGray)inputPanel.Controls["txtTanabanR"]).Text = ((BaseLabelGray)c.Controls["txtTanabanR"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = ((BaseTextMoney)c.Controls["txtSuryo"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = ((BaseTextMoney)c.Controls["txtTanka"]).Text;
+            ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = "";
+            ((BaseText)inputPanel.Controls["txtChuban"]).Text = ((BaseText)c.Controls["txtChuban"]).Text;
+
+            ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
+            ((BaseText)inputPanel.Controls["tmpHSha"]).Text = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpShiire"]).Text = "";
+            ((BaseTextMoney)inputPanel.Controls["tmpHNo"]).Text = "";
+            ((BaseText)inputPanel.Controls["tmpDaibun"]).Text = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpChubun"]).Text = ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpMaker"]).Text = ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText;
+            ((BaseText)inputPanel.Controls["tmpHinmei"]).Text = ((BaseText)c.Controls["txtHinmei"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["tmpSuryo"]).Text = ((BaseTextMoney)c.Controls["txtSuryo"]).Text;
+            ((BaseTextMoney)inputPanel.Controls["tmpTanka"]).Text = ((BaseTextMoney)c.Controls["txtTanka"]).Text;
+            ((BaseCalendar)inputPanel.Controls["tmpNohki"]).Text = "";
+            ((BaseText)inputPanel.Controls["tmpChuban"]).Text = ((BaseText)c.Controls["txtChuban"]).Text;
+
+            ((BaseText)inputPanel.Controls["txtC1"]).Text = ((BaseText)c.Controls["txtC1"]).Text;
+            ((BaseText)inputPanel.Controls["txtC2"]).Text = ((BaseText)c.Controls["txtC2"]).Text;
+            ((BaseText)inputPanel.Controls["txtC3"]).Text = ((BaseText)c.Controls["txtC3"]).Text;
+            ((BaseText)inputPanel.Controls["txtC4"]).Text = ((BaseText)c.Controls["txtC4"]).Text;
+            ((BaseText)inputPanel.Controls["txtC5"]).Text = ((BaseText)c.Controls["txtC5"]).Text;
+            ((BaseText)inputPanel.Controls["txtC6"]).Text = ((BaseText)c.Controls["txtC6"]).Text;
+            ((BaseText)inputPanel.Controls["txtShohin"]).Text = ((BaseText)c.Controls["txtShohin"]).Text;
+            ((BaseText)inputPanel.Controls["txtShiireSu"]).Text = ((BaseText)c.Controls["txtShiireSu"]).Text;
+            ((BaseText)inputPanel.Controls["txtShiireBi"]).Text = ((BaseText)c.Controls["txtShiireBi"]).Text;
+            ((BaseText)inputPanel.Controls["txtKataban"]).Text = ((BaseText)c.Controls["txtKataban"]).Text;
+            ((BaseText)inputPanel.Controls["notNewPanel"]).Text = "0";
 
             foreach (Control cc in inputPanel.Controls)
             {
@@ -542,6 +625,7 @@ namespace KATO.Form.A0010_JuchuInput
             //txtHYMD.Name = "txtHYMD" + idx.ToString(zeroPad);
             txtHYMD.Name = "txtHYMD";
             txtHYMD.TabIndex = tabIdx;
+            txtHYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
             tabIdx++;
 
             ctl = txtHYMD;
@@ -556,6 +640,7 @@ namespace KATO.Form.A0010_JuchuInput
             lsHSha.ValueLabelSize = 126;
             lsHSha.BringToFront();
             lsHSha.TabIndex = tabIdx;
+            lsHSha.CodeTxtText = a0010JInput.lsJuchusha.CodeTxtText;
             tabIdx++;
 
             LabelSet_Torihikisaki lsShiire = new LabelSet_Torihikisaki();
@@ -821,14 +906,59 @@ namespace KATO.Form.A0010_JuchuInput
             txtChuban.TabIndex = tabIdx;
             tabIdx++;
 
+            if (cat == cats[1])
+            {
+                Button btnExecShukko = new Button();
+                btnExecShukko.Text = "出庫実行";
+                btnExecShukko.Tag = cat;
+                basePanel.Controls.Add(btnExecShukko);
+                btnExecShukko.Click += new EventHandler(btnExecShukko_Click);
+                btnExecShukko.Location = new Point(1000, 105);
+                btnExecShukko.BringToFront();
+                btnExecShukko.Name = "btnAddShukko";
+                btnExecShukko.TabIndex = tabIdx;
+                tabIdx++;
+                btnExecShukko.Enabled = button14.Enabled;
+            }
+            else if (cat == cats[2])
+            {
+                Button btnExecKako = new Button();
+                btnExecKako.Text = "加工品発注実行";
+                btnExecKako.Width = 100;
+                btnExecKako.Tag = cat;
+                basePanel.Controls.Add(btnExecKako);
+                btnExecKako.Click += new EventHandler(btnExecKako_Click);
+                btnExecKako.Location = new Point(1000, 105);
+                btnExecKako.BringToFront();
+                btnExecKako.Name = "btnAddShukko";
+                btnExecKako.TabIndex = tabIdx;
+                tabIdx++;
+                btnExecKako.Enabled = button14.Enabled;
+            }
+            else if (cat == cats[3])
+            {
+                Button btnExecKakoShukko = new Button();
+                btnExecKakoShukko.Text = "加工品出庫実行";
+                btnExecKakoShukko.Width = 100;
+                btnExecKakoShukko.Tag = cat;
+                basePanel.Controls.Add(btnExecKakoShukko);
+                btnExecKakoShukko.Click += new EventHandler(btnExecKakoShukko_Click);
+                btnExecKakoShukko.Location = new Point(1000, 105);
+                btnExecKakoShukko.BringToFront();
+                btnExecKakoShukko.Name = "btnAddShukko";
+                btnExecKakoShukko.TabIndex = tabIdx;
+                tabIdx++;
+                btnExecKakoShukko.Enabled = button14.Enabled;
+            }
+
             if (cat == cats[0])
             {
                 Button btnAddShukko = new Button();
-                btnAddShukko.Text = "出庫";
+                btnAddShukko.Text = "出庫入力";
                 btnAddShukko.Tag = cat;
                 basePanel.Controls.Add(btnAddShukko);
                 btnAddShukko.Click += new EventHandler(btnAddShukko_Click);
-                btnAddShukko.Location = new Point(1206, 105);
+                btnAddShukko.Location = new Point(1176, 105);
                 btnAddShukko.BringToFront();
                 btnAddShukko.Name = "btnAddShukko";
                 btnAddShukko.TabIndex = tabIdx;
@@ -840,11 +970,12 @@ namespace KATO.Form.A0010_JuchuInput
                 if (checkBox1.Checked == false)
                 {
                     Button btnAddShukko = new Button();
-                    btnAddShukko.Text = "加工品出庫";
+                    btnAddShukko.Text = "加工品出庫入力";
+                    btnAddShukko.Width = 100;
                     btnAddShukko.Tag = cat;
                     basePanel.Controls.Add(btnAddShukko);
                     btnAddShukko.Click += new EventHandler(btnAddKakoShukko_Click);
-                    btnAddShukko.Location = new Point(1206, 105);
+                    btnAddShukko.Location = new Point(1176, 105);
                     btnAddShukko.BringToFront();
                     btnAddShukko.Name = "btnAddKakoShukko";
                     btnAddShukko.TabIndex = tabIdx;
@@ -856,11 +987,12 @@ namespace KATO.Form.A0010_JuchuInput
                     if (!a0010JInput.txtHinmei.Text.Equals(this.txtHinmei.Text))
                     {
                         Button btnAddShukko = new Button();
-                        btnAddShukko.Text = "加工品出庫";
+                        btnAddShukko.Text = "加工品出庫入力";
+                        btnAddShukko.Width = 100;
                         btnAddShukko.Tag = cat;
                         basePanel.Controls.Add(btnAddShukko);
                         btnAddShukko.Click += new EventHandler(btnAddKakoShukko_Click);
-                        btnAddShukko.Location = new Point(1206, 105);
+                        btnAddShukko.Location = new Point(1176, 105);
                         btnAddShukko.BringToFront();
                         btnAddShukko.Name = "btnAddKakoShukko";
                         btnAddShukko.TabIndex = tabIdx;
@@ -1067,6 +1199,197 @@ namespace KATO.Form.A0010_JuchuInput
             #endregion
 
             return basePanel;
+        }
+
+        private void btnExecShukko_Click(object sender, EventArgs e)
+        {
+            bool judge = false;
+
+            A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
+            BaseMessageBox basemessagebox;
+
+            try
+            {
+                Button t = (Button)sender;
+                Panel c = (Panel)t.Parent;
+
+                string stNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+
+                if (string.IsNullOrWhiteSpace(stNo))
+                {
+                    return;
+                }
+
+                DataTable dLap = kakoB.getOverlapShukko(stNo, "41");
+
+                if (dLap != null && dLap.Rows.Count > 0)
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に出庫済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                string stH = kakoB.getExecHatchu(stNo, "41");
+
+                // 出庫スタート（発注が無い）場合は実行可能
+                if (string.IsNullOrWhiteSpace(stH))
+                {
+                    judge = true;
+                }
+                // 発注がある場合、仕入があれば可能
+                else
+                {
+                    DataTable dtS = kakoB.getShiire(stH);
+                    if (dtS != null && dtS.Rows.Count > 0)
+                    {
+                        judge = true;
+                    }
+                }
+
+                if (judge)
+                {
+                    kakoB.execShukko(stNo);
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "仕入処理を先に行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        private void btnExecKako_Click(object sender, EventArgs e)
+        {
+            bool judge = false;
+
+            A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
+            BaseMessageBox basemessagebox;
+
+            try
+            {
+                Button t = (Button)sender;
+                Panel c = (Panel)t.Parent;
+
+                string stC1 = ((BaseText)c.Controls["txtC1"]).Text;
+                string stC2 = ((BaseText)c.Controls["txtC2"]).Text;
+                string stC3 = ((BaseText)c.Controls["txtC3"]).Text;
+                string stC4 = ((BaseText)c.Controls["txtC4"]).Text;
+                string stC5 = ((BaseText)c.Controls["txtC5"]).Text;
+                string stC6 = ((BaseText)c.Controls["txtC6"]).Text;
+                string stC = (stC1 + " " + stC2 + " " + stC3 + " " + stC4 + " " + stC5 + " " + stC6 + " ").Trim();
+                string stNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+
+                DataTable dLap = kakoB.getHachu(stNo);
+
+                if (dLap != null && dLap.Rows.Count > 0)
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に発注済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(strJuchuNo))
+                {
+                    return;
+                }
+
+                DataTable dt = kakoB.getExecKako(strJuchuNo, stC);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    judge = true;
+                }
+
+                if (judge)
+                {
+                    kakoB.execKako(stNo);
+
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "出庫処理を先に行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        private void btnExecKakoShukko_Click(object sender, EventArgs e)
+        {
+            bool judge = false;
+
+            A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
+            BaseMessageBox basemessagebox;
+
+            try
+            {
+                Button t = (Button)sender;
+                Panel c = (Panel)t.Parent;
+
+                string stNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+
+                if (string.IsNullOrWhiteSpace(stNo))
+                {
+                    return;
+                }
+
+                DataTable dLap = kakoB.getOverlapShukko(stNo, "43");
+
+                if (dLap != null && dLap.Rows.Count > 0)
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に出庫済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                string stH = kakoB.getExecShukko(stNo, "43");
+
+                if (!string.IsNullOrWhiteSpace(stH))
+                {
+                    judge = true;
+                }
+
+                if (judge)
+                {
+                    kakoB.execShukko(stNo);
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "仕入処理を先に行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         private void shohinChange(object sender, EventArgs e)
@@ -2878,6 +3201,11 @@ namespace KATO.Form.A0010_JuchuInput
 
             ret = dTotal.ToString();
             return ret;
+        }
+
+        private void btnF12_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

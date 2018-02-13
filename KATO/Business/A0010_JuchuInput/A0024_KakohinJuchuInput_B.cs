@@ -1490,5 +1490,199 @@ namespace KATO.Business.A0010_JuchuInput
                 throw ex;
             }
         }
+
+        public DataTable getShiire(string strNo)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 仕入明細";
+            strSelect += " WHERE 発注番号 = " + strNo;
+            strSelect += "   AND 削除 ='N'";
+
+            strSelect += " ORDER BY 登録日時";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public string getExecHatchu(string strNo, string kbn)
+        {
+            string ret = "";
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT 発注.発注番号";
+            strSelect += "  FROM 発注, 仮出庫ヘッダ, 仮出庫明細";
+            strSelect += " WHERE 仮出庫ヘッダ.伝票番号 = " + strNo;
+            strSelect += "   AND 仮出庫ヘッダ.取引区分 = '" + kbn + "'";
+            strSelect += "   AND 仮出庫ヘッダ.削除 ='N'";
+            strSelect += "   AND 仮出庫明細.伝票番号 = 仮出庫ヘッダ.伝票番号";
+            strSelect += "   AND 仮出庫明細.削除 ='N'";
+            strSelect += "   AND 発注.受注番号 = 仮出庫明細.受注番号";
+            strSelect += "   AND 発注.削除 ='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+
+                if (dtRet != null && dtRet.Rows.Count > 0)
+                {
+                    ret = dtRet.Rows[0]["発注番号"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ret;
+        }
+
+        public string getExecShukko(string strNo, string kbn)
+        {
+            string ret = "";
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT 仕入明細.伝票番号";
+            strSelect += "  FROM 仕入明細, 発注, 仮出庫ヘッダ, 仮出庫明細";
+            strSelect += " WHERE 仮出庫ヘッダ.伝票番号 = " + strNo;
+            strSelect += "   AND 仮出庫ヘッダ.取引区分 = '" + kbn + "'";
+            strSelect += "   AND 仮出庫ヘッダ.削除 ='N'";
+            strSelect += "   AND 仮出庫明細.伝票番号 = 仮出庫ヘッダ.伝票番号";
+            strSelect += "   AND 仮出庫明細.削除 ='N'";
+            strSelect += "   AND 発注.受注番号 = 仮出庫明細.受注番号";
+            strSelect += "   AND 発注.削除 ='N'";
+            strSelect += "   AND 仕入明細.発注番号 = 発注.発注番号";
+            strSelect += "   AND 仕入明細.削除 ='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+
+                if (dtRet != null && dtRet.Rows.Count > 0)
+                {
+                    ret = dtRet.Rows[0]["伝票番号"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ret;
+        }
+
+        public void execShukko(string strNo)
+        {
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dbCon.BeginTrans();
+
+                String strSQL = "";
+                strSQL += "INSERT INTO 出庫ヘッダ ";
+                strSQL += " SELECT * FROM 仮出庫ヘッダ";
+                strSQL += " WHERE 伝票番号= " + strNo + " AND 削除='N'";
+                dbCon.RunSql(strSQL);
+
+                strSQL = "INSERT INTO 出庫明細 ";
+                strSQL += " SELECT * FROM 仮出庫明細";
+                strSQL += " WHERE 伝票番号= " + strNo + " AND 削除='N'";
+                dbCon.RunSql(strSQL);
+
+                dbCon.Commit();
+            }
+            catch (Exception ex)
+            {
+                dbCon.Rollback();
+                throw ex;
+            }
+        }
+
+        public DataTable getExecKako(string strNo, string stC)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 出庫明細";
+            strSelect += " WHERE 受注番号 = " + strNo;
+            strSelect += "   AND Rtrim(ISNULL(Ｃ１,'')) ";
+            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ２,''))";
+            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ３,''))";
+            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ４,''))";
+            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ５,''))";
+            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ６,'')) = '" + stC + "'";
+            strSelect += "   AND 削除 ='N'";
+
+            strSelect += " ORDER BY 登録日時";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public void execKako(string strNo)
+        {
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dbCon.BeginTrans();
+
+                String strSQL = "";
+                strSQL += "INSERT INTO 発注 ";
+                strSQL += " SELECT * FROM 仮発注";
+                strSQL += " WHERE 発注番号= " + strNo + " AND 削除='N'";
+                dbCon.RunSql(strSQL);
+
+                dbCon.Commit();
+            }
+            catch (Exception ex)
+            {
+                dbCon.Rollback();
+                throw ex;
+            }
+        }
+
+        public DataTable getOverlapShukko(string strNo, string kbn)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 出庫ヘッダ";
+            strSelect += " WHERE 伝票番号 = " + strNo;
+            strSelect += "   AND 取引区分 = '" + kbn + "'";
+            strSelect += "   AND 削除 ='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
     }
 }

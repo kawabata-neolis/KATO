@@ -342,6 +342,11 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    if (f6 != null)
+                    {
+                        f6.Close();
+                        f6.Dispose();
+                    }
                     this.Close();
                     break;
 
@@ -406,6 +411,11 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     break;
                 case STR_BTN_F12: // 終了
+                    if (f6 != null)
+                    {
+                        f6.Close();
+                        f6.Dispose();
+                    }
                     this.Close();
                     break;
             }
