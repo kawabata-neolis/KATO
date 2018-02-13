@@ -1793,6 +1793,9 @@
     <Content Include="SQL\Common\CommonForm\KariShohinList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\ShohinList_View_Kari.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\ShohinList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1923,6 +1926,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_kari_MAXCd.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_Shohin_Kari_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_MAXCd.sql">
@@ -2467,6 +2473,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_DataKari_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_KariToroku_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1200_Group\Group_PrintData_SELECT.sql" />

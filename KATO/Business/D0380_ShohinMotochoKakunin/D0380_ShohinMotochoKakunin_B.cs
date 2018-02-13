@@ -91,11 +91,11 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 intData = decimal.ToInt32(Decimal.Parse(dtView.Rows[0]["Column1"].ToString()));
                 if (intData != 0)
                 {
-                    lstStringSet.Add(intData.ToString() + ".00");
+                    lstStringSet.Add(intData.ToString());
                 }
                 else
                 {
-                    lstStringSet.Add("0.00");
+                    lstStringSet.Add("0");
                 }
 
                 //岐阜　前月在庫
@@ -110,11 +110,11 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 intData = decimal.ToInt32(Decimal.Parse(dtView.Rows[0]["Column1"].ToString()));
                 if (intData != 0)
                 {
-                    lstStringSet.Add(intData.ToString() + ".00");
+                    lstStringSet.Add(intData.ToString());
                 }
                 else
                 {
-                    lstStringSet.Add("0.00");
+                    lstStringSet.Add("0");
                 }
 
                 //本社　入庫 1
@@ -489,33 +489,50 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 //検索データをデータテーブルに入れる
                 dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
 
-                int i;
-
-                for (i = 0; i < dtGetTableGrid.Rows.Count; i++)
+                for (int intCnt = 0; intCnt < dtGetTableGrid.Rows.Count; intCnt++)
                 {
-                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[i]["入庫数"].ToString()) == false)
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) == false)
                     {
-                        dtGetTableGrid.Rows[i]["入庫数"] = 0;
+                        dtGetTableGrid.Rows[intCnt]["入庫数"] = 0;
                     }
-                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[i]["出庫数"].ToString()) == false)
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString()) == false)
                     {
-                        dtGetTableGrid.Rows[i]["出庫数"] = 0;
+                        dtGetTableGrid.Rows[intCnt]["出庫数"] = 0;
                     }
 
-                    if (i == 0)
+                    if (intCnt == 0)
                     {
                         if (lstString[1] == "0001")
                         {
-                            dtGetTableGrid.Rows[i]["在庫数"] = double.Parse(lstString[4]) + double.Parse(dtGetTableGrid.Rows[i]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[i]["出庫数"].ToString());
+                            dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(lstString[4]) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
                         }
                         else
                         {
-                            dtGetTableGrid.Rows[i]["在庫数"] = double.Parse(lstString[5]) + double.Parse(dtGetTableGrid.Rows[i]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[i]["出庫数"].ToString());
+                            dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(lstString[5]) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
                         }
                     }
                     else
                     {
-                        dtGetTableGrid.Rows[i]["在庫数"] = double.Parse(dtGetTableGrid.Rows[i-1]["在庫数"].ToString()) + double.Parse(dtGetTableGrid.Rows[i]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[i]["出庫数"].ToString());
+                        dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(dtGetTableGrid.Rows[intCnt - 1]["在庫数"].ToString()) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
+                    }
+
+
+                    //入庫数が0の場合
+                    if (dtGetTableGrid.Rows[intCnt]["入庫数"].ToString() == "0")
+                    {
+                        dtGetTableGrid.Rows[intCnt]["入庫数"] = DBNull.Value;
+                    }
+
+                    //出庫数が0の場合
+                    if (dtGetTableGrid.Rows[intCnt]["出庫数"].ToString() == "0")
+                    {
+                        dtGetTableGrid.Rows[intCnt]["出庫数"] = DBNull.Value;
+                    }
+
+                    //在庫数が0の場合
+                    if (dtGetTableGrid.Rows[intCnt]["在庫数"].ToString() == "0")
+                    {
+                        dtGetTableGrid.Rows[intCnt]["在庫数"] = DBNull.Value;
                     }
                 }
                 return (dtGetTableGrid);
@@ -529,6 +546,63 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
             {
                 dbconnective.DB_Disconnect();
             }
+        }
+
+        ///<summary>
+        ///getTantoshaCd
+        ///担当者データの取得
+        ///</summary>
+        public DataTable getTantoshaCd(string strUserID)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtTantoshaCd = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("Common");
+            lstSQL.Add("C_TantoshaCd_Select");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtTantoshaCd);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            strUserID   //ログインＩＤ
+                                            );
+
+                //データ取得（ここから取得）
+                dtTantoshaCd = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return (dtTantoshaCd);
         }
     }
 }

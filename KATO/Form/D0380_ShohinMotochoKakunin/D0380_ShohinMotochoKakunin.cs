@@ -84,9 +84,38 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //初期表示
-            labelSet_Eigyosho.CodeTxtText = "0002";
-            labelSet_Eigyosho.Focus();
+            //初期表示(営業所コード取り出し)
+            DataTable dtTantoshaCd = new DataTable();
+
+            D0380_ShohinMotochoKakunin_B shohinmotochokakuninB = new D0380_ShohinMotochoKakunin_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = shohinmotochokakuninB.getTantoshaCd(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
+                labelSet_Eigyosho.chkTxtEigyousho();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+            
             labelSet_Daibunrui.Focus();
 
             //カレンダー関係の初期設定（当日）
@@ -152,10 +181,10 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             setColumn(denpyo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 80);
             setColumn(kbn, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 110);
             setColumn(tekiyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 580);
-            setColumn(nyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
-            setColumn(shuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
-            setColumn(zaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
-            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(nyuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 120);
+            setColumn(shuko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 120);
+            setColumn(zaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 120);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 120);
 
         }
 
@@ -307,6 +336,8 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             switch (e.KeyCode)
             {
                 case Keys.Tab:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    this.setShohinList();
                     break;
                 case Keys.Left:
                     break;
@@ -321,8 +352,8 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    this.setShohinList();
                     break;
                 case Keys.F1:
                     break;
@@ -380,19 +411,6 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
         }
 
         ///<summary>
-        ///txtKensaku_Leave
-        ///code入力箇所からフォーカスが外れた時
-        ///</summary>
-        private void txtKensaku_Leave(object sender, EventArgs e)
-        {
-            if (txtKensaku.Text == "")
-            {
-                return;
-            }
-            setShohinList();
-        }
-
-        ///<summary>
         ///setShohinList
         ///商品リストに移動
         ///</summary>
@@ -402,13 +420,15 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             ShouhinList shouhinlist = new ShouhinList(this);
             try
             {
-
-//処理がうまくいってないため再確認(12/30)
                 //検索項目に一つでも記入がある場合
-                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false ||
-                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false ||
-                    labelSet_Maker.codeTxt.blIsEmpty() == false ||
+                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Maker.codeTxt.blIsEmpty() == false &&
                     txtKensaku.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = false;
+                }
+                else
                 {
                     shouhinlist.blKensaku = true;
                 }
@@ -470,14 +490,85 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             //フォーカス位置の確保
             Control cActiveBefore = this.ActiveControl;
 
-            txtHonZenZaiko.Text = string.Format("{0:#,#}", lstString[0]);
-            txtGihuZenZaiko.Text = string.Format("{0:#,#}", lstString[1]);
-            txtHonNyuko.Text = string.Format("{0:#,#}", lstString[2]);
-            txtGihuNyuko.Text = string.Format("{0:#,#}", lstString[3]);
-            txtHonShuko.Text = string.Format("{0:#,#}", lstString[4]);
-            txtGihuShuko.Text = string.Format("{0:#,#}", lstString[5]);
-            txtHonGenzaiko.Text = string.Format("{0:#,#}", lstString[6]);
-            txtGihuGenzaiko.Text = string.Format("{0:#,#}", lstString[7]);
+            //本社前月在庫が0の場合
+            if (lstString[0] == "0")
+            {
+                txtHonZenZaiko.Text = "";
+            }
+            else
+            {
+                txtHonZenZaiko.Text = string.Format("{0:#,#}", lstString[0]);
+            }
+
+            //岐阜前月在庫が0の場合
+            if (lstString[1] == "0")
+            {
+                txtGihuZenZaiko.Text = "";
+            }
+            else
+            {
+                txtGihuZenZaiko.Text = string.Format("{0:#,#}", lstString[1]);
+            }
+
+            //本社入庫が0の場合
+            if (lstString[2] == "0")
+            {
+                txtHonNyuko.Text = "";
+            }
+            else
+            {
+                txtHonNyuko.Text = string.Format("{0:#,#}", lstString[2]);
+            }
+
+            //岐阜入庫が0の場合
+            if (lstString[3] == "0")
+            {
+                txtGihuNyuko.Text = "";
+            }
+            else
+            {
+                txtGihuNyuko.Text = string.Format("{0:#,#}", lstString[3]);
+            }
+
+            //本社出庫が0の場合
+            if (lstString[4] == "0")
+            {
+                txtHonShuko.Text = "";
+            }
+            else
+            {
+                txtHonShuko.Text = string.Format("{0:#,#}", lstString[4]);
+            }
+
+            //岐阜出庫が0の場合
+            if (lstString[5] == "0")
+            {
+                txtGihuShuko.Text = "";
+            }
+            else
+            {
+                txtGihuShuko.Text = string.Format("{0:#,#}", lstString[5]);
+            }
+
+            //本社現在庫が0の場合
+            if (lstString[6] == "0")
+            {
+                txtHonGenzaiko.Text = "";
+            }
+            else
+            {
+                txtHonGenzaiko.Text = string.Format("{0:#,#}", lstString[6]);
+            }
+
+            //岐阜現在庫が0の場合
+            if (lstString[7] == "0")
+            {
+                txtGihuGenzaiko.Text = "";
+            }
+            else
+            {
+                txtGihuGenzaiko.Text = string.Format("{0:#,#}", lstString[7]);
+            }
         }
 
         /// <summary>
@@ -503,13 +594,23 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             //検索時のデータ取り出し先
             DataTable dtSetView;
 
-            //空文字判定（品名型番表示、検索開始、検索終了）
-            if (lblGrayShohin.Text == "" || txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            //空文字判定
+            if (lblGrayShohin.Text == "")
             {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
+                txtKensaku.Focus();
                 return;
+            }
+
+            //カレンダーチェック(Open)
+            if (txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text) == "")
+            {
+                txtCalendarYMopen.Focus();
+            }
+
+            //カレンダーチェック(Close)
+            if (txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMclose.Text) == "")
+            {
+                txtCalendarYMclose.Focus();
             }
 
             //ビジネス層のインスタンス生成

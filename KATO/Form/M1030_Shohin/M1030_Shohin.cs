@@ -33,6 +33,9 @@ namespace KATO.Form.M1030_Shohin
         //管理者かどうかの判定
         Boolean blnKanri;
 
+        //本登録データの判定
+        Boolean blHontorokuData = false;
+
         Control cActiveBefore = null;
         ShouhinList shouhinlist = null;
 
@@ -395,6 +398,7 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
                     shouhinlist.blNoTana = false;
                     shouhinlist.blShohinMaster = true;
+                    shouhinlist.blHontorokuData = blHontorokuData;
 
                     frm.Show();
                     break;
@@ -449,7 +453,7 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
                     shouhinlist.blNoTana = false;
                     shouhinlist.blShohinMaster = true;
-
+                    shouhinlist.blHontorokuData = blHontorokuData;
 
                     shouhinlist.ShowDialog();
 
@@ -825,7 +829,7 @@ namespace KATO.Form.M1030_Shohin
                 else
                 {
                     //商品コードからデータの読み込み
-                    dtShohin = shohinB.getShohin(txtShohinCd.Text);
+                    dtShohin = shohinB.getShohin(txtShohinCd.Text, blHontorokuData);
 
                     //商品データがある場合
                     if (dtShohin.Rows.Count > 0)
@@ -928,7 +932,7 @@ namespace KATO.Form.M1030_Shohin
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
 
-            dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text);
+            dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text,blHontorokuData);
 
             //データがない場合
             if (dtShohin.Rows.Count == 0)
@@ -968,7 +972,7 @@ namespace KATO.Form.M1030_Shohin
 
             try
             {
-                shohinB.delShohin(lstString, blnKanri);
+                shohinB.delShohin(lstString, blHontorokuData);
 
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
