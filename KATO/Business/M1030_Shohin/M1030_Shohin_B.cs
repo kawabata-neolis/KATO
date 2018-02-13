@@ -19,107 +19,6 @@ namespace KATO.Business.M1030_Shohin
     ///</summary>
     class M1030_Shohin_B
     {
-        /////<summary>
-        /////addShohizeiritsu
-        /////商品コードの追加（仮登録）
-        /////</summary>
-        //public void updShohinNew(List<string> lstString, Boolean blnKanri)
-        //{
-        //    //データ渡し用
-        //    List<string> stringSQLAry = new List<string>();
-
-        //    string strSQLName = null;
-
-        //    int intNewCd;
-        //    string strNewCd = "99999";
-
-        //    if(blnKanri == true)
-        //    {
-        //        strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
-        //    }
-        //    else
-        //    {
-        //        strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
-        //    }
-
-        //    //データ渡し用
-        //    stringSQLAry.Add("Common");
-        //    stringSQLAry.Add(strSQLName);
-
-        //    DataTable dtSetCd_B = new DataTable();
-        //    OpenSQL opensql = new OpenSQL();
-        //    DBConnective dbconnective = new DBConnective();
-        //    try
-        //    {
-        //        string strSQLInput = opensql.setOpenSQL(stringSQLAry);
-
-        //        if (strSQLInput == "")
-        //        {
-        //            return;
-        //        }
-
-        //        strSQLInput = string.Format(strSQLInput);
-
-        //        dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-
-        //        char chrNewCdHead = ' ';
-        //        string strNewCdOther = "";
-
-        //        //中身が空
-        //        if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
-        //        {
-        //            strNewCd = "00001";
-        //            lstString[0] = strNewCd.ToString();
-        //        }
-        //        //中身がある
-        //        else
-        //        {
-        //            chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
-
-        //            strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
-
-        //            //先頭以外が9999の場合
-        //            if (strNewCdOther == "9999")
-        //            {
-        //                strNewCdOther = "0001";
-
-        //                //先頭が9の場合
-        //                if (chrNewCdHead == '9')
-        //                {
-
-        //                    chrNewCdHead = 'A';
-        //                }
-        //                else
-        //                {
-        //                    //アスキーコード取得、加算
-        //                    int intASCII = chrNewCdHead;
-        //                    intASCII = intASCII + 1;
-        //                    chrNewCdHead = (char)intASCII;
-        //                }
-        //                lstString[0] = chrNewCdHead + strNewCdOther;
-        //            }
-        //            else
-        //            {
-        //                intNewCd = int.Parse(strNewCdOther.ToString());
-
-        //                intNewCd = intNewCd + 1;
-
-        //                lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
-        //            }
-        //        }
-        //        addShohin(lstString, blnKanri);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        new CommonException(ex);
-        //        throw (ex);
-        //    }
-        //    finally
-        //    {
-        //        dbconnective.DB_Disconnect();
-        //    }
-        //}
-
         ///<summary>
         ///addShohin
         ///テキストボックス内のデータをDBに登録
@@ -163,9 +62,43 @@ namespace KATO.Business.M1030_Shohin
                     lstString[21]                    //更新ユーザー名
                 };
 
+                //マスタ権限の場合
                 if (blnKanri == true)
                 {
                     dbconnective.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
+
+                    //SQL実行時に取り出したデータを入れる用
+                    DataTable dtTantoshaCd = new DataTable();
+
+                    //SQLファイルのパスとファイル名を入れる用
+                    List<string> lstSQL = new List<string>();
+
+                    //SQLファイルのパス用（フォーマット後）
+                    string strSQLInput = "";
+
+                    //SQLファイルのパスとファイル名を追加
+                    lstSQL.Add("M1030_Shohin");
+                    lstSQL.Add("Shohin_KariToroku_UPDATE");
+
+                    //SQL発行
+                    OpenSQL opensql = new OpenSQL();
+
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return;
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput,
+                                                lstString[0]   //商品コード
+                                                );
+
+                    //仮商品データ更新（削除フラグを立てる）
+                    dbconnective.RunSql(strSQLInput);
                 }
                 else
                 {
@@ -192,7 +125,7 @@ namespace KATO.Business.M1030_Shohin
         ///delShohin
         ///テキストボックス内のデータをDBから削除
         ///</summary>
-        public void delShohin(List<string> lstString , Boolean blnKanri)
+        public void delShohin(List<string> lstString , Boolean blHontorokuData)
         {
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
@@ -231,7 +164,15 @@ namespace KATO.Business.M1030_Shohin
                     lstString[21]                     //更新ユーザー名
                 };
 
-                dbconnective.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
+                //本登録データの場合
+                if (blHontorokuData)
+                {
+                    dbconnective.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
+                }
+                else
+                {
+                    dbconnective.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_KARI_UPD, aryStr);
+                }
 
                 dbconnective.Commit();
             }
@@ -253,7 +194,7 @@ namespace KATO.Business.M1030_Shohin
         ///getShohin
         ///商品コードから商品データを取得（編集登録メッセージ表示用）
         ///</summary>
-        public DataTable getShohin(string strShohinCd)
+        public DataTable getShohin(string strShohinCd, Boolean blHontorokuData)
         {
             DataTable dtShohin = new DataTable();
 
@@ -264,7 +205,16 @@ namespace KATO.Business.M1030_Shohin
             lstStringSQL = new List<string>();
 
             lstStringSQL.Add("M1030_Shohin");
-            lstStringSQL.Add("Shohin_Data_SELECT");
+
+            //本登録データの場合
+            if (blHontorokuData)
+            {
+                lstStringSQL.Add("Shohin_Data_SELECT");
+            }
+            else
+            {
+                lstStringSQL.Add("Shohin_DataKari_SELECT");
+            }
 
             OpenSQL opensql = new OpenSQL();
 

@@ -156,6 +156,12 @@ namespace KATO.Common.Form
 
         Boolean blnZaikoKensaku = true;
 
+        //本登録されたデータを呼び出した判定
+        public bool blHontorokuData = false;
+
+        //表示時専用の本登録データ判定
+        bool blHontorokuDataSub = false;
+
         private string Title = "";
         public string _Title
         {
@@ -435,17 +441,19 @@ namespace KATO.Common.Form
             //検索単語があれば表示
             if (blKensaku == true)
             {
-                //仮登録の場合
-                if (blKariToroku)
-                {
-                    //仮商品で検索
-                    setKariShohinView();
-                }
-                else
-                {
-                    //商品で検索
-                    setShohinView();
-                }
+                setShohinView();
+
+                ////仮登録の場合
+                //if (blKariToroku)
+                //{
+                //    //仮商品で検索
+                //    setKariShohinView();
+                //}
+                //else
+                //{
+                //    //商品で検索
+                //    setShohinView();
+                //}
             }
 
             // 商品マスタからの場合
@@ -799,7 +807,7 @@ namespace KATO.Common.Form
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
             {
-                dtShohin = shohinlistB.getSelectItem(strSelectShohinCD);
+                dtShohin = shohinlistB.getSelectItem(strSelectShohinCD, blHontorokuDataSub);
 
                 //検索結果がない場合
                 if (dtShohin.Rows.Count <= 0)
@@ -1000,7 +1008,9 @@ namespace KATO.Common.Form
 
             //仕入単価（コンボボックス
             this.cbShireTanka.Text = dtShohin.Rows[0]["仕入単価"].ToString();
-            
+
+            //本登録かどうかの判定
+            this.blHontorokuData = this.blHontorokuDataSub;
         }
 
         ///<summary>
@@ -1165,8 +1175,9 @@ namespace KATO.Common.Form
             lstString.Add(strUkataHuku);                        //副番
             lstString.Add(DateTime.Now.ToString("yyyy/MM/dd")); //今日のYMD
 
-            lstBoolean.Add(chkNotToroku.Checked);
-            lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);
+            lstBoolean.Add(chkNotToroku.Checked);               //登録棚判定
+            lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);//部分一致判定
+            lstBoolean.Add(radSet_2btn_Toroku.radbtn0.Checked); //本登録判定
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
@@ -1208,115 +1219,17 @@ namespace KATO.Common.Form
                 this.gridTorihiki.Columns["商品コード"].Visible = false;
 
                 lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
-                gridTorihiki.Focus();
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
-            }
-        }
 
-        ///<summary>
-        ///setShohinView
-        ///仮商品の検索データを記入
-        ///</summary>
-        private void setKariShohinView()
-        {
-            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-
-            //データ渡し用
-            List<string> lstString = new List<string>();
-            List<int> lstInt = new List<int>();
-            List<Boolean> lstBoolean = new List<Boolean>();
-
-            gridTorihiki.Enabled = true;
-            gridTorihiki.DataSource = null;
-            DataTable dtView = new DataTable();
-
-            //数値チェックに使う
-            double dblKensaku = 0;
-
-            //数値チェック後に確保用
-            string strUkata = "";
-
-            //検索文字列がある場合の処理
-            if (txtKensaku.blIsEmpty())
-            {
-                //数値チェック
-                if (!double.TryParse(txtKensaku.Text, out dblKensaku))
+                //本検索フラグがある場合
+                if (radSet_2btn_Toroku.radbtn0.Checked)
                 {
-                    //そのまま確保
-                    strUkata = txtKensaku.Text;
+                    blHontorokuDataSub = true;
                 }
                 else
                 {
-                    //空白削除
-                    strUkata = txtKensaku.Text.Trim();
+                    blHontorokuDataSub = false;
                 }
 
-                //英字を大文字に
-                strUkata = strUkata.ToUpper();
-
-                strUkata = strUkata.Replace(" ", "");
-            }
-
-            //データ渡し用
-            lstInt.Add(intFrmKind);
-            lstInt.Add(0);
-
-            lstString.Add(labelSet_Daibunrui.CodeTxtText);      //大分類コード
-            lstString.Add(labelSet_Chubunrui.CodeTxtText);      //中分類コード
-            lstString.Add(labelSet_Maker.CodeTxtText);          //メーカーコード
-            lstString.Add(strUkata);                            //型番
-            lstString.Add(DateTime.Now.ToString("yyyy/MM/dd")); //今日のYMD
-
-            lstBoolean.Add(chkNotToroku.Checked);
-            lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);
-
-            ShouhinList_B shohinlistB = new ShouhinList_B();
-            try
-            {
-                dtView = shohinlistB.getKariShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
-
-                //在庫数の小数点以下を削除
-                DataColumnCollection columns = dtView.Columns;
-
-                //指定日在庫、棚卸数量の小数点切り下げ
-                for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
-                {
-                    //本社在庫が空でない場合
-                    if (dtView.Rows[cnt]["本社在庫"].ToString() != "")
-                    {
-                        dtView.Rows[cnt]["本社在庫"] = dtView.Rows[cnt]["本社在庫"].ToString();
-                    }
-
-                    //本社ﾌﾘｰが空でない場合
-                    if (dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString() != "")
-                    {
-                        dtView.Rows[cnt]["本社ﾌﾘｰ"] = dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString();
-                    }
-
-                    //岐阜在庫が空でない場合
-                    if (dtView.Rows[cnt]["岐阜在庫"].ToString() != "")
-                    {
-                        dtView.Rows[cnt]["岐阜在庫"] = dtView.Rows[cnt]["岐阜在庫"].ToString();
-                    }
-
-                    //岐阜ﾌﾘｰが空でない場合
-                    if (dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString() != "")
-                    {
-                        dtView.Rows[cnt]["岐阜ﾌﾘｰ"] = dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString();
-                    }
-                }
-
-                gridTorihiki.DataSource = dtView;
-                this.gridTorihiki.Columns["商品コード"].Visible = false;
-
-                lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
                 gridTorihiki.Focus();
             }
             catch (Exception ex)
@@ -1328,6 +1241,115 @@ namespace KATO.Common.Form
                 return;
             }
         }
+
+        /////<summary>
+        /////setShohinView
+        /////仮商品の検索データを記入
+        /////</summary>
+        //private void setKariShohinView()
+        //{
+        //    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+
+        //    //データ渡し用
+        //    List<string> lstString = new List<string>();
+        //    List<int> lstInt = new List<int>();
+        //    List<Boolean> lstBoolean = new List<Boolean>();
+
+        //    gridTorihiki.Enabled = true;
+        //    gridTorihiki.DataSource = null;
+        //    DataTable dtView = new DataTable();
+
+        //    //数値チェックに使う
+        //    double dblKensaku = 0;
+
+        //    //数値チェック後に確保用
+        //    string strUkata = "";
+
+        //    //検索文字列がある場合の処理
+        //    if (txtKensaku.blIsEmpty())
+        //    {
+        //        //数値チェック
+        //        if (!double.TryParse(txtKensaku.Text, out dblKensaku))
+        //        {
+        //            //そのまま確保
+        //            strUkata = txtKensaku.Text;
+        //        }
+        //        else
+        //        {
+        //            //空白削除
+        //            strUkata = txtKensaku.Text.Trim();
+        //        }
+
+        //        //英字を大文字に
+        //        strUkata = strUkata.ToUpper();
+
+        //        strUkata = strUkata.Replace(" ", "");
+        //    }
+
+        //    //データ渡し用
+        //    lstInt.Add(intFrmKind);
+        //    lstInt.Add(0);
+
+        //    lstString.Add(labelSet_Daibunrui.CodeTxtText);      //大分類コード
+        //    lstString.Add(labelSet_Chubunrui.CodeTxtText);      //中分類コード
+        //    lstString.Add(labelSet_Maker.CodeTxtText);          //メーカーコード
+        //    lstString.Add(strUkata);                            //型番
+        //    lstString.Add(DateTime.Now.ToString("yyyy/MM/dd")); //今日のYMD
+
+        //    lstBoolean.Add(chkNotToroku.Checked);
+        //    lstBoolean.Add(radSet_2btn_Kensaku.radbtn0.Checked);
+
+        //    ShouhinList_B shohinlistB = new ShouhinList_B();
+        //    try
+        //    {
+        //        dtView = shohinlistB.getKariShohinView(lstInt, lstString, lstBoolean, blnZaikoKensaku);
+
+        //        //在庫数の小数点以下を削除
+        //        DataColumnCollection columns = dtView.Columns;
+
+        //        //指定日在庫、棚卸数量の小数点切り下げ
+        //        for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
+        //        {
+        //            //本社在庫が空でない場合
+        //            if (dtView.Rows[cnt]["本社在庫"].ToString() != "")
+        //            {
+        //                dtView.Rows[cnt]["本社在庫"] = dtView.Rows[cnt]["本社在庫"].ToString();
+        //            }
+
+        //            //本社ﾌﾘｰが空でない場合
+        //            if (dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString() != "")
+        //            {
+        //                dtView.Rows[cnt]["本社ﾌﾘｰ"] = dtView.Rows[cnt]["本社ﾌﾘｰ"].ToString();
+        //            }
+
+        //            //岐阜在庫が空でない場合
+        //            if (dtView.Rows[cnt]["岐阜在庫"].ToString() != "")
+        //            {
+        //                dtView.Rows[cnt]["岐阜在庫"] = dtView.Rows[cnt]["岐阜在庫"].ToString();
+        //            }
+
+        //            //岐阜ﾌﾘｰが空でない場合
+        //            if (dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString() != "")
+        //            {
+        //                dtView.Rows[cnt]["岐阜ﾌﾘｰ"] = dtView.Rows[cnt]["岐阜ﾌﾘｰ"].ToString();
+        //            }
+        //        }
+
+        //        gridTorihiki.DataSource = dtView;
+        //        this.gridTorihiki.Columns["商品コード"].Visible = false;
+
+        //        lblRecords.Text = "該当件数(" + gridTorihiki.RowCount.ToString() + "件)";
+        //        gridTorihiki.Focus();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        new CommonException(ex);
+        //        //例外発生メッセージ（OK）
+        //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+        //        basemessagebox.ShowDialog();
+        //        return;
+        //    }
+        //}
 
         ///<summary>
         ///setLabel
