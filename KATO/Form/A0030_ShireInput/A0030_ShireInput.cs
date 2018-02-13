@@ -1156,6 +1156,13 @@ namespace KATO.Form.A0030_ShireInput
             //伝票Noを触れるようにする
             txtDenpyoNo.Enabled = true;
 
+            //各行の削除
+            gbData1.delText();
+            gbData2.delText();
+            gbData3.delText();
+            gbData4.delText();
+            gbData5.delText();
+
             txtYMD.Focus();
         }
 
@@ -2107,6 +2114,12 @@ namespace KATO.Form.A0030_ShireInput
             //発注数量入れる用
             DataTable dtHachusu = new DataTable();
 
+            //tryParse用
+            decimal decTry = 0;
+
+            //エラー位置にフォーカスする用
+            Control cErrorData = null;
+
             //各行の情報を入れる
             bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
 
@@ -2359,7 +2372,7 @@ namespace KATO.Form.A0030_ShireInput
                 blgood = false;
             }
 
-            //合計計算式を入れる（未定）
+            //合計計算式を入れる(一つで全行計算する)
             gbData1.setGokeiKesan();
 
             //good判定の判定
@@ -2368,35 +2381,56 @@ namespace KATO.Form.A0030_ShireInput
                 return(blgood);
             }
 
-            //使用ユーザーがpowerUserFlgの場合
-            if (this.powerUserFlg == true)
+            //閲覧権限がない場合
+            if (!("1").Equals(etsuranFlg))
             {
                 //各行のデータ
                 for (int intCnt = 0; intCnt < 5; intCnt++)
                 {
-                    if(bvg[intCnt].txtChumonNo.blIsEmpty() == false)
+                    if(bvg[intCnt].txtChumonNo.blIsEmpty() == true)
                     {
-                        //単価の背景黒
-                        bvg[intCnt].txtTanka.BackColor = Color.Black;
+                        //単価の文字色
+                        bvg[intCnt].txtTanka.ForeColor = Color.Black;
 
-                        //"関連する受注データがないとメッセージ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "仕入単価が直近・マスタ仕入単価を上回っています。続行してもいいですか？", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                        basemessagebox.ShowDialog();
-
-                        //単価と直近仕入単価の比較
-                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(bvg[intCnt].txtChokinTanka.Text))
+                        //単価と直近単価が数値変換できる場合
+                        if (decimal.TryParse(bvg[intCnt].txtTanka.Text.Trim(), out decTry) &&
+                            decimal.TryParse(bvg[intCnt].txtChokinTanka.Text.Trim(), out decTry))
                         {
-                            bvg[intCnt].txtChokinTanka.BackColor = Color.Red;
-                        }
+                            //単価と直近仕入単価の比較、単価とマスタ単価の比較
+                            if (decimal.Parse(bvg[intCnt].txtTanka.Text) < decimal.Parse(bvg[intCnt].txtChokinTanka.Text) ||
+                                decimal.Parse(bvg[intCnt].txtTanka.Text) < decimal.Parse(bvg[intCnt].txtMasterTanka.Text))
+                            {
+                                bvg[intCnt].txtTanka.ForeColor = Color.Red;
+                                blgood = false;
+                            }
 
-                        //単価とマスタ単価の比較
-                        if (int.Parse(bvg[intCnt].txtTanka.Text) < int.Parse(bvg[intCnt].txtMasterTanka.Text))
-                        {
-                            bvg[intCnt].txtMasterTanka.BackColor = Color.Red;
+                            //初めてエラーになったの場合
+                            if (blgood == false && cErrorData == null)
+                            {
+                                //エラー位置確保
+                                cErrorData = bvg[intCnt].txtTanka;
+                            }
                         }
                     }
-                }   
-            }            
+                }
+
+                if (blgood == false)
+                {
+                    //"関連する受注データがないとメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "仕入単価チェック", "仕入単価が直近・マスタ仕入単価を上回っています。続行してもいいですか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_ERROR);
+
+                    //YESが押された場合
+                    if (basemessagebox.ShowDialog() == DialogResult.Yes)
+                    {
+                        blgood = true;
+                    }
+                    else
+                    {
+                        //エラー位置にフォーカス
+                        cErrorData.Focus();
+                    }
+                }
+            }
             return (blgood);
         }
 
