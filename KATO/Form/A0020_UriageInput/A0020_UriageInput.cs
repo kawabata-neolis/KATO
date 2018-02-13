@@ -835,12 +835,13 @@ namespace KATO.Form.A0020_UriageInput
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
                         pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
 
+                        //ラベルプリンターで印刷
+                        uriageinput_B.printGenpinhyo(Denno, false);
+
                         //印刷済みにする。（プロシージャー）
                         Flag = 0;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
-                        //ラベルプリンターで印刷
-                        uriageinput_B.printGenpinhyo(Denno, false);
 
 
                     }
@@ -1626,7 +1627,7 @@ namespace KATO.Form.A0020_UriageInput
                             //ビジネス層、仕入済数量が0の発注データをカウントする。
                             dtSetView = uriageinputB.SiirezumiSuuryoHacyuCount(lstString);
 
-                            if (decimal.Parse(dtSetView.Rows[0]["仕入済数量発注カウント"].ToString()) == 0)
+                            if (decimal.Parse(dtSetView.Rows[0]["仕入済数量発注カウント"].ToString()) > 0)
                             {
                                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "未仕入の発注伝票があります。\r\n発注伝票・仕入伝票を確認してください。\r\n加工品の場合は、加工品受注入力画面で仕入状況を確認してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                                 basemessagebox.ShowDialog();
