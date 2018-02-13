@@ -229,7 +229,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 //strQuery += "  FROM 発注 a";
 
                 strQuery = "SELECT b.受注年月日 AS 受注日";
-                strQuery += "      ,b.納期";
+                strQuery += "      ,a.納期";
                 strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
                 strQuery += "      ,dbo.f_get中分類名(a.大分類コード, b.中分類コード)";
                 strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, '')) AS 品名";
@@ -240,7 +240,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.受注単価), 0, 1) AS 売上金額";
                 strQuery += "      ,b.仕入単価 AS 仕入単価";
                 strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.仕入単価), 0, 1) AS 仕入金額";
-                strQuery += "      ,b.注番";
+                strQuery += "      ,a.注番";
                 strQuery += "      ,'' AS 仕入合計金額";
                 strQuery += "      ,'' AS 客先注番";
                 strQuery += "      ,b.得意先名称 AS 得意先名";
@@ -396,19 +396,19 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
             if (int.Parse(listParam[27]) == 0)
             {
-                strQuery += " ORDER BY 受注日" + stOrder + ", 納期 ASC, 注番 ASC";
+                strQuery += " ORDER BY 受注日" + stOrder + ", a.納期 ASC, a.注番 ASC";
             }
             else if (int.Parse(listParam[27]) == 1)
             {
-                strQuery += " ORDER BY 発注日" + stOrder + ", 納期 ASC, 注番 ASC";
+                strQuery += " ORDER BY 発注日" + stOrder + ", a.納期 ASC, a.注番 ASC";
             }
             else if (int.Parse(listParam[27]) == 2)
             {
-                strQuery += " ORDER BY 納期" + stOrder + ", " + stDay + " ASC, 注番 ASC";
+                strQuery += " ORDER BY a.納期" + stOrder + ", " + stDay + " ASC, a.注番 ASC";
             }
             else if (int.Parse(listParam[27]) == 3)
             {
-                strQuery += " ORDER BY 注番" + stOrder + ", 納期 ASC, " + stDay + " ASC";
+                strQuery += " ORDER BY a.注番" + stOrder + ", a.納期 ASC, " + stDay + " ASC";
             }
 
             // SQL検索実行
