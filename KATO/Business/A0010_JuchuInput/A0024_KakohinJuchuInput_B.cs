@@ -943,7 +943,7 @@ namespace KATO.Business.A0010_JuchuInput
 
         public void updShukkoMeisai(List<String> aryPrm, DBConnective con, bool kariFlg)
         {
-            string strSQL = "仮出庫明細全削除_PROC '" + aryPrm[0] + "'";
+            string strSQL = "仮出庫明細全削除_PROC '" + aryPrm[0] + "','" + aryPrm[18] + "'";
             con.ReadSql(strSQL);
 
             List<String> aryCol = new List<string>();
@@ -973,7 +973,7 @@ namespace KATO.Business.A0010_JuchuInput
                 con.RunSql("仮出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
                 if (!kariFlg)
                 {
-                    strSQL = "出庫明細全削除_PROC '" + aryPrm[0] + "'";
+                    strSQL = "出庫明細全削除_PROC '" + aryPrm[0] + "','" + aryPrm[18] + "'";
                     con.ReadSql(strSQL);
 
                     con.RunSql("出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
