@@ -36,6 +36,9 @@ namespace KATO.Common.Form
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
             this.chkNotToroku = new System.Windows.Forms.CheckBox();
+            this.radSet_2btn_Toroku = new KATO.Common.Ctl.RadSet_2btn();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.radSet_2btn_Kensaku = new KATO.Common.Ctl.RadSet_2btn();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
@@ -45,11 +48,10 @@ namespace KATO.Common.Form
             this.gridTorihiki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.radSet_2btn_Toroku = new KATO.Common.Ctl.RadSet_2btn();
-            this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
+            this.txtKensakuHuku = new KATO.Common.Ctl.BaseText();
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.radSet_2btn_Toroku.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecords
@@ -76,11 +78,55 @@ namespace KATO.Common.Form
             this.chkNotToroku.Visible = false;
             this.chkNotToroku.VisibleChanged += new System.EventHandler(this.chkNotToroku_VisibleChanged);
             // 
+            // radSet_2btn_Toroku
+            // 
+            this.radSet_2btn_Toroku.Controls.Add(this.baseLabel1);
+            this.radSet_2btn_Toroku.Controls.Add(this.lblTitle);
+            this.radSet_2btn_Toroku.intJudBtn = 0;
+            this.radSet_2btn_Toroku.LabelTitle = " ";
+            this.radSet_2btn_Toroku.Location = new System.Drawing.Point(919, 96);
+            this.radSet_2btn_Toroku.Name = "radSet_2btn_Toroku";
+            this.radSet_2btn_Toroku.PositionLabelTitle_X = 0;
+            this.radSet_2btn_Toroku.PositionLabelTitle_Y = 0;
+            this.radSet_2btn_Toroku.PositionRadbtn1_X = 20;
+            this.radSet_2btn_Toroku.PositionRadbtn1_Y = 0;
+            this.radSet_2btn_Toroku.PositionRadbtn2_X = 120;
+            this.radSet_2btn_Toroku.PositionRadbtn2_Y = 0;
+            this.radSet_2btn_Toroku.Radbtn1Text = "本登録";
+            this.radSet_2btn_Toroku.Radbtn2Text = "仮登録";
+            this.radSet_2btn_Toroku.Size = new System.Drawing.Size(217, 19);
+            this.radSet_2btn_Toroku.TabIndex = 5;
+            this.radSet_2btn_Toroku.TabStop = false;
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(0, 0);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(15, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 6;
+            this.baseLabel1.Text = " ";
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(15, 15);
+            this.lblTitle.strToolTip = null;
+            this.lblTitle.TabIndex = 6;
+            this.lblTitle.Text = " ";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // radSet_2btn_Kensaku
             // 
             this.radSet_2btn_Kensaku.intJudBtn = 0;
             this.radSet_2btn_Kensaku.LabelTitle = " ";
-            this.radSet_2btn_Kensaku.Location = new System.Drawing.Point(314, 99);
+            this.radSet_2btn_Kensaku.Location = new System.Drawing.Point(696, 95);
             this.radSet_2btn_Kensaku.Name = "radSet_2btn_Kensaku";
             this.radSet_2btn_Kensaku.PositionLabelTitle_X = 0;
             this.radSet_2btn_Kensaku.PositionLabelTitle_Y = 0;
@@ -92,6 +138,7 @@ namespace KATO.Common.Form
             this.radSet_2btn_Kensaku.Radbtn2Text = "完全一致";
             this.radSet_2btn_Kensaku.Size = new System.Drawing.Size(217, 19);
             this.radSet_2btn_Kensaku.TabIndex = 4;
+            this.radSet_2btn_Kensaku.TabStop = false;
             // 
             // labelSet_Maker
             // 
@@ -163,7 +210,7 @@ namespace KATO.Common.Form
             this.btnF11.Location = new System.Drawing.Point(1289, 40);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
-            this.btnF11.TabIndex = 4;
+            this.btnF11.TabIndex = 5;
             this.btnF11.UseVisualStyleBackColor = true;
             this.btnF11.Click += new System.EventHandler(this.btnKensakuClick);
             // 
@@ -173,7 +220,7 @@ namespace KATO.Common.Form
             this.btnF12.Location = new System.Drawing.Point(1289, 11);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
-            this.btnF12.TabIndex = 6;
+            this.btnF12.TabIndex = 7;
             this.btnF12.UseVisualStyleBackColor = true;
             this.btnF12.Click += new System.EventHandler(this.btnEndClick);
             // 
@@ -225,8 +272,9 @@ namespace KATO.Common.Form
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKensaku.Location = new System.Drawing.Point(106, 96);
+            this.txtKensaku.MaxLength = 24;
             this.txtKensaku.Name = "txtKensaku";
-            this.txtKensaku.Size = new System.Drawing.Size(199, 22);
+            this.txtKensaku.Size = new System.Drawing.Size(200, 22);
             this.txtKensaku.TabIndex = 3;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
@@ -242,48 +290,27 @@ namespace KATO.Common.Form
             this.lblKensaku.Text = "検索文字列";
             this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // radSet_2btn_Toroku
+            // txtKensakuHuku
             // 
-            this.radSet_2btn_Toroku.Controls.Add(this.baseLabel1);
-            this.radSet_2btn_Toroku.Controls.Add(this.lblTitle);
-            this.radSet_2btn_Toroku.intJudBtn = 0;
-            this.radSet_2btn_Toroku.LabelTitle = " ";
-            this.radSet_2btn_Toroku.Location = new System.Drawing.Point(547, 99);
-            this.radSet_2btn_Toroku.Name = "radSet_2btn_Toroku";
-            this.radSet_2btn_Toroku.PositionLabelTitle_X = 0;
-            this.radSet_2btn_Toroku.PositionLabelTitle_Y = 0;
-            this.radSet_2btn_Toroku.PositionRadbtn1_X = 20;
-            this.radSet_2btn_Toroku.PositionRadbtn1_Y = 0;
-            this.radSet_2btn_Toroku.PositionRadbtn2_X = 120;
-            this.radSet_2btn_Toroku.PositionRadbtn2_Y = 0;
-            this.radSet_2btn_Toroku.Radbtn1Text = "本登録";
-            this.radSet_2btn_Toroku.Radbtn2Text = "仮登録";
-            this.radSet_2btn_Toroku.Size = new System.Drawing.Size(217, 19);
-            this.radSet_2btn_Toroku.TabIndex = 5;
+            this.txtKensakuHuku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKensakuHuku.Location = new System.Drawing.Point(414, 96);
+            this.txtKensakuHuku.MaxLength = 24;
+            this.txtKensakuHuku.Name = "txtKensakuHuku";
+            this.txtKensakuHuku.Size = new System.Drawing.Size(200, 22);
+            this.txtKensakuHuku.TabIndex = 4;
+            this.txtKensakuHuku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
-            // lblTitle
+            // baseLabel2
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(15, 15);
-            this.lblTitle.strToolTip = null;
-            this.lblTitle.TabIndex = 6;
-            this.lblTitle.Text = " ";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // baseLabel1
-            // 
-            this.baseLabel1.AutoSize = true;
-            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(0, 0);
-            this.baseLabel1.Name = "baseLabel1";
-            this.baseLabel1.Size = new System.Drawing.Size(15, 15);
-            this.baseLabel1.strToolTip = null;
-            this.baseLabel1.TabIndex = 6;
-            this.baseLabel1.Text = " ";
-            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.baseLabel2.AutoSize = true;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel2.Location = new System.Drawing.Point(367, 99);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(39, 15);
+            this.baseLabel2.strToolTip = null;
+            this.baseLabel2.TabIndex = 100;
+            this.baseLabel2.Text = "副番";
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ShouhinList
             // 
@@ -300,15 +327,17 @@ namespace KATO.Common.Form
             this.Controls.Add(this.btnF12);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridTorihiki);
+            this.Controls.Add(this.txtKensakuHuku);
             this.Controls.Add(this.txtKensaku);
+            this.Controls.Add(this.baseLabel2);
             this.Controls.Add(this.lblKensaku);
             this.Name = "ShouhinList";
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).EndInit();
             this.radSet_2btn_Toroku.ResumeLayout(false);
             this.radSet_2btn_Toroku.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +358,7 @@ namespace KATO.Common.Form
         private RadSet_2btn radSet_2btn_Toroku;
         private BaseLabel baseLabel1;
         private BaseLabel lblTitle;
+        private BaseText txtKensakuHuku;
+        private BaseLabel baseLabel2;
     }
 }

@@ -65,18 +65,33 @@ namespace KATO.Common.Business
             //検索文字列と大分類またはメーカーがあり、部分検索の場合
             if (lstString[3] != "" && lstBoolean[1] == true)
             {
-                strWhere = strWhere + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[3] + "%'";
+                strWhere = strWhere + " AND REPLACE( ISNULL(商品.Ｃ１,''),' ' ,'') LIKE '%" + lstString[3] + "%'";
             }
             //検索文字列と大分類またはメーカーがあり、完全一致検索の場合
             else if (lstString[3] != "" && lstBoolean[1] == false)
             {
-                strWhere = strWhere + " AND REPLACE(( ISNULL(商品.Ｃ１,'') + ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[3] + "'";
+                strWhere = strWhere + " AND REPLACE( ISNULL(商品.Ｃ１,''),' ' ,'') LIKE '" + lstString[3] + "'";
             }
             else
             {
                 strWhere = strWhere + "";
             }
 
+            //副番と大分類またはメーカーがあり、部分検索の場合
+            if (lstString[4] != "" && lstBoolean[1] == true)
+            {
+                strWhere = strWhere + " AND REPLACE((ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[4] + "%'";
+            }
+            //副番と大分類またはメーカーがあり、完全一致検索の場合
+            else if (lstString[4] != "" && lstBoolean[1] == false)
+            {
+                strWhere = strWhere + " AND REPLACE((ISNULL(商品.Ｃ２, '') + ISNULL(商品.Ｃ３, '') + ISNULL(商品.Ｃ４, '') + ISNULL(商品.Ｃ５, '') + ISNULL(商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[4] + "'";
+            }
+            else
+            {
+                strWhere = strWhere + "";
+            }
+            
             //未登録棚の場合
             if (lstBoolean[0] == true)
             {

@@ -1110,7 +1110,8 @@ namespace KATO.Common.Form
 
             //数値チェック後に確保用
             string strUkata = "";
-            
+            string strUkataHuku = "";
+
             //検索文字列がある場合の処理
             if (txtKensaku.blIsEmpty())
             {
@@ -1132,6 +1133,27 @@ namespace KATO.Common.Form
                 strUkata = strUkata.Replace(" ", "");
             }
 
+            //副番がある場合の処理
+            if (txtKensakuHuku.blIsEmpty())
+            {
+                //数値チェック
+                if (!double.TryParse(txtKensakuHuku.Text, out dblKensaku))
+                {
+                    //そのまま確保
+                    strUkataHuku = txtKensakuHuku.Text;
+                }
+                else
+                {
+                    //空白削除
+                    strUkataHuku = txtKensakuHuku.Text.Trim();
+                }
+
+                //英字を大文字に
+                strUkata = strUkata.ToUpper();
+
+                strUkata = strUkata.Replace(" ", "");
+            }
+
             //データ渡し用
             lstInt.Add(intFrmKind);
             lstInt.Add(0);
@@ -1140,6 +1162,7 @@ namespace KATO.Common.Form
             lstString.Add(labelSet_Chubunrui.CodeTxtText);      //中分類コード
             lstString.Add(labelSet_Maker.CodeTxtText);          //メーカーコード
             lstString.Add(strUkata);                            //型番
+            lstString.Add(strUkataHuku);                        //副番
             lstString.Add(DateTime.Now.ToString("yyyy/MM/dd")); //今日のYMD
 
             lstBoolean.Add(chkNotToroku.Checked);
