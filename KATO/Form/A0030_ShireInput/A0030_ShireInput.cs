@@ -2350,6 +2350,11 @@ namespace KATO.Form.A0030_ShireInput
             //日付制限チェックをしたときにfalseの場合
             if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
             {
+
+                //日付が範囲外とメッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 txtYMD.Focus();
                 blgood = false;
             }
