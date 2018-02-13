@@ -44,7 +44,7 @@ namespace KATO.Business.A0030_ShireInput
                 strSQL = "仕入明細削除_PROC '" + strDenpyoNo + "','" + strUserID + "'";
                 dbconnective.ReadSql(strSQL);
 
-                strSQL = "運賃消去_PROC '" + strDenpyoNo + "','" + strUserID + "'";
+                strSQL = "運賃消去_PROC '" + strDenpyoNo + "'";
                 dbconnective.ReadSql(strSQL);
 
                 //コミット開始
