@@ -2462,6 +2462,13 @@
     <Content Include="SQL\Common\C_TantoshaCd_Select.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1200_Group\Group_PrintData_SELECT.sql" />
     <Content Include="SQL\JuchuInput_DataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
