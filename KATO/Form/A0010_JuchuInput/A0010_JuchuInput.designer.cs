@@ -238,9 +238,9 @@
             // 
             this.lblHinmei.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblHinmei.Location = new System.Drawing.Point(10, 73);
+            this.lblHinmei.Location = new System.Drawing.Point(5, 73);
             this.lblHinmei.Name = "lblHinmei";
-            this.lblHinmei.Size = new System.Drawing.Size(1414, 319);
+            this.lblHinmei.Size = new System.Drawing.Size(1414, 321);
             this.lblHinmei.strToolTip = null;
             this.lblHinmei.TabIndex = 12;
             this.lblHinmei.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -573,6 +573,7 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;

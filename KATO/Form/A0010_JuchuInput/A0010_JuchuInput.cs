@@ -953,6 +953,38 @@ namespace KATO.Form.A0010_JuchuInput
 
                 // 在庫呼び出し
                 getZaikoInfo();
+
+                if (f6 != null)
+                {
+                    f6.Close();
+                    f6.Dispose();
+                }
+
+                A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
+
+                DataTable dtH = juchuB.getRireki(strCd);
+
+                if (dtH != null && dtH.Rows.Count > 0) {
+                    f6 = new Form6(this);
+                    f6.strJuchuNo = txtJuchuNo.Text;
+
+                    Screen s = null;
+                    Screen[] argScreen = Screen.AllScreens;
+                    if (argScreen.Length > 1)
+                    {
+                        s = argScreen[1];
+                    }
+                    else
+                    {
+                        s = argScreen[0];
+                    }
+
+                    f6.StartPosition = FormStartPosition.Manual;
+                    f6.Location = s.Bounds.Location;
+
+                    f6.strEigyoCd = txtEigyoshoCd.Text;
+                    f6.Show();
+                }
             }
             catch (Exception ex)
             {
@@ -2837,6 +2869,13 @@ namespace KATO.Form.A0010_JuchuInput
             lsJuchusha.CodeTxtText = defaultUser;
             lsJuchusha.chkTxtTantosha();
             txtEigyoshoCd.Text = defaultEigyo;
+
+            if (f6 != null)
+            {
+                f6.Close();
+                f6.Dispose();
+            }
+
             lsJuchusha.Focus();
         }
 
@@ -2924,6 +2963,13 @@ namespace KATO.Form.A0010_JuchuInput
             lsJuchusha.chkTxtTantosha();
             txtEigyoshoCd.Text = defaultEigyo;
             panel1.Visible = false;
+
+            if (f6 != null)
+            {
+                f6.Close();
+                f6.Dispose();
+            }
+
             lsJuchusha.Focus();
         }
 

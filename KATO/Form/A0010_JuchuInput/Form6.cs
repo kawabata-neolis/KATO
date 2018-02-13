@@ -70,7 +70,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             zeroPad = "D" + keta.ToString();
 
-            this.checkBox1.Checked = true;
+            this.checkBox1.Checked = false;
 
             //A0010_JuchuInput frm1;
 
@@ -590,6 +590,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtHNo.Name = "txtHNo";
             txtHNo.Leave += new EventHandler(txtHNo_Leave);
             txtHNo.KeyDown += new KeyEventHandler(baseTexts_KeyDown);
+            txtHNo.TabStop = false;
             txtHNo.TabIndex = tabIdx;
             tabIdx++;
             #endregion
