@@ -2462,6 +2462,7 @@
     <Content Include="SQL\Common\C_TantoshaCd_Select.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\M1020_Maker_SELECT_LEAVE.sql" />
     <Content Include="SQL\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

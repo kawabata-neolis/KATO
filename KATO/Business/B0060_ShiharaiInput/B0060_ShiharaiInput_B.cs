@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KATO.Business.B0060_ShiharaiInput_B
 {
+
     /// <summary>
     /// B0060_ShiharaiInput_B
     /// 支払入力 ビジネスロジック

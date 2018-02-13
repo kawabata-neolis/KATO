@@ -15,6 +15,7 @@ using KATO.Business.M1070_Torihikisaki;
 
 namespace KATO.Form.M1070_Torihikisaki
 {
+
     ///<summary>
     ///M1070_Torihikisaki
     ///取引先フォーム

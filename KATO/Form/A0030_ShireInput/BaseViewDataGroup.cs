@@ -1179,7 +1179,6 @@ namespace KATO.Form.A0030_ShireInput
             //親画面の情報取得
             A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
 
-            //
             int intHasu = 0;
 
             //取引先データの確保用
@@ -1210,14 +1209,15 @@ namespace KATO.Form.A0030_ShireInput
                     txtKin.Text = "0";
                 }
 
-                //定価の中身がない場合
-                if (!StringUtl.blIsEmpty(txtTeka.Text))
+                //定価の中身がある場合
+                if (StringUtl.blIsEmpty(txtTeka.Text))
                 {
                     //定価の中身が0以外の場合
                     if (txtTeka.Text != "0" && txtTeka.Text != "")
                     {
                         //単価と定価で計算、仕入率に記入
-                        txtShireritsu.Text = (int.Parse(txtTanka.Text) / int.Parse(txtTeka.Text) * 100).ToString();
+                        txtShireritsu.Text = (decimal.Parse(txtTanka.Text) / decimal.Parse(txtTeka.Text) * 100).ToString();
+                        txtShireritsu.Text = StringUtl.updShishagonyu(txtShireritsu.Text, 1);
                     }
                 }
 

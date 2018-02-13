@@ -7,6 +7,7 @@ using KATO.Common.Util;
 
 namespace KATO.Business.M1050_Tantousha
 {
+
     ///<summary>
     ///M1050_Tantousha_B
     ///担当者のビジネス層

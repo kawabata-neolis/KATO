@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace KATO.Business.M1070_Torihikisaki
 {
+
     ///<summary>
     ///M1070_Torihikisaki_B
     ///取引先のビジネス層

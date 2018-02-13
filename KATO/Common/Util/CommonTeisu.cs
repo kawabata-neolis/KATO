@@ -8,6 +8,7 @@ using System.Data;
 
 namespace KATO.Common.Util
 {
+
     class CommonTeisu
     {
         // 全画面共通 タイトル

@@ -15,6 +15,7 @@ using KATO.Business.B0060_ShiharaiInput_B;
 
 namespace KATO.Form.B0060_ShiharaiInput
 {
+
     /// <summary>
     /// B0060_ShiharaiInput
     /// 支払入力フォーム

@@ -9,6 +9,7 @@ using ClosedXML.Excel;
 
 namespace KATO.Business.M1200_Group
 {
+
     ///<summary>
     ///M1200_Group_B
     ///グループマスタフォーム

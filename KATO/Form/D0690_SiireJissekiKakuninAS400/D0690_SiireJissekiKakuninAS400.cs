@@ -10,6 +10,7 @@ using KATO.Business.D0690_SiireJissekiKakuninAS400;
 
 namespace KATO.Form.D0690_SiireJissekiKakuninAS400
 {
+
     /// <summary>
     /// D0690_SiireJissekiKakuninAS400
     /// 仕入実績確認（AS400）フォーム

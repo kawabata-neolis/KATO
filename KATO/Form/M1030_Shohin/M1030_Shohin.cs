@@ -820,8 +820,6 @@ namespace KATO.Form.M1030_Shohin
                     lstString[0] = strShohinCdMax;
 
                     shohinB.addShohin(lstString, blnKanri);
-
-
                 }
                 //修正登録
                 else
@@ -838,9 +836,7 @@ namespace KATO.Form.M1030_Shohin
                             return;
                         }
                     }
-
-
-
+                    
                     //メッセージボックスの処理、登録完了のウィンドウ（OK）
                     BaseMessageBox basemessageboxUwagaki = new BaseMessageBox(this, 
                                                                               CommonTeisu.TEXT_TOUROKU,

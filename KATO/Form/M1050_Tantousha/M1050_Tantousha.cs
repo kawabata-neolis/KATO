@@ -15,6 +15,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1050_Tantousha
 {
+
     ///<summary>
     ///M1050_Tantousha
     ///担当者フォーム

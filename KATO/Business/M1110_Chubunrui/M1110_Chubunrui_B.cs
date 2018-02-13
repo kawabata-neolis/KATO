@@ -7,6 +7,7 @@ using KATO.Common.Util;
 
 namespace KATO.Business.M1110_Chubunrui
 {
+
     ///<summary>
     ///M1110_Chubunrui_B
     ///中分類のビジネス層

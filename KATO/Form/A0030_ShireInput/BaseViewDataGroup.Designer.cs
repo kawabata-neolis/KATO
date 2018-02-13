@@ -105,6 +105,7 @@
             this.txtKin.Name = "txtKin";
             this.txtKin.Size = new System.Drawing.Size(149, 22);
             this.txtKin.TabIndex = 5;
+            this.txtKin.TabStop = false;
             this.txtKin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtKin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKeyDown);
             // 
@@ -117,7 +118,7 @@
             this.txtTanka.intIntederSet = 0;
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(693, 13);
-            this.txtTanka.MaxLength = 3;
+            this.txtTanka.MaxLength = 8;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(150, 22);
             this.txtTanka.TabIndex = 4;
@@ -276,6 +277,7 @@
             this.txtMasterTanka.Location = new System.Drawing.Point(849, 46);
             this.txtMasterTanka.MaxLength = 3;
             this.txtMasterTanka.Name = "txtMasterTanka";
+            this.txtMasterTanka.ReadOnly = true;
             this.txtMasterTanka.Size = new System.Drawing.Size(150, 22);
             this.txtMasterTanka.TabIndex = 11;
             this.txtMasterTanka.TabStop = false;
@@ -311,9 +313,8 @@
             this.txtSu.intIntederSet = 0;
             this.txtSu.intShishagonyu = 0;
             this.txtSu.Location = new System.Drawing.Point(576, 13);
-            this.txtSu.MaxLength = 0;
+            this.txtSu.MaxLength = 5;
             this.txtSu.Name = "txtSu";
-            this.txtSu.ReadOnly = true;
             this.txtSu.Size = new System.Drawing.Size(111, 22);
             this.txtSu.TabIndex = 3;
             this.txtSu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
