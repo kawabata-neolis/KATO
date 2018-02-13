@@ -28,10 +28,6 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        // SPPowerUser
-        private string strSPPowerUser = Environment.UserName;
-        //private string strSPPowerUser = "aaa";
-
         /// <summary>
         /// M1150_ShohinTankaIkkatuUpdate
         /// フォーム関係の設定
@@ -92,10 +88,17 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.btnF04.Enabled = false;
 
             // SPPowerUserの場合のみF11に文字を表示
-            if (strSPPowerUser.Equals("ゲストユーザー"))
+            if ("1".Equals(this.etsuranFlg))
             {
                 this.btnF11.Text = STR_FUNC_F11;
+                this.btnF11.Enabled = true;
             }
+            else
+            {
+                this.btnF11.Text = "";
+                this.btnF11.Enabled = false;
+            }
+
 
             // 初期表示
             labelSet_Daibunrui.Focus();
@@ -287,8 +290,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧フラグが１の場合のみ有効
+                    if ("1".Equals(this.etsuranFlg))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                         this.printReport();
@@ -333,8 +336,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
                     this.copyTanaban();
                     break;
                 case STR_BTN_F11: // 印刷
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧フラグが１の場合のみ有効
+                    if ("1".Equals(this.etsuranFlg))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                         this.printReport();

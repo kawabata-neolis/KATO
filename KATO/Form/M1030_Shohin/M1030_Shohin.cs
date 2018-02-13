@@ -88,31 +88,8 @@ namespace KATO.Form.M1030_Shohin
             this.Show();
             this._Title = "商品マスター";
 
-            string master = "";
-            string etsuran = "";
-            string riekiritsu = "";
-            string admin = "";
-            try
-            {
-                Tantosya_Kengen tk = new Tantosya_Kengen(SystemInformation.UserName);
-                master = tk.master;
-                etsuran = tk.etsuran;
-                riekiritsu = tk.riekiritsu;
-                admin = tk.admin;
-            }
-            catch (Exception ex)
-            {
-                // エラーロギング
-                new CommonException(ex);
-
-                //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-            }
-
-
             //masterUserの場合
-            if (master == "1")
+            if (("1").Equals(masterFlg))
             {
                 blnKanri = true;
             }
@@ -646,6 +623,9 @@ namespace KATO.Form.M1030_Shohin
             //商品コードからデータ取り出し（確認メッセージ用）
             DataTable dtShohin = new DataTable();
 
+            //商品コードの最大値用
+            string strShohinCdMax = "";
+
             //空文字削除
             labelSet_Daibunrui.CodeTxtText.Trim();
             labelSet_Chubunrui.CodeTxtText.Trim();
@@ -666,7 +646,7 @@ namespace KATO.Form.M1030_Shohin
             //データ渡し用
             List<string> lstString = new List<string>();
 
-            //文字判定
+            //空文字判定
             if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -675,6 +655,13 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_Daibunrui.Focus();
                 return;
             }
+            //入力文字チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return;
+            }
+
+            //空文字判定
             if (labelSet_Chubunrui.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -683,6 +670,13 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_Chubunrui.Focus();
                 return;
             }
+            //入力文字チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                return;
+            }
+
+            //空文字判定
             if (labelSet_Maker.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -691,6 +685,13 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_Maker.Focus();
                 return;
             }
+            //入力文字チェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                return;
+            }
+
+            //空文字判定
             if (txtHyojun.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -699,6 +700,8 @@ namespace KATO.Form.M1030_Shohin
                 txtHyojun.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtShire.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -707,6 +710,8 @@ namespace KATO.Form.M1030_Shohin
                 txtShire.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtHyoka.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -715,6 +720,8 @@ namespace KATO.Form.M1030_Shohin
                 txtHyoka.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtTatene.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -723,6 +730,8 @@ namespace KATO.Form.M1030_Shohin
                 txtTatene.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtZaiko.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -731,6 +740,8 @@ namespace KATO.Form.M1030_Shohin
                 txtZaiko.Focus();
                 return;
             }
+
+            //空文字判定
             if (labelSet_TanabanHonsha.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -739,6 +750,8 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_TanabanHonsha.Focus();
                 return;
             }
+
+            //空文字判定
             if (labelSet_TanabanGihu.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -747,6 +760,8 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_TanabanGihu.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtTeika.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -755,6 +770,8 @@ namespace KATO.Form.M1030_Shohin
                 txtTeika.Focus();
                 return;
             }
+
+            //空文字判定
             if (txtHako.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -796,7 +813,18 @@ namespace KATO.Form.M1030_Shohin
                 //新規登録
                 if (radSet_2btn_Toroku.radbtn0.Checked == true)
                 {
-                    shohinB.updShohinNew(lstString, blnKanri);
+                    //商品コードの最大値を確保
+                    strShohinCdMax = shohinB.getNewShohinNo();
+
+                    //商品コードのみを上書き
+                    lstString[0] = strShohinCdMax;
+
+                    shohinB.addShohin(lstString, blnKanri);
+
+
+                    //担当の自分のマスタ権限を修正して本登録テスト
+
+
                 }
                 //修正登録
                 else
@@ -819,8 +847,6 @@ namespace KATO.Form.M1030_Shohin
                     //メッセージボックスの処理、登録完了のウィンドウ（OK）
                     BaseMessageBox basemessageboxUwagaki = new BaseMessageBox(this, 
                                                                               CommonTeisu.TEXT_TOUROKU,
-                                                                              //dtShohin.Rows[0]["メーカー"].ToString().Trim() + " " + 
-                                                                              //dtShohin.Rows[0]["中分類名"].ToString().Trim() + " " + 
                                                                               dtShohin.Rows[0]["品名"].ToString().Trim() + 
                                                                               "\r\n" + 
                                                                               CommonTeisu.LABEL_TOUROKU_UWAGAKi, 

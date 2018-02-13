@@ -33,13 +33,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         // 仕入先コード
         private string strSiiresakiCd;
 
-        // SPPowerUser
-        private string strSPPowerUser = Environment.UserName;
-        //private string strSPPowerUser = "ooba";
-
         // ユーザーID
         private string strUserId = Environment.UserName;
-        //private string strUserId = "ooba";
 
         /// <summary>
         /// D0320_SiireJissekiKakunin
@@ -78,6 +73,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             this.intFrm = intFrm;
             // 仕入先コードをセット
             this.strSiiresakiCd = strSiiresakiCd;
+            // 営業所ラジオボタンはすべてを選択
+            radEigyosho.radbtn0.Checked = true;
         }
 
         /// <summary>
@@ -89,6 +86,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             this.Show();
             this._Title = "仕入実績確認";
 
+            // ステータスバーにメッセージ
+            this.lblStatusMessage.Text = "F9を押すと、一覧選択または検索ができます";
+
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 
@@ -96,24 +96,19 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF12.Text = STR_FUNC_F12;
 
-            // SPPowerUserの場合のみF7とF11に文字を表示
-            if (strSPPowerUser.Equals("ゲストユーザー"))
+            // F9:検索は常にdisable
+            this.btnF09.Enabled = false;
+
+            // 閲覧権限がある場合のみF7とF11に文字を表示
+            if (etsuranFlg.Equals("1"))
             {
                 this.btnF07.Text = "F7:CSV";
                 this.btnF11.Text = STR_FUNC_F11;
             }
-            // 特定のユーザーの場合
-            else if (strUserId.Equals("k.kato") || strUserId.Equals("s.kato") || strUserId.Equals("ohara") ||
-                strUserId.Equals("kawaharazaki") || strUserId.Equals("komori"))
-            {
-            }
             else
             {
-                // ログインIDから営業所コードを取得
-                string strEigyoCd = getEigyoCd(Environment.UserName);
-
                 // 営業コードからラジオボタンの初期チェックを設定
-                if (strEigyoCd.Equals("0001"))
+                if (eigyoCode.Equals("0001"))
                 {
                     radEigyosho.radbtn1.Checked = true;
                 }
@@ -125,7 +120,7 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
 
             // 初期表示
             radSortOrder.radbtn1.Checked = true;
-            labelSet_Tantousha.Focus();
+            labelSet_Htanto.Focus();
 
             // 伝票年月日の設定
             txtDenpyoYMDEnd.setUp(2);
@@ -145,11 +140,11 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void D0320_SiireJissekiKakunin_Shown(object sender, EventArgs e)
         {
-            // 受注入力フォームから呼ばれた場合
+            // 発注入力フォームから呼ばれた場合
             if (this.intFrm == 0010)
             {
                 // 【テスト用に日付を変更】
-                txtDenpyoYMDStart.Text = "2017/05/01";
+                //txtDenpyoYMDStart.Text = "2017/05/01";
                 labelSet_Siiresaki.CodeTxtText = this.strSiiresakiCd;
                 this.setSiireJisseki();
             }
@@ -245,12 +240,27 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             juchuKingaku.Name = "受注金額";
             juchuKingaku.HeaderText = "受注金額";
 
+            DataGridViewTextBoxColumn juchuYmd = new DataGridViewTextBoxColumn();
+            juchuYmd.DataPropertyName = "受注日";
+            juchuYmd.Name = "受注日";
+            juchuYmd.HeaderText = "受注日";
+
+            DataGridViewTextBoxColumn juchuTanto = new DataGridViewTextBoxColumn();
+            juchuTanto.DataPropertyName = "受注担当";
+            juchuTanto.Name = "受注担当";
+            juchuTanto.HeaderText = "受注担当";
+
+            DataGridViewTextBoxColumn eigyoTanto = new DataGridViewTextBoxColumn();
+            eigyoTanto.DataPropertyName = "営業担当";
+            eigyoTanto.Name = "営業担当";
+            eigyoTanto.HeaderText = "営業担当";
+
             // 個々の幅、文字の寄せ
             setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
             setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 520);
-            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
+            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 530);
+            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 80);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
             setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumn(bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
@@ -262,6 +272,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             setColumn(juchuNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 100);
             setColumn(juchuTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
             setColumn(juchuKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumn(juchuYmd, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
+            setColumn(juchuTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(eigyoTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
         }
 
         /// <summary>
@@ -326,8 +339,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                 case Keys.F6:
                     break;
                 case Keys.F7:
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "CSV実行"));
                         this.exportCsv();
@@ -338,8 +351,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                         this.printReport();
@@ -372,16 +385,16 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                     this.delText();
                     break;
                 case STR_BTN_F07: // CSV
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "CSV実行"));
                         this.exportCsv();
                     }
                     break;
                 case STR_BTN_F11: // 印刷
-                    // SPPowerUserの場合のみ有効
-                    if (strSPPowerUser.Equals("ゲストユーザー"))
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                         this.printReport();
@@ -436,24 +449,32 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void setSiireJisseki()
         {
-            // データ検索用
+            // カーソルを待機状態にする
+            this.Cursor = Cursors.WaitCursor;
+
+            // 検索条件格納用
             List<string> lstSearchItem = new List<string>();
+            List<Array> lstSearchItem2 = new List<Array>();
 
             // データチェック
             if (!blnDataCheck())
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 return;
             }
-
-            // 検索データをリストに格納
-            lstSearchItem = setSearchList();
 
             // ビジネス層のインスタンス生成
             D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
             try
             {
+                // 検索条件をリストに格納
+                lstSearchItem = setSearchList();    // テキストボックスの値
+                lstSearchItem2 = getRadioBtn();     // ラジオボタン・チェックボックスの値
+
                 // 検索実行
-                DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem);
+                DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem, lstSearchItem2);
 
                 // データテーブルからデータグリッドへセット
                 gridSiireJisseki.DataSource = dtSiireJissekiList;
@@ -479,8 +500,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                         }
                     }
 
-                    // SPPowerUserの場合
-                    if (strSPPowerUser.Equals("ゲストユーザー") || strUserId.Equals("k.kato"))
+                    // 閲覧権限がある場合のみ有効
+                    if (etsuranFlg.Equals("1"))
                     {
                         txtKingaku.Text = decGoukei.ToString("#,#");
                     }
@@ -506,11 +527,33 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
                     Control cNow = this.ActiveControl;
                     cNow.Focus();
                 }
+                // DataTableのレコード数取得
+                int dtCnt = dtSiireJissekiList.Rows.Count;
+                if (dtCnt > 0)
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当件数" + dtCnt + "件)";
+                }
+                else
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当なし)";
+                }
+                // gridにフォーカス
+                gridSiireJisseki.Focus();
+
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
 
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
             return;
         }
@@ -522,17 +565,17 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void printReport()
         {
-            // データ検索用
+            // 検索条件格納用
             List<string> lstSearchItem = new List<string>();
+            List<Array> lstSearchItem2 = new List<Array>();
+
+            DataTable dtSiireJisseki = new DataTable();
 
             // データチェック
             if (!blnDataCheck())
             {
                 return;
             }
-
-            // 検索データをリストに格納
-            lstSearchItem = setSearchList();
 
             // ヘッダーに条件を出力する値
             lstSearchItem.Add(labelSet_Siiresaki.ValueLabelText);   //仕入先名
@@ -543,39 +586,74 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
             try
             {
-                // 検索実行
-                DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem);
+                // 検索データをリストに格納
+                lstSearchItem = setSearchList();
+                lstSearchItem2 = getRadioBtn();
 
-                if (dtSiireJissekiList != null && dtSiireJissekiList.Rows.Count > 0)
+                // 検索実行
+                dtSiireJisseki = siireB.getSiireJissekiList(lstSearchItem, lstSearchItem2);
+
+                if (dtSiireJisseki != null && dtSiireJisseki.Rows.Count > 0)
                 {
                     // 印刷ダイアログ
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A3, CommonTeisu.YOKO);
                     pf.ShowDialog(this);
 
+                    // PDF出力用List(各テキストボックスの値をコードではなく名称で取得)
+                    List<string> lstoutItem = new List<string>();
+                    lstoutItem.Add(txtDenpyoYMDStart.Text);              // 伝票年月日Start
+                    lstoutItem.Add(txtDenpyoYMDEnd.Text);                // 伝票年月日End
+                    lstoutItem.Add(labelSet_Etanto.ValueLabelText);      // 営業担当者名
+                    lstoutItem.Add(labelSet_Htanto.ValueLabelText);      // 発注者名
+                    lstoutItem.Add(labelSet_Jtanto.ValueLabelText);      // 受注者名
+                    lstoutItem.Add(labelSet_Siiresaki.ValueLabelText);   // 仕入先名称
+                    lstoutItem.Add(labelSet_Daibunrui.ValueLabelText);   // 大分類名称
+                    lstoutItem.Add(labelSet_Chubunrui.ValueLabelText);   // 中分類名称
+                    lstoutItem.Add(txtKataban.Text);                     // 型番1
+                    lstoutItem.Add(txtKataban2.Text);                    // 型番2
+                    lstoutItem.Add(txtKataban3.Text);                    // 型番3
+                    lstoutItem.Add(txtBikou.Text);                       // 備考
+                    lstoutItem.Add(labelSet_Tokuisaki.ValueLabelText);   // 得意先名称
+
+
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
+                        // カーソルを待機状態にする
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
-                        String strFile = siireB.dbToPdf(dtSiireJissekiList, lstSearchItem);
+                        String strFile = siireB.dbToPdf(dtSiireJisseki, lstoutItem);
 
                         // プレビュー
                         pf.execPreview(strFile);
                         pf.ShowDialog(this);
+
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
+                        // カーソルを待機状態にする
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
-                        String strFile = siireB.dbToPdf(dtSiireJissekiList, lstSearchItem);
+                        String strFile = siireB.dbToPdf(dtSiireJisseki, lstoutItem);
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_A3, CommonTeisu.YOKO, true);
+
                     }
 
                     pf.Dispose();
+
+                    // カーソルの状態を元に戻す
+                    this.Cursor = Cursors.Default;
                 }
                 else
                 {
+                    // カーソルの状態を元に戻す
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -584,6 +662,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             }
             catch (Exception ex)
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 
@@ -602,8 +683,11 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void exportCsv()
         {
-            // データ検索用
+            // 検索条件格納用
             List<string> lstSearchItem = new List<string>();
+            List<Array> lstSearchItem2 = new List<Array>();
+
+            DataTable dtSiireJisseki = new DataTable();
 
             // ファイル保存用
             SaveFileDialog sfd = new SaveFileDialog();
@@ -629,20 +713,21 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             // ダイアログを表示
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                // 検索データをリストに格納
-                lstSearchItem = setSearchList();
-
                 // ビジネス層のインスタンス生成
                 D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
                 try
                 {
-                    // 検索実行
-                    DataTable dtSiireJissekiList = siireB.getSiireJissekiList(lstSearchItem);
+                    // 検索データをリストに格納
+                    lstSearchItem = setSearchList();
+                    lstSearchItem2 = getRadioBtn();
 
-                    if (dtSiireJissekiList != null && dtSiireJissekiList.Rows.Count > 0)
+                    // 検索実行
+                    dtSiireJisseki = siireB.getSiireJissekiList(lstSearchItem, lstSearchItem2);
+
+                    if (dtSiireJisseki != null && dtSiireJisseki.Rows.Count > 0)
                     {
                         // CSV出力
-                        siireB.dbToCsv(dtSiireJissekiList, sfd.FileName);
+                        siireB.dbToCsv(dtSiireJisseki, sfd.FileName);
 
                         // メッセージボックスの処理、CSV作成完了の場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "CSVファイルを作成しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -679,12 +764,28 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         private Boolean blnDataCheck()
         {
             // 空文字判定（仕入先コード、発注担当者、型番、大分類、伝票年月日）
-            if (labelSet_Siiresaki.CodeTxtText.Equals("") && labelSet_Tantousha.CodeTxtText.Equals("") &&
-                txtKataban.Text.Equals("") && labelSet_Daibunrui.CodeTxtText.Equals("") &&
-                txtDenpyoYMDStart.Text.Equals("") && txtDenpyoYMDEnd.Text.Equals(""))
+            if (labelSet_Etanto.CodeTxtText.Equals("") && labelSet_Htanto.CodeTxtText.Equals("") && labelSet_Jtanto.CodeTxtText.Equals("") &&
+                labelSet_Siiresaki.CodeTxtText.Equals("") && txtKataban.Text.Equals("") && labelSet_Daibunrui.CodeTxtText.Equals("") &&
+                txtDenpyoYMDStart.Text.Equals("") && txtDenpyoYMDEnd.Text.Equals("") )
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "条件を指定してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n条件を指定してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return false;
+            }
+
+            // 伝票年月日のStart・Endは必須項目
+            if (txtDenpyoYMDStart.Text.Equals(""))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return false;
+            }
+            if (txtDenpyoYMDEnd.Text.Equals(""))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 return false;
@@ -702,60 +803,68 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             List<string> lstSearchItem = new List<string>();
 
             // 検索するデータをリストに格納
-            lstSearchItem.Add(txtDenpyoYMDStart.Text);
-            lstSearchItem.Add(txtDenpyoYMDEnd.Text);
-            lstSearchItem.Add(labelSet_Tantousha.ValueLabelText);
-            lstSearchItem.Add(labelSet_Siiresaki.CodeTxtText);
-            lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
-            lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
-            lstSearchItem.Add(txtKataban.Text);
-            lstSearchItem.Add(txtBikou.Text);
-            lstSearchItem.Add(labelSet_Tokuisaki.CodeTxtText);
-
-            // 営業所（すべて）
-            if (radEigyosho.radbtn0.Checked)
-            {
-                lstSearchItem.Add("0");
-            }
-            // 営業所（本社）
-            else if (radEigyosho.radbtn1.Checked)
-            {
-                lstSearchItem.Add("1");
-            }
-            // 営業所（岐阜）
-            else if (radEigyosho.radbtn2.Checked)
-            {
-                lstSearchItem.Add("2");
-            }
-
-            // 並び順（仕入日）
-            if (radSortItem0.Checked)
-            {
-                lstSearchItem.Add("0");
-            }
-            // 並び順（注番）
-            else if (radSortItem1.Checked)
-            {
-                lstSearchItem.Add("1");
-            }
-            // 並び順（金額）
-            else if (radSortItem2.Checked)
-            {
-                lstSearchItem.Add("2");
-            }
-
-            // 並び順（A-Z）
-            if (radSortOrder.radbtn0.Checked)
-            {
-                lstSearchItem.Add("0");
-            }
-            // 並び順（Z-A）
-            else if (radSortOrder.radbtn1.Checked)
-            {
-                lstSearchItem.Add("1");
-            }
+            lstSearchItem.Add(txtDenpyoYMDStart.Text);          // 伝票年月日Start
+            lstSearchItem.Add(txtDenpyoYMDEnd.Text);            // 伝票年月日End
+            lstSearchItem.Add(labelSet_Etanto.CodeTxtText);  // 営業担当者コード
+            lstSearchItem.Add(labelSet_Htanto.CodeTxtText);  // 発注者コード
+            lstSearchItem.Add(labelSet_Jtanto.CodeTxtText);  // 受注者コード
+            lstSearchItem.Add(labelSet_Siiresaki.CodeTxtText);  // 仕入先コード
+            lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
+            lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+            lstSearchItem.Add(txtKataban.Text);                 // 型番1
+            lstSearchItem.Add(txtKataban2.Text);                // 型番2
+            lstSearchItem.Add(txtKataban3.Text);                // 型番3
+            lstSearchItem.Add(txtBikou.Text);                   // 備考
+            lstSearchItem.Add(labelSet_Tokuisaki.CodeTxtText);  // 得意先コード
 
             return lstSearchItem;
+        }
+
+        /// <summary>
+        /// ラジオボタンの検索条件を取得
+        /// </summary>
+        private List<Array> getRadioBtn()
+        {
+            List<Array> arrList = new List<Array>();
+
+            // 表示条件取得用(営業所)
+            string[] arrDispEigyo = new string[3];
+            // 表示条件取得用(グループコード)
+            string[] arrDispGroup = new string[5];
+            // 出力順条件取得用
+            string[] arrOrder = new string[4];
+            // 出力順条件取得用(A-Z,Z-A)
+            string[] arrOrderAtoZ = new string[2];
+
+            // 営業所
+            arrDispEigyo[0] = radEigyosho.radbtn0.Checked.ToString().ToUpper(); // すべて
+            arrDispEigyo[1] = radEigyosho.radbtn1.Checked.ToString().ToUpper(); // 本社
+            arrDispEigyo[2] = radEigyosho.radbtn2.Checked.ToString().ToUpper(); // 岐阜
+
+            // グループコード
+            arrDispGroup[0] = radGroupCd0.Checked.ToString().ToUpper();         // すべて
+            arrDispGroup[1] = radGroupCd1.Checked.ToString().ToUpper();         // 共通
+            arrDispGroup[2] = radGroupCd2.Checked.ToString().ToUpper();         // １
+            arrDispGroup[3] = radGroupCd3.Checked.ToString().ToUpper();         // ２
+            arrDispGroup[4] = radGroupCd4.Checked.ToString().ToUpper();         // ３
+
+            // 並び順
+            arrOrder[0] = radSortItem0.Checked.ToString().ToUpper();            // 仕入日
+            arrOrder[1] = radSortItem1.Checked.ToString().ToUpper();            // 注番
+            arrOrder[2] = radSortItem2.Checked.ToString().ToUpper();            // 金額
+            arrOrder[3] = radSortItem3.Checked.ToString().ToUpper();            // 受注日
+
+            // 並び順
+            arrOrderAtoZ[0] = radSortOrder.radbtn0.Checked.ToString().ToUpper();// A-Z
+            arrOrderAtoZ[1] = radSortOrder.radbtn1.Checked.ToString().ToUpper();// Z-A
+
+            arrList.Add(arrDispEigyo);
+            arrList.Add(arrDispGroup);
+            arrList.Add(arrOrder);
+            arrList.Add(arrOrderAtoZ);
+
+            return arrList;
+
         }
 
         /// <summary>
@@ -764,8 +873,8 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private Boolean blnKikanCheck()
         {
-            // SPPowerUserの場合
-            if (strSPPowerUser.Equals("ゲストユーザー"))
+            // 閲覧権限ありの場合
+            if (etsuranFlg.Equals("1"))
             {
                 return true;
             }
@@ -823,41 +932,40 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             return true;
         }
 
-        /// <summary>
-        /// getEigyoCd
-        /// ログインユーザーの営業コードを取得
-        /// </summary>
-        private string getEigyoCd(string strUserId)
+        #region テキストボックスのKeyDownイベント（EnterキーでTAB）
+        // 品名・型番テキストボックス（１番目）
+        private void txtKataban_KeyDown(object sender, KeyEventArgs e)
         {
-            string strEigyoCd = "";
-
-            //ビジネス層のインスタンス生成
-            D0320_SiireJissekiKakunin_B siireB = new D0320_SiireJissekiKakunin_B();
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                // ビジネス層、データグリッドビュー表示用ロジックに移動
-                DataTable dtSetView = siireB.getEigyoCd(strUserId);
-
-                // 検索結果が1件以上の場合
-                if (dtSetView.Rows.Count > 0)
-                {
-                    strEigyoCd = dtSetView.Rows[0]["営業所コード"].ToString();
-                }
-                else
-                {
-                    strEigyoCd = "0002";
-                }
+                SendKeys.Send("{TAB}");
             }
-            catch (Exception ex)
-            {
-                // エラーロギング
-                new CommonException(ex);
-                return strEigyoCd;
-            }
-
-            return strEigyoCd;
         }
-
+        // 品名・型番テキストボックス（２番目）
+        private void txtKataban2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+        // 品名・型番テキストボックス（３番目）
+        private void txtKataban3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+        // 備考テキストボックス
+        private void txtBikou_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+        #endregion
     }
 
- }
+}

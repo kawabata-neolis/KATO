@@ -19,106 +19,106 @@ namespace KATO.Business.M1030_Shohin
     ///</summary>
     class M1030_Shohin_B
     {
-        ///<summary>
-        ///addShohizeiritsu
-        ///テキストボックス内のデータをDBに登録の下準備（商品コードが被らないようにする）
-        ///</summary>
-        public void updShohinNew(List<string> lstString, Boolean blnKanri)
-        {
-            //データ渡し用
-            List<string> stringSQLAry = new List<string>();
+        /////<summary>
+        /////addShohizeiritsu
+        /////商品コードの追加（仮登録）
+        /////</summary>
+        //public void updShohinNew(List<string> lstString, Boolean blnKanri)
+        //{
+        //    //データ渡し用
+        //    List<string> stringSQLAry = new List<string>();
 
-            string strSQLName = null;
+        //    string strSQLName = null;
 
-            int intNewCd;
-            string strNewCd = "99999";
+        //    int intNewCd;
+        //    string strNewCd = "99999";
 
-            if(blnKanri == true)
-            {
-                strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
-            }
-            else
-            {
-                strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
-            }
+        //    if(blnKanri == true)
+        //    {
+        //        strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
+        //    }
+        //    else
+        //    {
+        //        strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
+        //    }
 
-            //データ渡し用
-            stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+        //    //データ渡し用
+        //    stringSQLAry.Add("Common");
+        //    stringSQLAry.Add(strSQLName);
 
-            DataTable dtSetCd_B = new DataTable();
-            OpenSQL opensql = new OpenSQL();
-            DBConnective dbconnective = new DBConnective();
-            try
-            {
-                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+        //    DataTable dtSetCd_B = new DataTable();
+        //    OpenSQL opensql = new OpenSQL();
+        //    DBConnective dbconnective = new DBConnective();
+        //    try
+        //    {
+        //        string strSQLInput = opensql.setOpenSQL(stringSQLAry);
 
-                if (strSQLInput == "")
-                {
-                    return;
-                }
+        //        if (strSQLInput == "")
+        //        {
+        //            return;
+        //        }
 
-                strSQLInput = string.Format(strSQLInput);
+        //        strSQLInput = string.Format(strSQLInput);
 
-                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+        //        dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                char chrNewCdHead = ' ';
-                string strNewCdOther = "";
+        //        char chrNewCdHead = ' ';
+        //        string strNewCdOther = "";
 
-                //中身が空
-                if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
-                {
-                    strNewCd = "00001";
-                    lstString[0] = strNewCd.ToString();
-                }
-                //中身がある
-                else
-                {
-                    chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
+        //        //中身が空
+        //        if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
+        //        {
+        //            strNewCd = "00001";
+        //            lstString[0] = strNewCd.ToString();
+        //        }
+        //        //中身がある
+        //        else
+        //        {
+        //            chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
 
-                    strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
+        //            strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
 
-                    //先頭以外が9999の場合
-                    if (strNewCdOther == "9999")
-                    {
-                        strNewCdOther = "0001";
+        //            //先頭以外が9999の場合
+        //            if (strNewCdOther == "9999")
+        //            {
+        //                strNewCdOther = "0001";
 
-                        //先頭が9の場合
-                        if (chrNewCdHead == '9')
-                        {
+        //                //先頭が9の場合
+        //                if (chrNewCdHead == '9')
+        //                {
 
-                            chrNewCdHead = 'A';
-                        }
-                        else
-                        {
-                            //アスキーコード取得、加算
-                            int intASCII = chrNewCdHead;
-                            intASCII = intASCII + 1;
-                            chrNewCdHead = (char)intASCII;
-                        }
-                        lstString[0] = chrNewCdHead + strNewCdOther;
-                    }
-                    else
-                    {
-                        intNewCd = int.Parse(strNewCdOther.ToString());
+        //                    chrNewCdHead = 'A';
+        //                }
+        //                else
+        //                {
+        //                    //アスキーコード取得、加算
+        //                    int intASCII = chrNewCdHead;
+        //                    intASCII = intASCII + 1;
+        //                    chrNewCdHead = (char)intASCII;
+        //                }
+        //                lstString[0] = chrNewCdHead + strNewCdOther;
+        //            }
+        //            else
+        //            {
+        //                intNewCd = int.Parse(strNewCdOther.ToString());
 
-                        intNewCd = intNewCd + 1;
+        //                intNewCd = intNewCd + 1;
 
-                        lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
-                    }
-                }
-                addShohin(lstString, blnKanri);
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                throw (ex);
-            }
-            finally
-            {
-                dbconnective.DB_Disconnect();
-            }
-        }
+        //                lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
+        //            }
+        //        }
+        //        addShohin(lstString, blnKanri);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        new CommonException(ex);
+        //        throw (ex);
+        //    }
+        //    finally
+        //    {
+        //        dbconnective.DB_Disconnect();
+        //    }
+        //}
 
         ///<summary>
         ///addShohin
@@ -286,6 +286,244 @@ namespace KATO.Business.M1030_Shohin
                 dtShohin = dbconnective.ReadSql(strSQLSelect);
 
                 return (dtShohin);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getNewShohinNo
+        ///商品番号の取得
+        ///</summary>
+        public string getNewShohinNo()
+        {
+            //伝票番号取得用のPROC用
+            object objDummy = 0;
+            object objReturnval = "";
+
+            //新規商品コードを入れる用
+            string strCdHEAD = "";
+            string strCdHEAD2 = "";
+            //新規伝票番号を入れる用
+            string strDenNo = "";
+            string strDenNo2 = "";
+
+            //伝票番号PROCより確保した頭文字以外の伝票番号
+            int intGetNo = 0;
+
+            //出力する伝票番号
+            string strGetDenpyo = "";
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("M1030_Shohin");
+            lstSQL.Add("Shohin_CdMAX_SELECT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //伝票番号取得用（名前）
+            List<String> lstGetDenpyoNoName = new List<string>();
+
+            //伝票番号取得用（データ）
+            List<string> lstSearchData = new List<string>();
+
+            lstGetDenpyoNoName.Add("@テーブル名");
+
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (strGetDenpyo);
+                }
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                //データの中身がない場合
+                if (dtSetCd_B.Rows[0][0].ToString() == "")
+                {
+                    return strGetDenpyo;
+                }
+                
+                strCdHEAD = dtSetCd_B.Rows[0][0].ToString().Substring(0, 1);
+
+                //頭文字によって動作を変える
+                switch (strCdHEAD)
+                {
+                    case "A":
+                        strCdHEAD2 = "B";
+                        strDenNo = "商品コード２";
+                        strDenNo2 = "商品コード３";
+                        break;
+                    case "B":
+                        strCdHEAD2 = "C";
+                        strDenNo = "商品コード３";
+                        strDenNo2 = "商品コード４";
+                        break;
+                    case "C":
+                        strCdHEAD2 = "D";
+                        strDenNo = "商品コード４";
+                        strDenNo2 = "商品コード５";
+                        break;
+                    case "D":
+                        strCdHEAD2 = "E";
+                        strDenNo = "商品コード５";
+                        strDenNo2 = "商品コード６";
+                        break;
+                    case "E":
+                        strCdHEAD2 = "F";
+                        strDenNo = "商品コード６";
+                        strDenNo2 = "商品コード７";
+                        break;
+                    case "F":
+                        strCdHEAD2 = "G";
+                        strDenNo = "商品コード７";
+                        strDenNo2 = "商品コード８";
+                        break;
+                    case "G":
+                        strCdHEAD2 = "H";
+                        strDenNo = "商品コード８";
+                        strDenNo2 = "商品コード９";
+                        break;
+                    case "H":
+                        strCdHEAD2 = "I";
+                        strDenNo = "商品コード９";
+                        strDenNo2 = "商品コード１０";
+                        break;
+                    case "I":
+                        strCdHEAD2 = "J";
+                        strDenNo = "商品コード１０";
+                        strDenNo2 = "商品コード１１";
+                        break;
+                    case "J":
+                        strCdHEAD2 = "K";
+                        strDenNo = "商品コード１１";
+                        strDenNo2 = "商品コード１２";
+                        break;
+                    case "K":
+                        strCdHEAD2 = "L";
+                        strDenNo = "商品コード１２";
+                        strDenNo2 = "商品コード１３";
+                        break;
+                    case "L":
+                        strCdHEAD2 = "M";
+                        strDenNo = "商品コード１３";
+                        strDenNo2 = "商品コード１４";
+                        break;
+                    case "M":
+                        strCdHEAD2 = "N";
+                        strDenNo = "商品コード１４";
+                        strDenNo2 = "商品コード１５";
+                        break;
+                    case "N":
+                        strCdHEAD2 = "O";
+                        strDenNo = "商品コード１５";
+                        strDenNo2 = "商品コード１６";
+                        break;
+                    case "O":
+                        strCdHEAD2 = "P";
+                        strDenNo = "商品コード１６";
+                        strDenNo2 = "商品コード１７";
+                        break;
+                    case "P":
+                        strCdHEAD2 = "Q";
+                        strDenNo = "商品コード１７";
+                        strDenNo2 = "商品コード１８";
+                        break;
+                    case "Q":
+                        strCdHEAD2 = "R";
+                        strDenNo = "商品コード１８";
+                        strDenNo2 = "商品コード１９";
+                        break;
+                    case "R":
+                        strCdHEAD2 = "S";
+                        strDenNo = "商品コード１９";
+                        strDenNo2 = "商品コード２０";
+                        break;
+                    case "S":
+                        strCdHEAD2 = "T";
+                        strDenNo = "商品コード２０";
+                        strDenNo2 = "商品コード２１";
+                        break;
+                    case "T":
+                        strCdHEAD2 = "U";
+                        strDenNo = "商品コード２１";
+                        strDenNo2 = "商品コード２２";
+                        break;
+                    case "U":
+                        strCdHEAD2 = "V";
+                        strDenNo = "商品コード２２";
+                        strDenNo2 = "商品コード２３";
+                        break;
+                    case "V":
+                        strCdHEAD2 = "W";
+                        strDenNo = "商品コード２３";
+                        strDenNo2 = "商品コード２４";
+                        break;
+                    case "W":
+                        strCdHEAD2 = "X";
+                        strDenNo = "商品コード２４";
+                        strDenNo2 = "商品コード２５";
+                        break;
+                    case "X":
+                        strCdHEAD2 = "B";
+                        strDenNo = "商品コード２５";
+                        strDenNo2 = "商品コード２６";
+                        break;
+                    case "Y":
+                        strCdHEAD2 = "B";
+                        strDenNo = "商品コード２６";
+                        strDenNo2 = "商品コード２７";
+                        break;
+                    case "Z":
+                        strGetDenpyo = "0";
+                        break;
+                }
+
+                //頭文字がZの場合
+                if (strGetDenpyo == "0")
+                {
+                    return strGetDenpyo;
+                }
+
+                //頭文字以降の数値が9999以上の場合
+                if (int.Parse(dtSetCd_B.Rows[0][0].ToString().Substring(1)) >= 9999)
+                {
+                    strCdHEAD = strCdHEAD2;
+                    strDenNo = strDenNo2;
+                }
+
+                lstSearchData.Add(strDenNo);
+
+                //伝票番号の最新を取得
+                intGetNo = int.Parse(dbconnective.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstSearchData, lstGetDenpyoNoName, "@番号"));
+
+                //0パディングと頭文字を追加
+                strGetDenpyo = strCdHEAD + string.Format("{0:0000}", intGetNo);
+
+                return strGetDenpyo;
             }
             catch (Exception ex)
             {
