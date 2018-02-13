@@ -15,6 +15,7 @@ using KATO.Business.M1200_Group;
 
 namespace KATO.Form.M1200_Group
 {
+
     ///<summary>
     ///M1200_Group
     ///グループマスタフォーム

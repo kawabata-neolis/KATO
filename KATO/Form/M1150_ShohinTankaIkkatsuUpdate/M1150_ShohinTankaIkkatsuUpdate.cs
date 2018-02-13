@@ -15,6 +15,7 @@ using KATO.Business.M1150_ShohinTankaIkkatsuUpdate;
 
 namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
 {
+
     /// <summary>
     /// M1150_ShohinTankaIkkatuUpdate
     /// 商品マスタ単価一括更新フォーム

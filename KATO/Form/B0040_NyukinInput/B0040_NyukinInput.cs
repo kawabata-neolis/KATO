@@ -15,6 +15,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.B0040_NyukinInput
 {
+
     ///<summary>
     ///B0040_NyukinInput_Load
     ///入金入力フォーム

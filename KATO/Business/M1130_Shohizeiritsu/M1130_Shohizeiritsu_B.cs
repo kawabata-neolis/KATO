@@ -8,6 +8,7 @@ using KATO.Common.Util;
 
 namespace KATO.Business.M1130_Shohizeiritsu
 {
+
     ///<summary>
     ///M1130_Shohizeiritsu
     ///消費税率のビジネス層

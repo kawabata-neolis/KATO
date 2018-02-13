@@ -14,6 +14,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.D0680_UriageJissekiKakuninAS400
 {
+
     ///<summary>
     ///D0680_UriageJissekiKakuninAS400
     ///売上実績確認（AS400）

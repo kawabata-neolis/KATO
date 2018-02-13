@@ -15,6 +15,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1000_Kaishajyoken
 {
+
     ///<summary>
     /// M1000_Kaishajyoken
     /// 会社条件マスタ画面

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace KATO.Business.B0040_NyukinInput
 {
 
+
     /// <summary>
     /// B0040_NyukinInput_B
     /// 入金入力ビジネス層

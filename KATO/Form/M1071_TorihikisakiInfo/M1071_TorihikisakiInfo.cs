@@ -17,6 +17,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.M1071_TorihikisakiInfo
 {
+
     public partial class M1071_TorihikisakiInfo : BaseForm
     {
         //ロギングの設定
