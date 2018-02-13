@@ -1347,6 +1347,13 @@ namespace KATO.Form.A0010_JuchuInput
                 Panel c = (Panel)t.Parent;
 
                 string stNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+                string stC1 = ((BaseText)c.Controls["txtC1"]).Text;
+                string stC2 = ((BaseText)c.Controls["txtC2"]).Text;
+                string stC3 = ((BaseText)c.Controls["txtC3"]).Text;
+                string stC4 = ((BaseText)c.Controls["txtC4"]).Text;
+                string stC5 = ((BaseText)c.Controls["txtC5"]).Text;
+                string stC6 = ((BaseText)c.Controls["txtC6"]).Text;
+                string stC = (stC1 + " " + stC2 + " " + stC3 + " " + stC4 + " " + stC5 + " " + stC6 + " ").Trim();
 
                 if (string.IsNullOrWhiteSpace(stNo))
                 {
@@ -1362,7 +1369,7 @@ namespace KATO.Form.A0010_JuchuInput
                     return;
                 }
 
-                string stH = kakoB.getExecShukko(stNo, "43");
+                string stH = kakoB.getExecShukko(stNo, "43", stC);
 
                 if (!string.IsNullOrWhiteSpace(stH))
                 {
