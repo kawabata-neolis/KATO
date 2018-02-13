@@ -823,6 +823,8 @@ namespace KATO.Form.M1030_Shohin
 
 
                     //担当の自分のマスタ権限を修正して本登録テスト
+
+
                 }
                 //修正登録
                 else
