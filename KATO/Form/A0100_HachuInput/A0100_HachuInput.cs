@@ -586,6 +586,10 @@ namespace KATO.Form.A0100_HachuInput
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
                     this.showRireki();
                     break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printHachuInput();
+                    break;
                 case STR_BTN_F12: // 終了
                     this.Close();
                     break;
@@ -1089,8 +1093,6 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void delText()
         {
-            string strHachusha = labelSet_Hachusha.CodeTxtText;
-
             //画面上のクリア
             delFormClear(this,gridHachu);
 
@@ -1108,8 +1110,39 @@ namespace KATO.Form.A0100_HachuInput
             btnF01.Enabled = true;
             btnF03.Enabled = true;
 
-            labelSet_Hachusha.CodeTxtText = strHachusha;
-            labelSet_Hachusha.chkTxtTantosha();
+            DataTable dtTantoshaCd = new DataTable();
+
+            A0100_HachuInput_B hachuinputB = new A0100_HachuInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = hachuinputB.getTantoshaCdSetUserID(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Hachusha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
+                labelSet_Hachusha.chkTxtTantosha();
+
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
+                labelSet_Eigyosho.chkTxtEigyousho();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
 
             //今日の日付を記入
             txtHachuYMD.Text = DateTime.Today.ToString();
@@ -1318,15 +1351,6 @@ namespace KATO.Form.A0100_HachuInput
 
             //データの表示
             getView();
-
-            //フォーカス位置確保
-            Control c = this.ActiveControl;
-
-            //フォーカスを当ててから離してデータの表示
-            textSet_Torihikisaki.Focus();
-
-            //確保したフォーカス位置に移動
-            c.Focus();
         }
 
         ///<summary>
@@ -1343,6 +1367,9 @@ namespace KATO.Form.A0100_HachuInput
             DataTable dtSetTanka;
             //検索時のデータ取り出し先(商品)
             DataTable dtSetShohin;
+
+            //受注済み判定
+            Boolean blJuchuTrue = false;
 
             //ビジネス層のインスタンス生成
             A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
@@ -1370,6 +1397,9 @@ namespace KATO.Form.A0100_HachuInput
                             //登録削除をさせない
                             btnF01.Enabled = false;
                             btnF03.Enabled = false;
+
+                            //受注済み
+                            blJuchuTrue = true;
                         }
                     }
 
@@ -1452,40 +1482,6 @@ namespace KATO.Form.A0100_HachuInput
                                    + ((TextBox)txtData4).Text.Trim() + " "
                                    + ((TextBox)txtData5).Text.Trim() + " "
                                    + ((TextBox)txtData6).Text.Trim() + " ";
-
-                    txtHachusu.Enabled = true;
-                    cmbHachutan.Enabled = true;
-                    txtNoki.Enabled = true;
-
-                    //商品コードが88888の場合
-                    if (txtShohinCd.Text == "88888")
-                    {
-                        //受注番号がない場合
-                        if (txtJuchuban.blIsEmpty() == false)
-                        {
-                            labelSet_Daibunrui.Enabled = true;
-                            labelSet_Chubunrui.Enabled = true;
-                            labelSet_Maker.Enabled = true;
-                            txtHinmei.Enabled = true;
-                            lblHinmei.Enabled = true;
-                        }
-                        else
-                        {
-                            labelSet_Daibunrui.Enabled = false;
-                            labelSet_Chubunrui.Enabled = false;
-                            labelSet_Maker.Enabled = false;
-                            txtHinmei.Enabled = false;
-                            lblHinmei.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        labelSet_Daibunrui.Enabled = false;
-                        labelSet_Chubunrui.Enabled = false;
-                        labelSet_Maker.Enabled = false;
-                        txtHinmei.Enabled = false;
-                        lblHinmei.Enabled = false;
-                    }
 
                     //商品コードがある場合
                     if (txtShohinCd.Text != "")

@@ -657,10 +657,14 @@ namespace KATO.Form.A0030_ShireInput
                     txtHin.TabStop = false;
                     txtHin.Enabled = false;
 
-                    //フォーカスがtxtHinの場合
-                    if (ActiveControl.Name == "txtHin")
+                    //ActiveControlがある場合
+                    if (ActiveControl != null)
                     {
-                        SendKeys.Send("{TAB}");
+                        //フォーカスがtxtHinの場合
+                        if (ActiveControl.Name == "txtHin")
+                        {
+                            SendKeys.Send("{TAB}");
+                        }
                     }
 
                     //発注数量から仕入済数量を引く
