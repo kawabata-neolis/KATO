@@ -243,8 +243,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
                     break;
                 case Keys.F1:
                     break;
@@ -386,12 +384,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
             else
             {
                 txtTekiyoYMD.Text = strDateData;
-            }
-
-            // 消費税率チェック
-            if (chkShohizeiritu() == true)
-            {
-                return;
             }
 
             //登録情報を入れる（年月日、消費税率、ユーザー名）
@@ -565,12 +557,9 @@ namespace KATO.Form.M1130_Shohizeiritsu
             // 日付フォーマットチェック
             if (strDateData == "")
             {
-                //メッセージボックスの処理、削除完了のウィンドウ(OK)
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
-
                 txtTekiyoYMD.Text = strDateData;
                 txtTekiyoYMD.Focus();
+                return;
             }
             else
             {
@@ -638,40 +627,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
-        }
-
-        ///<summary>
-        /// chkShohizeiritu
-        /// 消費税チェック
-        ///</summary>
-        private bool chkShohizeiritu()
-        {
-            // 禁止文字チェック
-            if (StringUtl.JudBanSQL(txtShohizeiritu.Text) == false)
-            {
-                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                //テキストボックスを白紙
-                txtShohizeiritu.Text = "";
-
-                return true;
-            }
-
-            // 数値チェック
-            if (StringUtl.JudBanSelect(txtShohizeiritu.Text, CommonTeisu.NUMBER_ONLY) == false)
-            {
-                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                //テキストボックスを白紙
-                txtShohizeiritu.Text = "";
-                return true;
-            }
-
-            return false;
         }
     }
 }
