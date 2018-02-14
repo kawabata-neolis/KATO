@@ -1932,7 +1932,8 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 #endregion
 
-                if (f6 != null)
+                // 加工品画面が開いている場合、加工品の登録を実行
+                if (f6 != null && f6.Visible)
                 {
                     f6.strJuchuNo = strJuchuNo;
                     f6.updKakoInput(con);
@@ -2119,12 +2120,17 @@ namespace KATO.Form.A0010_JuchuInput
                 txtHinmei.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtJuchuSuryo.Text))
+
+            // 加工品画面が開いていない場合
+            if (f6 == null || !f6.Visible)
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                txtJuchuSuryo.Focus();
-                return false;
+                if (string.IsNullOrWhiteSpace(txtJuchuSuryo.Text))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    txtJuchuSuryo.Focus();
+                    return false;
+                }
             }
             if (string.IsNullOrWhiteSpace(cbJuchuTanka.Text))
             {
@@ -2147,19 +2153,23 @@ namespace KATO.Form.A0010_JuchuInput
                 txtNoki.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtHonshaShukko.Text))
+            // 加工品画面が開いていない場合
+            if (f6 == null || !f6.Visible)
             {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                txtHonshaShukko.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txtGihuShukko.Text))
-            {
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
-                txtGihuShukko.Focus();
-                return false;
+                if (string.IsNullOrWhiteSpace(txtHonshaShukko.Text))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    txtHonshaShukko.Focus();
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(txtGihuShukko.Text))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    txtGihuShukko.Focus();
+                    return false;
+                }
             }
             if (string.IsNullOrWhiteSpace(txtHatchushiji.Text))
             {
@@ -2250,325 +2260,329 @@ namespace KATO.Form.A0010_JuchuInput
             }
             #endregion
 
-            // 数量チェック
-            #region
-            decimal decSu = getDecValue(txtJuchuSuryo.Text);
-
-            if (decSu > 0)
+            // 加工品画面が開いていない場合
+            if (f6 == null || !f6.Visible)
             {
-                if (getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text) > decSu)
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数は受注数量以下で入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
-            }
+                // 数量チェック
+                #region
+                decimal decSu = getDecValue(txtJuchuSuryo.Text);
 
-            if (decSu < 0)
-            {
-                if (getDecValue(cbSiireTanka.Text).Equals(0))
+                if (decSu > 0)
                 {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は仕入単価＝０は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
-
-                if (txtHatchushiji.Text.Equals("0"))
-                {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は発注指示をしてください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
-            }
-            #endregion
-
-            // 在庫引当チェック
-            #region
-            if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
-            {
-                A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-                try
-                {
-                    DataTable dtHikiate = juchuB.getHikiate(txtJuchuNo.Text);
-
-                    if (dtHikiate != null && dtHikiate.Rows.Count > 0)
+                    if (getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text) > decSu)
                     {
-                        String strHikiate = dtHikiate.Rows[0]["在庫引当フラグ"].ToString();
-                        if (strHikiate.Equals("1"))
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数は受注数量以下で入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+                }
+
+                if (decSu < 0)
+                {
+                    if (getDecValue(cbSiireTanka.Text).Equals(0))
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は仕入単価＝０は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+
+                    if (txtHatchushiji.Text.Equals("0"))
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "数量がマイナスの場合は発注指示をしてください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+                }
+                #endregion
+
+                // 在庫引当チェック
+                #region
+                if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text))
+                {
+                    A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                    try
+                    {
+                        DataTable dtHikiate = juchuB.getHikiate(txtJuchuNo.Text);
+
+                        if (dtHikiate != null && dtHikiate.Rows.Count > 0)
                         {
-                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。納期以外の変更は禁止です\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_EXCLAMATION);
-                            //NOが押された場合
-                            if (basemessagebox.ShowDialog() == DialogResult.No)
+                            String strHikiate = dtHikiate.Rows[0]["在庫引当フラグ"].ToString();
+                            if (strHikiate.Equals("1"))
                             {
-                                return false;
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "在庫が既に移動処理されています。納期以外の変更は禁止です\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_EXCLAMATION);
+                                //NOが押された場合
+                                if (basemessagebox.ShowDialog() == DialogResult.No)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        new CommonException(ex);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
                 }
-                catch (Exception ex)
+                #endregion
+
+                // 納期のみチェックが無い場合
+                #region
+                if (!nokiFlg)
                 {
-                    new CommonException(ex);
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return false;
-                }
-            }
-            #endregion
-
-            // 納期のみチェックが無い場合
-            #region
-            if (!nokiFlg)
-            {
-                // 発注指示が無いか、加工品受注の場合
-                if (string.IsNullOrWhiteSpace(txtHatchushiji.Text) || txtHatchushiji.Text.Equals("0") || f6 != null)
-                {
-                    // 出庫数チェック
-                    if (!(getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)).Equals(getDecValue(txtJuchuSuryo.Text)))
+                    // 発注指示が無いか、加工品受注の場合
+                    if (string.IsNullOrWhiteSpace(txtHatchushiji.Text) || txtHatchushiji.Text.Equals("0") || f6 != null)
                     {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        txtJuchuSuryo.Focus();
-                        return false;
+                        // 出庫数チェック
+                        if (!(getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)).Equals(getDecValue(txtJuchuSuryo.Text)))
+                        {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            txtJuchuSuryo.Focus();
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        // 出庫数・発注数チェック
+                        if (!(getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text) + getDecValue(txtHatchusu.Text)).Equals(getDecValue(txtJuchuSuryo.Text)))
+                        {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数・発注数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            txtJuchuSuryo.Focus();
+                            return false;
+                        }
+
+                        // 発注情報入力チェック
+                        if (string.IsNullOrWhiteSpace(tsShiiresaki.CodeTxtText))
+                        {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            tsShiiresaki.codeTxt.Focus();
+                            return false;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(tsShiiresaki.valueTextText))
+                        {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            tsShiiresaki.valueText.Focus();
+                            return false;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(txtShiireNoki.Text))
+                        {
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            txtShiireNoki.Focus();
+                            return false;
+                        }
                     }
                 }
-                else
-                {
-                    // 出庫数・発注数チェック
-                    if (!(getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text) + getDecValue(txtHatchusu.Text)).Equals(getDecValue(txtJuchuSuryo.Text)))
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫数・発注数の入力に誤りがあります", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        txtJuchuSuryo.Focus();
-                        return false;
-                    }
+                #endregion
 
-                    // 発注情報入力チェック
-                    if (string.IsNullOrWhiteSpace(tsShiiresaki.CodeTxtText))
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        tsShiiresaki.codeTxt.Focus();
-                        return false;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(tsShiiresaki.valueTextText))
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        tsShiiresaki.valueText.Focus();
-                        return false;
-                    }
-
-                    if (string.IsNullOrWhiteSpace(txtShiireNoki.Text))
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        txtShiireNoki.Focus();
-                        return false;
-                    }
-                }
-            }
-            #endregion
-
-            // 売上数量チェック
-            #region
-            if (!string.IsNullOrWhiteSpace(txtUriSuryo.Text))
-            {
-                if (!lsDaibunrui.CodeTxtText.Equals("28"))
-                {
-                    if (getDecValue(txtJuchuSuryo.Text) < getDecValue(txtUriSuryo.Text))
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注数量は売上済数量以上を入力してください。\r\n売上済：" + txtUriSuryo.Text, CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        txtJuchuSuryo.Focus();
-                        return false;
-                    }
-                }
-            }
-            #endregion
-
-            // 在庫数チェック
-            #region
-            if (!"1".Equals(riekiritsuFlg))
-            {
-                if (!txtShohinCd.Text.Equals("88888"))
+                // 売上数量チェック
+                #region
+                if (!string.IsNullOrWhiteSpace(txtUriSuryo.Text))
                 {
                     if (!lsDaibunrui.CodeTxtText.Equals("28"))
                     {
-                        // 本社在庫数チェック
-                        #region
-                        if (getDecValue(txtHonshaShukko.Text) > 0) {
-                            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-                            try
-                            {
-                                decimal decZaikoSu = 0;
-                                decimal decZaikoSuF = 0;
-                                decimal decHonshaSu = getDecValue(txtHonshaShukko.Text);
-
-                                DataTable dtZaiko = juchuB.getZaiko("0001", txtShohinCd.Text);
-
-                                if (dtZaiko != null && dtZaiko.Rows.Count > 0)
-                                {
-                                    decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
-
-                                    if (decZaikoSu > decHonshaSu)
-                                    {
-                                        if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0002"))
-                                        {
-                                            decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
-
-                                            if (decHonshaSu > decZaikoSuF)
-                                            {
-                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                                basemessagebox.ShowDialog();
-                                                txtHonshaShukko.Focus();
-                                                return false;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (decHonshaSu > decZaikoSuF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
-                                            {
-                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                                basemessagebox.ShowDialog();
-                                                txtHonshaShukko.Focus();
-                                                return false;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数が在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                        basemessagebox.ShowDialog();
-                                        txtHonshaShukko.Focus();
-                                        return false;
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                new CommonException(ex);
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                basemessagebox.ShowDialog();
-                                return false;
-                            }
-                        }
-                        #endregion
-
-                        // 岐阜在庫数チェック
-                        #region
-                        if (decimal.Parse(txtGihuShukko.Text) > 0)
+                        if (getDecValue(txtJuchuSuryo.Text) < getDecValue(txtUriSuryo.Text))
                         {
-                            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-                            try
-                            {
-                                decimal decZaikoSu = 0;
-                                decimal decZaikoSuF = 0;
-                                decimal decGihuSu = getDecValue(txtGihuShukko.Text);
-
-                                DataTable dtZaiko = juchuB.getZaiko("0002", txtShohinCd.Text);
-
-                                if (dtZaiko != null && dtZaiko.Rows.Count > 0)
-                                {
-                                    decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
-
-                                    if (decZaikoSu > decGihuSu)
-                                    {
-                                        if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0001"))
-                                        {
-                                            decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
-
-                                            if (decGihuSu > decZaikoSuF)
-                                            {
-                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                                basemessagebox.ShowDialog();
-                                                txtGihuShukko.Focus();
-                                                return false;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (decGihuSu > decZaikoSuF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
-                                            {
-                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                                basemessagebox.ShowDialog();
-                                                txtGihuShukko.Focus();
-                                                return false;
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数が在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                        basemessagebox.ShowDialog();
-                                        txtGihuShukko.Focus();
-                                        return false;
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                new CommonException(ex);
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                basemessagebox.ShowDialog();
-                                return false;
-                            }
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "受注数量は売上済数量以上を入力してください。\r\n売上済：" + txtUriSuryo.Text, CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessagebox.ShowDialog();
+                            txtJuchuSuryo.Focus();
+                            return false;
                         }
-                        #endregion
-
-                        //本社＋岐阜出庫数＞フリー在庫合計数は不可
-                        #region
-                        if (getDecValue(txtHonshaShukko.Text) > 0 && getDecValue(txtGihuShukko.Text) > 0)
-                        {
-                            A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
-                            try
-                            {
-                                DataTable dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
-
-                                if (dtZaiko != null && dtZaiko.Rows.Count > 1 && getDecValue(dtZaiko.Rows[0]["在庫数"].ToString()) > 0 && getDecValue(dtZaiko.Rows[1]["在庫数"].ToString()) > 0)
-                                {
-                                    decimal zaikoF = 0;
-                                    for (int i = 0; i < dtZaiko.Rows.Count; i++)
-                                    {
-                                        zaikoF += getDecValue(dtZaiko.Rows[i]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[i]["フリー在庫数未来"].ToString());
-                                    }
-
-                                    if (string.IsNullOrWhiteSpace(txtJuchuNo.Text))
-                                    {
-                                        if ((getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)) > zaikoF)
-                                        {
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                            basemessagebox.ShowDialog();
-                                            txtHonshaShukko.Focus();
-                                            return false;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if ((getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)) > zaikoF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
-                                        {
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                            basemessagebox.ShowDialog();
-                                            txtHonshaShukko.Focus();
-                                            return false;
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                new CommonException(ex);
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                basemessagebox.ShowDialog();
-                                return false;
-                            }
-                        }
-                        #endregion
                     }
                 }
-            }
-            #endregion
+                #endregion
 
+                // 在庫数チェック
+                #region
+                if (!"1".Equals(riekiritsuFlg))
+                {
+                    if (!txtShohinCd.Text.Equals("88888"))
+                    {
+                        if (!lsDaibunrui.CodeTxtText.Equals("28"))
+                        {
+                            // 本社在庫数チェック
+                            #region
+                            if (getDecValue(txtHonshaShukko.Text) > 0)
+                            {
+                                A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                                try
+                                {
+                                    decimal decZaikoSu = 0;
+                                    decimal decZaikoSuF = 0;
+                                    decimal decHonshaSu = getDecValue(txtHonshaShukko.Text);
+
+                                    DataTable dtZaiko = juchuB.getZaiko("0001", txtShohinCd.Text);
+
+                                    if (dtZaiko != null && dtZaiko.Rows.Count > 0)
+                                    {
+                                        decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
+
+                                        if (decZaikoSu > decHonshaSu)
+                                        {
+                                            if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0002"))
+                                            {
+                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+
+                                                if (decHonshaSu > decZaikoSuF)
+                                                {
+                                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                    basemessagebox.ShowDialog();
+                                                    txtHonshaShukko.Focus();
+                                                    return false;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (decHonshaSu > decZaikoSuF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
+                                                {
+                                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                    basemessagebox.ShowDialog();
+                                                    txtHonshaShukko.Focus();
+                                                    return false;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数が在庫数（本社）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                            basemessagebox.ShowDialog();
+                                            txtHonshaShukko.Focus();
+                                            return false;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    new CommonException(ex);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+                                    return false;
+                                }
+                            }
+                            #endregion
+
+                            // 岐阜在庫数チェック
+                            #region
+                            if (decimal.Parse(txtGihuShukko.Text) > 0)
+                            {
+                                A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                                try
+                                {
+                                    decimal decZaikoSu = 0;
+                                    decimal decZaikoSuF = 0;
+                                    decimal decGihuSu = getDecValue(txtGihuShukko.Text);
+
+                                    DataTable dtZaiko = juchuB.getZaiko("0002", txtShohinCd.Text);
+
+                                    if (dtZaiko != null && dtZaiko.Rows.Count > 0)
+                                    {
+                                        decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
+
+                                        if (decZaikoSu > decGihuSu)
+                                        {
+                                            if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0001"))
+                                            {
+                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+
+                                                if (decGihuSu > decZaikoSuF)
+                                                {
+                                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                    basemessagebox.ShowDialog();
+                                                    txtGihuShukko.Focus();
+                                                    return false;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (decGihuSu > decZaikoSuF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
+                                                {
+                                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数がフリー在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                    basemessagebox.ShowDialog();
+                                                    txtGihuShukko.Focus();
+                                                    return false;
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社出庫数が在庫数（岐阜）を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                            basemessagebox.ShowDialog();
+                                            txtGihuShukko.Focus();
+                                            return false;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    new CommonException(ex);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+                                    return false;
+                                }
+                            }
+                            #endregion
+
+                            //本社＋岐阜出庫数＞フリー在庫合計数は不可
+                            #region
+                            if (getDecValue(txtHonshaShukko.Text) > 0 && getDecValue(txtGihuShukko.Text) > 0)
+                            {
+                                A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                                try
+                                {
+                                    DataTable dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
+
+                                    if (dtZaiko != null && dtZaiko.Rows.Count > 1 && getDecValue(dtZaiko.Rows[0]["在庫数"].ToString()) > 0 && getDecValue(dtZaiko.Rows[1]["在庫数"].ToString()) > 0)
+                                    {
+                                        decimal zaikoF = 0;
+                                        for (int i = 0; i < dtZaiko.Rows.Count; i++)
+                                        {
+                                            zaikoF += getDecValue(dtZaiko.Rows[i]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[i]["フリー在庫数未来"].ToString());
+                                        }
+
+                                        if (string.IsNullOrWhiteSpace(txtJuchuNo.Text))
+                                        {
+                                            if ((getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)) > zaikoF)
+                                            {
+                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                basemessagebox.ShowDialog();
+                                                txtHonshaShukko.Focus();
+                                                return false;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if ((getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)) > zaikoF + getDecValue(txtJuchuSuryo.Text) - getDecValue(txtHatchusu.Text))
+                                            {
+                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "本社・岐阜出庫数がフリー在庫合計数を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                                basemessagebox.ShowDialog();
+                                                txtHonshaShukko.Focus();
+                                                return false;
+                                            }
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    new CommonException(ex);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+                                    return false;
+                                }
+                            }
+                            #endregion
+                        }
+                    }
+                }
+                #endregion
+            }
             // 利益率チェック
             #region
             int intRiekiFlg = 0;

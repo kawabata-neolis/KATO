@@ -492,8 +492,26 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseText)inputPanel.Controls["txtHinmei"]).Text = r["品名"].ToString();
                 ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = r["棚番本社"].ToString();
                 ((BaseLabelGray)inputPanel.Controls["txtTanabanR"]).Text = r["棚番岐阜"].ToString();
-                ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = r["発注数量"].ToString();
-                ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = r["発注単価"].ToString();
+
+                decimal dSu = 0;
+                string stSu = "";
+                if (r["発注数量"] != null && r["発注数量"] != DBNull.Value && !string.IsNullOrWhiteSpace(r["発注数量"].ToString()))
+                {
+                    dSu = getDecValue(r["発注数量"].ToString());
+                    stSu = (decimal.Round(dSu, 0)).ToString("#,0");
+                }
+
+                decimal dTanka = 0;
+                string stTanka = "";
+                if (r["発注単価"] != null && r["発注単価"] != DBNull.Value && !string.IsNullOrWhiteSpace(r["発注単価"].ToString()))
+                {
+                    dTanka = getDecValue(r["発注単価"].ToString());
+                    stTanka = (decimal.Round(dTanka, 0)).ToString("#,0.00");
+                }
+
+                ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = stSu;
+                ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = stTanka;
+
                 ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = r["納期"].ToString();
                 ((BaseText)inputPanel.Controls["txtChuban"]).Text = r["注番"].ToString();
                 ((BaseText)inputPanel.Controls["txtEigyo"]).Text = r["営業所コード"].ToString();
@@ -506,8 +524,8 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseText)inputPanel.Controls["tmpChubun"]).Text = r["中分類コード"].ToString();
                 ((BaseText)inputPanel.Controls["tmpMaker"]).Text = r["メーカーコード"].ToString();
                 ((BaseText)inputPanel.Controls["tmpHinmei"]).Text = r["品名"].ToString();
-                ((BaseTextMoney)inputPanel.Controls["tmpSuryo"]).Text = r["発注数量"].ToString();
-                ((BaseTextMoney)inputPanel.Controls["tmpTanka"]).Text = r["発注単価"].ToString();
+                ((BaseTextMoney)inputPanel.Controls["tmpSuryo"]).Text = ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text;
+                ((BaseTextMoney)inputPanel.Controls["tmpTanka"]).Text = ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text;
                 ((BaseCalendar)inputPanel.Controls["tmpNohki"]).Text = r["納期"].ToString();
                 ((BaseText)inputPanel.Controls["tmpChuban"]).Text = r["注番"].ToString();
 
@@ -839,6 +857,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtSuryo.Location = new Point(97, 105);
             txtSuryo.BringToFront();
             txtSuryo.Name = "txtSuryo";
+            txtSuryo.intIntederSet = 12;
             txtSuryo.KeyDown += new KeyEventHandler(baseTexts_KeyDown);
             txtSuryo.TabIndex = tabIdx;
             tabIdx++;
@@ -859,6 +878,8 @@ namespace KATO.Form.A0010_JuchuInput
             txtTanka.Location = new Point(244, 105);
             txtTanka.BringToFront();
             txtTanka.Name = "txtTanka";
+            txtTanka.intDeciSet = 2;
+            txtTanka.intIntederSet = 12;
             txtTanka.KeyDown += new KeyEventHandler(baseTexts_KeyDown);
             txtTanka.TabIndex = tabIdx;
             tabIdx++;
@@ -1501,20 +1522,41 @@ namespace KATO.Form.A0010_JuchuInput
 
                         if (dtS != null && dtS.Rows.Count > 0)
                         {
-                            ((BaseTextMoney)cc.Controls["txtTanka"]).Text = dt.Rows[0]["仕入単価"].ToString();
+                            decimal dTanka = 0;
+                            string stTanka = "";
+                            if (dtS.Rows[0]["発注単価"] != null && dtS.Rows[0]["発注単価"] != DBNull.Value && !string.IsNullOrWhiteSpace(dtS.Rows[0]["発注単価"].ToString()))
+                            {
+                                dTanka = getDecValue(dtS.Rows[0]["発注単価"].ToString());
+                                stTanka = (decimal.Round(dTanka, 0)).ToString("#,0.00");
+                            }
+                            ((BaseTextMoney)cc.Controls["txtTanka"]).Text = stTanka;
                         }
                         else
                         {
                             DataTable dtT = juchuB.getKinShiireTanka(stShoCd);
                             if (dtT != null && dtT.Rows.Count > 0)
                             {
-                                ((BaseTextMoney)cc.Controls["txtTanka"]).Text = dtT.Rows[0]["仕入単価"].ToString();
+                                decimal dTanka = 0;
+                                string stTanka = "";
+                                if (dtT.Rows[0]["仕入単価"] != null && dtT.Rows[0]["仕入単価"] != DBNull.Value && !string.IsNullOrWhiteSpace(dtT.Rows[0]["仕入単価"].ToString()))
+                                {
+                                    dTanka = getDecValue(dtT.Rows[0]["仕入単価"].ToString());
+                                    stTanka = (decimal.Round(dTanka, 0)).ToString("#,0.00");
+                                }
+                                ((BaseTextMoney)cc.Controls["txtTanka"]).Text = stTanka;
                             }
                         }
                     }
                     else
                     {
-                        ((BaseTextMoney)cc.Controls["txtTanka"]).Text = dt.Rows[0]["仕入単価"].ToString();
+                        decimal dTanka = 0;
+                        string stTanka = "";
+                        if (dt.Rows[0]["仕入単価"] != null && dt.Rows[0]["仕入単価"] != DBNull.Value && !string.IsNullOrWhiteSpace(dt.Rows[0]["仕入単価"].ToString()))
+                        {
+                            dTanka = getDecValue(dt.Rows[0]["仕入単価"].ToString());
+                            stTanka = (decimal.Round(dTanka, 0)).ToString("#,0.00");
+                        }
+                        ((BaseTextMoney)cc.Controls["txtTanka"]).Text = stTanka;
                     }
                 }
             }
@@ -1742,7 +1784,9 @@ namespace KATO.Form.A0010_JuchuInput
                     string kakoKbn = "1";
                     if (sLbl.Equals(labels[0]))
                     {
-                        kakoKbn = "0";
+                        // 今回から：材料発注の時点で加工品受注扱いにする
+                        //kakoKbn = "0";
+                        kakoKbn = "1";
                     }
                     string strDenpyoNo = null;
                     if (string.IsNullOrWhiteSpace(sHNo))
@@ -1999,7 +2043,7 @@ namespace KATO.Form.A0010_JuchuInput
                         txtHinmei.ReadOnly = true;
                     }
 
-                    if (getDecValue(dt.Rows[0]["売上済数量"].ToString()).Equals(getDecValue(dt.Rows[0]["受注数量"].ToString())))
+                    if (getDecValue(dt.Rows[0]["受注数量"].ToString()).CompareTo(0) != 0 &&  getDecValue(dt.Rows[0]["売上済数量"].ToString()).Equals(getDecValue(dt.Rows[0]["受注数量"].ToString())))
                     {
                         basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "売上済の受注です。変更は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
