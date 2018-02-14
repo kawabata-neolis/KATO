@@ -328,7 +328,7 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT FORMAT(a.受注年月日, 'yyyy/MM/dd') as 受注年月日";
+            strQuery += "SELECT CONVERT(VARCHAR, a.受注年月日, 111) as 受注年月日";
             strQuery += "      ,a.受注者コード";
             strQuery += "      ,a.得意先コード";
             strQuery += "      ,a.大分類コード";
@@ -343,7 +343,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,a.受注数量";
             strQuery += "      ,a.受注単価";
             strQuery += "      ,a.仕入単価";
-            strQuery += "      ,FORMAT(a.納期, 'yyyy/MM/dd') as 納期";
+            strQuery += "      ,CONVERT(VARCHAR, a.納期, 111) as 納期";
             strQuery += "      ,a.注番";
             strQuery += "      ,a.営業所コード";
             strQuery += "      ,a.担当者コード";
@@ -1151,7 +1151,7 @@ namespace KATO.Business.A0010_JuchuInput
             string strSelect = "";
             strSelect += " SELECT a.発注番号, a.仕入先コード, a.発注者コード, ";
             strSelect += "CASE WHEN a.加工区分='0' THEN '発注' ELSE '本加工' END AS 区分,  ";
-            strSelect += "FORMAT(a.発注年月日, 'yyyy/MM/dd') as 発注年月日,";
+            strSelect += "CONVERT(VARCHAR, a.発注年月日, 111) as 発注年月日,";
             strSelect += "a.大分類コード,";
             strSelect += "a.中分類コード,";
             strSelect += "a.メーカーコード,";
@@ -1167,11 +1167,11 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 品名,";
             strSelect += "a.発注数量,";
             strSelect += "a.発注単価,";
-            strSelect += "FORMAT(a.納期, 'yyyy/MM/dd') as 納期,";
+            strSelect += "CONVERT(VARCHAR, a.納期, 111) as 納期,";
             strSelect += "a.仕入先名称 AS 仕入先名,";
-            strSelect += "FORMAT(dbo.f_get発注番号から仕入日(a.発注番号), 'yyyy/MM/dd') AS 仕入日,";
+            strSelect += "CONVERT(VARCHAR, dbo.f_get発注番号から仕入日(a.発注番号), 111) AS 仕入日,";
             strSelect += "a.仕入済数量,";
-            strSelect += "FORMAT(a.登録日時, 'yyyy/MM/dd') as 登録日時,";
+            strSelect += "CONVERT(VARCHAR, a.登録日時, 111) as 登録日時,";
             strSelect += " Rtrim(ISNULL(a.Ｃ１,'')) AS Ｃ１, ";
             strSelect += " Rtrim(ISNULL(a.Ｃ２,'')) AS Ｃ２, ";
             strSelect += " Rtrim(ISNULL(a.Ｃ３,'')) AS Ｃ３, ";
@@ -1194,7 +1194,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "  UNION ALL ";
             strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, '' AS 発注者コード, ";
             strSelect += "CASE a.取引区分 WHEN '41' THEN '出庫' WHEN '43' THEN '加工品出庫' END AS 区分,  ";
-            strSelect += "FORMAT(a.伝票年月日, 'yyyy/MM/dd') AS 発注年月日,";
+            strSelect += "CONVERT(VARCHAR, a.伝票年月日, 111) AS 発注年月日,";
             strSelect += "b.大分類コード,";
             strSelect += "b.中分類コード,";
             strSelect += "b.メーカーコード,";
@@ -1210,11 +1210,11 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 品名,";
             strSelect += "b.数量 AS 発注数量,";
             strSelect += "b.単価 AS 発注単価,";
-            strSelect += "FORMAT(b.出庫予定日, 'yyyy/MM/dd') AS 納期,";
+            strSelect += "CONVERT(VARCHAR, b.出庫予定日, 111) AS 納期,";
             strSelect += "a.仕入先名称 AS 仕入先名,";
             strSelect += "NULL AS 仕入日,";
             strSelect += "NULL AS 仕入済数量,";
-            strSelect += "FORMAT(b.登録日時, 'yyyy/MM/dd') as 登録日時,";
+            strSelect += "CONVERT(VARCHAR, b.登録日時, 111) as 登録日時,";
             strSelect += " Rtrim(ISNULL(b.Ｃ１,'')) AS Ｃ１, ";
             strSelect += " Rtrim(ISNULL(b.Ｃ２,'')) AS Ｃ２, ";
             strSelect += " Rtrim(ISNULL(b.Ｃ３,'')) AS Ｃ３, ";
