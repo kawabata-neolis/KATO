@@ -343,7 +343,7 @@ namespace KATO.Form.M1030_Shohin
 
         ///<summary>
         ///showtShohinList
-        ///商品リストに移動
+        ///商品リストに移動（前提）
         ///</summary>
         private void showShohinList()
         {
@@ -417,8 +417,11 @@ namespace KATO.Form.M1030_Shohin
             }
             else
             {
-                // 既に１回以上商品リストを表示しているので、hideを元に戻す
+                //既に１回以上商品リストを表示しているので、hideを元に戻す
                 shouhinlist.Show();
+
+                //棚番なしチェックを外す
+                shouhinlist.setNotorokuCheckedFalse();
 
                 //再検索
                 shouhinlist.setShohinView();
@@ -427,10 +430,13 @@ namespace KATO.Form.M1030_Shohin
 
         ///<summary>
         ///showShohinListTana
-        ///商品リストに移動(棚番）
+        ///商品リストに移動(棚番）(前提)
         ///</summary>
         private void showShohinListTana()
         {
+            //棚番なしチェックを付ける
+            chbxNotTana.Checked = true;
+
             //商品リストが一回以上開いたことがない場合
             if (shouhinlist == null)
             {
@@ -478,8 +484,7 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.btxtShohinCd = txtShohinCd;
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
                     shouhinlist.blNoTana = true;
-                    shouhinlist.blShohinMaster = true;
-
+                    shouhinlist.blShohinMaster = false;
                     
                     shouhinlist.ShowDialog();
 
@@ -503,6 +508,10 @@ namespace KATO.Form.M1030_Shohin
             {
                 //既に１回以上商品リストを表示しているので、hideを元に戻す
                 shouhinlist.Show();
+
+                //棚番なしチェックを付ける
+                shouhinlist.setNotorokuCheckedTrue();
+
                 //再検索
                 shouhinlist.setShohinView();
             }

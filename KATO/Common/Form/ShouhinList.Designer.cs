@@ -76,7 +76,6 @@ namespace KATO.Common.Form
             this.chkNotToroku.Text = "登録されていない棚番を使用している商品のみ表示";
             this.chkNotToroku.UseVisualStyleBackColor = true;
             this.chkNotToroku.Visible = false;
-            this.chkNotToroku.VisibleChanged += new System.EventHandler(this.chkNotToroku_VisibleChanged);
             // 
             // radSet_2btn_Toroku
             // 

@@ -86,6 +86,7 @@
             this.txtComment = new KATO.Common.Ctl.BaseText();
             this.lblComment = new KATO.Common.Ctl.BaseLabel(this.components);
             this.chbxHontoroku = new System.Windows.Forms.CheckBox();
+            this.chbxNotTana = new System.Windows.Forms.CheckBox();
             this.gbRadio.SuspendLayout();
             this.radSet_2btn_Toroku.SuspendLayout();
             this.labelSet_Maker.SuspendLayout();
@@ -917,11 +918,23 @@
             this.chbxHontoroku.UseVisualStyleBackColor = true;
             this.chbxHontoroku.Visible = false;
             // 
+            // chbxNotTana
+            // 
+            this.chbxNotTana.AutoSize = true;
+            this.chbxNotTana.Location = new System.Drawing.Point(759, 88);
+            this.chbxNotTana.Name = "chbxNotTana";
+            this.chbxNotTana.Size = new System.Drawing.Size(67, 16);
+            this.chbxNotTana.TabIndex = 134;
+            this.chbxNotTana.Text = "棚番なし";
+            this.chbxNotTana.UseVisualStyleBackColor = true;
+            this.chbxNotTana.Visible = false;
+            // 
             // M1030_Shohin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.chbxNotTana);
             this.Controls.Add(this.chbxHontoroku);
             this.Controls.Add(this.lblGrayToroku);
             this.Controls.Add(this.lblToroku);
@@ -1033,6 +1046,7 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.chbxHontoroku, 0);
+            this.Controls.SetChildIndex(this.chbxNotTana, 0);
             this.gbRadio.ResumeLayout(false);
             this.radSet_2btn_Toroku.ResumeLayout(false);
             this.radSet_2btn_Toroku.PerformLayout();
@@ -1111,5 +1125,6 @@
         private Common.Ctl.BaseText txtComment;
         private Common.Ctl.BaseLabel lblComment;
         private System.Windows.Forms.CheckBox chbxHontoroku;
+        private System.Windows.Forms.CheckBox chbxNotTana;
     }
 }
