@@ -2884,7 +2884,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     string NasiKataban;
                     NasiKataban = "";
 
-                    IDRow = 3;
+                    IDRow = 2;
 
                     for (i = IDRow; i < dtExcelData.Rows.Count; i++)
                     {
@@ -2907,13 +2907,12 @@ namespace KATO.Form.B0250_MOnyuryoku
                                 ari = true;
                                 break;
                             }
+                        }
 
-                            //型番なしの場合
-                            if (ari == false)
-                            {
-                                NasiKataban = NasiKataban + Kataban + "\t" + "\t" + "\t" + dtExcelData.Rows[i][intSuCol].ToString() + "\r\n";
-                                break;
-                            }
+                        //型番なしの場合
+                        if (ari == false)
+                        {
+                            NasiKataban = NasiKataban + Kataban + "\t" + "\t" + "\t" + dtExcelData.Rows[i][intSuCol].ToString() + "\r\n";
                         }
                     }
 
