@@ -652,7 +652,6 @@ namespace KATO.Form.A0030_ShireInput
                         lstMesaiKoshin.Add(bvg[intCnt].labelSet_Eigyosho.CodeTxtText);                          //入庫倉庫
                         lstMesaiKoshin.Add(SystemInformation.UserName);                                         //ユーザー名
 
-                        //テスト用にコメントアウトしていた
                         //仕入明細更新
                         shireinputB.addShireMesaiKoshin(lstMesaiKoshin);
 
@@ -680,12 +679,10 @@ namespace KATO.Form.A0030_ShireInput
                                 blKakojuchu = false;
 
                                 //受注データのカウント取得
-                                dtJuchuDataCnt = shireinputB.getJuchuDataCnt(bvg[intCnt].txtChumonNo.Text);
+                                dtJuchuDataCnt = shireinputB.getJuchuDataCnt(dtHachuData.Rows[0]["受注番号"].ToString());
 
-                                //テスト中はわざと通す必要あり
                                 //カウント1以上の場合
                                 if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) > 0)
-                                //if (int.Parse(dtJuchuDataCnt.Rows[0][0].ToString()) >= 0)
                                 {
                                     //加工をする判定
                                     blKakojuchu = true;
@@ -695,7 +692,7 @@ namespace KATO.Form.A0030_ShireInput
                                 if (blKakojuchu)
                                 {
                                     //加工品仕入単価の取得
-                                    intKakoShireTanka = int.Parse((shireinputB.getKakoShireTanka(bvg[intCnt].txtChumonNo.Text)).ToString());
+                                    intKakoShireTanka = int.Parse((shireinputB.getKakoShireTanka(dtHachuData.Rows[0]["受注番号"].ToString())).ToString());
 
                                     //受注データの仕入単価更新用
                                     lstShireTanka.Add(intKakoShireTanka.ToString());
@@ -2159,7 +2156,7 @@ namespace KATO.Form.A0030_ShireInput
             if (blgood == true)
             {
                 //運賃データが0以外の場合
-                if (decUnchin != 0)
+                if (decUnchin.ToString("0") != "0")
                 {
                     //入力されている行数分チェック
                     for (int intCnt = 0; intCnt < bvg.Length; intCnt++)
@@ -2294,10 +2291,6 @@ namespace KATO.Form.A0030_ShireInput
 
                                 bvg[intgbCnt].txtTanka.Focus();
                             }
-                        }
-                        else
-                        {
-                            blgood = false;
                         }
                     }
 

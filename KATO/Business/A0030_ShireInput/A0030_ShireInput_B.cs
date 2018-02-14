@@ -1138,9 +1138,9 @@ namespace KATO.Business.A0030_ShireInput
 
         ///<summary>
         ///getKakoShireTanka
-        ///取引先データの取得
+        ////加工品仕入単価の取得
         ///</summary>
-        public decimal getKakoShireTanka(string strHachuNo)
+        public decimal getKakoShireTanka(string strJuchuNo)
         {
             //SQLファイルのパスとファイル名を入れる用(加工発注のみ用)
             List<string> lstSQLSUMKako = new List<string>();
@@ -1158,13 +1158,17 @@ namespace KATO.Business.A0030_ShireInput
             DataTable dtSetCd_B = new DataTable();
 
             //合計値を入れる用
-            int intGokei = 0;
+            decimal decGokei = 0;
 
             //受注数量を入れる用
-            int intJuchuSu = 0;
+            decimal decJuchuSu = 0;
 
             //出力するデータ用
             decimal decKakohinShireTanka = 0;
+
+            //加工品仕入単価の作成用
+            int intGokei = 0;
+            int intJuchuSu = 0;
 
             //SQL接続
             OpenSQL opensql = new OpenSQL();
@@ -1187,7 +1191,7 @@ namespace KATO.Business.A0030_ShireInput
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strHachuNo);
+                strSQLInput = string.Format(strSQLInput, strJuchuNo);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
@@ -1202,14 +1206,13 @@ namespace KATO.Business.A0030_ShireInput
                     }
 
                     //合計値に追加
-                    intGokei = intGokei + int.Parse(dtSetCd_B.Rows[0][0].ToString());
+                    decGokei = decJuchuSu + decimal.Parse(dtSetCd_B.Rows[0][0].ToString());
                 }
-
-
+                
                 //出庫分（出庫テーブル）からは取引区分４１，４３のみ
                 //SQLファイルのパスとファイル名を追加(出庫SUM用)
                 lstSQLSUMSshuko.Add("A0030_ShireInput");
-                lstSQLSUMSshuko.Add("ShireInput_KakoShireTanka_KakoHachu_SELECT");
+                lstSQLSUMSshuko.Add("ShireInput_KakoShireTanka_KakoShuko_SELECT");
 
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQLSUMSshuko);
@@ -1221,7 +1224,7 @@ namespace KATO.Business.A0030_ShireInput
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strHachuNo);
+                strSQLInput = string.Format(strSQLInput, strJuchuNo);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
@@ -1236,7 +1239,7 @@ namespace KATO.Business.A0030_ShireInput
                     }
 
                     //合計値に追加
-                    intGokei = intGokei + int.Parse(dtSetCd_B.Rows[0][0].ToString());
+                    decGokei = decJuchuSu + decimal.Parse(dtSetCd_B.Rows[0][0].ToString());
                 }
 
 
@@ -1255,7 +1258,7 @@ namespace KATO.Business.A0030_ShireInput
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strHachuNo);
+                strSQLInput = string.Format(strSQLInput, strJuchuNo);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
@@ -1270,7 +1273,7 @@ namespace KATO.Business.A0030_ShireInput
                     }
 
                     //合計値に追加
-                    intGokei = intGokei - int.Parse(dtSetCd_B.Rows[0][0].ToString());
+                    decGokei = decJuchuSu - decimal.Parse(dtSetCd_B.Rows[0][0].ToString());
                 }
 
 
@@ -1289,7 +1292,7 @@ namespace KATO.Business.A0030_ShireInput
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strHachuNo);
+                strSQLInput = string.Format(strSQLInput, strJuchuNo);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
@@ -1297,11 +1300,15 @@ namespace KATO.Business.A0030_ShireInput
                 //出庫SUMデータが一件以上ある場合
                 if (dtSetCd_B.Rows.Count > 0)
                 {
-                    intJuchuSu = int.Parse(dtSetCd_B.Rows[0][0].ToString());
+                    decGokei = decimal.Parse(dtSetCd_B.Rows[0][0].ToString());
                 }
 
                 //Round計算式へ飛ばす
                 BaseViewDataGroup bvDataGroup = new BaseViewDataGroup();
+
+                //計算用に加工
+                intGokei = int.Parse(decGokei.ToString("0"));
+                intJuchuSu = int.Parse(decJuchuSu.ToString("0"));
 
                 //合計、受注数共に0以外の場合
                 if (intGokei != 0 && intJuchuSu != 0)

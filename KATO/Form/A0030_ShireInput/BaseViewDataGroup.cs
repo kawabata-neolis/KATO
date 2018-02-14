@@ -525,7 +525,7 @@ namespace KATO.Form.A0030_ShireInput
                                 }
                             }
                         }
-                        
+
                         //行番号が99の場合
                         if (dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString() == "99")
                         {
