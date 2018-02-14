@@ -10,6 +10,7 @@ using ClosedXML.Excel;
 
 namespace KATO.Business.D0320_SiireJissekiKakunin
 {
+
     /// D0320_SiireJissekiKakunin_B
     /// 仕入実績確認 ビジネスロジック
     /// 作成者：多田

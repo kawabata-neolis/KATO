@@ -1692,8 +1692,12 @@
     <Content Include="SQL\A0100_HachuInput\HachuInput_TantoshaData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql" />
-    <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql" />
+    <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2468,7 +2472,9 @@
     <Content Include="SQL\Common\C_TantoshaCd_Select.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\M1020_Maker_SELECT_LEAVE.sql" />
+    <Content Include="SQL\Common\M1020_Maker_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2481,7 +2487,9 @@
     <Content Include="SQL\M1030_Shohin\Shohin_KariToroku_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\M1200_Group\Group_PrintData_SELECT.sql" />
+    <Content Include="SQL\M1200_Group\Group_PrintData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\JuchuInput_DataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2506,7 +2514,9 @@
     <Content Include="SQL\M0620_HushoAtenaInsatsu\HushoAtenaInsatsu_EigyoshoCd_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\M1000_Kaishajyoken\M1000_Kaishajyoken_SELECT_LEAVE.sql" />
+    <Content Include="SQL\M1000_Kaishajyoken\M1000_Kaishajyoken_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\M1020_Maker\Maker_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
