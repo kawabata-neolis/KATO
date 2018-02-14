@@ -1883,12 +1883,12 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     #endregion
 
-                    string updC1 = null;
-                    string updC2 = null;
-                    string updC3 = null;
-                    string updC4 = null;
-                    string updC5 = null;
-                    string updC6 = null;
+                    string updC1 = "";
+                    string updC2 = "";
+                    string updC3 = "";
+                    string updC4 = "";
+                    string updC5 = "";
+                    string updC6 = "";
 
                     if (!string.IsNullOrWhiteSpace(sKataban))
                     {

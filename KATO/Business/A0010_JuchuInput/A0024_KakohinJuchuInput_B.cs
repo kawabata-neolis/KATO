@@ -1551,6 +1551,14 @@ namespace KATO.Business.A0010_JuchuInput
         public string getExecShukko(string strNo, string kbn, string stC)
         {
             string ret = "";
+
+            string kakoKbn = "0";
+
+            if ("43".Equals(kbn))
+            {
+                kakoKbn = "1";
+            }
+
             DataTable dtRet = null;
             string strSelect = "";
             strSelect += "SELECT 仕入明細.伝票番号";
@@ -1561,13 +1569,14 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "   AND 仮出庫明細.伝票番号 = 仮出庫ヘッダ.伝票番号";
             strSelect += "   AND 仮出庫明細.削除 ='N'";
             strSelect += "   AND 発注.受注番号 = 仮出庫明細.受注番号";
-            strSelect += "   AND Rtrim(ISNULL(発注.Ｃ１,'')) ";
-            strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ２,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ３,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ４,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ５,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ６,'')) = '" + stC + "'";
+            //strSelect += "   AND Rtrim(ISNULL(発注.Ｃ１,'')) ";
+            //strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ２,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ３,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ４,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ５,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(発注.Ｃ６,'')) = '" + stC + "'";
             strSelect += "   AND 発注.削除 ='N'";
+            strSelect += "   AND 発注.加工区分 ='" + kakoKbn + "'";
             strSelect += "   AND 仕入明細.発注番号 = 発注.発注番号";
             strSelect += "   AND 仕入明細.削除 ='N'";
 
@@ -1623,12 +1632,12 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "SELECT *";
             strSelect += "  FROM 出庫明細";
             strSelect += " WHERE 受注番号 = " + strNo;
-            strSelect += "   AND Rtrim(ISNULL(Ｃ１,'')) ";
-            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ２,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ３,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ４,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ５,''))";
-            strSelect += " + ' ' + Rtrim(ISNULL(Ｃ６,'')) = '" + stC + "'";
+            //strSelect += "   AND Rtrim(ISNULL(Ｃ１,'')) ";
+            //strSelect += " + ' ' + Rtrim(ISNULL(Ｃ２,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(Ｃ３,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(Ｃ４,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(Ｃ５,''))";
+            //strSelect += " + ' ' + Rtrim(ISNULL(Ｃ６,'')) = '" + stC + "'";
             strSelect += "   AND 削除 ='N'";
 
             strSelect += " ORDER BY 登録日時";

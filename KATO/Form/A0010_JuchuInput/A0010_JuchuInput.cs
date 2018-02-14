@@ -811,7 +811,7 @@ namespace KATO.Form.A0010_JuchuInput
                         txtJuchuNo.ReadOnly = true;
                         txtJuchuYMD.ReadOnly = true;
 
-                        if (powerUserFlg)
+                        if ("1".Equals(riekiritsuFlg))
                         {
                             lsJuchusha.codeTxt.ReadOnly = false;
                             cbJuchuTanka.Enabled = true;
@@ -879,7 +879,7 @@ namespace KATO.Form.A0010_JuchuInput
                             txtJuchuNo.ReadOnly = true;
                             txtJuchuYMD.ReadOnly = true;
 
-                            if (powerUserFlg)
+                            if ("1".Equals(riekiritsuFlg))
                             {
                                 lsJuchusha.codeTxt.ReadOnly = false;
                                 cbJuchuTanka.Enabled = true;
@@ -1192,7 +1192,7 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
-            if (!powerUserFlg)
+            if (!"1".Equals(riekiritsuFlg))
             {
                 if (txtNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
                 {
@@ -1252,7 +1252,7 @@ namespace KATO.Form.A0010_JuchuInput
                 return;
             }
 
-            if (!powerUserFlg)
+            if (!"1".Equals(riekiritsuFlg))
             {
                 if (txtShiireNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
                 {
@@ -2185,7 +2185,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
 
-            if (!powerUserFlg)
+            if (!"1".Equals(riekiritsuFlg))
             {
                 if (!cbChuban.Checked)
                 {
@@ -2373,7 +2373,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             // 在庫数チェック
             #region
-            if (!powerUserFlg)
+            if (!"1".Equals(riekiritsuFlg))
             {
                 if (!txtShohinCd.Text.Equals("88888"))
                 {
@@ -2585,7 +2585,7 @@ namespace KATO.Form.A0010_JuchuInput
                     strRitsuMsg = "利益率が１５％を割っています。\r\n続行しますか？";
                 }
 
-                if (!powerUserFlg)
+                if (!"1".Equals(riekiritsuFlg))
                 {
                     bool blRieki10 = true;
 
