@@ -14,6 +14,7 @@ using KATO.Business.D0320_SiireJissekiKakunin;
 
 namespace KATO.Form.D0320_SiireJissekiKakunin
 {
+
     /// <summary>
     /// D0320_SiireJissekiKakunin
     /// 仕入実績確認フォーム
