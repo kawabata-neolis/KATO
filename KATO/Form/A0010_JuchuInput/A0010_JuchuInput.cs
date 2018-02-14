@@ -653,7 +653,23 @@ namespace KATO.Form.A0010_JuchuInput
                     panel1.Visible = false;
                     BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "加工品の受注です。加工品受注画面で修正してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessageboxEr.ShowDialog();
+
+                    lblHonshaShukko.Visible = false;
+                    lblGihuShukko.Visible = false;
+                    lblHatchusu.Visible = false;
+                    txtHonshaShukko.Visible = false;
+                    txtGihuShukko.Visible = false;
+                    txtHatchusu.Visible = false;
                     //return;
+                }
+                else
+                {
+                    lblHonshaShukko.Visible = true;
+                    lblGihuShukko.Visible = true;
+                    lblHatchusu.Visible = true;
+                    txtHonshaShukko.Visible = true;
+                    txtGihuShukko.Visible = true;
+                    txtHatchusu.Visible = true;
                 }
 
                 DataTable dtJuchuNoInfo = juchuInput.getJuchuNoInfo(strCd);
@@ -1618,7 +1634,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             // 加工品受注入力の画面が開いている場合、入力存在チェックと仕入単価更新を行う。
             #region
-            if (f6 != null)
+            if (f6 != null && f6.Visible)
             {
                 if (!f6.isExistInput())
                 {
@@ -2876,6 +2892,13 @@ namespace KATO.Form.A0010_JuchuInput
             tsShiiresaki.ReadOnlyANDTabStopFlg = false;
             txtShiireChuban.ReadOnly = false;
 
+            lblHonshaShukko.Visible = true;
+            lblGihuShukko.Visible = true;
+            lblHatchusu.Visible = true;
+            txtHonshaShukko.Visible = true;
+            txtGihuShukko.Visible = true;
+            txtHatchusu.Visible = true;
+
             lsJuchusha.CodeTxtText = defaultUser;
             lsJuchusha.chkTxtTantosha();
             txtEigyoshoCd.Text = defaultEigyo;
@@ -2949,6 +2972,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtKinSiireTankaSub.Text = "";
             txtUriSuryo.Text = "";
 
+            txtJuchuNo.ReadOnly = false;
             txtJuchuYMD.ReadOnly = false;
             lsJuchusha.codeTxt.ReadOnly = false;
             tsTokuisaki.codeTxt.ReadOnly = false;
@@ -2967,6 +2991,13 @@ namespace KATO.Form.A0010_JuchuInput
             txtChuban.ReadOnly = false;
             tsShiiresaki.ReadOnlyANDTabStopFlg = false;
             txtShiireChuban.ReadOnly = false;
+
+            lblHonshaShukko.Visible = true;
+            lblGihuShukko.Visible = true;
+            lblHatchusu.Visible = true;
+            txtHonshaShukko.Visible = true;
+            txtGihuShukko.Visible = true;
+            txtHatchusu.Visible = true;
 
             txtJuchuYMD.Text = DateTime.Now.ToString("yyyy/MM/dd");
             lsJuchusha.CodeTxtText = defaultUser;

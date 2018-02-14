@@ -1184,7 +1184,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ４,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 型番,";
-            strSelect += "a.商品コード AS 商品コード";
+            strSelect += "a.商品コード AS 商品コード, ";
+            strSelect += "a.営業所コード AS 営業所コード";
             strSelect += " FROM 仮発注 a, 商品 c";
             strSelect += " WHERE a.受注番号 = " + strJuchuNo;
             strSelect += " AND a.削除 ='N'";
@@ -1192,7 +1193,7 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " AND a.商品コード = c.商品コード ";
 
             strSelect += "  UNION ALL ";
-            strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, '' AS 発注者コード, ";
+            strSelect += " SELECT a.伝票番号 AS 発注番号, a.仕入先コード, a.担当者コード AS 発注者コード, ";
             strSelect += "CASE a.取引区分 WHEN '41' THEN '出庫' WHEN '43' THEN '加工品出庫' END AS 区分,  ";
             strSelect += "CONVERT(VARCHAR, a.伝票年月日, 111) AS 発注年月日,";
             strSelect += "b.大分類コード,";
@@ -1227,7 +1228,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ４,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 型番,";
-            strSelect += "b.商品コード AS 商品コード";
+            strSelect += "b.商品コード AS 商品コード, ";
+            strSelect += "a.営業所コード AS 営業所コード";
             strSelect += " FROM 仮出庫ヘッダ a, 仮出庫明細 b, 商品 c";
             strSelect += " WHERE a.伝票番号 = b.伝票番号 ";
             strSelect += " AND a.削除 ='N'";
