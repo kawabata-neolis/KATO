@@ -2511,7 +2511,7 @@
     <Content Include="SQL\M1010_Daibunrui\Daibunrui_PrintData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\M0620_HushoAtenaInsatsu\HushoAtenaInsatsu_EigyoshoCd_SELECT_LEAVE.sql">
+    <Content Include="SQL\Common\M0620_HushoAtenaInsatsu\HushoAtenaInsatsu_EigyoshoCd_SELECT_LEAVE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1000_Kaishajyoken\M1000_Kaishajyoken_SELECT_LEAVE.sql">

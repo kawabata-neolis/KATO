@@ -151,13 +151,10 @@ namespace KATO.Common.Form
         //棚無し画面かどうか
         public bool blNoTana = false;
 
-        //仮登録データを表示するかどうか
-        public bool blKariToroku = false;
-
         Boolean blnZaikoKensaku = true;
 
         //本登録されたデータを呼び出した判定
-        public bool blHontorokuData = false;
+        public CheckBox chbxHontoroku;
 
         //表示時専用の本登録データ判定
         bool blHontorokuDataSub = false;
@@ -419,6 +416,12 @@ namespace KATO.Common.Form
             {
                 cbShireTanka = new ComboBox();
             }
+
+            // 本登録されたデータを呼び出した判定
+            if (chbxHontoroku == null)
+            {
+                chbxHontoroku = new CheckBox();
+            }
         }
 
         /// <summary>
@@ -442,28 +445,16 @@ namespace KATO.Common.Form
             if (blKensaku == true)
             {
                 setShohinView();
-
-                ////仮登録の場合
-                //if (blKariToroku)
-                //{
-                //    //仮商品で検索
-                //    setKariShohinView();
-                //}
-                //else
-                //{
-                //    //商品で検索
-                //    setShohinView();
-                //}
             }
 
             // 商品マスタからの場合
             if (blShohinMaster == true)
             {
-                chkNotToroku.Visible = true;
+                radSet_2btn_Toroku.Visible = true;
             }
             else
             {
-                chkNotToroku.Visible = false;
+                radSet_2btn_Toroku.Visible = false;
             }
 
             // 未登録棚を表示する場合
@@ -835,6 +826,16 @@ namespace KATO.Common.Form
         ///</summary>
         private void setItemData(DataTable dtShohin)
         {
+            //本登録かどうかの判定(商品マスターの影響で先にやる必要あり)
+            if (this.blHontorokuDataSub)
+            {
+                this.chbxHontoroku.Checked = true;
+            }
+            else
+            {
+                this.chbxHontoroku.Checked = false;
+            }
+
             //大分類
             this.lsDaibunrui.CodeTxtText = dtShohin.Rows[0]["大分類コード"].ToString();
             this.lsDaibunrui.chkTxtDaibunrui();
@@ -1008,9 +1009,6 @@ namespace KATO.Common.Form
 
             //仕入単価（コンボボックス
             this.cbShireTanka.Text = dtShohin.Rows[0]["仕入単価"].ToString();
-
-            //本登録かどうかの判定
-            this.blHontorokuData = this.blHontorokuDataSub;
         }
 
         ///<summary>
@@ -1102,8 +1100,11 @@ namespace KATO.Common.Form
         ///setShohinView
         ///検索データを記入
         ///</summary>
-        private void setShohinView()
+        public void setShohinView()
         {
+            //グリッド内の削除
+            gridTorihiki.DataSource = "";
+
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
             //データ渡し用

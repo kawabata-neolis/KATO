@@ -85,6 +85,7 @@
             this.txtTatene = new KATO.Common.Ctl.BaseTextMoney();
             this.txtComment = new KATO.Common.Ctl.BaseText();
             this.lblComment = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.chbxHontoroku = new System.Windows.Forms.CheckBox();
             this.gbRadio.SuspendLayout();
             this.radSet_2btn_Toroku.SuspendLayout();
             this.labelSet_Maker.SuspendLayout();
@@ -372,7 +373,7 @@
             this.txtShohinCd.Location = new System.Drawing.Point(601, 85);
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.ReadOnly = true;
-            this.txtShohinCd.Size = new System.Drawing.Size(100, 22);
+            this.txtShohinCd.Size = new System.Drawing.Size(72, 22);
             this.txtShohinCd.TabIndex = 20;
             this.txtShohinCd.TabStop = false;
             this.txtShohinCd.TextChanged += new System.EventHandler(this.txtShohinCd_TextChanged);
@@ -905,11 +906,23 @@
             this.lblComment.Text = "コメント";
             this.lblComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // chbxHontoroku
+            // 
+            this.chbxHontoroku.AutoSize = true;
+            this.chbxHontoroku.Location = new System.Drawing.Point(693, 88);
+            this.chbxHontoroku.Name = "chbxHontoroku";
+            this.chbxHontoroku.Size = new System.Drawing.Size(60, 16);
+            this.chbxHontoroku.TabIndex = 133;
+            this.chbxHontoroku.Text = "本登録";
+            this.chbxHontoroku.UseVisualStyleBackColor = true;
+            this.chbxHontoroku.Visible = false;
+            // 
             // M1030_Shohin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.chbxHontoroku);
             this.Controls.Add(this.lblGrayToroku);
             this.Controls.Add(this.lblToroku);
             this.Controls.Add(this.txtTatene);
@@ -1019,6 +1032,7 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.chbxHontoroku, 0);
             this.gbRadio.ResumeLayout(false);
             this.radSet_2btn_Toroku.ResumeLayout(false);
             this.radSet_2btn_Toroku.PerformLayout();
@@ -1096,5 +1110,6 @@
         private Common.Ctl.BaseTextMoney txtTatene;
         private Common.Ctl.BaseText txtComment;
         private Common.Ctl.BaseLabel lblComment;
+        private System.Windows.Forms.CheckBox chbxHontoroku;
     }
 }

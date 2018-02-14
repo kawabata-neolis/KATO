@@ -33,9 +33,6 @@ namespace KATO.Form.M1030_Shohin
         //管理者かどうかの判定
         Boolean blnKanri;
 
-        //本登録データの判定
-        Boolean blHontorokuData = false;
-
         Control cActiveBefore = null;
         ShouhinList shouhinlist = null;
 
@@ -350,62 +347,7 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void showShohinList()
         {
-            //全てのフォームの中から
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-            {
-                //目的のフォームを探す
-                if (frm.Name == "ShohinList")
-                {
-                    //検索項目に一つでも記入がある場合
-                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
-                        txtKensaku.blIsEmpty() == false)
-                    {
-                        shouhinlist.blKensaku = false;
-                    }
-                    else
-                    {
-                        shouhinlist.blKensaku = true;
-                    }
-
-                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
-                    shouhinlist.strYMD = "";
-                    shouhinlist.strEigyoushoCode = "";
-                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
-                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                    shouhinlist.lsMaker = labelSet_Maker;
-                    shouhinlist.btxtKensaku = txtKensaku;
-                    shouhinlist.btxtHinC1 = txtData1;
-                    shouhinlist.btxtHinC2 = txtData2;
-                    shouhinlist.btxtHinC3 = txtData3;
-                    shouhinlist.btxtHinC4 = txtData4;
-                    shouhinlist.btxtHinC5 = txtData5;
-                    shouhinlist.btxtHinC6 = txtData6;
-                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
-                    shouhinlist.bmtxtShireTanka = txtShire;
-                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
-                    shouhinlist.bmtxtTateneShire = txtTatene;
-                    shouhinlist.btxtZaikokbn = txtZaiko;
-                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
-                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
-                    shouhinlist.btxtMemo = txtMemo;
-                    shouhinlist.bmtxtTeika = txtTeika;
-                    shouhinlist.bmtxtHakosu = txtHako;
-                    shouhinlist.btxtComment = txtComment;
-                    shouhinlist.lblGrayYM = lblGrayToroku;
-                    shouhinlist.btxtShohinCd = txtShohinCd;
-                    shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
-                    shouhinlist.blNoTana = false;
-                    shouhinlist.blShohinMaster = true;
-                    shouhinlist.blHontorokuData = blHontorokuData;
-
-                    frm.Show();
-                    break;
-                }
-            }
-
-            //商品リストが一回以上開いたことがない場合
+            //商品リストを一回以上開いたことがない場合
             if (shouhinlist == null)
             {
                 shouhinlist = new ShouhinList(this);
@@ -453,7 +395,7 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
                     shouhinlist.blNoTana = false;
                     shouhinlist.blShohinMaster = true;
-                    shouhinlist.blHontorokuData = blHontorokuData;
+                    shouhinlist.chbxHontoroku = chbxHontoroku;
 
                     shouhinlist.ShowDialog();
 
@@ -477,6 +419,9 @@ namespace KATO.Form.M1030_Shohin
             {
                 // 既に１回以上商品リストを表示しているので、hideを元に戻す
                 shouhinlist.Show();
+
+                //再検索
+                shouhinlist.setShohinView();
             }
         }
 
@@ -486,60 +431,6 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         private void showShohinListTana()
         {
-            //全てのフォームの中から
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-            {
-                //目的のフォームを探す
-                if (frm.Name == "ShohinList")
-                {
-                    //検索項目に一つでも記入がある場合
-                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
-                        txtKensaku.blIsEmpty() == false)
-                    {
-                        shouhinlist.blKensaku = false;
-                    }
-                    else
-                    {
-                        shouhinlist.blKensaku = true;
-                    }
-
-                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
-                    shouhinlist.strYMD = "";
-                    shouhinlist.strEigyoushoCode = "";
-                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
-                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                    shouhinlist.lsMaker = labelSet_Maker;
-                    shouhinlist.btxtKensaku = txtKensaku;
-                    shouhinlist.btxtHinC1 = txtData1;
-                    shouhinlist.btxtHinC2 = txtData2;
-                    shouhinlist.btxtHinC3 = txtData3;
-                    shouhinlist.btxtHinC4 = txtData4;
-                    shouhinlist.btxtHinC5 = txtData5;
-                    shouhinlist.btxtHinC6 = txtData6;
-                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
-                    shouhinlist.bmtxtShireTanka = txtShire;
-                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
-                    shouhinlist.bmtxtTateneShire = txtTatene;
-                    shouhinlist.btxtZaikokbn = txtZaiko;
-                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
-                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
-                    shouhinlist.btxtMemo = txtMemo;
-                    shouhinlist.bmtxtTeika = txtTeika;
-                    shouhinlist.bmtxtHakosu = txtHako;
-                    shouhinlist.btxtComment = txtComment;
-                    shouhinlist.lblGrayYM = lblGrayToroku;
-                    shouhinlist.btxtShohinCd = txtShohinCd;
-                    shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
-                    shouhinlist.blNoTana = true;
-                    shouhinlist.blShohinMaster = true;
-
-                    frm.Show();
-                    break;
-                }
-            }
-
             //商品リストが一回以上開いたことがない場合
             if (shouhinlist == null)
             {
@@ -589,7 +480,7 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.blNoTana = true;
                     shouhinlist.blShohinMaster = true;
 
-
+                    
                     shouhinlist.ShowDialog();
 
                     //初回時用、二回目以降は無くても動作する
@@ -610,8 +501,10 @@ namespace KATO.Form.M1030_Shohin
             }
             else
             {
-                // 既に１回以上商品リストを表示しているので、hideを元に戻す
+                //既に１回以上商品リストを表示しているので、hideを元に戻す
                 shouhinlist.Show();
+                //再検索
+                shouhinlist.setShohinView();
             }
         }
 
@@ -818,7 +711,7 @@ namespace KATO.Form.M1030_Shohin
                 if (radSet_2btn_Toroku.radbtn0.Checked == true)
                 {
                     //商品コードの最大値を確保
-                    strShohinCdMax = shohinB.getNewShohinNo();
+                    strShohinCdMax = shohinB.getNewShohinNo(blnKanri);
 
                     //商品コードのみを上書き
                     lstString[0] = strShohinCdMax;
@@ -829,7 +722,7 @@ namespace KATO.Form.M1030_Shohin
                 else
                 {
                     //商品コードからデータの読み込み
-                    dtShohin = shohinB.getShohin(txtShohinCd.Text, blHontorokuData);
+                    dtShohin = shohinB.getShohin(txtShohinCd.Text, chbxHontoroku.Checked);
 
                     //商品データがある場合
                     if (dtShohin.Rows.Count > 0)
@@ -932,7 +825,7 @@ namespace KATO.Form.M1030_Shohin
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
 
-            dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text,blHontorokuData);
+            dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text, chbxHontoroku.Checked);
 
             //データがない場合
             if (dtShohin.Rows.Count == 0)
@@ -972,7 +865,7 @@ namespace KATO.Form.M1030_Shohin
 
             try
             {
-                shohinB.delShohin(lstString, blHontorokuData);
+                shohinB.delShohin(lstString, chbxHontoroku.Checked);
 
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1131,8 +1024,18 @@ namespace KATO.Form.M1030_Shohin
             if (txtShohinCd.Text != "")
             {
                 txtData1.Focus();
-                //編集登録にチェック
-                radSet_2btn_Toroku.radbtn1.Checked = true;
+
+                //マスター権限で且つ仮登録の場合
+                if (("1").Equals(masterFlg) && chbxHontoroku.Checked == false)
+                {
+                    //新規登録にチェック
+                    radSet_2btn_Toroku.radbtn0.Checked = true;
+                }
+                else
+                {
+                    //編集登録にチェック
+                    radSet_2btn_Toroku.radbtn1.Checked = true;
+                }
             }
         }
 
