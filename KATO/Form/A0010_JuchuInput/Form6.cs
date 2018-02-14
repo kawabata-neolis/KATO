@@ -1177,7 +1177,7 @@ namespace KATO.Form.A0010_JuchuInput
             basePanel.Controls.Add(txtShohin);
             txtShohin.SendToBack();
             txtShohin.Visible = false;
-            txtShohin.TextChanged += new EventHandler(shohinChangeSub);
+            //txtShohin.TextChanged += new EventHandler(shohinChangeSub);
 
             BaseText txtSouko = new BaseText();
             txtSouko.Name = "txtSouko";
@@ -1468,15 +1468,15 @@ namespace KATO.Form.A0010_JuchuInput
             }
         }
 
-        private void shohinChangeSub(object sender, EventArgs e)
+        private void shohinChangeSub(string stShoCd, Panel cc)
         {
-            string stShoCd = ((BaseText)sender).Text;
+            //string stShoCd = ((BaseText)sender).Text;
             if (string.IsNullOrWhiteSpace(strJuchuNo) || string.IsNullOrWhiteSpace(stShoCd))
             {
                 return;
             }
 
-            Panel cc = (Panel)((BaseText)sender).Parent;
+            //Panel cc = (Panel)((BaseText)sender).Parent;
 
             string sLbl = ((Label)cc.Controls["cate"]).Text;
 
@@ -1784,9 +1784,8 @@ namespace KATO.Form.A0010_JuchuInput
                     string kakoKbn = "1";
                     if (sLbl.Equals(labels[0]))
                     {
-                        // 今回から：材料発注の時点で加工品受注扱いにする
-                        //kakoKbn = "0";
-                        kakoKbn = "1";
+                        kakoKbn = "0";
+                        //kakoKbn = "1";
                     }
                     string strDenpyoNo = null;
                     if (string.IsNullOrWhiteSpace(sHNo))
@@ -3167,6 +3166,8 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseText)c.Controls["txtSearchStr"]).Text = "";
                 getZaikoInfo(((BaseText)c.Controls["txtShohin"]).Text);
                 ((BaseTextMoney)c.Controls["txtSuryo"]).Focus();
+
+                shohinChangeSub(((BaseText)c.Controls["txtShohin"]).Text, c);
             }
         }
 

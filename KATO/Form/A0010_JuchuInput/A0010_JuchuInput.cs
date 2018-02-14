@@ -1853,6 +1853,17 @@ namespace KATO.Form.A0010_JuchuInput
                     txtUriage.Text = "0";
                 }
 
+                string kbn = "0";
+                string honSu = txtHonshaShukko.Text;
+                string gihSu = txtGihuShukko.Text;
+
+                if (f6 != null && f6.Visible)
+                {
+                    kbn = "1";
+                    honSu = "0";
+                    gihSu = "0";
+                }
+
                 List<String> aryPrm = new List<string>();
 
                 aryPrm.Add(tsTokuisaki.CodeTxtText);
@@ -1883,9 +1894,9 @@ namespace KATO.Form.A0010_JuchuInput
                 aryPrm.Add(txtUriage.Text);
                 aryPrm.Add(txtChuban.Text);
                 aryPrm.Add(txtHatchushiji.Text);
-                aryPrm.Add(txtHonshaShukko.Text);
-                aryPrm.Add(txtGihuShukko.Text);
-                aryPrm.Add("0");
+                aryPrm.Add(honSu);
+                aryPrm.Add(gihSu);
+                aryPrm.Add(kbn);
                 aryPrm.Add("");
                 aryPrm.Add(Environment.UserName);
 
