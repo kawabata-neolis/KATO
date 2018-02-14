@@ -15,5 +15,6 @@ AND
   kengen.担当者コード = tanto.担当者コード
 AND
   tanto.表示 = 1
-
+AND
+  tanto.削除 = 'N'
 

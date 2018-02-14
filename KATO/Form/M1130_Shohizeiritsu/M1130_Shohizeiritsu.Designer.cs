@@ -35,6 +35,10 @@
             this.lblShohizeiritu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -78,10 +82,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // txtShohizeiritu
             // 
@@ -150,6 +150,7 @@
             this.Text = "M1130_Shohizeiritsu";
             this.Load += new System.EventHandler(this.M1130_Shohizeiritsu_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1130_Shohizeiritsu_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
