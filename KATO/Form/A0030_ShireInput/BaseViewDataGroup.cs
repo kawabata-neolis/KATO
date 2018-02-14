@@ -614,7 +614,9 @@ namespace KATO.Form.A0030_ShireInput
                     //中分類のコードと名前を確保
                     dtChubun = chubunruiB.getTxtChubunruiLeave(dtSetCd_B_Hachu.Rows[0]["大分類コード"].ToString(), dtSetCd_B_Hachu.Rows[0]["中分類コード"].ToString());
 
-                    strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
+                    if (dtChubun != null && dtChubun.Rows.Count > 0) {
+                        strHinmei = strHinmei + " " + dtChubun.Rows[0]["中分類名"];
+                    }
 
                     //Ｃ１が存在する場合
                     if (StringUtl.blIsEmpty(dtSetCd_B_Hachu.Rows[0]["Ｃ１"].ToString()))

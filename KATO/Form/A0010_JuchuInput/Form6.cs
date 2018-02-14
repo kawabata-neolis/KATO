@@ -207,6 +207,7 @@ namespace KATO.Form.A0010_JuchuInput
             ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = ((BaseTextMoney)c.Controls["txtTanka"]).Text;
             ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = "";
             ((BaseText)inputPanel.Controls["txtChuban"]).Text = ((BaseText)c.Controls["txtChuban"]).Text;
+            ((BaseText)inputPanel.Controls["txtEigyo"]).Text = ((BaseText)c.Controls["txtEigyo"]).Text;
 
             ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
             ((BaseText)inputPanel.Controls["tmpHSha"]).Text = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
@@ -495,6 +496,7 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseTextMoney)inputPanel.Controls["txtTanka"]).Text = r["発注単価"].ToString();
                 ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = r["納期"].ToString();
                 ((BaseText)inputPanel.Controls["txtChuban"]).Text = r["注番"].ToString();
+                ((BaseText)inputPanel.Controls["txtEigyo"]).Text = r["営業所コード"].ToString();
 
                 ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = r["発注年月日"].ToString();
                 ((BaseText)inputPanel.Controls["tmpHSha"]).Text = r["発注者コード"].ToString();
@@ -664,6 +666,7 @@ namespace KATO.Form.A0010_JuchuInput
             lblHNo.Location = new Point(869, 22);
             lblHNo.BringToFront();
             lblHNo.TabIndex = tabIdx;
+            lblHNo.Visible = false;
             tabIdx++;
 
             BaseTextMoney txtHNo = new BaseTextMoney();
@@ -677,6 +680,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtHNo.KeyDown += new KeyEventHandler(baseTexts_KeyDown);
             txtHNo.TabStop = false;
             txtHNo.TabIndex = tabIdx;
+            txtHNo.Visible = false;
             tabIdx++;
             #endregion
 
@@ -1763,8 +1767,8 @@ namespace KATO.Form.A0010_JuchuInput
                     aryPrmH.Add("0");
                     aryPrmH.Add(sShohin);
                     aryPrmH.Add(sHMak);
-                    aryPrmH.Add(sHChubun);
                     aryPrmH.Add(sHDai);
+                    aryPrmH.Add(sHChubun);
                     aryPrmH.Add(sC1);
                     aryPrmH.Add(sC2);
                     aryPrmH.Add(sC3);
