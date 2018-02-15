@@ -230,8 +230,9 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
                 strQuery = "SELECT b.受注年月日 AS 受注日";
                 strQuery += "      ,a.納期";
-                strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
-                strQuery += "      ,dbo.f_get中分類名(a.大分類コード, b.中分類コード)";
+                //strQuery += "      ,dbo.f_getメーカー名(a.メーカーコード) AS メーカー";
+                strQuery += "      ,f.メーカー名 AS メーカー";
+                strQuery += "      ,dbo.f_get中分類名(a.大分類コード, a.中分類コード)";
                 strQuery += "          + ' ' + Rtrim(ISNULL(a.Ｃ１, '')) AS 品名";
                 strQuery += "      ,b.受注数量 AS 受注数";
                 strQuery += "      ,(b.受注数量 - b.売上済数量) AS 受注残";
@@ -245,20 +246,28 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,'' AS 客先注番";
                 strQuery += "      ,b.得意先名称 AS 得意先名";
                 strQuery += "      ,dbo.f_get発注番号から仕入日(a.発注番号) AS 仕入日";
+                //strQuery += "      ,'' AS 仕入日";
                 strQuery += "      ,a.仕入先名称 AS 仕入先名";
                 strQuery += "      ,b.売上済数量 AS 売上済";
                 strQuery += "      ,a.仕入済数量 AS 仕入済";
                 strQuery += "      ,a.発注年月日 AS 発注日";
-                strQuery += "      ,dbo.f_get受注番号_発注状態(b.受注番号) AS 状態";
+                //strQuery += "      ,dbo.f_get受注番号_発注状態(b.受注番号) AS 状態";
+                strQuery += "      ,CASE WHEN b.受注番号 IS NULL THEN '' ELSE dbo.f_get受注番号_発注状態(b.受注番号) END AS 状態";
                 strQuery += "      ,b.受注番号";
-                strQuery += "      ,dbo.f_get担当者名(b.受注者コード) AS 受注者";
-                strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
-                strQuery += "      ,dbo.f_get担当者名(a.発注者コード) AS 発注者";
+                //strQuery += "      ,dbo.f_get担当者名(b.受注者コード) AS 受注者";
+                //strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
+                //strQuery += "      ,dbo.f_get担当者名(a.発注者コード) AS 発注者";
+                strQuery += "      ,c.担当者名 AS 受注者";
+                strQuery += "      ,d.担当者名 AS 担当者";
+                strQuery += "      ,e.担当者名 AS 発注者";
                 strQuery += "      ,a.発注番号";
-                strQuery += "  FROM 発注 a LEFT OUTER JOIN 受注 b ON a.受注番号 = b.受注番号";
+                strQuery += "  FROM 発注 a LEFT OUTER JOIN 受注 b ON a.受注番号 = b.受注番号 AND b.削除 = 'N'";
+                strQuery += "              LEFT OUTER JOIN 担当者 c ON b.受注者コード = c.担当者コード AND c.削除 = 'N'";
+                strQuery += "              LEFT OUTER JOIN 担当者 d ON a.担当者コード = d.担当者コード AND d.削除 = 'N'";
+                strQuery += "              LEFT OUTER JOIN 担当者 e ON a.発注者コード = e.担当者コード AND e.削除 = 'N'";
+                strQuery += "              LEFT OUTER JOIN メーカー f ON a.メーカーコード = f.メーカーコード AND f.削除 = 'N'";
 
-                strQuery += "   AND b.削除 = 'N'";
-                strQuery += "   AND a.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(b.受注番号)";
+                //strQuery += "   AND a.発注番号 = dbo.f_get受注番号から最終仕入の発注番号(b.受注番号)";
 
                 strQuery += " WHERE a.削除 = 'N'";
                 strQuery += "   AND a.発注数量 <> 0 ";

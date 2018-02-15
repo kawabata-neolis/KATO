@@ -30,7 +30,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 return;
             }
 
-            this._Title = "残確認";
+            this._Title = "受注残・発注残確認";
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -50,6 +50,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             this.Left = c.Left;
             this.Top = c.Top;
 
+            rsSortOrder.radbtn0.Checked = false;
+            rsSortOrder.radbtn1.Checked = true;
+
             //中分類setデータを読めるようにする
             lsDaibunrui.Lschubundata = lsChubunrui;
         }
@@ -62,7 +65,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 return;
             }
 
-            this._Title = "残確認";
+            this._Title = "受注残・発注残確認";
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -89,6 +92,15 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             this.lsTokuisaki.CodeTxtText = stTokuisaki;
             this.rsSearchKind.radbtn1.Checked = false;
             this.rsSearchKind.radbtn0.Checked = true;
+
+            this.rsSortItem.radbtn3.Checked = false;
+            this.rsSortItem.radbtn2.Checked = false;
+            this.rsSortItem.radbtn1.Checked = false;
+            this.rsSortItem.radbtn0.Checked = true;
+
+            this.rsSortOrder.radbtn0.Checked = false;
+            this.rsSortOrder.radbtn1.Checked = true;
+
             //txtJuchuNo.Focus();
             gridZanList.Focus();
             this.selZanList();
@@ -103,7 +115,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 return;
             }
 
-            this._Title = "残確認";
+            this._Title = "受注残・発注残確認";
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
 
@@ -130,6 +142,14 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             this.lsShiiresaki.CodeTxtText = stTokuisaki;
             this.rsSearchKind.radbtn1.Checked = true;
             this.rsSearchKind.radbtn0.Checked = false;
+
+            this.rsSortItem.radbtn3.Checked = false;
+            this.rsSortItem.radbtn2.Checked = false;
+            this.rsSortItem.radbtn0.Checked = false;
+            this.rsSortItem.radbtn1.Checked = true;
+
+            this.rsSortOrder.radbtn1.Checked = false;
+            this.rsSortOrder.radbtn0.Checked = true;
             //txtJuchuNo.Focus();
             gridZanList.Focus();
             this.selZanList();
@@ -153,8 +173,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 btnF09.Enabled = false;
             }
             SetUpGrid();
-            rsSortOrder.radbtn0.Checked = false;
-            rsSortOrder.radbtn1.Checked = true;
+            //rsSortOrder.radbtn0.Checked = false;
+            //rsSortOrder.radbtn1.Checked = true;
         }
 
         ///<summary>
