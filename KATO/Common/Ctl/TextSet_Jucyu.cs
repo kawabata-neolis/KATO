@@ -1853,8 +1853,8 @@ namespace KATO.Common.Ctl
             jucyuzankakunin.ShowDialog();
             if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
             {
-                //SendKeys.Send("{TAB}");
-                //txtSuuryoElem4.Focus();
+                SendKeys.Send("{TAB}");
+                txtSuuryoElem4.Focus();
             }
         }
 

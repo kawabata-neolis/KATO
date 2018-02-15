@@ -532,9 +532,6 @@ namespace KATO.Form.A0030_ShireInput
                             //運賃の処理があったがなし
                         }
 
-                        ////行番号を確保
-                        //shireinput.shotCnt = short.Parse(dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString());
-
                         //グループ内でも確保
                         shortCntG = shireinput.shotCnt;
 
