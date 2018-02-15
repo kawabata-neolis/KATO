@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.gbShohinKensaku = new System.Windows.Forms.GroupBox();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
@@ -66,81 +65,71 @@
             this.txtGihuShuko = new KATO.Common.Ctl.BaseTextMoney();
             this.txtHonGenzaiko = new KATO.Common.Ctl.BaseTextMoney();
             this.txtGihuGenzaiko = new KATO.Common.Ctl.BaseTextMoney();
-            this.gbShohinKensaku.SuspendLayout();
+            this.lblShohinKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).BeginInit();
             this.SuspendLayout();
             // 
             // btnF01
             // 
+            this.btnF01.TabIndex = 8;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
+            this.btnF12.TabStop = false;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabStop = false;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
+            this.btnF10.TabStop = false;
             this.btnF10.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF09
             // 
+            this.btnF09.TabStop = false;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
+            this.btnF08.TabStop = false;
             this.btnF08.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF07
             // 
+            this.btnF07.TabStop = false;
             this.btnF07.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF06
             // 
+            this.btnF06.TabStop = false;
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
+            this.btnF05.TabStop = false;
             this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 9;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
+            this.btnF03.TabStop = false;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
+            this.btnF02.TabIndex = 9;
+            this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // gbShohinKensaku
-            // 
-            this.gbShohinKensaku.Controls.Add(this.labelSet_Maker);
-            this.gbShohinKensaku.Controls.Add(this.labelSet_Chubunrui);
-            this.gbShohinKensaku.Controls.Add(this.labelSet_Daibunrui);
-            this.gbShohinKensaku.Controls.Add(this.lblTanaban);
-            this.gbShohinKensaku.Controls.Add(this.lblGrayTanaGihu);
-            this.gbShohinKensaku.Controls.Add(this.lblGrayTanaHon);
-            this.gbShohinKensaku.Controls.Add(this.lblGrayShohin);
-            this.gbShohinKensaku.Controls.Add(this.labelSet_Eigyosho);
-            this.gbShohinKensaku.Controls.Add(this.lblShohinCd);
-            this.gbShohinKensaku.Controls.Add(this.txtShohinCd);
-            this.gbShohinKensaku.Controls.Add(this.txtKensaku);
-            this.gbShohinKensaku.Controls.Add(this.lblHinmeiKataban);
-            this.gbShohinKensaku.Controls.Add(this.lblKensaku);
-            this.gbShohinKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.gbShohinKensaku.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gbShohinKensaku.Location = new System.Drawing.Point(24, 42);
-            this.gbShohinKensaku.Name = "gbShohinKensaku";
-            this.gbShohinKensaku.Size = new System.Drawing.Size(1375, 114);
-            this.gbShohinKensaku.TabIndex = 0;
-            this.gbShohinKensaku.TabStop = false;
-            this.gbShohinKensaku.Text = "商品検索";
             // 
             // labelSet_Maker
             // 
@@ -149,11 +138,10 @@
             this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(754, 18);
-            this.labelSet_Maker.Margin = new System.Windows.Forms.Padding(4);
+            this.labelSet_Maker.Location = new System.Drawing.Point(791, 64);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(335, 22);
+            this.labelSet_Maker.Size = new System.Drawing.Size(333, 28);
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 4;
             this.labelSet_Maker.SpaceValueAppend = 4;
@@ -169,11 +157,10 @@
             this.labelSet_Chubunrui.CodeTxtSize = 24;
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.LabelName = "中分類コード";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(388, 18);
-            this.labelSet_Chubunrui.Margin = new System.Windows.Forms.Padding(4);
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(425, 64);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(352, 22);
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(340, 28);
             this.labelSet_Chubunrui.SpaceCodeValue = 4;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
@@ -190,15 +177,14 @@
             this.labelSet_Daibunrui.CodeTxtSize = 24;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(4, 18);
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(41, 64);
             this.labelSet_Daibunrui.Lschubundata = null;
             this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
             this.labelSet_Daibunrui.LsSubmakerdata = null;
-            this.labelSet_Daibunrui.Margin = new System.Windows.Forms.Padding(4);
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(364, 22);
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(345, 24);
             this.labelSet_Daibunrui.SpaceCodeValue = 4;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
@@ -210,7 +196,7 @@
             // 
             this.lblTanaban.AutoSize = true;
             this.lblTanaban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanaban.Location = new System.Drawing.Point(648, 82);
+            this.lblTanaban.Location = new System.Drawing.Point(685, 128);
             this.lblTanaban.Name = "lblTanaban";
             this.lblTanaban.Size = new System.Drawing.Size(39, 15);
             this.lblTanaban.strToolTip = null;
@@ -224,7 +210,7 @@
             this.lblGrayTanaGihu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayTanaGihu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayTanaGihu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayTanaGihu.Location = new System.Drawing.Point(755, 78);
+            this.lblGrayTanaGihu.Location = new System.Drawing.Point(792, 124);
             this.lblGrayTanaGihu.Name = "lblGrayTanaGihu";
             this.lblGrayTanaGihu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayTanaGihu.Size = new System.Drawing.Size(55, 22);
@@ -237,7 +223,7 @@
             this.lblGrayTanaHon.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayTanaHon.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayTanaHon.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayTanaHon.Location = new System.Drawing.Point(692, 78);
+            this.lblGrayTanaHon.Location = new System.Drawing.Point(729, 124);
             this.lblGrayTanaHon.Name = "lblGrayTanaHon";
             this.lblGrayTanaHon.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayTanaHon.Size = new System.Drawing.Size(55, 22);
@@ -250,7 +236,7 @@
             this.lblGrayShohin.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayShohin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayShohin.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayShohin.Location = new System.Drawing.Point(110, 78);
+            this.lblGrayShohin.Location = new System.Drawing.Point(147, 124);
             this.lblGrayShohin.Name = "lblGrayShohin";
             this.lblGrayShohin.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayShohin.Size = new System.Drawing.Size(518, 22);
@@ -264,15 +250,15 @@
             this.labelSet_Eigyosho.CodeTxtSize = 40;
             this.labelSet_Eigyosho.CodeTxtText = "";
             this.labelSet_Eigyosho.LabelName = "営業所コード";
-            this.labelSet_Eigyosho.Location = new System.Drawing.Point(1108, 18);
-            this.labelSet_Eigyosho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(1129, 64);
+            this.labelSet_Eigyosho.Margin = new System.Windows.Forms.Padding(2);
             this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
             this.labelSet_Eigyosho.ShowAppendFlg = false;
-            this.labelSet_Eigyosho.Size = new System.Drawing.Size(249, 22);
+            this.labelSet_Eigyosho.Size = new System.Drawing.Size(238, 28);
             this.labelSet_Eigyosho.SpaceCodeValue = 4;
             this.labelSet_Eigyosho.SpaceNameCode = 5;
             this.labelSet_Eigyosho.SpaceValueAppend = 5;
-            this.labelSet_Eigyosho.TabIndex = 5;
+            this.labelSet_Eigyosho.TabIndex = 3;
             this.labelSet_Eigyosho.ValueLabelSize = 80;
             this.labelSet_Eigyosho.ValueLabelText = "";
             // 
@@ -280,7 +266,7 @@
             // 
             this.lblShohinCd.AutoSize = true;
             this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinCd.Location = new System.Drawing.Point(468, 52);
+            this.lblShohinCd.Location = new System.Drawing.Point(505, 98);
             this.lblShohinCd.Name = "lblShohinCd";
             this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
             this.lblShohinCd.strToolTip = null;
@@ -293,11 +279,11 @@
             // 
             this.txtShohinCd.BackColor = System.Drawing.SystemColors.Window;
             this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtShohinCd.Location = new System.Drawing.Point(571, 48);
+            this.txtShohinCd.Location = new System.Drawing.Point(608, 94);
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.ReadOnly = true;
             this.txtShohinCd.Size = new System.Drawing.Size(50, 22);
-            this.txtShohinCd.TabIndex = 4;
+            this.txtShohinCd.TabIndex = 5;
             this.txtShohinCd.TabStop = false;
             this.txtShohinCd.Visible = false;
             // 
@@ -305,18 +291,18 @@
             // 
             this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtKensaku.Location = new System.Drawing.Point(110, 48);
+            this.txtKensaku.Location = new System.Drawing.Point(147, 94);
             this.txtKensaku.MaxLength = 40;
             this.txtKensaku.Name = "txtKensaku";
             this.txtKensaku.Size = new System.Drawing.Size(330, 22);
-            this.txtKensaku.TabIndex = 3;
+            this.txtKensaku.TabIndex = 4;
             this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtShohinTxtDown);
             // 
             // lblHinmeiKataban
             // 
             this.lblHinmeiKataban.AutoSize = true;
             this.lblHinmeiKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHinmeiKataban.Location = new System.Drawing.Point(6, 82);
+            this.lblHinmeiKataban.Location = new System.Drawing.Point(43, 128);
             this.lblHinmeiKataban.Name = "lblHinmeiKataban";
             this.lblHinmeiKataban.Size = new System.Drawing.Size(87, 15);
             this.lblHinmeiKataban.strToolTip = null;
@@ -328,7 +314,7 @@
             // 
             this.lblKensaku.AutoSize = true;
             this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKensaku.Location = new System.Drawing.Point(6, 52);
+            this.lblKensaku.Location = new System.Drawing.Point(43, 98);
             this.lblKensaku.Name = "lblKensaku";
             this.lblKensaku.Size = new System.Drawing.Size(87, 15);
             this.lblKensaku.strToolTip = null;
@@ -368,7 +354,7 @@
             this.txtCalendarYMopen.MaxLength = 7;
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
-            this.txtCalendarYMopen.TabIndex = 1;
+            this.txtCalendarYMopen.TabIndex = 6;
             this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtCalendarYMclose
@@ -379,7 +365,7 @@
             this.txtCalendarYMclose.MaxLength = 7;
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
-            this.txtCalendarYMclose.TabIndex = 2;
+            this.txtCalendarYMclose.TabIndex = 7;
             this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblZenGetuZaiko
@@ -494,7 +480,7 @@
             this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridSeihin.Size = new System.Drawing.Size(1376, 490);
             this.gridSeihin.StandardTab = true;
-            this.gridSeihin.TabIndex = 11;
+            this.gridSeihin.TabIndex = 10;
             // 
             // lblText
             // 
@@ -650,11 +636,49 @@
             this.txtGihuGenzaiko.TabStop = false;
             this.txtGihuGenzaiko.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // lblShohinKensaku
+            // 
+            this.lblShohinKensaku.AutoSize = true;
+            this.lblShohinKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblShohinKensaku.ForeColor = System.Drawing.Color.Navy;
+            this.lblShohinKensaku.Location = new System.Drawing.Point(43, 42);
+            this.lblShohinKensaku.Name = "lblShohinKensaku";
+            this.lblShohinKensaku.Size = new System.Drawing.Size(71, 15);
+            this.lblShohinKensaku.strToolTip = null;
+            this.lblShohinKensaku.TabIndex = 103;
+            this.lblShohinKensaku.Text = "商品検索";
+            this.lblShohinKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // baseLabel2
+            // 
+            this.baseLabel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.baseLabel2.Location = new System.Drawing.Point(29, 47);
+            this.baseLabel2.Name = "baseLabel2";
+            this.baseLabel2.Size = new System.Drawing.Size(1349, 114);
+            this.baseLabel2.strToolTip = null;
+            this.baseLabel2.TabIndex = 102;
+            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // D0380_ShohinMotochoKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.lblShohinKensaku);
+            this.Controls.Add(this.labelSet_Maker);
+            this.Controls.Add(this.labelSet_Chubunrui);
+            this.Controls.Add(this.labelSet_Daibunrui);
+            this.Controls.Add(this.lblTanaban);
+            this.Controls.Add(this.lblGrayTanaGihu);
+            this.Controls.Add(this.lblGrayTanaHon);
+            this.Controls.Add(this.lblGrayShohin);
+            this.Controls.Add(this.labelSet_Eigyosho);
+            this.Controls.Add(this.lblShohinCd);
+            this.Controls.Add(this.txtShohinCd);
+            this.Controls.Add(this.txtKensaku);
+            this.Controls.Add(this.lblHinmeiKataban);
+            this.Controls.Add(this.lblKensaku);
             this.Controls.Add(this.txtGihuZenZaiko);
             this.Controls.Add(this.txtGihuGenzaiko);
             this.Controls.Add(this.txtGihuShuko);
@@ -675,13 +699,13 @@
             this.Controls.Add(this.txtCalendarYMopen);
             this.Controls.Add(this.lblaida);
             this.Controls.Add(this.lblKensakukaishi);
-            this.Controls.Add(this.gbShohinKensaku);
+            this.Controls.Add(this.baseLabel2);
             this.Name = "D0380_ShohinMotochoKakunin";
             this.Text = "D0380_ShohinMotochoKakunin";
             this.Load += new System.EventHandler(this.D0380_ShohinMotochoKakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0380_ShohinMotochoKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.baseLabel2, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
-            this.Controls.SetChildIndex(this.gbShohinKensaku, 0);
             this.Controls.SetChildIndex(this.lblKensakukaishi, 0);
             this.Controls.SetChildIndex(this.lblaida, 0);
             this.Controls.SetChildIndex(this.txtCalendarYMopen, 0);
@@ -703,19 +727,31 @@
             this.Controls.SetChildIndex(this.txtGihuGenzaiko, 0);
             this.Controls.SetChildIndex(this.txtGihuZenZaiko, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
+            this.Controls.SetChildIndex(this.lblKensaku, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
+            this.Controls.SetChildIndex(this.lblHinmeiKataban, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
+            this.Controls.SetChildIndex(this.txtKensaku, 0);
             this.Controls.SetChildIndex(this.btnF04, 0);
+            this.Controls.SetChildIndex(this.txtShohinCd, 0);
             this.Controls.SetChildIndex(this.btnF05, 0);
+            this.Controls.SetChildIndex(this.lblShohinCd, 0);
             this.Controls.SetChildIndex(this.btnF06, 0);
+            this.Controls.SetChildIndex(this.labelSet_Eigyosho, 0);
             this.Controls.SetChildIndex(this.btnF07, 0);
+            this.Controls.SetChildIndex(this.lblGrayShohin, 0);
             this.Controls.SetChildIndex(this.btnF08, 0);
+            this.Controls.SetChildIndex(this.lblGrayTanaHon, 0);
             this.Controls.SetChildIndex(this.btnF09, 0);
+            this.Controls.SetChildIndex(this.lblGrayTanaGihu, 0);
             this.Controls.SetChildIndex(this.btnF10, 0);
+            this.Controls.SetChildIndex(this.lblTanaban, 0);
+            this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
+            this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
-            this.gbShohinKensaku.ResumeLayout(false);
-            this.gbShohinKensaku.PerformLayout();
+            this.Controls.SetChildIndex(this.labelSet_Maker, 0);
+            this.Controls.SetChildIndex(this.lblShohinKensaku, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -723,8 +759,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox gbShohinKensaku;
         private Common.Ctl.BaseText txtKensaku;
         private Common.Ctl.BaseLabel lblKensaku;
         private Common.Ctl.BaseLabel lblShohinCd;
@@ -758,5 +792,7 @@
         private Common.Ctl.BaseTextMoney txtGihuShuko;
         private Common.Ctl.BaseTextMoney txtHonGenzaiko;
         private Common.Ctl.BaseTextMoney txtGihuGenzaiko;
+        private Common.Ctl.BaseLabel lblShohinKensaku;
+        private Common.Ctl.BaseLabel baseLabel2;
     }
 }
