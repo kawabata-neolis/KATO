@@ -82,6 +82,7 @@ namespace KATO.Common.Form
             this.gridSeihin.AllowUserToAddRows = false;
             this.gridSeihin.AllowUserToResizeColumns = false;
             this.gridSeihin.AllowUserToResizeRows = false;
+            this.gridSeihin.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -114,7 +115,7 @@ namespace KATO.Common.Form
             this.gridSeihin.RowHeadersVisible = false;
             this.gridSeihin.RowTemplate.Height = 21;
             this.gridSeihin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSeihin.Size = new System.Drawing.Size(474, 381);
+            this.gridSeihin.Size = new System.Drawing.Size(784, 381);
             this.gridSeihin.StandardTab = true;
             this.gridSeihin.TabIndex = 0;
             this.gridSeihin.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridSeihin_CellDoubleClick);
@@ -123,7 +124,7 @@ namespace KATO.Common.Form
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(405, 41);
+            this.btnF11.Location = new System.Drawing.Point(707, 41);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 3;
@@ -133,7 +134,7 @@ namespace KATO.Common.Form
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(405, 12);
+            this.btnF12.Location = new System.Drawing.Point(707, 12);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 4;
@@ -144,7 +145,7 @@ namespace KATO.Common.Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 524);
+            this.ClientSize = new System.Drawing.Size(854, 524);
             this.Controls.Add(this.lblSetDaibunrui);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridSeihin);

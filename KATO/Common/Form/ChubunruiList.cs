@@ -181,7 +181,7 @@ namespace KATO.Common.Form
 
             //個々の幅、文章の寄せ
             setColumnKataban(chubunCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
-            setColumnKataban(chubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnKataban(chubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 650);
 
         }
 

@@ -1714,6 +1714,12 @@
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Riekiritsu_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_Mesai_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_Header_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Uriagesakujo_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
