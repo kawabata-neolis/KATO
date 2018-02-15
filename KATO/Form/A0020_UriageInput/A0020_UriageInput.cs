@@ -120,7 +120,17 @@ namespace KATO.Form.A0020_UriageInput
             this.KeyPreview = true;
 
             this.btnF01.Text = STR_FUNC_F1;
-            this.btnF03.Text = STR_FUNC_F3;
+
+            //閲覧権限がある場合
+            if (("1").Equals(etsuranFlg))
+            {
+                this.btnF03.Text = STR_FUNC_F3;
+
+            }
+            else
+            {
+                this.btnF03.Text = "F3:削除申請";
+            }
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF07.Text = "F7:行削除";
             this.btnF08.Text = "F8:売上実績確認";
@@ -689,13 +699,26 @@ namespace KATO.Form.A0020_UriageInput
                 /*[１]環境ユーザ*/
                 UriageInputItem.Add(Environment.UserName);
 
-                //ビジネス層、プロシージャー実行（売上ヘッダ削除_PROC、受注_売上数_戻し更新_PROC、売上明細削除_PROC）
-                uriageinputB.delUriageData(UriageInputItem);
+                //閲覧権限がある場合
+                if (("1").Equals(etsuranFlg))
+                {
+                    //ビジネス層、プロシージャー実行（売上ヘッダ削除_PROC、受注_売上数_戻し更新_PROC、売上明細削除_PROC）
+                    uriageinputB.delUriageData(UriageInputItem);
 
+                    // メッセージボックスの処理、削除成功の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
 
-                // メッセージボックスの処理、削除成功の場合のウィンドウ（OK）
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
+                }
+                else
+                {
+                    //売上削除承認に追加
+                    uriageinputB.updUriageSakujoShonin(UriageInputItem);
+
+                    // メッセージボックスの処理、申請成功の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除申請をしました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                }
 
                 //取消メソッドへ。
                 delText();

@@ -2491,6 +2491,122 @@ namespace KATO.Business.A0020_UriageInput
             }
         }
 
+        ///<summary>
+        ///updUriagesakujo
+        ///売上削除承認入力の登録
+        ///引数　：List[0](受注番号),[1](環境ユーザ)
+        ///戻り値：なし
+        ///</summary>
+        public void updUriageSakujoShonin(List<string> UriageInputItem)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLSelect = new List<string>();
+            List<string> lstSQLUpdate = new List<string>();
+            List<string> lstSQLInsert = new List<string>();
 
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQLSelect.Add("A1520_Uriageshonin");
+            lstSQLSelect.Add("Uriageshonin_Uriagesakujo_SELECT");
+
+            lstSQLUpdate.Add("A1520_Uriageshonin");
+            lstSQLUpdate.Add("Uriageshonin_Uriagesakujo_UPDATE");
+
+            lstSQLInsert.Add("A1520_Uriageshonin");
+            lstSQLInsert.Add("Uriageshonin_Uriagesakujo_INSERT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQLSelect);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    throw new Exception();
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, UriageInputItem[0]);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                //データがなければ
+                if (dtSetCd_B.Rows.Count == 0)
+                {
+                    //INSERT
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLInsert);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        throw new Exception();
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, UriageInputItem[0],        //受注番号
+                                                             "N",                       //承認フラグ
+                                                             DateTime.Now.ToString(),   //登録日時
+                                                             UriageInputItem[1],        //登録ユーザー名
+                                                             DateTime.Now.ToString(),   //更新日時
+                                                             UriageInputItem[1]);       //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
+                }
+                else
+                {
+                    //UPDATE
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdate);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        throw new Exception();
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, UriageInputItem[0],        //受注番号
+                                                             "N",                       //承認フラグ
+                                                             DateTime.Now.ToString(),   //更新日時
+                                                             UriageInputItem[1]);       //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
+
+                }
+                // コミット
+                dbconnective.Commit();
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                // ロールバック処理
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }
