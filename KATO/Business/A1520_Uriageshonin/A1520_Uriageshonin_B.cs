@@ -446,7 +446,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQLSelect = new List<string>();
-            List<string> lstSQLUpdate = new List<string>();
+            List<string> lstSQLUpdateUriShonin = new List<string>();
+            List<string> lstSQLUpdateUriHeader = new List<string>();
+            List<string> lstSQLUpdateUriMesai = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
@@ -455,8 +457,14 @@ namespace KATO.Business.A1520_Uriageshonin_B
             lstSQLSelect.Add("A1520_Uriageshonin");
             lstSQLSelect.Add("Uriageshonin_Uriagesakujo_SELECT");
 
-            lstSQLUpdate.Add("A1520_Uriageshonin");
-            lstSQLUpdate.Add("Uriageshonin_Uriagesakujo_UPDATE");
+            lstSQLUpdateUriShonin.Add("A1520_Uriageshonin");
+            lstSQLUpdateUriShonin.Add("Uriageshonin_Uriagesakujo_UPDATE");
+
+            lstSQLUpdateUriHeader.Add("A1520_Uriageshonin");
+            lstSQLUpdateUriHeader.Add("Uriageshonin_Uriagesakujo_Header_UPDATE");
+
+            lstSQLUpdateUriMesai.Add("A1520_Uriageshonin");
+            lstSQLUpdateUriMesai.Add("Uriageshonin_Uriagesakujo_Mesai_UPDATE");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -468,6 +476,9 @@ namespace KATO.Business.A1520_Uriageshonin_B
             DBConnective dbconnective = new DBConnective();
             try
             {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQLSelect);
 
@@ -486,13 +497,13 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 //データがなければ(売上削除承認テーブルにデータがないものは表示していないため起きない)
                 if (dtSetCd_B.Rows.Count == 0)
                 {
-                    return;
+                    throw new Exception();
                 }
                 else
                 {
-                    //UPDATE
+                    //UPDATE（売上削除承認）
                     //SQLファイルのパス取得
-                    strSQLInput = opensql.setOpenSQL(lstSQLUpdate);
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdateUriShonin);
 
                     //パスがなければ返す
                     if (strSQLInput == "")
@@ -509,11 +520,54 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     //SQL接続後、該当データを更新
                     dbconnective.RunSql(strSQLInput);
 
+                    //UPDATE（売上ヘッダ）
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdateUriHeader);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return;
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                                                             lstGrid[2],    //更新日時
+                                                             lstGrid[3]);   //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
+
+                    //UPDATE（売上明細）
+                    //SQLファイルのパス取得
+                    strSQLInput = opensql.setOpenSQL(lstSQLUpdateUriMesai);
+
+                    //パスがなければ返す
+                    if (strSQLInput == "")
+                    {
+                        return;
+                    }
+
+                    //SQLファイルと該当コードでフォーマット
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                                                             lstGrid[2],    //更新日時
+                                                             lstGrid[3]);   //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
+
                 }
+
+                // コミット
+                dbconnective.Commit();
+
                 return;
             }
             catch (Exception ex)
             {
+                // ロールバック処理
+                dbconnective.Rollback();
+
                 throw (ex);
             }
             finally
