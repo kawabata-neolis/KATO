@@ -350,12 +350,25 @@ namespace KATO.Form.A0010_JuchuInput
         // 入力欄削除
         private void btnDelRow_Click(object sender, EventArgs e)
         {
+
+
             DBConnective con = new DBConnective();
             A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
             try
             {
                 bool flg = true;
                 Button b = (Button)sender;
+
+                Panel p = (Panel)b.Parent;
+                string sLbl = ((Label)p.Controls["cate"]).Text;
+
+                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "取消", "この" + sLbl + "を取り消しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
                 //tableLayoutPanel1.Controls.Remove(b.Parent);
                 TableLayoutControlCollection c = tableLayoutPanel1.Controls;
 
@@ -515,6 +528,7 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseCalendar)inputPanel.Controls["txtNohki"]).Text = r["納期"].ToString();
                 ((BaseText)inputPanel.Controls["txtChuban"]).Text = r["注番"].ToString();
                 ((BaseText)inputPanel.Controls["txtEigyo"]).Text = r["営業所コード"].ToString();
+                ((BaseText)inputPanel.Controls["txtSouko"]).Text = r["出庫倉庫"].ToString();
 
                 ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = r["発注年月日"].ToString();
                 ((BaseText)inputPanel.Controls["tmpHSha"]).Text = r["発注者コード"].ToString();
@@ -1182,6 +1196,7 @@ namespace KATO.Form.A0010_JuchuInput
             BaseText txtSouko = new BaseText();
             txtSouko.Name = "txtSouko";
             basePanel.Controls.Add(txtSouko);
+            txtSouko.Text = strEigyoCd;
             txtSouko.SendToBack();
             txtSouko.Visible = false;
 
@@ -1251,6 +1266,13 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に出庫済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
+                    return;
+                }
+
+                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "出庫", "出庫を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                {
                     return;
                 }
 
@@ -1324,6 +1346,13 @@ namespace KATO.Form.A0010_JuchuInput
                     return;
                 }
 
+                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "本加工発注", "発注を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
                 if (string.IsNullOrWhiteSpace(strJuchuNo))
                 {
                     return;
@@ -1391,6 +1420,13 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "既に出庫済です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
+                    return;
+                }
+
+                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "加工品出庫", "出庫を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessageboxSa.ShowDialog() == DialogResult.No)
+                {
                     return;
                 }
 

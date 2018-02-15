@@ -1185,7 +1185,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) AS 型番,";
             strSelect += "a.商品コード AS 商品コード, ";
-            strSelect += "a.営業所コード AS 営業所コード";
+            strSelect += "a.営業所コード AS 営業所コード, ";
+            strSelect += "'' AS 出庫倉庫 ";
             strSelect += " FROM 仮発注 a, 商品 c";
             strSelect += " WHERE a.受注番号 = " + strJuchuNo;
             strSelect += " AND a.削除 ='N'";
@@ -1229,7 +1230,8 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ５,''))";
             strSelect += " + ' ' + Rtrim(ISNULL(b.Ｃ６,'')) AS 型番,";
             strSelect += "b.商品コード AS 商品コード, ";
-            strSelect += "a.営業所コード AS 営業所コード";
+            strSelect += "a.営業所コード AS 営業所コード, ";
+            strSelect += "b.出庫倉庫 AS 出庫倉庫";
             strSelect += " FROM 仮出庫ヘッダ a, 仮出庫明細 b, 商品 c";
             strSelect += " WHERE a.伝票番号 = b.伝票番号 ";
             strSelect += " AND a.削除 ='N'";

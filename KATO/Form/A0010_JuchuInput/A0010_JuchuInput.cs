@@ -651,8 +651,8 @@ namespace KATO.Form.A0010_JuchuInput
                 if (selKakoFlg)
                 {
                     panel1.Visible = false;
-                    BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "加工品の受注です。加工品受注画面で修正してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                    basemessageboxEr.ShowDialog();
+                    //BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "加工品の受注です。加工品受注画面で修正してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    //basemessageboxEr.ShowDialog();
 
                     lblHonshaShukko.Visible = false;
                     lblGihuShukko.Visible = false;
@@ -821,7 +821,7 @@ namespace KATO.Form.A0010_JuchuInput
                         basemessageboxEr.ShowDialog();
                         return;
                     }
-                    else if (decUriSuryo > 0)
+                    else if (decUriSuryo.CompareTo(0) > 0)
                     {
                         txtUriSuryo.Text = decUriSuryo.ToString();
                         txtJuchuNo.ReadOnly = true;
@@ -889,7 +889,7 @@ namespace KATO.Form.A0010_JuchuInput
                         if (decShiireSuryo > 0)
                         {
                             nokiFlg = true;
-                            BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            BaseMessageBox basemessageboxEr = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "すでに仕入済みです。納期・数量・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                             basemessageboxEr.ShowDialog();
 
                             txtJuchuNo.ReadOnly = true;
