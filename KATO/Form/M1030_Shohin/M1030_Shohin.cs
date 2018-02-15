@@ -311,6 +311,65 @@ namespace KATO.Form.M1030_Shohin
         }
 
         ///<summary>
+        ///txtData1_KeyDown
+        ///キー入力判定(C1)
+        ///</summary>
+        private void txtData1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                    this.showShohinList();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        ///<summary>
         ///judBtnClick
         ///ボタンの反応
         ///</summary>
@@ -393,7 +452,6 @@ namespace KATO.Form.M1030_Shohin
                     shouhinlist.lblGrayYM = lblGrayToroku;
                     shouhinlist.btxtShohinCd = txtShohinCd;
                     shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
-                    shouhinlist.blNoTana = false;
                     shouhinlist.blShohinMaster = true;
                     shouhinlist.chbxHontoroku = chbxHontoroku;
 
@@ -420,9 +478,6 @@ namespace KATO.Form.M1030_Shohin
                 //既に１回以上商品リストを表示しているので、hideを元に戻す
                 shouhinlist.Show();
 
-                //棚番なしチェックを外す
-                shouhinlist.setNotorokuCheckedFalse();
-
                 //再検索
                 shouhinlist.setShohinView();
             }
@@ -430,90 +485,71 @@ namespace KATO.Form.M1030_Shohin
 
         ///<summary>
         ///showShohinListTana
-        ///商品リストに移動(棚番）(前提)
+        ///商品リストに移動(棚番なし)
         ///</summary>
         private void showShohinListTana()
         {
-            //棚番なしチェックを付ける
-            chbxNotTana.Checked = true;
-
-            //商品リストが一回以上開いたことがない場合
-            if (shouhinlist == null)
+            ShouhinNoTanaList shouhinnolist = new ShouhinNoTanaList(this);
+            try
             {
-                shouhinlist = new ShouhinList(this);
-                try
+                //検索項目に一つでも記入がある場合
+                if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                    labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                    txtKensaku.blIsEmpty() == false)
                 {
-                    //検索項目に一つでも記入がある場合
-                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
-                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
-                        txtKensaku.blIsEmpty() == false)
-                    {
-                        shouhinlist.blKensaku = false;
-                    }
-                    else
-                    {
-                        shouhinlist.blKensaku = true;
-                    }
-
-                    shouhinlist.intFrmKind = CommonTeisu.FRM_SHOHIN;
-                    shouhinlist.strYMD = "";
-                    shouhinlist.strEigyoushoCode = "";
-                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
-                    shouhinlist.lsChubunrui = labelSet_Chubunrui;
-                    shouhinlist.lsMaker = labelSet_Maker;
-                    shouhinlist.btxtKensaku = txtKensaku;
-                    shouhinlist.btxtHinC1 = txtData1;
-                    shouhinlist.btxtHinC2 = txtData2;
-                    shouhinlist.btxtHinC3 = txtData3;
-                    shouhinlist.btxtHinC4 = txtData4;
-                    shouhinlist.btxtHinC5 = txtData5;
-                    shouhinlist.btxtHinC6 = txtData6;
-                    shouhinlist.bmtxtHyojunBaika = txtHyojun;
-                    shouhinlist.bmtxtShireTanka = txtShire;
-                    shouhinlist.bmtxtHyokaTanka = txtHyoka;
-                    shouhinlist.bmtxtTateneShire = txtTatene;
-                    shouhinlist.btxtZaikokbn = txtZaiko;
-                    shouhinlist.lsTanabanH = labelSet_TanabanHonsha;
-                    shouhinlist.lsTanabanG = labelSet_TanabanGihu;
-                    shouhinlist.btxtMemo = txtMemo;
-                    shouhinlist.bmtxtTeika = txtTeika;
-                    shouhinlist.bmtxtHakosu = txtHako;
-                    shouhinlist.btxtComment = txtComment;
-                    shouhinlist.lblGrayYM = lblGrayToroku;
-                    shouhinlist.btxtShohinCd = txtShohinCd;
-                    shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
-                    shouhinlist.blNoTana = true;
-                    shouhinlist.blShohinMaster = false;
-                    
-                    shouhinlist.ShowDialog();
-
-                    //初回時用、二回目以降は無くても動作する
-                    if (txtShohinCd.Text != "")
-                    {
-                        txtData1.Focus();
-                    }
+                    shouhinnolist.blKensaku = false;
                 }
-                catch (Exception ex)
+                else
                 {
-                    //データロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
+                    shouhinnolist.blKensaku = true;
+                }
+
+                shouhinnolist.intFrmKind = CommonTeisu.FRM_SHOHIN;
+                shouhinnolist.strYMD = "";
+                shouhinnolist.strEigyoushoCode = "";
+                shouhinnolist.lsDaibunrui = labelSet_Daibunrui;
+                shouhinnolist.lsChubunrui = labelSet_Chubunrui;
+                shouhinnolist.lsMaker = labelSet_Maker;
+                shouhinnolist.btxtKensaku = txtKensaku;
+                shouhinnolist.btxtHinC1 = txtData1;
+                shouhinnolist.btxtHinC2 = txtData2;
+                shouhinnolist.btxtHinC3 = txtData3;
+                shouhinnolist.btxtHinC4 = txtData4;
+                shouhinnolist.btxtHinC5 = txtData5;
+                shouhinnolist.btxtHinC6 = txtData6;
+                shouhinnolist.bmtxtHyojunBaika = txtHyojun;
+                shouhinnolist.bmtxtShireTanka = txtShire;
+                shouhinnolist.bmtxtHyokaTanka = txtHyoka;
+                shouhinnolist.bmtxtTateneShire = txtTatene;
+                shouhinnolist.btxtZaikokbn = txtZaiko;
+                shouhinnolist.lsTanabanH = labelSet_TanabanHonsha;
+                shouhinnolist.lsTanabanG = labelSet_TanabanGihu;
+                shouhinnolist.btxtMemo = txtMemo;
+                shouhinnolist.bmtxtTeika = txtTeika;
+                shouhinnolist.bmtxtHakosu = txtHako;
+                shouhinnolist.btxtComment = txtComment;
+                shouhinnolist.lblGrayYM = lblGrayToroku;
+                shouhinnolist.btxtShohinCd = txtShohinCd;
+                shouhinnolist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+                shouhinnolist.chbxHontoroku = chbxHontoroku;
+
+                shouhinnolist.ShowDialog();
+
+                //初回時用、二回目以降は無くても動作する
+                if (txtShohinCd.Text != "")
+                {
+                    txtData1.Focus();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //既に１回以上商品リストを表示しているので、hideを元に戻す
-                shouhinlist.Show();
-
-                //棚番なしチェックを付ける
-                shouhinlist.setNotorokuCheckedTrue();
-
-                //再検索
-                shouhinlist.setShohinView();
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
         }
 

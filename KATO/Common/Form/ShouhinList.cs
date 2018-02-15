@@ -147,14 +147,11 @@ namespace KATO.Common.Form
 
         //DB参照の場所を判断（テキストボックスから）
         int intDBjud = 0;
-
-        //棚無し画面かどうか
-        public bool blNoTana = false;
-
-        Boolean blnZaikoKensaku = true;
-
+        
         //本登録されたデータを呼び出した判定
         public CheckBox chbxHontoroku;
+
+        Boolean blnZaikoKensaku = true;
 
         //表示時専用の本登録データ判定
         bool blHontorokuDataSub = false;
@@ -441,16 +438,6 @@ namespace KATO.Common.Form
             //DataGridViewの初期設定
             setupGrid();
 
-            // 未登録棚を表示する場合
-            if (blNoTana == true)
-            {
-                chkNotToroku.Checked = true;
-            }
-            else
-            {
-                chkNotToroku.Checked = false;
-            }
-
             //検索単語があれば表示
             if (blKensaku == true)
             {
@@ -702,6 +689,7 @@ namespace KATO.Common.Form
                     break;
             }
         }
+
         ///<summary>
         ///judTokuiListGridKeyDown
         ///キー入力判定(グリッド)
@@ -961,20 +949,8 @@ namespace KATO.Common.Form
             //棚番本社（ラベルセット）
             this.lsTanabanH.CodeTxtText = dtShohin.Rows[0]["棚番本社"].ToString();
 
-            //本社棚番があり、棚番ありで検索されて場合
-            if (blNoTana == false && this.lsTanabanH.codeTxt.blIsEmpty() == true)
-            {
-                this.lsTanabanH.chkTxtTanaban();
-            }
-
             //棚番岐阜（ラベルセット）
             this.lsTanabanG.CodeTxtText = dtShohin.Rows[0]["棚番岐阜"].ToString();
-
-            //岐阜棚番があり、棚番ありで検索されて場合
-            if (blNoTana == false && this.lsTanabanG.codeTxt.blIsEmpty() == true)
-            {
-                this.lsTanabanG.chkTxtTanaban();
-            }
 
             //棚番本社（ベーステキスト）
             this.btxtTanabanH.Text = dtShohin.Rows[0]["棚番本社"].ToString();
@@ -1080,8 +1056,6 @@ namespace KATO.Common.Form
 
             //画面を隠す
             this.Hide();
-
-
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
             try
@@ -1445,22 +1419,6 @@ namespace KATO.Common.Form
         public void setChubun()
         {
             labelSet_Chubunrui.setTxtChubunruiLeave();
-        }
-
-        ///setNotorokuCheckedTrue
-        ///棚番なしチェックを付ける
-        ///</summary>
-        public void setNotorokuCheckedTrue()
-        {
-            chkNotToroku.Checked = true;
-        }
-
-        ///setNotorokuCheckedFalse
-        ///棚番なしチェックを外す
-        ///</summary>
-        public void setNotorokuCheckedFalse()
-        {
-            chkNotToroku.Checked = false;
         }
     }
 }

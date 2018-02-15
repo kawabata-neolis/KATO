@@ -1,31 +1,23 @@
-﻿using System;
+﻿using KATO.Common.Util;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using KATO.Common.Util;
-using KATO.Form.F0140_TanaorosiInput;
-using KATO.Form.M1030_Shohin;
-using KATO.Form.D0380_ShohinMotochoKakunin;
-using KATO.Form.A0010_JuchuInput;
-using KATO.Form.A0100_HachuInput;
-using KATO.Form.M1210_ShohinbetsuRiekiritsuSettei;
-using KATO.Form.M1160_TokuteimukesakiTanka;
 
 namespace KATO.Common.Business
 {
     ///<summary>
-    ///ShouhinList_B
-    ///商品リストフォーム
+    ///ShouhinNoTanaList_B
+    ///棚番なし商品リストフォーム
     ///作成者：大河内
-    ///作成日：2017/05/01
+    ///作成日：2018/02/15
     ///更新者：大河内
-    ///更新日：2018/01/24
+    ///更新日：2018/02/15
     ///カラム論理名
     ///</summary>
-    class ShouhinList_B
+    class ShouhinNoTanaList_B
     {
         string strSQLName = null;
 
@@ -45,7 +37,7 @@ namespace KATO.Common.Business
             string strWhere = "";
 
             //本登録データの場合
-            if(lstBoolean[2] == true)
+            if (lstBoolean[2] == true)
             {
                 //大分類あり
                 if (lstString[0] != "")
@@ -107,7 +99,7 @@ namespace KATO.Common.Business
                 //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("Common");
                 lstSQL.Add("CommonForm");
-                lstSQL.Add("ShohinList_View");
+                lstSQL.Add("ShohinNoTanaList_View");
             }
             //仮登録データの場合
             else
@@ -164,15 +156,15 @@ namespace KATO.Common.Business
                 if (lstBoolean[0] == true)
                 {
                     strWhere = strWhere + "AND  (";
-                    strWhere = strWhere + " ((SELECT 棚番名 FROM 棚番 WHERE 商品.棚番本社=棚番.棚番)  IS NULL)";
-                    strWhere = strWhere + " OR ((SELECT 棚番名 FROM 棚番 WHERE 商品.棚番岐阜=棚番.棚番)  IS NULL)";
+                    strWhere = strWhere + " ((SELECT 棚番名 FROM 棚番 WHERE 仮商品.棚番本社=棚番.棚番)  IS NULL)";
+                    strWhere = strWhere + " OR ((SELECT 棚番名 FROM 棚番 WHERE 仮商品.棚番岐阜=棚番.棚番)  IS NULL)";
                     strWhere = strWhere + " )";
                 }
 
                 //SQLファイルのパスとファイル名を追加
                 lstSQL.Add("Common");
                 lstSQL.Add("CommonForm");
-                lstSQL.Add("ShohinList_View_Kari");
+                lstSQL.Add("ShohinNoTanaList_Kari_View");
             }
 
             //SQL接続
@@ -199,83 +191,6 @@ namespace KATO.Common.Business
 
                 //SQL発行
                 dtShohin = dbConnective.ReadSql(strSQLInput);
-
-                //データがあった場合
-                if (dtShohin.Rows.Count > 0)
-                {
-                    //掛け率のカラム追加
-                    dtShohin.Columns.Add("掛率", Type.GetType("System.String"));
-                    DataRow drInsert = dtShohin.NewRow();
-                    drInsert["掛率"] = "";
-
-                    for (int intShohinCnt = 0; intShohinCnt < dtShohin.Rows.Count; intShohinCnt++)
-                    {
-                        //本社在庫が空でない時
-                        if (dtShohin.Rows[intShohinCnt]["本社在庫"].ToString() != "")
-                        {
-                            //本社在庫が0の時
-                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["本社在庫"].ToString()) == 0)
-                            {
-                                dtShohin.Rows[intShohinCnt]["本社在庫"] = DBNull.Value;
-                            }
-                        }
-
-                        //本社ﾌﾘｰが空でない時
-                        if (dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"].ToString() != "")
-                        {
-                            //本社ﾌﾘｰが0の時
-                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"].ToString()) == 0)
-                            {
-                                dtShohin.Rows[intShohinCnt]["本社ﾌﾘｰ"] = DBNull.Value;
-                            }
-                        }
-
-                        //岐阜在庫が空でない時
-                        if (dtShohin.Rows[intShohinCnt]["岐阜在庫"].ToString() != "")
-                        {
-                            //岐阜在庫が0の時
-                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["岐阜在庫"].ToString()) == 0)
-                            {
-                                dtShohin.Rows[intShohinCnt]["岐阜在庫"] = DBNull.Value;
-                            }
-                        }
-
-                        //岐阜ﾌﾘｰが空でない時
-                        if (dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"].ToString() != "")
-                        {
-                            //岐阜ﾌﾘｰが0の時
-                            if (decimal.Parse(dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"].ToString()) == 0)
-                            {
-                                dtShohin.Rows[intShohinCnt]["岐阜ﾌﾘｰ"] = DBNull.Value;
-                            }
-                        }
-                        
-                        //定価を取り出す
-                        string strTeika = string.Format("{0:#,0}", decimal.Parse(dtShohin.Rows[intShohinCnt]["定価"].ToString()));
-                        //仕入単価を取り出す
-                        string strShireTanka = string.Format("{0:#,0.00}", decimal.Parse(dtShohin.Rows[intShohinCnt]["仕入単価"].ToString()));
-
-                        //仕入単価と定価が同じになる場合
-                        if (strShireTanka == "0.00" || strTeika == "0")
-                        {
-                            //掛率を挿入
-                            dtShohin.Rows[intShohinCnt]["掛率"] = "0";
-                        }
-                        else
-                        {
-                            //掛率を挿入
-                            dtShohin.Rows[intShohinCnt]["掛率"] = ((decimal)(decimal.Parse(strShireTanka) / decimal.Parse(strTeika)) * 100).ToString("#.0");
-                        }
-
-                        //定価を挿入
-                        dtShohin.Rows[intShohinCnt]["定価"] = strTeika;
-
-                        //仕入単価を挿入
-                        dtShohin.Rows[intShohinCnt]["仕入単価"] = strShireTanka;
-
-
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -483,107 +398,43 @@ namespace KATO.Common.Business
         }
 
         ///<summary>
-        ///FormMove
-        ///戻るボタンの処理
-        ///カラム論理名
+        ///getTanabanCnt
+        ///棚番がある場合にカウント
         ///</summary>
-        public void FormMove(int intFrmKind)
+        public DataTable getTanabanCnt(string strTanaban)
         {
-            //全てのフォームの中から
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-            {
-                //棚卸入力フォームを探す
-                if (intFrmKind == CommonTeisu.FRM_TANAOROSHI && frm.Name == "F0140_TanaorosiInput")
-                {
-                    //データを連れてくるため、newをしないこと
-                    F0140_TanaorosiInput tanaorosiinput = (F0140_TanaorosiInput)frm;
-                    tanaorosiinput.setShohinClose();
-                    break;
-                }
-                //商品元帳確認フォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_SHOHINMOTOCHOKAKUNIN && frm.Name == "D0380_ShohinMotochoKakunin")
-                {
-                    //データを連れてくるため、newをしないこと
-                    D0380_ShohinMotochoKakunin shohinmotochokakunin = (D0380_ShohinMotochoKakunin)frm;
-                    shohinmotochokakunin.setShohinClose();
-                    break;
-                }
-                //発注入力のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_HACHUINPUT && frm.Name == "A0100_HachuInput")
-                {
-                    //データを連れてくるため、newをしないこと
-                    A0100_HachuInput hachuinput = (A0100_HachuInput)frm;
-                    hachuinput.closeShohinList();
-                    break;
-                }
-                //目的のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_SHOHINBETSURIEKIRITSUSETTEI && frm.Name == "M1210_ShohinbetsuRiekiritsuSettei")
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1210_ShohinbetsuRiekiritsuSettei shohinbetsuriekiritsusettei = (M1210_ShohinbetsuRiekiritsuSettei)frm;
-                    shohinbetsuriekiritsusettei.setShohinClose();
-                    break;
-                }
-                //特定向け先単価のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_TOKUTEIMUKESAKITANKA && frm.Name == "M1160_TokuteimukesakiTanka")
-                {
-                    //データを連れてくるため、newをしないこと
-                    M1160_TokuteimukesakiTanka tokuteimukesakitanka = (M1160_TokuteimukesakiTanka)frm;
-                    tokuteimukesakitanka.setShohinClose();
-                    break;
-                }
-            }
-        }
+            DataTable dtGetTanaCnt = new DataTable();
 
-        ///<summary>
-        ///FormMove
-        ///仕入単価取得用(仕入入力画面で使用)
-        ///カラム論理名
-        ///</summary>
-        public DataTable getShireTanka(string strShohinCd)
-        {
-            DataTable dtShireTanka = new DataTable();
+            //データ渡し用
+            List<string> lstStringSQL = new List<string>();
 
-            //SQLファイルのパスとファイル名を入れる用
-            List<string> lstSQLSelect = new List<string>();
+            //商品の処理
+            lstStringSQL = new List<string>();
 
-            //SQLファイルのパスとファイル名を追加(メニュー権限取得)
-            lstSQLSelect.Add("Common");
-            lstSQLSelect.Add("C_LIST_Shohin_SELECT_ShireTanka");
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_ShohinList_SELECT_TanaCnt");
 
-            //SQL実行時に取り出したデータを入れる用
-            DataTable dtSetCd_B = new DataTable();
-
-            //SQL発行
             OpenSQL opensql = new OpenSQL();
+            string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
-            //接続用クラスのインスタンス作成
+            //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //SQLファイルのパス取得(メニュー権限取得)
-                string strSQLSelect = opensql.setOpenSQL(lstSQLSelect);
+                strSQLInput = opensql.setOpenSQL(lstStringSQL);
+                strSQLInput = string.Format(strSQLInput, strTanaban); //棚番
 
-                //パスがなければ返す
-                if (strSQLSelect == "")
-                {
-                    return(dtShireTanka);
-                }
+                dtGetTanaCnt = dbconnective.ReadSql(strSQLInput);
 
-                strSQLSelect = string.Format(strSQLSelect, strShohinCd);
-
-                //SQL接続後、該当データを取得
-                dtSetCd_B = dbconnective.ReadSql(strSQLSelect);
-
-                return(dtShireTanka);
+                return (dtGetTanaCnt);
             }
             catch (Exception ex)
             {
+                new CommonException(ex);
                 throw (ex);
             }
             finally
             {
-                //トランザクション終了
                 dbconnective.DB_Disconnect();
             }
         }
