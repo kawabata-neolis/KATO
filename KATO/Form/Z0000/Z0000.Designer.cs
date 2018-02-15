@@ -1027,7 +1027,7 @@
             // 
             // btn_1
             // 
-            this.btn_1.BackColor = System.Drawing.Color.LightYellow;
+            this.btn_1.BackColor = System.Drawing.Color.Cyan;
             this.btn_1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_1.Location = new System.Drawing.Point(30, 30);
             this.btn_1.Name = "btn_1";
@@ -3523,7 +3523,7 @@
             // 
             // btn_161
             // 
-            this.btn_161.BackColor = System.Drawing.Color.Cyan;
+            this.btn_161.BackColor = System.Drawing.Color.LightYellow;
             this.btn_161.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btn_161.Location = new System.Drawing.Point(30, 30);
             this.btn_161.Name = "btn_161";
@@ -3572,6 +3572,7 @@
             this.Text = "メニュー";
             this.Load += new System.EventHandler(this.Z0000_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);

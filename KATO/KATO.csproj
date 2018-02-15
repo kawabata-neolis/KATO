@@ -198,6 +198,7 @@
     <Compile Include="Common\Business\ShiresakiList_B.cs" />
     <Compile Include="Common\Business\ShohizeiritsuList_B.cs" />
     <Compile Include="Common\Business\ShouhinList_B.cs" />
+    <Compile Include="Common\Business\ShouhinNoTanaList_B.cs" />
     <Compile Include="Common\Business\TanabanList_B.cs" />
     <Compile Include="Common\Business\Tantosya_Kengen.cs" />
     <Compile Include="Common\Business\TantoushaList_B.cs" />
@@ -517,6 +518,12 @@
     </Compile>
     <Compile Include="Common\Form\ShohizeiritsuList.Designer.cs">
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Form\ShouhinNoTanaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\Form\ShouhinNoTanaList.Designer.cs">
+      <DependentUpon>ShouhinNoTanaList.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Form\TokuisakiList.cs">
       <SubType>Form</SubType>
@@ -1270,6 +1277,9 @@
       <DependentUpon>ShohizeiritsuList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\Form\ShouhinNoTanaList.resx">
+      <DependentUpon>ShouhinNoTanaList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\Form\TokuisakiList.resx">
       <DependentUpon>TokuisakiList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1791,10 +1801,13 @@
     <Content Include="SQL\Common\CommonForm\KakouGenkaList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Common\CommonForm\ShohinNoTanaList_Kari_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Common\CommonForm\MenuList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQL\Common\CommonForm\KariShohinList_View.sql">
+    <Content Include="SQL\Common\CommonForm\ShohinNoTanaList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\CommonForm\ShohinList_View_Kari.sql">
@@ -1939,6 +1952,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Shohin_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Common\C_LIST_ShohinList_SELECT_TanaCnt.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Common\C_LIST_Torihikisaki_SELECT.sql">

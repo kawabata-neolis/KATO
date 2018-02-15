@@ -49,7 +49,7 @@ namespace KATO.Common.Form
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtKensakuHuku = new KATO.Common.Ctl.BaseText();
-            this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblKensakuHuku = new KATO.Common.Ctl.BaseLabel(this.components);
             this.radSet_2btn_Toroku.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).BeginInit();
             this.SuspendLayout();
@@ -299,17 +299,17 @@ namespace KATO.Common.Form
             this.txtKensakuHuku.TabIndex = 4;
             this.txtKensakuHuku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListTxtKeyDown);
             // 
-            // baseLabel2
+            // lblKensakuHuku
             // 
-            this.baseLabel2.AutoSize = true;
-            this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(367, 99);
-            this.baseLabel2.Name = "baseLabel2";
-            this.baseLabel2.Size = new System.Drawing.Size(39, 15);
-            this.baseLabel2.strToolTip = null;
-            this.baseLabel2.TabIndex = 100;
-            this.baseLabel2.Text = "副番";
-            this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKensakuHuku.AutoSize = true;
+            this.lblKensakuHuku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKensakuHuku.Location = new System.Drawing.Point(367, 99);
+            this.lblKensakuHuku.Name = "lblKensakuHuku";
+            this.lblKensakuHuku.Size = new System.Drawing.Size(39, 15);
+            this.lblKensakuHuku.strToolTip = null;
+            this.lblKensakuHuku.TabIndex = 100;
+            this.lblKensakuHuku.Text = "副番";
+            this.lblKensakuHuku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ShouhinList
             // 
@@ -328,7 +328,7 @@ namespace KATO.Common.Form
             this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.txtKensakuHuku);
             this.Controls.Add(this.txtKensaku);
-            this.Controls.Add(this.baseLabel2);
+            this.Controls.Add(this.lblKensakuHuku);
             this.Controls.Add(this.lblKensaku);
             this.Name = "ShouhinList";
             this.Text = "ShouhinList";
@@ -358,6 +358,6 @@ namespace KATO.Common.Form
         private BaseLabel baseLabel1;
         private BaseLabel lblTitle;
         private BaseText txtKensakuHuku;
-        private BaseLabel baseLabel2;
+        private BaseLabel lblKensakuHuku;
     }
 }
