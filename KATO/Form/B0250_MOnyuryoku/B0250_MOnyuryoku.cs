@@ -602,8 +602,12 @@ namespace KATO.Form.B0250_MOnyuryoku
                     updSaikesan();
                     break;
                 case Keys.F7:
-                    logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ発行"));
-                    saveCSV();
+                    // ファンクションボタン制御
+                    if (this.btnF07.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ発行"));
+                        saveCSV();
+                    }
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "特値実行"));
