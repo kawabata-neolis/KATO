@@ -20,7 +20,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
         /// getZanList
         /// 受注残/発注残一覧取得
         /// </summary>
-        public DataTable getZanList(string[] listParam)
+        public DataTable getZanList(string[] listParam, bool flg)
         {
             DataTable dtZanList = null;
             string    strQuery = "";
@@ -253,7 +253,15 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,a.発注年月日 AS 発注日";
                 //strQuery += "      ,dbo.f_get受注番号_発注状態(b.受注番号) AS 状態";
                 //strQuery += "      ,CASE WHEN b.受注番号 IS NULL THEN '' ELSE dbo.f_get受注番号_発注状態(b.受注番号) END AS 状態";
-                strQuery += "      ,'' AS 状態";
+                if (flg)
+                {
+                    strQuery += "  ,'' AS 状態";
+                }
+                else
+                {
+                    strQuery += "  ,CASE WHEN b.受注番号 IS NULL THEN '' ELSE dbo.f_get受注番号_発注状態(b.受注番号) END AS 状態";
+                }
+                
                 strQuery += "      ,b.受注番号";
                 //strQuery += "      ,dbo.f_get担当者名(b.受注者コード) AS 受注者";
                 //strQuery += "      ,dbo.f_get担当者名(a.担当者コード) AS 担当者";
