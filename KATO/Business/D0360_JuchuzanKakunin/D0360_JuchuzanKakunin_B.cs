@@ -239,8 +239,10 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,(a.発注数量 - a.仕入済数量) AS 発注残";
                 strQuery += "      ,ROUND(b.受注単価, 0, 1) AS 売上単価";
                 strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.受注単価), 0, 1) AS 売上金額";
-                strQuery += "      ,b.仕入単価 AS 仕入単価";
-                strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.仕入単価), 0, 1) AS 仕入金額";
+                strQuery += "      ,a.発注単価 AS 仕入単価";
+                //strQuery += "      ,ROUND(((b.受注数量 - b.売上済数量 ) * b.仕入単価), 0, 1) AS 仕入金額";
+                //strQuery += "      ,a.発注金額 AS 仕入金額";
+                strQuery += "      ,ROUND(((a.発注数量 - a.仕入済数量 ) * a.発注単価), 0, 1) AS 仕入金額";
                 strQuery += "      ,a.注番";
                 strQuery += "      ,'' AS 仕入合計金額";
                 strQuery += "      ,'' AS 客先注番";
