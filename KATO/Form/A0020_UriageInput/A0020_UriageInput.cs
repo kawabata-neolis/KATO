@@ -238,9 +238,13 @@ namespace KATO.Form.A0020_UriageInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    btnF01.Focus();
-                    this.addJucyu();
+                    // ファンクションボタン制御
+                    if (btnF01.Enabled == true)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        btnF01.Focus();
+                        this.addJucyu();
+                    }
                     break;
                 case Keys.F2:
                     break;
@@ -678,15 +682,30 @@ namespace KATO.Form.A0020_UriageInput
                 return ;
             }
 
-            // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "表示中の伝票を削除します。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-
-            // NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
+            //閲覧権限がある場合
+            if (("1").Equals(etsuranFlg))
             {
-                return;
+                // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "表示中の伝票を削除します。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                // NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
             }
-            
+            else
+            {
+                // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "表示中の伝票を削除申請します。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                // NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             try
             {
                 //ビジネス層のインスタンス生成
@@ -706,7 +725,7 @@ namespace KATO.Form.A0020_UriageInput
                     uriageinputB.delUriageData(UriageInputItem);
 
                     // メッセージボックスの処理、削除成功の場合のウィンドウ（OK）
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
 
                 }
@@ -716,7 +735,7 @@ namespace KATO.Form.A0020_UriageInput
                     uriageinputB.updUriageSakujoShonin(UriageInputItem);
 
                     // メッセージボックスの処理、申請成功の場合のウィンドウ（OK）
-                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除申請をしました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除申請をしました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                 }
 
@@ -3420,7 +3439,6 @@ namespace KATO.Form.A0020_UriageInput
                 if (!UriageSakujoCheck(txtDenNo.Text))
                 {
                     btnF01.Enabled = false;
-                    btnF03.Enabled = false;
                     btnF07.Enabled = false;
 
                     //メッセージ
