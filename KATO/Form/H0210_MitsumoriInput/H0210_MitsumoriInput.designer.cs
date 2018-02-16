@@ -845,7 +845,7 @@
             this.txtKakTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk6.TabIndex = 23;
             this.txtKakTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei6
@@ -867,8 +867,8 @@
             this.txtKakCd6.Name = "txtKakCd6";
             this.txtKakCd6.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd6.TabIndex = 22;
+            this.txtKakCd6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button22
             // 
@@ -896,7 +896,7 @@
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk5.TabIndex = 21;
             this.txtKakTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei5
@@ -918,8 +918,8 @@
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd5.TabIndex = 20;
+            this.txtKakCd5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button23
             // 
@@ -947,7 +947,7 @@
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk4.TabIndex = 19;
             this.txtKakTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei4
@@ -969,8 +969,8 @@
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd4.TabIndex = 18;
+            this.txtKakCd4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button24
             // 
@@ -1142,7 +1142,7 @@
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk6.TabIndex = 17;
             this.txtZaiTnk6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk6.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtZaiMei6
@@ -1164,8 +1164,8 @@
             this.txtZaiCd6.Name = "txtZaiCd6";
             this.txtZaiCd6.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd6.TabIndex = 16;
+            this.txtZaiCd6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd6.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd6.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button19
             // 
@@ -1211,7 +1211,7 @@
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk5.TabIndex = 15;
             this.txtZaiTnk5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk5.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtZaiMei5
@@ -1233,8 +1233,8 @@
             this.txtZaiCd5.Name = "txtZaiCd5";
             this.txtZaiCd5.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd5.TabIndex = 14;
+            this.txtZaiCd5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd5.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd5.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button20
             // 
@@ -1280,7 +1280,7 @@
             this.txtZaiTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk4.TabIndex = 13;
             this.txtZaiTnk4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk4.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtZaiMei4
@@ -1302,8 +1302,8 @@
             this.txtZaiCd4.Name = "txtZaiCd4";
             this.txtZaiCd4.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd4.TabIndex = 12;
+            this.txtZaiCd4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd4.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd4.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button21
             // 
@@ -1343,7 +1343,7 @@
             this.txtKakTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk3.TabIndex = 11;
             this.txtKakTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtKakMei3
@@ -1365,8 +1365,8 @@
             this.txtKakCd3.Name = "txtKakCd3";
             this.txtKakCd3.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd3.TabIndex = 10;
+            this.txtKakCd3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button16
             // 
@@ -1394,7 +1394,7 @@
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk2.TabIndex = 9;
             this.txtKakTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtKakMei2
@@ -1416,8 +1416,8 @@
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd2.TabIndex = 8;
+            this.txtKakCd2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button17
             // 
@@ -1455,7 +1455,7 @@
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk1.TabIndex = 7;
             this.txtKakTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtKakTnk1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtKakTnk1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtKakTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtKakMei1
@@ -1487,8 +1487,8 @@
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
             this.txtKakCd1.TabIndex = 6;
+            this.txtKakCd1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtKakCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtKakCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button18
             // 
@@ -1603,7 +1603,7 @@
             this.txtZaiTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk3.TabIndex = 5;
             this.txtZaiTnk3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk3.Leave += new System.EventHandler(this.txtZaiTnk3_Leave);
             // 
             // txtZaiMei3
@@ -1625,8 +1625,8 @@
             this.txtZaiCd3.Name = "txtZaiCd3";
             this.txtZaiCd3.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd3.TabIndex = 4;
+            this.txtZaiCd3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd3.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button15
             // 
@@ -1708,7 +1708,7 @@
             this.txtZaiTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk2.TabIndex = 3;
             this.txtZaiTnk2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk2.Leave += new System.EventHandler(this.txtZaiTnk2_Leave);
             // 
             // txtZaiMei2
@@ -1730,8 +1730,8 @@
             this.txtZaiCd2.Name = "txtZaiCd2";
             this.txtZaiCd2.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd2.TabIndex = 2;
+            this.txtZaiCd2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd2.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button14
             // 
@@ -1843,7 +1843,7 @@
             this.txtZaiTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk1.TabIndex = 1;
             this.txtZaiTnk1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtZaiTnk1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMNum_KeyUp);
+            this.txtZaiTnk1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
             this.txtZaiTnk1.Leave += new System.EventHandler(this.txtZaiTnk1_Leave);
             // 
             // txtZaiMei1
@@ -1875,8 +1875,8 @@
             this.txtZaiCd1.Name = "txtZaiCd1";
             this.txtZaiCd1.Size = new System.Drawing.Size(46, 22);
             this.txtZaiCd1.TabIndex = 0;
+            this.txtZaiCd1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtZaiCd1_PreviewKeyDown);
             this.txtZaiCd1.Leave += new System.EventHandler(this.txtZaiCd1_Leave);
-            this.txtZaiCd1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtZaiCd1_PreviewKeyDown);
             // 
             // button13
             // 

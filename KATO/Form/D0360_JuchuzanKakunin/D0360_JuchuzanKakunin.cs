@@ -15,6 +15,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
         private BaseText bBox = null;
         private bool searchedFlg = false;
+        private bool hatchuzanFlg = false;
 
         private bool blShireInput = false;
 
@@ -105,6 +106,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             gridZanList.Focus();
             this.selZanList();
             searchedFlg = true;
+            hatchuzanFlg = true;
         }
 
         public D0360_JuchuzanKakunin(Control c, string stTokuisaki, BaseText baseTxtBox, bool blShire)
@@ -157,6 +159,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             //仕入入力から来た証明
             blShireInput = blShire;
+            hatchuzanFlg = true;
         }
 
         ///<summary>
@@ -545,8 +548,10 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
             try
             {
+                txtGokeiUriage.Text = "";
+                txtGokeiGenka.Text = "";
                 // 検索実行
-                DataTable dtZanList = bis.getZanList(listParam);
+                DataTable dtZanList = bis.getZanList(listParam, hatchuzanFlg);
                 gridZanList.DataSource = dtZanList;
 
                 if (dtZanList != null && dtZanList.Rows.Count > 0)
@@ -565,16 +570,31 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     }
 
                     // 受注残が検索された場合は単価合計を算出
-                    if (rsSearchKind.judCheckBtn() != 1)
+                    //if (rsSearchKind.judCheckBtn() != 1)
+                    //{
+                    txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上金額)", null)).ToString();
+                    if (!string.IsNullOrWhiteSpace(txtGokeiUriage.Text))
                     {
-                        txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上金額)", null)).ToString();
-                        txtGokeiUriage.Focus();
-                        txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入金額)", null)).ToString();
-                        txtGokeiGenka.Focus();
+                        decimal d = decimal.Parse(txtGokeiUriage.Text);
+                        txtGokeiUriage.Text = decimal.Round(d, 0).ToString("#,0");
                     }
+                    txtGokeiUriage.Focus();
+
+                    txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入金額)", null)).ToString();
+                    if (!string.IsNullOrWhiteSpace(txtGokeiGenka.Text))
+                    {
+                        decimal d = decimal.Parse(txtGokeiGenka.Text);
+                        txtGokeiGenka.Text = decimal.Round(d, 0).ToString("#,0");
+                    }
+                    txtGokeiGenka.Focus();
+                    //}
                     if (this.bBox == null)
                     {
                         cNow.Focus();
+                    }
+                    else
+                    {
+                        gridZanList.Focus();
                     }
                 }
 
