@@ -974,6 +974,13 @@ namespace KATO.Form.Z0000
                     C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan tantouriageY = new C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan(this);
                     tantouriageY.ShowDialog();
                     break;
+
+                //在庫品発注
+                case "154":
+                    A1540_ZaikohinHachu.A1540_ZaikohinHachu zaikohachu = new A1540_ZaikohinHachu.A1540_ZaikohinHachu(this);
+                    zaikohachu.ShowDialog();
+                    break;
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -1419,6 +1426,30 @@ namespace KATO.Form.Z0000
                         //商品仕入単価推移表2
                         M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2 shohintankasuii2 = new M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2(this);
                         shohintankasuii2.ShowDialog();
+                        break;
+
+                    //請求履歴
+                    case "151":
+                        B1510_SeikyuRireki.B1510_SeikyuRireki seikyurireki = new B1510_SeikyuRireki.B1510_SeikyuRireki(this);
+                        seikyurireki.ShowDialog();
+                        break;
+
+                    //売上承認
+                    case "152":
+                        A1520_Uriageshonin.A1520_Uriageshonin uriageshonin = new A1520_Uriageshonin.A1520_Uriageshonin(this);
+                        uriageshonin.ShowDialog();
+                        break;
+
+                    //担当者別売上管理表（年間）
+                    case "153":
+                        C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan tantouriageY = new C1530_TantouUriageArariNenkan.C1530_TantouUriageArariNenkan(this);
+                        tantouriageY.ShowDialog();
+                        break;
+
+                    //在庫品発注
+                    case "154":
+                        A1540_ZaikohinHachu.A1540_ZaikohinHachu zaikohachu = new A1540_ZaikohinHachu.A1540_ZaikohinHachu(this);
+                        zaikohachu.ShowDialog();
                         break;
 
                     default:

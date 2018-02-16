@@ -64,9 +64,9 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.lblBox1 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblKonkaiJuchu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblNewInput = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblSelectOutPut = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
@@ -563,18 +563,18 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblBox1.TabIndex = 100;
             this.lblBox1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblKonkaiJuchu
+            // lblNewInput
             // 
-            this.lblKonkaiJuchu.AutoSize = true;
-            this.lblKonkaiJuchu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblKonkaiJuchu.ForeColor = System.Drawing.Color.Navy;
-            this.lblKonkaiJuchu.Location = new System.Drawing.Point(21, 671);
-            this.lblKonkaiJuchu.Name = "lblKonkaiJuchu";
-            this.lblKonkaiJuchu.Size = new System.Drawing.Size(103, 15);
-            this.lblKonkaiJuchu.strToolTip = null;
-            this.lblKonkaiJuchu.TabIndex = 101;
-            this.lblKonkaiJuchu.Text = "今回受注内容";
-            this.lblKonkaiJuchu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNewInput.AutoSize = true;
+            this.lblNewInput.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblNewInput.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblNewInput.Location = new System.Drawing.Point(21, 671);
+            this.lblNewInput.Name = "lblNewInput";
+            this.lblNewInput.Size = new System.Drawing.Size(87, 15);
+            this.lblNewInput.strToolTip = null;
+            this.lblNewInput.TabIndex = 101;
+            this.lblNewInput.Text = "新規に入力";
+            this.lblNewInput.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // baseLabel2
             // 
@@ -587,18 +587,18 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.baseLabel2.TabIndex = 100;
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // baseLabel3
+            // lblSelectOutPut
             // 
-            this.baseLabel3.AutoSize = true;
-            this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.baseLabel3.ForeColor = System.Drawing.Color.Navy;
-            this.baseLabel3.Location = new System.Drawing.Point(21, 232);
-            this.baseLabel3.Name = "baseLabel3";
-            this.baseLabel3.Size = new System.Drawing.Size(103, 15);
-            this.baseLabel3.strToolTip = null;
-            this.baseLabel3.TabIndex = 101;
-            this.baseLabel3.Text = "今回受注内容";
-            this.baseLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSelectOutPut.AutoSize = true;
+            this.lblSelectOutPut.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSelectOutPut.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lblSelectOutPut.Location = new System.Drawing.Point(21, 232);
+            this.lblSelectOutPut.Name = "lblSelectOutPut";
+            this.lblSelectOutPut.Size = new System.Drawing.Size(103, 15);
+            this.lblSelectOutPut.strToolTip = null;
+            this.lblSelectOutPut.TabIndex = 101;
+            this.lblSelectOutPut.Text = "出力順の選択";
+            this.lblSelectOutPut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // F0140_TanaorosiInput
             // 
@@ -606,8 +606,8 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
             this.Controls.Add(this.radBase3);
-            this.Controls.Add(this.baseLabel3);
-            this.Controls.Add(this.lblKonkaiJuchu);
+            this.Controls.Add(this.lblSelectOutPut);
+            this.Controls.Add(this.lblNewInput);
             this.Controls.Add(this.radBase2);
             this.Controls.Add(this.labelSet_Chubunrui_Edit);
             this.Controls.Add(this.radBase1);
@@ -681,8 +681,8 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.SetChildIndex(this.radBase1, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui_Edit, 0);
             this.Controls.SetChildIndex(this.radBase2, 0);
-            this.Controls.SetChildIndex(this.lblKonkaiJuchu, 0);
-            this.Controls.SetChildIndex(this.baseLabel3, 0);
+            this.Controls.SetChildIndex(this.lblNewInput, 0);
+            this.Controls.SetChildIndex(this.lblSelectOutPut, 0);
             this.Controls.SetChildIndex(this.radBase3, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
@@ -721,8 +721,8 @@ namespace KATO.Form.F0140_TanaorosiInput
         private LabelSet_Maker labelSet_Maker_Edit;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private BaseLabel lblBox1;
-        private BaseLabel baseLabel3;
-        private BaseLabel lblKonkaiJuchu;
+        private BaseLabel lblSelectOutPut;
+        private BaseLabel lblNewInput;
         private BaseLabel baseLabel2;
     }
 }

@@ -176,7 +176,7 @@ namespace KATO.Business.A0100_HachuInput_B
 
         ///<summary>
         ///getHachuNoCheck
-        ///発注テーブルで発注番号を検索する
+        ///発注テーブルの発注番号で検索する
         ///</summary>
         public DataTable getHachuNoCheck(string strHachuban)
         {
@@ -185,7 +185,7 @@ namespace KATO.Business.A0100_HachuInput_B
 
             //データ渡し用
             lstSQL.Add("A0100_HachuInput");
-            lstSQL.Add("HachuInput_JuchuInputData_SELECT_LEAVE");
+            lstSQL.Add("HachuInput_SELECT_LEAVE");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -483,10 +483,18 @@ namespace KATO.Business.A0100_HachuInput_B
                 //コミット
                 dbconnective.Commit();
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
             }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return;
         }
 
         ///<summary>
