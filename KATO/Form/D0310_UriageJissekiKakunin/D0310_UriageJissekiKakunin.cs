@@ -150,7 +150,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
             }
             //売上入力
-            else if (intFrm == 0020)
+            else if (intFrm == 2)
             {
                 
                 labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
@@ -160,7 +160,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 gridUriageJisseki.Focus();
             }
             //売上別利益率設定
-            else if (intFrm == 1210)
+            else if (intFrm == 121)
             {
 
                 labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
@@ -170,7 +170,9 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
                 gridUriageJisseki.Focus();
             }
-            
+
+            // ステータスバーに検索結果表示
+            this.lblStatusMessage.Text = "F9を押すと、一覧表示または検索ができます";
         }
 
         private void D0310_UriageJissekiKakunin_Load(object sender, EventArgs e)
@@ -229,12 +231,6 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 this.btnF11.Enabled = false;
                 this.btnF11.Text = "";
             }
-
-            //CSV・印刷テスト用コード
-            this.btnF11.Enabled = true;
-            this.btnF11.Text = STR_FUNC_F11;
-            this.btnF07.Enabled = true;
-            this.btnF07.Text = "F7:CSV";
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -339,15 +335,10 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             juchuTanto.Name = "受注担当";
             juchuTanto.HeaderText = "受注者";
 
-            DataGridViewTextBoxColumn gyoubangou = new DataGridViewTextBoxColumn();
-            gyoubangou.DataPropertyName = "行番号";
-            gyoubangou.Name = "行番号";
-            gyoubangou.HeaderText = "行番号";
-
-            DataGridViewTextBoxColumn shohincd = new DataGridViewTextBoxColumn();
-            shohincd.DataPropertyName = "商品コード";
-            shohincd.Name = "商品コード";
-            shohincd.HeaderText = "商品コード";
+            DataGridViewTextBoxColumn hachubangou = new DataGridViewTextBoxColumn();
+            hachubangou.DataPropertyName = "発注番号";
+            hachubangou.Name = "発注番号";
+            hachubangou.HeaderText = "発注番号";
 
             DataGridViewTextBoxColumn siireYmd = new DataGridViewTextBoxColumn();
             siireYmd.DataPropertyName = "仕入日";
@@ -359,10 +350,25 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             eigyoTanto.Name = "営業担当";
             eigyoTanto.HeaderText = "営業担当者";
 
+            DataGridViewTextBoxColumn setteiTanka = new DataGridViewTextBoxColumn();
+            setteiTanka.DataPropertyName = "設定単価";
+            setteiTanka.Name = "設定単価";
+            setteiTanka.HeaderText = "設定単価";
+
             DataGridViewTextBoxColumn nyuryokuTanto = new DataGridViewTextBoxColumn();
             nyuryokuTanto.DataPropertyName = "入力者名";
             nyuryokuTanto.Name = "入力者名";
             nyuryokuTanto.HeaderText = "入力者";
+
+            DataGridViewTextBoxColumn gyoubangou = new DataGridViewTextBoxColumn();
+            gyoubangou.DataPropertyName = "行番号";
+            gyoubangou.Name = "行番号";
+            gyoubangou.HeaderText = "行番号";
+
+            DataGridViewTextBoxColumn shohincd = new DataGridViewTextBoxColumn();
+            shohincd.DataPropertyName = "商品コード";
+            shohincd.Name = "商品コード";
+            shohincd.HeaderText = "商品コード";
 
             //個々の幅、文章の寄せ
             setColumn(Sirusi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,25);
@@ -382,16 +388,18 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             setColumn(TokuisakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,300);
             setColumn(Juchubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,100);
             setColumn(juchuTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(hachubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(siireYmd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
             setColumn(eigyoTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
+            setColumn(setteiTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             //表示はしない項目
             setColumn(nyuryokuTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumn(gyoubangou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumn(shohincd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
 
-            gridUriageJisseki.Columns[19].Visible = false;
-            gridUriageJisseki.Columns[20].Visible = false;
             gridUriageJisseki.Columns[21].Visible = false;
+            gridUriageJisseki.Columns[22].Visible = false;
+            gridUriageJisseki.Columns[23].Visible = false;
 
         }
 
@@ -780,31 +788,80 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 decimal UriageGoukei = 0;
                 decimal SiireGoukei = 0;
                 decimal ArariGoukei = 0;
-                decimal UntinGoukei = 0;
+                decimal UnchinGoukei = 0;
 
                 if (dtSetView.Rows.Count > 0)
                 {
                     for (int cnt = 0; cnt < gridUriageJisseki.RowCount; cnt++)
                     {
+                        decimal decSuuryo = 0;
+                        decimal decKingaku = 0;
+                        decimal decSiire = 0;
+                        decimal decArari = 0;
+                        decimal decUnchin = 0;
+
+                        string strSuuryo = gridUriageJisseki.Rows[cnt].Cells["数量"].Value.ToString().Trim();
+                        string strKingaku = gridUriageJisseki.Rows[cnt].Cells["売上金額"].Value.ToString().Trim();
+                        string strSiire = gridUriageJisseki.Rows[cnt].Cells["原価金額"].Value.ToString().Trim();
+                        string strArari = gridUriageJisseki.Rows[cnt].Cells["粗利額"].Value.ToString().Trim();
+                        string strUnchin = gridUriageJisseki.Rows[cnt].Cells["運賃"].Value.ToString().Trim();
+
                         //各項目の合計額を算出
-                        UriageGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["売上金額"].Value.ToString(), "0"));
-                        SiireGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["原価金額"].Value.ToString(), "0"));
-                        ArariGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["粗利額"].Value.ToString(), "0"));
-                        UntinGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["運賃"].Value.ToString(), "0"));
+                        //UriageGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["売上金額"].Value.ToString(), "0"));
+                        //SiireGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["原価金額"].Value.ToString(), "0"));
+                        //ArariGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["粗利額"].Value.ToString(), "0"));
+                        //UnchinGoukei += decimal.Parse(PutIsNull(gridUriageJisseki.Rows[cnt].Cells["運賃"].Value.ToString(), "0"));
 
-                        // 数量
-                        decimal decSuuryo = decimal.Parse(gridUriageJisseki.Rows[cnt].Cells["数量"].Value.ToString());
+                        if (!strSuuryo.Equals(""))
+                        {
+                            // 数量
+                            decSuuryo = decimal.Parse(strSuuryo);
+                        }
 
-                        // 金額
-                        decimal decKingaku = decimal.Parse(gridUriageJisseki.Rows[cnt].Cells["売上金額"].Value.ToString());
+                        if (!strKingaku.Equals(""))
+                        {
+                            // 金額
+                            decKingaku = decimal.Parse(strKingaku);
+                        }
 
-                        // 粗利
-                        decimal decArari = decimal.Parse(gridUriageJisseki.Rows[cnt].Cells["粗利額"].Value.ToString());
+                        if (!strSiire.Equals(""))
+                        {
+                            // 仕入
+                            decSiire = decimal.Parse(strSiire);
+                        }
+
+                        if (!strArari.Equals(""))
+                        {
+                            // 粗利
+                            decArari = decimal.Parse(strArari);
+                        }
+
+                        if (!strUnchin.Equals(""))
+                        {
+                            // 運賃
+                            decUnchin = decimal.Parse(strUnchin);
+                        }
+
+                        // 設定単価
+                        string strSetteiTanka = gridUriageJisseki.Rows[cnt].Cells["設定単価"].Value.ToString();
+
+                        UriageGoukei += decKingaku;
+                        SiireGoukei += decSiire;
+                        ArariGoukei += decArari;
+                        UnchinGoukei += decUnchin;
 
                         // 数量又は金額又は粗利がマイナスの場合はフォントカラーを変更
                         if (decSuuryo < 0 || decKingaku < 0 || decArari < 0)
                         {
-                            gridUriageJisseki.Rows[cnt].DefaultCellStyle.ForeColor = Color.Red;
+                            if (strSetteiTanka.Equals(""))
+                            {
+                                gridUriageJisseki.Rows[cnt].DefaultCellStyle.ForeColor = Color.Red;
+                            }
+                            else
+                            {
+                                gridUriageJisseki.Rows[cnt].DefaultCellStyle.ForeColor = Color.Blue;
+                            }
+                            
                         }
                     }
 
@@ -818,7 +875,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                         txtUriageKingaku.Text = UriageGoukei.ToString("#,0");
                         txtSiireKingaku.Text = SiireGoukei.ToString("#,0");
                         txtArarigaku.Text = ArariGoukei.ToString("#,0");
-                        txtUntin.Text = UntinGoukei.ToString("#,0");
+                        txtUntin.Text = UnchinGoukei.ToString("#,0");
                         txtArariritsu.Text = Arariritsu.ToString("0.0");
                     }
                     else
@@ -837,7 +894,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                                 txtUriageKingaku.Text = UriageGoukei.ToString("#,0");
                                 txtSiireKingaku.Text = SiireGoukei.ToString("#,0");
                                 txtArarigaku.Text = ArariGoukei.ToString("#,0");
-                                txtUntin.Text = UntinGoukei.ToString("#,0");
+                                txtUntin.Text = UnchinGoukei.ToString("#,0");
                                 txtArariritsu.Text = Arariritsu.ToString("0.0");
                             }
                         }
@@ -849,7 +906,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                                 txtUriageKingaku.Text = UriageGoukei.ToString("#,0");
                                 txtSiireKingaku.Text = SiireGoukei.ToString("#,0");
                                 txtArarigaku.Text = ArariGoukei.ToString("#,0");
-                                txtUntin.Text = UntinGoukei.ToString("#,0");
+                                txtUntin.Text = UnchinGoukei.ToString("#,0");
                                 txtArariritsu.Text = Arariritsu.ToString("0.0");
                             }
                             // 2か月を超えた場合でも、受注者コードまたは営業担当者コードを入力した場合、金額表示
@@ -858,7 +915,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                                 txtUriageKingaku.Text = UriageGoukei.ToString("#,0");
                                 txtSiireKingaku.Text = SiireGoukei.ToString("#,0");
                                 txtArarigaku.Text = ArariGoukei.ToString("#,0");
-                                txtUntin.Text = UntinGoukei.ToString("#,0");
+                                txtUntin.Text = UnchinGoukei.ToString("#,0");
                                 txtArariritsu.Text = Arariritsu.ToString("0.0");
                             }
                             else
@@ -1214,8 +1271,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 SendKeys.Send("{TAB}");
             }
         }
+
         #endregion
-
-
     }
 }

@@ -786,7 +786,7 @@
     <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.Designer.cs">
+    <Compile Include="Form\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin.designer.cs">
       <DependentUpon>D0310_UriageJissekiKakunin.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin.cs">

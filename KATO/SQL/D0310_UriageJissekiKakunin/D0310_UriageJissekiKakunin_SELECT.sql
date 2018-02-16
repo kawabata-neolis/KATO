@@ -20,7 +20,7 @@ FROM (
        um.売上金額,
        dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) AS 原価,
        um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) AS 原価金額,
-       um.売上金額 - um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) AS 粗利額,
+       um.売上金額 - (um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) - dbo.f_get受注番号_運賃FROM運賃(um.受注番号)) AS 粗利額,
        dbo.f_get受注番号_運賃FROM運賃(um.受注番号) AS 運賃,
        um.商品コード,
        um.備考,
@@ -31,7 +31,8 @@ FROM (
        dbo.f_get受注番号から最終仕入先日(um.受注番号) AS 仕入日,
        dbo.f_get受注番号から発注番号FROM発注(um.受注番号) AS 発注番号,
        dbo.f_get担当者名(t.担当者コード) AS 営業担当,
-       dbo.f_get担当者名(uh.担当者コード) AS 入力者名
+       dbo.f_get担当者名(uh.担当者コード) AS 入力者名,
+       dbo.f_get商品別利益率_単価(uh.得意先コード, um.商品コード) AS 設定単価
      FROM dbo.売上ヘッダ AS uh, dbo.売上明細 AS um, dbo.メーカー AS m , dbo.中分類 AS cb, dbo.取引先 AS t
      WHERE uh.削除 = 'N'
        AND um.削除 = 'N'
