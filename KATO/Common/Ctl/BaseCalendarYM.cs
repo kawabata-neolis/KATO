@@ -224,8 +224,8 @@ namespace KATO.Common.Ctl
             {
                 if (strInData[0].Length > 4)
                 {
-                    //月部のみを取り出す
-                    strY = strInData[0].Substring(0, strInData[0].Length - 4);
+                    // 年部分取得
+                    strY = strInData[0].Substring(0, strInData[0].Length - 2);
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -251,7 +251,7 @@ namespace KATO.Common.Ctl
                     }
 
                     //月部のみを取り出す
-                    strM = strInData[0].Substring(strInData[0].Length - 4, 2);
+                    strM = strInData[0].Substring(strInData[0].Length - 2, 2);
                 }
                 else if (strInData[0].Length > 2)
                 {
@@ -490,7 +490,7 @@ namespace KATO.Common.Ctl
                 if (strInData[0].Length > 4)
                 {
                     //月部のみを取り出す
-                    strY = strInData[0].Substring(0, strInData[0].Length - 4);
+                    strY = strInData[0].Substring(0, strInData[0].Length - 2);
 
                     //20~と付けるか否か
                     if (strY.Length == 3)
@@ -516,7 +516,7 @@ namespace KATO.Common.Ctl
                     }
 
                     //月部のみを取り出す
-                    strM = strInData[0].Substring(strInData[0].Length - 4, 2);
+                    strM = strInData[0].Substring(strInData[0].Length - 2, 2);
                 }
                 else if (strInData[0].Length > 2)
                 {

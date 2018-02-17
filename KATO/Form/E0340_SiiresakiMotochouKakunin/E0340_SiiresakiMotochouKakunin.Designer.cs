@@ -53,6 +53,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSiire)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -106,10 +110,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Siiresaki
             // 
@@ -324,6 +324,7 @@
             this.gridSiire.AllowUserToAddRows = false;
             this.gridSiire.AllowUserToResizeColumns = false;
             this.gridSiire.AllowUserToResizeRows = false;
+            this.gridSiire.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -384,7 +385,9 @@
             this.Name = "E0340_SiiresakiMotochouKakunin";
             this.Text = "E0340_SiiresakiMotochouKakunin";
             this.Load += new System.EventHandler(this.E0340_SiiresakiMotochouKakunin_Load);
+            this.Shown += new System.EventHandler(this.E0340_SiiresakiMotochouKakunin_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.E0340_SiiresakiMotochouKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Siiresaki, 0);
             this.Controls.SetChildIndex(this.lblKikan, 0);
             this.Controls.SetChildIndex(this.lblaida1, 0);

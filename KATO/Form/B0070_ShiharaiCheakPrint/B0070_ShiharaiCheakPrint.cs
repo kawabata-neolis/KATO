@@ -176,6 +176,63 @@ namespace KATO.Form.B0070_ShiharaiCheakPrint
         }
 
         /// <summary>
+        /// judShiharaiCheakKeyDown
+        /// キー入力判定(テキストボックス【Labelset以外全て】)
+        /// </summary>
+        private void judShiharaiCheakKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    // タブ機能
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// delText
         /// テキストボックス内の文字を削除
         /// </summary>
@@ -252,6 +309,17 @@ namespace KATO.Form.B0070_ShiharaiCheakPrint
                 return;
             }
 
+            // 空文字判定（仕入先コード）from なし　to　あり　エラー
+            if (labelSet_SiiresakiCdFrom.codeTxt.blIsEmpty() == false && labelSet_SiiresakiCdTo.codeTxt.blIsEmpty() == true)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。仕入先を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_SiiresakiCdFrom.Focus();
+                return;
+            }
+
             // ビジネス層のインスタンス生成
             B0070_ShiharaiCheakPrint_B cheakPrintB = new B0070_ShiharaiCheakPrint_B();
             try
@@ -282,7 +350,7 @@ namespace KATO.Form.B0070_ShiharaiCheakPrint
 
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
+
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
@@ -293,8 +361,8 @@ namespace KATO.Form.B0070_ShiharaiCheakPrint
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                     }
-
                     pf.Dispose();
+
                 }
                 else
                 {

@@ -292,6 +292,7 @@
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(100, 22);
             this.txtUserId.TabIndex = 1;
+            this.txtUserId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShiharaiCheakKeyDown);
             // 
             // baseLabel4
             // 

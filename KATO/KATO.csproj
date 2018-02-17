@@ -1743,6 +1743,9 @@
     <Content Include="SQL\A1520_Uriageshonin\Uriageshonin_Henpinnebiki_Grid_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A1540_ZaikohinHachu\ZaikohinHachu_SakujoFlg_UPDATE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A1540_ZaikohinHachu\ZaikohinHachu_SELECT_OpenGRID.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

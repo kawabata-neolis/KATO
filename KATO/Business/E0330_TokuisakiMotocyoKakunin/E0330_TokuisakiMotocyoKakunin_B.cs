@@ -19,10 +19,47 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
     /// </summary>
     class E0330_TokuisakiMotocyoKakunin_B
     {
-        ///<summary>
-        ///getZenzan
-        ///前月残高を取得
-        ///</summary>
+        public DataTable getTokuisakiInfo(string tCode)
+        {
+            DataTable dtTokuisakiInfo = new DataTable();
+
+            // SQLのパス指定用List
+            List<string> listSqlPath = new List<string>();
+            listSqlPath.Add("E0330_TokuisakiMotocyoKakunin");
+            listSqlPath.Add("E0330_TokuisakiMotocyoKakunin_TokuisakiSELECT");
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, tCode);
+
+                dtTokuisakiInfo = dbconnective.ReadSql(sql);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+            return (dtTokuisakiInfo);
+        }
+
+
+        /// <summary>
+        ///     getZenzan
+        ///     前月残高を取得
+        /// </summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getZenzan(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -62,6 +99,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getUriage
         ///売上金額を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getUriage(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -100,6 +142,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getZei
         ///消費税額を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getZei(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -138,6 +185,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getSotozei
         ///外税を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getSotozei(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -177,6 +229,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinGenkin
         ///入金現金を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinGenkin(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -215,6 +272,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinKogitte
         ///入金小切手を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinKogitte(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -254,6 +316,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinHurikomi
         ///入金振込を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinHurikomi(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -294,6 +361,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinTegata
         ///入金手形を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinTegata(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -333,6 +405,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinSousatu
         ///入金相殺を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinSousatu(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -372,6 +449,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinTesuryou
         ///入金手数料を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinTesuryou(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -411,6 +493,11 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getNyukinSonota
         ///入金その他を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getNyukinSonota(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
@@ -449,50 +536,34 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
         ///getTokuisakiMotocyo
         ///得意先元帳を取得
         ///</summary>
+        /// <param name="lstString">
+        ///     listString[0]:得意先コードStart
+        ///     listString[1]:日付Start
+        ///     listString[2]:日付End
+        /// </param>
         public DataTable getTokuisakiMotocyo(List<string> lstString)
         {
             DataTable dtGetTableGrid = new DataTable();
+            string tokuiCode = lstString[0];
+            string ymdStart = lstString[1];
+            string ymdEnd = lstString[2];
 
-            string strSQLInput = "";
-
-            //データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-
-            //SQL文 得意先元帳
-
-            strSQLInput = strSQLInput + " SELECT ";
-            strSQLInput = strSQLInput + " 伝票年月日 ";
-            strSQLInput = strSQLInput + " , 伝票番号 ";
-            strSQLInput = strSQLInput + " , 行番号 ";
-            strSQLInput = strSQLInput + " , 取引区分名 ";
-            strSQLInput = strSQLInput + " , メーカー名 ";
-            strSQLInput = strSQLInput + " , 商品名 ";
-            strSQLInput = strSQLInput + " , 数量 ";
-            strSQLInput = strSQLInput + " , 売上単価 ";
-            strSQLInput = strSQLInput + " , 売上金額 ";
-            strSQLInput = strSQLInput + " , 入金額 ";
-            strSQLInput = strSQLInput + " , 0 ";
-            strSQLInput = strSQLInput + " , 取引区分 ";
-
-            strSQLInput = strSQLInput + " FROM ";
-            strSQLInput = strSQLInput + " 得意先元帳明細_VIEW ";
-
-            strSQLInput = strSQLInput + " WHERE ";
-            strSQLInput = strSQLInput + " 得意先コード = '" + lstString[0] + "' ";
-            strSQLInput = strSQLInput + " AND 伝票年月日 >= '" + lstString[1] + "' ";
-            strSQLInput = strSQLInput + " AND 伝票年月日 <= '" + lstString[2] + "' ";
-
-            strSQLInput = strSQLInput + " ORDER BY ";
-            strSQLInput = strSQLInput + " 伝票年月日, 表示順, 伝票番号, 行番号 ";
-
+            // SQLのパス指定用List
+            List<string> listSqlPath = new List<string>();
+            listSqlPath.Add("E0330_TokuisakiMotocyoKakunin");
+            listSqlPath.Add("E0330_TokuisakiMotocyoKakunin_SELECT");
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
 
             try
             {
-                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, tokuiCode, ymdStart, ymdEnd);
+
+                dtGetTableGrid = dbconnective.ReadSql(sql);
             }
             catch (Exception ex)
             {
@@ -603,18 +674,18 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                 var outDataAll = dtSetCd_B_Input.AsEnumerable()
                     .Select(dat => new
                     {
-                        TokuiCd = dat["得意先コード"],    //[0]ヘッダー表示のみ使用
-                        TokuiName = dat["得意先名"],      //[1]ヘッダー表示のみ使用
-                        TokuiYMD = dat["年月日"],         //[2]
-                        Tokuikbn = dat["取引区分名"],     //[3]
-                        TokuiShohinName = dat["商品名"],  //[4]
-                        TokuiSu = dat["数量"],            //[5]
-                        TokuiTanka = dat["売上単価"],     //[6]
-                        TokuiUrikin = dat["売上金額"],    //[7]
-                        TokuiNyukin = dat["入金金額"],    //[8]
-                        TokuiSashiZan = dat["差引残高"],  //[9]
-                        TokuiTantoName = dat["担当者名"], //[10]ヘッダー表示のみ使用
-                        TokuiBiko = dat["備考"],          //[11]
+                        TokuiCd = dat["得意先コード"],     //[0]ヘッダー表示のみ使用
+                        TokuiName = dat["得意先名"],       //[1]ヘッダー表示のみ使用
+                        TokuiYMD = dat["年月日"],          //[2]
+                        Tokuikbn = dat["取引区分名"],      //[3]
+                        TokuiShohinName = dat["商品名"],   //[4]
+                        TokuiSu = dat["数量"],             //[5]
+                        TokuiTanka = dat["売上単価"],      //[6]
+                        TokuiUrikin = dat["売上金額"],     //[7]
+                        TokuiNyukin = dat["入金金額"],     //[8]
+                        TokuiSashiZan = dat["差引残高"],   //[9]
+                        TokuiTantoName = dat["担当者名"],  //[10]ヘッダー表示のみ使用
+                        TokuiBiko = dat["備考"],           //[11]
                     }).ToList();
 
                 // リストをデータテーブルに変換

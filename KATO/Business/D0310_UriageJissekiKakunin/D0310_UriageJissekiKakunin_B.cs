@@ -158,44 +158,6 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
             listSqlPath.Add("D0310_UriageJissekiKakunin");
             listSqlPath.Add("D0310_UriageJissekiKakunin_SELECT");
 
-            //SQL文 売上実績
-
-            //strSQLInput = strSQLInput + " SELECT ";
-            //strSQLInput = strSQLInput + " (CASE WHEN a.伝票発行フラグ = '1' THEN '済' ELSE '' END) AS 印 ";
-            //strSQLInput = strSQLInput + " , a.伝票年月日 ";
-            //strSQLInput = strSQLInput + " , a.伝票番号 ";
-            //strSQLInput = strSQLInput + " , b.行番号 ";
-            //strSQLInput = strSQLInput + " , c.メーカー名 AS メーカー ";
-            //strSQLInput = strSQLInput + " , RTRIM(ISNULL(d.中分類名, '')) + ' ' + Rtrim(ISNULL(b.Ｃ１, '')) + ' ' + Rtrim(ISNULL(b.Ｃ２, '')) + ' ' + Rtrim(ISNULL(b.Ｃ３, '')) + ' ' + Rtrim(ISNULL(b.Ｃ４, '')) + ' ' + Rtrim(ISNULL(b.Ｃ５, '')) + ' ' + Rtrim(ISNULL(b.Ｃ６, '')) AS 品名型式 ";
-            //strSQLInput = strSQLInput + " , b.数量 ";
-            //strSQLInput = strSQLInput + " , b.売上単価 AS 単価 ";
-            //strSQLInput = strSQLInput + " , b.売上金額 ";
-            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価 ";
-            //strSQLInput = strSQLInput + " , b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 原価金額 ";
-            //strSQLInput = strSQLInput + " , b.売上金額 - b.数量 * dbo.f_get受注番号_仕入単価FROM受注(b.受注番号) AS 粗利額 ";
-            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_運賃FROM運賃(b.受注番号) AS 運賃 ";
-            //strSQLInput = strSQLInput + " , b.商品コード ";
-            //strSQLInput = strSQLInput + " , b.備考 ";
-            //strSQLInput = strSQLInput + " , dbo.f_get受注番号_発注先名FROM発注(b.受注番号) AS 仕入先名 ";
-            //strSQLInput = strSQLInput + " , a.得意先名 ";
-            //strSQLInput = strSQLInput + " , b.受注番号 ";
-            //strSQLInput = strSQLInput + " , dbo.f_get担当者名(a.担当者コード) AS 入力者名 ";　//グリッドでは担当者で表記されている。
-            //strSQLInput = strSQLInput + " , dbo.f_get受注番号から最終仕入先日(b.受注番号) AS 仕入日 "; 
-
-            //strSQLInput = strSQLInput + " FROM ";
-            //strSQLInput = strSQLInput + " 売上ヘッダ a ";
-            //strSQLInput = strSQLInput + " , 売上明細 b ";
-            //strSQLInput = strSQLInput + " , メーカー c ";
-            //strSQLInput = strSQLInput + " , 中分類 d ";
-
-            //strSQLInput = strSQLInput + " WHERE ";
-            //strSQLInput = strSQLInput + " a.削除 = 'N' ";
-            //strSQLInput = strSQLInput + " AND b.削除 = 'N' ";
-            //strSQLInput = strSQLInput + " AND a.伝票番号 = b.伝票番号 ";
-            //strSQLInput = strSQLInput + " AND b.メーカーコード = c.メーカーコード ";
-            //strSQLInput = strSQLInput + " AND b.大分類コード = d.大分類コード ";
-            //strSQLInput = strSQLInput + " AND b.中分類コード = d.中分類コード ";
-
             // 受注者コードがある場合
             if (!lstItem[2].Equals(""))
             {

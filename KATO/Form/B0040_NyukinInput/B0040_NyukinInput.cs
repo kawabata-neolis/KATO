@@ -374,7 +374,7 @@ namespace KATO.Form.B0040_NyukinInput
             {
                 // 得意先元帳確認フォームを開く
                 E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisaki =
-                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, labelSet_Tokuisaki.CodeTxtText);
+                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 4, labelSet_Tokuisaki.CodeTxtText);
                 tokuisaki.ShowDialog();
             }
         }
@@ -796,9 +796,7 @@ namespace KATO.Form.B0040_NyukinInput
                     txtShiharaibi.Text = "";
                     txtShiharaiJojen.Text = "";
                     txtShukunkbn.Text = "";
-
-                    SendKeys.Send("{TAB}");
-
+                    
                     txtDenpyoNo.Focus();
                     return;
                 }
@@ -964,6 +962,7 @@ namespace KATO.Form.B0040_NyukinInput
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                txtYMD.Focus();
                 return;
             }
 
@@ -973,6 +972,7 @@ namespace KATO.Form.B0040_NyukinInput
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                labelSet_Tokuisaki.Focus();
                 return;
             }
 

@@ -19,6 +19,36 @@ namespace KATO.Business.E0340_SiiresakiMotochouKakunin
     /// </summary>
     class E0340_SiiresakiMotochouKakunin_B
     {
+        public DataTable getSiiresakiInfo(string tCode)
+        {
+            DataTable dtSiiresakiInfo = new DataTable();
+
+            // SQLのパス指定用List
+            List<string> listSqlPath = new List<string>();
+            listSqlPath.Add("E0340_SiiresakiMotochouKakunin");
+            listSqlPath.Add("E0340_SiiresakiMotochouKakunin_SiiresakiSELECT");
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                OpenSQL opensql = new OpenSQL();
+                // sqlファイルからSQL文を取得
+                string strSqltxt = opensql.setOpenSQL(listSqlPath);
+                string sql = string.Format(strSqltxt, tCode);
+
+                dtSiiresakiInfo = dbconnective.ReadSql(sql);
+            }
+            catch (Exception ex)
+            {
+                new CommonException(ex);
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+            return (dtSiiresakiInfo);
+        }
 
         /// <summary>
         /// getSiireList

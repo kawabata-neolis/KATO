@@ -50,17 +50,65 @@
             this.labelSet_TokuisakiStart.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
+            this.btnF12.TabIndex = 6;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
+            this.btnF11.TabIndex = 5;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.TabStop = false;
+            this.btnF10.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.TabStop = false;
+            this.btnF09.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.TabStop = false;
+            this.btnF08.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.TabStop = false;
+            this.btnF07.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.TabStop = false;
+            this.btnF06.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.TabStop = false;
+            this.btnF05.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
+            this.btnF04.TabIndex = 7;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.TabStop = false;
+            this.btnF03.Click += new System.EventHandler(this.judBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.TabStop = false;
+            this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
             // groupBox1
             // 
@@ -89,6 +137,7 @@
             this.radSetSort.Radbtn2Text = "フリガナの昇順";
             this.radSetSort.Size = new System.Drawing.Size(329, 61);
             this.radSetSort.TabIndex = 0;
+            this.radSetSort.TabStop = false;
             // 
             // lblTitle
             // 
@@ -98,7 +147,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
-            this.lblTitle.TabIndex = 6;
+            this.lblTitle.TabIndex = 7;
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSet_TokuisakiEnd
@@ -116,7 +165,7 @@
             this.labelSet_TokuisakiEnd.SpaceCodeValue = 4;
             this.labelSet_TokuisakiEnd.SpaceNameCode = 4;
             this.labelSet_TokuisakiEnd.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiEnd.TabIndex = 105;
+            this.labelSet_TokuisakiEnd.TabIndex = 4;
             this.labelSet_TokuisakiEnd.ValueLabelSize = 300;
             this.labelSet_TokuisakiEnd.ValueLabelText = "";
             // 
@@ -147,7 +196,7 @@
             this.labelSet_TokuisakiStart.SpaceCodeValue = 4;
             this.labelSet_TokuisakiStart.SpaceNameCode = 4;
             this.labelSet_TokuisakiStart.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiStart.TabIndex = 104;
+            this.labelSet_TokuisakiStart.TabIndex = 3;
             this.labelSet_TokuisakiStart.ValueLabelSize = 300;
             this.labelSet_TokuisakiStart.ValueLabelText = "";
             // 
@@ -170,7 +219,8 @@
             this.txtSimekiribiCd.MaxLength = 2;
             this.txtSimekiribiCd.Name = "txtSimekiribiCd";
             this.txtSimekiribiCd.Size = new System.Drawing.Size(41, 22);
-            this.txtSimekiribiCd.TabIndex = 103;
+            this.txtSimekiribiCd.TabIndex = 2;
+            this.txtSimekiribiCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judSeikyuItiranKeyDown);
             // 
             // baseLabel6
             // 
@@ -214,8 +264,8 @@
             this.txtKaisiYMD.Location = new System.Drawing.Point(466, 163);
             this.txtKaisiYMD.MaxLength = 10;
             this.txtKaisiYMD.Name = "txtKaisiYMD";
-            this.txtKaisiYMD.Size = new System.Drawing.Size(199, 22);
-            this.txtKaisiYMD.TabIndex = 102;
+            this.txtKaisiYMD.Size = new System.Drawing.Size(88, 22);
+            this.txtKaisiYMD.TabIndex = 1;
             this.txtKaisiYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel2
@@ -236,8 +286,8 @@
             this.txtSimekiriYMD.Location = new System.Drawing.Point(466, 109);
             this.txtSimekiriYMD.MaxLength = 10;
             this.txtSimekiriYMD.Name = "txtSimekiriYMD";
-            this.txtSimekiriYMD.Size = new System.Drawing.Size(199, 22);
-            this.txtSimekiriYMD.TabIndex = 101;
+            this.txtSimekiriYMD.Size = new System.Drawing.Size(88, 22);
+            this.txtSimekiriYMD.TabIndex = 0;
             this.txtSimekiriYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSimekiriYMD.Leave += new System.EventHandler(this.txtSimekiriYMD_Leave);
             // 
@@ -273,6 +323,7 @@
             this.Text = "B0410_SeikyuItiranPrint";
             this.Load += new System.EventHandler(this.B0410_SeikyuItiranPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0410_SeikyuItiranPrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

@@ -23,7 +23,7 @@ namespace KATO.Form.A1540_ZaikohinHachu
     ///作成者：大河内
     ///作成日：2018/2/16
     ///更新者：大河内
-    ///更新日：2018/2/16
+    ///更新日：2018/2/17
     ///カラム論理名
     ///</summary>
     public partial class A1540_ZaikohinHachu : BaseForm
@@ -744,27 +744,6 @@ namespace KATO.Form.A1540_ZaikohinHachu
                 }
             }
 
-            //発注番号がない場合、伝票番号テーブルから新規伝票番号を得る
-            if (txtHachuban.blIsEmpty() == false)
-            {
-                //ビジネス層のインスタンス生成
-                A1540_ZaikohinHachu_B zaikohachuB = new A1540_ZaikohinHachu_B();
-                try
-                {
-                    //新規番号を取得                    
-                    txtHachuban.Text = (zaikohachuB.getNewDenpyo("在庫品発注番号")).Rows[0]["最終番号"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    //エラーロギング
-                    new CommonException(ex);
-                    //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
-            }
-
             //受注金額の確保
             decimal decJucyuKin;
 
@@ -773,6 +752,12 @@ namespace KATO.Form.A1540_ZaikohinHachu
 
             //営業所コードがなかった場合に使用する
             DataTable dtTantoshaCd = new DataTable();
+
+            //在庫品発注データの検索結果を入れる用
+            DataTable dtZaikohinData = new DataTable();
+
+            //在庫品発注の削除フラグを立てる用
+            string strHachuban = txtHachuban.Text;
 
             //商品コードが空だった場合
             if (txtShohinCd.blIsEmpty() == false)
@@ -835,10 +820,124 @@ namespace KATO.Form.A1540_ZaikohinHachu
                         return;
                     }
 
+                    //発注番号がない場合
+                    if (txtHachuban.blIsEmpty() == false)
+                    {
+                        //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                        BaseMessageBox basemessageboxHachuban = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "発注番号がありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessageboxHachuban.ShowDialog();
 
+                        txtHachuban.Focus();
+                        return;
+                    }
+
+                    //発注番号のデータが存在しない場合
+                    if (getView() == false)
+                    {
+                        //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                        BaseMessageBox basemessageboxHachuban = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                        basemessageboxHachuban.ShowDialog();
+
+                        txtHachuban.Focus();
+                        return;
+                    }
+
+                    //新規番号を取得                    
+                    txtHachuban.Text = (zaikohachuB.getNewDenpyo("発注番号")).Rows[0]["最終番号"].ToString();
+
+                    //営業所を設定
+                    labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
+                    labelSet_Eigyosho.chkTxtEigyousho();
+
+                    //PROCに必要なテーブル名の追加
+                    lstData.Add(textSet_Torihikisaki.CodeTxtText);  //仕入先コード
+                    lstData.Add(txtHachuYMD.Text);                  //発注年月日
+                    lstData.Add(txtHachuban.Text);                  //発注番号
+                    lstData.Add(txtTanto.Text);                     //発注者コード
+                    lstData.Add(labelSet_Eigyosho.CodeTxtText);     //営業所コード
+                    lstData.Add(txtTanto.Text);                     //担当者コード
+                    lstData.Add(txtJuchuban.Text);                  //受注番号
+                    lstData.Add("0");                               //出庫番号
+                    lstData.Add("0");                               //行番号
+                    lstData.Add(txtShohinCd.Text);                  //商品コード
+                    lstData.Add(labelSet_Maker.CodeTxtText);        //メーカーコード
+                    lstData.Add(labelSet_Daibunrui.CodeTxtText);    //大分類コード
+                    lstData.Add(labelSet_Chubunrui.CodeTxtText);    //中分類コード
+                    lstData.Add(txtData1.Text);                     //Ｃ１
+                    lstData.Add(txtData2.Text);                     //Ｃ２
+                    lstData.Add(txtData3.Text);                     //Ｃ３
+                    lstData.Add(txtData4.Text);                     //Ｃ４
+                    lstData.Add(txtData5.Text);                     //Ｃ５
+                    lstData.Add(txtData6.Text);                     //Ｃ６
+                    lstData.Add(txtHachusu.Text);                   //発注数量
+                    lstData.Add(cmbHachutan.Text);                  //発注単価
+                    lstData.Add(decJucyuKin.ToString());            //発注金額
+                    lstData.Add(txtNoki.Text);                      //納期
+                    lstData.Add("0");                               //発注フラグ
+                    lstData.Add(txtChuban.Text);                    //注番
+                    lstData.Add("0");                               //加工区分
+                    lstData.Add(textSet_Torihikisaki.valueTextText);    //仕入先名称
+                    lstData.Add(SystemInformation.UserName);        //ユーザー名
+
+                    //PROCに必要なカラム名の追加
+                    lstTableName.Add("@仕入先コード");              //仕入先コード
+                    lstTableName.Add("@発注年月日");                //発注年月日
+                    lstTableName.Add("@発注番号");                  //発注番号
+                    lstTableName.Add("@発注者コード");              //発注者コード
+                    lstTableName.Add("@営業所コード");                //営業所コード
+                    lstTableName.Add("@担当者コード");                //担当者コード
+                    lstTableName.Add("@受注番号");                  //受注番号
+                    lstTableName.Add("@出庫番号");                  //出庫番号
+                    lstTableName.Add("@行番号");                   //行番号
+                    lstTableName.Add("@商品コード");             //商品コード
+                    lstTableName.Add("@メーカーコード");           //メーカーコード
+                    lstTableName.Add("@大分類コード");                //大分類コード
+                    lstTableName.Add("@中分類コード");              //中分類コード
+                    lstTableName.Add("@Ｃ１");                        //Ｃ１
+                    lstTableName.Add("@Ｃ２");                        //Ｃ２
+                    lstTableName.Add("@Ｃ３");                        //Ｃ３
+                    lstTableName.Add("@Ｃ４");                        //Ｃ４
+                    lstTableName.Add("@Ｃ５");                        //Ｃ５
+                    lstTableName.Add("@Ｃ６");                        //Ｃ６
+                    lstTableName.Add("@発注数量");                  //発注数量
+                    lstTableName.Add("@発注単価");                  //発注単価
+                    lstTableName.Add("@発注金額");                  //発注金額
+                    lstTableName.Add("@納期");                        //納期
+                    lstTableName.Add("@発注フラグ");             //発注フラグ
+                    lstTableName.Add("@注番");                        //注番
+                    lstTableName.Add("@加工区分");                  //加工区分
+                    lstTableName.Add("@仕入先名称");             //仕入先名称
+                    lstTableName.Add("@ユーザー名");             //ユーザー名
+
+                    //データの追加または更新
+                    zaikohachuB.addHachuInput(lstData, lstTableName);
+
+                    //在庫品発注の削除フラグを立てる
+                    zaikohachuB.updZaikohinHachu(strHachuban);
                 }
                 else
                 {
+                    //発注番号がない場合、伝票番号テーブルから新規伝票番号を得る
+                    if (txtHachuban.blIsEmpty() == false)
+                    {
+                        //ビジネス層のインスタンス生成
+                        zaikohachuB = new A1540_ZaikohinHachu_B();
+                        try
+                        {
+                            //新規番号を取得                    
+                            txtHachuban.Text = (zaikohachuB.getNewDenpyo("在庫品発注番号")).Rows[0]["最終番号"].ToString();
+                        }
+                        catch (Exception ex)
+                        {
+                            //エラーロギング
+                            new CommonException(ex);
+                            //例外発生メッセージ（OK）
+                            BaseMessageBox basemessageboxEx = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessageboxEx.ShowDialog();
+                            return;
+                        }
+                    }
+
                     //営業所を設定
                     labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
                     labelSet_Eigyosho.chkTxtEigyousho();
@@ -904,9 +1003,10 @@ namespace KATO.Form.A1540_ZaikohinHachu
                     lstTableName.Add("@ユーザー名");             //ユーザー名
 
                     //データの追加または更新
-                    zaikohachuB.addHachuInput(lstData, lstTableName);
-                }
+                    zaikohachuB.addZaikoHachuInput(lstData, lstTableName);
 
+                    
+                }
 
                 //ビジネス層のインスタンス生成(担当者マスター)
                 M1050_Tantousha_B tantoshaB = new M1050_Tantousha_B();
@@ -1095,12 +1195,20 @@ namespace KATO.Form.A1540_ZaikohinHachu
         ///</summary>
         private void textSet_Torihikisaki_Leave(object sender, EventArgs e)
         {
-            setGridData();
+            //取引先コードが記入されていない場合
+            if (textSet_Torihikisaki.CodeTxtText == "")
+            {
+                setGridOpenView();
+            }
+            else
+            {
+                setGridData();
+            }
         }
 
         ///<summary>
         ///setGridData
-        //仕入先コードありでの検索
+        //仕入先での検索
         ///</summary>
         private void setGridData()
         {
@@ -1109,12 +1217,6 @@ namespace KATO.Form.A1540_ZaikohinHachu
 
             //前後の空白を取り除く
             textSet_Torihikisaki.CodeTxtText = textSet_Torihikisaki.CodeTxtText.Trim();
-
-            //取引先コードが記入されていない場合
-            if (textSet_Torihikisaki.CodeTxtText == "")
-            {
-                return;
-            }
 
             //ビジネス層のインスタンス生成
             A1540_ZaikohinHachu_B zaikohachuB = new A1540_ZaikohinHachu_B();
@@ -1128,6 +1230,10 @@ namespace KATO.Form.A1540_ZaikohinHachu
                 {
                     //データグリッドビューに表示
                     gridHachu.DataSource = dtSetCd;
+                }
+                else
+                {
+                    gridHachu.DataSource = "";
                 }
             }
             catch (Exception ex)
@@ -1206,7 +1312,7 @@ namespace KATO.Form.A1540_ZaikohinHachu
         ///getView
         ///データの表示
         ///</summary>
-        private void getView()
+        private bool getView()
         {
             //検索時のデータ取り出し先(グリッド全体)
             DataTable dtSetCd;
@@ -1214,6 +1320,9 @@ namespace KATO.Form.A1540_ZaikohinHachu
             DataTable dtSetTanka;
             //検索時のデータ取り出し先(商品)
             DataTable dtSetShohin;
+
+            //表示成功判定
+            Boolean blView = false;
 
             //ビジネス層のインスタンス生成
             A1540_ZaikohinHachu_B zaikohachuB = new A1540_ZaikohinHachu_B();
@@ -1349,6 +1458,13 @@ namespace KATO.Form.A1540_ZaikohinHachu
                         }
                     }
                 }
+                else
+                {
+                    return(blView);
+                }
+
+                blView = true;
+                return(blView);
             }
             catch (Exception ex)
             {
@@ -1357,7 +1473,7 @@ namespace KATO.Form.A1540_ZaikohinHachu
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                return;
+                return(blView);
             }
         }
 
@@ -1459,8 +1575,16 @@ namespace KATO.Form.A1540_ZaikohinHachu
             decimal decTeka = decimal.Parse(txtTeka.Text);
             decimal decTanka = decimal.Parse(cmbHachutan.Text);
 
-            //規定の計算で掛け率を記入
-            txtKakeritsu.Text = ((decTanka / decTeka) * 100).ToString("0.0");
+            //定価か単価が0の場合
+            if (decTeka == 0 || decTanka == 0)
+            {
+                txtKakeritsu.Text = "0";
+            }
+            else
+            {
+                //規定の計算で掛け率を記入
+                txtKakeritsu.Text = ((decTanka / decTeka) * 100).ToString("0.0");
+            }
         }
 
         ///<summary>

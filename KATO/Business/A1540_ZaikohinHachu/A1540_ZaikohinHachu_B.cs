@@ -209,7 +209,7 @@ namespace KATO.Business.A1540_ZaikohinHachu
 
         ///<summary>
         ///getNewDenpyo
-        ///伝票番号テーブルから新規伝票番号を得る
+        ///伝票番号テーブルから新規伝票番号を得る(在庫品発注に登録用)
         ///</summary>
         public DataTable getNewDenpyo(string strTableName)
         {
@@ -364,7 +364,7 @@ namespace KATO.Business.A1540_ZaikohinHachu
         ///addHachuInput
         ///データの追加
         ///</summary>
-        public void addHachuInput(List<string> lstStringData, List<string> lstStringTanblename)
+        public void addZaikoHachuInput(List<string> lstStringData, List<string> lstStringTanblename)
         {
             //SQL用に移動
             DBConnective dbconnective = new DBConnective();
@@ -556,6 +556,148 @@ namespace KATO.Business.A1540_ZaikohinHachu
                 dbconnective.DB_Disconnect();
             }
             return (dtTantoshaCd);
+        }
+
+        ///<summary>
+        ///getNewDenpyoHachu
+        ///伝票番号テーブルから新規伝票番号を得る(発注に登録用)
+        ///</summary>
+        public DataTable getNewDenpyoHachu(string strTableName)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("A0100_HachuInput");
+            lstSQL.Add("HachuInput_Denpyo_UPDATE_SELECT");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strTableName);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///addHachuInput
+        ///データの追加
+        ///</summary>
+        public void addHachuInput(List<string> lstStringData, List<string> lstStringTanblename)
+        {
+            //SQL用に移動
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //プロシージャ（戻り値なし）用のメソッドに投げる
+                dbconnective.RunSql("発注更新_PROC", CommandType.StoredProcedure, lstStringData, lstStringTanblename);
+
+                //コミット
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return;
+        }
+
+        ///<summary>
+        ///updZaikohinHachu
+        ///在庫品発注の削除フラグを立てる
+        ///</summary>
+        public void updZaikohinHachu(string strHachuban)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //データ渡し用
+            lstSQL.Add("A1540_ZaikohinHachu");
+            lstSQL.Add("ZaikohinHachu_SakujoFlg_UPDATE");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+
+            //トランザクション開始
+            dbconnective.BeginTrans();
+            try
+            {
+                //SQLファイルのパス取得
+                string strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return;
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strHachuban);
+
+                //SQL接続後、
+                dbconnective.RunSql(strSQLInput);
+
+                //コミット
+                dbconnective.Commit();
+                return;
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
     }
 }
