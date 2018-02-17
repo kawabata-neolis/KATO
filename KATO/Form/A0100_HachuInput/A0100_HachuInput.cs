@@ -144,6 +144,14 @@ namespace KATO.Form.A0100_HachuInput
             hachuban.HeaderText = "発注番号";
 
             //カラム名の指定
+            DataGridViewTextBoxColumn shisakiname = new DataGridViewTextBoxColumn();
+            shisakiname.DataPropertyName = "仕入先名";
+            shisakiname.Name = "仕入先名";
+            shisakiname.HeaderText = "仕入先名";
+
+
+
+            //カラム名の指定
             DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
             chuban.DataPropertyName = "注番";
             chuban.Name = "注番";
@@ -181,12 +189,14 @@ namespace KATO.Form.A0100_HachuInput
 
             //各カラムのバインド（文章の寄せ、カラム名の位置、フォーマット指定、横幅サイズ）
             setColumn(hachuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
-            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
-            setColumn(chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 600);
-            setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.#", 130);
-            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
+            setColumn(shisakiname, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+
+            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
+            setColumn(hachusu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumn(noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
 
             gridHachu.Columns["発注番号"].Visible = false;
         }
@@ -935,10 +945,10 @@ namespace KATO.Form.A0100_HachuInput
             strTanka = cmbHachutan.Text.Replace(",", "");
 
             //整数のみ取得
-            int intData = int.Parse(strTanka.Split('.')[0]);
+            decimal decData = decimal.Parse(strTanka.Split('.')[0]);
 
             //受注金の計算
-            decJucyuKin = (intData * (int.Parse(txtHachusu.Text)));
+            decJucyuKin = (decData * (decimal.Parse(txtHachusu.Text)));
 
             try
             {

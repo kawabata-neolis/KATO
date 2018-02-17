@@ -452,6 +452,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
+            string strSQLPROC = "";
 
             //SQLファイルのパスとファイル名を追加
             lstSQLSelect.Add("A1520_Uriageshonin");
@@ -553,8 +554,11 @@ namespace KATO.Business.A1520_Uriageshonin_B
                                                              lstGrid[2],    //更新日時
                                                              lstGrid[3]);   //更新ユーザー名
 
+                    //UPDATE(受注)
+                    strSQLPROC = "受注_売上数_戻し更新_PROC '" + lstGrid[0] + "','" + lstGrid[2] + "'";
+
                     //SQL接続後、該当データを更新
-                    dbconnective.RunSql(strSQLInput);
+                    dbconnective.RunSql(strSQLPROC);
 
                 }
 

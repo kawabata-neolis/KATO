@@ -118,8 +118,8 @@
             // gridHenpinNebiki
             // 
             this.gridHenpinNebiki.AllowUserToAddRows = false;
+            this.gridHenpinNebiki.AllowUserToResizeColumns = false;
             this.gridHenpinNebiki.AllowUserToResizeRows = false;
-            this.gridHenpinNebiki.AllowUserToResizeColumns = true;
             this.gridHenpinNebiki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
