@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using KATO.Common.Util;
 using System.Windows.Forms;
 using KATO.Common.Form;
-using KATO.Form.JuchuInput;
 using KATO.Form.B0040_NyukinInput;
 
 namespace KATO.Common.Business

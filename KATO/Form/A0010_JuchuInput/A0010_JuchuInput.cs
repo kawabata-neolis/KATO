@@ -22,6 +22,8 @@ namespace KATO.Form.A0010_JuchuInput
         bool nokiFlg = false;
         bool kyouseiFlg = false;
 
+        bool acceptFlg = false;
+
         decimal dSearchSu = 0;
         decimal dSearchSuH = 0;
         string defaultUser = "";
@@ -1943,6 +1945,11 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 #endregion
 
+                if (acceptFlg)
+                {
+                    //juchuB.insAccept(strJuchuNo, Environment.UserName);
+                }
+
                 // 加工品画面が開いている場合、加工品の登録を実行
                 if (f6 != null && f6.Visible)
                 {
@@ -2641,13 +2648,15 @@ namespace KATO.Form.A0010_JuchuInput
                             {
                                 return false;
                             }
+
+                            acceptFlg = true;
                         }
                     }
                 }
             }
             else if (intRiekiFlg == 1)
             {
-
+                acceptFlg = true;
             }
             else if (intRiekiFlg == 2)
             {

@@ -158,7 +158,6 @@
     <Compile Include="Business\F0570_TanaorosiKinyuhyoPrint\F0570_TanaorosiKinyuhyoPrint_B.cs" />
     <Compile Include="Business\G0920_HidukeSeigen\G0920_HidukeSeigen_B.cs" />
     <Compile Include="Business\H0210_MitsumoriInput\H0210_MitsumoriInput_B.cs" />
-    <Compile Include="Business\JuchuInput\JuchuInput_B.cs" />
     <Compile Include="Business\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu_B.cs" />
     <Compile Include="Business\M1000_Kaishajyoken\M1000_Kaishajyoken_B.cs" />
     <Compile Include="Business\M1010_Daibunrui\M1010_Daibunrui_B.cs" />
@@ -885,12 +884,6 @@
     <Compile Include="Form\H0210_MitsumoriInput\UserControl2.designer.cs">
       <DependentUpon>UserControl2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\JuchuInput\JuchuInput_Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\JuchuInput\JuchuInput_Test.Designer.cs">
-      <DependentUpon>JuchuInput_Test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1455,10 +1448,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\H0210_MitsumoriInput\UserControl2.resx">
       <DependentUpon>UserControl2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\JuchuInput\JuchuInput_Test.resx">
-      <DependentUpon>JuchuInput_Test.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\M0620_HushoAtenaInsatsu\M0620_HushoAtenaInsatsu.resx">
       <DependentUpon>M0620_HushoAtenaInsatsu.cs</DependentUpon>

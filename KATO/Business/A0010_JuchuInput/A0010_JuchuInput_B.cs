@@ -1008,5 +1008,14 @@ namespace KATO.Business.A0010_JuchuInput
 
             return dt;
         }
+
+        public void insAccept(string stNo, string user)
+        {
+            string strQuery = "";
+            strQuery += "INSERT INTO 利益率承認";
+            strQuery += " VALUES (";
+            strQuery += stNo + ", 0, '" + DateTime.Now.ToString() + "', '" + user + "', '" + DateTime.Now.ToString() + "', '" + user + "')";
+        }
+
     }
 }

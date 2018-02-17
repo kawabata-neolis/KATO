@@ -8,7 +8,6 @@ using KATO.Common.Util;
 using System.Windows.Forms;
 using KATO.Common.Form;
 using KATO.Form.M1100_Chokusosaki;
-using KATO.Form.JuchuInput;
 using KATO.Form.B0060_ShiharaiInput;
 
 namespace KATO.Common.Business
@@ -152,16 +151,16 @@ namespace KATO.Common.Business
         public void FormMove(int intFrm)
         {
             //全てのフォームの中から移動元フォームの検索
-            foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-            {
-                //テストのフォームを探す
-                if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "JuchuInput_Test")
-                {
-                    //データを連れてくるため、newをしないこと
-                    JuchuInput_Test test = (JuchuInput_Test)frm;
-                    test.setShiharaiListClose();
-                }
-            }
+            //foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+            //{
+            //    //テストのフォームを探す
+            //    if (intFrm == CommonTeisu.FRM_TEST && frm.Name == "JuchuInput_Test")
+            //    {
+            //        //データを連れてくるため、newをしないこと
+            //        JuchuInput_Test test = (JuchuInput_Test)frm;
+            //        test.setShiharaiListClose();
+            //    }
+            //}
         }
     }
 }
