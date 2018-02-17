@@ -881,7 +881,7 @@ namespace KATO.Form.A0020_UriageInput
                         uriageinput_B.printGenpinhyo(Denno, false);
 
                         //印刷済みにする。（プロシージャー）
-                        Flag = 0;
+                        Flag = 1;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
 
@@ -897,7 +897,7 @@ namespace KATO.Form.A0020_UriageInput
                         uriageinput_B.printGenpinhyo(Denno, false);
 
                         //印刷済みにする。（プロシージャー）
-                        Flag = 0;
+                        Flag = 1;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
 
 
@@ -2216,6 +2216,23 @@ namespace KATO.Form.A0020_UriageInput
             SetteiAri = false;
             int getSyohinbetuCheck = 0 ;    //戻り値 
 
+            //ビジネス層のインスタンス生成
+            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
+            try
+            {
+                // 利益率承認が下りている場合、利益率チェックは無視
+                if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
+                {
+                    getSyohinbetuCheck = 9;
+                    return getSyohinbetuCheck;
+                }
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                throw;
+            }
             //部長の場合はPASS
             if (!"1".Equals(riekiritsuFlg))
             {
@@ -2251,8 +2268,6 @@ namespace KATO.Form.A0020_UriageInput
             //検索時のデータ取り出し先
             DataTable dtSetView;
 
-            //ビジネス層のインスタンス生成
-            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
             try
             {
                 //ビジネス層、商品別利益率を設定する。
@@ -2302,7 +2317,6 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
-                
                 //エラーロギング
                 new CommonException(ex);
                 return 0;

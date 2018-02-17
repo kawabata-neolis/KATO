@@ -488,8 +488,8 @@ namespace KATO.Form.A0010_JuchuInput
                 con.BeginTrans();
                 juchuB.delJuchu(strJuchuNo, lblStatusUser.Text,con);
                 // 受発注の在庫数を変更
-                juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString(), con);
-                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString(),con);
+                //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString(), con);
+                //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString(),con);
 
                 //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, dSearchSu.ToString());
 
@@ -1742,7 +1742,7 @@ namespace KATO.Form.A0010_JuchuInput
                         con);
                     decimal d = getDecValue(txtJuchuSuryo.Text);
 
-                    juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
+                    //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
 
                     con.Commit();
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "数量・納期・注番を更新しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1907,7 +1907,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                 decimal d = getDecValue(txtJuchuSuryo.Text);
 
-                juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
+                //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
 
                 // 発注数0の場合、既に発注があれば削除、発注があれば更新
                 #region
@@ -1925,7 +1925,7 @@ namespace KATO.Form.A0010_JuchuInput
                             {
                                 hNum = dtHachu.Rows[0]["発注数量"].ToString();
                             }
-                            juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, hNum, con);
+                            //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, hNum, con);
                         }
                         strMsg = "正常に登録されました";
                         //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1935,7 +1935,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         string strHachuNo = addJuchuH(strJuchuNo, juchuB, con);
                         d = getDecValue(txtHatchusu.Text);
-                        juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSuH).ToString(), con);
+                        //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSuH).ToString(), con);
                         string st = juchuB.getChubanName(lsJuchusha.CodeTxtText);
                         strMsg = "正常に登録されました\r\n注番:" + st.TrimEnd() + strHachuNo;
 
@@ -1945,9 +1945,11 @@ namespace KATO.Form.A0010_JuchuInput
                 }
                 #endregion
 
+                // 利益率チェックに引っかかった場合は利益率承認へ登録する
                 if (acceptFlg)
                 {
-                    //juchuB.insAccept(strJuchuNo, Environment.UserName);
+                    juchuB.insAccept(strJuchuNo, Environment.UserName, con);
+                    acceptFlg = false;
                 }
 
                 // 加工品画面が開いている場合、加工品の登録を実行
@@ -2081,6 +2083,8 @@ namespace KATO.Form.A0010_JuchuInput
         // データチェック
         private bool chkData()
         {
+            acceptFlg = false;
+
             // 空文字チェック
             #region
             if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text) && txtJuchuNo.Text.Equals("0"))
@@ -2447,7 +2451,8 @@ namespace KATO.Form.A0010_JuchuInput
                                         {
                                             if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0002"))
                                             {
-                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+                                                //decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString());
 
                                                 if (decHonshaSu > decZaikoSuF)
                                                 {
@@ -2508,7 +2513,8 @@ namespace KATO.Form.A0010_JuchuInput
                                         {
                                             if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0001"))
                                             {
-                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+                                                //decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[0]["フリー在庫数未来"].ToString());
+                                                decZaikoSuF = getDecValue(dtZaiko.Rows[0]["フリー在庫数"].ToString());
 
                                                 if (decGihuSu > decZaikoSuF)
                                                 {
@@ -2555,16 +2561,16 @@ namespace KATO.Form.A0010_JuchuInput
                                 A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
                                 try
                                 {
-                                    DataTable dtZaiko = juchuB.getZaiko(null, txtShohinCd.Text);
+                                    DataTable dtZaikoH = juchuB.getZaiko("0001", txtShohinCd.Text);
+                                    DataTable dtZaikoG = juchuB.getZaiko("0002", txtShohinCd.Text);
 
-                                    if (dtZaiko != null && dtZaiko.Rows.Count > 1 && getDecValue(dtZaiko.Rows[0]["在庫数"].ToString()) > 0 && getDecValue(dtZaiko.Rows[1]["在庫数"].ToString()) > 0)
+                                    if (dtZaikoH != null && dtZaikoH.Rows.Count > 1 && dtZaikoG != null && dtZaikoG.Rows.Count > 1
+                                        && getDecValue(dtZaikoH.Rows[0]["在庫数"].ToString()) > 0 && getDecValue(dtZaikoG.Rows[1]["在庫数"].ToString()) > 0)
                                     {
                                         decimal zaikoF = 0;
-                                        for (int i = 0; i < dtZaiko.Rows.Count; i++)
-                                        {
-                                            zaikoF += getDecValue(dtZaiko.Rows[i]["フリー在庫数"].ToString()) + getDecValue(dtZaiko.Rows[i]["フリー在庫数未来"].ToString());
-                                        }
-
+                                        
+                                        zaikoF += getDecValue(dtZaikoH.Rows[0]["フリー在庫数"].ToString()) + getDecValue(dtZaikoG.Rows[0]["フリー在庫数"].ToString());
+ 
                                         if (string.IsNullOrWhiteSpace(txtJuchuNo.Text))
                                         {
                                             if ((getDecValue(txtHonshaShukko.Text) + getDecValue(txtGihuShukko.Text)) > zaikoF)

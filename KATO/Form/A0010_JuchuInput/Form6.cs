@@ -1877,7 +1877,7 @@ namespace KATO.Form.A0010_JuchuInput
                     if (sLbl.Equals(labels[0])) {
                         decimal d = getDecValue(sHSu);
                         decimal dTmp = getDecValue(sTmpSu);
-                        juchuB.updZaiko(true, sEigyo, sShohin, (d - dTmp).ToString(), con);
+                        //juchuB.updZaiko(true, sEigyo, sShohin, (d - dTmp).ToString(), con);
                     }
                     shohinCd = sShohin;
                     ((BaseTextMoney)cc.Controls["txtHNo"]).Text = strDenpyoNo;
