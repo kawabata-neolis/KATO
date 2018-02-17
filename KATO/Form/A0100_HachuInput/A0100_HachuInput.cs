@@ -1291,6 +1291,10 @@ namespace KATO.Form.A0100_HachuInput
                     //データグリッドビューに表示
                     gridHachu.DataSource = dtSetCd;
                 }
+                else
+                {
+                    gridHachu.DataSource = "";
+                }
             }
             catch (Exception ex)
             {
@@ -1403,9 +1407,6 @@ namespace KATO.Form.A0100_HachuInput
             //検索時のデータ取り出し先(商品)
             DataTable dtSetShohin;
 
-            //受注済み判定
-            Boolean blJuchuTrue = false;
-
             //ビジネス層のインスタンス生成
             A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
             try
@@ -1432,9 +1433,6 @@ namespace KATO.Form.A0100_HachuInput
                             //登録削除をさせない
                             btnF01.Enabled = false;
                             btnF03.Enabled = false;
-
-                            //受注済み
-                            blJuchuTrue = true;
                         }
                     }
 
@@ -1639,8 +1637,16 @@ namespace KATO.Form.A0100_HachuInput
             decimal decTeka = decimal.Parse(txtTeka.Text);
             decimal decTanka = decimal.Parse(cmbHachutan.Text);
 
-            //規定の計算で掛け率を記入
-            txtKakeritsu.Text = ((decTanka / decTeka) * 100).ToString("0.0");
+            //定価か単価が0の場合
+            if (decTeka == 0 || decTanka == 0)
+            {
+                txtKakeritsu.Text = "0";
+            }
+            else
+            {
+                //規定の計算で掛け率を記入
+                txtKakeritsu.Text = ((decTanka / decTeka) * 100).ToString("0.0");
+            }
         }
 
         ///<summary>

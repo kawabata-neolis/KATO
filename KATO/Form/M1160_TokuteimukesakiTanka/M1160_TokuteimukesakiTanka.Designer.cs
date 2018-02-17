@@ -48,56 +48,44 @@
             // 
             // btnF01
             // 
-            this.btnF01.Location = new System.Drawing.Point(1, 902);
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
-            this.btnF12.Location = new System.Drawing.Point(1299, 902);
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.Location = new System.Drawing.Point(1181, 902);
             // 
             // btnF10
             // 
-            this.btnF10.Location = new System.Drawing.Point(1063, 902);
             // 
             // btnF09
             // 
-            this.btnF09.Location = new System.Drawing.Point(945, 902);
             // 
             // btnF08
             // 
-            this.btnF08.Location = new System.Drawing.Point(827, 902);
             // 
             // btnF07
             // 
-            this.btnF07.Location = new System.Drawing.Point(709, 902);
             // 
             // btnF06
             // 
-            this.btnF06.Location = new System.Drawing.Point(591, 902);
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.Location = new System.Drawing.Point(473, 902);
             // 
             // btnF04
             // 
-            this.btnF04.Location = new System.Drawing.Point(355, 902);
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.Location = new System.Drawing.Point(237, 902);
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.Location = new System.Drawing.Point(119, 902);
             // 
             // baseLabel1
             // 
@@ -204,6 +192,7 @@
             this.gridTokuteimukesakiTanka.AllowUserToAddRows = false;
             this.gridTokuteimukesakiTanka.AllowUserToResizeColumns = false;
             this.gridTokuteimukesakiTanka.AllowUserToResizeRows = false;
+            this.gridTokuteimukesakiTanka.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -282,7 +271,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.labelSet_Siiresaki);
             this.Controls.Add(this.labelSet_Tokuisaki);
