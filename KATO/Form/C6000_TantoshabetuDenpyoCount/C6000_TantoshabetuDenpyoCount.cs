@@ -453,38 +453,42 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             C6000_TantoshabetuDenpyoCount_B denpyocountB = new C6000_TantoshabetuDenpyoCount_B();
             try
             {
+                // カーソルを待機状態にする
+                this.Cursor = Cursors.WaitCursor;
+
                 dtSetView = denpyocountB.getData(txtDenpyoOpen.Text, txtDenpyoClose.Text, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text);
 
-                gridViewData.DataSource = dtSetView;
-
-                //datagridviewの行数分ループ
-                for (int intRcnt = 1; intRcnt < gridViewData.RowCount; intRcnt++)
+                // 各合計を計算
+                foreach (DataRow row in dtSetView.Rows)
                 {
-                    intJuchu = intJuchu + (int)Math.Floor(double.Parse(gridViewData[1, intRcnt].Value.ToString()));
-                    txtJuchuKei.Text = string.Format("{0:#,0}", intJuchu);
-
-                    intHachu = intHachu + (int)Math.Floor(double.Parse(gridViewData[2, intRcnt].Value.ToString()));
-                    txtHachu.Text = string.Format("{0:#,0}", intHachu);
-
-                    intShire = intShire + (int)Math.Floor(double.Parse(gridViewData[3, intRcnt].Value.ToString()));
-                    txtShire.Text = string.Format("{0:#,0}", intShire);
-
-                    intUriage = intUriage + (int)Math.Floor(double.Parse(gridViewData[4, intRcnt].Value.ToString()));
-                    txtUriage.Text = string.Format("{0:#,0}", intUriage);
-
-                    intNyuko = intNyuko + (int)Math.Floor(double.Parse(gridViewData[5, intRcnt].Value.ToString()));
-                    txtNyuko.Text = string.Format("{0:#,0}", intNyuko);
-
-                    intShuko = intShuko + (int)Math.Floor(double.Parse(gridViewData[6, intRcnt].Value.ToString()));
-                    txtShuko.Text = string.Format("{0:#,0}", intShuko);
-
-                    intTanto = intTanto + (int)Math.Floor(double.Parse(gridViewData[7, intRcnt].Value.ToString()));
-                    txtTanto.Text = string.Format("{0:#,0}", intTanto);
-
+                    intJuchu += (int)Math.Floor(double.Parse(row["受注計"].ToString()));
+                    intHachu += (int)Math.Floor(double.Parse(row["発注計"].ToString()));
+                    intShire += (int)Math.Floor(double.Parse(row["仕入計"].ToString()));
+                    intUriage += (int)Math.Floor(double.Parse(row["売上計"].ToString()));
+                    intNyuko += (int)Math.Floor(double.Parse(row["入庫計"].ToString()));
+                    intShuko += (int)Math.Floor(double.Parse(row["出庫計"].ToString()));
+                    intTanto += (int)Math.Floor(double.Parse(row["担当計"].ToString()));
                 }
+                
+                // 検索結果をグリッドに反映
+                gridViewData.DataSource = dtSetView;
+                // 各合計をテキストボックスに反映
+                txtJuchuKei.Text = string.Format("{0:#,0}", intJuchu);  // 受注計の合計
+                txtHachu.Text = string.Format("{0:#,0}", intHachu);     // 発注計の合計
+                txtShire.Text = string.Format("{0:#,0}", intShire);     // 仕入計の合計
+                txtUriage.Text = string.Format("{0:#,0}", intUriage);   // 売上計の合計
+                txtNyuko.Text = string.Format("{0:#,0}", intNyuko);     // 入庫計の合計
+                txtShuko.Text = string.Format("{0:#,0}", intShuko);     // 出庫計の合計
+                txtTanto.Text = string.Format("{0:#,0}", intTanto);     // 担当計の合計
+
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 //エラーロギング
                 new CommonException(ex);
                 return;
@@ -599,6 +603,9 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 //プレビューの場合
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    // カーソルを待機状態にする
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text, lstKei);
                     
@@ -608,6 +615,9 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 // 一括印刷の場合
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
+                    // カーソルを待機状態にする
+                    this.Cursor = Cursors.WaitCursor;
+
                     // PDF作成
                     strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text, lstKei);
 
@@ -615,9 +625,17 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                 }
 
+                pf.Dispose();
+
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
             }
             catch (Exception ex)
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）

@@ -626,7 +626,7 @@ namespace KATO.Form.Z0000
 
                 //仕入先元帳確認
                 case "34":
-                    E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin shiremotochokakunin = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this);
+                    E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin shiremotochokakunin = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this, 0, "");
                     shiremotochokakunin.ShowDialog();
                     break;
 
@@ -1210,7 +1210,7 @@ namespace KATO.Form.Z0000
 
                     case "34":
                         //仕入先元帳確認
-                        E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin shiremotochokakunin = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this);
+                        E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin shiremotochokakunin = new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this, 0, "");
                         shiremotochokakunin.ShowDialog();
                         break;
 

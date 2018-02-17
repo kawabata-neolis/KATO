@@ -27,16 +27,27 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
     {
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        // 画面ID
+        private int intFrm;
+
+        // 得意先コード
+        private string strSiiresakiCd;
+
         /// <summary>
         /// E0340_SiiresakiMotochouKakunin
         /// フォーム関係の設定
         /// </summary>
-        public E0340_SiiresakiMotochouKakunin(Control c)
+        public E0340_SiiresakiMotochouKakunin(Control c, int intFrm, string strSiiresakiCd)
         {
             if (c == null)
             {
                 return;
             }
+
+            // 画面IDをセット
+            this.intFrm = intFrm;
+            // 得意先コードをセット
+            this.strSiiresakiCd = strSiiresakiCd;
 
             int intWindowWidth = c.Width;
             int intWindowHeight = c.Height;
@@ -57,6 +68,16 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             // 親画面の中央を指定
             this.Left = c.Left + (intWindowWidth - this.Width) / 2;
             this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+        }
+
+        private void E0340_SiiresakiMotochouKakunin_Shown(object sender, EventArgs e)
+        {
+            if (strSiiresakiCd != "")
+            {
+                labelSet_Siiresaki.CodeTxtText = strSiiresakiCd;
+                this.setSiire();
+                gridSiire.Focus();
+            }
         }
 
         /// <summary>
@@ -84,6 +105,9 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
 
             // DataGridViewの初期設定
             SetUpGrid();
+
+            // ステータスバーにメッセージ表示
+            this.lblStatusMessage.Text = "F9を押すと、一覧表示または検索ができます";
         }
 
         /// <summary>
@@ -104,7 +128,7 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             DataGridViewTextBoxColumn denpyoNo = new DataGridViewTextBoxColumn();
             denpyoNo.DataPropertyName = "伝票番号";
             denpyoNo.Name = "伝票番号";
-            denpyoNo.HeaderText = "伝票No";
+            denpyoNo.HeaderText = "伝№";
 
             DataGridViewTextBoxColumn kubunName = new DataGridViewTextBoxColumn();
             kubunName.DataPropertyName = "取引区分名";
@@ -153,12 +177,12 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
 
             // 個々の幅、文字の寄せ
             setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
-            setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
+            setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 64);
             setColumn(kubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
-            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
-            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 520);
+            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 480);
             setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 80);
-            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
             setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
             setColumn(shiharai, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 100);
             setColumn(zandaka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 120);
@@ -315,6 +339,12 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
 
             // データ検索用
             List<string> lstSearchItem = new List<string>();
+            // 得意先情報取得用
+            DataTable dtSiiresakiInfo;
+            // 消費税区分 
+            string kbnZei = "";
+            // 消費税計算区分
+            string kbnZeiKeisan = "";
 
             string strYmStart = txtYmStart.Text + "/01";
             DateTime dateYmEnd = DateTime.Parse(txtYmEnd.Text + "/01");
@@ -333,6 +363,14 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             E0340_SiiresakiMotochouKakunin_B siireB = new E0340_SiiresakiMotochouKakunin_B();
             try
             {
+                // 仕入先情報取得
+                dtSiiresakiInfo = siireB.getSiiresakiInfo(this.labelSet_Siiresaki.CodeTxtText);
+                if (dtSiiresakiInfo.Rows.Count > 0)
+                {
+                    kbnZei = dtSiiresakiInfo.Rows[0]["消費税区分"].ToString();
+                    kbnZeiKeisan = dtSiiresakiInfo.Rows[0]["消費税計算区分"].ToString();
+                }
+
                 decimal decGoukei = 0;
                 decimal decZengetsuZandaka = 0;
                 decimal decSiireKingaku = 0;
@@ -378,9 +416,9 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
                 }
 
                 // 外税の場合
-                if (labelSet_Siiresaki.AppendLabelText.Equals("外税"))
+                if (kbnZei.Equals("0") && kbnZeiKeisan.Equals("2"))
                 {
-                    // 買掛残高一覧表_月間消費税
+                    // 売掛残高一覧表_月間消費税
                     dtSiireList = siireB.getSiireList(lstSearchItem, 4);
 
                     if (dtSiireList != null && dtSiireList.Rows.Count > 0)
@@ -394,9 +432,9 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
                 }
 
                 // 内税の場合
-                if (labelSet_Siiresaki.AppendLabelText.Equals("内税"))
+                if (kbnZei.Equals("1"))
                 {
-                    // 買掛残高一覧表_月間消費税
+                    // 売掛残高一覧表_月間消費税
                     dtSiireList = siireB.getSiireList(lstSearchItem, 4);
 
                     if (dtSiireList != null && dtSiireList.Rows.Count > 0)
@@ -601,6 +639,18 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
                     Control cNow = this.ActiveControl;
                     cNow.Focus();
                 }
+                // DataTableのレコード数取得
+                int dtCnt = dtSiireList.Rows.Count;
+                if (dtCnt > 0)
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当件数" + dtCnt + "件)";
+                }
+                else
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当なし)";
+                }
 
             }
             catch (Exception ex)
@@ -616,6 +666,7 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             }
             return;
         }
+
 
     }
 }

@@ -22,7 +22,7 @@ namespace KATO.Form.A0100_HachuInput
     ///作成者：大河内
     ///作成日：2017/5/1
     ///更新者：大河内
-    ///更新日：2017/5/10
+    ///更新日：2018/02/17
     ///カラム論理名
     ///</summary>
     public partial class A0100_HachuInput : BaseForm

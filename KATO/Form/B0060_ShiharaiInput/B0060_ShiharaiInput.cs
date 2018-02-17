@@ -125,6 +125,8 @@ namespace KATO.Form.B0060_ShiharaiInput
 
             //DataGridViewの初期設定
             SetUpGrid();
+
+            lblset_Siiresaki.Focus();
         }
 
         /// <summary>
@@ -754,6 +756,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                txtYMD.Focus();
                 return;
             }
 
@@ -763,6 +766,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+                lblset_Siiresaki.Focus();
                 return;
             }
 
@@ -963,8 +967,8 @@ namespace KATO.Form.B0060_ShiharaiInput
             if (!lblset_Siiresaki.CodeTxtText.Equals(""))
             {
                 // 得意先元帳確認フォームを開く
-                E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin tokuisaki = 
-                    new E0330_TokuisakiMotocyoKakunin.E0330_TokuisakiMotocyoKakunin(this, 6, lblset_Siiresaki.CodeTxtText);
+                E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin tokuisaki = 
+                    new E0340_SiiresakiMotochouKakunin.E0340_SiiresakiMotochouKakunin(this, 6, lblset_Siiresaki.CodeTxtText);
                 tokuisaki.ShowDialog();
             }
         }

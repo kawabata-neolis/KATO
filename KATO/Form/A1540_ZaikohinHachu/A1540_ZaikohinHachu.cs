@@ -23,7 +23,7 @@ namespace KATO.Form.A1540_ZaikohinHachu
     ///作成者：大河内
     ///作成日：2018/2/16
     ///更新者：大河内
-    ///更新日：2018/2/16
+    ///更新日：2018/2/17
     ///カラム論理名
     ///</summary>
     public partial class A1540_ZaikohinHachu : BaseForm

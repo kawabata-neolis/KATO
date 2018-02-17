@@ -27,6 +27,13 @@ namespace KATO.Common.Ctl
         LabelSet_Chubunrui lsGroupCddata;
 
         /// <summary>
+        /// searchOn
+        /// 存在チェックを行う場合 true 
+        /// 存在チェックを行わない場合 false
+        /// </summary>
+        public bool SearchOn = true;
+
+        /// <summary>
         /// LsGroupCddata
         /// プロパティの設定（データ確保）
         /// </summary>
@@ -145,6 +152,12 @@ namespace KATO.Common.Ctl
                 {
                     CodeTxtText = CodeTxtText.ToString().PadLeft(4, '0');
                 }
+            }
+
+            // 存在チェックを行い
+            if (SearchOn == false)
+            {
+                return;
             }
 
             //データ渡し用
@@ -275,6 +288,12 @@ namespace KATO.Common.Ctl
                 {
                     CodeTxtText = CodeTxtText.ToString().PadLeft(4, '0');
                 }
+            }
+
+            // 存在チェックを行い
+            if (SearchOn == false)
+            {
+                return false;
             }
 
             // データ渡し用

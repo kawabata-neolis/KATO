@@ -174,7 +174,7 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 2;
+            this.btnF01.TabIndex = 9;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -219,12 +219,12 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 4;
+            this.btnF04.TabIndex = 11;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.TabIndex = 3;
+            this.btnF03.TabIndex = 10;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
@@ -1960,7 +1960,7 @@
             this.txtDenpyoNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
             this.txtDenpyoNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDenpyoNoKeyPress);
-            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
+            this.txtDenpyoNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShiharaiKeyUp);
             this.txtDenpyoNo.Leave += new System.EventHandler(this.updDenpyoNoLeave);
             // 
             // B0060_ShiharaiInput

@@ -74,34 +74,10 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             //得意先コードが他画面から連れてきた場合(入金入力と支払入力から専用)
             if (strTokuisakiCd != "")
             {
-                labelSet_TokuisakiEnd.CodeTxtText = strTokuisakiCd;
+                labelSet_TokuisakiStart.CodeTxtText = strTokuisakiCd;
                 this.setTokuisakimotocho();
                 gridTorihiki.Focus();
             }
-            
-
-            ////【暫定】
-
-            ////画面名不明（gMode=1）
-            //if (intFrm == 1)
-            //{
-            //    labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
-
-            //    this.setTokuisakimotocho();
-
-            //    gridTorihiki.Focus();
-
-            //}
-            ////入金入力からの要求
-            //else if (intFrm == 2)
-            //{
-
-            //    labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
-
-            //    this.setTokuisakimotocho();
-
-            //    gridTorihiki.Focus();
-            //}
         }
 
         private void E0330_TokuisakiMotocyoKakunin_Load(object sender, EventArgs e)
@@ -126,6 +102,9 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             //DataGridViewの初期設定
             SetUpGrid();
+
+            // ステータスバーにメッセージ表示
+            this.lblStatusMessage.Text = "F9を押すと、一覧表示または検索ができます";
         }
 
         ///<summary>
@@ -147,12 +126,12 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             DataGridViewTextBoxColumn denpyoNo = new DataGridViewTextBoxColumn();
             denpyoNo.DataPropertyName = "伝票番号";
             denpyoNo.Name = "伝票番号";
-            denpyoNo.HeaderText = "伝票No";
+            denpyoNo.HeaderText = "伝№";
 
             DataGridViewTextBoxColumn gyoubangou = new DataGridViewTextBoxColumn();
             gyoubangou.DataPropertyName = "行番号";
             gyoubangou.Name = "行番号";
-            gyoubangou.HeaderText = "行番号";
+            gyoubangou.HeaderText = "行№";
 
             DataGridViewTextBoxColumn kubun1 = new DataGridViewTextBoxColumn();
             kubun1.DataPropertyName = "取引区分名";
@@ -201,18 +180,18 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
 
             //個々の幅、文章の寄せ
-            setColumn(hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 120);
-            setColumn(denpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumn(gyoubangou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0",80);
-            setColumn(kubun1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,80);
-            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,150);
-            setColumn(sinamei_kataban, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter,null,400);
-            setColumn(suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",80);
-            setColumn(uriagetanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.00", 120);
-            setColumn(uriagekingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",120);
-            setColumn(nyukinkingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(sasihikizandaka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 120);
-            setColumn(kubun2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null, 80);
+            setColumn(hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumn(denpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 64);
+            setColumn(gyoubangou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#0",64);
+            setColumn(kubun1, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,64);
+            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,149);
+            setColumn(sinamei_kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null,400);
+            setColumn(suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",64);
+            setColumn(uriagetanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 108);
+            setColumn(uriagekingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",108);
+            setColumn(nyukinkingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 108);
+            setColumn(sasihikizandaka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 108);
+            setColumn(kubun2, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null, 65);
 
             //表示はしない項目
             gridTorihiki.Columns[11].Visible = false;
@@ -348,7 +327,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         private void setTokuisakimotocho()
         {
             //記入項目の空白削除
-            labelSet_TokuisakiOpen.CodeTxtText.Trim();
+            labelSet_TokuisakiStart.CodeTxtText.Trim();
             labelSet_TokuisakiEnd.CodeTxtText.Trim();
             txtStartYM.Text.Trim();
             txtEndYM.Text.Trim();
@@ -359,11 +338,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             txtZandaka.Text.Trim();
             
             //得意先コードの検索開始項目
-            if (labelSet_TokuisakiOpen.codeTxt.blIsEmpty() == false ||
-                StringUtl.blIsEmpty(labelSet_TokuisakiOpen.ValueLabelText) == false ||
-                labelSet_TokuisakiOpen.chkTxtTorihikisaki() == true)
+            if (labelSet_TokuisakiStart.codeTxt.blIsEmpty() == false ||
+                StringUtl.blIsEmpty(labelSet_TokuisakiStart.ValueLabelText) == false ||
+                labelSet_TokuisakiStart.chkTxtTorihikisaki() == true)
             {
-                labelSet_TokuisakiOpen.Focus();
+                labelSet_TokuisakiStart.Focus();
                 return;
             }
 
@@ -395,6 +374,12 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             //検索時のデータ取り出し先
             DataTable dtSetView;
+            // 得意先情報取得用
+            DataTable dtTokuisakiInfo;
+            // 消費税区分 
+            string kbnZei = "";
+            // 消費税計算区分
+            string kbnZeiKeisan = "";
 
             string StartYMD;
             string EndYMD;
@@ -415,11 +400,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             EndYMD = txtEndYM.Text + "/01";
             //入力値の月末を取得
             EndYMD = DateTime.Parse(EndYMD).AddMonths(1).ToString();
-            EndYMD = DateTime.Parse(EndYMD).AddDays(-1).ToString();
+            EndYMD = DateTime.Parse(EndYMD).AddDays(-1).ToString("yyyy/MM/dd");
 
             //データの存在確認を検索する情報を入れる
             /*[0]得意先コード*/
-            lstUriageSuiiLoad.Add(labelSet_TokuisakiOpen.CodeTxtText);
+            lstUriageSuiiLoad.Add(labelSet_TokuisakiStart.CodeTxtText);
             /*[1]スタート日付（yyyy/MM/dd）*/
             lstUriageSuiiLoad.Add(StartYMD);
             /*[2]スタート日付（yyyy/MM/dd）*/
@@ -429,6 +414,14 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             E0330_TokuisakiMotocyoKakunin_B tokuisakimotocyokakuninB = new E0330_TokuisakiMotocyoKakunin_B();
             try
             {
+                // 得意先情報取得
+                dtTokuisakiInfo = tokuisakimotocyokakuninB.getTokuisakiInfo(this.labelSet_TokuisakiStart.CodeTxtText);
+                if (dtTokuisakiInfo.Rows.Count > 0)
+                {
+                    kbnZei = dtTokuisakiInfo.Rows[0]["消費税区分"].ToString();
+                    kbnZeiKeisan = dtTokuisakiInfo.Rows[0]["消費税計算区分"].ToString();
+                }
+
                 //ビジネス層、前月残高取得ロジックに移動
                 dtSetView = tokuisakimotocyokakuninB.getZenzan(lstUriageSuiiLoad);
 
@@ -453,7 +446,8 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                     wkin1 = 0;
                 }
 
-                txtUriage.Text = wkin1.ToString("");
+                // テキストボックス売上金額に値を入れる
+                txtUriage.Text = wkin1.ToString();
 
                 /*[3]売上金額 */
                 lstUriageSuiiLoad.Add(txtUriage.Text);
@@ -478,7 +472,16 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
                 if (dtSetView.Rows.Count > 0)
                 {
-                    wkin1 = decimal.Parse(dtSetView.Rows[0]["請求消費税"].ToString());
+                    if (kbnZei.Equals("0") && kbnZeiKeisan.Equals("2"))
+                    {
+                        wkin1 = decimal.Parse(dtSetView.Rows[0]["請求消費税"].ToString());
+                    }
+                    //内税の場合売上金額から内税を減算
+                    if (kbnZei.Equals("1"))
+                    {
+                        txtUriage.Text = (decimal.Parse(txtUriage.Text) - wkin1).ToString();
+                    }
+                    
                 }
                 else
                 {
@@ -486,18 +489,6 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 }
 
                 txtZei.Text = wkin1.ToString();
-
-                //内税か外税で処理を変更
-                if (labelSet_TokuisakiOpen.AppendLabelText == "外税")
-                {
-                    //何もしない
-                }
-                else if (labelSet_TokuisakiOpen.AppendLabelText == "内税")
-                {
-                    //内税の場合売上金額から内税を減算
-                    txtUriage.Text = (decimal.Parse(txtUriage.Text) - wkin1).ToString();
-                }
-
 
                 //ビジネス層、入金現金取得ロジックに移動
                 dtSetView = tokuisakimotocyokakuninB.getNyukinGenkin(lstUriageSuiiLoad);
@@ -688,6 +679,19 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                     txtZei.Text = decimal.Parse(txtZei.Text.ToString()).ToString("#,0");
                     txtZandaka.Text = decimal.Parse(txtZandaka.Text.ToString()).ToString("#,0");
                 }
+
+                // DataTableのレコード数取得
+                int dtCnt = dtSetView.Rows.Count;
+                if (dtCnt > 0)
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当件数" + dtCnt + "件)";
+                }
+                else
+                {
+                    // ステータスバーに検索結果表示
+                    this.lblStatusMessage.Text = "検索終了(該当なし)";
+                }
             }
             catch (Exception ex)
             {
@@ -706,7 +710,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         ///印刷ダイアログ
         ///</summary>
         private void printTokuisakiMotocyoKakunin()
-        {
+        {        
             //SQL実行時に取り出したデータを入れる用
             DataTable dtPrintData = new DataTable();
 
@@ -717,11 +721,11 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             string strInsatsuSelect = "";
 
             //得意先コードの検索開始項目のチェック
-            if (labelSet_TokuisakiOpen.codeTxt.blIsEmpty() == false ||
-                StringUtl.blIsEmpty(labelSet_TokuisakiOpen.ValueLabelText) == false ||
-                labelSet_TokuisakiOpen.chkTxtTorihikisaki() == true)
+            if (labelSet_TokuisakiStart.codeTxt.blIsEmpty() == false ||
+                StringUtl.blIsEmpty(labelSet_TokuisakiStart.ValueLabelText) == false ||
+                labelSet_TokuisakiStart.chkTxtTorihikisaki() == true)
             {
-                labelSet_TokuisakiOpen.Focus();
+                labelSet_TokuisakiStart.Focus();
                 return;
             }
 
@@ -730,6 +734,10 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 StringUtl.blIsEmpty(labelSet_TokuisakiEnd.ValueLabelText) == false ||
                 labelSet_TokuisakiEnd.chkTxtTorihikisaki() == true)
             {
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "得意先コードを範囲で指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 labelSet_TokuisakiEnd.Focus();
                 return;
             }
@@ -765,7 +773,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             List<string> lstPrintData = new List<string>();
 
             //印刷用データを入れる
-            lstPrintData.Add(labelSet_TokuisakiOpen.CodeTxtText);
+            lstPrintData.Add(labelSet_TokuisakiStart.CodeTxtText);
             lstPrintData.Add(labelSet_TokuisakiEnd.CodeTxtText);
             lstPrintData.Add(DateTime.Parse(txtStartYM.Text).ToString("yyyy/MM/dd"));
             lstPrintData.Add(DateTime.Parse(txtEndYM.Text).ToString("yyyy/MM/") + intDay.ToString());

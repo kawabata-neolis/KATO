@@ -71,6 +71,8 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             this.btnF12.Text = STR_FUNC_F12;
 
             //初期表示
+            labelSet_TokuisakiStart.SearchOn = false;
+            labelSet_TokuisakiEnd.SearchOn = false;
             labelSet_TokuisakiStart.CodeTxtText = "0000";
             labelSet_TokuisakiEnd.CodeTxtText = "9999";
 
@@ -162,6 +164,62 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             }
         }
 
+        /// <summary>
+        /// judNyukinCheckKeyDown
+        /// キー入力判定(テキストボックス【Beastextのみ】)
+        /// </summary>
+        private void judSeikyuItiranKeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    // タブ機能
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
         /// <summary>
         /// delText
         /// テキストボックス内の文字を削除
@@ -387,8 +445,12 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
         //締切年月日のフォーカスが外れた場合の処理
         private void txtSimekiriYMD_Leave(object sender, EventArgs e)
         {
-            //前月翌月請求へ
-            ZengetuYokugetuSyutoku();
+            // 空の場合処理を行わない
+            if(txtSimekiriYMD.Text != "")
+            {
+                //前月翌月請求へ
+                ZengetuYokugetuSyutoku();
+            }
         }
     }
 }
