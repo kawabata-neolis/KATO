@@ -21,6 +21,8 @@ namespace KATO.Form.H0210_MitsumoriInput
         BaseTextMoney nm;
         public int printFlg = 0;
 
+        //Form8_3 f83;
+
         public Form8_2(BaseTextMoney txtNum)
         {
             InitializeComponent();
@@ -143,7 +145,9 @@ namespace KATO.Form.H0210_MitsumoriInput
                 //string path = (strPdfPath + "_" + gridMitsu[1, intRowIdx].Value).ToString() + "_M.pdf";
                 if (System.IO.File.Exists(path))
                 {
+                    //f83.loadFile(path);
                     axAcroPDF1.LoadFile(path);
+                    sleepAsync();
                 }
             }
             catch (Exception ex)
@@ -349,6 +353,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             this.txtTo.Text = (DateTime.Now).ToString("yyyy/MM");
             this.Activate();
             this.ActiveControl = txtFrom;
+
+            //f83 = new Form8_3(this);
+            //f83.Show();
         }
 
         private void txtTanto_KeyUp(object sender, KeyEventArgs e)
@@ -604,6 +611,12 @@ namespace KATO.Form.H0210_MitsumoriInput
         private void btnF012_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void sleepAsync()
+        {
+            await Task.Delay(500);
+            gridMitsu.Focus();
         }
     }
 }

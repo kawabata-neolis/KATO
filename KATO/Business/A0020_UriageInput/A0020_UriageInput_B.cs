@@ -2274,6 +2274,7 @@ namespace KATO.Business.A0020_UriageInput
                 String strTanaban = "";                  // 棚番
                 String strSu = "";                       // 数量
                 String strBiko = "";                     // 備考
+                String strNonyu = "";                    // 納入方法
 
                 if (dt != null)
                 {
@@ -2292,8 +2293,9 @@ namespace KATO.Business.A0020_UriageInput
                         strTanaban = dt.Rows[i]["棚番"].ToString();
                         strSu = dt.Rows[i]["数量"].ToString();
                         strBiko = dt.Rows[i]["備考"].ToString();
+                        strNonyu = dt.Rows[i]["納入方法"].ToString();
 
-                        printout(strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko);
+                        printout(strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko, strNonyu);
                     }
                 }
             }
@@ -2310,6 +2312,7 @@ namespace KATO.Business.A0020_UriageInput
             string strSQL = "";
             strSQL += "SELECT 売上ヘッダ.得意先名";
             strSQL += "      ,売上ヘッダ.直送先名";
+            strSQL += "      ,売上ヘッダ.納入方法";
             strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
             //strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
             strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + NCHAR(13) + NCHAR(10) +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
@@ -2345,7 +2348,7 @@ namespace KATO.Business.A0020_UriageInput
         }
 
         public void printout(String strJuchusaki, String strNohinsaki, String strNohinbi, String strKataban,
-            String strTanaban, String strSu, String strBiko)
+            String strTanaban, String strSu, String strBiko, String strNonyu)
         {
 
             //String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
@@ -2446,6 +2449,12 @@ namespace KATO.Business.A0020_UriageInput
                 objCell = objWorkSheet.Cells[_line + 4, _col];          // 棚番
                 objRange = objWorkSheet.get_Range(objCell, objCell);
                 objRange.Value2 = strTanaban;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 4, _col + 1];          // 納入方法
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strNonyu;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
