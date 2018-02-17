@@ -101,6 +101,7 @@ namespace KATO.Form.A0030_ShireInput
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF07.Text = "F7:行削";
+            this.btnF08.Text = "F8:実績";
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 

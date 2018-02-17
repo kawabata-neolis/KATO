@@ -148,9 +148,7 @@ namespace KATO.Form.A0100_HachuInput
             shisakiname.DataPropertyName = "仕入先名";
             shisakiname.Name = "仕入先名";
             shisakiname.HeaderText = "仕入先名";
-
-
-
+            
             //カラム名の指定
             DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
             chuban.DataPropertyName = "注番";
@@ -189,9 +187,8 @@ namespace KATO.Form.A0100_HachuInput
 
             //各カラムのバインド（文章の寄せ、カラム名の位置、フォーマット指定、横幅サイズ）
             setColumn(hachuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
-            setColumn(shisakiname, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
-
-            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumn(shisakiname, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 261);
+            setColumn(chuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 181);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
@@ -1259,6 +1256,15 @@ namespace KATO.Form.A0100_HachuInput
         ///仕入先コードから離れた場合
         ///</summary>
         private void textSet_Torihikisaki_Leave(object sender, EventArgs e)
+        {
+            setGridData();
+        }
+
+        ///<summary>
+        ///setGridData
+        //仕入先コードありでの検索
+        ///</summary>
+        private void setGridData()
         {
             //検索時のデータ取り出し先
             DataTable dtSetCd;

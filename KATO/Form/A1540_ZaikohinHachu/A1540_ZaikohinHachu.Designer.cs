@@ -349,7 +349,7 @@
             this.labelSet_Daibunrui.LsSubmakerdata = null;
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
-            this.labelSet_Daibunrui.Size = new System.Drawing.Size(257, 24);
+            this.labelSet_Daibunrui.Size = new System.Drawing.Size(345, 24);
             this.labelSet_Daibunrui.SpaceCodeValue = 20;
             this.labelSet_Daibunrui.SpaceNameCode = 30;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
@@ -380,7 +380,7 @@
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(32, 138);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(257, 23);
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(345, 23);
             this.labelSet_Chubunrui.SpaceCodeValue = 20;
             this.labelSet_Chubunrui.SpaceNameCode = 30;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
@@ -424,7 +424,7 @@
             this.labelSet_Maker.Location = new System.Drawing.Point(32, 167);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(257, 28);
+            this.labelSet_Maker.Size = new System.Drawing.Size(345, 28);
             this.labelSet_Maker.SpaceCodeValue = 4;
             this.labelSet_Maker.SpaceNameCode = 14;
             this.labelSet_Maker.SpaceValueAppend = 4;
@@ -794,7 +794,6 @@
             this.gridHachu.AllowUserToAddRows = false;
             this.gridHachu.AllowUserToResizeColumns = false;
             this.gridHachu.AllowUserToResizeRows = false;
-            this.gridHachu.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
