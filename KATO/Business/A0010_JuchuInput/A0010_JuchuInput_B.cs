@@ -489,12 +489,24 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT 営業所コード, 在庫数, フリー在庫数, 在庫数未来, フリー在庫数未来";
-            strQuery += "  FROM 在庫数";
-            strQuery += " WHERE 商品コード = '" + strShohinNo + "'";
-            if (strEigyouCd != null)
+            //strQuery += "SELECT 営業所コード, 在庫数, フリー在庫数, 在庫数未来, フリー在庫数未来";
+            //strQuery += "  FROM 在庫数";
+            //strQuery += " WHERE 商品コード = '" + strShohinNo + "'";
+            //if (strEigyouCd != null)
+            //{
+            //    strQuery += "   AND 営業所コード = '" + strEigyouCd + "'";
+            //}
+
+            if (string.IsNullOrWhiteSpace(strEigyouCd)) {
+                strQuery += "SELECT dbo.f_get指定日の在庫数('0001', '" + strShohinNo + "', '2050/12/31') + dbo.f_get指定日の在庫数('0002', '" + strShohinNo + "', '2050/12/31') AS 在庫数";
+                strQuery += "      ,dbo.f_get指定日のフリー在庫数Ｂ(NULL, '" + strShohinNo + "' ,'2050/12/31') AS フリー在庫数";
+                strQuery += "  FROM 商品 where 商品コード = '" + strShohinNo + "'";
+            }
+            else
             {
-                strQuery += "   AND 営業所コード = '" + strEigyouCd + "'";
+                strQuery += "SELECT dbo.f_get指定日の在庫数('" + strEigyouCd + "', '" + strShohinNo + "', '2050/12/31') AS 在庫数";
+                strQuery += "      ,dbo.f_get指定日のフリー在庫数Ｂ('" + strEigyouCd + "', '" + strShohinNo + "' ,'2050/12/31') AS フリー在庫数";
+                strQuery += "  FROM 商品 where 商品コード = '" + strShohinNo + "'";
             }
 
             DBConnective dbCon = new DBConnective();
@@ -820,16 +832,26 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT b.営業所名 AS 営業所, a.在庫数 AS 在庫数";
+            //strQuery += "SELECT b.営業所名 AS 営業所, a.在庫数 AS 在庫数";
+            //strQuery += "      ,dbo.f_get商品別受注残数(b.営業所コード,'" + strShohinNo + "') AS 受注残";
+            //strQuery += "      ,dbo.f_get商品別発注残数(b.営業所コード,'" + strShohinNo + "') AS 発注残";
+            ////strQuery += "      ,dbo.f_get商品別受注残数加工品材料分(b.営業所コード,'" + strShohinNo + "')";
+            //strQuery += "      ,dbo.f_get商品別発注残数受注有り(b.営業所コード,'" + strShohinNo + "') AS 発注残受";
+            //strQuery += "      ,a.フリー在庫数 AS ﾌﾘｰ在庫";
+            //strQuery += "  FROM 在庫数 a, 営業所 b";
+            //strQuery += " WHERE a.商品コード = '" + strShohinNo + "'";
+            //strQuery += "   AND a.営業所コード = b.営業所コード";
+            //strQuery += "   AND b.削除 = 'N'";
+            //strQuery += " ORDER BY b.営業所コード ";
+
+            strQuery += "SELECT b.営業所名 AS 営業所";
+            strQuery += "      ,dbo.f_get指定日の在庫数(b.営業所コード,'" + strShohinNo + "','2050/12/31') AS 在庫数";
             strQuery += "      ,dbo.f_get商品別受注残数(b.営業所コード,'" + strShohinNo + "') AS 受注残";
             strQuery += "      ,dbo.f_get商品別発注残数(b.営業所コード,'" + strShohinNo + "') AS 発注残";
-            //strQuery += "      ,dbo.f_get商品別受注残数加工品材料分(b.営業所コード,'" + strShohinNo + "')";
             strQuery += "      ,dbo.f_get商品別発注残数受注有り(b.営業所コード,'" + strShohinNo + "') AS 発注残受";
-            strQuery += "      ,a.フリー在庫数 AS ﾌﾘｰ在庫";
-            strQuery += "  FROM 在庫数 a, 営業所 b";
-            strQuery += " WHERE a.商品コード = '" + strShohinNo + "'";
-            strQuery += "   AND a.営業所コード = b.営業所コード";
-            strQuery += "   AND b.削除 = 'N'";
+            strQuery += "      ,dbo.f_get指定日のフリー在庫数Ｂ(b.営業所コード,'" + strShohinNo + "','2050/12/31') AS ﾌﾘｰ在庫";
+            strQuery += "  FROM 営業所 b";
+            strQuery += " WHERE b.削除 = 'N'";
             strQuery += " ORDER BY b.営業所コード ";
 
             DBConnective dbCon = new DBConnective();
@@ -1009,12 +1031,21 @@ namespace KATO.Business.A0010_JuchuInput
             return dt;
         }
 
-        public void insAccept(string stNo, string user)
+        public void insAccept(string stNo, string user, DBConnective con)
         {
             string strQuery = "";
             strQuery += "INSERT INTO 利益率承認";
             strQuery += " VALUES (";
             strQuery += stNo + ", 0, '" + DateTime.Now.ToString() + "', '" + user + "', '" + DateTime.Now.ToString() + "', '" + user + "')";
+
+            try
+            {
+                con.RunSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

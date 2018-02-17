@@ -1969,6 +1969,7 @@ namespace KATO.Business.A0020_UriageInput
             string strFilePath = "./Template/A0020_UriageInput.xlsx";
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
 
+            A0020_UriageInput_B uriB = new A0020_UriageInput_B();
             try
             {
                 // excelのインスタンス生成
@@ -1980,6 +1981,9 @@ namespace KATO.Business.A0020_UriageInput
                 int xlsRowCnt = 15;  // Excel出力行カウント（開始は出力行）
                 Boolean blnSheetCreate = true;
 
+                string blPrint = "";
+                string rePrint = "";
+
                 // ClosedXMLで1行ずつExcelに出力
                 //納品書控えの出力
                 foreach (DataRow drNouhinHikae in dtNouhinHikae.Rows)
@@ -1988,15 +1992,31 @@ namespace KATO.Business.A0020_UriageInput
                     if (blnSheetCreate)
                     {
                         blnSheetCreate = false;
+                        List<string> stL = new List<string>();
+                        stL.Add(drNouhinHikae[8].ToString());
+
+                        DataTable dt =  uriB.GetUriageInput(stL);
+
+                        // 再発行時はタイトルに再発行を付ける
+                        blPrint = "";
+                        rePrint = "";
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            blPrint = dt.Rows[0]["伝票発行フラグ"].ToString();
+                            if (!string.IsNullOrWhiteSpace(blPrint) && blPrint.Equals("1"))
+                            {
+                                rePrint = " 【再発行】";
+                            }
+                        }
 
                         //得意先コードが８８８８だった場合は納品書の文言変更
                         if (lstItem[4] == "8888")
                         {
-                            currentsheet.Cell("H3").Value = "納品書（控）現金売り";       // 見出し
+                            currentsheet.Cell("H3").Value = "納品書（控）現金売り" + rePrint;       // 見出し
                         }
                         else
                         {
-                            currentsheet.Cell("H3").Value = "納　品　書（控）";       // 見出し
+                            currentsheet.Cell("H3").Value = "納　品　書（控）" + rePrint;       // 見出し
                         }
 
                         currentsheet.Cell("B6").Value = drNouhinHikae[2].ToString();       // 郵便番号
@@ -2291,7 +2311,8 @@ namespace KATO.Business.A0020_UriageInput
             strSQL += "SELECT 売上ヘッダ.得意先名";
             strSQL += "      ,売上ヘッダ.直送先名";
             strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
-            strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
+            //strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
+            strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + NCHAR(13) + NCHAR(10) +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
             strSQL += "      ,dbo.f_get商品コードから棚番(売上明細.商品コード, dbo.f_get受注時の出庫場所(売上明細.受注番号)) AS 棚番";
             strSQL += "      ,売上明細.数量";
             strSQL += "      ,売上明細.備考";
@@ -2398,11 +2419,11 @@ namespace KATO.Business.A0020_UriageInput
                 objWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)objWorkBook.Sheets[_sheetNo];
 
                 // EXCEL出力処理
-                objCell = objWorkSheet.Cells[_line + 0, _col];          // 受注先
-                objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strJuchusaki;
-                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
-                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+                //objCell = objWorkSheet.Cells[_line + 0, _col];          // 受注先
+                //objRange = objWorkSheet.get_Range(objCell, objCell);
+                //objRange.Value2 = strJuchusaki;
+                //Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                //Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
                 objCell = objWorkSheet.Cells[_line + 1, _col];          // 納品先
                 objRange = objWorkSheet.get_Range(objCell, objCell);
@@ -2608,5 +2629,34 @@ namespace KATO.Business.A0020_UriageInput
                 dbconnective.DB_Disconnect();
             }
         }
+
+        public int getRiekiAccept (string stNo)
+        {
+            int ret = 0;
+
+            if (string.IsNullOrWhiteSpace(stNo))
+            {
+                return ret;
+            }
+
+            DBConnective dtCon = new DBConnective();
+            DataTable dt = null;
+            try
+            {
+                string strSQL = "SELECT * FROM 利益率承認 WHERE 受注番号 = " + stNo + " AND 承認フラグ = 1";
+                dt = dtCon.ReadSql(strSQL);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    ret = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return ret;
+        }
+
     }
 }
