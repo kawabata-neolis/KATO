@@ -175,6 +175,16 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
                 return;
             }
 
+            //TryParse用
+            DateTime dateTry = new DateTime();
+
+            //年月日に変換できない場合
+            if (!DateTime.TryParse(txtSimekiriYmd.Text, out dateTry))
+            {
+                txtSimekiriYmd.Focus();
+                return;
+            }
+
             // ビジネス層のインスタンス生成
             B0420_SeikyuMeisaishoPrint_B meisaiPrintB = new B0420_SeikyuMeisaishoPrint_B();
             try

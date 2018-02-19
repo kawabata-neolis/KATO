@@ -14,7 +14,6 @@ using KATO.Business.D0320_SiireJissekiKakunin;
 
 namespace KATO.Form.D0320_SiireJissekiKakunin
 {
-
     /// <summary>
     /// D0320_SiireJissekiKakunin
     /// 仕入実績確認フォーム
@@ -120,7 +119,7 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             }
 
             // 初期表示
-            radSortOrder.radbtn1.Checked = true;
+            radSortOrder.radbtn1.Checked = true;    // 並び順：Z-Aにチェック
             labelSet_Htanto.Focus();
 
             // 伝票年月日の設定
@@ -142,13 +141,24 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         private void D0320_SiireJissekiKakunin_Shown(object sender, EventArgs e)
         {
             // 発注入力フォームから呼ばれた場合
-            if (this.intFrm == 0010)
+            if (this.intFrm == 10)
             {
-                // 【テスト用に日付を変更】
-                //txtDenpyoYMDStart.Text = "2017/05/01";
+                // ラジオボタン初期表示
+                radEigyosho.radbtn0.Checked = true;     // 営業所：すべてにチェック 
+                radSortOrder.radbtn1.Checked = true;    // 並び順：Z-Aにチェック
+                labelSet_Htanto.Focus();
+
+                // 伝票年月日の設定
+                txtDenpyoYMDEnd.setUp(2);
+                DateTime dateYMDStart = DateTime.Parse(txtDenpyoYMDEnd.Text);
+                txtDenpyoYMDStart.Text = dateYMDStart.AddMonths(-1).ToString().Substring(0, 8) + "01";
+
                 labelSet_Siiresaki.CodeTxtText = this.strSiiresakiCd;
                 this.setSiireJisseki();
             }
+
+            // ステータスバーに検索結果表示
+            this.lblStatusMessage.Text = "F9を押すと、一覧表示または検索ができます";
         }
 
         /// <summary>
@@ -261,7 +271,7 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
             setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 530);
-            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 80);
+            setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
             setColumn(kingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumn(bikou, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);

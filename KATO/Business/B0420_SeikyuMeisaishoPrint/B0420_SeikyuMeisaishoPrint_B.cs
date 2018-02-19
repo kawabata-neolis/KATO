@@ -228,7 +228,7 @@ namespace KATO.Business.B0420_SeikyuMeisaishoPrint
 
                 // ロゴ貼り付け処理
                 CreatePdf pdf = new CreatePdf();
-                int[] topRow = { 6 };
+                int[] topRow = { 4 };
                 int[] leftColumn = { 15 };
                 pdf.logoPaste(strOutXlsFile, topRow, leftColumn, 200, 850, 88);
 
