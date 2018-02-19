@@ -14,6 +14,7 @@ using static KATO.Common.Util.CommonTeisu;
 
 namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 {
+
     ///<summary>
     ///E0330_TokuisakiMotocyoKakunin
     ///得意先元帳確認
