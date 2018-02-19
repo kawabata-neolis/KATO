@@ -706,7 +706,6 @@ namespace KATO.Form.B0060_ShiharaiInput
         {
             // 削除するデータ以外を確保
             string strDenpyoYMD = txtYMD.Text;
-            string strDenpyoNo = txtDenpyoNo.Text;
             string strTantousha = labelSet_Tantousha.CodeTxtText;
             string strEigyosho = labelSet_Eigyosho.CodeTxtText;
 
@@ -717,7 +716,6 @@ namespace KATO.Form.B0060_ShiharaiInput
             this.btnF03.Enabled = false;
 
             txtYMD.Text = strDenpyoYMD;
-            txtDenpyoNo.Text = strDenpyoNo;
             labelSet_Tantousha.CodeTxtText = strTantousha;
             labelSet_Eigyosho.CodeTxtText = strEigyosho;
 
@@ -773,6 +771,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             // 入力チェック（仕入先コード（取引先））
             if (lblset_Siiresaki.chkTxtTorihikisaki())
             {
+                lblset_Siiresaki.Focus();
                 return;
             }
 
@@ -786,6 +785,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
+                        ctlGb.Controls["txtShiharai" + cnt.ToString()].Focus();
                         return;
                     }
                 }

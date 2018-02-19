@@ -368,6 +368,7 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
             if (txtEndYM.blIsEmpty() == false)
             {
                 txtEndYM.Focus();
+                return;
             }
 
             //データ検索用

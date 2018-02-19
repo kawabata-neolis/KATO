@@ -2526,6 +2526,15 @@
     <Content Include="SQL\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_TokuisakiSELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_SiiresakiSELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\M1030_Shohin\Shohin_DataKari_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

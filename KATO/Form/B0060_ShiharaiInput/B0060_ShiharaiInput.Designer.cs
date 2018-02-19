@@ -175,6 +175,7 @@
             // btnF01
             // 
             this.btnF01.TabIndex = 9;
+            this.btnF01.TabStop = false;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -219,12 +220,13 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 11;
+            this.btnF04.TabIndex = 5;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
             this.btnF03.TabIndex = 10;
+            this.btnF03.TabStop = false;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
@@ -246,7 +248,7 @@
             this.labelSet_Tantousha.SpaceCodeValue = 4;
             this.labelSet_Tantousha.SpaceNameCode = 4;
             this.labelSet_Tantousha.SpaceValueAppend = 4;
-            this.labelSet_Tantousha.TabIndex = 8;
+            this.labelSet_Tantousha.TabIndex = 1;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
             // 
@@ -264,7 +266,7 @@
             this.lblset_Siiresaki.SpaceCodeValue = 4;
             this.lblset_Siiresaki.SpaceNameCode = 4;
             this.lblset_Siiresaki.SpaceValueAppend = 4;
-            this.lblset_Siiresaki.TabIndex = 1;
+            this.lblset_Siiresaki.TabIndex = 3;
             this.lblset_Siiresaki.ValueLabelSize = 300;
             this.lblset_Siiresaki.ValueLabelText = "";
             this.lblset_Siiresaki.Leave += new System.EventHandler(this.labelSet_Siiresaki_Leave);
@@ -376,7 +378,7 @@
             this.gbSiharaiInput.Location = new System.Drawing.Point(341, 105);
             this.gbSiharaiInput.Name = "gbSiharaiInput";
             this.gbSiharaiInput.Size = new System.Drawing.Size(777, 376);
-            this.gbSiharaiInput.TabIndex = 2;
+            this.gbSiharaiInput.TabIndex = 4;
             this.gbSiharaiInput.TabStop = false;
             // 
             // labelSet_Torihikikbn9
@@ -1875,6 +1877,7 @@
             this.gridShireJisseki.Size = new System.Drawing.Size(924, 188);
             this.gridShireJisseki.StandardTab = true;
             this.gridShireJisseki.TabIndex = 123;
+            this.gridShireJisseki.TabStop = false;
             // 
             // txtZeiHasuuKubun
             // 
@@ -1955,7 +1958,7 @@
             this.txtDenpyoNo.MaxLength = 8;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
-            this.txtDenpyoNo.TabIndex = 87;
+            this.txtDenpyoNo.TabIndex = 2;
             this.txtDenpyoNo.TabStop = false;
             this.txtDenpyoNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoNoKeyDown);
