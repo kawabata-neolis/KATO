@@ -3687,12 +3687,13 @@ namespace KATO.Form.A0020_UriageInput
                 //ビジネス層、取引先情報を取得する。
                 dtSetView = uriageinputB.getTorihikisakiData(lstString);
 
-                if (dtSetView.Rows.Count > 0)
+                if (dtSetView != null && dtSetView.Rows.Count > 0)
                 {
                     txtYubin.Text = dtSetView.Rows[0]["郵便番号"].ToString();
                     txtAdr1.Text = dtSetView.Rows[0]["住所１"].ToString();
                     txtAdr2.Text = dtSetView.Rows[0]["住所２"].ToString();
                     txtTname.Text = dtSetView.Rows[0]["取引先名称"].ToString();
+                    cboNounyu.Text = dtSetView.Rows[0]["納入方法"].ToString();
                 }
             }
             catch (Exception ex)
