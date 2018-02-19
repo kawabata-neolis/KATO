@@ -633,7 +633,7 @@ namespace KATO.Form.A0020_UriageInput
                 if (chkInsatu.Checked == false)
                 {
                     //印刷画面へ遷移。
-                    PrintReport(Denno, 0);
+                    //PrintReport(Denno, 0);
                 }
 
                 // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
@@ -883,9 +883,6 @@ namespace KATO.Form.A0020_UriageInput
                         //印刷済みにする。（プロシージャー）
                         Flag = 1;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
-
-
-
                     }
                     else
                     {
@@ -899,8 +896,6 @@ namespace KATO.Form.A0020_UriageInput
                         //印刷済みにする。（プロシージャー）
                         Flag = 1;
                         uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
-
-
                     }
 
                     pf.Dispose();

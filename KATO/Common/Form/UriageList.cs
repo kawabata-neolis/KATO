@@ -314,8 +314,8 @@ namespace KATO.Common.Form
             tokuisaki.HeaderText = "得意先名";
 
             DataGridViewTextBoxColumn hinmei = new DataGridViewTextBoxColumn();
-            hinmei.DataPropertyName = "品名・型番";
-            hinmei.Name = "品名・型番";
+            hinmei.DataPropertyName = "品名型番";
+            hinmei.Name = "品名型番";
             hinmei.HeaderText = "品名・型番";
 
             DataGridViewTextBoxColumn suu = new DataGridViewTextBoxColumn();
@@ -521,6 +521,11 @@ namespace KATO.Common.Form
                     lblRecords.Text = "該当件数( " + gridUriage.RowCount.ToString() + "件)";
 
                     gridUriage.Focus();
+                }
+                else
+                {
+                    gridUriage.DataSource = dtGetData;
+                    lblRecords.Text = "該当件数( 0件)";
                 }
             }
             catch(Exception ex)

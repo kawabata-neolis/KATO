@@ -142,12 +142,23 @@ namespace KATO.Business.A0020_UriageInput
                 // トランザクション開始
                 dbconnective.BeginTrans();
 
+                //string strProc = "売上伝票印刷済フラグセット_PROC '"
+                //            + UserName + "', '"
+                //            + DBNull.Value + "', '"
+                //            + DBNull.Value + "', '"
+                //            + DBNull.Value + "', '"
+                //            + DBNull.Value + "', '"
+                //            + Denno+ "', '"
+                //            + Denno + "', '"
+                //            + UserName + "', '"
+                //            + Flag + "'";
+                string s = DateTime.Now.ToString("yyyy/MM/dd");
                 string strProc = "売上伝票印刷済フラグセット_PROC '"
                             + UserName + "', '"
-                            + DBNull.Value + "', '"
-                            + DBNull.Value + "', '"
-                            + DBNull.Value + "', '"
-                            + DBNull.Value + "', '"
+                            + s + "', '"
+                            + s + "', '"
+                            + s + "', '"
+                            + s + "', '"
                             + Denno+ "', '"
                             + Denno + "', '"
                             + UserName + "', '"

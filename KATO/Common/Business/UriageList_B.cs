@@ -40,17 +40,17 @@ namespace KATO.Common.Business
             //担当者に記入がある場合
             if (StringUtl.blIsEmpty(lstUriageView[0]))
             {
-                strWhere = strWhere + " AND 担当者コード ='" + lstUriageView[0] + "'";
+                strWhere = strWhere + " AND H.担当者コード ='" + lstUriageView[0] + "'";
             }
 
             //取引先（表示は得意先）に記入がある場合
             if (StringUtl.blIsEmpty(lstUriageView[1]))
             {
-                strWhere = strWhere + " AND 得意先コード ='" + lstUriageView[1] + "'";
+                strWhere = strWhere + " AND H.得意先コード ='" + lstUriageView[1] + "'";
             }
 
-            strWhere = strWhere + " AND 伝票年月日 >='" + lstUriageView[2] + "'";
-            strWhere = strWhere + " AND 伝票年月日 <='" + lstUriageView[3] + "'";
+            strWhere = strWhere + " AND H.伝票年月日 >='" + lstUriageView[2] + "'";
+            strWhere = strWhere + " AND H.伝票年月日 <='" + lstUriageView[3] + "'";
 
             //品名・型番に記入がある場合
             if (StringUtl.blIsEmpty(lstUriageView[4]))
@@ -67,13 +67,14 @@ namespace KATO.Common.Business
             DBConnective dbconnective = new DBConnective();
             try
             {
-                dtGetTableGrid = dbconnective.ReadSql("SELECT H.伝票番号,H.伝票年月日,H.得意先名," +
-                                                      "RTRIM(ISNULL(M.Ｃ１,'')) + ' ' + RTRIM(ISNULL(M.Ｃ２,'')) + ' ' + RTRIM(ISNULL(M.Ｃ３,'')) + ' ' + RTRIM(ISNULL(M.Ｃ４,'')) + ' ' + RTRIM(ISNULL(M.Ｃ５,'')) + ' ' + RTRIM(ISNULL(M.Ｃ６,'')) + ' ' AS 品名・型番," +
+                string s = "SELECT H.伝票番号,H.伝票年月日,H.得意先名," +
+                                                      "RTRIM(ISNULL(M.Ｃ１,'')) + ' ' + RTRIM(ISNULL(M.Ｃ２,'')) + ' ' + RTRIM(ISNULL(M.Ｃ３,'')) + ' ' + RTRIM(ISNULL(M.Ｃ４,'')) + ' ' + RTRIM(ISNULL(M.Ｃ５,'')) + ' ' + RTRIM(ISNULL(M.Ｃ６,'')) AS 品名型番," +
                                                       "M.数量,M.売上単価,M.備考," +
                                                       "dbo.f_get担当者名(H.担当者コード) AS 担当者 " +
                                                       "FROM 売上ヘッダ H,売上明細 M " +
                                                       strWhere +
-                                                      " ORDER BY H.伝票年月日 DESC, H.得意先コード");
+                                                      " ORDER BY H.伝票年月日 DESC, H.得意先コード";
+                dtGetTableGrid = dbconnective.ReadSql(s);
             }
             catch (Exception ex)
             {
