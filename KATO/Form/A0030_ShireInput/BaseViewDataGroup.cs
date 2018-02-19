@@ -1471,6 +1471,11 @@ namespace KATO.Form.A0030_ShireInput
                         //総合計を合計と同じ数値
                         shireinput.txtSogokei.Text = decGokei.ToString();
                         shireinput.txtSogokei.updPriceMethod();
+                        //運賃が0円の場合
+                        if (shireinput.txtUnchin.Text == "0")
+                        {
+                            shireinput.txtUnchin.Text = "";
+                        }
                         return;
                     }
 
@@ -1482,6 +1487,11 @@ namespace KATO.Form.A0030_ShireInput
                         //総合計を合計と同じ数値
                         shireinput.txtSogokei.Text = decGokei.ToString();
                         shireinput.txtSogokei.updPriceMethod();
+                        //運賃が0円の場合
+                        if (shireinput.txtUnchin.Text == "0")
+                        {
+                            shireinput.txtUnchin.Text = "";
+                        }
                         return;
                     }
 
@@ -1545,6 +1555,12 @@ namespace KATO.Form.A0030_ShireInput
 
                         //仕入入力画面の消費税に記入
                         shireinput.txtShohizei.Text = decZeigokei.ToString();
+
+                        //運賃が0円の場合
+                        if (shireinput.txtUnchin.Text == "0")
+                        {
+                            shireinput.txtUnchin.Text = "";
+                        }
                     }
                     else
                     {
