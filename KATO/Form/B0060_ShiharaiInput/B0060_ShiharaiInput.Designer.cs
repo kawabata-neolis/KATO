@@ -174,7 +174,7 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 4;
+            this.btnF01.TabIndex = 5;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -219,17 +219,17 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 7;
+            this.btnF04.TabIndex = 8;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.TabIndex = 6;
+            this.btnF03.TabIndex = 7;
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.TabIndex = 5;
+            this.btnF02.TabIndex = 6;
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 

@@ -464,17 +464,5 @@ namespace KATO.Form.B1510_SeikyuRireki
                 }
             }
         }
-
-        ///<summary>
-        ///lblsetTokuisaki_Leave
-        ///得意先コードから離れた時
-        ///引数　：オブジェクト、イベント情報
-        ///戻り値：なし
-        ///</summary>
-        private void lblsetTokuisaki_Leave(object sender, EventArgs e)
-        {
-            //請求履歴グリッドの表示（得意先から）
-            setGridRirekiTokui();
-        }
     }
 }

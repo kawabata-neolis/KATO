@@ -246,10 +246,14 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
         /// </summary>
         private void printReport()
         {
+            //待機状態
+            Cursor.Current = Cursors.WaitCursor;
 
             // データチェック処理
             if (!dataCheack())
             {
+                //元に戻す
+                Cursor.Current = Cursors.Default;
                 return;
             }
 
@@ -287,30 +291,39 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 // 検索実行（印刷用）
                 DataTable dtSeikyuItiran = seikyuitiranprintB.getSeikyuItiran(lstSearchItem);
 
-                //テスト
-                //DataTable dtSeikyuItiran = seikyuitiranprintB.testgetSeikyu(lstSearchItem);
-
                 // レコードが0件だった場合は終了）
                 if (dtSeikyuItiran.Rows.Count <= 0)
                 {
                     // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
                     return;
                 }
-                
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
                 //プリントダイアログ！
                 Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
 
                 pf.ShowDialog(this);
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
                     // PDF作成
                     string strFile = seikyuitiranprintB.dbToPdf(dtSeikyuItiran, lstSearchItem);
                     pf.execPreview(@strFile);
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
                     // PDF作成
                     string strFile = seikyuitiranprintB.dbToPdf(dtSeikyuItiran, lstSearchItem);
 
@@ -320,6 +333,8 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                     pf.execPrint(null, @strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
                 }
 
+                //元に戻す
+                Cursor.Current = Cursors.Default;
                 pf.Dispose();
 
             }
@@ -327,6 +342,9 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             {
                 // エラーロギング
                 new CommonException(ex);
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
                 return;
             }
 

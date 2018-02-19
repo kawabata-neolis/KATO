@@ -410,7 +410,11 @@ namespace KATO.Form.B0060_ShiharaiInput
                     getSiiresakiData();
 
                     // 仕入実績表示
-                    setSiireJisseki();                    
+                    setSiireJisseki();
+
+                    // 登録削除できるようにする
+                    this.btnF01.Enabled = true;
+                    this.btnF03.Enabled = true;
                 }
                 else
                 {
@@ -452,8 +456,12 @@ namespace KATO.Form.B0060_ShiharaiInput
         /// </summary>
         private void updTorihikiKbnLeave(object sender, EventArgs e)
         {
-            this.btnF01.Enabled = true;
-            this.btnF03.Enabled = true;
+            //仕入先コードが存在する場合
+            if (lblset_Siiresaki.codeTxt.blIsEmpty())
+            {
+                this.btnF01.Enabled = true;
+                this.btnF03.Enabled = true;
+            }
         }
 
         /// <summary>

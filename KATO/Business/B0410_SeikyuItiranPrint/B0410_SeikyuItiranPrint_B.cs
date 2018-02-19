@@ -67,62 +67,6 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
         }
 
         /// <summary>
-        /// testgetSeikyu
-        /// テスト用請求一覧
-        /// </summary>
-        public DataTable testgetSeikyu(List<string> lstString)
-        {
-            DataTable dtGetTableGrid = new DataTable();
-
-            string strSQLInput = "";
-
-            // データ渡し用
-            List<string> lstStringSQL = new List<string>();
-
-
-            // SQL文 請求履歴
-
-            strSQLInput = strSQLInput + " SELECT 'カナカナショウジ' AS カナ   ";
-            strSQLInput += " ,'1100' AS 得意先コード ";
-            strSQLInput += " ,'カナカナ商事' AS 得意先名 ";
-            strSQLInput += " ,CAST( 1000 AS money ) AS 前月売掛残 ";
-            strSQLInput += " ,CAST( 1100 AS money ) AS 入金現金 ";
-            strSQLInput += " ,CAST( 1200 AS money ) AS 入金小切手 ";
-            strSQLInput += " ,CAST( 1300 AS money ) AS 入金振込 ";
-            strSQLInput += " ,CAST( 1400 AS money ) AS 入金手形 ";
-            strSQLInput += " ,CAST( 1500 AS money ) AS 入金相殺 ";
-            strSQLInput += " ,CAST( 1600 AS money ) AS 入金手数料 ";
-            strSQLInput += " ,CAST( 1700 AS money ) AS 入金その他 ";
-            strSQLInput += " ,CAST( 1800 AS money ) AS 繰越残高 ";
-            strSQLInput += " ,CAST( 1900 AS money ) AS 当月売上高 ";
-            strSQLInput += " ,CAST( 2000 AS money ) AS 当月消費税 ";
-            strSQLInput += " ,CAST( 2100 AS money ) AS 当月残高 ";
-            strSQLInput += " ,'内税' AS 税区 ";
-            strSQLInput += " ,'1' AS 消費税区分 ";
-            strSQLInput += " ,'2' AS 消費税計算区分 ";
-
-
-            // SQLのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
-
-            try
-            {
-                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
-            }
-            catch (Exception ex)
-            {
-                new CommonException(ex);
-                throw (ex);
-            }
-            finally
-            {
-                dbconnective.DB_Disconnect();
-            }
-
-            return dtGetTableGrid;
-        }
-
-        /// <summary>
         /// getSeikyuItiran
         /// 請求書の一覧を取得
         /// </summary>
