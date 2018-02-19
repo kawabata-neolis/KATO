@@ -20,7 +20,7 @@ FROM (
        um.売上金額,
        dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) AS 原価,
        um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) AS 原価金額,
-       um.売上金額 - (um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) - dbo.f_get受注番号_運賃FROM運賃(um.受注番号)) AS 粗利額,
+       um.売上金額 - (um.数量 * dbo.f_get受注番号_仕入単価FROM受注(um.受注番号) + dbo.f_get受注番号_運賃FROM運賃(um.受注番号)) AS 粗利額,
        dbo.f_get受注番号_運賃FROM運賃(um.受注番号) AS 運賃,
        um.商品コード,
        um.備考,
