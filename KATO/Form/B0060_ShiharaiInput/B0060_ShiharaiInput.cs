@@ -126,6 +126,9 @@ namespace KATO.Form.B0060_ShiharaiInput
             //DataGridViewの初期設定
             SetUpGrid();
 
+            this.btnF01.Enabled = false;
+            this.btnF03.Enabled = false;
+
             lblset_Siiresaki.Focus();
         }
 
@@ -450,6 +453,7 @@ namespace KATO.Form.B0060_ShiharaiInput
         private void updTorihikiKbnLeave(object sender, EventArgs e)
         {
             this.btnF01.Enabled = true;
+            this.btnF03.Enabled = true;
         }
 
         /// <summary>

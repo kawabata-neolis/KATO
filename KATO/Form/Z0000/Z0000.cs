@@ -1080,12 +1080,14 @@ namespace KATO.Form.Z0000
 
                     //支払入力
                     case "6":
+                        B0060_ShiharaiInput.B0060_ShiharaiInput shiharaiinput = new B0060_ShiharaiInput.B0060_ShiharaiInput(this);
+                        shiharaiinput.ShowDialog();
                         break;
 
                     //支払データチェックリスト
                     case "7":
-                        A0090_SiireCheckPrint.A0090_SiireCheckPrint shirecheck = new A0090_SiireCheckPrint.A0090_SiireCheckPrint(this);
-                        shirecheck.ShowDialog();
+                        B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint shiharaiPrint = new B0070_ShiharaiCheakPrint.B0070_ShiharaiCheakPrint(this);
+                        shiharaiPrint.ShowDialog();
                         break;
 
                     //納品書印刷
@@ -1094,6 +1096,8 @@ namespace KATO.Form.Z0000
 
                     //仕入データチェックリスト
                     case "9":
+                        A0090_SiireCheckPrint.A0090_SiireCheckPrint shirecheck = new A0090_SiireCheckPrint.A0090_SiireCheckPrint(this);
+                        shirecheck.ShowDialog();
                         break;
 
                     //発注入力
@@ -1256,6 +1260,18 @@ namespace KATO.Form.Z0000
                         uriagesuiihyo.ShowDialog();
                         break;
 
+                    case "50":
+                        //売掛金残高一覧確認
+                        C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin urikakekakunin = new C0500_UrikakekinZandakaIchiranKakunin.C0500_UrikakekinZandakaIchiranKakunin(this);
+                        urikakekakunin.ShowDialog();
+                        break;
+
+                    case "52":
+                        //買掛金残高一覧確認(旧：買掛金残高一覧表)
+                        C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin kaikakekakunin = new C0520_KaikakekinZandakaIchiranKakunin.C0520_KaikakekinZandakaIchiranKakunin(this);
+                        kaikakekakunin.ShowDialog();
+                        break;
+
                     case "53":
                         //得意先別売上粗利推移表
                         C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint uriageararisuii = new C0530_UriageArariSuiihyoPrint.C0530_UriageArariSuiihyoPrint(this);
@@ -1288,6 +1304,12 @@ namespace KATO.Form.Z0000
 
                     case "66":
                         //得意先別売上検収入力＆確認
+                        break;
+
+                    case "67":
+                        //仕入検収入力＆確認
+                        A0670_SiiresakiSiirekakunin.A0670_SiiresakiSiirekakunin siiresakisiirekakunin = new A0670_SiiresakiSiirekakunin.A0670_SiiresakiSiirekakunin(this);
+                        siiresakisiirekakunin.ShowDialog();
                         break;
 
                     case "68":
@@ -1416,16 +1438,22 @@ namespace KATO.Form.Z0000
                         shohinbeturieki.ShowDialog();
                         break;
 
-                    case "600":
-                        //担当者別伝票処理件数
-                        C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount tantoshabetusyori = new C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount(this);
-                        tantoshabetusyori.ShowDialog();
-                        break;
-
                     case "124":
                         //商品仕入単価推移表2
                         M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2 shohintankasuii2 = new M1240_ShohinSiireKakakuSuii2.M1240_ShohinSiireKakakuSuii2(this);
                         shohintankasuii2.ShowDialog();
+                        break;
+
+                    case "150":
+                        //マイメニュー
+                        Z1500_MyMenuSet.Z1500_MyMenuSet mymenu = new Z1500_MyMenuSet.Z1500_MyMenuSet(this);
+                        mymenu.ShowDialog();
+                        break;
+
+                    case "600":
+                        //担当者別伝票処理件数
+                        C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount tantoshabetusyori = new C6000_TantoshabetuDenpyoCount.C6000_TantoshabetuDenpyoCount(this);
+                        tantoshabetusyori.ShowDialog();
                         break;
 
                     //請求履歴
