@@ -152,13 +152,14 @@ namespace KATO.Business.A0020_UriageInput
                 //            + Denno + "', '"
                 //            + UserName + "', '"
                 //            + Flag + "'";
-                string s = DateTime.Now.ToString("yyyy/MM/dd");
+                string s1 = (DateTime.Now.AddYears(-20)).ToString("yyyy/MM/dd");
+                string s2 = (DateTime.Now.AddYears(20)).ToString("yyyy/MM/dd");
                 string strProc = "売上伝票印刷済フラグセット_PROC '"
                             + UserName + "', '"
-                            + s + "', '"
-                            + s + "', '"
-                            + s + "', '"
-                            + s + "', '"
+                            + s1 + "', '"
+                            + s2 + "', '"
+                            + s1 + "', '"
+                            + s2 + "', '"
                             + Denno+ "', '"
                             + Denno + "', '"
                             + UserName + "', '"
@@ -2299,6 +2300,7 @@ namespace KATO.Business.A0020_UriageInput
                         {
                             strNohinsaki = strJuchusaki;
                         }
+                        strNohinsaki += " 殿";
                         strNohinbi = dt.Rows[i]["伝票年月日"].ToString();
                         strKataban = dt.Rows[i]["型番"].ToString();
                         strTanaban = dt.Rows[i]["棚番"].ToString();
@@ -2321,8 +2323,8 @@ namespace KATO.Business.A0020_UriageInput
             DataTable dt = null;
 
             string strSQL = "";
-            strSQL += "SELECT 売上ヘッダ.得意先名";
-            strSQL += "      ,売上ヘッダ.直送先名";
+            strSQL += "SELECT RTRIM(売上ヘッダ.得意先名) AS 得意先名";
+            strSQL += "      ,RTRIM(売上ヘッダ.直送先名) AS 直送先名";
             strSQL += "      ,売上ヘッダ.納入方法";
             strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
             //strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
@@ -2463,9 +2465,9 @@ namespace KATO.Business.A0020_UriageInput
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
-                objCell = objWorkSheet.Cells[_line + 4, _col + 1];          // 納入方法
+                objCell = objWorkSheet.Cells[_line - 1, _col + 2];          // 納入方法
                 objRange = objWorkSheet.get_Range(objCell, objCell);
-                objRange.Value2 = strNonyu;
+                objRange.Value2 = "[" + strNonyu + "] " + DateTime.Now.ToString("yyyy.MM.dd");
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
