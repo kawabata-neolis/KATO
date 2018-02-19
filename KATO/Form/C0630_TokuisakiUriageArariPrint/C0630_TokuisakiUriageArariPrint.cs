@@ -86,6 +86,13 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
             // 開始年月日、終了年月日の設定
             txtYmdFrom.setUp(1);
             txtYmdTo.setUp(2);
+
+            labelSet_GroupCdFrom.SearchOn = false;
+            labelSet_GroupCdTo.SearchOn = false;
+            labelSet_TantoushaCdFrom.SearchOn = false;
+            labelSet_TantoushaCdTo.SearchOn = false;
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
         }
 
         /// <summary>

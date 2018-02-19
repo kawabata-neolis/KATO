@@ -89,6 +89,9 @@ namespace KATO.Form.C0480_SiireSuiiHyo
             dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
             txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
 
+            labelSet_TokuisakiStart.SearchOn = false;
+            labelSet_TokuisakiEnd.SearchOn = false;
+
             // 初期表示
             txtCalendarYMopen.Focus();
 

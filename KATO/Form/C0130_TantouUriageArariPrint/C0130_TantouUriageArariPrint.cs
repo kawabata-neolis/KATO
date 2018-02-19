@@ -90,6 +90,15 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
             txtYmdFrom.setUp(1);
             txtYmdTo.setUp(2);
 
+            labelSet_EigyoshoCdFrom.SearchOn = false;
+            labelSet_EigyoshoCdTo.SearchOn = false;
+
+            labelSet_GroupCdFrom.SearchOn = false;
+            labelSet_GroupCdTo.SearchOn = false;
+
+            labelSet_TantoushaCdFrom.SearchOn = false;
+            labelSet_TantoushaCdTo.SearchOn = false;
+
             // ステータスバーにメッセージ
             this.lblStatusMessage.Text = "F9を押すと、一覧選択または検索ができます";
         }

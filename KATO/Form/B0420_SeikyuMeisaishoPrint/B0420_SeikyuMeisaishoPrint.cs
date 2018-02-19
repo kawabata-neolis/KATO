@@ -77,6 +77,9 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
             // 発行年月日の設定
             txtHakkoYmd.setUp(0);
+
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
         }
 
         /// <summary>

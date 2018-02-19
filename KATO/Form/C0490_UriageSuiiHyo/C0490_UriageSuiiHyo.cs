@@ -90,6 +90,9 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             dateEndYMD = dateStartYMD.AddMonths(11);
             txtCalendarYMclose.Text = dateEndYMD.ToString("yyyy/MM");
+            
+            labelSet_TokuisakiStart.SearchOn = false;
+            labelSet_TokuisakiEnd.SearchOn = false;
 
             //DataGridViewの初期設定
             SetUpGrid();
