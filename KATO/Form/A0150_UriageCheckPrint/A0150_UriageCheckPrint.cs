@@ -84,6 +84,9 @@ namespace KATO.Form.A0150_UriageCheckPrint
 
             dateEndYMD = dateEndYMD.AddMonths(1);
             txtDenpyoYMDend.Text = dateEndYMD.AddDays(-1).ToString("yyyy/MM/dd");
+
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
         }
 
         /// <summary>

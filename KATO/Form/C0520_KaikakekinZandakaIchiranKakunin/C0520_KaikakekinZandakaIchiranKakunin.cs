@@ -77,7 +77,6 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            ////本番用
             //パワーユーザーの場合
             if ("1".Equals(this.etsuranFlg))
             {
@@ -94,8 +93,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 lblsetTantoshaCdclose.TabStop = false;
             }
 
-            ////テスト用
-            //this.powerUserFlg = true;
+            lblsetTantoshaCdopen.SearchOn = false;
+            lblsetTantoshaCdclose.SearchOn = false;
 
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;

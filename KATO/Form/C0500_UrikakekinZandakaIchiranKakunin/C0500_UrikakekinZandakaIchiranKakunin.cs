@@ -94,7 +94,9 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                 //タブ移動しない
                 lblsetTantoshaCdclose.TabStop = false;
             }
-            
+
+            lblsetTantoshaCdopen.SearchOn = false;
+            lblsetTantoshaCdclose.SearchOn = false;
 
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;

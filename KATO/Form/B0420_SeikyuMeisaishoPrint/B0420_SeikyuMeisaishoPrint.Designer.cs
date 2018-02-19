@@ -53,6 +53,11 @@
             this.bgSyurui.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 11;
@@ -107,11 +112,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabStop = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblHakkoYmd
             // 
@@ -200,6 +200,7 @@
             this.txtSimekiribi.Name = "txtSimekiribi";
             this.txtSimekiribi.Size = new System.Drawing.Size(26, 22);
             this.txtSimekiribi.TabIndex = 4;
+            this.txtSimekiribi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSimekiribi_KeyDown);
             // 
             // labelSet_TokuisakiCdTo
             // 
@@ -375,6 +376,7 @@
             this.Text = "B0420_SeikyuMeisaishoPrint";
             this.Load += new System.EventHandler(this.B0420_SeikyuMeisaishoPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.B0420_SeikyuMeisaishoPrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.lblHakkoYmd, 0);
             this.Controls.SetChildIndex(this.lblSimekiriYmd, 0);
             this.Controls.SetChildIndex(this.lblStartYmd, 0);

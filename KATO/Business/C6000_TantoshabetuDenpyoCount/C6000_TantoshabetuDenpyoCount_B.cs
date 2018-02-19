@@ -58,14 +58,15 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                //行数分ループ
+                // 1セルずつ空チェック
                 for (int intRcnt = 0; intRcnt < dtSetCd_B.Rows.Count; intRcnt++)
                 {
-                    //列数分ループ
-                    for (int intCcnt = 0; intCcnt < dtSetCd_B.Columns.Count; intCcnt++)
+                    // 担当者名カラムを除くため、カウントは1からスタート
+                    for (int intCcnt = 1; intCcnt < dtSetCd_B.Columns.Count; intCcnt++)
                     {
-                        //各データが空の場合
-                        if (dtSetCd_B.Rows[intRcnt][intCcnt].ToString() == null)
+                        string value = dtSetCd_B.Rows[intRcnt][intCcnt].ToString();
+                        // 空の場合"0"を入れる(Form側で合計を計算するため)
+                        if (value.Equals(""))
                         {
                             dtSetCd_B.Rows[intRcnt][intCcnt] = "0";
                         }

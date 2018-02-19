@@ -380,6 +380,9 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
+            //運賃をDecimal型に変換
+            txtUnchin.Text = decimal.Parse(txtUnchin.Text).ToString();
+
             //運賃の確保
             UnchinKin = int.Parse(string.Format("{0:0}", txtUnchin.Text));
             
@@ -743,9 +746,6 @@ namespace KATO.Form.A0030_ShireInput
 
                 }//ループ終了
 
-                //直送先の登録
-                //直送先項目の削除のためなし
-
                 //運賃の更新
 
                 int intGyoCnt = 0;
@@ -765,31 +765,31 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     //受注番号のデータが空でない、且つ1以上の場合(1行目)
-                    if (StringUtl.blIsEmpty(txtJuchu1.Text) == true && int.Parse(txtJuchu1.Text) > 0)
+                    if (StringUtl.blIsEmpty(txtJuchu1.Text) == true && decimal.Parse(txtJuchu1.Text) > 0)
                     {
                         arrJuchuNo[intGyoCnt] = int.Parse(txtJuchu1.Text);
                         intGyoCnt = intGyoCnt + 1;
                     }
                     //受注番号のデータが空でない、且つ1以上の場合(2行目)
-                    if (StringUtl.blIsEmpty(txtJuchu2.Text) == true && int.Parse(txtJuchu2.Text) > 0)
+                    if (StringUtl.blIsEmpty(txtJuchu2.Text) == true && decimal.Parse(txtJuchu2.Text) > 0)
                     {
                         arrJuchuNo[intGyoCnt] = int.Parse(txtJuchu2.Text);
                         intGyoCnt = intGyoCnt + 1;
                     }
                     //受注番号のデータが空でない、且つ1以上の場合(3行目)
-                    if (StringUtl.blIsEmpty(txtJuchu3.Text) == true && int.Parse(txtJuchu3.Text) > 0)
+                    if (StringUtl.blIsEmpty(txtJuchu3.Text) == true && decimal.Parse(txtJuchu3.Text) > 0)
                     {
                         arrJuchuNo[intGyoCnt] = int.Parse(txtJuchu3.Text);
                         intGyoCnt = intGyoCnt + 1;
                     }
                     //受注番号のデータが空でない、且つ1以上の場合(4行目)
-                    if (StringUtl.blIsEmpty(txtJuchu4.Text) == true && int.Parse(txtJuchu4.Text) > 0)
+                    if (StringUtl.blIsEmpty(txtJuchu4.Text) == true && decimal.Parse(txtJuchu4.Text) > 0)
                     {
                         arrJuchuNo[intGyoCnt] = int.Parse(txtJuchu4.Text);
                         intGyoCnt = intGyoCnt + 1;
                     }
                     //受注番号のデータが空でない、且つ1以上の場合(5行目)
-                    if (StringUtl.blIsEmpty(txtJuchu5.Text) == true && int.Parse(txtJuchu5.Text) > 0)
+                    if (StringUtl.blIsEmpty(txtJuchu5.Text) == true && decimal.Parse(txtJuchu5.Text) > 0)
                     {
                         arrJuchuNo[intGyoCnt] = int.Parse(txtJuchu5.Text);
                         intGyoCnt = intGyoCnt + 1;
@@ -803,7 +803,7 @@ namespace KATO.Form.A0030_ShireInput
                         //decKinとtxtUnchinが0の場合
                         if (decKin.ToString() != "0" || int.Parse(txtUnchin.Text).ToString() != "0")
                         {
-                            decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text) / decKin * intGyoCnt));
+                            decKinSub = int.Parse(string.Format("{0:0.#}", int.Parse(txtUnchin.Text))) - (decKin * intGyoCnt);
                         }
                         else
                         {

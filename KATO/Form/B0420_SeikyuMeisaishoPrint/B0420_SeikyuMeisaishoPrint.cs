@@ -77,6 +77,9 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
             // 発行年月日の設定
             txtHakkoYmd.setUp(0);
+
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
         }
 
         /// <summary>
@@ -141,6 +144,63 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
         }
 
         /// <summary>
+        /// txtSimekiribi_KeyDown
+        /// キー入力判定（締切日コード用）
+        /// </summary>
+        private void txtSimekiribi_KeyDown(object sender, KeyEventArgs e)
+        {
+            // キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// judBtnClick
         /// ボタンの反応
         /// </summary>
@@ -172,6 +232,16 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
             // 締切年月日が空の場合
             if (txtSimekiriYmd.blIsEmpty() == false)
             {
+                return;
+            }
+
+            //TryParse用
+            DateTime dateTry = new DateTime();
+
+            //年月日に変換できない場合
+            if (!DateTime.TryParse(txtSimekiriYmd.Text, out dateTry))
+            {
+                txtSimekiriYmd.Focus();
                 return;
             }
 
@@ -429,6 +499,5 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
             return true;
         }
-
     }
 }

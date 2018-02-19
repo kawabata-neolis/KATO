@@ -89,6 +89,10 @@ namespace KATO.Form.A0090_SiireCheckPrint
             // 伝票年月日の設定
             txtDenpyoYMDStart.setUp(1);
             txtDenpyoYMDEnd.setUp(2);
+
+            // 初期設定
+            labelSet_SiiresakiCdFrom.SearchOn = false;
+            labelSet_SiiresakiCdTo.SearchOn = false;
         }
 
         /// <summary>
