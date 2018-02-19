@@ -513,7 +513,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     }
 
                     //SQLファイルと該当コードでフォーマット
-                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //伝票番号(Grid上の受注番号)
                                                              lstGrid[1],    //承認フラグ
                                                              lstGrid[2],    //更新日時
                                                              lstGrid[3]);   //更新ユーザー名
@@ -532,7 +532,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     }
 
                     //SQLファイルと該当コードでフォーマット
-                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //伝票番号(Grid上の受注番号)
                                                              lstGrid[2],    //更新日時
                                                              lstGrid[3]);   //更新ユーザー名
 
@@ -550,9 +550,12 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     }
 
                     //SQLファイルと該当コードでフォーマット
-                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //受注番号
+                    strSQLInput = string.Format(strSQLInput, lstGrid[0],    //伝票番号(Grid上の受注番号)
                                                              lstGrid[2],    //更新日時
                                                              lstGrid[3]);   //更新ユーザー名
+
+                    //SQL接続後、該当データを更新
+                    dbconnective.RunSql(strSQLInput);
 
                     //UPDATE(受注)
                     strSQLPROC = "受注_売上数_戻し更新_PROC '" + lstGrid[0] + "','" + lstGrid[2] + "'";
