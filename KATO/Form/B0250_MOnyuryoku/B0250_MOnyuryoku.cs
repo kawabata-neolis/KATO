@@ -2809,6 +2809,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                 }
+
+                pf.Dispose();
             }
             catch (Exception ex)
             {

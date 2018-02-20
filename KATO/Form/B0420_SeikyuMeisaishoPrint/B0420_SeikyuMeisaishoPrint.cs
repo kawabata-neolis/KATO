@@ -326,7 +326,6 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
@@ -352,11 +351,9 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
             {
                 // エラーロギング
                 new CommonException(ex);
-
-                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-
                 return;
             }
         }

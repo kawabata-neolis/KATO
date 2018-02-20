@@ -126,9 +126,6 @@ namespace KATO.Form.B0060_ShiharaiInput
             //DataGridViewの初期設定
             SetUpGrid();
 
-            this.btnF01.Enabled = false;
-            this.btnF03.Enabled = false;
-
             lblset_Siiresaki.Focus();
         }
 
@@ -215,20 +212,14 @@ namespace KATO.Form.B0060_ShiharaiInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    if (this.btnF01.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
-                        this.addShiharai();
-                    }
+                    logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                    this.addShiharai();
                     break;
                 case Keys.F2:
                     break;
                 case Keys.F3:
-                    if (this.btnF03.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                        this.delAllSakujo();
-                    }
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delAllSakujo();
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -273,18 +264,12 @@ namespace KATO.Form.B0060_ShiharaiInput
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 追加
-                    if (this.btnF01.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
-                        this.addShiharai();
-                    }
+                    logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                    this.addShiharai();
                     break;
                 case STR_BTN_F03: // 削除
-                    if (this.btnF03.Enabled)
-                    {
-                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                        this.delAllSakujo();
-                    }
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delAllSakujo();
                     break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -411,10 +396,6 @@ namespace KATO.Form.B0060_ShiharaiInput
 
                     // 仕入実績表示
                     setSiireJisseki();
-
-                    // 登録削除できるようにする
-                    this.btnF01.Enabled = true;
-                    this.btnF03.Enabled = true;
                 }
                 else
                 {
@@ -447,20 +428,6 @@ namespace KATO.Form.B0060_ShiharaiInput
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-            }
-        }
-
-        /// <summary>
-        /// updTorihikiKbnLeave
-        /// 取引区分コードのテキストボックスからフォーカスが外れた時
-        /// </summary>
-        private void updTorihikiKbnLeave(object sender, EventArgs e)
-        {
-            //仕入先コードが存在する場合
-            if (lblset_Siiresaki.codeTxt.blIsEmpty())
-            {
-                this.btnF01.Enabled = true;
-                this.btnF03.Enabled = true;
             }
         }
 
@@ -723,9 +690,6 @@ namespace KATO.Form.B0060_ShiharaiInput
 
             // 画面の項目内を白紙にする
             delFormClear(this, gridShireJisseki);
-
-            this.btnF01.Enabled = false;
-            this.btnF03.Enabled = false;
 
             txtYMD.Text = strDenpyoYMD;
             labelSet_Tantousha.CodeTxtText = strTantousha;

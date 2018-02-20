@@ -407,7 +407,6 @@
             this.labelSet_Torihikikbn9.TabIndex = 36;
             this.labelSet_Torihikikbn9.ValueLabelSize = 170;
             this.labelSet_Torihikikbn9.ValueLabelText = "";
-            this.labelSet_Torihikikbn9.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel52
             // 
@@ -557,7 +556,6 @@
             this.labelSet_Torihikikbn8.TabIndex = 32;
             this.labelSet_Torihikikbn8.ValueLabelSize = 170;
             this.labelSet_Torihikikbn8.ValueLabelText = "";
-            this.labelSet_Torihikikbn8.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel42
             // 
@@ -695,7 +693,6 @@
             this.labelSet_Torihikikbn7.TabIndex = 28;
             this.labelSet_Torihikikbn7.ValueLabelSize = 170;
             this.labelSet_Torihikikbn7.ValueLabelText = "";
-            this.labelSet_Torihikikbn7.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel33
             // 
@@ -821,7 +818,6 @@
             this.labelSet_Torihikikbn6.TabIndex = 24;
             this.labelSet_Torihikikbn6.ValueLabelSize = 170;
             this.labelSet_Torihikikbn6.ValueLabelText = "";
-            this.labelSet_Torihikikbn6.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel25
             // 
@@ -935,7 +931,6 @@
             this.labelSet_Torihikikbn5.TabIndex = 20;
             this.labelSet_Torihikikbn5.ValueLabelSize = 170;
             this.labelSet_Torihikikbn5.ValueLabelText = "";
-            this.labelSet_Torihikikbn5.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel18
             // 
@@ -1055,7 +1050,6 @@
             this.labelSet_Torihikikbn4.TabIndex = 16;
             this.labelSet_Torihikikbn4.ValueLabelSize = 170;
             this.labelSet_Torihikikbn4.ValueLabelText = "";
-            this.labelSet_Torihikikbn4.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel12
             // 
@@ -1181,7 +1175,6 @@
             this.labelSet_Torihikikbn3.TabIndex = 12;
             this.labelSet_Torihikikbn3.ValueLabelSize = 170;
             this.labelSet_Torihikikbn3.ValueLabelText = "";
-            this.labelSet_Torihikikbn3.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel7
             // 
@@ -1306,7 +1299,6 @@
             this.labelSet_Torihikikbn2.TabIndex = 8;
             this.labelSet_Torihikikbn2.ValueLabelSize = 170;
             this.labelSet_Torihikikbn2.ValueLabelText = "";
-            this.labelSet_Torihikikbn2.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // baseLabel3
             // 
@@ -1451,7 +1443,6 @@
             this.labelSet_Torihikikbn1.TabIndex = 4;
             this.labelSet_Torihikikbn1.ValueLabelSize = 170;
             this.labelSet_Torihikikbn1.ValueLabelText = "";
-            this.labelSet_Torihikikbn1.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // nameLabel
             // 
@@ -1573,7 +1564,6 @@
             this.labelSet_Torihikikbn0.TabIndex = 0;
             this.labelSet_Torihikikbn0.ValueLabelSize = 170;
             this.labelSet_Torihikikbn0.ValueLabelText = "";
-            this.labelSet_Torihikikbn0.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
             // txtBikou0
             // 

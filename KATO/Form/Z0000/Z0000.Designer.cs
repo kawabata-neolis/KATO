@@ -3556,6 +3556,7 @@
             this.txtShoriNo.Name = "txtShoriNo";
             this.txtShoriNo.Size = new System.Drawing.Size(46, 22);
             this.txtShoriNo.TabIndex = 0;
+            this.txtShoriNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShoriNo_KeyDown);
             this.txtShoriNo.Leave += new System.EventHandler(this.txtShoriNo_Leave);
             // 
             // Z0000

@@ -222,8 +222,6 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                     //1セルずつデータ出力
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
-                        // 担当者名の行を左寄せ
-                        currentsheet.Cell("A" + (rowCnt + 4)).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
                         string str = row[colCnt - 1].ToString();
 
                         //decimalに変換できるかどうかを見る用
@@ -247,7 +245,16 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                         }
                         
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-                        currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+
+                        //担当者の場合
+                        if (colCnt == 1)
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
+                        else
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
                     }
 
                     //1行分のセルの周囲に罫線を引く

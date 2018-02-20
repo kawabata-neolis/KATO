@@ -196,6 +196,8 @@ namespace KATO.Business.B0420_SeikyuMeisaishoPrint
                         currentsheet.Cell("H6").Value = drSeikyuMeisai[5].ToString();       // 請求年月日
                     }
 
+                    //
+
                     currentsheet.Cell(xlsRowCnt, "A").Value = drSeikyuMeisai[14].ToString();    // 日付
                     currentsheet.Cell(xlsRowCnt, "B").Value = drSeikyuMeisai[15].ToString();    // 伝票No.
                     currentsheet.Cell(xlsRowCnt, "D").Value = drSeikyuMeisai[18].ToString();    // 取区
