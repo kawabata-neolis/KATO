@@ -131,9 +131,6 @@ namespace KATO.Form.Z0000
 
                 string strUserID = SystemInformation.UserName;
 
-                ////テスト用
-                //strUserID = "k.kato";
-
                 //担当者コードの取得
                 string strTantoshaCd = mainmenuB.getTantoshaCd(strUserID);
 
@@ -545,6 +542,8 @@ namespace KATO.Form.Z0000
 
                 //出庫依頼入力
                 case "16":
+                    A0160_ShukoIraiInput.A0160_ShukoIraiInput shukoiraiintput = new A0160_ShukoIraiInput.A0160_ShukoIraiInput(this);
+                    shukoiraiintput.ShowDialog();
                     break;
 
                 //出庫承認入力
@@ -1134,6 +1133,8 @@ namespace KATO.Form.Z0000
 
                     //出庫依頼入力
                     case "16":
+                        A0160_ShukoIraiInput.A0160_ShukoIraiInput shukoiraiintput = new A0160_ShukoIraiInput.A0160_ShukoIraiInput(this);
+                        shukoiraiintput.ShowDialog();
                         break;
 
                     //出庫承認入力

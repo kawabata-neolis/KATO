@@ -351,7 +351,7 @@ namespace KATO.Form.A0100_HachuInput
 
         ///<summary>
         ///judTxtKensakuKeyDown
-        ///キー入力判定(テキストボックス)
+        ///キー入力判定(検索テキストボックス)
         ///</summary>
         private void judTxtKensakuKeyDown(object sender, KeyEventArgs e)
         {
@@ -373,10 +373,16 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    //商品リスト移動メソッド
-                    showShohinList();
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
+                    if (txtKensaku.blIsEmpty() == false)
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
+                    else
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        this.showShohinList();
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -462,9 +468,6 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
-                    this.Close();
                     break;
 
                 default:
@@ -747,7 +750,7 @@ namespace KATO.Form.A0100_HachuInput
             if (txtHachuYMD.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtHachuYMD.Focus();
                 return(blAddEnd);
@@ -1325,7 +1328,7 @@ namespace KATO.Form.A0100_HachuInput
             //コンボボックスの中身初期化
             cmbHachutan.Items.Clear();
 
-            //選択したものが空の場合ｓ
+            //選択したものが空の場合
             if (gridHachu.Rows.Count == 0)
             {
                 return;
@@ -1477,7 +1480,6 @@ namespace KATO.Form.A0100_HachuInput
 
                     txtHachuYMD.Text = dtSetCd.Rows[0]["発注年月日"].ToString();
                     labelSet_Hachusha.CodeTxtText = dtSetCd.Rows[0]["発注者コード"].ToString();
-                    labelSet_Hachusha.chkTxtTantosha();
                     textSet_Torihikisaki.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
                     txtShohinCd.Text = dtSetCd.Rows[0]["商品コード"].ToString();
                     txtHachusu.Text = ((decimal)dtSetCd.Rows[0]["発注数量"]).ToString("#,#");

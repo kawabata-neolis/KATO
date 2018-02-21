@@ -267,7 +267,7 @@
             this.txtMokuhyou.intIntederSet = 0;
             this.txtMokuhyou.intShishagonyu = 0;
             this.txtMokuhyou.Location = new System.Drawing.Point(861, 312);
-            this.txtMokuhyou.MaxLength = 0;
+            this.txtMokuhyou.MaxLength = 12;
             this.txtMokuhyou.Name = "txtMokuhyou";
             this.txtMokuhyou.Size = new System.Drawing.Size(117, 22);
             this.txtMokuhyou.TabIndex = 7;
@@ -519,6 +519,7 @@
             this.Text = "M1050_Tantousha";
             this.Load += new System.EventHandler(this.M1050_Tantousha_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantoushaKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

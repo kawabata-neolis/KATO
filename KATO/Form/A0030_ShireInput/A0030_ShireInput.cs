@@ -380,8 +380,18 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
-            //運賃をDecimal型に変換
-            txtUnchin.Text = decimal.Parse(txtUnchin.Text).ToString();
+            decimal decTry = 0;
+
+            if (decimal.TryParse(txtUnchin.Text, out decTry))
+            {
+                //運賃をDecimal型に変換
+                txtUnchin.Text = decimal.Parse(txtUnchin.Text).ToString();
+            }
+            else
+            {
+                txtUnchin.Text = "0";
+            }
+
 
             //運賃の確保
             UnchinKin = int.Parse(string.Format("{0:0}", txtUnchin.Text));
@@ -1248,7 +1258,7 @@ namespace KATO.Form.A0030_ShireInput
                     labelSet_Tantousha.CodeTxtText = dtSetShireHeader.Rows[0]["担当者コード"].ToString();
                     txtEigyouCd.Text = dtSetShireHeader.Rows[0]["営業所コード"].ToString();
                     txtTekiyo.Text = dtSetShireHeader.Rows[0]["摘要欄"].ToString();
-                    txtUnchin.Text = string.Format("{0:0,0}", dtSetShireHeader.Rows[0]["運賃"]);
+                    txtUnchin.Text = (decimal.Parse(dtSetShireHeader.Rows[0]["運賃"].ToString())).ToString("#,0");
 
                     //数値の入る各項目がnullの場合0を入れる
                     if (txtGokei.Text == "")
@@ -2152,6 +2162,10 @@ namespace KATO.Form.A0030_ShireInput
             {
                 decUnchin = 0;
             }
+            else
+            {
+                decUnchin = decimal.Parse(txtUnchin.Text);
+            }
 
             //false判定でない場合
             if (blgood == true)
@@ -2178,6 +2192,10 @@ namespace KATO.Form.A0030_ShireInput
 
                         blgood = false;
                     }
+                }
+                else
+                {
+                    txtUnchin.Text = "0";
                 }
             }
 

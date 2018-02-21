@@ -119,6 +119,8 @@
     <Compile Include="Business\A0090_SiireCheckPrint\A0090_SiireCheckPrint_B.cs" />
     <Compile Include="Business\A0100_HachuInput\A0100_HachuInput_B.cs" />
     <Compile Include="Business\A0150_UriageCheckPrint\A0150_UriageCheckPrint_B.cs" />
+    <Compile Include="Business\A0160_ShukoIraiInput\A0160_ShukoIraiInput_B.cs" />
+    <Compile Include="Business\A0170_ShukoShoninInput\A0170_ShukoShoninInput_B.cs" />
     <Compile Include="Business\A0470_Hachusuhenko\A0470_Hachusuhenko_B.cs" />
     <Compile Include="Business\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_B.cs" />
     <Compile Include="Business\A0670_SiiresakiSiirekakunin\A0670_SiiresakiSiirekakunin_B.cs" />
@@ -614,6 +616,18 @@
     </Compile>
     <Compile Include="Form\A0150_UriageCheckPrint\A0150_UriageCheckPrint.Designer.cs">
       <DependentUpon>A0150_UriageCheckPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0160_ShukoIraiInput\A0160_ShukoIraiInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0160_ShukoIraiInput\A0160_ShukoIraiInput.Designer.cs">
+      <DependentUpon>A0160_ShukoIraiInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\A0170_ShukoShoninInput\A0170_ShukoShoninInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\A0170_ShukoShoninInput\A0170_ShukoShoninInput.Designer.cs">
+      <DependentUpon>A0170_ShukoShoninInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.cs">
       <SubType>Form</SubType>
@@ -1320,6 +1334,12 @@
     <EmbeddedResource Include="Form\A0150_UriageCheckPrint\A0150_UriageCheckPrint.resx">
       <DependentUpon>A0150_UriageCheckPrint.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0160_ShukoIraiInput\A0160_ShukoIraiInput.resx">
+      <DependentUpon>A0160_ShukoIraiInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\A0170_ShukoShoninInput\A0170_ShukoShoninInput.resx">
+      <DependentUpon>A0170_ShukoShoninInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\A0470_Hachusuhenko\A0470_Hachusuhenko.resx">
       <DependentUpon>A0470_Hachusuhenko.cs</DependentUpon>
     </EmbeddedResource>
@@ -1696,6 +1716,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0100_HachuInput\HachuInput_TantoshaData_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0160_ShukoIraiInput\ShukoIraiInput_SELECT_LEAVE.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0160_ShukoIraiInput\ShukoIraiInput_SELECT_GRID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\A0160_ShukoIraiInput\ShukoIraiInput_TantoshaData_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql">
