@@ -542,6 +542,7 @@
             this.chkInsatu.TabIndex = 18;
             this.chkInsatu.Text = "印刷しない";
             this.chkInsatu.UseVisualStyleBackColor = false;
+            this.chkInsatu.Visible = false;
             // 
             // baseLabel10
             // 

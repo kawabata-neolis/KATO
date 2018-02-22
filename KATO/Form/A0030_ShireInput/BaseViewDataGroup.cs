@@ -1583,7 +1583,7 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     //仕入入力画面の総合計に記入
-                    shireinput.txtSogokei.Text = (int.Parse(shireinput.txtGokei.Text) + int.Parse(shireinput.txtShohizei.Text)).ToString();
+                    shireinput.txtSogokei.Text = (Int64.Parse(shireinput.txtGokei.Text) + Int64.Parse(shireinput.txtShohizei.Text)).ToString();
                     shireinput.txtSogokei.updPriceMethod();
                 }
                 return;
