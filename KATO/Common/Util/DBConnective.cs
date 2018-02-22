@@ -55,6 +55,24 @@ namespace KATO.Common.Util
             adapter = new SqlDataAdapter();
         }
 
+        public void DB_Connect(int delay)
+        {
+            ConnectStr = System.Configuration.ConfigurationManager.AppSettings["DBConnection"];
+
+            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"Timeout=\d");
+
+            ConnectStr = r.Replace(ConnectStr, "Timeout=" + delay.ToString());
+
+            //READ用
+
+            CON = new SqlConnection(ConnectStr);
+            CON.Open();
+            CM = CON.CreateCommand();
+            CM.CommandTimeout = delay;
+            CM.Connection = CON;
+            adapter = new SqlDataAdapter();
+        }
+
         /// <summary>
         /// DBから切断する
         /// </summary>
@@ -89,6 +107,36 @@ namespace KATO.Common.Util
             if ((CON == null) || (CON.State != ConnectionState.Open))
             {
                 this.DB_Connect();
+                isConnect = true;
+            }
+
+            if (tran == null)
+            {
+                adapter.SelectCommand = new SqlCommand(sqlStr, CON);
+            }
+            else
+            {
+                adapter.SelectCommand = new SqlCommand(sqlStr, CON, tran);
+            }
+            adapter.Fill(retDt);
+
+            if (isConnect)
+            {
+                this.DB_Disconnect();
+            }
+
+            return retDt;
+        }
+
+        public DataTable ReadSqlDelay(string sqlStr, int delay)
+        {
+            //DataTable retDt = null;
+            DataTable retDt = new DataTable();
+            Boolean isConnect = false;
+
+            if ((CON == null) || (CON.State != ConnectionState.Open))
+            {
+                this.DB_Connect(delay);
                 isConnect = true;
             }
 
