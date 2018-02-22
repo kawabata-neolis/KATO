@@ -242,6 +242,7 @@
             this.Name = "UriageList";
             this.Text = "UriageList";
             this.Load += new System.EventHandler(this.UriageList_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UriageList_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).EndInit();
             this.ResumeLayout(false);

@@ -116,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridMenu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
 
         }
 

@@ -119,7 +119,7 @@ namespace KATO.Common.Form
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
         }
 
         #endregion

@@ -314,8 +314,8 @@ namespace KATO.Common.Form
             tokuisaki.HeaderText = "得意先名";
 
             DataGridViewTextBoxColumn hinmei = new DataGridViewTextBoxColumn();
-            hinmei.DataPropertyName = "品名型番";
-            hinmei.Name = "品名型番";
+            hinmei.DataPropertyName = "品名・型番";
+            hinmei.Name = "品名・型番";
             hinmei.HeaderText = "品名・型番";
 
             DataGridViewTextBoxColumn suu = new DataGridViewTextBoxColumn();
@@ -522,11 +522,6 @@ namespace KATO.Common.Form
 
                     gridUriage.Focus();
                 }
-                else
-                {
-                    gridUriage.DataSource = dtGetData;
-                    lblRecords.Text = "該当件数( 0件)";
-                }
             }
             catch(Exception ex)
             {
@@ -576,6 +571,19 @@ namespace KATO.Common.Form
 
             BaseText basetext = new BaseText();
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        ///<summary>
+        ///form_KeyPress
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void form_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

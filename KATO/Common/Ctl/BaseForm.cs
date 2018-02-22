@@ -11,6 +11,14 @@ using KATO.Common.Business;
 
 namespace KATO.Common.Ctl
 {
+    /// <summary>
+    /// BaseForm
+    /// ベースフォーム
+    /// 作成者：大河内
+    /// 作成日：2017/02/21
+    /// 更新者：
+    /// 更新日：
+    /// </summary>
     public partial class BaseForm : System.Windows.Forms.Form
     {
         //ToDo:権限使用画面の修正後に削除(大河内)
@@ -120,38 +128,16 @@ namespace KATO.Common.Ctl
         // テスト用文字列
         private List<String> strMgsList = new List<String>();
 
+        /// <summary>
+        /// BaseForm
+        /// フォームの初期設定
+        /// </summary>
         public BaseForm()
         {
-            //// ユーザ名取得
-            //string strUserId = Environment.UserName;
-            //try
-            //{
-            //    // 権限取得
-            //    Tantosya_Kengen tk = new Tantosya_Kengen(strUserId);
-            //    masterFlg = tk.master;
-            //    etsuranFlg = tk.etsuran;
-            //    riekiritsuFlg = tk.riekiritsu;
-            //    adminFlg = tk.admin;
-            //    eigyoCode = tk.eigyocd;
-            //    groupCode = tk.groupcd;
-            //}
-            //catch(Exception ex)
-            //{
-            //    // エラーロギング
-            //    new CommonException(ex);
-
-            //    //例外発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
-            //}
-
-
             InitializeComponent();
             // ユーザ名表示
             lblStatusMessage.Text = "";
-            lblStatusUser.Text = Environment.UserName;
-
-
+            lblStatusUser.Text = Environment.UserName;            
         }
 
         /// <summary>
@@ -209,10 +195,10 @@ namespace KATO.Common.Ctl
             }
         }
 
-        ///<summary>
-        ///delFormClear
-        ///フォーム上の項目を初期化(DataGridViewがある場合)
-        ///</summary>
+        /// <summary>
+        /// delFormClear
+        /// フォーム上の項目を初期化(DataGridViewがある場合)
+        /// </summary>
         public void delFormClear(Control hParent, DataGridView gridData)
         {
             // hParent 内のすべてのコントロールを列挙する
@@ -260,10 +246,10 @@ namespace KATO.Common.Ctl
             }
         }
 
-        ///<summary>
-        ///delFormClear
-        ///フォーム上の項目を初期化(DataGridViewがない場合)
-        ///</summary>
+        /// <summary>
+        /// delFormClear
+        /// フォーム上の項目を初期化(DataGridViewがない場合)
+        /// </summary>
         public void delFormClear(Control hParent)
         {
             // hParent 内のすべてのコントロールを列挙する
@@ -308,10 +294,10 @@ namespace KATO.Common.Ctl
             }
         }
 
-        ///<summary>
-        ///BaseForm_Load
-        ///フォームロード
-        ///</summary>
+        /// <summary>
+        /// BaseForm_Load
+        /// フォームロード
+        /// </summary>
         private void BaseForm_Load(object sender, EventArgs e)
         {
             // ユーザ名取得
@@ -339,14 +325,35 @@ namespace KATO.Common.Ctl
 
         }
 
+        /// <summary>
+        /// btn_Enter
+        /// エンターキーイベントハンドラ
+        /// </summary>
         private void btn_Enter(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = Color.Cyan;
         }
 
+        /// <summary>
+        /// btn_Leave
+        /// Leaveイベントハンドラ
+        /// </summary>
         private void btn_Leave(object sender, EventArgs e)
         {
             ((Button)sender).BackColor = SystemColors.Control;
+        }
+
+        /// <summary>
+        /// form_KeyPress
+        /// KeyPressイベントハンドラ
+        /// </summary>
+        private void form_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

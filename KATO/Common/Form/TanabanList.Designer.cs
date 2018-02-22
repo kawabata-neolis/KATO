@@ -115,6 +115,7 @@ namespace KATO.Common.Form
             this.Text = "TanabanList";
             this.Load += new System.EventHandler(this.TanabanList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanabanListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridTanaban)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

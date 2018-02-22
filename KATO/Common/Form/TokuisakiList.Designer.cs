@@ -153,6 +153,7 @@
             this.Name = "TokuisakiList";
             this.Text = "TokuisakiList";
             this.Load += new System.EventHandler(this.TokuisakiList_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridShiresaki)).EndInit();
             this.ResumeLayout(false);

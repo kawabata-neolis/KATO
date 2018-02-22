@@ -354,6 +354,7 @@
             this.Text = "ShohinNoTanaList";
             this.Load += new System.EventHandler(this.ShouhinNoTanaList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShouhinNoTanaList_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.radSet_2btn_Toroku.ResumeLayout(false);
             this.radSet_2btn_Toroku.PerformLayout();
             this.radSet_2btn_Kensaku.ResumeLayout(false);

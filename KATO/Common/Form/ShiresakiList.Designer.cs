@@ -154,6 +154,7 @@
             this.Text = "ShiresakiList";
             this.Load += new System.EventHandler(this.ShiresakiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judSireListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridShiresaki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

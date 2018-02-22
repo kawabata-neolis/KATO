@@ -113,6 +113,7 @@
             this.bgJuchu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridJuchu)).EndInit();
             this.ResumeLayout(false);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
 
         }
 

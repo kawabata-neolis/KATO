@@ -54,6 +54,7 @@
             this.Name = "PDFPreview";
             this.Text = "プレビュー";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PDFPreview_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.Resize += new System.EventHandler(this.PDFPreview_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);

@@ -114,6 +114,7 @@
             this.Load += new System.EventHandler(this.TorihikikbnList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

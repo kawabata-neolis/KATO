@@ -334,6 +334,7 @@ namespace KATO.Common.Form
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.radSet_2btn_Toroku.ResumeLayout(false);
             this.radSet_2btn_Toroku.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).EndInit();

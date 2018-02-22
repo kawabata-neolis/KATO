@@ -112,19 +112,26 @@ namespace KATO.Common.Form
         ///</summary>
         private void getDatagridView()
         {
+            DataTable dtChokuso = new DataTable();
+
             //ビジネス層のインスタンス生成
             ChokusosakiList_B chokusosakilistB = new ChokusosakiList_B();
             try
             {
-                //データグリッドビュー部分
-                gridChoku.DataSource = chokusosakilistB.getDatagridView(txtTokuisakiCd.Text);
+                dtChokuso = chokusosakilistB.getDatagridView(txtTokuisakiCd.Text);
 
-                //幅の値を設定
-                gridChoku.Columns["直送先コード"].Width = 130;
-                gridChoku.Columns["直送先名"].Width = 250;
+                if(dtChokuso.Rows.Count > 0)
+                {
+                    //データグリッドビュー部分
+                    gridChoku.DataSource = chokusosakilistB.getDatagridView(txtTokuisakiCd.Text);
 
-                //中央揃え
-                gridChoku.Columns["直送先名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    //幅の値を設定
+                    gridChoku.Columns["直送先コード"].Width = 130;
+                    gridChoku.Columns["直送先名"].Width = 250;
+
+                    //中央揃え
+                    gridChoku.Columns["直送先名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
 
                 //表示数を記載
                 lblRecords.Text = "該当件数( " + gridChoku.RowCount.ToString() + "件)";
@@ -389,6 +396,19 @@ namespace KATO.Common.Form
 
             //キーアップされた時の判断処理
             basetext.judKeyUp(cActiveBefore, e);
+        }
+
+        /// <summary>
+        /// form_KeyPress
+        /// KeyPressイベントハンドラ
+        /// </summary>
+        private void form_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

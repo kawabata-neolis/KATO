@@ -127,6 +127,7 @@
             this.Text = "ShohizeirituList";
             this.Load += new System.EventHandler(this.ShohizeiritsuList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShohiListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridSeihin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -243,6 +243,7 @@
             this.Name = "PrintForm";
             this.Text = "PrintForm";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrintForm_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
