@@ -1233,26 +1233,29 @@ namespace KATO.Form.H0210_MitsumoriInput
                         setRowBGColor3(Color.FromArgb(0x66, 0xFF, 0x66));
                         intZai1Num = 3;
                     }
-                    if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei4.Text))
+                    if (cellValueChecker(99, rowIdx))
                     {
-                        setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
-                        setRowBGColor5(Color.White);
-                        setRowBGColor6(Color.White);
-                        intZai2Num = 4;
-                    }
-                    else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei5.Text))
-                    {
-                        setRowBGColor4(Color.White);
-                        setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
-                        setRowBGColor6(Color.White);
-                        intZai2Num = 5;
-                    }
-                    else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei6.Text))
-                    {
-                        setRowBGColor4(Color.White);
-                        setRowBGColor5(Color.White);
-                        setRowBGColor6(Color.FromArgb(0x66, 0xFF, 0x66));
-                        intZai2Num = 6;
+                        if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei4.Text))
+                        {
+                            setRowBGColor4(Color.FromArgb(0x66, 0xFF, 0x66));
+                            setRowBGColor5(Color.White);
+                            setRowBGColor6(Color.White);
+                            intZai2Num = 4;
+                        }
+                        else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei5.Text))
+                        {
+                            setRowBGColor4(Color.White);
+                            setRowBGColor5(Color.FromArgb(0x66, 0xFF, 0x66));
+                            setRowBGColor6(Color.White);
+                            intZai2Num = 5;
+                        }
+                        else if (gridMitsmori[99, rowIdx].Value.ToString().Equals(txtZaiMei6.Text))
+                        {
+                            setRowBGColor4(Color.White);
+                            setRowBGColor5(Color.White);
+                            setRowBGColor6(Color.FromArgb(0x66, 0xFF, 0x66));
+                            intZai2Num = 6;
+                        }
                     }
                 }
                 #endregion

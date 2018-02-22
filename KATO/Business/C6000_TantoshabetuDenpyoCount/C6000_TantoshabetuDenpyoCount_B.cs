@@ -56,7 +56,8 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
                 strSQLInput = string.Format(strSQLInput, strDenpyoOpen, strDenpyoClose, strTantoshaCdOpen, strTantoshaCdClose);
                 
                 //SQL接続後、該当データを取得
-                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+                //dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+                dtSetCd_B = dbconnective.ReadSqlDelay(strSQLInput, 600);
 
                 // 1セルずつ空チェック
                 for (int intRcnt = 0; intRcnt < dtSetCd_B.Rows.Count; intRcnt++)

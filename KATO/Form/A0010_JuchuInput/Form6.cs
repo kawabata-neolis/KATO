@@ -2748,7 +2748,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 decimal tmpZaiko = 0;
-                if (!powerUserFlg) {
+                if (!"1".Equals(etsuranFlg)) {
                     if (sLbl.Equals(labels[1]) && !sShohin.Equals("88888"))
                     {
                         if (!string.IsNullOrWhiteSpace(sSouko) && sSouko.Equals("0001"))

@@ -339,7 +339,7 @@ namespace KATO.Form.H0210_MitsumoriInput
         private void Form8_2_Load(object sender, EventArgs e)
         {
             // TODO debug
-            powerUserFlg = true;
+            //powerUserFlg = true;
             if (!"1".Equals(etsuranFlg))
             {
                 button1.Visible = false;
