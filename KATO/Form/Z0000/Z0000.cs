@@ -548,6 +548,8 @@ namespace KATO.Form.Z0000
 
                 //出庫承認入力
                 case "17":
+                    A0170_ShukoShoninInput.A0170_ShukoShoninInput shukoshonininput = new A0170_ShukoShoninInput.A0170_ShukoShoninInput(this);
+                    shukoshonininput.ShowDialog();
                     break;
 
                 //出庫指示書（依頼分）
@@ -1139,6 +1141,8 @@ namespace KATO.Form.Z0000
 
                     //出庫承認入力
                     case "17":
+                        A0170_ShukoShoninInput.A0170_ShukoShoninInput shukoshonininput = new A0170_ShukoShoninInput.A0170_ShukoShoninInput(this);
+                        shukoshonininput.ShowDialog();
                         break;
 
                     //出庫指示書（依頼分）
@@ -1183,6 +1187,7 @@ namespace KATO.Form.Z0000
 
                     //倉庫移動確認
                     case "28":
+
                         break;
 
                     //客先別在庫表
