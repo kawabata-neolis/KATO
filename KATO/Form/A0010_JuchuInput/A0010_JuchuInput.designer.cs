@@ -573,7 +573,6 @@
             this.gridJuchuZanMeisai.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gridJuchuZanMeisai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.gridJuchuZanMeisai.AutoGenerateColumns = false;
             this.gridJuchuZanMeisai.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.gridJuchuZanMeisai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1120,6 +1119,7 @@
             // txtShiireNoki
             // 
             this.txtShiireNoki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShiireNoki.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShiireNoki.Location = new System.Drawing.Point(135, 90);
             this.txtShiireNoki.Name = "txtShiireNoki";
             this.txtShiireNoki.Size = new System.Drawing.Size(100, 22);
