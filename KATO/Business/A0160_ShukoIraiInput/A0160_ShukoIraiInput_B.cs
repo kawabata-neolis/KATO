@@ -135,12 +135,39 @@ namespace KATO.Business.A0160_ShukoIraiInput
             //SQL用に移動
             DBConnective dbconnective = new DBConnective();
 
+            string strSQL = "";
+
             //トランザクション開始
             dbconnective.BeginTrans();
             try
             {
-                //プロシージャ（戻り値なし）用のメソッドに投げる
-                dbconnective.RunSql("出庫依頼入力更新_PROC", CommandType.StoredProcedure, lstStringData, lstStringTanblename);
+                //発行するSQLを書き込む
+                strSQL = "出庫依頼入力更新_PROC '" + lstStringData[0] + 
+                                             "','" + lstStringData[1] + 
+                                             "','" + lstStringData[2] + 
+                                             "','" + lstStringData[3] + 
+                                             "','" + lstStringData[4] + 
+                                             "','" + lstStringData[5] + 
+                                             "','" + lstStringData[6] + 
+                                             "','" + lstStringData[7] + 
+                                             "','" + lstStringData[8] + 
+                                             "','" + lstStringData[9] + 
+                                             "','" + lstStringData[10] + 
+                                             "','" + lstStringData[11] + 
+                                             "','" + lstStringData[12] + 
+                                             "','" + lstStringData[13] + 
+                                             "','" + lstStringData[14] + 
+                                             "','" + lstStringData[15] + 
+                                             "','" + lstStringData[16] + 
+                                             "', NULL" +
+                                             ",'"  + lstStringData[18] + 
+                                             "','" + lstStringData[19] + 
+                                             "','" + lstStringData[20] + "'";
+
+                dbconnective.ReadSql(strSQL);
+
+                ////プロシージャ（戻り値なし）用のメソッドに投げる
+                //dbconnective.RunSql("出庫依頼入力更新_PROC", CommandType.StoredProcedure, lstStringData, lstStringTanblename);
 
                 //コミット
                 dbconnective.Commit();

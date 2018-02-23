@@ -77,7 +77,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
             this.btnF01.Text = STR_FUNC_F1;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
-            this.btnF11.Text = STR_FUNC_F11;    //まだ不明
+            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             //当日の年月日を記入
@@ -228,7 +228,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
                     break;
                 case Keys.F1:
                     logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    //this.addShukoShonin();
+                    this.addShukoShonin();
                     break;
                 case Keys.F2:
                     break;
@@ -249,8 +249,8 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 case Keys.F10:
                     break;
                 case Keys.F11:
-                    //logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    //this.delText();
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    printShukoshonin();
                     break;
                 case Keys.F12:
                     this.Close();
@@ -267,8 +267,54 @@ namespace KATO.Form.A0170_ShukoShoninInput
         ///</summary>
         private void gridShukoiraimesai_KeyDown(object sender, KeyEventArgs e)
         {
-            //承認フラグを変える
-            setShoninFlg();
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    //承認フラグを変える
+                    setShoninFlg();
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    this.Close();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         ///<summary>
@@ -291,7 +337,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
             {
                 case STR_BTN_F01: // 登録
                     logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                    //this.addShukoShonin();
+                    this.addShukoShonin();
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -299,7 +345,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    //this.delText();
+                    printShukoshonin();
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -315,10 +361,8 @@ namespace KATO.Form.A0170_ShukoShoninInput
         {
             //データ追加用（テーブル名）
             List<string> lstTableName = new List<string>();
-            //データ追加用（伝票番号）
+            //データ追加用（追加するデータ）
             List<Array> lstDenpyoNo = new List<Array>();
-            //データ追加用（伝票番号）
-            List<string> lstShoninFlg = new List<string>();
 
             //データ取り出し用配列
             string[] strGetData = null;
@@ -340,7 +384,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 //承認変更されている場合
                 if (gridShukoiraimesai.Rows[intCnt].Cells["承認変更"].Value.ToString() == "1")
                 {
-                    //新しく配列を作成
+                    //新しく配列を作成(2列)
                     strGetData = new string[2];
                     //一つ目に入れる
                     strGetData[0] = gridShukoiraimesai.Rows[intCnt].Cells["伝票番号"].Value.ToString();
@@ -349,12 +393,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
 
                     //入れた配列をリストに入れる
                     lstDenpyoNo.Add(strGetData);
-
-                    strGetData = (String[]) lstDenpyoNo[intCnt];
-
-                    //lstDenpyoNo.Add(gridShukoiraimesai.Rows[intCnt].Cells["伝票番号"].Value.ToString());
-                    //lstShoninFlg.Add(gridShukoiraimesai.Rows[intCnt].Cells["承認"].Value.ToString());
-            }
+                }
             }
 
             //ビジネス層のインスタンス生成
@@ -367,7 +406,12 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 lstTableName.Add("@承認");              //承認
                 lstTableName.Add("@ユーザー名");        //ユーザー名
 
+                //登録
                 shukoshoninB.updShukoShonin(lstDenpyoNo, lstTableName, txtYMD.Text, SystemInformation.UserName);
+
+                //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -378,15 +422,6 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 basemessagebox.ShowDialog();
                 return;
             }
-        }
-
-        ///<summary>
-        ///delShukoShonin
-        ///データ削除
-        ///</summary>
-        private void delShukoShonin()
-        {
-
         }
 
         ///<summary>
@@ -487,6 +522,167 @@ namespace KATO.Form.A0170_ShukoShoninInput
             //承認変更をしたフラグを立てる
             gridShukoiraimesai.CurrentRow.Cells["承認変更"].Value = "1";
 
+        }
+
+        ///<summary>
+        ///printShukoshonin
+        ///印刷ダイアログ
+        ///</summary>
+        private void printShukoshonin()
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtPrintData = new DataTable();
+
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //文字判定(出庫年月日)
+            if (txtYMD.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                //出庫年月日にフォーカス
+                txtYMD.Focus();
+                return;
+            }
+
+            //文字判定(営業所コード)
+            if (lblset_Eigyosho.codeTxt.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISSNUM, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                //営業所コードにフォーカス
+                lblset_Eigyosho.Focus();
+                return;
+            }
+            //営業所コードの存在チェック
+            else if(lblset_Eigyosho.chkTxtEigyousho() == true)
+            {
+                //営業所コードにフォーカス
+                lblset_Eigyosho.Focus();
+                return;
+            }
+            
+            //ビジネス層のインスタンス生成
+            A0170_ShukoShoninInput_B shukoshoninB = new A0170_ShukoShoninInput_B();
+            try
+            {
+                //戻り値のDatatableを取り込む
+                dtPrintData = shukoshoninB.getPrintData();
+
+                //１件以上データがない場合
+                if (dtPrintData.Rows.Count < 1)
+                {
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessageboxNodata = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessageboxNodata.ShowDialog();
+                    return;
+                }
+
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    //結果セットをレコードセットに
+                    strFile = shukoshoninB.dbToPdf(dtPrintData);
+
+                    this.Cursor = Cursors.Default;
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    // PDF作成
+                    strFile = shukoshoninB.dbToPdf(dtPrintData);
+
+                    this.Cursor = Cursors.Default;
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+
+                //データ作成チェックがある場合
+                if (chbxDataCreate.Checked == true)
+                {
+                    //処理済の更新＆倉庫間移動データの追加
+                    addSoukoIdouData();
+
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+        }
+
+        ///<summary>
+        ///judtxtShukoKeyUp
+        ///処理済の更新＆倉庫間移動データの追加
+        ///</summary>
+        private void addSoukoIdouData()
+        {
+            //データ追加用（テーブル名）
+            List<string> lstTableName = new List<string>();
+
+            //ビジネス層のインスタンス生成
+            A0170_ShukoShoninInput_B shukoshoninB = new A0170_ShukoShoninInput_B();
+            try
+            {
+                //PROCに必要なカラム名の追加
+                lstTableName.Add("@伝票年月日");      //伝票年月日
+                lstTableName.Add("@伝票番号");        //伝票番号
+                lstTableName.Add("@処理番号");        //処理番号
+                lstTableName.Add("@倉庫コード");      //倉庫コード
+                lstTableName.Add("@取引区分");        //取引区分
+                lstTableName.Add("@担当者コード");    //担当者コード
+                lstTableName.Add("@営業所コード");    //営業所コード
+                lstTableName.Add("@商品コード");      //商品コード
+                lstTableName.Add("@メーカーコード");  //メーカーコード
+                lstTableName.Add("@大分類コード");    //大分類コード
+                lstTableName.Add("@中分類コード");    //中分類コード
+                lstTableName.Add("@Ｃ１");            //Ｃ１
+                lstTableName.Add("@Ｃ２");            //Ｃ２
+                lstTableName.Add("@Ｃ３");            //Ｃ３
+                lstTableName.Add("@Ｃ４");            //Ｃ４
+                lstTableName.Add("@Ｃ５");            //Ｃ５
+                lstTableName.Add("@Ｃ６");            //Ｃ６
+                lstTableName.Add("@数量");            //数量
+                lstTableName.Add("@単価");            //単価
+                lstTableName.Add("@移動元倉庫");      //移動元倉庫
+                lstTableName.Add("@ユーザー名");      //ユーザー名
+
+                //処理済の更新＆倉庫間移動データの追加
+                shukoshoninB.addPrintAfter(txtYMD.Text, lblset_Eigyosho.CodeTxtText, lstTableName, SystemInformation.UserName);
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
         }
 
         ///<summary>

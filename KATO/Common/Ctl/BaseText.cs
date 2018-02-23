@@ -159,5 +159,18 @@ namespace KATO.Common.Ctl
             //フォーカスが外れたのでリセット
             blnFirstClick = true;
         }
+
+        /// <summary>
+        /// textbox_KeyPress
+        /// KeyPressイベントハンドラ
+        /// </summary>
+        private void textbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -36,6 +36,7 @@
             this.TextChanged += new System.EventHandler(this.BaseText_TextChanged);
             this.Enter += new System.EventHandler(this.BaseText_Enter);
             this.Leave += new System.EventHandler(this.BaseText_Leave);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textbox_KeyPress);
             this.ResumeLayout(false);
 
         }
