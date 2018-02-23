@@ -288,6 +288,7 @@
             this.Text = "TorihikiCdList";
             this.Load += new System.EventHandler(this.TorihikiCdList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judToriListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.gbShuturyoku.ResumeLayout(false);
             this.gbShuturyoku.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihiki)).EndInit();

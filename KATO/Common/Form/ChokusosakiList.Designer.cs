@@ -82,6 +82,7 @@ namespace KATO.Common.Form
             this.gridChoku.AllowUserToAddRows = false;
             this.gridChoku.AllowUserToResizeColumns = false;
             this.gridChoku.AllowUserToResizeRows = false;
+            this.gridChoku.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -155,6 +156,7 @@ namespace KATO.Common.Form
             this.Text = "ChokusosakiList";
             this.Load += new System.EventHandler(this.ChokusosakiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judDaiBunruiListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridChoku)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

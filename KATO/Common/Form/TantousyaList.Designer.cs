@@ -163,6 +163,7 @@ namespace KATO.Common.Form
             this.Name = "TantousyaList";
             this.Text = "tantousyaList";
             this.Load += new System.EventHandler(this.TantousyaList_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSeihin)).EndInit();

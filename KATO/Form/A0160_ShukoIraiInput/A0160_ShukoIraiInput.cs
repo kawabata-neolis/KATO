@@ -531,10 +531,6 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 //商品リストから新しく選ばれた場合
                 if (strHinmeiBef != txtHinmei.Text)
                 {
-                    //編集不可能にする
-                    lblsetDaibunrui.Enabled = false;
-                    lblsetChubunrui.Enabled = false;
-                    lblsetMaker.Enabled = false;
                     txtHinmei.Enabled = false;
                     lblHinmei.Enabled = false;
 
@@ -958,6 +954,9 @@ namespace KATO.Form.A0160_ShukoIraiInput
             lblsetMaker.Enabled = true;
             txtHinmei.Enabled = true;
             lblHinmei.Enabled = true;
+
+            //初期化
+            lblsetChubunrui.strDaibunCd = null;
 
             //出庫年月日にフォーカス
             txtYMD.Focus();

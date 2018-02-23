@@ -116,6 +116,7 @@ namespace KATO.Common.Form
             this.Text = "tantousyaList";
             this.Load += new System.EventHandler(this.TantousyaList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTantouListKeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridTantousha)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

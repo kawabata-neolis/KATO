@@ -614,5 +614,18 @@ namespace KATO.Common.Form
                 labelSet_Tantousha.codeTxt.BaseText_Leave_Check();
             }
         }
+
+        ///<summary>
+        ///form_KeyPress
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void form_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -274,6 +274,7 @@
             this.Text = "ShireList";
             this.Load += new System.EventHandler(this.ShireList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShireList_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridShire)).EndInit();
             this.labelSet_Torihikisaki.ResumeLayout(false);
             this.labelSet_Torihikisaki.PerformLayout();

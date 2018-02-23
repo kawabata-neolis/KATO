@@ -427,5 +427,18 @@ namespace KATO.Common.Form
                 return cpForm;
             }
         }
+
+        /// <summary>
+        /// form_KeyPress
+        /// KeyPressイベントハンドラ
+        /// </summary>
+        private void form_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //EnterやEscapeキーでビープ音が鳴らないようにする
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

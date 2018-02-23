@@ -146,6 +146,7 @@
             this.Text = "ShiharaiList";
             this.Load += new System.EventHandler(this.ShiharaiList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShiharaiList_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokui)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

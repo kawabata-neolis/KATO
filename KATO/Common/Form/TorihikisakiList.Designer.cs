@@ -195,6 +195,7 @@
             this.Name = "TorihikisakiList";
             this.Text = "TorihikisakiList";
             this.Load += new System.EventHandler(this.TantousyaList_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTokuiListKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridTorihikisaki)).EndInit();
             this.ResumeLayout(false);
