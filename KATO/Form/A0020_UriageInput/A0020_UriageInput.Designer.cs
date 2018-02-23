@@ -564,6 +564,7 @@
             this.txtTekiyo.Size = new System.Drawing.Size(329, 22);
             this.txtTekiyo.TabIndex = 6;
             this.txtTekiyo.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtTekiyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // baseLabel11
             // 
@@ -607,6 +608,7 @@
             this.txtBusyo_C.Size = new System.Drawing.Size(141, 22);
             this.txtBusyo_C.TabIndex = 6;
             this.txtBusyo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtBusyo_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // txtName_C
             // 
@@ -616,6 +618,7 @@
             this.txtName_C.Size = new System.Drawing.Size(319, 22);
             this.txtName_C.TabIndex = 4;
             this.txtName_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtName_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // txtTelNo_C
             // 
@@ -625,6 +628,7 @@
             this.txtTelNo_C.Size = new System.Drawing.Size(141, 22);
             this.txtTelNo_C.TabIndex = 5;
             this.txtTelNo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtTelNo_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // txtAdr2_C
             // 
@@ -634,6 +638,7 @@
             this.txtAdr2_C.Size = new System.Drawing.Size(319, 22);
             this.txtAdr2_C.TabIndex = 3;
             this.txtAdr2_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtAdr2_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // baseLabel23
             // 
@@ -667,6 +672,7 @@
             this.txtAdr1_C.Size = new System.Drawing.Size(319, 22);
             this.txtAdr1_C.TabIndex = 2;
             this.txtAdr1_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtAdr1_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // baseLabel22
             // 
@@ -700,7 +706,7 @@
             this.txtCyoku.Size = new System.Drawing.Size(141, 22);
             this.txtCyoku.TabIndex = 0;
             this.txtCyoku.ModifiedChanged += new System.EventHandler(this.txtModified);
-            this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCyoku_KeyDown);
+            this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             this.txtCyoku.Leave += new System.EventHandler(this.txtCyoku_Leave);
             // 
             // baseLabel14
@@ -747,6 +753,7 @@
             this.txtYubin_C.Size = new System.Drawing.Size(82, 22);
             this.txtYubin_C.TabIndex = 1;
             this.txtYubin_C.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtYubin_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // cboNounyu
             // 
@@ -757,6 +764,7 @@
             this.cboNounyu.TabIndex = 7;
             this.cboNounyu.SelectedIndexChanged += new System.EventHandler(this.txtModified);
             this.cboNounyu.TextUpdate += new System.EventHandler(this.txtModified);
+            this.cboNounyu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
             // 
             // baseLabel17
             // 

@@ -17,6 +17,8 @@ namespace KATO.Common.Ctl
     {
         public BaseText btbTokuiCd;
 
+        public bool readOnly = false;
+
         public String strNo
         {
             get
@@ -318,6 +320,7 @@ namespace KATO.Common.Ctl
         //注文Noのフォーカスが外れた場合
         private void txtJucyuNoElem2_Leave(object sender, EventArgs e)
         {
+            
             this.Cursor = Cursors.WaitCursor;
             txtJucyuNoElem2_func();
             this.Cursor = Cursors.Default;
@@ -408,7 +411,8 @@ namespace KATO.Common.Ctl
                         }
                     }
 
-                    if (C_uriageInput.MODY_FLAG == false)
+                    //if (C_uriageInput.MODY_FLAG == false || this.readOnly == false)
+                    if (this.readOnly == false)
                     {
                         if (rs.Rows[0]["売上フラグ"].ToString() == "1")
                         {
@@ -1825,6 +1829,7 @@ namespace KATO.Common.Ctl
                     if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
                     {
                         SendKeys.Send("{TAB}");
+                        return;
                     }
                     break;
                 default:
@@ -1853,7 +1858,6 @@ namespace KATO.Common.Ctl
             jucyuzankakunin.ShowDialog();
             if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
             {
-                SendKeys.Send("{TAB}");
                 txtSuuryoElem4.Focus();
             }
         }

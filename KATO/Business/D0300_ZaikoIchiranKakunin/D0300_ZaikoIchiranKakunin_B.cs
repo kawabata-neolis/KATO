@@ -271,7 +271,8 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
             try
             {
                 // 検索データをテーブルへ格納
-                dtZaikoIchiran = dbconnective.ReadSql(strSql);
+                //dtZaikoIchiran = dbconnective.ReadSql(strSql);
+                dtZaikoIchiran = dbconnective.ReadSqlDelay(strSql, 3000);
 
                 return dtZaikoIchiran;
             }

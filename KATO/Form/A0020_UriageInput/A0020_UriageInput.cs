@@ -36,6 +36,8 @@ namespace KATO.Form.A0020_UriageInput
 
         public bool editFlg = false;
 
+        bool noEditable = false;
+
 
         //現在の選択行を初期化
         private int CurrentRow = 99;
@@ -2660,6 +2662,13 @@ namespace KATO.Form.A0020_UriageInput
             btnF03.Enabled = true;
             btnF07.Enabled = true;
 
+            textSet_Jucyu1.readOnly = false;
+            textSet_Jucyu2.readOnly = false;
+            textSet_Jucyu3.readOnly = false;
+            textSet_Jucyu4.readOnly = false;
+            textSet_Jucyu5.readOnly = false;
+            noEditable = false;
+
             OneLineClear();
             editFlg = false;
 
@@ -2852,6 +2861,19 @@ namespace KATO.Form.A0020_UriageInput
                 case Keys.F9:
                     //売上リストを開く
                     this.setUriageList();
+
+                    if (!string.IsNullOrWhiteSpace(txtDenNo.Text))
+                    {
+                        //DispDenpyo();
+                        //SendKeys.Send("{TAB}");
+                        if (string.IsNullOrWhiteSpace(txtYubin_C.Text)) {
+                            txtYMD.Focus();
+                        }
+                        else {
+                            txtYubin_C.Focus();
+                        }
+                    }
+
                     break;
                 default:
                     break;
@@ -3244,6 +3266,13 @@ namespace KATO.Form.A0020_UriageInput
 
                     if (decimal.Parse(rs3.Rows[0]["検収済カウント"].ToString()) > 0)
                     {
+                        textSet_Jucyu1.readOnly = true;
+                        textSet_Jucyu2.readOnly = true;
+                        textSet_Jucyu3.readOnly = true;
+                        textSet_Jucyu4.readOnly = true;
+                        textSet_Jucyu5.readOnly = true;
+                        noEditable = true;
+
                         //メッセージ
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "検収済みの売上です。変更は不可です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                         basemessagebox.ShowDialog();
@@ -3272,6 +3301,11 @@ namespace KATO.Form.A0020_UriageInput
                 return;
             }
 
+            textSet_Jucyu1.readOnly = true;
+            textSet_Jucyu2.readOnly = true;
+            textSet_Jucyu3.readOnly = true;
+            textSet_Jucyu4.readOnly = true;
+            textSet_Jucyu5.readOnly = true;
 
             try
             {
@@ -3450,9 +3484,32 @@ namespace KATO.Form.A0020_UriageInput
                     btnF01.Enabled = false;
                     btnF07.Enabled = false;
 
+                    noEditable = true;
+
                     //メッセージ
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "承認されていない為、編集登録・削除はできません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
+                }
+                else
+                {
+                    if (!noEditable) {
+                        textSet_Jucyu1.readOnly = false;
+                        textSet_Jucyu2.readOnly = false;
+                        textSet_Jucyu3.readOnly = false;
+                        textSet_Jucyu4.readOnly = false;
+                        textSet_Jucyu5.readOnly = false;
+                    }
+                }
+            }
+            else
+            {
+                if (!noEditable)
+                {
+                    textSet_Jucyu1.readOnly = false;
+                    textSet_Jucyu2.readOnly = false;
+                    textSet_Jucyu3.readOnly = false;
+                    textSet_Jucyu4.readOnly = false;
+                    textSet_Jucyu5.readOnly = false;
                 }
             }
 
@@ -3724,6 +3781,13 @@ namespace KATO.Form.A0020_UriageInput
         private void txtModified(object sender, EventArgs e)
         {
             editFlg = true;
+        }
+
+        private void txtTekiyo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                SendKeys.Send("{TAB}");
+            }
         }
     }
 }
