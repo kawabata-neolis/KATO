@@ -2279,6 +2279,8 @@ namespace KATO.Business.A0020_UriageInput
             {
                 DataTable dt = getGenpinhyoInfo(stDenno, blNotPrintedOnly);
 
+                String strDenpyoNo = "";                 // 伝票番号
+                String strGyoNo = "";                    // 行番号
                 String strJuchusaki = "";                // 受注先
                 String strNohinsaki = "";                // 納品先
                 String strNohinbi = "";                  // 納品日
@@ -2307,8 +2309,18 @@ namespace KATO.Business.A0020_UriageInput
                         strSu = dt.Rows[i]["数量"].ToString();
                         strBiko = dt.Rows[i]["備考"].ToString();
                         strNonyu = dt.Rows[i]["納入方法"].ToString();
+                        if (string.IsNullOrWhiteSpace(strNonyu))
+                        {
+                            strNonyu = "";
+                        }
+                        else
+                        {
+                            strNonyu = strNonyu.TrimEnd();
+                        }
+                        strDenpyoNo = dt.Rows[i]["伝票番号"].ToString();
+                        strGyoNo = dt.Rows[i]["行番号"].ToString();
 
-                        printout(strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko, strNonyu);
+                        printout(strDenpyoNo, strGyoNo, strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko, strNonyu);
                     }
                 }
             }
@@ -2323,7 +2335,9 @@ namespace KATO.Business.A0020_UriageInput
             DataTable dt = null;
 
             string strSQL = "";
-            strSQL += "SELECT RTRIM(売上ヘッダ.得意先名) AS 得意先名";
+            strSQL += "SELECT 売上ヘッダ.伝票番号";
+            strSQL += "      ,売上明細.行番号";
+            strSQL += "      ,RTRIM(売上ヘッダ.得意先名) AS 得意先名";
             strSQL += "      ,RTRIM(売上ヘッダ.直送先名) AS 直送先名";
             strSQL += "      ,売上ヘッダ.納入方法";
             strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
@@ -2360,8 +2374,8 @@ namespace KATO.Business.A0020_UriageInput
             return dt;
         }
 
-        public void printout(String strJuchusaki, String strNohinsaki, String strNohinbi, String strKataban,
-            String strTanaban, String strSu, String strBiko, String strNonyu)
+        public void printout(String strDenpyoNo, String strGyoNo, String strJuchusaki, String strNohinsaki,
+            String strNohinbi, String strKataban, String strTanaban, String strSu, String strBiko, String strNonyu)
         {
 
             //String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
@@ -2440,6 +2454,12 @@ namespace KATO.Business.A0020_UriageInput
                 //objRange.Value2 = strJuchusaki;
                 //Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 //Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line - 1, _col - 1];          // 伝票番号＋行番号
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strDenpyoNo + "-" + strGyoNo;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
                 objCell = objWorkSheet.Cells[_line + 1, _col];          // 納品先
                 objRange = objWorkSheet.get_Range(objCell, objCell);
