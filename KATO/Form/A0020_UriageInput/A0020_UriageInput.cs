@@ -2852,6 +2852,13 @@ namespace KATO.Form.A0020_UriageInput
                 case Keys.F9:
                     //売上リストを開く
                     this.setUriageList();
+
+                    if (!string.IsNullOrWhiteSpace(txtDenNo.Text))
+                    {
+                        //DispDenpyo();
+                        SendKeys.Send("{TAB}");
+                    }
+
                     break;
                 default:
                     break;
