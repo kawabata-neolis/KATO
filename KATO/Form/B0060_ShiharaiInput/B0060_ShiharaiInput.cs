@@ -1073,14 +1073,29 @@ namespace KATO.Form.B0060_ShiharaiInput
                 // 日付制限テーブルから最小年月日、最大年月日を取得
                 DataTable dtDate = shiharaiinputB.getDate(labelSet_Eigyosho.CodeTxtText);
 
+                string stF = "";
+                string stT = "";
+                string stYmd = "";
+
                 if (dtDate.Rows.Count > 0)
                 {
-                    DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
-                    DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
+                    //DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
+                    //DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
                     DateTime dtDenpyoYMD = DateTime.Parse(txtYMD.Text);
 
+                    stF = dtDate.Rows[0]["最小年月日"].ToString();
+                    stT = dtDate.Rows[0]["最大年月日"].ToString();
+
+                    stF = (DateTime.Parse(stF)).ToString("yyyy/MM/dd");
+                    stT = (DateTime.Parse(stT)).ToString("yyyy/MM/dd");
+                    stYmd = dtDenpyoYMD.ToString("yyyy/MM/dd");
+
                     // 伝票年月日が最小年月日から最大年月日の間の場合
-                    if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
+                    //if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
+                    //{
+                    //    return true;
+                    //}
+                    if (stYmd.CompareTo(stF) >= 0 && stYmd.CompareTo(stT) <= 0)
                     {
                         return true;
                     }

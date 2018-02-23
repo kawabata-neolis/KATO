@@ -186,11 +186,26 @@ namespace KATO.Common.Util
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
+                string stF = "";
+                string stT = "";
+                string stYmd = "";
+
                 //行がある場合
                 if (dtSetCd_B.Rows.Count > 0)
                 {
+                    stF = dtSetCd_B.Rows[0][0].ToString();
+                    stT = dtSetCd_B.Rows[0][1].ToString();
+
+                    stF = (DateTime.Parse(stF)).ToString("yyyy/MM/dd");
+                    stT = (DateTime.Parse(stT)).ToString("yyyy/MM/dd");
+                    stYmd = dateYMD.ToString("yyyy/MM/dd");
+
                     //チェックデータが取り出しデータの範囲内の場合
-                    if (DateTime.Parse(dtSetCd_B.Rows[0][0].ToString()) < dateYMD && dateYMD < DateTime.Parse(dtSetCd_B.Rows[0][1].ToString()))
+                    //if (DateTime.Parse(dtSetCd_B.Rows[0][0].ToString()) < dateYMD && dateYMD < DateTime.Parse(dtSetCd_B.Rows[0][1].ToString()))
+                    //{
+                    //    blCheck = true;
+                    //}
+                    if (stYmd.CompareTo(stF) >= 0 && stYmd.CompareTo(stT) <= 0)
                     {
                         blCheck = true;
                     }

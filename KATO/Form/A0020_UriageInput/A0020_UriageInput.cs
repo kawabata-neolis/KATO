@@ -3624,8 +3624,26 @@ namespace KATO.Form.A0020_UriageInput
                 //ビジネス層、日付範囲を取得。
                 dtSetView = uriageinputB.GetDateCheck(lstDateCheckLoad);
 
+                string stF = "";
+                string stT = "";
+                string stYmd = "";
+
+                if (dtSetView != null && dtSetView.Rows.Count > 0)
+                {
+                    stF = dtSetView.Rows[0]["最小年月日"].ToString();
+                    stT = dtSetView.Rows[0]["最大年月日"].ToString();
+
+                    stF = (DateTime.Parse(stF)).ToString("yyyy/MM/dd");
+                    stT = (DateTime.Parse(stT)).ToString("yyyy/MM/dd");
+                    stYmd = Ymd.ToString("yyyy/MM/dd");
+                }
+
                 //入力日付が日付範囲内外だった場合はアラートを表示する。
-                if (DateTime.Parse(dtSetView.Rows[0]["最小年月日"].ToString()) <= Ymd && Ymd <= DateTime.Parse(dtSetView.Rows[0]["最大年月日"].ToString()))
+                //if (DateTime.Parse(dtSetView.Rows[0]["最小年月日"].ToString()) <= Ymd && Ymd <= DateTime.Parse(dtSetView.Rows[0]["最大年月日"].ToString()))
+                //{
+                //    return true;
+                //}
+                if (stYmd.CompareTo(stF) >= 0 && stYmd.CompareTo(stT) <= 0)
                 {
                     return true;
                 }
