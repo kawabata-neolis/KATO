@@ -13,4 +13,5 @@ SELECT 伝票番号,
 FROM 出庫依頼
 WHERE 処理済 = '0'
 	  AND 削除 ='N'
+	  AND 承認 = 'N'
 	  {0}

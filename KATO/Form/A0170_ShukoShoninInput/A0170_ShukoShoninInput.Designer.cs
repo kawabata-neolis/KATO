@@ -39,6 +39,7 @@
             this.lblShukoiraimesai = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblBox1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gridShukoiraimesai = new KATO.Common.Ctl.BaseDataGridView();
+            this.chbxDataCreate = new KATO.Common.Ctl.BaseCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridShukoiraimesai)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,9 +116,8 @@
             this.txtYMD.Location = new System.Drawing.Point(185, 26);
             this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
-            this.txtYMD.Size = new System.Drawing.Size(100, 22);
+            this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
-            this.txtYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtShukoKeyUp);
             // 
             // lblYMD
             // 
@@ -163,7 +163,7 @@
             this.lblBox1.Font = new System.Drawing.Font("ＭＳ ゴシック", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblBox1.Location = new System.Drawing.Point(34, 73);
             this.lblBox1.Name = "lblBox1";
-            this.lblBox1.Size = new System.Drawing.Size(1353, 685);
+            this.lblBox1.Size = new System.Drawing.Size(1353, 668);
             this.lblBox1.strToolTip = null;
             this.lblBox1.TabIndex = 95;
             this.lblBox1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -206,17 +206,35 @@
             this.gridShukoiraimesai.RowHeadersVisible = false;
             this.gridShukoiraimesai.RowTemplate.Height = 21;
             this.gridShukoiraimesai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShukoiraimesai.Size = new System.Drawing.Size(1313, 647);
+            this.gridShukoiraimesai.Size = new System.Drawing.Size(1313, 630);
             this.gridShukoiraimesai.StandardTab = true;
             this.gridShukoiraimesai.TabIndex = 2;
             this.gridShukoiraimesai.DoubleClick += new System.EventHandler(this.gridShukoiraimesai_DoubleClick);
             this.gridShukoiraimesai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridShukoiraimesai_KeyDown);
+            // 
+            // chbxDataCreate
+            // 
+            this.chbxDataCreate.AutoSize = true;
+            this.chbxDataCreate.DisabledBackColor = System.Drawing.SystemColors.Control;
+            this.chbxDataCreate.DisabledForeColor = System.Drawing.SystemColors.ControlText;
+            this.chbxDataCreate.FocusedBackColor = System.Drawing.SystemColors.Control;
+            this.chbxDataCreate.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.chbxDataCreate.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.chbxDataCreate.ForeColor = System.Drawing.Color.Red;
+            this.chbxDataCreate.Location = new System.Drawing.Point(1001, 753);
+            this.chbxDataCreate.Name = "chbxDataCreate";
+            this.chbxDataCreate.Size = new System.Drawing.Size(378, 19);
+            this.chbxDataCreate.TabIndex = 97;
+            this.chbxDataCreate.TabStop = false;
+            this.chbxDataCreate.Text = "印刷時に移動年月日で入出庫データを作成する。";
+            this.chbxDataCreate.UseVisualStyleBackColor = true;
             // 
             // A0170_ShukoShoninInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.chbxDataCreate);
             this.Controls.Add(this.gridShukoiraimesai);
             this.Controls.Add(this.lblShukoiraimesai);
             this.Controls.Add(this.lblBox1);
@@ -248,6 +266,7 @@
             this.Controls.SetChildIndex(this.lblBox1, 0);
             this.Controls.SetChildIndex(this.lblShukoiraimesai, 0);
             this.Controls.SetChildIndex(this.gridShukoiraimesai, 0);
+            this.Controls.SetChildIndex(this.chbxDataCreate, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridShukoiraimesai)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -263,5 +282,6 @@
         private Common.Ctl.BaseLabel lblShukoiraimesai;
         private Common.Ctl.BaseLabel lblBox1;
         private Common.Ctl.BaseDataGridView gridShukoiraimesai;
+        private Common.Ctl.BaseCheckBox chbxDataCreate;
     }
 }

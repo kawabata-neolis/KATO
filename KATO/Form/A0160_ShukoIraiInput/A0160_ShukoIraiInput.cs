@@ -777,7 +777,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 A0160_ShukoIraiInput_B shukoiraiB = new A0160_ShukoIraiInput_B();
 
                 //PROCに必要なテーブル名の追加
-                lstData.Add(txtYMD.Text);                       //依頼年月日
+                lstData.Add(DateTime.Parse(txtYMD.Text).ToString());                       //依頼年月日
                 lstData.Add(txtDenpyoNo.Text);                  //伝票番号
                 lstData.Add(lblsetTantosha.CodeTxtText);        //担当者コード
                 lstData.Add(lblsetEigyosho.CodeTxtText);        //営業所コード
@@ -1012,6 +1012,8 @@ namespace KATO.Form.A0160_ShukoIraiInput
             //出庫営業所コードがない場合
             if (lblsetShukoEigyosho.codeTxt.blIsEmpty() == false)
             {
+                //グリッド内を初期化
+                gridShuko.DataSource = "";
                 return;
             }
 
