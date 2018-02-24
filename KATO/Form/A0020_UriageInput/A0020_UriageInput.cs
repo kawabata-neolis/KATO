@@ -37,6 +37,7 @@ namespace KATO.Form.A0020_UriageInput
         public bool editFlg = false;
 
         bool noEditable = false;
+        bool f1Flg = false;
 
 
         //現在の選択行を初期化
@@ -244,8 +245,10 @@ namespace KATO.Form.A0020_UriageInput
                     if (btnF01.Enabled == true)
                     {
                         logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                        f1Flg = true;
                         btnF01.Focus();
                         this.addJucyu();
+                        f1Flg = true;
                     }
                     break;
                 case Keys.F2:
@@ -302,7 +305,9 @@ namespace KATO.Form.A0020_UriageInput
             {
                 case STR_BTN_F01: // 登録
                     logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                    f1Flg = true;
                     this.addJucyu();
+                    f1Flg = false;
                     break;
                 case STR_BTN_F03: // 削除
                     logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
@@ -3646,6 +3651,11 @@ namespace KATO.Form.A0020_UriageInput
             }
 
             if (labelSet_Eigyosho.CodeTxtText == "")
+            {
+                return;
+            }
+
+            if (f1Flg)
             {
                 return;
             }
