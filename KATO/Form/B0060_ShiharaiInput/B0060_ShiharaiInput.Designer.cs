@@ -1020,6 +1020,7 @@
             this.txtShiharai9.intShishagonyu = 0;
             this.txtShiharai9.Location = new System.Drawing.Point(230, 298);
             this.txtShiharai9.MaxLength = 8;
+            this.txtShiharai9.MinusFlg = true;
             this.txtShiharai9.Name = "txtShiharai9";
             this.txtShiharai9.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai9.TabIndex = 37;
@@ -1116,6 +1117,7 @@
             this.txtShiharai8.intShishagonyu = 0;
             this.txtShiharai8.Location = new System.Drawing.Point(230, 270);
             this.txtShiharai8.MaxLength = 8;
+            this.txtShiharai8.MinusFlg = true;
             this.txtShiharai8.Name = "txtShiharai8";
             this.txtShiharai8.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai8.TabIndex = 33;
@@ -1146,6 +1148,7 @@
             this.txtShiharai7.intShishagonyu = 0;
             this.txtShiharai7.Location = new System.Drawing.Point(230, 242);
             this.txtShiharai7.MaxLength = 8;
+            this.txtShiharai7.MinusFlg = true;
             this.txtShiharai7.Name = "txtShiharai7";
             this.txtShiharai7.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai7.TabIndex = 29;
@@ -1230,6 +1233,7 @@
             this.txtShiharai6.intShishagonyu = 0;
             this.txtShiharai6.Location = new System.Drawing.Point(230, 214);
             this.txtShiharai6.MaxLength = 8;
+            this.txtShiharai6.MinusFlg = true;
             this.txtShiharai6.Name = "txtShiharai6";
             this.txtShiharai6.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai6.TabIndex = 25;
@@ -1260,6 +1264,7 @@
             this.txtShiharai5.intShishagonyu = 0;
             this.txtShiharai5.Location = new System.Drawing.Point(230, 186);
             this.txtShiharai5.MaxLength = 8;
+            this.txtShiharai5.MinusFlg = true;
             this.txtShiharai5.Name = "txtShiharai5";
             this.txtShiharai5.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai5.TabIndex = 21;
@@ -1354,6 +1359,7 @@
             this.txtShiharai4.intShishagonyu = 0;
             this.txtShiharai4.Location = new System.Drawing.Point(230, 158);
             this.txtShiharai4.MaxLength = 8;
+            this.txtShiharai4.MinusFlg = true;
             this.txtShiharai4.Name = "txtShiharai4";
             this.txtShiharai4.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai4.TabIndex = 17;
@@ -1406,6 +1412,7 @@
             this.txtShiharai3.intShishagonyu = 0;
             this.txtShiharai3.Location = new System.Drawing.Point(230, 130);
             this.txtShiharai3.MaxLength = 8;
+            this.txtShiharai3.MinusFlg = true;
             this.txtShiharai3.Name = "txtShiharai3";
             this.txtShiharai3.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai3.TabIndex = 13;
@@ -1476,6 +1483,7 @@
             this.txtShiharai2.intShishagonyu = 0;
             this.txtShiharai2.Location = new System.Drawing.Point(230, 102);
             this.txtShiharai2.MaxLength = 8;
+            this.txtShiharai2.MinusFlg = true;
             this.txtShiharai2.Name = "txtShiharai2";
             this.txtShiharai2.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai2.TabIndex = 9;
@@ -1528,6 +1536,7 @@
             this.txtShiharai1.intShishagonyu = 0;
             this.txtShiharai1.Location = new System.Drawing.Point(230, 74);
             this.txtShiharai1.MaxLength = 8;
+            this.txtShiharai1.MinusFlg = true;
             this.txtShiharai1.Name = "txtShiharai1";
             this.txtShiharai1.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai1.TabIndex = 5;
@@ -1587,6 +1596,7 @@
             this.txtShiharai0.intShishagonyu = 0;
             this.txtShiharai0.Location = new System.Drawing.Point(230, 46);
             this.txtShiharai0.MaxLength = 8;
+            this.txtShiharai0.MinusFlg = true;
             this.txtShiharai0.Name = "txtShiharai0";
             this.txtShiharai0.Size = new System.Drawing.Size(85, 22);
             this.txtShiharai0.TabIndex = 1;
@@ -1830,7 +1840,6 @@
             this.gridShireJisseki.AllowUserToAddRows = false;
             this.gridShireJisseki.AllowUserToResizeColumns = false;
             this.gridShireJisseki.AllowUserToResizeRows = false;
-            this.gridShireJisseki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -1945,6 +1954,7 @@
             this.txtDenpyoNo.intShishagonyu = 0;
             this.txtDenpyoNo.Location = new System.Drawing.Point(523, 35);
             this.txtDenpyoNo.MaxLength = 8;
+            this.txtDenpyoNo.MinusFlg = false;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
             this.txtDenpyoNo.TabIndex = 2;

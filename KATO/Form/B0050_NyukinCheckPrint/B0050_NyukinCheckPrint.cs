@@ -308,6 +308,62 @@ namespace KATO.Form.B0050_NyukinCheckPrint
                 return;
             }
 
+            // 日付フォーマットチェック（入力年月日（開始））
+            string datedata = txtInputYMDStart.chkDateDataFormat(txtInputYMDStart.Text);
+            if ("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            else
+            {
+                txtInputYMDStart.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（入力年月日（終了））
+            datedata = txtInputYMDEnd.chkDateDataFormat(txtInputYMDEnd.Text);
+            if ("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            else
+            {
+                txtInputYMDEnd.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（伝票年月日（開始））
+            datedata = txtDenpyoYMDStart.chkDateDataFormat(txtDenpyoYMDStart.Text);
+            if ("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoYMDStart.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（伝票年月日（終了））
+            datedata = txtDenpyoYMDEnd.chkDateDataFormat(txtDenpyoYMDEnd.Text);
+            if ("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoYMDEnd.Text = datedata;
+            }
+
             // ビジネス層のインスタンス生成
             B0050_NyukinCheckPrint_B checkPrintB = new B0050_NyukinCheckPrint_B();
             try

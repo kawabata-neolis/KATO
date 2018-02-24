@@ -427,8 +427,6 @@ namespace KATO.Form.B0040_NyukinInput
                     //最大桁数ではない場合
                     if (txtYMD.Text.Length < 10 )
                     {
-                        //TABボタンと同じ効果
-                        SendKeys.Send("{TAB}");
 
                         //日付制限チェック
                         dateCheck();
@@ -966,6 +964,21 @@ namespace KATO.Form.B0040_NyukinInput
                 return;
             }
 
+
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            else
+            {
+                txtYMD.Text = datedata;
+            }
+
             // 空文字判定（得意先コード）
             if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
             {
@@ -987,6 +1000,13 @@ namespace KATO.Form.B0040_NyukinInput
             {
                 if (!ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
                 {
+                    // 入力チェック（取引区分）
+                    if (((LabelSet_Torihikikbn)ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()]).chkTxtTorihikikbn())
+                    {
+                        return;
+                    }
+                    
+                    // 必須チェック（金額）
                     if (ctlGb.Controls["txtNyukin" + cnt.ToString()].Text.Equals(""))
                     {
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -997,6 +1017,31 @@ namespace KATO.Form.B0040_NyukinInput
                         ctlGb.Controls["txtNyukin" + cnt.ToString()].Focus();
                         return;
                     }
+
+                    // 金額フォーマットチェック（金額）
+                    if (((BaseTextMoney)ctlGb.Controls["txtNyukin" + cnt.ToString()]).chkMoneyText())
+                    {
+                        return;
+                    }
+
+                    // 日付フォーマットチェック（手形期日）
+                    if (!"".Equals(((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text))
+                    {
+                        datedata = ((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).chkDateDataFormat(((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text);
+                        if ("".Equals(datedata))
+                        {
+                            // メッセージボックスの処理
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                            return;
+                        }
+                        else
+                        {
+                            ((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text = datedata;
+                        }
+                    }
+
+
                 }
             }
 
@@ -1063,6 +1108,21 @@ namespace KATO.Form.B0040_NyukinInput
         /// </summary>
         private void delAllSakujo()
         {
+
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            else
+            {
+                txtYMD.Text = datedata; 
+            }
+
             // 日付制限チェック
             if (!dateCheck())
             {
@@ -1456,9 +1516,22 @@ namespace KATO.Form.B0040_NyukinInput
         /// </summary>
         private Boolean dateCheck()
         {
+            // 日付空チェック
             if (txtYMD.Text.Equals(""))
             {
                 return false;
+            }
+            
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            if ("".Equals(datedata))
+            {
+                return false;
+            }
+            else
+            {
+                txtYMD.Text = datedata;
             }
 
             B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
@@ -1467,29 +1540,14 @@ namespace KATO.Form.B0040_NyukinInput
                 // 日付制限テーブルから最小年月日、最大年月日を取得
                 DataTable dtDate = nyukininputB.getDate(labelSet_Eigyosho.CodeTxtText);
 
-                string stF = "";
-                string stT = "";
-                string stYmd = "";
-
                 if (dtDate.Rows.Count > 0)
                 {
-                    //DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
-                    //DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
+                    DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
+                    DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
                     DateTime dtDenpyoYMD = DateTime.Parse(txtYMD.Text);
 
-                    stF = dtDate.Rows[0]["最小年月日"].ToString();
-                    stT = dtDate.Rows[0]["最大年月日"].ToString();
-
-                    stF = (DateTime.Parse(stF)).ToString("yyyy/MM/dd");
-                    stT = (DateTime.Parse(stT)).ToString("yyyy/MM/dd");
-                    stYmd = dtDenpyoYMD.ToString("yyyy/MM/dd");
-
                     // 伝票年月日が最小年月日から最大年月日の間の場合
-                    //if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
-                    //{
-                    //    return true;
-                    //}
-                    if (stYmd.CompareTo(stF) >= 0 && stYmd.CompareTo(stT) <= 0)
+                    if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
                     {
                         return true;
                     }

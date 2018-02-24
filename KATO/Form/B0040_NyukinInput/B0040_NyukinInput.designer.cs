@@ -338,6 +338,7 @@
             this.txtNyukin9.intShishagonyu = 0;
             this.txtNyukin9.Location = new System.Drawing.Point(230, 298);
             this.txtNyukin9.MaxLength = 8;
+            this.txtNyukin9.MinusFlg = true;
             this.txtNyukin9.Name = "txtNyukin9";
             this.txtNyukin9.Size = new System.Drawing.Size(86, 22);
             this.txtNyukin9.TabIndex = 37;
@@ -357,6 +358,7 @@
             this.txtNyukin8.intShishagonyu = 0;
             this.txtNyukin8.Location = new System.Drawing.Point(230, 270);
             this.txtNyukin8.MaxLength = 8;
+            this.txtNyukin8.MinusFlg = true;
             this.txtNyukin8.Name = "txtNyukin8";
             this.txtNyukin8.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin8.TabIndex = 33;
@@ -376,6 +378,7 @@
             this.txtNyukin7.intShishagonyu = 0;
             this.txtNyukin7.Location = new System.Drawing.Point(230, 242);
             this.txtNyukin7.MaxLength = 8;
+            this.txtNyukin7.MinusFlg = true;
             this.txtNyukin7.Name = "txtNyukin7";
             this.txtNyukin7.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin7.TabIndex = 29;
@@ -395,6 +398,7 @@
             this.txtNyukin6.intShishagonyu = 0;
             this.txtNyukin6.Location = new System.Drawing.Point(230, 214);
             this.txtNyukin6.MaxLength = 8;
+            this.txtNyukin6.MinusFlg = true;
             this.txtNyukin6.Name = "txtNyukin6";
             this.txtNyukin6.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin6.TabIndex = 25;
@@ -414,6 +418,7 @@
             this.txtNyukin5.intShishagonyu = 0;
             this.txtNyukin5.Location = new System.Drawing.Point(230, 186);
             this.txtNyukin5.MaxLength = 8;
+            this.txtNyukin5.MinusFlg = true;
             this.txtNyukin5.Name = "txtNyukin5";
             this.txtNyukin5.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin5.TabIndex = 21;
@@ -433,6 +438,7 @@
             this.txtNyukin4.intShishagonyu = 0;
             this.txtNyukin4.Location = new System.Drawing.Point(230, 158);
             this.txtNyukin4.MaxLength = 8;
+            this.txtNyukin4.MinusFlg = true;
             this.txtNyukin4.Name = "txtNyukin4";
             this.txtNyukin4.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin4.TabIndex = 17;
@@ -452,6 +458,7 @@
             this.txtNyukin3.intShishagonyu = 0;
             this.txtNyukin3.Location = new System.Drawing.Point(230, 130);
             this.txtNyukin3.MaxLength = 8;
+            this.txtNyukin3.MinusFlg = true;
             this.txtNyukin3.Name = "txtNyukin3";
             this.txtNyukin3.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin3.TabIndex = 13;
@@ -471,6 +478,7 @@
             this.txtNyukin2.intShishagonyu = 0;
             this.txtNyukin2.Location = new System.Drawing.Point(230, 102);
             this.txtNyukin2.MaxLength = 8;
+            this.txtNyukin2.MinusFlg = true;
             this.txtNyukin2.Name = "txtNyukin2";
             this.txtNyukin2.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin2.TabIndex = 9;
@@ -490,6 +498,7 @@
             this.txtNyukin1.intShishagonyu = 0;
             this.txtNyukin1.Location = new System.Drawing.Point(230, 74);
             this.txtNyukin1.MaxLength = 8;
+            this.txtNyukin1.MinusFlg = true;
             this.txtNyukin1.Name = "txtNyukin1";
             this.txtNyukin1.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin1.TabIndex = 5;
@@ -509,6 +518,7 @@
             this.txtNyukin0.intShishagonyu = 0;
             this.txtNyukin0.Location = new System.Drawing.Point(230, 46);
             this.txtNyukin0.MaxLength = 8;
+            this.txtNyukin0.MinusFlg = true;
             this.txtNyukin0.Name = "txtNyukin0";
             this.txtNyukin0.Size = new System.Drawing.Size(85, 22);
             this.txtNyukin0.TabIndex = 1;
@@ -1940,6 +1950,7 @@
             this.txtDenpyoNo.intShishagonyu = 0;
             this.txtDenpyoNo.Location = new System.Drawing.Point(526, 35);
             this.txtDenpyoNo.MaxLength = 8;
+            this.txtDenpyoNo.MinusFlg = false;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(70, 22);
             this.txtDenpyoNo.TabIndex = 102;

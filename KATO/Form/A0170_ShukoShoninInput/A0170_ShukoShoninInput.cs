@@ -609,6 +609,8 @@ namespace KATO.Form.A0170_ShukoShoninInput
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                 }
 
+                pf.Dispose();
+
                 //データ作成チェックがある場合
                 if (chbxDataCreate.Checked == true)
                 {

@@ -1284,7 +1284,7 @@ namespace KATO.Form.A0030_ShireInput
                     if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
                     {
                         //例外発生メッセージ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
                     }
 
@@ -1303,7 +1303,7 @@ namespace KATO.Form.A0030_ShireInput
                 else
                 {
                     //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
 
                     blRock = false;
@@ -1578,7 +1578,7 @@ namespace KATO.Form.A0030_ShireInput
                 else
                 {
                     //例外発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
 
                     blRock = false;
@@ -2125,6 +2125,9 @@ namespace KATO.Form.A0030_ShireInput
             //エラー位置にフォーカスする用
             Control cErrorData = null;
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //各行の情報を入れる
             bvg = new BaseViewDataGroup[] { gbData1, gbData2, gbData3, gbData4, gbData5 };
 
@@ -2145,7 +2148,7 @@ namespace KATO.Form.A0030_ShireInput
                                                                    CommonTeisu.TEXT_VIEW, 
                                                                    "有効な明細行がありません。\r\n伝票が不要な場合は伝票削除（F3)を行ってください。", 
                                                                    CommonTeisu.BTN_OK, 
-                                                                   CommonTeisu.DIAG_ERROR);
+                                                                   CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
 
                 blgood = false;
@@ -2195,7 +2198,7 @@ namespace KATO.Form.A0030_ShireInput
                     if (intUnchinCnt == 0)
                     {
                         //"関連する受注データがないとメッセージ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "関連する受注データがありません。明細行で運賃を入力して下さい。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "関連する受注データがありません。明細行で運賃を入力して下さい。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                         basemessagebox.ShowDialog();
 
                         blgood = false;
@@ -2209,10 +2212,21 @@ namespace KATO.Form.A0030_ShireInput
 
             if (blgood)
             {
+                strYMDformat = txtYMD.chkDateDataFormat(txtYMD.Text);
+
                 //年月として扱えない場合
-                if (txtYMD.chkDateDataFormat(txtYMD.Text) == "")
+                if (strYMDformat == "")
                 {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+
                     blgood = false;
+                }
+                else
+                {
+                    //生成した年月日を反映させる
+                    txtYMD.Text = strYMDformat;
                 }
             }
 
@@ -2287,7 +2301,7 @@ namespace KATO.Form.A0030_ShireInput
                                 if (bvg[intgbCnt].txtChumonNo.Text == bvg[intCntJuhuku].txtChumonNo.Text)
                                 {
                                     //"関連する受注データがないとメッセージ（OK）
-                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "注文No.が重複してます。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                     basemessagebox.ShowDialog();
 
                                     blgood = false;
@@ -2311,7 +2325,7 @@ namespace KATO.Form.A0030_ShireInput
                             if (int.Parse(bvg[intgbCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
                             {
                                 //"関連する受注データがないとメッセージ（OK）
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                 basemessagebox.ShowDialog();
 
                                 blgood = false;
@@ -2342,7 +2356,7 @@ namespace KATO.Form.A0030_ShireInput
                                 if (decimal.Parse(bvg[intgbCnt].txtSu.Text) > decimal.Parse(objSu.ToString()))
                                 {
                                     //"関連する受注データがないとメッセージ（OK）
-                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注数量を超えています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                                     basemessagebox.ShowDialog();
 
                                     blgood = false;
@@ -2373,11 +2387,17 @@ namespace KATO.Form.A0030_ShireInput
                     gbData5.txtJuchuTanka.Text == "0")
                 {
                     //"関連する受注データがないとメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上単価が￥０の受注が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "売上単価が￥０の受注が含まれています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
 
                     blgood = false;
                 }
+            }
+
+            //good判定の判定
+            if (blgood == false)
+            {
+                return (blgood);
             }
 
             //日付制限チェックをしたときにfalseの場合
@@ -2385,7 +2405,7 @@ namespace KATO.Form.A0030_ShireInput
             {
 
                 //日付が範囲外とメッセージ
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
 
                 txtYMD.Focus();
@@ -2394,12 +2414,6 @@ namespace KATO.Form.A0030_ShireInput
 
             //合計計算式を入れる(一つで全行計算する)
             gbData1.setGokeiKesan();
-
-            //good判定の判定
-            if (blgood == false)
-            {
-                return(blgood);
-            }
 
             //閲覧権限がない場合
             if (!("1").Equals(etsuranFlg))
@@ -2437,7 +2451,7 @@ namespace KATO.Form.A0030_ShireInput
                 if (blgood == false)
                 {
                     //"関連する受注データがないとメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "仕入単価チェック", "仕入単価が直近・マスタ仕入単価を上回っています。続行してもいいですか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_ERROR);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, "仕入単価チェック", "仕入単価が直近・マスタ仕入単価を上回っています。続行してもいいですか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
 
                     //YESが押された場合
                     if (basemessagebox.ShowDialog() == DialogResult.Yes)
@@ -2493,12 +2507,34 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         private void txtYMD_Leave(object sender, EventArgs e)
         {
-            //日付制限チェックをしたときにfalseの場合
-            if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
+            //年月日が空の場合
+            if (txtYMD.blIsEmpty() == false)
             {
-                //日付が範囲外とメッセージ
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                basemessagebox.ShowDialog();
+                return;
+            }
+
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            //年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                txtYMD.Focus();
+            }
+            else
+            {
+                txtYMD.Text = strYMDformat;
+
+                //日付制限チェックをしたときにfalseの場合
+                if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
+                {
+                    //日付が範囲外とメッセージ
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                }
             }
         }
     }

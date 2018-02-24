@@ -583,6 +583,33 @@ namespace KATO.Form.D0280_SoukoIdouKakunin
                 return false;
             }
 
+            // 移動年月日のStart・Endの日付フォーマットチェック
+            string datedata = txtIdouYMDStart.chkDateDataFormat(txtIdouYMDStart.Text);
+            if("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return false;
+            }
+            else
+            {
+                txtIdouYMDStart.Text = datedata;
+            }
+
+            datedata = txtIdouYMDEnd.chkDateDataFormat(txtIdouYMDEnd.Text);
+            if ("".Equals(datedata))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return false;
+            }
+            else
+            {
+                txtIdouYMDEnd.Text = datedata;
+            }
+
             // 空文字チェック（営業所コード）
             if (labelSet_Eigyosho.codeTxt.blIsEmpty() == false)
             {

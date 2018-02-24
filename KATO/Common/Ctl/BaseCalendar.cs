@@ -601,14 +601,7 @@ namespace KATO.Common.Ctl
             }
             else
             {
-                if (strDataPi != "")
-                {
-                    strDateData = strDataPi;
-                }
-                else
-                {
-                    strDateData = "";
-                }
+                strDateData = "";
             }
             return (strDateData);
         }

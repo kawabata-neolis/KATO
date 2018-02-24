@@ -412,6 +412,12 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
                 return false;
             }
 
+            // フォーマットチェック（得意先コード（開始））
+            if (labelSet_TokuisakiCdFrom.chkTxtTorihikisaki())
+            {
+                return false;
+            }
+
             // 空文字判定（得意先コード（終了））
             if (labelSet_TokuisakiCdTo.CodeTxtText.Equals(""))
             {
@@ -422,6 +428,59 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
                 labelSet_TokuisakiCdTo.Focus();
 
                 return false;
+            }
+
+            // フォーマットチェック（得意先コード（終了））
+            if (labelSet_TokuisakiCdTo.chkTxtTorihikisaki())
+            {
+                return false;
+            }
+
+            // 日付フォーマットチェック（締切年月日）
+            string datedata = txtSimekiriYmd.chkDateDataFormat(txtSimekiriYmd.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            else
+            {
+                txtSimekiriYmd.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（開始年月日）
+            datedata = txtStartYmd.chkDateDataFormat(txtStartYmd.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+            else
+            {
+                txtStartYmd.Text = datedata;
+            }
+
+            // 日付フォーマットチェック（発行年月日）
+            if (!"".Equals(txtHakkoYmd.Text))
+            {
+                // 日付フォーマットチェック（開始年月日）
+                datedata = txtHakkoYmd.chkDateDataFormat(txtHakkoYmd.Text);
+                if ("".Equals(datedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+                else
+                {
+                    txtHakkoYmd.Text = datedata;
+                }
+
             }
 
             // 締切年月日の日付と締切日コードが違う場合

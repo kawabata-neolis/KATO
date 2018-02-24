@@ -481,9 +481,6 @@ namespace KATO.Form.B0060_ShiharaiInput
                     //最大桁数ではない場合
                     if (txtYMD.Text.Length < 10)
                     {
-                        //TABボタンと同じ効果
-                        SendKeys.Send("{TAB}");
-
                         //日付制限チェック
                         dateCheck();
                     }
@@ -734,6 +731,20 @@ namespace KATO.Form.B0060_ShiharaiInput
                 return;
             }
 
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            else
+            {
+                txtYMD.Text = datedata;
+            }
+
             // 空文字判定（仕入先コード（取引先））
             if (lblset_Siiresaki.codeTxt.blIsEmpty() == false)
             {
@@ -756,6 +767,12 @@ namespace KATO.Form.B0060_ShiharaiInput
             {
                 if (!ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
                 {
+                    // 入力チェック（取引区分）
+                    if (((LabelSet_Torihikikbn)ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()]).chkTxtTorihikikbn())
+                    {
+                        return;
+                    }
+
                     if (ctlGb.Controls["txtShiharai" + cnt.ToString()].Text.Equals(""))
                     {
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -763,6 +780,29 @@ namespace KATO.Form.B0060_ShiharaiInput
                         basemessagebox.ShowDialog();
                         ctlGb.Controls["txtShiharai" + cnt.ToString()].Focus();
                         return;
+                    }
+
+                    // 金額フォーマットチェック（金額）
+                    if (((BaseTextMoney)ctlGb.Controls["txtShiharai" + cnt.ToString()]).chkMoneyText())
+                    {
+                        return;
+                    }
+
+                    // 日付フォーマットチェック（手形期日）
+                    if (!"".Equals(((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text))
+                    {
+                        datedata = ((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).chkDateDataFormat(((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text);
+                        if ("".Equals(datedata))
+                        {
+                            // メッセージボックスの処理
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                            return;
+                        }
+                        else
+                        {
+                            ((BaseCalendar)ctlGb.Controls["txtTegataYMD" + cnt.ToString()]).Text = datedata;
+                        }
                     }
                 }
             }
@@ -1067,35 +1107,32 @@ namespace KATO.Form.B0060_ShiharaiInput
                 return false;
             }
 
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            if ("".Equals(datedata))
+            {
+                return false;
+            }
+            else
+            {
+                txtYMD.Text = datedata;
+            }
+
             B0060_ShiharaiInput_B shiharaiinputB = new B0060_ShiharaiInput_B();
             try
             {
                 // 日付制限テーブルから最小年月日、最大年月日を取得
                 DataTable dtDate = shiharaiinputB.getDate(labelSet_Eigyosho.CodeTxtText);
 
-                string stF = "";
-                string stT = "";
-                string stYmd = "";
-
                 if (dtDate.Rows.Count > 0)
                 {
-                    //DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
-                    //DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
+                    DateTime dtMinDate = DateTime.Parse(dtDate.Rows[0]["最小年月日"].ToString());
+                    DateTime dtMaxDate = DateTime.Parse(dtDate.Rows[0]["最大年月日"].ToString());
                     DateTime dtDenpyoYMD = DateTime.Parse(txtYMD.Text);
 
-                    stF = dtDate.Rows[0]["最小年月日"].ToString();
-                    stT = dtDate.Rows[0]["最大年月日"].ToString();
-
-                    stF = (DateTime.Parse(stF)).ToString("yyyy/MM/dd");
-                    stT = (DateTime.Parse(stT)).ToString("yyyy/MM/dd");
-                    stYmd = dtDenpyoYMD.ToString("yyyy/MM/dd");
-
                     // 伝票年月日が最小年月日から最大年月日の間の場合
-                    //if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
-                    //{
-                    //    return true;
-                    //}
-                    if (stYmd.CompareTo(stF) >= 0 && stYmd.CompareTo(stT) <= 0)
+                    if (dtMinDate <= dtDenpyoYMD && dtDenpyoYMD <= dtMaxDate)
                     {
                         return true;
                     }

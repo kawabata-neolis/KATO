@@ -380,6 +380,8 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
                 txtTekiyoYMD.Text = strDateData;
                 txtTekiyoYMD.Focus();
+
+                return;
             }
             else
             {

@@ -500,6 +500,7 @@
             this.txtDenpyoNo.intShishagonyu = 0;
             this.txtDenpyoNo.Location = new System.Drawing.Point(923, 39);
             this.txtDenpyoNo.MaxLength = 0;
+            this.txtDenpyoNo.MinusFlg = false;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(100, 22);
             this.txtDenpyoNo.TabIndex = 8;

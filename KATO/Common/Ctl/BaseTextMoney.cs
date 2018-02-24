@@ -34,7 +34,13 @@ namespace KATO.Common.Ctl
 
         //カンマ入力の可不可(他で決定）
         Boolean _blnCommaOK = true;
-        
+
+        // マイナス入力の可不可
+        Boolean _blnMinusFlg = true;
+
+        // 入力した値にマイナスが存在するかのフラグ（存在した場合：true 存在しない場合：false）
+        bool blInputMinus = false;
+
         //小数点以下の０パディング
         //（アクセス識別子) (型) (プロパティ名)
         public int intDeciSet
@@ -82,6 +88,21 @@ namespace KATO.Common.Ctl
             {
                 //プロパティデータからデータを取り出す場合
                 this._blnCommaOK = value;
+            }
+        }
+
+        /// <summary>
+        ///     マイナス入力を許可するか（許可：true　禁止：false）
+        /// </summary>
+        public Boolean MinusFlg
+        {
+            get
+            {
+                return this._blnMinusFlg;
+            }
+            set
+            {
+                this._blnMinusFlg = value;
             }
         }
 
@@ -136,11 +157,33 @@ namespace KATO.Common.Ctl
         //
         private void updMoneyEnter(object sender, EventArgs e)
         {
+            // 削除する文字
+            char[] removeChars = new char[] { '-' };
+
             //背景色をシアンにする
             this.BackColor = Color.Cyan;
 
+            // テキストボックスの値を取得
+            string strTextBoxValue = this.Text;
+
+            // "-"があった場合
+            if (strTextBoxValue.IndexOf('-') > -1)
+            {
+                // blInputMinusをtrueにする
+                blInputMinus = true;
+            }
+            else
+            {
+                blInputMinus = false;
+            }
+            // "-" を取り除く
+            foreach (char c in removeChars)
+            {
+                strTextBoxValue = strTextBoxValue.Replace(c.ToString(), "");
+            }
+
             //this.SelectAll();
-            if (blnFirstClick == true && this.Text != "")
+            if (blnFirstClick == true && strTextBoxValue != "")
             {
                 //全選択
                 this.SelectAll();
@@ -152,13 +195,39 @@ namespace KATO.Common.Ctl
                 blnFirstClick = false;
             }
 
-            if (this.Text == "")
+            if (strTextBoxValue == "")
             {
+                // "-" を取り除いた値が空の場合、テキストボックスに"0"を入れる
+                if (blInputMinus == true)
+                {
+                    this.Text = "0";
+                }
                 return;
             }
-          
-            //四捨五入
-            this.Text = updShishagonyu(this.Text, intshishagonyu);
+
+            // 数字チェック
+            strTextBoxValue = chkNumber(strTextBoxValue);
+
+            // 入力された値にマイナスが付いていた場合
+            if (blInputMinus == true)
+            {
+                // 値が"0"の場合、マイナスは付けない
+                if (strTextBoxValue.Equals("0"))
+                {
+                    //四捨五入
+                    strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+                else
+                {
+                    //四捨五入
+                    strTextBoxValue = "-" + updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+            }
+            else
+            {
+                //四捨五入
+                strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+            }
 
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
@@ -170,8 +239,8 @@ namespace KATO.Common.Ctl
         //
         private void updMoneyLeave(object sender, EventArgs e)
         {
-            //数値チェック用
-            decimal decCheck = 0;
+            // 削除する文字
+            char[] removeChars = new char[] { '-' };
 
             //背景色を白にする
             this.BackColor = Color.White;
@@ -179,36 +248,86 @@ namespace KATO.Common.Ctl
             //フォーカスが外れたのでリセット
             blnFirstClick = true;
 
-            if (this.Text == "")
+            // テキストボックスの値を取得
+            string strTextBoxValue = this.Text;
+
+            // "-"があった場合
+            if (strTextBoxValue.IndexOf('-') > -1)
             {
+                // blInputMinusをtrueにする
+                blInputMinus = true;
+            }
+            else
+            {
+                blInputMinus = false;
+            }
+            // "-" を取り除く
+            foreach (char c in removeChars)
+            {
+                strTextBoxValue = strTextBoxValue.Replace(c.ToString(), "");
+            }
+
+            if (strTextBoxValue == "")
+            {
+                // "-" を取り除いた値が空の場合、テキストボックスに"0"を入れる
+                if (blInputMinus == true)
+                {
+                    this.Text = "0";
+                }
                 return;
             }
 
-            //コピーペーストされた時のための数値チェック
-            if (!decimal.TryParse(this.Text, out decCheck))
+            // 数字チェック（数字ではない場合、空が返ってくる）
+            strTextBoxValue = chkNumber(strTextBoxValue);
+
+            if (strTextBoxValue.Equals(""))
             {
                 if (this.Parent is BaseForm)
                 {
                     //データ存在なしメッセージ（OK）
                     BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
                 }
                 else if (this.Parent.Parent is BaseForm)
                 {
                     //データ存在なしメッセージ（OK）
                     BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
                 }
 
-//ラベルセットのカーソル色が残るのを防ぐ
-//しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
+                // ラベルセットのカーソル色が残るのを防ぐ
+                // todo:しかしShift + Tabで移動した場合は二重になるため対応策が必要（加藤Prj_問題点課題管理表 No29）
                 SendKeys.Send("+{TAB}");
 
                 return;
             }
 
-            //四捨五入
-            this.Text = updShishagonyu(this.Text, intshishagonyu);
+            // 入力された値にマイナスが付いていた場合
+            if (blInputMinus == true)
+            {
+                // 値が"0"の場合、マイナスは付けない
+                if (strTextBoxValue.Equals("0"))
+                {
+                    //四捨五入
+                    strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+                else
+                {
+                    //四捨五入
+                    strTextBoxValue = "-" + updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+            }
+            else
+            {
+                //四捨五入
+                strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+            }
+
+            this.Text = strTextBoxValue;
 
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
@@ -242,24 +361,47 @@ namespace KATO.Common.Ctl
                     }
                 }
 
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.' && e.KeyChar != '\u0001' 
-                                                                                                  && e.KeyChar != '\u0003' 
-                                                                                                  && e.KeyChar != '\u0016' 
-                                                                                                  && e.KeyChar != '\u0018')
+                // マイナス入力を許可している場合
+                if (_blnMinusFlg == true)
                 {
-                    //押されたキーが 0～9でない場合は、イベントをキャンセルする
-                    blnEntry = false;
-                }                
+                    if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.' && e.KeyChar != '-' 
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
+                    {
+                        //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                        blnEntry = false;
+                    }
+                }
+                else
+                {
+                    if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '.' 
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
+                    {
+                        //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                        blnEntry = false;
+                    }
+                }            
             }
             //小数点以下を拒否
             else if (_intDeciSet == 0)
             {
                 blnEntry = true;
 
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                // マイナス入力を許可している場合
+                if (_blnMinusFlg == true)
                 {
-                    //押されたキーが 0～9でない場合は、イベントをキャンセルする
-                    blnEntry = false;
+                    if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '-')
+                    {
+                        //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                        blnEntry = false;
+                    }
+                }
+                else
+                {
+                    if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                    {
+                        //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                        blnEntry = false;
+                    }
                 }
 
             }
@@ -283,6 +425,9 @@ namespace KATO.Common.Ctl
         //
         public void updPriceMethod()
         {
+            // 削除する文字
+            char[] removeChars = new char[] { ',', '-' };
+
             //整数部
             string strIntArea = "";
 
@@ -295,42 +440,45 @@ namespace KATO.Common.Ctl
                 return;
             }
 
-            //[,]を取り除く
-            //文字チェック,チェック用のLISTを作成
-            List<string> checklist = new List<string>();
-
             //テキストボックス内のデータを確保
             string strtextBox = this.Text;
 
-            //リストに追加
-            checklist.Add(strtextBox);
-
-            //テキストボックス内のチェック
-            foreach (string Listvalue in checklist)
+            // "-"があった場合
+            if (strtextBox.IndexOf('-') > -1)
             {
-                //「,]があった場合一度取り除く
-                if (strtextBox.Contains(','))
-                {
-                    strtextBox = strtextBox.Replace(",", "");
-                }   
+                // blInputMinusをtrueにする
+                blInputMinus = true;
             }
-            this.Text = strtextBox;
+            else
+            {
+                blInputMinus = false;
+            }
+            // "," と "-" を取り除く
+            foreach (char c in removeChars)
+            {
+                strtextBox = strtextBox.Replace(c.ToString(), "");
+            }
+            // strtextBox.Replaceで文字列が空になってしまった場合
+            if (strtextBox.Equals(""))
+            {
+                return;
+            }
 
-            //ピリオドの位置の確保
-            intPeriodPosi = this.Text.IndexOf('.');
+            // ピリオドの位置を取得
+            intPeriodPosi = strtextBox.IndexOf('.');
 
             //ピリオドがない場合
             if (intPeriodPosi == -1)
             {
-                strIntArea = this.Text;
+                strIntArea = strtextBox;
             }
             else
             {
                 //整数部のみを取り出す
-                strIntArea = this.Text.Substring(0, intPeriodPosi);
+                strIntArea = strtextBox.Substring(0, intPeriodPosi);
 
                 //小数点以下部のみを取り出す
-                strDeciArea = this.Text.Substring(intPeriodPosi + 1);
+                strDeciArea = strtextBox.Substring(intPeriodPosi + 1);
             }
 
             //カンマを許可する場合
@@ -344,7 +492,6 @@ namespace KATO.Common.Ctl
                 }
             }
 
-            //将来的にフォーマットで作成
             //数点以下入力の可不可と小数点以下桁数
             if (_intDeciSet > 0)
             {
@@ -354,15 +501,23 @@ namespace KATO.Common.Ctl
                     strDeciArea = strDeciArea.PadRight(_intDeciSet, '0');
                 }
 
-                //整数部と小数点以下部を書き込み
-                this.Text = strIntArea + '.' + strDeciArea;
+                //整数部と小数点以下部を変数に入れる
+                strtextBox = strIntArea + '.' + strDeciArea;
             }
             //小数点以下を許可しない場合
             else
             {
-                //整数部のみを書き込み
-                this.Text = strIntArea;
+                //整数部のみを変数に入れる
+                strtextBox = strIntArea;
             }
+
+            // 入力値にマイナスが存在した場合、先頭に"-"を付ける
+            if (blInputMinus == true)
+            {
+                strtextBox = "-" + strtextBox;
+            }
+
+            this.Text = strtextBox;
         }
         
         //
@@ -399,8 +554,10 @@ namespace KATO.Common.Ctl
                 return;
             }
 
+            // 数字チェック
+            strMoneyInput = chkNumber(strMoneyInput);
             //四捨五入
-            this.Text = updShishagonyu(strMoneyInput, intshishagonyu);
+            this.Text = updShishagonyu(strMoneyInput, intDeciSet);
 
             //カンマ付け、小数点以下付けに移動
             updPriceMethod();
@@ -419,6 +576,137 @@ namespace KATO.Common.Ctl
             {
                 e.Handled = true;
             }
+        }
+
+        // 数字チェック
+        private string chkNumber(string target)
+        {
+            string strReturn = "";
+            
+            long outlong = 0;
+            int outint = 0;
+            decimal outdecimal = 0;
+
+            bool canConvertLong = long.TryParse(target, out outlong);
+            bool canConvertInt = int.TryParse(target, out outint);
+            bool canConvertDecimal = decimal.TryParse(target, out outdecimal);
+
+            if (canConvertLong == true)
+            {
+                strReturn = outlong.ToString();
+            }
+            else if (canConvertInt == true)
+            {
+                strReturn = outint.ToString();
+            }
+            else if (canConvertDecimal == true)
+            {
+                strReturn = outdecimal.ToString();
+            }
+            else
+            {
+                // すべてfalseなら"0"を返す
+                strReturn = "";
+            }
+            return strReturn;
+        }
+
+        /// <summary>
+        ///     途中入力の場合のチェックロジック
+        /// </summary>
+        /// <returns>
+        ///    エラーの場合：true 正常な場合：false
+        /// </returns>
+        public bool chkMoneyText()
+        {             
+            // 削除する文字
+            char[] removeChars = new char[] { '-' };
+
+            // テキストボックスの値を取得
+            string strTextBoxValue = this.Text;
+
+            // "-"があった場合
+            if (strTextBoxValue.IndexOf('-') > -1)
+            {
+                // blInputMinusをtrueにする
+                blInputMinus = true;
+            }
+            else
+            {
+                blInputMinus = false;
+            }
+            // "-" を取り除く
+            foreach (char c in removeChars)
+            {
+                strTextBoxValue = strTextBoxValue.Replace(c.ToString(), "");
+            }
+
+            if (strTextBoxValue == "")
+            {
+                // "-" を取り除いた値が空の場合、テキストボックスに"0"を入れる
+                if (blInputMinus == true)
+                {
+                    this.Text = "0";
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            // 数字チェック（数字ではない場合、空が返ってくる）
+            strTextBoxValue = chkNumber(strTextBoxValue);
+
+            if (strTextBoxValue.Equals(""))
+            {
+                if (this.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
+                }
+                else if (this.Parent.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
+                }
+
+                return true;
+            }
+
+            // 入力された値にマイナスが付いていた場合
+            if (blInputMinus == true)
+            {
+                // 値が"0"の場合、マイナスは付けない
+                if (strTextBoxValue.Equals("0"))
+                {
+                    //四捨五入
+                    strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+                else
+                {
+                    //四捨五入
+                    strTextBoxValue = "-" + updShishagonyu(strTextBoxValue, intDeciSet);
+                }
+            }
+            else
+            {
+                //四捨五入
+                strTextBoxValue = updShishagonyu(strTextBoxValue, intDeciSet);
+            }
+
+            this.Text = strTextBoxValue;
+
+            //カンマ付け、小数点以下付けに移動
+            updPriceMethod();
+
+            return false;
         }
     }
 }
