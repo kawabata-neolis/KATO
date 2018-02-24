@@ -320,7 +320,11 @@ namespace KATO.Common.Ctl
         //注文Noのフォーカスが外れた場合
         private void txtJucyuNoElem2_Leave(object sender, EventArgs e)
         {
-            
+
+            if (this.readOnly)
+            {
+                return;
+            }
             this.Cursor = Cursors.WaitCursor;
             txtJucyuNoElem2_func();
             this.Cursor = Cursors.Default;
@@ -614,7 +618,8 @@ namespace KATO.Common.Ctl
                     txtSuuryoElem4.Text = decimal.Parse(txtSuuryoElem4.Text).ToString("#,0");
                     //txtTankaElem5.Text = decimal.Parse(txtTankaElem5.Text).ToString("#,0.00");
                     txtTankaElem5.Text = decimal.Parse(txtTankaElem5.Text).ToString("#,0");
-                    txtGenkaElem7.Text = decimal.Parse(txtGenkaElem7.Text).ToString("#,0.00");
+                    //txtGenkaElem7.Text = decimal.Parse(txtGenkaElem7.Text).ToString("#,0.00");
+                    txtGenkaElem7.Text = decimal.Parse(txtGenkaElem7.Text).ToString("#,0");
                     txtKingakuElem6.Text = decimal.Parse(txtKingakuElem6.Text).ToString("#,0");
                     txtArariElem8.Text = decimal.Parse(txtArariElem8.Text).ToString("#,0");
                     txtCyokkinSiire.Text = decimal.Parse(PutIsNull(txtCyokkinSiire.Text,"0")).ToString("#,0");
@@ -625,9 +630,9 @@ namespace KATO.Common.Ctl
                     txtCyokkinSiireRituA.Text = decimal.Parse(PutIsNull(txtCyokkinSiireRituA.Text,"0")).ToString("0.0");
                     txtMasterSiireRituA.Text = decimal.Parse(PutIsNull(txtMasterSiireRituA.Text,"0")).ToString("0.0");
 
-                    txtTankaElem5.ReadOnly = true;
+                    //txtTankaElem5.ReadOnly = true;
                     txtGenkaElem7.ReadOnly = true;
-                    txtKingakuElem6.ReadOnly = true;
+                    //txtKingakuElem6.ReadOnly = true;
                     txtArariElem8.ReadOnly = true;
                     txtTankaElem5.BackColor = SystemColors.Window;
                     txtGenkaElem7.BackColor = SystemColors.Window;
@@ -1823,6 +1828,10 @@ namespace KATO.Common.Ctl
             {
                 case Keys.F9:
                     //受注残確認を開く
+                    if (this.readOnly)
+                    {
+                        return;
+                    }
                     this.setJyucyuZanKakunin();
                     break;
                 case Keys.Enter:
@@ -1855,10 +1864,19 @@ namespace KATO.Common.Ctl
             //D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(this);
             D0360_JuchuzanKakunin jucyuzankakunin = new D0360_JuchuzanKakunin(C_uriageInput, btbTokuiCd.Text, txtJucyuNoElem2);
 
+            string oldElem2 = txtJucyuNoElem2.Text;
+
             jucyuzankakunin.ShowDialog();
             if (!string.IsNullOrWhiteSpace(txtJucyuNoElem2.Text))
             {
-                txtSuuryoElem4.Focus();
+                if (oldElem2.Equals(txtJucyuNoElem2.Text))
+                {
+                    txtJucyuNoElem2.SelectAll();
+                }
+                else
+                {
+                    txtSuuryoElem4.Focus();
+                }
             }
         }
 

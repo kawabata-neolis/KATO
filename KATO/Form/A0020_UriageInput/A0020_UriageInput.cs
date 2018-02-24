@@ -105,7 +105,7 @@ namespace KATO.Form.A0020_UriageInput
         {
             //textSet_Jucyu1.txtJucyuNoElem2.SelectAll();
             //this.ActiveControl = textSet_Jucyu1.txtJucyuNoElem2;
-            this.SelectNextControl(this.ActiveControl,true, true, true, true);
+            //this.SelectNextControl(this.ActiveControl,true, true, true, true);
             editFlg = true;
         }
 
@@ -3788,6 +3788,11 @@ namespace KATO.Form.A0020_UriageInput
             if (e.KeyCode == Keys.Enter) {
                 SendKeys.Send("{TAB}");
             }
+        }
+
+        private void labelSet_Torihikikbn_Leave_1(object sender, EventArgs e)
+        {
+            textSet_Jucyu1.Focus();
         }
     }
 }

@@ -1498,7 +1498,8 @@ namespace KATO.Form.A0010_JuchuInput
                     if (dtShohin.Rows[0]["標準売価"] != null)
                     {
                         d = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 0);
-                        cbJuchuTanka.Text = d.ToString();
+                        //cbJuchuTanka.Text = d.ToString();
+                        cbJuchuTanka.Text = "";
                     }
                     else
                     {

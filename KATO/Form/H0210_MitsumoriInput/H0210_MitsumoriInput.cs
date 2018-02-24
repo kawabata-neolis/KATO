@@ -1729,7 +1729,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 //gridに反映
                 if (!dShiireTanka1.Equals(0)) {
-                    cellShiireTanka1.Value = dShiireTanka1.ToString("#,0");
+                    cellShiireTanka1.Value = dShiireTanka1.ToString("#,0.00");
                     cellShiireKin1.Value = dShiireKin1.ToString("#,0");
                     cellShiireArari1.Value = dArariM.ToString("#,0");
                     cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
@@ -1738,7 +1738,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellKakoKin1.Value = dKakoKin1.ToString("#,0");
 
                     if (zaiNum != 0) {
-                        cellShiireTanka2.Value = dShiireTanka2.ToString("#,0");
+                        cellShiireTanka2.Value = dShiireTanka2.ToString("#,0.00");
                         cellShiireKin2.Value = dShiireKin2.ToString("#,0");
 
                         cellKakoTanka2.Value = dKakoTanka2.ToString("#,0");

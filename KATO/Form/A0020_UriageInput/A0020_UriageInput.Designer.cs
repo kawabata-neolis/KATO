@@ -1192,6 +1192,7 @@
             this.labelSet_Torihikikbn.TabIndex = 3;
             this.labelSet_Torihikikbn.ValueLabelSize = 350;
             this.labelSet_Torihikikbn.ValueLabelText = "";
+            this.labelSet_Torihikikbn.Leave += new System.EventHandler(this.labelSet_Torihikikbn_Leave_1);
             // 
             // labelSet_txtCD
             // 
