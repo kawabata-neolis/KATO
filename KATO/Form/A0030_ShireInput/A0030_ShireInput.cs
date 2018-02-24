@@ -2486,5 +2486,20 @@ namespace KATO.Form.A0030_ShireInput
             //GroupData2にフォーカスが行ってる情報を残す
             shotCnt = 2;
         }
+
+        ///<summary>
+        ///txtYMD_Leave
+        ///年月日
+        ///</summary>
+        private void txtYMD_Leave(object sender, EventArgs e)
+        {
+            //日付制限チェックをしたときにfalseの場合
+            if (StringUtl.judHidukeCheck("3", txtEigyouCd.Text, DateTime.Parse(txtYMD.Text)) == false)
+            {
+                //日付が範囲外とメッセージ
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+            }
+        }
     }
 }

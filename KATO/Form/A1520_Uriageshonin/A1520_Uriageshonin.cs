@@ -690,11 +690,6 @@ namespace KATO.Form.A1520_Uriageshonin
             lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
             lstViewGrid.Add(DateTime.Now.AddMonths(-3).ToString("yyyy/MM/dd"));
 
-            ////本日から三か月前
-            //lstViewGrid.Add("2016/01/01");
-            //lstViewGrid.Add("2015/10/01");
-
-
             A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
             try
             {

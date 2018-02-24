@@ -45,51 +45,63 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 3;
+            this.btnF01.TabIndex = 2;
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF11
             // 
             this.btnF11.TabStop = false;
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF10
             // 
             this.btnF10.TabStop = false;
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF09
             // 
             this.btnF09.TabStop = false;
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF08
             // 
             this.btnF08.TabStop = false;
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF07
             // 
             this.btnF07.TabStop = false;
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF06
             // 
             this.btnF06.TabStop = false;
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF05
             // 
-            this.btnF05.TabIndex = 7;
+            this.btnF05.TabIndex = 6;
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 6;
+            this.btnF04.TabIndex = 5;
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF03
             // 
-            this.btnF03.TabIndex = 5;
+            this.btnF03.TabIndex = 4;
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // btnF02
             // 
-            this.btnF02.TabIndex = 4;
+            this.btnF02.TabIndex = 3;
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // lblset_Eigyosho
             // 
@@ -208,7 +220,7 @@
             this.gridShukoiraimesai.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridShukoiraimesai.Size = new System.Drawing.Size(1313, 630);
             this.gridShukoiraimesai.StandardTab = true;
-            this.gridShukoiraimesai.TabIndex = 2;
+            this.gridShukoiraimesai.TabIndex = 7;
             this.gridShukoiraimesai.DoubleClick += new System.EventHandler(this.gridShukoiraimesai_DoubleClick);
             this.gridShukoiraimesai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridShukoiraimesai_KeyDown);
             // 

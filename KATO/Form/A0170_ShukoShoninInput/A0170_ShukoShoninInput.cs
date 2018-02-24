@@ -285,6 +285,8 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 case Keys.Back:
                     break;
                 case Keys.Enter:
+                    //下への移動をさせない
+                    e.Handled = true;
                     //承認フラグを変える
                     setShoninFlg();
                     break;
@@ -345,7 +347,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
                     break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    printShukoshonin();
+                    this.printShukoshonin();
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -487,12 +489,6 @@ namespace KATO.Form.A0170_ShukoShoninInput
         ///</summary>
         private void lblset_Eigyosho_Leave(object sender, EventArgs e)
         {
-            //正しく表示されていない場合
-            if (lblset_Eigyosho.ValueLabelText == "")
-            {
-                return;
-            }
-
             //出庫依頼明細グリッドの表示
             setGridData();
         }

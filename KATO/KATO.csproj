@@ -148,6 +148,7 @@
     <Compile Include="Business\C0630_TokuisakiUriageArariPrint\C0630_TokuisakiUriageArariPrint_B.cs" />
     <Compile Include="Business\C0650_SyohingunUriageSiirePrint\C0650_SyohingunUriageSiirePrint_B.cs" />
     <Compile Include="Business\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount_B.cs" />
+    <Compile Include="Business\D0280_SoukoIdouKakunin\D0280_SoukoIdouKakunin_B.cs" />
     <Compile Include="Business\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin_B.cs" />
     <Compile Include="Business\D0310_UriageJissekiKakunin\D0310_UriageJissekiKakunin_B.cs" />
     <Compile Include="Business\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_B.cs" />
@@ -797,6 +798,12 @@
     <Compile Include="Form\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount.Designer.cs">
       <DependentUpon>C6000_TantoshabetuDenpyoCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\D0280_SoukoIdouKakunin\D0280_SoukoIdouKakunin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0280_SoukoIdouKakunin\D0280_SoukoIdouKakunin.designer.cs">
+      <DependentUpon>D0280_SoukoIdouKakunin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1424,6 +1431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\C6000_TantoshabetuDenpyoCount\C6000_TantoshabetuDenpyoCount.resx">
       <DependentUpon>C6000_TantoshabetuDenpyoCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0280_SoukoIdouKakunin\D0280_SoukoIdouKakunin.resx">
+      <DependentUpon>D0280_SoukoIdouKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\D0300_ZaikoIchiranKakunin\D0300_ZaikoIchiranKakunin.resx">
       <DependentUpon>D0300_ZaikoIchiranKakunin.cs</DependentUpon>

@@ -339,6 +339,33 @@ namespace KATO.Form.A0030_ShireInput
             {
                 getData();
             }
+            else if(txtChumonNo.blIsEmpty() == false)
+            {
+                txtNo.Clear();
+                txtChumonNo.Clear();
+                txtHin.Clear();
+                txtSu.Clear();
+                txtTanka.Clear();
+                txtKin.Clear();
+                txtBiko.Clear();
+                labelSet_Eigyosho.codeTxt.Clear();
+                labelSet_Eigyosho.chkTxtEigyousho();
+                txtTeka.Text = "0";
+                txtChokinTanka.Text = "0";
+                txtChokinTanka.updPriceMethod();
+                txtMasterTanka.Text = "0";
+                txtMasterTanka.updPriceMethod();
+                txtJuchuNo.Clear();
+                txtJuchuTanka.Clear();
+                txtTankaSub.Clear();
+
+                strShireChuNo = null;
+                txtHin.TabStop = true;
+                txtHin.Enabled = true;
+
+                setGokeiKesan();
+                return;
+            }
         }
 
         ///<summary>
@@ -380,6 +407,8 @@ namespace KATO.Form.A0030_ShireInput
                 strShireChuNo = null;
                 txtHin.TabStop = true;
                 txtHin.Enabled = true;
+
+                setGokeiKesan();
                 return;
             }
 
@@ -472,57 +501,53 @@ namespace KATO.Form.A0030_ShireInput
                             return;
                         }
 
-                        //伝票番号で検索していないか、伝票番号があるデータの場合
-                        if (shireinput.blMODYflg == true)
+                        //発注フラグがある場合
+                        if (dtSetCd_B_Hachu.Rows[intCnt]["発注フラグ"].ToString() == "1")
                         {
-                            //発注フラグがある場合
-                            if (dtSetCd_B_Hachu.Rows[intCnt]["発注フラグ"].ToString() == "1")
+                            //仕入済み発注数が発注数量以上の場合
+                            if (decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString()) >= decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["発注数量"].ToString()))
                             {
-                                //仕入済み発注数が発注数量以上の場合
-                                if (decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString()) >= decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["発注数量"].ToString()))
-                                {
-                                    //発注データが存在しないということを伝えるメッセージ（OK）
-                                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "仕入済の発注データです！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                    basemessagebox.ShowDialog();
+                                //発注データが存在しないということを伝えるメッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "仕入済の発注データです！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                basemessagebox.ShowDialog();
 
-                                    txtNo.Clear();
-                                    txtChumonNo.Clear();
-                                    txtHin.Clear();
-                                    txtSu.Clear();
-                                    txtTanka.Clear();
-                                    txtKin.Clear();
-                                    txtBiko.Clear();
-                                    labelSet_Eigyosho.codeTxt.Clear();
-                                    labelSet_Eigyosho.chkTxtEigyousho();
-                                    txtTeka.Text = "0";
-                                    txtChokinTanka.Text = "0";
-                                    txtChokinTanka.updPriceMethod();
-                                    txtMasterTanka.Text = "0";
-                                    txtMasterTanka.updPriceMethod();
-                                    txtJuchuNo.Clear();
-                                    txtJuchuTanka.Clear();
-                                    txtTankaSub.Clear();
+                                txtNo.Clear();
+                                txtChumonNo.Clear();
+                                txtHin.Clear();
+                                txtSu.Clear();
+                                txtTanka.Clear();
+                                txtKin.Clear();
+                                txtBiko.Clear();
+                                labelSet_Eigyosho.codeTxt.Clear();
+                                labelSet_Eigyosho.chkTxtEigyousho();
+                                txtTeka.Text = "0";
+                                txtChokinTanka.Text = "0";
+                                txtChokinTanka.updPriceMethod();
+                                txtMasterTanka.Text = "0";
+                                txtMasterTanka.updPriceMethod();
+                                txtJuchuNo.Clear();
+                                txtJuchuTanka.Clear();
+                                txtTankaSub.Clear();
+                                txtTokuisaki.Clear();
+                                txtChumonNo.Focus();
 
-                                    txtChumonNo.Focus();
+                                strShireChuNo = null;
+                                txtHin.TabStop = true;
+                                txtHin.Enabled = true;
+                                return;
+                            }
+                            else
+                            {
+                                string strData = Math.Floor(decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString())).ToString("#,0");
 
-                                    strShireChuNo = null;
-                                    txtHin.TabStop = true;
-                                    txtHin.Enabled = true;
-                                    return;
-                                }
-                                else
-                                {
-                                    string strData = Math.Floor(decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString())).ToString("#,0");
-
-                                    //発注データが存在しないということを伝えるメッセージ（OK）
-                                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent,
-                                                                                       CommonTeisu.TEXT_ERROR,
-                                                                                       Math.Floor(decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString())).ToString("#,0") + "個が仕入済みです！！",
-                                                                                       CommonTeisu.BTN_OK,
-                                                                                       CommonTeisu.DIAG_ERROR
-                                                                                       );
-                                    basemessagebox.ShowDialog();
-                                }
+                                //発注データが存在しないということを伝えるメッセージ（OK）
+                                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent,
+                                                                                   CommonTeisu.TEXT_ERROR,
+                                                                                   Math.Floor(decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString())).ToString("#,0") + "個が仕入済みです！！",
+                                                                                   CommonTeisu.BTN_OK,
+                                                                                   CommonTeisu.DIAG_ERROR
+                                                                                   );
+                                basemessagebox.ShowDialog();
                             }
                         }
 
@@ -669,6 +694,16 @@ namespace KATO.Form.A0030_ShireInput
                     //発注数量から仕入済数量を引く
                     txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
                     txtSu.updPriceMethod();
+
+                    //文字色を黒にする
+                    txtSu.ForeColor = Color.Black;
+
+                    //マイナスがついていた場合
+                    if (txtSu.Text.StartsWith("-"))
+                    {
+                        txtSu.ForeColor = Color.Red;
+                    }
+
                     //数量が変更になったことによる処理
                     setTxtSuChange();
 
@@ -807,6 +842,13 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
+            //コードがない場合
+            if (shireinput.txtCD.blIsEmpty() == false)
+            {
+                txtKin.Text = "";
+                return;
+            }
+
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
@@ -841,6 +883,13 @@ namespace KATO.Form.A0030_ShireInput
             //単価項目に記入がない場合
             if (!StringUtl.blIsEmpty(txtTanka.Text))
             {
+                return;
+            }
+
+            //コードがない場合
+            if (shireinput.txtCD.blIsEmpty() == false)
+            {
+                txtKin.Text = "";
                 return;
             }
 
@@ -977,7 +1026,15 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                strChokinShireTanka = string.Format("{0:0.00}", double.Parse(dtSetCd_B.Rows[0]["仕入単価"].ToString()));
+                //データがある場合
+                if (dtSetCd_B.Rows.Count > 0)
+                {
+                    strChokinShireTanka = string.Format("{0:0.00}", double.Parse(dtSetCd_B.Rows[0]["仕入単価"].ToString()));
+                }
+                else
+                {
+                    strChokinShireTanka = "";
+                }
 
                 return strChokinShireTanka;
             }
@@ -1040,7 +1097,15 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                strMasterTeka = string.Format("{0:0.#}", double.Parse(dtSetCd_B.Rows[0]["定価"].ToString()));
+                //データがある場合
+                if (dtSetCd_B.Rows.Count > 0)
+                {
+                    strMasterTeka = string.Format("{0:0.#}", double.Parse(dtSetCd_B.Rows[0]["定価"].ToString()));
+                }
+                else
+                {
+                    strMasterTeka = "";
+                }
 
                 return strMasterTeka;
             }

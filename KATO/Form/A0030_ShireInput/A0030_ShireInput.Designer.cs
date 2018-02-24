@@ -342,6 +342,7 @@
             this.txtYMD.Size = new System.Drawing.Size(100, 22);
             this.txtYMD.TabIndex = 1;
             this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtYMD.Leave += new System.EventHandler(this.txtYMD_Leave);
             // 
             // lblTorihikikbn
             // 

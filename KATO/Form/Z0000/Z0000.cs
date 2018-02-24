@@ -594,7 +594,9 @@ namespace KATO.Form.Z0000
                     break;
 
                 //倉庫移動確認
-                case "28":                    
+                case "28":
+                    D0280_SoukoIdouKakunin.D0280_SoukoIdouKakunin soukoidoukakunin = new D0280_SoukoIdouKakunin.D0280_SoukoIdouKakunin(this);
+                    soukoidoukakunin.ShowDialog();
                     break;
 
                 //客先別倉庫数
@@ -1187,7 +1189,8 @@ namespace KATO.Form.Z0000
 
                     //倉庫移動確認
                     case "28":
-
+                        D0280_SoukoIdouKakunin.D0280_SoukoIdouKakunin soukoidoukakunin = new D0280_SoukoIdouKakunin.D0280_SoukoIdouKakunin(this);
+                        soukoidoukakunin.ShowDialog();
                         break;
 
                     //客先別在庫表

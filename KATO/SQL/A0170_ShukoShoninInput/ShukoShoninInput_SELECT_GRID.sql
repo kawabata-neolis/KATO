@@ -15,6 +15,6 @@ SELECT 伝票番号,
 	   '' AS 承認変更
 FROM 出庫依頼
 WHERE 処理済 = '0'
-	  AND 出庫倉庫 = '{0}'
 	  AND 削除 = 'N'
+	  {0}
 ORDER BY 依頼年月日 DESC

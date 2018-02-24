@@ -21,9 +21,9 @@ namespace KATO.Business.A0170_ShukoShoninInput
     {
         ///<summary>
         ///getShukoGrid
-        ///担当者コードの取得（ユーザーID検索）
+        ///出庫データの取得
         ///</summary>
-        public DataTable getShukoGrid(string strUserID)
+        public DataTable getShukoGrid(string strEigyoCd)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
@@ -31,6 +31,15 @@ namespace KATO.Business.A0170_ShukoShoninInput
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("A0170_ShukoShoninInput");
             lstSQL.Add("ShukoShoninInput_SELECT_GRID");
+
+            //追加のWHERE句を入れる用
+            string strSQLadd = "";
+
+            //営業所コードがある場合
+            if (strEigyoCd != "")
+            {
+                strSQLadd = "AND 出庫倉庫 = '" + strEigyoCd + "'";
+            }
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -52,7 +61,7 @@ namespace KATO.Business.A0170_ShukoShoninInput
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strUserID);
+                strSQLInput = string.Format(strSQLInput, strSQLadd);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
