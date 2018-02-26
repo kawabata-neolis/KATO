@@ -53,11 +53,11 @@
             this.txtArariElem8 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtKingakuElem6 = new KATO.Common.Ctl.BaseTextMoney();
             this.labelSet_SoukoNoElem10 = new KATO.Common.Ctl.LabelSet_Eigyosho();
-            this.txtRitsuElem21 = new KATO.Common.Ctl.BaseText();
-            this.txtCyokkinSiireRitu = new KATO.Common.Ctl.BaseText();
-            this.txtCyokkinSiireRituA = new KATO.Common.Ctl.BaseText();
-            this.txtCyokkinSiire = new KATO.Common.Ctl.BaseText();
-            this.txtSuuryoElem4 = new KATO.Common.Ctl.BaseText();
+            this.txtRitsuElem21 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtCyokkinSiireRitu = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtCyokkinSiireRituA = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtCyokkinSiire = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtSuuryoElem4 = new KATO.Common.Ctl.BaseTextMoney();
             this.txtElem22 = new KATO.Common.Ctl.BaseText();
             this.txtElem20 = new KATO.Common.Ctl.BaseText();
             this.txtElem19 = new KATO.Common.Ctl.BaseText();
@@ -69,14 +69,14 @@
             this.txtElem13 = new KATO.Common.Ctl.BaseText();
             this.txtElem15 = new KATO.Common.Ctl.BaseText();
             this.txtElem17 = new KATO.Common.Ctl.BaseText();
-            this.txtJucyuRitu = new KATO.Common.Ctl.BaseText();
-            this.txtTeika = new KATO.Common.Ctl.BaseText();
-            this.txtTankaElem5 = new KATO.Common.Ctl.BaseText();
-            this.txtSiireRitu = new KATO.Common.Ctl.BaseText();
-            this.txtGenkaElem7 = new KATO.Common.Ctl.BaseText();
-            this.txtMasterSiireRituA = new KATO.Common.Ctl.BaseText();
-            this.txtMasterSiireRitu = new KATO.Common.Ctl.BaseText();
-            this.txtMasterSiire = new KATO.Common.Ctl.BaseText();
+            this.txtJucyuRitu = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTeika = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtTankaElem5 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtSiireRitu = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtGenkaElem7 = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtMasterSiireRituA = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtMasterSiireRitu = new KATO.Common.Ctl.BaseTextMoney();
+            this.txtMasterSiire = new KATO.Common.Ctl.BaseTextMoney();
             this.txtBikouElem9 = new KATO.Common.Ctl.BaseText();
             this.txtSinaBanElem3 = new KATO.Common.Ctl.BaseText();
             this.txtJucyuNoElem2 = new KATO.Common.Ctl.BaseText();
@@ -313,6 +313,7 @@
             this.txtArariElem8.intShishagonyu = 0;
             this.txtArariElem8.Location = new System.Drawing.Point(767, 39);
             this.txtArariElem8.MaxLength = 0;
+            this.txtArariElem8.MinusFlg = true;
             this.txtArariElem8.Name = "txtArariElem8";
             this.txtArariElem8.Size = new System.Drawing.Size(94, 22);
             this.txtArariElem8.TabIndex = 4;
@@ -329,6 +330,7 @@
             this.txtKingakuElem6.intShishagonyu = 0;
             this.txtKingakuElem6.Location = new System.Drawing.Point(767, 5);
             this.txtKingakuElem6.MaxLength = 0;
+            this.txtKingakuElem6.MinusFlg = true;
             this.txtKingakuElem6.Name = "txtKingakuElem6";
             this.txtKingakuElem6.Size = new System.Drawing.Size(94, 22);
             this.txtKingakuElem6.TabIndex = 3;
@@ -357,8 +359,14 @@
             // txtRitsuElem21
             // 
             this.txtRitsuElem21.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRitsuElem21.blnCommaOK = true;
             this.txtRitsuElem21.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRitsuElem21.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRitsuElem21.intDeciSet = 0;
+            this.txtRitsuElem21.intIntederSet = 0;
+            this.txtRitsuElem21.intShishagonyu = 0;
             this.txtRitsuElem21.Location = new System.Drawing.Point(867, 39);
+            this.txtRitsuElem21.MinusFlg = true;
             this.txtRitsuElem21.Name = "txtRitsuElem21";
             this.txtRitsuElem21.ReadOnly = true;
             this.txtRitsuElem21.Size = new System.Drawing.Size(51, 22);
@@ -370,8 +378,14 @@
             // txtCyokkinSiireRitu
             // 
             this.txtCyokkinSiireRitu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCyokkinSiireRitu.blnCommaOK = true;
             this.txtCyokkinSiireRitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtCyokkinSiireRitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtCyokkinSiireRitu.intDeciSet = 0;
+            this.txtCyokkinSiireRitu.intIntederSet = 0;
+            this.txtCyokkinSiireRitu.intShishagonyu = 0;
             this.txtCyokkinSiireRitu.Location = new System.Drawing.Point(1025, 5);
+            this.txtCyokkinSiireRitu.MinusFlg = true;
             this.txtCyokkinSiireRitu.Name = "txtCyokkinSiireRitu";
             this.txtCyokkinSiireRitu.ReadOnly = true;
             this.txtCyokkinSiireRitu.Size = new System.Drawing.Size(51, 22);
@@ -383,8 +397,14 @@
             // txtCyokkinSiireRituA
             // 
             this.txtCyokkinSiireRituA.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCyokkinSiireRituA.blnCommaOK = true;
             this.txtCyokkinSiireRituA.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtCyokkinSiireRituA.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtCyokkinSiireRituA.intDeciSet = 0;
+            this.txtCyokkinSiireRituA.intIntederSet = 0;
+            this.txtCyokkinSiireRituA.intShishagonyu = 0;
             this.txtCyokkinSiireRituA.Location = new System.Drawing.Point(1082, 5);
+            this.txtCyokkinSiireRituA.MinusFlg = true;
             this.txtCyokkinSiireRituA.Name = "txtCyokkinSiireRituA";
             this.txtCyokkinSiireRituA.ReadOnly = true;
             this.txtCyokkinSiireRituA.Size = new System.Drawing.Size(51, 22);
@@ -396,8 +416,14 @@
             // txtCyokkinSiire
             // 
             this.txtCyokkinSiire.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCyokkinSiire.blnCommaOK = true;
             this.txtCyokkinSiire.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtCyokkinSiire.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtCyokkinSiire.intDeciSet = 0;
+            this.txtCyokkinSiire.intIntederSet = 0;
+            this.txtCyokkinSiire.intShishagonyu = 0;
             this.txtCyokkinSiire.Location = new System.Drawing.Point(936, 5);
+            this.txtCyokkinSiire.MinusFlg = true;
             this.txtCyokkinSiire.Name = "txtCyokkinSiire";
             this.txtCyokkinSiire.ReadOnly = true;
             this.txtCyokkinSiire.Size = new System.Drawing.Size(83, 22);
@@ -408,8 +434,14 @@
             // 
             // txtSuuryoElem4
             // 
+            this.txtSuuryoElem4.blnCommaOK = true;
             this.txtSuuryoElem4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSuuryoElem4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSuuryoElem4.intDeciSet = 0;
+            this.txtSuuryoElem4.intIntederSet = 0;
+            this.txtSuuryoElem4.intShishagonyu = 0;
             this.txtSuuryoElem4.Location = new System.Drawing.Point(502, 5);
+            this.txtSuuryoElem4.MinusFlg = true;
             this.txtSuuryoElem4.Name = "txtSuuryoElem4";
             this.txtSuuryoElem4.Size = new System.Drawing.Size(94, 22);
             this.txtSuuryoElem4.TabIndex = 1;
@@ -532,8 +564,14 @@
             // txtJucyuRitu
             // 
             this.txtJucyuRitu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtJucyuRitu.blnCommaOK = true;
             this.txtJucyuRitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtJucyuRitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtJucyuRitu.intDeciSet = 0;
+            this.txtJucyuRitu.intIntederSet = 0;
+            this.txtJucyuRitu.intShishagonyu = 0;
             this.txtJucyuRitu.Location = new System.Drawing.Point(702, 5);
+            this.txtJucyuRitu.MinusFlg = true;
             this.txtJucyuRitu.Name = "txtJucyuRitu";
             this.txtJucyuRitu.ReadOnly = true;
             this.txtJucyuRitu.Size = new System.Drawing.Size(59, 22);
@@ -544,8 +582,14 @@
             // 
             // txtTeika
             // 
+            this.txtTeika.blnCommaOK = true;
             this.txtTeika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTeika.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTeika.intDeciSet = 0;
+            this.txtTeika.intIntederSet = 0;
+            this.txtTeika.intShishagonyu = 0;
             this.txtTeika.Location = new System.Drawing.Point(502, 39);
+            this.txtTeika.MinusFlg = true;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(94, 22);
             this.txtTeika.TabIndex = 0;
@@ -555,8 +599,14 @@
             // 
             // txtTankaElem5
             // 
+            this.txtTankaElem5.blnCommaOK = true;
             this.txtTankaElem5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTankaElem5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTankaElem5.intDeciSet = 0;
+            this.txtTankaElem5.intIntederSet = 0;
+            this.txtTankaElem5.intShishagonyu = 0;
             this.txtTankaElem5.Location = new System.Drawing.Point(602, 5);
+            this.txtTankaElem5.MinusFlg = true;
             this.txtTankaElem5.Name = "txtTankaElem5";
             this.txtTankaElem5.Size = new System.Drawing.Size(94, 22);
             this.txtTankaElem5.TabIndex = 2;
@@ -568,8 +618,14 @@
             // txtSiireRitu
             // 
             this.txtSiireRitu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSiireRitu.blnCommaOK = true;
             this.txtSiireRitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSiireRitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSiireRitu.intDeciSet = 0;
+            this.txtSiireRitu.intIntederSet = 0;
+            this.txtSiireRitu.intShishagonyu = 0;
             this.txtSiireRitu.Location = new System.Drawing.Point(702, 39);
+            this.txtSiireRitu.MinusFlg = true;
             this.txtSiireRitu.Name = "txtSiireRitu";
             this.txtSiireRitu.ReadOnly = true;
             this.txtSiireRitu.Size = new System.Drawing.Size(59, 22);
@@ -580,8 +636,14 @@
             // 
             // txtGenkaElem7
             // 
+            this.txtGenkaElem7.blnCommaOK = true;
             this.txtGenkaElem7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtGenkaElem7.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtGenkaElem7.intDeciSet = 0;
+            this.txtGenkaElem7.intIntederSet = 0;
+            this.txtGenkaElem7.intShishagonyu = 0;
             this.txtGenkaElem7.Location = new System.Drawing.Point(602, 39);
+            this.txtGenkaElem7.MinusFlg = true;
             this.txtGenkaElem7.Name = "txtGenkaElem7";
             this.txtGenkaElem7.Size = new System.Drawing.Size(94, 22);
             this.txtGenkaElem7.TabIndex = 4;
@@ -593,8 +655,14 @@
             // txtMasterSiireRituA
             // 
             this.txtMasterSiireRituA.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMasterSiireRituA.blnCommaOK = true;
             this.txtMasterSiireRituA.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMasterSiireRituA.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMasterSiireRituA.intDeciSet = 0;
+            this.txtMasterSiireRituA.intIntederSet = 0;
+            this.txtMasterSiireRituA.intShishagonyu = 0;
             this.txtMasterSiireRituA.Location = new System.Drawing.Point(1082, 39);
+            this.txtMasterSiireRituA.MinusFlg = true;
             this.txtMasterSiireRituA.Name = "txtMasterSiireRituA";
             this.txtMasterSiireRituA.ReadOnly = true;
             this.txtMasterSiireRituA.Size = new System.Drawing.Size(51, 22);
@@ -606,8 +674,14 @@
             // txtMasterSiireRitu
             // 
             this.txtMasterSiireRitu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMasterSiireRitu.blnCommaOK = true;
             this.txtMasterSiireRitu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMasterSiireRitu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMasterSiireRitu.intDeciSet = 0;
+            this.txtMasterSiireRitu.intIntederSet = 0;
+            this.txtMasterSiireRitu.intShishagonyu = 0;
             this.txtMasterSiireRitu.Location = new System.Drawing.Point(1025, 39);
+            this.txtMasterSiireRitu.MinusFlg = true;
             this.txtMasterSiireRitu.Name = "txtMasterSiireRitu";
             this.txtMasterSiireRitu.ReadOnly = true;
             this.txtMasterSiireRitu.Size = new System.Drawing.Size(51, 22);
@@ -619,8 +693,14 @@
             // txtMasterSiire
             // 
             this.txtMasterSiire.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMasterSiire.blnCommaOK = true;
             this.txtMasterSiire.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtMasterSiire.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtMasterSiire.intDeciSet = 0;
+            this.txtMasterSiire.intIntederSet = 0;
+            this.txtMasterSiire.intShishagonyu = 0;
             this.txtMasterSiire.Location = new System.Drawing.Point(936, 39);
+            this.txtMasterSiire.MinusFlg = true;
             this.txtMasterSiire.Name = "txtMasterSiire";
             this.txtMasterSiire.ReadOnly = true;
             this.txtMasterSiire.Size = new System.Drawing.Size(84, 22);
@@ -663,6 +743,7 @@
             this.txtJucyuNoElem2.Click += new System.EventHandler(this.txtBox_Click);
             this.txtJucyuNoElem2.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtJucyuNoElem2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtJucyuNoElem2_KeyDown);
+            this.txtJucyuNoElem2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtJucyuNoElem2_KeyPress);
             this.txtJucyuNoElem2.Leave += new System.EventHandler(this.txtJucyuNoElem2_Leave);
             // 
             // txtNoElem1
@@ -759,22 +840,22 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        public BaseText txtCyokkinSiire;
-        public BaseText txtCyokkinSiireRituA;
-        public BaseText txtCyokkinSiireRitu;
-        public BaseText txtTeika;
-        public BaseText txtJucyuRitu;
-        public BaseText txtSiireRitu;
-        public BaseText txtMasterSiire;
-        public BaseText txtMasterSiireRitu;
-        public BaseText txtMasterSiireRituA;
+        public BaseTextMoney txtCyokkinSiire;
+        public BaseTextMoney txtCyokkinSiireRituA;
+        public BaseTextMoney txtCyokkinSiireRitu;
+        public BaseTextMoney txtTeika;
+        public BaseTextMoney txtJucyuRitu;
+        public BaseTextMoney txtSiireRitu;
+        public BaseTextMoney txtMasterSiire;
+        public BaseTextMoney txtMasterSiireRitu;
+        public BaseTextMoney txtMasterSiireRituA;
         public BaseText txtSinaBanElem3;
-        public BaseText txtGenkaElem7;
+        public BaseTextMoney txtGenkaElem7;
         public BaseText txtNoElem1;
         public BaseText txtJucyuNoElem2;
-        public BaseText txtRitsuElem21;
-        public BaseText txtTankaElem5;
-        public BaseText txtSuuryoElem4;
+        public BaseTextMoney txtRitsuElem21;
+        public BaseTextMoney txtTankaElem5;
+        public BaseTextMoney txtSuuryoElem4;
         public BaseText txtBikouElem9;
         public LabelSet_Eigyosho labelSet_SoukoNoElem10;
         public BaseTextMoney txtKingakuElem6;

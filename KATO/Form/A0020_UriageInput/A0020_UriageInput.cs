@@ -3437,8 +3437,10 @@ namespace KATO.Form.A0020_UriageInput
 
                         //カンマのある形へ整形
                         ((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text).ToString("#,0");
-                        ((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text).ToString("#,0.00");
-                        ((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text).ToString("#,0.00");
+                        //((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text).ToString("#,0.00");
+                        //((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text).ToString("#,0.00");
+                        ((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text).ToString("#,0");
+                        ((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text).ToString("#,0");
                         ((TextSet_Jucyu)cs1[0]).txtKingakuElem6.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtKingakuElem6.Text).ToString("#,0");
                         ((TextSet_Jucyu)cs1[0]).txtArariElem8.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtArariElem8.Text).ToString("#,0");
                         ((TextSet_Jucyu)cs1[0]).txtCyokkinSiire.Text = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtCyokkinSiire.Text).ToString("#,0");

@@ -2289,6 +2289,9 @@ namespace KATO.Business.A0020_UriageInput
                 String strSu = "";                       // 数量
                 String strBiko = "";                     // 備考
                 String strNonyu = "";                    // 納入方法
+                String strTekiyo = "";                   // 摘要欄
+                String strShoCd = "";                    // 商品コード
+                String strShukko = "";                   // 出庫倉庫
 
                 if (dt != null)
                 {
@@ -2317,10 +2320,15 @@ namespace KATO.Business.A0020_UriageInput
                         {
                             strNonyu = strNonyu.TrimEnd();
                         }
+                        strTekiyo = dt.Rows[i]["摘要欄"].ToString();
+                        strShoCd = dt.Rows[i]["商品コード"].ToString();
+                        strShukko = dt.Rows[i]["出庫倉庫"].ToString();
                         strDenpyoNo = dt.Rows[i]["伝票番号"].ToString();
                         strGyoNo = dt.Rows[i]["行番号"].ToString();
 
-                        printout(strDenpyoNo, strGyoNo, strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko, strNonyu);
+                        string stGPrt = getGPDriver(strShoCd, strShukko);
+
+                        printout(stGPrt, strDenpyoNo, strGyoNo, strJuchusaki, strNohinsaki, strNohinbi, strKataban, strTanaban, strSu, strBiko, strNonyu, strTekiyo);
                     }
                 }
             }
@@ -2339,6 +2347,7 @@ namespace KATO.Business.A0020_UriageInput
             strSQL += "      ,売上明細.行番号";
             strSQL += "      ,RTRIM(売上ヘッダ.得意先名) AS 得意先名";
             strSQL += "      ,RTRIM(売上ヘッダ.直送先名) AS 直送先名";
+            strSQL += "      ,売上ヘッダ.摘要欄";
             strSQL += "      ,売上ヘッダ.納入方法";
             strSQL += "      ,CONVERT(VARCHAR, 売上ヘッダ.伝票年月日, 111) as 伝票年月日";
             //strSQL += "      ,dbo.f_get中分類名(売上明細.大分類コード,売上明細.中分類コード) + ' ' +  RTRIM(ISNULL(売上明細.Ｃ１,'')) AS 型番";
@@ -2346,6 +2355,8 @@ namespace KATO.Business.A0020_UriageInput
             strSQL += "      ,dbo.f_get商品コードから棚番(売上明細.商品コード, dbo.f_get受注時の出庫場所(売上明細.受注番号)) AS 棚番";
             strSQL += "      ,売上明細.数量";
             strSQL += "      ,売上明細.備考";
+            strSQL += "      ,売上明細.商品コード";
+            strSQL += "      ,売上明細.出庫倉庫";
             strSQL += "  FROM 売上ヘッダ, 売上明細";
             strSQL += " WHERE 売上ヘッダ.削除 = 'N'";
             strSQL += "   AND 売上明細.削除 = 'N'";
@@ -2374,15 +2385,15 @@ namespace KATO.Business.A0020_UriageInput
             return dt;
         }
 
-        public void printout(String strDenpyoNo, String strGyoNo, String strJuchusaki, String strNohinsaki,
-            String strNohinbi, String strKataban, String strTanaban, String strSu, String strBiko, String strNonyu)
+        public void printout(string stGPrt, String strDenpyoNo, String strGyoNo, String strJuchusaki, String strNohinsaki,
+            String strNohinbi, String strKataban, String strTanaban, String strSu, String strBiko, String strNonyu, String strTekiyo)
         {
 
             //String _xslFile = @"C:\Users\admin\Desktop\KATO\やること_画面別\現品票\現品票(Temp).xls";  // XLSファイル名
             int _sheetNo = 1;                        // シートNo.
             int _col = 2;                            // データ書き込みカラム
             int _line = 2;                           // データ書き込み開始行
-            String _printer = "Brother TD-4100N";    // 出力プリンター
+            String _printer = stGPrt;    // 出力プリンター
 
             //String strJuchusaki = "";                // 受注先
             //String strNohinsaki = "";                // 納品先
@@ -2470,6 +2481,12 @@ namespace KATO.Business.A0020_UriageInput
                 objCell = objWorkSheet.Cells[_line + 2, _col];          // 納品日
                 objRange = objWorkSheet.get_Range(objCell, objCell);
                 objRange.Value2 = strNohinbi;
+                Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
+                Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
+
+                objCell = objWorkSheet.Cells[_line + 2, _col + 1];          // 摘要
+                objRange = objWorkSheet.get_Range(objCell, objCell);
+                objRange.Value2 = strTekiyo;
                 Marshal.ReleaseComObject(objRange);     // オブジェクト参照を解放
                 Marshal.ReleaseComObject(objCell);      // オブジェクト参照を解放
 
@@ -2700,5 +2717,55 @@ namespace KATO.Business.A0020_UriageInput
             return ret;
         }
 
+        private string getGPDriver(string stShoCd, string stShukko)
+        {
+            string ret = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER1"];
+            string colTana = "棚番本社";
+            string strSQL = "";
+            DataTable dt = null;
+
+            if ("0002".Equals(stShukko))
+            {
+                colTana = "棚番岐阜";
+            }
+
+            strSQL += "SELECT " + colTana;
+            strSQL += "  FROM 商品";
+            strSQL += " WHERE 商品コード = '" + stShoCd + "'";
+            strSQL += "   AND 削除 = 'N'";
+
+
+            //棚番の階層で出力先のプリンタを振り分ける
+            DBConnective dtCon = new DBConnective();
+            try
+            {
+                dt = dtCon.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string stFloor = "";
+                if (dt.Rows[0][colTana] != null)
+                {
+                    stFloor = dt.Rows[0][colTana].ToString();
+                }
+
+                if (string.IsNullOrWhiteSpace(stFloor) && stFloor.Length > 1)
+                {
+                    stFloor = stFloor.Substring(0, 2);
+                }
+                // 棚番が本社2階のものである場合、出力先を2階のラベルプリンタにする
+                if (stFloor.Equals("2A") || stFloor.Equals("A2"))
+                {
+                    ret = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER2"];
+                }
+            }
+
+            return ret;
+        }
     }
 }

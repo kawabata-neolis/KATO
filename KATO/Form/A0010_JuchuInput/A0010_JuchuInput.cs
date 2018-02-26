@@ -163,6 +163,7 @@ namespace KATO.Form.A0010_JuchuInput
             juchuNo.DataPropertyName = "受注番号";
             juchuNo.Name = "受注番号";
             juchuNo.HeaderText = "受注番号";
+            juchuNo.Visible = false;
 
             DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
             chuban.DataPropertyName = "注番";
