@@ -72,7 +72,7 @@
             this.txtKamikiYMDopen.Location = new System.Drawing.Point(358, 161);
             this.txtKamikiYMDopen.MaxLength = 10;
             this.txtKamikiYMDopen.Name = "txtKamikiYMDopen";
-            this.txtKamikiYMDopen.Size = new System.Drawing.Size(160, 22);
+            this.txtKamikiYMDopen.Size = new System.Drawing.Size(90, 22);
             this.txtKamikiYMDopen.TabIndex = 0;
             this.txtKamikiYMDopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -94,7 +94,7 @@
             this.txtKamikiYMDclose.Location = new System.Drawing.Point(664, 164);
             this.txtKamikiYMDclose.MaxLength = 10;
             this.txtKamikiYMDclose.Name = "txtKamikiYMDclose";
-            this.txtKamikiYMDclose.Size = new System.Drawing.Size(160, 22);
+            this.txtKamikiYMDclose.Size = new System.Drawing.Size(90, 22);
             this.txtKamikiYMDclose.TabIndex = 1;
             this.txtKamikiYMDclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -128,7 +128,7 @@
             this.txtSimokiYMDopen.Location = new System.Drawing.Point(358, 229);
             this.txtSimokiYMDopen.MaxLength = 10;
             this.txtSimokiYMDopen.Name = "txtSimokiYMDopen";
-            this.txtSimokiYMDopen.Size = new System.Drawing.Size(160, 22);
+            this.txtSimokiYMDopen.Size = new System.Drawing.Size(90, 22);
             this.txtSimokiYMDopen.TabIndex = 2;
             this.txtSimokiYMDopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -138,7 +138,7 @@
             this.txtSimokiYMDclose.Location = new System.Drawing.Point(664, 229);
             this.txtSimokiYMDclose.MaxLength = 10;
             this.txtSimokiYMDclose.Name = "txtSimokiYMDclose";
-            this.txtSimokiYMDclose.Size = new System.Drawing.Size(160, 22);
+            this.txtSimokiYMDclose.Size = new System.Drawing.Size(90, 22);
             this.txtSimokiYMDclose.TabIndex = 3;
             this.txtSimokiYMDclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -159,6 +159,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.C0650_SyohingunUriageSiirePrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0650_SyohingunUriageSiirePrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

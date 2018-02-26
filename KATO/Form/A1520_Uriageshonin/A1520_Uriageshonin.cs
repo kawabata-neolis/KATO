@@ -686,8 +686,8 @@ namespace KATO.Form.A1520_Uriageshonin
                 lstViewGrid.Add("2");
             }
 
-            //本日から三か月前
-            lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+            //本日から三か月前以降(コメントアウトを消す時はSQLとB層への引数の数に注意)
+            //lstViewGrid.Add(DateTime.Now.ToString("yyyy/MM/dd"));
             lstViewGrid.Add(DateTime.Now.AddMonths(-3).ToString("yyyy/MM/dd"));
 
             A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();

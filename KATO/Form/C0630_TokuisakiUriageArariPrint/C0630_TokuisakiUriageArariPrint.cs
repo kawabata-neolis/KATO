@@ -299,7 +299,6 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
 
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
@@ -340,6 +339,9 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
         /// </summary>
         private Boolean blnDataCheack()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定（開始年月日）
             if (txtYmdFrom.blIsEmpty() == false)
             {
@@ -390,6 +392,95 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
 
                     return false;
                 }
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdFrom.chkDateDataFormat(txtYmdFrom.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdFrom.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtYmdFrom.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdTo.chkDateDataFormat(txtYmdTo.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdTo.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtYmdTo.Text = strYMDformat;
+            }
+
+            //開始グループコードのチェック
+            if (labelSet_GroupCdFrom.chkTxtGroupCd() == true)
+            {
+                labelSet_GroupCdFrom.Focus();
+
+                return false;
+            }
+
+            //終了グループコードのチェック
+            if (labelSet_GroupCdTo.chkTxtGroupCd() == true)
+            {
+                labelSet_GroupCdTo.Focus();
+
+                return false;
+            }
+
+            //開始担当者コードのチェック
+            if (labelSet_TantoushaCdFrom.chkTxtTantosha() == true)
+            {
+                labelSet_TantoushaCdFrom.Focus();
+
+                return false;
+            }
+
+            //終了担当者コードのチェック
+            if (labelSet_TantoushaCdTo.chkTxtTantosha() == true)
+            {
+                labelSet_TantoushaCdTo.Focus();
+
+                return false;
+            }
+
+            //開始得意先コードのチェック
+            if (labelSet_TokuisakiCdFrom.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiCdFrom.Focus();
+
+                return false;
+            }
+
+            //終了得意先コードのチェック
+            if (labelSet_TokuisakiCdTo.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiCdTo.Focus();
+
+                return false;
             }
 
             return true;

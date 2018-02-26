@@ -81,20 +81,20 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             if ("1".Equals(this.etsuranFlg))
             {
                 //読み取り専用
-                lblsetTantoshaCdclose.codeTxt.ReadOnly = false;
+                lblsetTokuisakiCdclose.codeTxt.ReadOnly = false;
                 //タブ移動しない
-                lblsetTantoshaCdclose.TabStop = true;
+                lblsetTokuisakiCdclose.TabStop = true;
             }
             else
             {
                 //読み取り専用
-                lblsetTantoshaCdclose.codeTxt.ReadOnly = true;
+                lblsetTokuisakiCdclose.codeTxt.ReadOnly = true;
                 //タブ移動しない
-                lblsetTantoshaCdclose.TabStop = false;
+                lblsetTokuisakiCdclose.TabStop = false;
             }
 
-            lblsetTantoshaCdopen.SearchOn = false;
-            lblsetTantoshaCdclose.SearchOn = false;
+            lblsetTokuisakiCdopen.SearchOn = false;
+            lblsetTokuisakiCdclose.SearchOn = false;
 
             //ﾗｼﾞｵﾎﾞﾀﾝの初期値
             radShuturyoku.radbtn1.Checked = true;
@@ -338,7 +338,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
         {
             this.delFormClear(this, gridTokuisaki);
             //初期値にフォーカス
-            lblsetTantoshaCdopen.Focus();
+            lblsetTokuisakiCdopen.Focus();
         }
 
         ///<summary>
@@ -359,70 +359,57 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
         ///</summary>
         private void setTokuisakiView()
         {
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //空チェック（開始得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
             {
-                //空チェック（開始得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（開始得意先コード）
-                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
-                {
-                    return;
-                }
-                //空チェック（終了得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（終了得意先コード）
-                if (lblsetTantoshaCdclose.chkTxtTorihikisaki())
-                {
-                    return;
-                }
-                //データチェック（開始年月日）
-                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
-                {
-                    txtYMopen.Focus();
-                    return;
-                }
-                //データチェック（終了年月日）
-                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
-                {
-                    txtYMclose.Focus();
-                    return;
-                }
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTokuisakiCdopen.Focus();
+                return;
+            }
+
+            //空チェック（終了得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTokuisakiCdclose.Focus();
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMopen.Focus();
+
+                return;
             }
             else
             {
-                //空チェック（開始得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（開始得意先コード）
-                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
-                {
-                    return;
-                }
-                //データチェック（開始年月日）
-                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
-                {
-                    txtYMopen.Focus();
-                    return;
-                }
-                //データチェック（終了年月日）
-                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
-                {
-                    txtYMclose.Focus();
-                    return;
-                }
+                txtYMopen.Text = strYMDformat;
+            }
 
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
+            {
+                //スルー
+            }
+            else
+            {
                 //データチェック（年月度が同じの場合）
                 if (txtYMopen.Text == txtYMclose.Text)
                 {
@@ -434,19 +421,43 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 }
             }
 
+            //検索開始得意先コードのチェック
+            if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された文字列が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTokuisakiCdopen.Focus();
+
+                return;
+            }
+
+            //検索終了得意先コードのチェック
+            if (lblsetTokuisakiCdclose.chkTxtTorihikisaki() == true)
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された文字列が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTokuisakiCdclose.Focus();
+
+                return;
+            }
+
             DataTable dtGridViewTokusaki = new DataTable();
 
             List<string> lstStringViewData = new List<string>();
 
-            lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+            lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
             //パワーユーザーの場合
             if ("1".Equals(this.etsuranFlg))
             {
-                lstStringViewData.Add(lblsetTantoshaCdclose.CodeTxtText);
+                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
             }
             else
             {
-                lstStringViewData.Add(lblsetTantoshaCdopen.CodeTxtText);
+                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
             }
 
             lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));

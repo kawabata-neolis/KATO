@@ -32,11 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.lblsetTantoshaCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lblsetTokuisakiCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblsetTantoshaCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lblsetTokuisakiCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.object_8da96029_fc47_4531_a095_ac7601f1a6ea = new KATO.Common.Ctl.BaseLabel(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radShuturyoku = new KATO.Common.Ctl.RadSet_2btn();
@@ -49,8 +49,8 @@
             this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
             this.lblMessage = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblsetTantoshaCdclose.SuspendLayout();
-            this.lblsetTantoshaCdopen.SuspendLayout();
+            this.lblsetTokuisakiCdclose.SuspendLayout();
+            this.lblsetTokuisakiCdopen.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.radShuturyoku.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
@@ -116,27 +116,27 @@
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // lblsetTantoshaCdclose
+            // lblsetTokuisakiCdclose
             // 
-            this.lblsetTantoshaCdclose.AppendLabelSize = 0;
-            this.lblsetTantoshaCdclose.AppendLabelText = "";
-            this.lblsetTantoshaCdclose.CodeTxtSize = 40;
-            this.lblsetTantoshaCdclose.CodeTxtText = "";
-            this.lblsetTantoshaCdclose.Controls.Add(this.nameLabel);
-            this.lblsetTantoshaCdclose.Controls.Add(this.baseLabel1);
-            this.lblsetTantoshaCdclose.Controls.Add(this.baseLabel2);
-            this.lblsetTantoshaCdclose.LabelName = "";
-            this.lblsetTantoshaCdclose.Location = new System.Drawing.Point(189, 15);
-            this.lblsetTantoshaCdclose.Name = "lblsetTantoshaCdclose";
-            this.lblsetTantoshaCdclose.ShowAppendFlg = false;
-            this.lblsetTantoshaCdclose.Size = new System.Drawing.Size(46, 22);
-            this.lblsetTantoshaCdclose.SpaceCodeValue = 4;
-            this.lblsetTantoshaCdclose.SpaceNameCode = 4;
-            this.lblsetTantoshaCdclose.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdclose.TabIndex = 1;
-            this.lblsetTantoshaCdclose.ValueLabelSize = 0;
-            this.lblsetTantoshaCdclose.ValueLabelText = "";
-            this.lblsetTantoshaCdclose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
+            this.lblsetTokuisakiCdclose.AppendLabelSize = 0;
+            this.lblsetTokuisakiCdclose.AppendLabelText = "";
+            this.lblsetTokuisakiCdclose.CodeTxtSize = 40;
+            this.lblsetTokuisakiCdclose.CodeTxtText = "";
+            this.lblsetTokuisakiCdclose.Controls.Add(this.nameLabel);
+            this.lblsetTokuisakiCdclose.Controls.Add(this.baseLabel1);
+            this.lblsetTokuisakiCdclose.Controls.Add(this.baseLabel2);
+            this.lblsetTokuisakiCdclose.LabelName = "";
+            this.lblsetTokuisakiCdclose.Location = new System.Drawing.Point(189, 15);
+            this.lblsetTokuisakiCdclose.Name = "lblsetTokuisakiCdclose";
+            this.lblsetTokuisakiCdclose.ShowAppendFlg = false;
+            this.lblsetTokuisakiCdclose.Size = new System.Drawing.Size(46, 22);
+            this.lblsetTokuisakiCdclose.SpaceCodeValue = 4;
+            this.lblsetTokuisakiCdclose.SpaceNameCode = 4;
+            this.lblsetTokuisakiCdclose.SpaceValueAppend = 0;
+            this.lblsetTokuisakiCdclose.TabIndex = 1;
+            this.lblsetTokuisakiCdclose.ValueLabelSize = 0;
+            this.lblsetTokuisakiCdclose.ValueLabelText = "";
+            this.lblsetTokuisakiCdclose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
             // nameLabel
             // 
@@ -171,25 +171,25 @@
             this.baseLabel2.TabIndex = 0;
             this.baseLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblsetTantoshaCdopen
+            // lblsetTokuisakiCdopen
             // 
-            this.lblsetTantoshaCdopen.AppendLabelSize = 0;
-            this.lblsetTantoshaCdopen.AppendLabelText = "";
-            this.lblsetTantoshaCdopen.CodeTxtSize = 40;
-            this.lblsetTantoshaCdopen.CodeTxtText = "";
-            this.lblsetTantoshaCdopen.Controls.Add(this.object_8da96029_fc47_4531_a095_ac7601f1a6ea);
-            this.lblsetTantoshaCdopen.LabelName = "";
-            this.lblsetTantoshaCdopen.Location = new System.Drawing.Point(120, 15);
-            this.lblsetTantoshaCdopen.Name = "lblsetTantoshaCdopen";
-            this.lblsetTantoshaCdopen.ShowAppendFlg = false;
-            this.lblsetTantoshaCdopen.Size = new System.Drawing.Size(46, 22);
-            this.lblsetTantoshaCdopen.SpaceCodeValue = 4;
-            this.lblsetTantoshaCdopen.SpaceNameCode = 4;
-            this.lblsetTantoshaCdopen.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdopen.TabIndex = 0;
-            this.lblsetTantoshaCdopen.ValueLabelSize = 0;
-            this.lblsetTantoshaCdopen.ValueLabelText = "";
-            this.lblsetTantoshaCdopen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
+            this.lblsetTokuisakiCdopen.AppendLabelSize = 0;
+            this.lblsetTokuisakiCdopen.AppendLabelText = "";
+            this.lblsetTokuisakiCdopen.CodeTxtSize = 40;
+            this.lblsetTokuisakiCdopen.CodeTxtText = "";
+            this.lblsetTokuisakiCdopen.Controls.Add(this.object_8da96029_fc47_4531_a095_ac7601f1a6ea);
+            this.lblsetTokuisakiCdopen.LabelName = "";
+            this.lblsetTokuisakiCdopen.Location = new System.Drawing.Point(120, 15);
+            this.lblsetTokuisakiCdopen.Name = "lblsetTokuisakiCdopen";
+            this.lblsetTokuisakiCdopen.ShowAppendFlg = false;
+            this.lblsetTokuisakiCdopen.Size = new System.Drawing.Size(46, 22);
+            this.lblsetTokuisakiCdopen.SpaceCodeValue = 4;
+            this.lblsetTokuisakiCdopen.SpaceNameCode = 4;
+            this.lblsetTokuisakiCdopen.SpaceValueAppend = 0;
+            this.lblsetTokuisakiCdopen.TabIndex = 0;
+            this.lblsetTokuisakiCdopen.ValueLabelSize = 0;
+            this.lblsetTokuisakiCdopen.ValueLabelText = "";
+            this.lblsetTokuisakiCdopen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtKaikakeZanKeyUp);
             // 
             // object_8da96029_fc47_4531_a095_ac7601f1a6ea
             // 
@@ -236,7 +236,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(21, 0, 21, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(28, 0, 28, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -371,8 +371,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.lblsetTantoshaCdclose);
-            this.Controls.Add(this.lblsetTantoshaCdopen);
+            this.Controls.Add(this.lblsetTokuisakiCdclose);
+            this.Controls.Add(this.lblsetTokuisakiCdopen);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gridTokuisaki);
             this.Controls.Add(this.lblYM);
@@ -406,13 +406,13 @@
             this.Controls.SetChildIndex(this.lblYM, 0);
             this.Controls.SetChildIndex(this.gridTokuisaki, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.lblsetTantoshaCdopen, 0);
-            this.Controls.SetChildIndex(this.lblsetTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.lblsetTokuisakiCdopen, 0);
+            this.Controls.SetChildIndex(this.lblsetTokuisakiCdclose, 0);
             this.Controls.SetChildIndex(this.lblMessage, 0);
-            this.lblsetTantoshaCdclose.ResumeLayout(false);
-            this.lblsetTantoshaCdclose.PerformLayout();
-            this.lblsetTantoshaCdopen.ResumeLayout(false);
-            this.lblsetTantoshaCdopen.PerformLayout();
+            this.lblsetTokuisakiCdclose.ResumeLayout(false);
+            this.lblsetTokuisakiCdclose.PerformLayout();
+            this.lblsetTokuisakiCdopen.ResumeLayout(false);
+            this.lblsetTokuisakiCdopen.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.radShuturyoku.ResumeLayout(false);
             this.radShuturyoku.PerformLayout();
@@ -424,11 +424,11 @@
 
         #endregion
 
-        private Common.Ctl.LabelSet_Torihikisaki lblsetTantoshaCdclose;
+        private Common.Ctl.LabelSet_Torihikisaki lblsetTokuisakiCdclose;
         private Common.Ctl.BaseLabel nameLabel;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel baseLabel2;
-        private Common.Ctl.LabelSet_Torihikisaki lblsetTantoshaCdopen;
+        private Common.Ctl.LabelSet_Torihikisaki lblsetTokuisakiCdopen;
         private Common.Ctl.BaseLabel object_8da96029_fc47_4531_a095_ac7601f1a6ea;
         private System.Windows.Forms.GroupBox groupBox1;
         private Common.Ctl.RadSet_2btn radShuturyoku;

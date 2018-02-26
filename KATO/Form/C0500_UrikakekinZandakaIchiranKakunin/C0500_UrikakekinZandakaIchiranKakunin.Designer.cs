@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtYMopen = new KATO.Common.Ctl.BaseCalendarYM();
             this.txtYMclose = new KATO.Common.Ctl.BaseCalendarYM();
             this.lblHani1 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -41,14 +41,14 @@
             this.gridTokuisaki = new KATO.Common.Ctl.BaseDataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radShuturyoku = new KATO.Common.Ctl.RadSet_2btn();
-            this.lblsetTantoshaCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
-            this.lblsetTantoshaCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lblsetTokuisakiCdopen = new KATO.Common.Ctl.LabelSet_Torihikisaki();
+            this.lblsetTokuisakiCdclose = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblMessage = new KATO.Common.Ctl.BaseLabel(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.lblsetTantoshaCdclose.SuspendLayout();
+            this.lblsetTokuisakiCdclose.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -185,35 +185,35 @@
             this.gridTokuisaki.AllowUserToResizeColumns = false;
             this.gridTokuisaki.AllowUserToResizeRows = false;
             this.gridTokuisaki.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridTokuisaki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridTokuisaki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridTokuisaki.EnableHeadersVisualStyles = false;
             this.gridTokuisaki.Location = new System.Drawing.Point(14, 96);
             this.gridTokuisaki.Name = "gridTokuisaki";
             this.gridTokuisaki.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTokuisaki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridTokuisaki.RowHeadersVisible = false;
             this.gridTokuisaki.RowTemplate.Height = 21;
             this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -249,43 +249,43 @@
             this.radShuturyoku.Size = new System.Drawing.Size(178, 53);
             this.radShuturyoku.TabIndex = 7;
             // 
-            // lblsetTantoshaCdopen
+            // lblsetTokuisakiCdopen
             // 
-            this.lblsetTantoshaCdopen.AppendLabelSize = 0;
-            this.lblsetTantoshaCdopen.AppendLabelText = "";
-            this.lblsetTantoshaCdopen.CodeTxtSize = 40;
-            this.lblsetTantoshaCdopen.CodeTxtText = "";
-            this.lblsetTantoshaCdopen.LabelName = "";
-            this.lblsetTantoshaCdopen.Location = new System.Drawing.Point(120, 15);
-            this.lblsetTantoshaCdopen.Name = "lblsetTantoshaCdopen";
-            this.lblsetTantoshaCdopen.ShowAppendFlg = false;
-            this.lblsetTantoshaCdopen.Size = new System.Drawing.Size(46, 22);
-            this.lblsetTantoshaCdopen.SpaceCodeValue = 4;
-            this.lblsetTantoshaCdopen.SpaceNameCode = 4;
-            this.lblsetTantoshaCdopen.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdopen.TabIndex = 0;
-            this.lblsetTantoshaCdopen.ValueLabelSize = 0;
-            this.lblsetTantoshaCdopen.ValueLabelText = "";
+            this.lblsetTokuisakiCdopen.AppendLabelSize = 0;
+            this.lblsetTokuisakiCdopen.AppendLabelText = "";
+            this.lblsetTokuisakiCdopen.CodeTxtSize = 40;
+            this.lblsetTokuisakiCdopen.CodeTxtText = "";
+            this.lblsetTokuisakiCdopen.LabelName = "";
+            this.lblsetTokuisakiCdopen.Location = new System.Drawing.Point(120, 15);
+            this.lblsetTokuisakiCdopen.Name = "lblsetTokuisakiCdopen";
+            this.lblsetTokuisakiCdopen.ShowAppendFlg = false;
+            this.lblsetTokuisakiCdopen.Size = new System.Drawing.Size(46, 22);
+            this.lblsetTokuisakiCdopen.SpaceCodeValue = 4;
+            this.lblsetTokuisakiCdopen.SpaceNameCode = 4;
+            this.lblsetTokuisakiCdopen.SpaceValueAppend = 0;
+            this.lblsetTokuisakiCdopen.TabIndex = 0;
+            this.lblsetTokuisakiCdopen.ValueLabelSize = 0;
+            this.lblsetTokuisakiCdopen.ValueLabelText = "";
             // 
-            // lblsetTantoshaCdclose
+            // lblsetTokuisakiCdclose
             // 
-            this.lblsetTantoshaCdclose.AppendLabelSize = 0;
-            this.lblsetTantoshaCdclose.AppendLabelText = "";
-            this.lblsetTantoshaCdclose.CodeTxtSize = 40;
-            this.lblsetTantoshaCdclose.CodeTxtText = "";
-            this.lblsetTantoshaCdclose.Controls.Add(this.baseLabel1);
-            this.lblsetTantoshaCdclose.Controls.Add(this.nameLabel);
-            this.lblsetTantoshaCdclose.LabelName = "";
-            this.lblsetTantoshaCdclose.Location = new System.Drawing.Point(189, 15);
-            this.lblsetTantoshaCdclose.Name = "lblsetTantoshaCdclose";
-            this.lblsetTantoshaCdclose.ShowAppendFlg = false;
-            this.lblsetTantoshaCdclose.Size = new System.Drawing.Size(46, 22);
-            this.lblsetTantoshaCdclose.SpaceCodeValue = 4;
-            this.lblsetTantoshaCdclose.SpaceNameCode = 4;
-            this.lblsetTantoshaCdclose.SpaceValueAppend = 0;
-            this.lblsetTantoshaCdclose.TabIndex = 1;
-            this.lblsetTantoshaCdclose.ValueLabelSize = 0;
-            this.lblsetTantoshaCdclose.ValueLabelText = "";
+            this.lblsetTokuisakiCdclose.AppendLabelSize = 0;
+            this.lblsetTokuisakiCdclose.AppendLabelText = "";
+            this.lblsetTokuisakiCdclose.CodeTxtSize = 40;
+            this.lblsetTokuisakiCdclose.CodeTxtText = "";
+            this.lblsetTokuisakiCdclose.Controls.Add(this.baseLabel1);
+            this.lblsetTokuisakiCdclose.Controls.Add(this.nameLabel);
+            this.lblsetTokuisakiCdclose.LabelName = "";
+            this.lblsetTokuisakiCdclose.Location = new System.Drawing.Point(189, 15);
+            this.lblsetTokuisakiCdclose.Name = "lblsetTokuisakiCdclose";
+            this.lblsetTokuisakiCdclose.ShowAppendFlg = false;
+            this.lblsetTokuisakiCdclose.Size = new System.Drawing.Size(46, 22);
+            this.lblsetTokuisakiCdclose.SpaceCodeValue = 4;
+            this.lblsetTokuisakiCdclose.SpaceNameCode = 4;
+            this.lblsetTokuisakiCdclose.SpaceValueAppend = 0;
+            this.lblsetTokuisakiCdclose.TabIndex = 1;
+            this.lblsetTokuisakiCdclose.ValueLabelSize = 0;
+            this.lblsetTokuisakiCdclose.ValueLabelText = "";
             // 
             // baseLabel1
             // 
@@ -327,8 +327,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.lblsetTantoshaCdclose);
-            this.Controls.Add(this.lblsetTantoshaCdopen);
+            this.Controls.Add(this.lblsetTokuisakiCdclose);
+            this.Controls.Add(this.lblsetTokuisakiCdopen);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gridTokuisaki);
             this.Controls.Add(this.lblYM);
@@ -362,13 +362,13 @@
             this.Controls.SetChildIndex(this.lblYM, 0);
             this.Controls.SetChildIndex(this.gridTokuisaki, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
-            this.Controls.SetChildIndex(this.lblsetTantoshaCdopen, 0);
-            this.Controls.SetChildIndex(this.lblsetTantoshaCdclose, 0);
+            this.Controls.SetChildIndex(this.lblsetTokuisakiCdopen, 0);
+            this.Controls.SetChildIndex(this.lblsetTokuisakiCdclose, 0);
             this.Controls.SetChildIndex(this.lblMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridTokuisaki)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.lblsetTantoshaCdclose.ResumeLayout(false);
-            this.lblsetTantoshaCdclose.PerformLayout();
+            this.lblsetTokuisakiCdclose.ResumeLayout(false);
+            this.lblsetTokuisakiCdclose.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,8 +384,8 @@
         private Common.Ctl.BaseDataGridView gridTokuisaki;
         private System.Windows.Forms.GroupBox groupBox1;
         private Common.Ctl.RadSet_2btn radShuturyoku;
-        private Common.Ctl.LabelSet_Torihikisaki lblsetTantoshaCdopen;
-        private Common.Ctl.LabelSet_Torihikisaki lblsetTantoshaCdclose;
+        private Common.Ctl.LabelSet_Torihikisaki lblsetTokuisakiCdopen;
+        private Common.Ctl.LabelSet_Torihikisaki lblsetTokuisakiCdclose;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel nameLabel;
         private Common.Ctl.BaseLabel lblMessage;

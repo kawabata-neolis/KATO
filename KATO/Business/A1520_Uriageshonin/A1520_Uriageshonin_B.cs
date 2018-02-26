@@ -220,7 +220,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, lstViewGrid[1], lstViewGrid[2], strShonin);
+                strSQLInput = string.Format(strSQLInput, lstViewGrid[1], strShonin);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);

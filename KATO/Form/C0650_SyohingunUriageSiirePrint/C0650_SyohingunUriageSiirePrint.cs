@@ -271,6 +271,11 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             {
                 // エラーロギング
                 new CommonException(ex);
+
+                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 return;
             }
 
@@ -282,8 +287,11 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
         /// </summary>
         private Boolean dataCheack()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定（上期開始年月日）
-            if (txtKamikiYMDopen.Equals(""))
+            if (txtKamikiYMDopen.Text.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -293,7 +301,7 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             }
 
             // 空文字判定（上期終了年月日）
-            if (txtKamikiYMDclose.Equals(""))
+            if (txtKamikiYMDclose.Text.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -322,7 +330,92 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 txtSimokiYMDclose.Focus();
                 return false;
             }
-            
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtKamikiYMDopen.chkDateDataFormat(txtKamikiYMDopen.Text);
+
+            //開始上期年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtKamikiYMDopen.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtKamikiYMDopen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtKamikiYMDclose.chkDateDataFormat(txtKamikiYMDclose.Text);
+
+            //終了上期年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtKamikiYMDclose.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtKamikiYMDclose.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtSimokiYMDopen.chkDateDataFormat(txtSimokiYMDopen.Text);
+
+            //開始下期年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtSimokiYMDopen.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtSimokiYMDopen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtSimokiYMDclose.chkDateDataFormat(txtSimokiYMDclose.Text);
+
+            //終了下期年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtKamikiYMDclose.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtSimokiYMDclose.Text = strYMDformat;
+            }
+
             return true;
         }
     }

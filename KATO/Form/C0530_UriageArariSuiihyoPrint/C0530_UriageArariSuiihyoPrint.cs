@@ -212,6 +212,9 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
             List<DataTable> lstDtSuiihyo = new List<DataTable>();
             DataTable dtSuiihyo = null;
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定（期間年月日（開始））
             if (txtYmdFrom.blIsEmpty() == false)
             {
@@ -232,6 +235,79 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                 basemessagebox.ShowDialog();
 
                 txtYmdTo.Focus();
+
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdFrom.chkDateDataFormat(txtYmdFrom.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdFrom.Focus();
+
+                return;
+            }
+            else
+            {
+                txtYmdFrom.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdTo.chkDateDataFormat(txtYmdTo.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdTo.Focus();
+
+                return;
+            }
+            else
+            {
+                txtYmdTo.Text = strYMDformat;
+            }
+
+            //開始担当者コードのチェック
+            if (labelSet_TantoushaCdFrom.chkTxtTantosha() == true)
+            {
+                labelSet_TantoushaCdFrom.Focus();
+
+                return;
+            }
+
+            //終了担当者コードのチェック
+            if (labelSet_TantoushaCdTo.chkTxtTantosha() == true)
+            {
+                labelSet_TantoushaCdTo.Focus();
+
+                return;
+            }
+
+            //開始得意先コードのチェック
+            if (labelSet_TokuisakiCdFrom.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiCdFrom.Focus();
+
+                return;
+            }
+
+            //終了得意先コードのチェック
+            if (labelSet_TokuisakiCdTo.chkTxtTorihikisaki() == true)
+            {
+                labelSet_TokuisakiCdTo.Focus();
 
                 return;
             }
