@@ -45,14 +45,14 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             this.WindowState = FormWindowState.Maximized;
 
-            ////フォームが最大化されないようにする
-            //this.MaximizeBox = false;
-            ////フォームが最小化されないようにする
-            //this.MinimizeBox = false;
+            //フォームが最大化されないようにする
+            this.MaximizeBox = false;
+            //フォームが最小化されないようにする
+            this.MinimizeBox = false;
 
-            ////最大サイズと最小サイズを現在のサイズに設定する
-            //this.MaximumSize = this.Size;
-            //this.MinimumSize = this.Size;
+            //最大サイズと最小サイズを現在のサイズに設定する
+            this.MaximumSize = this.Size;
+            this.MinimumSize = this.Size;
 
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
@@ -384,14 +384,142 @@ namespace KATO.Form.C0490_UriageSuiiHyo
             //検索時のデータ取り出し先
             DataTable dtSetView;
 
-            //空文字判定（得意先コード開始、得意先コード終了、検索開始、検索終了）
-            if (labelSet_TokuisakiStart.CodeTxtText == "" || labelSet_TokuisakiEnd.CodeTxtText == "" || txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //空文字判定（機関開始、期間終了）
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+
+            //空文字判定（得意先コード開始）
+            if (labelSet_TokuisakiStart.CodeTxtText == "")
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiStart.Focus();
+
                 return;
             }
+
+            // 空文字判定（仕入先コード終了）
+            if (labelSet_TokuisakiEnd.CodeTxtText == "")
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiEnd.Focus();
+
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMopen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMclose.chkDateYMDataFormat(txtCalendarYMclose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMclose.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMclose.Text = strYMDformat;
+            }
+
+            //営業所コードのチェック
+            if (labelSet_Eigyosho1.chkTxtEigyousho() == true)
+            {
+                labelSet_Eigyosho1.Focus();
+
+                return;
+            }
+
+            //グループコードのチェック
+            if (labelSet_GroupCd1.chkTxtGroupCd() == true)
+            {
+                labelSet_GroupCd1.Focus();
+
+                return;
+            }
+
+            //担当者コードのチェック
+            if (labelSet_Tantousha1.chkTxtTantosha() == true)
+            {
+                labelSet_Tantousha1.Focus();
+
+                return;
+            }
+
+            //受注者コードのチェック
+            if (lsJuchusha.chkTxtTantosha() == true)
+            {
+                lsJuchusha.Focus();
+
+                return;
+            }
+
+            //大分類コードのチェック
+            if (labelSet_Daibunrui1.chkTxtDaibunrui() == true)
+            {
+                labelSet_Daibunrui1.Focus();
+
+                return;
+            }
+
+            //中分類コードのチェック
+            if (labelSet_Chubunrui1.chkTxtChubunrui(labelSet_Daibunrui1.CodeTxtText) == true)
+            {
+                labelSet_Chubunrui1.Focus();
+
+                return;
+            }
+
+            //メーカーコードのチェック
+            if (labelSet_Maker1.chkTxtMaker() == true)
+            {
+                labelSet_Maker1.Focus();
+
+                return;
+            }
+
 
             //ビジネス層のインスタンス生成
             C0490_UriageSuiiHyo_B uriagesuiihyoB = new C0490_UriageSuiiHyo_B();
@@ -532,13 +660,139 @@ namespace KATO.Form.C0490_UriageSuiiHyo
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定（期間開始、期間終了、仕入先コード開始、仕入先コード終了）
-            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false ||
-                labelSet_TokuisakiStart.CodeTxtText.Equals("") || labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //空文字判定（機関開始、期間終了）
+            if (txtCalendarYMopen.blIsEmpty() == false || txtCalendarYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+
+            //空文字判定（得意先コード開始）
+            if (labelSet_TokuisakiStart.CodeTxtText == "")
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiStart.Focus();
+
+                return;
+            }
+
+            // 空文字判定（仕入先コード終了）
+            if (labelSet_TokuisakiEnd.CodeTxtText == "")
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                labelSet_TokuisakiEnd.Focus();
+
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMopen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMclose.chkDateYMDataFormat(txtCalendarYMclose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMclose.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMclose.Text = strYMDformat;
+            }
+
+            //営業所コードのチェック
+            if (labelSet_Eigyosho1.chkTxtEigyousho() == true)
+            {
+                labelSet_Eigyosho1.Focus();
+
+                return;
+            }
+
+            //グループコードのチェック
+            if (labelSet_GroupCd1.chkTxtGroupCd() == true)
+            {
+                labelSet_GroupCd1.Focus();
+
+                return;
+            }
+
+            //担当者コードのチェック
+            if (labelSet_Tantousha1.chkTxtTantosha() == true)
+            {
+                labelSet_Tantousha1.Focus();
+
+                return;
+            }
+
+            //受注者コードのチェック
+            if (lsJuchusha.chkTxtTantosha() == true)
+            {
+                lsJuchusha.Focus();
+
+                return;
+            }
+
+            //大分類コードのチェック
+            if (labelSet_Daibunrui1.chkTxtDaibunrui() == true)
+            {
+                labelSet_Daibunrui1.Focus();
+
+                return;
+            }
+
+            //中分類コードのチェック
+            if (labelSet_Chubunrui1.chkTxtChubunrui(labelSet_Daibunrui1.CodeTxtText) == true)
+            {
+                labelSet_Chubunrui1.Focus();
+
+                return;
+            }
+
+            //メーカーコードのチェック
+            if (labelSet_Maker1.chkTxtMaker() == true)
+            {
+                labelSet_Maker1.Focus();
+
                 return;
             }
 

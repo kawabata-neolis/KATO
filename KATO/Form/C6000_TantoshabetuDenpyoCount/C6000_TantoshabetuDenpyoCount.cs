@@ -501,7 +501,21 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
         /// </summary>
         private void delText()
         {
+            txtJuchuKei.Clear();
+            txtHachu.Clear();
+            txtShire.Clear();
+            txtUriage.Clear();
+            txtNyuko.Clear();
+            txtShuko.Clear();
+            txtTanto.Clear();
+
             gridViewData.DataSource = "";
+
+            //初期値
+            txtDenpyoOpen.setUp(0);
+            txtDenpyoClose.setUp(0);
+            txtTantoshaCdOpen.Text = "0000";
+            txtTantoshaCdClose.Text = "9999";
 
             txtDenpyoOpen.Focus();
         }

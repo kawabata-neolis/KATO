@@ -336,10 +336,10 @@
             // txtYMD
             // 
             this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYMD.Location = new System.Drawing.Point(14, 24);
+            this.txtYMD.Location = new System.Drawing.Point(20, 24);
             this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
-            this.txtYMD.Size = new System.Drawing.Size(100, 22);
+            this.txtYMD.Size = new System.Drawing.Size(88, 22);
             this.txtYMD.TabIndex = 1;
             this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYMD.Leave += new System.EventHandler(this.txtYMD_Leave);
@@ -665,6 +665,7 @@
             this.txtGokei.intShishagonyu = 0;
             this.txtGokei.Location = new System.Drawing.Point(578, 582);
             this.txtGokei.MaxLength = 0;
+            this.txtGokei.MinusFlg = true;
             this.txtGokei.Name = "txtGokei";
             this.txtGokei.ReadOnly = true;
             this.txtGokei.Size = new System.Drawing.Size(133, 22);
@@ -684,6 +685,7 @@
             this.txtShohizei.intShishagonyu = 0;
             this.txtShohizei.Location = new System.Drawing.Point(578, 612);
             this.txtShohizei.MaxLength = 0;
+            this.txtShohizei.MinusFlg = true;
             this.txtShohizei.Name = "txtShohizei";
             this.txtShohizei.ReadOnly = true;
             this.txtShohizei.Size = new System.Drawing.Size(133, 22);
@@ -703,6 +705,7 @@
             this.txtSogokei.intShishagonyu = 0;
             this.txtSogokei.Location = new System.Drawing.Point(578, 641);
             this.txtSogokei.MaxLength = 0;
+            this.txtSogokei.MinusFlg = true;
             this.txtSogokei.Name = "txtSogokei";
             this.txtSogokei.ReadOnly = true;
             this.txtSogokei.Size = new System.Drawing.Size(133, 22);
@@ -722,6 +725,7 @@
             this.txtUnchin.intShishagonyu = 0;
             this.txtUnchin.Location = new System.Drawing.Point(578, 703);
             this.txtUnchin.MaxLength = 12;
+            this.txtUnchin.MinusFlg = true;
             this.txtUnchin.Name = "txtUnchin";
             this.txtUnchin.Size = new System.Drawing.Size(133, 22);
             this.txtUnchin.TabIndex = 10;
@@ -739,6 +743,7 @@
             this.txtTanka1.intShishagonyu = 0;
             this.txtTanka1.Location = new System.Drawing.Point(1245, 585);
             this.txtTanka1.MaxLength = 12;
+            this.txtTanka1.MinusFlg = true;
             this.txtTanka1.Name = "txtTanka1";
             this.txtTanka1.Size = new System.Drawing.Size(133, 22);
             this.txtTanka1.TabIndex = 16;
@@ -757,6 +762,7 @@
             this.txtTanka2.intShishagonyu = 0;
             this.txtTanka2.Location = new System.Drawing.Point(1245, 615);
             this.txtTanka2.MaxLength = 12;
+            this.txtTanka2.MinusFlg = true;
             this.txtTanka2.Name = "txtTanka2";
             this.txtTanka2.Size = new System.Drawing.Size(133, 22);
             this.txtTanka2.TabIndex = 17;
@@ -775,6 +781,7 @@
             this.txtTanka3.intShishagonyu = 0;
             this.txtTanka3.Location = new System.Drawing.Point(1245, 644);
             this.txtTanka3.MaxLength = 12;
+            this.txtTanka3.MinusFlg = true;
             this.txtTanka3.Name = "txtTanka3";
             this.txtTanka3.Size = new System.Drawing.Size(133, 22);
             this.txtTanka3.TabIndex = 18;
@@ -793,6 +800,7 @@
             this.txtTanka4.intShishagonyu = 0;
             this.txtTanka4.Location = new System.Drawing.Point(1245, 674);
             this.txtTanka4.MaxLength = 12;
+            this.txtTanka4.MinusFlg = true;
             this.txtTanka4.Name = "txtTanka4";
             this.txtTanka4.Size = new System.Drawing.Size(133, 22);
             this.txtTanka4.TabIndex = 19;
@@ -811,6 +819,7 @@
             this.txtTanka5.intShishagonyu = 0;
             this.txtTanka5.Location = new System.Drawing.Point(1245, 703);
             this.txtTanka5.MaxLength = 12;
+            this.txtTanka5.MinusFlg = true;
             this.txtTanka5.Name = "txtTanka5";
             this.txtTanka5.Size = new System.Drawing.Size(133, 22);
             this.txtTanka5.TabIndex = 20;

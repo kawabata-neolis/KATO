@@ -361,72 +361,79 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
         ///</summary>
         private void setTokuisakiView()
         {
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
-            {
-                //空チェック（開始得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（開始得意先コード）
-                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
-                {
-                    return;
-                }
-                //空チェック（終了得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（終了得意先コード）
-                if (lblsetTantoshaCdclose.chkTxtTorihikisaki())
-                {
-                    return;
-                }
-                //データチェック（開始年月日）
-                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
-                {
-                    txtYMopen.Focus();
-                    return;
-                }
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
 
-                //データチェック（終了年月日）
-                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
-                {
-                    txtYMclose.Focus();
-                    return;
-                }
+            //空チェック（開始得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTantoshaCdopen.Focus();
+                return;
+            }
+
+            //空チェック（終了得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTantoshaCdclose.CodeTxtText) == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTantoshaCdclose.Focus();
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMopen.Focus();
+
+                return;
             }
             else
             {
-                //空チェック（開始得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTantoshaCdopen.CodeTxtText) == false)
-                {
-                    lblsetTantoshaCdopen.Focus();
-                    return;
-                }
-                // データフォーマットチェック（開始得意先コード）
-                if (lblsetTantoshaCdopen.chkTxtTorihikisaki())
-                {
-                    return;
-                }
+                txtYMopen.Text = strYMDformat;
+            }
 
-                //データチェック（開始年月日）
-                if (StringUtl.JudCalenderCheck(txtYMopen.Text) == false)
-                {
-                    txtYMopen.Focus();
-                    return;
-                }
-                //データチェック（終了年月日）
-                if (StringUtl.JudCalenderCheck(txtYMclose.Text) == false)
-                {
-                    txtYMclose.Focus();
-                    return;
-                }
+            //初期化
+            strYMDformat = "";
 
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMclose.chkDateYMDataFormat(txtYMclose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMclose.Focus();
+
+                return;
+            }
+            else
+            {
+                txtYMclose.Text = strYMDformat;
+            }
+            
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
+            {
+                //スルー
+            }
+            else
+            {
                 //データチェック（年月度が同じの場合）
                 if (txtYMopen.Text == txtYMclose.Text)
                 {

@@ -52,6 +52,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridUriageSuii)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabIndex = 999;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 999;
@@ -100,11 +105,6 @@
             // 
             this.btnF02.TabIndex = 999;
             // 
-            // btnF01
-            // 
-            this.btnF01.TabIndex = 999;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // lblKikan
             // 
             this.lblKikan.AutoSize = true;
@@ -121,7 +121,7 @@
             // 
             this.lblSpan.AutoSize = true;
             this.lblSpan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSpan.Location = new System.Drawing.Point(225, 20);
+            this.lblSpan.Location = new System.Drawing.Point(191, 20);
             this.lblSpan.Name = "lblSpan";
             this.lblSpan.Size = new System.Drawing.Size(23, 15);
             this.lblSpan.strToolTip = null;
@@ -237,7 +237,7 @@
             this.labelSet_Daibunrui1.CodeTxtSize = 24;
             this.labelSet_Daibunrui1.CodeTxtText = "";
             this.labelSet_Daibunrui1.LabelName = "大分類コード";
-            this.labelSet_Daibunrui1.Location = new System.Drawing.Point(13, 82);
+            this.labelSet_Daibunrui1.Location = new System.Drawing.Point(13, 90);
             this.labelSet_Daibunrui1.Lschubundata = null;
             this.labelSet_Daibunrui1.Lsmakerdata = null;
             this.labelSet_Daibunrui1.LsSubchubundata = null;
@@ -259,7 +259,7 @@
             this.labelSet_Chubunrui1.CodeTxtSize = 24;
             this.labelSet_Chubunrui1.CodeTxtText = "";
             this.labelSet_Chubunrui1.LabelName = "中分類コード";
-            this.labelSet_Chubunrui1.Location = new System.Drawing.Point(359, 82);
+            this.labelSet_Chubunrui1.Location = new System.Drawing.Point(359, 90);
             this.labelSet_Chubunrui1.Name = "labelSet_Chubunrui1";
             this.labelSet_Chubunrui1.ShowAppendFlg = false;
             this.labelSet_Chubunrui1.Size = new System.Drawing.Size(273, 22);
@@ -278,7 +278,7 @@
             this.labelSet_Maker1.CodeTxtSize = 30;
             this.labelSet_Maker1.CodeTxtText = "";
             this.labelSet_Maker1.LabelName = "メーカー";
-            this.labelSet_Maker1.Location = new System.Drawing.Point(679, 82);
+            this.labelSet_Maker1.Location = new System.Drawing.Point(679, 90);
             this.labelSet_Maker1.Name = "labelSet_Maker1";
             this.labelSet_Maker1.ShowAppendFlg = false;
             this.labelSet_Maker1.Size = new System.Drawing.Size(250, 22);
@@ -296,6 +296,7 @@
             this.gridUriageSuii.AllowUserToDeleteRows = false;
             this.gridUriageSuii.AllowUserToResizeColumns = false;
             this.gridUriageSuii.AllowUserToResizeRows = false;
+            this.gridUriageSuii.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -341,7 +342,7 @@
             this.txtCalendarYMopen.Location = new System.Drawing.Point(119, 17);
             this.txtCalendarYMopen.MaxLength = 7;
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
-            this.txtCalendarYMopen.Size = new System.Drawing.Size(100, 22);
+            this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMopen.TabIndex = 0;
             this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMopen.Leave += new System.EventHandler(this.txtCalendarYMopen_Leave);
@@ -350,10 +351,10 @@
             // 
             this.txtCalendarYMclose.BackColor = System.Drawing.SystemColors.Window;
             this.txtCalendarYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtCalendarYMclose.Location = new System.Drawing.Point(254, 17);
+            this.txtCalendarYMclose.Location = new System.Drawing.Point(220, 17);
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.ReadOnly = true;
-            this.txtCalendarYMclose.Size = new System.Drawing.Size(96, 22);
+            this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMclose.TabIndex = 999;
             this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -416,6 +417,7 @@
             this.Text = "C0490_UriageSuiiHyo";
             this.Load += new System.EventHandler(this.C0490_UriageSuiiHyo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0490_UriageSuiiHyo_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.lblKikan, 0);
             this.Controls.SetChildIndex(this.lblSpan, 0);
             this.Controls.SetChildIndex(this.labelSet_Eigyosho1, 0);
