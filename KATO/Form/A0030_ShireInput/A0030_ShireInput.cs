@@ -1088,17 +1088,6 @@ namespace KATO.Form.A0030_ShireInput
         }
 
         ///<summary>
-        ///selData
-        ///テキストボックス内のデータをDBから削除
-        ///</summary>
-        public bool selData()
-        {
-            bool blGood = false;
-
-            return (blGood);
-        }
-
-        ///<summary>
         ///delGyou
         ///行削除
         ///</summary>
@@ -2410,6 +2399,12 @@ namespace KATO.Form.A0030_ShireInput
 
                 txtYMD.Focus();
                 blgood = false;
+            }
+
+            //good判定の判定
+            if (blgood == false)
+            {
+                return (blgood);
             }
 
             //合計計算式を入れる(一つで全行計算する)

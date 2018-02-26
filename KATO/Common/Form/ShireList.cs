@@ -314,8 +314,8 @@ namespace KATO.Common.Form
             tokuisaki.HeaderText = "仕入先名";
 
             DataGridViewTextBoxColumn hinmei = new DataGridViewTextBoxColumn();
-            hinmei.DataPropertyName = "品名・型番";
-            hinmei.Name = "品名・型番";
+            hinmei.DataPropertyName = "品名型番";
+            hinmei.Name = "品名型番";
             hinmei.HeaderText = "品名・型番";
 
             DataGridViewTextBoxColumn suu = new DataGridViewTextBoxColumn();
@@ -340,7 +340,7 @@ namespace KATO.Common.Form
             setColumn(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 403);
             setColumn(suu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
-            setColumn(biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
+            setColumn(biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 280);
         }
 
         /// <summary>

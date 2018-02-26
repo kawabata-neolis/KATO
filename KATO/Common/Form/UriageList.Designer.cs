@@ -63,6 +63,7 @@
             this.gridUriage.AllowUserToAddRows = false;
             this.gridUriage.AllowUserToResizeColumns = false;
             this.gridUriage.AllowUserToResizeRows = false;
+            this.gridUriage.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -95,7 +96,7 @@
             this.gridUriage.RowHeadersVisible = false;
             this.gridUriage.RowTemplate.Height = 21;
             this.gridUriage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriage.Size = new System.Drawing.Size(931, 434);
+            this.gridUriage.Size = new System.Drawing.Size(1324, 434);
             this.gridUriage.StandardTab = true;
             this.gridUriage.TabIndex = 6;
             this.gridUriage.DoubleClick += new System.EventHandler(this.gridUriage_DoubleClick);
@@ -205,7 +206,7 @@
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(827, 41);
+            this.btnF11.Location = new System.Drawing.Point(1227, 38);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 5;
@@ -215,7 +216,7 @@
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(827, 12);
+            this.btnF12.Location = new System.Drawing.Point(1227, 9);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 7;
@@ -226,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 614);
+            this.ClientSize = new System.Drawing.Size(1348, 614);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridUriage);
             this.Controls.Add(this.txtCalendarClose);
@@ -242,8 +243,8 @@
             this.Name = "UriageList";
             this.Text = "UriageList";
             this.Load += new System.EventHandler(this.UriageList_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UriageList_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.form_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -43,7 +43,7 @@ namespace KATO.Business.A0470_Hachusuhenko
             strSQL = strSQL + " + ' ' + Rtrim(ISNULL(a.Ｃ３,''))";
             strSQL = strSQL + " + ' ' + Rtrim(ISNULL(a.Ｃ４,''))";
             strSQL = strSQL + " + ' ' + Rtrim(ISNULL(a.Ｃ５,''))";
-            strSQL = strSQL + " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) as 品名・型式,";
+            strSQL = strSQL + " + ' ' + Rtrim(ISNULL(a.Ｃ６,'')) as 品名型式,";
 
             strSQL = strSQL + "a.発注数量 as 数量, a.発注単価 as 単価, a.発注金額 as 金額, a.商品コード as 商品コード, a.仕入済数量 as 仕入済,";
 

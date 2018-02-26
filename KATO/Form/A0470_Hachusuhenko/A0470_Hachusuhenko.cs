@@ -124,8 +124,8 @@ namespace KATO.Form.A0470_Hachusuhenko
             maker.HeaderText = "メーカー";
 
             DataGridViewTextBoxColumn himeikatashiki = new DataGridViewTextBoxColumn();
-            himeikatashiki.DataPropertyName = "品名・型式";
-            himeikatashiki.Name = "品名・型式";
+            himeikatashiki.DataPropertyName = "品名型式";
+            himeikatashiki.Name = "品名型式";
             himeikatashiki.HeaderText = "品名・型式";
 
             DataGridViewTextBoxColumn suryo = new DataGridViewTextBoxColumn();

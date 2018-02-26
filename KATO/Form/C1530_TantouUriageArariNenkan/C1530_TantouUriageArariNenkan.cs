@@ -747,6 +747,18 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
                 return false;
             }
 
+            //数値の対象比較(辞書比較)
+            if (txtYear.Text.CompareTo("1900") < 0 && txtYear.Text.CompareTo("9999") > 0)
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYear.Focus();
+
+                return false;
+            }
+
             return true;
         }
 

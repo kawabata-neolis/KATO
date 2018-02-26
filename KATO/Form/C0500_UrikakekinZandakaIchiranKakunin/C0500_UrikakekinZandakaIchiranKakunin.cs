@@ -368,7 +368,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 lblsetTokuisakiCdopen.Focus();
@@ -379,7 +379,7 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 lblsetTokuisakiCdclose.Focus();
