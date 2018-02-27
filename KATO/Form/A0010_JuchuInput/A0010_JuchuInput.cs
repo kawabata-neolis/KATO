@@ -2116,6 +2116,13 @@ namespace KATO.Form.A0010_JuchuInput
                 tsTokuisaki.codeTxt.Focus();
                 return false;
             }
+            if (tsTokuisaki.chkTxtTorihikisaki())
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が正しくありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                basemessagebox.ShowDialog();
+                tsTokuisaki.codeTxt.Focus();
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(lsDaibunrui.CodeTxtText))
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);

@@ -1204,11 +1204,25 @@ namespace KATO.Form.A0020_UriageInput
                 txtYMD.Focus();
                 return false;
             }
+            if (string.IsNullOrWhiteSpace(txtYMD.chkDateDataFormat(txtYMD.Text)))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                txtYMD.Focus();
+                return false;
+            }
 
             if (labelSet_txtCD.CodeTxtText == "")
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_txtCD.Focus();
+                return false;
+            }
+            if (labelSet_txtCD.chkTxtTorihikisaki())
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力項目が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 labelSet_txtCD.Focus();
                 return false;
@@ -1222,11 +1236,25 @@ namespace KATO.Form.A0020_UriageInput
                 labelSet_Tantousha.Focus();
                 return false;
             }
+            if (labelSet_Tantousha.chkTxtTantosha())
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力項目が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Tantousha.Focus();
+                return false;
+            }
 
             if (labelSet_Torihikikbn.CodeTxtText == "")
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Torihikikbn.Focus();
+                return false;
+            }
+            if (labelSet_Torihikikbn.chkTxtTorihikikbn())
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力項目が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 labelSet_Torihikikbn.Focus();
                 return false;

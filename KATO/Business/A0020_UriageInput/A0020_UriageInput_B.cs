@@ -2719,7 +2719,9 @@ namespace KATO.Business.A0020_UriageInput
 
         private string getGPDriver(string stShoCd, string stShukko)
         {
-            string ret = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER1"];
+            // 出力先は2F限定（暫定
+            //string ret = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER1"];
+            string ret = System.Configuration.ConfigurationManager.AppSettings["PRINTER_GENPIN_DRIVER2"];
             string colTana = "棚番本社";
             string strSQL = "";
             DataTable dt = null;
