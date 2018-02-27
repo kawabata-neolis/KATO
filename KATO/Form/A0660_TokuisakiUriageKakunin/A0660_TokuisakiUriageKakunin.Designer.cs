@@ -133,14 +133,14 @@
             this.txtDenpyoYMDEnd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDEnd.Location = new System.Drawing.Point(256, 93);
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
-            this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(100, 22);
+            this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDEnd.TabIndex = 2;
             // 
             // baseLabel2
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(226, 96);
+            this.baseLabel2.Location = new System.Drawing.Point(221, 96);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(23, 15);
             this.baseLabel2.strToolTip = null;
@@ -154,7 +154,7 @@
             this.txtDenpyoYMDStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDStart.Location = new System.Drawing.Point(119, 93);
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
-            this.txtDenpyoYMDStart.Size = new System.Drawing.Size(100, 22);
+            this.txtDenpyoYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDStart.TabIndex = 1;
             // 
             // lblYMD

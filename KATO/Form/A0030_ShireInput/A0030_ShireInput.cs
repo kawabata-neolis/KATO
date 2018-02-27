@@ -2138,13 +2138,12 @@ namespace KATO.Form.A0030_ShireInput
                 blgood = false;
             }
 
-            decimal decUnchin = 0;
             int intUnchinCnt = 0;
 
             //運賃データが空の場合は0、それ以外はそのまま
             if (txtUnchin.Text.Trim() == "")
             {
-                decUnchin = 0;
+                txtUnchin.Text = "0";
             }
 
             //数字チェック
@@ -2155,13 +2154,13 @@ namespace KATO.Form.A0030_ShireInput
                 blgood = false;
             }
 
-            decUnchin = decimal.Parse(txtUnchin.Text);
-
             //false判定でない場合
             if (blgood == true)
             {
+                txtUnchin.Text = (decimal.Parse(txtUnchin.Text)).ToString();
+
                 //運賃データが0以外の場合
-                if (decUnchin.ToString("0") != "0")
+                if (txtUnchin.Text != "0")
                 {
                     if (txtJuchu1.blIsEmpty() == true)
                     {

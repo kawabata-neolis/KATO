@@ -356,6 +356,9 @@ namespace KATO.Form.A0470_Hachusuhenko
         ///</summary>
         private void setHachusuhenko()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //受注者コードと仕入先コードがない場合
             if (StringUtl.blIsEmpty(labelSet_Tantousha.CodeTxtText) == false && 
                 StringUtl.blIsEmpty(labelSet_Torihikisaki.CodeTxtText) == false)
@@ -364,6 +367,83 @@ namespace KATO.Form.A0470_Hachusuhenko
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "発注者か仕入先を指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 labelSet_Tantousha.Focus();
+                return;
+            }
+
+            //発注者チェック
+            if (labelSet_Tantousha.chkTxtTantosha())
+            {
+                labelSet_Tantousha.Focus();
+
+                return;
+            }
+
+            //仕入先チェック
+            if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            {
+                labelSet_Torihikisaki.Focus();
+
+                return;
+            }
+
+            //検索開始年月日に記入がある場合
+            if (baseCalendarOpen.blIsEmpty())
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = baseCalendarOpen.chkDateDataFormat(baseCalendarOpen.Text);
+
+                //検索開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    baseCalendarOpen.Focus();
+
+                    return;
+                }
+                else
+                {
+                    baseCalendarOpen.Text = strYMDformat;
+                }
+            }
+
+            //検索終了年月日に記入がある場合
+            if (baseCalendarClose.blIsEmpty())
+            {
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = baseCalendarClose.chkDateDataFormat(baseCalendarClose.Text);
+
+                //検索終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    baseCalendarClose.Focus();
+
+                    return;
+                }
+                else
+                {
+                    baseCalendarClose.Text = strYMDformat;
+                }
+            }
+            
+            //発注数の数値チェック
+            if (txtHachusu.chkMoneyText())
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された数値が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtHachusu.Focus();
+
                 return;
             }
             
@@ -415,8 +495,6 @@ namespace KATO.Form.A0470_Hachusuhenko
                 lstStrSQL.Add(txtHinmei_Kataban.Text);
                 //注番
                 lstStrSQL.Add(txtChuban.Text);
-
-                //gridHachusuhenko.Visible = false;
 
                 gridHachusuhenko.DataSource = hachusuhenkoB.setHachusuhenkoGrid(lstStrSQL);
 
@@ -550,7 +628,7 @@ namespace KATO.Form.A0470_Hachusuhenko
             }
 
             //選択行の品名・型番取得
-            txtHinmei_Katashiki.Text = (string)gridHachusuhenko.CurrentRow.Cells["品名・型式"].Value;
+            txtHinmei_Katashiki.Text = (string)gridHachusuhenko.CurrentRow.Cells["品名型式"].Value;
             txtHachusu.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["数量"].Value);
             txtShiresu.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["仕入済"].Value);
             txtTanka.Text = string.Format("{0:#,#}", gridHachusuhenko.CurrentRow.Cells["単価"].Value);
@@ -613,12 +691,83 @@ namespace KATO.Form.A0470_Hachusuhenko
         ///</summary>
         private void updKoshin()
         {
-            //前後の空白を取り除く
-            txtHachusu.Text = txtHachusu.Text.Trim();
-            
-            //発注数が空白の場合
-            if (txtHachusu.Text == "")
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //発注者チェック
+            if (labelSet_Tantousha.chkTxtTantosha())
             {
+                labelSet_Tantousha.Focus();
+
+                return;
+            }
+
+            //仕入先チェック
+            if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            {
+                labelSet_Torihikisaki.Focus();
+
+                return;
+            }
+
+            //検索開始年月日に記入がある場合
+            if (baseCalendarOpen.blIsEmpty())
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = baseCalendarOpen.chkDateDataFormat(baseCalendarOpen.Text);
+
+                //検索開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    baseCalendarOpen.Focus();
+
+                    return;
+                }
+                else
+                {
+                    baseCalendarOpen.Text = strYMDformat;
+                }
+            }
+
+            //検索終了年月日に記入がある場合
+            if (baseCalendarClose.blIsEmpty())
+            {
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = baseCalendarClose.chkDateDataFormat(baseCalendarClose.Text);
+
+                //検索終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    baseCalendarClose.Focus();
+
+                    return;
+                }
+                else
+                {
+                    baseCalendarClose.Text = strYMDformat;
+                }
+            }
+
+            //発注数の数値チェック
+            if (txtHachusu.chkMoneyText())
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された数値が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtHachusu.Focus();
+
                 return;
             }
 
@@ -646,6 +795,9 @@ namespace KATO.Form.A0470_Hachusuhenko
                 txtHachusu.Clear();
                 txtShiresu.Clear();
                 txtTanka.Clear();
+
+                //グリッド表示
+                setHachusuhenko();
             }
             catch (Exception ex)
             {

@@ -369,6 +369,9 @@ namespace KATO.Form.A0170_ShukoShoninInput
             //データ取り出し用配列
             string[] strGetData = null;
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //文字判定(出庫年月日)
             if (txtYMD.blIsEmpty() == false)
             {
@@ -379,6 +382,26 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 txtYMD.Focus();
                 return;
             }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            //出庫年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMD.Focus();
+
+                return;
+            }
+            else
+            {
+                txtYMD.Text = strYMDformat;
+            }
+
 
             //グリッド内の検索
             for (int intCnt = 1; intCnt < gridShukoiraimesai.Rows.Count; intCnt++)

@@ -66,6 +66,7 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
 
             this.btnF01.Text = STR_FUNC_F1_HYOJII;
             this.btnF02.Text = "F2:更新";
+            this.btnF04.Text = STR_FUNC_F4;
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -124,7 +125,6 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 case Keys.F1:
                     logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.getTokuisakiKensyu();
-                    //this.addKengen();
                     break;
                 case Keys.F2:
                     logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
@@ -284,75 +284,143 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
         ///</summary>
         private void getTokuisakiKensyu()
         {
-            try
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //得意先が空の場合
+            if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
             {
-                if (labelSet_Tokuisaki.codeTxt.blIsEmpty() == false)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "得意先を指定してください ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                labelSet_Tokuisaki.Focus();
+
+                return;
+            }
+
+            //検索開始年月日に記入がある場合
+            if (txtDenpyoYMDStart.blIsEmpty())
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDStart.chkDateDataFormat(txtDenpyoYMDStart.Text);
+
+                //検索開始年月日の日付チェック
+                if (strYMDformat == "")
                 {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "仕入先を指定してください ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
 
-                    labelSet_Tokuisaki.Focus();
+                    txtDenpyoYMDStart.Focus();
+
+                    return;
                 }
                 else
                 {
-                    A0660_TokuisakiUriageKakunin_B siirekakuninB = new A0660_TokuisakiUriageKakunin_B();
+                    txtDenpyoYMDStart.Text = strYMDformat;
+                }
+            }
 
-                    // 検索文字列格納用
-                    string[] arrSerach = new string[7];
-                    // 出力順条件取得用
-                    string[] arrOrder = new string[2];
-                    // 表示条件取得用
-                    string[] arrDisplay = new string[3];
+            //検索終了年月日に記入がある場合
+            if (txtDenpyoYMDEnd.blIsEmpty())
+            {
+                //初期化
+                strYMDformat = "";
 
-                    arrSerach[0] = labelSet_Tokuisaki.CodeTxtText;  // 得意先コード
-                    arrSerach[1] = txtDenpyoYMDStart.Text;          // 伝票年月日start
-                    arrSerach[2] = txtDenpyoYMDEnd.Text;            // 伝票年月日end
-                    arrSerach[3] = labelSet_Daibunrui.CodeTxtText;  // 大分類コード
-                    arrSerach[4] = labelSet_Chubunrui.CodeTxtText;  // 中分類コード
-                    arrSerach[5] = txtKataban.Text;                 // 品名・型番
-                    arrSerach[6] = txtBiko.Text;                    // 備考
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDEnd.chkDateDataFormat(txtDenpyoYMDEnd.Text);
 
-                    arrOrder[0] = radOutOrder.radbtn0.Checked.ToString().ToUpper();   // 出力順　日付・伝票番号順
-                    arrOrder[1] = radOutOrder.radbtn1.Checked.ToString().ToUpper();   // 出力順　型番・日付順
+                //検索終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                    arrDisplay[0] = radDisplay.radbtn0.Checked.ToString().ToUpper();  // 表示　すべて
-                    arrDisplay[1] = radDisplay.radbtn1.Checked.ToString().ToUpper();  // 表示　未検収
-                    arrDisplay[2] = radDisplay.radbtn2.Checked.ToString().ToUpper();  // 表示　検収済
+                    txtDenpyoYMDEnd.Focus();
 
-                    DataTable dtSiirekensyu = siirekakuninB.getSiireData(arrSerach, arrOrder, arrDisplay);
+                    return;
+                }
+                else
+                {
+                    txtDenpyoYMDEnd.Text = strYMDformat;
+                }
+            }
 
-                    // 入力合計
-                    var total = (int)dtSiirekensyu.AsEnumerable().Sum(s => s.Field<decimal>("売上金額"));
-                    // 検収済合計
-                    var kensyuSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") == "済")
-                        .Sum(s => s.Field<decimal>("売上金額"));
-                    // 未検収合計
-                    var mikenSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") != "済")
-                        .Sum(s => s.Field<decimal>("売上金額"));
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+                return;
+            }
 
-                    // gridにバインド
-                    gridTokuisakiKensyu.DataSource = dtSiirekensyu;
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+                return;
+            }
 
-                    // カンマを付けてテキストボックスに入れる
-                    txtInputTotal.Text = String.Format("{0:#,0}", total);
-                    txtKensyuTotal.Text = String.Format("{0:#,0}", kensyuSum);
-                    txtMikensyuTotal.Text = String.Format("{0:#,0}", mikenSum);
 
-                    int rowCnt = 0;
-                    foreach (var row in gridTokuisakiKensyu.Rows)
+
+            try
+            {
+                A0660_TokuisakiUriageKakunin_B siirekakuninB = new A0660_TokuisakiUriageKakunin_B();
+
+                // 検索文字列格納用
+                string[] arrSerach = new string[7];
+                // 出力順条件取得用
+                string[] arrOrder = new string[2];
+                // 表示条件取得用
+                string[] arrDisplay = new string[3];
+
+                arrSerach[0] = labelSet_Tokuisaki.CodeTxtText;  // 得意先コード
+                arrSerach[1] = txtDenpyoYMDStart.Text;          // 伝票年月日start
+                arrSerach[2] = txtDenpyoYMDEnd.Text;            // 伝票年月日end
+                arrSerach[3] = labelSet_Daibunrui.CodeTxtText;  // 大分類コード
+                arrSerach[4] = labelSet_Chubunrui.CodeTxtText;  // 中分類コード
+                arrSerach[5] = txtKataban.Text;                 // 品名・型番
+                arrSerach[6] = txtBiko.Text;                    // 備考
+
+                arrOrder[0] = radOutOrder.radbtn0.Checked.ToString().ToUpper();   // 出力順　日付・伝票番号順
+                arrOrder[1] = radOutOrder.radbtn1.Checked.ToString().ToUpper();   // 出力順　型番・日付順
+
+                arrDisplay[0] = radDisplay.radbtn0.Checked.ToString().ToUpper();  // 表示　すべて
+                arrDisplay[1] = radDisplay.radbtn1.Checked.ToString().ToUpper();  // 表示　未検収
+                arrDisplay[2] = radDisplay.radbtn2.Checked.ToString().ToUpper();  // 表示　検収済
+
+                DataTable dtSiirekensyu = siirekakuninB.getSiireData(arrSerach, arrOrder, arrDisplay);
+
+                // 入力合計
+                var total = (int)dtSiirekensyu.AsEnumerable().Sum(s => s.Field<decimal>("売上金額"));
+                // 検収済合計
+                var kensyuSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") == "済")
+                    .Sum(s => s.Field<decimal>("売上金額"));
+                // 未検収合計
+                var mikenSum = (int)dtSiirekensyu.AsEnumerable().Where(s => s.Field<string>("検収状態") != "済")
+                    .Sum(s => s.Field<decimal>("売上金額"));
+
+                // gridにバインド
+                gridTokuisakiKensyu.DataSource = dtSiirekensyu;
+
+                // カンマを付けてテキストボックスに入れる
+                txtInputTotal.Text = String.Format("{0:#,0}", total);
+                txtKensyuTotal.Text = String.Format("{0:#,0}", kensyuSum);
+                txtMikensyuTotal.Text = String.Format("{0:#,0}", mikenSum);
+
+                int rowCnt = 0;
+                foreach (var row in gridTokuisakiKensyu.Rows)
+                {
+                    // 済の行は赤くする
+                    if (gridTokuisakiKensyu.Rows[rowCnt].Cells[9].Value.ToString().Trim().Equals("済"))
                     {
-                        // 済の行は赤くする
-                        if (gridTokuisakiKensyu.Rows[rowCnt].Cells[9].Value.ToString().Trim().Equals("済"))
-                        {
-                            gridTokuisakiKensyu.Rows[rowCnt].DefaultCellStyle.ForeColor = Color.Red;
-                        }
-                        else
-                        {
-                            gridTokuisakiKensyu.Rows[rowCnt].DefaultCellStyle.ForeColor = Color.Empty;
-                        }
-                        rowCnt++;
+                        gridTokuisakiKensyu.Rows[rowCnt].DefaultCellStyle.ForeColor = Color.Red;
                     }
-
+                    else
+                    {
+                        gridTokuisakiKensyu.Rows[rowCnt].DefaultCellStyle.ForeColor = Color.Empty;
+                    }
+                    rowCnt++;
                 }
             }
             catch (Exception ex)
@@ -384,7 +452,7 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
                 // 再度データ取得
                 getTokuisakiKensyu();
                 // 成功メッセージ表示
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
             }
             catch (Exception ex)
@@ -444,6 +512,13 @@ namespace KATO.Form.A0660_TokuisakiUriageKakunin
             delFormClear(this, gridTokuisakiKensyu);
             labelSet_Tokuisaki.CodeTxtText = "";
             labelSet_Tokuisaki.codeTxt.Focus();
+
+            // 伝票年月日の設定
+            txtDenpyoYMDStart.setUp(0);
+
+            txtDenpyoYMDEnd.setUp(2);
+            DateTime dateYMDStart = DateTime.Parse(txtDenpyoYMDEnd.Text);
+            txtDenpyoYMDStart.Text = dateYMDStart.AddMonths(-1).ToString().Substring(0, 8) + "01";
         }
 
         /// <summary>

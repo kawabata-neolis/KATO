@@ -1313,6 +1313,8 @@ namespace KATO.Form.Z0000
 
                     case "66":
                         //得意先別売上検収入力＆確認
+                        A0660_TokuisakiUriageKakunin.A0660_TokuisakiUriageKakunin tokuisakiuriakegakunin = new A0660_TokuisakiUriageKakunin.A0660_TokuisakiUriageKakunin(this);
+                        tokuisakiuriakegakunin.ShowDialog();
                         break;
 
                     case "67":

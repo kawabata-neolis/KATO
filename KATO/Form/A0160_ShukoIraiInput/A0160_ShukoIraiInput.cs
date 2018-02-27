@@ -575,6 +575,9 @@ namespace KATO.Form.A0160_ShukoIraiInput
             //データ追加用（データ内容）
             List<string> lstData = new List<string>();
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //文字判定(出庫年月日)
             if (txtYMD.blIsEmpty() == false)
             {
@@ -596,13 +599,6 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 lblsetTantosha.Focus();
                 return;
             }
-            //担当者コードが正しくない場合
-            else if (lblsetTantosha.chkTxtTantosha() == true)
-            {
-                //担当者にフォーカス
-                lblsetTantosha.Focus();
-                return;
-            }
 
             //文字判定(出庫営業所)
             if (lblsetShukoEigyosho.codeTxt.blIsEmpty() == false)
@@ -614,27 +610,13 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 lblsetShukoEigyosho.Focus();
                 return;
             }
-            //出庫営業所コードが正しくない場合
-            else if (lblsetShukoEigyosho.chkTxtEigyousho() == true)
-            {
-                //出庫営業所にフォーカス
-                lblsetShukoEigyosho.Focus();
-                return;
-            }
-
+            
             //文字判定(大分類)
             if (lblsetDaibunrui.codeTxt.blIsEmpty() == false)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                //大分類にフォーカス
-                lblsetDaibunrui.Focus();
-                return;
-            }
-            //大分類コードが正しくない場合
-            else if (lblsetDaibunrui.chkTxtDaibunrui() == true)
-            {
                 //大分類にフォーカス
                 lblsetDaibunrui.Focus();
                 return;
@@ -650,14 +632,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 lblsetChubunrui.Focus();
                 return;
             }
-            //中分類コードが正しくない場合
-            else if (lblsetChubunrui.chkTxtChubunrui(lblsetDaibunrui.CodeTxtText) == true)
-            {
-                //中分類にフォーカス
-                lblsetChubunrui.Focus();
-                return;
-            }
-
+            
             //文字判定(メーカー)
             if (lblsetMaker.codeTxt.blIsEmpty() == false)
             {
@@ -668,14 +643,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 lblsetMaker.Focus();
                 return;
             }
-            //メーカーコードが正しくない場合
-            else if (lblsetMaker.chkTxtMaker() == true)
-            {
-                //メーカーにフォーカス
-                lblsetMaker.Focus();
-                return;
-            }
-
+            
             //文字判定(数量)
             if (txtSu.blIsEmpty() == false)
             {
@@ -706,6 +674,87 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 basemessagebox.ShowDialog();
                 //品名にフォーカス
                 txtHinmei.Focus();
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMD.Focus();
+
+                return;
+            }
+            else
+            {
+                txtYMD.Text = strYMDformat;
+            }
+
+            //担当者コードが正しくない場合
+            if (lblsetTantosha.chkTxtTantosha() == true)
+            {
+                //担当者にフォーカス
+                lblsetTantosha.Focus();
+                return;
+            }
+
+            //出庫営業所コードが正しくない場合
+            if (lblsetShukoEigyosho.chkTxtEigyousho() == true)
+            {
+                //出庫営業所にフォーカス
+                lblsetShukoEigyosho.Focus();
+                return;
+            }
+
+            //大分類コードが正しくない場合
+            if (lblsetDaibunrui.chkTxtDaibunrui() == true)
+            {
+                //大分類にフォーカス
+                lblsetDaibunrui.Focus();
+                return;
+            }
+
+            //中分類コードが正しくない場合
+            if (lblsetChubunrui.chkTxtChubunrui(lblsetDaibunrui.CodeTxtText) == true)
+            {
+                //中分類にフォーカス
+                lblsetChubunrui.Focus();
+                return;
+            }
+
+            //メーカーコードが正しくない場合
+            if (lblsetMaker.chkTxtMaker() == true)
+            {
+                //メーカーにフォーカス
+                lblsetMaker.Focus();
+                return;
+            }
+
+            //数量、数値チェック
+            if (txtSu.chkMoneyText())
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された数値が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtSu.Focus();
+                return;
+            }
+
+            //単価、数値チェック
+            if (txtTanka.chkMoneyText())
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された数値が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtTanka.Focus();
                 return;
             }
 

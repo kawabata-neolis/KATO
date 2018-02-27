@@ -105,17 +105,17 @@
             this.txtNyuryokuYMDstart.Location = new System.Drawing.Point(333, 213);
             this.txtNyuryokuYMDstart.MaxLength = 10;
             this.txtNyuryokuYMDstart.Name = "txtNyuryokuYMDstart";
-            this.txtNyuryokuYMDstart.Size = new System.Drawing.Size(194, 22);
+            this.txtNyuryokuYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDstart.TabIndex = 1;
             this.txtNyuryokuYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtNyuryokuYMDend
             // 
             this.txtNyuryokuYMDend.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtNyuryokuYMDend.Location = new System.Drawing.Point(595, 213);
+            this.txtNyuryokuYMDend.Location = new System.Drawing.Point(498, 213);
             this.txtNyuryokuYMDend.MaxLength = 10;
             this.txtNyuryokuYMDend.Name = "txtNyuryokuYMDend";
-            this.txtNyuryokuYMDend.Size = new System.Drawing.Size(194, 22);
+            this.txtNyuryokuYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDend.TabIndex = 2;
             this.txtNyuryokuYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -123,7 +123,7 @@
             // 
             this.baseLabel3.AutoSize = true;
             this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(545, 216);
+            this.baseLabel3.Location = new System.Drawing.Point(448, 216);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(23, 15);
             this.baseLabel3.strToolTip = null;
@@ -135,7 +135,7 @@
             // 
             this.baseLabel4.AutoSize = true;
             this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(228, 271);
+            this.baseLabel4.Location = new System.Drawing.Point(228, 263);
             this.baseLabel4.Name = "baseLabel4";
             this.baseLabel4.Size = new System.Drawing.Size(87, 15);
             this.baseLabel4.strToolTip = null;
@@ -146,10 +146,10 @@
             // txtDenpyoYMDstart
             // 
             this.txtDenpyoYMDstart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMDstart.Location = new System.Drawing.Point(333, 268);
+            this.txtDenpyoYMDstart.Location = new System.Drawing.Point(333, 260);
             this.txtDenpyoYMDstart.MaxLength = 10;
             this.txtDenpyoYMDstart.Name = "txtDenpyoYMDstart";
-            this.txtDenpyoYMDstart.Size = new System.Drawing.Size(194, 22);
+            this.txtDenpyoYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDstart.TabIndex = 3;
             this.txtDenpyoYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -157,7 +157,7 @@
             // 
             this.baseLabel5.AutoSize = true;
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(545, 271);
+            this.baseLabel5.Location = new System.Drawing.Point(448, 263);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(23, 15);
             this.baseLabel5.strToolTip = null;
@@ -168,10 +168,10 @@
             // txtDenpyoYMDend
             // 
             this.txtDenpyoYMDend.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMDend.Location = new System.Drawing.Point(595, 268);
+            this.txtDenpyoYMDend.Location = new System.Drawing.Point(498, 260);
             this.txtDenpyoYMDend.MaxLength = 10;
             this.txtDenpyoYMDend.Name = "txtDenpyoYMDend";
-            this.txtDenpyoYMDend.Size = new System.Drawing.Size(194, 22);
+            this.txtDenpyoYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDend.TabIndex = 4;
             this.txtDenpyoYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -183,7 +183,7 @@
             this.labelSet_TokuisakiCdTo.CodeTxtText = "";
             this.labelSet_TokuisakiCdTo.Controls.Add(this.nameLabel);
             this.labelSet_TokuisakiCdTo.LabelName = "～";
-            this.labelSet_TokuisakiCdTo.Location = new System.Drawing.Point(386, 307);
+            this.labelSet_TokuisakiCdTo.Location = new System.Drawing.Point(381, 307);
             this.labelSet_TokuisakiCdTo.Name = "labelSet_TokuisakiCdTo";
             this.labelSet_TokuisakiCdTo.ShowAppendFlg = false;
             this.labelSet_TokuisakiCdTo.Size = new System.Drawing.Size(82, 22);
@@ -214,7 +214,7 @@
             this.labelSet_TokuisakiCdFrom.CodeTxtText = "";
             this.labelSet_TokuisakiCdFrom.Controls.Add(this.object_c546be5e_21aa_4c18_8add_ae9797538958);
             this.labelSet_TokuisakiCdFrom.LabelName = "得意先コード";
-            this.labelSet_TokuisakiCdFrom.Location = new System.Drawing.Point(231, 307);
+            this.labelSet_TokuisakiCdFrom.Location = new System.Drawing.Point(226, 307);
             this.labelSet_TokuisakiCdFrom.Name = "labelSet_TokuisakiCdFrom";
             this.labelSet_TokuisakiCdFrom.ShowAppendFlg = false;
             this.labelSet_TokuisakiCdFrom.Size = new System.Drawing.Size(159, 22);
@@ -258,6 +258,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.A0150_UriageCheckPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0490_UriageSuiiHyo_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

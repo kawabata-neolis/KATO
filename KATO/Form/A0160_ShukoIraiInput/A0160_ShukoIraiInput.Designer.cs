@@ -158,6 +158,7 @@
             this.txtDenpyoNo.intShishagonyu = 0;
             this.txtDenpyoNo.Location = new System.Drawing.Point(380, 35);
             this.txtDenpyoNo.MaxLength = 8;
+            this.txtDenpyoNo.MinusFlg = true;
             this.txtDenpyoNo.Name = "txtDenpyoNo";
             this.txtDenpyoNo.Size = new System.Drawing.Size(72, 22);
             this.txtDenpyoNo.TabIndex = 1;
@@ -491,6 +492,7 @@
             this.txtSu.intShishagonyu = 0;
             this.txtSu.Location = new System.Drawing.Point(712, 212);
             this.txtSu.MaxLength = 8;
+            this.txtSu.MinusFlg = true;
             this.txtSu.Name = "txtSu";
             this.txtSu.Size = new System.Drawing.Size(112, 22);
             this.txtSu.TabIndex = 9;
@@ -508,6 +510,7 @@
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(930, 212);
             this.txtTanka.MaxLength = 8;
+            this.txtTanka.MinusFlg = false;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(114, 22);
             this.txtTanka.TabIndex = 10;
