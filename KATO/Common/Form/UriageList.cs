@@ -494,6 +494,21 @@ namespace KATO.Common.Form
             //検索項目を入れる用
             List<string> lstUriageView = new List<string>();
 
+            if (string.IsNullOrWhiteSpace(txtCalendarOpen.chkDateDataFormat(txtCalendarOpen.Text)))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                txtCalendarOpen.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtCalendarClose.chkDateDataFormat(txtCalendarClose.Text)))
+            {
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                basemessagebox.ShowDialog();
+                txtCalendarClose.Focus();
+                return;
+            }
+
             //担当者[0]
             lstUriageView.Add(labelSet_Tantousha.CodeTxtText);
             //取引先コード[1](表示は得意先)

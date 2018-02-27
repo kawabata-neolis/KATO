@@ -188,6 +188,12 @@ namespace KATO.Common.Form
             ShiharaiList_B shiharailistB = new ShiharaiList_B();
             try
             {
+                if (lblset_Shiresaki.chkTxtTorihikisaki())
+                {
+                    lblset_Shiresaki.codeTxt.Focus();
+                    return;
+                }
+
                 //データグリッドビュー部分
                 gridTokui.DataSource = shiharailistB.getDatagridView(lblset_Shiresaki.CodeTxtText);
 
