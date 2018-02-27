@@ -308,6 +308,14 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
                 basemessagebox.ShowDialog();
 
                 labelSet_Shiresaki.Focus();
+                return;
+            }
+
+            //仕入先チェック
+            if (labelSet_Shiresaki.chkTxtTorihikisaki())
+            {
+                labelSet_Shiresaki.Focus();
+                return;
             }
 
             //検索開始年月日に記入がある場合
@@ -324,7 +332,6 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
                     basemessagebox.ShowDialog();
 
                     txtDenpyoYMDStart.Focus();
-
                     return;
                 }
                 else
@@ -449,6 +456,78 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
         /// </summary>
         private void UpdateKensyuStatus()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+            
+            //仕入先チェック
+            if (labelSet_Shiresaki.chkTxtTorihikisaki())
+            {
+                labelSet_Shiresaki.Focus();
+                return;
+            }
+
+            //検索開始年月日に記入がある場合
+            if (txtDenpyoYMDStart.blIsEmpty())
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDStart.chkDateDataFormat(txtDenpyoYMDStart.Text);
+
+                //検索開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtDenpyoYMDStart.Focus();
+                    return;
+                }
+                else
+                {
+                    txtDenpyoYMDStart.Text = strYMDformat;
+                }
+            }
+
+            //検索終了年月日に記入がある場合
+            if (txtDenpyoYMDEnd.blIsEmpty())
+            {
+                //初期化
+                strYMDformat = "";
+
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtDenpyoYMDEnd.chkDateDataFormat(txtDenpyoYMDEnd.Text);
+
+                //検索終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtDenpyoYMDEnd.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtDenpyoYMDEnd.Text = strYMDformat;
+                }
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+                return;
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+                return;
+            }
+
             A0670_SiiresakiSiirekakunin_B siirekakuninB = new A0670_SiiresakiSiirekakunin_B();
             // ユーザ名取得
             string userName = SystemInformation.UserName;
