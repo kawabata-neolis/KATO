@@ -70,6 +70,7 @@
             this.txtTekaSub.intShishagonyu = 0;
             this.txtTekaSub.Location = new System.Drawing.Point(131, 45);
             this.txtTekaSub.MaxLength = 0;
+            this.txtTekaSub.MinusFlg = true;
             this.txtTekaSub.Name = "txtTekaSub";
             this.txtTekaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTekaSub.TabIndex = 18;
@@ -86,6 +87,7 @@
             this.txtTankaSub.intShishagonyu = 0;
             this.txtTankaSub.Location = new System.Drawing.Point(120, 45);
             this.txtTankaSub.MaxLength = 0;
+            this.txtTankaSub.MinusFlg = true;
             this.txtTankaSub.Name = "txtTankaSub";
             this.txtTankaSub.Size = new System.Drawing.Size(10, 22);
             this.txtTankaSub.TabIndex = 18;
@@ -102,6 +104,7 @@
             this.txtKin.intShishagonyu = 0;
             this.txtKin.Location = new System.Drawing.Point(849, 13);
             this.txtKin.MaxLength = 0;
+            this.txtKin.MinusFlg = false;
             this.txtKin.Name = "txtKin";
             this.txtKin.Size = new System.Drawing.Size(149, 22);
             this.txtKin.TabIndex = 5;
@@ -119,6 +122,7 @@
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(693, 13);
             this.txtTanka.MaxLength = 8;
+            this.txtTanka.MinusFlg = false;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(150, 22);
             this.txtTanka.TabIndex = 4;
@@ -276,6 +280,7 @@
             this.txtMasterTanka.intShishagonyu = 0;
             this.txtMasterTanka.Location = new System.Drawing.Point(849, 46);
             this.txtMasterTanka.MaxLength = 3;
+            this.txtMasterTanka.MinusFlg = false;
             this.txtMasterTanka.Name = "txtMasterTanka";
             this.txtMasterTanka.ReadOnly = true;
             this.txtMasterTanka.Size = new System.Drawing.Size(150, 22);
@@ -295,6 +300,7 @@
             this.txtChokinTanka.intShishagonyu = 0;
             this.txtChokinTanka.Location = new System.Drawing.Point(693, 45);
             this.txtChokinTanka.MaxLength = 3;
+            this.txtChokinTanka.MinusFlg = false;
             this.txtChokinTanka.Name = "txtChokinTanka";
             this.txtChokinTanka.ReadOnly = true;
             this.txtChokinTanka.Size = new System.Drawing.Size(150, 22);
@@ -314,6 +320,7 @@
             this.txtSu.intShishagonyu = 0;
             this.txtSu.Location = new System.Drawing.Point(576, 13);
             this.txtSu.MaxLength = 5;
+            this.txtSu.MinusFlg = true;
             this.txtSu.Name = "txtSu";
             this.txtSu.Size = new System.Drawing.Size(111, 22);
             this.txtSu.TabIndex = 3;
@@ -332,6 +339,7 @@
             this.txtShireritsu.intShishagonyu = 1;
             this.txtShireritsu.Location = new System.Drawing.Point(647, 46);
             this.txtShireritsu.MaxLength = 10;
+            this.txtShireritsu.MinusFlg = true;
             this.txtShireritsu.Name = "txtShireritsu";
             this.txtShireritsu.ReadOnly = true;
             this.txtShireritsu.Size = new System.Drawing.Size(40, 22);
@@ -363,6 +371,7 @@
             this.txtTeka.intShishagonyu = 0;
             this.txtTeka.Location = new System.Drawing.Point(422, 46);
             this.txtTeka.MaxLength = 0;
+            this.txtTeka.MinusFlg = true;
             this.txtTeka.Name = "txtTeka";
             this.txtTeka.ReadOnly = true;
             this.txtTeka.Size = new System.Drawing.Size(151, 22);

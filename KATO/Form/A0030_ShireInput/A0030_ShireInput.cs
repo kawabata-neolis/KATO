@@ -335,13 +335,8 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void addShireInput()
         {
-            object o;
-
             //伝票番号の確保
             int intDenpyoNo;
-
-            //発注番号（注文番号）の確保
-            string strHachuNo;
 
             decimal UnchinKin;
 
@@ -2151,10 +2146,16 @@ namespace KATO.Form.A0030_ShireInput
             {
                 decUnchin = 0;
             }
-            else
+
+            //数字チェック
+            if (txtUnchin.chkMoneyText())
             {
-                decUnchin = decimal.Parse(txtUnchin.Text);
+                txtUnchin.Focus();
+
+                blgood = false;
             }
+
+            decUnchin = decimal.Parse(txtUnchin.Text);
 
             //false判定でない場合
             if (blgood == true)
@@ -2237,6 +2238,14 @@ namespace KATO.Form.A0030_ShireInput
                 {
                     blgood = false;
                 }
+
+                //担当者コードのチェック
+                if (labelSet_Tantousha.chkTxtTantosha() == true)
+                {
+                    labelSet_Tantousha.Focus();
+
+                    blgood = false;
+                }
             }
 
             if (blgood)
@@ -2246,6 +2255,14 @@ namespace KATO.Form.A0030_ShireInput
                 //取引区分が空の場合
                 if (labelSet_Torihikikbn.ValueLabelText == "")
                 {
+                    blgood = false;
+                }
+
+                //取引区分のチェック
+                if (labelSet_Torihikikbn.chkTxtTorihikikbn())
+                {
+                    labelSet_Torihikikbn.Focus();
+
                     blgood = false;
                 }
             }
@@ -2272,6 +2289,24 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         //倉庫番号がない場合
                         if (!StringUtl.blIsEmpty(bvg[intgbCnt].labelSet_Eigyosho.ValueLabelText))
+                        {
+                            blgood = false;
+                        }
+
+                        //数量の数字チェック
+                        if (bvg[intgbCnt].txtSu.chkMoneyText())
+                        {
+                            blgood = false;
+                        }
+
+                        //単価の数字チェック
+                        if (bvg[intgbCnt].txtTanka.chkMoneyText())
+                        {
+                            blgood = false;
+                        }
+
+                        //倉庫番号チェック
+                        if (bvg[intgbCnt].labelSet_Eigyosho.chkTxtEigyousho())
                         {
                             blgood = false;
                         }
@@ -2303,23 +2338,32 @@ namespace KATO.Form.A0030_ShireInput
                     //発注原価のチェック
                     if (bvg[intgbCnt].txtTankaSub.Text != "0" && bvg[intgbCnt].txtTankaSub.Text != "")
                     {
-                        //商品マスタから仕入単価を得る
-                        ShouhinList_B shohinlistB = new ShouhinList_B();
-                        dtShireTanka = shohinlistB.getShireTanka(bvg[intgbCnt].txtShohinCd.Text);
-
-                        //仕入単価がある場合
-                        if (dtShireTanka.Rows.Count > 0)
+                        //数量の数字チェック
+                        if (bvg[intgbCnt].txtTanka.chkMoneyText())
                         {
-                            //発注単価より値段が高い場合
-                            if (int.Parse(bvg[intgbCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
+                            blgood = false;
+                        }
+
+                        if (blgood)
+                        {
+                            //商品マスタから仕入単価を得る
+                            ShouhinList_B shohinlistB = new ShouhinList_B();
+                            dtShireTanka = shohinlistB.getShireTanka(bvg[intgbCnt].txtShohinCd.Text);
+
+                            //仕入単価がある場合
+                            if (dtShireTanka.Rows.Count > 0)
                             {
-                                //"関連する受注データがないとメッセージ（OK）
-                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                                basemessagebox.ShowDialog();
+                                //発注単価より値段が高い場合
+                                if (int.Parse(bvg[intgbCnt].txtTanka.Text) < int.Parse(dtShireTanka.Rows[0][0].ToString()))
+                                {
+                                    //"関連する受注データがないとメッセージ（OK）
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "発注単価より高い価格です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                                    basemessagebox.ShowDialog();
 
-                                blgood = false;
+                                    blgood = false;
 
-                                bvg[intgbCnt].txtTanka.Focus();
+                                    bvg[intgbCnt].txtTanka.Focus();
+                                }
                             }
                         }
                     }
@@ -2530,6 +2574,20 @@ namespace KATO.Form.A0030_ShireInput
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "日付が範囲外です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                 }
+            }
+        }
+
+        ///<summary>
+        ///txtDenpyoNo_KeyPress
+        ///キープレスの処理
+        ///</summary>
+        private void txtDenpyoNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b'
+            && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
+            {
+                //押されたキーが 0～9でない場合は、イベントをキャンセルする
+                e.Handled = true;
             }
         }
     }

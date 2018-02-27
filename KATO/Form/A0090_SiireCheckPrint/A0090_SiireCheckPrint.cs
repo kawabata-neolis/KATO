@@ -209,6 +209,9 @@ namespace KATO.Form.A0090_SiireCheckPrint
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定（入力年月日（開始））
             if (txtInputYMDStart.blIsEmpty() == false)
             {
@@ -255,6 +258,91 @@ namespace KATO.Form.A0090_SiireCheckPrint
                 txtDenpyoYMDEnd.Focus();
 
                 return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtInputYMDStart.chkDateDataFormat(txtInputYMDStart.Text);
+
+            //開始入力年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtInputYMDStart.Focus();
+
+                return;
+            }
+            else
+            {
+                txtInputYMDStart.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtInputYMDEnd.chkDateDataFormat(txtInputYMDEnd.Text);
+
+            //終了入力年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtInputYMDEnd.Focus();
+
+                return;
+            }
+            else
+            {
+                txtInputYMDEnd.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoYMDStart.chkDateDataFormat(txtDenpyoYMDStart.Text);
+
+            //開始伝票年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDStart.Focus();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoYMDStart.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoYMDEnd.chkDateDataFormat(txtDenpyoYMDEnd.Text);
+
+            //終了伝票年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDEnd.Focus();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoYMDEnd.Text = strYMDformat;
             }
 
             // ビジネス層のインスタンス生成

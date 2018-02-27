@@ -740,6 +740,9 @@ namespace KATO.Form.A0100_HachuInput
             //データ追加用（データ内容）
             List<string> lstData = new List<string>();
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //受注伝票があるものは弾く
             if (btnF01.Enabled == false)
             {
@@ -830,6 +833,106 @@ namespace KATO.Form.A0100_HachuInput
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtNoki.Focus();
+                return (blAddEnd);
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtHachuYMD.chkDateDataFormat(txtHachuYMD.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtHachuYMD.Focus();
+
+                return (blAddEnd);
+            }
+            else
+            {
+                txtHachuYMD.Text = strYMDformat;
+            }
+
+            //担当者チェック
+            if (labelSet_Hachusha.chkTxtTantosha())
+            {
+                labelSet_Hachusha.Focus();
+
+                return (blAddEnd);
+            }
+
+            //仕入先チェック
+            if (textSet_Torihikisaki.chkTxtTorihikisaki())
+            {
+                textSet_Torihikisaki.Focus();
+
+                return (blAddEnd);
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+
+                return (blAddEnd);
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+
+                return (blAddEnd);
+            }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+
+                return (blAddEnd);
+            }
+
+            //発注数量、数値チェック
+            if (txtHachusu.chkMoneyText())
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された数値が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtHachusu.Focus();
+
+                return (blAddEnd);
+            }
+
+            //発注単価、数値チェック
+            if (chkMoneyText() == true)
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された文字列が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                cmbHachutan.Focus();
+
+                return (blAddEnd);
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            strYMDformat = txtNoki.chkDateDataFormat(txtNoki.Text);
+
+            //納期、カレンダ―チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtNoki.Focus();
+
                 return (blAddEnd);
             }
 
@@ -1663,7 +1766,7 @@ namespace KATO.Form.A0100_HachuInput
             //PDF作成後の入れ物
             string strFile = "";
 
-            //取引先コードがない場合
+            //発注番号コードがない場合
             if (txtHachuban.blIsEmpty() == false)
             {
                 //新規登録（印刷処理用フラグを渡す）
@@ -1733,11 +1836,55 @@ namespace KATO.Form.A0100_HachuInput
         ///</summary>
         private void txtKeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b'
+            && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        ///     途中入力の場合のチェックロジック
+        /// </summary>
+        /// <returns>
+        ///    エラーの場合：true 正常な場合：false
+        /// </returns>
+        public bool chkMoneyText()
+        {
+            // テキストボックスの値を取得
+            string strTextBoxValue = cmbHachutan.Text;
+
+            if (strTextBoxValue == "")
+            {
+                return false;
+            }
+
+            if (strTextBoxValue.Equals(""))
+            {
+                if (this.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
+                }
+                else if (this.Parent.Parent is BaseForm)
+                {
+                    //データ存在なしメッセージ（OK）
+                    BaseMessageBox basemessagebox_Nodata = new BaseMessageBox(this.Parent.Parent, "", "数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox_Nodata.ShowDialog();
+
+                    this.Text = "";
+                }
+
+                return true;
+            }
+
+            cmbHachutan.Text = strTextBoxValue;
+
+            return false;
         }
     }
 }

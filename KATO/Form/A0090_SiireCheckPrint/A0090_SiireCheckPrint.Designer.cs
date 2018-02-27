@@ -43,6 +43,11 @@
             this.labelSet_SiiresakiCdTo = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 11;
@@ -97,11 +102,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabStop = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // baseLabel1
             // 
@@ -247,7 +247,7 @@
             this.labelSet_SiiresakiCdTo.ValueLabelSize = 0;
             this.labelSet_SiiresakiCdTo.ValueLabelText = "";
             // 
-            // A0090_SiireCheakPrint
+            // A0090_SiireCheckPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,10 +264,11 @@
             this.Controls.Add(this.lblKikan);
             this.Controls.Add(this.txtUserId);
             this.Controls.Add(this.baseLabel1);
-            this.Name = "A0090_SiireCheakPrint";
+            this.Name = "A0090_SiireCheckPrint";
             this.Text = "A0090_SiireCheakPrint";
             this.Load += new System.EventHandler(this.A0090_SiireCheckPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0090_SiireCheckPrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

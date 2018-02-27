@@ -430,10 +430,6 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             //検索開始得意先コードのチェック
             if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
             {
-                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された文字列が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
                 lblsetTokuisakiCdopen.Focus();
 
                 return;
@@ -442,16 +438,11 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             //検索終了得意先コードのチェック
             if (lblsetTokuisakiCdclose.chkTxtTorihikisaki() == true)
             {
-                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された文字列が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
                 lblsetTokuisakiCdclose.Focus();
 
                 return;
             }
-
-
+            
             //パワーユーザーの場合
             if ("1".Equals(this.etsuranFlg))
             {

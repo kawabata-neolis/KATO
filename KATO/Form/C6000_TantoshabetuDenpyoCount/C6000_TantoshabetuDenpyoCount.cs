@@ -85,9 +85,13 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             //初期値の設定
             txtDenpyoOpen.setUp(0);
             txtDenpyoClose.setUp(0);
-            txtTantoshaCdOpen.Text = "0000";
-            txtTantoshaCdClose.Text = "9999";
+            txtTantoshaCdOpen.CodeTxtText = "0000";
+            txtTantoshaCdClose.CodeTxtText = "9999";
             txtPrintCount.Text = "1";
+
+            //検索しない
+            txtTantoshaCdOpen.SearchOn = false;
+            txtTantoshaCdClose.SearchOn = false;
 
             SetUpGrid();
         }
@@ -254,65 +258,6 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             }
         }
 
-        ///<summary>
-        ///judTxtTantouTxtKeyDown
-        ///キー入力判定（検索ありテキストボックス）
-        ///</summary>
-        private void judTxtTantouTxtKeyDown(object sender, KeyEventArgs e)
-        {
-            //キー入力情報によって動作を変える
-            switch (e.KeyCode)
-            {
-                case Keys.Tab:
-                    break;
-                case Keys.Left:
-                    break;
-                case Keys.Right:
-                    break;
-                case Keys.Up:
-                    break;
-                case Keys.Down:
-                    break;
-                case Keys.Delete:
-                    break;
-                case Keys.Back:
-                    break;
-                case Keys.Enter:
-                    //TABボタンと同じ効果
-                    SendKeys.Send("{TAB}");
-                    break;
-                case Keys.F1:
-                    break;
-                case Keys.F2:
-                    break;
-                case Keys.F3:
-                    break;
-                case Keys.F4:
-                    break;
-                case Keys.F5:
-                    break;
-                case Keys.F6:
-                    break;
-                case Keys.F7:
-                    break;
-                case Keys.F8:
-                    break;
-                case Keys.F9:
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    showTantoushaList();
-                    break;
-                case Keys.F10:
-                    break;
-                case Keys.F11:
-                    break;
-                case Keys.F12:
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
         /// <summary>
         /// judBtnClick
         /// ボタンの反応
@@ -340,94 +285,6 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             }
         }
 
-        ///<summary>
-        ///showTantoushaList
-        ///コード入力項目でのキー入力判定
-        ///</summary>
-        private void showTantoushaList()
-        {
-            //openの方のテキストボックスの場合
-            if(this.ActiveControl.Name == "txtTantoshaCdOpen")
-            {
-                intSelectTextBox = 1;
-            }
-            //closeの方のテキストボックスの場合
-            else
-            {
-                intSelectTextBox = 2;
-            }
-
-            //担当者リストのインスタンス生成
-            TantoushaList tantoushalist = new TantoushaList(this, intSelectTextBox);
-            try
-            {
-                //担当者区分リストの表示、画面IDを渡す
-                tantoushalist.StartPosition = FormStartPosition.Manual;
-                tantoushalist.intFrmKind = CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT;
-                tantoushalist.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                //エラーロギング
-                new CommonException(ex);
-                return;
-            }
-        }
-
-        ///<summary>
-        ///setTantoushaOpen
-        ///取り出したデータをテキストボックスに配置
-        ///</summary>
-        public void setTantoushaOpen(DataTable dtSelectData)
-        {
-            txtTantoshaCdOpen.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
-        }
-
-        ///<summary>
-        ///setTantoushaClose
-        ///取り出したデータをテキストボックスに配置
-        ///</summary>
-        public void setTantoushaClose(DataTable dtSelectData)
-        {
-            txtTantoshaCdClose.Text = dtSelectData.Rows[0]["担当者コード"].ToString();
-        }
-
-        ///<summary>
-        ///CloseTantoshaList
-        ///担当者リストが閉じたらコード記入欄にフォーカス
-        ///</summary>
-        public void CloseTantoshaList(int intSelectTextBox)
-        {
-            //openのテキストボックスの場合
-            if (intSelectTextBox == 1)
-            {
-                txtTantoshaCdOpen.Focus();
-            }
-            //closeのテキストボックスの場合
-            else
-            {
-                txtTantoshaCdClose.Focus();
-            }
-        }
-
-        ///<summary>
-        ///txtTantoshaCdOpen_Leave
-        ///code入力箇所からフォーカスが外れた時
-        ///</summary>
-        private void txtTantoshaCdOpen_Leave(object sender, EventArgs e)
-        {
-            this.txtTantoshaCdOpen.Text = this.txtTantoshaCdOpen.Text.ToString().PadLeft(4, '0');
-        }
-
-        ///<summary>
-        ///txtTantoshaCdClose_Leave
-        ///code入力箇所からフォーカスが外れた時
-        ///</summary>
-        private void txtTantoshaCdClose_Leave(object sender, EventArgs e)
-        {
-            this.txtTantoshaCdClose.Text = this.txtTantoshaCdClose.Text.ToString().PadLeft(4, '0');
-        }
-
         /// <summary>
         /// setDataView
         /// データグリッドビューにデータを表示
@@ -440,6 +297,90 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             //検索時のデータ取り出し先
             DataTable dtSetView;
 
+            // 空文字判定（開始年月日）
+            if (txtDenpyoOpen.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoOpen.Focus();
+
+                return;
+            }
+
+            // 空文字判定（終了年月日）
+            if (txtDenpyoOpen.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoOpen.Focus();
+
+                return;
+            }
+
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoOpen.chkDateDataFormat(txtDenpyoOpen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoOpen.Focus();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoOpen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoClose.chkDateDataFormat(txtDenpyoClose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoClose.Focus();
+
+                return;
+            }
+            else
+            {
+                txtDenpyoClose.Text = strYMDformat;
+            }
+
+            //開始担当者コードのチェック
+            if (txtTantoshaCdOpen.chkTxtTantosha() == true)
+            {
+                txtTantoshaCdOpen.Focus();
+
+                return;
+            }
+
+            //終了担当者コードのチェック
+            if (txtTantoshaCdClose.chkTxtTantosha() == true)
+            {
+                txtTantoshaCdClose.Focus();
+
+                return;
+            }
+            
             //各取り出しデータ
             int intJuchu = 0;
             int intHachu = 0;
@@ -514,8 +455,8 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
             //初期値
             txtDenpyoOpen.setUp(0);
             txtDenpyoClose.setUp(0);
-            txtTantoshaCdOpen.Text = "0000";
-            txtTantoshaCdClose.Text = "9999";
+            txtTantoshaCdOpen.CodeTxtText = "0000";
+            txtTantoshaCdClose.CodeTxtText = "9999";
 
             txtDenpyoOpen.Focus();
         }
@@ -562,8 +503,8 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 //入力項目の記入に漏れがある場合
                 if (txtDenpyoOpen.blIsEmpty() == false || 
                     txtDenpyoClose.blIsEmpty() == false ||
-                    txtTantoshaCdOpen.blIsEmpty() == false ||
-                    txtTantoshaCdClose.blIsEmpty() == false)
+                    txtTantoshaCdOpen.codeTxt.blIsEmpty() == false ||
+                    txtTantoshaCdClose.codeTxt.blIsEmpty() == false)
                 {
                     //例外発生メッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "対象のデータはありません", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);

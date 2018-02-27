@@ -376,5 +376,107 @@ namespace KATO.Common.Ctl
                 SendKeys.Send("{TAB}");
             }
         }
+
+        ///<summary>
+        /// chkTxtTokuisaki
+        /// ファンクション機能の得意先コードエラーチェック処理
+        /// 引数　：なし
+        /// 戻り値：エラー発生【true】
+        ///</summary>
+        public bool chkTxtTokuisaki()
+        {
+            // データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.valueTextText = "";
+                this.AppendLabelText = "";
+                return false;
+            }
+
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.valueTextText = "";
+                this.AppendLabelText = "";
+                this.CodeTxtText = "";
+
+                return true;
+            }
+
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                //4文字以下の場合0パティング
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
+            }
+
+            // データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_TokuisakiAS400_SELECT_LEAVE");
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return false;
+                }
+
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
+
+                // SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                // SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    this.CodeTxtText = dtSetCd.Rows[0]["得意先コード"].ToString();
+                    this.valueTextText = dtSetCd.Rows[0]["得意先名"].ToString();
+
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    this.valueTextText = "";
+                    this.AppendLabelText = "";
+                    this.CodeTxtText = "";
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // データロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return true;
+
+            }
+        }
     }
 }

@@ -50,11 +50,17 @@
             this.lblPrintCount = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtPrintCount = new KATO.Common.Ctl.BaseText();
             this.lblAida2 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtTantoshaCdOpen = new KATO.Common.Ctl.BaseText();
-            this.txtTantoshaCdClose = new KATO.Common.Ctl.BaseText();
+            this.txtTantoshaCdOpen = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.txtTantoshaCdClose = new KATO.Common.Ctl.LabelSet_Tantousha();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbViewData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewData)).BeginInit();
+            this.txtTantoshaCdClose.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -99,10 +105,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // lblDenoyoYMD
             // 
@@ -182,6 +184,7 @@
             this.gridViewData.AllowUserToAddRows = false;
             this.gridViewData.AllowUserToResizeColumns = false;
             this.gridViewData.AllowUserToResizeRows = false;
+            this.gridViewData.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -336,27 +339,51 @@
             // 
             // txtTantoshaCdOpen
             // 
-            this.txtTantoshaCdOpen.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTantoshaCdOpen.Location = new System.Drawing.Point(575, 39);
-            this.txtTantoshaCdOpen.MaxLength = 4;
+            this.txtTantoshaCdOpen.AppendLabelSize = 0;
+            this.txtTantoshaCdOpen.AppendLabelText = "";
+            this.txtTantoshaCdOpen.CodeTxtSize = 40;
+            this.txtTantoshaCdOpen.CodeTxtText = "";
+            this.txtTantoshaCdOpen.LabelName = "";
+            this.txtTantoshaCdOpen.Location = new System.Drawing.Point(571, 38);
             this.txtTantoshaCdOpen.Name = "txtTantoshaCdOpen";
-            this.txtTantoshaCdOpen.Size = new System.Drawing.Size(40, 22);
+            this.txtTantoshaCdOpen.ShowAppendFlg = false;
+            this.txtTantoshaCdOpen.Size = new System.Drawing.Size(47, 22);
+            this.txtTantoshaCdOpen.SpaceCodeValue = 4;
+            this.txtTantoshaCdOpen.SpaceNameCode = 4;
+            this.txtTantoshaCdOpen.SpaceValueAppend = 4;
             this.txtTantoshaCdOpen.TabIndex = 3;
-            this.txtTantoshaCdOpen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTantouTxtKeyDown);
-            this.txtTantoshaCdOpen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTantoshabetuDenpyoCount_KeyUp);
-            this.txtTantoshaCdOpen.Leave += new System.EventHandler(this.txtTantoshaCdOpen_Leave);
+            this.txtTantoshaCdOpen.ValueLabelSize = 0;
+            this.txtTantoshaCdOpen.ValueLabelText = "";
             // 
             // txtTantoshaCdClose
             // 
-            this.txtTantoshaCdClose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTantoshaCdClose.Location = new System.Drawing.Point(676, 39);
-            this.txtTantoshaCdClose.MaxLength = 4;
+            this.txtTantoshaCdClose.AppendLabelSize = 0;
+            this.txtTantoshaCdClose.AppendLabelText = "";
+            this.txtTantoshaCdClose.CodeTxtSize = 40;
+            this.txtTantoshaCdClose.CodeTxtText = "";
+            this.txtTantoshaCdClose.Controls.Add(this.baseLabel1);
+            this.txtTantoshaCdClose.LabelName = "";
+            this.txtTantoshaCdClose.Location = new System.Drawing.Point(671, 38);
             this.txtTantoshaCdClose.Name = "txtTantoshaCdClose";
-            this.txtTantoshaCdClose.Size = new System.Drawing.Size(40, 22);
+            this.txtTantoshaCdClose.ShowAppendFlg = false;
+            this.txtTantoshaCdClose.Size = new System.Drawing.Size(52, 22);
+            this.txtTantoshaCdClose.SpaceCodeValue = 4;
+            this.txtTantoshaCdClose.SpaceNameCode = 4;
+            this.txtTantoshaCdClose.SpaceValueAppend = 4;
             this.txtTantoshaCdClose.TabIndex = 4;
-            this.txtTantoshaCdClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtTantouTxtKeyDown);
-            this.txtTantoshaCdClose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTantoshabetuDenpyoCount_KeyUp);
-            this.txtTantoshaCdClose.Leave += new System.EventHandler(this.txtTantoshaCdClose_Leave);
+            this.txtTantoshaCdClose.ValueLabelSize = 0;
+            this.txtTantoshaCdClose.ValueLabelText = "";
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(2, 3);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(0, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 0;
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // C6000_TantoshabetuDenpyoCount
             // 
@@ -378,6 +405,7 @@
             this.Text = "C6000_TantoshabetuDenpyoCount";
             this.Load += new System.EventHandler(this.C6000_TantoshabetuDenpyoCount_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C6000_TantoshabetuDenpyoCount_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -404,6 +432,8 @@
             this.gbViewData.ResumeLayout(false);
             this.gbViewData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewData)).EndInit();
+            this.txtTantoshaCdClose.ResumeLayout(false);
+            this.txtTantoshaCdClose.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,7 +459,8 @@
         private Common.Ctl.BaseLabel lblPrintCount;
         private Common.Ctl.BaseText txtPrintCount;
         private Common.Ctl.BaseLabel lblAida2;
-        private Common.Ctl.BaseText txtTantoshaCdOpen;
-        private Common.Ctl.BaseText txtTantoshaCdClose;
+        private Common.Ctl.LabelSet_Tantousha txtTantoshaCdOpen;
+        private Common.Ctl.LabelSet_Tantousha txtTantoshaCdClose;
+        private Common.Ctl.BaseLabel baseLabel1;
     }
 }

@@ -127,21 +127,6 @@ namespace KATO.Common.Business
                     torihikisaki.CloseTantoshaList();
                     break;
                 }
-                //else if (intFrmKind == CommonTeisu.FRM_MONYURYOKU && frm.Name.Equals("B250_MOnyuryoku"))
-                //{
-                //    B0250_MOnyuryoku monyuryoku = (B0250_MOnyuryoku)frm;
-                //    monyuryoku.CloseTantoshaList();
-                //    break;
-                //}
-                //担当者別伝票処理件数のフォームを探す
-                else if (intFrmKind == CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT && frm.Name.Equals("C6000_TantoshabetuDenpyoCount"))
-                {
-                    //データを連れてくるため、newをしないこと
-                    C6000_TantoshabetuDenpyoCount tantoushabetudenpyocount = (C6000_TantoshabetuDenpyoCount)frm;
-
-                    tantoushabetudenpyocount.CloseTantoshaList(intSelectTextBox);
-                    break;
-                }
             }
         }
 
@@ -201,33 +186,6 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
-                    //担当者別伝票処理件数
-                    case CommonTeisu.FRM_TANTOSHABETUDENPYOCOUNT:
-                        //全てのフォームの中から
-                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
-                        {                            
-                            //目的のフォームを探す
-                            if (frm.Name.Equals("C6000_TantoshabetuDenpyoCount"))
-                            {
-                                //データを連れてくるため、newをしないこと
-                                C6000_TantoshabetuDenpyoCount tantoshabetudenpyocount = (C6000_TantoshabetuDenpyoCount)frm;
-
-                                //openの方のテキストボックスの場合
-                                if (intSelectTextBox == 1)
-                                {
-                                    tantoshabetudenpyocount.setTantoushaOpen(dtSelectData);
-                                }
-                                //closeの方のテキストボックスの場合
-                                else
-                                {
-                                    tantoshabetudenpyocount.setTantoushaClose(dtSelectData);
-                                }
-
-                                break;
-                            }
-                        }
-                        break;
-
                     default:
                         break;
                 }

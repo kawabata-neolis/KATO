@@ -24,6 +24,14 @@ namespace KATO.Common.Ctl
     public partial class TextSet_Torihikisaki : BaseTextTextSet
     {
         /// <summary>
+        /// searchOn
+        /// 存在チェックを行う場合 true 
+        /// 存在チェックを行わない場合 false
+        /// </summary>
+        public bool SearchOn = true;
+
+
+        /// <summary>
         /// LabelSet_Tokuisaki
         /// 読み込み時
         /// </summary>
@@ -108,6 +116,7 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent.Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                     return;
                 }
                 else
@@ -115,6 +124,7 @@ namespace KATO.Common.Ctl
                     //メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
+                    SendKeys.Send("+{TAB}");
                     return;
                 }
             }
@@ -125,6 +135,12 @@ namespace KATO.Common.Ctl
             if (this.CodeTxtText.Length < 4)
             {
                 this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+            }
+
+            // 存在チェックを行い
+            if (SearchOn == false)
+            {
+                return;
             }
 
             strSQLName = "C_LIST_Torihikisaki_SELECT_LEAVE";
@@ -374,6 +390,134 @@ namespace KATO.Common.Ctl
             {
                 //TABボタンと同じ効果
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        ///<summary>
+        /// chkTxtTorihikisaki
+        /// ファンクション機能の取引先コードエラーチェック処理
+        /// 引数　：なし
+        /// 戻り値：エラー発生【true】
+        ///</summary>
+        public bool chkTxtTorihikisaki()
+        {
+            // データ渡し用
+            List<string> lstStringSQL = new List<string>();
+
+            DataTable dtSetCd;
+
+            if (this.CodeTxtText == "" || String.IsNullOrWhiteSpace(this.CodeTxtText).Equals(true))
+            {
+                this.valueTextText = "";
+                this.AppendLabelText = "";
+                return false;
+            }
+
+            // 前後の空白を取り除く
+            this.CodeTxtText = this.CodeTxtText.Trim();
+
+            // 禁止文字チェック
+            if (StringUtl.JudBanSQL(this.CodeTxtText) == false)
+            {
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(Parent, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                this.valueTextText = "";
+                this.AppendLabelText = "";
+                this.CodeTxtText = "";
+
+                return true;
+            }
+
+
+            // 全角数字を半角数字に変換
+            this.CodeTxtText = StringUtl.JudZenToHanNum(this.CodeTxtText);
+
+            // 数値チェック
+            if (StringUtl.JudBanSelect(this.CodeTxtText, CommonTeisu.NUMBER_ONLY) == true)
+            {
+                // 4文字以下の場合0パティング
+                if (this.CodeTxtText.Length < 4)
+                {
+                    this.CodeTxtText = this.CodeTxtText.ToString().PadLeft(4, '0');
+                }
+            }
+
+            // 存在チェックを行い
+            if (SearchOn == false)
+            {
+                return false;
+            }
+
+            // データ渡し用
+            lstStringSQL.Add("Common");
+            lstStringSQL.Add("C_LIST_Torihikisaki_SELECT_LEAVE");
+
+            OpenSQL opensql = new OpenSQL();
+            try
+            {
+                string strSQLInput = opensql.setOpenSQL(lstStringSQL);
+
+                if (strSQLInput == "")
+                {
+                    return false;
+                }
+
+                strSQLInput = string.Format(strSQLInput, this.CodeTxtText);
+
+                // SQLのインスタンス作成
+                DBConnective dbconnective = new DBConnective();
+
+                // SQL文を直書き（＋戻り値を受け取る)
+                dtSetCd = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd.Rows.Count != 0)
+                {
+                    string strZeikubun = "";
+
+                    if (dtSetCd.Rows[0]["消費税区分"].ToString().Equals("0"))
+                    {
+                        strZeikubun = "外税";
+                    }
+                    else
+                    {
+                        strZeikubun = "内税";
+                    }
+
+                    this.CodeTxtText = dtSetCd.Rows[0]["取引先コード"].ToString();
+                    this.valueTextText = dtSetCd.Rows[0]["取引先名称"].ToString();
+                    this.AppendLabelText = strZeikubun;
+
+                }
+                else
+                {
+                    // メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    this.valueTextText = "";
+                    this.AppendLabelText = "";
+                    this.CodeTxtText = "";
+
+                    return true;
+
+                }
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                // データロギング
+                new CommonException(ex);
+
+                // 例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return true;
+
             }
         }
     }

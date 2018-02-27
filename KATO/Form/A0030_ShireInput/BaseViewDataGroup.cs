@@ -16,9 +16,6 @@ namespace KATO.Form.A0030_ShireInput
 {
     public partial class BaseViewDataGroup : UserControl
     {
-        ////仕入入力の伝票番号から表示したかどうか
-        //public Boolean blDenpypDisp = false;
-
         //仕入入力の伝票番号から表示した注文Noを確保
         public string strShireChuNo = "";
 
@@ -2048,7 +2045,8 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         private void txtKeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b'
+            && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
