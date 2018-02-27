@@ -119,35 +119,39 @@
             // 
             this.txtUserId.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtUserId.Location = new System.Drawing.Point(571, 152);
+            this.txtUserId.MaxLength = 20;
             this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(100, 22);
+            this.txtUserId.Size = new System.Drawing.Size(170, 22);
             this.txtUserId.TabIndex = 1;
+            this.txtUserId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // txtDenpyoYMDEnd
             // 
             this.txtDenpyoYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMDEnd.Location = new System.Drawing.Point(678, 250);
+            this.txtDenpyoYMDEnd.Location = new System.Drawing.Point(700, 250);
             this.txtDenpyoYMDEnd.MaxLength = 10;
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDEnd.TabIndex = 5;
             this.txtDenpyoYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDenpyoYMDEnd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // txtDenpyoYMDStart
             // 
             this.txtDenpyoYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMDStart.Location = new System.Drawing.Point(548, 249);
+            this.txtDenpyoYMDStart.Location = new System.Drawing.Point(570, 249);
             this.txtDenpyoYMDStart.MaxLength = 10;
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDStart.TabIndex = 4;
             this.txtDenpyoYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDenpyoYMDStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // lblaida1
             // 
             this.lblaida1.AutoSize = true;
             this.lblaida1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblaida1.Location = new System.Drawing.Point(648, 252);
+            this.lblaida1.Location = new System.Drawing.Point(670, 252);
             this.lblaida1.Name = "lblaida1";
             this.lblaida1.Size = new System.Drawing.Size(23, 15);
             this.lblaida1.strToolTip = null;
@@ -183,7 +187,7 @@
             // 
             this.baseLabel3.AutoSize = true;
             this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(648, 204);
+            this.baseLabel3.Location = new System.Drawing.Point(670, 204);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(23, 15);
             this.baseLabel3.strToolTip = null;
@@ -194,22 +198,24 @@
             // txtInputYMDStart
             // 
             this.txtInputYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtInputYMDStart.Location = new System.Drawing.Point(548, 201);
+            this.txtInputYMDStart.Location = new System.Drawing.Point(570, 201);
             this.txtInputYMDStart.MaxLength = 10;
             this.txtInputYMDStart.Name = "txtInputYMDStart";
             this.txtInputYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtInputYMDStart.TabIndex = 2;
             this.txtInputYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtInputYMDStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // txtInputYMDEnd
             // 
             this.txtInputYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtInputYMDEnd.Location = new System.Drawing.Point(678, 202);
+            this.txtInputYMDEnd.Location = new System.Drawing.Point(700, 202);
             this.txtInputYMDEnd.MaxLength = 10;
             this.txtInputYMDEnd.Name = "txtInputYMDEnd";
             this.txtInputYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtInputYMDEnd.TabIndex = 3;
             this.txtInputYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtInputYMDEnd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // labelSet_SiiresakiCdFrom
             // 
@@ -223,7 +229,7 @@
             this.labelSet_SiiresakiCdFrom.ShowAppendFlg = false;
             this.labelSet_SiiresakiCdFrom.Size = new System.Drawing.Size(159, 22);
             this.labelSet_SiiresakiCdFrom.SpaceCodeValue = 4;
-            this.labelSet_SiiresakiCdFrom.SpaceNameCode = 4;
+            this.labelSet_SiiresakiCdFrom.SpaceNameCode = 13;
             this.labelSet_SiiresakiCdFrom.SpaceValueAppend = 4;
             this.labelSet_SiiresakiCdFrom.TabIndex = 6;
             this.labelSet_SiiresakiCdFrom.ValueLabelSize = 0;
@@ -236,7 +242,7 @@
             this.labelSet_SiiresakiCdTo.CodeTxtSize = 40;
             this.labelSet_SiiresakiCdTo.CodeTxtText = "";
             this.labelSet_SiiresakiCdTo.LabelName = "～";
-            this.labelSet_SiiresakiCdTo.Location = new System.Drawing.Point(609, 296);
+            this.labelSet_SiiresakiCdTo.Location = new System.Drawing.Point(613, 296);
             this.labelSet_SiiresakiCdTo.Name = "labelSet_SiiresakiCdTo";
             this.labelSet_SiiresakiCdTo.ShowAppendFlg = false;
             this.labelSet_SiiresakiCdTo.Size = new System.Drawing.Size(82, 22);

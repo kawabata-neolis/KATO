@@ -83,9 +83,11 @@
             // 
             this.txtUserID.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtUserID.Location = new System.Drawing.Point(333, 167);
+            this.txtUserID.MaxLength = 20;
             this.txtUserID.Name = "txtUserID";
-            this.txtUserID.Size = new System.Drawing.Size(194, 22);
+            this.txtUserID.Size = new System.Drawing.Size(170, 22);
             this.txtUserID.TabIndex = 0;
+            this.txtUserID.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // baseLabel2
             // 
@@ -108,6 +110,7 @@
             this.txtNyuryokuYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDstart.TabIndex = 1;
             this.txtNyuryokuYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNyuryokuYMDstart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // txtNyuryokuYMDend
             // 
@@ -118,6 +121,7 @@
             this.txtNyuryokuYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDend.TabIndex = 2;
             this.txtNyuryokuYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNyuryokuYMDend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // baseLabel3
             // 
@@ -152,6 +156,7 @@
             this.txtDenpyoYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDstart.TabIndex = 3;
             this.txtDenpyoYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDenpyoYMDstart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // baseLabel5
             // 
@@ -174,6 +179,7 @@
             this.txtDenpyoYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDend.TabIndex = 4;
             this.txtDenpyoYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDenpyoYMDend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // labelSet_TokuisakiCdTo
             // 

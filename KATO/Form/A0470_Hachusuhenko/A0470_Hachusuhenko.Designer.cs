@@ -63,6 +63,10 @@
             this.gbBasho.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
@@ -108,10 +112,6 @@
             // btnF02
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Tantousha
             // 
@@ -186,7 +186,7 @@
             this.baseCalendarOpen.Location = new System.Drawing.Point(124, 45);
             this.baseCalendarOpen.MaxLength = 10;
             this.baseCalendarOpen.Name = "baseCalendarOpen";
-            this.baseCalendarOpen.Size = new System.Drawing.Size(100, 22);
+            this.baseCalendarOpen.Size = new System.Drawing.Size(90, 22);
             this.baseCalendarOpen.TabIndex = 2;
             this.baseCalendarOpen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseCalendarOpen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtHachuKeyDown);
@@ -195,7 +195,7 @@
             // 
             this.lblHani.AutoSize = true;
             this.lblHani.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHani.Location = new System.Drawing.Point(239, 48);
+            this.lblHani.Location = new System.Drawing.Point(226, 48);
             this.lblHani.Name = "lblHani";
             this.lblHani.Size = new System.Drawing.Size(23, 15);
             this.lblHani.strToolTip = null;
@@ -206,10 +206,10 @@
             // baseCalendarClose
             // 
             this.baseCalendarClose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseCalendarClose.Location = new System.Drawing.Point(274, 45);
+            this.baseCalendarClose.Location = new System.Drawing.Point(261, 45);
             this.baseCalendarClose.MaxLength = 10;
             this.baseCalendarClose.Name = "baseCalendarClose";
-            this.baseCalendarClose.Size = new System.Drawing.Size(100, 22);
+            this.baseCalendarClose.Size = new System.Drawing.Size(90, 22);
             this.baseCalendarClose.TabIndex = 3;
             this.baseCalendarClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseCalendarClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtHachuKeyDown);
@@ -263,6 +263,7 @@
             this.gridHachusuhenko.AllowUserToAddRows = false;
             this.gridHachusuhenko.AllowUserToResizeColumns = false;
             this.gridHachusuhenko.AllowUserToResizeRows = false;
+            this.gridHachusuhenko.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -335,6 +336,7 @@
             this.txtHachusu.intShishagonyu = 0;
             this.txtHachusu.Location = new System.Drawing.Point(122, 723);
             this.txtHachusu.MaxLength = 0;
+            this.txtHachusu.MinusFlg = true;
             this.txtHachusu.Name = "txtHachusu";
             this.txtHachusu.Size = new System.Drawing.Size(100, 22);
             this.txtHachusu.TabIndex = 79;
@@ -351,6 +353,7 @@
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(122, 753);
             this.txtTanka.MaxLength = 0;
+            this.txtTanka.MinusFlg = true;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.ReadOnly = true;
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
@@ -405,6 +408,7 @@
             this.txtShiresu.intShishagonyu = 0;
             this.txtShiresu.Location = new System.Drawing.Point(515, 726);
             this.txtShiresu.MaxLength = 0;
+            this.txtShiresu.MinusFlg = true;
             this.txtShiresu.Name = "txtShiresu";
             this.txtShiresu.ReadOnly = true;
             this.txtShiresu.Size = new System.Drawing.Size(100, 22);
@@ -435,6 +439,7 @@
             this.txtHachukin.intShishagonyu = 0;
             this.txtHachukin.Location = new System.Drawing.Point(1283, 692);
             this.txtHachukin.MaxLength = 0;
+            this.txtHachukin.MinusFlg = true;
             this.txtHachukin.Name = "txtHachukin";
             this.txtHachukin.ReadOnly = true;
             this.txtHachukin.Size = new System.Drawing.Size(100, 22);
@@ -520,6 +525,7 @@
             this.Text = "A0470_Hachusuhenko";
             this.Load += new System.EventHandler(this.A0470_Hachusuhenko_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.A0470_Hachusuhenko_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Tantousha, 0);
             this.Controls.SetChildIndex(this.labelSet_Torihikisaki, 0);
             this.Controls.SetChildIndex(this.lblKensakuNoki, 0);

@@ -1061,8 +1061,6 @@ namespace KATO.Form.A0160_ShukoIraiInput
             //出庫営業所コードがない場合
             if (lblsetShukoEigyosho.codeTxt.blIsEmpty() == false)
             {
-                //グリッド内を初期化
-                gridShuko.DataSource = "";
                 return;
             }
 

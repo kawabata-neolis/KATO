@@ -2230,8 +2230,6 @@ namespace KATO.Form.A0030_ShireInput
 
             if (blgood)
             {
-                labelSet_Tantousha.chkTxtTantosha();
-
                 //担当者名が空の場合
                 if (labelSet_Tantousha.ValueLabelText == "")
                 {
@@ -2249,8 +2247,6 @@ namespace KATO.Form.A0030_ShireInput
 
             if (blgood)
             {
-                labelSet_Torihikikbn.chkTxtTorihikikbn();
-
                 //取引区分が空の場合
                 if (labelSet_Torihikikbn.ValueLabelText == "")
                 {

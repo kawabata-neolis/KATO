@@ -411,5 +411,17 @@ namespace KATO.Form.A0090_SiireCheckPrint
 
         }
 
+        ///<summary>
+        ///txtSiireCheckPrint_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void txtSiireCheckPrint_KeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
+        }
+
     }
 }
