@@ -623,7 +623,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
             lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
             lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
             lstSearchItem.Add(labelSet_Maker.CodeTxtText);
-            lstSearchItem.Add(txtTanaban.Text);
+            lstSearchItem.Add(labelSet_Tanaban.CodeTxtText);
 
             // 期間中に仕入が（ある）
             if (radSiire.radbtn0.Checked)
@@ -697,6 +697,9 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
         /// </summary>
         private Boolean blnDataCheck()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 開始期間
             if (txtYmdFrom.blIsEmpty() == false)
             {
@@ -721,8 +724,88 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 return false;
             }
 
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdFrom.chkDateDataFormat(txtYmdFrom.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdFrom.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtYmdFrom.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYmdTo.chkDateDataFormat(txtYmdTo.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYmdTo.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtYmdTo.Text = strYMDformat;
+            }
+
+            //営業所チェック
+            if (labelSet_Eigyosho.chkTxtEigyousho())
+            {
+                labelSet_Eigyosho.Focus();
+
+                return false;
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+
+                return false;
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+
+                return false;
+            }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+
+                return false;
+            }
+
+            //棚番チェック
+            if (labelSet_Tanaban.chkTxtTanaban())
+            {
+                labelSet_Tanaban.Focus();
+
+                return false;
+            }
+
             return true;
         }
-
     }
 }

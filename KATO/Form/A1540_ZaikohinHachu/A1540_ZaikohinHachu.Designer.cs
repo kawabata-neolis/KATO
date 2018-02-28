@@ -258,7 +258,6 @@
             this.txtHachuYMD.Name = "txtHachuYMD";
             this.txtHachuYMD.Size = new System.Drawing.Size(90, 22);
             this.txtHachuYMD.TabIndex = 0;
-            this.txtHachuYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHachuban
             // 
@@ -467,6 +466,7 @@
             this.txtTeka.intShishagonyu = 0;
             this.txtTeka.Location = new System.Drawing.Point(307, 281);
             this.txtTeka.MaxLength = 0;
+            this.txtTeka.MinusFlg = true;
             this.txtTeka.Name = "txtTeka";
             this.txtTeka.Size = new System.Drawing.Size(88, 22);
             this.txtTeka.TabIndex = 14;
@@ -483,6 +483,7 @@
             this.txtHachusu.intShishagonyu = 0;
             this.txtHachusu.Location = new System.Drawing.Point(116, 250);
             this.txtHachusu.MaxLength = 6;
+            this.txtHachusu.MinusFlg = true;
             this.txtHachusu.Name = "txtHachusu";
             this.txtHachusu.Size = new System.Drawing.Size(65, 22);
             this.txtHachusu.TabIndex = 10;

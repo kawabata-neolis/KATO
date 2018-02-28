@@ -109,7 +109,6 @@
             this.txtNyuryokuYMDstart.Name = "txtNyuryokuYMDstart";
             this.txtNyuryokuYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDstart.TabIndex = 1;
-            this.txtNyuryokuYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyuryokuYMDstart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // txtNyuryokuYMDend
@@ -120,7 +119,6 @@
             this.txtNyuryokuYMDend.Name = "txtNyuryokuYMDend";
             this.txtNyuryokuYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtNyuryokuYMDend.TabIndex = 2;
-            this.txtNyuryokuYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyuryokuYMDend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // baseLabel3
@@ -155,7 +153,6 @@
             this.txtDenpyoYMDstart.Name = "txtDenpyoYMDstart";
             this.txtDenpyoYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDstart.TabIndex = 3;
-            this.txtDenpyoYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoYMDstart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // baseLabel5
@@ -178,7 +175,6 @@
             this.txtDenpyoYMDend.Name = "txtDenpyoYMDend";
             this.txtDenpyoYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDend.TabIndex = 4;
-            this.txtDenpyoYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoYMDend.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtUriageCheckPrint_KeyUp);
             // 
             // labelSet_TokuisakiCdTo

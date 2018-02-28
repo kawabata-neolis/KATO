@@ -59,6 +59,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireSuii)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -112,10 +116,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Maker
             // 
@@ -319,6 +319,7 @@
             this.gridSiireSuii.AllowUserToAddRows = false;
             this.gridSiireSuii.AllowUserToResizeColumns = false;
             this.gridSiireSuii.AllowUserToResizeRows = false;
+            this.gridSiireSuii.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -366,7 +367,6 @@
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMclose.TabIndex = 2;
             this.txtCalendarYMclose.TabStop = false;
-            this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMclose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCalendarYMcloseKeyDown);
             this.txtCalendarYMclose.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalendarYMcloseKeyPress);
             // 
@@ -379,7 +379,6 @@
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMopen.TabIndex = 1;
-            this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMopen.Leave += new System.EventHandler(this.updTxtCalendarLeave);
             // 
             // lblaida1
@@ -464,6 +463,7 @@
             this.Text = "C0480_SiireSuiiHyo";
             this.Load += new System.EventHandler(this.C0480_SiireSuiiHyo_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0480_SiireSuiiHyo_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Maker, 0);

@@ -40,8 +40,6 @@
             this.txtYmdFrom = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblKikan = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtTanaban = new KATO.Common.Ctl.BaseText();
-            this.lblTanaban = new KATO.Common.Ctl.BaseLabel(this.components);
             this.bgSiire = new System.Windows.Forms.GroupBox();
             this.radSiire = new KATO.Common.Ctl.RadSet_3btn();
             this.lblSiire = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -61,6 +59,7 @@
             this.lblHyoka = new KATO.Common.Ctl.BaseLabelGray();
             this.lblTateneName = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblTatene = new KATO.Common.Ctl.BaseLabelGray();
+            this.labelSet_Tanaban = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.bgSiire.SuspendLayout();
             this.bgUriage.SuspendLayout();
             this.radUriage.SuspendLayout();
@@ -68,6 +67,10 @@
             this.bgGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridZaiko)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
@@ -122,10 +125,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_Eigyosho
             // 
@@ -214,7 +213,6 @@
             this.txtYmdTo.Name = "txtYmdTo";
             this.txtYmdTo.Size = new System.Drawing.Size(90, 22);
             this.txtYmdTo.TabIndex = 2;
-            this.txtYmdTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtYmdFrom
             // 
@@ -224,7 +222,6 @@
             this.txtYmdFrom.Name = "txtYmdFrom";
             this.txtYmdFrom.Size = new System.Drawing.Size(90, 22);
             this.txtYmdFrom.TabIndex = 1;
-            this.txtYmdFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel3
             // 
@@ -249,27 +246,6 @@
             this.lblKikan.TabIndex = 119;
             this.lblKikan.Text = "在庫期間";
             this.lblKikan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtTanaban
-            // 
-            this.txtTanaban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanaban.Location = new System.Drawing.Point(1167, 110);
-            this.txtTanaban.MaxLength = 6;
-            this.txtTanaban.Name = "txtTanaban";
-            this.txtTanaban.Size = new System.Drawing.Size(60, 22);
-            this.txtTanaban.TabIndex = 7;
-            // 
-            // lblTanaban
-            // 
-            this.lblTanaban.AutoSize = true;
-            this.lblTanaban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanaban.Location = new System.Drawing.Point(1122, 113);
-            this.lblTanaban.Name = "lblTanaban";
-            this.lblTanaban.Size = new System.Drawing.Size(39, 15);
-            this.lblTanaban.strToolTip = null;
-            this.lblTanaban.TabIndex = 119;
-            this.lblTanaban.Text = "棚番";
-            this.lblTanaban.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bgSiire
             // 
@@ -435,6 +411,7 @@
             this.gridZaiko.AllowUserToAddRows = false;
             this.gridZaiko.AllowUserToResizeColumns = false;
             this.gridZaiko.AllowUserToResizeRows = false;
+            this.gridZaiko.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -552,11 +529,30 @@
             this.lblTatene.TabIndex = 99;
             this.lblTatene.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // labelSet_Tanaban
+            // 
+            this.labelSet_Tanaban.AppendLabelSize = 0;
+            this.labelSet_Tanaban.AppendLabelText = "";
+            this.labelSet_Tanaban.CodeTxtSize = 60;
+            this.labelSet_Tanaban.CodeTxtText = "";
+            this.labelSet_Tanaban.LabelName = "棚番";
+            this.labelSet_Tanaban.Location = new System.Drawing.Point(1132, 110);
+            this.labelSet_Tanaban.Name = "labelSet_Tanaban";
+            this.labelSet_Tanaban.ShowAppendFlg = false;
+            this.labelSet_Tanaban.Size = new System.Drawing.Size(266, 22);
+            this.labelSet_Tanaban.SpaceCodeValue = 4;
+            this.labelSet_Tanaban.SpaceNameCode = 4;
+            this.labelSet_Tanaban.SpaceValueAppend = 4;
+            this.labelSet_Tanaban.TabIndex = 7;
+            this.labelSet_Tanaban.ValueLabelSize = 150;
+            this.labelSet_Tanaban.ValueLabelText = "";
+            // 
             // D0300_ZaikoIchiranKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Tanaban);
             this.Controls.Add(this.lblTatene);
             this.Controls.Add(this.lblHyoka);
             this.Controls.Add(this.lblSiireKingaku);
@@ -567,11 +563,9 @@
             this.Controls.Add(this.bgSort);
             this.Controls.Add(this.bgUriage);
             this.Controls.Add(this.bgSiire);
-            this.Controls.Add(this.txtTanaban);
             this.Controls.Add(this.txtYmdTo);
             this.Controls.Add(this.txtYmdFrom);
             this.Controls.Add(this.baseLabel3);
-            this.Controls.Add(this.lblTanaban);
             this.Controls.Add(this.lblKikan);
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Chubunrui);
@@ -581,6 +575,7 @@
             this.Text = "D0300_ZaikoItiranKakunin";
             this.Load += new System.EventHandler(this.D0300_ZaikoIchiranKakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D0300_ZaikoIchiranKakunin_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);
@@ -598,11 +593,9 @@
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Maker, 0);
             this.Controls.SetChildIndex(this.lblKikan, 0);
-            this.Controls.SetChildIndex(this.lblTanaban, 0);
             this.Controls.SetChildIndex(this.baseLabel3, 0);
             this.Controls.SetChildIndex(this.txtYmdFrom, 0);
             this.Controls.SetChildIndex(this.txtYmdTo, 0);
-            this.Controls.SetChildIndex(this.txtTanaban, 0);
             this.Controls.SetChildIndex(this.bgSiire, 0);
             this.Controls.SetChildIndex(this.bgUriage, 0);
             this.Controls.SetChildIndex(this.bgSort, 0);
@@ -613,6 +606,7 @@
             this.Controls.SetChildIndex(this.lblSiireKingaku, 0);
             this.Controls.SetChildIndex(this.lblHyoka, 0);
             this.Controls.SetChildIndex(this.lblTatene, 0);
+            this.Controls.SetChildIndex(this.labelSet_Tanaban, 0);
             this.bgSiire.ResumeLayout(false);
             this.bgSiire.PerformLayout();
             this.bgUriage.ResumeLayout(false);
@@ -638,8 +632,6 @@
         private Common.Ctl.BaseCalendar txtYmdFrom;
         private Common.Ctl.BaseLabel baseLabel3;
         private Common.Ctl.BaseLabel lblKikan;
-        private Common.Ctl.BaseText txtTanaban;
-        private Common.Ctl.BaseLabel lblTanaban;
         private System.Windows.Forms.GroupBox bgSiire;
         private Common.Ctl.RadSet_3btn radSiire;
         private Common.Ctl.BaseLabel lblSiire;
@@ -659,5 +651,6 @@
         private Common.Ctl.BaseLabelGray lblHyoka;
         private Common.Ctl.BaseLabel lblTateneName;
         private Common.Ctl.BaseLabelGray lblTatene;
+        private Common.Ctl.LabelSet_Tanaban labelSet_Tanaban;
     }
 }

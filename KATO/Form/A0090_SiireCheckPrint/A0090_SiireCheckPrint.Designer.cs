@@ -133,7 +133,6 @@
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDEnd.TabIndex = 5;
-            this.txtDenpyoYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoYMDEnd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // txtDenpyoYMDStart
@@ -144,7 +143,6 @@
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDStart.TabIndex = 4;
-            this.txtDenpyoYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoYMDStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // lblaida1
@@ -203,7 +201,6 @@
             this.txtInputYMDStart.Name = "txtInputYMDStart";
             this.txtInputYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtInputYMDStart.TabIndex = 2;
-            this.txtInputYMDStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInputYMDStart.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // txtInputYMDEnd
@@ -214,7 +211,6 @@
             this.txtInputYMDEnd.Name = "txtInputYMDEnd";
             this.txtInputYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtInputYMDEnd.TabIndex = 3;
-            this.txtInputYMDEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtInputYMDEnd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSiireCheckPrint_KeyUp);
             // 
             // labelSet_SiiresakiCdFrom

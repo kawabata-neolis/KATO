@@ -137,7 +137,6 @@
             this.txtDenpyoOpen.Name = "txtDenpyoOpen";
             this.txtDenpyoOpen.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoOpen.TabIndex = 0;
-            this.txtDenpyoOpen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoOpen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTantoshabetuDenpyoCount_KeyUp);
             // 
             // txtDenpyoClose
@@ -147,7 +146,6 @@
             this.txtDenpyoClose.Name = "txtDenpyoClose";
             this.txtDenpyoClose.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoClose.TabIndex = 1;
-            this.txtDenpyoClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDenpyoClose.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTantoshabetuDenpyoCount_KeyUp);
             // 
             // lblAida1

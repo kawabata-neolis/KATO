@@ -1205,6 +1205,9 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
         /// </summary>
         private Boolean blnDataCheck()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定
             if (labelSet_Etanto.CodeTxtText.Equals("") && labelSet_Ntanto.CodeTxtText.Equals("") && labelSet_Jtanto.CodeTxtText.Equals("") &&
                 labelSet_SiiresakiCd.CodeTxtText.Equals("") && txtKataban.Text.Equals("") && labelSet_Daibunrui.CodeTxtText.Equals("") &&
@@ -1225,6 +1228,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
+                txtDenpyoYMDstart.Focus();
+
                 return false;
             }
             if (txtDenpyoYMDend.Text.Equals(""))
@@ -1232,9 +1237,116 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
+                txtDenpyoYMDend.Focus();
+
                 return false;
             }
 
+            //営業担当者チェック
+            if (labelSet_Etanto.chkTxtTantosha())
+            {
+                labelSet_Etanto.Focus();
+
+                return false;
+            }
+
+            //入力担当者チェック
+            if (labelSet_Ntanto.chkTxtTantosha())
+            {
+                labelSet_Ntanto.Focus();
+
+                return false;
+            }
+
+            //受注担当者チェック
+            if (labelSet_Jtanto.chkTxtTantosha())
+            {
+                labelSet_Jtanto.Focus();
+
+                return false;
+            }
+
+            //得意先チェック
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
+            {
+                labelSet_Tokuisaki.Focus();
+
+                return false;
+            }
+
+            //仕入先チェック
+            if (labelSet_SiiresakiCd.chkTxtTorihikisaki())
+            {
+                labelSet_SiiresakiCd.Focus();
+
+                return false;
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+
+                return false;
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+
+                return false;
+            }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+
+                return false;
+            }
+            
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoYMDstart.chkDateDataFormat(txtDenpyoYMDstart.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDstart.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtDenpyoYMDstart.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtDenpyoYMDend.chkDateDataFormat(txtDenpyoYMDend.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtDenpyoYMDend.Focus();
+
+                return false;
+            }
+            else
+            {
+                txtDenpyoYMDend.Text = strYMDformat;
+            }
+            
             return true;
         }
 

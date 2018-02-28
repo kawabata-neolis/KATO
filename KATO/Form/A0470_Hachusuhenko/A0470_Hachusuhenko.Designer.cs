@@ -188,7 +188,6 @@
             this.baseCalendarOpen.Name = "baseCalendarOpen";
             this.baseCalendarOpen.Size = new System.Drawing.Size(90, 22);
             this.baseCalendarOpen.TabIndex = 2;
-            this.baseCalendarOpen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseCalendarOpen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtHachuKeyDown);
             // 
             // lblHani
@@ -211,7 +210,6 @@
             this.baseCalendarClose.Name = "baseCalendarClose";
             this.baseCalendarClose.Size = new System.Drawing.Size(90, 22);
             this.baseCalendarClose.TabIndex = 3;
-            this.baseCalendarClose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.baseCalendarClose.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTxtHachuKeyDown);
             // 
             // lblHinmei_Kataban

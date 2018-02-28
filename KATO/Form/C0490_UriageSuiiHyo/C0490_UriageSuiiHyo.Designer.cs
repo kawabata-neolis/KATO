@@ -344,7 +344,6 @@
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMopen.TabIndex = 0;
-            this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCalendarYMopen.Leave += new System.EventHandler(this.txtCalendarYMopen_Leave);
             // 
             // txtCalendarYMclose
@@ -356,7 +355,6 @@
             this.txtCalendarYMclose.ReadOnly = true;
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMclose.TabIndex = 999;
-            this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // labelSet_TokuisakiStart
             // 

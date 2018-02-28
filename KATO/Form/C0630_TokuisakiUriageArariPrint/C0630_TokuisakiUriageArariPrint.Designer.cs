@@ -55,6 +55,11 @@
             this.labelSet_TokuisakiCdFrom.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 11;
@@ -109,11 +114,6 @@
             // 
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF01
-            // 
-            this.btnF01.TabStop = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // labelSet_GroupCdFrom
             // 
@@ -352,7 +352,6 @@
             this.txtYmdTo.Name = "txtYmdTo";
             this.txtYmdTo.Size = new System.Drawing.Size(90, 22);
             this.txtYmdTo.TabIndex = 2;
-            this.txtYmdTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtYmdFrom
             // 
@@ -362,7 +361,6 @@
             this.txtYmdFrom.Name = "txtYmdFrom";
             this.txtYmdFrom.Size = new System.Drawing.Size(90, 22);
             this.txtYmdFrom.TabIndex = 1;
-            this.txtYmdFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel4
             // 
@@ -407,6 +405,7 @@
             this.Text = "C0630_TokuisakiUriageArariPrint";
             this.Load += new System.EventHandler(this.C0630_TokuisakiUriageArariPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.C0630_TokuisakiUriageArariPrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
             this.Controls.SetChildIndex(this.btnF03, 0);

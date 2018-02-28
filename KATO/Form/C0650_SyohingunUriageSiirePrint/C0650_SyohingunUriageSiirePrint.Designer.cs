@@ -74,7 +74,6 @@
             this.txtKamikiYMDopen.Name = "txtKamikiYMDopen";
             this.txtKamikiYMDopen.Size = new System.Drawing.Size(90, 22);
             this.txtKamikiYMDopen.TabIndex = 0;
-            this.txtKamikiYMDopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel2
             // 
@@ -96,7 +95,6 @@
             this.txtKamikiYMDclose.Name = "txtKamikiYMDclose";
             this.txtKamikiYMDclose.Size = new System.Drawing.Size(90, 22);
             this.txtKamikiYMDclose.TabIndex = 1;
-            this.txtKamikiYMDclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel3
             // 
@@ -130,7 +128,6 @@
             this.txtSimokiYMDopen.Name = "txtSimokiYMDopen";
             this.txtSimokiYMDopen.Size = new System.Drawing.Size(90, 22);
             this.txtSimokiYMDopen.TabIndex = 2;
-            this.txtSimokiYMDopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtSimokiYMDclose
             // 
@@ -140,7 +137,6 @@
             this.txtSimokiYMDclose.Name = "txtSimokiYMDclose";
             this.txtSimokiYMDclose.Size = new System.Drawing.Size(90, 22);
             this.txtSimokiYMDclose.TabIndex = 3;
-            this.txtSimokiYMDclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // C0650_SyohingunUriageSiirePrint
             // 

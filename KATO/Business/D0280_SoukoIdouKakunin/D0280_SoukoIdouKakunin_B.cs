@@ -262,17 +262,17 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " AND 伝票番号 ='" + lstItem[8] + "'";
             }
 
-            // 担当者コードの存在チェック
+            // 営業担当者コードの存在チェック
             if (!"".Equals(lstItem[9]))
             {
-                // 担当者コード
+                // 営業担当者コード
                 allSql += " and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(倉庫間移動.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // 入力者コードの存在チェック
+            // 入力担当者コードの存在チェック
             if (!"".Equals(lstItem[10]))
             {
-                // 入力者コード
+                // 入力担当者コード
                 allSql += " AND 担当者コード ='" + lstItem[10] + "'";
             }
 
@@ -388,17 +388,17 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " AND H.伝票番号 ='" + lstItem[8] + "'";
             }
 
-            // 担当者コードの存在チェック
+            // 営業担当者コードの存在チェック
             if (!"".Equals(lstItem[9]))
             {
-                // 担当者コード
+                // 営業担当者コード
                 allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // 入力者コードの存在チェック
+            // 入力担当者コードの存在チェック
             if (!"".Equals(lstItem[10]))
             {
-                // 入力者コード
+                // 入力担当者コード
                 allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
             }
 
@@ -483,17 +483,17 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " AND H.伝票番号 ='" + lstItem[8] + "'";
             }
 
-            // 担当者コードの存在チェック
+            // 営業担当者コードの存在チェック
             if (!"".Equals(lstItem[9]))
             {
-                // 担当者コード
+                // 営業担当者コード
                 allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // 入力者コードの存在チェック
+            // 入力担当者コードの存在チェック
             if (!"".Equals(lstItem[10]))
             {
-                // 入力者コード
+                // 入力担当者コード
                 allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
             }
 
@@ -673,17 +673,17 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " AND H.伝票番号 ='" + lstItem[8] + "'";
             }
 
-            // 担当者コードの存在チェック
+            // 営業担当者コードの存在チェック
             if (!"".Equals(lstItem[9]))
             {
-                // 担当者コード
+                // 営業担当者コード
                 allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // 入力者コードの存在チェック
+            // 入力担当者コードの存在チェック
             if (!"".Equals(lstItem[10]))
             {
-                // 入力者コード
+                // 入力担当者コード
                 allSql += " and f_get担当者コード(" + lstItem[9] + ")";
             }
 

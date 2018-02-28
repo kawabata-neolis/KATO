@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Jtanto = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.txtDenpyoYMDend = new KATO.Common.Ctl.BaseCalendar();
             this.txtDenpyoYMDstart = new KATO.Common.Ctl.BaseCalendar();
@@ -94,7 +94,7 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 18;
+            this.btnF01.TabIndex = 14;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -143,7 +143,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 19;
+            this.btnF04.TabIndex = 15;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
@@ -177,12 +177,11 @@
             // txtDenpyoYMDend
             // 
             this.txtDenpyoYMDend.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenpyoYMDend.Location = new System.Drawing.Point(249, 72);
+            this.txtDenpyoYMDend.Location = new System.Drawing.Point(245, 72);
             this.txtDenpyoYMDend.MaxLength = 10;
             this.txtDenpyoYMDend.Name = "txtDenpyoYMDend";
-            this.txtDenpyoYMDend.Size = new System.Drawing.Size(100, 22);
+            this.txtDenpyoYMDend.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDend.TabIndex = 6;
-            this.txtDenpyoYMDend.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDenpyoYMDstart
             // 
@@ -190,15 +189,14 @@
             this.txtDenpyoYMDstart.Location = new System.Drawing.Point(119, 72);
             this.txtDenpyoYMDstart.MaxLength = 10;
             this.txtDenpyoYMDstart.Name = "txtDenpyoYMDstart";
-            this.txtDenpyoYMDstart.Size = new System.Drawing.Size(95, 22);
+            this.txtDenpyoYMDstart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDstart.TabIndex = 5;
-            this.txtDenpyoYMDstart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan
             // 
             this.lblSpan.AutoSize = true;
             this.lblSpan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSpan.Location = new System.Drawing.Point(220, 75);
+            this.lblSpan.Location = new System.Drawing.Point(216, 75);
             this.lblSpan.Name = "lblSpan";
             this.lblSpan.Size = new System.Drawing.Size(23, 15);
             this.lblSpan.strToolTip = null;
@@ -227,7 +225,7 @@
             this.groupBox2.Location = new System.Drawing.Point(1002, 100);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(222, 106);
-            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "並び順の指定";
             // 
@@ -453,35 +451,35 @@
             this.gridUriageJisseki.AllowUserToResizeColumns = false;
             this.gridUriageJisseki.AllowUserToResizeRows = false;
             this.gridUriageJisseki.AutoGenerateColumns = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUriageJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUriageJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridUriageJisseki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridUriageJisseki.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridUriageJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridUriageJisseki.EnableHeadersVisualStyles = false;
             this.gridUriageJisseki.Location = new System.Drawing.Point(12, 212);
             this.gridUriageJisseki.Name = "gridUriageJisseki";
             this.gridUriageJisseki.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUriageJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUriageJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridUriageJisseki.RowHeadersVisible = false;
             this.gridUriageJisseki.RowTemplate.Height = 21;
             this.gridUriageJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -698,7 +696,7 @@
             this.groupBox1.Location = new System.Drawing.Point(622, 161);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(319, 45);
-            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "グループコード";
             // 
@@ -808,7 +806,7 @@
             this.bgEigyo.Location = new System.Drawing.Point(622, 100);
             this.bgEigyo.Name = "bgEigyo";
             this.bgEigyo.Size = new System.Drawing.Size(319, 45);
-            this.bgEigyo.TabIndex = 14;
+            this.bgEigyo.TabIndex = 16;
             this.bgEigyo.TabStop = false;
             this.bgEigyo.Tag = "";
             this.bgEigyo.Text = "営業所";
@@ -819,7 +817,7 @@
             this.groupBox3.Location = new System.Drawing.Point(1277, 100);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(135, 106);
-            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             // 
             // nameLabel

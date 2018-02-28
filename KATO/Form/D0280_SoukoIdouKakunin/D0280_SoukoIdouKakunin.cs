@@ -662,13 +662,13 @@ namespace KATO.Form.D0280_SoukoIdouKakunin
                 return false;
             }
 
-            // 文字列チェック（担当者）
+            // 文字列チェック（営業担当者）
             if (labelSet_Tantousha.chkTxtTantosha())
             {
                 return false;
             }
 
-            // 文字列チェック（担当者）
+            // 文字列チェック（入力担当者）
             if (labelSet_Nyuuryokusha.chkTxtTantosha())
             {
                 return false;
