@@ -299,7 +299,7 @@
             // 
             this.bgJuchuuzan.Controls.Add(this.radJuchuuzan);
             this.bgJuchuuzan.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.bgJuchuuzan.Location = new System.Drawing.Point(437, 67);
+            this.bgJuchuuzan.Location = new System.Drawing.Point(437, 61);
             this.bgJuchuuzan.Name = "bgJuchuuzan";
             this.bgJuchuuzan.Size = new System.Drawing.Size(207, 45);
             this.bgJuchuuzan.TabIndex = 13;
@@ -309,7 +309,7 @@
             // radJuchuuzan
             // 
             this.radJuchuuzan.LabelTitle = "";
-            this.radJuchuuzan.Location = new System.Drawing.Point(6, 14);
+            this.radJuchuuzan.Location = new System.Drawing.Point(14, 16);
             this.radJuchuuzan.Name = "radJuchuuzan";
             this.radJuchuuzan.PositionLabelTitle_X = 0;
             this.radJuchuuzan.PositionLabelTitle_Y = 0;
@@ -322,7 +322,7 @@
             this.radJuchuuzan.Radbtn1Text = "すべて";
             this.radJuchuuzan.Radbtn2Text = "受注残のみ";
             this.radJuchuuzan.Radbtn3Text = "";
-            this.radJuchuuzan.Size = new System.Drawing.Size(195, 19);
+            this.radJuchuuzan.Size = new System.Drawing.Size(187, 19);
             this.radJuchuuzan.TabIndex = 0;
             // 
             // bgKubunName
@@ -369,8 +369,8 @@
             this.labelSet_Tantousha.CodeTxtSize = 40;
             this.labelSet_Tantousha.CodeTxtText = "";
             this.labelSet_Tantousha.Controls.Add(this.nameLabel);
-            this.labelSet_Tantousha.LabelName = "担当者コード ";
-            this.labelSet_Tantousha.Location = new System.Drawing.Point(781, 84);
+            this.labelSet_Tantousha.LabelName = "営業担当者 ";
+            this.labelSet_Tantousha.Location = new System.Drawing.Point(781, 81);
             this.labelSet_Tantousha.Name = "labelSet_Tantousha";
             this.labelSet_Tantousha.ShowAppendFlg = false;
             this.labelSet_Tantousha.Size = new System.Drawing.Size(292, 22);
@@ -448,7 +448,7 @@
             this.labelSet_Maker.CodeTxtSize = 40;
             this.labelSet_Maker.CodeTxtText = "";
             this.labelSet_Maker.LabelName = "メーカー";
-            this.labelSet_Maker.Location = new System.Drawing.Point(436, 115);
+            this.labelSet_Maker.Location = new System.Drawing.Point(436, 112);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
             this.labelSet_Maker.Size = new System.Drawing.Size(321, 22);
@@ -478,13 +478,13 @@
             this.labelSet_Nyuuryokusha.AppendLabelText = "";
             this.labelSet_Nyuuryokusha.CodeTxtSize = 40;
             this.labelSet_Nyuuryokusha.CodeTxtText = "";
-            this.labelSet_Nyuuryokusha.LabelName = "入力者コード ";
+            this.labelSet_Nyuuryokusha.LabelName = "入力担当者";
             this.labelSet_Nyuuryokusha.Location = new System.Drawing.Point(781, 112);
             this.labelSet_Nyuuryokusha.Name = "labelSet_Nyuuryokusha";
             this.labelSet_Nyuuryokusha.ShowAppendFlg = false;
             this.labelSet_Nyuuryokusha.Size = new System.Drawing.Size(280, 22);
             this.labelSet_Nyuuryokusha.SpaceCodeValue = 4;
-            this.labelSet_Nyuuryokusha.SpaceNameCode = 4;
+            this.labelSet_Nyuuryokusha.SpaceNameCode = 12;
             this.labelSet_Nyuuryokusha.SpaceValueAppend = 4;
             this.labelSet_Nyuuryokusha.TabIndex = 10;
             this.labelSet_Nyuuryokusha.ValueLabelSize = 120;

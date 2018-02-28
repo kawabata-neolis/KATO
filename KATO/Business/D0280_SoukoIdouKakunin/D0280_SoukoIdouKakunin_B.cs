@@ -266,17 +266,15 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
             if (!"".Equals(lstItem[9]))
             {
                 // 担当者コード
-                allSql += " AND 担当者コード ='" + lstItem[9] + "'";
+                allSql += " and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(倉庫間移動.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 START※※※※※※※
             // 入力者コードの存在チェック
-            //if (!"".Equals(lstItem[10]))
-            //{
-            // // 入力者コード
-            //allSql += " AND 担当者コード ='" + lstItem[10] + "'";
-            //}
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 END※※※※※※※
+            if (!"".Equals(lstItem[10]))
+            {
+                // 入力者コード
+                allSql += " AND 担当者コード ='" + lstItem[10] + "'";
+            }
 
             // 処理名
             if ("TRUE".Equals(arrDispSyoriName[1]))
@@ -394,17 +392,15 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
             if (!"".Equals(lstItem[9]))
             {
                 // 担当者コード
-                allSql += " AND H.担当者コード ='" + lstItem[9] + "'";
+                allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 START※※※※※※※
             // 入力者コードの存在チェック
-            //if (!"".Equals(lstItem[10]))
-            //{
-            // // 入力者コード
-            //allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
-            //}
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 END※※※※※※※
+            if (!"".Equals(lstItem[10]))
+            {
+                // 入力者コード
+                allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
+            }
 
             // 受注残ラジオボタン
             if ("TRUE".Equals(arrDispJuchuzan[1]))
@@ -491,17 +487,15 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
             if (!"".Equals(lstItem[9]))
             {
                 // 担当者コード
-                allSql += " AND H.担当者コード ='" + lstItem[9] + "'";
+                allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 START※※※※※※※
             // 入力者コードの存在チェック
-            //if (!"".Equals(lstItem[10]))
-            //{
-            // // 入力者コード
-            //allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
-            //}
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 END※※※※※※※
+            if (!"".Equals(lstItem[10]))
+            {
+                // 入力者コード
+                allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
+            }
 
             // 受注残ラジオボタン
             if ("TRUE".Equals(arrDispJuchuzan[1]))
@@ -683,17 +677,15 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
             if (!"".Equals(lstItem[9]))
             {
                 // 担当者コード
-                allSql += " AND H.担当者コード ='" + lstItem[9] + "'";
+                allSql += "and dbo.f_get担当者コード(dbo.f_get受注番号から得意先コード(H.伝票番号)) ='" + lstItem[9] + "'";
             }
 
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 START※※※※※※※
             // 入力者コードの存在チェック
-            //if (!"".Equals(lstItem[10]))
-            //{
-            // // 入力者コード
-            //allSql += " AND H.担当者コード ='" + lstItem[10] + "'";
-            //}
-            // ※※※※※仕様不明の為コメントアウト中2018/02/23 END※※※※※※※
+            if (!"".Equals(lstItem[10]))
+            {
+                // 入力者コード
+                allSql += " and f_get担当者コード(" + lstItem[9] + ")";
+            }
 
             // 受注残ラジオボタン
             if ("TRUE".Equals(arrDispJuchuzan[1]))
