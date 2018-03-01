@@ -79,7 +79,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             this.btnF04.Text = STR_FUNC_F4;
 
             this.btnF06.Text = "F6:表示";
-            this.btnF11.Text = STR_BTN_F11;
+            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             //DataGridViewの初期設定

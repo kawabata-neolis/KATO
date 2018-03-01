@@ -212,6 +212,12 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
+            //型番が被った場合の判定用
+            string strKatabanSub = "";
+
+            //ページ初回行かどうか判定
+            Boolean blFirstRow = true;
+
             try
             {
                 CreatePdf pdf = new CreatePdf();
@@ -248,7 +254,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 22;
+                double page = 1.0 * maxRowCnt / 60;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -273,7 +279,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                         titleCell.Value = "特 定 向 け 先 単 価 一 覧 表";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
-                        headersheet.Range("A1", "C1").Merge();
+                        headersheet.Range("A1", "D1").Merge();
 
                         //ヘッダー出力(表ヘッダー)
                         headersheet.Cell("A3").Value = "型  番";
@@ -283,12 +289,13 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
 
                         //ヘッダー列
                         headersheet.Range("A3", "D3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        headersheet.Range("A3", "D3").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
                         // 列幅の指定
-                        headersheet.Column(1).Width = 60;
-                        headersheet.Column(2).Width = 20;
-                        headersheet.Column(3).Width = 50;
-                        headersheet.Column(4).Width = 110;
+                        headersheet.Column(1).Width = 44;
+                        headersheet.Column(2).Width = 15;
+                        headersheet.Column(3).Width = 34;
+                        headersheet.Column(4).Width = 12;
 
                         // セルの周囲に罫線を引く
                         headersheet.Range("A3", "D3").Style
@@ -297,9 +304,9 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-                        // 印刷体裁（A4横、印刷範囲）
+                        // 印刷体裁（A4縦、印刷範囲）
                         headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
-                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Default;
 
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№116）");
@@ -313,36 +320,120 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                     {
                         string str = drTokuteCheak[colCnt - 1].ToString();
 
-                        currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                        //型番の場合
+                        if (colCnt == 1)
+                        {
+                            //型番が同じでない場合
+                            if (strKatabanSub != str)
+                            {
+                                //ページ初回行でない場合
+                                if (blFirstRow == false)
+                                {
+                                    // セルの左右に罫線を引く
+                                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 1).Style
+                                            .Border.SetLeftBorder(XLBorderStyleValues.Thin);
+                                    currentsheet.Range(xlsRowCnt, 4, xlsRowCnt, 4).Style
+                                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-                        ////縦の中央に寄せる(未作成)
-                        //currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+                                    xlsRowCnt++;
+                                }
 
-                        ////数量の場合
-                        //if (colCnt == 2)
-                        //{
-                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.Format = "#,0.00";
-                        //}
+                                //縦の上に寄せる
+                                currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+
+                                //左寄せ
+                                currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
+                                currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                                // セルの上左右に罫線を引く
+                                currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 1).Style
+                                        .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                                        .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                        .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                                //型番確保
+                                strKatabanSub = str;
+
+                                blFirstRow = false;
+                            }
+                            else
+                            {
+                                // セルの左に罫線を引く
+                                currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 1).Style
+                                        .Border.SetLeftBorder(XLBorderStyleValues.Thin);
+                            }
+                        }
+                        //単価の場合
+                        else if (colCnt == 2)
+                        {
+                            //縦の上に寄せる
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                            //カンマ処理
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.Format = "#,0.00";
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+
+                            // セルの周囲に罫線を引く
+                            currentsheet.Range(xlsRowCnt, 2, xlsRowCnt, 2).Style
+                                    .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                        }
+                        //仕向先の場合
+                        else if (colCnt == 3)
+                        {
+                            //縦の上に寄せる
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
+                            // セルの周囲に罫線を引く
+                            currentsheet.Range(xlsRowCnt, 3, xlsRowCnt, 3).Style
+                                    .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                        }
+                        //最終仕入日の場合
+                        else if (colCnt == 4)
+                        {
+                            //縦の上に寄せる
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Top;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                            // セルの周囲に罫線を引く
+                            currentsheet.Range(xlsRowCnt, 4, xlsRowCnt, 4).Style
+                                    .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                        }
                     }
-
-
+                    
                     //行の高さ指定
-                    currentsheet.Row(xlsRowCnt).Height = 20;
+                    currentsheet.Row(xlsRowCnt).Height = 12;
 
-                    // 1行分のセルの周囲に罫線を引く
-                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 4).Style
-                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
-                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
-
-                    // 22行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 22)
+                    // 60行毎（ヘッダーを除いた行数）にシート作成
+                    if (xlsRowCnt >= 60)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
                         {
                             xlsRowCnt = 3;
+
+                            blFirstRow = true;
 
                             // ヘッダーシートのコピー、ヘッダー部の指定
                             pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);

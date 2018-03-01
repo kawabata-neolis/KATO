@@ -56,25 +56,11 @@
             // 
             // btnF11
             // 
-            // 
-            // btnF10
-            // 
-            // 
-            // btnF09
-            // 
-            // 
-            // btnF08
-            // 
-            // 
-            // btnF07
-            // 
+            this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF06
             // 
             this.btnF06.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF05
-            // 
             // 
             // btnF04
             // 
@@ -83,9 +69,6 @@
             // btnF03
             // 
             this.btnF03.Click += new System.EventHandler(this.judBtnClick);
-            // 
-            // btnF02
-            // 
             // 
             // baseLabel1
             // 
@@ -145,6 +128,7 @@
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(244, 167);
             this.txtTanka.MaxLength = 10;
+            this.txtTanka.MinusFlg = true;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(100, 22);
             this.txtTanka.TabIndex = 41;
