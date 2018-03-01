@@ -348,6 +348,9 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
             // データ検索用
             List<string> lstItem = new List<string>();
 
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             // 空文字判定（仕入先コード、型番、備考、伝票年月日）
             if (labelSet_Shiiresaki.CodeTxtText.Equals("")  && txtKataban.Text.Equals("") && txtBikou.Text.Equals("") && 
                 txtCalendarYMDStart.Text.Equals("") && txtCalendarYMDEnd.Text.Equals(""))
@@ -357,6 +360,63 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
                 basemessagebox.ShowDialog();
                 labelSet_Shiiresaki.codeTxt.Focus();
                 return;
+            }
+
+            //仕入先チェック
+            if (labelSet_Shiiresaki.chkTxtShiresaki())
+            {
+                labelSet_Shiiresaki.Focus();
+
+                return;
+            }
+            
+            //開始年月日がある場合
+            if (txtCalendarYMDStart.blIsEmpty() == true)
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtCalendarYMDStart.chkDateDataFormat(txtCalendarYMDStart.Text);
+
+                //開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtCalendarYMDStart.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtCalendarYMDStart.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //終了年月日がある場合
+            if (txtCalendarYMDEnd.blIsEmpty() == true)
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtCalendarYMDEnd.chkDateDataFormat(txtCalendarYMDEnd.Text);
+
+                //終了年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtCalendarYMDEnd.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtCalendarYMDEnd.Text = strYMDformat;
+                }
             }
 
             // ビジネス層のインスタンス生成

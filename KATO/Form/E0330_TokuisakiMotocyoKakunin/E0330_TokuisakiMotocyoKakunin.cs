@@ -317,9 +317,14 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
 
             //画面の項目内を白紙にする
             delFormClear(this, gridTorihiki);
-            
+
+            //初期表示
+
+            txtStartYM.Text = DateTime.Now.ToString();
+            txtEndYM.Text = DateTime.Now.ToString();
+
         }
-        
+
 
         /// <summary>
         /// setUriageSuiiHyo
@@ -370,6 +375,20 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 txtEndYM.Focus();
                 return;
             }
+
+            ////得意先開始チェック
+            //if ()
+            //{
+
+            //}
+            
+            //得意先終了チェック
+
+
+            //検索開始年月
+
+            //検索終了年月
+
 
             //データ検索用
             List<string> lstUriageSuiiLoad = new List<string>();
@@ -757,6 +776,20 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 txtEndYM.Focus();
                 return;
             }
+
+            ////得意先開始チェック
+            //if ()
+            //{
+
+            //}
+
+            //得意先終了チェック
+
+
+            //検索開始年月
+
+            //検索終了年月
+
 
             //印刷対象の範囲指定をする場合
             if (radSet_Insatsu.radbtn1.Checked == true)

@@ -896,6 +896,8 @@ namespace KATO.Form.Z0000
 
                 //取引先確認
                 case "114":
+                    M1071_TorihikisakiInfo.M1071_TorihikisakiInfo torihikiinfo = new M1071_TorihikisakiInfo.M1071_TorihikisakiInfo(this);
+                    torihikiinfo.ShowDialog();
                     break;
 
                 //商品マスタ単価一括更新
@@ -1417,6 +1419,12 @@ namespace KATO.Form.Z0000
                         //消費税率
                         M1130_Shohizeiritsu.M1130_Shohizeiritsu shohizeiritsu = new M1130_Shohizeiritsu.M1130_Shohizeiritsu(this);
                         shohizeiritsu.ShowDialog();
+                        break;
+
+                    case "114":
+                        //取引先確認
+                        M1071_TorihikisakiInfo.M1071_TorihikisakiInfo torihikiinfo = new M1071_TorihikisakiInfo.M1071_TorihikisakiInfo(this);
+                        torihikiinfo.ShowDialog();
                         break;
 
                     case "115":

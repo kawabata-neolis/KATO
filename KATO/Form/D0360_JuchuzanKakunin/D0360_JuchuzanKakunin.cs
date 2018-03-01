@@ -510,6 +510,11 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         ///</summary>
         private void selZanList()
         {
+            //データチェック
+            if (!blnDataCheck())
+            {
+                return;
+            }
 
             string[] listParam = new string[30];
 
@@ -598,11 +603,299 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     }
                 }
 
-            } catch (Exception ex)
-            {
-                CommonException cex = new CommonException(ex);
-                MessageBox.Show(ex.Message);
             }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// blnDataCheck
+        /// データチェック
+        /// </summary>
+        private Boolean blnDataCheck()
+        {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //受注者チェック
+            if (lsJuchusha.chkTxtTantosha())
+            {
+                lsJuchusha.Focus();
+
+                return false;
+            }
+
+            //得意先チェック
+            if (lsTokuisaki.chkTxtTorihikisaki())
+            {
+                lsTokuisaki.Focus();
+
+                return false;
+            }
+
+            //受注納期検索開始がある場合
+            if (txtJuchuNokiFrom.blIsEmpty() == true)
+            {
+                strYMDformat = txtJuchuNokiFrom.chkDateDataFormat(txtJuchuNokiFrom.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtJuchuNokiFrom.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //受注納期検索終了がある場合
+            if (txtJuchuNokiTo.blIsEmpty() == true)
+            {
+                strYMDformat = txtJuchuNokiTo.chkDateDataFormat(txtJuchuNokiTo.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtJuchuNokiTo.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //受注日検索開始がある場合
+            if (txtJuchubiFrom.blIsEmpty() == true)
+            {
+                strYMDformat = txtJuchubiFrom.chkDateDataFormat(txtJuchubiFrom.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtJuchubiFrom.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //受注日検索終了がある場合
+            if (txtJuchubiTo.blIsEmpty() == true)
+            {
+                strYMDformat = txtJuchubiTo.chkDateDataFormat(txtJuchubiTo.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtJuchubiTo.Text = strYMDformat;
+                }
+            }
+
+            //発注者チェック
+            if (lsHatchusha.chkTxtTantosha())
+            {
+                lsHatchusha.Focus();
+
+                return false;
+            }
+
+            //仕入先チェック
+            if (lsShiiresaki.chkTxtTorihikisaki())
+            {
+                lsShiiresaki.Focus();
+
+                return false;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //発注納期検索開始がある場合
+            if (txtHatchuNokiFrom.blIsEmpty() == true)
+            {
+                strYMDformat = txtHatchuNokiFrom.chkDateDataFormat(txtHatchuNokiFrom.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtHatchuNokiFrom.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //発注納期検索終了がある場合
+            if (txtHatchuNokiTo.blIsEmpty() == true)
+            {
+                strYMDformat = txtHatchuNokiTo.chkDateDataFormat(txtHatchuNokiTo.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtHatchuNokiTo.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //発注日検索開始がある場合
+            if (txtHatchubiFrom.blIsEmpty() == true)
+            {
+                strYMDformat = txtHatchubiFrom.chkDateDataFormat(txtHatchubiFrom.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtHatchubiFrom.Text = strYMDformat;
+                }
+
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //発注日検索終了がある場合
+            if (txtHatchubiTo.blIsEmpty() == true)
+            {
+                strYMDformat = txtHatchubiTo.chkDateDataFormat(txtHatchubiTo.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtHatchubiTo.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //遅延判断日検索開始がある場合
+            if (txtChienFrom.blIsEmpty() == true)
+            {
+                strYMDformat = txtChienFrom.chkDateDataFormat(txtChienFrom.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtChienFrom.Text = strYMDformat;
+                }
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //遅延判断日検索終了がある場合
+            if (txtChienTo.blIsEmpty() == true)
+            {
+                strYMDformat = txtChienTo.chkDateDataFormat(txtChienTo.Text);
+
+                if ("".Equals(strYMDformat))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    return false;
+                }
+                else
+                {
+                    txtChienTo.Text = strYMDformat;
+                }
+            }
+
+            //担当者チェック
+            if (lsTantousha.chkTxtTantosha())
+            {
+                lsTantousha.Focus();
+
+                return false;
+            }
+
+            //大分類チェック
+            if (lsDaibunrui.chkTxtDaibunrui())
+            {
+                lsDaibunrui.Focus();
+
+                return false;
+            }
+            //中分類チェック
+            if (lsChubunrui.chkTxtChubunrui(lsDaibunrui.CodeTxtText))
+            {
+                lsChubunrui.Focus();
+
+                return false;
+            }
+
+            //メーカーチェック
+            if (lsMaker.chkTxtMaker())
+            {
+                lsMaker.Focus();
+
+                return false;
+            }
+
+            return true;
         }
 
         private void setParam(string[] lst, string prm, int idx)

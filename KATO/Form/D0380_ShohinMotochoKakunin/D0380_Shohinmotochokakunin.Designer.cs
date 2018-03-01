@@ -355,7 +355,6 @@
             this.txtCalendarYMopen.Name = "txtCalendarYMopen";
             this.txtCalendarYMopen.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMopen.TabIndex = 6;
-            this.txtCalendarYMopen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtCalendarYMclose
             // 
@@ -366,7 +365,6 @@
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMclose.TabIndex = 7;
-            this.txtCalendarYMclose.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblZenGetuZaiko
             // 
@@ -505,6 +503,7 @@
             this.txtHonZenZaiko.intShishagonyu = 0;
             this.txtHonZenZaiko.Location = new System.Drawing.Point(995, 194);
             this.txtHonZenZaiko.MaxLength = 3;
+            this.txtHonZenZaiko.MinusFlg = true;
             this.txtHonZenZaiko.Name = "txtHonZenZaiko";
             this.txtHonZenZaiko.ReadOnly = true;
             this.txtHonZenZaiko.Size = new System.Drawing.Size(97, 22);
@@ -523,6 +522,7 @@
             this.txtGihuZenZaiko.intShishagonyu = 0;
             this.txtGihuZenZaiko.Location = new System.Drawing.Point(995, 224);
             this.txtGihuZenZaiko.MaxLength = 3;
+            this.txtGihuZenZaiko.MinusFlg = true;
             this.txtGihuZenZaiko.Name = "txtGihuZenZaiko";
             this.txtGihuZenZaiko.ReadOnly = true;
             this.txtGihuZenZaiko.Size = new System.Drawing.Size(97, 22);
@@ -541,6 +541,7 @@
             this.txtHonNyuko.intShishagonyu = 0;
             this.txtHonNyuko.Location = new System.Drawing.Point(1097, 194);
             this.txtHonNyuko.MaxLength = 3;
+            this.txtHonNyuko.MinusFlg = true;
             this.txtHonNyuko.Name = "txtHonNyuko";
             this.txtHonNyuko.ReadOnly = true;
             this.txtHonNyuko.Size = new System.Drawing.Size(97, 22);
@@ -559,6 +560,7 @@
             this.txtHonShuko.intShishagonyu = 0;
             this.txtHonShuko.Location = new System.Drawing.Point(1199, 194);
             this.txtHonShuko.MaxLength = 3;
+            this.txtHonShuko.MinusFlg = true;
             this.txtHonShuko.Name = "txtHonShuko";
             this.txtHonShuko.ReadOnly = true;
             this.txtHonShuko.Size = new System.Drawing.Size(97, 22);
@@ -576,6 +578,7 @@
             this.txtGihuNyuko.intShishagonyu = 0;
             this.txtGihuNyuko.Location = new System.Drawing.Point(1097, 224);
             this.txtGihuNyuko.MaxLength = 3;
+            this.txtGihuNyuko.MinusFlg = true;
             this.txtGihuNyuko.Name = "txtGihuNyuko";
             this.txtGihuNyuko.Size = new System.Drawing.Size(97, 22);
             this.txtGihuNyuko.TabIndex = 93;
@@ -593,6 +596,7 @@
             this.txtGihuShuko.intShishagonyu = 0;
             this.txtGihuShuko.Location = new System.Drawing.Point(1199, 224);
             this.txtGihuShuko.MaxLength = 3;
+            this.txtGihuShuko.MinusFlg = true;
             this.txtGihuShuko.Name = "txtGihuShuko";
             this.txtGihuShuko.ReadOnly = true;
             this.txtGihuShuko.Size = new System.Drawing.Size(97, 22);
@@ -611,6 +615,7 @@
             this.txtHonGenzaiko.intShishagonyu = 0;
             this.txtHonGenzaiko.Location = new System.Drawing.Point(1301, 194);
             this.txtHonGenzaiko.MaxLength = 3;
+            this.txtHonGenzaiko.MinusFlg = true;
             this.txtHonGenzaiko.Name = "txtHonGenzaiko";
             this.txtHonGenzaiko.ReadOnly = true;
             this.txtHonGenzaiko.Size = new System.Drawing.Size(97, 22);
@@ -629,6 +634,7 @@
             this.txtGihuGenzaiko.intShishagonyu = 0;
             this.txtGihuGenzaiko.Location = new System.Drawing.Point(1301, 224);
             this.txtGihuGenzaiko.MaxLength = 3;
+            this.txtGihuGenzaiko.MinusFlg = true;
             this.txtGihuGenzaiko.Name = "txtGihuGenzaiko";
             this.txtGihuGenzaiko.ReadOnly = true;
             this.txtGihuGenzaiko.Size = new System.Drawing.Size(97, 22);

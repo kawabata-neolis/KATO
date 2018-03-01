@@ -294,7 +294,6 @@
             this.txtJuchuNokiFrom.Name = "txtJuchuNokiFrom";
             this.txtJuchuNokiFrom.Size = new System.Drawing.Size(87, 22);
             this.txtJuchuNokiFrom.TabIndex = 2;
-            this.txtJuchuNokiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan2
             // 
@@ -316,7 +315,6 @@
             this.txtJuchuNokiTo.Name = "txtJuchuNokiTo";
             this.txtJuchuNokiTo.Size = new System.Drawing.Size(87, 22);
             this.txtJuchuNokiTo.TabIndex = 3;
-            this.txtJuchuNokiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHatchuNokiTo
             // 
@@ -326,7 +324,6 @@
             this.txtHatchuNokiTo.Name = "txtHatchuNokiTo";
             this.txtHatchuNokiTo.Size = new System.Drawing.Size(87, 22);
             this.txtHatchuNokiTo.TabIndex = 10;
-            this.txtHatchuNokiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan4
             // 
@@ -348,7 +345,6 @@
             this.txtHatchuNokiFrom.Name = "txtHatchuNokiFrom";
             this.txtHatchuNokiFrom.Size = new System.Drawing.Size(87, 22);
             this.txtHatchuNokiFrom.TabIndex = 9;
-            this.txtHatchuNokiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHatchuNoki
             // 
@@ -370,7 +366,6 @@
             this.txtChienTo.Name = "txtChienTo";
             this.txtChienTo.Size = new System.Drawing.Size(87, 22);
             this.txtChienTo.TabIndex = 18;
-            this.txtChienTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan5
             // 
@@ -392,7 +387,6 @@
             this.txtChienFrom.Name = "txtChienFrom";
             this.txtChienFrom.Size = new System.Drawing.Size(87, 22);
             this.txtChienFrom.TabIndex = 17;
-            this.txtChienFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblChien
             // 
@@ -414,7 +408,6 @@
             this.txtHatchubiTo.Name = "txtHatchubiTo";
             this.txtHatchubiTo.Size = new System.Drawing.Size(87, 22);
             this.txtHatchubiTo.TabIndex = 12;
-            this.txtHatchubiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan3
             // 
@@ -436,7 +429,6 @@
             this.txtHatchubiFrom.Name = "txtHatchubiFrom";
             this.txtHatchubiFrom.Size = new System.Drawing.Size(87, 22);
             this.txtHatchubiFrom.TabIndex = 11;
-            this.txtHatchubiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblHatchubi
             // 
@@ -458,7 +450,6 @@
             this.txtJuchubiTo.Name = "txtJuchubiTo";
             this.txtJuchubiTo.Size = new System.Drawing.Size(87, 22);
             this.txtJuchubiTo.TabIndex = 5;
-            this.txtJuchubiTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblSpan1
             // 
@@ -480,7 +471,6 @@
             this.txtJuchubiFrom.Name = "txtJuchubiFrom";
             this.txtJuchubiFrom.Size = new System.Drawing.Size(87, 22);
             this.txtJuchubiFrom.TabIndex = 4;
-            this.txtJuchubiFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblJuchubi
             // 
@@ -910,6 +900,7 @@
             this.txtGokeiUriage.intShishagonyu = 0;
             this.txtGokeiUriage.Location = new System.Drawing.Point(991, 755);
             this.txtGokeiUriage.MaxLength = 0;
+            this.txtGokeiUriage.MinusFlg = true;
             this.txtGokeiUriage.Name = "txtGokeiUriage";
             this.txtGokeiUriage.ReadOnly = true;
             this.txtGokeiUriage.Size = new System.Drawing.Size(163, 22);
@@ -927,6 +918,7 @@
             this.txtGokeiGenka.intShishagonyu = 0;
             this.txtGokeiGenka.Location = new System.Drawing.Point(1245, 755);
             this.txtGokeiGenka.MaxLength = 0;
+            this.txtGokeiGenka.MinusFlg = true;
             this.txtGokeiGenka.Name = "txtGokeiGenka";
             this.txtGokeiGenka.ReadOnly = true;
             this.txtGokeiGenka.Size = new System.Drawing.Size(159, 22);

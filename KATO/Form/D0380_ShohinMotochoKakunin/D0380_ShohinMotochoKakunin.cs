@@ -352,8 +352,20 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 case Keys.Back:
                     break;
                 case Keys.Enter:
-                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
-                    this.setShohinList();
+                    //検索項目が一つも記入がない場合
+                    if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Chubunrui.codeTxt.blIsEmpty() == false &&
+                        labelSet_Maker.codeTxt.blIsEmpty() == false &&
+                        txtKensaku.blIsEmpty() == false)
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
+                    else
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        this.setShohinList();
+                    }
                     break;
                 case Keys.F1:
                     break;
@@ -594,23 +606,115 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             //検索時のデータ取り出し先
             DataTable dtSetView;
 
-            //空文字判定
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //空文字判定（商品名）
             if (lblGrayShohin.Text == "")
             {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 txtKensaku.Focus();
                 return;
             }
 
-            //カレンダーチェック(Open)
-            if (txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text) == "")
+            //空文字判定（検索開始年月）
+            if (txtCalendarYMopen.blIsEmpty() == false)
             {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n条件を指定してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 txtCalendarYMopen.Focus();
+
+                return;
             }
 
-            //カレンダーチェック(Close)
-            if (txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMclose.Text) == "")
+            //空文字判定（検索終了年月）
+            if (txtCalendarYMclose.blIsEmpty() == false)
             {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n条件を指定してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
                 txtCalendarYMclose.Focus();
+
+                return;
+            }
+
+            //大分類チェック
+            if (labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                labelSet_Daibunrui.Focus();
+
+                return;
+            }
+
+            //中分類チェック
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                labelSet_Chubunrui.Focus();
+
+                return;
+            }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+
+                return;
+            }
+
+            //営業所チェック
+            if (labelSet_Eigyosho.chkTxtEigyousho())
+            {
+                labelSet_Eigyosho.Focus();
+
+                return;
+            }
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMopen.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMopen.Text = strYMDformat;
+            }
+
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtCalendarYMclose.chkDateYMDataFormat(txtCalendarYMclose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtCalendarYMclose.Focus();
+
+                return;
+            }
+            else
+            {
+                txtCalendarYMclose.Text = strYMDformat;
             }
 
             //ビジネス層のインスタンス生成

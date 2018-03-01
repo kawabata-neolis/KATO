@@ -781,24 +781,32 @@ namespace KATO.Form.A0100_HachuInput
                 textSet_Torihikisaki.Focus();
                 return (blAddEnd);
             }
-            //文字判定(大分類)
-            if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false)
+
+            //文字判定(大分類がなく、中分類がある場合)
+            if (labelSet_Daibunrui.codeTxt.blIsEmpty() == false && labelSet_Chubunrui.codeTxt.blIsEmpty() == true)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+
+                // 中分類コードを空にする。
+                labelSet_Chubunrui.CodeTxtText = "";
+                labelSet_Chubunrui.ValueLabelText = "";
+
                 labelSet_Daibunrui.Focus();
                 return (blAddEnd);
             }
-            //文字判定(中分類)
-            if (labelSet_Chubunrui.codeTxt.blIsEmpty() == false)
+            //大分類があり、中分類もある場合
+            else if(labelSet_Daibunrui.codeTxt.blIsEmpty() == true && labelSet_Chubunrui.codeTxt.blIsEmpty() == true)
             {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                labelSet_Chubunrui.Focus();
-                return (blAddEnd);
+                //文字判定(中分類)
+                if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+                {
+                    labelSet_Chubunrui.Focus();
+                    return (blAddEnd);
+                }
             }
+
             //文字判定(メーカー)
             if (labelSet_Maker.codeTxt.blIsEmpty() == false)
             {
@@ -875,14 +883,6 @@ namespace KATO.Form.A0100_HachuInput
             if (labelSet_Daibunrui.chkTxtDaibunrui())
             {
                 labelSet_Daibunrui.Focus();
-
-                return (blAddEnd);
-            }
-
-            //中分類チェック
-            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
-            {
-                labelSet_Chubunrui.Focus();
 
                 return (blAddEnd);
             }

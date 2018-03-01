@@ -64,7 +64,7 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
         private void M0620_HushoAtenaInsatsu_Load(object sender, EventArgs e)
         {
             this.Show();
-            this._Title = "メーカーマスタ";
+            this._Title = "封書宛名";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
 

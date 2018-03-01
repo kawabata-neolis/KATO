@@ -330,7 +330,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定
+            // 空文字、存在判定
             if (!blnDataCheck())
             {
                 return;
@@ -464,7 +464,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
-            // 空文字判定
+            // 空文字、存在判定
             if (!blnDataCheck())
             {
                 return;
@@ -693,7 +693,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
 
         /// <summary>
         /// blnDataCheck
-        /// 空文字判定
+        /// 空文字、存在判定
         /// </summary>
         private Boolean blnDataCheck()
         {

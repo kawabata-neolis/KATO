@@ -610,29 +610,32 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 lblsetShukoEigyosho.Focus();
                 return;
             }
-            
-            //文字判定(大分類)
-            if (lblsetDaibunrui.codeTxt.blIsEmpty() == false)
+
+            //文字判定(大分類がなく、中分類がある場合)
+            if (lblsetDaibunrui.codeTxt.blIsEmpty() == false && lblsetChubunrui.codeTxt.blIsEmpty() == true)
             {
                 //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                //大分類にフォーカス
+
+                // 中分類コードを空にする。
+                lblsetChubunrui.CodeTxtText = "";
+                lblsetChubunrui.ValueLabelText = "";
+
                 lblsetDaibunrui.Focus();
                 return;
             }
-
-            //文字判定(中分類)
-            if (lblsetChubunrui.codeTxt.blIsEmpty() == false)
+            //大分類があり、中分類もある場合
+            else if (lblsetDaibunrui.codeTxt.blIsEmpty() == true && lblsetChubunrui.codeTxt.blIsEmpty() == true)
             {
-                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                //中分類にフォーカス
-                lblsetChubunrui.Focus();
-                return;
+                //文字判定(中分類)
+                if (lblsetChubunrui.chkTxtChubunrui(lblsetDaibunrui.CodeTxtText))
+                {
+                    lblsetChubunrui.Focus();
+                    return;
+                }
             }
-            
+
             //文字判定(メーカー)
             if (lblsetMaker.codeTxt.blIsEmpty() == false)
             {
@@ -717,14 +720,6 @@ namespace KATO.Form.A0160_ShukoIraiInput
             {
                 //大分類にフォーカス
                 lblsetDaibunrui.Focus();
-                return;
-            }
-
-            //中分類コードが正しくない場合
-            if (lblsetChubunrui.chkTxtChubunrui(lblsetDaibunrui.CodeTxtText) == true)
-            {
-                //中分類にフォーカス
-                lblsetChubunrui.Focus();
                 return;
             }
 
