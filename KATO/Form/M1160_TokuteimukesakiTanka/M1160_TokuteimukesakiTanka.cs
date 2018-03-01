@@ -79,6 +79,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             this.btnF04.Text = STR_FUNC_F4;
 
             this.btnF06.Text = "F6:表示";
+            this.btnF11.Text = STR_BTN_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             //DataGridViewの初期設定
@@ -234,6 +235,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    //グリッドにデータがある場合
+                    if (gridTokuteimukesakiTanka.Rows.Count > 0)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                        this.printReport();
+                    }
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -268,6 +275,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case STR_BTN_F06: // 表示
                     logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.CheckMaster();
+                    break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printReport();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -334,12 +345,11 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             }
             catch (Exception ex)
             {
-                // メッセージボックスの処理、追加失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                // エラーロギング
+                //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -410,13 +420,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             }
             catch (Exception ex)
             {
-                // エラーロギング
+                //エラーロギング
                 new CommonException(ex);
-
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-
+                return;
             }
             return;
         }
@@ -697,8 +706,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             catch (Exception ex)
             {
                 //エラーロギング
-                gridTokuteimukesakiTanka.Visible = true;
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -772,6 +783,121 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// printReport
+        /// PDFを出力する
+        /// </summary>
+        private void printReport()
+        {
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //データの取り出し用
+            DataTable dtPrintData = new DataTable();
+
+            //列情報を取得
+            DataGridViewColumnCollection cols = gridTokuteimukesakiTanka.Columns;
+
+            //行情報を取得
+            DataGridViewRowCollection rows = gridTokuteimukesakiTanka.Rows;
+
+            //取引先経理情報登録時の情報
+            List<string> lstTorihiki = new List<string>();
+
+            foreach (DataGridViewColumn c in cols)
+            {
+                if (c.ValueType != null)
+                {
+                    dtPrintData.Columns.Add(c.Name, c.ValueType);
+                }
+                else
+                {
+                    dtPrintData.Columns.Add(c.Name);
+                }
+            }
+
+            foreach (DataGridViewRow r in rows)
+            {
+                List<object> array = new List<object>();
+
+                foreach (DataGridViewCell cell in r.Cells)
+                {
+                    array.Add(cell.Value);
+                }
+
+                dtPrintData.Rows.Add(array.ToArray());
+            }
+
+            //ビジネス層のインスタンス生成
+            M1160_TokuteimukesakiTanka_B tokuteimukesakitankaB = new M1160_TokuteimukesakiTanka_B();
+            try
+            {
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }

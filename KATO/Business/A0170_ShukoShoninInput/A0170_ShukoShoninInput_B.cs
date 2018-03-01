@@ -302,8 +302,8 @@ namespace KATO.Business.A0170_ShukoShoninInput
                         string str = drSiireCheak[colCnt - 1].ToString();
 
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-                        
-                        //縦の中央に寄せる(未作成)
+
+                        //縦の中央に寄せる
                         currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
                         //数量の場合

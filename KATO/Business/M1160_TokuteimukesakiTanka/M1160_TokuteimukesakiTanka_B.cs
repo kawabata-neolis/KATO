@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClosedXML.Excel;
 
 namespace KATO.Business.M1160_TokuteimukesakiTanka
 {
@@ -198,5 +199,187 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
             return;
         }
 
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// DataTableをもとにxlsxファイルを作成し、PDFファイルを作成
+        /// </summary>
+        /// <param name="dtHachu">発注のデータテーブル</param>
+        /// <returns>結合PDFファイル</returns>
+        /// -----------------------------------------------------------------------------
+        public string dbToPdf(DataTable dtPrintData, List<string> lstlstTorihiki)
+        {
+            string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+            try
+            {
+                CreatePdf pdf = new CreatePdf();
+
+                // ワークブックのデフォルトフォント、フォントサイズの指定
+                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
+                XLWorkbook.DefaultStyle.Font.FontSize = 9;
+
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
+
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
+                IXLWorksheet headersheet = worksheet;   // ヘッダーシート
+                IXLWorksheet currentsheet = worksheet;  // 処理中シート
+
+                //Linqで必要なデータをselect
+                var outDataAll = dtPrintData.AsEnumerable()
+                    .Select(dat => new
+                    {
+                        TokuSakiKataban = dat["型番"],
+                        TokuSakiTanka = dat["単価"],
+                        TokuSakiShimukesaki = dat["仕向先"],
+                        TokuSakiSaishuShirebi = dat["最終仕入日"]
+                    }).ToList();
+
+                //リストをデータテーブルに変換
+                DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
+
+                int maxRowCnt = dtChkList.Rows.Count + 1;
+                int maxColCnt = dtChkList.Columns.Count;
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int rowCnt = 1;     // datatable処理行カウント
+                int xlsRowCnt = 4;  // Excel出力行カウント（開始は出力行）
+                int maxPage = 0;    // 最大ページ数
+
+                //ページ数計算
+                double page = 1.0 * maxRowCnt / 22;
+                double decimalpart = page % 1;
+                if (decimalpart != 0)
+                {
+                    //小数点以下が0でない場合、+1
+                    maxPage = (int)Math.Floor(page) + 1;
+                }
+                else
+                {
+                    maxPage = (int)page;
+                }
+
+                //ClosedXMLで1行ずつExcelに出力
+                foreach (DataRow drTokuteCheak in dtChkList.Rows)
+                {
+                    //1ページ目のシート作成
+                    if (rowCnt == 1)
+                    {
+                        pageCnt++;
+
+                        //タイトル出力（中央揃え、セル結合）
+                        IXLCell titleCell = headersheet.Cell("A1");
+                        titleCell.Value = "特 定 向 け 先 単 価 一 覧 表";
+                        titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        titleCell.Style.Font.FontSize = 16;
+                        headersheet.Range("A1", "C1").Merge();
+
+                        //ヘッダー出力(表ヘッダー)
+                        headersheet.Cell("A3").Value = "型  番";
+                        headersheet.Cell("B3").Value = "単  価";
+                        headersheet.Cell("C3").Value = "仕向先";
+                        headersheet.Cell("D3").Value = "最終仕入日";
+
+                        //ヘッダー列
+                        headersheet.Range("A3", "D3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        // 列幅の指定
+                        headersheet.Column(1).Width = 60;
+                        headersheet.Column(2).Width = 20;
+                        headersheet.Column(3).Width = 50;
+                        headersheet.Column(4).Width = 110;
+
+                        // セルの周囲に罫線を引く
+                        headersheet.Range("A3", "D3").Style
+                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                        // 印刷体裁（A4横、印刷範囲）
+                        headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
+                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+
+                        // ヘッダー部の指定（番号）
+                        headersheet.PageSetup.Header.Left.AddText("（№116）");
+
+                        //ヘッダーシートのコピー、ヘッダー部の指定
+                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                    }
+
+                    // 1セルずつデータ出力
+                    for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
+                    {
+                        string str = drTokuteCheak[colCnt - 1].ToString();
+
+                        currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                        ////縦の中央に寄せる(未作成)
+                        //currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+                        ////数量の場合
+                        //if (colCnt == 2)
+                        //{
+                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.Format = "#,0.00";
+                        //}
+                    }
+
+
+                    //行の高さ指定
+                    currentsheet.Row(xlsRowCnt).Height = 20;
+
+                    // 1行分のセルの周囲に罫線を引く
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 4).Style
+                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                    // 22行毎（ヘッダーを除いた行数）にシート作成
+                    if (xlsRowCnt == 22)
+                    {
+                        pageCnt++;
+                        if (pageCnt <= maxPage)
+                        {
+                            xlsRowCnt = 3;
+
+                            // ヘッダーシートのコピー、ヘッダー部の指定
+                            pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                        }
+                    }
+
+                    rowCnt++;
+                    xlsRowCnt++;
+                }
+
+                // ヘッダーシート削除
+                headersheet.Delete();
+
+                // workbookを保存
+                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                workbook.SaveAs(strOutXlsFile);
+
+                // workbookを解放
+                workbook.Dispose();
+
+                // PDF化の処理
+                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                // Workフォルダの全ファイルを取得
+                string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+                // Workフォルダ内のファイル削除
+                foreach (string filepath in files)
+                {
+                    //File.Delete(filepath);
+                }
+            }
+        }
     }
 }

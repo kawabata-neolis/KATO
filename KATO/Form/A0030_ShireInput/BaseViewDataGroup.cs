@@ -1679,7 +1679,7 @@ namespace KATO.Form.A0030_ShireInput
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
-            lstSQL.Add("Common");
+            lstSQL.Add("A0030_ShireInput");
             lstSQL.Add("ShireInput_gb_Shohizei_SELECT");
 
             //SQL実行時に取り出したデータを入れる用

@@ -337,6 +337,8 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
                 return;
             }
 
+
+
             // データ検索用
             List<string> lstSearchItem = new List<string>();
             // 得意先情報取得用
