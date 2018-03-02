@@ -847,12 +847,16 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 //プレビューの場合
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     //現在時間と使用者ＰＣユーザー名を確保
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
                     //結果セットをレコードセットに
                     strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -870,12 +874,16 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 // 一括印刷の場合
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     //現在時間と使用者ＰＣユーザー名を確保
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
                     //結果セットをレコードセットに
                     strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -893,6 +901,8 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 //エラーロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
