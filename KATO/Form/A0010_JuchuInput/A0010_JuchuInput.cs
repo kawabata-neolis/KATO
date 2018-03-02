@@ -994,6 +994,13 @@ namespace KATO.Form.A0010_JuchuInput
                 DataTable dtH = juchuB.getRireki(strCd);
 
                 if (dtH != null && dtH.Rows.Count > 0) {
+                    lblHonshaShukko.Visible = false;
+                    lblGihuShukko.Visible = false;
+                    lblHatchusu.Visible = false;
+                    txtHonshaShukko.Visible = false;
+                    txtGihuShukko.Visible = false;
+                    txtHatchusu.Visible = false;
+
                     f6 = new Form6(this);
                     f6.strJuchuNo = txtJuchuNo.Text;
 
@@ -1013,6 +1020,15 @@ namespace KATO.Form.A0010_JuchuInput
 
                     f6.strEigyoCd = txtEigyoshoCd.Text;
                     f6.Show();
+                }
+                else
+                {
+                    lblHonshaShukko.Visible = true;
+                    lblGihuShukko.Visible = true;
+                    lblHatchusu.Visible = true;
+                    txtHonshaShukko.Visible = true;
+                    txtGihuShukko.Visible = true;
+                    txtHatchusu.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -1665,7 +1681,7 @@ namespace KATO.Form.A0010_JuchuInput
                 //}
             }
 
-            string strMsg = "";
+            string strMsg = "正常に登録されました";
 
             DBConnective con = new DBConnective();
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();

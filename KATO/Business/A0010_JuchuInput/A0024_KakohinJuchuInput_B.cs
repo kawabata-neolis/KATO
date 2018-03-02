@@ -285,7 +285,7 @@ namespace KATO.Business.A0010_JuchuInput
         {
             bool retFlg = false;
             DataTable dtFlg = null;
-            string strQuery = "SELECT 受注番号 FROM 発注 WHERE 受注番号 =" + strJuchuNo + " AND 削除='N' AND 加工区分='1'";
+            string strQuery = "SELECT 受注番号 FROM 受注 WHERE 受注番号 =" + strJuchuNo + " AND 削除='N' AND 加工区分='1'";
 
             DBConnective dbCon = new DBConnective();
             try

@@ -1638,11 +1638,15 @@ namespace KATO.Form.A0010_JuchuInput
         // 加工品受注個別削除
         private bool delKakoJuchuS(Panel c, A0024_KakohinJuchuInput_B juchuB, DBConnective con, bool f)
         {
-            // 新規生成したパネルはDBに値が無いため削除処理をスキップ
-            if (!((BaseText)c.Controls["notNewPanel"]).Text.Equals("1"))
-            {
-                return true;
-            }
+            //if (c.Controls["notNewPanel"] == null || ((BaseText)c.Controls["notNewPanel"]) == null)
+            //{
+            //    return true;
+            //}
+            //// 新規生成したパネルはDBに値が無いため削除処理をスキップ
+            //if (string.IsNullOrWhiteSpace(((BaseText)c.Controls["notNewPanel"]).Text) || !((BaseText)c.Controls["notNewPanel"]).Text.Equals("1"))
+            //{
+            //    return true;
+            //}
 
             strHachuNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
 
@@ -1823,6 +1827,12 @@ namespace KATO.Form.A0010_JuchuInput
                         kakoKbn = "0";
                         //kakoKbn = "1";
                     }
+
+                    //if (!string.IsNullOrWhiteSpace(strJuchuNo) && juchuB.judKakohinJuchu(juchuNo))
+                    //{
+                    //    kakoKbn = "1";
+                    //}
+
                     string strDenpyoNo = null;
                     if (string.IsNullOrWhiteSpace(sHNo))
                     {

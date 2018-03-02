@@ -1570,7 +1570,7 @@ namespace KATO.Form.A0030_ShireInput
                         //データが一つ以上ある場合
                         if (dtZei.Rows.Count > 0)
                         {
-                            decZei = int.Parse(dtZei.Rows[0]["消費税率"].ToString());
+                            decZei = decimal.Parse(dtZei.Rows[0]["消費税率"].ToString());
                         }
                     }
 
@@ -1585,15 +1585,15 @@ namespace KATO.Form.A0030_ShireInput
                             {
                                 case 0:
                                     //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
                                     break;
                                 case 1:
                                     //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
                                     break;
                                 case 2:
                                     //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
                                     break;
                             }
                         }
@@ -1603,15 +1603,15 @@ namespace KATO.Form.A0030_ShireInput
                         {
                             case 0:
                                 //運賃と税率、四捨五入による計算（モード0）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
                                 break;
                             case 1:
                                 //運賃と税率、四捨五入による計算（モード1）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
                                 break;
                             case 2:
                                 //運賃と税率、四捨五入による計算（モード2）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((int.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
                                 break;
                         }
 
@@ -1645,7 +1645,7 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     //仕入入力画面の総合計に記入
-                    shireinput.txtSogokei.Text = (Int64.Parse(shireinput.txtGokei.Text) + Int64.Parse(shireinput.txtShohizei.Text)).ToString();
+                    shireinput.txtSogokei.Text = (decimal.Parse(shireinput.txtGokei.Text) + decimal.Parse(shireinput.txtShohizei.Text)).ToString("#");
                     shireinput.txtSogokei.updPriceMethod();
                 }
                 return;
