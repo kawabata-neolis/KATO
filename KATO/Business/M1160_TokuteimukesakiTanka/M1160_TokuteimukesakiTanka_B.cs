@@ -310,7 +310,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 //リストをデータテーブルに変換
                 DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
-                int maxRowCnt = dtPrintDataNew.Rows.Count -1;
+                int maxRowCnt = dtPrintDataNew.Rows.Count +1;
                 int maxColCnt = dtChkList.Columns.Count;
                 int pageCnt = 0;    // ページ(シート枚数)カウント
                 int rowCnt = 1;     // datatable処理行カウント
@@ -491,7 +491,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                     currentsheet.Row(xlsRowCnt).Height = 12;
 
                     // 60行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt >= 60)
+                    if (xlsRowCnt == 60)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
