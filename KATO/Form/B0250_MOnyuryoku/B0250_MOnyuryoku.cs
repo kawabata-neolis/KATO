@@ -2405,6 +2405,170 @@ namespace KATO.Form.B0250_MOnyuryoku
                 }
             }
 
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                // 年月日の日付フォーマットチェック
+                string datedata = txtYM.chkDateYMDataFormat(txtYM.Text);
+                if ("".Equals(datedata))
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    blnGood = false;
+                }
+                else
+                {
+                    txtYM.Text = datedata;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //文字列チェック（大分類コード）
+                if (lblSetDaibunrui.chkTxtDaibunrui())
+                {
+                    blnGood = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //文字列チェック（中分類コード）
+                if (lblSetChubunrui.chkTxtChubunrui(lblSetDaibunrui.CodeTxtText))
+                {
+                    blnGood = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //文字列チェック（メーカーコード）
+                if (lblSetMaker.chkTxtMaker())
+                {
+                    blnGood = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //文字列チェック（仕入先コード）
+                if (lblSetShiresaki.chkTxtTorihikisaki())
+                {
+                    blnGood = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //データがある場合
+                if (txtShukeiM.blIsEmpty())
+                {
+                    //集計月数
+                    if (txtShukeiM.chkMoneyText() == false)
+                    {
+                        blnGood = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //データがある場合
+                if (txtHachuYMD.blIsEmpty())
+                {
+                    // 発注年月日の日付フォーマットチェック
+                    string datedata = txtHachuYMD.chkDateDataFormat(txtHachuYMD.Text);
+                    if ("".Equals(datedata))
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        blnGood = false;
+                    }
+                    else
+                    {
+                        txtHachuYMD.Text = datedata;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //データがある場合
+                if (txtHachusu.blIsEmpty())
+                {
+                    //発注数
+                    if (txtHachusu.chkMoneyText() == false)
+                    {
+                        blnGood = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //データがある場合
+                if (txtTanka.blIsEmpty())
+                {
+                    //単価
+                    if (txtTanka.chkMoneyText() == false)
+                    {
+                        blnGood = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //データがある場合
+                if (txtNoki.blIsEmpty())
+                {
+                    // 納期の日付フォーマットチェック
+                    string datedata = txtNoki.chkDateDataFormat(txtNoki.Text);
+                    if ("".Equals(datedata))
+                    {
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        blnGood = false;
+                    }
+                    else
+                    {
+                        txtNoki.Text = datedata;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //仕向先
+                if (lblSetShimukesaki.chkTxtTorihikisaki())
+                {
+                    blnGood = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (blnGood == true)
+            {
+                //担当者コード
+                if (lblSetHachuTantousha.chkTxtTantosha())
+                {
+                    blnGood = false;
+                }
+            }
+
             return (blnGood);
         }
 

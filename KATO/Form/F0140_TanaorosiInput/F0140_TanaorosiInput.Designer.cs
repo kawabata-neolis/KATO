@@ -32,9 +32,9 @@ namespace KATO.Form.F0140_TanaorosiInput
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gridRireki = new KATO.Common.Ctl.BaseDataGridView();
             this.radBase3 = new KATO.Common.Ctl.BaseRadioButton();
@@ -48,7 +48,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.labelSet_Maker_Edit = new KATO.Common.Ctl.LabelSet_Maker();
             this.lblDspShouhin = new KATO.Common.Ctl.BaseLabelGray();
             this.txtTyoubosuu = new KATO.Common.Ctl.BaseText();
-            this.txtTanasuu = new KATO.Common.Ctl.BaseText();
             this.txtKensaku = new KATO.Common.Ctl.BaseText();
             this.lblHinmei = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblTyoubosuu = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -67,6 +66,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblNewInput = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSelectOutPut = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtTanasuu = new KATO.Common.Ctl.BaseTextMoney();
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
@@ -145,35 +145,35 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.gridRireki.AllowUserToResizeColumns = false;
             this.gridRireki.AllowUserToResizeRows = false;
             this.gridRireki.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRireki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridRireki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridRireki.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRireki.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridRireki.EnableHeadersVisualStyles = false;
             this.gridRireki.Location = new System.Drawing.Point(332, 35);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRireki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridRireki.RowHeadersVisible = false;
             this.gridRireki.RowTemplate.Height = 21;
             this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -349,15 +349,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.txtTyoubosuu.Size = new System.Drawing.Size(163, 22);
             this.txtTyoubosuu.TabIndex = 1;
             this.txtTyoubosuu.TabStop = false;
-            // 
-            // txtTanasuu
-            // 
-            this.txtTanasuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanasuu.Location = new System.Drawing.Point(701, 721);
-            this.txtTanasuu.Name = "txtTanasuu";
-            this.txtTanasuu.Size = new System.Drawing.Size(163, 22);
-            this.txtTanasuu.TabIndex = 9;
-            this.txtTanasuu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judTanaTxtKeyDown);
             // 
             // txtKensaku
             // 
@@ -600,11 +591,28 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.lblSelectOutPut.Text = "出力順の選択";
             this.lblSelectOutPut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtTanasuu
+            // 
+            this.txtTanasuu.blnCommaOK = true;
+            this.txtTanasuu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTanasuu.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTanasuu.intDeciSet = 0;
+            this.txtTanasuu.intIntederSet = 0;
+            this.txtTanasuu.intShishagonyu = 0;
+            this.txtTanasuu.Location = new System.Drawing.Point(701, 721);
+            this.txtTanasuu.MaxLength = 15;
+            this.txtTanasuu.MinusFlg = true;
+            this.txtTanasuu.Name = "txtTanasuu";
+            this.txtTanasuu.Size = new System.Drawing.Size(163, 22);
+            this.txtTanasuu.TabIndex = 9;
+            this.txtTanasuu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // F0140_TanaorosiInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 828);
+            this.Controls.Add(this.txtTanasuu);
             this.Controls.Add(this.radBase3);
             this.Controls.Add(this.lblSelectOutPut);
             this.Controls.Add(this.lblNewInput);
@@ -620,7 +628,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.Add(this.labelSet_Eigyousho);
             this.Controls.Add(this.txtTyoubosuu);
             this.Controls.Add(this.labelSet_Chubunrui);
-            this.Controls.Add(this.txtTanasuu);
             this.Controls.Add(this.labelSet_Daibunrui);
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.txtYMD);
@@ -668,7 +675,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.SetChildIndex(this.txtYMD, 0);
             this.Controls.SetChildIndex(this.txtKensaku, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
-            this.Controls.SetChildIndex(this.txtTanasuu, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.txtTyoubosuu, 0);
             this.Controls.SetChildIndex(this.labelSet_Eigyousho, 0);
@@ -684,6 +690,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             this.Controls.SetChildIndex(this.lblNewInput, 0);
             this.Controls.SetChildIndex(this.lblSelectOutPut, 0);
             this.Controls.SetChildIndex(this.radBase3, 0);
+            this.Controls.SetChildIndex(this.txtTanasuu, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
@@ -703,7 +710,6 @@ namespace KATO.Form.F0140_TanaorosiInput
         private BaseLabel lblTyoubosuu;
         private BaseLabel lblTanasuu;
         private BaseText txtTyoubosuu;
-        private BaseText txtTanasuu;
         private BaseText txtShouhinCD;
         private BaseLabel txtbaseLabel7;
         private BaseCalendar txtYMD;
@@ -724,5 +730,6 @@ namespace KATO.Form.F0140_TanaorosiInput
         private BaseLabel lblSelectOutPut;
         private BaseLabel lblNewInput;
         private BaseLabel baseLabel2;
+        private BaseTextMoney txtTanasuu;
     }
 }

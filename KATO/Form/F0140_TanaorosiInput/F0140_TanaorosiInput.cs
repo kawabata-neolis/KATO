@@ -495,39 +495,210 @@ namespace KATO.Form.F0140_TanaorosiInput
             if(good)
             {
                 good = txtYMD.blIsEmpty();
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMD.Focus();
+                }
             }
             if (good)
             {
                 good = StringUtl.blIsEmpty(labelSet_Eigyousho.CodeTxtText);
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    labelSet_Eigyousho.Focus();
+                }
             }
             if (good)
             {                
                 good = StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText);
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    labelSet_Daibunrui.Focus();
+                }
             }
             if (good)
             {
-                good = StringUtl.blIsEmpty(labelSet_Chubunrui_Edit.CodeTxtText);            }
+                good = StringUtl.blIsEmpty(labelSet_Chubunrui_Edit.CodeTxtText);
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    labelSet_Chubunrui_Edit.Focus();
+                }
+            }
             if (good)
             {
                 good = StringUtl.blIsEmpty(labelSet_Maker_Edit.CodeTxtText);
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    labelSet_Maker_Edit.Focus();
+                }
             }
             if (good)
             {
                 good = txtTanasuu.blIsEmpty();
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtTanasuu.Focus();
+                }
             }
             if (good)
             {
                 good = StringUtl.blIsEmpty(labelSet_Tanaban_Edit.CodeTxtText);
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    labelSet_Tanaban_Edit.Focus();
+                }
             }
             if (good)
             {
                 good = txtShouhinCD.blIsEmpty();
+
+                if (good == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtKensaku.Focus();
+                }
             }
             if (good)
             {
                 if (btnF01.Enabled == false)
                 {
                     good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //営業所チェック
+                if (labelSet_Eigyousho.chkTxtEigyousho())
+                {
+                    good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //大分類チェック
+                if (labelSet_Daibunrui.chkTxtDaibunrui())
+                {
+                    good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //中分類チェック
+                if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+                {
+                    good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //メーカーチェック
+                if (labelSet_Maker.chkTxtMaker())
+                {
+                    good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //棚番チェック
+                if (labelSet_Tanaban.chkTxtTanaban())
+                {
+                    good = false;
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //データがある場合
+                if (labelSet_Chubunrui_Edit.codeTxt.blIsEmpty())
+                {
+                    //下段中分類チェック
+                    if (labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+                    {
+                        good = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //データがある場合
+                if (labelSet_Maker_Edit.codeTxt.blIsEmpty())
+                {
+                    //下段メーカーチェック
+                    if (labelSet_Maker_Edit.chkTxtMaker())
+                    {
+                        good = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //データがある場合
+                if (txtTanasuu.blIsEmpty())
+                {
+                    //数値チェック
+                    if (txtTanasuu.chkMoneyText())
+                    {
+                        good = false;
+                    }
+                }
+            }
+
+            //エラーになってない場合
+            if (good == true)
+            {
+                //データがある場合
+                if (labelSet_Tanaban_Edit.codeTxt.blIsEmpty())
+                {
+                    //棚卸数
+                    if (labelSet_Tanaban_Edit.chkTxtTanaban())
+                    {
+                        good = false;
+                    }
                 }
             }
 

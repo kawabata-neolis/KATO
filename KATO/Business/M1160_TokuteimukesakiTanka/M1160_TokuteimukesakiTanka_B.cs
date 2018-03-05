@@ -310,7 +310,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 //リストをデータテーブルに変換
                 DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
-                int maxRowCnt = dtPrintDataNew.Rows.Count +1;
+                int maxRowCnt = dtChkList.Rows.Count +1;
                 int maxColCnt = dtChkList.Columns.Count;
                 int pageCnt = 0;    // ページ(シート枚数)カウント
                 int rowCnt = 1;     // datatable処理行カウント
@@ -318,6 +318,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
+//60を変えてみて調整
                 double page = 1.0 * maxRowCnt / 60;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
@@ -333,8 +334,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 //ClosedXMLで1行ずつExcelに出力
                 //foreach (DataRow drTokuteCheak in dtChkList.Rows)
                 for (int i = 0; i < dtPrintDataNew.Rows.Count; i++)
-                {
-                    
+                {                    
                     DataRow drTokuteCheak = dtPrintDataNew.Rows[i];
 
                     //1ページ目のシート作成
