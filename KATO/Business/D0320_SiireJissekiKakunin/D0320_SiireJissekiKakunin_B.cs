@@ -176,17 +176,13 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 andSql += " AND sm.中分類コード = '" + lstItem[7] + "'";
             }
 
-            // 型番がある場合
+            // メーカーコードがある場合
             if (!lstItem[8].Equals(""))
             {
-                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[8] + "%' )";
+                andSql += " AND sm.メーカーコード = '" + lstItem[8] + "'";
             }
 
+            // 型番がある場合
             if (!lstItem[9].Equals(""))
             {
                 andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
@@ -206,19 +202,29 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
                 andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
                 andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[10] + "%' )";
             }
+
+            if (!lstItem[11].Equals(""))
+            {
+                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
+                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[11] + "%' )";
+            }
             // AND条件にkataban2とkataban3のOR条件を反映
             //andSql = string.Format(andSql, kataban2, kataban3);
 
             // 備考がある場合
-            if (!lstItem[11].Equals(""))
+            if (!lstItem[12].Equals(""))
             {
-                andSql += " AND sm.備考 LIKE '%" + lstItem[11] + "%'";
+                andSql += " AND sm.備考 LIKE '%" + lstItem[12] + "%'";
             }
 
             // 得意先がある場合
-            if (!lstItem[12].Equals(""))
+            if (!lstItem[13].Equals(""))
             {
-                andSql += " AND dbo.f_get受注番号_得意先コードFROM受注(dbo.f_get発注番号_受注番号FROM発注(sm.発注番号)) = '" + lstItem[12] + "'";
+                andSql += " AND dbo.f_get受注番号_得意先コードFROM受注(dbo.f_get発注番号_受注番号FROM発注(sm.発注番号)) = '" + lstItem[13] + "'";
             }
 
             // 営業所が本社の場合

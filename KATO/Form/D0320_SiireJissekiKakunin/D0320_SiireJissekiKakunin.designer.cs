@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridSiireJisseki = new KATO.Common.Ctl.BaseDataGridView();
             this.txtBikou = new KATO.Common.Ctl.BaseText();
             this.lblBikou = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -68,6 +68,7 @@
             this.radGroupCd2 = new KATO.Common.Ctl.BaseRadioButton();
             this.radGroupCd1 = new KATO.Common.Ctl.BaseRadioButton();
             this.radGroupCd0 = new KATO.Common.Ctl.BaseRadioButton();
+            this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).BeginInit();
             this.bgEigyo.SuspendLayout();
             this.bgSort.SuspendLayout();
@@ -78,7 +79,7 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 13;
+            this.btnF01.TabIndex = 14;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
@@ -123,7 +124,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 14;
+            this.btnF04.TabIndex = 15;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
@@ -142,41 +143,41 @@
             this.gridSiireJisseki.AllowUserToResizeColumns = false;
             this.gridSiireJisseki.AllowUserToResizeRows = false;
             this.gridSiireJisseki.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSiireJisseki.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridSiireJisseki.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSiireJisseki.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSiireJisseki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSiireJisseki.EnableHeadersVisualStyles = false;
             this.gridSiireJisseki.Location = new System.Drawing.Point(12, 206);
             this.gridSiireJisseki.Name = "gridSiireJisseki";
             this.gridSiireJisseki.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSiireJisseki.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridSiireJisseki.RowHeadersVisible = false;
             this.gridSiireJisseki.RowTemplate.Height = 21;
             this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridSiireJisseki.Size = new System.Drawing.Size(1395, 532);
             this.gridSiireJisseki.StandardTab = true;
-            this.gridSiireJisseki.TabIndex = 15;
+            this.gridSiireJisseki.TabIndex = 16;
             this.gridSiireJisseki.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridSiireJisseki_CellMouseDoubleClick);
             // 
             // txtBikou
@@ -186,7 +187,7 @@
             this.txtBikou.MaxLength = 100;
             this.txtBikou.Name = "txtBikou";
             this.txtBikou.Size = new System.Drawing.Size(269, 22);
-            this.txtBikou.TabIndex = 12;
+            this.txtBikou.TabIndex = 13;
             this.txtBikou.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             // 
             // lblBikou
@@ -208,7 +209,7 @@
             this.txtKataban.MaxLength = 40;
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(269, 22);
-            this.txtKataban.TabIndex = 9;
+            this.txtKataban.TabIndex = 10;
             this.txtKataban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKataban_KeyDown);
             // 
             // lblKataban
@@ -291,7 +292,7 @@
             this.labelSet_Daibunrui.CodeTxtSize = 24;
             this.labelSet_Daibunrui.CodeTxtText = "";
             this.labelSet_Daibunrui.LabelName = "大分類コード ";
-            this.labelSet_Daibunrui.Location = new System.Drawing.Point(380, 91);
+            this.labelSet_Daibunrui.Location = new System.Drawing.Point(363, 88);
             this.labelSet_Daibunrui.Lschubundata = null;
             this.labelSet_Daibunrui.Lsmakerdata = null;
             this.labelSet_Daibunrui.LsSubchubundata = null;
@@ -313,7 +314,7 @@
             this.labelSet_Chubunrui.CodeTxtSize = 24;
             this.labelSet_Chubunrui.CodeTxtText = "";
             this.labelSet_Chubunrui.LabelName = "中分類コード ";
-            this.labelSet_Chubunrui.Location = new System.Drawing.Point(762, 89);
+            this.labelSet_Chubunrui.Location = new System.Drawing.Point(725, 89);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
             this.labelSet_Chubunrui.Size = new System.Drawing.Size(348, 22);
@@ -332,7 +333,7 @@
             this.bgEigyo.Location = new System.Drawing.Point(458, 155);
             this.bgEigyo.Name = "bgEigyo";
             this.bgEigyo.Size = new System.Drawing.Size(232, 45);
-            this.bgEigyo.TabIndex = 16;
+            this.bgEigyo.TabIndex = 17;
             this.bgEigyo.TabStop = false;
             this.bgEigyo.Tag = "";
             this.bgEigyo.Text = "営業所";
@@ -367,7 +368,7 @@
             this.bgSort.Location = new System.Drawing.Point(1039, 130);
             this.bgSort.Name = "bgSort";
             this.bgSort.Size = new System.Drawing.Size(368, 70);
-            this.bgSort.TabIndex = 18;
+            this.bgSort.TabIndex = 19;
             this.bgSort.TabStop = false;
             this.bgSort.Text = "並び順の指定";
             // 
@@ -441,7 +442,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(155, 0, 155, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(207, 0, 207, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -516,7 +517,7 @@
             this.txtKataban2.MaxLength = 40;
             this.txtKataban2.Name = "txtKataban2";
             this.txtKataban2.Size = new System.Drawing.Size(269, 22);
-            this.txtKataban2.TabIndex = 10;
+            this.txtKataban2.TabIndex = 11;
             this.txtKataban2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKataban2_KeyDown);
             // 
             // txtKataban3
@@ -526,7 +527,7 @@
             this.txtKataban3.MaxLength = 40;
             this.txtKataban3.Name = "txtKataban3";
             this.txtKataban3.Size = new System.Drawing.Size(269, 22);
-            this.txtKataban3.TabIndex = 11;
+            this.txtKataban3.TabIndex = 12;
             this.txtKataban3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKataban3_KeyDown);
             // 
             // labelSet_Etanto
@@ -589,7 +590,7 @@
             this.groupBox1.Location = new System.Drawing.Point(712, 155);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(319, 45);
-            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "グループコード";
             // 
@@ -670,11 +671,31 @@
             this.radGroupCd0.Text = "すべて";
             this.radGroupCd0.UseVisualStyleBackColor = true;
             // 
+            // labelSet_Maker
+            // 
+            this.labelSet_Maker.AppendLabelSize = 0;
+            this.labelSet_Maker.AppendLabelText = "";
+            this.labelSet_Maker.CodeTxtSize = 40;
+            this.labelSet_Maker.CodeTxtText = "";
+            this.labelSet_Maker.LabelName = "メーカー";
+            this.labelSet_Maker.Location = new System.Drawing.Point(1087, 89);
+            this.labelSet_Maker.Name = "labelSet_Maker";
+            this.labelSet_Maker.ShowAppendFlg = false;
+            this.labelSet_Maker.Size = new System.Drawing.Size(329, 22);
+            this.labelSet_Maker.SpaceCodeValue = 4;
+            this.labelSet_Maker.SpaceNameCode = 4;
+            this.labelSet_Maker.SpaceValueAppend = 4;
+            this.labelSet_Maker.strDaibunCd = null;
+            this.labelSet_Maker.TabIndex = 9;
+            this.labelSet_Maker.ValueLabelSize = 200;
+            this.labelSet_Maker.ValueLabelText = "";
+            // 
             // D0320_SiireJissekiKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Jtanto);
             this.Controls.Add(this.labelSet_Etanto);
             this.Controls.Add(this.txtKataban3);
@@ -739,6 +760,7 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.labelSet_Maker, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridSiireJisseki)).EndInit();
             this.bgEigyo.ResumeLayout(false);
             this.bgSort.ResumeLayout(false);
@@ -792,5 +814,6 @@
         private Common.Ctl.BaseRadioButton radGroupCd3;
         private Common.Ctl.BaseRadioButton radGroupCd2;
         private Common.Ctl.BaseRadioButton radGroupCd1;
+        private Common.Ctl.LabelSet_Maker labelSet_Maker;
     }
 }

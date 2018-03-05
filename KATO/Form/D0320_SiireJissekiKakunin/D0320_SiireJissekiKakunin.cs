@@ -269,7 +269,7 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             // 個々の幅、文字の寄せ
             setColumn(hiduke, DataGridViewContentAlignment.MiddleCenter, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
             setColumn(denpyoNo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#", 80);
-            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumn(maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 530);
             setColumn(suuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 80);
             setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
@@ -905,6 +905,14 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
 
                 return false;
             }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+
+                return false;
+            }
             
             return true;
         }
@@ -926,6 +934,7 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             lstSearchItem.Add(labelSet_Siiresaki.CodeTxtText);  // 仕入先コード
             lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
             lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
+            lstSearchItem.Add(labelSet_Maker.CodeTxtText);  // メーカーコード
             lstSearchItem.Add(txtKataban.Text);                 // 型番1
             lstSearchItem.Add(txtKataban2.Text);                // 型番2
             lstSearchItem.Add(txtKataban3.Text);                // 型番3
