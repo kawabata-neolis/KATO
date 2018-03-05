@@ -297,6 +297,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
                 //Linqで必要なデータをselect
+                //空白行付きのdatatableを使う
                 var outDataAll = dtPrintDataNew.AsEnumerable()
                     .Select(dat => new
                     {
@@ -318,7 +319,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 60;
+                double page = 1.0 * maxRowCnt / 57;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -332,9 +333,9 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
 
                 //ClosedXMLで1行ずつExcelに出力
                 //foreach (DataRow drTokuteCheak in dtChkList.Rows)
-                for (int i = 0; i < dtPrintDataNew.Rows.Count; i++)
+                for (int i = 0; i < dtChkList.Rows.Count; i++)
                 {                    
-                    DataRow drTokuteCheak = dtPrintDataNew.Rows[i];
+                    DataRow drTokuteCheak = dtChkList.Rows[i];
 
                     //1ページ目のシート作成
                     if (rowCnt == 1)
@@ -493,6 +494,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                     if (xlsRowCnt == 60)
                     {
                         pageCnt++;
+
                         if (pageCnt <= maxPage)
                         {
                             xlsRowCnt = 3;
@@ -503,7 +505,7 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                     }
 
                     //最終データの場合
-                    if (i == dtPrintDataNew.Rows.Count + 1)
+                    if (i == dtChkList.Rows.Count + 1)
                     {
                         // セルの周囲に罫線を引く
                         currentsheet.Range(xlsRowCnt, 4, xlsRowCnt, 4).Style

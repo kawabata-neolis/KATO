@@ -79,6 +79,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             this.btnF04.Text = STR_FUNC_F4;
 
             this.btnF06.Text = "F6:表示";
+            this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
             //DataGridViewの初期設定
@@ -98,7 +99,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             gridTokuteimukesakiTanka.AutoGenerateColumns = false;
 
             //データをバインド
-            
+
             DataGridViewTextBoxColumn Simukesaki = new DataGridViewTextBoxColumn();
             Simukesaki.DataPropertyName = "仕向先";
             Simukesaki.Name = "仕向先";
@@ -145,7 +146,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             setColumn(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
             setColumn(Kataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
             setColumn(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "0.00", 120);
-            setColumn(SaisyuSiireYMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,"yyyy/MM/dd", 150);
+            setColumn(SaisyuSiireYMD, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 150);
             setColumn(SiiresakiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
             setColumn(TokuisakiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
             setColumn(ShohinCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
@@ -234,6 +235,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    //グリッドにデータがある場合
+                    if (gridTokuteimukesakiTanka.Rows.Count > 0)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                        this.printReport();
+                    }
                     break;
                 case Keys.F12:
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -269,6 +276,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
                     this.CheckMaster();
                     break;
+                case STR_BTN_F11: // 印刷
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
+                    this.printReport();
+                    break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
@@ -287,6 +298,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
 
             // データチェック処理
             if (!dataCheack())
+            {
+                return;
+            }
+
+            // 得意先コードチェック
+            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
             {
                 return;
             }
@@ -314,12 +331,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
 
                 String tmpT = "";
                 tmpT = labelSet_Tokuisaki.CodeTxtText;
-                
+
                 // テキストボックス内の文字を削除
                 delText();
-                
+
                 labelSet_Tokuisaki.CodeTxtText = tmpT;
-                
+
                 txtKensakuS.Focus();
 
                 //グリッドビュー表示
@@ -328,12 +345,11 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             }
             catch (Exception ex)
             {
-                // メッセージボックスの処理、追加失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-
-                // エラーロギング
+                //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -345,7 +361,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         /// </summary>
         private void delTokuteimukesakiTanka()
         {
-            
+
             // 空文字判定（得意先）
             if (labelSet_Tokuisaki.CodeTxtText.Equals(""))
             {
@@ -404,13 +420,12 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             }
             catch (Exception ex)
             {
-                // エラーロギング
+                //エラーロギング
                 new CommonException(ex);
-
-                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-
+                return;
             }
             return;
         }
@@ -430,11 +445,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 labelSet_Siiresaki.Focus();
                 return false;
             }
-            // フォーマットチェック（仕入先）
-            if (labelSet_Siiresaki.chkTxtTorihikisaki())
-            {
-                return false;
-            }
+
             // 空文字判定（得意先）
             if (labelSet_Tokuisaki.CodeTxtText.Equals(""))
             {
@@ -443,11 +454,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 basemessagebox.ShowDialog();
                 return false;
             }
-            // フォーマットチェック（得意先）
-            if (labelSet_Tokuisaki.chkTxtTorihikisaki())
-            {
-                return false;
-            }
+
             // 空文字判定（型番）
             if (txtKataban.Text.Equals(""))
             {
@@ -474,12 +481,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 basemessagebox.ShowDialog();
                 return false;
             }
-            //　型チェック（単価）
-            if(txtTanka.chkMoneyText())
-            {
-                return false;
-            }
-            
+
             return true;
         }
 
@@ -564,7 +566,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         ///</summary>
         private void setShohinList()
         {
-            if(blSelectFlag == false)
+            if (blSelectFlag == false)
             {
                 ShouhinList shouhinlist = new ShouhinList(this);
                 try
@@ -704,8 +706,10 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             catch (Exception ex)
             {
                 //エラーロギング
-                gridTokuteimukesakiTanka.Visible = true;
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
             return;
@@ -725,7 +729,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             txtKataban.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[2].Value.ToString();
             txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
             txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
-            
+
         }
 
         //商品CDのフォーカスが外れた場合
@@ -771,7 +775,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     txtKataban.Text += " " + PutIsNull(dtSetView.Rows[0]["Ｃ４"].ToString(), "");
                     txtKataban.Text += " " + PutIsNull(dtSetView.Rows[0]["Ｃ５"].ToString(), "");
                     txtKataban.Text += " " + PutIsNull(dtSetView.Rows[0]["Ｃ６"].ToString(), "");
-                    
+
                 }
 
             }
@@ -779,6 +783,131 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             {
                 //エラーロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+
+        /// <summary>
+        /// printReport
+        /// PDFを出力する
+        /// </summary>
+        private void printReport()
+        {
+            //PDF作成後の入れ物
+            string strFile = "";
+
+            //データの取り出し用
+            DataTable dtPrintData = new DataTable();
+
+            //列情報を取得
+            DataGridViewColumnCollection cols = gridTokuteimukesakiTanka.Columns;
+
+            //行情報を取得
+            DataGridViewRowCollection rows = gridTokuteimukesakiTanka.Rows;
+
+            //取引先経理情報登録時の情報
+            List<string> lstTorihiki = new List<string>();
+
+            foreach (DataGridViewColumn c in cols)
+            {
+                if (c.ValueType != null)
+                {
+                    dtPrintData.Columns.Add(c.Name, c.ValueType);
+                }
+                else
+                {
+                    dtPrintData.Columns.Add(c.Name);
+                }
+            }
+
+            foreach (DataGridViewRow r in rows)
+            {
+                List<object> array = new List<object>();
+
+                foreach (DataGridViewCell cell in r.Cells)
+                {
+                    array.Add(cell.Value);
+                }
+
+                dtPrintData.Rows.Add(array.ToArray());
+            }
+
+            //ビジネス層のインスタンス生成
+            M1160_TokuteimukesakiTanka_B tokuteimukesakitankaB = new M1160_TokuteimukesakiTanka_B();
+            try
+            {
+                //初期値
+                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
+
+                pf.ShowDialog(this);
+
+                //プレビューの場合
+                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // プレビュー
+                    pf.execPreview(strFile);
+                }
+                // 一括印刷の場合
+                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    //現在時間と使用者ＰＣユーザー名を確保
+                    lstTorihiki.Add(DateTime.Now.ToString());
+                    lstTorihiki.Add(SystemInformation.UserName);
+
+                    //結果セットをレコードセットに
+                    strFile = tokuteimukesakitankaB.dbToPdf(dtPrintData, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
+
+                    //印刷できなかった場合
+                    if (strFile == "")
+                    {
+                        //印刷時エラーメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, "印刷", "印刷時エラーです。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        return;
+                    }
+
+                    // 一括印刷
+                    pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+
+                //エラーロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
