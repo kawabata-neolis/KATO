@@ -3217,14 +3217,14 @@ namespace KATO.Form.H0210_MitsumoriInput
                 else if (((BaseText)sender).Name.Equals("txtZaiCd2"))
                 {
                     txtZaiCd2.Text = ls.CodeTxtText;
-                    txtZaiMei1.Text = ls.ValueLabelText;
+                    txtZaiMei2.Text = ls.ValueLabelText;
                     gridMitsmori[20, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[21, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }
                 else if (((BaseText)sender).Name.Equals("txtZaiCd3"))
                 {
                     txtZaiCd3.Text = ls.CodeTxtText;
-                    txtZaiMei1.Text = ls.ValueLabelText;
+                    txtZaiMei3.Text = ls.ValueLabelText;
                     gridMitsmori[26, gridMitsmori.CurrentCell.RowIndex].Value = null;
                     gridMitsmori[27, gridMitsmori.CurrentCell.RowIndex].Value = ls.ValueLabelText;
                 }

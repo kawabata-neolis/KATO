@@ -691,6 +691,7 @@
             // gridZanList
             // 
             this.gridZanList.AllowUserToAddRows = false;
+            this.gridZanList.AllowUserToDeleteRows = false;
             this.gridZanList.AllowUserToResizeColumns = false;
             this.gridZanList.AllowUserToResizeRows = false;
             this.gridZanList.AutoGenerateColumns = false;
@@ -713,6 +714,7 @@
             this.gridZanList.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridZanList.EnableHeadersVisualStyles = false;
             this.gridZanList.Location = new System.Drawing.Point(6, 205);
+            this.gridZanList.MultiSelect = false;
             this.gridZanList.Name = "gridZanList";
             this.gridZanList.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -729,6 +731,7 @@
             this.gridZanList.Size = new System.Drawing.Size(1408, 542);
             this.gridZanList.StandardTab = true;
             this.gridZanList.TabIndex = 128;
+            this.gridZanList.Sorted += new System.EventHandler(this.gridZanList_Sorted);
             this.gridZanList.DoubleClick += new System.EventHandler(this.gridZanList_DoubleClick);
             this.gridZanList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridZanList_KeyDown);
             // 
