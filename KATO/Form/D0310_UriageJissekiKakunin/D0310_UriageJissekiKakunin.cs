@@ -374,7 +374,7 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             setColumn(Sirusi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null,25);
             setColumn(Day, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, "yyyy/MM/dd", 90);
             setColumn(DenpyoNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter,null, 70);
-            setColumn(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 150);
+            setColumn(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
             setColumn(Sinamei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 500);
             setColumn(Suuryou, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 70);
             setColumn(Uriagetanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",100);

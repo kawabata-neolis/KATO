@@ -196,7 +196,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             gridRireki.Columns["棚番"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridRireki.Columns["棚番"].HeaderCell.Style.Alignment =DataGridViewContentAlignment.MiddleCenter;
 
-            gridRireki.Columns["メーカー名"].Width = 130;
+            gridRireki.Columns["メーカー名"].Width = 160;
             gridRireki.Columns["メーカー名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridRireki.Columns["メーカー名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 

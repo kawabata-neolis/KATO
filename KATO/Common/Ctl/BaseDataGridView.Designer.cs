@@ -62,6 +62,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.RowTemplate.Height = 21;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BaseDataGridView_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

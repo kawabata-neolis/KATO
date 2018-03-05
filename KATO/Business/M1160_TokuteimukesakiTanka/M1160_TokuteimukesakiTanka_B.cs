@@ -318,7 +318,6 @@ namespace KATO.Business.M1160_TokuteimukesakiTanka
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-//60を変えてみて調整
                 double page = 1.0 * maxRowCnt / 60;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
