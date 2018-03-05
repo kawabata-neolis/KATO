@@ -52,6 +52,10 @@ namespace KATO.Form.A0030_ShireInput
         //伝票番号のあるデータが表示されているかどうか
         public Boolean blMODYflg = false;
 
+        D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin shireKakunin = null;
+        D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzan = null;
+        D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmoto = null;
+
         ///<summary>
         ///A0030_ShireInput
         ///フォームの初期設定
@@ -146,6 +150,11 @@ namespace KATO.Form.A0030_ShireInput
 
             //伝票Noを触れるようにする
             txtDenpyoNo.Enabled = true;
+
+            cmbSubWinShow.Items.Add("仕入実績確認");
+            cmbSubWinShow.Items.Add("受注残・発注残確認");
+            cmbSubWinShow.Items.Add("商品元帳確認");
+
         }
 
         ///<summary>
@@ -2583,6 +2592,33 @@ namespace KATO.Form.A0030_ShireInput
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
+            }
+        }
+
+        ///<summary>
+        ///cmbSubWinShow_SelectedIndexChanged
+        /// サブ画面表示
+        ///</summary>
+        private void cmbSubWinShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+
+            //仕入実績確認
+            if (cmbSubWinShow.SelectedIndex == 0)
+            {
+                //showUriageJissekiKakunin();
+            }
+            //受注残・発注残確認
+            else if (c.SelectedIndex == 1)
+            {
+                //juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                //juchuzan.ShowDialog();
+            }
+            //商品元帳確認
+            else if (c.SelectedIndex == 2)
+            {
+                //shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
+                //shohinmoto.ShowDialog();
             }
         }
     }

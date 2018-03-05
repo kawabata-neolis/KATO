@@ -173,6 +173,11 @@
             // 
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
+            // cmbSubWinShow
+            // 
+            this.cmbSubWinShow.Visible = true;
+            this.cmbSubWinShow.SelectedIndexChanged += new System.EventHandler(this.cmbSubWinShow_SelectedIndexChanged);
+            // 
             // txtYubinView
             // 
             this.txtYubinView.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
