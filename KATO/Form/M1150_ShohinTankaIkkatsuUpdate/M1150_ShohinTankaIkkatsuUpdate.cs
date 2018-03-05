@@ -402,7 +402,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
         private void tb_KeyPress(object sender, KeyPressEventArgs e)
         {
             //0-9の文字のみを許可する
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '-'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 e.Handled = true;
             }
@@ -430,7 +431,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             if (ctlTb.Text.Contains("."))
             {
                 // 0～9、バックスペース以外の時は、イベントをキャンセルする
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != '-'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
                 {
                     e.Handled = true;
                 }
@@ -438,7 +440,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             else
             {
                 // 0～9、コンマ、バックスペース以外の時は、イベントをキャンセルする
-                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '\b')
+                if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '.' && e.KeyChar != '\b' && e.KeyChar != '-'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
                 {
                     e.Handled = true;
                 }

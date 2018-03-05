@@ -297,7 +297,8 @@ namespace KATO.Form.M1000_Kaishajyoken
         /// </summary>
         private void txtGetumatsusimebi_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 e.Handled = true;
             }

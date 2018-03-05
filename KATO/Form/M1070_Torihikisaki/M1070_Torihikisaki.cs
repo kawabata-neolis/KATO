@@ -1139,7 +1139,8 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;
@@ -1341,7 +1342,8 @@ namespace KATO.Form.M1070_Torihikisaki
         ///</summary>
         private void NomberTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b')
+            if ((e.KeyChar < '0' || '9' < e.KeyChar) && e.KeyChar != '\b'
+                        && e.KeyChar != '\u0001' && e.KeyChar != '\u0003' && e.KeyChar != '\u0016' && e.KeyChar != '\u0018')
             {
                 //押されたキーが 0～9でない場合は、イベントをキャンセルする
                 e.Handled = true;

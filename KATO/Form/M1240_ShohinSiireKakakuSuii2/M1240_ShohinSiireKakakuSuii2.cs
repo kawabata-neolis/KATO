@@ -91,7 +91,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             txtKijunYmd.Text = this.getMaxZaikoDate();
 
             // SPAdminUserの場合
-            if (strSPAdminUser.Equals("ゲストユーザー"))
+            if ("1".Equals(adminFlg))
             {
                 lblShohinCd.Visible = true;
                 txtShohinCd.Visible = true;
@@ -715,6 +715,19 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 return;
             }
+            string strChk = txtKijunYmd.chkDateDataFormat(txtKijunYmd.Text);
+
+            if ("".Equals(strChk))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemebox.ShowDialog();
+                return;
+            }
+            else
+            {
+                txtKijunYmd.Text = strChk;
+            }
 
             // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
             BaseMessageBox basemessagebox = new BaseMessageBox(this, "確認", "すべての設定単価を商品マスタの評価単価に更新します。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
@@ -955,7 +968,22 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 return;
             }
-
+            // フォーマットチェック(大分類)
+            if(labelSet_Daibunrui.chkTxtDaibunrui())
+            {
+                return;
+            }
+            // フォーマットチェック(中分類)
+            if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            {
+                return;
+            }
+            // フォーマットチェック(メーカー)
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                return;
+            }
+            
             // データチェック
             if (!blnDataCheck())
             {
@@ -1260,6 +1288,10 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 return;
             }
+            if (txtSetteiTanka.chkMoneyText())
+            {
+                return;
+            }
 
             // 設定単価（仮単価）を選択行へセット
             gridShohin.Rows[rowIndex].Cells[9].Value = decimal.Parse(txtSetteiTanka.Text);
@@ -1397,6 +1429,19 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 return false;
             }
+            string strChk = txtKijunYmd.chkDateDataFormat(txtKijunYmd.Text);
+
+            if ("".Equals(strChk))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemebox.ShowDialog();
+                return false;
+            }
+            else
+            {
+                txtKijunYmd.Text = strChk;
+            }
 
             // 空文字判定（開始期間）
             if (txtYmdFrom.blIsEmpty() == false)
@@ -1408,6 +1453,20 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 txtYmdFrom.Focus();
 
                 return false;
+            }
+            strChk = txtYmdFrom.chkDateDataFormat(txtYmdFrom.Text);
+
+            if ("".Equals(strChk))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemebox.ShowDialog();
+
+                return false;
+            }
+            else
+            {
+                txtYmdFrom.Text = strChk;
             }
 
             // 空文字判定（終了期間）
@@ -1421,6 +1480,22 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
 
                 return false;
             }
+
+            strChk = txtYmdTo.chkDateDataFormat(txtYmdTo.Text);
+
+            if ("".Equals(strChk))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemebox.ShowDialog();
+
+                return false;
+            }
+            else
+            {
+                txtYmdTo.Text = strChk;
+            }
+
 
             return true;
         }

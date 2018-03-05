@@ -352,12 +352,12 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
 
         /// <summary>
         /// dataCheack
-        /// データチェック処理(グリッドビュー表示)
+        /// データチェック処理
         /// </summary>
         private Boolean dataCheack()
         {
             // 空文字判定（締切年月日）
-            if (txtSimekiriYMD.Equals(""))
+            if (txtSimekiriYMD.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -365,9 +365,25 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 txtSimekiriYMD.Focus();
                 return false;
             }
+            else
+            {
+                // 日付フォーマットチェック
+                string datedata = txtSimekiriYMD.chkDateDataFormat(txtSimekiriYMD.Text);
+                if ("".Equals(datedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+                else
+                {
+                    txtSimekiriYMD.Text = datedata;
+                }
+            }
 
             // 空文字判定（開始年月日）
-            if (txtKaisiYMD.Equals(""))
+            if (txtKaisiYMD.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -375,10 +391,26 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 txtKaisiYMD.Focus();
                 return false;
             }
+            else
+            {
+                // 日付フォーマットチェック
+                string datedata = txtKaisiYMD.chkDateDataFormat(txtKaisiYMD.Text);
+                if ("".Equals(datedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+                else
+                {
+                    txtKaisiYMD.Text = datedata;
+                }
+            }
 
-            
+
             // 空文字判定（締切日コード）
-            if (txtSimekiribiCd.Text.Equals(""))
+            if (txtSimekiribiCd.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -388,7 +420,7 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             }
 
             // 空文字判定（開始得意先コード）
-            if (labelSet_TokuisakiStart.CodeTxtText.Equals(""))
+            if (labelSet_TokuisakiStart.codeTxt.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -396,15 +428,31 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 labelSet_TokuisakiStart.Focus();
                 return false;
             }
+            else
+            {
+                // 入力チェック（得意先コード（取引先））
+                if (labelSet_TokuisakiStart.chkTxtTorihikisaki())
+                {
+                    return false;
+                }
+            }
 
             // 空文字判定（終了得意先コード）
-            if (labelSet_TokuisakiEnd.CodeTxtText.Equals(""))
+            if (labelSet_TokuisakiEnd.codeTxt.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 labelSet_TokuisakiEnd.Focus();
                 return false;
+            }
+            else
+            {
+                // 入力チェック（得意先コード（取引先））
+                if (labelSet_TokuisakiEnd.chkTxtTorihikisaki())
+                {
+                    return false;
+                }
             }
 
             //string tmp1 = DateTime.Parse(txtSimekiriYMD.Text).DayOfWeek.ToString("d");

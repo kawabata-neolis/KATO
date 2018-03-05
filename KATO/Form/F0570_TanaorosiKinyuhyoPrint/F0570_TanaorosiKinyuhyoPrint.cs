@@ -374,6 +374,22 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
 
                 return false;
             }
+            else
+            {
+                // 日付フォーマットチェック
+                string datedata = txtYmd.chkDateDataFormat(txtYmd.Text);
+                if ("".Equals(datedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+                else
+                {
+                    txtYmd.Text = datedata;
+                }
+            }
 
             // 空文字判定（営業所コード）
             if (labelSet_Eigyosho.CodeTxtText.Equals(""))
@@ -385,6 +401,54 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                 labelSet_Eigyosho.Focus();
 
                 return false;
+            }
+            else
+            {
+                // 入力チェック（営業所コード）
+                if (labelSet_Eigyosho.chkTxtEigyousho())
+                {
+                    return false;
+                }
+            }
+
+            // 大分類コードがあった場合はチェック
+            if (labelSet_Daibunrui.codeTxt.blIsEmpty() == true)
+            {
+                if (labelSet_Daibunrui.chkTxtDaibunrui())
+                {
+                    return false;
+                }
+            }
+            // 中分類コードがあった場合はチェック
+            if (labelSet_Chubunrui.codeTxt.blIsEmpty() == true)
+            {
+                string daibunrui = labelSet_Daibunrui.CodeTxtText;
+                // 大分類コードが無いのに、中分類が入力されていた場合
+                if (daibunrui.Equals(""))
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    // 中分類を空にして大分類にフォーカスし、falseを返す
+                    labelSet_Chubunrui.CodeTxtText = "";
+                    labelSet_Daibunrui.Focus();
+                    return false;
+                }
+                else
+                {
+                    if (labelSet_Chubunrui.chkTxtChubunrui(daibunrui))
+                    {
+                        return false;
+                    }
+                }
+            }
+            // メーカーコードがあった場合はチェック
+            if (labelSet_Maker.codeTxt.blIsEmpty() == true)
+            {
+                if (labelSet_Maker.chkTxtMaker())
+                {
+                    return false;
+                }
             }
 
             return true;

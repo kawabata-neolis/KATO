@@ -336,8 +336,42 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             {
                 return;
             }
+            else
+            {
+                // 入力チェック（仕入先コード（取引先））
+                if (labelSet_Siiresaki.chkTxtTorihikisaki())
+                {
+                    return;
+                }
 
+                // 日付フォーマットチェック（検索年月Start）
+                string sDatedata = txtYmStart.chkDateYMDataFormat(txtYmStart.Text);
+                if ("".Equals(sDatedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    txtYmStart.Text = sDatedata;
+                }
 
+                // 日付フォーマットチェック（検索年月End）
+                string eDatedata = txtYmEnd.chkDateYMDataFormat(txtYmEnd.Text);
+                if ("".Equals(eDatedata))
+                {
+                    // メッセージボックスの処理
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    txtYmEnd.Text = eDatedata;
+                }
+            }
 
             // データ検索用
             List<string> lstSearchItem = new List<string>();

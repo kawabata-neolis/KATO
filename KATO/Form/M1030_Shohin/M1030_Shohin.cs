@@ -569,17 +569,12 @@ namespace KATO.Form.M1030_Shohin
             string strShohinCdMax = "";
 
             //空文字削除
-            labelSet_Daibunrui.CodeTxtText.Trim();
-            labelSet_Chubunrui.CodeTxtText.Trim();
-            labelSet_Maker.CodeTxtText.Trim();
             txtData1.Text.Trim();
             txtHyojun.Text.Trim();
             txtShire.Text.Trim();
             txtHyoka.Text.Trim();
             txtTatene.Text.Trim();
             txtZaiko.Text.Trim();
-            labelSet_TanabanHonsha.Text.Trim();
-            labelSet_TanabanGihu.Text.Trim();
             txtTeika.Text.Trim();
             txtHako.Text.Trim();
             txtMemo.Text.Trim();
@@ -692,6 +687,11 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_TanabanHonsha.Focus();
                 return;
             }
+            // 文字成型と文字チェック
+            if(labelSet_TanabanHonsha.chkTxtTanaban())
+            {
+                return;
+            }
 
             //空文字判定
             if (labelSet_TanabanGihu.codeTxt.blIsEmpty() == false)
@@ -702,7 +702,11 @@ namespace KATO.Form.M1030_Shohin
                 labelSet_TanabanGihu.Focus();
                 return;
             }
-
+            // 文字成型と文字チェック
+            if (labelSet_TanabanGihu.chkTxtTanaban())
+            {
+                return;
+            }
             //空文字判定
             if (txtTeika.blIsEmpty() == false)
             {
@@ -720,6 +724,42 @@ namespace KATO.Form.M1030_Shohin
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtHako.Focus();
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if(txtHyoka.chkMoneyText())
+            {
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if (txtShire.chkMoneyText())
+            {
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if (txtTeika.chkMoneyText())
+            {
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if (txtHyojun.chkMoneyText())
+            {
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if (txtTatene.chkMoneyText())
+            {
+                return;
+            }
+
+            // 数値成型及び数値チェック
+            if (txtHako.chkMoneyText())
+            {
                 return;
             }
 

@@ -210,13 +210,6 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                     maxPage = (int)page;
                 }
 
-
-                int tantouCnt = 0;
-                int tantouRowCnt = 0;
-                int groupCnt = 0;
-                int groupRowCnt = 0;
-                string strDenpyoNo = "";
-
                 // ClosedXMLで1行ずつExcelに出力
                 foreach (DataRow dtSeikyuItiran in dtChkList.Rows)
                 {

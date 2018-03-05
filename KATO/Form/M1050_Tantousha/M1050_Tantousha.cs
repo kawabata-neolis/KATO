@@ -387,7 +387,7 @@ namespace KATO.Form.M1050_Tantousha
                 lblSetEigyousho.Focus();
                 return;
             }
-            // 存在チェック（グループチェック）
+            // 存在チェック（営業所チェック）
             if (lblSetEigyousho.chkTxtEigyousho())
             {
                 return;
@@ -512,6 +512,12 @@ namespace KATO.Form.M1050_Tantousha
             }
             // 担当者コードチェック
             if (chkTantoushaCd())
+            {
+                return;
+            }
+
+            // 金額チェック（目標金額）
+            if (txtMokuhyou.chkMoneyText())
             {
                 return;
             }

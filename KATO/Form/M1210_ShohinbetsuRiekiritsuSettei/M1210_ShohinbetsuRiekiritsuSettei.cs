@@ -621,10 +621,6 @@ namespace KATO.Form.M1210_ShohinbetsuRiekiritsuSettei
             // 存在チェック（得意先）
             if (labelSet_Tokuisaki.chkTxtTorihikisaki())
             {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                labelSet_Tokuisaki.Focus();
                 return false;
             }
 

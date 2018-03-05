@@ -368,6 +368,13 @@ namespace KATO.Form.M1130_Shohizeiritsu
                 txtShohizeiritu.Focus();
                 return;
             }
+            
+            // 金額フォーンマット確認
+            if (txtShohizeiritu.chkMoneyText())
+            {
+                return;
+            }
+
             // 日付フォーマット再生成
             strDateData = txtTekiyoYMD.chkDateDataFormat(txtTekiyoYMD.Text);
 
@@ -380,8 +387,6 @@ namespace KATO.Form.M1130_Shohizeiritsu
 
                 txtTekiyoYMD.Text = strDateData;
                 txtTekiyoYMD.Focus();
-
-                return;
             }
             else
             {

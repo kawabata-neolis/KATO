@@ -271,12 +271,15 @@ namespace KATO.Form.G0920_HidukeSeigen
 
             // グリッドビューのデータをテキストボックスに配置
             txtGamenNo.Text = gridHidukeSeigen.Rows[currentRow].Cells[0].Value.ToString();
+            lblGamenName.Text = gridHidukeSeigen.Rows[currentRow].Cells[1].Value.ToString();
             labelSet_Eigyosho.CodeTxtText = gridHidukeSeigen.Rows[currentRow].Cells[2].Value.ToString();
             txtCalendarMinYMD.Text = gridHidukeSeigen.Rows[currentRow].Cells[4].Value.ToString();
             txtCalendarMaxYMD.Text = gridHidukeSeigen.Rows[currentRow].Cells[5].Value.ToString();
 
-            // 最小年月日にフォーカス
-            txtCalendarMinYMD.Focus();
+            // 最小年月日に直接フォーカスさせるとmaxLengthでTAB移動するため、
+            // 営業所コードにフォーカスさせて最小年月日に移動させる
+            labelSet_Eigyosho.Focus();
+            //txtCalendarMinYMD.Focus();
 
             return;
         }
@@ -325,7 +328,7 @@ namespace KATO.Form.G0920_HidukeSeigen
             List<string> lstItem = new List<string>();
 
             // データチェック処理
-            if (!dataCheack())
+            if (!dataCheack(0))
             {
                 return;
             }
@@ -370,8 +373,12 @@ namespace KATO.Form.G0920_HidukeSeigen
         /// <summary>
         /// dataCheack
         /// データチェック処理
+        /// 0:登録　1:削除
         /// </summary>
-        private Boolean dataCheack()
+        /// <param name="type">
+        /// 0:登録　1:削除
+        /// </param>
+        private Boolean dataCheack(int type)
         {
             // 空文字判定（画面№）
             if (txtGamenNo.Text.Equals(""))
@@ -392,37 +399,81 @@ namespace KATO.Form.G0920_HidukeSeigen
                 labelSet_Eigyosho.Focus();
                 return false;
             }
-
-            // 空文字判定（最小年月日）
-            if (txtCalendarMinYMD.Text.Equals(""))
+            else
             {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtCalendarMinYMD.Focus();
-                return false;
+                // 入力チェック（営業所コード）
+                if (labelSet_Eigyosho.chkTxtEigyousho())
+                {
+                    return false;
+                }
             }
 
-            // 空文字判定（最大年月日）
-            if (txtCalendarMaxYMD.Text.Equals(""))
+            // 登録時のみ日付フォーマットチェック
+            if (type == 0)
             {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                txtCalendarMaxYMD.Focus();
-                return false;
-            }
+                // 空文字判定（最小年月日）
+                if (txtCalendarMinYMD.Text.Equals(""))
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtCalendarMinYMD.Focus();
+                    return false;
+                }
+                else
+                {
+                    // 日付フォーマットチェック
+                    string datedata = txtCalendarMinYMD.chkDateDataFormat(txtCalendarMinYMD.Text);
+                    if ("".Equals(datedata))
+                    {
+                        // メッセージボックスの処理
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+                    else
+                    {
+                        txtCalendarMinYMD.Text = datedata;
+                    }
+                }
 
-            DateTime dtMinDate = DateTime.Parse(txtCalendarMinYMD.Text);
-            DateTime dtMaxDate = DateTime.Parse(txtCalendarMaxYMD.Text);
+                // 空文字判定（最大年月日）
+                if (txtCalendarMaxYMD.Text.Equals(""))
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtCalendarMaxYMD.Focus();
+                    return false;
+                }
+                else
+                {
+                    // 日付フォーマットチェック
+                    string datedata = txtCalendarMaxYMD.chkDateDataFormat(txtCalendarMaxYMD.Text);
+                    if ("".Equals(datedata))
+                    {
+                        // メッセージボックスの処理
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+                    else
+                    {
+                        txtCalendarMaxYMD.Text = datedata;
+                    }
+                }
 
-            // 最小年月日が最大年月日より大きい場合
-            if (dtMinDate > dtMaxDate)
-            {
-                // メッセージボックスの処理、日付が範囲外の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "開始日と終了日の指定が不正です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return false;
+                DateTime dtMinDate = DateTime.Parse(txtCalendarMinYMD.Text);
+                DateTime dtMaxDate = DateTime.Parse(txtCalendarMaxYMD.Text);
+
+                // 最小年月日が最大年月日より大きい場合
+                if (dtMinDate > dtMaxDate)
+                {
+                    // メッセージボックスの処理、日付が範囲外の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "開始日と終了日の指定が不正です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
             }
 
             return true;
@@ -452,6 +503,14 @@ namespace KATO.Form.G0920_HidukeSeigen
                 if (txtGamenNo.Text.Equals("") || labelSet_Eigyosho.CodeTxtText.Equals(""))
                 {
                     return;
+                }
+                else
+                {
+                    // データチェック処理
+                    if (!dataCheack(1))
+                    {
+                        return;
+                    }
                 }
 
                 lstDeleteItem.Add(txtGamenNo.Text);
@@ -544,6 +603,7 @@ namespace KATO.Form.G0920_HidukeSeigen
 
             // グリッドビューのデータをテキストボックスに配置
             txtGamenNo.Text = gridHidukeSeigen.CurrentRow.Cells[0].Value.ToString();
+            lblGamenName.Text = gridHidukeSeigen.Rows[currentRow].Cells[1].Value.ToString();
             labelSet_Eigyosho.CodeTxtText = gridHidukeSeigen.CurrentRow.Cells[2].Value.ToString();
             txtCalendarMinYMD.Text = gridHidukeSeigen.CurrentRow.Cells[4].Value.ToString();
             txtCalendarMaxYMD.Text = gridHidukeSeigen.CurrentRow.Cells[5].Value.ToString();
