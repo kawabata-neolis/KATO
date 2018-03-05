@@ -201,6 +201,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             noki.Name = "納期";
             noki.HeaderText = "納期";
 
+            // 注番位置入れ替え
+            DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
+            chuban.DataPropertyName = "注番";
+            chuban.Name = "注番";
+            chuban.HeaderText = "注番";
+
             DataGridViewTextBoxColumn maker = new DataGridViewTextBoxColumn();
             maker.DataPropertyName = "メーカー";
             maker.Name = "メーカー";
@@ -246,10 +252,11 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             siireKingaku.Name = "仕入金額";
             siireKingaku.HeaderText = "仕入金額";
 
-            DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
-            chuban.DataPropertyName = "注番";
-            chuban.Name = "注番";
-            chuban.HeaderText = "注番";
+            // 注番位置入れ替え
+            //DataGridViewTextBoxColumn chuban = new DataGridViewTextBoxColumn();
+            //chuban.DataPropertyName = "注番";
+            //chuban.Name = "注番";
+            //chuban.HeaderText = "注番";
 
             DataGridViewTextBoxColumn siireGokeiKingaku = new DataGridViewTextBoxColumn();
             siireGokeiKingaku.DataPropertyName = "仕入合計金額";
@@ -324,32 +331,33 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             //バインド、個々の幅、文章の寄せの設定
             #region
-            setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
-            setColumn(hinmei,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
-            setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
-            setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
-            setColumn(hatchuzan,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  80);
-            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumn(uriKingaku,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
+            setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
+            setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,      90);
+            setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     280);
+            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     180);
+            setColumn(hinmei,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     405);
+            setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",     80);
+            setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",     80);
+            setColumn(hatchuzan,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",     80);
+            setColumn(uriTanka,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    100);
+            setColumn(uriKingaku,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    100);
             setColumn(siireTanka,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 100);
-            setColumn(siireKingaku,      DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
-            setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
-            setColumn(siireGokeiKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  140);
-            setColumn(kyakusakiChuban,   DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
-            setColumn(tokuiName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
-            setColumn(siirebi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(siireName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   400);
-            setColumn(uriagezumi,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
-            setColumn(siirezumi,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",  100);
-            setColumn(hatchubi,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(jotai,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   90);
-            setColumn(juchuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
-            setColumn(juchusha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
-            setColumn(tantosha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
-            setColumn(hatchusha,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   100);
-            setColumn(hachuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     0);
+            setColumn(siireKingaku,      DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    100);
+            //setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,   300);
+            setColumn(siireGokeiKingaku, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    140);
+            setColumn(kyakusakiChuban,   DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     280);
+            setColumn(tokuiName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     340);
+            setColumn(siirebi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
+            setColumn(siireName,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     340);
+            setColumn(uriagezumi,        DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    100);
+            setColumn(siirezumi,         DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",    100);
+            setColumn(hatchubi,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
+            setColumn(jotai,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,      80);
+            setColumn(juchuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     100);
+            setColumn(juchusha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     108);
+            setColumn(tantosha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     108);
+            setColumn(hatchusha,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     108);
+            setColumn(hachuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,       0);
 
             #endregion
 
@@ -368,7 +376,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 gridZanList.Columns[col.Name].Width = intLen;
                 gridZanList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
                 gridZanList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
-                gridZanList.Columns[col.Name].SortMode = DataGridViewColumnSortMode.NotSortable;
+                gridZanList.Columns[col.Name].SortMode = DataGridViewColumnSortMode.Automatic;
 
                 if (fmt != null)
                 {
@@ -563,16 +571,40 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 {
                     Control cNow = this.ActiveControl;
 
-                    int rowsCnt = gridZanList.RowCount;
+                    lineMark();
+                    //int rowsCnt = gridZanList.RowCount;
 
-                    // 入荷済の行はフォントカラーを変更
-                    for (int i = 0; i < rowsCnt; i++)
-                    {
-                        if (gridZanList.Rows[i].Cells["状態"].Value != null && (String)gridZanList.Rows[i].Cells["状態"].Value == "入荷済")
-                        {
-                            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Blue;
-                        }
-                    }
+                    //decimal d = 0;
+                    //// 入荷済の行はフォントカラーを変更
+                    //for (int i = 0; i < rowsCnt; i++)
+                    //{
+                    //    d = 0;
+                    //    if (gridZanList.Rows[i].Cells["受注残"].Value != null && gridZanList.Rows[i].Cells["受注残"].Value != DBNull.Value)
+                    //    {
+                    //        d = (decimal)gridZanList.Rows[i].Cells["受注残"].Value;
+                    //        if (d.CompareTo(0) < 0)
+                    //        {
+                    //            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                    //        }
+                    //    }
+                    //    else if (gridZanList.Rows[i].Cells["発注残"].Value != null && gridZanList.Rows[i].Cells["発注残"].Value != DBNull.Value)
+                    //    {
+                    //        d = (decimal)gridZanList.Rows[i].Cells["発注残"].Value;
+                    //        if (d.CompareTo(0) < 0)
+                    //        {
+                    //            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                    //        }
+                    //    }
+                    //    if (gridZanList.Rows[i].Cells["状態"].Value != null)
+                    //    {
+                    //        string s = (String)gridZanList.Rows[i].Cells["状態"].Value;
+
+                    //        if (s.Equals("入荷済") || s.Equals("入庫済") || s.Equals("一部入荷"))
+                    //        {
+                    //            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Blue;
+                    //        }
+                    //    }
+                    //}
 
                     // 受注残が検索された場合は単価合計を算出
                     //if (rsSearchKind.judCheckBtn() != 1)
@@ -580,16 +612,16 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     txtGokeiUriage.Text = (dtZanList.Compute("Sum(売上金額)", null)).ToString();
                     if (!string.IsNullOrWhiteSpace(txtGokeiUriage.Text))
                     {
-                        decimal d = decimal.Parse(txtGokeiUriage.Text);
-                        txtGokeiUriage.Text = decimal.Round(d, 0).ToString("#,0");
+                        decimal dTotalU = decimal.Parse(txtGokeiUriage.Text);
+                        txtGokeiUriage.Text = decimal.Round(dTotalU, 0).ToString("#,0");
                     }
                     txtGokeiUriage.Focus();
 
                     txtGokeiGenka.Text = (dtZanList.Compute("Sum(仕入金額)", null)).ToString();
                     if (!string.IsNullOrWhiteSpace(txtGokeiGenka.Text))
                     {
-                        decimal d = decimal.Parse(txtGokeiGenka.Text);
-                        txtGokeiGenka.Text = decimal.Round(d, 0).ToString("#,0");
+                        decimal dTotalG = decimal.Parse(txtGokeiGenka.Text);
+                        txtGokeiGenka.Text = decimal.Round(dTotalG, 0).ToString("#,0");
                     }
                     txtGokeiGenka.Focus();
                     //}
@@ -612,6 +644,49 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+            }
+        }
+
+        private void lineMark()
+        {
+            try
+            {
+                int rowsCnt = gridZanList.RowCount;
+                decimal d = 0;
+                // 入荷済の行はフォントカラーを変更
+                for (int i = 0; i < rowsCnt; i++)
+                {
+                    d = 0;
+                    if (gridZanList.Rows[i].Cells["受注残"].Value != null && gridZanList.Rows[i].Cells["受注残"].Value != DBNull.Value)
+                    {
+                        d = (decimal)gridZanList.Rows[i].Cells["受注残"].Value;
+                        if (d.CompareTo(0) < 0)
+                        {
+                            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                        }
+                    }
+                    else if (gridZanList.Rows[i].Cells["発注残"].Value != null && gridZanList.Rows[i].Cells["発注残"].Value != DBNull.Value)
+                    {
+                        d = (decimal)gridZanList.Rows[i].Cells["発注残"].Value;
+                        if (d.CompareTo(0) < 0)
+                        {
+                            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                        }
+                    }
+                    if (gridZanList.Rows[i].Cells["状態"].Value != null)
+                    {
+                        string s = (String)gridZanList.Rows[i].Cells["状態"].Value;
+
+                        if (s.Equals("入荷済") || s.Equals("入庫済") || s.Equals("一部入荷"))
+                        {
+                            gridZanList.Rows[i].DefaultCellStyle.ForeColor = Color.Blue;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -966,5 +1041,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
         }
 
+        private void gridZanList_Sorted(object sender, EventArgs e)
+        {
+            lineMark();
+        }
     }
 }
