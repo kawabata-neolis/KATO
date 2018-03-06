@@ -155,9 +155,12 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
                 
                 labelSet_Tokuisaki.CodeTxtText = strTokuisakiCd;
 
-                this.setUriageJissekikakunin();
+                if (labelSet_Tokuisaki.codeTxt.blIsEmpty())
+                {
+                    this.setUriageJissekikakunin();
 
-                gridUriageJisseki.Focus();
+                    gridUriageJisseki.Focus();
+                }
             }
             //売上別利益率設定
             else if (intFrm == 121)

@@ -39,12 +39,16 @@ namespace KATO.Form.A0020_UriageInput
         bool noEditable = false;
         bool f1Flg = false;
 
+        D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriagejissekikakunin = null;
         D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzan = null;
         D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmoto = null;
 
         //現在の選択行を初期化
         private int CurrentRow = 99;
-        
+
+        //受注残確認に飛ぶ用
+        BaseText txtNull = new BaseText();
+
         ///<summary>
         ///A0020_UriageInput
         ///フォームの初期設定
@@ -138,7 +142,7 @@ namespace KATO.Form.A0020_UriageInput
             }
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF07.Text = "F7:行削除";
-            this.btnF08.Text = "F8:売上実績確認";
+            //this.btnF08.Text = "F8:売上実績確認";
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
@@ -279,10 +283,10 @@ namespace KATO.Form.A0020_UriageInput
                     }
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
-                    //売上実績確認表示
-                    showUriageJissekiKakunin();
-                    break;
+                    //logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
+                    ////売上実績確認表示
+                    //showUriageJissekiKakunin();
+                    //break;
                 case Keys.F9:
                     break;
                 case Keys.F10:
@@ -291,6 +295,25 @@ namespace KATO.Form.A0020_UriageInput
                     this.PrintReport(txtDenNo.Text,1);
                     break;
                 case Keys.F12:
+
+                    //売上実績確認が既に開いている場合        
+                    if (uriagejissekikakunin != null)
+                    {
+                        uriagejissekikakunin.Close();
+                    }
+
+                    //受注残・発注残確認が既に開いている場合        
+                    if (juchuzan != null)
+                    {
+                        juchuzan.Close();
+                    }
+
+                    //商品元帳確認が既に開いている場合        
+                    if (shohinmoto != null)
+                    {
+                        shohinmoto.Close();
+                    }
+
                     this.Close();
                     break;
 
@@ -330,16 +353,35 @@ namespace KATO.Form.A0020_UriageInput
                     this.delCurrentRow();
                     break;
                 case STR_BTN_F08: // 売上実績確認
-                    logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
-                    //売上実績確認表示
-                    showUriageJissekiKakunin();
-                    break;
+                    //logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
+                    ////売上実績確認表示
+                    //showUriageJissekiKakunin();
+                    //break;
                 case STR_BTN_F11: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                     this.PrintReport(txtDenNo.Text, 1);
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
+
+                    //売上実績確認が既に開いている場合        
+                    if (uriagejissekikakunin != null)
+                    {
+                        uriagejissekikakunin.Close();
+                    }
+
+                    //受注残・発注残確認が既に開いている場合        
+                    if (juchuzan != null)
+                    {
+                        juchuzan.Close();
+                    }
+
+                    //商品元帳確認が既に開いている場合        
+                    if (shohinmoto != null)
+                    {
+                        shohinmoto.Close();
+                    }
+
                     this.Close();
                     break;
             }
@@ -3847,18 +3889,100 @@ namespace KATO.Form.A0020_UriageInput
             //売上実績確認
             if (cmbSubWinShow.SelectedIndex == 0)
             {
-                showUriageJissekiKakunin();
+                logger.Info(LogUtil.getMessage(this._Title, "売上実績確認実行"));
+
+                //仕入実績確認が既に開いている場合        
+                if (uriagejissekikakunin != null && uriagejissekikakunin.Visible)
+                {
+                    uriagejissekikakunin.Activate();
+                    return;
+                }
+
+                uriagejissekikakunin = new Form.D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 2, labelSet_txtCD.CodeTxtText, "");
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                uriagejissekikakunin.StartPosition = FormStartPosition.Manual;
+                uriagejissekikakunin.Location = s.Bounds.Location;
+
+                //売上実績確認画面へ移動
+                uriagejissekikakunin.Show();
             }
             //受注残・発注残確認
             else if (c.SelectedIndex == 1)
             {
-                juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                logger.Info(LogUtil.getMessage(this._Title, "受注残・発注残確認実行"));
+
+                //受注残・発注残確認が既に開いている場合        
+                if (juchuzan != null && juchuzan.Visible)
+                {
+                    juchuzan.Activate();
+                    return;
+                }
+
+                //取引先コードがある場合
+                if (labelSet_txtCD.codeTxt.blIsEmpty())
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, labelSet_txtCD.CodeTxtText, txtNull, true);
+                }
+                else
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                }
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                juchuzan.StartPosition = FormStartPosition.Manual;
+                juchuzan.Location = s.Bounds.Location;
+
                 juchuzan.Show();
             }
             //商品元帳確認
             else if (c.SelectedIndex == 2)
             {
+                logger.Info(LogUtil.getMessage(this._Title, "商品元帳確認実行"));
+
+                //商品元帳確認が既に開いている場合        
+                if (shohinmoto != null && shohinmoto.Visible)
+                {
+                    shohinmoto.Activate();
+                    return;
+                }
+
                 shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                shohinmoto.StartPosition = FormStartPosition.Manual;
+                shohinmoto.Location = s.Bounds.Location;
+
                 shohinmoto.Show();
             }
         }

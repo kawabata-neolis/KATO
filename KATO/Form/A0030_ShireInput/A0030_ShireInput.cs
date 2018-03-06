@@ -109,7 +109,7 @@ namespace KATO.Form.A0030_ShireInput
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF07.Text = "F7:行削";
-            this.btnF08.Text = "F8:実績";
+            //this.btnF08.Text = "F8:実績";
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -209,9 +209,9 @@ namespace KATO.Form.A0030_ShireInput
                     this.delGyou();
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.setShireJisseki();
-                    break;
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.setShireJisseki();
+                    //break;
                 case Keys.F9:
                     break;
                 case Keys.F10:
@@ -2668,7 +2668,9 @@ namespace KATO.Form.A0030_ShireInput
 
             //仕入実績確認
             if (cmbSubWinShow.SelectedIndex == 0)
-            {        
+            {
+                logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+
                 //仕入実績確認が既に開いている場合        
                 if (shireKakunin != null && shireKakunin.Visible)
                 {
@@ -2698,6 +2700,8 @@ namespace KATO.Form.A0030_ShireInput
             //受注残・発注残確認
             else if (c.SelectedIndex == 1)
             {
+                logger.Info(LogUtil.getMessage(this._Title, "受注残・発注残確認実行"));
+
                 //受注残・発注残確認が既に開いている場合        
                 if (juchuzan != null && juchuzan.Visible)
                 {
@@ -2734,7 +2738,9 @@ namespace KATO.Form.A0030_ShireInput
             //商品元帳確認
             else if (c.SelectedIndex == 2)
             {
-                //受注残・発注残確認が既に開いている場合        
+                logger.Info(LogUtil.getMessage(this._Title, "商品元帳確認実行"));
+
+                //商品元帳確認が既に開いている場合        
                 if (shohinmoto != null && shohinmoto.Visible)
                 {
                     shohinmoto.Activate();
