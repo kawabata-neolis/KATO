@@ -39,6 +39,8 @@ namespace KATO.Form.A0020_UriageInput
         bool noEditable = false;
         bool f1Flg = false;
 
+        D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzan = null;
+        D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmoto = null;
 
         //現在の選択行を初期化
         private int CurrentRow = 99;
@@ -180,10 +182,12 @@ namespace KATO.Form.A0020_UriageInput
                 textSet_Jucyu5.txtCyokkinSiire.Visible = true;
             }
 
-
+            cmbSubWinShow.Items.Add("売上実績確認");
+            cmbSubWinShow.Items.Add("受注残・発注残確認");
+            cmbSubWinShow.Items.Add("商品元帳確認");
         }
 
-        
+
         //ログインIDから担当者コードを得る。
         private void GetTantouCode()
         {
@@ -3833,6 +3837,30 @@ namespace KATO.Form.A0020_UriageInput
         private void labelSet_Torihikikbn_Leave_1(object sender, EventArgs e)
         {
             textSet_Jucyu1.Focus();
+        }
+
+        // サブ画面表示
+        private void cmbSubWinShow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+
+            //売上実績確認
+            if (cmbSubWinShow.SelectedIndex == 0)
+            {
+                showUriageJissekiKakunin();
+            }
+            //受注残・発注残確認
+            else if (c.SelectedIndex == 1)
+            {
+                juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                juchuzan.ShowDialog();
+            }
+            //商品元帳確認
+            else if (c.SelectedIndex == 2)
+            {
+                shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
+                shohinmoto.ShowDialog();
+            }
         }
     }
 }

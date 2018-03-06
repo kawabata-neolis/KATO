@@ -2857,7 +2857,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 CreatePdf pdf = new CreatePdf();
                 int[] topRow = { 9 };
                 int[] leftColumn = { 9 };
-                pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 200, 850, 57);
+                pdf.logoPasteOnlyTopPage(strOutXlsFile, topRow, leftColumn, 50, 400, 70);
 
                 // PDF化の処理
                 //return pdf.createPdf(strOutXlsFile, strDateTime, 0);

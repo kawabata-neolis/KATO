@@ -176,6 +176,11 @@
             this.btnF02.TabIndex = 10;
             this.btnF02.TabStop = false;
             // 
+            // cmbSubWinShow
+            // 
+            this.cmbSubWinShow.Visible = true;
+            this.cmbSubWinShow.SelectedIndexChanged += new System.EventHandler(this.cmbSubWinShow_SelectedIndexChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label15);
@@ -515,7 +520,7 @@
             this.labelSet_Eigyosho.CodeTxtSize = 40;
             this.labelSet_Eigyosho.CodeTxtText = "";
             this.labelSet_Eigyosho.LabelName = "営業所コード";
-            this.labelSet_Eigyosho.Location = new System.Drawing.Point(1092, 15);
+            this.labelSet_Eigyosho.Location = new System.Drawing.Point(830, 15);
             this.labelSet_Eigyosho.Name = "labelSet_Eigyosho";
             this.labelSet_Eigyosho.ShowAppendFlg = false;
             this.labelSet_Eigyosho.Size = new System.Drawing.Size(236, 22);
@@ -1007,6 +1012,7 @@
             this.txtGoukei1.intShishagonyu = 0;
             this.txtGoukei1.Location = new System.Drawing.Point(688, 553);
             this.txtGoukei1.MaxLength = 0;
+            this.txtGoukei1.MinusFlg = true;
             this.txtGoukei1.Name = "txtGoukei1";
             this.txtGoukei1.Size = new System.Drawing.Size(141, 22);
             this.txtGoukei1.TabIndex = 113;
@@ -1023,6 +1029,7 @@
             this.txtZei.intShishagonyu = 0;
             this.txtZei.Location = new System.Drawing.Point(688, 581);
             this.txtZei.MaxLength = 0;
+            this.txtZei.MinusFlg = true;
             this.txtZei.Name = "txtZei";
             this.txtZei.Size = new System.Drawing.Size(141, 22);
             this.txtZei.TabIndex = 113;
@@ -1039,6 +1046,7 @@
             this.txtGoukei2.intShishagonyu = 0;
             this.txtGoukei2.Location = new System.Drawing.Point(688, 609);
             this.txtGoukei2.MaxLength = 0;
+            this.txtGoukei2.MinusFlg = true;
             this.txtGoukei2.Name = "txtGoukei2";
             this.txtGoukei2.Size = new System.Drawing.Size(141, 22);
             this.txtGoukei2.TabIndex = 113;
@@ -1055,6 +1063,7 @@
             this.txtGoukei3.intShishagonyu = 0;
             this.txtGoukei3.Location = new System.Drawing.Point(688, 684);
             this.txtGoukei3.MaxLength = 0;
+            this.txtGoukei3.MinusFlg = true;
             this.txtGoukei3.Name = "txtGoukei3";
             this.txtGoukei3.Size = new System.Drawing.Size(141, 22);
             this.txtGoukei3.TabIndex = 113;
@@ -1071,6 +1080,7 @@
             this.txtArariKei.intShishagonyu = 0;
             this.txtArariKei.Location = new System.Drawing.Point(921, 551);
             this.txtArariKei.MaxLength = 0;
+            this.txtArariKei.MinusFlg = true;
             this.txtArariKei.Name = "txtArariKei";
             this.txtArariKei.Size = new System.Drawing.Size(105, 22);
             this.txtArariKei.TabIndex = 113;
