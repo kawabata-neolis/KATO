@@ -39,7 +39,6 @@ namespace KATO.Form.A0020_UriageInput
         bool noEditable = false;
         bool f1Flg = false;
 
-        D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriKakunin = null;
         D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzan = null;
         D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmoto = null;
 

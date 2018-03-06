@@ -206,7 +206,7 @@ namespace KATO.Form.A0030_ShireInput
                     break;
                 case Keys.F8:
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.setUriageJisseki();
+                    this.setShireJisseki();
                     break;
                 case Keys.F9:
                     break;
@@ -308,7 +308,7 @@ namespace KATO.Form.A0030_ShireInput
                     break;
                 case STR_BTN_F08: // 履歴
                     logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    setUriageJisseki();
+                    setShireJisseki();
                     break;
                 case STR_BTN_F12: // 終了
                     this.Close();
@@ -1165,10 +1165,10 @@ namespace KATO.Form.A0030_ShireInput
         }
 
         ///<summary>
-        ///setUriageJisseki
-        ///売り上げ実績画面へ
+        ///setShireJisseki
+        ///仕入実績画面へ
         ///</summary>
-        public void setUriageJisseki()
+        public void setShireJisseki()
         {
             //コード未記入の場合
             if (!StringUtl.blIsEmpty(txtCD.Text))
@@ -1176,9 +1176,9 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
-            //売上実績確認画面へ移動
-            D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriage = new Form.D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 0, "", "");
-            uriage.ShowDialog();
+            //仕入実績確認画面へ移動
+            shireKakunin = new Form.D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this, 0, txtCD.Text);
+            shireKakunin.ShowDialog();
 
         }
 
@@ -2606,19 +2606,19 @@ namespace KATO.Form.A0030_ShireInput
             //仕入実績確認
             if (cmbSubWinShow.SelectedIndex == 0)
             {
-                //showUriageJissekiKakunin();
+                setShireJisseki();
             }
             //受注残・発注残確認
             else if (c.SelectedIndex == 1)
             {
-                //juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
-                //juchuzan.ShowDialog();
+                juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                juchuzan.ShowDialog();
             }
             //商品元帳確認
             else if (c.SelectedIndex == 2)
             {
-                //shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
-                //shohinmoto.ShowDialog();
+                shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
+                shohinmoto.ShowDialog();
             }
         }
     }
