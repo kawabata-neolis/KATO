@@ -779,7 +779,7 @@ namespace KATO.Form.A0020_UriageInput
 
             D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriagejissekikakunin =
                 new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, intFrmKind,labelSet_txtCD.CodeTxtText,"");
-            uriagejissekikakunin.ShowDialog();
+            uriagejissekikakunin.Show();
         }
 
         /// <summary>
@@ -3853,13 +3853,13 @@ namespace KATO.Form.A0020_UriageInput
             else if (c.SelectedIndex == 1)
             {
                 juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
-                juchuzan.ShowDialog();
+                juchuzan.Show();
             }
             //商品元帳確認
             else if (c.SelectedIndex == 2)
             {
                 shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
-                shohinmoto.ShowDialog();
+                shohinmoto.Show();
             }
         }
     }

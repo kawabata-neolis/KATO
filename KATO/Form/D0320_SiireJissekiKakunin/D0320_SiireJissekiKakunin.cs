@@ -11,6 +11,7 @@ using KATO.Common.Ctl;
 using KATO.Common.Util;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.D0320_SiireJissekiKakunin;
+using KATO.Form.A0030_ShireInput;
 
 namespace KATO.Form.D0320_SiireJissekiKakunin
 {
@@ -140,6 +141,14 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
         /// </summary>
         private void D0320_SiireJissekiKakunin_Shown(object sender, EventArgs e)
         {
+            //仕入入力フォームから呼ばれた場合
+            if (this.intFrm == 3)
+            {
+                labelSet_Siiresaki.CodeTxtText = this.strSiiresakiCd;
+                this.setSiireJisseki();
+
+            }
+
             // 発注入力フォームから呼ばれた場合
             if (this.intFrm == 10)
             {
