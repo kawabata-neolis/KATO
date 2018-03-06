@@ -330,8 +330,8 @@ namespace KATO.Form.A0010_JuchuInput
                         uriKakunin.StartPosition = FormStartPosition.Manual;
                         uriKakunin.Location = s.Bounds.Location;
 
-                        uriKakunin.ShowDialog();
-                        uriKakunin.Dispose();
+                        uriKakunin.Show();
+                        //uriKakunin.Dispose();
                     }
                     break;
                 case Keys.F9:
@@ -403,8 +403,8 @@ namespace KATO.Form.A0010_JuchuInput
                     uriKakunin.StartPosition = FormStartPosition.Manual;
                     uriKakunin.Location = s.Bounds.Location;
 
-                    uriKakunin.ShowDialog();
-                    uriKakunin.Dispose();
+                    uriKakunin.Show();
+                    //uriKakunin.Dispose();
 
                     break;
                 case STR_BTN_F09: // 履歴
@@ -3194,8 +3194,8 @@ namespace KATO.Form.A0010_JuchuInput
                 uriKakunin.StartPosition = FormStartPosition.Manual;
                 uriKakunin.Location = s.Bounds.Location;
 
-                uriKakunin.ShowDialog();
-                uriKakunin.Dispose();
+                uriKakunin.Show();
+                //uriKakunin.Dispose();
             }
             else if (c.SelectedIndex == 1)
             {
