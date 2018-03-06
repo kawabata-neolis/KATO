@@ -311,28 +311,28 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F7:
                     break;
                 case Keys.F8:
-                    if (btnF08.Enabled) {
-                        logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //if (btnF08.Enabled) {
+                    //    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
 
-                        uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
+                    //    uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
 
-                        Screen s = null;
-                        Screen[] argScreen = Screen.AllScreens;
-                        if (argScreen.Length > 1)
-                        {
-                            s = argScreen[1];
-                        }
-                        else
-                        {
-                            s = argScreen[0];
-                        }
+                    //    Screen s = null;
+                    //    Screen[] argScreen = Screen.AllScreens;
+                    //    if (argScreen.Length > 1)
+                    //    {
+                    //        s = argScreen[1];
+                    //    }
+                    //    else
+                    //    {
+                    //        s = argScreen[0];
+                    //    }
 
-                        uriKakunin.StartPosition = FormStartPosition.Manual;
-                        uriKakunin.Location = s.Bounds.Location;
+                    //    uriKakunin.StartPosition = FormStartPosition.Manual;
+                    //    uriKakunin.Location = s.Bounds.Location;
 
-                        uriKakunin.Show();
-                        //uriKakunin.Dispose();
-                    }
+                    //    uriKakunin.Show();
+                    //    //uriKakunin.Dispose();
+                    //}
                     break;
                 case Keys.F9:
                     if (btnF09.Enabled)
@@ -345,6 +345,11 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    if (uriKakunin != null)
+                    {
+                        uriKakunin.Close();
+                        uriKakunin.Dispose();
+                    }
                     if (f6 != null)
                     {
                         f6.Close();
@@ -385,26 +390,26 @@ namespace KATO.Form.A0010_JuchuInput
                     clearInput2();
                     break;
                 case STR_BTN_F08: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
 
-                    uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
+                    //uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
 
-                    Screen s = null;
-                    Screen[] argScreen = Screen.AllScreens;
-                    if (argScreen.Length > 1)
-                    {
-                        s = argScreen[1];
-                    }
-                    else
-                    {
-                        s = argScreen[0];
-                    }
+                    //Screen s = null;
+                    //Screen[] argScreen = Screen.AllScreens;
+                    //if (argScreen.Length > 1)
+                    //{
+                    //    s = argScreen[1];
+                    //}
+                    //else
+                    //{
+                    //    s = argScreen[0];
+                    //}
 
-                    uriKakunin.StartPosition = FormStartPosition.Manual;
-                    uriKakunin.Location = s.Bounds.Location;
+                    //uriKakunin.StartPosition = FormStartPosition.Manual;
+                    //uriKakunin.Location = s.Bounds.Location;
 
-                    uriKakunin.Show();
-                    //uriKakunin.Dispose();
+                    //uriKakunin.Show();
+                    ////uriKakunin.Dispose();
 
                     break;
                 case STR_BTN_F09: // 履歴
@@ -414,6 +419,11 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     break;
                 case STR_BTN_F12: // 終了
+                    if (uriKakunin != null)
+                    {
+                        uriKakunin.Close();
+                        uriKakunin.Dispose();
+                    }
                     if (f6 != null)
                     {
                         f6.Close();
@@ -3178,6 +3188,11 @@ namespace KATO.Form.A0010_JuchuInput
 
             if (cmbSubWinShow.SelectedIndex == 0)
             {
+                if (uriKakunin != null && uriKakunin.Visible)
+                {
+                    uriKakunin.Activate();
+                    return;
+                }
                 uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this, 1, tsTokuisaki.CodeTxtText, txtShohinCd.Text);
 
                 Screen s = null;
@@ -3199,6 +3214,11 @@ namespace KATO.Form.A0010_JuchuInput
             }
             else if (c.SelectedIndex == 1)
             {
+                if (f6 != null && f6.Visible)
+                {
+                    f6.Activate();
+                    return;
+                }
                 f6 = new Form6(this);
                 f6.strJuchuNo = txtJuchuNo.Text;
 
