@@ -96,6 +96,8 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
+            SetUpGrid();
+
             //データグリッドビューに表示
             getDatagridView();
 
@@ -103,6 +105,54 @@ namespace KATO.Common.Form
             if (gridChoku.RowCount == 0)
             {
                 txtTokuisakiCd.Focus();
+            }
+        }
+
+        ///<summary>
+        ///SetUpGrid
+        ///DataGridView初期設定
+        ///</summary>
+        private void SetUpGrid()
+        {
+            //列自動生成禁止
+            gridChoku.AutoGenerateColumns = false;
+
+            //データをバインド
+            //1
+            DataGridViewTextBoxColumn chokuCd = new DataGridViewTextBoxColumn();
+            chokuCd.DataPropertyName = "直送先コード";
+            chokuCd.Name = "直送先コード";
+            chokuCd.HeaderText = "直送先コード";
+
+            //2
+            DataGridViewTextBoxColumn chokuName = new DataGridViewTextBoxColumn();
+            chokuName.DataPropertyName = "直送先名";
+            chokuName.Name = "直送先名";
+            chokuName.HeaderText = "直送先名";
+
+            //個々の幅、文章の寄せ
+            setColumnChoku(chokuCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
+            setColumnChoku(chokuName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+
+        }
+
+        ///<summary>
+        ///setColumnChoku
+        ///DataGridViewの内部設定
+        ///</summary>
+        private void setColumnChoku(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridChoku.Columns.Add(col);
+            if (gridChoku.Columns[col.Name] != null)
+            {
+                gridChoku.Columns[col.Name].Width = intLen;
+                gridChoku.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridChoku.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+
+                if (fmt != null)
+                {
+                    gridChoku.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
             }
         }
 
@@ -123,14 +173,11 @@ namespace KATO.Common.Form
                 if(dtChokuso.Rows.Count > 0)
                 {
                     //データグリッドビュー部分
-                    gridChoku.DataSource = chokusosakilistB.getDatagridView(txtTokuisakiCd.Text);
-
-                    //幅の値を設定
-                    gridChoku.Columns["直送先コード"].Width = 130;
-                    gridChoku.Columns["直送先名"].Width = 250;
-
-                    //中央揃え
-                    gridChoku.Columns["直送先名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    gridChoku.DataSource = dtChokuso;
+                }
+                else
+                {
+                    gridChoku.DataSource = "";
                 }
 
                 //表示数を記載

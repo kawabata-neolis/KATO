@@ -701,6 +701,8 @@ namespace KATO.Form.G0920_HidukeSeigen
         /// </summary>
         private void txtGamenNoTextChanged(object sender, EventArgs e)
         {
+            Boolean blnGood;
+
             //文字数が少ない場合
             if (txtGamenNo.TextLength < 3)
             {
@@ -712,7 +714,25 @@ namespace KATO.Form.G0920_HidukeSeigen
                 lblGamenName.Text = "";
                 return;
             }
-            
+
+            // 禁止文字チェック
+            blnGood = StringUtl.JudBanChr(txtGamenNo.Text);
+            // 数字のみを許可する
+            blnGood = StringUtl.JudBanSelect(txtGamenNo.Text, CommonTeisu.NUMBER_ONLY);
+
+            if (blnGood == false)
+            {
+                lblGamenName.Text = "";
+
+                // メッセージボックスの処理、項目が該当する禁止文字を含む場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_MISS, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
+            // 前後の空白を取り除く
+            txtGamenNo.Text = txtGamenNo.Text.Trim();
+
             // ビジネス層のインスタンス生成
             G0920_HidukeSeigen_B hidukeB = new G0920_HidukeSeigen_B();
             try

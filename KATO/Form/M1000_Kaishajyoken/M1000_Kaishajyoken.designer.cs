@@ -191,7 +191,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             // 
             this.txtDennwaNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDennwaNum.Location = new System.Drawing.Point(540, 244);
-            this.txtDennwaNum.MaxLength = 13;
+            this.txtDennwaNum.MaxLength = 12;
             this.txtDennwaNum.Name = "txtDennwaNum";
             this.txtDennwaNum.Size = new System.Drawing.Size(110, 22);
             this.txtDennwaNum.TabIndex = 6;
@@ -322,7 +322,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             // 
             this.txtFaxNum.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtFaxNum.Location = new System.Drawing.Point(540, 273);
-            this.txtFaxNum.MaxLength = 13;
+            this.txtFaxNum.MaxLength = 12;
             this.txtFaxNum.Name = "txtFaxNum";
             this.txtFaxNum.Size = new System.Drawing.Size(110, 22);
             this.txtFaxNum.TabIndex = 7;
@@ -422,6 +422,7 @@ namespace KATO.Form.M1000_Kaishajyoken
             this.Text = " ";
             this.Load += new System.EventHandler(this.M1000_Kaishajyoken_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judKaisyaCodeKeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.gbKaikeikimatsu, 0);
             this.Controls.SetChildIndex(this.txtKaisyaCode, 0);
             this.Controls.SetChildIndex(this.txtKaishaName, 0);

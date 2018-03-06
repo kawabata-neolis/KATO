@@ -259,7 +259,7 @@ namespace KATO.Business.M1120_Tanaban
                 headersheet.RowHeight = 14;
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 50;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -341,7 +341,7 @@ namespace KATO.Business.M1120_Tanaban
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
-                    // 47行毎（ヘッダーを除いた行数）にシート作成
+                    // 53行毎（ヘッダーを除いた行数）にシート作成
                     if (xlsRowCnt == 53)
                     {
                         pageCnt++;
