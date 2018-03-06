@@ -145,8 +145,11 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             if (this.intFrm == 3)
             {
                 labelSet_Siiresaki.CodeTxtText = this.strSiiresakiCd;
-                this.setSiireJisseki();
 
+                if (labelSet_Siiresaki.codeTxt.blIsEmpty())
+                {
+                    this.setSiireJisseki();
+                }
             }
 
             // 発注入力フォームから呼ばれた場合

@@ -531,10 +531,8 @@ namespace KATO.Form.A0100_HachuInput
                         return;
                     }
 
-                    bool blShire = true;
-
                     //発注残確認に移動
-                    Form.D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, textSet_Torihikisaki.CodeTxtText, txtHachuban, blShire);
+                    Form.D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, textSet_Torihikisaki.CodeTxtText, txtHachuban);
                     try
                     {
                         juchuzankakunin.ShowDialog();

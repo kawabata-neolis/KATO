@@ -2705,8 +2705,16 @@ namespace KATO.Form.A0030_ShireInput
                     return;
                 }
 
-                juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, txtCD.Text, txtNull, true);
-
+                //取引先コードがある場合
+                if (txtCD.blIsEmpty())
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, txtCD.Text, txtNull, true);
+                }
+                else
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                }
+                
                 Screen s = null;
                 Screen[] argScreen = Screen.AllScreens;
                 if (argScreen.Length > 1)
