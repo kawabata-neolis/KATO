@@ -32,6 +32,9 @@ namespace KATO.Form.A0470_Hachusuhenko
         //更新用発注番号の確保
         string strHachuID;
 
+        //「受注残をすべて」「発注残で仕入済数量」の2重チェックをさせない
+        bool blSelectOne = true;
+
         ///<summary>
         ///A0100_HachuInput
         ///フォームの初期設定
@@ -84,7 +87,49 @@ namespace KATO.Form.A0470_Hachusuhenko
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
-            radSet_3btn_Basho.radbtn2.Checked = true;
+            DataTable dtTantoshaCd = new DataTable();
+
+            //ビジネス層のインスタンス生成
+            A0470_Hachusuhenko_B hachusuhenkoB = new A0470_Hachusuhenko_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = hachusuhenkoB.getEigyiCdSetUserID(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0][0].ToString() == "")
+                    {
+                        return;
+                    }
+
+                    //本社の場合
+                    if (dtTantoshaCd.Rows[0]["営業所コード"].ToString() == "0001")
+                    {
+                        radSet_3btn_Basho.radbtn1.Checked = true;
+                    }
+                    else
+                    {
+                        radSet_3btn_Basho.radbtn2.Checked = true;
+                    }
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
             SetUpGrid();
         }
 
@@ -500,7 +545,6 @@ namespace KATO.Form.A0470_Hachusuhenko
 
 
                 int intCnt;
-                int intCntB;
 
                 int intKin = 0;
 
@@ -510,10 +554,7 @@ namespace KATO.Form.A0470_Hachusuhenko
 
                     if (Convert.ToInt32(gridHachusuhenko.Rows[intCnt].Cells[6].Value) < 0)
                     {
-                        for (intCntB = 0; intCntB < gridHachusuhenko.RowCount; intCntB++)
-                        {
-                            gridHachusuhenko.Columns[intCntB].DefaultCellStyle.ForeColor = Color.Red;
-                        }
+                        gridHachusuhenko.Rows[intCnt].DefaultCellStyle.ForeColor = Color.Red;
                     }
                 }
                 txtHachukin.Text = string.Format("{0:#,#}", intKin);
@@ -545,7 +586,15 @@ namespace KATO.Form.A0470_Hachusuhenko
         ///</summary>
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            setHachusuhenko();
+            if (blSelectOne)
+            {
+                setHachusuhenko();
+                blSelectOne = false;
+            }
+            else
+            {
+                blSelectOne = true;
+            }
         }
 
         ///<summary>
@@ -582,6 +631,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                     break;
                 case Keys.Enter:
                     setDataSelect();
+                    e.Handled = true;
                     break;
                 case Keys.F1:
                     break;
@@ -691,74 +741,24 @@ namespace KATO.Form.A0470_Hachusuhenko
         ///</summary>
         private void updKoshin()
         {
-            //年月日の日付フォーマット後を入れる用
-            string strYMDformat = "";
-
-            //発注者チェック
-            if (labelSet_Tantousha.chkTxtTantosha())
+            //変更する発注IDがない場合
+            if (strHachuID == "")
             {
-                labelSet_Tantousha.Focus();
-
                 return;
             }
 
-            //仕入先チェック
-            if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            //発注数空チェック
+            if (txtHachusu.blIsEmpty() == false)
             {
-                labelSet_Torihikisaki.Focus();
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtHachusu.Focus();
 
                 return;
             }
-
-            //検索開始年月日に記入がある場合
-            if (baseCalendarOpen.blIsEmpty())
-            {
-                //日付フォーマット生成、およびチェック
-                strYMDformat = baseCalendarOpen.chkDateDataFormat(baseCalendarOpen.Text);
-
-                //検索開始年月日の日付チェック
-                if (strYMDformat == "")
-                {
-                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-
-                    baseCalendarOpen.Focus();
-
-                    return;
-                }
-                else
-                {
-                    baseCalendarOpen.Text = strYMDformat;
-                }
-            }
-
-            //検索終了年月日に記入がある場合
-            if (baseCalendarClose.blIsEmpty())
-            {
-                //初期化
-                strYMDformat = "";
-
-                //日付フォーマット生成、およびチェック
-                strYMDformat = baseCalendarClose.chkDateDataFormat(baseCalendarClose.Text);
-
-                //検索終了年月日の日付チェック
-                if (strYMDformat == "")
-                {
-                    // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-
-                    baseCalendarClose.Focus();
-
-                    return;
-                }
-                else
-                {
-                    baseCalendarClose.Text = strYMDformat;
-                }
-            }
-
+            
             //発注数の数値チェック
             if (txtHachusu.chkMoneyText())
             {

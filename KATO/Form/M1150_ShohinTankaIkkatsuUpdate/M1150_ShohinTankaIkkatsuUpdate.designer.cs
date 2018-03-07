@@ -31,9 +31,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
@@ -142,7 +142,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.labelSet_Daibunrui.Name = "labelSet_Daibunrui";
             this.labelSet_Daibunrui.ShowAppendFlg = false;
             this.labelSet_Daibunrui.Size = new System.Drawing.Size(351, 22);
-            this.labelSet_Daibunrui.SpaceCodeValue = 4;
+            this.labelSet_Daibunrui.SpaceCodeValue = 18;
             this.labelSet_Daibunrui.SpaceNameCode = 4;
             this.labelSet_Daibunrui.SpaceValueAppend = 4;
             this.labelSet_Daibunrui.TabIndex = 1;
@@ -159,8 +159,8 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.labelSet_Chubunrui.Location = new System.Drawing.Point(32, 77);
             this.labelSet_Chubunrui.Name = "labelSet_Chubunrui";
             this.labelSet_Chubunrui.ShowAppendFlg = false;
-            this.labelSet_Chubunrui.Size = new System.Drawing.Size(339, 22);
-            this.labelSet_Chubunrui.SpaceCodeValue = 4;
+            this.labelSet_Chubunrui.Size = new System.Drawing.Size(358, 22);
+            this.labelSet_Chubunrui.SpaceCodeValue = 18;
             this.labelSet_Chubunrui.SpaceNameCode = 4;
             this.labelSet_Chubunrui.SpaceValueAppend = 4;
             this.labelSet_Chubunrui.strDaibunCd = null;
@@ -178,9 +178,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.labelSet_Maker.Location = new System.Drawing.Point(32, 117);
             this.labelSet_Maker.Name = "labelSet_Maker";
             this.labelSet_Maker.ShowAppendFlg = false;
-            this.labelSet_Maker.Size = new System.Drawing.Size(329, 22);
+            this.labelSet_Maker.Size = new System.Drawing.Size(372, 22);
             this.labelSet_Maker.SpaceCodeValue = 4;
-            this.labelSet_Maker.SpaceNameCode = 4;
+            this.labelSet_Maker.SpaceNameCode = 35;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 3;
@@ -191,7 +191,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // 
             this.lblTanabanHonsha.AutoSize = true;
             this.lblTanabanHonsha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanabanHonsha.Location = new System.Drawing.Point(410, 41);
+            this.lblTanabanHonsha.Location = new System.Drawing.Point(410, 40);
             this.lblTanabanHonsha.Name = "lblTanabanHonsha";
             this.lblTanabanHonsha.Size = new System.Drawing.Size(103, 15);
             this.lblTanabanHonsha.strToolTip = null;
@@ -202,7 +202,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // txtTanabanHonsha
             // 
             this.txtTanabanHonsha.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanabanHonsha.Location = new System.Drawing.Point(517, 38);
+            this.txtTanabanHonsha.Location = new System.Drawing.Point(517, 36);
             this.txtTanabanHonsha.MaxLength = 10;
             this.txtTanabanHonsha.Name = "txtTanabanHonsha";
             this.txtTanabanHonsha.Size = new System.Drawing.Size(100, 22);
@@ -212,7 +212,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // 
             this.lblTanabanGifu.AutoSize = true;
             this.lblTanabanGifu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanabanGifu.Location = new System.Drawing.Point(410, 86);
+            this.lblTanabanGifu.Location = new System.Drawing.Point(410, 80);
             this.lblTanabanGifu.Name = "lblTanabanGifu";
             this.lblTanabanGifu.Size = new System.Drawing.Size(103, 15);
             this.lblTanabanGifu.strToolTip = null;
@@ -223,7 +223,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // txtTanabanGifu
             // 
             this.txtTanabanGifu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanabanGifu.Location = new System.Drawing.Point(517, 82);
+            this.txtTanabanGifu.Location = new System.Drawing.Point(517, 77);
             this.txtTanabanGifu.MaxLength = 10;
             this.txtTanabanGifu.Name = "txtTanabanGifu";
             this.txtTanabanGifu.Size = new System.Drawing.Size(100, 22);
@@ -233,7 +233,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // 
             this.lblKataban.AutoSize = true;
             this.lblKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKataban.Location = new System.Drawing.Point(410, 127);
+            this.lblKataban.Location = new System.Drawing.Point(410, 119);
             this.lblKataban.Name = "lblKataban";
             this.lblKataban.Size = new System.Drawing.Size(71, 15);
             this.lblKataban.strToolTip = null;
@@ -244,7 +244,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             // txtKataban
             // 
             this.txtKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKataban.Location = new System.Drawing.Point(517, 121);
+            this.txtKataban.Location = new System.Drawing.Point(517, 115);
             this.txtKataban.MaxLength = 10;
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(100, 22);
@@ -460,34 +460,34 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.gridShohin.AllowUserToAddRows = false;
             this.gridShohin.AllowUserToResizeColumns = false;
             this.gridShohin.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShohin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShohin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridShohin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridShohin.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridShohin.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridShohin.EnableHeadersVisualStyles = false;
             this.gridShohin.Location = new System.Drawing.Point(12, 201);
             this.gridShohin.Name = "gridShohin";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShohin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShohin.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridShohin.RowHeadersVisible = false;
             this.gridShohin.RowTemplate.Height = 21;
             this.gridShohin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -505,8 +505,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtSiireKingaku.intShishagonyu = 0;
             this.txtSiireKingaku.Location = new System.Drawing.Point(866, 745);
             this.txtSiireKingaku.MaxLength = 9;
+            this.txtSiireKingaku.MinusFlg = true;
             this.txtSiireKingaku.Name = "txtSiireKingaku";
-            this.txtSiireKingaku.Size = new System.Drawing.Size(100, 22);
+            this.txtSiireKingaku.Size = new System.Drawing.Size(115, 22);
             this.txtSiireKingaku.TabIndex = 103;
             this.txtSiireKingaku.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -520,8 +521,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtHyokaKingaku.intShishagonyu = 0;
             this.txtHyokaKingaku.Location = new System.Drawing.Point(1071, 744);
             this.txtHyokaKingaku.MaxLength = 9;
+            this.txtHyokaKingaku.MinusFlg = true;
             this.txtHyokaKingaku.Name = "txtHyokaKingaku";
-            this.txtHyokaKingaku.Size = new System.Drawing.Size(100, 22);
+            this.txtHyokaKingaku.Size = new System.Drawing.Size(115, 22);
             this.txtHyokaKingaku.TabIndex = 102;
             this.txtHyokaKingaku.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -535,8 +537,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtTateneKingaku.intShishagonyu = 0;
             this.txtTateneKingaku.Location = new System.Drawing.Point(1289, 745);
             this.txtTateneKingaku.MaxLength = 9;
+            this.txtTateneKingaku.MinusFlg = true;
             this.txtTateneKingaku.Name = "txtTateneKingaku";
-            this.txtTateneKingaku.Size = new System.Drawing.Size(100, 22);
+            this.txtTateneKingaku.Size = new System.Drawing.Size(115, 22);
             this.txtTateneKingaku.TabIndex = 101;
             this.txtTateneKingaku.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 

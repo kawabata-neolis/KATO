@@ -628,7 +628,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             //string strKataban = txtKataban.Text;
 
             // 画面の項目内を白紙にする
-            delFormClear(this, gridShohin);
+            delFormClear(this);
+
+            gridShohin.DataSource = "";
 
             // ファンクションボタン制御
             this.btnF01.Enabled = false;

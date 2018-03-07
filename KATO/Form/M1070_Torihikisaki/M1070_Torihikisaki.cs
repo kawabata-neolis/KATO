@@ -96,7 +96,7 @@ namespace KATO.Form.M1070_Torihikisaki
             cmbNonyu.Items.Add("配達");
             cmbNonyu.Items.Add("発送");
             cmbNonyu.Items.Add("直送");
-            cmbNonyu.Items.Add("代引き");
+            cmbNonyu.Items.Add("代納");
             cmbNonyu.Items.Add("来店");
         }
 
@@ -1182,8 +1182,12 @@ namespace KATO.Form.M1070_Torihikisaki
                 //プレビューの場合
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = torihikiB.dbToPdf(dtSetCd_B);
+
+                    this.Cursor = Cursors.Default;
 
                     // プレビュー
                     pf.execPreview(strFile);
@@ -1191,8 +1195,12 @@ namespace KATO.Form.M1070_Torihikisaki
                 // 一括印刷の場合
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     // PDF作成
                     strFile = torihikiB.dbToPdf(dtSetCd_B);
+
+                    this.Cursor = Cursors.Default;
 
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);

@@ -237,6 +237,7 @@
             this.gridTokuteimukesakiTanka.StandardTab = true;
             this.gridTokuteimukesakiTanka.TabIndex = 112;
             this.gridTokuteimukesakiTanka.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTokuteimukesakiTanka_CellDoubleClick);
+            this.gridTokuteimukesakiTanka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTokuteimukesakiTanka_KeyDown);
             // 
             // labelSet_Tokuisaki
             // 
