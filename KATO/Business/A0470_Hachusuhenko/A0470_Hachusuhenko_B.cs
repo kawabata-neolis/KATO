@@ -19,6 +19,36 @@ namespace KATO.Business.A0470_Hachusuhenko
     ///</summary>
     class A0470_Hachusuhenko_B
     {
+        public DataTable getHatchuData(string strHatchuNo)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT 発注数量";
+            strQuery += "      ,仕入先コード";
+            strQuery += "      ,CONVERT(VARCHAR, 納期, 111) as 納期";
+            strQuery += "      ,注番";
+            strQuery += "      ,担当者コード";
+            strQuery += "      ,仕入先名称";
+            strQuery += "      ,商品コード";
+            strQuery += "      ,営業所コード";
+            strQuery += "  FROM 発注";
+            strQuery += " WHERE 発注番号 = " + strHatchuNo;
+            strQuery += "   AND 削除     = 'N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
         ///<summary>
         ///setHachusuhenkoGrid
         ///グリッドビューに表示

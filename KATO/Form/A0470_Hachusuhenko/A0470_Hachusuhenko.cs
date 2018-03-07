@@ -782,9 +782,22 @@ namespace KATO.Form.A0470_Hachusuhenko
 
             //ビジネス層のインスタンス生成
             A0470_Hachusuhenko_B hachusuhenkoB = new A0470_Hachusuhenko_B();
+
+            DBConnective con = null;
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+
             try
             {
+                DataTable dt = hachusuhenkoB.getHatchuData(strHachuID);
                 hachusuhenkoB.updKoushin(txtHachusu.Text, strHachuID);
+
+                if (dt != null && dt.Rows.Count > 0) {
+                    con.BeginTrans();
+                    juchuB.updZaiko(dt.Rows[0]["商品コード"].ToString(), dt.Rows[0]["営業所コード"].ToString(), dt.Rows[0]["納期"].ToString(), Environment.UserName, con);
+                    con.Commit();
+                }
 
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -801,6 +814,10 @@ namespace KATO.Form.A0470_Hachusuhenko
             }
             catch (Exception ex)
             {
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //エラーロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）

@@ -879,6 +879,28 @@ namespace KATO.Business.A0010_JuchuInput
                 if (!kariFlg)
                 {
                     con.RunSql("発注更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+
+                    string strQ = "SELECT 商品コード, 営業所コード, CONVERT(VARCHAR, 発注年月日, 111) AS 発注年月日";
+                    strQ += " FROM 発注";
+                    strQ += " WHERE 発注番号 = " + aryPrm[2] + " AND 削除 = 'N'";
+
+                    DataTable dt = con.ReadSql(strQ);
+
+                    // 在庫更新
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string ymd = DateTime.Now.ToString("yyyy/MM/dd");
+                            if (dr["発注年月日"] != null && dr["発注年月日"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["発注年月日"].ToString()))
+                            {
+                                ymd = dr["発注年月日"].ToString();
+                            }
+                            string strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["営業所コード"] + "', '" + ymd + "', '" + aryPrm[27] + "'";
+                            con.ReadSql(strSQL);
+                        }
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -989,6 +1011,26 @@ namespace KATO.Business.A0010_JuchuInput
                     con.ReadSql(strSQL);
 
                     con.RunSql("出庫明細更新_PROC", CommandType.StoredProcedure, aryPrm, aryCol);
+
+                    // 在庫更新
+                    string strQ = "SELECT 商品コード, 出庫倉庫, CONVERT(VARCHAR, 出庫予定日, 111) AS 出庫予定日";
+                    strQ += " FROM 出庫明細";
+                    strQ += " WHERE 伝票番号 = " + aryPrm[0] + " AND 削除 = 'N'";
+
+                    DataTable dt = con.ReadSql(strQ);
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string ymd = DateTime.Now.ToString("yyyy/MM/dd");
+                            if (dr["出庫予定日"] != null && dr["出庫予定日"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["出庫予定日"].ToString()))
+                            {
+                                ymd = dr["出庫予定日"].ToString();
+                            }
+                            strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["出庫倉庫"] + "', '" + ymd + "', '" + aryPrm[18] + "'";
+                            con.ReadSql(strSQL);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1030,12 +1072,40 @@ namespace KATO.Business.A0010_JuchuInput
             try
             {
                 if (hatchuFlg) {
+                    string strQ = "SELECT 商品コード, 営業所コード, CONVERT(VARCHAR, 発注年月日, 111) AS 発注年月日";
+                    strQ += " FROM 発注";
+                    strQ += " WHERE 発注番号 = " + strHachuban + " AND 削除 = 'N'";
+
+                    DataTable dt = con.ReadSql(strQ);
+
                     strSQL = "仮発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
                     strSQL = "発注削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
+                    
+                    // 在庫更新
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string ymd = DateTime.Now.ToString("yyyy/MM/dd");
+                            if (dr["発注年月日"] != null && dr["発注年月日"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["発注年月日"].ToString()))
+                            {
+                                ymd = dr["発注年月日"].ToString();
+                            }
+                            strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["営業所コード"] + "', '" + ymd + "', '" + strUserName + "'";
+                            con.ReadSql(strSQL);
+                        }
+                    }
                 }
                 else {
+
+                    string strQ = "SELECT 商品コード, 出庫倉庫, CONVERT(VARCHAR, 出庫予定日, 111) AS 出庫予定日";
+                    strQ += " FROM 出庫明細";
+                    strQ += " WHERE 伝票番号 = " + strHachuban + " AND 削除 = 'N'";
+
+                    DataTable dt = con.ReadSql(strQ);
+
                     strSQL = "仮出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
                     strSQL = "出庫ヘッダ削除_PROC '" + strHachuban + "','" + strUserName + "'";
@@ -1045,6 +1115,21 @@ namespace KATO.Business.A0010_JuchuInput
                     con.ReadSql(strSQL);
                     strSQL = "出庫明細全削除_PROC '" + strHachuban + "','" + strUserName + "'";
                     con.ReadSql(strSQL);
+
+                    // 在庫更新
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string ymd = DateTime.Now.ToString("yyyy/MM/dd");
+                            if (dr["出庫予定日"] != null && dr["出庫予定日"] != DBNull.Value && !string.IsNullOrWhiteSpace(dr["出庫予定日"].ToString()))
+                            {
+                                ymd = dr["出庫予定日"].ToString();
+                            }
+                            strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["出庫倉庫"] + "', '" + ymd + "', '" + strUserName + "'";
+                            con.ReadSql(strSQL);
+                        }
+                    }
                 }
 
                 return;

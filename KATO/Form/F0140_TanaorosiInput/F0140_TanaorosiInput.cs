@@ -413,10 +413,19 @@ namespace KATO.Form.F0140_TanaorosiInput
             lstString.Add(txtTanasuu.Text);
             lstString.Add(labelSet_Tanaban_Edit.CodeTxtText);
 
+            DBConnective con = null;
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+
             try
             {
                 F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();
                 tanaorosiinputB.addTanaoroshi(lstString);
+
+                con.BeginTrans();
+                juchuB.updZaiko(txtShouhinCD.Text, labelSet_Eigyousho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
+                con.Commit();
 
                 //特定の値確保
                 string strYMD = txtYMD.Text;
@@ -476,6 +485,10 @@ namespace KATO.Form.F0140_TanaorosiInput
             }
             catch (Exception ex)
             {
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）

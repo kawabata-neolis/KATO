@@ -111,6 +111,17 @@ namespace KATO.Business.A0170_ShukoShoninInput
 
                     //プロシージャ（戻り値なし）用のメソッドに投げる
                     dbconnective.RunSql("出庫依頼承認_PROC", CommandType.StoredProcedure, lstUpdData, lstTableName);
+
+                    string strQ = "SELECT * FROM 出庫依頼 WHERE 伝票番号 = " + strGetData[0] + " AND 削除 = 'N'";
+                    DataTable dt = dbconnective.ReadSql(strQ);
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["出庫倉庫"] + "', '" + DateTime.Parse(strYMD).ToString() + "', '" + strUserName + "'";
+                            dbconnective.ReadSql(strSQL);
+                        }
+                    }
                 }
 
                 //コミット

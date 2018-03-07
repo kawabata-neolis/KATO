@@ -336,10 +336,23 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     dbconnective.RunSql(strSQLInput);
 
                 }
+
+                string strQ = "SELECT * FROM 受注 WHERE 受注番号 = " + lstGrid[0] + " AND 削除 = 'N'";
+
+                DataTable dt = dbconnective.ReadSql(strQ);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    dbconnective.BeginTrans();
+                    string strSQL = "在庫数更新_PROC '" + dt.Rows[0]["商品コード"] + "', '" + dt.Rows[0]["営業所コード"] + "', '" + dt.Rows[0]["受注年月日"] + "', '" + lstGrid[3] + "'";
+                    dbconnective.ReadSql(strSQL);
+                    dbconnective.Commit();
+                }
+
                 return;
             }
             catch (Exception ex)
             {
+                dbconnective.Rollback();
                 throw (ex);
             }
             finally
@@ -423,10 +436,23 @@ namespace KATO.Business.A1520_Uriageshonin_B
                     dbconnective.RunSql(strSQLInput);
 
                 }
+
+                string strQ = "SELECT * FROM 受注 WHERE 受注番号 = " + lstGrid[0] + " AND 削除 = 'N'";
+
+                DataTable dt = dbconnective.ReadSql(strQ);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    dbconnective.BeginTrans();
+                    string strSQL = "在庫数更新_PROC '" + dt.Rows[0]["商品コード"] + "', '" + dt.Rows[0]["営業所コード"] + "', '" + dt.Rows[0]["受注年月日"] + "', '" + lstGrid[3] + "'";
+                    dbconnective.ReadSql(strSQL);
+                    dbconnective.Commit();
+                }
+
                 return;
             }
             catch (Exception ex)
             {
+                dbconnective.Rollback();
                 throw (ex);
             }
             finally
@@ -502,6 +528,20 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 }
                 else
                 {
+                    string strQ = "SELECT 売上ヘッダ.伝票年月日, 売上明細.商品コード, 売上明細.出庫倉庫";
+                    strQ += " FROM 売上ヘッダ, 売上明細";
+                    strQ += " WHERE 売上ヘッダ.伝票番号 = " + lstGrid[0] + " AND 売上ヘッダ.削除 = 'N' AND 売上ヘッダ.伝票番号 = 売上明細.伝票番号 AND 売上明細.削除 = 'N'";
+
+                    DataTable dt = dbconnective.ReadSql(strQ);
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string strSQL = "在庫数更新_PROC '" + dr["商品コード"] + "', '" + dr["出庫倉庫"] + "', '" + dr["伝票年月日"] + "', '" + lstGrid[3] + "'";
+                            dbconnective.ReadSql(strSQL);
+                        }
+                    }
+
                     //UPDATE（売上削除承認）
                     //SQLファイルのパス取得
                     strSQLInput = opensql.setOpenSQL(lstSQLUpdateUriShonin);
