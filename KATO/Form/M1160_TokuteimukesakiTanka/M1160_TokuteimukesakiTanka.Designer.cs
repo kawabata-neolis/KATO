@@ -110,7 +110,7 @@
             // 
             this.txtKensakuS.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKensakuS.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtKensakuS.Location = new System.Drawing.Point(244, 111);
+            this.txtKensakuS.Location = new System.Drawing.Point(256, 111);
             this.txtKensakuS.MaxLength = 40;
             this.txtKensakuS.Name = "txtKensakuS";
             this.txtKensakuS.Size = new System.Drawing.Size(297, 22);
@@ -122,7 +122,7 @@
             this.txtKataban.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKataban.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtKataban.Location = new System.Drawing.Point(244, 139);
+            this.txtKataban.Location = new System.Drawing.Point(256, 139);
             this.txtKataban.MaxLength = 100;
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.ReadOnly = true;
@@ -150,7 +150,7 @@
             this.txtTanka.intDeciSet = 2;
             this.txtTanka.intIntederSet = 0;
             this.txtTanka.intShishagonyu = 0;
-            this.txtTanka.Location = new System.Drawing.Point(244, 167);
+            this.txtTanka.Location = new System.Drawing.Point(256, 167);
             this.txtTanka.MaxLength = 10;
             this.txtTanka.MinusFlg = true;
             this.txtTanka.Name = "txtTanka";
@@ -174,7 +174,7 @@
             // 
             this.lblShohinCd.AutoSize = true;
             this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinCd.Location = new System.Drawing.Point(676, 142);
+            this.lblShohinCd.Location = new System.Drawing.Point(684, 142);
             this.lblShohinCd.Name = "lblShohinCd";
             this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
             this.lblShohinCd.strToolTip = null;
@@ -187,7 +187,7 @@
             // 
             this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShohinCd.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtShohinCd.Location = new System.Drawing.Point(769, 139);
+            this.txtShohinCd.Location = new System.Drawing.Point(777, 139);
             this.txtShohinCd.MaxLength = 5;
             this.txtShohinCd.Name = "txtShohinCd";
             this.txtShohinCd.Size = new System.Drawing.Size(119, 22);
@@ -245,7 +245,7 @@
             this.labelSet_Tokuisaki.CodeTxtSize = 40;
             this.labelSet_Tokuisaki.CodeTxtText = "";
             this.labelSet_Tokuisaki.LabelName = "得意先コード";
-            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(154, 73);
+            this.labelSet_Tokuisaki.Location = new System.Drawing.Point(149, 73);
             this.labelSet_Tokuisaki.Name = "labelSet_Tokuisaki";
             this.labelSet_Tokuisaki.ShowAppendFlg = false;
             this.labelSet_Tokuisaki.Size = new System.Drawing.Size(452, 22);

@@ -554,13 +554,27 @@ namespace KATO.Form.M1100_Chokusosaki
         ///</summary>
         public void setChokusoCode(DataTable dtSelectData)
         {
-            txtChokusoCd.Text = dtSelectData.Rows[0]["直送先コード"].ToString();
-            txtChokusoName.Text = dtSelectData.Rows[0]["直送先名"].ToString();
-            txtYubin.Text = dtSelectData.Rows[0]["郵便番号"].ToString();
-            txtJusho1.Text = dtSelectData.Rows[0]["住所１"].ToString();
-            txtJusho2.Text = dtSelectData.Rows[0]["住所２"].ToString();
-            txtDenwa.Text = dtSelectData.Rows[0]["電話番号"].ToString();
-            txtBushoName.Text = dtSelectData.Rows[0]["部署名"].ToString();
+            //得意先コードが一致する場合
+            if (labelSet_Torihikisaki.CodeTxtText == dtSelectData.Rows[0]["得意先コード"].ToString())
+            {
+                txtChokusoCd.Text = dtSelectData.Rows[0]["直送先コード"].ToString();
+                txtChokusoName.Text = dtSelectData.Rows[0]["直送先名"].ToString();
+                txtYubin.Text = dtSelectData.Rows[0]["郵便番号"].ToString();
+                txtJusho1.Text = dtSelectData.Rows[0]["住所１"].ToString();
+                txtJusho2.Text = dtSelectData.Rows[0]["住所２"].ToString();
+                txtDenwa.Text = dtSelectData.Rows[0]["電話番号"].ToString();
+                txtBushoName.Text = dtSelectData.Rows[0]["部署名"].ToString();
+            }
+            else
+            {
+                txtChokusoCd.Text = dtSelectData.Rows[0]["直送先コード"].ToString();
+                txtChokusoName.Clear();
+                txtYubin.Clear();
+                txtJusho1.Clear();
+                txtJusho2.Clear();
+                txtDenwa.Clear();
+                txtBushoName.Clear();
+            }
         }
 
         ///<summary>

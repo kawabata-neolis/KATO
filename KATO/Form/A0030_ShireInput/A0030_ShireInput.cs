@@ -14,6 +14,7 @@ using KATO.Business.A0030_ShireInput;
 using static KATO.Common.Util.CommonTeisu;
 using KATO.Business.M1110_Chubunrui;
 using KATO.Common.Business;
+using KATO.Form.D0320_SiireJissekiKakunin;
 
 namespace KATO.Form.A0030_ShireInput
 {
@@ -55,6 +56,9 @@ namespace KATO.Form.A0030_ShireInput
         D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin shireKakunin = null;
         D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzan = null;
         D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin shohinmoto = null;
+
+        //受注残確認に飛ぶ用
+        BaseText txtNull = new BaseText();
 
         ///<summary>
         ///A0030_ShireInput
@@ -105,7 +109,7 @@ namespace KATO.Form.A0030_ShireInput
             this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF07.Text = "F7:行削";
-            this.btnF08.Text = "F8:実績";
+            //this.btnF08.Text = "F8:実績";
             this.btnF09.Text = STR_FUNC_F9;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -205,9 +209,9 @@ namespace KATO.Form.A0030_ShireInput
                     this.delGyou();
                     break;
                 case Keys.F8:
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    this.setShireJisseki();
-                    break;
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //this.setShireJisseki();
+                    //break;
                 case Keys.F9:
                     break;
                 case Keys.F10:
@@ -215,6 +219,25 @@ namespace KATO.Form.A0030_ShireInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
+
+                    //仕入実績確認が既に開いている場合        
+                    if (shireKakunin != null)
+                    {
+                        shireKakunin.Close();
+                    }
+
+                    //受注残・発注残確認が既に開いている場合        
+                    if (juchuzan != null)
+                    {
+                        juchuzan.Close();
+                    }
+
+                    //商品元帳確認が既に開いている場合        
+                    if (shohinmoto != null)
+                    {
+                        shohinmoto.Close();
+                    }
+
                     this.Close();
                     break;
 
@@ -307,10 +330,29 @@ namespace KATO.Form.A0030_ShireInput
                     this.delGyou();
                     break;
                 case STR_BTN_F08: // 履歴
-                    logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
-                    setShireJisseki();
-                    break;
+                    //logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+                    //setShireJisseki();
+                    //break;
                 case STR_BTN_F12: // 終了
+                    
+                    //仕入実績確認が既に開いている場合        
+                    if (shireKakunin != null)
+                    {
+                        shireKakunin.Close();
+                    }
+
+                    //受注残・発注残確認が既に開いている場合        
+                    if (juchuzan != null)
+                    {
+                        juchuzan.Close();
+                    }
+
+                    //商品元帳確認が既に開いている場合        
+                    if (shohinmoto != null)
+                    {
+                        shohinmoto.Close();
+                    }
+
                     this.Close();
                     break;
             }
@@ -1176,10 +1218,31 @@ namespace KATO.Form.A0030_ShireInput
                 return;
             }
 
-            //仕入実績確認画面へ移動
-            shireKakunin = new Form.D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this, 0, txtCD.Text);
-            shireKakunin.ShowDialog();
+            //仕入実績確認が既に開いている場合        
+            if (shireKakunin != null && shireKakunin.Visible)
+            {
+                shireKakunin.Activate();
+                return;
+            }
 
+            shireKakunin = new Form.D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this, 3, txtCD.Text);
+
+            Screen s = null;
+            Screen[] argScreen = Screen.AllScreens;
+            if (argScreen.Length > 1)
+            {
+                s = argScreen[1];
+            }
+            else
+            {
+                s = argScreen[0];
+            }
+
+            shireKakunin.StartPosition = FormStartPosition.Manual;
+            shireKakunin.Location = s.Bounds.Location;
+
+            //仕入実績確認画面へ移動
+            shireKakunin.Show();
         }
 
         ///<summary>
@@ -2606,19 +2669,101 @@ namespace KATO.Form.A0030_ShireInput
             //仕入実績確認
             if (cmbSubWinShow.SelectedIndex == 0)
             {
-                setShireJisseki();
+                logger.Info(LogUtil.getMessage(this._Title, "履歴実行"));
+
+                //仕入実績確認が既に開いている場合        
+                if (shireKakunin != null && shireKakunin.Visible)
+                {
+                    shireKakunin.Activate();
+                    return;
+                }
+
+                shireKakunin = new Form.D0320_SiireJissekiKakunin.D0320_SiireJissekiKakunin(this, 3, txtCD.Text);
+
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                shireKakunin.StartPosition = FormStartPosition.Manual;
+                shireKakunin.Location = s.Bounds.Location;
+
+                //仕入実績確認画面へ移動
+                shireKakunin.Show();
             }
             //受注残・発注残確認
             else if (c.SelectedIndex == 1)
             {
-                juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
-                juchuzan.ShowDialog();
+                logger.Info(LogUtil.getMessage(this._Title, "受注残・発注残確認実行"));
+
+                //受注残・発注残確認が既に開いている場合        
+                if (juchuzan != null && juchuzan.Visible)
+                {
+                    juchuzan.Activate();
+                    return;
+                }
+
+                //取引先コードがある場合
+                if (txtCD.blIsEmpty())
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, txtCD.Text, txtNull, true);
+                }
+                else
+                {
+                    juchuzan = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this);
+                }
+                
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                juchuzan.StartPosition = FormStartPosition.Manual;
+                juchuzan.Location = s.Bounds.Location;
+
+                juchuzan.Show();
             }
             //商品元帳確認
             else if (c.SelectedIndex == 2)
             {
+                logger.Info(LogUtil.getMessage(this._Title, "商品元帳確認実行"));
+
+                //商品元帳確認が既に開いている場合        
+                if (shohinmoto != null && shohinmoto.Visible)
+                {
+                    shohinmoto.Activate();
+                    return;
+                }
+
                 shohinmoto = new D0380_ShohinMotochoKakunin.D0380_ShohinMotochoKakunin(this);
-                shohinmoto.ShowDialog();
+                
+                Screen s = null;
+                Screen[] argScreen = Screen.AllScreens;
+                if (argScreen.Length > 1)
+                {
+                    s = argScreen[1];
+                }
+                else
+                {
+                    s = argScreen[0];
+                }
+
+                shohinmoto.StartPosition = FormStartPosition.Manual;
+                shohinmoto.Location = s.Bounds.Location;
+
+                shohinmoto.Show();
             }
         }
     }

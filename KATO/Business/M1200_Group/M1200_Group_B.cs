@@ -256,7 +256,7 @@ namespace KATO.Business.M1200_Group
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 44;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -292,7 +292,7 @@ namespace KATO.Business.M1200_Group
 
                         // 列幅の指定
                         headersheet.Column(1).Width = 10;
-                        headersheet.Column(2).Width = 38;
+                        headersheet.Column(2).Width = 45;
 
                         // セルの周囲に罫線を引く
                         headersheet.Range("A3", "B3").Style
@@ -316,6 +316,16 @@ namespace KATO.Business.M1200_Group
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
                         string str = drSiireCheak[colCnt - 1].ToString();
+
+                        //コードの場合
+                        if (colCnt == 1)
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+                        else
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
 
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                     }

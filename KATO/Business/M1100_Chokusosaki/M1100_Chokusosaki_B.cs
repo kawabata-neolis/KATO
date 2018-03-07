@@ -232,6 +232,82 @@ namespace KATO.Business.M1100_Chokusosaki
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
+            //得意先コードが被った場合の判定用
+            string strTokuiCdSub = "";
+
+            //空白行も含めた合計行数
+            int intMaxRowCnt = 0;
+
+            //得意先名行を追加した印刷データ
+            DataTable dtPrintDataNew = new DataTable();
+
+            dtPrintDataNew.Columns.Add("直送先コード");
+            dtPrintDataNew.Columns.Add("直送先名");
+            dtPrintDataNew.Columns.Add("郵便番号");
+            dtPrintDataNew.Columns.Add("住所１");
+            dtPrintDataNew.Columns.Add("住所２");
+            dtPrintDataNew.Columns.Add("電話番号");
+
+            //得意先名行を追加した印刷データを作成
+            for (int intCnt = 0; intCnt < dtSetCd_B_Input.Rows.Count; intCnt++)
+            {
+                //一行目の場合
+                if (intCnt == 0)
+                {
+                    //得意先表示行
+                    dtPrintDataNew.Rows.Add(dtSetCd_B_Input.Rows[intCnt]["得意先コード"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["得意先名称"].ToString(),
+                                            "",
+                                            "", 
+                                            "",
+                                            "");
+
+                    //直送先表示行
+                    dtPrintDataNew.Rows.Add(dtSetCd_B_Input.Rows[intCnt]["直送先コード"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["直送先名"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["郵便番号"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["住所１"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["住所２"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["電話番号"].ToString()
+                                            );
+                }
+                else
+                {
+                    //同じ型番の場合
+                    if (dtSetCd_B_Input.Rows[intCnt - 1]["得意先コード"].ToString() == dtSetCd_B_Input.Rows[intCnt]["得意先コード"].ToString())
+                    {
+                        //直送先表示行
+                        dtPrintDataNew.Rows.Add(dtSetCd_B_Input.Rows[intCnt]["直送先コード"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["直送先名"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["郵便番号"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["住所１"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["住所２"].ToString(),
+                                            dtSetCd_B_Input.Rows[intCnt]["電話番号"].ToString()
+                                            );
+                    }
+                    else
+                    {
+                        //得意先表示行
+                        dtPrintDataNew.Rows.Add(dtSetCd_B_Input.Rows[intCnt]["得意先コード"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["得意先名称"].ToString(),
+                                                "",
+                                                "",
+                                                "",
+                                                "");
+
+                        //直送先表示行
+                        dtPrintDataNew.Rows.Add(dtSetCd_B_Input.Rows[intCnt]["直送先コード"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["直送先名"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["郵便番号"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["住所１"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["住所２"].ToString(),
+                                                dtSetCd_B_Input.Rows[intCnt]["電話番号"].ToString()
+                                                );
+
+                    }
+                }
+            }
+
             try
             {
                 CreatePdf pdf = new CreatePdf();
@@ -248,11 +324,9 @@ namespace KATO.Business.M1100_Chokusosaki
                 IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
                 //Linqで必要なデータをselect
-                var outDataAll = dtSetCd_B_Input.AsEnumerable()
+                var outDataAll = dtPrintDataNew.AsEnumerable()
                     .Select(dat => new
                     {
-                        tokuiCd = (String)dat["得意先コード"],
-                        tokuiName = dat["得意先名称"],
                         torihikchokusoCd = (String)dat["直送先コード"],
                         torihikchokusoNamed = (String)dat["直送先名"],
                         yubin = dat["郵便番号"],
@@ -276,7 +350,7 @@ namespace KATO.Business.M1100_Chokusosaki
                 headersheet.RowHeight = 14;
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 42;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -346,158 +420,53 @@ namespace KATO.Business.M1100_Chokusosaki
                     // 1セルずつデータ出力
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
-                        //得意先コードが1回目の場合
-                        if (intTokuiCd != int.Parse(drSiireCheak[0].ToString()))
+                        string str = drSiireCheak[colCnt - 1].ToString();
+
+                        //コードが1000以上の場合
+                        if (decimal.Parse(drSiireCheak[0].ToString()) >= 1000)
                         {
-                            string str = drSiireCheak[colCnt - 1].ToString();
-
-                            //得意先コード
-                            if (colCnt == 1)
-                            {
-                                //二桁の0パディングをさせる
-                                currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("0000");
-
-                                //左に寄せる
-                                currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-
-                                currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-                            }
-                            //得意先名称
-                            else if (colCnt == 2)
-                            {
-                                //マージ
-                                currentsheet.Range(xlsRowCnt, 2, xlsRowCnt, 6).Merge();
-
-                                currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
-
-                                xlsRowCnt++;
-                            }
-                            //直送先コード
-                            else if (colCnt == 3)
-                            {
-                                str = drSiireCheak[2].ToString();
-
-                                //４桁の0パディングをさせる
-                                currentsheet.Cell(xlsRowCnt, 1).Style.NumberFormat.SetFormat("0000");
-
-                                //左に寄せる
-                                currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-
-                                currentsheet.Cell(xlsRowCnt, 1).Value = str;
-                            }
-                            //直送先名
-                            else if(colCnt == 4)
-                            {
-                                str = drSiireCheak[3].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 2).Value = str;
-                            }
-                            //郵便番号
-                            else if (colCnt == 5)
-                            {
-                                str = drSiireCheak[4].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 3).Value = str;
-                            }
-                            //住所１
-                            else if (colCnt == 6)
-                            {
-                                str = drSiireCheak[5].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 4).Value = str;
-                            }
-                            //住所２
-                            else if (colCnt == 7)
-                            {
-                                str = drSiireCheak[6].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 5).Value = str;
-                            }
-                            //電話番号
-                            else if (colCnt == 8)
-                            {
-                                str = drSiireCheak[7].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 6).Value = str;
-                            }
-                            
-                            // 1行分のセルの周囲に罫線を引く
+                            // セルの周囲に罫線を引く
+                            currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 2).Style
+                                    .Border.SetLeftBorder(XLBorderStyleValues.Thin);
                             currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 6).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
-                                    .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-                                    .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                                    .Border.SetBottomBorder(XLBorderStyleValues.Thin);
+                            currentsheet.Range(xlsRowCnt, 6, xlsRowCnt, 6).Style
                                     .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                            //左寄せ
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
 
                         }
-                        //得意先コードが2回目以降の場合
+                        //コードが1000未満の場合
                         else
                         {
-                            string str = drSiireCheak[colCnt - 1].ToString();
-
-                            //直送先コード
-                            if (colCnt == 3)
-                            {
-                                str = drSiireCheak[2].ToString();
-
-                                //４桁の0パディングをさせる
-                                currentsheet.Cell(xlsRowCnt, 1).Style.NumberFormat.SetFormat("0000");
-
-                                //左に寄せる
-                                currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
-
-                                currentsheet.Cell(xlsRowCnt, 1).Value = str;
-                            }
-                            //直送先名
-                            else if (colCnt == 4)
-                            {
-                                str = drSiireCheak[3].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 2).Value = str;
-                            }
-                            //郵便番号
-                            else if (colCnt == 5)
-                            {
-                                str = drSiireCheak[4].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 3).Value = str;
-                            }
-                            //住所１
-                            else if (colCnt == 6)
-                            {
-                                str = drSiireCheak[5].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 4).Value = str;
-                            }
-                            //住所２
-                            else if (colCnt == 7)
-                            {
-                                str = drSiireCheak[6].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 5).Value = str;
-                            }
-                            //電話番号
-                            else if (colCnt == 8)
-                            {
-                                str = drSiireCheak[7].ToString();
-
-                                currentsheet.Cell(xlsRowCnt, 6).Value = str;
-                            }
-
-                            // 1行分のセルの周囲に罫線を引く
+                            // セルの周囲に罫線を引く
                             currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 6).Style
                                     .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                     .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                     .Border.SetLeftBorder(XLBorderStyleValues.Thin)
                                     .Border.SetRightBorder(XLBorderStyleValues.Thin);
+
+                            //左寄せ
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+
+                            //直送先コードの場合
+                            if (colCnt == 1)
+                            {
+                                //4桁の0パディングをさせる
+                                currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("0000");
+
+                            }
                         }
                     }
 
-                    //得意先コードを確保
-                    intTokuiCd = int.Parse(drSiireCheak[0].ToString());
-
-
-                    // 34行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 34)
+                    // 50行毎（ヘッダーを除いた行数）にシート作成
+                    if (xlsRowCnt == 45)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
