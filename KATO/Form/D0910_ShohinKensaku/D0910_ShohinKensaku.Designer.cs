@@ -96,6 +96,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             this.radSet_2btn_Toroku.Size = new System.Drawing.Size(217, 19);
             this.radSet_2btn_Toroku.TabIndex = 5;
             this.radSet_2btn_Toroku.TabStop = false;
+            this.radSet_2btn_Toroku.Visible = false;
             // 
             // baseLabel1
             // 
@@ -309,7 +310,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             this.lblKensakuHuku.Text = "副番";
             this.lblKensakuHuku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ShouhinList
+            // D0910_ShohinKensaku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -328,7 +329,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.lblKensakuHuku);
             this.Controls.Add(this.lblKensaku);
-            this.Name = "ShouhinList";
+            this.Name = "D0910_ShohinKensaku";
             this.Text = "ShouhinList";
             this.Load += new System.EventHandler(this.ShouhinList_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShouhinListKeyDown);

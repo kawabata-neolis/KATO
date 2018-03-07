@@ -54,56 +54,66 @@
             // 
             // btnF01
             // 
-            this.btnF01.TabIndex = 999;
+            this.btnF01.TabIndex = 10;
             this.btnF01.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF12
             // 
             this.btnF12.TabIndex = 999;
+            this.btnF12.TabStop = false;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
             this.btnF11.TabIndex = 999;
+            this.btnF11.TabStop = false;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
             // 
             this.btnF10.TabIndex = 999;
+            this.btnF10.TabStop = false;
             // 
             // btnF09
             // 
             this.btnF09.TabIndex = 999;
+            this.btnF09.TabStop = false;
             this.btnF09.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF08
             // 
             this.btnF08.TabIndex = 999;
+            this.btnF08.TabStop = false;
             // 
             // btnF07
             // 
             this.btnF07.TabIndex = 999;
+            this.btnF07.TabStop = false;
             // 
             // btnF06
             // 
             this.btnF06.TabIndex = 999;
+            this.btnF06.TabStop = false;
             // 
             // btnF05
             // 
             this.btnF05.TabIndex = 999;
+            this.btnF05.TabStop = false;
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 999;
+            this.btnF04.TabIndex = 12;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
             // 
             this.btnF03.TabIndex = 999;
+            this.btnF03.TabStop = false;
             // 
             // btnF02
             // 
             this.btnF02.TabIndex = 999;
+            this.btnF02.TabStop = false;
             // 
             // lblKikan
             // 
@@ -275,7 +285,7 @@
             // 
             this.labelSet_Maker1.AppendLabelSize = 0;
             this.labelSet_Maker1.AppendLabelText = "";
-            this.labelSet_Maker1.CodeTxtSize = 30;
+            this.labelSet_Maker1.CodeTxtSize = 39;
             this.labelSet_Maker1.CodeTxtText = "";
             this.labelSet_Maker1.LabelName = "メーカー";
             this.labelSet_Maker1.Location = new System.Drawing.Point(679, 90);
@@ -332,7 +342,7 @@
             this.gridUriageSuii.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridUriageSuii.Size = new System.Drawing.Size(1408, 539);
             this.gridUriageSuii.StandardTab = true;
-            this.gridUriageSuii.TabIndex = 129;
+            this.gridUriageSuii.TabIndex = 11;
             this.gridUriageSuii.TabStop = false;
             this.gridUriageSuii.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridUriageSuii_CellMouseDoubleClick);
             // 
@@ -356,6 +366,7 @@
             this.txtCalendarYMclose.ReadOnly = true;
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
             this.txtCalendarYMclose.TabIndex = 999;
+            this.txtCalendarYMclose.TabStop = false;
             // 
             // labelSet_TokuisakiStart
             // 
