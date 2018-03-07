@@ -496,11 +496,18 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 //削除
+                DataTable dtHachu = juchuB.getHatchuNoInfo(strJuchuNo);
                 con.BeginTrans();
                 juchuB.delJuchu(strJuchuNo, lblStatusUser.Text,con);
                 // 受発注の在庫数を変更
                 //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSu).ToString(), con);
                 //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (dSearchSuH).ToString(),con);
+                juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, txtNoki.Text, Environment.UserName, con);
+
+                if (dtHachu != null && dtHachu.Rows.Count > 0)
+                {
+                    juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, dtHachu.Rows[0]["発注年月日"].ToString(), Environment.UserName, con);
+                }
 
                 //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, dSearchSu.ToString());
 
@@ -1771,6 +1778,7 @@ namespace KATO.Form.A0010_JuchuInput
                     decimal d = getDecValue(txtJuchuSuryo.Text);
 
                     //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
+                    juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, txtNoki.Text, Environment.UserName, con);
 
                     con.Commit();
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "数量・納期・注番を更新しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1936,6 +1944,7 @@ namespace KATO.Form.A0010_JuchuInput
                 decimal d = getDecValue(txtJuchuSuryo.Text);
 
                 //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSu).ToString(), con);
+                juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, txtNoki.Text, Environment.UserName, con);
 
                 // 発注数0の場合、既に発注があれば削除、発注があれば更新
                 #region
@@ -1954,6 +1963,7 @@ namespace KATO.Form.A0010_JuchuInput
                                 hNum = dtHachu.Rows[0]["発注数量"].ToString();
                             }
                             //juchuB.updZaiko(false, txtEigyoshoCd.Text, txtShohinCd.Text, hNum, con);
+                            juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, dtHachu.Rows[0]["発注年月日"].ToString(), Environment.UserName, con);
                         }
                         strMsg = "正常に登録されました";
                         //BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1964,6 +1974,7 @@ namespace KATO.Form.A0010_JuchuInput
                         string strHachuNo = addJuchuH(strJuchuNo, juchuB, con);
                         d = getDecValue(txtHatchusu.Text);
                         //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSuH).ToString(), con);
+                        juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, txtShiireNoki.Text, Environment.UserName, con);
                         string st = juchuB.getChubanName(lsJuchusha.CodeTxtText);
                         strMsg = "正常に登録されました\r\n注番:" + st.TrimEnd() + strHachuNo;
 

@@ -80,6 +80,31 @@ namespace KATO.Business.A0020_UriageInput
             }
         }
 
+
+        public DataTable getShohins (string stNo)
+        {
+            DataTable dt = null;
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                string strQ = "SELECT 商品コード FROM 売上明細 WHERE 伝票番号 = " + stNo + " AND 削除 = 'N'";
+
+                dt = dbconnective.ReadSql(strQ);
+            }
+            catch
+            {
+                // ロールバック処理
+                dbconnective.Rollback();
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+            return dt;
+        }
+
         /// <summary>
         /// delUriageData
         /// 売上データを削除する。

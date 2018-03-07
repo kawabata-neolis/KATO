@@ -290,7 +290,7 @@ namespace KATO.Business.A0010_JuchuInput
         {
             DataTable dtNo = null;
 
-            string strQuery = "SELECT 発注番号, 仕入済数量 FROM 発注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
+            string strQuery = "SELECT CONVERT(VARCHAR, 発注年月日, 111) as 発注年月日, 発注番号, 発注数量, 仕入済数量 FROM 発注 WHERE 受注番号=" + strJuchuNo + " AND 削除='N'";
 
             DBConnective dbCon = new DBConnective();
             try
@@ -978,6 +978,20 @@ namespace KATO.Business.A0010_JuchuInput
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void updZaiko(string shohin, string eigyo, string date, string user, DBConnective con)
+        {
+            string strSQL = "在庫数更新_PROC '" + shohin + "', '" + eigyo + "', '" + date + "', '" + user + "'";
+
+            try
+            {
+                con.ReadSql(strSQL);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
 

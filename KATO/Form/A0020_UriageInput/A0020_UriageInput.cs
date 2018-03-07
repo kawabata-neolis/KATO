@@ -356,6 +356,8 @@ namespace KATO.Form.A0020_UriageInput
             int i;
 
             A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
+            DBConnective con = null;
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -480,6 +482,11 @@ namespace KATO.Form.A0020_UriageInput
                 string Kataban = "";
                 string SyohinCD = "";
 
+                KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+                con = new DBConnective();
+                con.BeginTrans();
+
                 for (i = 1; i <= 5; i++)
                 {
                     //明細コントロールを取得。
@@ -595,6 +602,8 @@ namespace KATO.Form.A0020_UriageInput
                             //ビジネス層、受注テーブルの得意先名称を更新。
                             uriageinputB.updJTableTokuisakiName(MeisaiItem,UriageInputItem);
                         }
+
+                        juchuB.updZaiko(SyohinCD, labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
                     }
                 }
 
@@ -637,6 +646,8 @@ namespace KATO.Form.A0020_UriageInput
                     }
                 }
 
+                con.Commit();
+
                 txtDenNo.Text = Denno;
                 editFlg = false;
 
@@ -658,6 +669,10 @@ namespace KATO.Form.A0020_UriageInput
             catch (Exception ex)
             {
                 this.Cursor = Cursors.Default;
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //エラーロギング
                 new CommonException(ex);
             }
@@ -717,6 +732,12 @@ namespace KATO.Form.A0020_UriageInput
                 }
             }
 
+            DBConnective con = null;
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+            con.BeginTrans();
+
             try
             {
                 //ビジネス層のインスタンス生成
@@ -733,7 +754,16 @@ namespace KATO.Form.A0020_UriageInput
                 if (("1").Equals(etsuranFlg))
                 {
                     //ビジネス層、プロシージャー実行（売上ヘッダ削除_PROC、受注_売上数_戻し更新_PROC、売上明細削除_PROC）
+                    DataTable dt = uriageinputB.getShohins(Denno);
                     uriageinputB.delUriageData(UriageInputItem);
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            juchuB.updZaiko(dr["商品コード"].ToString(), labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
+                        }
+                        con.Commit();
+                    }
 
                     // メッセージボックスの処理、削除成功の場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -756,6 +786,10 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //エラーロギング
                 new CommonException(ex);
             }
