@@ -806,8 +806,10 @@ namespace KATO.Form.Z0000
                 case "70":
                     break;
 
-                //発注区分設定
+                //商品検索
                 case "91":
+                    D0910_ShohinKensaku.D0910_ShohinKensaku shohinkensaku = new D0910_ShohinKensaku.D0910_ShohinKensaku(this);
+                    shohinkensaku.ShowDialog();
                     break;
 
                 //日付制限
@@ -1335,6 +1337,12 @@ namespace KATO.Form.Z0000
                         //仕入実績確認（AS400）
                         D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400 shirejissekias400 = new D0690_SiireJissekiKakuninAS400.D0690_SiireJissekiKakuninAS400(this);
                         shirejissekias400.ShowDialog();
+                        break;
+
+                    case "91":
+                        //商品検索
+                        D0910_ShohinKensaku.D0910_ShohinKensaku shohinkensaku = new D0910_ShohinKensaku.D0910_ShohinKensaku(this);
+                        shohinkensaku.ShowDialog();
                         break;
 
                     case "92":

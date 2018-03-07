@@ -2219,12 +2219,12 @@
             this.labelSet_GyomuTantousha.Location = new System.Drawing.Point(24, 684);
             this.labelSet_GyomuTantousha.Name = "labelSet_GyomuTantousha";
             this.labelSet_GyomuTantousha.ShowAppendFlg = false;
-            this.labelSet_GyomuTantousha.Size = new System.Drawing.Size(314, 22);
+            this.labelSet_GyomuTantousha.Size = new System.Drawing.Size(461, 22);
             this.labelSet_GyomuTantousha.SpaceCodeValue = 4;
             this.labelSet_GyomuTantousha.SpaceNameCode = 8;
             this.labelSet_GyomuTantousha.SpaceValueAppend = 4;
             this.labelSet_GyomuTantousha.TabIndex = 3;
-            this.labelSet_GyomuTantousha.ValueLabelSize = 0;
+            this.labelSet_GyomuTantousha.ValueLabelSize = 120;
             this.labelSet_GyomuTantousha.ValueLabelText = "";
             this.labelSet_GyomuTantousha.Enter += new System.EventHandler(this.labelset_Enter);
             this.labelSet_GyomuTantousha.Leave += new System.EventHandler(this.labelset_Leave);

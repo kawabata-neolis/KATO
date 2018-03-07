@@ -66,6 +66,8 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
         private void C0490_UriageSuiiHyo_Load(object sender, EventArgs e)
         {
+            System.DateTime dateYMclose;
+
             this.Show();
             this._Title = "分類別売上推移表";
 
@@ -78,21 +80,16 @@ namespace KATO.Form.C0490_UriageSuiiHyo
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //初期表示
-            txtCalendarYMopen.Focus();
+            // 開始終了年月の設定
+            txtCalendarYMclose.setUp(0);
+            dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
+            txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
 
-            txtCalendarYMopen.setUp(0);
-            //１１ヶ月後をdateEndYMDに表示
-            System.DateTime dateStartYMD;
-            System.DateTime dateEndYMD;
-
-            dateStartYMD = DateTime.Parse(txtCalendarYMopen.Text);
-
-            dateEndYMD = dateStartYMD.AddMonths(11);
-            txtCalendarYMclose.Text = dateEndYMD.ToString("yyyy/MM");
-            
             labelSet_TokuisakiStart.SearchOn = false;
             labelSet_TokuisakiEnd.SearchOn = false;
+
+            //初期表示
+            txtCalendarYMopen.Focus();
 
             //DataGridViewの初期設定
             SetUpGrid();
@@ -338,7 +335,7 @@ namespace KATO.Form.C0490_UriageSuiiHyo
             {
                 case STR_BTN_F01: // 表示
                     logger.Info(LogUtil.getMessage(this._Title, "表示実行"));
-                    //this.setShohinMotoCho();
+                    this.setUriageSuiiHyo();
                     break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -361,6 +358,8 @@ namespace KATO.Form.C0490_UriageSuiiHyo
         /// </summary>
         private void delText()
         {
+            System.DateTime dateYMclose;
+
             //削除するデータ以外を確保
             string strkensakuopen = txtCalendarYMopen.Text;
             string strkensakuclose = txtCalendarYMclose.Text;
@@ -370,6 +369,13 @@ namespace KATO.Form.C0490_UriageSuiiHyo
 
             txtCalendarYMopen.Text = strkensakuopen;
             txtCalendarYMclose.Text = strkensakuclose;
+
+            // 開始終了年月の設定
+            txtCalendarYMclose.setUp(0);
+            dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
+            txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
+
+            txtCalendarYMopen.Focus();
         }
 
         /// <summary>

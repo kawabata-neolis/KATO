@@ -654,6 +654,8 @@ namespace KATO.Form.C0480_SiireSuiiHyo
         /// </summary>
         private void delText()
         {
+            System.DateTime dateYMclose;
+
             // 削除するデータ以外を確保
             string strkikanopen = txtCalendarYMopen.Text;
             string strkikanclose = txtCalendarYMclose.Text;
@@ -663,6 +665,13 @@ namespace KATO.Form.C0480_SiireSuiiHyo
 
             txtCalendarYMopen.Text = strkikanopen;
             txtCalendarYMclose.Text = strkikanclose;
+
+            // 開始終了年月の設定
+            txtCalendarYMclose.setUp(0);
+            dateYMclose = DateTime.Parse(txtCalendarYMclose.Text + "/01");
+            txtCalendarYMopen.Text = dateYMclose.AddMonths(-11).ToString().Substring(0, 10);
+
+            txtCalendarYMopen.Focus();
         }
 
         /// <summary>

@@ -156,6 +156,7 @@
     <Compile Include="Business\D0380_ShohinMotochoKakunin\D0380_ShohinMotochoKakunin_B.cs" />
     <Compile Include="Business\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
+    <Compile Include="Business\D0910_ShohinKensaku\D0910_ShohinKensaku_B.cs" />
     <Compile Include="Business\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_B.cs" />
     <Compile Include="Business\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
@@ -846,6 +847,12 @@
     <Compile Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.Designer.cs">
       <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\D0910_ShohinKensaku\D0910_ShohinKensaku.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\D0910_ShohinKensaku\D0910_ShohinKensaku.Designer.cs">
+      <DependentUpon>D0910_ShohinKensaku.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1456,6 +1463,10 @@
     <EmbeddedResource Include="Form\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400.resx">
       <DependentUpon>D0690_SiireJissekiKakuninAS400.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\D0910_ShohinKensaku\D0910_ShohinKensaku.resx">
+      <DependentUpon>D0910_ShohinKensaku.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.resx">
       <DependentUpon>E0330_TokuisakiMotocyoKakunin.cs</DependentUpon>
     </EmbeddedResource>
@@ -1648,7 +1659,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Form\D0910_ShohinKensaku\" />
     <Folder Include="Log\" />
     <Folder Include="Work\" />
   </ItemGroup>
@@ -2575,6 +2585,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\D0910_ShohinKensaku\ShohinList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_SELECT.sql">

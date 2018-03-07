@@ -351,6 +351,7 @@
             this.txtCalendarYMclose.BackColor = System.Drawing.SystemColors.Window;
             this.txtCalendarYMclose.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCalendarYMclose.Location = new System.Drawing.Point(220, 17);
+            this.txtCalendarYMclose.MaxLength = 7;
             this.txtCalendarYMclose.Name = "txtCalendarYMclose";
             this.txtCalendarYMclose.ReadOnly = true;
             this.txtCalendarYMclose.Size = new System.Drawing.Size(65, 22);
