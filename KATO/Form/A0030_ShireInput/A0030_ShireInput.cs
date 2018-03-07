@@ -601,6 +601,22 @@ namespace KATO.Form.A0030_ShireInput
 
             //ビジネス層のインスタンス生成
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
+
+            DBConnective con = new DBConnective();
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+            con.BeginTrans();
+
+
+
+
+
+
+
+
+
+
             try
             {
                 //登録(仕入ヘッダ更新_PROC,発注_仕入数_戻し更新_PROC,仕入明細消去_PROC)
@@ -796,6 +812,9 @@ namespace KATO.Form.A0030_ShireInput
                                 }
                             }
                         }
+
+                        juchuB.updZaiko(bvg[intCnt].txtShohinCd.Text, txtEigyouCd.Text, txtYMD.Text, Environment.UserName, con);
+
                     }//注文番号の有り無し
                 }//ループ終了
 
@@ -932,6 +951,8 @@ namespace KATO.Form.A0030_ShireInput
                     }
                 }
 
+                con.Commit();
+
                 //登録完了メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -941,6 +962,10 @@ namespace KATO.Form.A0030_ShireInput
             }
             catch (Exception ex)
             {
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
@@ -1099,6 +1124,12 @@ namespace KATO.Form.A0030_ShireInput
 
             //ビジネス層のインスタンス生成
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
+
+            DBConnective con = null;
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+
             try
             {
                 //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
@@ -1108,9 +1139,19 @@ namespace KATO.Form.A0030_ShireInput
                 {
                     return;
                 }
-
+                DataTable dt = shireinputB.getShohins(txtDenpyoNo.Text);
                 //仕入入力情報の削除
                 shireinputB.delShireInput(txtDenpyoNo.Text ,SystemInformation.UserName);
+
+                if (dt != null)
+                {
+                    con.BeginTrans();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        juchuB.updZaiko(dr["商品コード"].ToString(), txtEigyouCd.Text, txtYMD.Text, Environment.UserName, con);
+                    }
+                    con.Commit();
+                }
 
                 //メッセージボックスの処理、削除完了のウィンドウ(OK)
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
@@ -1124,6 +1165,7 @@ namespace KATO.Form.A0030_ShireInput
             }
             catch (Exception ex)
             {
+                con.Rollback();
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）

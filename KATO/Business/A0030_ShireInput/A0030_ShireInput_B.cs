@@ -20,6 +20,31 @@ namespace KATO.Business.A0030_ShireInput
     ///</summary>
     class A0030_ShireInput_B
     {
+
+        public DataTable getShohins(string stNo)
+        {
+            DataTable dt = null;
+            DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                string strQ = "SELECT 商品コード FROM 仕入明細 WHERE 伝票番号 = " + stNo + " AND 削除 = 'N'";
+
+                dt = dbconnective.ReadSql(strQ);
+            }
+            catch
+            {
+                // ロールバック処理
+                dbconnective.Rollback();
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+            return dt;
+        }
+
         ///<summary>
         ///delShireInput
         ///仕入入力情報の削除

@@ -778,7 +778,6 @@ namespace KATO.Form.A0020_UriageInput
             KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
 
             con = new DBConnective();
-            con.BeginTrans();
 
             try
             {
@@ -800,6 +799,7 @@ namespace KATO.Form.A0020_UriageInput
                     uriageinputB.delUriageData(UriageInputItem);
                     if (dt != null)
                     {
+                        con.BeginTrans();
                         foreach (DataRow dr in dt.Rows)
                         {
                             juchuB.updZaiko(dr["商品コード"].ToString(), labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);

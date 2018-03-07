@@ -1051,6 +1051,11 @@ namespace KATO.Form.A0100_HachuInput
             //受注金の計算
             decJucyuKin = (decData * (decimal.Parse(txtHachusu.Text)));
 
+            DBConnective con = null;
+            KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+            con = new DBConnective();
+
             try
             {
                 A0100_HachuInput_B hachuinputB = new A0100_HachuInput_B();
@@ -1159,6 +1164,10 @@ namespace KATO.Form.A0100_HachuInput
                     strChubanMoji = ".";
                 }
 
+                con.BeginTrans();
+                juchuB.updZaiko(txtShohinCd.Text, labelSet_Eigyosho.CodeTxtText, txtHachuYMD.Text, Environment.UserName, con);
+                con.Commit();
+
                 //メッセージボックスの処理、登録完了のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU + "\r\n注番:" + strChubanMoji + txtHachuban.Text , CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -1189,6 +1198,10 @@ namespace KATO.Form.A0100_HachuInput
             }
             catch (Exception ex)
             {
+                if (con != null)
+                {
+                    con.Rollback();
+                }
                 //エラーロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
@@ -1278,6 +1291,12 @@ namespace KATO.Form.A0100_HachuInput
 
                 //ビジネス層のインスタンス生成
                 A0100_HachuInput_B hachuB = new A0100_HachuInput_B();
+
+                DBConnective con = null;
+                KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
+
+                con = new DBConnective();
+
                 try
                 {
                     //戻り値のDatatableを取り込む（該当DBで受注番号を検索）
@@ -1315,6 +1334,10 @@ namespace KATO.Form.A0100_HachuInput
                     //削除工程
                     hachuB.delHachu(txtHachuban.Text, SystemInformation.UserName);
 
+                    con.BeginTrans();
+                    juchuB.updZaiko(txtShohinCd.Text, labelSet_Eigyosho.CodeTxtText, txtHachuYMD.Text, Environment.UserName, con);
+                    con.Commit();
+
                     //削除されましたメッセージ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -1336,6 +1359,10 @@ namespace KATO.Form.A0100_HachuInput
                 }
                 catch (Exception ex)
                 {
+                    if (con != null)
+                    {
+                        con.Rollback();
+                    }
                     //エラーロギング
                     new CommonException(ex);
                     //例外発生メッセージ（OK）
