@@ -1168,7 +1168,7 @@
             this.txtSihatuki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtSihatuki.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtSihatuki.Location = new System.Drawing.Point(235, 13);
-            this.txtSihatuki.MaxLength = 2;
+            this.txtSihatuki.MaxLength = 1;
             this.txtSihatuki.Name = "txtSihatuki";
             this.txtSihatuki.Size = new System.Drawing.Size(24, 22);
             this.txtSihatuki.TabIndex = 1;
@@ -1208,7 +1208,7 @@
             this.txtShukinkbn.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShukinkbn.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShukinkbn.Location = new System.Drawing.Point(94, 84);
-            this.txtShukinkbn.MaxLength = 2;
+            this.txtShukinkbn.MaxLength = 1;
             this.txtShukinkbn.Name = "txtShukinkbn";
             this.txtShukinkbn.Size = new System.Drawing.Size(24, 22);
             this.txtShukinkbn.TabIndex = 4;
@@ -1396,6 +1396,7 @@
             this.txtSihon.intShishagonyu = 0;
             this.txtSihon.Location = new System.Drawing.Point(337, 46);
             this.txtSihon.MaxLength = 12;
+            this.txtSihon.MinusFlg = true;
             this.txtSihon.Name = "txtSihon";
             this.txtSihon.Size = new System.Drawing.Size(130, 22);
             this.txtSihon.TabIndex = 2;

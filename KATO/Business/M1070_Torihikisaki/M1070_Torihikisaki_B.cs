@@ -413,7 +413,7 @@ namespace KATO.Business.M1070_Torihikisaki
                 headersheet.RowHeight = 14;
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 31;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {

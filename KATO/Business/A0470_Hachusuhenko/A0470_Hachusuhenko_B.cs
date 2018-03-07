@@ -208,5 +208,62 @@ namespace KATO.Business.A0470_Hachusuhenko
                 dbconnective.DB_Disconnect();
             }
         }
+
+        ///<summary>
+        ///getEigyiCdSetUserID
+        ///所属営業所の取得（ユーザーID検索）
+        ///</summary>
+        public DataTable getEigyiCdSetUserID(string strUserID)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtTantoshaCd = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("A0470_Hachusuhenko");
+            lstSQL.Add("Hachusuhenko_Tantosha_SELECT");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtTantoshaCd);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            strUserID   //ログインＩＤ
+                                            );
+
+                //データ取得（ここから取得）
+                dtTantoshaCd = dbconnective.ReadSql(strSQLInput);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return (dtTantoshaCd);
+        }
     }
 }

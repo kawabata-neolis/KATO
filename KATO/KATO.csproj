@@ -1746,6 +1746,9 @@
     <Content Include="SQL\A0170_ShukoShoninInput\ShukoShoninInput_SELECT_GRID.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0470_Hachusuhenko\Hachusuhenko_Tantosha_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A0660_TokuisakiUriageKakunin\A0660_TokuisakiUriageKakunin_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -443,7 +443,6 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
-                labelSet_Siiresaki.Focus();
                 return false;
             }
 
@@ -478,7 +477,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             if (txtTanka.Text.Equals(""))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 return false;
             }
@@ -730,6 +729,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
             txtKataban.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[2].Value.ToString();
             txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
             txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
+            txtTanka.updPriceMethod();
 
         }
 
@@ -918,6 +918,28 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         {
             //マスターチェックメソッドへ
             CheckMaster();
+        }
+
+        ///<summary>
+        ///gridTokuteimukesakiTanka_KeyDown
+        ///グリッドビュー内でキーを押したとき(KeyDown)
+        ///</summary>
+        private void gridTokuteimukesakiTanka_KeyDown(object sender, KeyEventArgs e)
+        {
+            //エンターキーが押されたか調べる
+            if (e.KeyData == Keys.Enter)
+            {
+                e.Handled = true;
+
+                //選択行をテキストボックスに設定（カラム順：仕向先、ﾒｰｶｰ、型番、単価、最終仕入日、仕入先コード、得意先コード、商品コード）
+                labelSet_Siiresaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[5].Value.ToString();
+                labelSet_Tokuisaki.CodeTxtText = gridTokuteimukesakiTanka.CurrentRow.Cells[6].Value.ToString();
+                txtKataban.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[2].Value.ToString();
+                txtShohinCd.Text = gridTokuteimukesakiTanka.CurrentRow.Cells[7].Value.ToString();
+                txtTanka.Text = decimal.Parse(gridTokuteimukesakiTanka.CurrentRow.Cells[3].Value.ToString()).ToString("#,0");
+                txtTanka.updPriceMethod();
+            }
+
         }
     }
 }

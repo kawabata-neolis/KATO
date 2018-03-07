@@ -170,6 +170,7 @@
             this.gridTorihiki.AllowUserToDeleteRows = false;
             this.gridTorihiki.AllowUserToResizeColumns = false;
             this.gridTorihiki.AllowUserToResizeRows = false;
+            this.gridTorihiki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -210,6 +211,7 @@
             // 
             this.txtCalendarYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCalendarYMDStart.Location = new System.Drawing.Point(119, 77);
+            this.txtCalendarYMDStart.MaxLength = 10;
             this.txtCalendarYMDStart.Name = "txtCalendarYMDStart";
             this.txtCalendarYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarYMDStart.TabIndex = 1;
@@ -218,6 +220,7 @@
             // 
             this.txtCalendarYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtCalendarYMDEnd.Location = new System.Drawing.Point(245, 77);
+            this.txtCalendarYMDEnd.MaxLength = 10;
             this.txtCalendarYMDEnd.Name = "txtCalendarYMDEnd";
             this.txtCalendarYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarYMDEnd.TabIndex = 2;
