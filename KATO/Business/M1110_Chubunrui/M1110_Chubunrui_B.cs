@@ -33,6 +33,7 @@ namespace KATO.Business.M1110_Chubunrui
             try
             {
                 string[] aryStr = new string[] {
+
                     lstString[0],
                     lstString[1],
                     lstString[2],
