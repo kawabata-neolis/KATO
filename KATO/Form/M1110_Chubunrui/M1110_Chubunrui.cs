@@ -407,6 +407,7 @@ namespace KATO.Form.M1110_Chubunrui
             lstChubunrui.Add(lblSetDaibun.CodeTxtText);
             lstChubunrui.Add(txtChubunrui.Text);
             lstChubunrui.Add(txtElem.Text);
+            lstChubunrui.Add(txtSubName.Text);
             lstChubunrui.Add(SystemInformation.UserName);
 
             //ビジネス層のインスタンス生成
@@ -610,7 +611,8 @@ namespace KATO.Form.M1110_Chubunrui
                     lblSetDaibun.CodeTxtText = dtSetCd.Rows[0]["大分類コード"].ToString();
                     txtChubunrui.Text = dtSetCd.Rows[0]["中分類コード"].ToString();
                     txtElem.Text = dtSetCd.Rows[0]["中分類名"].ToString();
-                    
+                    txtSubName.Text = dtSetCd.Rows[0]["補助名称"].ToString();
+
                     btnF01.Enabled = true;
                     btnF03.Enabled = true;
                     btnF04.Enabled = true;
