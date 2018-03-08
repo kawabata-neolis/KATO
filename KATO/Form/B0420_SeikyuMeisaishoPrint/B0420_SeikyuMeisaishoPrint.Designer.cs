@@ -36,7 +36,6 @@
             this.lblStartYmd = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtStartYmd = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtSimekiribi = new KATO.Common.Ctl.BaseText();
             this.labelSet_TokuisakiCdTo = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -48,6 +47,7 @@
             this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSimekiribi = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtSimekiribi = new KATO.Common.Ctl.BaseTextMoney();
             this.labelSet_TokuisakiCdTo.SuspendLayout();
             this.labelSet_TokuisakiCdFrom.SuspendLayout();
             this.bgSyurui.SuspendLayout();
@@ -60,12 +60,12 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 11;
+            this.btnF12.TabIndex = 6;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.TabIndex = 10;
+            this.btnF11.TabIndex = 5;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
@@ -100,7 +100,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 12;
+            this.btnF04.TabIndex = 7;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
@@ -128,12 +128,12 @@
             // txtHakkoYmd
             // 
             this.txtHakkoYmd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHakkoYmd.Location = new System.Drawing.Point(596, 86);
+            this.txtHakkoYmd.Location = new System.Drawing.Point(609, 86);
             this.txtHakkoYmd.MaxLength = 10;
             this.txtHakkoYmd.Name = "txtHakkoYmd";
             this.txtHakkoYmd.Size = new System.Drawing.Size(90, 22);
-            this.txtHakkoYmd.TabIndex = 1;
-            this.txtHakkoYmd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHakkoYmd.TabIndex = 9;
+            this.txtHakkoYmd.TabStop = false;
             // 
             // lblSimekiriYmd
             // 
@@ -150,12 +150,11 @@
             // txtSimekiriYmd
             // 
             this.txtSimekiriYmd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSimekiriYmd.Location = new System.Drawing.Point(596, 124);
+            this.txtSimekiriYmd.Location = new System.Drawing.Point(609, 124);
             this.txtSimekiriYmd.MaxLength = 10;
             this.txtSimekiriYmd.Name = "txtSimekiriYmd";
             this.txtSimekiriYmd.Size = new System.Drawing.Size(90, 22);
-            this.txtSimekiriYmd.TabIndex = 2;
-            this.txtSimekiriYmd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSimekiriYmd.TabIndex = 0;
             this.txtSimekiriYmd.Leave += new System.EventHandler(this.txtSimekiriYmd_Leave);
             // 
             // lblStartYmd
@@ -173,12 +172,11 @@
             // txtStartYmd
             // 
             this.txtStartYmd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtStartYmd.Location = new System.Drawing.Point(596, 162);
+            this.txtStartYmd.Location = new System.Drawing.Point(609, 162);
             this.txtStartYmd.MaxLength = 10;
             this.txtStartYmd.Name = "txtStartYmd";
             this.txtStartYmd.Size = new System.Drawing.Size(90, 22);
-            this.txtStartYmd.TabIndex = 3;
-            this.txtStartYmd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtStartYmd.TabIndex = 1;
             // 
             // baseLabel4
             // 
@@ -188,19 +186,9 @@
             this.baseLabel4.Name = "baseLabel4";
             this.baseLabel4.Size = new System.Drawing.Size(87, 15);
             this.baseLabel4.strToolTip = null;
-            this.baseLabel4.TabIndex = 89;
+            this.baseLabel4.TabIndex = 1;
             this.baseLabel4.Text = "発行の種類";
             this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtSimekiribi
-            // 
-            this.txtSimekiribi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSimekiribi.Location = new System.Drawing.Point(612, 243);
-            this.txtSimekiribi.MaxLength = 2;
-            this.txtSimekiribi.Name = "txtSimekiribi";
-            this.txtSimekiribi.Size = new System.Drawing.Size(26, 22);
-            this.txtSimekiribi.TabIndex = 4;
-            this.txtSimekiribi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSimekiribi_KeyDown);
             // 
             // labelSet_TokuisakiCdTo
             // 
@@ -218,7 +206,7 @@
             this.labelSet_TokuisakiCdTo.SpaceCodeValue = 4;
             this.labelSet_TokuisakiCdTo.SpaceNameCode = 4;
             this.labelSet_TokuisakiCdTo.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiCdTo.TabIndex = 6;
+            this.labelSet_TokuisakiCdTo.TabIndex = 4;
             this.labelSet_TokuisakiCdTo.ValueLabelSize = 0;
             this.labelSet_TokuisakiCdTo.ValueLabelText = "";
             // 
@@ -262,7 +250,7 @@
             this.labelSet_TokuisakiCdFrom.SpaceCodeValue = 4;
             this.labelSet_TokuisakiCdFrom.SpaceNameCode = 4;
             this.labelSet_TokuisakiCdFrom.SpaceValueAppend = 4;
-            this.labelSet_TokuisakiCdFrom.TabIndex = 5;
+            this.labelSet_TokuisakiCdFrom.TabIndex = 3;
             this.labelSet_TokuisakiCdFrom.ValueLabelSize = 0;
             this.labelSet_TokuisakiCdFrom.ValueLabelText = "";
             // 
@@ -297,7 +285,7 @@
             this.bgSyurui.Location = new System.Drawing.Point(507, 355);
             this.bgSyurui.Name = "bgSyurui";
             this.bgSyurui.Size = new System.Drawing.Size(231, 70);
-            this.bgSyurui.TabIndex = 7;
+            this.bgSyurui.TabIndex = 8;
             this.bgSyurui.TabStop = false;
             // 
             // radSet_2btnSyurui
@@ -321,7 +309,7 @@
             // 
             this.baseLabel6.AutoSize = true;
             this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel6.Location = new System.Drawing.Point(711, 165);
+            this.baseLabel6.Location = new System.Drawing.Point(724, 165);
             this.baseLabel6.MaximumSize = new System.Drawing.Size(190, 0);
             this.baseLabel6.Name = "baseLabel6";
             this.baseLabel6.Size = new System.Drawing.Size(183, 45);
@@ -354,15 +342,32 @@
             this.baseLabel1.Text = "（31：月末）";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtSimekiribi
+            // 
+            this.txtSimekiribi.blnCommaOK = true;
+            this.txtSimekiribi.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSimekiribi.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSimekiribi.intDeciSet = 0;
+            this.txtSimekiribi.intIntederSet = 0;
+            this.txtSimekiribi.intShishagonyu = 0;
+            this.txtSimekiribi.Location = new System.Drawing.Point(609, 243);
+            this.txtSimekiribi.MaxLength = 2;
+            this.txtSimekiribi.MinusFlg = true;
+            this.txtSimekiribi.Name = "txtSimekiribi";
+            this.txtSimekiribi.Size = new System.Drawing.Size(24, 22);
+            this.txtSimekiribi.TabIndex = 2;
+            this.txtSimekiribi.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSimekiribi_KeyDown);
+            this.txtSimekiribi.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtSeikyuMesaishoKeyUp);
+            // 
             // B0420_SeikyuMeisaishoPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.txtSimekiribi);
             this.Controls.Add(this.bgSyurui);
             this.Controls.Add(this.labelSet_TokuisakiCdTo);
             this.Controls.Add(this.labelSet_TokuisakiCdFrom);
-            this.Controls.Add(this.txtSimekiribi);
             this.Controls.Add(this.txtStartYmd);
             this.Controls.Add(this.txtSimekiriYmd);
             this.Controls.Add(this.txtHakkoYmd);
@@ -386,7 +391,6 @@
             this.Controls.SetChildIndex(this.txtHakkoYmd, 0);
             this.Controls.SetChildIndex(this.txtSimekiriYmd, 0);
             this.Controls.SetChildIndex(this.txtStartYmd, 0);
-            this.Controls.SetChildIndex(this.txtSimekiribi, 0);
             this.Controls.SetChildIndex(this.labelSet_TokuisakiCdFrom, 0);
             this.Controls.SetChildIndex(this.labelSet_TokuisakiCdTo, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
@@ -402,6 +406,7 @@
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
             this.Controls.SetChildIndex(this.bgSyurui, 0);
+            this.Controls.SetChildIndex(this.txtSimekiribi, 0);
             this.labelSet_TokuisakiCdTo.ResumeLayout(false);
             this.labelSet_TokuisakiCdTo.PerformLayout();
             this.labelSet_TokuisakiCdFrom.ResumeLayout(false);
@@ -422,7 +427,6 @@
         private Common.Ctl.BaseLabel lblStartYmd;
         private Common.Ctl.BaseCalendar txtStartYmd;
         private Common.Ctl.BaseLabel baseLabel4;
-        private Common.Ctl.BaseText txtSimekiribi;
         private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiCdTo;
         private Common.Ctl.BaseLabel nameLabel;
         private Common.Ctl.BaseLabel baseLabel5;
@@ -434,5 +438,6 @@
         private Common.Ctl.BaseLabel baseLabel6;
         private Common.Ctl.BaseLabel lblSimekiribi;
         private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseTextMoney txtSimekiribi;
     }
 }

@@ -36,7 +36,6 @@
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_TokuisakiStart = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.object_61ff90a2_9d3d_4141_818b_a498f08757ec = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.txtSimekiribiCd = new KATO.Common.Ctl.BaseText();
             this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel3 = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -44,6 +43,7 @@
             this.baseLabel2 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtSimekiriYMD = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtSimekiribiCd = new KATO.Common.Ctl.BaseTextMoney();
             this.groupBox1.SuspendLayout();
             this.radSetSort.SuspendLayout();
             this.labelSet_TokuisakiEnd.SuspendLayout();
@@ -158,7 +158,7 @@
             this.labelSet_TokuisakiEnd.CodeTxtText = "";
             this.labelSet_TokuisakiEnd.Controls.Add(this.nameLabel);
             this.labelSet_TokuisakiEnd.LabelName = "～";
-            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(529, 268);
+            this.labelSet_TokuisakiEnd.Location = new System.Drawing.Point(522, 268);
             this.labelSet_TokuisakiEnd.Name = "labelSet_TokuisakiEnd";
             this.labelSet_TokuisakiEnd.ShowAppendFlg = false;
             this.labelSet_TokuisakiEnd.Size = new System.Drawing.Size(71, 22);
@@ -189,7 +189,7 @@
             this.labelSet_TokuisakiStart.CodeTxtText = "";
             this.labelSet_TokuisakiStart.Controls.Add(this.object_61ff90a2_9d3d_4141_818b_a498f08757ec);
             this.labelSet_TokuisakiStart.LabelName = "得意先コード";
-            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(375, 268);
+            this.labelSet_TokuisakiStart.Location = new System.Drawing.Point(369, 268);
             this.labelSet_TokuisakiStart.Name = "labelSet_TokuisakiStart";
             this.labelSet_TokuisakiStart.ShowAppendFlg = false;
             this.labelSet_TokuisakiStart.Size = new System.Drawing.Size(148, 22);
@@ -212,16 +212,6 @@
             this.object_61ff90a2_9d3d_4141_818b_a498f08757ec.Text = "得意先コード";
             this.object_61ff90a2_9d3d_4141_818b_a498f08757ec.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtSimekiribiCd
-            // 
-            this.txtSimekiribiCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSimekiribiCd.Location = new System.Drawing.Point(481, 211);
-            this.txtSimekiribiCd.MaxLength = 2;
-            this.txtSimekiribiCd.Name = "txtSimekiribiCd";
-            this.txtSimekiribiCd.Size = new System.Drawing.Size(41, 22);
-            this.txtSimekiribiCd.TabIndex = 2;
-            this.txtSimekiribiCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judSeikyuItiranKeyDown);
-            // 
             // baseLabel6
             // 
             this.baseLabel6.AutoSize = true;
@@ -238,7 +228,7 @@
             // 
             this.baseLabel5.AutoSize = true;
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(557, 217);
+            this.baseLabel5.Location = new System.Drawing.Point(515, 214);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(103, 15);
             this.baseLabel5.strToolTip = null;
@@ -250,7 +240,7 @@
             // 
             this.baseLabel3.AutoSize = true;
             this.baseLabel3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel3.Location = new System.Drawing.Point(372, 214);
+            this.baseLabel3.Location = new System.Drawing.Point(371, 214);
             this.baseLabel3.Name = "baseLabel3";
             this.baseLabel3.Size = new System.Drawing.Size(103, 15);
             this.baseLabel3.strToolTip = null;
@@ -261,12 +251,11 @@
             // txtKaisiYMD
             // 
             this.txtKaisiYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKaisiYMD.Location = new System.Drawing.Point(466, 163);
+            this.txtKaisiYMD.Location = new System.Drawing.Point(475, 163);
             this.txtKaisiYMD.MaxLength = 10;
             this.txtKaisiYMD.Name = "txtKaisiYMD";
             this.txtKaisiYMD.Size = new System.Drawing.Size(88, 22);
             this.txtKaisiYMD.TabIndex = 1;
-            this.txtKaisiYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // baseLabel2
             // 
@@ -283,12 +272,11 @@
             // txtSimekiriYMD
             // 
             this.txtSimekiriYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtSimekiriYMD.Location = new System.Drawing.Point(466, 109);
+            this.txtSimekiriYMD.Location = new System.Drawing.Point(475, 109);
             this.txtSimekiriYMD.MaxLength = 10;
             this.txtSimekiriYMD.Name = "txtSimekiriYMD";
             this.txtSimekiriYMD.Size = new System.Drawing.Size(88, 22);
             this.txtSimekiriYMD.TabIndex = 0;
-            this.txtSimekiriYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSimekiriYMD.Leave += new System.EventHandler(this.txtSimekiriYMD_Leave);
             // 
             // baseLabel1
@@ -303,15 +291,32 @@
             this.baseLabel1.Text = "締切年月日";
             this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtSimekiribiCd
+            // 
+            this.txtSimekiribiCd.blnCommaOK = true;
+            this.txtSimekiribiCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtSimekiribiCd.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtSimekiribiCd.intDeciSet = 0;
+            this.txtSimekiribiCd.intIntederSet = 0;
+            this.txtSimekiribiCd.intShishagonyu = 0;
+            this.txtSimekiribiCd.Location = new System.Drawing.Point(475, 211);
+            this.txtSimekiribiCd.MaxLength = 2;
+            this.txtSimekiribiCd.MinusFlg = true;
+            this.txtSimekiribiCd.Name = "txtSimekiribiCd";
+            this.txtSimekiribiCd.Size = new System.Drawing.Size(24, 22);
+            this.txtSimekiribiCd.TabIndex = 2;
+            this.txtSimekiribiCd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judSeikyuItiranKeyDown);
+            this.txtSimekiribiCd.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtSeikyuItiranKeyUp);
+            // 
             // B0410_SeikyuItiranPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.txtSimekiribiCd);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelSet_TokuisakiEnd);
             this.Controls.Add(this.labelSet_TokuisakiStart);
-            this.Controls.Add(this.txtSimekiribiCd);
             this.Controls.Add(this.baseLabel6);
             this.Controls.Add(this.baseLabel5);
             this.Controls.Add(this.baseLabel3);
@@ -343,10 +348,10 @@
             this.Controls.SetChildIndex(this.baseLabel3, 0);
             this.Controls.SetChildIndex(this.baseLabel5, 0);
             this.Controls.SetChildIndex(this.baseLabel6, 0);
-            this.Controls.SetChildIndex(this.txtSimekiribiCd, 0);
             this.Controls.SetChildIndex(this.labelSet_TokuisakiStart, 0);
             this.Controls.SetChildIndex(this.labelSet_TokuisakiEnd, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.txtSimekiribiCd, 0);
             this.groupBox1.ResumeLayout(false);
             this.radSetSort.ResumeLayout(false);
             this.radSetSort.PerformLayout();
@@ -368,7 +373,6 @@
         private Common.Ctl.BaseLabel nameLabel;
         private Common.Ctl.LabelSet_Torihikisaki labelSet_TokuisakiStart;
         private Common.Ctl.BaseLabel object_61ff90a2_9d3d_4141_818b_a498f08757ec;
-        private Common.Ctl.BaseText txtSimekiribiCd;
         private Common.Ctl.BaseLabel baseLabel6;
         private Common.Ctl.BaseLabel baseLabel5;
         private Common.Ctl.BaseLabel baseLabel3;
@@ -376,5 +380,6 @@
         private Common.Ctl.BaseLabel baseLabel2;
         private Common.Ctl.BaseCalendar txtSimekiriYMD;
         private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseTextMoney txtSimekiribiCd;
     }
 }

@@ -80,6 +80,10 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
 
             labelSet_TokuisakiCdFrom.SearchOn = false;
             labelSet_TokuisakiCdTo.SearchOn = false;
+
+            //左寄せ
+            txtSimekiribi.TextAlign = HorizontalAlignment.Left;
+
         }
 
         /// <summary>
@@ -554,6 +558,18 @@ namespace KATO.Form.B0420_SeikyuMeisaishoPrint
             }
 
             return true;
+        }
+
+        ///<summary>
+        ///judtxtSeikyuMesaishoKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtSeikyuMesaishoKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

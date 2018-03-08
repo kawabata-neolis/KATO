@@ -179,9 +179,16 @@ namespace KATO.Common.Form
             chubunName.Name = "中分類名";
             chubunName.HeaderText = "中分類名";
 
+            //2
+            DataGridViewTextBoxColumn chubunSubName = new DataGridViewTextBoxColumn();
+            chubunSubName.DataPropertyName = "補助名称";
+            chubunSubName.Name = "補助名称";
+            chubunSubName.HeaderText = "補助名称";
+
             //個々の幅、文章の寄せ
             setColumnKataban(chubunCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 130);
-            setColumnKataban(chubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 650);
+            setColumnKataban(chubunName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);
+            setColumnKataban(chubunSubName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 400);
 
         }
 
@@ -539,12 +546,14 @@ namespace KATO.Common.Form
             List<string> lstSelectData = new List<string>();
 
             //選択行のcode取得
-            string strSelectId = (string)gridSeihin.CurrentRow.Cells["中分類コード"].Value;
-            string strSelectName = (string)gridSeihin.CurrentRow.Cells["中分類名"].Value;
+            string strSelectId = (string)gridSeihin.CurrentRow.Cells["中分類コード"].Value.ToString();
+            string strSelectName = (string)gridSeihin.CurrentRow.Cells["中分類名"].Value.ToString();
+            string strSelectSubName = (string)gridSeihin.CurrentRow.Cells["補助名称"].Value.ToString();
 
             //検索情報を入れる
             lstSelectData.Add(strSelectId);
             lstSelectData.Add(strSelectName);
+            lstSelectData.Add(strSelectSubName);
 
             //ビジネス層のインスタンス生成
             ChubunruiList_B chubunListB = new ChubunruiList_B();

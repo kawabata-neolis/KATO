@@ -350,6 +350,9 @@ namespace KATO.Form.M1110_Chubunrui
                 {
                     //エラーロギング
                     new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
                     return;
                 }
             }
@@ -549,7 +552,8 @@ namespace KATO.Form.M1110_Chubunrui
         {
             txtChubunrui.Text = dtSelectData.Rows[0]["中分類コード"].ToString();
             txtElem.Text = dtSelectData.Rows[0]["中分類名"].ToString();
-            
+            txtSubName.Text = dtSelectData.Rows[0]["補助名称"].ToString();
+
         }
 
         ///<summary>

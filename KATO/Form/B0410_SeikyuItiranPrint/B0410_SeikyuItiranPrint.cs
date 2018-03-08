@@ -76,6 +76,11 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             labelSet_TokuisakiStart.CodeTxtText = "0000";
             labelSet_TokuisakiEnd.CodeTxtText = "9999";
 
+            //左寄せ
+            txtSimekiribiCd.TextAlign = HorizontalAlignment.Left;
+
+            radSetSort.radbtn1.Checked = true;
+
             txtSimekiriYMD.Focus();
         }
 
@@ -166,7 +171,7 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
 
         /// <summary>
         /// judNyukinCheckKeyDown
-        /// キー入力判定(テキストボックス【Beastextのみ】)
+        /// キー入力判定(テキストボックス【締切日コードのみ】)
         /// </summary>
         private void judSeikyuItiranKeyDown(object sender, KeyEventArgs e)
         {
@@ -237,7 +242,6 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
 
             labelSet_TokuisakiStart.CodeTxtText = tmp1;
             labelSet_TokuisakiEnd.CodeTxtText = tmp2;
-
         }
 
         /// <summary>
@@ -517,6 +521,18 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 //前月翌月請求へ
                 ZengetuYokugetuSyutoku();
             }
+        }
+
+        ///<summary>
+        ///judtxtSeikyuItiranKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtSeikyuItiranKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }
