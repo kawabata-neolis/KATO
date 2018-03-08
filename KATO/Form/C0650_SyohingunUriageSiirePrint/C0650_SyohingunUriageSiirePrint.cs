@@ -228,7 +228,12 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 lstSearchItem.Add(txtKamikiYMDclose.Text);
                 lstSearchItem.Add(txtSimokiYMDopen.Text);
                 lstSearchItem.Add(txtSimokiYMDclose.Text);
-                
+                //lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);
+                //lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);
+                //lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
+                //lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
+                //lstSearchItem.Add(labelSet_Maker.CodeTxtText);
+
                 // 検索実行（印刷用）
                 DataTable dtSyohingunUriageSiire = syohingunuriagesiireprintB.getSyohingunUriageSiireItiran(lstSearchItem);
                 
@@ -415,6 +420,36 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             {
                 txtSimokiYMDclose.Text = strYMDformat;
             }
+
+            ////得意先チェック
+            //if (labelSet_Torihikisaki.chkTxtTorihikisaki())
+            //{
+            //    return false;
+            //}
+
+            ////担当者チェック
+            //if (labelSet_Tantousha.chkTxtTantosha())
+            //{
+            //    return false;
+            //}
+
+            ////大分類チェック
+            //if (labelSet_Daibunrui.chkTxtDaibunrui())
+            //{
+            //    return false;
+            //}
+
+            ////中分類チェック
+            //if (labelSet_Chubunrui.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+            //{
+            //    return false;
+            //}
+
+            ////メーカーチェック
+            //if (labelSet_Maker.chkTxtMaker())
+            //{
+            //    return false;
+            //}
 
             return true;
         }

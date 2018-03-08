@@ -903,8 +903,8 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                                 currentsheet.Cell(xlsRowCnt, colCnt - 2).Style.NumberFormat.Format = "#,0.00";
                             }
 
-                            currentsheet.Cell(xlsRowCnt, colCnt-2).Value = str;
-                            currentsheet.Cell(xlsRowCnt, colCnt-2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                            currentsheet.Cell(xlsRowCnt, colCnt - 2).Value = str;
+                            currentsheet.Cell(xlsRowCnt, colCnt - 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
 
                             //0の場合
                             if (currentsheet.Cell(xlsRowCnt, colCnt - 2).Value.ToString() == "0")
@@ -917,21 +917,25 @@ namespace KATO.Business.E0330_TokuisakiMotocyoKakunin
                         //売上金額、入金金額、割引残高の場合
                         else if (colCnt >= 8 && colCnt <= 10)
                         {
-                            //余計な小数点以下数値を取り除く
-                            str = Math.Floor(decimal.Parse(str)).ToString();
-
                             //空白以外の場合
-                            if (str != "0")
+                            if (str != "")
                             {
-                                //カンマつけ
-                                currentsheet.Cell(xlsRowCnt, colCnt - 2).Style.NumberFormat.Format = "#,0";
+                                //余計な小数点以下数値を取り除く
+                                str = Math.Floor(decimal.Parse(str)).ToString();
+
+                                //空白以外の場合
+                                if (str != "0")
+                                {
+                                    //カンマつけ
+                                    currentsheet.Cell(xlsRowCnt, colCnt - 2).Style.NumberFormat.Format = "#,0";
+                                }
+                                //0の場合は空白
+                                else if (str == "0")
+                                {
+                                    str = "";
+                                }
                             }
-                            //0の場合は空白
-                            else if (str == "0")
-                            {
-                                str = "";
-                            }
-                            
+
                             currentsheet.Cell(xlsRowCnt, colCnt-2).Value = str;
                             currentsheet.Cell(xlsRowCnt, colCnt-2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
 

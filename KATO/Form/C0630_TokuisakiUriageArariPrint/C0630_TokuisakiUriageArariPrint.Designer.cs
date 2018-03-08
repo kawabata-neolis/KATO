@@ -352,6 +352,7 @@
             this.txtYmdTo.Name = "txtYmdTo";
             this.txtYmdTo.Size = new System.Drawing.Size(90, 22);
             this.txtYmdTo.TabIndex = 2;
+            this.txtYmdTo.TabStop = false;
             // 
             // txtYmdFrom
             // 
@@ -361,6 +362,7 @@
             this.txtYmdFrom.Name = "txtYmdFrom";
             this.txtYmdFrom.Size = new System.Drawing.Size(90, 22);
             this.txtYmdFrom.TabIndex = 1;
+            this.txtYmdFrom.TabStop = false;
             // 
             // baseLabel4
             // 

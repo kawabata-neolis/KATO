@@ -35,6 +35,9 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
         public DataTable getSyohingunUriageSiireItiran(List<string> lstString)
         {
             DataTable DtRet = new DataTable();
+            //DataTable DtRetAfter = new DataTable();
+
+            //string strDaibun = "軸受";
 
             List<string> lstTableName = new List<string>();
             lstTableName.Add("@上期開始年月日");
@@ -57,6 +60,25 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                 //請求一覧表_PROCを実行
                 DtRet = dbconnective.RunSqlReDT("商品群別売上仕入管理表_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, null);
 
+                //DataRow[] dataRows = DataSet.Tables[DtRet].Select("大分類名 ''");
+
+                //DataRow[] dtRow = DtRet.Select("大分類名 = '" + strDaibun + "'");
+
+                //DtRetAfter.Columns.Add("大分類コード");
+                //DtRetAfter.Columns.Add("大分類コード");
+                //DtRetAfter.Columns.Add("大分類コード");
+                //DtRetAfter.Columns.Add("大分類コード");
+                //DtRetAfter.Columns.Add("大分類コード");
+                //DtRetAfter.Columns.Add("大分類コード");
+
+
+                //int intRowCnt = 0;
+                //intRowCnt = DtRet.Rows.Count;
+
+                //for (int intCnt = 0; intCnt < intRowCnt; intCnt++)
+                //{
+
+                //}
 
                 // コミット
                 dbconnective.Commit();

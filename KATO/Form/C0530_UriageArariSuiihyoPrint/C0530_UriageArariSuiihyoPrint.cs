@@ -76,6 +76,11 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
+            labelSet_TantoushaCdTo.SearchOn = false;
+            labelSet_TantoushaCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+
             // ビジネス層のインスタンス生成
             C0530_UriageArariSuiihyoPrint_B suiihyoPrint_B = new C0530_UriageArariSuiihyoPrint_B();
             try
@@ -421,7 +426,6 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
 
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)

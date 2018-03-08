@@ -332,6 +332,9 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
         /// </summary>
         private void setTokuisakimotocho()
         {
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
             //記入項目の空白削除
             labelSet_TokuisakiStart.CodeTxtText.Trim();
             labelSet_TokuisakiEnd.CodeTxtText.Trim();
@@ -376,19 +379,50 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 return;
             }
 
-            ////得意先開始チェック
-            //if ()
-            //{
+            //得意先コードの検索開始項目
+            if (labelSet_TokuisakiStart.chkTxtTorihikisaki())
+            {
+                labelSet_TokuisakiStart.Focus();
+                return;
+            }
 
-            //}
-            
-            //得意先終了チェック
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtStartYM.chkDateYMDataFormat(txtStartYM.Text);
 
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-            //検索開始年月
+                txtStartYM.Focus();
 
-            //検索終了年月
+                return;
+            }
+            else
+            {
+                txtStartYM.Text = strYMDformat;
+            }
 
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtEndYM.chkDateYMDataFormat(txtEndYM.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
+            {
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtEndYM.Focus();
+
+                return;
+            }
+            else
+            {
+                txtEndYM.Text = strYMDformat;
+            }
 
             //データ検索用
             List<string> lstUriageSuiiLoad = new List<string>();
@@ -950,8 +984,6 @@ namespace KATO.Form.E0330_TokuisakiMotocyoKakunin
                 basemessagebox.ShowDialog();
                 return;
             }
-
-
         }
     }
 }
