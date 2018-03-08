@@ -3412,7 +3412,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         gridMitsmori[74, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
                         gridMitsmori[75, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei5.Text;
                     }
-                    else if (sender.Name.Equals("txtKakCd"))
+                    else if (sender.Name.Equals("txtKakCd6"))
                     {
                         txtKakMei6.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
                         gridMitsmori[80, gridMitsmori.CurrentCell.RowIndex].Value = sender.Text;
@@ -3893,6 +3893,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             f.StartPosition = FormStartPosition.Manual;
             f.Location = s.Bounds.Location;
             f.lsTanto.CodeTxtText = lsTantousha.CodeTxtText;
+            if (!string.IsNullOrWhiteSpace(tsTokuisaki.CodeTxtText) && !string.IsNullOrWhiteSpace(tsTokuisaki.valueTextText))
+            {
+                f.lsTokui.CodeTxtText = tsTokuisaki.CodeTxtText;
+            }
 
             f.ShowDialog(this);
             f.Dispose();

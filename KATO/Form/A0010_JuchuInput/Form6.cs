@@ -22,7 +22,7 @@ namespace KATO.Form.A0010_JuchuInput
         readonly int keta = ((limit * 10).ToString()).Length;
         readonly int[] cats = { 0, 1, 2, 3, 4, 5 };
         readonly String[] labels = new String[] { "発注", "出庫", "本加工", "加工品出庫", "出庫", "加工品出庫" };
-        readonly String[] labelsNohki = new String[] { "納期", "出庫日", "納期", "納期", "出庫日", "納期" };
+        readonly String[] labelsNohki = new String[] { "納期", "出庫日", "納期", "出庫日", "出庫日", "出庫日" };
 
         // 変数
         int[] panelCnt = { 0, 0, 0, 0, 0, 0 };
@@ -903,7 +903,7 @@ namespace KATO.Form.A0010_JuchuInput
             //lblNohki.BackColor = Color.Transparent;
             lblNohki.Text = labelsNohki[cat];
             basePanel.Controls.Add(lblNohki);
-            if (cat == cats[1] || cat == cats[4])
+            if (cat == cats[1] || cat == cats[3] || cat == cats[4] || cat == cats[5])
             {
                 lblNohki.Location = new Point(337, 108);
             }
@@ -928,7 +928,7 @@ namespace KATO.Form.A0010_JuchuInput
             BaseLabel lblChuban = new BaseLabel();
             lblChuban.AutoSize = true;
             //lblChuban.BackColor = Color.Transparent;
-            lblChuban.Text = "注番";
+            lblChuban.Text = "備考";
             basePanel.Controls.Add(lblChuban);
             lblChuban.Location = new Point(505, 108);
             lblChuban.BringToFront();
