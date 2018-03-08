@@ -407,7 +407,7 @@ namespace KATO.Form.M1110_Chubunrui
             lstChubunrui.Add(lblSetDaibun.CodeTxtText);
             lstChubunrui.Add(txtChubunrui.Text);
             lstChubunrui.Add(txtElem.Text);
-            lstChubunrui.Add(txtSubName.Text);
+            //lstChubunrui.Add(txtSubName.Text);
             lstChubunrui.Add(SystemInformation.UserName);
 
             //ビジネス層のインスタンス生成
