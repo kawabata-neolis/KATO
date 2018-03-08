@@ -407,7 +407,7 @@ namespace KATO.Form.M1110_Chubunrui
             lstChubunrui.Add(lblSetDaibun.CodeTxtText);
             lstChubunrui.Add(txtChubunrui.Text);
             lstChubunrui.Add(txtElem.Text);
-            //lstChubunrui.Add(txtSubName.Text);
+            lstChubunrui.Add(txtSubName.Text);
             lstChubunrui.Add(SystemInformation.UserName);
 
             //ビジネス層のインスタンス生成
@@ -507,6 +507,7 @@ namespace KATO.Form.M1110_Chubunrui
                 lstChubunrui.Add(dtSetCd.Rows[0]["大分類コード"].ToString());
                 lstChubunrui.Add(dtSetCd.Rows[0]["中分類コード"].ToString());
                 lstChubunrui.Add(dtSetCd.Rows[0]["中分類名"].ToString());
+                lstChubunrui.Add(dtSetCd.Rows[0]["補助名称"].ToString());
                 lstChubunrui.Add(SystemInformation.UserName);
 
                 //ビジネス層、削除ロジックに移動
@@ -620,6 +621,7 @@ namespace KATO.Form.M1110_Chubunrui
                 else
                 {
                     txtElem.Text = "";
+                    txtSubName.Text = "";
 
                     btnF01.Enabled = true;
                     btnF03.Enabled = false;
@@ -772,6 +774,7 @@ namespace KATO.Form.M1110_Chubunrui
         {
             txtChubunrui.Text = "";
             txtElem.Text = "";
+            txtSubName.Text = "";
 
             this.btnF01.Enabled = false;
             this.btnF03.Enabled = false;

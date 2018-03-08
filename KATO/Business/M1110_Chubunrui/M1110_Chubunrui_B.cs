@@ -34,24 +34,15 @@ namespace KATO.Business.M1110_Chubunrui
             {
                 string[] aryStr = new string[] {
 
-                    lstString[0],
-                    lstString[1],
-                    lstString[2],
-                    "N",
-                    DateTime.Now.ToString(),
-                    lstString[3],
-                    DateTime.Now.ToString(),
-                    lstString[3] };
-
-                //lstString[0],
-                //lstString[1],
-                //lstString[2],
-                //lstString[3],
-                //"N",
-                //DateTime.Now.ToString(),
-                //lstString[4],
-                //DateTime.Now.ToString(),
-                //lstString[4] };
+                lstString[0],
+                lstString[1],
+                lstString[2],
+                lstString[3],
+                "N",
+                DateTime.Now.ToString(),
+                lstString[4],
+                DateTime.Now.ToString(),
+                lstString[4] };
 
                 //SQL接続、追加
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
@@ -88,11 +79,12 @@ namespace KATO.Business.M1110_Chubunrui
                     lstString[0],
                     lstString[1],
                     lstString[2],
+                    lstString[3],
                     "Y",
                     DateTime.Now.ToString(),
-                    lstString[3],
+                    lstString[4],
                     DateTime.Now.ToString(),
-                    lstString[3] };
+                    lstString[4] };
 
                 //SQL接続、削除
                 dbconnective.RunSqlCommon(CommonTeisu.C_SQL_CHUBUNRUI_UPD, aryStr);
