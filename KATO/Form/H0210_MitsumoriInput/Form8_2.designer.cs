@@ -248,7 +248,7 @@
             this.panel2.Location = new System.Drawing.Point(471, 17);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(304, 50);
-            this.panel2.TabIndex = 8;
+            this.panel2.TabIndex = 11;
             // 
             // rdSort2
             // 
@@ -294,7 +294,7 @@
             this.btnF011.Location = new System.Drawing.Point(675, 146);
             this.btnF011.Name = "btnF011";
             this.btnF011.Size = new System.Drawing.Size(100, 23);
-            this.btnF011.TabIndex = 11;
+            this.btnF011.TabIndex = 8;
             this.btnF011.Text = "検索";
             this.btnF011.UseVisualStyleBackColor = true;
             this.btnF011.Click += new System.EventHandler(this.button2_Click);
@@ -362,6 +362,7 @@
             this.btnF010.Name = "btnF010";
             this.btnF010.Size = new System.Drawing.Size(100, 23);
             this.btnF010.TabIndex = 12;
+            this.btnF010.TabStop = false;
             this.btnF010.Text = "詳細";
             this.btnF010.UseVisualStyleBackColor = true;
             this.btnF010.Click += new System.EventHandler(this.button3_Click);
@@ -385,7 +386,7 @@
             this.panel3.Location = new System.Drawing.Point(471, 81);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(229, 31);
-            this.panel3.TabIndex = 9;
+            this.panel3.TabIndex = 12;
             // 
             // rdShoninNo
             // 
@@ -526,7 +527,7 @@
             this.gridMitsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridMitsu.Size = new System.Drawing.Size(763, 452);
             this.gridMitsu.StandardTab = true;
-            this.gridMitsu.TabIndex = 14;
+            this.gridMitsu.TabIndex = 9;
             this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
             this.gridMitsu.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
@@ -599,7 +600,7 @@
             this.btnF012.Location = new System.Drawing.Point(675, 117);
             this.btnF012.Name = "btnF012";
             this.btnF012.Size = new System.Drawing.Size(100, 23);
-            this.btnF012.TabIndex = 208;
+            this.btnF012.TabIndex = 10;
             this.btnF012.Text = "閉じる";
             this.btnF012.UseVisualStyleBackColor = true;
             this.btnF012.Click += new System.EventHandler(this.btnF012_Click);
