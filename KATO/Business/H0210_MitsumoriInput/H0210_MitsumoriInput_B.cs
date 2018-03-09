@@ -518,86 +518,90 @@ namespace KATO.Business.H0210_MitsumoriInput
         public string updShohinNew(List<string> lstString, Boolean blnKanri)
         {
             //データ渡し用
-            List<string> stringSQLAry = new List<string>();
+            //List<string> stringSQLAry = new List<string>();
 
-            string strSQLName = null;
+            //string strSQLName = null;
 
-            int intNewCd;
-            string strNewCd = "99999";
+            //int intNewCd;
+            //string strNewCd = "99999";
 
-            if (blnKanri == true)
-            {
-                strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
-            }
-            else
-            {
-                strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
-            }
+            //if (blnKanri == true)
+            //{
+            //    strSQLName = "C_LIST_Shohin_SELECT_MAXCd";
+            //}
+            //else
+            //{
+            //    strSQLName = "C_LIST_Shohin_SELECT_kari_MAXCd";
+            //}
 
-            //データ渡し用
-            stringSQLAry.Add("Common");
-            stringSQLAry.Add(strSQLName);
+            ////データ渡し用
+            //stringSQLAry.Add("Common");
+            //stringSQLAry.Add(strSQLName);
 
-            DataTable dtSetCd_B = new DataTable();
-            OpenSQL opensql = new OpenSQL();
+            //DataTable dtSetCd_B = new DataTable();
+            //OpenSQL opensql = new OpenSQL();
             try
             {
-                string strSQLInput = opensql.setOpenSQL(stringSQLAry);
+                //string strSQLInput = opensql.setOpenSQL(stringSQLAry);
 
-                if (strSQLInput == "")
-                {
-                    return null;
-                }
+                //if (strSQLInput == "")
+                //{
+                //    return null;
+                //}
 
-                strSQLInput = string.Format(strSQLInput);
+                //strSQLInput = string.Format(strSQLInput);
 
-                dtSetCd_B = con.ReadSql(strSQLInput);
+                //dtSetCd_B = con.ReadSql(strSQLInput);
 
-                char chrNewCdHead = ' ';
-                string strNewCdOther = "";
+                //char chrNewCdHead = ' ';
+                //string strNewCdOther = "";
 
-                //中身が空
-                if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
-                {
-                    strNewCd = "00001";
-                    lstString[0] = strNewCd.ToString();
-                }
-                //中身がある
-                else
-                {
-                    chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
+                ////中身が空
+                //if (dtSetCd_B.Rows[0]["最新コード"].ToString() == "")
+                //{
+                //    strNewCd = "00001";
+                //    lstString[0] = strNewCd.ToString();
+                //}
+                ////中身がある
+                //else
+                //{
+                //    chrNewCdHead = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(0, 1)[0];
 
-                    strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
+                //    strNewCdOther = dtSetCd_B.Rows[0]["最新コード"].ToString().Substring(1);
 
-                    //先頭以外が9999の場合
-                    if (strNewCdOther == "9999")
-                    {
-                        strNewCdOther = "0001";
+                //    //先頭以外が9999の場合
+                //    if (strNewCdOther == "9999")
+                //    {
+                //        strNewCdOther = "0001";
 
-                        //先頭が9の場合
-                        if (chrNewCdHead == '9')
-                        {
+                //        //先頭が9の場合
+                //        if (chrNewCdHead == '9')
+                //        {
 
-                            chrNewCdHead = 'A';
-                        }
-                        else
-                        {
-                            //アスキーコード取得、加算
-                            int intASCII = chrNewCdHead;
-                            intASCII = intASCII + 1;
-                            chrNewCdHead = (char)intASCII;
-                        }
-                        lstString[0] = chrNewCdHead + strNewCdOther;
-                    }
-                    else
-                    {
-                        intNewCd = int.Parse(strNewCdOther.ToString());
+                //            chrNewCdHead = 'A';
+                //        }
+                //        else
+                //        {
+                //            //アスキーコード取得、加算
+                //            int intASCII = chrNewCdHead;
+                //            intASCII = intASCII + 1;
+                //            chrNewCdHead = (char)intASCII;
+                //        }
+                //        lstString[0] = chrNewCdHead + strNewCdOther;
+                //    }
+                //    else
+                //    {
+                //        intNewCd = int.Parse(strNewCdOther.ToString());
 
-                        intNewCd = intNewCd + 1;
+                //        intNewCd = intNewCd + 1;
 
-                        lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
-                    }
-                }
+                //        lstString[0] = chrNewCdHead + intNewCd.ToString().PadLeft(4, '0').ToString();
+                //    }
+                //}
+
+                KATO.Business.M1030_Shohin.M1030_Shohin_B sB = new KATO.Business.M1030_Shohin.M1030_Shohin_B();
+                lstString[0] = sB.getNewShohinNo(true);
+
                 addShohin(lstString, blnKanri);
             }
             catch (Exception ex)
@@ -648,7 +652,7 @@ namespace KATO.Business.H0210_MitsumoriInput
 
                 if (blnKanri == true)
                 {
-                    con.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_UPD, aryStr);
+                    con.RunSqlCommon(CommonTeisu.C_SQL_SHOHIN_KARI_UPD, aryStr);
                 }
                 else
                 {
