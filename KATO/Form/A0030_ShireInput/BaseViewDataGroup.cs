@@ -19,6 +19,9 @@ namespace KATO.Form.A0030_ShireInput
         //仕入入力の伝票番号から表示した注文Noを確保
         public string strShireChuNo = "";
 
+        //受注単価用
+        string strJuchuTanka = "";
+
         public BaseViewDataGroup()
         {
             InitializeComponent();
@@ -413,6 +416,7 @@ namespace KATO.Form.A0030_ShireInput
             //List<string> lstSQLHeader = new List<string>();
             //List<string> lstSQLCount = new List<string>();
             List<string> lstSQLHachu = new List<string>();
+            List<string> lstSQLJuchuNo = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
@@ -427,10 +431,14 @@ namespace KATO.Form.A0030_ShireInput
             lstSQLHachu.Add("A0030_ShireInput");
             lstSQLHachu.Add("ShireInput_gb_HachuData_SELECT");
 
+            lstSQLJuchuNo.Add("A0030_ShireInput");
+            lstSQLJuchuNo.Add("ShireInput_JuchuNo_SELECT");
+
             //SQL実行時に取り出したデータを入れる用
-            DataTable dtSetCd_B_Header = new DataTable();
-            DataTable dtSetCd_B_Count = new DataTable();
+            //DataTable dtSetCd_B_Header = new DataTable();
+            //DataTable dtSetCd_B_Count = new DataTable();
             DataTable dtSetCd_B_Hachu = new DataTable();
+            DataTable dtSetCd_B_JuchuNo = new DataTable();
 
             //SQL実行時に取り出したデータを入れる用(受注得意先用)
             DataTable dtSetCdTokuisaki_B = new DataTable();
@@ -553,12 +561,53 @@ namespace KATO.Form.A0030_ShireInput
                         if (dtSetCd_B_Hachu.Rows[intCnt]["仕入先コード"].ToString() != "")
                         {
                             shireinput.txtCD.Text = dtSetCd_B_Hachu.Rows[intCnt]["仕入先コード"].ToString();
+                            shireinput.setShireData();
                         }
 
                         //行番号が99の場合
                         if (dtSetCd_B_Hachu.Rows[intCnt]["行番号"].ToString() == "99")
                         {
                             //運賃の処理があったがなし
+                        }
+
+                        //受注番号がある場合
+                        if (dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString() != "0" && dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString() != "")
+                        {
+                            //詳細データ
+                            //SQLファイルのパス取得
+                            strSQLInput = opensql.setOpenSQL(lstSQLJuchuNo);
+
+                            //パスがなければ返す
+                            if (strSQLInput == "")
+                            {
+                                return;
+                            }
+
+                            //SQLファイルと該当コードでフォーマット
+                            strSQLInput = string.Format(strSQLInput, dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString());
+
+                            //SQL接続後、該当データを取得
+                            dtSetCd_B_JuchuNo = dbconnective.ReadSql(strSQLInput);
+
+                            //データが1件以上ある場合
+                            if (dtSetCd_B_JuchuNo.Rows.Count > 0)
+                            {
+                                strJuchuTanka = decimal.Parse(dtSetCd_B_JuchuNo.Rows[0]["受注単価"].ToString()).ToString("0");
+
+                                //受注単価が空の場合
+                                if (strJuchuTanka == "")
+                                {
+                                    strJuchuTanka = "0";
+                                }
+                            }
+                            else
+                            {
+                                strJuchuTanka = "0";
+                            }
+                        }
+                        else
+                        {
+                            strJuchuTanka = "0";
                         }
 
                         //グループ内でも確保
@@ -1447,30 +1496,95 @@ namespace KATO.Form.A0030_ShireInput
             if (decimal.TryParse(shireinput.gbData1.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData1.txtKin.Text.Trim());
+
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData1.txtTanka.Text == "0" ||
+                    shireinput.gbData1.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu1.Text = "0";
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
             }
 
             //2行目
             if (decimal.TryParse(shireinput.gbData2.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData2.txtKin.Text.Trim());
+
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData2.txtTanka.Text == "0" ||
+                    shireinput.gbData2.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu2.Text = "0";
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
             }
 
             //3行目
             if (decimal.TryParse(shireinput.gbData3.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData3.txtKin.Text.Trim());
+
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData3.txtTanka.Text == "0" ||
+                    shireinput.gbData3.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu3.Text = "0";
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu3.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
             }
 
             //4行目
             if (decimal.TryParse(shireinput.gbData4.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData4.txtKin.Text.Trim());
+
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData4.txtTanka.Text == "0" ||
+                    shireinput.gbData4.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu4.Text = "0";
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu4.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
             }
 
             //5行目
             if (decimal.TryParse(shireinput.gbData5.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
+
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData5.txtTanka.Text == "0" ||
+                    shireinput.gbData5.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu5.Text = "0";
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu5.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
             }
 
             //運賃が記入されていない場合

@@ -109,6 +109,16 @@
             this.baseLabel22 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel20 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.gbData5 = new KATO.Form.A0030_ShireInput.BaseViewDataGroup();
+            this.txtRiekiritsu1 = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblRiekiritsu1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblRiekiritsu2 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRiekiritsu2 = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblRiekiritsu3 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRiekiritsu3 = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblRiekiritsu4 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRiekiritsu4 = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblRiekiritsu5 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtRiekiritsu5 = new KATO.Common.Ctl.BaseTextMoney();
             this.panelView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelKensaku.SuspendLayout();
@@ -746,7 +756,7 @@
             this.txtTanka1.intDeciSet = 0;
             this.txtTanka1.intIntederSet = 0;
             this.txtTanka1.intShishagonyu = 0;
-            this.txtTanka1.Location = new System.Drawing.Point(1245, 585);
+            this.txtTanka1.Location = new System.Drawing.Point(1126, 585);
             this.txtTanka1.MaxLength = 12;
             this.txtTanka1.MinusFlg = true;
             this.txtTanka1.Name = "txtTanka1";
@@ -765,7 +775,7 @@
             this.txtTanka2.intDeciSet = 0;
             this.txtTanka2.intIntederSet = 0;
             this.txtTanka2.intShishagonyu = 0;
-            this.txtTanka2.Location = new System.Drawing.Point(1245, 615);
+            this.txtTanka2.Location = new System.Drawing.Point(1126, 615);
             this.txtTanka2.MaxLength = 12;
             this.txtTanka2.MinusFlg = true;
             this.txtTanka2.Name = "txtTanka2";
@@ -784,7 +794,7 @@
             this.txtTanka3.intDeciSet = 0;
             this.txtTanka3.intIntederSet = 0;
             this.txtTanka3.intShishagonyu = 0;
-            this.txtTanka3.Location = new System.Drawing.Point(1245, 644);
+            this.txtTanka3.Location = new System.Drawing.Point(1126, 644);
             this.txtTanka3.MaxLength = 12;
             this.txtTanka3.MinusFlg = true;
             this.txtTanka3.Name = "txtTanka3";
@@ -803,7 +813,7 @@
             this.txtTanka4.intDeciSet = 0;
             this.txtTanka4.intIntederSet = 0;
             this.txtTanka4.intShishagonyu = 0;
-            this.txtTanka4.Location = new System.Drawing.Point(1245, 674);
+            this.txtTanka4.Location = new System.Drawing.Point(1126, 674);
             this.txtTanka4.MaxLength = 12;
             this.txtTanka4.MinusFlg = true;
             this.txtTanka4.Name = "txtTanka4";
@@ -822,7 +832,7 @@
             this.txtTanka5.intDeciSet = 0;
             this.txtTanka5.intIntederSet = 0;
             this.txtTanka5.intShishagonyu = 0;
-            this.txtTanka5.Location = new System.Drawing.Point(1245, 703);
+            this.txtTanka5.Location = new System.Drawing.Point(1126, 703);
             this.txtTanka5.MaxLength = 12;
             this.txtTanka5.MinusFlg = true;
             this.txtTanka5.Name = "txtTanka5";
@@ -837,7 +847,7 @@
             // 
             this.lblTanka1.AutoSize = true;
             this.lblTanka1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka1.Location = new System.Drawing.Point(1175, 588);
+            this.lblTanka1.Location = new System.Drawing.Point(1060, 588);
             this.lblTanka1.Name = "lblTanka1";
             this.lblTanka1.Size = new System.Drawing.Size(55, 15);
             this.lblTanka1.strToolTip = null;
@@ -849,7 +859,7 @@
             // 
             this.lblTanka2.AutoSize = true;
             this.lblTanka2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka2.Location = new System.Drawing.Point(1175, 618);
+            this.lblTanka2.Location = new System.Drawing.Point(1060, 618);
             this.lblTanka2.Name = "lblTanka2";
             this.lblTanka2.Size = new System.Drawing.Size(55, 15);
             this.lblTanka2.strToolTip = null;
@@ -861,7 +871,7 @@
             // 
             this.lblTanka3.AutoSize = true;
             this.lblTanka3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka3.Location = new System.Drawing.Point(1175, 647);
+            this.lblTanka3.Location = new System.Drawing.Point(1060, 647);
             this.lblTanka3.Name = "lblTanka3";
             this.lblTanka3.Size = new System.Drawing.Size(55, 15);
             this.lblTanka3.strToolTip = null;
@@ -873,7 +883,7 @@
             // 
             this.lblTanka4.AutoSize = true;
             this.lblTanka4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka4.Location = new System.Drawing.Point(1175, 677);
+            this.lblTanka4.Location = new System.Drawing.Point(1060, 677);
             this.lblTanka4.Name = "lblTanka4";
             this.lblTanka4.Size = new System.Drawing.Size(55, 15);
             this.lblTanka4.strToolTip = null;
@@ -885,7 +895,7 @@
             // 
             this.lblTanka5.AutoSize = true;
             this.lblTanka5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanka5.Location = new System.Drawing.Point(1175, 706);
+            this.lblTanka5.Location = new System.Drawing.Point(1060, 706);
             this.lblTanka5.Name = "lblTanka5";
             this.lblTanka5.Size = new System.Drawing.Size(55, 15);
             this.lblTanka5.strToolTip = null;
@@ -897,7 +907,7 @@
             // 
             this.lblJuchu1.AutoSize = true;
             this.lblJuchu1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchu1.Location = new System.Drawing.Point(942, 588);
+            this.lblJuchu1.Location = new System.Drawing.Point(833, 588);
             this.lblJuchu1.Name = "lblJuchu1";
             this.lblJuchu1.Size = new System.Drawing.Size(87, 15);
             this.lblJuchu1.strToolTip = null;
@@ -909,7 +919,7 @@
             // 
             this.lblJuchu2.AutoSize = true;
             this.lblJuchu2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchu2.Location = new System.Drawing.Point(942, 618);
+            this.lblJuchu2.Location = new System.Drawing.Point(833, 618);
             this.lblJuchu2.Name = "lblJuchu2";
             this.lblJuchu2.Size = new System.Drawing.Size(87, 15);
             this.lblJuchu2.strToolTip = null;
@@ -921,7 +931,7 @@
             // 
             this.lblJuchu4.AutoSize = true;
             this.lblJuchu4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchu4.Location = new System.Drawing.Point(942, 677);
+            this.lblJuchu4.Location = new System.Drawing.Point(833, 677);
             this.lblJuchu4.Name = "lblJuchu4";
             this.lblJuchu4.Size = new System.Drawing.Size(87, 15);
             this.lblJuchu4.strToolTip = null;
@@ -933,7 +943,7 @@
             // 
             this.lblJuchu3.AutoSize = true;
             this.lblJuchu3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchu3.Location = new System.Drawing.Point(942, 647);
+            this.lblJuchu3.Location = new System.Drawing.Point(833, 647);
             this.lblJuchu3.Name = "lblJuchu3";
             this.lblJuchu3.Size = new System.Drawing.Size(87, 15);
             this.lblJuchu3.strToolTip = null;
@@ -945,7 +955,7 @@
             // 
             this.lblJuchu5.AutoSize = true;
             this.lblJuchu5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchu5.Location = new System.Drawing.Point(942, 706);
+            this.lblJuchu5.Location = new System.Drawing.Point(833, 706);
             this.lblJuchu5.Name = "lblJuchu5";
             this.lblJuchu5.Size = new System.Drawing.Size(87, 15);
             this.lblJuchu5.strToolTip = null;
@@ -958,7 +968,7 @@
             this.txtJuchu1.BackColor = System.Drawing.SystemColors.Window;
             this.txtJuchu1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchu1.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJuchu1.Location = new System.Drawing.Point(1044, 585);
+            this.txtJuchu1.Location = new System.Drawing.Point(931, 585);
             this.txtJuchu1.Name = "txtJuchu1";
             this.txtJuchu1.ReadOnly = true;
             this.txtJuchu1.Size = new System.Drawing.Size(100, 22);
@@ -973,7 +983,7 @@
             this.txtJuchu2.BackColor = System.Drawing.SystemColors.Window;
             this.txtJuchu2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchu2.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJuchu2.Location = new System.Drawing.Point(1044, 615);
+            this.txtJuchu2.Location = new System.Drawing.Point(931, 615);
             this.txtJuchu2.Name = "txtJuchu2";
             this.txtJuchu2.ReadOnly = true;
             this.txtJuchu2.Size = new System.Drawing.Size(100, 22);
@@ -988,7 +998,7 @@
             this.txtJuchu3.BackColor = System.Drawing.SystemColors.Window;
             this.txtJuchu3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchu3.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJuchu3.Location = new System.Drawing.Point(1044, 644);
+            this.txtJuchu3.Location = new System.Drawing.Point(931, 644);
             this.txtJuchu3.Name = "txtJuchu3";
             this.txtJuchu3.ReadOnly = true;
             this.txtJuchu3.Size = new System.Drawing.Size(100, 22);
@@ -1003,7 +1013,7 @@
             this.txtJuchu4.BackColor = System.Drawing.SystemColors.Window;
             this.txtJuchu4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchu4.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJuchu4.Location = new System.Drawing.Point(1044, 674);
+            this.txtJuchu4.Location = new System.Drawing.Point(931, 674);
             this.txtJuchu4.Name = "txtJuchu4";
             this.txtJuchu4.ReadOnly = true;
             this.txtJuchu4.Size = new System.Drawing.Size(100, 22);
@@ -1018,7 +1028,7 @@
             this.txtJuchu5.BackColor = System.Drawing.SystemColors.Window;
             this.txtJuchu5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtJuchu5.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtJuchu5.Location = new System.Drawing.Point(1044, 703);
+            this.txtJuchu5.Location = new System.Drawing.Point(931, 703);
             this.txtJuchu5.Name = "txtJuchu5";
             this.txtJuchu5.ReadOnly = true;
             this.txtJuchu5.Size = new System.Drawing.Size(100, 22);
@@ -1242,11 +1252,176 @@
             this.gbData5.Tag = "5";
             this.gbData5.Enter += new System.EventHandler(this.gbData5_Enter);
             // 
+            // txtRiekiritsu1
+            // 
+            this.txtRiekiritsu1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRiekiritsu1.blnCommaOK = true;
+            this.txtRiekiritsu1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsu1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsu1.intDeciSet = 1;
+            this.txtRiekiritsu1.intIntederSet = 0;
+            this.txtRiekiritsu1.intShishagonyu = 1;
+            this.txtRiekiritsu1.Location = new System.Drawing.Point(1361, 585);
+            this.txtRiekiritsu1.MaxLength = 4;
+            this.txtRiekiritsu1.MinusFlg = true;
+            this.txtRiekiritsu1.Name = "txtRiekiritsu1";
+            this.txtRiekiritsu1.ReadOnly = true;
+            this.txtRiekiritsu1.Size = new System.Drawing.Size(40, 22);
+            this.txtRiekiritsu1.TabIndex = 107;
+            this.txtRiekiritsu1.TabStop = false;
+            this.txtRiekiritsu1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRiekiritsu1
+            // 
+            this.lblRiekiritsu1.AutoSize = true;
+            this.lblRiekiritsu1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsu1.Location = new System.Drawing.Point(1282, 588);
+            this.lblRiekiritsu1.Name = "lblRiekiritsu1";
+            this.lblRiekiritsu1.Size = new System.Drawing.Size(71, 15);
+            this.lblRiekiritsu1.strToolTip = null;
+            this.lblRiekiritsu1.TabIndex = 106;
+            this.lblRiekiritsu1.Text = "利益率①";
+            this.lblRiekiritsu1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRiekiritsu2
+            // 
+            this.lblRiekiritsu2.AutoSize = true;
+            this.lblRiekiritsu2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsu2.Location = new System.Drawing.Point(1282, 618);
+            this.lblRiekiritsu2.Name = "lblRiekiritsu2";
+            this.lblRiekiritsu2.Size = new System.Drawing.Size(71, 15);
+            this.lblRiekiritsu2.strToolTip = null;
+            this.lblRiekiritsu2.TabIndex = 106;
+            this.lblRiekiritsu2.Text = "利益率②";
+            this.lblRiekiritsu2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRiekiritsu2
+            // 
+            this.txtRiekiritsu2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRiekiritsu2.blnCommaOK = true;
+            this.txtRiekiritsu2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsu2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsu2.intDeciSet = 1;
+            this.txtRiekiritsu2.intIntederSet = 0;
+            this.txtRiekiritsu2.intShishagonyu = 1;
+            this.txtRiekiritsu2.Location = new System.Drawing.Point(1361, 615);
+            this.txtRiekiritsu2.MaxLength = 10;
+            this.txtRiekiritsu2.MinusFlg = true;
+            this.txtRiekiritsu2.Name = "txtRiekiritsu2";
+            this.txtRiekiritsu2.ReadOnly = true;
+            this.txtRiekiritsu2.Size = new System.Drawing.Size(40, 22);
+            this.txtRiekiritsu2.TabIndex = 107;
+            this.txtRiekiritsu2.TabStop = false;
+            this.txtRiekiritsu2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRiekiritsu3
+            // 
+            this.lblRiekiritsu3.AutoSize = true;
+            this.lblRiekiritsu3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsu3.Location = new System.Drawing.Point(1282, 648);
+            this.lblRiekiritsu3.Name = "lblRiekiritsu3";
+            this.lblRiekiritsu3.Size = new System.Drawing.Size(71, 15);
+            this.lblRiekiritsu3.strToolTip = null;
+            this.lblRiekiritsu3.TabIndex = 106;
+            this.lblRiekiritsu3.Text = "利益率③";
+            this.lblRiekiritsu3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRiekiritsu3
+            // 
+            this.txtRiekiritsu3.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRiekiritsu3.blnCommaOK = true;
+            this.txtRiekiritsu3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsu3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsu3.intDeciSet = 1;
+            this.txtRiekiritsu3.intIntederSet = 0;
+            this.txtRiekiritsu3.intShishagonyu = 1;
+            this.txtRiekiritsu3.Location = new System.Drawing.Point(1361, 645);
+            this.txtRiekiritsu3.MaxLength = 10;
+            this.txtRiekiritsu3.MinusFlg = true;
+            this.txtRiekiritsu3.Name = "txtRiekiritsu3";
+            this.txtRiekiritsu3.ReadOnly = true;
+            this.txtRiekiritsu3.Size = new System.Drawing.Size(40, 22);
+            this.txtRiekiritsu3.TabIndex = 107;
+            this.txtRiekiritsu3.TabStop = false;
+            this.txtRiekiritsu3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRiekiritsu4
+            // 
+            this.lblRiekiritsu4.AutoSize = true;
+            this.lblRiekiritsu4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsu4.Location = new System.Drawing.Point(1282, 677);
+            this.lblRiekiritsu4.Name = "lblRiekiritsu4";
+            this.lblRiekiritsu4.Size = new System.Drawing.Size(71, 15);
+            this.lblRiekiritsu4.strToolTip = null;
+            this.lblRiekiritsu4.TabIndex = 106;
+            this.lblRiekiritsu4.Text = "利益率④";
+            this.lblRiekiritsu4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRiekiritsu4
+            // 
+            this.txtRiekiritsu4.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRiekiritsu4.blnCommaOK = true;
+            this.txtRiekiritsu4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsu4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsu4.intDeciSet = 1;
+            this.txtRiekiritsu4.intIntederSet = 0;
+            this.txtRiekiritsu4.intShishagonyu = 1;
+            this.txtRiekiritsu4.Location = new System.Drawing.Point(1361, 674);
+            this.txtRiekiritsu4.MaxLength = 10;
+            this.txtRiekiritsu4.MinusFlg = true;
+            this.txtRiekiritsu4.Name = "txtRiekiritsu4";
+            this.txtRiekiritsu4.ReadOnly = true;
+            this.txtRiekiritsu4.Size = new System.Drawing.Size(40, 22);
+            this.txtRiekiritsu4.TabIndex = 107;
+            this.txtRiekiritsu4.TabStop = false;
+            this.txtRiekiritsu4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblRiekiritsu5
+            // 
+            this.lblRiekiritsu5.AutoSize = true;
+            this.lblRiekiritsu5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblRiekiritsu5.Location = new System.Drawing.Point(1282, 705);
+            this.lblRiekiritsu5.Name = "lblRiekiritsu5";
+            this.lblRiekiritsu5.Size = new System.Drawing.Size(71, 15);
+            this.lblRiekiritsu5.strToolTip = null;
+            this.lblRiekiritsu5.TabIndex = 106;
+            this.lblRiekiritsu5.Text = "利益率⑤";
+            this.lblRiekiritsu5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtRiekiritsu5
+            // 
+            this.txtRiekiritsu5.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRiekiritsu5.blnCommaOK = true;
+            this.txtRiekiritsu5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtRiekiritsu5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtRiekiritsu5.intDeciSet = 1;
+            this.txtRiekiritsu5.intIntederSet = 0;
+            this.txtRiekiritsu5.intShishagonyu = 1;
+            this.txtRiekiritsu5.Location = new System.Drawing.Point(1361, 702);
+            this.txtRiekiritsu5.MaxLength = 10;
+            this.txtRiekiritsu5.MinusFlg = true;
+            this.txtRiekiritsu5.Name = "txtRiekiritsu5";
+            this.txtRiekiritsu5.ReadOnly = true;
+            this.txtRiekiritsu5.Size = new System.Drawing.Size(40, 22);
+            this.txtRiekiritsu5.TabIndex = 107;
+            this.txtRiekiritsu5.TabStop = false;
+            this.txtRiekiritsu5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // A0030_ShireInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.txtRiekiritsu5);
+            this.Controls.Add(this.lblRiekiritsu5);
+            this.Controls.Add(this.txtRiekiritsu4);
+            this.Controls.Add(this.lblRiekiritsu4);
+            this.Controls.Add(this.txtRiekiritsu3);
+            this.Controls.Add(this.lblRiekiritsu3);
+            this.Controls.Add(this.txtRiekiritsu2);
+            this.Controls.Add(this.lblRiekiritsu2);
+            this.Controls.Add(this.txtRiekiritsu1);
+            this.Controls.Add(this.lblRiekiritsu1);
             this.Controls.Add(this.gbData5);
             this.Controls.Add(this.gbData4);
             this.Controls.Add(this.gbData3);
@@ -1358,6 +1533,16 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsu1, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsu1, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsu2, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsu2, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsu3, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsu3, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsu4, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsu4, 0);
+            this.Controls.SetChildIndex(this.lblRiekiritsu5, 0);
+            this.Controls.SetChildIndex(this.txtRiekiritsu5, 0);
             this.panelView.ResumeLayout(false);
             this.panelView.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1456,5 +1641,15 @@
         public BaseViewDataGroup gbData3;
         public BaseViewDataGroup gbData4;
         public BaseViewDataGroup gbData5;
+        public Common.Ctl.BaseTextMoney txtRiekiritsu1;
+        public Common.Ctl.BaseLabel lblRiekiritsu1;
+        public Common.Ctl.BaseLabel lblRiekiritsu2;
+        public Common.Ctl.BaseTextMoney txtRiekiritsu2;
+        public Common.Ctl.BaseLabel lblRiekiritsu3;
+        public Common.Ctl.BaseTextMoney txtRiekiritsu3;
+        public Common.Ctl.BaseLabel lblRiekiritsu4;
+        public Common.Ctl.BaseTextMoney txtRiekiritsu4;
+        public Common.Ctl.BaseLabel lblRiekiritsu5;
+        public Common.Ctl.BaseTextMoney txtRiekiritsu5;
     }
 }
