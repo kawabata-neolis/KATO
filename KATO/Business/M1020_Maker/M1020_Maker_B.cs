@@ -305,7 +305,7 @@ namespace KATO.Business.M1020_Maker_B
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Default;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№111）");
+                        headersheet.PageSetup.Header.Left.AddText("（№102）");
 
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);

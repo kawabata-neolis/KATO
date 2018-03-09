@@ -306,7 +306,7 @@ namespace KATO.Business.M1200_Group
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Default;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№101）");
+                        headersheet.PageSetup.Header.Left.AddText("（№120）");
 
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);

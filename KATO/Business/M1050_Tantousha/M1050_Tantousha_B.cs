@@ -463,7 +463,7 @@ namespace KATO.Business.M1050_Tantousha
                         headersheet.PageSetup.PageOrientation = XLPageOrientation.Default;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№104）");
+                        headersheet.PageSetup.Header.Left.AddText("（№105）");
 
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
