@@ -398,7 +398,7 @@ namespace KATO.Business.M1050_Tantousha
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 44;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {

@@ -227,7 +227,7 @@ namespace KATO.Business.M1110_Chubunrui
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
-                XLWorkbook.DefaultStyle.Font.FontSize = 9;
+                XLWorkbook.DefaultStyle.Font.FontSize =9;
 
                 // excelのインスタンス生成
                 XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
@@ -244,6 +244,7 @@ namespace KATO.Business.M1110_Chubunrui
                         daibunName =  dat["大分類名"],
                         chubunCd = (String)dat["中分類コード"],
                         chubunName = dat["中分類名"],
+                        chubunSubName = dat["補助名称"],
                     }).ToList();
 
                 //リストをデータテーブルに変換
@@ -257,7 +258,7 @@ namespace KATO.Business.M1110_Chubunrui
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 44;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -278,29 +279,30 @@ namespace KATO.Business.M1110_Chubunrui
                         pageCnt++;
 
                         //タイトル出力（中央揃え、セル結合）
-                        IXLCell titleCell = headersheet.Cell("A1");
+                        IXLCell titleCell = headersheet.Cell("B1");
                         titleCell.Value = "中分類マスタリスト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
-                        headersheet.Range("A1", "B1").Merge();
 
                         //ヘッダー出力(表ヘッダー)
                         headersheet.Cell("A3").Value = "コード";
                         headersheet.Cell("B3").Value = "大分類名";
                         headersheet.Cell("C3").Value = "コード";
                         headersheet.Cell("D3").Value = "中分類名";
+                        headersheet.Cell("E3").Value = "補助名称";
 
                         //ヘッダー列
                         headersheet.Range("A3", "E3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                         // 列幅の指定
-                        headersheet.Column(1).Width = 10;
-                        headersheet.Column(2).Width = 38;
-                        headersheet.Column(3).Width = 10;
-                        headersheet.Column(4).Width = 38;
+                        headersheet.Column(1).Width = 7;
+                        headersheet.Column(2).Width = 25;
+                        headersheet.Column(3).Width = 7;
+                        headersheet.Column(4).Width = 25;
+                        headersheet.Column(5).Width = 40;
 
                         // セルの周囲に罫線を引く
-                        headersheet.Range("A3", "D3").Style
+                        headersheet.Range("A3", "E3").Style
                             .Border.SetTopBorder(XLBorderStyleValues.Thin)
                             .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)
@@ -325,13 +327,15 @@ namespace KATO.Business.M1110_Chubunrui
                         //二桁の0パディングをさせる
                         currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("00");
 
+                        currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
 
                         string strKari = currentsheet.Cell(xlsRowCnt, colCnt).Value.ToString();
                     }
 
                     // 1行分のセルの周囲に罫線を引く
-                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 4).Style
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 5).Style
                             .Border.SetTopBorder(XLBorderStyleValues.Thin)
                             .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                             .Border.SetLeftBorder(XLBorderStyleValues.Thin)

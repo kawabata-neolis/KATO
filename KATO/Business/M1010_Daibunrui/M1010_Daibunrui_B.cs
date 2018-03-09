@@ -334,6 +334,11 @@ namespace KATO.Business.M1010_Daibunrui
                     {
                         string str = drSiireCheak[colCnt - 1].ToString();
 
+                        //二桁の0パディングをさせる
+                        currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("00");
+
+                        currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                     }
 

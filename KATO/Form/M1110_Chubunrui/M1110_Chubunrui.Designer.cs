@@ -170,7 +170,7 @@ namespace KATO.Form.M1110_Chubunrui
             this.txtSubName.Location = new System.Drawing.Point(726, 175);
             this.txtSubName.MaxLength = 80;
             this.txtSubName.Name = "txtSubName";
-            this.txtSubName.Size = new System.Drawing.Size(320, 22);
+            this.txtSubName.Size = new System.Drawing.Size(327, 22);
             this.txtSubName.TabIndex = 3;
             this.txtSubName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judChubunTxtKeyDown);
             this.txtSubName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtChubunruiKeyUp);

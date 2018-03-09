@@ -1357,7 +1357,7 @@ namespace KATO.Form.Z0000
                         kaisyajoken.ShowDialog();
                         break;
 
-                    case "101 ":
+                    case "101":
                         //大分類
                         M1010_Daibunrui.M1010_Daibunrui daibunrui = new M1010_Daibunrui.M1010_Daibunrui(this);
                         daibunrui.ShowDialog();

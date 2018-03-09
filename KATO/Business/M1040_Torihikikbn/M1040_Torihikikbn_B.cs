@@ -274,11 +274,10 @@ namespace KATO.Business.M1040_Torihikikbn
                         pageCnt++;
 
                         //タイトル出力（中央揃え、セル結合）
-                        IXLCell titleCell = headersheet.Cell("A1");
+                        IXLCell titleCell = headersheet.Cell("B1");
                         titleCell.Value = "取引区分マスタリスト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
-                        headersheet.Range("A1", "B1").Merge();
 
                         //ヘッダー出力(表ヘッダー)
                         headersheet.Cell("A3").Value = "区分コード";
@@ -319,7 +318,12 @@ namespace KATO.Business.M1040_Torihikikbn
                         {
                             //中心にする
                             currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                        } 
+                        }
+                        else
+                        {
+                            //左寄せにする
+                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                        }
 
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
 

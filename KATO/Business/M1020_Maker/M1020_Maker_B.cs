@@ -256,7 +256,7 @@ namespace KATO.Business.M1020_Maker_B
                 int maxPage = 0;    // 最大ページ数
 
                 //ページ数計算
-                double page = 1.0 * maxRowCnt / 47;
+                double page = 1.0 * maxRowCnt / 44;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -277,11 +277,10 @@ namespace KATO.Business.M1020_Maker_B
                         pageCnt++;
 
                         //タイトル出力（中央揃え、セル結合）
-                        IXLCell titleCell = headersheet.Cell("A1");
+                        IXLCell titleCell = headersheet.Cell("B1");
                         titleCell.Value = "メーカーマスタリスト";
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 16;
-                        headersheet.Range("A1", "B1").Merge();
 
                         //ヘッダー出力(表ヘッダー)
                         headersheet.Cell("A3").Value = "コード";
@@ -319,6 +318,8 @@ namespace KATO.Business.M1020_Maker_B
 
                         //二桁の0パディングをさせる
                         currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("0000");
+
+                        currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
 
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
                     }
