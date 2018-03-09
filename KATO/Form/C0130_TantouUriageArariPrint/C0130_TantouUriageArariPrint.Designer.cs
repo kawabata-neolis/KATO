@@ -56,12 +56,13 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 11;
+            this.btnF12.TabIndex = 8;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
             this.btnF11.TabIndex = 10;
+            this.btnF11.TabStop = false;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
@@ -96,7 +97,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 12;
+            this.btnF04.TabIndex = 9;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03
@@ -117,7 +118,7 @@
             this.labelSet_GroupCdFrom.CodeTxtText = "";
             this.labelSet_GroupCdFrom.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCdFrom.LabelName = "グループコード";
-            this.labelSet_GroupCdFrom.Location = new System.Drawing.Point(476, 220);
+            this.labelSet_GroupCdFrom.Location = new System.Drawing.Point(499, 230);
             this.labelSet_GroupCdFrom.LsGroupCddata = null;
             this.labelSet_GroupCdFrom.Name = "labelSet_GroupCdFrom";
             this.labelSet_GroupCdFrom.ShowAppendFlg = false;
@@ -125,7 +126,7 @@
             this.labelSet_GroupCdFrom.SpaceCodeValue = 4;
             this.labelSet_GroupCdFrom.SpaceNameCode = 4;
             this.labelSet_GroupCdFrom.SpaceValueAppend = 4;
-            this.labelSet_GroupCdFrom.TabIndex = 5;
+            this.labelSet_GroupCdFrom.TabIndex = 4;
             this.labelSet_GroupCdFrom.ValueLabelSize = 0;
             this.labelSet_GroupCdFrom.ValueLabelText = "";
             // 
@@ -138,15 +139,15 @@
             this.labelSet_GroupCdTo.Controls.Add(this.baseLabel1);
             this.labelSet_GroupCdTo.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCdTo.LabelName = "～";
-            this.labelSet_GroupCdTo.Location = new System.Drawing.Point(648, 220);
+            this.labelSet_GroupCdTo.Location = new System.Drawing.Point(680, 230);
             this.labelSet_GroupCdTo.LsGroupCddata = null;
             this.labelSet_GroupCdTo.Name = "labelSet_GroupCdTo";
             this.labelSet_GroupCdTo.ShowAppendFlg = false;
-            this.labelSet_GroupCdTo.Size = new System.Drawing.Size(82, 22);
+            this.labelSet_GroupCdTo.Size = new System.Drawing.Size(122, 22);
             this.labelSet_GroupCdTo.SpaceCodeValue = 4;
-            this.labelSet_GroupCdTo.SpaceNameCode = 4;
+            this.labelSet_GroupCdTo.SpaceNameCode = 20;
             this.labelSet_GroupCdTo.SpaceValueAppend = 4;
-            this.labelSet_GroupCdTo.TabIndex = 6;
+            this.labelSet_GroupCdTo.TabIndex = 5;
             this.labelSet_GroupCdTo.ValueLabelSize = 0;
             this.labelSet_GroupCdTo.ValueLabelText = "";
             // 
@@ -170,14 +171,14 @@
             this.labelSet_TantoushaCdTo.CodeTxtText = "";
             this.labelSet_TantoushaCdTo.Controls.Add(this.object_c6748b85_2dc5_4e1e_94f6_fd80f8ad14a8);
             this.labelSet_TantoushaCdTo.LabelName = "～";
-            this.labelSet_TantoushaCdTo.Location = new System.Drawing.Point(648, 261);
+            this.labelSet_TantoushaCdTo.Location = new System.Drawing.Point(680, 271);
             this.labelSet_TantoushaCdTo.Name = "labelSet_TantoushaCdTo";
             this.labelSet_TantoushaCdTo.ShowAppendFlg = false;
-            this.labelSet_TantoushaCdTo.Size = new System.Drawing.Size(82, 22);
+            this.labelSet_TantoushaCdTo.Size = new System.Drawing.Size(122, 22);
             this.labelSet_TantoushaCdTo.SpaceCodeValue = 4;
-            this.labelSet_TantoushaCdTo.SpaceNameCode = 4;
+            this.labelSet_TantoushaCdTo.SpaceNameCode = 20;
             this.labelSet_TantoushaCdTo.SpaceValueAppend = 4;
-            this.labelSet_TantoushaCdTo.TabIndex = 8;
+            this.labelSet_TantoushaCdTo.TabIndex = 7;
             this.labelSet_TantoushaCdTo.ValueLabelSize = 0;
             this.labelSet_TantoushaCdTo.ValueLabelText = "";
             // 
@@ -201,14 +202,14 @@
             this.labelSet_TantoushaCdFrom.CodeTxtText = "";
             this.labelSet_TantoushaCdFrom.Controls.Add(this.object_41d14d4c_23fe_4704_b8bb_b12776337189);
             this.labelSet_TantoushaCdFrom.LabelName = "担当者コード　";
-            this.labelSet_TantoushaCdFrom.Location = new System.Drawing.Point(476, 261);
+            this.labelSet_TantoushaCdFrom.Location = new System.Drawing.Point(499, 271);
             this.labelSet_TantoushaCdFrom.Name = "labelSet_TantoushaCdFrom";
             this.labelSet_TantoushaCdFrom.ShowAppendFlg = false;
             this.labelSet_TantoushaCdFrom.Size = new System.Drawing.Size(168, 22);
             this.labelSet_TantoushaCdFrom.SpaceCodeValue = 4;
             this.labelSet_TantoushaCdFrom.SpaceNameCode = 4;
             this.labelSet_TantoushaCdFrom.SpaceValueAppend = 4;
-            this.labelSet_TantoushaCdFrom.TabIndex = 7;
+            this.labelSet_TantoushaCdFrom.TabIndex = 6;
             this.labelSet_TantoushaCdFrom.ValueLabelSize = 0;
             this.labelSet_TantoushaCdFrom.ValueLabelText = "";
             // 
@@ -226,27 +227,31 @@
             // 
             // txtYmdTo
             // 
+            this.txtYmdTo.Enabled = false;
             this.txtYmdTo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYmdTo.Location = new System.Drawing.Point(725, 135);
+            this.txtYmdTo.Location = new System.Drawing.Point(774, 145);
             this.txtYmdTo.MaxLength = 10;
             this.txtYmdTo.Name = "txtYmdTo";
             this.txtYmdTo.Size = new System.Drawing.Size(90, 22);
-            this.txtYmdTo.TabIndex = 2;
+            this.txtYmdTo.TabIndex = 1;
+            this.txtYmdTo.TabStop = false;
             // 
             // txtYmdFrom
             // 
+            this.txtYmdFrom.Enabled = false;
             this.txtYmdFrom.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYmdFrom.Location = new System.Drawing.Point(527, 135);
+            this.txtYmdFrom.Location = new System.Drawing.Point(550, 145);
             this.txtYmdFrom.MaxLength = 10;
             this.txtYmdFrom.Name = "txtYmdFrom";
             this.txtYmdFrom.Size = new System.Drawing.Size(90, 22);
-            this.txtYmdFrom.TabIndex = 1;
+            this.txtYmdFrom.TabIndex = 0;
+            this.txtYmdFrom.TabStop = false;
             // 
             // baseLabel4
             // 
             this.baseLabel4.AutoSize = true;
             this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(434, 138);
+            this.baseLabel4.Location = new System.Drawing.Point(457, 148);
             this.baseLabel4.Name = "baseLabel4";
             this.baseLabel4.Size = new System.Drawing.Size(87, 15);
             this.baseLabel4.strToolTip = null;
@@ -258,7 +263,7 @@
             // 
             this.baseLabel5.AutoSize = true;
             this.baseLabel5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel5.Location = new System.Drawing.Point(632, 138);
+            this.baseLabel5.Location = new System.Drawing.Point(681, 148);
             this.baseLabel5.Name = "baseLabel5";
             this.baseLabel5.Size = new System.Drawing.Size(87, 15);
             this.baseLabel5.strToolTip = null;
@@ -273,14 +278,14 @@
             this.labelSet_EigyoshoCdFrom.CodeTxtSize = 40;
             this.labelSet_EigyoshoCdFrom.CodeTxtText = "";
             this.labelSet_EigyoshoCdFrom.LabelName = "営業所コード　";
-            this.labelSet_EigyoshoCdFrom.Location = new System.Drawing.Point(476, 181);
+            this.labelSet_EigyoshoCdFrom.Location = new System.Drawing.Point(499, 191);
             this.labelSet_EigyoshoCdFrom.Name = "labelSet_EigyoshoCdFrom";
             this.labelSet_EigyoshoCdFrom.ShowAppendFlg = false;
             this.labelSet_EigyoshoCdFrom.Size = new System.Drawing.Size(168, 22);
             this.labelSet_EigyoshoCdFrom.SpaceCodeValue = 4;
             this.labelSet_EigyoshoCdFrom.SpaceNameCode = 4;
             this.labelSet_EigyoshoCdFrom.SpaceValueAppend = 4;
-            this.labelSet_EigyoshoCdFrom.TabIndex = 3;
+            this.labelSet_EigyoshoCdFrom.TabIndex = 2;
             this.labelSet_EigyoshoCdFrom.ValueLabelSize = 0;
             this.labelSet_EigyoshoCdFrom.ValueLabelText = "";
             // 
@@ -292,14 +297,14 @@
             this.labelSet_EigyoshoCdTo.CodeTxtText = "";
             this.labelSet_EigyoshoCdTo.Controls.Add(this.baseLabel2);
             this.labelSet_EigyoshoCdTo.LabelName = "～";
-            this.labelSet_EigyoshoCdTo.Location = new System.Drawing.Point(647, 181);
+            this.labelSet_EigyoshoCdTo.Location = new System.Drawing.Point(679, 191);
             this.labelSet_EigyoshoCdTo.Name = "labelSet_EigyoshoCdTo";
             this.labelSet_EigyoshoCdTo.ShowAppendFlg = false;
-            this.labelSet_EigyoshoCdTo.Size = new System.Drawing.Size(83, 22);
+            this.labelSet_EigyoshoCdTo.Size = new System.Drawing.Size(123, 22);
             this.labelSet_EigyoshoCdTo.SpaceCodeValue = 4;
-            this.labelSet_EigyoshoCdTo.SpaceNameCode = 4;
+            this.labelSet_EigyoshoCdTo.SpaceNameCode = 20;
             this.labelSet_EigyoshoCdTo.SpaceValueAppend = 4;
-            this.labelSet_EigyoshoCdTo.TabIndex = 4;
+            this.labelSet_EigyoshoCdTo.TabIndex = 3;
             this.labelSet_EigyoshoCdTo.ValueLabelSize = 0;
             this.labelSet_EigyoshoCdTo.ValueLabelText = "";
             // 

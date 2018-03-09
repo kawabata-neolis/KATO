@@ -410,19 +410,19 @@ namespace KATO.Form.A0030_ShireInput
             }
 
             //SQLファイルのパスとファイル名を入れる用
-            List<string> lstSQLHeader = new List<string>();
-            List<string> lstSQLCount = new List<string>();
+            //List<string> lstSQLHeader = new List<string>();
+            //List<string> lstSQLCount = new List<string>();
             List<string> lstSQLHachu = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
 
             //SQLファイルのパスとファイル名を追加
-            lstSQLHeader.Add("Common");
-            lstSQLHeader.Add("C_LIST_ShireHeader_SELECT");
+            //lstSQLHeader.Add("Common");
+            //lstSQLHeader.Add("C_LIST_ShireHeader_SELECT");
 
-            lstSQLCount.Add("A0030_ShireInput");
-            lstSQLCount.Add("ShireInput_ShireMesai_Count_SELECT");
+            //lstSQLCount.Add("A0030_ShireInput");
+            //lstSQLCount.Add("ShireInput_ShireMesai_Count_SELECT");
 
             lstSQLHachu.Add("A0030_ShireInput");
             lstSQLHachu.Add("ShireInput_gb_HachuData_SELECT");
@@ -495,6 +495,7 @@ namespace KATO.Form.A0030_ShireInput
                             strShireChuNo = null;
                             txtHin.TabStop = true;
                             txtHin.Enabled = true;
+                            setGokeiKesan();
                             return;
                         }
 
@@ -546,6 +547,12 @@ namespace KATO.Form.A0030_ShireInput
                                                                                    );
                                 basemessagebox.ShowDialog();
                             }
+                        }
+
+                        //仕入先コードがある場合
+                        if (dtSetCd_B_Hachu.Rows[intCnt]["仕入先コード"].ToString() != "")
+                        {
+                            shireinput.txtCD.Text = dtSetCd_B_Hachu.Rows[intCnt]["仕入先コード"].ToString();
                         }
 
                         //行番号が99の場合
@@ -1418,7 +1425,7 @@ namespace KATO.Form.A0030_ShireInput
             decimal decZeigokei = 0;
 
             //仕入入力画面のコードに記入がない場合
-            if (!StringUtl.blIsEmpty(shireinput.txtCD.Text) || !StringUtl.blIsEmpty(txtKin.Text))
+            if (!StringUtl.blIsEmpty(shireinput.txtCD.Text))
             {
                 return;
             }

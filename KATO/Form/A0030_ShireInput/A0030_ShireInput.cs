@@ -1111,14 +1111,18 @@ namespace KATO.Form.A0030_ShireInput
         public void delShireInput()
         {
             //営業所コードと伝票番号の空文字判定
-            if (txtEigyouCd.blIsEmpty() == false && txtDenpyoNo.blIsEmpty() == false)
+            if (txtEigyouCd.blIsEmpty() == false || txtDenpyoNo.blIsEmpty() == false)
             {
+                delText();
+                txtYMD.Focus();
                 return;
             }
 
             //年月日テキスト内が年月日として成り立たない場合
             if(txtYMD.updCalendarLeave(txtYMD.Text) == false)
             {
+                delText();
+                txtYMD.Focus();
                 return;
             }
 
@@ -2648,6 +2652,37 @@ namespace KATO.Form.A0030_ShireInput
             //GroupData2にフォーカスが行ってる情報を残す
             shotCnt = 2;
         }
+
+        ///<summary>
+        ///gbData3_Enter
+        ///DataGroupの3にフォーカスが来た場合
+        ///</summary>
+        private void gbData3_Enter(object sender, EventArgs e)
+        {
+            //GroupData3にフォーカスが行ってる情報を残す
+            shotCnt = 3;
+        }
+
+        ///<summary>
+        ///gbData4_Enter
+        ///DataGroupの4にフォーカスが来た場合
+        ///</summary>
+        private void gbData4_Enter(object sender, EventArgs e)
+        {
+            //GroupData4にフォーカスが行ってる情報を残す
+            shotCnt = 4;
+        }
+
+        ///<summary>
+        ///gbData5_Enter
+        ///DataGroupの5にフォーカスが来た場合
+        ///</summary>
+        private void gbData5_Enter(object sender, EventArgs e)
+        {
+            //GroupData5にフォーカスが行ってる情報を残す
+            shotCnt = 5;
+        }
+
 
         ///<summary>
         ///txtYMD_Leave

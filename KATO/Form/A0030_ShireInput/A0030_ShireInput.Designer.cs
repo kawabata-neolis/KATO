@@ -1142,6 +1142,7 @@
             this.gbData3.Size = new System.Drawing.Size(1395, 80);
             this.gbData3.TabIndex = 3;
             this.gbData3.Tag = "3";
+            this.gbData3.Enter += new System.EventHandler(this.gbData3_Enter);
             // 
             // baseLabel15
             // 
@@ -1190,6 +1191,7 @@
             this.gbData4.Size = new System.Drawing.Size(1395, 80);
             this.gbData4.TabIndex = 4;
             this.gbData4.Tag = "4";
+            this.gbData4.Enter += new System.EventHandler(this.gbData4_Enter);
             // 
             // baseLabel24
             // 
@@ -1238,6 +1240,7 @@
             this.gbData5.Size = new System.Drawing.Size(1395, 80);
             this.gbData5.TabIndex = 5;
             this.gbData5.Tag = "5";
+            this.gbData5.Enter += new System.EventHandler(this.gbData5_Enter);
             // 
             // A0030_ShireInput
             // 
