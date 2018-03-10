@@ -1684,6 +1684,9 @@
     <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuShireTanka_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\A0030_ShireInput\ShireInput_JuchuNo_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\A0030_ShireInput\ShireInput_KakoShireTanka_KakoNyuko_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

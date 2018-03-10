@@ -1787,6 +1787,15 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         private void txtCD_Leave(object sender, EventArgs e)
         {
+            setShireData();
+        }
+
+        ///<summary>
+        ///setShireData
+        ///仕入先データを表示(BaseViewDataGroup)
+        ///</summary>
+        public void setShireData()
+        {
             //検索時のデータ取り出し先
             DataTable dtSetCd = null;
 
@@ -1805,7 +1814,7 @@ namespace KATO.Form.A0030_ShireInput
                     txtShireNameView.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //データロギング
                 new CommonException(ex);
