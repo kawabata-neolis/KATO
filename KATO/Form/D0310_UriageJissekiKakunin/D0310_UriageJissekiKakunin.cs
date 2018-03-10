@@ -1133,7 +1133,29 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             lstSearchItem.Add(labelSet_SiiresakiCd.CodeTxtText);// 仕入先コード
             lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類
             lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類
-            lstSearchItem.Add(txtKataban.Text);                 // 品名・型番
+
+            //数値チェック
+            double dblKensaku = 0;
+            string strUkata;
+            if (!double.TryParse(txtKataban.Text, out dblKensaku))
+            {
+                //そのまま確保
+                strUkata = txtKataban.Text;
+            }
+            else
+            {
+                //空白削除
+                strUkata = txtKataban.Text.Trim();
+            }
+
+            //英字を大文字に
+            strUkata = strUkata.ToUpper();
+
+            strUkata = strUkata.Replace(" ", "");
+
+
+            //lstSearchItem.Add(txtKataban.Text);                 // 品名・型番
+            lstSearchItem.Add(strUkata);                 // 品名・型番
             lstSearchItem.Add(txtBikou.Text);                   // 備考
             lstSearchItem.Add(labelSet_Tokuisaki.CodeTxtText);  // 得意先
             lstSearchItem.Add(labelSet_Maker.CodeTxtText);      // メーカー
