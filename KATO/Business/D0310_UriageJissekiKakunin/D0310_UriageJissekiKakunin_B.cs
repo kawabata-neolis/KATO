@@ -197,12 +197,12 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
             // 品名・型番がある場合
             if (!lstItem[8].Equals(""))
             {
-                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(um.Ｃ１,'')) ";
-                andSql += " +  Rtrim(ISNULL(um.Ｃ２,''))";
-                andSql += " +  Rtrim(ISNULL(um.Ｃ３,''))";
-                andSql += " +  Rtrim(ISNULL(um.Ｃ４,''))";
-                andSql += " +  Rtrim(ISNULL(um.Ｃ５,''))";
-                andSql += " +  Rtrim(ISNULL(um.Ｃ６,'')) ) LIKE '%" + lstItem[8] + "%' )";
+                andSql += " AND ( (REPLACE(ISNULL(cb.中分類名,''), ' ', '') + REPLACE(ISNULL(um.Ｃ１, ''), ' ', '' ) ";
+                andSql += " +  REPLACE(ISNULL(um.Ｃ２, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(um.Ｃ３, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(um.Ｃ４, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(um.Ｃ５, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(um.Ｃ６, ''), ' ', '' ) ) LIKE '%" + lstItem[8].Replace(" ", "") + "%' )";
             }
 
             // 備考がある場合

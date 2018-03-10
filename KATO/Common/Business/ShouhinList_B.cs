@@ -148,12 +148,12 @@ namespace KATO.Common.Business
                 //副番と大分類またはメーカーがあり、部分検索の場合
                 if (lstString[4] != "" && lstBoolean[1] == true)
                 {
-                    strWhere = strWhere + " AND REPLACE((ISNULL(仮商品.Ｃ２, '') + ISNULL(仮商品.Ｃ３, '') + ISNULL(仮商品.Ｃ４, '') + ISNULL(仮商品.Ｃ５, '') + ISNULL(仮商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[4] + "%'";
+                    strWhere = strWhere + " AND REPLACE((ISNULL(仮商品.Ｃ２, '') + ISNULL(仮商品.Ｃ３, '') + ISNULL(仮商品.Ｃ４, '') + ISNULL(仮商品.Ｃ５, '') + ISNULL(仮商品.Ｃ６, '') ),' ' ,'') LIKE '%" + lstString[4].Replace(" ", "") + "%'";
                 }
                 //副番と大分類またはメーカーがあり、完全一致検索の場合
                 else if (lstString[4] != "" && lstBoolean[1] == false)
                 {
-                    strWhere = strWhere + " AND REPLACE((ISNULL(仮商品.Ｃ２, '') + ISNULL(仮商品.Ｃ３, '') + ISNULL(仮商品.Ｃ４, '') + ISNULL(仮商品.Ｃ５, '') + ISNULL(仮商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[4] + "'";
+                    strWhere = strWhere + " AND REPLACE((ISNULL(仮商品.Ｃ２, '') + ISNULL(仮商品.Ｃ３, '') + ISNULL(仮商品.Ｃ４, '') + ISNULL(仮商品.Ｃ５, '') + ISNULL(仮商品.Ｃ６, '') ),' ' ,'') LIKE '" + lstString[4].Replace(" ", "") + "'";
                 }
                 else
                 {

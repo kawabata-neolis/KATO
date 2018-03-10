@@ -185,32 +185,32 @@ namespace KATO.Business.D0320_SiireJissekiKakunin
             // 型番がある場合
             if (!lstItem[9].Equals(""))
             {
-                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[9] + "%' )";
+                andSql += " AND ( (REPLACE(ISNULL(cb.中分類名,''), ' ', '') + REPLACE(ISNULL(sm.Ｃ１, ''), ' ', '' ) ";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ２, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ３, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ４, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ５, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ６, ''), ' ', '' ) ) LIKE '%" + lstItem[9].Replace(" ", "") + "%' )";
             }
 
             if (!lstItem[10].Equals(""))
             {
-                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[10] + "%' )";
+                andSql += " AND ( (REPLACE(ISNULL(cb.中分類名,''), ' ', '') + REPLACE(ISNULL(sm.Ｃ１, ''), ' ', '' ) ";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ２, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ３, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ４, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ５, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ６, ''), ' ', '' ) ) LIKE '%" + lstItem[10].Replace(" ", "") + "%' )";
             }
 
             if (!lstItem[11].Equals(""))
             {
-                andSql += " AND ( (RTRIM(ISNULL(cb.中分類名,'')) +  Rtrim(ISNULL(sm.Ｃ１,'')) ";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ２,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ３,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ４,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ５,''))";
-                andSql += " +  Rtrim(ISNULL(sm.Ｃ６,'')) ) LIKE '%" + lstItem[11] + "%' )";
+                andSql += " AND ( (REPLACE(ISNULL(cb.中分類名,''), ' ', '') + REPLACE(ISNULL(sm.Ｃ１, ''), ' ', '' ) ";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ２, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ３, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ４, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ５, ''), ' ', '' )";
+                andSql += " +  REPLACE(ISNULL(sm.Ｃ６, ''), ' ', '' ) ) LIKE '%" + lstItem[11].Replace(" ", "") + "%' )";
             }
             // AND条件にkataban2とkataban3のOR条件を反映
             //andSql = string.Format(andSql, kataban2, kataban3);
