@@ -47,8 +47,8 @@ namespace KATO.Business.D0690_SiireJissekiKakuninAS400
             if (!lstItem[3].Equals(""))
             {
                 strSql += " AND (RTRIM(ISNULL(手打品名,''))";
-                strSql += " + ' ' + Rtrim(ISNULL(型番,''))";
-                strSql += " + ' ' + Rtrim(ISNULL(枝,'')) ) LIKE '%" + lstItem[3] + "%' ";
+                strSql += " + Rtrim(ISNULL(型番,''))";
+                strSql += " + Rtrim(ISNULL(枝,'')) ) LIKE '%" + lstItem[3] + "%' ";
             }
 
             // 備考がある場合

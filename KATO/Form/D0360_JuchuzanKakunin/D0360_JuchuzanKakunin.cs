@@ -529,7 +529,28 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             // パラメータ設定
             setParam(listParam, txtJuchuNo.Text, 0);
             setParam(listParam, txtHachuNo.Text, 1);
-            setParam(listParam, txtHinmei.Text, 2);
+
+            //setParam(listParam, txtHinmei.Text, 2);
+            double dblKensaku = 0;
+            string strUkata;
+            if (!double.TryParse(txtHinmei.Text, out dblKensaku))
+            {
+                //そのまま確保
+                strUkata = txtHinmei.Text;
+            }
+            else
+            {
+                //空白削除
+                strUkata = txtHinmei.Text.Trim();
+            }
+
+            //英字を大文字に
+            strUkata = strUkata.ToUpper();
+
+            strUkata = strUkata.Replace(" ", "");
+
+            setParam(listParam, strUkata, 2);
+
             setParam(listParam, txtChuban.Text, 3);
             setParam(listParam, txtKyakuChuban.Text, 4);
             setParam(listParam, txtJuchuNokiFrom.Text, 5);

@@ -427,7 +427,28 @@ namespace KATO.Form.D0690_SiireJissekiKakuninAS400
                 lstItem.Add(labelSet_Shiiresaki.CodeTxtText);
                 lstItem.Add(txtCalendarYMDStart.Text);
                 lstItem.Add(txtCalendarYMDEnd.Text);
-                lstItem.Add(txtKataban.Text);
+
+                //lstItem.Add(txtKataban.Text);
+                double dblKensaku = 0;
+                string strUkata;
+                if (!double.TryParse(txtKataban.Text, out dblKensaku))
+                {
+                    //そのまま確保
+                    strUkata = txtKataban.Text;
+                }
+                else
+                {
+                    //空白削除
+                    strUkata = txtKataban.Text.Trim();
+                }
+
+                //英字を大文字に
+                strUkata = strUkata.ToUpper();
+
+                strUkata = strUkata.Replace(" ", "");
+
+                lstItem.Add(strUkata);
+
                 lstItem.Add(txtBikou.Text);
 
                 // 検索実行

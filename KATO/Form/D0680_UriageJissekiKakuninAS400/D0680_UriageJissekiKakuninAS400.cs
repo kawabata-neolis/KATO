@@ -418,7 +418,28 @@ namespace KATO.Form.D0680_UriageJissekiKakuninAS400
                 /*[2]得意先コード*/
                 lstUriageSuiiLoad.Add(labelSet_Tokuisaki.CodeTxtText);
                 /*[3]品番・型番*/
-                lstUriageSuiiLoad.Add(txtSinamei_KatabanS.Text);
+
+                //数値チェック
+                double dblKensaku = 0;
+                string strUkata;
+                if (!double.TryParse(txtSinamei_KatabanS.Text, out dblKensaku))
+                {
+                    //そのまま確保
+                    strUkata = txtSinamei_KatabanS.Text;
+                }
+                else
+                {
+                    //空白削除
+                    strUkata = txtSinamei_KatabanS.Text.Trim();
+                }
+
+                //英字を大文字に
+                strUkata = strUkata.ToUpper();
+
+                strUkata = strUkata.Replace(" ", "");
+
+                //lstUriageSuiiLoad.Add(txtSinamei_KatabanS.Text);
+                lstUriageSuiiLoad.Add(strUkata);
                 /*[4]備考*/
                 lstUriageSuiiLoad.Add(txtBikouS.Text);
 
