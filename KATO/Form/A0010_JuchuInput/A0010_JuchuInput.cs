@@ -1006,11 +1006,12 @@ namespace KATO.Form.A0010_JuchuInput
                     f6.Dispose();
                 }
 
-                A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
+               // A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
 
-                DataTable dtH = juchuB.getRireki(strCd);
+                //DataTable dtH = juchuB.getRireki(strCd);
 
-                if (dtH != null && dtH.Rows.Count > 0) {
+                //if (dtH != null && dtH.Rows.Count > 0) {
+                if (selKakoFlg) {
                     lblHonshaShukko.Visible = false;
                     lblGihuShukko.Visible = false;
                     lblHatchusu.Visible = false;

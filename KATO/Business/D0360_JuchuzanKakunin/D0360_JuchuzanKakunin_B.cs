@@ -139,7 +139,7 @@ namespace KATO.Business.D0360_JuchuzanKakunin
 
                 if (!string.IsNullOrWhiteSpace(listParam[2]))
                 {
-                    strQuery += "   AND (dbo.f_get中分類名(a.大分類コード, a.中分類コード)  +  REPLACE(ISNULL(a.Ｃ１, ''), ' ', '' ) ";
+                    strQuery += "   AND (REPLACE(ISNULL(dbo.f_get中分類名(a.大分類コード, a.中分類コード), ''), ' ', '')  +  REPLACE(ISNULL(a.Ｃ１, ''), ' ', '' ) ";
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ２, ''), ' ', '' )";
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ３, ''), ' ', '' )";
                     strQuery += "       +  REPLACE(ISNULL(a.Ｃ４, ''), ' ', '' )";

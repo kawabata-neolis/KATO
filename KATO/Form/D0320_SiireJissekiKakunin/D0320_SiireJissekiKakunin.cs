@@ -947,13 +947,41 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);  // 大分類コード
             lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);  // 中分類コード
             lstSearchItem.Add(labelSet_Maker.CodeTxtText);  // メーカーコード
-            lstSearchItem.Add(txtKataban.Text);                 // 型番1
-            lstSearchItem.Add(txtKataban2.Text);                // 型番2
-            lstSearchItem.Add(txtKataban3.Text);                // 型番3
+
+            //lstSearchItem.Add(txtKataban.Text);                 // 型番1
+            //lstSearchItem.Add(txtKataban2.Text);                // 型番2
+            //lstSearchItem.Add(txtKataban3.Text);                // 型番3
+            lstSearchItem.Add(getUkata(txtKataban.Text));                 // 型番1
+            lstSearchItem.Add(getUkata(txtKataban2.Text));                // 型番2
+            lstSearchItem.Add(getUkata(txtKataban3.Text));                // 型番3
             lstSearchItem.Add(txtBikou.Text);                   // 備考
             lstSearchItem.Add(labelSet_Tokuisaki.CodeTxtText);  // 得意先コード
 
             return lstSearchItem;
+        }
+
+        private string getUkata(string s)
+        {
+            //数値チェック
+            double dblKensaku = 0;
+            string strUkata;
+            if (!double.TryParse(s, out dblKensaku))
+            {
+                //そのまま確保
+                strUkata = s;
+            }
+            else
+            {
+                //空白削除
+                strUkata = s.Trim();
+            }
+
+            //英字を大文字に
+            strUkata = strUkata.ToUpper();
+
+            strUkata = strUkata.Replace(" ", "");
+
+            return strUkata;
         }
 
         /// <summary>

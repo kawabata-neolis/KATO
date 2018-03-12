@@ -60,7 +60,7 @@ namespace KATO.Business.D0680_UriageJissekiKakuninAS400
             //型番を記述した場合
             if (lstString[3] != "")
             {
-                strSQLInput = strSQLInput + " AND (RTRIM(ISNULL(手打品名,'')) + ' ' + Rtrim(ISNULL(型番,'')) + ' ' + Rtrim(ISNULL(枝,'')) ) LIKE '%"+lstString[3]+"%' ";
+                strSQLInput = strSQLInput + " AND (REPLACE(ISNULL(手打品名,''), ' ', '') + REPLACE(ISNULL(型番,''), ' ', '') + REPLACE(ISNULL(枝,''), ' ', '') ) LIKE '%" + lstString[3].Replace(" ", "") + "%' ";
             }
 
             //備考を記述した場合
