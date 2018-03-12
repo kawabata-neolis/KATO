@@ -979,31 +979,31 @@ namespace KATO.Common.Ctl
                 {
                     //切り捨て
                     case 0:
-                        Zeikeisan += (int)Math.Floor(work1);
-                        Zeikeisan += (int)Math.Floor(work2);
-                        Zeikeisan += (int)Math.Floor(work3);
-                        Zeikeisan += (int)Math.Floor(work4);
-                        Zeikeisan += (int)Math.Floor(work5);
+                        ZeiGokei += (int)Math.Floor(work1);
+                        ZeiGokei += (int)Math.Floor(work2);
+                        ZeiGokei += (int)Math.Floor(work3);
+                        ZeiGokei += (int)Math.Floor(work4);
+                        ZeiGokei += (int)Math.Floor(work5);
                         break;
                     //四捨五入
                     case 1:
-                        Zeikeisan += (int)Math.Round(work1);
-                        Zeikeisan += (int)Math.Round(work2);
-                        Zeikeisan += (int)Math.Round(work3);
-                        Zeikeisan += (int)Math.Round(work4);
-                        Zeikeisan += (int)Math.Round(work5);
+                        ZeiGokei += (int)Math.Round(work1, MidpointRounding.AwayFromZero);
+                        ZeiGokei += (int)Math.Round(work2, MidpointRounding.AwayFromZero);
+                        ZeiGokei += (int)Math.Round(work3, MidpointRounding.AwayFromZero);
+                        ZeiGokei += (int)Math.Round(work4, MidpointRounding.AwayFromZero);
+                        ZeiGokei += (int)Math.Round(work5, MidpointRounding.AwayFromZero);
                         break;
                     //切り上げ
                     case 2:
-                        Zeikeisan += (int)Math.Ceiling(work1);
-                        Zeikeisan += (int)Math.Ceiling(work2);
-                        Zeikeisan += (int)Math.Ceiling(work3);
-                        Zeikeisan += (int)Math.Ceiling(work4);
-                        Zeikeisan += (int)Math.Ceiling(work5);
+                        ZeiGokei += (int)Math.Ceiling(work1);
+                        ZeiGokei += (int)Math.Ceiling(work2);
+                        ZeiGokei += (int)Math.Ceiling(work3);
+                        ZeiGokei += (int)Math.Ceiling(work4);
+                        ZeiGokei += (int)Math.Ceiling(work5);
                         break;
                 }
 
-                C_uriageInput.txtZei.Text = Zeikeisan.ToString();
+                C_uriageInput.txtZei.Text = ZeiGokei.ToString("#,0");
             }
             //行以外の場合
             else
@@ -1014,15 +1014,18 @@ namespace KATO.Common.Ctl
                 {
                     //切り捨て
                     case 0:
-                        C_uriageInput.txtZei.Text = ((int)Math.Floor(work1)).ToString();
+                        C_uriageInput.txtZei.Text = ((int)Math.Floor(work1)).ToString("#,0");
                         break;
                     //四捨五入
                     case 1:
-                        C_uriageInput.txtZei.Text = ((int)Math.Floor(work2)).ToString();
+                        //C_uriageInput.txtZei.Text = ((int)Math.Floor(work2)).ToString();
+                        C_uriageInput.txtZei.Text = ((int)Math.Round(work1, MidpointRounding.AwayFromZero)).ToString("#,0");
+
                         break;
                     //切り上げ
                     case 2:
-                        C_uriageInput.txtZei.Text = ((int)Math.Floor(work3)).ToString();
+                        //C_uriageInput.txtZei.Text = ((int)Math.Floor(work3)).ToString();
+                        C_uriageInput.txtZei.Text = ((int)Math.Ceiling(work1)).ToString("#,0");
                         break;
                 }
             }
@@ -1187,7 +1190,7 @@ namespace KATO.Common.Ctl
 
             try
             {
-                string strSQLInput = " SELECT 消費税率 FROM 消費税率 WHERE 適用開始年月日= (SELECT MAX(適用開始年月日) FROM 消費税率 WHERE 適用開始年月日 <= '" + strYMD + "')";
+                string strSQLInput = " SELECT 消費税率 FROM 消費税率 WHERE 適用開始年月日= (SELECT MAX(適用開始年月日) FROM 消費税率 WHERE 適用開始年月日 <= '" + strYMD + "' AND 削除 ='N')";
 
                 //SQLのインスタンス作成
                 DBConnective dbconnective = new DBConnective();
