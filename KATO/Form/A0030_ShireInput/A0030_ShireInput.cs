@@ -707,6 +707,8 @@ namespace KATO.Form.A0030_ShireInput
                             strShohinCd = bvg[intCnt].txtShohinCd.Text;
                         }
 
+                        lstMesaiKoshin = new List<string>();
+
                         //仕入明細更新用のデータ追加
                         lstMesaiKoshin.Add(intDenpyoNo.ToString());                                             //伝票番号
                         lstMesaiKoshin.Add((intCnt + 1).ToString() );                                           //行番号
@@ -1977,7 +1979,14 @@ namespace KATO.Form.A0030_ShireInput
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu1.Text);
 
-                    gbData1.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    if (dtSetCd != null && dtSetCd.Rows.Count > 0)
+                    {
+                        gbData1.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    }
+                    else
+                    {
+                        gbData1.txtTokuisaki.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -2024,7 +2033,14 @@ namespace KATO.Form.A0030_ShireInput
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu2.Text);
 
-                    gbData2.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    if (dtSetCd != null && dtSetCd.Rows.Count > 0)
+                    {
+                        gbData2.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    }
+                    else
+                    {
+                        gbData2.txtTokuisaki.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -2071,7 +2087,14 @@ namespace KATO.Form.A0030_ShireInput
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu3.Text);
 
-                    gbData3.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    if (dtSetCd != null && dtSetCd.Rows.Count > 0)
+                    {
+                        gbData3.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    }
+                    else
+                    {
+                        gbData3.txtTokuisaki.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -2118,8 +2141,14 @@ namespace KATO.Form.A0030_ShireInput
                     dtSetCd.Clear();
                     dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu4.Text);
 
-                    gbData4.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
-
+                    if (dtSetCd != null && dtSetCd.Rows.Count > 0)
+                    {
+                        gbData4.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    }
+                    else
+                    {
+                        gbData4.txtTokuisaki.Text = "";
+                    }
                 }
             }
             catch (Exception ex)
@@ -2134,7 +2163,7 @@ namespace KATO.Form.A0030_ShireInput
         }
 
         ///<summary>
-        ///txtJuchu5_TextChanged
+        ///txtJuchu5_TextChangedgetJuchuTokusaikimei
         ///受注番号5が変更になった場合
         ///</summary>
         private void txtJuchu5_TextChanged(object sender, EventArgs e)
@@ -2164,10 +2193,16 @@ namespace KATO.Form.A0030_ShireInput
                     txtTanka5.updPriceMethod();
 
                     dtSetCd.Clear();
-                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtTanka5.Text);
+                    dtSetCd = shireinputB.getJuchuTokusaikimei(txtJuchu5.Text);
 
-                    gbData5.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
-
+                    if (dtSetCd != null && dtSetCd.Rows.Count > 0)
+                    {
+                        gbData5.txtTokuisaki.Text = dtSetCd.Rows[0]["得意先名称"].ToString();
+                    }
+                    else
+                    {
+                        gbData5.txtTokuisaki.Text = "";
+                    }
                 }
             }
             catch (Exception ex)

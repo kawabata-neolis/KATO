@@ -232,7 +232,7 @@ namespace KATO.Business.E0340_SiiresakiMotochouKakunin
                         TokuiUrikin = dat["仕入金額"],     //[7]
                         TokuiNyukin = dat["支払金額"],     //[8]
                         TokuiSashiZan = dat["差引残高"],   //[9]
-                        TokuiBiko = dat["備考"],           //[11]
+                        TokuiBiko = dat["備考"],           //[10]
                     }).ToList();
 
                 // リストをデータテーブルに変換
@@ -489,16 +489,16 @@ namespace KATO.Business.E0340_SiiresakiMotochouKakunin
                                 currentsheet.Cell(xlsRowCnt, colCnt - 2).Value = "";
                             }
                         }
-                        //得意先コード、得意先名、担当者名はスルー
-                        else if (colCnt == 1 || colCnt == 2 || colCnt == 11)
+                        //得意先コード、得意先名はスルー
+                        else if (colCnt == 1 || colCnt == 2)
                         {
                             //スルー
                         }
                         //備考
-                        else if (colCnt == 12)
+                        else if (colCnt == 11)
                         {
-                            currentsheet.Cell(xlsRowCnt, colCnt - 3).Value = str;
-                            currentsheet.Cell(xlsRowCnt, colCnt - 3).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
+                            currentsheet.Cell(xlsRowCnt, colCnt - 2).Value = str;
+                            currentsheet.Cell(xlsRowCnt, colCnt - 2).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Left;
                         }
                         //年月日、区分、商品名の場合
                         else

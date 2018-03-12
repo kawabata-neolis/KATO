@@ -236,7 +236,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(28, 0, 28, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(37, 0, 37, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -306,7 +306,7 @@
             this.lblTokuisakiCd.Size = new System.Drawing.Size(103, 15);
             this.lblTokuisakiCd.strToolTip = null;
             this.lblTokuisakiCd.TabIndex = 100;
-            this.lblTokuisakiCd.Text = "得意先コード";
+            this.lblTokuisakiCd.Text = "仕入先コード";
             this.lblTokuisakiCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbl2

@@ -373,15 +373,19 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 return;
             }
 
-            //空チェック（終了得意先コード）
-            if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
             {
-                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
+                //空チェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+                {
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                lblsetTokuisakiCdclose.Focus();
-                return;
+                    lblsetTokuisakiCdclose.Focus();
+                    return;
+                }
             }
 
             //日付フォーマット生成、およびチェック
@@ -593,8 +597,12 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone,lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -616,8 +624,12 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -636,6 +648,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
