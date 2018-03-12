@@ -3157,6 +3157,10 @@ namespace KATO.Form.A0020_UriageInput
                         this.setCyokuList();
                     }
                     break;
+                case Keys.Enter:
+                    //TABボタンと同じ効果
+                    SendKeys.Send("{TAB}");
+                    break;
                 default:
                     break;
             }
