@@ -3232,6 +3232,9 @@ namespace KATO.Form.A0020_UriageInput
                 return;
             }
 
+            //0パディング
+            txtCyoku.Text = txtCyoku.Text.PadLeft(4, '0');
+
             //直先リストチェックへ
             Cyoku_Check();
 
@@ -3262,7 +3265,6 @@ namespace KATO.Form.A0020_UriageInput
 
                 if (dtSetView.Rows.Count == 0)
                 {
-                    txtCyoku.Text = "";
                     txtYubin_C.Text = "";
                     txtAdr1_C.Text = "";
                     txtAdr2_C.Text = "";

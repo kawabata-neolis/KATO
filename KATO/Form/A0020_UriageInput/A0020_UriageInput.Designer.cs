@@ -711,7 +711,7 @@
             this.txtCyoku.Size = new System.Drawing.Size(141, 22);
             this.txtCyoku.TabIndex = 0;
             this.txtCyoku.ModifiedChanged += new System.EventHandler(this.txtModified);
-            this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCyoku_KeyDown);
             this.txtCyoku.Leave += new System.EventHandler(this.txtCyoku_Leave);
             // 
             // baseLabel14
