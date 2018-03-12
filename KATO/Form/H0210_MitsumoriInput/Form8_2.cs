@@ -384,6 +384,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void Form8_2_Shown(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(100);
             this.Activate();
             this.ActiveControl = txtFrom;
         }
