@@ -811,6 +811,8 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                 return;
             }
 
+            this.Cursor = Cursors.WaitCursor;
+
             // ビジネス層のインスタンス生成
             C0480_SiireSuiiHyo_B siiresuiihyoB = new C0480_SiireSuiiHyo_B();
             try
@@ -830,6 +832,8 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                 // 検索実行（印刷用）
                 DataTable dtSiireSuiiList = siiresuiihyoB.getSiireSuiiList(lstSearchItem, "print");
 
+                this.Cursor = Cursors.Default;
+
                 if (dtSiireSuiiList.Rows.Count > 0)
                 {
                     // 印刷ダイアログ
@@ -839,27 +843,38 @@ namespace KATO.Form.C0480_SiireSuiiHyo
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
 
+                        this.Cursor = Cursors.Default;
+
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = siiresuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                        this.Cursor = Cursors.Default;
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
                     }
 
+                    this.Cursor = Cursors.Default;
+
                     pf.Dispose();
                 }
                 else
                 {
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();

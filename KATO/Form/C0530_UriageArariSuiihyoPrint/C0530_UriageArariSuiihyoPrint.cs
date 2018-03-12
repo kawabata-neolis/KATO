@@ -391,6 +391,8 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                     }
                 }
 
+                this.Cursor = Cursors.WaitCursor;
+
                 for (int cnt = 0; cnt < cntYear; cnt++)
                 {
                     // 検索実行
@@ -409,6 +411,8 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                     lstSearchItem[0] = dtYmdFrom.ToString();
                 }
 
+                this.Cursor = Cursors.Default;
+
                 // 対象データがある場合
                 if (blnData)
                 {
@@ -421,8 +425,12 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = suiihyoPrint_B.dbToPdf(lstDtSuiihyo, lstSearchItem);
+
+                        this.Cursor = Cursors.Default;
 
                         // プレビュー
                         pf.execPreview(strFile);
@@ -430,8 +438,12 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = suiihyoPrint_B.dbToPdf(lstDtSuiihyo, lstSearchItem);
+
+                        this.Cursor = Cursors.Default;
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
@@ -441,6 +453,8 @@ namespace KATO.Form.C0530_UriageArariSuiihyoPrint
                 }
                 else
                 {
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();

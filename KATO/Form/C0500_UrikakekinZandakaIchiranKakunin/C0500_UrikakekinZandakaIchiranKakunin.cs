@@ -617,8 +617,12 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -640,8 +644,12 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
                     lstTorihiki.Add(DateTime.Now.ToString());
                     lstTorihiki.Add(SystemInformation.UserName);
 
+                    this.Cursor = Cursors.WaitCursor;
+
                     //結果セットをレコードセットに
                     strFile = urikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+
+                    this.Cursor = Cursors.Default;
 
                     //印刷できなかった場合
                     if (strFile == "")
@@ -660,6 +668,8 @@ namespace KATO.Form.C0500_UrikakekinZandakaIchiranKakunin
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 //データロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）

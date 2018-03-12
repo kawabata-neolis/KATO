@@ -803,6 +803,8 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 return;
             }
 
+            this.Cursor = Cursors.WaitCursor;
+
             // ビジネス層のインスタンス生成
             C0490_UriageSuiiHyo_B uriagesuiihyoB = new C0490_UriageSuiiHyo_B();
             try
@@ -822,29 +824,53 @@ namespace KATO.Form.C0490_UriageSuiiHyo
                 
                 // 検索実行（印刷用）
                 DataTable dtSiireSuiiList = uriagesuiihyoB.getUriageSuiiList(lstSearchItem, "print");
-                
-                // 印刷ダイアログ
-                Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
 
-                pf.ShowDialog(this);
-                if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                this.Cursor = Cursors.Default;
+
+                if (dtSiireSuiiList.Rows.Count > 0)
                 {
-                    // PDF作成
-                    string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
-                    pf.execPreview(@strFile);
+                    // 印刷ダイアログ
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
+                    pf.ShowDialog(this);
+
+                    // プレビューの場合
+                    if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+
+                        // PDF作成
+                        string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                        this.Cursor = Cursors.Default;
+
+                        pf.execPreview(@strFile);
+                    }
+                    // 一括印刷の場合
+                    else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+
+                        // PDF作成
+                        string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+
+                        this.Cursor = Cursors.Default;
+
+                        // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
+                        // ダイアログ表示時は最後の引数はtrue
+                        // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
+                        pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                    }
+
+                    pf.Dispose();
                 }
-                else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                else
                 {
-                    // PDF作成
-                    string strFile = uriagesuiihyoB.dbToPdf(dtSiireSuiiList, lstSearchItem[0]);
+                    this.Cursor = Cursors.Default;
 
-                    // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
-                    // ダイアログ表示時は最後の引数はtrue
-                    // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
-                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                    // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
                 }
-
-                pf.Dispose();
             }
             catch (Exception ex)
             {

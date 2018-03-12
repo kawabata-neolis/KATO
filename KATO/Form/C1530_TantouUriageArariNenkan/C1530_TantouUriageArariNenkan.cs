@@ -676,8 +676,12 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
             C1530_TantouUriageArariNenkan_B uriagePrint_B = new C1530_TantouUriageArariNenkan_B();
             try
             {
+                this.Cursor = Cursors.WaitCursor;
+
                 // 検索実行
                 DataTable dtUriage = uriagePrint_B.getUriage(lstSearchItem);
+
+                this.Cursor = Cursors.Default;
 
                 // 対象データがある場合
                 if (dtUriage != null && dtUriage.Rows.Count > 0)
@@ -689,18 +693,25 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
 
+                        this.Cursor = Cursors.Default;
+
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
+                        this.Cursor = Cursors.WaitCursor;
+
                         // PDF作成
                         String strFile = uriagePrint_B.dbToPdf(dtUriage, lstSearchItem);
+
+                        this.Cursor = Cursors.Default;
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_A3, CommonTeisu.YOKO, true);
@@ -710,6 +721,8 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
                 }
                 else
                 {
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -718,6 +731,8 @@ namespace KATO.Form.C1530_TantouUriageArariNenkan
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 

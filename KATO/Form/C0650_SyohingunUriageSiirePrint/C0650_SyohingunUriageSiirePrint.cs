@@ -216,6 +216,7 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             // データ検索用
             List<string> lstSearchItem = new List<string>();
 
+            this.Cursor = Cursors.WaitCursor;
 
             // ビジネス層のインスタンス生成
             C0650_SyohingunUriageSiirePrint_B syohingunuriagesiireprintB = new C0650_SyohingunUriageSiirePrint_B();
@@ -236,7 +237,8 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
 
                 // 検索実行（印刷用）
                 DataTable dtSyohingunUriageSiire = syohingunuriagesiireprintB.getSyohingunUriageSiireItiran(lstSearchItem);
-                
+
+                this.Cursor = Cursors.Default;
 
                 // レコードが0件だった場合は終了）
                 if (dtSyohingunUriageSiire.Rows.Count <= 0)
@@ -253,15 +255,23 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 pf.ShowDialog(this);
                 if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     //PDF作成
                     string strFile = syohingunuriagesiireprintB.dbToPdf(dtSyohingunUriageSiire);
+
+                    this.Cursor = Cursors.Default;
 
                     pf.execPreview(@strFile);
                 }
                 else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+
                     //PDF作成
                     string strFile = syohingunuriagesiireprintB.dbToPdf(dtSyohingunUriageSiire);
+
+                    this.Cursor = Cursors.Default;
 
                     // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
                     // ダイアログ表示時は最後の引数はtrue
@@ -274,6 +284,8 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 
