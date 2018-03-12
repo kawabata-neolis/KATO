@@ -802,6 +802,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "SELECT 注番文字";
             strQuery += "  FROM 担当者";
             strQuery += " WHERE 削除     = 'N'";
+            strQuery += "   AND 担当者コード     = '" + cd + "'";
 
             DBConnective dbCon = new DBConnective();
             try

@@ -1012,6 +1012,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                 //if (dtH != null && dtH.Rows.Count > 0) {
                 if (selKakoFlg) {
+                    panel1.Visible = false;
                     lblHonshaShukko.Visible = false;
                     lblGihuShukko.Visible = false;
                     lblHatchusu.Visible = false;
@@ -3231,6 +3232,15 @@ namespace KATO.Form.A0010_JuchuInput
                     f6.Activate();
                     return;
                 }
+
+                panel1.Visible = false;
+                lblHonshaShukko.Visible = false;
+                lblGihuShukko.Visible = false;
+                lblHatchusu.Visible = false;
+                txtHonshaShukko.Visible = false;
+                txtGihuShukko.Visible = false;
+                txtHatchusu.Visible = false;
+
                 f6 = new Form6(this);
                 f6.strJuchuNo = txtJuchuNo.Text;
 
