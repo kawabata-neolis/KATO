@@ -16,7 +16,7 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
 {
     ///<summary>
     ///C0650_SyohingunUriageSiirePrint
-    ///商品群別売上仕入管理表
+    ///請求一覧表
     ///作成者：太田
     ///作成日：2017/07/20
     ///更新者：
