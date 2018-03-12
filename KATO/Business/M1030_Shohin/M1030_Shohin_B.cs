@@ -71,20 +71,25 @@ namespace KATO.Business.M1030_Shohin
                     DataTable dtTantoshaCd = new DataTable();
 
                     //SQLファイルのパスとファイル名を入れる用
-                    List<string> lstSQL = new List<string>();
+                    List<string> lstSQLKariSelect = new List<string>();
+                    List<string> lstSQLKariUpdate = new List<string>();
 
                     //SQLファイルのパス用（フォーマット後）
                     string strSQLInput = "";
+                    
+                    //SQLファイルのパスとファイル名を追加
+                    lstSQLKariSelect.Add("M1030_Shohin");
+                    lstSQLKariSelect.Add("Shohin_DataKari_ShohinCd_SELECT");
 
                     //SQLファイルのパスとファイル名を追加
-                    lstSQL.Add("M1030_Shohin");
-                    lstSQL.Add("Shohin_KariToroku_UPDATE");
+                    lstSQLKariUpdate.Add("M1030_Shohin");
+                    lstSQLKariUpdate.Add("Shohin_KariToroku_UPDATE");
 
                     //SQL発行
                     OpenSQL opensql = new OpenSQL();
 
                     //SQLファイルのパス取得
-                    strSQLInput = opensql.setOpenSQL(lstSQL);
+                    strSQLInput = opensql.setOpenSQL(lstSQLKariSelect);
 
                     //パスがなければ返す
                     if (strSQLInput == "")
@@ -94,11 +99,32 @@ namespace KATO.Business.M1030_Shohin
 
                     //SQLファイルと該当コードでフォーマット
                     strSQLInput = string.Format(strSQLInput,
-                                                lstString[0]   //商品コード
+                                                lstString[22]   //テキスト商品コード
                                                 );
 
-                    //仮商品データ更新（削除フラグを立てる）
-                    dbconnective.RunSql(strSQLInput);
+                    //仮商品データの存在確認
+                    dtTantoshaCd = dbconnective.ReadSql(strSQLInput);
+
+                    //データの存在確認
+                    if (dtTantoshaCd.Rows.Count > 0)
+                    {
+                        //SQLファイルのパス取得
+                        strSQLInput = opensql.setOpenSQL(lstSQLKariUpdate);
+
+                        //パスがなければ返す
+                        if (strSQLInput == "")
+                        {
+                            return;
+                        }
+
+                        //SQLファイルと該当コードでフォーマット
+                        strSQLInput = string.Format(strSQLInput,
+                                                    dtTantoshaCd.Rows[0][0]   //仮商品の商品コード
+                                                    );
+
+                        //仮商品データ更新（削除フラグを立てる）
+                        dbconnective.RunSql(strSQLInput);
+                    }
                 }
                 else
                 {

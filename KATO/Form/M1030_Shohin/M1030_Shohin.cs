@@ -803,6 +803,9 @@ namespace KATO.Form.M1030_Shohin
                         lstString[0] = strShohinCdMax;
                     }
 
+                    //現在の商品コードを確保（仮商品データにYフラグを立てる用）
+                    lstString.Add(txtShohinCd.Text);
+
                     shohinB.addShohin(lstString, blnKanri);
                 }
                 //修正登録
