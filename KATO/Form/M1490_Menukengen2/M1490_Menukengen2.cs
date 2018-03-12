@@ -122,6 +122,11 @@ namespace KATO.Form.M1490_Menukengen2
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    if (this.ActiveControl == labelSet_Menu)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        showMenuList();
+                    }
                     break;
                 case Keys.F10:
                     break;
@@ -283,7 +288,7 @@ namespace KATO.Form.M1490_Menukengen2
         ///</summary>
         private void showMenuList()
         {
-            MenuList menulist = new MenuList(this);
+            MenuList menulist = new MenuList(this, labelSet_Menu);
             try
             {
                 // 一覧画面表示
