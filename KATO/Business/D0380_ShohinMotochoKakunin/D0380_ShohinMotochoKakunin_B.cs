@@ -491,6 +491,10 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
 
                 for (int intCnt = 0; intCnt < dtGetTableGrid.Rows.Count; intCnt++)
                 {
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["在庫数"].ToString()) == false)
+                    {
+                        dtGetTableGrid.Rows[intCnt]["在庫数"] = 0;
+                    }
                     if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) == false)
                     {
                         dtGetTableGrid.Rows[intCnt]["入庫数"] = 0;
@@ -499,23 +503,51 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                     {
                         dtGetTableGrid.Rows[intCnt]["出庫数"] = 0;
                     }
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["単価"].ToString()) == false)
+                    {
+                        dtGetTableGrid.Rows[intCnt]["単価"] = 0;
+                    }
 
                     if (intCnt == 0)
                     {
                         if (lstString[1] == "0001")
                         {
+                            //本社前月在庫数が0の場合
+                            if (lstString[4].ToString().Trim() == "")
+                            {
+                                lstString[4] = "0";
+                            }
+
                             dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(lstString[4]) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
+
                         }
                         else
                         {
+                            //岐阜前月在庫数が0の場合
+                            if (lstString[5].ToString().Trim() == "")
+                            {
+                                lstString[5] = "0";
+                            }
+
                             dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(lstString[5]) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
                         }
                     }
                     else
                     {
-                        dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(dtGetTableGrid.Rows[intCnt - 1]["在庫数"].ToString()) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
-                    }
+                        //一行前の在庫数がNULLの場合
+                        if (dtGetTableGrid.Rows[intCnt - 1]["在庫数"].ToString().Trim() == "")
+                        {
+                            dtGetTableGrid.Rows[intCnt - 1]["在庫数"] = "0";
 
+                            dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(dtGetTableGrid.Rows[intCnt - 1]["在庫数"].ToString()) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
+
+                            dtGetTableGrid.Rows[intCnt - 1]["在庫数"] = DBNull.Value;
+                        }
+                        else
+                        {
+                            dtGetTableGrid.Rows[intCnt]["在庫数"] = double.Parse(dtGetTableGrid.Rows[intCnt - 1]["在庫数"].ToString()) + double.Parse(dtGetTableGrid.Rows[intCnt]["入庫数"].ToString()) - double.Parse(dtGetTableGrid.Rows[intCnt]["出庫数"].ToString());
+                        }
+                    }
 
                     //入庫数が0の場合
                     if (dtGetTableGrid.Rows[intCnt]["入庫数"].ToString() == "0")
