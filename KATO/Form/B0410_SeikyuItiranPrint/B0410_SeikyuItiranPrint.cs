@@ -334,7 +334,7 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                     // 用紙サイズ、印刷方向はインスタンス生成と同じ値を入れる
                     // ダイアログ表示時は最後の引数はtrue
                     // （ダイアログ非経由の直接印刷時は先頭引数にプリンタ名を入れ、最後の引数をfalseに）
-                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_B4, CommonTeisu.YOKO, true);
+                    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                 }
 
                 //元に戻す
