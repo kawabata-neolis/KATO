@@ -381,7 +381,7 @@
             // txtData6
             // 
             this.txtData6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData6.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData6.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData6.Location = new System.Drawing.Point(1205, 320);
             this.txtData6.MaxLength = 20;
             this.txtData6.Name = "txtData6";
@@ -394,7 +394,7 @@
             // txtData5
             // 
             this.txtData5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData5.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData5.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData5.Location = new System.Drawing.Point(1025, 320);
             this.txtData5.MaxLength = 20;
             this.txtData5.Name = "txtData5";
@@ -407,7 +407,7 @@
             // txtData4
             // 
             this.txtData4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData4.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData4.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData4.Location = new System.Drawing.Point(845, 320);
             this.txtData4.MaxLength = 20;
             this.txtData4.Name = "txtData4";
@@ -420,7 +420,7 @@
             // txtData3
             // 
             this.txtData3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData3.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData3.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData3.Location = new System.Drawing.Point(665, 320);
             this.txtData3.MaxLength = 20;
             this.txtData3.Name = "txtData3";
@@ -433,7 +433,7 @@
             // txtData2
             // 
             this.txtData2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData2.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData2.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData2.Location = new System.Drawing.Point(485, 320);
             this.txtData2.MaxLength = 20;
             this.txtData2.Name = "txtData2";
@@ -446,7 +446,7 @@
             // txtData1
             // 
             this.txtData1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtData1.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtData1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtData1.Location = new System.Drawing.Point(143, 320);
             this.txtData1.MaxLength = 40;
             this.txtData1.Name = "txtData1";
@@ -466,6 +466,7 @@
             this.txtHyoka.intShishagonyu = 2;
             this.txtHyoka.Location = new System.Drawing.Point(143, 494);
             this.txtHyoka.MaxLength = 18;
+            this.txtHyoka.MinusFlg = true;
             this.txtHyoka.Name = "txtHyoka";
             this.txtHyoka.Size = new System.Drawing.Size(111, 22);
             this.txtHyoka.TabIndex = 13;
@@ -484,6 +485,7 @@
             this.txtShire.intShishagonyu = 2;
             this.txtShire.Location = new System.Drawing.Point(143, 464);
             this.txtShire.MaxLength = 18;
+            this.txtShire.MinusFlg = true;
             this.txtShire.Name = "txtShire";
             this.txtShire.Size = new System.Drawing.Size(111, 22);
             this.txtShire.TabIndex = 12;
@@ -502,6 +504,7 @@
             this.txtTeika.intShishagonyu = 2;
             this.txtTeika.Location = new System.Drawing.Point(426, 434);
             this.txtTeika.MaxLength = 18;
+            this.txtTeika.MinusFlg = true;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(111, 22);
             this.txtTeika.TabIndex = 15;
@@ -520,6 +523,7 @@
             this.txtHyojun.intShishagonyu = 2;
             this.txtHyojun.Location = new System.Drawing.Point(143, 434);
             this.txtHyojun.MaxLength = 13;
+            this.txtHyojun.MinusFlg = true;
             this.txtHyojun.Name = "txtHyojun";
             this.txtHyojun.Size = new System.Drawing.Size(111, 22);
             this.txtHyojun.TabIndex = 11;
@@ -783,6 +787,7 @@
             this.txtHako.intShishagonyu = 0;
             this.txtHako.Location = new System.Drawing.Point(426, 464);
             this.txtHako.MaxLength = 15;
+            this.txtHako.MinusFlg = true;
             this.txtHako.Name = "txtHako";
             this.txtHako.Size = new System.Drawing.Size(55, 22);
             this.txtHako.TabIndex = 16;
@@ -873,6 +878,7 @@
             this.txtTatene.intShishagonyu = 2;
             this.txtTatene.Location = new System.Drawing.Point(143, 524);
             this.txtTatene.MaxLength = 18;
+            this.txtTatene.MinusFlg = true;
             this.txtTatene.Name = "txtTatene";
             this.txtTatene.Size = new System.Drawing.Size(111, 22);
             this.txtTatene.TabIndex = 14;
