@@ -55,21 +55,27 @@ namespace KATO.Business.A0670_SiiresakiSiirekakunin
                     andSql += " AND b.中分類コード = '" + arrSearch[4] + "'";
                 }
 
-                // 品名・型番が入力されている場合
+                // 中分類コードが入力されている場合
                 if (arrSearch[5] != "")
+                {
+                    andSql += " AND b.メーカーコード = '" + arrSearch[5] + "'";
+                }
+
+                // 品名・型番が入力されている場合
+                if (arrSearch[6] != "")
                 {
                     andSql += " AND (RTRIM(ISNULL(dbo.f_get中分類名(b.大分類コード,b.中分類コード),'')) +  Rtrim(ISNULL(b.Ｃ１,'')) ";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ２,''))";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ３,''))";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ４,''))";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ５,''))";
-                    andSql += " +  Rtrim(ISNULL(b.Ｃ６,'')) ) LIKE '%" + arrSearch[5] + "%' AS 品名型番";
+                    andSql += " +  Rtrim(ISNULL(b.Ｃ６,'')) ) LIKE '%" + arrSearch[6] + "%' AS 品名型番";
                 }
 
                 // 備考が入力されている場合
-                if (arrSearch[6] != "")
+                if (arrSearch[7] != "")
                 {
-                    andSql += " AND 備考 LIKE '%" + arrSearch[6] + "%'";
+                    andSql += " AND 備考 LIKE '%" + arrSearch[7] + "%'";
                 }
 
                 // 表示選択
