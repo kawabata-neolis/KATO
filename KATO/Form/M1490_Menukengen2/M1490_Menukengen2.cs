@@ -293,6 +293,10 @@ namespace KATO.Form.M1490_Menukengen2
             {
                 // 一覧画面表示
                 menulist.StartPosition = FormStartPosition.Manual;
+
+                menulist.Left = this.Left + (this.Width - menulist.Width) / 2;
+                menulist.Top = this.Top + (this.Height - menulist.Height) / 2;
+
                 menulist.intFrmKind = CommonTeisu.FRM_MENUKENGEN2;
                 menulist.ShowDialog();
             }
