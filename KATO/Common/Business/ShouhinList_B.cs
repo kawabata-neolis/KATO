@@ -50,19 +50,19 @@ namespace KATO.Common.Business
                 //大分類あり
                 if (lstString[0] != "")
                 {
-                    strWhere = strWhere + " AND 商品.大分類コード = " + lstString[0];
+                    strWhere = strWhere + " AND 商品.大分類コード = '" + lstString[0] + "'";
                 }
 
                 //大分類と中分類共に記入されている場合
                 if (lstString[0] != "" && lstString[1] != "")
                 {
-                    strWhere = strWhere + " AND 商品.中分類コード = " + lstString[1];
+                    strWhere = strWhere + " AND 商品.中分類コード = '" + lstString[1] + "'";
                 }
 
                 //メーカーと大分類あり
                 if (lstString[2] != "")
                 {
-                    strWhere = strWhere + " AND 商品.メーカーコード = " + lstString[2];
+                    strWhere = strWhere + " AND 商品.メーカーコード = '" + lstString[2] + "'";
                 }
 
                 //検索文字列と大分類またはメーカーがあり、部分検索の場合
@@ -115,19 +115,19 @@ namespace KATO.Common.Business
                 //大分類あり
                 if (lstString[0] != "")
                 {
-                    strWhere = strWhere + " AND 仮商品.大分類コード = " + lstString[0];
+                    strWhere = strWhere + " AND 仮商品.大分類コード = '" + lstString[0] +"'";
                 }
 
                 //大分類と中分類共に記入されている場合
                 if (lstString[0] != "" && lstString[1] != "")
                 {
-                    strWhere = strWhere + " AND 仮商品.中分類コード = " + lstString[1];
+                    strWhere = strWhere + " AND 仮商品.中分類コード = '" + lstString[1] + "'";
                 }
 
                 //メーカーと大分類あり
                 if (lstString[2] != "")
                 {
-                    strWhere = strWhere + " AND 仮商品.メーカーコード = " + lstString[2];
+                    strWhere = strWhere + " AND 仮商品.メーカーコード = '" + lstString[2] + "'";
                 }
 
                 //検索文字列と大分類またはメーカーがあり、部分検索の場合

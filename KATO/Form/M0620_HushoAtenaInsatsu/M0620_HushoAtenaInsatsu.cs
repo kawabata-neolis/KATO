@@ -362,12 +362,12 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                         if (blNaga4 == true)
                         {
                             // 一括印刷
-                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO, true);
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO, YOKO);
                         }
                         else
                         {
                             // 一括印刷
-                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO, true);
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO, YOKO);
                         }
                     }
 

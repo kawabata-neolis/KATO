@@ -165,8 +165,12 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
                 // テンプレートシート削除
                 templatesheet1.Delete();
 
-                // workbookを保存
                 string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+
+                //横にする
+                workbook.PageOptions.PageOrientation = XLPageOrientation.Landscape;
+
+                // workbookを保存
                 workbook.SaveAs(strOutXlsFile);
 
                 // workbookを解放
