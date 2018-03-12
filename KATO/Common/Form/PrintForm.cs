@@ -235,6 +235,21 @@ namespace KATO.Common.Form
                     {
                         switches.Add("-dManualFeed");
                         switches.Add("-dCasset=1");
+
+                        if (tateFlg)
+                        {
+                            switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[1]);
+                            switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[0]);
+                            //switches.Add("-sPAPERSIZE=" + stSize);
+                            //switches.Add("-g" + lstSize[1] + "x" + lstSize[0]);
+                        }
+                        else
+                        {
+                            //横指定A4
+                            switches.Add("-dDEVICEWIDTHPOINTS=" + lstSize[0]);
+                            switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
+                            //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
+                        }
                     }
                     else
                     {
