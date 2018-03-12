@@ -408,7 +408,7 @@
             this.lblInsasuMemo.Size = new System.Drawing.Size(295, 15);
             this.lblInsasuMemo.strToolTip = null;
             this.lblInsasuMemo.TabIndex = 113;
-            this.lblInsasuMemo.Text = "※得意先の範囲指定は印刷時のみです。";
+            this.lblInsasuMemo.Text = "※仕入先の範囲指定は印刷時のみです。";
             this.lblInsasuMemo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // baseLabel6
@@ -440,7 +440,7 @@
             this.radSet_Insatsu.intJudBtn = 20;
             this.radSet_Insatsu.LabelTitle = "";
             this.radSet_Insatsu.Location = new System.Drawing.Point(7, 20);
-            this.radSet_Insatsu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radSet_Insatsu.Margin = new System.Windows.Forms.Padding(4);
             this.radSet_Insatsu.Name = "radSet_Insatsu";
             this.radSet_Insatsu.PositionLabelTitle_X = 0;
             this.radSet_Insatsu.PositionLabelTitle_Y = 0;
@@ -458,7 +458,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
