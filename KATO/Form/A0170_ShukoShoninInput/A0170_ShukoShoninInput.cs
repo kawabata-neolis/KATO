@@ -644,6 +644,9 @@ namespace KATO.Form.A0170_ShukoShoninInput
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                 }
+
+                ////グリッド再表示
+                //setGridData();
             }
             catch (Exception ex)
             {
@@ -663,8 +666,11 @@ namespace KATO.Form.A0170_ShukoShoninInput
         ///</summary>
         private void addSoukoIdouData()
         {
-            //データ追加用（テーブル名）
+            //データ追加用（テーブル名、倉庫間移動更新用）
             List<string> lstTableName = new List<string>();
+
+            //データ追加用（テーブル名、倉庫間移動更新用）
+            List<string> lstTableNameShorizumi = new List<string>();
 
             //ビジネス層のインスタンス生成
             A0170_ShukoShoninInput_B shukoshoninB = new A0170_ShukoShoninInput_B();
@@ -693,8 +699,12 @@ namespace KATO.Form.A0170_ShukoShoninInput
                 lstTableName.Add("@移動元倉庫");      //移動元倉庫
                 lstTableName.Add("@ユーザー名");      //ユーザー名
 
-                //処理済の更新＆倉庫間移動データの追加
-                shukoshoninB.addPrintAfter(txtYMD.Text, lblset_Eigyosho.CodeTxtText, lstTableName, SystemInformation.UserName);
+                //処理済の更新用
+                lstTableNameShorizumi.Add("@出庫倉庫");     //出庫倉庫
+                lstTableNameShorizumi.Add("@ユーザー名");   //ユーザー名
+
+                //処理済の更新&倉庫間移動データの追加
+                shukoshoninB.addPrintAfter(txtYMD.Text, lblset_Eigyosho.CodeTxtText, lstTableName, lstTableNameShorizumi, SystemInformation.UserName);
             }
             catch (Exception ex)
             {

@@ -389,13 +389,14 @@ namespace KATO.Business.A0170_ShukoShoninInput
         ///addPrintAfter
         ///処理済の更新＆倉庫間移動データの追加
         ///</summary>
-        public void addPrintAfter(string strYMD, string strShukoSouko, List<string> lstTableName, string strUserName)
+        public void addPrintAfter(string strYMD, string strShukoSouko, List<string> lstTableName, List<string> lstTableNameShorizumi, string strUserName)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
 
             //データ追加用（データ内容）
             List<string> lstData = new List<string>();
+            List<string> lstDataShorizumi = new List<string>();
 
             //登録時の移動元を入れる用
             string strIdouMoto = "";
@@ -436,7 +437,7 @@ namespace KATO.Business.A0170_ShukoShoninInput
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
                 
                 //取得データ行数分ループ
-                for (int intCnt = 1; intCnt < dtSetCd_B.Rows.Count; intCnt++)
+                for (int intCnt = 0; intCnt < dtSetCd_B.Rows.Count; intCnt++)
                 {
                     //出庫倉庫が本社の場合
                     if (dtSetCd_B.Rows[intCnt]["出庫倉庫"].ToString() == "0001")
@@ -488,7 +489,17 @@ namespace KATO.Business.A0170_ShukoShoninInput
 
                     //プロシージャ（戻り値なし）用のメソッドに投げる
                     dbconnective.RunSql("倉庫間移動更新_PROC", CommandType.StoredProcedure, lstData, lstTableName);
+
+                    lstDataShorizumi = new List<string>();
+                    lstDataShorizumi.Add(strIdouMoto);
+                    lstDataShorizumi.Add(strUserName);
+
+                    //プロシージャ（戻り値なし）用のメソッドに投げる
+                    dbconnective.RunSql("倉庫間移動作成済フラグセット_PROC", CommandType.StoredProcedure, lstDataShorizumi, lstTableNameShorizumi);
+
                 }
+
+
 
                 //コミット
                 dbconnective.Commit();
