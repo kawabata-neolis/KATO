@@ -404,7 +404,7 @@ namespace KATO.Form.A0170_ShukoShoninInput
 
 
             //グリッド内の検索
-            for (int intCnt = 1; intCnt < gridShukoiraimesai.Rows.Count; intCnt++)
+            for (int intCnt = 0; intCnt < gridShukoiraimesai.Rows.Count; intCnt++)
             {
                 //承認変更されている場合
                 if (gridShukoiraimesai.Rows[intCnt].Cells["承認変更"].Value.ToString() == "1")
