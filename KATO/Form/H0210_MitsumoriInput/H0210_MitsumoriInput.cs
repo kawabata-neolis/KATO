@@ -2759,13 +2759,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     currentsheet.Cell(6, "A").Value = tsNonyusaki.valueTextText;
                 }
-                currentsheet.Cell(7, "A").Value = txtTanto.Text;
-                currentsheet.Cell(9, "B").Value = txtKenmei.Text;
+                currentsheet.Cell(7, "A").Value = "'" + txtTanto.Text;
+                currentsheet.Cell(9, "B").Value = "'" + txtKenmei.Text;
                 currentsheet.Cell(12, "C").Value = txtUriTotal.Text;
-                currentsheet.Cell(14, "C").Value = cbNoki.Text;
-                currentsheet.Cell(16, "C").Value = cbKigen.Text;
-                currentsheet.Cell(18, "C").Value = cbJoken.Text;
-                currentsheet.Cell(20, "C").Value = txtBiko.Text;
+                currentsheet.Cell(14, "C").Value = "'" + cbNoki.Text;
+                currentsheet.Cell(16, "C").Value = "'" + cbKigen.Text;
+                currentsheet.Cell(18, "C").Value = "'" + cbJoken.Text;
+                currentsheet.Cell(20, "C").Value = "'" + txtBiko.Text;
 
                 int intMaxLine = 0;
                 for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
