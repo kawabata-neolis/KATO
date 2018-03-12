@@ -905,7 +905,7 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-            txtKin.Text = (int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
+            txtKin.Text = (decimal.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
             txtKin.updPriceMethod();
 
             //金額が-1になった場合
@@ -963,6 +963,8 @@ namespace KATO.Form.A0030_ShireInput
             //定価の項目に記入がある場合
             if (StringUtl.blIsEmpty(txtTeka.Text))
             {
+                decimal decTeka = decimal.Parse(txtTeka.Text);
+
                 //定価の数値が0以外の場合
                 if (txtTeka.Text != "0")
                 {
@@ -1273,7 +1275,7 @@ namespace KATO.Form.A0030_ShireInput
                 intHasu = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
                 txtKin.updPriceMethod();
 
                 //金額が-1になった場合
@@ -1317,7 +1319,7 @@ namespace KATO.Form.A0030_ShireInput
                 intHasu = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound((int.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
                 txtKin.updPriceMethod();
 
                 //金額が-1になった場合

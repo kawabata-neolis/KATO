@@ -676,12 +676,18 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 return;
             }
 
+            //待機カーソル
+            this.Cursor = Cursors.WaitCursor;
+
             //日付フォーマット生成、およびチェック
             strYMDformat = txtCalendarYMopen.chkDateYMDataFormat(txtCalendarYMopen.Text);
 
             //開始年月日の日付チェック
             if (strYMDformat == "")
             {
+                //デフォルトカーソル
+                this.Cursor = Cursors.Default;
+
                 // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -704,6 +710,9 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
             //終了年月日の日付チェック
             if (strYMDformat == "")
             {
+                //デフォルトカーソル
+                this.Cursor = Cursors.Default;
+
                 // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -742,9 +751,15 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
 
                 //データ配置（datagridview)
                 gridSeihin.DataSource = dtSetView;
+
+                //デフォルトカーソル
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
+                //デフォルトカーソル
+                this.Cursor = Cursors.Default;
+
                 //エラーロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
