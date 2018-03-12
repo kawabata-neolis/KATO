@@ -900,10 +900,10 @@ namespace KATO.Business.A0020_UriageInput
                 // トランザクション開始
                 dbconnective.BeginTrans();
 
-                string strProc = "倉庫間移動更新_PROC '" + "', '" 
-                            + SyukkoyouItem[0] + "', '" 
-                            + SyukkoyouItem[1] + "', '"
-                            + SyukkoyouItem[2] + "', '"
+                string strProc = "倉庫間移動更新_PROC '"
+                            + SyukkoyouItem[0] + "',"
+                            + SyukkoyouItem[1] + ","
+                            + SyukkoyouItem[2] + ", '"
                             + SyukkoyouItem[3] + "', '"
                             + SyukkoyouItem[4] + "', '"
                             + SyukkoyouItem[5] + "', '"
@@ -917,19 +917,19 @@ namespace KATO.Business.A0020_UriageInput
                             + SyukkoyouItem[13] + "', '"
                             + SyukkoyouItem[14] + "', '"
                             + SyukkoyouItem[15] + "', '"
-                            + SyukkoyouItem[16] + "', '"
-                            + SyukkoyouItem[17] + "', '"
-                            + SyukkoyouItem[18] + "', '"
+                            + SyukkoyouItem[16] + "', "
+                            + SyukkoyouItem[17] + ", "
+                            + SyukkoyouItem[18] + ", '"
                             + SyukkoyouItem[19] + "', '"
-                            + SyukkoyouItem[20];
+                            + SyukkoyouItem[20] + "'"; ;
 
                 // 倉庫間移動更新_PROC(出庫)
                 dbconnective.ReadSql(strProc);
 
-                 strProc = "倉庫間移動更新_PROC '" + "', '"
-                            + NyuukoyouItem[0] + "', '"
-                            + NyuukoyouItem[1] + "', '"
-                            + NyuukoyouItem[2] + "', '"
+                 strProc = "倉庫間移動更新_PROC '"
+                            + NyuukoyouItem[0] + "',"
+                            + NyuukoyouItem[1] + ","
+                            + NyuukoyouItem[2] + ", '"
                             + NyuukoyouItem[3] + "', '"
                             + NyuukoyouItem[4] + "', '"
                             + NyuukoyouItem[5] + "', '"
@@ -943,11 +943,11 @@ namespace KATO.Business.A0020_UriageInput
                             + NyuukoyouItem[13] + "', '"
                             + NyuukoyouItem[14] + "', '"
                             + NyuukoyouItem[15] + "', '"
-                            + NyuukoyouItem[16] + "', '"
-                            + NyuukoyouItem[17] + "', '"
-                            + NyuukoyouItem[18] + "', '"
+                            + NyuukoyouItem[16] + "', "
+                            + NyuukoyouItem[17] + ", "
+                            + NyuukoyouItem[18] + ", '"
                             + NyuukoyouItem[19] + "', '"
-                            + NyuukoyouItem[20];
+                            + NyuukoyouItem[20] + "'"; ;
 
                 // 倉庫間移動更新_PROC(入庫)
                 dbconnective.ReadSql(strProc);

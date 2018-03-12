@@ -1049,9 +1049,31 @@ namespace KATO.Business.A0010_JuchuInput
         public void insAccept(string stNo, string user, DBConnective con)
         {
             string strQuery = "";
-            strQuery += "INSERT INTO 利益率承認";
-            strQuery += " VALUES (";
-            strQuery += stNo + ", 0, '" + DateTime.Now.ToString() + "', '" + user + "', '" + DateTime.Now.ToString() + "', '" + user + "')";
+
+            strQuery += "SELECT * FROM 利益率承認 WHERE 受注番号 = " + stNo;
+            DataTable dt = null;
+
+            try
+            {
+                dt = con.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                strQuery  = "UPDATE 利益率承認 SET 更新日時 = '" + DateTime.Now.ToString() + "', 更新ユーザー名 = '" + user + "'";
+                strQuery += "WHERE 受注番号 = " + stNo;
+            }
+            else
+            {
+                strQuery  = "INSERT INTO 利益率承認";
+                strQuery += " VALUES (";
+                strQuery += stNo + ", 0, '" + DateTime.Now.ToString() + "', '" + user + "', '" + DateTime.Now.ToString() + "', '" + user + "')";
+            }
 
             try
             {

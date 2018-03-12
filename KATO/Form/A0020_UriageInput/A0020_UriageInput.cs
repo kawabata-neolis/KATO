@@ -834,6 +834,8 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 //エラーロギング
                 new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
 
         }
@@ -2731,10 +2733,9 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
-
-                
                 //エラーロギング
                 new CommonException(ex);
+                throw ex;
             }
         }
 
