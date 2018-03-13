@@ -798,7 +798,7 @@ namespace KATO.Form.M1030_Shohin
                     //商品コードの最大値を確保
                     strShohinCdMax = shohinB.getNewShohinNo(blnKanri);
 
-                    if (lstString[0].Trim().Length >= 8 || string.IsNullOrWhiteSpace(lstString[0])) {
+                    if (lstString[0].Trim().Length <= 8 || string.IsNullOrWhiteSpace(lstString[0])) {
                         //商品コードのみを上書き
                         lstString[0] = strShohinCdMax;
                     }
@@ -837,6 +837,9 @@ namespace KATO.Form.M1030_Shohin
                     {
                         return;
                     }
+
+                    //現在の商品コードを確保（仮商品データにYフラグを立てる用）
+                    lstString.Add(txtShohinCd.Text);
 
                     shohinB.addShohin(lstString, blnKanri);
                 }
