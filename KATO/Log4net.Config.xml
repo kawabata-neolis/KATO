@@ -2,8 +2,14 @@
 <configuration>
   <log4net>
     <appender name="InfoLogDailyAppender" type="log4net.Appender.RollingFileAppender">
+      <!-- 複数プロセスからの同一ログへ書き込み -->
+      <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+      
       <!-- ファイル名は日付ごと グローバル変数名で設定したフォルダのLogs￥Info_yyyyMMdd.logで出力-->
       <param name="File" value=".\log\KATO_" />
+      <!-- ファイル末尾へ追加書き込み -->
+      <param name="AppendToFile" value="true" />
+      
       <param name="DatePattern" value='yyyyMMdd".log"' />
       <param name="RollingStyle" value="date" />
       <param name="StaticLogFileName" value="false" />
