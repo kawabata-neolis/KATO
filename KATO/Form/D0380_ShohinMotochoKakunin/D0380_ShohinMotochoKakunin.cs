@@ -459,6 +459,12 @@ namespace KATO.Form.D0380_ShohinMotochoKakunin
                 shouhinlist.lblGrayTanabanG = lblGrayTanaGihu;
 
                 shouhinlist.ShowDialog();
+
+                //初回時用、二回目以降は無くても動作する
+                if (txtShohinCd.Text != "")
+                {
+                    txtCalendarYMopen.Focus();
+                }
             }
             catch (Exception ex)
             {
