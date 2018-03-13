@@ -745,7 +745,7 @@ namespace KATO.Form.A0030_ShireInput
                     }
 
                     //発注数量から仕入済数量を引く
-                    txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
+                    txtSu.Text = ((int.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["発注数量"].ToString())))) - (double.Parse(string.Format("{0:0.#}", double.Parse(dtSetCd_B_Hachu.Rows[0]["仕入済数量"].ToString()))))).ToString();
                     txtSu.updPriceMethod();
 
                     //文字色を黒にする
@@ -905,7 +905,7 @@ namespace KATO.Form.A0030_ShireInput
             //DBの取引先から該当データの取得
             intHasu = getMesaiKesankbn(shireinput.txtCD.Text);
 
-            txtKin.Text = (decimal.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
+            txtKin.Text = (double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (double.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))).ToString();
             txtKin.updPriceMethod();
 
             //金額が-1になった場合
@@ -1319,7 +1319,7 @@ namespace KATO.Form.A0030_ShireInput
                 intHasu = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (double.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
                 txtKin.updPriceMethod();
 
                 //金額が-1になった場合
