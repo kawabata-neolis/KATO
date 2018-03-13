@@ -109,6 +109,7 @@
             this.txtCalendarMinYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMinYMD.TabIndex = 3;
             this.txtCalendarMinYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
+            this.txtCalendarMinYMD.Leave += new System.EventHandler(this.txtCalendarMinYMD_Leave);
             // 
             // txtCalendarMaxYMD
             // 
@@ -119,6 +120,7 @@
             this.txtCalendarMaxYMD.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarMaxYMD.TabIndex = 4;
             this.txtCalendarMaxYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judText_KeyUp);
+            this.txtCalendarMaxYMD.Leave += new System.EventHandler(this.txtCalendarMaxYMD_Leave);
             // 
             // lblMinYMD
             // 
@@ -201,7 +203,7 @@
             this.gridHidukeSeigen.RowHeadersVisible = false;
             this.gridHidukeSeigen.RowTemplate.Height = 21;
             this.gridHidukeSeigen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridHidukeSeigen.Size = new System.Drawing.Size(968, 447);
+            this.gridHidukeSeigen.Size = new System.Drawing.Size(975, 447);
             this.gridHidukeSeigen.StandardTab = true;
             this.gridHidukeSeigen.TabIndex = 5;
             this.gridHidukeSeigen.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridHidukeSeigen_CellMouseClick);

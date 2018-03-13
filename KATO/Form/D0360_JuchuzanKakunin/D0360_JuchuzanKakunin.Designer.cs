@@ -211,7 +211,7 @@
             // txtHinmei
             // 
             this.txtHinmei.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtHinmei.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtHinmei.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtHinmei.Location = new System.Drawing.Point(110, 65);
             this.txtHinmei.Name = "txtHinmei";
             this.txtHinmei.Size = new System.Drawing.Size(329, 22);
@@ -728,7 +728,7 @@
             this.gridZanList.RowHeadersVisible = false;
             this.gridZanList.RowTemplate.Height = 21;
             this.gridZanList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridZanList.Size = new System.Drawing.Size(1408, 542);
+            this.gridZanList.Size = new System.Drawing.Size(1572, 542);
             this.gridZanList.StandardTab = true;
             this.gridZanList.TabIndex = 128;
             this.gridZanList.Sorted += new System.EventHandler(this.gridZanList_Sorted);
@@ -901,7 +901,7 @@
             this.txtGokeiUriage.intDeciSet = 0;
             this.txtGokeiUriage.intIntederSet = 0;
             this.txtGokeiUriage.intShishagonyu = 0;
-            this.txtGokeiUriage.Location = new System.Drawing.Point(991, 755);
+            this.txtGokeiUriage.Location = new System.Drawing.Point(1159, 755);
             this.txtGokeiUriage.MaxLength = 0;
             this.txtGokeiUriage.MinusFlg = true;
             this.txtGokeiUriage.Name = "txtGokeiUriage";
@@ -919,7 +919,7 @@
             this.txtGokeiGenka.intDeciSet = 0;
             this.txtGokeiGenka.intIntederSet = 0;
             this.txtGokeiGenka.intShishagonyu = 0;
-            this.txtGokeiGenka.Location = new System.Drawing.Point(1245, 755);
+            this.txtGokeiGenka.Location = new System.Drawing.Point(1413, 755);
             this.txtGokeiGenka.MaxLength = 0;
             this.txtGokeiGenka.MinusFlg = true;
             this.txtGokeiGenka.Name = "txtGokeiGenka";
@@ -933,7 +933,7 @@
             // 
             this.baseLabel1.AutoSize = true;
             this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel1.Location = new System.Drawing.Point(1168, 758);
+            this.baseLabel1.Location = new System.Drawing.Point(1336, 758);
             this.baseLabel1.Name = "baseLabel1";
             this.baseLabel1.Size = new System.Drawing.Size(71, 15);
             this.baseLabel1.strToolTip = null;
@@ -945,7 +945,7 @@
             // 
             this.baseLabel2.AutoSize = true;
             this.baseLabel2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel2.Location = new System.Drawing.Point(914, 758);
+            this.baseLabel2.Location = new System.Drawing.Point(1082, 758);
             this.baseLabel2.Name = "baseLabel2";
             this.baseLabel2.Size = new System.Drawing.Size(71, 15);
             this.baseLabel2.strToolTip = null;
@@ -1052,7 +1052,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
