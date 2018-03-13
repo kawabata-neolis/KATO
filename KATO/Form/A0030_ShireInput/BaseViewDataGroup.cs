@@ -1275,7 +1275,7 @@ namespace KATO.Form.A0030_ShireInput
                 intHasu = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (int.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
+                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (double.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
                 txtKin.updPriceMethod();
 
                 //金額が-1になった場合
