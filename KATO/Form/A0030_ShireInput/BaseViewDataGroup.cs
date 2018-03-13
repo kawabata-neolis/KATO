@@ -395,14 +395,41 @@ namespace KATO.Form.A0030_ShireInput
                 txtBiko.Clear();
                 labelSet_Eigyosho.codeTxt.Clear();
                 labelSet_Eigyosho.chkTxtEigyousho();
-                txtTeka.Text = "0";
-                txtChokinTanka.Text = "0";
-                txtChokinTanka.updPriceMethod();
-                txtMasterTanka.Text = "0";
-                txtMasterTanka.updPriceMethod();
+                txtTeka.Clear();
+                txtChokinTanka.Clear();
+                txtMasterTanka.Clear();
                 txtJuchuNo.Clear();
                 txtJuchuTanka.Clear();
                 txtTankaSub.Clear();
+                txtShireritsu.Clear();
+                txtTokuisaki.Clear();
+
+                //フォーカスしている列の判定
+                if (shireinput.shotCnt == 1)
+                {
+                    shireinput.txtJuchu1.Clear();
+                    shireinput.txtTanka1.Clear();
+                }
+                else if (shireinput.shotCnt == 2)
+                {
+                    shireinput.txtJuchu2.Clear();
+                    shireinput.txtTanka2.Clear();
+                }
+                else if (shireinput.shotCnt == 3)
+                {
+                    shireinput.txtJuchu3.Clear();
+                    shireinput.txtTanka3.Clear();
+                }
+                else if (shireinput.shotCnt == 4)
+                {
+                    shireinput.txtJuchu4.Clear();
+                    shireinput.txtTanka4.Clear();
+                }
+                else if (shireinput.shotCnt == 5)
+                {
+                    shireinput.txtJuchu5.Clear();
+                    shireinput.txtTanka5.Clear();
+                }
 
                 strShireChuNo = null;
                 txtHin.TabStop = true;
@@ -864,9 +891,23 @@ namespace KATO.Form.A0030_ShireInput
 
             //直近仕入単価の取得
             txtChokinTanka.Text = getChokinShireTanka(txtShohinCd.Text);
+            
+            //0.00の場合
+            if (txtChokinTanka.Text == "0.00")
+            {
+                txtChokinTanka.Text = "0";
+            }
+
             txtChokinTanka.updPriceMethod();
             //マスター単価の取得
             txtMasterTanka.Text = getGyomuShireTanka(txtShohinCd.Text);
+
+            //0.00の場合
+            if (txtMasterTanka.Text == "0.00")
+            {
+                txtMasterTanka.Text = "0";
+            }
+
             txtMasterTanka.updPriceMethod();
             //定価の取得
             txtTeka.Text = getMasterTeka(txtShohinCd.Text);
@@ -1498,44 +1539,66 @@ namespace KATO.Form.A0030_ShireInput
             if (decimal.TryParse(shireinput.gbData1.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData1.txtKin.Text.Trim());
-
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData1.txtTanka.Text == "0" ||
-                    shireinput.gbData1.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu1.Text = "0";
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
             }
 
             //2行目
             if (decimal.TryParse(shireinput.gbData2.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData2.txtKin.Text.Trim());
-
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData2.txtTanka.Text == "0" ||
-                    shireinput.gbData2.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu2.Text = "0";
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
             }
 
             //3行目
             if (decimal.TryParse(shireinput.gbData3.txtKin.Text.Trim(), out decTry))
             {
                 decGokei = decGokei + decimal.Parse(shireinput.gbData3.txtKin.Text.Trim());
+            }
+
+            //4行目
+            if (decimal.TryParse(shireinput.gbData4.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData4.txtKin.Text.Trim());
+            }
+
+            //5行目
+            if (decimal.TryParse(shireinput.gbData5.txtKin.Text.Trim(), out decTry))
+            {
+                decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
+            }
+
+
+            //フォーカスしている列の判定
+            if (shireinput.shotCnt == 1)
+            {
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData1.txtTanka.Text == "0" ||
+                    shireinput.gbData1.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu1.Clear();
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
+            }
+            else if (shireinput.shotCnt == 2)
+            {
+                //受注単価が空の場合
+                if (strJuchuTanka == "0" ||
+                    strJuchuTanka == "" ||
+                    shireinput.gbData2.txtTanka.Text == "0" ||
+                    shireinput.gbData2.txtTanka.Text == "")
+                {
+                    shireinput.txtRiekiritsu2.Clear();
+                }
+                else
+                {
+                    shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                }
+            }
+            else if (shireinput.shotCnt == 3)
+            {
 
                 //受注単価が空の場合
                 if (strJuchuTanka == "0" ||
@@ -1543,45 +1606,37 @@ namespace KATO.Form.A0030_ShireInput
                     shireinput.gbData3.txtTanka.Text == "0" ||
                     shireinput.gbData3.txtTanka.Text == "")
                 {
-                    shireinput.txtRiekiritsu3.Text = "0";
+                    shireinput.txtRiekiritsu3.Clear();
                 }
                 else
                 {
                     shireinput.txtRiekiritsu3.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
                 }
             }
-
-            //4行目
-            if (decimal.TryParse(shireinput.gbData4.txtKin.Text.Trim(), out decTry))
+            else if (shireinput.shotCnt == 4)
             {
-                decGokei = decGokei + decimal.Parse(shireinput.gbData4.txtKin.Text.Trim());
-
                 //受注単価が空の場合
                 if (strJuchuTanka == "0" ||
                     strJuchuTanka == "" ||
                     shireinput.gbData4.txtTanka.Text == "0" ||
                     shireinput.gbData4.txtTanka.Text == "")
                 {
-                    shireinput.txtRiekiritsu4.Text = "0";
+                    shireinput.txtRiekiritsu4.Clear();
                 }
                 else
                 {
                     shireinput.txtRiekiritsu4.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
                 }
             }
-
-            //5行目
-            if (decimal.TryParse(shireinput.gbData5.txtKin.Text.Trim(), out decTry))
+            else if (shireinput.shotCnt == 5)
             {
-                decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
-
                 //受注単価が空の場合
                 if (strJuchuTanka == "0" ||
                     strJuchuTanka == "" ||
                     shireinput.gbData5.txtTanka.Text == "0" ||
                     shireinput.gbData5.txtTanka.Text == "")
                 {
-                    shireinput.txtRiekiritsu5.Text = "0";
+                    shireinput.txtRiekiritsu5.Clear();
                 }
                 else
                 {
@@ -1767,9 +1822,52 @@ namespace KATO.Form.A0030_ShireInput
                         }
                     }
 
+                    string strGokei = shireinput.txtGokei.Text;
+
+                    if (strGokei == "0" || strGokei == "-1")
+                    {
+                        strGokei = "0";
+                    }
+
+                    string strShohizei = shireinput.txtShohizei.Text;
+
+                    if (strShohizei == "0" || strShohizei == "-1")
+                    {
+                        strShohizei = "0";
+                    }
+
                     //仕入入力画面の総合計に記入
-                    shireinput.txtSogokei.Text = (decimal.Parse(shireinput.txtGokei.Text) + decimal.Parse(shireinput.txtShohizei.Text)).ToString("#");
+                    shireinput.txtSogokei.Text = (decimal.Parse(strGokei) + decimal.Parse(strShohizei)).ToString("#");
                     shireinput.txtSogokei.updPriceMethod();
+
+                    shireinput.txtGokei.updPriceMethod();
+                    shireinput.txtShohizei.updPriceMethod();
+                    shireinput.txtSogokei.updPriceMethod();
+
+                    //マイナス１か０の場合
+                    if (shireinput.txtGokei.Text == "-1" || shireinput.txtGokei.Text == "0")
+                    {
+                        shireinput.txtGokei.Clear();
+                    }
+
+                    //マイナス１か０の場合
+                    if (shireinput.txtShohizei.Text == "-1" || shireinput.txtShohizei.Text == "0")
+                    {
+                        shireinput.txtShohizei.Clear();
+                    }
+
+                    //マイナス１か０の場合
+                    if (shireinput.txtSogokei.Text == "-1" || shireinput.txtSogokei.Text == "0")
+                    {
+                        shireinput.txtSogokei.Clear();
+                    }
+
+                    //マイナス１か０の場合
+                    if (shireinput.txtUnchin.Text == "-1" || shireinput.txtUnchin.Text == "0")
+                    {
+                        shireinput.txtUnchin.Clear();
+                    }
+
                 }
                 return;
             }
