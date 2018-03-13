@@ -591,7 +591,7 @@ namespace KATO.Form.A0010_JuchuInput
                 if (r["発注単価"] != null && r["発注単価"] != DBNull.Value && !string.IsNullOrWhiteSpace(r["発注単価"].ToString()))
                 {
                     dTanka = getDecValue(r["発注単価"].ToString());
-                    stTanka = (decimal.Round(dTanka, 0)).ToString("#,0.00");
+                    stTanka = (decimal.Round(dTanka, 2)).ToString("#,0.00");
                 }
 
                 ((BaseTextMoney)inputPanel.Controls["txtSuryo"]).Text = stSu;
@@ -884,6 +884,7 @@ namespace KATO.Form.A0010_JuchuInput
             txtHinmeiY.KeyDown += new KeyEventHandler(baseTexts_KeyDown);
             txtHinmeiY.TabIndex = tabIdx;
             tabIdx++;
+            txtHinmeiY.Visible = false;
 
             BaseLabel lblTanaban = new BaseLabel();
             lblTanaban.AutoSize = true;
@@ -891,7 +892,8 @@ namespace KATO.Form.A0010_JuchuInput
             lblTanaban.Text = "棚番";
             basePanel.Controls.Add(lblTanaban);
             //lblTanaban.Location = new Point(841, 80);
-            lblTanaban.Location = new Point(617, 80);
+            //lblTanaban.Location = new Point(617, 80);
+            lblTanaban.Location = new Point(571, 80);
             lblTanaban.BringToFront();
 
             BaseLabelGray txtTanabanL = new BaseLabelGray();
@@ -904,7 +906,8 @@ namespace KATO.Form.A0010_JuchuInput
             //txtTanabanL.ReadOnly = true;
             basePanel.Controls.Add(txtTanabanL);
             //txtTanabanL.Location = new Point(934, 80);
-            txtTanabanL.Location = new Point(661, 77);
+            //txtTanabanL.Location = new Point(661, 77);
+            txtTanabanL.Location = new Point(615, 77);
             txtTanabanL.BringToFront();
             txtTanabanL.Name = "txtTanabanL";
             txtTanabanL.TabStop = false;
@@ -919,7 +922,8 @@ namespace KATO.Form.A0010_JuchuInput
             //txtTanabanR.ReadOnly = true;
             basePanel.Controls.Add(txtTanabanR);
             //txtTanabanR.Location = new Point(982, 80);
-            txtTanabanR.Location = new Point(723, 77);
+            //txtTanabanR.Location = new Point(723, 77);
+            txtTanabanR.Location = new Point(677, 77);
             txtTanabanR.BringToFront();
             txtTanabanR.Name = "txtTanabanR";
             txtTanabanR.TabStop = false;
@@ -1418,6 +1422,12 @@ namespace KATO.Form.A0010_JuchuInput
                 string stC6 = ((BaseText)c.Controls["txtC6"]).Text;
                 string stC = (stC1 + " " + stC2 + " " + stC3 + " " + stC4 + " " + stC5 + " " + stC6 + " ").Trim();
                 string stNo = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
+
+                if (string.IsNullOrWhiteSpace(stNo))
+                {
+                    stNo = kakoB.getDenpyoNo("発注番号", con);
+                    ((BaseTextMoney)c.Controls["txtHNo"]).Text = stNo;
+                }
 
                 DataTable dLap = kakoB.getHachu(stNo);
 
