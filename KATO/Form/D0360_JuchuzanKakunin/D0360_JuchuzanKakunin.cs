@@ -334,7 +334,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
             setColumn(noki,              DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,      90);
             setColumn(chuban,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     280);
-            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     180);
+            setColumn(maker,             DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     160);
             setColumn(hinmei,            DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     405);
             setColumn(juchusu,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",     80);
             setColumn(juchuzan,          DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0",     80);

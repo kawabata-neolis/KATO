@@ -67,6 +67,7 @@
             this.gridShire.AllowUserToAddRows = false;
             this.gridShire.AllowUserToResizeColumns = false;
             this.gridShire.AllowUserToResizeRows = false;
+            this.gridShire.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -176,7 +177,7 @@
             this.labelSet_Torihikisaki.CodeTxtSize = 40;
             this.labelSet_Torihikisaki.CodeTxtText = "";
             this.labelSet_Torihikisaki.Controls.Add(this.nameLabel);
-            this.labelSet_Torihikisaki.LabelName = "得意先";
+            this.labelSet_Torihikisaki.LabelName = "仕入先";
             this.labelSet_Torihikisaki.Location = new System.Drawing.Point(12, 38);
             this.labelSet_Torihikisaki.Name = "labelSet_Torihikisaki";
             this.labelSet_Torihikisaki.ShowAppendFlg = false;
