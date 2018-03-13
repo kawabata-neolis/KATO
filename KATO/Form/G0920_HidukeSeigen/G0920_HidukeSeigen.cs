@@ -347,6 +347,26 @@ namespace KATO.Form.G0920_HidukeSeigen
                 // 追加実行
                 hidukeB.addHidukeSeigen(lstItem);
 
+                //グリッドにデータがある場合
+                if (gridHidukeSeigen.Rows.Count > 0)
+                {
+                    //グリッド分ループ
+                    for (int intCnt = 0; intCnt < gridHidukeSeigen.Rows.Count; intCnt++)
+                    {
+                        lstItem = new List<string>();
+
+                        // 追加するデータをリストに格納
+                        lstItem.Add(gridHidukeSeigen.Rows[intCnt].Cells["画面ＮＯ"].Value.ToString());
+                        lstItem.Add(gridHidukeSeigen.Rows[intCnt].Cells["営業所コード"].Value.ToString());
+                        lstItem.Add(gridHidukeSeigen.Rows[intCnt].Cells["最小年月日"].Value.ToString());
+                        lstItem.Add(gridHidukeSeigen.Rows[intCnt].Cells["最大年月日"].Value.ToString());
+                        lstItem.Add(Environment.UserName);
+
+                        // 追加実行
+                        hidukeB.addHidukeSeigen(lstItem);
+                    }
+                }
+
                 // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -633,7 +653,16 @@ namespace KATO.Form.G0920_HidukeSeigen
         /// </summary>
         public void updTxtGamenNoLeave(object sender, EventArgs e)
         {
-            Boolean blnGood;
+            updTxtGamenNo();
+        }
+
+        /// <summary>
+        /// updTxtGamenNo
+        /// 画面No入力テキストのチェックと反映
+        /// </summary>
+        private void updTxtGamenNo()
+        {
+            Boolean blnGood = false;
 
             if (txtGamenNo.Text == "" || String.IsNullOrWhiteSpace(txtGamenNo.Text).Equals(true))
             {
@@ -810,5 +839,217 @@ namespace KATO.Form.G0920_HidukeSeigen
             basetext.judKeyUp(cActiveBefore, e);
         }
 
+        ///txtCalendarMinYMD_Leave
+        ///最小年月日テキストから離れた時
+        ///</summary>
+        private void txtCalendarMinYMD_Leave(object sender, EventArgs e)
+        {
+            //年月日テキストをグリッドに反映する
+            setGridYMD(true, txtCalendarMinYMD.Text);
+        }
+
+        ///txtCalendarMaxYMD_Leave
+        ///最大年月日テキストから離れた時
+        ///</summary>
+        private void txtCalendarMaxYMD_Leave(object sender, EventArgs e)
+        {
+            //年月日テキストをグリッドに反映する
+            setGridYMD(false, txtCalendarMaxYMD.Text);
+        }
+
+        ///setGridYMD
+        ///年月日テキストをグリッドに反映する
+        ///引数：blMinYMD(true = 最小年月日 false = 最大年月日) strYMD（反映する年月日）
+        ///</summary>
+        private void setGridYMD(Boolean blMinYMD, string strYMD)
+        {
+            ////新規データの判定
+            //Boolean blNewData = false;
+
+            //最小年月日の場合
+            if (blMinYMD)
+            {
+                //最小年月日が空の場合
+                if (txtCalendarMinYMD.blIsEmpty() == false)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                //最大年月日が空の場合
+                if (txtCalendarMaxYMD.blIsEmpty() == false)
+                {
+                    return;
+                }
+            }
+
+            //年月日判定用
+            string strYMDformat = "";
+
+            // 空文字判定（画面№）
+            if (txtGamenNo.Text.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtGamenNo.Focus();
+                return;
+            }
+
+            // 空文字判定（営業所）
+            if (labelSet_Eigyosho.CodeTxtText.Equals(""))
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                labelSet_Eigyosho.Focus();
+                return;
+            }
+            else
+            {
+                // 入力チェック（営業所コード）
+                if (labelSet_Eigyosho.chkTxtEigyousho())
+                {
+                    return;
+                }
+            }
+
+            //最小年月日の場合
+            if (blMinYMD)
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtCalendarMinYMD.chkDateDataFormat(txtCalendarMinYMD.Text);
+
+                //開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    txtCalendarMinYMD.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtCalendarMinYMD.Text = strYMDformat;
+                }
+            }
+            else
+            {
+                //日付フォーマット生成、およびチェック
+                strYMDformat = txtCalendarMaxYMD.chkDateDataFormat(txtCalendarMaxYMD.Text);
+
+                //開始年月日の日付チェック
+                if (strYMDformat == "")
+                {
+                    txtCalendarMaxYMD.Focus();
+
+                    return;
+                }
+                else
+                {
+                    txtCalendarMaxYMD.Text = strYMDformat;
+                }
+            }
+
+            //中段グリッドの中身の行数分ループ
+            for (int intCntRow = 0; intCntRow < gridHidukeSeigen.Rows.Count; intCntRow++)
+            {
+                //該当の画面Noがあった場合
+                if (gridHidukeSeigen.Rows[intCntRow].Cells["画面ＮＯ"].Value.ToString() == txtGamenNo.Text)
+                {
+                    //該当の営業所コードがあった場合
+                    if (gridHidukeSeigen.Rows[intCntRow].Cells["営業所コード"].Value.ToString() == labelSet_Eigyosho.CodeTxtText)
+                    {
+                        //最小年月日の場合
+                        if (blMinYMD)
+                        {
+                            gridHidukeSeigen.Rows[intCntRow].Cells["最小年月日"].Value = txtCalendarMinYMD.Text;
+                        }
+                        else
+                        {
+                            gridHidukeSeigen.Rows[intCntRow].Cells["最大年月日"].Value = txtCalendarMaxYMD.Text;
+                        }
+                        //blNewData = false;
+                        break;
+                    }
+                }
+                //blNewData = true;
+            }
+
+            ////新規データの場合
+            //if (blNewData == true)
+            //{
+
+
+                //DataTable dt = new DataTable();
+
+                //var cols = gridHidukeSeigen.Columns;
+                //foreach (DataGridViewColumn c in cols)
+                //{
+                //    if (c.ValueType != null)
+                //    {
+                //        dt.Columns.Add(c.Name, c.ValueType);
+                //    }
+                //    else
+                //    {
+                //        dt.Columns.Add(c.Name);
+                //    }
+                //}
+
+                //var rows = gridHidukeSeigen.Rows;
+                //foreach (DataGridViewRow r in rows)
+                //{
+                //    List<object> array = new List<object>();
+                //    foreach (DataGridViewCell cell in r.Cells)
+                //    {
+                //        array.Add(cell.Value);
+                //    }
+                //    dt.Rows.Add(array.ToArray());
+                //}
+
+                //DataRow dr = dt.NewRow();
+
+                //dr["画面ＮＯ"] = txtGamenNo.Text;
+                //dr["ＰＧ名"] = lblGamenName.Text;
+                //dr["営業所コード"] = labelSet_Eigyosho.CodeTxtText;
+                //dr["営業所名"] = labelSet_Eigyosho.ValueLabelText;
+
+                ////最小年月日が存在しない場合
+                //if (txtCalendarMinYMD.blIsEmpty() == false)
+                //{
+                //    dr["最小年月日"] = DateTime.Now;
+                //}
+                //else
+                //{
+                //    dr["最小年月日"] = txtCalendarMinYMD.Text;
+
+                //}
+
+                ////最大年月日が存在しない場合
+                //if (txtCalendarMaxYMD.blIsEmpty() == false)
+                //{
+                //    dr["最大年月日"] = DateTime.Now;
+                //}
+                //else
+                //{
+                //    dr["最大年月日"] = txtCalendarMaxYMD.Text;
+                //}
+
+                //dt.Rows.Add(dr);
+
+                //gridHidukeSeigen.DataSource = dt;
+
+                //////行追加
+                ////gridHidukeSeigen.Rows.Add();
+
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["画面ＮＯ"].Value = txtGamenNo.Text;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["ＰＧ名"].Value = lblGamenName.Text;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["営業所コード"].Value = labelSet_Eigyosho.CodeTxtText;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["営業所名"].Value = labelSet_Eigyosho.ValueLabelText;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["最小年月日"].Value = labelSet_Eigyosho.ValueLabelText;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["最小年月日"].Value = txtCalendarMinYMD.Text;
+                ////gridHidukeSeigen.Rows[gridHidukeSeigen.Rows.Count - 1].Cells["最大年月日"].Value = txtCalendarMaxYMD.Text;
+            //}
+        }
     }
 }
