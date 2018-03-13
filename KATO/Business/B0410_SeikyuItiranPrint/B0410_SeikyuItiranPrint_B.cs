@@ -198,7 +198,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                 int maxPage = 0;    // 最大ページ数
 
                 // ページ数計算
-                double page = 1.0 * maxRowCnt / 45;
+                double page = 1.0 * maxRowCnt / 30;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -329,7 +329,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                                 .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                     // 44行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 48)
+                    if (xlsRowCnt == 33)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
@@ -346,22 +346,22 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                     }
 
 
-                    // 44行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 48)
-                    {
-                        pageCnt++;
-                        if (pageCnt <= maxPage)
-                        {
-                            xlsRowCnt = 3;
+                    //// 44行毎（ヘッダーを除いた行数）にシート作成
+                    //if (xlsRowCnt == 40)
+                    //{
+                    //    pageCnt++;
+                    //    if (pageCnt <= maxPage)
+                    //    {
+                    //        xlsRowCnt = 3;
 
-                            // コンピュータ名、日付、ページ数を取得
-                            strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
-                                pageCnt.ToString() + " / " + maxPage.ToString();
+                    //        // コンピュータ名、日付、ページ数を取得
+                    //        strHeader = "（ " + strComputerName + " ）" + strSpace + strNow + strSpace +
+                    //            pageCnt.ToString() + " / " + maxPage.ToString();
 
-                            // ヘッダーシートのコピー、ヘッダー部の指定
-                            sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, strHeader);
-                        }
-                    }
+                    //        // ヘッダーシートのコピー、ヘッダー部の指定
+                    //        sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, strHeader);
+                    //    }
+                    //}
 
                     // 最終行を出力した後、合計行を出力
                     if (maxRowCnt == rowCnt)

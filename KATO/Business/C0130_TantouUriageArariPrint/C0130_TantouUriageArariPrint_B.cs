@@ -209,7 +209,7 @@ namespace KATO.Business.C0130_TantouUriageArariPrint
 
                 // ページ数計算
                 maxRowCnt += groupGoukei.Count() * 2 + eigyoGoukei.Count() + 1;
-                double page = 1.0 * maxRowCnt / 35;
+                double page = 1.0 * maxRowCnt / 34;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
