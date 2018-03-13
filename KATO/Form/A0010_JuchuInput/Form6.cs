@@ -247,6 +247,42 @@ namespace KATO.Form.A0010_JuchuInput
                 }
             }
 
+            A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
+
+            DBConnective con = new DBConnective();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(((BaseTextMoney)c.Controls["txtHNo"]).Text))
+                {
+                    return;
+                }
+                DataTable dtS = kakoB.getShiire(((BaseTextMoney)c.Controls["txtHNo"]).Text);
+                if (dtS != null && dtS.Rows.Count > 0)
+                {
+                    ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = kakoB.getDenpyoNo("出庫伝票", con);
+                    ((BaseTextMoney)inputPanel.Controls["tmpHNo"]).Text = ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text;
+
+                    Button btnExecShukko = new Button();
+                    btnExecShukko.Text = "出庫実行";
+                    btnExecShukko.Tag = cats[4];
+                    inputPanel.Controls.Add(btnExecShukko);
+                    btnExecShukko.Click += new EventHandler(btnExecShukko_Click);
+                    btnExecShukko.Location = new Point(1000, 105);
+                    btnExecShukko.BringToFront();
+                    btnExecShukko.Name = "btnAddShukko";
+                    btnExecShukko.TabIndex = (int)Math.Pow(10, keta + 2) + (idx * 100) + 1;
+                    btnExecShukko.Enabled = button14.Enabled;
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Rollback();
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+
             //foreach (Control cc in c.Controls)
             //{
             //    if (cc.Name != null && cc.Name == "linePanel" + (decimal.Parse((String)b.Parent.Tag)).ToString(zeroPad))
@@ -261,7 +297,6 @@ namespace KATO.Form.A0010_JuchuInput
         {
             Button b = (Button)sender;
             Panel c = (Panel)b.Parent;
-
 
             int idx = int.Parse((String)c.Tag);
             String s = "";
@@ -335,6 +370,43 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     //cc.BackColor = Color.FromArgb(0x66, 0xFF, 0x66);
                 }
+            }
+
+            A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
+
+            DBConnective con = new DBConnective();
+            try
+            {
+                if (string.IsNullOrWhiteSpace(((BaseTextMoney)c.Controls["txtHNo"]).Text))
+                {
+                    return;
+                }
+                DataTable dtS = kakoB.getShiire(((BaseTextMoney)c.Controls["txtHNo"]).Text);
+                if (dtS != null && dtS.Rows.Count > 0)
+                {
+                    ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = kakoB.getDenpyoNo("出庫伝票", con);
+                    ((BaseTextMoney)inputPanel.Controls["tmpHNo"]).Text = ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text;
+
+                    Button btnExecKako = new Button();
+                    btnExecKako.Text = "加工品発注実行";
+                    btnExecKako.Width = 100;
+                    btnExecKako.Tag = cats[5];
+                    inputPanel.Controls.Add(btnExecKako);
+                    btnExecKako.Click += new EventHandler(btnExecKako_Click);
+                    btnExecKako.Location = new Point(1000, 105);
+                    btnExecKako.BringToFront();
+                    btnExecKako.Name = "btnAddShukko";
+                    btnExecKako.TabIndex = (int)Math.Pow(10, keta + 2) + (idx * 100) + 1;
+                    btnExecKako.Enabled = button14.Enabled;
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Rollback();
+                new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
             }
 
             //foreach (Control cc in c.Controls)

@@ -647,7 +647,9 @@ namespace KATO.Form.A0010_JuchuInput
 
         private void txtJuchuNo_Leave(object sender, EventArgs e)
         {
-            getJuchuInfo();
+            if (f6 == null || !f6.Visible) {
+                getJuchuInfo();
+            }
         }
 
         // 受注情報検索
