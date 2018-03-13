@@ -932,6 +932,30 @@ namespace KATO.Business.A0010_JuchuInput
             return dtRet;
         }
 
+        public DataTable getUserInfoFromCd(string strCd)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT *";
+            strQuery += "  FROM 担当者";
+            strQuery += " WHERE 担当者コード = '" + strCd + "'";
+            strQuery += "   AND 削除 = 'N'";
+
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
         public void updZaiko(bool bPlus, string eigyo, string shohin, string sSu, DBConnective con)
         {
             string strQuery = "";

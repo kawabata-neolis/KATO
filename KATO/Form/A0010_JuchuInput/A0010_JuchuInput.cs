@@ -97,6 +97,7 @@ namespace KATO.Form.A0010_JuchuInput
                     defaultEigyo = txtEigyoshoCd.Text;
                 }
                 lsJuchusha.codeTxt.Focus();
+                lsJuchusha.Leave += new EventHandler(lsJuchusha_Leave);
             }
             catch (Exception ex)
             {
@@ -114,6 +115,37 @@ namespace KATO.Form.A0010_JuchuInput
             cmbSubWinShow.Items.Add("売上実績確認");
             cmbSubWinShow.Items.Add("加工品受注入力");
             cmbSubWinShow.Items.Add("見積書入力");
+        }
+
+        private void lsJuchusha_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lsJuchusha.CodeTxtText))
+            {
+                return;
+            }
+            A0010_JuchuInput_B juchuInput = new A0010_JuchuInput_B();
+            try
+            {
+                DataTable dt = juchuInput.getUserInfoFromCd(lsJuchusha.CodeTxtText);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    txtEigyoshoCd.Text = dt.Rows[0]["営業所コード"].ToString();
+                }
+                if (!"0001".Equals(txtEigyoshoCd.Text) && !"0002".Equals(txtEigyoshoCd.Text))
+                {
+                    txtEigyoshoCd.Text = "0001";
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
 
         ///<summary>
