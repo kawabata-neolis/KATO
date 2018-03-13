@@ -75,10 +75,10 @@ namespace KATO.Common.Business
             try
             {
                 dtGetTableGrid = dbconnective.ReadSql("SELECT H.伝票番号,H.伝票年月日,dbo.f_get取引先名称(H.仕入先コード) AS 仕入先名," +
-                                                      "RTRIM(ISNULL(M.Ｃ１,'')) + ' ' + RTRIM(ISNULL(M.Ｃ２,'')) + ' ' + RTRIM(ISNULL(M.Ｃ３,'')) + ' ' + RTRIM(ISNULL(M.Ｃ４,'')) + ' ' + RTRIM(ISNULL(M.Ｃ５,'')) + ' ' + RTRIM(ISNULL(M.Ｃ６,'')) + ' ' AS 品名型番," +
-                                                      "M.数量,M.売上単価,M.備考," +
+                                                      "RTRIM(ISNULL(M.Ｃ１,'')) AS 品名型番," +
+                                                      "M.数量,M.仕入単価,M.備考," +
                                                       "dbo.f_get担当者名(H.担当者コード) AS 担当者 " +
-                                                      "FROM 仕入ヘッダ H,売上明細 M " +
+                                                      "FROM 仕入ヘッダ H,仕入明細 M " +
                                                       strWhere +
                                                       " ORDER BY H.伝票年月日 DESC, H.仕入先コード");
             }
