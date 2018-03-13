@@ -1411,6 +1411,11 @@ namespace KATO.Form.A0010_JuchuInput
             DBConnective con = new DBConnective();
             try
             {
+                if (string.IsNullOrWhiteSpace(strJuchuNo))
+                {
+                    return;
+                }
+
                 Button t = (Button)sender;
                 Panel c = (Panel)t.Parent;
 
@@ -1445,11 +1450,6 @@ namespace KATO.Form.A0010_JuchuInput
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(strJuchuNo))
-                {
-                    return;
-                }
-
                 DataTable dt = kakoB.getExecKako(strJuchuNo, stC);
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -1460,7 +1460,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     DataTable dtK = kakoB.getHonKako(stNo);
                     con.BeginTrans();
-                    if (dtK == null || dt.Rows.Count == 0)
+                    if (dtK == null || dtK.Rows.Count == 0)
                     {
                         updKakoInputS(c, kakoB, con, true);
                     }
