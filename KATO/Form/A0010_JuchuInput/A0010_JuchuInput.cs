@@ -1422,38 +1422,38 @@ namespace KATO.Form.A0010_JuchuInput
                 tsShiiresaki.codeTxt.ReadOnly = false;
                 tsShiiresaki.ReadOnlyANDTabStopFlg = false;
                 txtShiireChuban.ReadOnly = false;
-                tsShiiresaki.CodeTxtText = "";
-                tsShiiresaki.valueTextText = "";
-                txtShiireNoki.Text = "";
-                txtShiireChuban.Text = "";
-                txtHatchuNo.Text = "";
+                //tsShiiresaki.CodeTxtText = "";
+                //tsShiiresaki.valueTextText = "";
+                //txtShiireNoki.Text = "";
+                //txtShiireChuban.Text = "";
+                //txtHatchuNo.Text = "";
 
-                A0010_JuchuInput_B juchuInput = new A0010_JuchuInput_B();
-                try
-                {
-                    if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text)) {
-                        DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(txtJuchuNo.Text);
-                        if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
-                        {
-                            if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
-                            {
-                                txtHatchuNo.Text = dtHatchuNo.Rows[0]["発注番号"].ToString();
-                                getHatchuInfo();
-                            }
-                            else
-                            {
-                                txtHatchusu.Text = "0";
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    new CommonException(ex);
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    return;
-                }
+                //A0010_JuchuInput_B juchuInput = new A0010_JuchuInput_B();
+                //try
+                //{
+                //    if (!string.IsNullOrWhiteSpace(txtJuchuNo.Text)) {
+                //        DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(txtJuchuNo.Text);
+                //        if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0)
+                //        {
+                //            if (!string.IsNullOrWhiteSpace(dtHatchuNo.Rows[0]["発注番号"].ToString()))
+                //            {
+                //                txtHatchuNo.Text = dtHatchuNo.Rows[0]["発注番号"].ToString();
+                //                getHatchuInfo();
+                //            }
+                //            else
+                //            {
+                //                txtHatchusu.Text = "0";
+                //            }
+                //        }
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    new CommonException(ex);
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
+                //    return;
+                //}
             }
 
             if (panel1.Enabled == true && tsShiiresaki.ReadOnlyANDTabStopFlg == false)
@@ -2013,7 +2013,12 @@ namespace KATO.Form.A0010_JuchuInput
 
                 //}
 
-                clearInput2();
+                // 加工品の登録を行った場合は入力をクリアしない
+                if (f6 == null || !f6.Visible)
+                {
+                    clearInput2();
+                }
+
                 tsTokuisaki.codeTxt.Focus();
             }
             catch (Exception ex)
@@ -2495,7 +2500,7 @@ namespace KATO.Form.A0010_JuchuInput
                                     {
                                         decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
 
-                                        if (decZaikoSu > decHonshaSu)
+                                        if (decZaikoSu >= decHonshaSu)
                                         {
                                             if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0002"))
                                             {
@@ -2557,7 +2562,7 @@ namespace KATO.Form.A0010_JuchuInput
                                     {
                                         decZaikoSu = getDecValue(dtZaiko.Rows[0]["在庫数"].ToString());
 
-                                        if (decZaikoSu > decGihuSu)
+                                        if (decZaikoSu >= decGihuSu)
                                         {
                                             if (string.IsNullOrWhiteSpace(txtJuchuNo.Text) || (txtEigyoshoCd.Text).Equals("0001"))
                                             {

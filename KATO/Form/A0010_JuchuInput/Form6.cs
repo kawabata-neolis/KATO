@@ -1248,6 +1248,7 @@ namespace KATO.Form.A0010_JuchuInput
             A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
             BaseMessageBox basemessagebox;
 
+            DBConnective con = new DBConnective();
             try
             {
                 Button t = (Button)sender;
@@ -1295,7 +1296,14 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (judge)
                 {
-                    kakoB.execShukko(stNo);
+                    DataTable dt = kakoB.getHonShukko(stNo, "41");
+                    con.BeginTrans();
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        updKakoInputS(c, kakoB, con, true);
+                    }
+                    kakoB.execShukko(stNo, con);
+                    con.Commit();
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                     return;
@@ -1309,6 +1317,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             catch (Exception ex)
             {
+                con.Rollback();
                 new CommonException(ex);
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -1323,6 +1332,7 @@ namespace KATO.Form.A0010_JuchuInput
             A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
             BaseMessageBox basemessagebox;
 
+            DBConnective con = new DBConnective();
             try
             {
                 Button t = (Button)sender;
@@ -1366,7 +1376,14 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (judge)
                 {
-                    kakoB.execKako(stNo);
+                    DataTable dtK = kakoB.getHonKako(stNo);
+                    con.BeginTrans();
+                    if (dtK == null || dt.Rows.Count == 0)
+                    {
+                        updKakoInputS(c, kakoB, con, true);
+                    }
+                    kakoB.execKako(stNo, con);
+                    con.Commit();
 
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -1381,6 +1398,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             catch (Exception ex)
             {
+                con.Rollback();
                 new CommonException(ex);
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -1395,6 +1413,7 @@ namespace KATO.Form.A0010_JuchuInput
             A0024_KakohinJuchuInput_B kakoB = new A0024_KakohinJuchuInput_B();
             BaseMessageBox basemessagebox;
 
+            DBConnective con = new DBConnective();
             try
             {
                 Button t = (Button)sender;
@@ -1439,7 +1458,14 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (judge)
                 {
-                    kakoB.execShukko(stNo);
+                    DataTable dt = kakoB.getHonShukko(stNo, "43");
+                    con.BeginTrans();
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        updKakoInputS(c, kakoB, con, true);
+                    }
+                    kakoB.execShukko(stNo, con);
+                    con.Commit();
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "正常に登録されました", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                     return;
@@ -1453,6 +1479,7 @@ namespace KATO.Form.A0010_JuchuInput
             }
             catch (Exception ex)
             {
+                con.Rollback();
                 new CommonException(ex);
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();

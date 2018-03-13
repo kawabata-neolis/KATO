@@ -1708,29 +1708,29 @@ namespace KATO.Business.A0010_JuchuInput
             return ret;
         }
 
-        public void execShukko(string strNo)
+        public void execShukko(string strNo, DBConnective con)
         {
-            DBConnective dbCon = new DBConnective();
+            //DBConnective dbCon = new DBConnective();
             try
             {
-                dbCon.BeginTrans();
+                //con.BeginTrans();
 
                 String strSQL = "";
                 strSQL += "INSERT INTO 出庫ヘッダ ";
                 strSQL += " SELECT * FROM 仮出庫ヘッダ";
                 strSQL += " WHERE 伝票番号= " + strNo + " AND 削除='N'";
-                dbCon.RunSql(strSQL);
+                con.RunSql(strSQL);
 
                 strSQL = "INSERT INTO 出庫明細 ";
                 strSQL += " SELECT * FROM 仮出庫明細";
                 strSQL += " WHERE 伝票番号= " + strNo + " AND 削除='N'";
-                dbCon.RunSql(strSQL);
+                con.RunSql(strSQL);
 
-                dbCon.Commit();
+                //con.Commit();
             }
             catch (Exception ex)
             {
-                dbCon.Rollback();
+                //con.Rollback();
                 throw ex;
             }
         }
@@ -1765,24 +1765,24 @@ namespace KATO.Business.A0010_JuchuInput
             return dtRet;
         }
 
-        public void execKako(string strNo)
+        public void execKako(string strNo, DBConnective con)
         {
-            DBConnective dbCon = new DBConnective();
+            //DBConnective dbCon = new DBConnective();
             try
             {
-                dbCon.BeginTrans();
+                //dbCon.BeginTrans();
 
                 String strSQL = "";
                 strSQL += "INSERT INTO 発注 ";
                 strSQL += " SELECT * FROM 仮発注";
                 strSQL += " WHERE 発注番号= " + strNo + " AND 削除='N'";
-                dbCon.RunSql(strSQL);
+                con.RunSql(strSQL);
 
-                dbCon.Commit();
+                //dbCon.Commit();
             }
             catch (Exception ex)
             {
-                dbCon.Rollback();
+                //dbCon.Rollback();
                 throw ex;
             }
         }
@@ -1795,6 +1795,51 @@ namespace KATO.Business.A0010_JuchuInput
             strSelect += "  FROM 出庫ヘッダ";
             strSelect += " WHERE 伝票番号 = " + strNo;
             strSelect += "   AND 取引区分 = '" + kbn + "'";
+            strSelect += "   AND 削除 ='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getHonShukko (string strNo, string kbn)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 仮出庫ヘッダ";
+            strSelect += " WHERE 伝票番号 = " + strNo;
+            strSelect += "   AND 取引区分 = '" + kbn + "'";
+            strSelect += "   AND 削除 ='N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strSelect);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
+        public DataTable getHonKako(string strNo)
+        {
+            DataTable dtRet = null;
+            string strSelect = "";
+            strSelect += "SELECT *";
+            strSelect += "  FROM 仮発注";
+            strSelect += " WHERE 発注番号 = " + strNo;
             strSelect += "   AND 削除 ='N'";
 
             DBConnective dbCon = new DBConnective();
