@@ -108,6 +108,8 @@ namespace KATO.Form.A0030_ShireInput
             //0パディング等の表示情報の修正
             txtShireritsu.updPriceMethod();
             txtBiko.Focus();
+
+            setGokeiKesan();
         }
 
         ///<summary>
@@ -312,8 +314,17 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                //得意先に入れる
-                txtTokuisaki.Text = dtSetCd_B.Rows[0]["得意先名称"].ToString().Trim(' ');
+                //得意先が存在する場合
+                if (dtSetCd_B.Rows.Count > 0)
+                {
+                    //得意先に入れる
+                    txtTokuisaki.Text = dtSetCd_B.Rows[0]["得意先名称"].ToString().Trim(' ');
+                }
+                else
+                {
+                    //得意先に入れる
+                    txtTokuisaki.Text = "";
+                }
 
                 return;
             }
