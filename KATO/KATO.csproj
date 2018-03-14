@@ -1888,6 +1888,9 @@
     <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_DELETE_INSERT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_Print_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\C0520_KaikakekinZandakaIchiranKakunin\C0520_KaikakekinZan_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

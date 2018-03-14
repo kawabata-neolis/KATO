@@ -456,8 +456,21 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
             }
 
+            string strShuturyoku = "";
+
+            //出力順のラジオボタン判定
+            if (radShuturyoku.radbtn0.Checked == true)
+            {
+                strShuturyoku = "Tokuisaki";
+            }
+            else
+            {
+                strShuturyoku = "Hurigana";
+            }
+
             lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
             lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            lstStringViewData.Add(strShuturyoku);
 
             C0520_KaikakekinZandakaIchiranKakunin_B kaikakekakuninB = new C0520_KaikakekinZandakaIchiranKakunin_B();
             try
@@ -520,9 +533,6 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             //データの取り出し用
             DataTable dtPrintData = new DataTable();
 
-            //データの並び替えと印刷データ用
-            DataTable dtPrintDataClone = new DataTable();
-
             //列情報を取得
             DataGridViewColumnCollection cols = gridTokuisaki.Columns;
 
@@ -532,59 +542,146 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             //取引先経理情報登録時の情報
             List<string> lstTorihiki = new List<string>();
 
-            foreach (DataGridViewColumn c in cols)
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //空チェック（開始得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
             {
-                if (c.ValueType != null)
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblsetTokuisakiCdopen.Focus();
+                return;
+            }
+
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
+            {
+                //空チェック（終了得意先コード）
+                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
                 {
-                    dtPrintData.Columns.Add(c.Name, c.ValueType);
-                }
-                else
-                {
-                    dtPrintData.Columns.Add(c.Name);
+                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblsetTokuisakiCdclose.Focus();
+                    return;
                 }
             }
 
-            //列情報のみをコピーしたデータを作る
-            dtPrintDataClone = dtPrintData.Clone();
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
 
-            foreach (DataGridViewRow r in rows)
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
             {
-                List<object> array = new List<object>();
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-                foreach (DataGridViewCell cell in r.Cells)
-                {
-                    array.Add(cell.Value);
-                }
+                txtYMopen.Focus();
 
-                dtPrintData.Rows.Add(array.ToArray());
-            }
-
-            //並び替え用
-            DataView dvGridViewTokuisaki = new DataView(dtPrintData);
-
-            //出力順が得意先コードの昇順の場合
-            if (radShuturyoku.radbtn0.Checked == true)
-            {
-                dvGridViewTokuisaki.Sort = "コード";
+                return;
             }
             else
-            //出力順がフリガナの昇順の場合
             {
-                dvGridViewTokuisaki.Sort = "フリガナ";
+                txtYMopen.Text = strYMDformat;
             }
 
-            //空にする
-            dtPrintData = null;
+            //初期化
+            strYMDformat = "";
 
-            //データテーブルに戻す
-            foreach (DataRowView drv in dvGridViewTokuisaki)
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMclose.chkDateYMDataFormat(txtYMclose.Text);
+
+            //終了年月日の日付チェック
+            if (strYMDformat == "")
             {
-                dtPrintDataClone.ImportRow(drv.Row);
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMclose.Focus();
+
+                return;
             }
+            else
+            {
+                txtYMclose.Text = strYMDformat;
+            }
+
+            //検索開始得意先コードのチェック
+            if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
+            {
+                lblsetTokuisakiCdopen.Focus();
+
+                return;
+            }
+
+            //検索終了得意先コードのチェック
+            if (lblsetTokuisakiCdclose.chkTxtTorihikisaki() == true)
+            {
+                lblsetTokuisakiCdclose.Focus();
+
+                return;
+            }
+
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
+            {
+                //スルー
+            }
+            else
+            {
+                //データチェック（年月度が同じの場合）
+                if (txtYMopen.Text == txtYMclose.Text)
+                {
+                    //一か月単位は出来ないメッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtYMopen.Focus();
+                    return;
+                }
+            }
+
+            DataTable dtGridViewTokusaki = new DataTable();
+
+            List<string> lstStringViewData = new List<string>();
+
+            lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+            //パワーユーザーの場合
+            if ("1".Equals(this.etsuranFlg))
+            {
+                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+            }
+            else
+            {
+                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+            }
+
+            string strShuturyoku = "";
+
+            //出力順のラジオボタン判定
+            if (radShuturyoku.radbtn0.Checked == true)
+            {
+                strShuturyoku = "Tokuisaki";
+            }
+            else
+            {
+                strShuturyoku = "Hurigana";
+            }
+
+            lstStringViewData.Add(DateTime.Parse(txtYMopen.Text).ToString("yyyy/MM/dd"));
+            lstStringViewData.Add(DateTime.Parse(txtYMclose.Text).ToString("yyyy/MM/dd"));
+            lstStringViewData.Add(strShuturyoku);
 
             C0520_KaikakekinZandakaIchiranKakunin_B kaikakekakuninB = new C0520_KaikakekinZandakaIchiranKakunin_B();
             try
             {
+                dtPrintData = kaikakekakuninB.getPrintData(lstStringViewData);
+
                 //初期値
                 Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);
 
@@ -600,7 +697,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                     this.Cursor = Cursors.WaitCursor;
 
                     //結果セットをレコードセットに
-                    strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone,lstTorihiki);
+                    strFile = kaikakekakuninB.dbToPdf(dtPrintData,lstTorihiki);
 
                     this.Cursor = Cursors.Default;
 
@@ -627,7 +724,7 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                     this.Cursor = Cursors.WaitCursor;
 
                     //結果セットをレコードセットに
-                    strFile = kaikakekakuninB.dbToPdf(dtPrintDataClone, lstTorihiki);
+                    strFile = kaikakekakuninB.dbToPdf(dtPrintData, lstTorihiki);
 
                     this.Cursor = Cursors.Default;
 
