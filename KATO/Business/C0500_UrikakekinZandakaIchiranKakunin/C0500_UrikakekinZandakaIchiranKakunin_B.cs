@@ -38,6 +38,18 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
             lstSQL.Add("C0500_UrikakekinZandakaIchiranKakunin");
             lstSQL.Add("C0500_UrikakekinZan_SELECT");
 
+            //出力順の設定
+            string strShuturyoku = "";
+
+            if (lstStringViewData[4].ToString() == "Tokuisaki")
+            {
+                strShuturyoku = "T.取引先コード,K.年月日";
+            }
+            else
+            {
+                strShuturyoku = "T.カナ,K.年月日";
+            }
+
             //SQL発行
             OpenSQL opensql = new OpenSQL();
 
@@ -59,7 +71,90 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                                             lstStringViewData[0],   //得意先コード(開始)
                                             lstStringViewData[1],   //得意先コード(終了)
                                             lstStringViewData[2],   //年月度(開始)
-                                            lstStringViewData[3]    //年月度(終了)
+                                            lstStringViewData[3],   //年月度(終了)
+                                            strShuturyoku           //出力順
+                                            );
+
+                //データ取得（ここから取得）
+                dtKataban = dbconnective.ReadSql(strSQLInput);
+
+                //データ存在チェック
+                if (dtKataban.Rows.Count == 0)
+                {
+                    return (dtKataban);
+                }
+
+
+
+                return (dtKataban);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getPrintData
+        ///印刷用のデータ取得
+        ///</summary>
+        public DataTable getPrintData(List<string> lstStringViewData)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtKataban = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("C0500_UrikakekinZandakaIchiranKakunin");
+            lstSQL.Add("C0500_UrikakekinZan_Print_SELECT");
+
+            //出力順の設定
+            string strShuturyoku = "";
+
+            if (lstStringViewData[4].ToString() == "Tokuisaki")
+            {
+                strShuturyoku = "A.コード,A.年月";
+            }
+            else
+            {
+                strShuturyoku = "A.フリガナ,A.年月";
+            }
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtKataban);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            lstStringViewData[0],   //得意先コード(開始)
+                                            lstStringViewData[1],   //得意先コード(終了)
+                                            lstStringViewData[2],   //年月度(開始)
+                                            lstStringViewData[3],   //年月度(終了)
+                                            strShuturyoku           //出力順
                                             );
 
                 //データ取得（ここから取得）

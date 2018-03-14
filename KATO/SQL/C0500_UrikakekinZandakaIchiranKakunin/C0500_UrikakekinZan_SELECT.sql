@@ -65,4 +65,4 @@ WHERE T.削除 = 'N'
 	  AND DATEADD(d,1,K.年月日) >= '{2}'
 	  AND DATEADD(d,1,K.年月日) <= '{3}'	  
 	  AND K.情報区分='21'
-ORDER BY T.取引先コード,K.年月日
+ORDER BY {4}

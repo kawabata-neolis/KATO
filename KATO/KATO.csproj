@@ -1876,6 +1876,9 @@
     <Content Include="SQL\B1510_SeikyuRireki\SeikyuRireki_SELECT_SetDataGridView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_Print_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\C0500_UrikakekinZandakaIchiranKakunin\C0500_UrikakekinZan_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
