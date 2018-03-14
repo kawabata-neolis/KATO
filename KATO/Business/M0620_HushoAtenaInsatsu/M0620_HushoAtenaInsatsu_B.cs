@@ -155,10 +155,10 @@ namespace KATO.Business.M0620_HushoAtenaInsatsu
                 }
                 else
                 {
-                    currentsheet.Cell("H2").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
-                    currentsheet.Cell("J4").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
-                    currentsheet.Cell("J5").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
-                    currentsheet.Cell("N7").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
+                    currentsheet.Cell("D2").Value = dtSetCd_B_Input.Rows[0]["郵便番号"];      // 郵便番号
+                    currentsheet.Cell("F4").Value = dtSetCd_B_Input.Rows[0]["住所１"];      // 住所１
+                    currentsheet.Cell("F5").Value = dtSetCd_B_Input.Rows[0]["住所２"];      // 住所２
+                    currentsheet.Cell("G8").Value = dtSetCd_B_Input.Rows[0]["名称"];      // 名称
                 }
 
 
