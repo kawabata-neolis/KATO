@@ -530,7 +530,7 @@
             this.gridMitsu.TabIndex = 9;
             this.gridMitsu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMitsu_CellDoubleClick);
             this.gridMitsu.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
-            this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox5_KeyDown);
+            this.gridMitsu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridMitsu_KeyDown);
             // 
             // txtTo
             // 

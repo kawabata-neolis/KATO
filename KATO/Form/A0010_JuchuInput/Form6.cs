@@ -193,7 +193,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
             ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
-            ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
+            ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
             ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = "";
             ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
             ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
@@ -319,7 +319,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = ((BaseCalendar)c.Controls["txtHYMD"]).Text;
             ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText;
-            ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
+            ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = "";
             ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = "";
             ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText;
             ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
@@ -567,7 +567,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                 ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = r["発注年月日"].ToString();
                 ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = r["発注者コード"].ToString();
-                ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
+                ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
                 ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
                 ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = r["大分類コード"].ToString();
                 ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();
@@ -577,6 +577,7 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseText)inputPanel.Controls["txtHinmei"]).Text = r["品名"].ToString();
                 ((BaseLabelGray)inputPanel.Controls["txtTanabanL"]).Text = r["棚番本社"].ToString();
                 ((BaseLabelGray)inputPanel.Controls["txtTanabanR"]).Text = r["棚番岐阜"].ToString();
+                ((BaseText)inputPanel.Controls["txtHXXX"]).Text = r["表注番"].ToString();
 
                 decimal dSu = 0;
                 string stSu = "";
@@ -631,7 +632,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     ((BaseCalendar)inputPanel.Controls["txtHYMD"]).ReadOnly = true;
                     ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).codeTxt.ReadOnly = true;
-                    ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).codeTxt.ReadOnly = true;
+                    ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).codeTxt.ReadOnly = true;
                     ((BaseTextMoney)inputPanel.Controls["txtHNo"]).ReadOnly = true;
                     ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).codeTxt.ReadOnly = true;
                     ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).codeTxt.ReadOnly = true;
@@ -647,7 +648,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     ((BaseCalendar)inputPanel.Controls["txtHYMD"]).ReadOnly = true;
                     ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).codeTxt.ReadOnly = true;
-                    ((LabelSet_Torihikisaki)inputPanel.Controls["lsShiire"]).codeTxt.ReadOnly = true;
+                    ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).codeTxt.ReadOnly = true;
                     ((BaseTextMoney)inputPanel.Controls["txtHNo"]).ReadOnly = true;
                     ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).codeTxt.ReadOnly = true;
                     ((LabelSet_Chubunrui)inputPanel.Controls["lsChubun"]).codeTxt.ReadOnly = true;
@@ -749,14 +750,14 @@ namespace KATO.Form.A0010_JuchuInput
             lsHSha.CodeTxtText = a0010JInput.lsJuchusha.CodeTxtText;
             tabIdx++;
 
-            LabelSet_Torihikisaki lsShiire = new LabelSet_Torihikisaki();
+            TextSet_Torihikisaki lsShiire = new TextSet_Torihikisaki();
             lsShiire.Name = "lsShiire";
             lsShiire.AutoSize = true;
             lsShiire.LabelName = "仕入先";
             lsShiire.ShowAppendFlg = false;
             basePanel.Controls.Add(lsShiire);
             lsShiire.Location = new Point(496, 22);
-            lsShiire.ValueLabelSize = 240;
+            lsShiire.ValueTextSize = 240;
             lsShiire.SpaceNameCode = 20;
             lsShiire.BringToFront();
             lsShiire.TabIndex = tabIdx;
@@ -786,6 +787,41 @@ namespace KATO.Form.A0010_JuchuInput
             txtHNo.TabIndex = tabIdx;
             txtHNo.Visible = false;
             tabIdx++;
+
+
+
+            BaseLabel lblHXXX = new BaseLabel();
+            lblHXXX.AutoSize = true;
+            //lblHNo.BackColor = Color.Transparent;
+            lblHXXX.Text = "注番";
+            basePanel.Controls.Add(lblHXXX);
+            lblHXXX.Location = new Point(869, 22);
+            lblHXXX.BringToFront();
+            lblHXXX.TabIndex = tabIdx;
+            lblHXXX.Visible = false;
+            tabIdx++;
+
+            BaseText txtHXXX = new BaseText();
+            txtHXXX.Name = "txtHXXX";
+            txtHXXX.Size = new System.Drawing.Size(86, 22);
+            basePanel.Controls.Add(txtHXXX);
+            txtHXXX.Location = new Point(962, 19);
+            txtHXXX.BringToFront();
+            txtHXXX.Name = "txtHXXX";
+            txtHXXX.TabStop = false;
+            txtHXXX.TabIndex = tabIdx;
+            txtHXXX.ReadOnly = true;
+            txtHXXX.Visible = false;
+            tabIdx++;
+            if (cat == cats[0] || cat == cats[2])
+            {
+                lblHXXX.Visible = true;
+                txtHXXX.Visible = true;
+            }
+
+
+
+
             #endregion
 
             // 2行目
@@ -1135,7 +1171,7 @@ namespace KATO.Form.A0010_JuchuInput
                 lsHSha.CodeTxtText = a0010JInput.lsJuchusha.CodeTxtText;
                 lsHSha.ValueLabelText = a0010JInput.lsJuchusha.ValueLabelText;
                 lsShiire.CodeTxtText = a0010JInput.tsShiiresaki.CodeTxtText;
-                lsShiire.ValueLabelText = a0010JInput.tsShiiresaki.valueTextText;
+                lsShiire.valueTextText = a0010JInput.tsShiiresaki.valueTextText;
                 lsDaibun.CodeTxtText = lsDaibunruiM.CodeTxtText;
                 lsDaibun.ValueLabelText = lsDaibunruiM.ValueLabelText;
                 lsChubun.CodeTxtText = lsChubunruiM.CodeTxtText;
@@ -1882,7 +1918,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sLbl = ((Label)cc.Controls["cate"]).Text;
                 string sHSha = ((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText;
                 string sHYMD = ((BaseCalendar)cc.Controls["txtHYMD"]).Text;
-                string sHShiire = ((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
+                string sHShiire = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
                 string sHNo = ((BaseTextMoney)cc.Controls["txtHNo"]).Text;
                 string sHDai = ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText;
                 string sHChubun = ((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText;
@@ -1899,7 +1935,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
                 string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
                 string sTmpSu = ((BaseTextMoney)cc.Controls["tmpSuryo"]).Text;
-                string sShiireMei = ((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).ValueLabelText;
+                string sShiireMei = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).valueTextText;
                 string sEigyo = ((BaseText)cc.Controls["txtEigyo"]).Text;
                 string sC1 = ((BaseText)cc.Controls["txtC1"]).Text;
                 string sC2 = ((BaseText)cc.Controls["txtC2"]).Text;
@@ -2385,7 +2421,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         ((BaseCalendar)c.Controls["txtHYMD"]).Text = dt.Rows[0]["発注年月日"].ToString();
                         ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText = dt.Rows[0]["発注者コード"].ToString();
-                        ((LabelSet_Torihikisaki)c.Controls["lsShiire"]).CodeTxtText = dt.Rows[0]["仕入先コード"].ToString();
+                        ((TextSet_Torihikisaki)c.Controls["lsShiire"]).CodeTxtText = dt.Rows[0]["仕入先コード"].ToString();
                         ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText = dt.Rows[0]["大分類コード"].ToString();
                         ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText = dt.Rows[0]["中分類コード"].ToString();
                         ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText = dt.Rows[0]["メーカーコード"].ToString();
@@ -2423,7 +2459,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         ((BaseCalendar)c.Controls["txtHYMD"]).Text = dt.Rows[0]["伝票年月日"].ToString();
                         ((LabelSet_Tantousha)c.Controls["lsHSha"]).CodeTxtText = dt.Rows[0]["担当者コード"].ToString();
-                        ((LabelSet_Torihikisaki)c.Controls["lsShiire"]).CodeTxtText = dt.Rows[0]["仕入先コード"].ToString();
+                        ((TextSet_Torihikisaki)c.Controls["lsShiire"]).CodeTxtText = dt.Rows[0]["仕入先コード"].ToString();
                         ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).CodeTxtText = dt.Rows[0]["大分類コード"].ToString();
                         ((LabelSet_Chubunrui)c.Controls["lsChubun"]).CodeTxtText = dt.Rows[0]["中分類コード"].ToString();
                         ((LabelSet_Maker)c.Controls["lsMaker"]).CodeTxtText = dt.Rows[0]["メーカーコード"].ToString();
@@ -2467,7 +2503,7 @@ namespace KATO.Form.A0010_JuchuInput
                             ((LabelSet_Tantousha)c.Controls["lsHSha"]).codeTxt.ReadOnly = true;
 
                             ((BaseCalendar)c.Controls["txtHYMD"]).ReadOnly = true;
-                            ((LabelSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = true;
+                            ((TextSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = true;
                             ((BaseTextMoney)c.Controls["txtHNo"]).ReadOnly = true;
                             ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).codeTxt.ReadOnly = true;
                             ((LabelSet_Chubunrui)c.Controls["lsChubun"]).codeTxt.ReadOnly = true;
@@ -2483,7 +2519,7 @@ namespace KATO.Form.A0010_JuchuInput
                             ((LabelSet_Tantousha)c.Controls["lsHSha"]).codeTxt.ReadOnly = false;
 
                             ((BaseCalendar)c.Controls["txtHYMD"]).ReadOnly = false;
-                            ((LabelSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = false;
+                            ((TextSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = false;
                             ((BaseTextMoney)c.Controls["txtHNo"]).ReadOnly = false;
                             ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).codeTxt.ReadOnly = false;
                             ((LabelSet_Chubunrui)c.Controls["lsChubun"]).codeTxt.ReadOnly = false;
@@ -2500,7 +2536,7 @@ namespace KATO.Form.A0010_JuchuInput
                         ((LabelSet_Tantousha)c.Controls["lsHSha"]).codeTxt.ReadOnly = false;
 
                         ((BaseCalendar)c.Controls["txtHYMD"]).ReadOnly = false;
-                        ((LabelSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = false;
+                        ((TextSet_Torihikisaki)c.Controls["lsShiire"]).codeTxt.ReadOnly = false;
                         ((BaseTextMoney)c.Controls["txtHNo"]).ReadOnly = false;
                         ((LabelSet_Daibunrui)c.Controls["lsDaibun"]).codeTxt.ReadOnly = false;
                         ((LabelSet_Chubunrui)c.Controls["lsChubun"]).codeTxt.ReadOnly = false;
@@ -2687,7 +2723,7 @@ namespace KATO.Form.A0010_JuchuInput
                 string sLbl = ((Label)cc.Controls["cate"]).Text;
                 string sHSha = ((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText;
                 string sHYMD = ((BaseCalendar)cc.Controls["txtHYMD"]).Text;
-                string sHShiire = ((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
+                string sHShiire = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
                 string sHNo = ((BaseTextMoney)cc.Controls["txtHNo"]).Text;
                 string sHDai = ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText;
                 string sHChubun = ((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText;
@@ -2730,7 +2766,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
-                    ((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).Focus();
+                    ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).Focus();
                     return false;
                 }
                 if (string.IsNullOrWhiteSpace(sHMak))
@@ -2747,7 +2783,7 @@ namespace KATO.Form.A0010_JuchuInput
                     ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).Focus();
                     return false;
                 }
-                if (string.IsNullOrWhiteSpace(sHChuban))
+                if (string.IsNullOrWhiteSpace(sHChubun))
                 {
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
@@ -3168,7 +3204,7 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 return true;
             }
-            if (!((LabelSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpShiire"])))
+            if (!((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpShiire"])))
             {
                 return true;
             }

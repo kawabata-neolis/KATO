@@ -29,6 +29,8 @@ namespace KATO.Form.A0010_JuchuInput
         string defaultUser = "";
         string defaultEigyo = "";
 
+        bool editLock = false;
+
         public Form6 f6 = null;
         D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin uriKakunin = null;
 
@@ -316,8 +318,12 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F1:
                     if (btnF01.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                        this.addJuchu();
+                        if (!editLock) {
+                            logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                            editLock = true;
+                            this.addJuchu();
+                            editLock = false;
+                        }
                     }
                     break;
                 case Keys.F2:
@@ -325,8 +331,13 @@ namespace KATO.Form.A0010_JuchuInput
                 case Keys.F3:
                     if (btnF03.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                        this.delJuchu();
+                        if (!editLock)
+                        {
+                            logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                            editLock = true;
+                            this.delJuchu();
+                            editLock = false;
+                        }
                     }
                     break;
                 case Keys.F4:
@@ -406,15 +417,25 @@ namespace KATO.Form.A0010_JuchuInput
                 case STR_BTN_F01: // 登録
                     if (btnF01.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
-                        this.addJuchu();
+                        if (!editLock)
+                        {
+                            logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
+                            editLock = true;
+                            this.addJuchu();
+                            editLock = false;
+                        }
                     }
                     break;
                 case STR_BTN_F03: // 削除
                     if (btnF03.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
-                        this.delJuchu();
+                        if (!editLock)
+                        {
+                            logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                            editLock = true;
+                            this.delJuchu();
+                            editLock = false;
+                        }
                     }
                     break;
                 case STR_BTN_F04: // 取り消し
@@ -1083,6 +1104,7 @@ namespace KATO.Form.A0010_JuchuInput
                     txtGihuShukko.Visible = true;
                     txtHatchusu.Visible = true;
                 }
+                updKakeritsu();
             }
             catch (Exception ex)
             {
@@ -2511,7 +2533,33 @@ namespace KATO.Form.A0010_JuchuInput
 
                 // 在庫数チェック
                 #region
-                if (!"1".Equals(riekiritsuFlg))
+
+                bool zaikoKanri = false;
+
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(txtShohinCd.Text)) {
+                        A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                        DataTable dtS = juchuB.getShohin(txtShohinCd.Text);
+                        if (dtS != null && dtS.Rows.Count > 0)
+                        {
+                            string s = dtS.Rows[0]["在庫管理区分"].ToString();
+                            if ("0".Equals(s))
+                            {
+                                zaikoKanri = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+
+                if (!"1".Equals(riekiritsuFlg) && zaikoKanri)
                 {
                     if (!txtShohinCd.Text.Equals("88888"))
                     {

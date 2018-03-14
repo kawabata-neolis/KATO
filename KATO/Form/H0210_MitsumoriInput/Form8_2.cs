@@ -619,5 +619,16 @@ namespace KATO.Form.H0210_MitsumoriInput
             await Task.Delay(500);
             gridMitsu.Focus();
         }
+
+        private void gridMitsu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+                if (gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value != null)
+                {
+                    nm.Text = gridMitsu[1, gridMitsu.CurrentCell.RowIndex].Value.ToString();
+                }
+                this.Close();
+            }
+        }
     }
 }
