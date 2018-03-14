@@ -386,7 +386,7 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
             if (labelSet_SiiresakiEnd.codeTxt.blIsEmpty() == true)
             {
                 //得意先コードの範囲指定は出来ないメッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "複数の得意先コードは指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "複数の仕入先コードは指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 labelSet_SiiresakiEnd.Focus();
                 return;
@@ -758,7 +758,7 @@ namespace KATO.Form.E0340_SiiresakiMotochouKakunin
                 labelSet_SiiresakiEnd.chkTxtTorihikisaki() == true)
             {
                 //例外発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "得意先コードを範囲で指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "仕入先コードを範囲で指定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 labelSet_SiiresakiEnd.Focus();
