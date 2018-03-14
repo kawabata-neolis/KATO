@@ -198,7 +198,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                 int maxPage = 0;    // 最大ページ数
 
                 // ページ数計算
-                double page = 1.0 * maxRowCnt / 30;
+                double page = 1.0 * maxRowCnt / 37;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -329,7 +329,7 @@ namespace KATO.Business.B0410_SeikyuItiranPrint
                                 .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                     // 44行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 33)
+                    if (xlsRowCnt == 40)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
