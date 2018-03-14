@@ -328,19 +328,19 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                     }
 
                     //初期値
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, YOKO);
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, TATE);
 
                     //長４の場合
                     if (radSet_2btn_Yoshi.radbtn0.Checked == true)
                     {
                         //印刷ダイアログ
-                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO);
+                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, false);
                         pf.ShowDialog(this);
                     }
                     else if (radSet_2btn_Yoshi.radbtn1.Checked == true)
                     {
                         //印刷ダイアログ
-                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO);
+                        pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA3, false);
                         pf.ShowDialog(this);
                     }
 
@@ -362,12 +362,12 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                         if (blNaga4 == true)
                         {
                             // 一括印刷
-                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO, YOKO);
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA4, CommonTeisu.YOKO, false);
                         }
                         else
                         {
                             // 一括印刷
-                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO, YOKO);
+                            pf.execPrint(null, strFile, CommonTeisu.SIZE_NAGA3, CommonTeisu.YOKO, false);
                         }
                     }
 
