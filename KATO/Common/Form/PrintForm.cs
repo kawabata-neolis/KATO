@@ -250,6 +250,7 @@ namespace KATO.Common.Form
                             switches.Add("-dDEVICEHEIGHTPOINTS=" + lstSize[1]);
                             //switches.Add("-g" + lstSize[0] + "x" + lstSize[1]);
                         }
+                        switches.Add("-dFitPage");
                     }
                     else
                     {
