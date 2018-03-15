@@ -2060,6 +2060,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                 }
                 con.Commit();
+                txtJuchuNo.Text = strJuchuNo;
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, strMsg, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 

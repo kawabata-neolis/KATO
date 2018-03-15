@@ -1948,6 +1948,8 @@ namespace KATO.Form.A0010_JuchuInput
                 string shoCd = "88888";
                 string shohinCd;
 
+                string strDenpyoNo = null;
+
                 // 発注/本加工
                 #region
                 if (sLbl.Equals(labels[0]) || sLbl.Equals(labels[2]))
@@ -1978,7 +1980,6 @@ namespace KATO.Form.A0010_JuchuInput
                     //    kakoKbn = "1";
                     //}
 
-                    string strDenpyoNo = null;
                     if (string.IsNullOrWhiteSpace(sHNo))
                     {
                         strDenpyoNo = juchuB.getDenpyoNo("発注番号", con);
@@ -2048,7 +2049,6 @@ namespace KATO.Form.A0010_JuchuInput
                         kbn = "43";
                     }
 
-                    string strDenpyoNo = null;
                     if (string.IsNullOrWhiteSpace(sHNo))
                     {
                         strDenpyoNo = juchuB.getDenpyoNo("出庫伝票", con);
@@ -2166,6 +2166,7 @@ namespace KATO.Form.A0010_JuchuInput
                     juchuB.updShukkoMeisai(aryPrmShukko, con, kariFlg);
                 }
                 #endregion
+                ((BaseTextMoney)cc.Controls["txtHNo"]).Text = strDenpyoNo;
                 ((BaseText)cc.Controls["txtShohin"]).Text = shohinCd;
                 ((BaseText)cc.Controls["notNewPanel"]).Text = "1";
             }
@@ -3426,19 +3427,37 @@ namespace KATO.Form.A0010_JuchuInput
         {
             string ret = "";
             decimal dTotal = 0;
+            string ALbl = labels[1];
 
             TableLayoutControlCollection c = tableLayoutPanel1.Controls;
 
+            // 発注から始まるかチェック
+            foreach (Control cc in c)
+            {
+                string sLbl = ((Label)cc.Controls["cate"]).Text;
+                if (!sLbl.Equals(labels[0]))
+                {
+                    ALbl = labels[0];
+                    break;
+                }
+            }
+
+            // 材料発注から始まる場合：　発注＋本加工
+            // 材料出庫から始まる場合：　出庫＋本加工
             foreach (Control cc in c)
             {
                 string sLbl = ((Label)cc.Controls["cate"]).Text;
                 string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
                 string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
 
-                if (!sLbl.Equals(labels[0]))
+                if (sLbl.Equals(ALbl) || sLbl.Equals(labels[2]))
                 {
                     dTotal += getDecValue(sHTanka) * getDecValue(sHSu);
                 }
+                //if (!sLbl.Equals(labels[0]))
+                //{
+                //    dTotal += getDecValue(sHTanka) * getDecValue(sHSu);
+                //}
             }
 
             if (!getDecValue(stJSu).Equals(0))
