@@ -604,6 +604,8 @@ namespace KATO.Common.Form
                 case Keys.F3:
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
+                    this.delText();
                     break;
                 case Keys.F5:
                     break;
@@ -1419,6 +1421,26 @@ namespace KATO.Common.Form
         public void setChubun()
         {
             labelSet_Chubunrui.setTxtChubunruiLeave();
+        }
+
+        ///<summary>
+        ///delText
+        ///テキストボックス等の入力情報を白紙にする
+        ///</summary>
+        public void delText()
+        {
+            labelSet_Daibunrui.codeTxt.Clear();
+            labelSet_Daibunrui.chkTxtDaibunrui();
+            labelSet_Chubunrui.codeTxt.Clear();
+            labelSet_Chubunrui.ValueLabelText = "";
+            labelSet_Maker.codeTxt.Clear();
+            labelSet_Maker.chkTxtMaker();
+            txtKensaku.Clear();
+            txtKensakuHuku.Clear();
+
+            //ラジオボタンはそのままにしている必要があれば追記
+
+            labelSet_Daibunrui.Focus();
         }
 
         ///<summary>
