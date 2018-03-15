@@ -105,6 +105,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //txtJuchuNo.Focus();
             gridZanList.Focus();
             this.selZanList();
+            lineMark();
             searchedFlg = true;
             hatchuzanFlg = true;
         }
@@ -155,6 +156,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //txtJuchuNo.Focus();
             gridZanList.Focus();
             this.selZanList();
+            lineMark();
             searchedFlg = true;
 
             //仕入入力から来た証明
@@ -414,6 +416,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case Keys.F1:
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.selZanList();
+                    lineMark();
                     break;
                 case Keys.F2:
                     break;
@@ -496,6 +499,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 case STR_BTN_F01: // 一覧表示
                     logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.selZanList();
+                    lineMark();
                     break;
                 case STR_BTN_F04: // 取り消し
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -587,12 +591,14 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 // 検索実行
                 DataTable dtZanList = bis.getZanList(listParam, hatchuzanFlg);
                 gridZanList.DataSource = dtZanList;
+                gridZanList.EndEdit();
+                gridZanList.Refresh();
 
                 if (dtZanList != null && dtZanList.Rows.Count > 0)
                 {
                     Control cNow = this.ActiveControl;
 
-                    lineMark();
+                    //lineMark();
                     //int rowsCnt = gridZanList.RowCount;
 
                     //decimal d = 0;
@@ -1050,6 +1056,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 gridZanList.Focus();
                 gridZanList.CurrentCell = gridZanList[0, 0];
+                lineMark();
             }
         }
 

@@ -691,7 +691,6 @@
             // gridZanList
             // 
             this.gridZanList.AllowUserToAddRows = false;
-            this.gridZanList.AllowUserToDeleteRows = false;
             this.gridZanList.AllowUserToResizeColumns = false;
             this.gridZanList.AllowUserToResizeRows = false;
             this.gridZanList.AutoGenerateColumns = false;
