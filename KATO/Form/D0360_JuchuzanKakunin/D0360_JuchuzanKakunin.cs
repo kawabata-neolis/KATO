@@ -592,7 +592,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 {
                     Control cNow = this.ActiveControl;
 
-                    //lineMark();
+                    lineMark();
                     //int rowsCnt = gridZanList.RowCount;
 
                     //decimal d = 0;
