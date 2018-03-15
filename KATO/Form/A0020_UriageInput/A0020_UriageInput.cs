@@ -3725,9 +3725,9 @@ namespace KATO.Form.A0020_UriageInput
                 }
             }
 
-            labelSet_Tantousha.CodeTxtText = TCD;
-            labelSet_Tantousha.chkTxtTantosha();
-            GetTantouCode(labelSet_Tantousha.CodeTxtText);
+            //labelSet_Tantousha.CodeTxtText = TCD;
+            //labelSet_Tantousha.chkTxtTantosha();
+            //GetTantouCode(labelSet_Tantousha.CodeTxtText);
 
         }
 

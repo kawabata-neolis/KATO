@@ -552,7 +552,7 @@ namespace KATO.Common.Ctl
                         C_uriageInput.txtTname.ReadOnly = false;
                     }
 
-                    C_uriageInput.labelSet_Tantousha.CodeTxtText = rs.Rows[0]["受注者コード"].ToString();
+                    //C_uriageInput.labelSet_Tantousha.CodeTxtText = rs.Rows[0]["受注者コード"].ToString();
 
                     txtSinaBanElem3.ReadOnly = true;
                     txtSinaBanElem3.BackColor = SystemColors.Window;
