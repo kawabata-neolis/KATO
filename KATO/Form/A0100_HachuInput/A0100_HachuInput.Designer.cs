@@ -554,7 +554,7 @@
             // txtChuban
             // 
             this.txtChuban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtChuban.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtChuban.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
             this.txtChuban.Location = new System.Drawing.Point(116, 313);
             this.txtChuban.MaxLength = 30;
             this.txtChuban.Name = "txtChuban";
@@ -746,6 +746,7 @@
             this.gridHachu.AllowUserToAddRows = false;
             this.gridHachu.AllowUserToResizeColumns = false;
             this.gridHachu.AllowUserToResizeRows = false;
+            this.gridHachu.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
