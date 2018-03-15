@@ -44,6 +44,9 @@ namespace KATO.Common.Business
             //分岐WHERE分用
             string strWhere = "";
 
+            //仮商品かどうかの判定(更新ユーザー名表示時の"見"表示用)
+            Boolean blKari = false;
+
             //本登録データの場合
             if(lstBoolean[2] == true)
             {
@@ -108,6 +111,8 @@ namespace KATO.Common.Business
                 lstSQL.Add("Common");
                 lstSQL.Add("CommonForm");
                 lstSQL.Add("ShohinList_View");
+
+                blKari = false;
             }
             //仮登録データの場合
             else
@@ -173,6 +178,8 @@ namespace KATO.Common.Business
                 lstSQL.Add("Common");
                 lstSQL.Add("CommonForm");
                 lstSQL.Add("ShohinList_View_Kari");
+
+                blKari = true;
             }
 
             //SQL接続
@@ -273,7 +280,19 @@ namespace KATO.Common.Business
                         //仕入単価を挿入
                         dtShohin.Rows[intShohinCnt]["仕入単価"] = strShireTanka;
 
-
+                        //仮登録データの場合
+                        if (blKari == true)
+                        {
+                            //棚番本社に記載がない場合(見積もり入力からの仮商品登録)
+                            if (dtShohin.Rows[intShohinCnt]["棚番本社"].ToString().Trim() == "")
+                            {
+                                dtShohin.Rows[intShohinCnt]["メモ"] = "\"見\" " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+                            }
+                            else
+                            {
+                                dtShohin.Rows[intShohinCnt]["メモ"] = "     " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+                            }
+                        }
                     }
                 }
             }
