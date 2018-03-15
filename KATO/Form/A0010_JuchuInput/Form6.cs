@@ -568,6 +568,7 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseCalendar)inputPanel.Controls["txtHYMD"]).Text = r["発注年月日"].ToString();
                 ((LabelSet_Tantousha)inputPanel.Controls["lsHSha"]).CodeTxtText = r["発注者コード"].ToString();
                 ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).CodeTxtText = r["仕入先コード"].ToString();
+                ((TextSet_Torihikisaki)inputPanel.Controls["lsShiire"]).valueTextText = r["仕入先名"].ToString();
                 ((BaseTextMoney)inputPanel.Controls["txtHNo"]).Text = r["発注番号"].ToString();
                 ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).CodeTxtText = r["大分類コード"].ToString();
                 ((LabelSet_Daibunrui)inputPanel.Controls["lsDaibun"]).chkTxtDaibunrui();

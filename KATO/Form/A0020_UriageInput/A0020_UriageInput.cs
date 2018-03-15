@@ -2044,6 +2044,12 @@ namespace KATO.Form.A0020_UriageInput
                 return false;
             }
 
+
+
+            
+
+
+
             //在庫チェックは部長は除外。
             if (!"1".Equals(riekiritsuFlg))
             {
@@ -2055,8 +2061,36 @@ namespace KATO.Form.A0020_UriageInput
                 {
                     Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
 
+                    bool zaikoKanri = false;
+
+                    try
+                    {
+                        if (!string.IsNullOrWhiteSpace(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text))
+                        {
+                            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
+                            DataTable dtS = uriageinputB.getShohin(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text);
+                            if (dtS != null && dtS.Rows.Count > 0)
+                            {
+                                string s = dtS.Rows[0]["在庫管理区分"].ToString();
+                                if ("0".Equals(s))
+                                {
+                                    zaikoKanri = true;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        new CommonException(ex);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        return false;
+                    }
+
+
                     //商品コードが入力されているか
-                    if (((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text != "")
+                    //if (((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text != "")
+                    if (zaikoKanri)
                     {
                         //倉庫番後をBashoに格納
                         Basho = ((TextSet_Jucyu)cs1[0]).labelSet_SoukoNoElem10.CodeTxtText;

@@ -24,6 +24,29 @@ namespace KATO.Business.A0020_UriageInput
     ///</summary>
     class A0020_UriageInput_B
     {
+        public DataTable getShohin(string strShohinCd)
+        {
+            DataTable dtRet = null;
+            string strQuery = "";
+
+            strQuery += "SELECT *";
+            strQuery += "  FROM 商品";
+            strQuery += " WHERE 商品コード = '" + strShohinCd + "'";
+            strQuery += "   AND 削除     = 'N'";
+
+            DBConnective dbCon = new DBConnective();
+            try
+            {
+                dtRet = dbCon.ReadSql(strQuery);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dtRet;
+        }
+
         /// <summary>
         /// updUriageHeader
         /// 売上ヘッダをプロシージャーで更新する。
