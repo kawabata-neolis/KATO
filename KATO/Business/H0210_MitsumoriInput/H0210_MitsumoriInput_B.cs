@@ -682,5 +682,59 @@ namespace KATO.Business.H0210_MitsumoriInput
                 throw ex;
             }
         }
+
+        public string getMakerName (string cd)
+        {
+            if (string.IsNullOrWhiteSpace(cd))
+            {
+                return "";
+            }
+
+            string ret = "";
+
+            DBConnective dbCon = new DBConnective();
+            string strSQL = "SELECT * FROM メーカー WHERE メーカーコード = '" + cd + "'";
+            try
+            {
+                DataTable dt = dbCon.ReadSql(strSQL);
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0]["メーカー名"] != null && dt.Rows[0]["メーカー名"] != DBNull.Value)
+                {
+                    ret = (dt.Rows[0]["メーカー名"].ToString()).TrimEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ret;
+        }
+
+        public string getCBunruiName(string cdD, string cdC)
+        {
+            if (string.IsNullOrWhiteSpace(cdD) || string.IsNullOrWhiteSpace(cdC))
+            {
+                return "";
+            }
+
+            string ret = "";
+
+            DBConnective dbCon = new DBConnective();
+            string strSQL = "SELECT * FROM 中分類 WHERE 大分類コード = '" + cdD + "' AND 中分類コード = '" + cdC + "'";
+            try
+            {
+                DataTable dt = dbCon.ReadSql(strSQL);
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0]["中分類名"] != null && dt.Rows[0]["中分類名"] != DBNull.Value)
+                {
+                    ret = dt.Rows[0]["中分類名"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return ret;
+        }
     }
 }

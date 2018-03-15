@@ -2977,17 +2977,24 @@ namespace KATO.Form.H0210_MitsumoriInput
                     }
                     string stKata = "";
 
-                    stKata += getCellValue(gridMitsmori[89, i], false);
+                    H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+
+                    stKata += inputB.getMakerName(getCellValue(gridMitsmori[89, i], false));
                     if (!string.IsNullOrWhiteSpace(stKata))
                     {
                         stKata += " ";
                     }
-                    stKata += getCellValue(gridMitsmori[88, i], false);
+                    stKata += inputB.getCBunruiName(getCellValue(gridMitsmori[88, i], false), getCellValue(gridMitsmori[88, i], false));
                     if (!string.IsNullOrWhiteSpace(stKata))
                     {
                         stKata += " ";
                     }
                     stKata += getCellValue(gridMitsmori[2, i], false);
+
+                    if (!string.IsNullOrWhiteSpace(stKata))
+                    {
+                        stKata = "'" + stKata;
+                    }
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
                     currentsheet.Cell(xlsRowCnt, "C").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false)); // 数量
