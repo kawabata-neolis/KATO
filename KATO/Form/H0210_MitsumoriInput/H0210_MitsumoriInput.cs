@@ -1481,14 +1481,14 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 if (!dTeika.Equals(0))
                 {
-                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                    dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1, MidpointRounding.AwayFromZero);
                 }
 
                 dKin = Decimal.Round(dTanka * dSuryo, 0);
 
                 if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
                 {
-                    gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1)).ToString("#,0");
+                    gridMitsmori[6, e.RowIndex].Value = (Decimal.Round(dRitsu, 1, MidpointRounding.AwayFromZero)).ToString("#,0");
                 }
                 if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[3, e.RowIndex], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, e.RowIndex], false)))
                 {
@@ -1702,8 +1702,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // 掛率
                 if (!dTeika.Equals(0))
                 {
-                    dKakeritsu1 = Decimal.Round((dShiireTanka1 / dTeika) * 100, 1);
-                    dKakeritsu2 = Decimal.Round((dShiireTanka2 / dTeika) * 100, 1);
+                    dKakeritsu1 = Decimal.Round((dShiireTanka1 / dTeika) * 100, 1, MidpointRounding.AwayFromZero);
+                    dKakeritsu2 = Decimal.Round((dShiireTanka2 / dTeika) * 100, 1, MidpointRounding.AwayFromZero);
                 }
                 txtKakeritsu1.Text = dKakeritsu1.ToString();
                 if (zaiNum != 0)
@@ -1723,7 +1723,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // 粗利率
                 if (!(dMitsuTanka * dSuryo).Equals(0))
                 {
-                    dArariRitsuM = decimal.Round((dArariM / (dMitsuTanka * dSuryo)) * 100, 1);
+                    dArariRitsuM = decimal.Round((dArariM / (dMitsuTanka * dSuryo)) * 100, 1, MidpointRounding.AwayFromZero);
                 }
                 txtArariRitsu.Text = dArariRitsuM.ToString();
 
@@ -1732,7 +1732,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellShiireTanka1.Value = dShiireTanka1.ToString("#,0.00");
                     cellShiireKin1.Value = dShiireKin1.ToString("#,0");
                     cellShiireArari1.Value = dArariM.ToString("#,0");
-                    cellShiireArariRitsu1.Value = dArariRitsuM.ToString();
+                    cellShiireArariRitsu1.Value = dArariRitsuM.ToString("#,0.0");
 
                     cellKakoTanka1.Value = dKakoTanka1.ToString("#,0");
                     cellKakoKin1.Value = dKakoKin1.ToString("#,0");
@@ -1934,7 +1934,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 {
                     dArariRitsu = (dArariTotal / dMitsuTotal) * 100;
                 }
-                txtArariRitsu.Text = (Decimal.Round(dArariRitsu, 1)).ToString();
+                txtArariRitsu.Text = (Decimal.Round(dArariRitsu, 1, MidpointRounding.AwayFromZero)).ToString();
             }
             catch (Exception ex)
             {
@@ -2095,10 +2095,10 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                         if (!dTeika.Equals(0))
                         {
-                            dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1);
+                            dRitsu = Decimal.Round((dTanka / dTeika) * 100, 1, MidpointRounding.AwayFromZero);
                         }
 
-                        gridMitsmori[6, i].Value = (Decimal.Round(dRitsu, 1)).ToString();
+                        gridMitsmori[6, i].Value = (Decimal.Round(dRitsu, 1, MidpointRounding.AwayFromZero)).ToString();
                     }
                 }
                 //for (int i = 0; i < intTrueRows; i++)
@@ -3094,7 +3094,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     if (decMTanka.CompareTo(0) != 0)
                     {
-                        currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(decimal.Round(((decMTanka - decTanka) / decMTanka) * 100, 1).ToString("#,0.0"));
+                        currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(decimal.Round(((decMTanka - decTanka) / decMTanka) * 100, 1, MidpointRounding.AwayFromZero).ToString("#,0.0"));
                     }
 
                     currentsheet.Cell(xlsRowCnt, "J").Value = stShiiresaki;
@@ -4016,7 +4016,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
 
             d = Decimal.Parse(getCellValue(c, true));
-            c.Value = (decimal.Round(d, 0)).ToString("0.0");
+            c.Value = (decimal.Round(d, 1, MidpointRounding.AwayFromZero)).ToString("0.0");
         }
 
         

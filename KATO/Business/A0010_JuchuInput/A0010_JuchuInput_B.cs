@@ -893,7 +893,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += " WHERE a.得意先コード = '" + strCd + "'";
             strQuery += "   AND abs(a.受注数量) > abs(a.売上済数量) ";
             strQuery += "   AND a.削除 = 'N'";
-            strQuery += " ORDER BY 納期 ";
+            strQuery += " ORDER BY 納期, 受注番号";
 
             DBConnective dbCon = new DBConnective();
             try
