@@ -2984,7 +2984,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     {
                         stKata += " ";
                     }
-                    stKata += inputB.getCBunruiName(getCellValue(gridMitsmori[88, i], false), getCellValue(gridMitsmori[88, i], false));
+                    stKata += inputB.getCBunruiName(getCellValue(gridMitsmori[87, i], false), getCellValue(gridMitsmori[88, i], false));
                     if (!string.IsNullOrWhiteSpace(stKata))
                     {
                         stKata += " ";

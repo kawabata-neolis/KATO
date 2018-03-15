@@ -594,7 +594,30 @@ namespace KATO.Business.A0020_UriageInput
         public DataTable GetTantouCode(List<string> lstString )
         {
             DataTable dtGetTantouCd = new DataTable();
-            string strSql = "SELECT 担当者コード FROM 担当者 WHERE ログインＩＤ='" + lstString[0] + "'  and 削除='N'";
+            string strSql = "SELECT 担当者コード, 営業所コード FROM 担当者 WHERE ログインＩＤ='" + lstString[0] + "'  AND 削除='N'";
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // 検索データをテーブルへ格納
+                dtGetTantouCd = dbconnective.ReadSql(strSql);
+
+                return dtGetTantouCd;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        public DataTable GetTantouCode2(List<string> lstString)
+        {
+            DataTable dtGetTantouCd = new DataTable();
+            string strSql = "SELECT 担当者コード, 営業所コード FROM 担当者 WHERE 担当者コード='" + lstString[0] + "'  AND 削除='N'";
 
             DBConnective dbconnective = new DBConnective();
             try

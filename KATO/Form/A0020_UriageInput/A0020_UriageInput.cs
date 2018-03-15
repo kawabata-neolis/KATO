@@ -95,6 +95,7 @@ namespace KATO.Form.A0020_UriageInput
             labelSet_txtCD.codeTxt.ModifiedChanged += new EventHandler(txtModified);
             labelSet_Tantousha.codeTxt.ModifiedChanged += new EventHandler(txtModified);
             labelSet_Torihikikbn.codeTxt.Leave += new EventHandler(labelSet_Torihikikbn_Leave);
+            labelSet_Tantousha.Leave += new EventHandler(labelSet_Tantousha_Leave);
 
             int intIdx = 0;
             foreach (string item in oPrinter)
@@ -106,6 +107,11 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 intIdx++;
             }
+        }
+
+        private void labelSet_Tantousha_Leave(object sender, EventArgs e)
+        {
+            GetTantouCode(labelSet_Tantousha.CodeTxtText);
         }
 
         private void labelSet_Torihikikbn_Leave(object sender, EventArgs e)
@@ -213,6 +219,48 @@ namespace KATO.Form.A0020_UriageInput
                 if (dtSetView.Rows.Count > 0)
                 {
                     labelSet_Tantousha.CodeTxtText = dtSetView.Rows[0]["担当者コード"].ToString();
+                    labelSet_Eigyosho.CodeTxtText = dtSetView.Rows[0]["営業所コード"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                //エラーロギング
+                new CommonException(ex);
+                return;
+            }
+        }
+
+        private void GetTantouCode(string user)
+        {
+            if (string.IsNullOrWhiteSpace(user))
+            {
+                labelSet_Tantousha.CodeTxtText = "";
+                labelSet_Eigyosho.CodeTxtText = "0001";
+                return;
+            }
+            //検索時のデータ取り出し先
+            DataTable dtSetView;
+
+            List<string> lstUriageSuiiLoad = new List<string>();
+            //データの存在確認を検索する情報を入れる
+            /*[0]環境ユーザー*/
+            lstUriageSuiiLoad.Add(user);
+
+            //ビジネス層のインスタンス生成
+            A0020_UriageInput_B uriagesuiihyoB = new A0020_UriageInput_B();
+            try
+            {
+                //ビジネス層、データグリッドビュー表示用ロジックに移動
+                dtSetView = uriagesuiihyoB.GetTantouCode2(lstUriageSuiiLoad);
+
+                if (dtSetView.Rows.Count > 0)
+                {
+                    labelSet_Tantousha.CodeTxtText = dtSetView.Rows[0]["担当者コード"].ToString();
+                    labelSet_Eigyosho.CodeTxtText = dtSetView.Rows[0]["営業所コード"].ToString();
+                }
+                else
+                {
+                    labelSet_Eigyosho.CodeTxtText = "0001";
                 }
             }
             catch (Exception ex)
@@ -402,6 +450,9 @@ namespace KATO.Form.A0020_UriageInput
 
             try
             {
+                labelSet_Tantousha.chkTxtTantosha();
+                GetTantouCode(labelSet_Tantousha.CodeTxtText);
+
                 this.Cursor = Cursors.WaitCursor;
                 //倉庫間移動処理
                 if (txtDenNo.Text == "")
@@ -3361,6 +3412,10 @@ namespace KATO.Form.A0020_UriageInput
             string Hinmei = "";
             string NM = "";
 
+
+            // 売上ヘッダの担当者コードを強制的に設定する用
+            string TCD = "";
+
             txtYMD.Text = "";
             labelSet_txtCD.CodeTxtText = "";
 
@@ -3399,6 +3454,7 @@ namespace KATO.Form.A0020_UriageInput
                     txtAdr2.Text = rs1.Rows[0]["住所２"].ToString();
                     labelSet_Torihikikbn.CodeTxtText = rs1.Rows[0]["取引区分"].ToString();
                     labelSet_Tantousha.CodeTxtText = rs1.Rows[0]["担当者コード"].ToString();
+                    TCD = rs1.Rows[0]["担当者コード"].ToString();
                     labelSet_Eigyosho.CodeTxtText = rs1.Rows[0]["営業所コード"].ToString();
                     txtTekiyo.Text = rs1.Rows[0]["摘要欄"].ToString();
                     cboNounyu.Text = rs1.Rows[0]["納入方法"].ToString();
@@ -3668,6 +3724,10 @@ namespace KATO.Form.A0020_UriageInput
                     textSet_Jucyu5.readOnly = false;
                 }
             }
+
+            labelSet_Tantousha.CodeTxtText = TCD;
+            labelSet_Tantousha.chkTxtTantosha();
+            GetTantouCode(labelSet_Tantousha.CodeTxtText);
 
         }
 
