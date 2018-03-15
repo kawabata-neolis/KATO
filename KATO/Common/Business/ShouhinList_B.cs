@@ -286,11 +286,11 @@ namespace KATO.Common.Business
                             //棚番本社に記載がない場合(見積もり入力からの仮商品登録)
                             if (dtShohin.Rows[intShohinCnt]["棚番本社"].ToString().Trim() == "")
                             {
-                                dtShohin.Rows[intShohinCnt]["メモ"] = "\"見\" " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+                                dtShohin.Rows[intShohinCnt]["メモ"] = "見 " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
                             }
                             else
                             {
-                                dtShohin.Rows[intShohinCnt]["メモ"] = "     " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
+                                dtShohin.Rows[intShohinCnt]["メモ"] = "   " + dtShohin.Rows[intShohinCnt]["メモ"].ToString();
                             }
                         }
                     }
