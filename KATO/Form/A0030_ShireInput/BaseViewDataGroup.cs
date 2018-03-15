@@ -173,8 +173,16 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                //直近単価に入れる
-                txtChokinTanka.Text = string.Format("{0:#,#.00}", dtSetCd_B.Rows[0][1]);
+                //空チェック
+                if (dtSetCd_B.Rows.Count > 0)
+                {
+                    //直近単価に入れる
+                    txtChokinTanka.Text = string.Format("{0:#,#.00}", dtSetCd_B.Rows[0][1]);
+                }
+                else
+                {
+                    txtChokinTanka.Text = "";
+                }
 
                 return;
             }
@@ -230,36 +238,48 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                //仕入単価の値がなかった場合
-                if (dtSetCd_B.Rows[0]["仕入単価"].ToString() == "0.0000")
+                //データがある場合
+                if (dtSetCd_B.Rows.Count > 0)
                 {
-                    //マスター単価に入れる
-                    txtMasterTanka.Text = "0";
-                    txtTankaSub.Text = "0";
+                    //仕入単価の値がなかった場合
+                    if (dtSetCd_B.Rows[0]["仕入単価"].ToString() == "0.0000")
+                    {
+                        //マスター単価に入れる
+                        txtMasterTanka.Text = "0";
+                        txtTankaSub.Text = "0";
+                    }
+                    else
+                    {
+                        //マスター単価に入れる
+                        txtMasterTanka.Text = string.Format("{0:#,0.00}", dtSetCd_B.Rows[0]["仕入単価"]);
+                        txtTankaSub.Text = txtMasterTanka.Text;
+                    }
+
+                    //定価の値がなかった場合
+                    if (dtSetCd_B.Rows[0]["定価"].ToString() == "0.0000")
+                    {
+                        txtTeka.Text = "0";
+                        txtTekaSub.Text = "0";
+                    }
+                    else
+                    {
+                        //定価を入れる
+                        txtTeka.Text = string.Format("{0:#,#}", dtSetCd_B.Rows[0]["定価"]);
+
+                        //定価のサブの入れものに追加(仕入率計算時に[.]があるとエラーを起こすため)
+                        txtTekaSub.Visible = true;
+                        txtTekaSub.Text = string.Format("{0:#}", dtSetCd_B.Rows[0]["定価"]);
+                        txtTekaSub.Visible = false;
+                    }
                 }
                 else
                 {
-                    //マスター単価に入れる
-                    txtMasterTanka.Text = string.Format("{0:#,0.00}", dtSetCd_B.Rows[0]["仕入単価"]);
-                    txtTankaSub.Text = txtMasterTanka.Text;
-                }
-
-                //定価の値がなかった場合
-                if (dtSetCd_B.Rows[0]["定価"].ToString() == "0.0000")
-                {
+                    txtMasterTanka.Text = "0";
+                    txtTankaSub.Text = "0";
                     txtTeka.Text = "0";
                     txtTekaSub.Text = "0";
                 }
-                else
-                {
-                    //定価を入れる
-                    txtTeka.Text = string.Format("{0:#,#}", dtSetCd_B.Rows[0]["定価"]);
 
-                    //定価のサブの入れものに追加(仕入率計算時に[.]があるとエラーを起こすため)
-                    txtTekaSub.Visible = true;
-                    txtTekaSub.Text = string.Format("{0:#}", dtSetCd_B.Rows[0]["定価"]);
-                    txtTekaSub.Visible = false;
-                }
                 return;
             }
             catch (Exception ex)
@@ -361,16 +381,18 @@ namespace KATO.Form.A0030_ShireInput
                 txtBiko.Clear();
                 labelSet_Eigyosho.codeTxt.Clear();
                 labelSet_Eigyosho.chkTxtEigyousho();
-                txtTeka.Text = "0";
-                txtChokinTanka.Text = "0";
-                txtChokinTanka.updPriceMethod();
-                txtMasterTanka.Text = "0";
-                txtMasterTanka.updPriceMethod();
+                txtTeka.Clear();
+                txtChokinTanka.Clear();
+                //txtChokinTanka.Text = "0";
+                //txtChokinTanka.updPriceMethod();
+                txtMasterTanka.Clear();
+                //txtMasterTanka.Text = "0";
+                //txtMasterTanka.updPriceMethod();
                 txtJuchuNo.Clear();
                 txtJuchuTanka.Clear();
                 txtTankaSub.Clear();
 
-                strShireChuNo = null;
+                strShireChuNo = "";
                 txtHin.TabStop = true;
                 txtHin.Enabled = true;
 
@@ -442,7 +464,7 @@ namespace KATO.Form.A0030_ShireInput
                     shireinput.txtTanka5.Clear();
                 }
 
-                strShireChuNo = null;
+                strShireChuNo = "";
                 txtHin.TabStop = true;
                 txtHin.Enabled = true;
 
@@ -527,18 +549,21 @@ namespace KATO.Form.A0030_ShireInput
                             txtBiko.Clear();
                             labelSet_Eigyosho.codeTxt.Clear();
                             labelSet_Eigyosho.chkTxtEigyousho();
-                            txtTeka.Text = "0";
-                            txtChokinTanka.Text = "0";
-                            txtChokinTanka.updPriceMethod();
-                            txtMasterTanka.Text = "0";
-                            txtMasterTanka.updPriceMethod();
+                            txtTeka.Clear();
+                            //txtTeka.Text = "0";
+                            txtChokinTanka.Clear();
+                            //txtChokinTanka.Text = "0";
+                            //txtChokinTanka.updPriceMethod();
+                            txtMasterTanka.Clear();
+                            //txtMasterTanka.Text = "0";
+                            //txtMasterTanka.updPriceMethod();
                             txtJuchuNo.Clear();
                             txtJuchuTanka.Clear();
                             txtTankaSub.Clear();
 
                             txtChumonNo.Focus();
 
-                            strShireChuNo = null;
+                            strShireChuNo = "";
                             txtHin.TabStop = true;
                             txtHin.Enabled = true;
                             setGokeiKesan();
@@ -564,11 +589,14 @@ namespace KATO.Form.A0030_ShireInput
                                 txtBiko.Clear();
                                 labelSet_Eigyosho.codeTxt.Clear();
                                 labelSet_Eigyosho.chkTxtEigyousho();
-                                txtTeka.Text = "0";
-                                txtChokinTanka.Text = "0";
-                                txtChokinTanka.updPriceMethod();
-                                txtMasterTanka.Text = "0";
-                                txtMasterTanka.updPriceMethod();
+                                txtTeka.Clear();
+                                //txtTeka.Text = "0";
+                                txtChokinTanka.Clear();
+                                //txtChokinTanka.Text = "0";
+                                //txtChokinTanka.updPriceMethod();
+                                txtMasterTanka.Clear();
+                                //txtMasterTanka.Text = "0";
+                                //txtMasterTanka.updPriceMethod();
                                 txtJuchuNo.Clear();
                                 txtJuchuTanka.Clear();
                                 txtTankaSub.Clear();
@@ -856,6 +884,8 @@ namespace KATO.Form.A0030_ShireInput
                             txtTokuisaki.Text = dtSetCdTokuisaki_B.Rows[0]["得意先名称"].ToString();
                         }
                     }
+
+                    setGokeiKesan();
                 }
                 else
                 {
@@ -1576,84 +1606,8 @@ namespace KATO.Form.A0030_ShireInput
                 decGokei = decGokei + decimal.Parse(shireinput.gbData5.txtKin.Text.Trim());
             }
 
-
-            //フォーカスしている列の判定
-            if (shireinput.shotCnt == 1)
-            {
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData1.txtTanka.Text == "0" ||
-                    shireinput.gbData1.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu1.Clear();
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
-            }
-            else if (shireinput.shotCnt == 2)
-            {
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData2.txtTanka.Text == "0" ||
-                    shireinput.gbData2.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu2.Clear();
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
-            }
-            else if (shireinput.shotCnt == 3)
-            {
-
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData3.txtTanka.Text == "0" ||
-                    shireinput.gbData3.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu3.Clear();
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu3.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
-            }
-            else if (shireinput.shotCnt == 4)
-            {
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData4.txtTanka.Text == "0" ||
-                    shireinput.gbData4.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu4.Clear();
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu4.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
-            }
-            else if (shireinput.shotCnt == 5)
-            {
-                //受注単価が空の場合
-                if (strJuchuTanka == "0" ||
-                    strJuchuTanka == "" ||
-                    shireinput.gbData5.txtTanka.Text == "0" ||
-                    shireinput.gbData5.txtTanka.Text == "")
-                {
-                    shireinput.txtRiekiritsu5.Clear();
-                }
-                else
-                {
-                    shireinput.txtRiekiritsu5.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
-                }
-            }
+            //利益率の表示
+            setRiekiritu(false);
 
             //運賃が記入されていない場合
             if (!StringUtl.blIsEmpty(shireinput.txtUnchin.Text)) {
@@ -1766,42 +1720,196 @@ namespace KATO.Form.A0030_ShireInput
                     //税計算区分が0の場合
                     if (decZeikesankbn == 0)
                     {
-                        //行数分ループ
-                        for (intCnt = 0; intCnt <= shireinput.intMaxRow; intCnt++)
+                        //１行目
+                        //金額無記入の場合
+                        if (shireinput.gbData1.txtKin.Text == "")
+                        {
+                            shireinput.gbData1.txtKin.Text = "0";
+                        }
+
+                        if (shireinput.gbData1.txtKin.Text != "0")
                         {
                             //税端数区分で判断、金額から税合計を取得
                             switch (intZeihasukbn)
                             {
                                 case 0:
                                     //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
                                     break;
                                 case 1:
                                     //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
                                     break;
                                 case 2:
                                     //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
                                     break;
                             }
                         }
 
-                        //税端数区分で判断、運賃から税合計を取得
-                        switch (intZeihasukbn)
+                        //金額0の場合
+                        if (shireinput.gbData2.txtKin.Text == "0")
                         {
-                            case 0:
-                                //運賃と税率、四捨五入による計算（モード0）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                break;
-                            case 1:
-                                //運賃と税率、四捨五入による計算（モード1）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                break;
-                            case 2:
-                                //運賃と税率、四捨五入による計算（モード2）
-                                decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                break;
+                            shireinput.gbData2.txtKin.Text = "";
+                        }
+
+                        //２行目
+                        //金額無記入の場合
+                        if (shireinput.gbData2.txtKin.Text == "")
+                        {
+                            shireinput.gbData2.txtKin.Text = "0";
+                        }
+
+                        if (shireinput.gbData2.txtKin.Text != "0")
+                        {
+                            //税端数区分で判断、金額から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //金額と税率、四捨五入による計算（モード0）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    break;
+                                case 1:
+                                    //金額と税率、四捨五入による計算（モード1）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    break;
+                                case 2:
+                                    //金額と税率、四捨五入による計算（モード2）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    break;
+                            }
+                        }
+
+                        //金額0の場合
+                        if (shireinput.gbData2.txtKin.Text == "0")
+                        {
+                            shireinput.gbData2.txtKin.Text = "";
+                        }
+
+                        //３行目
+                        //金額無記入の場合
+                        if (shireinput.gbData3.txtKin.Text == "")
+                        {
+                            shireinput.gbData3.txtKin.Text = "0";
+                        }
+
+                        if (shireinput.gbData3.txtKin.Text != "0")
+                        {
+                            //税端数区分で判断、金額から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //金額と税率、四捨五入による計算（モード0）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    break;
+                                case 1:
+                                    //金額と税率、四捨五入による計算（モード1）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    break;
+                                case 2:
+                                    //金額と税率、四捨五入による計算（モード2）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    break;
+                            }
+                        }
+
+                        //金額0の場合
+                        if (shireinput.gbData3.txtKin.Text == "0")
+                        {
+                            shireinput.gbData3.txtKin.Text = "";
+                        }
+
+                        //４行目
+                        //金額無記入の場合
+                        if (shireinput.gbData4.txtKin.Text == "")
+                        {
+                            shireinput.gbData4.txtKin.Text = "0";
+                        }
+
+                        if (shireinput.gbData4.txtKin.Text != "0")
+                        {
+                            //税端数区分で判断、金額から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //金額と税率、四捨五入による計算（モード0）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    break;
+                                case 1:
+                                    //金額と税率、四捨五入による計算（モード1）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    break;
+                                case 2:
+                                    //金額と税率、四捨五入による計算（モード2）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    break;
+                            }
+                        }
+
+                        //金額0の場合
+                        if (shireinput.gbData4.txtKin.Text == "0")
+                        {
+                            shireinput.gbData4.txtKin.Text = "";
+                        }
+
+
+                        //５行目
+                        //金額無記入の場合
+                        if (shireinput.gbData5.txtKin.Text == "")
+                        {
+                            shireinput.gbData5.txtKin.Text = "0";
+                        }
+
+                        if (shireinput.gbData5.txtKin.Text != "0")
+                        {
+                            //税端数区分で判断、金額から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //金額と税率、四捨五入による計算（モード0）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    break;
+                                case 1:
+                                    //金額と税率、四捨五入による計算（モード1）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    break;
+                                case 2:
+                                    //金額と税率、四捨五入による計算（モード2）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    break;
+                            }
+                        }
+
+                        //金額0の場合
+                        if (shireinput.gbData5.txtKin.Text == "0")
+                        {
+                            shireinput.gbData5.txtKin.Text = "";
+                        }
+
+                        //0の場合
+                        if (txtKin.Text == "0")
+                        {
+                            txtKin.Text = "";
+                        }
+
+                        if (shireinput.txtUnchin.Text != "0")
+                        {
+                            //税端数区分で判断、運賃から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //運賃と税率、四捨五入による計算（モード0）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                    break;
+                                case 1:
+                                    //運賃と税率、四捨五入による計算（モード1）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                    break;
+                                case 2:
+                                    //運賃と税率、四捨五入による計算（モード2）
+                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                    break;
+                            }
                         }
 
                         //仕入入力画面の消費税に記入
@@ -2268,6 +2376,278 @@ namespace KATO.Form.A0030_ShireInput
             {
                 //トランザクション終了
                 dbconnective.DB_Disconnect();
+            }
+        }
+
+        //利益率計算
+        public void setRiekiritu(Boolean blDenpyoNoSelect)
+        {
+            //親画面の情報取得
+            A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
+
+            if (blDenpyoNoSelect)
+            {
+                //フォーカスしている列の判定
+                if (shireinput.shotCnt == 1)
+                {
+                    //受注単価が空の場合
+                    if (shireinput.txtTanka1.Text == "0" ||
+                        shireinput.txtTanka1.Text == "" ||
+                        shireinput.gbData1.txtTanka.Text == "0" ||
+                        shireinput.gbData1.txtTanka.Text == "")
+                    {
+                        shireinput.txtRiekiritsu1.Clear();
+                    }
+                    else
+                    {
+                        shireinput.txtRiekiritsu1.Text = ((decimal.Parse(shireinput.txtTanka1.Text) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka1.Text) * 100).ToString("0.0");
+                    }
+                }
+                else if (shireinput.shotCnt == 2)
+                {
+                    //受注単価が空の場合
+                    if (shireinput.txtTanka2.Text == "0" ||
+                        shireinput.txtTanka2.Text == "" ||
+                        shireinput.gbData2.txtTanka.Text == "0" ||
+                        shireinput.gbData2.txtTanka.Text == "")
+                    {
+                        shireinput.txtRiekiritsu2.Clear();
+                    }
+                    else
+                    {
+                        shireinput.txtRiekiritsu2.Text = ((decimal.Parse(shireinput.txtTanka2.Text) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka2.Text) * 100).ToString("0.0");
+                    }
+                }
+                else if (shireinput.shotCnt == 3)
+                {
+
+                    //受注単価が空の場合
+                    if (shireinput.txtTanka3.Text == "0" ||
+                        shireinput.txtTanka3.Text == "" ||
+                        shireinput.gbData3.txtTanka.Text == "0" ||
+                        shireinput.gbData3.txtTanka.Text == "")
+                    {
+                        shireinput.txtRiekiritsu3.Clear();
+                    }
+                    else
+                    {
+                        shireinput.txtRiekiritsu3.Text = ((decimal.Parse(shireinput.txtTanka3.Text) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka3.Text) * 100).ToString("0.0");
+                    }
+                }
+                else if (shireinput.shotCnt == 4)
+                {
+                    //受注単価が空の場合
+                    if (shireinput.txtTanka4.Text == "0" ||
+                        shireinput.txtTanka4.Text == "" ||
+                        shireinput.gbData4.txtTanka.Text == "0" ||
+                        shireinput.gbData4.txtTanka.Text == "")
+                    {
+                        shireinput.txtRiekiritsu4.Clear();
+                    }
+                    else
+                    {
+                        shireinput.txtRiekiritsu4.Text = ((decimal.Parse(shireinput.txtTanka4.Text) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka4.Text) * 100).ToString("0.0");
+                    }
+                }
+                else if (shireinput.shotCnt == 5)
+                {
+                    //受注単価が空の場合
+                    if (shireinput.txtTanka5.Text == "0" ||
+                        shireinput.txtTanka5.Text == "" ||
+                        shireinput.gbData5.txtTanka.Text == "0" ||
+                        shireinput.gbData5.txtTanka.Text == "")
+                    {
+                        shireinput.txtRiekiritsu5.Clear();
+                    }
+                    else
+                    {
+                        shireinput.txtRiekiritsu5.Text = ((decimal.Parse(shireinput.txtTanka5.Text) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka5.Text) * 100).ToString("0.0");
+                    }
+                }
+            }
+            else
+            {
+                //フォーカスしている列の判定
+                if (shireinput.shotCnt == 1)
+                {
+                    //仕入先画面に受注単価がある場合
+                    //受注番号から呼び出して、注文Noで未入力のまま金額と単価を移動した時
+                    if (shireinput.txtTanka1.Text != "0" &&
+                        shireinput.txtTanka1.Text != ""
+                        )
+                    {
+                        //入力項目に単価がない場合
+                        if (shireinput.gbData1.txtTanka.Text == "0" ||
+                        shireinput.gbData1.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu1.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu1.Text = ((decimal.Parse(shireinput.txtTanka1.Text) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka1.Text) * 100).ToString("0.0");
+                        }
+                    }
+                    //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
+                    else
+                    {
+                        //受注単価が空の場合
+                        if (strJuchuTanka == "0" ||
+                            strJuchuTanka == "" ||
+                            shireinput.gbData1.txtTanka.Text == "0" ||
+                            shireinput.gbData1.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu1.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                        }
+                    }
+                }
+                else if (shireinput.shotCnt == 2)
+                {
+                    //仕入先画面に受注単価がある場合
+                    //受注番号から呼び出して、注文Noで未入力のまま金額と単価を移動した時
+                    if (shireinput.txtTanka2.Text != "0" &&
+                        shireinput.txtTanka2.Text != ""
+                        )
+                    {
+                        //入力項目に単価がない場合
+                        if (shireinput.gbData2.txtTanka.Text == "0" ||
+                        shireinput.gbData2.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu2.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu2.Text = ((decimal.Parse(shireinput.txtTanka2.Text) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka2.Text) * 100).ToString("0.0");
+                        }
+                    }
+                    //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
+                    else
+                    {
+                        //受注単価が空の場合
+                        if (strJuchuTanka == "0" ||
+                            strJuchuTanka == "" ||
+                            shireinput.gbData2.txtTanka.Text == "0" ||
+                            shireinput.gbData2.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu2.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                        }
+                    }
+                }
+                else if (shireinput.shotCnt == 3)
+                {
+                    //仕入先画面に受注単価がある場合
+                    //受注番号から呼び出して、注文Noで未入力のまま金額と単価を移動した時
+                    if (shireinput.txtTanka3.Text != "0" &&
+                        shireinput.txtTanka3.Text != ""
+                        )
+                    {
+                        //入力項目に単価がない場合
+                        if (shireinput.gbData3.txtTanka.Text == "0" ||
+                        shireinput.gbData3.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu3.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu3.Text = ((decimal.Parse(shireinput.txtTanka3.Text) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka3.Text) * 100).ToString("0.0");
+                        }
+                    }
+                    //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
+                    else
+                    {
+                        //受注単価が空の場合
+                        if (strJuchuTanka == "0" ||
+                            strJuchuTanka == "" ||
+                            shireinput.gbData3.txtTanka.Text == "0" ||
+                            shireinput.gbData3.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu3.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu3.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                        }
+                    }
+                }
+                else if (shireinput.shotCnt == 4)
+                {
+                    //仕入先画面に受注単価がある場合
+                    //受注番号から呼び出して、注文Noで未入力のまま金額と単価を移動した時
+                    if (shireinput.txtTanka4.Text != "0" &&
+                        shireinput.txtTanka4.Text != ""
+                        )
+                    {
+                        //入力項目に単価がない場合
+                        if (shireinput.gbData4.txtTanka.Text == "0" ||
+                        shireinput.gbData4.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu4.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu4.Text = ((decimal.Parse(shireinput.txtTanka4.Text) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka4.Text) * 100).ToString("0.0");
+                        }
+                    }
+                    //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
+                    else
+                    {
+                        //受注単価が空の場合
+                        if (strJuchuTanka == "0" ||
+                            strJuchuTanka == "" ||
+                            shireinput.gbData4.txtTanka.Text == "0" ||
+                            shireinput.gbData4.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu4.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu4.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                        }
+                    }
+                }
+                else if (shireinput.shotCnt == 5)
+                {
+                    //仕入先画面に受注単価がある場合
+                    //受注番号から呼び出して、注文Noで未入力のまま金額と単価を移動した時
+                    if (shireinput.txtTanka5.Text != "0" &&
+                        shireinput.txtTanka5.Text != ""
+                        )
+                    {
+                        //入力項目に単価がない場合
+                        if (shireinput.gbData5.txtTanka.Text == "0" ||
+                        shireinput.gbData5.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu5.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu5.Text = ((decimal.Parse(shireinput.txtTanka5.Text) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka5.Text) * 100).ToString("0.0");
+                        }
+                    }
+                    //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
+                    else
+                    {
+                        //受注単価が空の場合
+                        if (strJuchuTanka == "0" ||
+                            strJuchuTanka == "" ||
+                            shireinput.gbData5.txtTanka.Text == "0" ||
+                            shireinput.gbData5.txtTanka.Text == "")
+                        {
+                            shireinput.txtRiekiritsu5.Clear();
+                        }
+                        else
+                        {
+                            shireinput.txtRiekiritsu5.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                        }
+                    }
+                }
             }
         }
 

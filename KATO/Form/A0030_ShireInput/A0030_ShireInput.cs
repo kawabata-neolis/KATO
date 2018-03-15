@@ -1588,6 +1588,7 @@ namespace KATO.Form.A0030_ShireInput
                                 txtTanka1.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka1.updPriceMethod();
 
+                                gbData1.setRiekiritu(true);
                             }
                         }
                         //行番号-1が1の場合(2行目)
@@ -1609,6 +1610,7 @@ namespace KATO.Form.A0030_ShireInput
                                 txtTanka2.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka2.updPriceMethod();
 
+                                gbData2.setRiekiritu(true);
                             }
                         }
                         //行番号-1が2の場合(3行目)
@@ -1630,6 +1632,7 @@ namespace KATO.Form.A0030_ShireInput
                                 txtTanka3.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka3.updPriceMethod();
 
+                                gbData3.setRiekiritu(true);
                             }
                         }
                         //行番号-1が3の場合(4行目)
@@ -1651,6 +1654,7 @@ namespace KATO.Form.A0030_ShireInput
                                 txtTanka4.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka4.updPriceMethod();
 
+                                gbData4.setRiekiritu(true);
                             }
                         }
                         //行番号-1が4の場合(5行目)
@@ -1672,6 +1676,7 @@ namespace KATO.Form.A0030_ShireInput
                                 txtTanka5.Text = string.Format("{0:#,#}", dtJuchuTanka.Rows[0][0]);
                                 txtTanka5.updPriceMethod();
 
+                                gbData5.setRiekiritu(true);
                             }
                         }
                     }
