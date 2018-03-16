@@ -232,7 +232,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
                 XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
-                XLWorkbook.DefaultStyle.Font.FontSize = 6.9;
+                XLWorkbook.DefaultStyle.Font.FontSize = 8;
 
 
                 // excelのインスタンス生成
@@ -323,9 +323,6 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
                         headersheet.Cell("P3").Value = "税区";
 
-                        //行高さの指定
-                        headersheet.Row(3).Height = 9.5;
-
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
                         headersheet.Column(2).Width = 30;   //得意先名
@@ -379,6 +376,9 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№52）");
 
+                        headersheet.PageSetup.Margins.Left = 0.3;
+                        headersheet.PageSetup.Margins.Right = 0.3;
+
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                     }
@@ -389,7 +389,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                         string str = drTokuisakiCheak[colCnt - 1].ToString();
 
                         //行の高さ指定
-                        currentsheet.Row(xlsRowCnt).Height = 11;
+                        currentsheet.Row(xlsRowCnt).Height = 12;
 
                         //年月の場合
                         if (colCnt == 3)
@@ -503,8 +503,6 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
                         //マージ
                         currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
-
-                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         currentsheet.Cell(xlsRowCnt, 1).Value = "◆◆◆ 合 計 ◆◆◆";
                         currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;

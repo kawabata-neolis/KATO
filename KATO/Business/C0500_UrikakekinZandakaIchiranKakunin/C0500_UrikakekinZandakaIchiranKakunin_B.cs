@@ -383,10 +383,6 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№50）");
 
-                        //headersheet.PageSetup.Margins.Header = 1.5;
-                        //headersheet.PageSetup.Margins.Footer = 1.5;
-                        //headersheet.PageSetup.Margins.Top = 2.0;
-                        //headersheet.PageSetup.Margins.Bottom = 2.0;
                         headersheet.PageSetup.Margins.Left = 0.3;
                         headersheet.PageSetup.Margins.Right = 0.3;
 
