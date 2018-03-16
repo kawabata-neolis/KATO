@@ -399,6 +399,9 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                     {
                         string str = drTokuisakiCheak[colCnt - 1].ToString();
 
+                        //行の高さ指定
+                        currentsheet.Row(xlsRowCnt).Height = 12;
+
                         //年月の場合
                         if (colCnt == 3)
                         {
