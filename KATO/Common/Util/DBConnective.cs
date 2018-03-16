@@ -59,9 +59,9 @@ namespace KATO.Common.Util
         {
             ConnectStr = System.Configuration.ConfigurationManager.AppSettings["DBConnection"];
 
-            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"Timeout=\d");
+            System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(@"Connect Timeout=\d");
 
-            ConnectStr = r.Replace(ConnectStr, "Timeout=" + delay.ToString());
+            ConnectStr = r.Replace(ConnectStr, "Connection Timeout=" + delay.ToString());
 
             //READ用
 

@@ -2292,6 +2292,47 @@ namespace KATO.Form.A0030_ShireInput
                 }
             }
 
+            //仕入先コードが存在しない場合
+            if (txtCD.blIsEmpty() == false)
+            {
+                //メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtCD.Focus();
+                return false;
+            }
+
+            //仕入先コードが存在しない場合
+            //検索時のデータ取り出し先
+            DataTable dtSetCd = null;
+
+            //ビジネス層のインスタンス生成
+            A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
+            try
+            {
+                dtSetCd = shireinputB.getShiresaki(txtCD.Text);
+
+                //データがない場合
+                if (dtSetCd.Rows.Count == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    txtCD.Clear();
+                    txtCD.Focus();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return false;
+            }
+
             //どの行も注文番号が書かれていない場合
             if (intChumonCnt == 0)
             {
