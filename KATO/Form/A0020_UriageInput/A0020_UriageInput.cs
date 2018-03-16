@@ -454,60 +454,54 @@ namespace KATO.Form.A0020_UriageInput
                 GetTantouCode(labelSet_Tantousha.CodeTxtText);
 
                 this.Cursor = Cursors.WaitCursor;
-                
-                //データチェック処理を行うメソッドへ。
-                if (!DataCheack())
-                {
-                    //データチェックがfalseの場合はデータベースをロールバックして終了。
-                    uriageinputB.DBROLLBACK();
-                    this.Cursor = Cursors.Default;
-                    return;
-
-                }
+                con = new DBConnective();
+                con.BeginTrans();
 
                 //倉庫間移動処理
+                #region
                 if (txtDenNo.Text == "")
                 {
                     if (textSet_Jucyu1.txtJucyuNoElem2.Text != "")
                     {
                         //処理済の更新＆倉庫間移動データの追加処理へ。
-                        Data_Create(textSet_Jucyu1.txtJucyuNoElem2.Text);
+                        Data_Create(textSet_Jucyu1.txtJucyuNoElem2.Text, con);
                     }
 
                     if (textSet_Jucyu2.txtJucyuNoElem2.Text != "")
                     {
                         //処理済の更新＆倉庫間移動データの追加処理へ。
-                        Data_Create(textSet_Jucyu2.txtJucyuNoElem2.Text);
+                        Data_Create(textSet_Jucyu2.txtJucyuNoElem2.Text, con);
                     }
 
                     if (textSet_Jucyu3.txtJucyuNoElem2.Text != "")
                     {
                         //処理済の更新＆倉庫間移動データの追加処理へ。
-                        Data_Create(textSet_Jucyu3.txtJucyuNoElem2.Text);
+                        Data_Create(textSet_Jucyu3.txtJucyuNoElem2.Text, con);
                     }
 
 
                     if (textSet_Jucyu4.txtJucyuNoElem2.Text != "")
                     {
                         //処理済の更新＆倉庫間移動データの追加処理へ。
-                        Data_Create(textSet_Jucyu4.txtJucyuNoElem2.Text);
+                        Data_Create(textSet_Jucyu4.txtJucyuNoElem2.Text, con);
                     }
 
                     if (textSet_Jucyu5.txtJucyuNoElem2.Text != "")
                     {
                         //処理済の更新＆倉庫間移動データの追加処理へ。
-                        Data_Create(textSet_Jucyu5.txtJucyuNoElem2.Text);
+                        Data_Create(textSet_Jucyu5.txtJucyuNoElem2.Text, con);
                     }
                 }
+                #endregion
 
-                ////データチェック処理を行うメソッドへ。
-                //if (!DataCheack())
-                //{
-                //    //データチェックがfalseの場合はデータベースをロールバックして終了。
-                //    uriageinputB.DBROLLBACK();
-                //    return;
-                    
-                //}
+                //データチェック処理を行うメソッドへ。
+                if (!DataCheack(con))
+                {
+                    //データチェックがfalseの場合はデータベースをロールバックして終了。
+                    con.Rollback();
+                    return;
+
+                }
 
                 //伝票の記述がない場合は、伝票取得メソッドへ
                 if (txtDenNo.Text == "")
@@ -528,6 +522,7 @@ namespace KATO.Form.A0020_UriageInput
                 DataTable dtSetView;
 
                 //売上入力用データリスト
+                #region
                 List<string> UriageInputItem = new List<string>();
                 /*[0]伝票NO*/
                 UriageInputItem.Add(Denno);
@@ -574,13 +569,14 @@ namespace KATO.Form.A0020_UriageInput
                 UriageInputItem.Add(txtAdr2_C.Text);
                 /*[２１]環境ユーザ*/
                 UriageInputItem.Add(Environment.UserName);
+                #endregion
 
                 //ビジネス層、売上ヘッダ更新（プロシージャー）
-                uriageinputB.updUriageHeader(UriageInputItem);
+                uriageinputB.updUriageHeader(UriageInputItem, con);
                 //ビジネス層、受注＿売上数＿戻し更新（プロシージャー）
-                uriageinputB.updUriagesuuModosi(UriageInputItem);
+                uriageinputB.updUriagesuuModosi(UriageInputItem, con);
                 //ビジネス層、売上明細削除（プロシージャー）
-                uriageinputB.delUriageMeisai(UriageInputItem);
+                uriageinputB.delUriageMeisai(UriageInputItem, con);
 
                 //変数を初期化する。
                 string Kataban = "";
@@ -588,15 +584,13 @@ namespace KATO.Form.A0020_UriageInput
 
                 KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
 
-                con = new DBConnective();
-                con.BeginTrans();
-
                 for (i = 1; i <= 5; i++)
                 {
                     //明細コントロールを取得。
                     Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
 
                     //商品検索用データリスト
+                    #region
                     List<string> MeisaiItem = new List<string>();
                     /*[0]環境ユーザー*/
                     MeisaiItem.Add(Environment.UserName);
@@ -644,7 +638,7 @@ namespace KATO.Form.A0020_UriageInput
                     MeisaiItem.Add(((TextSet_Jucyu)cs1[0]).txtRitsuElem21.Text);
                     /*[２２]elem22*/
                     MeisaiItem.Add(((TextSet_Jucyu)cs1[0]).txtElem22.Text);
-
+                    #endregion
 
                     if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                     {
@@ -661,7 +655,7 @@ namespace KATO.Form.A0020_UriageInput
                             Kataban = Kataban.Replace(" ", "");
 
                             //ビジネス層、型番に一致する商品コードを取得する。
-                            dtSetView = uriageinputB.getSyohinCd(MeisaiItem, Kataban);
+                            dtSetView = uriageinputB.getSyohinCd(MeisaiItem, Kataban, con);
 
                             if (dtSetView.Rows.Count > 0)
                             {
@@ -673,7 +667,7 @@ namespace KATO.Form.A0020_UriageInput
                                 SyohinCD = GetNewSyohinNo();
 
                                 //ビジネス層、商品マスタ更新（プロシージャー）
-                                uriageinputB.updSyohinMastr(MeisaiItem, SyohinCD);
+                                uriageinputB.updSyohinMastr(MeisaiItem, SyohinCD, con);
                             }
 
                         }
@@ -683,13 +677,13 @@ namespace KATO.Form.A0020_UriageInput
                         }
 
                         //ビジネス層、売上明細更新（プロシージャー）
-                        uriageinputB.updUriageMeisai(MeisaiItem, SyohinCD,Denno,i.ToString());
+                        uriageinputB.updUriageMeisai(MeisaiItem, SyohinCD,Denno,i.ToString(), con);
 
                         //受注の商品コードが88888の場合は採用した商品コードを更新 2006.5.11
                         if (((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text == "88888")
                         {
                             //ビジネス層、受注テーブルの商品コードを更新
-                            uriageinputB.updJTableSyohinCD(MeisaiItem, SyohinCD);
+                            uriageinputB.updJTableSyohinCD(MeisaiItem, SyohinCD, con);
                         }
 
                         //'受注の商品コードが88888の場合は採用した商品コードを発注データにも更新 2007.4.25
@@ -697,14 +691,14 @@ namespace KATO.Form.A0020_UriageInput
                         if (((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text == "88888")
                         {
                             //ビジネス層、発注テーブルの商品コードを更新
-                            uriageinputB.updHTableSyohinCD(MeisaiItem, SyohinCD,Kataban);
+                            uriageinputB.updHTableSyohinCD(MeisaiItem, SyohinCD,Kataban, con);
                         }
 
                         //８８８８、６６６６の場合は得意先名を更新   2012.2.14
                         if (labelSet_txtCD.CodeTxtText == "8888" || labelSet_txtCD.CodeTxtText == "6666")
                         {
                             //ビジネス層、受注テーブルの得意先名称を更新。
-                            uriageinputB.updJTableTokuisakiName(MeisaiItem,UriageInputItem);
+                            uriageinputB.updJTableTokuisakiName(MeisaiItem,UriageInputItem, con);
                         }
 
                         juchuB.updZaiko(SyohinCD, labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
@@ -736,17 +730,17 @@ namespace KATO.Form.A0020_UriageInput
                 {
 
                     //直送先コードに該当するレコードの有無をチェック
-                    dtSetView = uriageinputB.GetCyokuCode(CyokuItem);
+                    dtSetView = uriageinputB.GetCyokuCode(CyokuItem, con);
 
                     if (decimal.Parse(dtSetView.Rows[0]["直送先コードカウント"].ToString()) > 0)
                     {
                         //レコードがあった場合は更新する。
-                        uriageinputB.updCyokusousaki(CyokuItem);
+                        uriageinputB.updCyokusousaki(CyokuItem, con);
                     }
                     else
                     {
                         //レコードがなかった場合は登録する。
-                        uriageinputB.insCyokusousaki(CyokuItem);
+                        uriageinputB.insCyokusousaki(CyokuItem, con);
                     }
                 }
 
@@ -779,6 +773,8 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 //エラーロギング
                 new CommonException(ex);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
             }
             finally
             {
@@ -853,15 +849,16 @@ namespace KATO.Form.A0020_UriageInput
                 /*[１]環境ユーザ*/
                 UriageInputItem.Add(Environment.UserName);
 
+                con.BeginTrans();
+
                 //閲覧権限がある場合
                 if (("1").Equals(etsuranFlg))
                 {
                     //ビジネス層、プロシージャー実行（売上ヘッダ削除_PROC、受注_売上数_戻し更新_PROC、売上明細削除_PROC）
-                    DataTable dt = uriageinputB.getShohins(Denno);
-                    uriageinputB.delUriageData(UriageInputItem);
+                    DataTable dt = uriageinputB.getShohins(Denno, con);
+                    uriageinputB.delUriageData(UriageInputItem, con);
                     if (dt != null)
                     {
-                        con.BeginTrans();
                         foreach (DataRow dr in dt.Rows)
                         {
                             juchuB.updZaiko(dr["商品コード"].ToString(), labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
@@ -877,12 +874,14 @@ namespace KATO.Form.A0020_UriageInput
                 else
                 {
                     //売上削除承認に追加
-                    uriageinputB.updUriageSakujoShonin(UriageInputItem);
+                    uriageinputB.updUriageSakujoShonin(UriageInputItem, con);
 
                     // メッセージボックスの処理、申請成功の場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "削除申請をしました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
                 }
+
+                con.Commit();
 
                 //取消メソッドへ。
                 delText();
@@ -1338,8 +1337,11 @@ namespace KATO.Form.A0020_UriageInput
         /// DataCheack
         /// データのチェックを行う。
         /// </summary>
-        private Boolean DataCheack()
+        private Boolean DataCheack(DBConnective con)
         {
+            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
+
+            #region
             if (txtYMD.Text == "")
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
@@ -1496,12 +1498,13 @@ namespace KATO.Form.A0020_UriageInput
                     }
                 }
             }
+            #endregion
 
             //データ項目のチェック。
             for (i = 1; i <= 5; i++)
             {
                 Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
-
+                #region
                 //受注NOが空欄の場合は処理をSKIP。
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
@@ -1593,10 +1596,12 @@ namespace KATO.Form.A0020_UriageInput
                         
                     }
                 }
+                #endregion
 
 
                 //'受注数量＞＝売上数量のチェック
                 //'2015.5.7 分納の場合も考慮
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     JuSU = 0;
@@ -1613,11 +1618,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、受注数量を取得する。
-                        dtSetView = uriageinputB.getJucyuSuuryo(lstString);
+                        dtSetView = uriageinputB.getJucyuSuuryo(lstString, con);
 
                         if(dtSetView.Rows.Count > 0)
                         {
@@ -1625,7 +1629,7 @@ namespace KATO.Form.A0020_UriageInput
                         }
 
                         //ビジネス層、売上明細から売上数量の合計を取得する。
-                        dtSetView = uriageinputB.getSumUriageSuuryo(lstString);
+                        dtSetView = uriageinputB.getSumUriageSuuryo(lstString, con);
 
                         if (dtSetView.Rows.Count > 0)
                         {
@@ -1642,7 +1646,7 @@ namespace KATO.Form.A0020_UriageInput
                             lstCurrentRowSuuryo.Add(gyoNo);
 
                             //ビジネス層、売上明細から現在行の数量を取得する。
-                            dtSetView = uriageinputB.getCurrentRowUriageSuuryo(lstCurrentRowSuuryo);
+                            dtSetView = uriageinputB.getCurrentRowUriageSuuryo(lstCurrentRowSuuryo, con);
 
                             if (dtSetView.Rows.Count > 0)
                             {
@@ -1667,6 +1671,7 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //売上単価＝０のチェック
                 if (((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text != "")
@@ -1682,6 +1687,7 @@ namespace KATO.Form.A0020_UriageInput
                 }
 
                 //同時売上ガード
+                #region
                 if (string.IsNullOrWhiteSpace(txtDenNo.Text) && ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -1694,11 +1700,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、受注データを取得する。
-                        dtSetView = uriageinputB.getJucyu(lstString);
+                        dtSetView = uriageinputB.getJucyu(lstString, con);
 
                         if (dtSetView.Rows.Count > 0)
                         {
@@ -1721,8 +1726,10 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //在庫出庫は原価＝０のチェック
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     H_Flag = 0;
@@ -1737,11 +1744,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、発注指示区分を取得する。
-                        dtSetView = uriageinputB.getHacyusijiKbn(lstString);
+                        dtSetView = uriageinputB.getHacyusijiKbn(lstString, con);
 
                         if (dtSetView.Rows.Count > 0)
                         {
@@ -1763,9 +1769,11 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //受注品番が加工発注品番に１個も存在しない場合はエラー　2006.6.9
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
+                #region
                 {
                     //検索アイテムをリストデータで保持
                     List<string> lstString = new List<string>();
@@ -1777,11 +1785,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、発注データをカウントする。
-                        dtSetView = uriageinputB.getHacyuCount(lstString);
+                        dtSetView = uriageinputB.getHacyuCount(lstString, con);
 
                         if (decimal.Parse(dtSetView.Rows[0]["発注カウント"].ToString()) > 0)
                         {
@@ -1799,7 +1806,7 @@ namespace KATO.Form.A0020_UriageInput
                             lstString.Add(Kataban);
 
                             //ビジネス層、型番が一致する発注データをカウントする。
-                            dtSetView = uriageinputB.getKatbanHacyuCount(lstString);
+                            dtSetView = uriageinputB.getKatbanHacyuCount(lstString, con);
 
                             //型番が一致しない場合はメッセージを表示し、処理を終了。
                             if (decimal.Parse(dtSetView.Rows[0]["型番発注カウント"].ToString()) == 0)
@@ -1818,8 +1825,10 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //'材料発注・加工発注の仕入入力をチェックして未入力がある場合はエラー　2006.6.9
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -1832,16 +1841,15 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、受注番号と仕入先コードから発注データをカウントする。
-                        dtSetView = uriageinputB.getSiiresakiSiteiHacyuCount(lstString);
+                        dtSetView = uriageinputB.getSiiresakiSiteiHacyuCount(lstString, con);
 
                         if (decimal.Parse(dtSetView.Rows[0]["仕入先指定発注カウント"].ToString()).CompareTo(0) > 0)
                         {
                             //ビジネス層、仕入済数量が0の発注データをカウントする。
-                            dtSetView = uriageinputB.SiirezumiSuuryoHacyuCount(lstString);
+                            dtSetView = uriageinputB.SiirezumiSuuryoHacyuCount(lstString, con);
 
                             if (decimal.Parse(dtSetView.Rows[0]["仕入済数量発注カウント"].ToString()).CompareTo(0) > 0)
                             {
@@ -1859,9 +1867,11 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //2006.9.5  仕入先が返品値引口座(9999)の場合は、" & vbCrLf & "数量＜０及び売上単価＜仕入単価の売上でかつ、
                 //              NO.23.返品値引分売上承認入力で承認未のものは売上できません
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -1876,16 +1886,15 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、数量が0未満の受発注データをカウント
-                        dtSetView = uriageinputB.getSuryoSiteiJuhacyu(lstString);
+                        dtSetView = uriageinputB.getSuryoSiteiJuhacyu(lstString, con);
 
                         if (decimal.Parse(dtSetView.Rows[0]["数量0未満受発注カウント"].ToString()) > 0)
                         {
                             //ビジネス層、返品値引売上承認フラグを取得する。
-                            dtSetView = uriageinputB.getHenpinNebikiUriageSyoninFlg(lstString);
+                            dtSetView = uriageinputB.getHenpinNebikiUriageSyoninFlg(lstString, con);
 
                             if (decimal.Parse(dtSetView.Rows[0]["返品値引売上承認フラグ"].ToString()) == 0)
                             {
@@ -1903,8 +1912,10 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //2007.6.27  売上単価＜仕入単価の売上は禁止   '仕入品のみ対象
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //部長は処理をSKIP
@@ -1922,11 +1933,10 @@ namespace KATO.Form.A0020_UriageInput
                         DataTable dtSetView;
 
                         //ビジネス層のインスタンス生成
-                        A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                         try
                         {
                             //ビジネス層、発注指示区分を取得する。
-                            dtSetView = uriageinputB.getHacyusijiKbn(lstString);
+                            dtSetView = uriageinputB.getHacyusijiKbn(lstString, con);
 
                             if (dtSetView.Rows.Count > 0)
                             {
@@ -1955,8 +1965,10 @@ namespace KATO.Form.A0020_UriageInput
                         }
                     }
                 }
+                #endregion
 
                 //売上日は最終仕入日以降 2008.4.1
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -1969,11 +1981,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、最終仕入先日を取得する。
-                        dtSetView = uriageinputB.getSaisyuSiirebi(lstString);
+                        dtSetView = uriageinputB.getSaisyuSiirebi(lstString, con);
 
                         if (dtSetView.Rows.Count > 0)
                         {
@@ -1997,8 +2008,10 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //2008.4.10 2008.4.11  仕入先が(7777)の場合は、得意先が(4125)(4116)(4129)に限る
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -2011,11 +2024,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、得意先コードを取得する。
-                        dtSetView = uriageinputB.getTokuisakiCd(lstString);
+                        dtSetView = uriageinputB.getTokuisakiCd(lstString, con);
 
                         if (dtSetView.Rows.Count > 0)
                         {
@@ -2041,8 +2053,10 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //加工品受注のチェック
+                #region
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
@@ -2055,11 +2069,10 @@ namespace KATO.Form.A0020_UriageInput
                     DataTable dtSetView;
 
                     //ビジネス層のインスタンス生成
-                    A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
                     try
                     {
                         //ビジネス層、加工品区分が1の発注データをカウントする。
-                        dtSetView = uriageinputB.getKakouHacyuCount(lstString);
+                        dtSetView = uriageinputB.getKakouHacyuCount(lstString, con);
 
                         if (dtSetView.Rows[0]["加工品発注カウント"].ToString() == "0")
                         {
@@ -2078,6 +2091,7 @@ namespace KATO.Form.A0020_UriageInput
                         new CommonException(ex);
                     }
                 }
+                #endregion
 
                 //2014.4.25 商品別利益率チェック機能　追加
                 if (((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
@@ -2106,13 +2120,8 @@ namespace KATO.Form.A0020_UriageInput
                 return false;
             }
 
-
-
-            
-
-
-
             //在庫チェックは部長は除外。
+            #region
             if (!"1".Equals(riekiritsuFlg))
             {
                 //変数を初期化
@@ -2129,8 +2138,7 @@ namespace KATO.Form.A0020_UriageInput
                     {
                         if (!string.IsNullOrWhiteSpace(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text))
                         {
-                            A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
-                            DataTable dtS = uriageinputB.getShohin(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text);
+                            DataTable dtS = uriageinputB.getShohin(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text, con);
                             if (dtS != null && dtS.Rows.Count > 0)
                             {
                                 string s = dtS.Rows[0]["在庫管理区分"].ToString();
@@ -2167,7 +2175,7 @@ namespace KATO.Form.A0020_UriageInput
                                 if (decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) > 0)
                                 {
                                     //指定日の在庫数を得るメソッドへ
-                                    if (Get_ZaikoSu2(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text, Basho, ref sU, DateTime.Parse(txtYMD.Text)))
+                                    if (Get_ZaikoSu2(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text, Basho, ref sU, DateTime.Parse(txtYMD.Text), con))
                                     {
                                         if (sU < decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text))
                                         {
@@ -2183,6 +2191,7 @@ namespace KATO.Form.A0020_UriageInput
                     }
                 }
             }
+            #endregion
 
             //代納にチェックされている場合は直送先コードが入力されているか判断。
             if (radSyubetu.judCheckBtn() == 1)
@@ -2196,6 +2205,7 @@ namespace KATO.Form.A0020_UriageInput
             }
 
             //行単位の利益率チェック
+            #region
             for (i = 1; i <= 5; i++)
             {
                 Control[] cs1 = this.Controls.Find("textSet_Jucyu" + i.ToString(), true);
@@ -2247,7 +2257,7 @@ namespace KATO.Form.A0020_UriageInput
                         if (!"1".Equals(riekiritsuFlg))
                         {
                             //メソッドRieki10へ
-                            if (Rieki10())
+                            if (Rieki10(con))
                             {
                                 //単価が(原価÷率)より小さい場合
                                 if (Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text)) < Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text) / decimal.Parse(Ritu.ToString())))
@@ -2263,8 +2273,8 @@ namespace KATO.Form.A0020_UriageInput
                         }
                     }
                 }
-
             }
+            #endregion
 
             //利益率チェック結果
             if (!reGood)
@@ -2281,7 +2291,7 @@ namespace KATO.Form.A0020_UriageInput
         /// Rieki10
         /// 利益のチェックを行う。
         /// </summary>
-        private Boolean Rieki10()
+        private Boolean Rieki10(DBConnective con)
         {
             int i;
             int icnt;
@@ -2326,12 +2336,12 @@ namespace KATO.Form.A0020_UriageInput
                     try
                     {
                         //ビジネス層、受注数量が0未満の受発注データをカウントする。
-                        dtSetView = uriageinputB.getJucyuSuryositeiJuhacyuCount(lstString);
+                        dtSetView = uriageinputB.getJucyuSuryositeiJuhacyuCount(lstString, con);
 
                         if (decimal.Parse(dtSetView.Rows[0]["受注数量0未満受発注カウント"].ToString()) > 0)
                         {
                             //ビジネス層、返品値引売上承認フラグ
-                            dtSetView = uriageinputB.getHenpinNebikiUriageSyoninFlg(lstString);
+                            dtSetView = uriageinputB.getHenpinNebikiUriageSyoninFlg(lstString, con);
 
                             if (dtSetView.Rows[0]["返品値引売上承認フラグ"].ToString() =="1")
                             {
@@ -2358,7 +2368,7 @@ namespace KATO.Form.A0020_UriageInput
         /// Get_ZaikoSu2
         /// 指定日の在庫数を得る。
         /// </summary>
-        private Boolean Get_ZaikoSu2(string SyouhinCD, string Eigyousyo,ref decimal sU, DateTime yymd)
+        private Boolean Get_ZaikoSu2(string SyouhinCD, string Eigyousyo,ref decimal sU, DateTime yymd, DBConnective con)
         {
             string strSQL;
             bool reGet_ZaikoSu2 = true;
@@ -2386,7 +2396,7 @@ namespace KATO.Form.A0020_UriageInput
             try
             {
                 //ビジネス層、指定日の在庫数を取得する。
-                dtSetView = uriageinputB.getzaikosuu(lstString);
+                dtSetView = uriageinputB.getzaikosuu(lstString, con);
 
                 if (dtSetView.Rows.Count == 0)
                 {
@@ -2706,7 +2716,7 @@ namespace KATO.Form.A0020_UriageInput
         /// Data_Create
         /// 処理済の更新＆倉庫間移動データの追加。
         /// </summary>
-        private void Data_Create(string JucyuNo)
+        private void Data_Create(string JucyuNo, DBConnective con)
         {
             //変数を初期化する。
             string IdouMoto;
@@ -2825,14 +2835,14 @@ namespace KATO.Form.A0020_UriageInput
                     NyuukoyouItem.Add(Environment.UserName);
 
                     //ビジネス層、出庫データと入庫データを作成する。(DC = Data_Create )
-                    uriageinputB.DC_Syukko_Nyuuko(SyukkoyouItem, NyuukoyouItem);
+                    uriageinputB.DC_Syukko_Nyuuko(SyukkoyouItem, NyuukoyouItem, con);
 
                 }
 
                 if (IdoAri == true)
                 {
                     //ビジネス層、倉庫間移動データ作成済セット(DC = Data_Create )
-                    uriageinputB.DC_updHikiateflg(lstString);
+                    uriageinputB.DC_updHikiateflg(lstString, con);
                 }
 
                 return;

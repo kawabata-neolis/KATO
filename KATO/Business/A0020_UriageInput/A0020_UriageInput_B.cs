@@ -24,7 +24,7 @@ namespace KATO.Business.A0020_UriageInput
     ///</summary>
     class A0020_UriageInput_B
     {
-        public DataTable getShohin(string strShohinCd)
+        public DataTable getShohin(string strShohinCd, DBConnective con)
         {
             DataTable dtRet = null;
             string strQuery = "";
@@ -34,10 +34,9 @@ namespace KATO.Business.A0020_UriageInput
             strQuery += " WHERE 商品コード = '" + strShohinCd + "'";
             strQuery += "   AND 削除     = 'N'";
 
-            DBConnective dbCon = new DBConnective();
             try
             {
-                dtRet = dbCon.ReadSql(strQuery);
+                dtRet = con.ReadSql(strQuery);
             }
             catch (Exception ex)
             {
@@ -51,14 +50,11 @@ namespace KATO.Business.A0020_UriageInput
         /// updUriageHeader
         /// 売上ヘッダをプロシージャーで更新する。
         /// </summary>
-        public void updUriageHeader(List<string> updUriageHeaderItem)
+        public void updUriageHeader(List<string> updUriageHeaderItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "売上ヘッダ更新_PROC '"
                             + updUriageHeaderItem[0] + "', '"
@@ -86,44 +82,36 @@ namespace KATO.Business.A0020_UriageInput
                             + updUriageHeaderItem[21] + "'";
 
                 // 売上ヘッダ更新_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
 
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
 
-        public DataTable getShohins (string stNo)
+        public DataTable getShohins (string stNo, DBConnective con)
         {
             DataTable dt = null;
-            DBConnective dbconnective = new DBConnective();
 
             try
             {
                 string strQ = "SELECT 商品コード FROM 売上明細 WHERE 伝票番号 = " + stNo + " AND 削除 = 'N'";
 
-                dt = dbconnective.ReadSql(strQ);
+                dt = con.ReadSql(strQ);
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
             return dt;
         }
@@ -132,48 +120,41 @@ namespace KATO.Business.A0020_UriageInput
         /// delUriageData
         /// 売上データを削除する。
         /// </summary>
-        public void delUriageData(List<string> delUriageItem)
+        public void delUriageData(List<string> delUriageItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "売上ヘッダ削除_PROC '"
                             + delUriageItem[0] + "', '"
                             + delUriageItem[1] + "'";
 
                 // 売上ヘッダ削除_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
                  strProc = "受注_売上数_戻し更新_PROC '"
                             + delUriageItem[0] + "', '"
                             + delUriageItem[1] + "'";
 
                 // 受注_売上数_戻し更新_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
                  strProc = "売上明細削除_PROC '"
                             + delUriageItem[0] + "', '"
                             + delUriageItem[1] + "'";
 
                 // 売上明細削除_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
 
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -235,14 +216,11 @@ namespace KATO.Business.A0020_UriageInput
         /// updSyohinMastr
         /// 商品マスタ更新（プロシージャー）
         /// </summary>
-        public void updSyohinMastr(List<string> lstitem ,String SyohinCD)
+        public void updSyohinMastr(List<string> lstitem ,String SyohinCD, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "商品マスタ更新_PROC '"
                             + SyohinCD + "', '"
@@ -270,20 +248,17 @@ namespace KATO.Business.A0020_UriageInput
                             + lstitem[0] + "'";
 
                 // 商品マスタ更新_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
 
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -291,14 +266,12 @@ namespace KATO.Business.A0020_UriageInput
         /// updUriageMeisai
         /// 売上明細更新（プロシージャー）
         /// </summary>
-        public void updUriageMeisai(List<string> lstitem, String SyohinCD,string Denno,string gyoNo)
+        public void updUriageMeisai(List<string> lstitem, String SyohinCD,string Denno,string gyoNo, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "売上明細更新_PROC '"
                             + Denno + "', '"
@@ -324,20 +297,16 @@ namespace KATO.Business.A0020_UriageInput
                             + lstitem[0] + "'";
 
                 // 売上明細更新_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                //売上明細まで登録した場合はコミット！
-                dbconnective.Commit();
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -345,34 +314,27 @@ namespace KATO.Business.A0020_UriageInput
         /// updUriagesuuModosi
         /// 受注＿売上数＿戻し更新
         /// </summary>
-        public void updUriagesuuModosi(List<string> updUriageHeaderItem)
+        public void updUriagesuuModosi(List<string> updUriageHeaderItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "受注_売上数_戻し更新_PROC '"
                             + updUriageHeaderItem[0] + "', '"
                             + updUriageHeaderItem[21] + "'";
 
                 // 受注_売上数_戻し更新_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
 
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -380,33 +342,26 @@ namespace KATO.Business.A0020_UriageInput
         /// delUriageMeisai
         /// 売上明細削除
         /// </summary>
-        public void delUriageMeisai(List<string> updUriageHeaderItem)
+        public void delUriageMeisai(List<string> updUriageHeaderItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 string strProc = "売上明細消去_PROC '"
                             + updUriageHeaderItem[0] + "'";
 
                 // 売上明細消去_PROC
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
 
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -473,16 +428,15 @@ namespace KATO.Business.A0020_UriageInput
         /// GetCyokuCode
         /// 入力した直送先コードに該当するコードの有無をチェック
         /// </summary>
-        public DataTable GetCyokuCode(List<string> lstString)
+        public DataTable GetCyokuCode(List<string> lstString, DBConnective con)
         {
             DataTable dtGetCyokuCd = new DataTable();
             string strSql = "SELECT COUNT(*) AS 直送先コードカウント FROM 直送先 WHERE 得意先コード = "+lstString[0]+"  AND 直送先コード = "+lstString[1];
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetCyokuCd = dbconnective.ReadSql(strSql);
+                dtGetCyokuCd = con.ReadSql(strSql);
 
                 return dtGetCyokuCd;
             }
@@ -492,7 +446,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -500,10 +453,9 @@ namespace KATO.Business.A0020_UriageInput
         /// updCyokusousaki
         /// 直送先の更新
         /// </summary>
-        public void updCyokusousaki(List<string> CyokuItem)
+        public void updCyokusousaki(List<string> CyokuItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 DataTable dtGetData = new DataTable();
@@ -524,19 +476,15 @@ namespace KATO.Business.A0020_UriageInput
 
 
                 // 更新文実行
-                dbconnective.RunSql(strSql);
+                con.RunSql(strSql);
 
-                dbconnective.Commit();
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -544,10 +492,9 @@ namespace KATO.Business.A0020_UriageInput
         /// insCyokusousaki
         /// 直送先の登録
         /// </summary>
-        public void insCyokusousaki(List<string> CyokuItem)
+        public void insCyokusousaki(List<string> CyokuItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 DataTable dtGetData = new DataTable();
@@ -571,19 +518,16 @@ namespace KATO.Business.A0020_UriageInput
                 strSql = strSql + " ) ";
 
                 // 更新文実行
-                dbconnective.RunSql(strSql);
+                con.RunSql(strSql);
 
-                dbconnective.Commit();
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -641,7 +585,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getSyohinCd
         /// 型番から商品コードを得る。
         /// </summary>
-        public DataTable getSyohinCd(List<string> lstString,string Kataban)
+        public DataTable getSyohinCd(List<string> lstString,string Kataban, DBConnective con)
         {
             DataTable dtGetTantouCd = new DataTable();
             string strSql = "SELECT 商品コード FROM 商品 ";
@@ -651,11 +595,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql += " AND 中分類コード='" + lstString[14] + "' ";
             strSql += " AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'')= '" + Kataban + "' ";
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetTantouCd = dbconnective.ReadSql(strSql);
+                dtGetTantouCd = con.ReadSql(strSql);
 
                 return dtGetTantouCd;
             }
@@ -665,7 +608,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -937,15 +879,11 @@ namespace KATO.Business.A0020_UriageInput
         /// 出庫データ作成 処理区分　⇒　１：受注　２：出庫依頼　取引区分　⇒　５１：庫間出　５２：庫間入
         /// 入庫データ作成
         /// </summary>
-        public void DC_Syukko_Nyuuko(List<string> SyukkoyouItem, List<string> NyuukoyouItem)
+        public void DC_Syukko_Nyuuko(List<string> SyukkoyouItem, List<string> NyuukoyouItem, DBConnective con)
         {
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
-
                 string strProc = "倉庫間移動更新_PROC '"
                             + SyukkoyouItem[0] + "',"
                             + SyukkoyouItem[1] + ","
@@ -970,7 +908,7 @@ namespace KATO.Business.A0020_UriageInput
                             + SyukkoyouItem[20] + "'"; ;
 
                 // 倉庫間移動更新_PROC(出庫)
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
                  strProc = "倉庫間移動更新_PROC '"
                             + NyuukoyouItem[0] + "',"
@@ -996,19 +934,15 @@ namespace KATO.Business.A0020_UriageInput
                             + NyuukoyouItem[20] + "'"; ;
 
                 // 倉庫間移動更新_PROC(入庫)
-                dbconnective.ReadSql(strProc);
+                con.ReadSql(strProc);
 
-                dbconnective.Commit();
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1016,7 +950,7 @@ namespace KATO.Business.A0020_UriageInput
         /// DC_updHikiateflg
         /// 倉庫間移動データ作成済セット
         /// </summary>
-        public void DC_updHikiateflg(List<string> lstString)
+        public void DC_updHikiateflg(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1028,25 +962,19 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND   受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                 dbconnective.RunSql(strSql);
-
-                 dbconnective.Commit();
+                 con.RunSql(strSql);
 
                 return ;
             }
             catch
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1054,7 +982,7 @@ namespace KATO.Business.A0020_UriageInput
         /// updSyohinCD
         /// 受注テーブルの商品コードを更新する。
         /// </summary>
-        public void updJTableSyohinCD(List<string> lstString,string SyohinCD)
+        public void updJTableSyohinCD(List<string> lstString,string SyohinCD, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1065,25 +993,21 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " WHERE 受注番号=" + lstString[2];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dbconnective.RunSql(strSql);
+                con.RunSql(strSql);
 
-                dbconnective.Commit();
 
                 return;
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1091,7 +1015,7 @@ namespace KATO.Business.A0020_UriageInput
         /// updSyohinCD
         /// 発注テーブルの商品コードを更新する。
         /// </summary>
-        public void updHTableSyohinCD(List<string> lstString, string SyohinCD,string Kataban)
+        public void updHTableSyohinCD(List<string> lstString, string SyohinCD,string Kataban, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1105,24 +1029,20 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'')= '" + Kataban + "' ";
             strSql = strSql + " AND     削除='N'";
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dbconnective.RunSql(strSql);
+                con.RunSql(strSql);
 
-                dbconnective.Commit();
                 return;
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1131,7 +1051,7 @@ namespace KATO.Business.A0020_UriageInput
         /// updJTableTokuisakiName
         /// 受注テーブルの得意先名称を更新する。
         /// </summary>
-        public void updJTableTokuisakiName(List<string> UriageMeisaiItem,List<string> UriageInputItem)
+        public void updJTableTokuisakiName(List<string> UriageMeisaiItem,List<string> UriageInputItem, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1141,25 +1061,21 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " SET 得意先名称='" + UriageInputItem[3] + "'";
             strSql = strSql + " WHERE 受注番号=" + UriageMeisaiItem[2];
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dbconnective.RunSql(strSql);
+                con.RunSql(strSql);
 
-                dbconnective.Commit();
 
                 return;
             }
             catch
             {
                 // ロールバック処理
-                dbconnective.Rollback();
                 throw;
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1225,7 +1141,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getJucyuSuuryo
         /// 受注Noから受注数量を取得する。
         /// </summary>
-        public DataTable getJucyuSuuryo(List<string> lstString)
+        public DataTable getJucyuSuuryo(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1236,11 +1152,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1250,7 +1165,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1258,7 +1172,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getSumUriageSuuryo
         /// 売上明細から売上数量の合計を取得する。
         /// </summary>
-        public DataTable getSumUriageSuuryo(List<string> lstString)
+        public DataTable getSumUriageSuuryo(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1269,11 +1183,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1283,7 +1196,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1291,7 +1203,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getCurrentRowUriageSuuryo
         /// 売上明細から現在行の数量を取得する
         /// </summary>
-        public DataTable getCurrentRowUriageSuuryo(List<string> lstString)
+        public DataTable getCurrentRowUriageSuuryo(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1303,11 +1215,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 行番号=" + lstString[1];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1317,7 +1228,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1325,7 +1235,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getJucyu
         /// 受注番号から受注データを取得する。
         /// </summary>
-        public DataTable getJucyu(List<string> lstString)
+        public DataTable getJucyu(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1337,11 +1247,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " WHERE 受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1351,7 +1260,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1359,7 +1267,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getHacyusijiKbn
         /// 受注番号から発注指示区分を取得する。
         /// </summary>
-        public DataTable getHacyusijiKbn(List<string> lstString)
+        public DataTable getHacyusijiKbn(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1370,11 +1278,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1384,7 +1291,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1392,7 +1298,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getSaisyuSiirebi
         /// 受注番号から最終仕入先日
         /// </summary>
-        public DataTable getSaisyuSiirebi(List<string> lstString)
+        public DataTable getSaisyuSiirebi(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1400,12 +1306,10 @@ namespace KATO.Business.A0020_UriageInput
 
             strSql = strSql + "SELECT dbo.f_get受注番号から最終仕入先日(" +lstString[0]+ ") AS 最終仕入先日  ";
 
-
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1415,7 +1319,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1423,7 +1326,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getTokuisakiCd
         /// 受注番号から得意先コードを取得する。
         /// </summary>
-        public DataTable getTokuisakiCd(List<string> lstString)
+        public DataTable getTokuisakiCd(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1437,11 +1340,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND H.仕入先コード='7777'";
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1451,7 +1353,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1459,7 +1360,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getKakouHacyuCount
         /// 加工区分が1の発注データをカウントする。
         /// </summary>
-        public DataTable getKakouHacyuCount(List<string> lstString)
+        public DataTable getKakouHacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1467,11 +1368,10 @@ namespace KATO.Business.A0020_UriageInput
 
             strSql = strSql + "SELECT COUNT(*) AS 加工品発注カウント FROM 発注 WHERE 受注番号=" +lstString[0]+ " AND 削除='N' AND 加工区分='1' ";
             
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1481,7 +1381,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1663,7 +1562,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getzaikosuu
         /// 指定日の在庫数を取得する。
         /// </summary>
-        public DataTable getzaikosuu(List<string> lstString)
+        public DataTable getzaikosuu(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1671,11 +1570,10 @@ namespace KATO.Business.A0020_UriageInput
 
             strSql = strSql + "SELECT dbo.f_get指定日の在庫数('" + lstString[0] + "' ,'" + lstString[1] + "' ,'"+DateTime.Parse(lstString[2]).ToString("yyyy/MM/dd")+"') AS 指定日の在庫数 ";
              
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1685,7 +1583,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1693,7 +1590,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getHacyuCount
         /// 受注番号から発注データをカウントする。
         /// </summary>
-        public DataTable getHacyuCount(List<string> lstString)
+        public DataTable getHacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1704,11 +1601,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 受注番号=" + lstString[0];
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1718,7 +1614,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1726,7 +1621,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getKatbanHacyuCount
         /// 受注番号と型番から発注データをカウントする。
         /// </summary>
-        public DataTable getKatbanHacyuCount(List<string> lstString)
+        public DataTable getKatbanHacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1738,11 +1633,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'')= '" + lstString[1] + "' ";
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1752,7 +1646,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1760,7 +1653,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getKatbanHacyuCount
         /// 受注番号と仕入先コードの指定から発注データをカウントする。
         /// </summary>
-        public DataTable getSiiresakiSiteiHacyuCount(List<string> lstString)
+        public DataTable getSiiresakiSiteiHacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1772,11 +1665,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 仕入先コード<>'9999'";           //2006.6.13  返品口座は除く
             strSql = strSql + " AND 仕入先コード<>'7777'";           //2006.6.15  仕入先手数料口座は除く
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1786,7 +1678,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1794,7 +1685,7 @@ namespace KATO.Business.A0020_UriageInput
         /// SiirezumiSuuryoHacyuCount
         /// 仕入済数量が０の発注データをカウントする。
         /// </summary>
-        public DataTable SiirezumiSuuryoHacyuCount(List<string> lstString)
+        public DataTable SiirezumiSuuryoHacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1807,11 +1698,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND 仕入先コード<>'9999'";           //2006.6.13  返品口座は除く
             strSql = strSql + " AND 仕入先コード<>'7777'";           //2006.6.15  仕入先手数料口座は除く
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1821,7 +1711,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1829,7 +1718,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getSuryoSiteiJuhacyu
         /// 数量が0未満の受発注データをカウントする。
         /// </summary>
-        public DataTable getSuryoSiteiJuhacyu(List<string> lstString)
+        public DataTable getSuryoSiteiJuhacyu(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1844,11 +1733,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND ( (" + lstString[1] + "<0) ) ";
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1858,7 +1746,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1866,7 +1753,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getJucyuSuryositeiJuhacyuCount
         /// 受注数量が0未満の受発注データをカウントする。
         /// </summary>
-        public DataTable getJucyuSuryositeiJuhacyuCount(List<string> lstString)
+        public DataTable getJucyuSuryositeiJuhacyuCount(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1880,11 +1767,10 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + " AND J.受注数量<0 ";
 
 
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1894,7 +1780,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -1902,7 +1787,7 @@ namespace KATO.Business.A0020_UriageInput
         /// getSuryoSiteiJuhacyu
         /// 返品値引き売上承認フラグを取得する。
         /// </summary>
-        public DataTable getHenpinNebikiUriageSyoninFlg(List<string> lstString)
+        public DataTable getHenpinNebikiUriageSyoninFlg(List<string> lstString, DBConnective con)
         {
 
             DataTable dtGetData = new DataTable();
@@ -1910,11 +1795,10 @@ namespace KATO.Business.A0020_UriageInput
 
             strSql = strSql + "SELECT dbo.f_get返品値引売上承認フラグ(" + lstString[0] + ") AS 返品値引売上承認フラグ";
             
-            DBConnective dbconnective = new DBConnective();
             try
             {
                 // 検索データをテーブルへ格納
-                dtGetData = dbconnective.ReadSql(strSql);
+                dtGetData = con.ReadSql(strSql);
 
                 return dtGetData;
             }
@@ -1924,7 +1808,6 @@ namespace KATO.Business.A0020_UriageInput
             }
             finally
             {
-                dbconnective.DB_Disconnect();
             }
         }
 
@@ -2648,7 +2531,7 @@ namespace KATO.Business.A0020_UriageInput
         ///引数　：List[0](受注番号),[1](環境ユーザ)
         ///戻り値：なし
         ///</summary>
-        public void updUriageSakujoShonin(List<string> UriageInputItem)
+        public void updUriageSakujoShonin(List<string> UriageInputItem, DBConnective con)
         {
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQLSelect = new List<string>();
@@ -2674,12 +2557,8 @@ namespace KATO.Business.A0020_UriageInput
             //SQL接続
             OpenSQL opensql = new OpenSQL();
 
-            //接続用クラスのインスタンス作成
-            DBConnective dbconnective = new DBConnective();
             try
             {
-                // トランザクション開始
-                dbconnective.BeginTrans();
 
                 //SQLファイルのパス取得
                 strSQLInput = opensql.setOpenSQL(lstSQLSelect);
@@ -2694,7 +2573,7 @@ namespace KATO.Business.A0020_UriageInput
                 strSQLInput = string.Format(strSQLInput, UriageInputItem[0]);
 
                 //SQL接続後、該当データを取得
-                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+                dtSetCd_B = con.ReadSql(strSQLInput);
 
                 //データがなければ
                 if (dtSetCd_B.Rows.Count == 0)
@@ -2718,7 +2597,7 @@ namespace KATO.Business.A0020_UriageInput
                                                              UriageInputItem[1]);       //更新ユーザー名
 
                     //SQL接続後、該当データを更新
-                    dbconnective.RunSql(strSQLInput);
+                    con.RunSql(strSQLInput);
                 }
                 else
                 {
@@ -2739,24 +2618,18 @@ namespace KATO.Business.A0020_UriageInput
                                                              UriageInputItem[1]);       //更新ユーザー名
 
                     //SQL接続後、該当データを更新
-                    dbconnective.RunSql(strSQLInput);
+                    con.RunSql(strSQLInput);
 
                 }
-                // コミット
-                dbconnective.Commit();
 
                 return;
             }
             catch (Exception ex)
             {
-                // ロールバック処理
-                dbconnective.Rollback();
                 throw (ex);
             }
             finally
             {
-                //トランザクション終了
-                dbconnective.DB_Disconnect();
             }
         }
 
