@@ -63,6 +63,9 @@ namespace KATO.Form.Z0000
 
             //Menu_ReSet();
             Menu_Set();
+
+            //日付制限の更新
+            updHidukeSeigen();
         }
 
 
@@ -1586,6 +1589,28 @@ namespace KATO.Form.Z0000
             }
 
             return;
+        }
+
+        ///<summary>
+        ///updHidukeSeigen
+        ///日付制限更新(一日一回)
+        ///</summary>
+        private void updHidukeSeigen()
+        {
+            Z0000_B mainmenuB = new Z0000_B();
+            try
+            {
+                mainmenuB.updHiduke();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
     }
 }

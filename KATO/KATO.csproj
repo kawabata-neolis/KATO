@@ -2737,6 +2737,9 @@
     <Content Include="SQL\M1490_Menukengen2\M1490_Menukengen2_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\Z0000\MainMenu_HidukeSeigen_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\Z0000\MainMenu_Data_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2750,6 +2753,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Z0000\MainMenu_Kengen_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\Z0000\MainMenu_HidukeSeigen_UPDATE.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\Z1500_MyMenuSet\MyMenuSet_MenuSet_UPDATE.sql">
