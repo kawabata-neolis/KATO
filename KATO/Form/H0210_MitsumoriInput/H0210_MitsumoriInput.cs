@@ -2110,7 +2110,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 //}
 
                 gridMitsmori.EndEdit();
-                editFlg = false;
+                editFlg = true;
 
                 setText(0);
                 changeTotal();
@@ -2685,6 +2685,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             RowIndex = 0;
             ColIndex = 0;
             txtMode.Focus();
+            editFlg = true;
         }
         
         // 見積印刷
@@ -3214,6 +3215,12 @@ namespace KATO.Form.H0210_MitsumoriInput
                 TorihikisakiList tl = new TorihikisakiList(this, ls);
                 tl.ShowDialog();
 
+
+                if (!((BaseText)sender).Text.Equals(ls.CodeTxtText))
+                {
+                    editFlg = true;
+                }
+
                 if (((BaseText)sender).Name.Equals("txtZaiCd1"))
                 {
                     txtZaiCd1.Text = ls.CodeTxtText;
@@ -3426,7 +3433,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         gridMitsmori[81, gridMitsmori.CurrentCell.RowIndex].Value = txtKakMei6.Text;
                     }
                     gridMitsmori.EndEdit();
-                    editFlg = false;
+                    editFlg = true;
                 }
                 else
                 {
@@ -3777,7 +3784,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
 
             gridMitsmori.EndEdit();
-            editFlg = false;
+            editFlg = true;
 
         }
 
@@ -3911,9 +3918,17 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void txtTanto_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
             {
                 SendKeys.Send("{tab}");
+            }
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+                
+            }
+            else
+            {
+                editFlg = true;
             }
         }
 
@@ -3944,53 +3959,58 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void openJuchu()
         {
-            BaseMessageBox bb = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "受注入力を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_INFOMATION);
-            if (bb.ShowDialog() == DialogResult.Yes)
-            {
-                A0010_JuchuInput.A0010_JuchuInput jInput = new A0010_JuchuInput.A0010_JuchuInput(this);
+            //BaseMessageBox bb = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "受注入力を行いますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_INFOMATION);
+            //if (bb.ShowDialog() == DialogResult.Yes)
+            //{
+            //    A0010_JuchuInput.A0010_JuchuInput jInput = new A0010_JuchuInput.A0010_JuchuInput(this);
 
-                jInput.tsTokuisaki.CodeTxtText = tsTokuisaki.CodeTxtText;
+            //    jInput.tsTokuisaki.CodeTxtText = tsTokuisaki.CodeTxtText;
 
-                for (int i = 0; i < gridMitsmori.RowCount; i++)
-                {
-                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[86, i], false)))
-                    {
-                        jInput.txtShohinCd.Text = getCellValue(gridMitsmori[86, i], false);
-                        jInput.lsDaibunrui.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
-                        jInput.lsDaibunrui.chkTxtDaibunrui();
-                        jInput.lsChubunrui.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
-                        jInput.lsChubunrui.chkTxtChubunrui(jInput.lsDaibunrui.CodeTxtText);
-                        jInput.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
-                        jInput.lsMaker.chkTxtMaker();
-                        jInput.txtHinmei.Text = getCellValue(gridMitsmori[2, i], false);
-                        jInput.txtJuchuSuryo.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[3, i], false)), 0).ToString("#,0");
-                        jInput.txtTeika.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[4, i], false)),0).ToString("#,0");
-                        jInput.cbJuchuTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[5, i], false)), 0).ToString("#");
-                        jInput.cbSiireTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[8, i], false)), 0).ToString("0.00");
-                        jInput.txtC1.Text = getCellValue(gridMitsmori[93, i], false);
-                        jInput.txtC2.Text = getCellValue(gridMitsmori[94, i], false);
-                        jInput.txtC3.Text = getCellValue(gridMitsmori[95, i], false);
-                        jInput.txtC4.Text = getCellValue(gridMitsmori[96, i], false);
-                        jInput.txtC5.Text = getCellValue(gridMitsmori[97, i], false);
-                        jInput.txtC6.Text = getCellValue(gridMitsmori[98, i], false);
-                        break;
-                    }
-                }
-                jInput.Show();
-            }
+            //    for (int i = 0; i < gridMitsmori.RowCount; i++)
+            //    {
+            //        if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[86, i], false)))
+            //        {
+            //            jInput.txtShohinCd.Text = getCellValue(gridMitsmori[86, i], false);
+            //            jInput.lsDaibunrui.CodeTxtText = getCellValue(gridMitsmori[87, i], false);
+            //            jInput.lsDaibunrui.chkTxtDaibunrui();
+            //            jInput.lsChubunrui.CodeTxtText = getCellValue(gridMitsmori[88, i], false);
+            //            jInput.lsChubunrui.chkTxtChubunrui(jInput.lsDaibunrui.CodeTxtText);
+            //            jInput.lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, i], false);
+            //            jInput.lsMaker.chkTxtMaker();
+            //            jInput.txtHinmei.Text = getCellValue(gridMitsmori[2, i], false);
+            //            jInput.txtJuchuSuryo.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[3, i], false)), 0).ToString("#,0");
+            //            jInput.txtTeika.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[4, i], false)),0).ToString("#,0");
+            //            jInput.cbJuchuTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[5, i], false)), 0).ToString("#");
+            //            jInput.cbSiireTanka.Text = decimal.Round(getDecValue(getCellValue(gridMitsmori[8, i], false)), 0).ToString("0.00");
+            //            jInput.txtC1.Text = getCellValue(gridMitsmori[93, i], false);
+            //            jInput.txtC2.Text = getCellValue(gridMitsmori[94, i], false);
+            //            jInput.txtC3.Text = getCellValue(gridMitsmori[95, i], false);
+            //            jInput.txtC4.Text = getCellValue(gridMitsmori[96, i], false);
+            //            jInput.txtC5.Text = getCellValue(gridMitsmori[97, i], false);
+            //            jInput.txtC6.Text = getCellValue(gridMitsmori[98, i], false);
+            //            break;
+            //        }
+            //    }
+            //    jInput.Show();
+            //}
         }
 
         private void txtBiko_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter) {
                 if (gridMitsmori.RowCount > 0)
                 {
                     gridMitsmori.CurrentCell = gridMitsmori[2, 0];
                     gridMitsmori.Focus();
                 }
+                else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                {
+                    txtMemo.Focus();
+                }
                 else
                 {
                     txtMemo.Focus();
+                    editFlg = true;
                 }
             }
         }

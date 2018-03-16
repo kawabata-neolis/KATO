@@ -2868,7 +2868,7 @@ namespace KATO.Form.A0010_JuchuInput
                 #region
                 DataTable dtCodes = juchuB.getCodesFromShohin(txtShohinCd.Text);
 
-                if (dtCodes != null && dtCodes.Rows.Count > 0)
+                if (dtCodes == null || dtCodes.Rows.Count == 0)
                 {
                     return ret;
                 }

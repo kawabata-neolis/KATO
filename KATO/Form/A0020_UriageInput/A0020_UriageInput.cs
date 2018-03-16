@@ -454,6 +454,17 @@ namespace KATO.Form.A0020_UriageInput
                 GetTantouCode(labelSet_Tantousha.CodeTxtText);
 
                 this.Cursor = Cursors.WaitCursor;
+                
+                //データチェック処理を行うメソッドへ。
+                if (!DataCheack())
+                {
+                    //データチェックがfalseの場合はデータベースをロールバックして終了。
+                    uriageinputB.DBROLLBACK();
+                    this.Cursor = Cursors.Default;
+                    return;
+
+                }
+
                 //倉庫間移動処理
                 if (txtDenNo.Text == "")
                 {
@@ -489,14 +500,14 @@ namespace KATO.Form.A0020_UriageInput
                     }
                 }
 
-                //データチェック処理を行うメソッドへ。
-                if (!DataCheack())
-                {
-                    //データチェックがfalseの場合はデータベースをロールバックして終了。
-                    uriageinputB.DBROLLBACK();
-                    return;
+                ////データチェック処理を行うメソッドへ。
+                //if (!DataCheack())
+                //{
+                //    //データチェックがfalseの場合はデータベースをロールバックして終了。
+                //    uriageinputB.DBROLLBACK();
+                //    return;
                     
-                }
+                //}
 
                 //伝票の記述がない場合は、伝票取得メソッドへ
                 if (txtDenNo.Text == "")
@@ -1671,7 +1682,7 @@ namespace KATO.Form.A0020_UriageInput
                 }
 
                 //同時売上ガード
-                if (txtDenNo.Text != "" && ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
+                if (string.IsNullOrWhiteSpace(txtDenNo.Text) && ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text != "")
                 {
                     //検索アイテムをリストデータで保持
                     List<string> lstString = new List<string>();

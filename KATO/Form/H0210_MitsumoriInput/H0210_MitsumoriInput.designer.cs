@@ -169,6 +169,9 @@
             this.txtMYMD = new KATO.Common.Ctl.BaseCalendar();
             this.tsNonyusaki = new KATO.Common.Ctl.TextSet_Torihikisaki();
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lsDaibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
+            this.lsChubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
+            this.lsMaker = new KATO.Common.Ctl.LabelSet_Maker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -278,7 +281,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(176, 17);
+            this.label3.Location = new System.Drawing.Point(180, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 15);
             this.label3.TabIndex = 144;
@@ -288,7 +291,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(337, 17);
+            this.label5.Location = new System.Drawing.Point(345, 17);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 15);
             this.label5.TabIndex = 147;
@@ -319,7 +322,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(396, 168);
+            this.label7.Location = new System.Drawing.Point(401, 168);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 15);
             this.label7.TabIndex = 154;
@@ -333,7 +336,7 @@
             this.cbJoken.Items.AddRange(new object[] {
             "従来通り",
             "別途打合せ"});
-            this.cbJoken.Location = new System.Drawing.Point(473, 165);
+            this.cbJoken.Location = new System.Drawing.Point(478, 165);
             this.cbJoken.Name = "cbJoken";
             this.cbJoken.Size = new System.Drawing.Size(192, 23);
             this.cbJoken.TabIndex = 11;
@@ -434,7 +437,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cbChubun);
             this.panel1.Controls.Add(this.cbMaker);
-            this.panel1.Location = new System.Drawing.Point(613, 46);
+            this.panel1.Location = new System.Drawing.Point(641, 46);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(353, 40);
             this.panel1.TabIndex = 15;
@@ -467,7 +470,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label13.Location = new System.Drawing.Point(619, 39);
+            this.label13.Location = new System.Drawing.Point(647, 39);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(247, 15);
             this.label13.TabIndex = 169;
@@ -477,7 +480,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label14.Location = new System.Drawing.Point(619, 89);
+            this.label14.Location = new System.Drawing.Point(647, 89);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(87, 15);
             this.label14.TabIndex = 171;
@@ -488,7 +491,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.rd2);
             this.panel2.Controls.Add(this.rd1);
-            this.panel2.Location = new System.Drawing.Point(613, 96);
+            this.panel2.Location = new System.Drawing.Point(641, 96);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(181, 40);
             this.panel2.TabIndex = 16;
@@ -615,7 +618,7 @@
             this.panel3.Controls.Add(this.label16);
             this.panel3.Location = new System.Drawing.Point(20, 593);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1384, 193);
+            this.panel3.Size = new System.Drawing.Size(1399, 193);
             this.panel3.TabIndex = 17;
             // 
             // button1
@@ -655,6 +658,7 @@
             this.txtZaiTeika6.intShishagonyu = 0;
             this.txtZaiTeika6.Location = new System.Drawing.Point(410, 166);
             this.txtZaiTeika6.MaxLength = 10;
+            this.txtZaiTeika6.MinusFlg = true;
             this.txtZaiTeika6.Name = "txtZaiTeika6";
             this.txtZaiTeika6.ReadOnly = true;
             this.txtZaiTeika6.Size = new System.Drawing.Size(95, 22);
@@ -673,6 +677,7 @@
             this.txtZaiTeika5.intShishagonyu = 0;
             this.txtZaiTeika5.Location = new System.Drawing.Point(410, 141);
             this.txtZaiTeika5.MaxLength = 10;
+            this.txtZaiTeika5.MinusFlg = true;
             this.txtZaiTeika5.Name = "txtZaiTeika5";
             this.txtZaiTeika5.ReadOnly = true;
             this.txtZaiTeika5.Size = new System.Drawing.Size(95, 22);
@@ -691,6 +696,7 @@
             this.txtZaiTeika4.intShishagonyu = 0;
             this.txtZaiTeika4.Location = new System.Drawing.Point(410, 116);
             this.txtZaiTeika4.MaxLength = 10;
+            this.txtZaiTeika4.MinusFlg = true;
             this.txtZaiTeika4.Name = "txtZaiTeika4";
             this.txtZaiTeika4.ReadOnly = true;
             this.txtZaiTeika4.Size = new System.Drawing.Size(95, 22);
@@ -709,6 +715,7 @@
             this.txtZaiTeika3.intShishagonyu = 0;
             this.txtZaiTeika3.Location = new System.Drawing.Point(410, 75);
             this.txtZaiTeika3.MaxLength = 10;
+            this.txtZaiTeika3.MinusFlg = true;
             this.txtZaiTeika3.Name = "txtZaiTeika3";
             this.txtZaiTeika3.ReadOnly = true;
             this.txtZaiTeika3.Size = new System.Drawing.Size(95, 22);
@@ -727,6 +734,7 @@
             this.txtZaiTeika2.intShishagonyu = 0;
             this.txtZaiTeika2.Location = new System.Drawing.Point(410, 50);
             this.txtZaiTeika2.MaxLength = 10;
+            this.txtZaiTeika2.MinusFlg = true;
             this.txtZaiTeika2.Name = "txtZaiTeika2";
             this.txtZaiTeika2.ReadOnly = true;
             this.txtZaiTeika2.Size = new System.Drawing.Size(95, 22);
@@ -755,6 +763,7 @@
             this.txtZaiTeika1.intShishagonyu = 0;
             this.txtZaiTeika1.Location = new System.Drawing.Point(410, 25);
             this.txtZaiTeika1.MaxLength = 10;
+            this.txtZaiTeika1.MinusFlg = true;
             this.txtZaiTeika1.Name = "txtZaiTeika1";
             this.txtZaiTeika1.ReadOnly = true;
             this.txtZaiTeika1.Size = new System.Drawing.Size(95, 22);
@@ -765,7 +774,7 @@
             // txtIdx
             // 
             this.txtIdx.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtIdx.Location = new System.Drawing.Point(1369, 28);
+            this.txtIdx.Location = new System.Drawing.Point(1375, 25);
             this.txtIdx.Name = "txtIdx";
             this.txtIdx.Size = new System.Drawing.Size(10, 22);
             this.txtIdx.TabIndex = 266;
@@ -774,7 +783,7 @@
             // button29
             // 
             this.button29.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button29.Location = new System.Drawing.Point(1191, 153);
+            this.button29.Location = new System.Drawing.Point(1197, 153);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(23, 22);
             this.button29.TabIndex = 265;
@@ -786,7 +795,7 @@
             // button28
             // 
             this.button28.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button28.Location = new System.Drawing.Point(1191, 128);
+            this.button28.Location = new System.Drawing.Point(1197, 128);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(23, 22);
             this.button28.TabIndex = 264;
@@ -798,7 +807,7 @@
             // button26
             // 
             this.button26.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button26.Location = new System.Drawing.Point(1191, 62);
+            this.button26.Location = new System.Drawing.Point(1197, 62);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(23, 22);
             this.button26.TabIndex = 262;
@@ -810,7 +819,7 @@
             // button25
             // 
             this.button25.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button25.Location = new System.Drawing.Point(1191, 37);
+            this.button25.Location = new System.Drawing.Point(1197, 37);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(23, 22);
             this.button25.TabIndex = 261;
@@ -824,7 +833,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label35.ForeColor = System.Drawing.Color.Navy;
-            this.label35.Location = new System.Drawing.Point(690, 99);
+            this.label35.Location = new System.Drawing.Point(696, 99);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(47, 15);
             this.label35.TabIndex = 260;
@@ -839,8 +848,9 @@
             this.txtKakTnk6.intDeciSet = 2;
             this.txtKakTnk6.intIntederSet = 10;
             this.txtKakTnk6.intShishagonyu = 0;
-            this.txtKakTnk6.Location = new System.Drawing.Point(1092, 166);
+            this.txtKakTnk6.Location = new System.Drawing.Point(1098, 166);
             this.txtKakTnk6.MaxLength = 13;
+            this.txtKakTnk6.MinusFlg = true;
             this.txtKakTnk6.Name = "txtKakTnk6";
             this.txtKakTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk6.TabIndex = 23;
@@ -852,7 +862,7 @@
             // 
             this.txtKakMei6.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei6.Location = new System.Drawing.Point(792, 166);
+            this.txtKakMei6.Location = new System.Drawing.Point(798, 166);
             this.txtKakMei6.Name = "txtKakMei6";
             this.txtKakMei6.ReadOnly = true;
             this.txtKakMei6.Size = new System.Drawing.Size(295, 22);
@@ -862,7 +872,7 @@
             // txtKakCd6
             // 
             this.txtKakCd6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd6.Location = new System.Drawing.Point(741, 166);
+            this.txtKakCd6.Location = new System.Drawing.Point(747, 166);
             this.txtKakCd6.MaxLength = 4;
             this.txtKakCd6.Name = "txtKakCd6";
             this.txtKakCd6.Size = new System.Drawing.Size(46, 22);
@@ -873,7 +883,7 @@
             // button22
             // 
             this.button22.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button22.Location = new System.Drawing.Point(689, 165);
+            this.button22.Location = new System.Drawing.Point(695, 165);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(48, 23);
             this.button22.TabIndex = 65;
@@ -890,8 +900,9 @@
             this.txtKakTnk5.intDeciSet = 2;
             this.txtKakTnk5.intIntederSet = 10;
             this.txtKakTnk5.intShishagonyu = 0;
-            this.txtKakTnk5.Location = new System.Drawing.Point(1092, 141);
+            this.txtKakTnk5.Location = new System.Drawing.Point(1098, 141);
             this.txtKakTnk5.MaxLength = 13;
+            this.txtKakTnk5.MinusFlg = true;
             this.txtKakTnk5.Name = "txtKakTnk5";
             this.txtKakTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk5.TabIndex = 21;
@@ -903,7 +914,7 @@
             // 
             this.txtKakMei5.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei5.Location = new System.Drawing.Point(792, 141);
+            this.txtKakMei5.Location = new System.Drawing.Point(798, 141);
             this.txtKakMei5.Name = "txtKakMei5";
             this.txtKakMei5.ReadOnly = true;
             this.txtKakMei5.Size = new System.Drawing.Size(295, 22);
@@ -913,7 +924,7 @@
             // txtKakCd5
             // 
             this.txtKakCd5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd5.Location = new System.Drawing.Point(741, 141);
+            this.txtKakCd5.Location = new System.Drawing.Point(747, 141);
             this.txtKakCd5.MaxLength = 4;
             this.txtKakCd5.Name = "txtKakCd5";
             this.txtKakCd5.Size = new System.Drawing.Size(46, 22);
@@ -924,7 +935,7 @@
             // button23
             // 
             this.button23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button23.Location = new System.Drawing.Point(689, 140);
+            this.button23.Location = new System.Drawing.Point(695, 140);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(48, 23);
             this.button23.TabIndex = 53;
@@ -941,8 +952,9 @@
             this.txtKakTnk4.intDeciSet = 2;
             this.txtKakTnk4.intIntederSet = 10;
             this.txtKakTnk4.intShishagonyu = 0;
-            this.txtKakTnk4.Location = new System.Drawing.Point(1092, 116);
+            this.txtKakTnk4.Location = new System.Drawing.Point(1098, 116);
             this.txtKakTnk4.MaxLength = 13;
+            this.txtKakTnk4.MinusFlg = true;
             this.txtKakTnk4.Name = "txtKakTnk4";
             this.txtKakTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk4.TabIndex = 19;
@@ -954,7 +966,7 @@
             // 
             this.txtKakMei4.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei4.Location = new System.Drawing.Point(792, 116);
+            this.txtKakMei4.Location = new System.Drawing.Point(798, 116);
             this.txtKakMei4.Name = "txtKakMei4";
             this.txtKakMei4.ReadOnly = true;
             this.txtKakMei4.Size = new System.Drawing.Size(295, 22);
@@ -964,7 +976,7 @@
             // txtKakCd4
             // 
             this.txtKakCd4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd4.Location = new System.Drawing.Point(741, 116);
+            this.txtKakCd4.Location = new System.Drawing.Point(747, 116);
             this.txtKakCd4.MaxLength = 4;
             this.txtKakCd4.Name = "txtKakCd4";
             this.txtKakCd4.Size = new System.Drawing.Size(46, 22);
@@ -975,7 +987,7 @@
             // button24
             // 
             this.button24.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button24.Location = new System.Drawing.Point(689, 115);
+            this.button24.Location = new System.Drawing.Point(695, 115);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(48, 23);
             this.button24.TabIndex = 41;
@@ -993,8 +1005,9 @@
             this.txtSrrt6.intDeciSet = 1;
             this.txtSrrt6.intIntederSet = 0;
             this.txtSrrt6.intShishagonyu = 0;
-            this.txtSrrt6.Location = new System.Drawing.Point(1326, 166);
+            this.txtSrrt6.Location = new System.Drawing.Point(1332, 166);
             this.txtSrrt6.MaxLength = 2;
+            this.txtSrrt6.MinusFlg = true;
             this.txtSrrt6.Name = "txtSrrt6";
             this.txtSrrt6.ReadOnly = true;
             this.txtSrrt6.Size = new System.Drawing.Size(38, 22);
@@ -1012,8 +1025,9 @@
             this.txtArr6.intDeciSet = 2;
             this.txtArr6.intIntederSet = 10;
             this.txtArr6.intShishagonyu = 0;
-            this.txtArr6.Location = new System.Drawing.Point(1228, 166);
+            this.txtArr6.Location = new System.Drawing.Point(1234, 166);
             this.txtArr6.MaxLength = 13;
+            this.txtArr6.MinusFlg = true;
             this.txtArr6.Name = "txtArr6";
             this.txtArr6.ReadOnly = true;
             this.txtArr6.Size = new System.Drawing.Size(95, 22);
@@ -1031,8 +1045,9 @@
             this.txtSrrt5.intDeciSet = 1;
             this.txtSrrt5.intIntederSet = 0;
             this.txtSrrt5.intShishagonyu = 0;
-            this.txtSrrt5.Location = new System.Drawing.Point(1326, 141);
+            this.txtSrrt5.Location = new System.Drawing.Point(1332, 141);
             this.txtSrrt5.MaxLength = 2;
+            this.txtSrrt5.MinusFlg = true;
             this.txtSrrt5.Name = "txtSrrt5";
             this.txtSrrt5.ReadOnly = true;
             this.txtSrrt5.Size = new System.Drawing.Size(38, 22);
@@ -1050,8 +1065,9 @@
             this.txtArr5.intDeciSet = 2;
             this.txtArr5.intIntederSet = 10;
             this.txtArr5.intShishagonyu = 0;
-            this.txtArr5.Location = new System.Drawing.Point(1228, 141);
+            this.txtArr5.Location = new System.Drawing.Point(1234, 141);
             this.txtArr5.MaxLength = 13;
+            this.txtArr5.MinusFlg = true;
             this.txtArr5.Name = "txtArr5";
             this.txtArr5.ReadOnly = true;
             this.txtArr5.Size = new System.Drawing.Size(95, 22);
@@ -1069,8 +1085,9 @@
             this.txtSrrt4.intDeciSet = 1;
             this.txtSrrt4.intIntederSet = 0;
             this.txtSrrt4.intShishagonyu = 0;
-            this.txtSrrt4.Location = new System.Drawing.Point(1326, 116);
+            this.txtSrrt4.Location = new System.Drawing.Point(1332, 116);
             this.txtSrrt4.MaxLength = 2;
+            this.txtSrrt4.MinusFlg = true;
             this.txtSrrt4.Name = "txtSrrt4";
             this.txtSrrt4.ReadOnly = true;
             this.txtSrrt4.Size = new System.Drawing.Size(38, 22);
@@ -1088,8 +1105,9 @@
             this.txtArr4.intDeciSet = 2;
             this.txtArr4.intIntederSet = 10;
             this.txtArr4.intShishagonyu = 0;
-            this.txtArr4.Location = new System.Drawing.Point(1228, 116);
+            this.txtArr4.Location = new System.Drawing.Point(1234, 116);
             this.txtArr4.MaxLength = 13;
+            this.txtArr4.MinusFlg = true;
             this.txtArr4.Name = "txtArr4";
             this.txtArr4.ReadOnly = true;
             this.txtArr4.Size = new System.Drawing.Size(95, 22);
@@ -1121,6 +1139,7 @@
             this.txtZaiRit6.intShishagonyu = 0;
             this.txtZaiRit6.Location = new System.Drawing.Point(607, 166);
             this.txtZaiRit6.MaxLength = 2;
+            this.txtZaiRit6.MinusFlg = true;
             this.txtZaiRit6.Name = "txtZaiRit6";
             this.txtZaiRit6.ReadOnly = true;
             this.txtZaiRit6.Size = new System.Drawing.Size(38, 22);
@@ -1138,6 +1157,7 @@
             this.txtZaiTnk6.intShishagonyu = 0;
             this.txtZaiTnk6.Location = new System.Drawing.Point(507, 166);
             this.txtZaiTnk6.MaxLength = 13;
+            this.txtZaiTnk6.MinusFlg = true;
             this.txtZaiTnk6.Name = "txtZaiTnk6";
             this.txtZaiTnk6.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk6.TabIndex = 17;
@@ -1190,6 +1210,7 @@
             this.txtZaiRit5.intShishagonyu = 0;
             this.txtZaiRit5.Location = new System.Drawing.Point(607, 141);
             this.txtZaiRit5.MaxLength = 2;
+            this.txtZaiRit5.MinusFlg = true;
             this.txtZaiRit5.Name = "txtZaiRit5";
             this.txtZaiRit5.ReadOnly = true;
             this.txtZaiRit5.Size = new System.Drawing.Size(38, 22);
@@ -1207,6 +1228,7 @@
             this.txtZaiTnk5.intShishagonyu = 0;
             this.txtZaiTnk5.Location = new System.Drawing.Point(507, 141);
             this.txtZaiTnk5.MaxLength = 13;
+            this.txtZaiTnk5.MinusFlg = true;
             this.txtZaiTnk5.Name = "txtZaiTnk5";
             this.txtZaiTnk5.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk5.TabIndex = 15;
@@ -1259,6 +1281,7 @@
             this.txtZaiRit4.intShishagonyu = 0;
             this.txtZaiRit4.Location = new System.Drawing.Point(607, 116);
             this.txtZaiRit4.MaxLength = 2;
+            this.txtZaiRit4.MinusFlg = true;
             this.txtZaiRit4.Name = "txtZaiRit4";
             this.txtZaiRit4.ReadOnly = true;
             this.txtZaiRit4.Size = new System.Drawing.Size(38, 22);
@@ -1276,6 +1299,7 @@
             this.txtZaiTnk4.intShishagonyu = 0;
             this.txtZaiTnk4.Location = new System.Drawing.Point(507, 116);
             this.txtZaiTnk4.MaxLength = 13;
+            this.txtZaiTnk4.MinusFlg = true;
             this.txtZaiTnk4.Name = "txtZaiTnk4";
             this.txtZaiTnk4.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk4.TabIndex = 13;
@@ -1322,7 +1346,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label29.ForeColor = System.Drawing.Color.Navy;
-            this.label29.Location = new System.Drawing.Point(690, 8);
+            this.label29.Location = new System.Drawing.Point(696, 8);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(47, 15);
             this.label29.TabIndex = 222;
@@ -1337,8 +1361,9 @@
             this.txtKakTnk3.intDeciSet = 2;
             this.txtKakTnk3.intIntederSet = 10;
             this.txtKakTnk3.intShishagonyu = 0;
-            this.txtKakTnk3.Location = new System.Drawing.Point(1092, 75);
+            this.txtKakTnk3.Location = new System.Drawing.Point(1098, 75);
             this.txtKakTnk3.MaxLength = 13;
+            this.txtKakTnk3.MinusFlg = true;
             this.txtKakTnk3.Name = "txtKakTnk3";
             this.txtKakTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk3.TabIndex = 11;
@@ -1350,7 +1375,7 @@
             // 
             this.txtKakMei3.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei3.Location = new System.Drawing.Point(792, 75);
+            this.txtKakMei3.Location = new System.Drawing.Point(798, 75);
             this.txtKakMei3.Name = "txtKakMei3";
             this.txtKakMei3.ReadOnly = true;
             this.txtKakMei3.Size = new System.Drawing.Size(295, 22);
@@ -1360,7 +1385,7 @@
             // txtKakCd3
             // 
             this.txtKakCd3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd3.Location = new System.Drawing.Point(741, 75);
+            this.txtKakCd3.Location = new System.Drawing.Point(747, 75);
             this.txtKakCd3.MaxLength = 4;
             this.txtKakCd3.Name = "txtKakCd3";
             this.txtKakCd3.Size = new System.Drawing.Size(46, 22);
@@ -1371,7 +1396,7 @@
             // button16
             // 
             this.button16.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button16.Location = new System.Drawing.Point(689, 74);
+            this.button16.Location = new System.Drawing.Point(695, 74);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(48, 23);
             this.button16.TabIndex = 29;
@@ -1388,8 +1413,9 @@
             this.txtKakTnk2.intDeciSet = 2;
             this.txtKakTnk2.intIntederSet = 10;
             this.txtKakTnk2.intShishagonyu = 0;
-            this.txtKakTnk2.Location = new System.Drawing.Point(1092, 50);
+            this.txtKakTnk2.Location = new System.Drawing.Point(1098, 50);
             this.txtKakTnk2.MaxLength = 13;
+            this.txtKakTnk2.MinusFlg = true;
             this.txtKakTnk2.Name = "txtKakTnk2";
             this.txtKakTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk2.TabIndex = 9;
@@ -1401,7 +1427,7 @@
             // 
             this.txtKakMei2.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei2.Location = new System.Drawing.Point(792, 50);
+            this.txtKakMei2.Location = new System.Drawing.Point(798, 50);
             this.txtKakMei2.Name = "txtKakMei2";
             this.txtKakMei2.ReadOnly = true;
             this.txtKakMei2.Size = new System.Drawing.Size(295, 22);
@@ -1411,7 +1437,7 @@
             // txtKakCd2
             // 
             this.txtKakCd2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd2.Location = new System.Drawing.Point(741, 50);
+            this.txtKakCd2.Location = new System.Drawing.Point(747, 50);
             this.txtKakCd2.MaxLength = 4;
             this.txtKakCd2.Name = "txtKakCd2";
             this.txtKakCd2.Size = new System.Drawing.Size(46, 22);
@@ -1422,7 +1448,7 @@
             // button17
             // 
             this.button17.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button17.Location = new System.Drawing.Point(689, 49);
+            this.button17.Location = new System.Drawing.Point(695, 49);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(48, 23);
             this.button17.TabIndex = 17;
@@ -1435,7 +1461,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label31.Location = new System.Drawing.Point(1104, 8);
+            this.label31.Location = new System.Drawing.Point(1110, 8);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(71, 15);
             this.label31.TabIndex = 218;
@@ -1449,8 +1475,9 @@
             this.txtKakTnk1.intDeciSet = 2;
             this.txtKakTnk1.intIntederSet = 10;
             this.txtKakTnk1.intShishagonyu = 0;
-            this.txtKakTnk1.Location = new System.Drawing.Point(1092, 25);
+            this.txtKakTnk1.Location = new System.Drawing.Point(1098, 25);
             this.txtKakTnk1.MaxLength = 13;
+            this.txtKakTnk1.MinusFlg = true;
             this.txtKakTnk1.Name = "txtKakTnk1";
             this.txtKakTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtKakTnk1.TabIndex = 7;
@@ -1462,7 +1489,7 @@
             // 
             this.txtKakMei1.BackColor = System.Drawing.SystemColors.Window;
             this.txtKakMei1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakMei1.Location = new System.Drawing.Point(792, 25);
+            this.txtKakMei1.Location = new System.Drawing.Point(798, 25);
             this.txtKakMei1.Name = "txtKakMei1";
             this.txtKakMei1.ReadOnly = true;
             this.txtKakMei1.Size = new System.Drawing.Size(295, 22);
@@ -1473,7 +1500,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label32.Location = new System.Drawing.Point(909, 8);
+            this.label32.Location = new System.Drawing.Point(915, 8);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(71, 15);
             this.label32.TabIndex = 217;
@@ -1482,7 +1509,7 @@
             // txtKakCd1
             // 
             this.txtKakCd1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtKakCd1.Location = new System.Drawing.Point(741, 25);
+            this.txtKakCd1.Location = new System.Drawing.Point(747, 25);
             this.txtKakCd1.MaxLength = 4;
             this.txtKakCd1.Name = "txtKakCd1";
             this.txtKakCd1.Size = new System.Drawing.Size(46, 22);
@@ -1493,7 +1520,7 @@
             // button18
             // 
             this.button18.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button18.Location = new System.Drawing.Point(689, 24);
+            this.button18.Location = new System.Drawing.Point(695, 24);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(48, 23);
             this.button18.TabIndex = 5;
@@ -1506,7 +1533,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label33.Location = new System.Drawing.Point(738, 8);
+            this.label33.Location = new System.Drawing.Point(744, 8);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(55, 15);
             this.label33.TabIndex = 215;
@@ -1529,7 +1556,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label23.Location = new System.Drawing.Point(1334, 8);
+            this.label23.Location = new System.Drawing.Point(1340, 8);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(23, 15);
             this.label23.TabIndex = 201;
@@ -1544,8 +1571,9 @@
             this.txtSrrt3.intDeciSet = 1;
             this.txtSrrt3.intIntederSet = 0;
             this.txtSrrt3.intShishagonyu = 0;
-            this.txtSrrt3.Location = new System.Drawing.Point(1326, 75);
+            this.txtSrrt3.Location = new System.Drawing.Point(1332, 75);
             this.txtSrrt3.MaxLength = 2;
+            this.txtSrrt3.MinusFlg = true;
             this.txtSrrt3.Name = "txtSrrt3";
             this.txtSrrt3.ReadOnly = true;
             this.txtSrrt3.Size = new System.Drawing.Size(38, 22);
@@ -1562,8 +1590,9 @@
             this.txtArr3.intDeciSet = 2;
             this.txtArr3.intIntederSet = 10;
             this.txtArr3.intShishagonyu = 0;
-            this.txtArr3.Location = new System.Drawing.Point(1228, 75);
+            this.txtArr3.Location = new System.Drawing.Point(1234, 75);
             this.txtArr3.MaxLength = 13;
+            this.txtArr3.MinusFlg = true;
             this.txtArr3.Name = "txtArr3";
             this.txtArr3.ReadOnly = true;
             this.txtArr3.Size = new System.Drawing.Size(95, 22);
@@ -1582,6 +1611,7 @@
             this.txtZaiRit3.intShishagonyu = 0;
             this.txtZaiRit3.Location = new System.Drawing.Point(607, 75);
             this.txtZaiRit3.MaxLength = 2;
+            this.txtZaiRit3.MinusFlg = true;
             this.txtZaiRit3.Name = "txtZaiRit3";
             this.txtZaiRit3.ReadOnly = true;
             this.txtZaiRit3.Size = new System.Drawing.Size(38, 22);
@@ -1599,6 +1629,7 @@
             this.txtZaiTnk3.intShishagonyu = 0;
             this.txtZaiTnk3.Location = new System.Drawing.Point(507, 75);
             this.txtZaiTnk3.MaxLength = 13;
+            this.txtZaiTnk3.MinusFlg = true;
             this.txtZaiTnk3.Name = "txtZaiTnk3";
             this.txtZaiTnk3.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk3.TabIndex = 5;
@@ -1649,8 +1680,9 @@
             this.txtSrrt2.intDeciSet = 1;
             this.txtSrrt2.intIntederSet = 0;
             this.txtSrrt2.intShishagonyu = 0;
-            this.txtSrrt2.Location = new System.Drawing.Point(1326, 50);
+            this.txtSrrt2.Location = new System.Drawing.Point(1332, 50);
             this.txtSrrt2.MaxLength = 2;
+            this.txtSrrt2.MinusFlg = true;
             this.txtSrrt2.Name = "txtSrrt2";
             this.txtSrrt2.ReadOnly = true;
             this.txtSrrt2.Size = new System.Drawing.Size(38, 22);
@@ -1667,8 +1699,9 @@
             this.txtArr2.intDeciSet = 2;
             this.txtArr2.intIntederSet = 10;
             this.txtArr2.intShishagonyu = 0;
-            this.txtArr2.Location = new System.Drawing.Point(1228, 50);
+            this.txtArr2.Location = new System.Drawing.Point(1234, 50);
             this.txtArr2.MaxLength = 13;
+            this.txtArr2.MinusFlg = true;
             this.txtArr2.Name = "txtArr2";
             this.txtArr2.ReadOnly = true;
             this.txtArr2.Size = new System.Drawing.Size(95, 22);
@@ -1687,6 +1720,7 @@
             this.txtZaiRit2.intShishagonyu = 0;
             this.txtZaiRit2.Location = new System.Drawing.Point(607, 50);
             this.txtZaiRit2.MaxLength = 2;
+            this.txtZaiRit2.MinusFlg = true;
             this.txtZaiRit2.Name = "txtZaiRit2";
             this.txtZaiRit2.ReadOnly = true;
             this.txtZaiRit2.Size = new System.Drawing.Size(38, 22);
@@ -1704,6 +1738,7 @@
             this.txtZaiTnk2.intShishagonyu = 0;
             this.txtZaiTnk2.Location = new System.Drawing.Point(507, 50);
             this.txtZaiTnk2.MaxLength = 13;
+            this.txtZaiTnk2.MinusFlg = true;
             this.txtZaiTnk2.Name = "txtZaiTnk2";
             this.txtZaiTnk2.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk2.TabIndex = 3;
@@ -1749,7 +1784,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label20.Location = new System.Drawing.Point(1255, 8);
+            this.label20.Location = new System.Drawing.Point(1261, 8);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(39, 15);
             this.label20.TabIndex = 186;
@@ -1764,8 +1799,9 @@
             this.txtSrrt1.intDeciSet = 1;
             this.txtSrrt1.intIntederSet = 0;
             this.txtSrrt1.intShishagonyu = 0;
-            this.txtSrrt1.Location = new System.Drawing.Point(1326, 25);
+            this.txtSrrt1.Location = new System.Drawing.Point(1332, 25);
             this.txtSrrt1.MaxLength = 2;
+            this.txtSrrt1.MinusFlg = true;
             this.txtSrrt1.Name = "txtSrrt1";
             this.txtSrrt1.ReadOnly = true;
             this.txtSrrt1.Size = new System.Drawing.Size(38, 22);
@@ -1782,8 +1818,9 @@
             this.txtArr1.intDeciSet = 2;
             this.txtArr1.intIntederSet = 10;
             this.txtArr1.intShishagonyu = 0;
-            this.txtArr1.Location = new System.Drawing.Point(1228, 25);
+            this.txtArr1.Location = new System.Drawing.Point(1234, 25);
             this.txtArr1.MaxLength = 13;
+            this.txtArr1.MinusFlg = true;
             this.txtArr1.Name = "txtArr1";
             this.txtArr1.ReadOnly = true;
             this.txtArr1.Size = new System.Drawing.Size(95, 22);
@@ -1802,6 +1839,7 @@
             this.txtZaiRit1.intShishagonyu = 0;
             this.txtZaiRit1.Location = new System.Drawing.Point(607, 25);
             this.txtZaiRit1.MaxLength = 2;
+            this.txtZaiRit1.MinusFlg = true;
             this.txtZaiRit1.Name = "txtZaiRit1";
             this.txtZaiRit1.ReadOnly = true;
             this.txtZaiRit1.Size = new System.Drawing.Size(38, 22);
@@ -1839,6 +1877,7 @@
             this.txtZaiTnk1.intShishagonyu = 0;
             this.txtZaiTnk1.Location = new System.Drawing.Point(507, 25);
             this.txtZaiTnk1.MaxLength = 13;
+            this.txtZaiTnk1.MinusFlg = true;
             this.txtZaiTnk1.Name = "txtZaiTnk1";
             this.txtZaiTnk1.Size = new System.Drawing.Size(95, 22);
             this.txtZaiTnk1.TabIndex = 1;
@@ -1905,18 +1944,18 @@
             // 
             this.txtMemo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtMemo.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtMemo.Location = new System.Drawing.Point(834, 105);
+            this.txtMemo.Location = new System.Drawing.Point(926, 128);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMemo.Size = new System.Drawing.Size(570, 105);
+            this.txtMemo.Size = new System.Drawing.Size(639, 82);
             this.txtMemo.TabIndex = 14;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label21.Location = new System.Drawing.Point(831, 89);
+            this.label21.Location = new System.Drawing.Point(923, 110);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(71, 15);
             this.label21.TabIndex = 175;
@@ -2050,7 +2089,7 @@
             this.lsTantousha.CodeTxtSize = 40;
             this.lsTantousha.CodeTxtText = "";
             this.lsTantousha.LabelName = "担当者コード";
-            this.lsTantousha.Location = new System.Drawing.Point(522, 14);
+            this.lsTantousha.Location = new System.Drawing.Point(534, 14);
             this.lsTantousha.Name = "lsTantousha";
             this.lsTantousha.ShowAppendFlg = false;
             this.lsTantousha.Size = new System.Drawing.Size(274, 22);
@@ -2068,7 +2107,7 @@
             this.lsEigyosho.CodeTxtSize = 40;
             this.lsEigyosho.CodeTxtText = "";
             this.lsEigyosho.LabelName = "営業所コード";
-            this.lsEigyosho.Location = new System.Drawing.Point(802, 14);
+            this.lsEigyosho.Location = new System.Drawing.Point(818, 14);
             this.lsEigyosho.Name = "lsEigyosho";
             this.lsEigyosho.ShowAppendFlg = false;
             this.lsEigyosho.Size = new System.Drawing.Size(298, 22);
@@ -2115,7 +2154,7 @@
             this.gridMitsmori.RowHeadersVisible = false;
             this.gridMitsmori.RowTemplate.Height = 21;
             this.gridMitsmori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridMitsmori.Size = new System.Drawing.Size(1388, 352);
+            this.gridMitsmori.Size = new System.Drawing.Size(1548, 352);
             this.gridMitsmori.TabIndex = 13;
             this.gridMitsmori.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.gridMitsmori.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
@@ -2129,8 +2168,9 @@
             this.txtMNum.intDeciSet = 0;
             this.txtMNum.intIntederSet = 0;
             this.txtMNum.intShishagonyu = 0;
-            this.txtMNum.Location = new System.Drawing.Point(269, 14);
+            this.txtMNum.Location = new System.Drawing.Point(273, 14);
             this.txtMNum.MaxLength = 0;
+            this.txtMNum.MinusFlg = true;
             this.txtMNum.Name = "txtMNum";
             this.txtMNum.Size = new System.Drawing.Size(62, 22);
             this.txtMNum.TabIndex = 1;
@@ -2142,7 +2182,7 @@
             // 
             this.txtMYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtMYMD.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtMYMD.Location = new System.Drawing.Point(426, 14);
+            this.txtMYMD.Location = new System.Drawing.Point(434, 14);
             this.txtMYMD.Name = "txtMYMD";
             this.txtMYMD.Size = new System.Drawing.Size(86, 22);
             this.txtMYMD.TabIndex = 2;
@@ -2180,11 +2220,78 @@
             this.nameLabel.Text = "得意先コード";
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lsDaibunrui
+            // 
+            this.lsDaibunrui.AppendLabelSize = 0;
+            this.lsDaibunrui.AppendLabelText = "";
+            this.lsDaibunrui.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.lsDaibunrui.CodeTxtSize = 24;
+            this.lsDaibunrui.CodeTxtText = "";
+            this.lsDaibunrui.LabelName = "大分類";
+            this.lsDaibunrui.Location = new System.Drawing.Point(1044, 44);
+            this.lsDaibunrui.Lschubundata = null;
+            this.lsDaibunrui.Lsmakerdata = null;
+            this.lsDaibunrui.LsSubchubundata = null;
+            this.lsDaibunrui.LsSubmakerdata = null;
+            this.lsDaibunrui.Name = "lsDaibunrui";
+            this.lsDaibunrui.ShowAppendFlg = false;
+            this.lsDaibunrui.Size = new System.Drawing.Size(335, 22);
+            this.lsDaibunrui.SpaceCodeValue = 20;
+            this.lsDaibunrui.SpaceNameCode = 21;
+            this.lsDaibunrui.SpaceValueAppend = 4;
+            this.lsDaibunrui.TabIndex = 186;
+            this.lsDaibunrui.ValueLabelSize = 200;
+            this.lsDaibunrui.ValueLabelText = "";
+            this.lsDaibunrui.Visible = false;
+            // 
+            // lsChubunrui
+            // 
+            this.lsChubunrui.AppendLabelSize = 0;
+            this.lsChubunrui.AppendLabelText = "";
+            this.lsChubunrui.CodeTxtSize = 24;
+            this.lsChubunrui.CodeTxtText = "";
+            this.lsChubunrui.LabelName = "中分類";
+            this.lsChubunrui.Location = new System.Drawing.Point(1044, 72);
+            this.lsChubunrui.Name = "lsChubunrui";
+            this.lsChubunrui.ShowAppendFlg = false;
+            this.lsChubunrui.Size = new System.Drawing.Size(335, 22);
+            this.lsChubunrui.SpaceCodeValue = 20;
+            this.lsChubunrui.SpaceNameCode = 21;
+            this.lsChubunrui.SpaceValueAppend = 4;
+            this.lsChubunrui.strDaibunCd = null;
+            this.lsChubunrui.TabIndex = 187;
+            this.lsChubunrui.ValueLabelSize = 200;
+            this.lsChubunrui.ValueLabelText = "";
+            this.lsChubunrui.Visible = false;
+            // 
+            // lsMaker
+            // 
+            this.lsMaker.AppendLabelSize = 0;
+            this.lsMaker.AppendLabelText = "";
+            this.lsMaker.CodeTxtSize = 40;
+            this.lsMaker.CodeTxtText = "";
+            this.lsMaker.LabelName = "メーカー";
+            this.lsMaker.Location = new System.Drawing.Point(1044, 100);
+            this.lsMaker.Name = "lsMaker";
+            this.lsMaker.ShowAppendFlg = false;
+            this.lsMaker.Size = new System.Drawing.Size(335, 22);
+            this.lsMaker.SpaceCodeValue = 4;
+            this.lsMaker.SpaceNameCode = 5;
+            this.lsMaker.SpaceValueAppend = 4;
+            this.lsMaker.strDaibunCd = null;
+            this.lsMaker.TabIndex = 188;
+            this.lsMaker.ValueLabelSize = 200;
+            this.lsMaker.ValueLabelText = "";
+            this.lsMaker.Visible = false;
+            // 
             // H0210_MitsumoriInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 838);
+            this.ClientSize = new System.Drawing.Size(1584, 838);
+            this.Controls.Add(this.lsMaker);
+            this.Controls.Add(this.lsChubunrui);
+            this.Controls.Add(this.lsDaibunrui);
             this.Controls.Add(this.tsNonyusaki);
             this.Controls.Add(this.txtMYMD);
             this.Controls.Add(this.txtMNum);
@@ -2281,6 +2388,9 @@
             this.Controls.SetChildIndex(this.txtMNum, 0);
             this.Controls.SetChildIndex(this.txtMYMD, 0);
             this.Controls.SetChildIndex(this.tsNonyusaki, 0);
+            this.Controls.SetChildIndex(this.lsDaibunrui, 0);
+            this.Controls.SetChildIndex(this.lsChubunrui, 0);
+            this.Controls.SetChildIndex(this.lsMaker, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2433,5 +2543,8 @@
         public Common.Ctl.TextSet_Torihikisaki tsTokuisaki;
         public Common.Ctl.BaseTextMoney txtMNum;
         public Common.Ctl.LabelSet_Tantousha lsTantousha;
+        private Common.Ctl.LabelSet_Daibunrui lsDaibunrui;
+        private Common.Ctl.LabelSet_Chubunrui lsChubunrui;
+        private Common.Ctl.LabelSet_Maker lsMaker;
     }
 }
