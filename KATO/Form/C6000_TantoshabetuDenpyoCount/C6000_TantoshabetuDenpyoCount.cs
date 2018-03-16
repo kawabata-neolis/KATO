@@ -397,7 +397,7 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 // カーソルを待機状態にする
                 this.Cursor = Cursors.WaitCursor;
 
-                dtSetView = denpyocountB.getData(txtDenpyoOpen.Text, txtDenpyoClose.Text, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text);
+                dtSetView = denpyocountB.getData(txtDenpyoOpen.Text, txtDenpyoClose.Text, txtTantoshaCdOpen.CodeTxtText, txtTantoshaCdClose.CodeTxtText);
 
                 // 各合計を計算
                 foreach (DataRow row in dtSetView.Rows)
@@ -430,8 +430,11 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 // カーソルの状態を元に戻す
                 this.Cursor = Cursors.Default;
 
-                //エラーロギング
+                //データロギング
                 new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
         }
