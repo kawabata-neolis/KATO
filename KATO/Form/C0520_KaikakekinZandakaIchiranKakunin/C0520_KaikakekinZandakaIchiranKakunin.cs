@@ -545,9 +545,13 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             //年月日の日付フォーマット後を入れる用
             string strYMDformat = "";
 
+            this.Cursor = Cursors.WaitCursor;
+
             //空チェック（開始得意先コード）
             if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
             {
+                this.Cursor = Cursors.Default;
+
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -562,6 +566,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 //空チェック（終了得意先コード）
                 if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
                 {
+                    this.Cursor = Cursors.Default;
+
                     // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
@@ -577,6 +583,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             //開始年月日の日付チェック
             if (strYMDformat == "")
             {
+                this.Cursor = Cursors.Default;
+
                 // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -599,6 +607,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             //終了年月日の日付チェック
             if (strYMDformat == "")
             {
+                this.Cursor = Cursors.Default;
+
                 // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -611,6 +621,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             {
                 txtYMclose.Text = strYMDformat;
             }
+
+            this.Cursor = Cursors.Default;
 
             //検索開始得意先コードのチェック
             if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
@@ -645,6 +657,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                     return;
                 }
             }
+
+            this.Cursor = Cursors.WaitCursor;
 
             DataTable dtGridViewTokusaki = new DataTable();
 
@@ -681,6 +695,8 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             try
             {
                 dtPrintData = kaikakekakuninB.getPrintData(lstStringViewData);
+
+                this.Cursor = Cursors.Default;
 
                 //初期値
                 Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, YOKO);

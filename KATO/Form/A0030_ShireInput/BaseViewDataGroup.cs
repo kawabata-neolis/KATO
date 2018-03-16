@@ -2379,7 +2379,10 @@ namespace KATO.Form.A0030_ShireInput
             }
         }
 
-        //利益率計算
+        ///<summary>
+        ///setRiekiritu
+        ///利益率計算
+        ///</summary>
         public void setRiekiritu(Boolean blDenpyoNoSelect)
         {
             //親画面の情報取得

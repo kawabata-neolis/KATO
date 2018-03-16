@@ -304,7 +304,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
                         // ヘッダー出力(表ヘッダー)
                         headersheet.Cell("A3").Value = "ｺｰﾄﾞ";
-                        headersheet.Cell("B3").Value = "得意先名";
+                        headersheet.Cell("B3").Value = "仕入先名";
                         headersheet.Cell("C3").Value = "年月";
                         headersheet.Cell("D3").Value = "前月買掛残";
                         headersheet.Cell("E3").Value = "支払現金";
@@ -316,15 +316,15 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                         headersheet.Cell("J3").Value = "支払手数料";
 
                         headersheet.Cell("K3").Value = "支払その他";
-                        headersheet.Cell("M3").Value = "繰越残高";
-                        headersheet.Cell("L3").Value = "当月仕入高";
+                        headersheet.Cell("L3").Value = "繰越残高";
+                        headersheet.Cell("M3").Value = "当月仕入高";
                         headersheet.Cell("N3").Value = "当月消費税";
                         headersheet.Cell("O3").Value = "当月残高";
 
                         headersheet.Cell("P3").Value = "税区";
 
                         //行高さの指定
-                        headersheet.Row(3).Height = 10;
+                        headersheet.Row(3).Height = 9.5;
 
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
@@ -389,7 +389,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                         string str = drTokuisakiCheak[colCnt - 1].ToString();
 
                         //行の高さ指定
-                        currentsheet.Row(xlsRowCnt).Height = 10;
+                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         //年月の場合
                         if (colCnt == 3)
@@ -504,7 +504,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                         //マージ
                         currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
 
-                        currentsheet.Row(xlsRowCnt).Height = 10;
+                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         currentsheet.Cell(xlsRowCnt, 1).Value = "◆◆◆ 合 計 ◆◆◆";
                         currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;

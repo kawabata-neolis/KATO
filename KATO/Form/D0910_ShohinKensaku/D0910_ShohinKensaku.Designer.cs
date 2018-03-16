@@ -207,7 +207,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(1289, 40);
+            this.btnF11.Location = new System.Drawing.Point(1471, 40);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 5;
@@ -217,7 +217,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(1289, 11);
+            this.btnF12.Location = new System.Drawing.Point(1471, 11);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 7;
@@ -248,7 +248,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridTorihiki.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridTorihiki.EnableHeadersVisualStyles = false;
-            this.gridTorihiki.Location = new System.Drawing.Point(12, 124);
+            this.gridTorihiki.Location = new System.Drawing.Point(11, 124);
             this.gridTorihiki.Name = "gridTorihiki";
             this.gridTorihiki.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -262,7 +262,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTorihiki.Size = new System.Drawing.Size(1385, 513);
+            this.gridTorihiki.Size = new System.Drawing.Size(1560, 513);
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 6;
             // 
@@ -314,7 +314,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1409, 675);
+            this.ClientSize = new System.Drawing.Size(1584, 675);
             this.Controls.Add(this.radSet_2btn_Toroku);
             this.Controls.Add(this.radSet_2btn_Kensaku);
             this.Controls.Add(this.labelSet_Maker);
