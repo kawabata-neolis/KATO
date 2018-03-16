@@ -239,10 +239,9 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                 CreatePdf pdf = new CreatePdf();
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
-                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
-                XLWorkbook.DefaultStyle.Font.FontSize = 6.9;
-
-
+                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
+                XLWorkbook.DefaultStyle.Font.FontSize = 8;
+                
                 // excelのインスタンス生成
                 XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
 
@@ -324,33 +323,30 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         headersheet.Cell("J3").Value = "入金手数料";
 
                         headersheet.Cell("K3").Value = "入金その他";
-                        headersheet.Cell("M3").Value = "繰越残高";
-                        headersheet.Cell("L3").Value = "当月売上高";
+                        headersheet.Cell("L3").Value = "繰越残高";
+                        headersheet.Cell("M3").Value = "当月売上高";
                         headersheet.Cell("N3").Value = "当月消費税";
                         headersheet.Cell("O3").Value = "当月残高";
 
                         headersheet.Cell("P3").Value = "税区";
 
-                        //行高さの指定
-                        headersheet.Row(3).Height = 9.5;    
-
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
-                        headersheet.Column(2).Width = 30;   //得意先名
+                        headersheet.Column(2).Width = 25;   //得意先名
                         headersheet.Column(3).Width = 7;    //年月
-                        headersheet.Column(4).Width = 11;   //前月売掛残
-                        headersheet.Column(5).Width = 11;   //入金現金
-                        headersheet.Column(6).Width = 11;   //入金小切手
-                        headersheet.Column(7).Width = 11;   //入金振込
-                        headersheet.Column(8).Width = 11;   //入金手形
-                        headersheet.Column(9).Width = 11;   //入金相殺
-                        headersheet.Column(10).Width = 11;  //入金手数料
-                        headersheet.Column(11).Width = 11;  //入金その他
-                        headersheet.Column(12).Width = 11;  //繰越残高
-                        headersheet.Column(13).Width = 11;  //当月売上高
-                        headersheet.Column(14).Width = 11;  //当月消費税
-                        headersheet.Column(15).Width = 11;  //当月残高
-                        headersheet.Column(16).Width = 4;  //税区
+                        headersheet.Column(4).Width = 10;   //前月売掛残
+                        headersheet.Column(5).Width = 10;   //入金現金
+                        headersheet.Column(6).Width = 10;   //入金小切手
+                        headersheet.Column(7).Width = 10;   //入金振込
+                        headersheet.Column(8).Width = 10;   //入金手形
+                        headersheet.Column(9).Width = 10;   //入金相殺
+                        headersheet.Column(10).Width = 10;  //入金手数料
+                        headersheet.Column(11).Width = 10;  //入金その他
+                        headersheet.Column(12).Width = 10;  //繰越残高
+                        headersheet.Column(13).Width = 10;  //当月売上高
+                        headersheet.Column(14).Width = 10;  //当月消費税
+                        headersheet.Column(15).Width = 10;  //当月残高
+                        headersheet.Column(16).Width = 7;  //税区
 
                         //ヘッダー文字位置の指定
                         headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //ｺｰﾄﾞ
@@ -387,6 +383,13 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         // ヘッダー部の指定（番号）
                         headersheet.PageSetup.Header.Left.AddText("（№50）");
 
+                        //headersheet.PageSetup.Margins.Header = 1.5;
+                        //headersheet.PageSetup.Margins.Footer = 1.5;
+                        //headersheet.PageSetup.Margins.Top = 2.0;
+                        //headersheet.PageSetup.Margins.Bottom = 2.0;
+                        headersheet.PageSetup.Margins.Left = 0.3;
+                        headersheet.PageSetup.Margins.Right = 0.3;
+
                         //ヘッダーシートのコピー、ヘッダー部の指定
                         pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                     }
@@ -395,9 +398,6 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
                         string str = drTokuisakiCheak[colCnt - 1].ToString();
-
-                        //行の高さ指定
-                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         //年月の場合
                         if (colCnt == 3)
@@ -511,8 +511,6 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
 
                         //マージ
                         currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
-
-                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         currentsheet.Cell(xlsRowCnt, 1).Value = "◆◆◆ 合 計 ◆◆◆";
                         currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
