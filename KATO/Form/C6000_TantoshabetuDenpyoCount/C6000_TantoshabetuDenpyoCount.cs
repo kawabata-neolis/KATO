@@ -516,7 +516,7 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                 }
 
                 //データの取得
-                dtSetCd_B = denpyocountB.getData(txtDenpyoOpen.Text, txtDenpyoClose.Text, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text);
+                dtSetCd_B = denpyocountB.getData(txtDenpyoOpen.Text, txtDenpyoClose.Text, txtTantoshaCdOpen.CodeTxtText, txtTantoshaCdClose.CodeTxtText);
 
                 //取得したデータがない場合
                 if (dtSetCd_B.Rows.Count == 0 || dtSetCd_B == null)
@@ -565,7 +565,7 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                     this.Cursor = Cursors.WaitCursor;
 
                     //結果セットをレコードセットに
-                    strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text, lstKei);
+                    strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.CodeTxtText, txtTantoshaCdClose.CodeTxtText, lstKei);
                     
                     // プレビュー
                     pf.execPreview(strFile);
@@ -577,7 +577,7 @@ namespace KATO.Form.C6000_TantoshabetuDenpyoCount
                     this.Cursor = Cursors.WaitCursor;
 
                     // PDF作成
-                    strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.Text, txtTantoshaCdClose.Text, lstKei);
+                    strFile = denpyocountB.dbToPdf(dtSetCd_B, dateOpen, dateClose, txtTantoshaCdOpen.CodeTxtText, txtTantoshaCdClose.CodeTxtText, lstKei);
 
                     // 一括印刷
                     pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
