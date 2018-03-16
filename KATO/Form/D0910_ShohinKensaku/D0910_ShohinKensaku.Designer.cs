@@ -207,7 +207,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(1471, 40);
+            this.btnF11.Location = new System.Drawing.Point(1289, 40);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 5;
@@ -217,7 +217,7 @@ namespace KATO.Form.D0910_ShohinKensaku
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(1471, 11);
+            this.btnF12.Location = new System.Drawing.Point(1289, 11);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 7;

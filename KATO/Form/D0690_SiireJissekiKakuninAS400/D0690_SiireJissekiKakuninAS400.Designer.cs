@@ -195,6 +195,7 @@
             this.gridSiireJisseki.AllowUserToAddRows = false;
             this.gridSiireJisseki.AllowUserToResizeColumns = false;
             this.gridSiireJisseki.AllowUserToResizeRows = false;
+            this.gridSiireJisseki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -227,7 +228,7 @@
             this.gridSiireJisseki.RowHeadersVisible = false;
             this.gridSiireJisseki.RowTemplate.Height = 21;
             this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireJisseki.Size = new System.Drawing.Size(1400, 587);
+            this.gridSiireJisseki.Size = new System.Drawing.Size(1560, 587);
             this.gridSiireJisseki.StandardTab = true;
             this.gridSiireJisseki.TabIndex = 110;
             // 
@@ -253,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.labelSet_Shiiresaki);
             this.Controls.Add(this.gridSiireJisseki);
             this.Controls.Add(this.txtBikou);

@@ -163,7 +163,7 @@
             this.gridSoukoIdou.RowHeadersVisible = false;
             this.gridSoukoIdou.RowTemplate.Height = 21;
             this.gridSoukoIdou.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSoukoIdou.Size = new System.Drawing.Size(1395, 611);
+            this.gridSoukoIdou.Size = new System.Drawing.Size(1558, 611);
             this.gridSoukoIdou.StandardTab = true;
             this.gridSoukoIdou.TabIndex = 13;
             // 
@@ -511,7 +511,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.txtDenpyoNo);
             this.Controls.Add(this.labelSet_Nyuuryokusha);
             this.Controls.Add(this.blDenpyoNo);

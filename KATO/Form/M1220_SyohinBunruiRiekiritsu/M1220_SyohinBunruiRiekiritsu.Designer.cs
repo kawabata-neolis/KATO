@@ -66,6 +66,10 @@
             this.radSetting.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabStop = false;
@@ -119,15 +123,12 @@
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // gridRiekiritsu
             // 
             this.gridRiekiritsu.AllowUserToAddRows = false;
             this.gridRiekiritsu.AllowUserToResizeColumns = false;
             this.gridRiekiritsu.AllowUserToResizeRows = false;
+            this.gridRiekiritsu.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -160,7 +161,7 @@
             this.gridRiekiritsu.RowHeadersVisible = false;
             this.gridRiekiritsu.RowTemplate.Height = 21;
             this.gridRiekiritsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRiekiritsu.Size = new System.Drawing.Size(1400, 252);
+            this.gridRiekiritsu.Size = new System.Drawing.Size(1558, 252);
             this.gridRiekiritsu.StandardTab = true;
             this.gridRiekiritsu.TabIndex = 87;
             this.gridRiekiritsu.TabStop = false;
@@ -495,8 +496,8 @@
             this.radSetting.Radbtn1Text = "設定";
             this.radSetting.Radbtn2Text = "解除";
             this.radSetting.Size = new System.Drawing.Size(201, 19);
-            this.radSetting.TabStop = false;
             this.radSetting.TabIndex = 13;
+            this.radSetting.TabStop = false;
             // 
             // lblTitle
             // 
@@ -536,7 +537,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.radSetting);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtKakeritsu);
@@ -554,6 +555,7 @@
             this.Text = "M1220_SyohinBunruiRiekiritsu";
             this.Load += new System.EventHandler(this.M1220_SyohinBunruiRiekiritsu_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M1220_SyohinBunruiRiekiritsu_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.gridRiekiritsu, 0);
             this.Controls.SetChildIndex(this.bgSerach, 0);
             this.Controls.SetChildIndex(this.labelSet_Tokuisaki, 0);

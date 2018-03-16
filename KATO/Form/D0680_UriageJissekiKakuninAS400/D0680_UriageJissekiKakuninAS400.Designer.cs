@@ -203,7 +203,7 @@
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTorihiki.Size = new System.Drawing.Size(1400, 587);
+            this.gridTorihiki.Size = new System.Drawing.Size(1560, 587);
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 109;
             // 
@@ -247,7 +247,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.labelSet_Tokuisaki);
             this.Controls.Add(this.txtCalendarYMDEnd);
             this.Controls.Add(this.txtCalendarYMDStart);

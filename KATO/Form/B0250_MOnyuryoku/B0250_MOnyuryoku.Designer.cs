@@ -282,7 +282,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridKataban.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridKataban.EnableHeadersVisualStyles = false;
-            this.gridKataban.Location = new System.Drawing.Point(16, 115);
+            this.gridKataban.Location = new System.Drawing.Point(12, 115);
             this.gridKataban.Name = "gridKataban";
             this.gridKataban.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -296,7 +296,7 @@
             this.gridKataban.RowHeadersVisible = false;
             this.gridKataban.RowTemplate.Height = 21;
             this.gridKataban.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridKataban.Size = new System.Drawing.Size(1390, 183);
+            this.gridKataban.Size = new System.Drawing.Size(1560, 183);
             this.gridKataban.StandardTab = true;
             this.gridKataban.TabIndex = 35;
             // 
@@ -324,7 +324,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridKataban2.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridKataban2.EnableHeadersVisualStyles = false;
-            this.gridKataban2.Location = new System.Drawing.Point(15, 304);
+            this.gridKataban2.Location = new System.Drawing.Point(12, 304);
             this.gridKataban2.Name = "gridKataban2";
             this.gridKataban2.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -338,7 +338,7 @@
             this.gridKataban2.RowHeadersVisible = false;
             this.gridKataban2.RowTemplate.Height = 21;
             this.gridKataban2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridKataban2.Size = new System.Drawing.Size(1391, 236);
+            this.gridKataban2.Size = new System.Drawing.Size(1560, 236);
             this.gridKataban2.StandardTab = true;
             this.gridKataban2.TabIndex = 7;
             this.gridKataban2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridKataban2_CellDoubleClick);
@@ -527,7 +527,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridRireki.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridRireki.EnableHeadersVisualStyles = false;
-            this.gridRireki.Location = new System.Drawing.Point(15, 546);
+            this.gridRireki.Location = new System.Drawing.Point(12, 546);
             this.gridRireki.Name = "gridRireki";
             this.gridRireki.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -541,7 +541,7 @@
             this.gridRireki.RowHeadersVisible = false;
             this.gridRireki.RowTemplate.Height = 21;
             this.gridRireki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRireki.Size = new System.Drawing.Size(1391, 161);
+            this.gridRireki.Size = new System.Drawing.Size(1560, 161);
             this.gridRireki.StandardTab = true;
             this.gridRireki.TabIndex = 29;
             // 
@@ -587,6 +587,7 @@
             this.txtKingaku.intShishagonyu = 2;
             this.txtKingaku.Location = new System.Drawing.Point(65, 79);
             this.txtKingaku.MaxLength = 3;
+            this.txtKingaku.MinusFlg = true;
             this.txtKingaku.Name = "txtKingaku";
             this.txtKingaku.Size = new System.Drawing.Size(75, 22);
             this.txtKingaku.TabIndex = 9;
@@ -627,6 +628,7 @@
             this.txtHachusu.intShishagonyu = 0;
             this.txtHachusu.Location = new System.Drawing.Point(90, 752);
             this.txtHachusu.MaxLength = 8;
+            this.txtHachusu.MinusFlg = true;
             this.txtHachusu.Name = "txtHachusu";
             this.txtHachusu.Size = new System.Drawing.Size(63, 22);
             this.txtHachusu.TabIndex = 21;
@@ -645,6 +647,7 @@
             this.txtTanka.intShishagonyu = 2;
             this.txtTanka.Location = new System.Drawing.Point(239, 752);
             this.txtTanka.MaxLength = 3;
+            this.txtTanka.MinusFlg = true;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(112, 22);
             this.txtTanka.TabIndex = 22;
@@ -686,6 +689,7 @@
             this.txtShukeiM.intShishagonyu = 0;
             this.txtShukeiM.Location = new System.Drawing.Point(257, 43);
             this.txtShukeiM.MaxLength = 2;
+            this.txtShukeiM.MinusFlg = true;
             this.txtShukeiM.Name = "txtShukeiM";
             this.txtShukeiM.Size = new System.Drawing.Size(22, 22);
             this.txtShukeiM.TabIndex = 1;
@@ -697,7 +701,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.txtShukeiM);
             this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.lblSetShiresaki);

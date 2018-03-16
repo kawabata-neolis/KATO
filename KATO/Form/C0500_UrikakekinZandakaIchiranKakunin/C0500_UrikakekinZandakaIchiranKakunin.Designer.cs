@@ -217,7 +217,7 @@
             this.gridTokuisaki.RowHeadersVisible = false;
             this.gridTokuisaki.RowTemplate.Height = 21;
             this.gridTokuisaki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTokuisaki.Size = new System.Drawing.Size(1397, 668);
+            this.gridTokuisaki.Size = new System.Drawing.Size(1553, 668);
             this.gridTokuisaki.StandardTab = true;
             this.gridTokuisaki.TabIndex = 5;
             // 
@@ -325,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblsetTokuisakiCdclose);
             this.Controls.Add(this.lblsetTokuisakiCdopen);

@@ -402,7 +402,7 @@
             this.bgGrid.Controls.Add(this.gridZaiko);
             this.bgGrid.Location = new System.Drawing.Point(4, 217);
             this.bgGrid.Name = "bgGrid";
-            this.bgGrid.Size = new System.Drawing.Size(1415, 526);
+            this.bgGrid.Size = new System.Drawing.Size(1575, 526);
             this.bgGrid.TabIndex = 123;
             this.bgGrid.TabStop = false;
             // 
@@ -444,7 +444,7 @@
             this.gridZaiko.RowHeadersVisible = false;
             this.gridZaiko.RowTemplate.Height = 21;
             this.gridZaiko.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridZaiko.Size = new System.Drawing.Size(1399, 492);
+            this.gridZaiko.Size = new System.Drawing.Size(1557, 492);
             this.gridZaiko.StandardTab = true;
             this.gridZaiko.TabIndex = 0;
             // 
@@ -452,7 +452,7 @@
             // 
             this.lblSiireKingakuName.AutoSize = true;
             this.lblSiireKingakuName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblSiireKingakuName.Location = new System.Drawing.Point(749, 756);
+            this.lblSiireKingakuName.Location = new System.Drawing.Point(903, 755);
             this.lblSiireKingakuName.Name = "lblSiireKingakuName";
             this.lblSiireKingakuName.Size = new System.Drawing.Size(71, 15);
             this.lblSiireKingakuName.strToolTip = null;
@@ -467,7 +467,7 @@
             this.lblSiireKingaku.BackColor = System.Drawing.Color.Gainsboro;
             this.lblSiireKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblSiireKingaku.ForeColor = System.Drawing.Color.Blue;
-            this.lblSiireKingaku.Location = new System.Drawing.Point(826, 752);
+            this.lblSiireKingaku.Location = new System.Drawing.Point(980, 751);
             this.lblSiireKingaku.MinimumSize = new System.Drawing.Size(120, 22);
             this.lblSiireKingaku.Name = "lblSiireKingaku";
             this.lblSiireKingaku.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -479,7 +479,7 @@
             // 
             this.lblHyokaName.AutoSize = true;
             this.lblHyokaName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyokaName.Location = new System.Drawing.Point(984, 756);
+            this.lblHyokaName.Location = new System.Drawing.Point(1138, 755);
             this.lblHyokaName.Name = "lblHyokaName";
             this.lblHyokaName.Size = new System.Drawing.Size(71, 15);
             this.lblHyokaName.strToolTip = null;
@@ -494,7 +494,7 @@
             this.lblHyoka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblHyoka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblHyoka.ForeColor = System.Drawing.Color.Blue;
-            this.lblHyoka.Location = new System.Drawing.Point(1061, 752);
+            this.lblHyoka.Location = new System.Drawing.Point(1215, 751);
             this.lblHyoka.MinimumSize = new System.Drawing.Size(120, 22);
             this.lblHyoka.Name = "lblHyoka";
             this.lblHyoka.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -506,7 +506,7 @@
             // 
             this.lblTateneName.AutoSize = true;
             this.lblTateneName.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTateneName.Location = new System.Drawing.Point(1219, 756);
+            this.lblTateneName.Location = new System.Drawing.Point(1373, 755);
             this.lblTateneName.Name = "lblTateneName";
             this.lblTateneName.Size = new System.Drawing.Size(71, 15);
             this.lblTateneName.strToolTip = null;
@@ -521,7 +521,7 @@
             this.lblTatene.BackColor = System.Drawing.Color.Gainsboro;
             this.lblTatene.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTatene.ForeColor = System.Drawing.Color.Blue;
-            this.lblTatene.Location = new System.Drawing.Point(1296, 752);
+            this.lblTatene.Location = new System.Drawing.Point(1450, 751);
             this.lblTatene.MinimumSize = new System.Drawing.Size(120, 22);
             this.lblTatene.Name = "lblTatene";
             this.lblTatene.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -551,7 +551,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.labelSet_Tanaban);
             this.Controls.Add(this.lblTatene);
             this.Controls.Add(this.lblHyoka);

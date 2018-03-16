@@ -148,7 +148,7 @@
             this.gridUriage.RowHeadersVisible = false;
             this.gridUriage.RowTemplate.Height = 21;
             this.gridUriage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriage.Size = new System.Drawing.Size(1395, 717);
+            this.gridUriage.Size = new System.Drawing.Size(1555, 717);
             this.gridUriage.StandardTab = true;
             this.gridUriage.TabIndex = 88;
             // 
@@ -173,7 +173,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.txtYear);
             this.Controls.Add(this.gridUriage);
             this.Controls.Add(this.lblYear);
