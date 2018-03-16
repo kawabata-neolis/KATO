@@ -252,7 +252,7 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " +  Rtrim(ISNULL(Ｃ３,''))";
                 allSql += " +  Rtrim(ISNULL(Ｃ４,''))";
                 allSql += " +  Rtrim(ISNULL(Ｃ５,''))";
-                allSql += " +  Rtrim(ISNULL(Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%' )";
+                allSql += " +  Rtrim(ISNULL(Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%'";
             }
 
             // 伝票番号の存在チェック
@@ -378,7 +378,7 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " +  Rtrim(ISNULL(M.Ｃ３,''))";
                 allSql += " +  Rtrim(ISNULL(M.Ｃ４,''))";
                 allSql += " +  Rtrim(ISNULL(M.Ｃ５,''))";
-                allSql += " +  Rtrim(ISNULL(M.Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%' )";
+                allSql += " +  Rtrim(ISNULL(M.Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%'";
             }
 
             // 伝票番号の存在チェック
@@ -473,7 +473,7 @@ namespace KATO.Business.D0280_SoukoIdouKakunin
                 allSql += " +  Rtrim(ISNULL(M.Ｃ３,''))";
                 allSql += " +  Rtrim(ISNULL(M.Ｃ４,''))";
                 allSql += " +  Rtrim(ISNULL(M.Ｃ５,''))";
-                allSql += " +  Rtrim(ISNULL(M.Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%' )";
+                allSql += " +  Rtrim(ISNULL(M.Ｃ６,'')) ) LIKE '%" + lstItem[6] + "%'";
             }
 
             // 伝票番号の存在チェック
