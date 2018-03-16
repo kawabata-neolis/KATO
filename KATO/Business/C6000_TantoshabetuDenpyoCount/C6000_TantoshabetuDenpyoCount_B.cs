@@ -26,12 +26,31 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
         ///</summary>
         public DataTable getData(string strDenpyoOpen, string strDenpyoClose, string strTantoshaCdOpen, string strTantoshaCdClose)
         {
-            //データ渡し用
-            List<string> lstSQL = new List<string>();
+            string strSql = "";
 
-            //データ渡し用
-            lstSQL.Add("C6000_TantoshabetuDenpyoCount");
-            lstSQL.Add("DenpyoCount_SELECT_SetDataGridView");
+            strSql += "SELECT 担当者名";
+            strSql += ", TBL.受注計";
+            strSql += ", TBL.発注計";
+            strSql += ", TBL.仕入計";
+            strSql += ", TBL.売上計";
+            strSql += ", TBL.入庫計";
+            strSql += ", TBL.出庫計";
+            strSql += ", (TBL.受注計 + TBL.発注計 + TBL.仕入計 + TBL.売上計 + TBL.入庫計 + TBL.出庫計) AS 担当計";
+            strSql += " FROM (";
+            strSql += " SELECT 担当者コード,";
+            strSql += " dbo.f_get担当者名(担当者コード) AS 担当者名,";
+            strSql += " dbo.f_担当者別伝票カウント_受注(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 受注計,";
+            strSql += " dbo.f_担当者別伝票カウント_発注(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 発注計,";
+            strSql += " dbo.f_担当者別伝票カウント_仕入(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 仕入計,";
+            strSql += " dbo.f_担当者別伝票カウント_売上(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 売上計,";
+            strSql += " dbo.f_担当者別伝票カウント_入庫(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 入庫計,";
+            strSql += " dbo.f_担当者別伝票カウント_出庫(ログインＩＤ, '" + strDenpyoOpen + "', '" + strDenpyoClose + "') AS 出庫計";
+            strSql += " FROM 担当者";
+            strSql += " WHERE 削除 = 'N'";
+            strSql += " AND 担当者コード >='"+ strTantoshaCdOpen + "'";
+            strSql += " AND 担当者コード <='"+ strTantoshaCdClose + "'";
+            strSql += " ) AS TBL";
+            strSql += " ORDER BY TBL.担当者コード";
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
@@ -43,21 +62,9 @@ namespace KATO.Business.C6000_TantoshabetuDenpyoCount
             DBConnective dbconnective = new DBConnective();
             try
             {
-                //SQLファイルのパス取得
-                string strSQLInput = opensql.setOpenSQL(lstSQL);
-
-                //パスがなければ返す
-                if (strSQLInput == "")
-                {
-                    return (dtSetCd_B);
-                }
-
-                //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, strDenpyoOpen, strDenpyoClose, strTantoshaCdOpen, strTantoshaCdClose);
-                
                 //SQL接続後、該当データを取得
-                //dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-                dtSetCd_B = dbconnective.ReadSqlDelay(strSQLInput, 3000);
+                //dtSetCd_B = dbconnective.ReadSql(strSql);
+                dtSetCd_B = dbconnective.ReadSqlDelay(strSql, 3000);
 
                 // 1セルずつ空チェック
                 for (int intRcnt = 0; intRcnt < dtSetCd_B.Rows.Count; intRcnt++)

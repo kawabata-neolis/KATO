@@ -346,6 +346,9 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
             D0300_ZaikoIchiranKakunin_B zaikoIchiran_B = new D0300_ZaikoIchiranKakunin_B();
             try
             {
+                // カーソルを待機状態にする
+                this.Cursor = Cursors.WaitCursor;
+
                 // データ作成実行
                 zaikoIchiran_B.addZaikoIchiranCreate(lstCreateItem);
 
@@ -436,9 +439,16 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 {
                     gridZaiko.DataSource = "";
                 }
+
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
             }
             catch (Exception ex)
             {
+                // カーソルの状態を元に戻す
+                this.Cursor = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 
