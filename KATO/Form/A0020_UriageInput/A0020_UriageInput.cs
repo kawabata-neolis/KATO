@@ -2448,7 +2448,7 @@ namespace KATO.Form.A0020_UriageInput
                 // 利益率承認が下りている場合、利益率チェックは無視
                 if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
                 {
-                    getSyohinbetuCheck = 1;
+                    getSyohinbetuCheck = 9;
                     return getSyohinbetuCheck;
                 }
             }
