@@ -63,7 +63,7 @@ namespace KATO.Business.A0670_SiiresakiSiirekakunin
                     andSql += " +  Rtrim(ISNULL(b.Ｃ３,''))";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ４,''))";
                     andSql += " +  Rtrim(ISNULL(b.Ｃ５,''))";
-                    andSql += " +  Rtrim(ISNULL(b.Ｃ６,'')) ) LIKE '%" + arrSearch[5] + "%' AS 品名型番";
+                    andSql += " +  Rtrim(ISNULL(b.Ｃ６,'')) ) LIKE '%" + arrSearch[5] + "%'";
                 }
 
                 // 備考が入力されている場合
