@@ -332,7 +332,7 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         headersheet.Cell("P3").Value = "税区";
 
                         //行高さの指定
-                        headersheet.Row(3).Height = 10;    
+                        headersheet.Row(3).Height = 9.5;    
 
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
@@ -397,7 +397,7 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         string str = drTokuisakiCheak[colCnt - 1].ToString();
 
                         //行の高さ指定
-                        currentsheet.Row(xlsRowCnt).Height = 10;
+                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         //年月の場合
                         if (colCnt == 3)
@@ -512,7 +512,7 @@ namespace KATO.Business.C0500_UrikakekinZandakaIchiranKakunin_B
                         //マージ
                         currentsheet.Range("A" + xlsRowCnt, "B" + xlsRowCnt).Merge();
 
-                        currentsheet.Row(xlsRowCnt).Height = 10;
+                        currentsheet.Row(xlsRowCnt).Height = 11;
 
                         currentsheet.Cell(xlsRowCnt, 1).Value = "◆◆◆ 合 計 ◆◆◆";
                         currentsheet.Cell(xlsRowCnt, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
