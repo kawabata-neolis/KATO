@@ -71,8 +71,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+            this.Left = c.Left;
+            this.Top = c.Top;
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
@@ -127,8 +127,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+            this.Left = c.Left;
+            this.Top = c.Top;
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;

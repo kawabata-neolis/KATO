@@ -483,7 +483,7 @@
             this.gridUriageJisseki.RowHeadersVisible = false;
             this.gridUriageJisseki.RowTemplate.Height = 21;
             this.gridUriageJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriageJisseki.Size = new System.Drawing.Size(1400, 524);
+            this.gridUriageJisseki.Size = new System.Drawing.Size(1560, 524);
             this.gridUriageJisseki.StandardTab = true;
             this.gridUriageJisseki.TabIndex = 20;
             this.gridUriageJisseki.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUriageJisseki_CellDoubleClick);
@@ -870,7 +870,7 @@
             this.baseLabel11.AutoSize = true;
             this.baseLabel11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.baseLabel11.ForeColor = System.Drawing.Color.Red;
-            this.baseLabel11.Location = new System.Drawing.Point(1149, 743);
+            this.baseLabel11.Location = new System.Drawing.Point(1306, 743);
             this.baseLabel11.Name = "baseLabel11";
             this.baseLabel11.Size = new System.Drawing.Size(215, 15);
             this.baseLabel11.strToolTip = null;
@@ -883,7 +883,7 @@
             this.baseLabel12.AutoSize = true;
             this.baseLabel12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.baseLabel12.ForeColor = System.Drawing.Color.Blue;
-            this.baseLabel12.Location = new System.Drawing.Point(1149, 760);
+            this.baseLabel12.Location = new System.Drawing.Point(1306, 760);
             this.baseLabel12.Name = "baseLabel12";
             this.baseLabel12.Size = new System.Drawing.Size(263, 15);
             this.baseLabel12.strToolTip = null;
@@ -895,7 +895,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.baseLabel12);
             this.Controls.Add(this.baseLabel11);
             this.Controls.Add(this.groupBox3);

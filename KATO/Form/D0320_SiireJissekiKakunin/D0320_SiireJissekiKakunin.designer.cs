@@ -175,7 +175,7 @@
             this.gridSiireJisseki.RowHeadersVisible = false;
             this.gridSiireJisseki.RowTemplate.Height = 21;
             this.gridSiireJisseki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSiireJisseki.Size = new System.Drawing.Size(1395, 532);
+            this.gridSiireJisseki.Size = new System.Drawing.Size(1560, 532);
             this.gridSiireJisseki.StandardTab = true;
             this.gridSiireJisseki.TabIndex = 16;
             this.gridSiireJisseki.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridSiireJisseki_CellMouseDoubleClick);
@@ -442,7 +442,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(207, 0, 207, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(276, 0, 276, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;
@@ -453,7 +453,7 @@
             // 
             this.txtKingaku.BackColor = System.Drawing.SystemColors.Window;
             this.txtKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtKingaku.Location = new System.Drawing.Point(1230, 751);
+            this.txtKingaku.Location = new System.Drawing.Point(1413, 751);
             this.txtKingaku.MaxLength = 15;
             this.txtKingaku.Name = "txtKingaku";
             this.txtKingaku.ReadOnly = true;
@@ -466,7 +466,7 @@
             // 
             this.lblKingaku.AutoSize = true;
             this.lblKingaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblKingaku.Location = new System.Drawing.Point(1153, 754);
+            this.lblKingaku.Location = new System.Drawing.Point(1336, 754);
             this.lblKingaku.Name = "lblKingaku";
             this.lblKingaku.Size = new System.Drawing.Size(71, 15);
             this.lblKingaku.strToolTip = null;
@@ -694,7 +694,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.labelSet_Maker);
             this.Controls.Add(this.labelSet_Jtanto);
             this.Controls.Add(this.labelSet_Etanto);
