@@ -2424,6 +2424,13 @@ namespace KATO.Form.A0020_UriageInput
             SetteiAri = false;
             int getSyohinbetuCheck = 0 ;    //戻り値 
 
+            //部長の場合はPASS
+            if ("1".Equals(riekiritsuFlg))
+            {
+                getSyohinbetuCheck = 1;
+                return getSyohinbetuCheck;
+            }
+
             //ビジネス層のインスタンス生成
             A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
             try
@@ -2431,7 +2438,7 @@ namespace KATO.Form.A0020_UriageInput
                 // 利益率承認が下りている場合、利益率チェックは無視
                 if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
                 {
-                    getSyohinbetuCheck = 9;
+                    getSyohinbetuCheck = 1;
                     return getSyohinbetuCheck;
                 }
             }
@@ -2441,13 +2448,6 @@ namespace KATO.Form.A0020_UriageInput
                 new CommonException(ex);
                 throw;
             }
-            //部長の場合はPASS
-            if (!"1".Equals(riekiritsuFlg))
-            {
-                getSyohinbetuCheck = 1;
-                return getSyohinbetuCheck;
-            }
-
             getSyohinbetuCheck = 0;
 
             //商品コードが空欄の場合は０を返す。
@@ -2488,9 +2488,19 @@ namespace KATO.Form.A0020_UriageInput
 
                     if (dtSetView.Rows[0]["単価"].ToString() != "")
                     {
-                        if (((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text == dtSetView.Rows[0]["単価"].ToString())
+                        //if (((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text == dtSetView.Rows[0]["単価"].ToString())
+                        //{
+                        //    getSyohinbetuCheck = 9; //単価同一でパス     2016.3.11
+                        //}
+                        decimal d1 = 0;
+                        decimal d2 = decimal.Parse(dtSetView.Rows[0]["単価"].ToString());
+                        if (!string.IsNullOrWhiteSpace(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text))
                         {
-                            getSyohinbetuCheck = 9; //単価同一でパス     2016.3.11
+                            d1 = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text);
+                        }
+                        if (d1.Equals(d2))
+                        {
+                            getSyohinbetuCheck = 9; //単価同一でパス
                         }
                     }
 

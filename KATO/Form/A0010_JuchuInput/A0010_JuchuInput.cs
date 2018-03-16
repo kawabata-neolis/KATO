@@ -789,7 +789,7 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         dSTanka = getDecValue(dtJuchuNoInfo.Rows[0]["仕入単価"].ToString());
                     }
-                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2)).ToString();
+                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2, MidpointRounding.AwayFromZero)).ToString();
 
                     txtNoki.Text = dtJuchuNoInfo.Rows[0]["納期"].ToString();
                     txtChuban.Text = (dtJuchuNoInfo.Rows[0]["注番"].ToString()).Trim();
@@ -847,7 +847,7 @@ namespace KATO.Form.A0010_JuchuInput
                     getShohinInfo();
 
                     cbJuchuTanka.Text = (decimal.Round(dJTanka, 0)).ToString();
-                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2)).ToString();
+                    cbSiireTanka.Text = (decimal.Round(dSTanka, 2, MidpointRounding.AwayFromZero)).ToString();
 
                     DataTable dtHatchuNo = juchuInput.getHatchuNoInfo(strCd);
                     if (dtHatchuNo != null && dtHatchuNo.Rows.Count > 0) {
@@ -1232,19 +1232,19 @@ namespace KATO.Form.A0010_JuchuInput
 
             // 受注単価
             decNum = getDecValue(cbJuchuTanka.Text);
-            decRitsu = decimal.Round((decNum / decTeika) * 100, 1);
+            decRitsu = decimal.Round((decNum / decTeika) * 100, 1, MidpointRounding.AwayFromZero);
 
             txtJuchuTankaSub.Text = decRitsu.ToString();
 
             // 仕入単価
             decNum = getDecValue(cbSiireTanka.Text);
-            decRitsu = decimal.Round((decNum / decTeika) * 100, 1);
+            decRitsu = decimal.Round((decNum / decTeika) * 100, 1, MidpointRounding.AwayFromZero);
 
             txtSiireTankaSub.Text = decRitsu.ToString();
 
             // 直近仕入単価
             decNum = getDecValue(cbKinShiireTanka.Text);
-            decRitsu = decimal.Round((decNum / decTeika) * 100, 1);
+            decRitsu = decimal.Round((decNum / decTeika) * 100, 1, MidpointRounding.AwayFromZero);
 
             txtKinSiireTankaSub.Text = decRitsu.ToString();
         }
@@ -1600,7 +1600,7 @@ namespace KATO.Form.A0010_JuchuInput
                     
                     if (dtShohin.Rows[0]["仕入単価"] != null)
                     {
-                        d = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2);
+                        d = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
                         cbSiireTanka.Text = d.ToString("0.00");
                     }
                     else
@@ -1634,7 +1634,7 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     for (int i = 0; i < dtTanka.Rows.Count; i++)
                     {
-                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2);
+                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
 
                         if (i == 0)
                         {
@@ -1825,7 +1825,7 @@ namespace KATO.Form.A0010_JuchuInput
                         ,txtNoki.Text
                         ,txtJuchuSuryo.Text
                         ,cbJuchuTanka.Text
-                        ,decimal.Round((getDecValue(cbJuchuTanka.Text) * getDecValue(txtJuchuSuryo.Text)), 2).ToString()
+                        ,decimal.Round((getDecValue(cbJuchuTanka.Text) * getDecValue(txtJuchuSuryo.Text)), 2, MidpointRounding.AwayFromZero).ToString()
                         ,txtHonshaShukko.Text
                         ,txtGihuShukko.Text
                         ,lsJuchusha.CodeTxtText
@@ -1981,9 +1981,9 @@ namespace KATO.Form.A0010_JuchuInput
                 aryPrm.Add(strC6);
                 aryPrm.Add(txtJuchuSuryo.Text);
                 aryPrm.Add(cbJuchuTanka.Text);
-                aryPrm.Add((decimal.Round(decKin, 2)).ToString());
+                aryPrm.Add((decimal.Round(decKin, 2, MidpointRounding.AwayFromZero)).ToString());
                 aryPrm.Add(cbSiireTanka.Text);
-                aryPrm.Add((decimal.Round(decArari, 2)).ToString());
+                aryPrm.Add((decimal.Round(decArari, 2, MidpointRounding.AwayFromZero)).ToString());
                 aryPrm.Add(txtNoki.Text);
                 aryPrm.Add(txtShukkaShiji.Text);
                 aryPrm.Add(txtZaikoHikiate.Text);
@@ -2137,8 +2137,8 @@ namespace KATO.Form.A0010_JuchuInput
 
             decimal decSTanka = getDecValue(cbSiireTanka.Text);
             decimal deckin = decSTanka * getDecValue(txtHatchusu.Text);
-            decSTanka = decimal.Round(decSTanka, 2);
-            deckin = decimal.Round(deckin, 2);
+            decSTanka = decimal.Round(decSTanka, 2, MidpointRounding.AwayFromZero);
+            deckin = decimal.Round(deckin, 2, MidpointRounding.AwayFromZero);
 
             List<String> aryPrm = new List<string>();
 
@@ -2818,16 +2818,41 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 decShiire = getDecValue(cbSiireTanka.Text);
             }
-            decimal decRitsu = 0;
-            if (!(getDecValue(cbJuchuTanka.Text)).Equals(0)) {
-                decRitsu = ((getDecValue(cbJuchuTanka.Text) - decShiire) / getDecValue(cbJuchuTanka.Text)) * 100;
-            }
 
+            // 利益率でチェックする仕入単価は最初に表示される商品マスタ単価で実施
             A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
             try
             {
+                DataTable dtShohin = juchuB.getShohin(txtShohinCd.Text);
+
+                if (dtShohin != null && dtShohin.Rows.Count > 0)
+                {
+                    if (dtShohin.Rows[0]["仕入単価"] != null)
+                    {
+                        decShiire = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                    }
+                }
+
+                decimal decRitsu = 0;
+                if (!(getDecValue(cbJuchuTanka.Text)).Equals(0)) {
+                    decRitsu = Math.Abs((getDecValue(cbJuchuTanka.Text) - decShiire) / Math.Abs(getDecValue(cbJuchuTanka.Text))) * 100;
+                }
+
                 DataTable dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, txtShohinCd.Text, null, null, null);
 
+                if (getDecValue(cbJuchuTanka.Text) < decShiire)
+                {
+                    BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が仕入単価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                    //NOが押された場合
+                    if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
                 // 商品別
                 #region
                 if (dtRieki != null && dtRieki.Rows.Count > 0)
