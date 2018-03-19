@@ -379,13 +379,20 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
                 labelSet_Chubunrui.Focus();
                 return;
             }
+
+            //メーカーチェック
+            if (labelSet_Maker.chkTxtMaker())
+            {
+                labelSet_Maker.Focus();
+                return;
+            }
             
             try
             {
                 A0670_SiiresakiSiirekakunin_B siirekakuninB = new A0670_SiiresakiSiirekakunin_B();
 
                 // 検索文字列格納用
-                string[] arrSerach = new string[7];
+                string[] arrSerach = new string[8];
                 // 出力順条件取得用
                 string[] arrOrder = new string[2];
                 // 表示条件取得用
@@ -398,6 +405,8 @@ namespace KATO.Form.A0670_SiiresakiSiirekakunin
                 arrSerach[4] = labelSet_Chubunrui.CodeTxtText;  // 中分類コード
                 arrSerach[5] = txtKataban.Text;                 // 品名・型番
                 arrSerach[6] = txtBiko.Text;                    // 備考
+
+                arrSerach[7] = labelSet_Maker.CodeTxtText;      // メーカーコード
 
                 arrOrder[0] = radOutOrder.radbtn0.Checked.ToString().ToUpper();   // 出力順　日付・伝票番号順
                 arrOrder[1] = radOutOrder.radbtn1.Checked.ToString().ToUpper();   // 出力順　型番・日付順

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.lblYMD = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -219,6 +219,7 @@
             this.radOutOrder.Radbtn2Text = "型番・日付順";
             this.radOutOrder.Size = new System.Drawing.Size(324, 23);
             this.radOutOrder.TabIndex = 11;
+            this.radOutOrder.Visible = false;
             // 
             // radDisplay
             // 
@@ -249,6 +250,7 @@
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出力順の選択";
+            this.groupBox1.Visible = false;
             // 
             // groupBox2
             // 
@@ -311,35 +313,35 @@
             this.gridSiireKensyu.AllowUserToResizeColumns = false;
             this.gridSiireKensyu.AllowUserToResizeRows = false;
             this.gridSiireKensyu.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireKensyu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSiireKensyu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridSiireKensyu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridSiireKensyu.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridSiireKensyu.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridSiireKensyu.EnableHeadersVisualStyles = false;
             this.gridSiireKensyu.Location = new System.Drawing.Point(32, 228);
             this.gridSiireKensyu.Name = "gridSiireKensyu";
             this.gridSiireKensyu.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridSiireKensyu.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridSiireKensyu.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridSiireKensyu.RowHeadersVisible = false;
             this.gridSiireKensyu.RowTemplate.Height = 21;
             this.gridSiireKensyu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -466,7 +468,6 @@
             this.labelSet_Maker.TabIndex = 5;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
-            this.labelSet_Maker.Visible = false;
             // 
             // A0670_SiiresakiSiirekakunin
             // 

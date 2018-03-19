@@ -72,6 +72,12 @@ namespace KATO.Business.A0670_SiiresakiSiirekakunin
                     andSql += " AND 備考 LIKE '%" + arrSearch[6] + "%'";
                 }
 
+                // メーカーコードが入力されている場合
+                if (arrSearch[7] != "")
+                {
+                    andSql += " AND b.メーカーコード = '" + arrSearch[7] + "'";
+                }
+
                 // 表示選択
                 // arrDisplay[0]="TRUE"の場合は「すべて」にチェックのため条件指定なし
                 if (arrDisplay[1].Equals("TRUE"))
