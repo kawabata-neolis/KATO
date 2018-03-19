@@ -1197,22 +1197,312 @@ namespace KATO.Form.A0030_ShireInput
             if (cActiveBefore.Name.ToString() == "gbData1")
             {
                 gbData1.delText();
+
+                //伝票番号がある場合
+                if (txtDenpyoNo.blIsEmpty())
+                {
+                    //2行目以降を上にずらす
+                    setGbData1();
+
+                    shotCnt = 1;
+                    gbData1.setRiekiritu(false);
+
+                    if (gbData1.txtChubunCd.Text == "")
+                    {
+                        txtJuchu1.Clear();
+                        txtTanka1.Clear();
+                    }
+
+                    setGbData2();
+
+                    shotCnt = 2;
+                    gbData2.setRiekiritu(false);
+
+                    if (gbData2.txtChubunCd.Text == "")
+                    {
+                        txtJuchu2.Clear();
+                        txtTanka2.Clear();
+                    }
+
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(false);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(false);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+
+                    gbData1.setGokeiKesan();
+                }
+                else
+                {
+                    //2行目以降を上にずらす
+                    setGbData1();
+
+                    shotCnt = 1;
+                    gbData1.setRiekiritu(true);
+
+                    if (gbData1.txtChubunCd.Text == "")
+                    {
+                        txtJuchu1.Clear();
+                        txtTanka1.Clear();
+                    }
+
+                    setGbData2();
+
+                    shotCnt = 2;
+                    gbData2.setRiekiritu(true);
+
+                    if (gbData2.txtChubunCd.Text == "")
+                    {
+                        txtJuchu2.Clear();
+                        txtTanka2.Clear();
+                    }
+
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(true);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(true);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+                }
+
+                gbData5.delText();
+
+                gbData1.setGokeiKesan();
             }
             if (cActiveBefore.Name.ToString() == "gbData2")
             {
                 gbData2.delText();
+
+                //3行目以降を上にずらす
+                //伝票番号がある場合
+                if (txtDenpyoNo.blIsEmpty())
+                {
+                    setGbData2();
+
+                    shotCnt = 2;
+                    gbData2.setRiekiritu(false);
+
+                    if (gbData2.txtChubunCd.Text == "")
+                    {
+                        txtJuchu2.Clear();
+                        txtTanka2.Clear();
+                    }
+
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(false);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(false);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+                }
+                else
+                {
+                    setGbData2();
+
+                    shotCnt = 2;
+                    gbData2.setRiekiritu(true);
+
+                    if (gbData2.txtChubunCd.Text == "")
+                    {
+                        txtJuchu2.Clear();
+                        txtTanka2.Clear();
+                    }
+
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(true);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(true);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+
+                }
+
+                gbData5.delText();
+
+                gbData1.setGokeiKesan();
             }
             if (cActiveBefore.Name.ToString() == "gbData3")
             {
                 gbData3.delText();
+
+                //4行目以降を上にずらす
+                //伝票番号がある場合
+                if (txtDenpyoNo.blIsEmpty())
+                {
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(false);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(false);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+                }
+                else
+                {
+                    setGbData3();
+
+                    shotCnt = 3;
+                    gbData3.setRiekiritu(true);
+
+                    if (gbData3.txtChubunCd.Text == "")
+                    {
+                        txtJuchu3.Clear();
+                        txtTanka3.Clear();
+                    }
+
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(true);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+
+                }
+
+                gbData5.delText();
+
+                gbData1.setGokeiKesan();
             }
             if (cActiveBefore.Name.ToString() == "gbData4")
             {
                 gbData4.delText();
+
+                //5行目を上にずらす
+                //伝票番号がある場合
+                if (txtDenpyoNo.blIsEmpty())
+                {
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(false);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+                }
+                else
+                {
+                    setGbData4();
+
+                    shotCnt = 4;
+                    gbData4.setRiekiritu(true);
+
+                    if (gbData4.txtChubunCd.Text == "")
+                    {
+                        txtJuchu4.Clear();
+                        txtTanka4.Clear();
+                    }
+
+                    setNullGbData5();
+
+                }
+
+                gbData5.delText();
+
+                gbData1.setGokeiKesan();
             }
             if (cActiveBefore.Name.ToString() == "gbData5")
             {
                 gbData5.delText();
+
+                setNullGbData5();
+
+                gbData1.setGokeiKesan();
             }
         }
 
@@ -2933,6 +3223,189 @@ namespace KATO.Form.A0030_ShireInput
 
                 shohinmoto.Show();
             }
+        }
+
+        ///<summary>
+        ///setGbData1
+        ///行削除時に移動する
+        ///</summary>
+        private void setGbData1()
+        {
+            if (gbData2.txtChumonNo.blIsEmpty() == true)
+            {
+                gbData1.txtNo.Text = "0";
+            }
+            else
+            {
+                gbData1.txtNo.Text = "";
+            }
+
+            gbData1.txtChumonNo.Text = gbData2.txtChumonNo.Text;
+            gbData1.txtHin.Text = gbData2.txtHin.Text;
+            gbData1.txtSu.Text = gbData2.txtSu.Text;
+            gbData1.txtTanka.Text = gbData2.txtTanka.Text;
+            gbData1.txtBiko.Text = gbData2.txtBiko.Text;
+            gbData1.txtKin.Text = gbData2.txtKin.Text;
+            gbData1.txtShohinCd.Text = gbData2.txtShohinCd.Text;
+            gbData1.txtMakerCd.Text = gbData2.txtMakerCd.Text;
+            gbData1.txtDaibunCd.Text = gbData2.txtDaibunCd.Text;
+            gbData1.txtChubunCd.Text = gbData2.txtChubunCd.Text;
+            gbData1.txtC1.Text = gbData2.txtC1.Text;
+            gbData1.txtC2.Text = gbData2.txtC2.Text;
+            gbData1.txtC3.Text = gbData2.txtC3.Text;
+            gbData1.txtC4.Text = gbData2.txtC4.Text;
+            gbData1.txtC5.Text = gbData2.txtC5.Text;
+            gbData1.txtC6.Text = gbData2.txtC6.Text;
+            gbData1.labelSet_Eigyosho.CodeTxtText = gbData2.labelSet_Eigyosho.CodeTxtText;
+            gbData1.labelSet_Eigyosho.chkTxtEigyousho();
+            gbData1.txtTeka.Text = gbData2.txtTeka.Text;
+            gbData1.txtShireritsu.Text = gbData2.txtShireritsu.Text;
+            gbData1.txtChokinTanka.Text = gbData2.txtChokinTanka.Text;
+            gbData1.txtMasterTanka.Text = gbData2.txtMasterTanka.Text;
+            gbData1.txtTokuisaki.Text = gbData2.txtTokuisaki.Text;
+
+            txtJuchu1.Text = txtJuchu2.Text;
+            txtTanka1.Text = txtTanka2.Text;
+        }
+
+        ///<summary>
+        ///setGbData2
+        ///行削除時に移動する
+        ///</summary>
+        private void setGbData2()
+        {
+            if (gbData3.txtChumonNo.blIsEmpty() == true)
+            {
+                gbData2.txtNo.Text = "1";
+            }
+            else
+            {
+                gbData2.txtNo.Text = "";
+            }
+
+            gbData2.txtChumonNo.Text = gbData3.txtChumonNo.Text;
+            gbData2.txtHin.Text = gbData3.txtHin.Text;
+            gbData2.txtSu.Text = gbData3.txtSu.Text;
+            gbData2.txtTanka.Text = gbData3.txtTanka.Text;
+            gbData2.txtKin.Text = gbData3.txtKin.Text;
+            gbData2.txtBiko.Text = gbData3.txtBiko.Text;
+            gbData2.txtShohinCd.Text = gbData3.txtShohinCd.Text;
+            gbData2.txtMakerCd.Text = gbData3.txtMakerCd.Text;
+            gbData2.txtDaibunCd.Text = gbData3.txtDaibunCd.Text;
+            gbData2.txtChubunCd.Text = gbData3.txtChubunCd.Text;
+            gbData2.txtC1.Text = gbData3.txtC1.Text;
+            gbData2.txtC2.Text = gbData3.txtC2.Text;
+            gbData2.txtC3.Text = gbData3.txtC3.Text;
+            gbData2.txtC4.Text = gbData3.txtC4.Text;
+            gbData2.txtC5.Text = gbData3.txtC5.Text;
+            gbData2.txtC6.Text = gbData3.txtC6.Text;
+            gbData2.labelSet_Eigyosho.CodeTxtText = gbData3.labelSet_Eigyosho.CodeTxtText;
+            gbData2.labelSet_Eigyosho.chkTxtEigyousho();
+            gbData2.txtTeka.Text = gbData3.txtTeka.Text;
+            gbData2.txtShireritsu.Text = gbData3.txtShireritsu.Text;
+            gbData2.txtChokinTanka.Text = gbData3.txtChokinTanka.Text;
+            gbData2.txtMasterTanka.Text = gbData3.txtMasterTanka.Text;
+            gbData2.txtTokuisaki.Text = gbData3.txtTokuisaki.Text;
+
+            txtJuchu2.Text = txtJuchu3.Text;
+            txtTanka2.Text = txtTanka3.Text;
+        }
+
+        ///<summary>
+        ///setGbData3
+        ///行削除時に移動する
+        ///</summary>
+        private void setGbData3()
+        {
+            if (gbData4.txtChumonNo.blIsEmpty() == true)
+            {
+                gbData3.txtNo.Text = "2";
+            }
+            else
+            {
+                gbData3.txtNo.Text = "";
+            }
+
+            gbData3.txtChumonNo.Text = gbData4.txtChumonNo.Text;
+            gbData3.txtHin.Text = gbData4.txtHin.Text;
+            gbData3.txtSu.Text = gbData4.txtSu.Text;
+            gbData3.txtTanka.Text = gbData4.txtTanka.Text;
+            gbData3.txtBiko.Text = gbData4.txtBiko.Text;
+            gbData3.txtKin.Text = gbData4.txtKin.Text;
+            gbData3.txtShohinCd.Text = gbData4.txtShohinCd.Text;
+            gbData3.txtMakerCd.Text = gbData4.txtMakerCd.Text;
+            gbData3.txtDaibunCd.Text = gbData4.txtDaibunCd.Text;
+            gbData3.txtChubunCd.Text = gbData4.txtChubunCd.Text;
+            gbData3.txtC1.Text = gbData4.txtC1.Text;
+            gbData3.txtC2.Text = gbData4.txtC2.Text;
+            gbData3.txtC3.Text = gbData4.txtC3.Text;
+            gbData3.txtC4.Text = gbData4.txtC4.Text;
+            gbData3.txtC5.Text = gbData4.txtC5.Text;
+            gbData3.txtC6.Text = gbData4.txtC6.Text;
+            gbData3.labelSet_Eigyosho.CodeTxtText = gbData4.labelSet_Eigyosho.CodeTxtText;
+            gbData3.labelSet_Eigyosho.chkTxtEigyousho();
+            gbData3.txtTeka.Text = gbData4.txtTeka.Text;
+            gbData3.txtShireritsu.Text = gbData4.txtShireritsu.Text;
+            gbData3.txtChokinTanka.Text = gbData4.txtChokinTanka.Text;
+            gbData3.txtMasterTanka.Text = gbData4.txtMasterTanka.Text;
+            gbData3.txtTokuisaki.Text = gbData4.txtTokuisaki.Text;
+
+            txtJuchu3.Text = txtJuchu4.Text;
+            txtTanka3.Text = txtTanka4.Text;
+        }
+
+        ///<summary>
+        ///setGbData4
+        ///行削除時に移動する
+        ///</summary>
+        private void setGbData4()
+        {
+            if (gbData5.txtChumonNo.blIsEmpty() == true)
+            {
+                gbData4.txtNo.Text = "3";
+            }
+            else
+            {
+                gbData4.txtNo.Text = "";
+            }
+
+            gbData4.txtChumonNo.Text = gbData5.txtChumonNo.Text;
+            gbData4.txtHin.Text = gbData5.txtHin.Text;
+            gbData4.txtSu.Text = gbData5.txtSu.Text;
+            gbData4.txtTanka.Text = gbData5.txtTanka.Text;
+            gbData4.txtBiko.Text = gbData5.txtBiko.Text;
+            gbData4.txtKin.Text = gbData5.txtKin.Text;
+            gbData4.txtShohinCd.Text = gbData5.txtShohinCd.Text;
+            gbData4.txtMakerCd.Text = gbData5.txtMakerCd.Text;
+            gbData4.txtDaibunCd.Text = gbData5.txtDaibunCd.Text;
+            gbData4.txtChubunCd.Text = gbData5.txtChubunCd.Text;
+            gbData4.txtC1.Text = gbData5.txtC1.Text;
+            gbData4.txtC2.Text = gbData5.txtC2.Text;
+            gbData4.txtC3.Text = gbData5.txtC3.Text;
+            gbData4.txtC4.Text = gbData5.txtC4.Text;
+            gbData4.txtC5.Text = gbData5.txtC5.Text;
+            gbData4.txtC6.Text = gbData5.txtC6.Text;
+            gbData4.labelSet_Eigyosho.CodeTxtText = gbData5.labelSet_Eigyosho.CodeTxtText;
+            gbData4.labelSet_Eigyosho.chkTxtEigyousho();
+            gbData4.txtTeka.Text = gbData5.txtTeka.Text;
+            gbData4.txtShireritsu.Text = gbData5.txtShireritsu.Text;
+            gbData4.txtChokinTanka.Text = gbData5.txtChokinTanka.Text;
+            gbData4.txtMasterTanka.Text = gbData5.txtMasterTanka.Text;
+            gbData4.txtTokuisaki.Text = gbData5.txtTokuisaki.Text;
+
+            txtJuchu4.Text = txtJuchu5.Text;
+            txtTanka4.Text = txtTanka5.Text;
+        }
+
+        ///<summary>
+        ///setGbData5
+        ///行削除時に消す
+        ///</summary>
+        private void setNullGbData5()
+        {
+            txtJuchu5.Text = "";
+            txtTanka5.Text = "";
+            txtRiekiritsu5.Text = "";
         }
     }
 }

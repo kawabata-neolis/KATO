@@ -148,6 +148,7 @@ namespace KATO.Common.Util
             {
                 adapter.SelectCommand = new SqlCommand(sqlStr, CON, tran);
             }
+            adapter.SelectCommand.CommandTimeout = delay;
             adapter.Fill(retDt);
 
             if (isConnect)
