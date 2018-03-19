@@ -1187,332 +1187,335 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public void delGyou()
         {
-            //例外発生メッセージ（OK）
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の行を削除します。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_QUESTION);
-            basemessagebox.ShowDialog();
+            //行削除前メッセージ（YES NO）
+            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の行を削除します。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
 
-            //フォーカス位置を確保
-            Control cActiveBefore = this.ActiveControl;
-
-            if (cActiveBefore.Name.ToString() == "gbData1")
+            //YESが押された場合
+            if (basemessagebox.ShowDialog() == DialogResult.Yes)
             {
-                gbData1.delText();
+                //フォーカス位置を確保
+                Control cActiveBefore = this.ActiveControl;
 
-                //伝票番号がある場合
-                if (txtDenpyoNo.blIsEmpty())
+                if (cActiveBefore.Name.ToString() == "gbData1")
                 {
-                    //2行目以降を上にずらす
-                    setGbData1();
+                    gbData1.delText();
+
+                    //伝票番号がある場合
+                    if (txtDenpyoNo.blIsEmpty())
+                    {
+                        //2行目以降を上にずらす
+                        setGbData1();
+
+                        shotCnt = 1;
+                        gbData1.setRiekiritu(false);
+
+                        if (gbData1.txtChubunCd.Text == "")
+                        {
+                            txtJuchu1.Clear();
+                            txtTanka1.Clear();
+                        }
+
+                        setGbData2();
+
+                        shotCnt = 2;
+                        gbData2.setRiekiritu(false);
+
+                        if (gbData2.txtChubunCd.Text == "")
+                        {
+                            txtJuchu2.Clear();
+                            txtTanka2.Clear();
+                        }
+
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(false);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(false);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+
+                        gbData1.setGokeiKesan();
+                    }
+                    else
+                    {
+                        //2行目以降を上にずらす
+                        setGbData1();
+
+                        shotCnt = 1;
+                        gbData1.setRiekiritu(true);
+
+                        if (gbData1.txtChubunCd.Text == "")
+                        {
+                            txtJuchu1.Clear();
+                            txtTanka1.Clear();
+                        }
+
+                        setGbData2();
+
+                        shotCnt = 2;
+                        gbData2.setRiekiritu(true);
+
+                        if (gbData2.txtChubunCd.Text == "")
+                        {
+                            txtJuchu2.Clear();
+                            txtTanka2.Clear();
+                        }
+
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(true);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(true);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+                    }
+
+                    gbData5.delText();
+
+                    gbData1.setGokeiKesan();
 
                     shotCnt = 1;
-                    gbData1.setRiekiritu(false);
+                }
+                if (cActiveBefore.Name.ToString() == "gbData2")
+                {
+                    gbData2.delText();
 
-                    if (gbData1.txtChubunCd.Text == "")
+                    //3行目以降を上にずらす
+                    //伝票番号がある場合
+                    if (txtDenpyoNo.blIsEmpty())
                     {
-                        txtJuchu1.Clear();
-                        txtTanka1.Clear();
+                        setGbData2();
+
+                        shotCnt = 2;
+                        gbData2.setRiekiritu(false);
+
+                        if (gbData2.txtChubunCd.Text == "")
+                        {
+                            txtJuchu2.Clear();
+                            txtTanka2.Clear();
+                        }
+
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(false);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(false);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+                    }
+                    else
+                    {
+                        setGbData2();
+
+                        shotCnt = 2;
+                        gbData2.setRiekiritu(true);
+
+                        if (gbData2.txtChubunCd.Text == "")
+                        {
+                            txtJuchu2.Clear();
+                            txtTanka2.Clear();
+                        }
+
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(true);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(true);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+
                     }
 
-                    setGbData2();
+                    gbData5.delText();
+
+                    gbData1.setGokeiKesan();
 
                     shotCnt = 2;
-                    gbData2.setRiekiritu(false);
+                }
+                if (cActiveBefore.Name.ToString() == "gbData3")
+                {
+                    gbData3.delText();
 
-                    if (gbData2.txtChubunCd.Text == "")
+                    //4行目以降を上にずらす
+                    //伝票番号がある場合
+                    if (txtDenpyoNo.blIsEmpty())
                     {
-                        txtJuchu2.Clear();
-                        txtTanka2.Clear();
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(false);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(false);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+                    }
+                    else
+                    {
+                        setGbData3();
+
+                        shotCnt = 3;
+                        gbData3.setRiekiritu(true);
+
+                        if (gbData3.txtChubunCd.Text == "")
+                        {
+                            txtJuchu3.Clear();
+                            txtTanka3.Clear();
+                        }
+
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(true);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+
                     }
 
-                    setGbData3();
+                    gbData5.delText();
+
+                    gbData1.setGokeiKesan();
 
                     shotCnt = 3;
-                    gbData3.setRiekiritu(false);
+                }
+                if (cActiveBefore.Name.ToString() == "gbData4")
+                {
+                    gbData4.delText();
 
-                    if (gbData3.txtChubunCd.Text == "")
+                    //5行目を上にずらす
+                    //伝票番号がある場合
+                    if (txtDenpyoNo.blIsEmpty())
                     {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(false);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+                    }
+                    else
+                    {
+                        setGbData4();
+
+                        shotCnt = 4;
+                        gbData4.setRiekiritu(true);
+
+                        if (gbData4.txtChubunCd.Text == "")
+                        {
+                            txtJuchu4.Clear();
+                            txtTanka4.Clear();
+                        }
+
+                        setNullGbData5();
+
                     }
 
-                    setGbData4();
+                    gbData5.delText();
+
+                    gbData1.setGokeiKesan();
 
                     shotCnt = 4;
-                    gbData4.setRiekiritu(false);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
+                }
+                if (cActiveBefore.Name.ToString() == "gbData5")
+                {
+                    gbData5.delText();
 
                     setNullGbData5();
 
                     gbData1.setGokeiKesan();
+
+                    shotCnt = 5;
                 }
-                else
-                {
-                    //2行目以降を上にずらす
-                    setGbData1();
-
-                    shotCnt = 1;
-                    gbData1.setRiekiritu(true);
-
-                    if (gbData1.txtChubunCd.Text == "")
-                    {
-                        txtJuchu1.Clear();
-                        txtTanka1.Clear();
-                    }
-
-                    setGbData2();
-
-                    shotCnt = 2;
-                    gbData2.setRiekiritu(true);
-
-                    if (gbData2.txtChubunCd.Text == "")
-                    {
-                        txtJuchu2.Clear();
-                        txtTanka2.Clear();
-                    }
-
-                    setGbData3();
-
-                    shotCnt = 3;
-                    gbData3.setRiekiritu(true);
-
-                    if (gbData3.txtChubunCd.Text == "")
-                    {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
-                    }
-
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(true);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-                }
-
-                gbData5.delText();
-
-                gbData1.setGokeiKesan();
-
-                shotCnt = 1;
-            }
-            if (cActiveBefore.Name.ToString() == "gbData2")
-            {
-                gbData2.delText();
-
-                //3行目以降を上にずらす
-                //伝票番号がある場合
-                if (txtDenpyoNo.blIsEmpty())
-                {
-                    setGbData2();
-
-                    shotCnt = 2;
-                    gbData2.setRiekiritu(false);
-
-                    if (gbData2.txtChubunCd.Text == "")
-                    {
-                        txtJuchu2.Clear();
-                        txtTanka2.Clear();
-                    }
-
-                    setGbData3();
-
-                    shotCnt = 3;
-                    gbData3.setRiekiritu(false);
-
-                    if (gbData3.txtChubunCd.Text == "")
-                    {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
-                    }
-
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(false);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-                }
-                else
-                {
-                    setGbData2();
-
-                    shotCnt = 2;
-                    gbData2.setRiekiritu(true);
-
-                    if (gbData2.txtChubunCd.Text == "")
-                    {
-                        txtJuchu2.Clear();
-                        txtTanka2.Clear();
-                    }
-
-                    setGbData3();
-
-                    shotCnt = 3;
-                    gbData3.setRiekiritu(true);
-
-                    if (gbData3.txtChubunCd.Text == "")
-                    {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
-                    }
-
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(true);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-
-                }
-
-                gbData5.delText();
-
-                gbData1.setGokeiKesan();
-
-                shotCnt = 2;
-            }
-            if (cActiveBefore.Name.ToString() == "gbData3")
-            {
-                gbData3.delText();
-
-                //4行目以降を上にずらす
-                //伝票番号がある場合
-                if (txtDenpyoNo.blIsEmpty())
-                {
-                    setGbData3();
-
-                    shotCnt = 3;
-                    gbData3.setRiekiritu(false);
-
-                    if (gbData3.txtChubunCd.Text == "")
-                    {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
-                    }
-
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(false);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-                }
-                else
-                {
-                    setGbData3();
-
-                    shotCnt = 3;
-                    gbData3.setRiekiritu(true);
-
-                    if (gbData3.txtChubunCd.Text == "")
-                    {
-                        txtJuchu3.Clear();
-                        txtTanka3.Clear();
-                    }
-
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(true);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-
-                }
-
-                gbData5.delText();
-
-                gbData1.setGokeiKesan();
-
-                shotCnt = 3;
-            }
-            if (cActiveBefore.Name.ToString() == "gbData4")
-            {
-                gbData4.delText();
-
-                //5行目を上にずらす
-                //伝票番号がある場合
-                if (txtDenpyoNo.blIsEmpty())
-                {
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(false);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-                }
-                else
-                {
-                    setGbData4();
-
-                    shotCnt = 4;
-                    gbData4.setRiekiritu(true);
-
-                    if (gbData4.txtChubunCd.Text == "")
-                    {
-                        txtJuchu4.Clear();
-                        txtTanka4.Clear();
-                    }
-
-                    setNullGbData5();
-
-                }
-
-                gbData5.delText();
-
-                gbData1.setGokeiKesan();
-
-                shotCnt = 4;
-            }
-            if (cActiveBefore.Name.ToString() == "gbData5")
-            {
-                gbData5.delText();
-
-                setNullGbData5();
-
-                gbData1.setGokeiKesan();
-
-                shotCnt = 5;
             }
         }
 
@@ -2477,7 +2480,7 @@ namespace KATO.Form.A0030_ShireInput
             txtTanka5.Clear();
 
             //受注番号が白紙の場合
-            if (!StringUtl.blIsEmpty(txtJuchu1.Text) || txtJuchu5.Text.Trim() == "0")
+            if (!StringUtl.blIsEmpty(txtJuchu5.Text) || txtJuchu5.Text.Trim() == "0")
             {
                 txtTanka5.Text = "0";
                 return;
@@ -2490,7 +2493,7 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                dtSetCd = shireinputB.getJuchuTanka(txtJuchu1.Text);
+                dtSetCd = shireinputB.getJuchuTanka(txtJuchu5.Text);
 
                 //取引先情報が１件以上ある場合
                 if (dtSetCd.Rows.Count != 0)

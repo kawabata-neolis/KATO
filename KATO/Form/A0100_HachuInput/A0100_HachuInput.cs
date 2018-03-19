@@ -922,6 +922,8 @@ namespace KATO.Form.A0100_HachuInput
 
             strYMDformat = txtNoki.chkDateDataFormat(txtNoki.Text);
 
+            txtNoki.Text = strYMDformat;
+
             //納期、カレンダ―チェック
             if (strYMDformat == "")
             {
