@@ -410,9 +410,6 @@ namespace KATO.Form.A0030_ShireInput
             //品名確保
             string strHinmei;
 
-            //現行数確保用
-            short shortCntG = 0;
-
             //親画面の情報取得
             A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
 
@@ -676,41 +673,38 @@ namespace KATO.Form.A0030_ShireInput
                             strJuchuTanka = "0";
                         }
 
-                        //グループ内でも確保
-                        shortCntG = shireinput.shotCnt;
-
                         //行数１の場合
                         if (shireinput.shotCnt == 1)
                         {
-                            shireinput.gbData1.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData1.txtNo.Text = "0";
                             shireinput.gbData1.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
                             shireinput.txtJuchu1.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数２の場合
                         else if (shireinput.shotCnt == 2)
                         {
-                            shireinput.gbData2.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData2.txtNo.Text = "1";
                             shireinput.gbData2.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
                             shireinput.txtJuchu2.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数３の場合
                         else if (shireinput.shotCnt == 3)
                         {
-                            shireinput.gbData3.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData3.txtNo.Text = "2";
                             shireinput.gbData3.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
                             shireinput.txtJuchu3.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数４の場合
                         else if (shireinput.shotCnt == 4)
                         {
-                            shireinput.gbData4.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData4.txtNo.Text = "3";
                             shireinput.gbData4.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
                             shireinput.txtJuchu4.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }
                         //行数５の場合
                         else if (shireinput.shotCnt == 5)
                         {
-                            shireinput.gbData5.txtNo.Text = shortCntG.ToString();
+                            shireinput.gbData5.txtNo.Text = "4";
                             shireinput.gbData5.txtChumonNo.Text = dtSetCd_B_Hachu.Rows[intCnt]["発注番号"].ToString();
                             shireinput.txtJuchu5.Text = dtSetCd_B_Hachu.Rows[intCnt]["受注番号"].ToString();
                         }

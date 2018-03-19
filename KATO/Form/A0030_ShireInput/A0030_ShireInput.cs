@@ -1303,6 +1303,8 @@ namespace KATO.Form.A0030_ShireInput
                 gbData5.delText();
 
                 gbData1.setGokeiKesan();
+
+                shotCnt = 1;
             }
             if (cActiveBefore.Name.ToString() == "gbData2")
             {
@@ -1389,6 +1391,8 @@ namespace KATO.Form.A0030_ShireInput
                 gbData5.delText();
 
                 gbData1.setGokeiKesan();
+
+                shotCnt = 2;
             }
             if (cActiveBefore.Name.ToString() == "gbData3")
             {
@@ -1453,6 +1457,8 @@ namespace KATO.Form.A0030_ShireInput
                 gbData5.delText();
 
                 gbData1.setGokeiKesan();
+
+                shotCnt = 3;
             }
             if (cActiveBefore.Name.ToString() == "gbData4")
             {
@@ -1495,6 +1501,8 @@ namespace KATO.Form.A0030_ShireInput
                 gbData5.delText();
 
                 gbData1.setGokeiKesan();
+
+                shotCnt = 4;
             }
             if (cActiveBefore.Name.ToString() == "gbData5")
             {
@@ -1503,6 +1511,8 @@ namespace KATO.Form.A0030_ShireInput
                 setNullGbData5();
 
                 gbData1.setGokeiKesan();
+
+                shotCnt = 5;
             }
         }
 
@@ -3264,6 +3274,9 @@ namespace KATO.Form.A0030_ShireInput
             gbData1.txtMasterTanka.Text = gbData2.txtMasterTanka.Text;
             gbData1.txtTokuisaki.Text = gbData2.txtTokuisaki.Text;
 
+            gbData1.txtHin.TabStop = true;
+            gbData1.txtHin.Enabled = true;
+
             txtJuchu1.Text = txtJuchu2.Text;
             txtTanka1.Text = txtTanka2.Text;
         }
@@ -3307,6 +3320,9 @@ namespace KATO.Form.A0030_ShireInput
             gbData2.txtMasterTanka.Text = gbData3.txtMasterTanka.Text;
             gbData2.txtTokuisaki.Text = gbData3.txtTokuisaki.Text;
 
+            gbData2.txtHin.TabStop = true;
+            gbData2.txtHin.Enabled = true;
+            
             txtJuchu2.Text = txtJuchu3.Text;
             txtTanka2.Text = txtTanka3.Text;
         }
@@ -3350,6 +3366,9 @@ namespace KATO.Form.A0030_ShireInput
             gbData3.txtMasterTanka.Text = gbData4.txtMasterTanka.Text;
             gbData3.txtTokuisaki.Text = gbData4.txtTokuisaki.Text;
 
+            gbData3.txtHin.TabStop = true;
+            gbData3.txtHin.Enabled = true;
+
             txtJuchu3.Text = txtJuchu4.Text;
             txtTanka3.Text = txtTanka4.Text;
         }
@@ -3392,6 +3411,9 @@ namespace KATO.Form.A0030_ShireInput
             gbData4.txtChokinTanka.Text = gbData5.txtChokinTanka.Text;
             gbData4.txtMasterTanka.Text = gbData5.txtMasterTanka.Text;
             gbData4.txtTokuisaki.Text = gbData5.txtTokuisaki.Text;
+
+            gbData4.txtHin.TabStop = true;
+            gbData4.txtHin.Enabled = true;
 
             txtJuchu4.Text = txtJuchu5.Text;
             txtTanka4.Text = txtTanka5.Text;
