@@ -892,16 +892,20 @@ namespace KATO.Form.A1520_Uriageshonin
             //データ登録用
             List<string> lstGrid = new List<string>();
 
-            //承認がNの場合
-            if (gridUriagesakujo.CurrentRow.Cells["承認"].Value.ToString() == "N")
+            //グリッド分ループ
+            for (int intCnt = 0; intCnt < gridUriagesakujo.Rows.Count; intCnt++)
             {
-                //Yに変更
-                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "Y";
-            }
-            else
-            {
-                //Nに変更
-                gridUriagesakujo.CurrentRow.Cells["承認"].Value = "N";
+                //同じ受注番号の場合
+                if (gridUriagesakujo.Rows[intCnt].Cells["受注番号"].Value.ToString() == gridUriagesakujo.CurrentRow.Cells["受注番号"].Value.ToString())
+                {
+                    //承認がNの場合
+                    if (gridUriagesakujo.Rows[intCnt].Cells["承認"].Value.ToString() == "N")
+                    {
+                        //Yに変更
+                        gridUriagesakujo.Rows[intCnt].Cells["承認"].Value = "Y";
+                    }
+
+                }
             }
 
             //承認情報
