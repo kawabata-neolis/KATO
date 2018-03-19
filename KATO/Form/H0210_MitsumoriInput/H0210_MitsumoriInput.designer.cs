@@ -2242,7 +2242,6 @@
             this.lsDaibunrui.TabIndex = 186;
             this.lsDaibunrui.ValueLabelSize = 200;
             this.lsDaibunrui.ValueLabelText = "";
-            this.lsDaibunrui.Visible = false;
             // 
             // lsChubunrui
             // 
@@ -2262,7 +2261,6 @@
             this.lsChubunrui.TabIndex = 187;
             this.lsChubunrui.ValueLabelSize = 200;
             this.lsChubunrui.ValueLabelText = "";
-            this.lsChubunrui.Visible = false;
             // 
             // lsMaker
             // 
@@ -2282,7 +2280,6 @@
             this.lsMaker.TabIndex = 188;
             this.lsMaker.ValueLabelSize = 200;
             this.lsMaker.ValueLabelText = "";
-            this.lsMaker.Visible = false;
             // 
             // H0210_MitsumoriInput
             // 

@@ -1209,6 +1209,45 @@ namespace KATO.Form.H0210_MitsumoriInput
                 txtKakMei6.Text = getCellValue(gridMitsmori[81, rowIdx], false);
                 txtKakTnk6.Text = getCellValue(gridMitsmori[82, rowIdx], false);
 
+                if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[87, rowIdx], false)))
+                {
+                    lsDaibunrui.CodeTxtText = getCellValue(gridMitsmori[87, rowIdx], false);
+                    lsDaibunrui.Lschubundata = lsChubunrui;
+                    lsDaibunrui.LsSubmakerdata = lsMaker;
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[88, rowIdx], false)))
+                    {
+                        lsDaibunrui.chkTxtDaibunrui();
+                        lsChubunrui.CodeTxtText = getCellValue(gridMitsmori[88, rowIdx], false);
+                        lsChubunrui.strDaibunCd = lsDaibunrui.CodeTxtText;
+                        lsChubunrui.chkTxtChubunrui(lsDaibunrui.CodeTxtText);
+                    }
+                    else
+                    {
+                        lsChubunrui.CodeTxtText = "";
+                        lsChubunrui.ValueLabelText = "";
+                    }
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[89, rowIdx], false)))
+                    {
+                        lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, rowIdx], false);
+                        lsMaker.strDaibunCd = lsDaibunrui.CodeTxtText;
+                        lsMaker.chkTxtMaker();
+                    }
+                    else
+                    {
+                        lsMaker.CodeTxtText = "";
+                        lsMaker.ValueLabelText = "";
+                    }
+                }
+                else
+                {
+                    lsDaibunrui.CodeTxtText = "";
+                    lsDaibunrui.ValueLabelText = "";
+                    lsChubunrui.CodeTxtText = "";
+                    lsChubunrui.ValueLabelText = "";
+                    lsMaker.CodeTxtText = "";
+                    lsMaker.ValueLabelText = "";
+                }
+
                 #region
                 if (cellValueChecker(12, rowIdx))
                 {
@@ -1425,6 +1464,46 @@ namespace KATO.Form.H0210_MitsumoriInput
                 gridMitsmori[98, intRow].Value = tC6.Text;
                 gridMitsmori[4, intRow].Value = tTeikka.Text;
                 gridMitsmori.EndEdit();
+
+                if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[87, intRow], false)))
+                {
+                    lsDaibunrui.CodeTxtText = getCellValue(gridMitsmori[87, intRow], false);
+                    lsDaibunrui.Lschubundata = lsChubunrui;
+                    lsDaibunrui.LsSubmakerdata = lsMaker;
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[88, intRow], false)))
+                    {
+                        lsDaibunrui.chkTxtDaibunrui();
+                        lsChubunrui.CodeTxtText = getCellValue(gridMitsmori[88, intRow], false);
+                        lsChubunrui.strDaibunCd = lsDaibunrui.CodeTxtText;
+                        lsChubunrui.chkTxtChubunrui(lsDaibunrui.CodeTxtText);
+                    }
+                    else
+                    {
+                        lsChubunrui.CodeTxtText = "";
+                        lsChubunrui.ValueLabelText = "";
+                    }
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[89, intRow], false)))
+                    {
+                        lsMaker.CodeTxtText = getCellValue(gridMitsmori[89, intRow], false);
+                        lsMaker.strDaibunCd = lsDaibunrui.CodeTxtText;
+                        lsMaker.chkTxtMaker();
+                    }
+                    else
+                    {
+                        lsMaker.CodeTxtText = "";
+                        lsMaker.ValueLabelText = "";
+                    }
+                }
+                else
+                {
+                    lsDaibunrui.CodeTxtText = "";
+                    lsDaibunrui.ValueLabelText = "";
+                    lsChubunrui.CodeTxtText = "";
+                    lsChubunrui.ValueLabelText = "";
+                    lsMaker.CodeTxtText = "";
+                    lsMaker.ValueLabelText = "";
+                }
+
                 editFlg = true;
                 oldHinmei = tKata.Text;
             }
@@ -1449,8 +1528,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             //}
 
             // 品名・型番に対して直接編集で値を変えた場合
-            if (e.ColumnIndex == 2) {
-                if (!oldHinmei.Equals(getCellValue(gridMitsmori[2, e.RowIndex], false))) {
+            if (e.ColumnIndex == 2)
+            {
+                if (!oldHinmei.Equals(getCellValue(gridMitsmori[2, e.RowIndex], false)))
+                {
                     gridMitsmori[87, e.RowIndex].Value = "";
                     gridMitsmori[88, e.RowIndex].Value = "";
                     gridMitsmori[89, e.RowIndex].Value = "";
@@ -1533,7 +1614,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             decimal dSuryo = 0;
             decimal dTeika = 0;
             decimal dMitsuTanka = 0;
-            
+
             decimal dShiireTanka1 = 0;
             decimal dShiireTanka2 = 0;
             decimal dKakoTanka1 = 0;
@@ -1620,7 +1701,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellShiireKin1 = gridMitsmori[23, rowIdx];
                     cellShiireArari1 = gridMitsmori[24, rowIdx];
                     cellShiireArariRitsu1 = gridMitsmori[25, rowIdx];
-                    
+
                     cellKakoTanka1 = gridMitsmori[58, rowIdx];
                     cellKakoKin1 = gridMitsmori[59, rowIdx];
                 }
@@ -1694,7 +1775,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 dShiireTanka1 = getDecValue(txtShiireTanka1.Text);
                 dKakoTanka1 = getDecValue(txtKakoTanka1.Text);
-                if (zaiNum != 0) {
+                if (zaiNum != 0)
+                {
                     dShiireTanka2 = getDecValue(txtShiireTanka2.Text);
                     dKakoTanka2 = getDecValue(txtKakoTanka2.Text);
                 }
@@ -1728,7 +1810,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 txtArariRitsu.Text = dArariRitsuM.ToString();
 
                 //gridに反映
-                if (!dShiireTanka1.Equals(0)) {
+                if (!dShiireTanka1.Equals(0))
+                {
                     cellShiireTanka1.Value = dShiireTanka1.ToString("#,0.00");
                     cellShiireKin1.Value = dShiireKin1.ToString("#,0");
                     cellShiireArari1.Value = dArariM.ToString("#,0");
@@ -1737,7 +1820,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                     cellKakoTanka1.Value = dKakoTanka1.ToString("#,0");
                     cellKakoKin1.Value = dKakoKin1.ToString("#,0");
 
-                    if (zaiNum != 0) {
+                    if (zaiNum != 0)
+                    {
                         cellShiireTanka2.Value = dShiireTanka2.ToString("#,0.00");
                         cellShiireKin2.Value = dShiireKin2.ToString("#,0");
 
@@ -1981,7 +2065,8 @@ namespace KATO.Form.H0210_MitsumoriInput
         // 見積検索
         private void txtMNum_Leave(object sender, EventArgs e)
         {
-            if (!txtMNum.Text.Equals(oldNum)) {
+            if (!txtMNum.Text.Equals(oldNum))
+            {
                 oldNum = txtMNum.Text;
                 getMitsumoriInfo();
             }
@@ -2005,7 +2090,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             {
                 this.SelectNextControl(this.ActiveControl, true, true, true, true);
             }
-            
+
         }
 
         private void getMitsumoriInfo()
@@ -2089,7 +2174,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                         gridMitsmori[10, i].Value = DBNull.Value;
                         continue;
                     }
-                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, i], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, i], false))) {
+                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[4, i], false)) && !string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[5, i], false)))
+                    {
                         dTeika = Decimal.Parse(getCellValue(gridMitsmori[4, i], true));
                         dTanka = Decimal.Parse(getCellValue(gridMitsmori[5, i], true));
 
@@ -2202,7 +2288,8 @@ namespace KATO.Form.H0210_MitsumoriInput
                 }
 
                 // 分類入力の必要がある場合のみ分類入力を表示
-                if (f.tableLayoutPanel1.Controls.Count > 0) {
+                if (f.tableLayoutPanel1.Controls.Count > 0)
+                {
                     f.FrmParent = this;
                     f.ShowDialog();
                     f.Dispose();
@@ -2681,13 +2768,20 @@ namespace KATO.Form.H0210_MitsumoriInput
             oldHinmei = "";
             oldNum = "";
 
+            lsMaker.CodeTxtText = "";
+            lsMaker.ValueLabelText = "";
+            lsChubunrui.CodeTxtText = "";
+            lsChubunrui.ValueLabelText = "";
+            lsDaibunrui.CodeTxtText = "";
+            lsDaibunrui.ValueLabelText = "";
+
             gridMitsmori.CurrentCell = gridMitsmori[0, 0];
             RowIndex = 0;
             ColIndex = 0;
             txtMode.Focus();
             editFlg = true;
         }
-        
+
         // 見積印刷
         private void printMitsumori(string st)
         {
@@ -3005,7 +3099,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsmori[11, i], false);
 
 
-                    
+
 
                     string stShiiresaki = "";
                     string compShiiresaki = "";
@@ -3314,7 +3408,8 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
-        private void setShiiresaki(BaseText sender, bool b) {
+        private void setShiiresaki(BaseText sender, bool b)
+        {
             if (string.IsNullOrWhiteSpace(sender.Text))
             {
                 return;
@@ -3353,7 +3448,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 if (dtSetCd.Rows.Count != 0)
                 {
                     sender.Text = dtSetCd.Rows[0]["取引先コード"].ToString();
-                    
+
                     if (sender.Name.Equals("txtZaiCd1"))
                     {
                         txtZaiMei1.Text = dtSetCd.Rows[0]["取引先名称"].ToString();
@@ -3438,8 +3533,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                 else
                 {
                     //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                    if (b == true) {
-                        if (bCdflg) {
+                    if (b == true)
+                    {
+                        if (bCdflg)
+                        {
                             BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                             basemessagebox.ShowDialog();
                             bCdflg = false;
@@ -3889,7 +3986,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 ret = s;
             }
             return ret;
-            
+
         }
         private void openChildForm(Form8_2 f)
         {
@@ -3924,7 +4021,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
             else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
             {
-                
+
             }
             else
             {
@@ -3937,7 +4034,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             if (cmbSubWinShow.SelectedIndex == 0)
             {
                 uriKakunin = new D0310_UriageJissekiKakunin.D0310_UriageJissekiKakunin(this);
-                
+
                 Screen s = null;
                 Screen[] argScreen = Screen.AllScreens;
                 if (argScreen.Length > 1)
@@ -3997,7 +4094,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void txtBiko_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter) {
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
                 if (gridMitsmori.RowCount > 0)
                 {
                     gridMitsmori.CurrentCell = gridMitsmori[2, 0];
@@ -4046,7 +4144,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             c.Value = (decimal.Round(d, 1, MidpointRounding.AwayFromZero)).ToString("0.0");
         }
 
-        
+
     }
 
 }
