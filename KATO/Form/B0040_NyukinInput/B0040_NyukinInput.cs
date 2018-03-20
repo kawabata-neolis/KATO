@@ -355,6 +355,9 @@ namespace KATO.Form.B0040_NyukinInput
         //得意先コードを入力した場合の処理。
         private void labelSet_Tokuisaki_Leave(object sender, EventArgs e)
         {
+            //グリッド初期化
+            gridSeikyuRireki.DataSource = "";
+
             //請求履歴表示メソッドへ
             getSeikyuRireki();
 
@@ -1087,6 +1090,9 @@ namespace KATO.Form.B0040_NyukinInput
                 // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
+
+                //初期化
+                delText();
 
             }
             catch (Exception ex)
