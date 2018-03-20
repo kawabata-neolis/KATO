@@ -2458,7 +2458,7 @@ namespace KATO.Form.A0030_ShireInput
                         decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
                         decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData1.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
 
-                        shireinput.txtRiekiritsu1.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
+                        shireinput.txtRiekiritsu1.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 2)
@@ -2473,10 +2473,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka2.Text), 2, MidpointRounding.AwayFromZero);
                         decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData2.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
 
-                        shireinput.txtRiekiritsu2.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
+                        shireinput.txtRiekiritsu2.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 3)
@@ -2492,10 +2492,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka3.Text), 2, MidpointRounding.AwayFromZero);
                         decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData3.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
 
-                        shireinput.txtRiekiritsu3.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
+                        shireinput.txtRiekiritsu3.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 4)
@@ -2510,10 +2510,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka4.Text), 2, MidpointRounding.AwayFromZero);
                         decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData4.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
 
-                        shireinput.txtRiekiritsu4.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
+                        shireinput.txtRiekiritsu4.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 5)
@@ -2528,10 +2528,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka5.Text), 2, MidpointRounding.AwayFromZero);
                         decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData5.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
 
-                        shireinput.txtRiekiritsu5.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
+                        shireinput.txtRiekiritsu5.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                     }
                 }
             }
@@ -2554,7 +2554,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu1.Text = ((decimal.Parse(shireinput.txtTanka1.Text) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka1.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData1.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu1.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                     //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
@@ -2570,7 +2573,12 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(strJuchuTanka), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData1.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu1.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
+
+                            //shireinput.txtRiekiritsu1.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
                         }
                     }
                 }
@@ -2590,7 +2598,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu2.Text = ((decimal.Parse(shireinput.txtTanka2.Text) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka2.Text) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka2.Text), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData2.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu2.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                     //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
@@ -2606,7 +2617,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu2.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(strJuchuTanka), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData2.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu2.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                 }
@@ -2626,7 +2640,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu3.Text = ((decimal.Parse(shireinput.txtTanka3.Text) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka3.Text) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka3.Text), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData3.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu3.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                     //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
@@ -2642,7 +2659,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu3.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(strJuchuTanka), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData3.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu3.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                 }
@@ -2662,7 +2682,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu4.Text = ((decimal.Parse(shireinput.txtTanka4.Text) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka4.Text) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka4.Text), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData4.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu4.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                     //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
@@ -2678,7 +2701,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu4.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(strJuchuTanka), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData4.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu4.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                 }
@@ -2698,7 +2724,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu5.Text = ((decimal.Parse(shireinput.txtTanka5.Text) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka5.Text) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka5.Text), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData5.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu5.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                     //受注番号がなく注文Noでデータを呼び出して、金額と単価を移動した時
@@ -2714,7 +2743,10 @@ namespace KATO.Form.A0030_ShireInput
                         }
                         else
                         {
-                            shireinput.txtRiekiritsu5.Text = ((decimal.Parse(strJuchuTanka) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(strJuchuTanka) * 100).ToString("0.0");
+                            decimal dectxtShiTanka = decimal.Round(decimal.Parse(strJuchuTanka), 2, MidpointRounding.AwayFromZero);
+                            decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData5.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                            shireinput.txtRiekiritsu5.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtShiTanka * 100).ToString("0.0");
                         }
                     }
                 }
