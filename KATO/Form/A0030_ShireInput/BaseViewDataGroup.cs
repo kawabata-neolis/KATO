@@ -1662,6 +1662,8 @@ namespace KATO.Form.A0030_ShireInput
                 shireinput.txtUnchin.Text = "0";
             }
 
+            decGokei = decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero);
+
             //運賃を追加
             decGokei = decGokei + Decimal.Parse(shireinput.txtUnchin.Text);
                 
@@ -1959,6 +1961,8 @@ namespace KATO.Form.A0030_ShireInput
                                     break;
                             }
                         }
+
+                        decZeigokei = decimal.Round(decZeigokei, 2, MidpointRounding.AwayFromZero);
 
                         //仕入入力画面の消費税に記入
                         shireinput.txtShohizei.Text = decZeigokei.ToString();
@@ -2451,7 +2455,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        shireinput.txtRiekiritsu1.Text = ((decimal.Parse(shireinput.txtTanka1.Text) - decimal.Parse(shireinput.gbData1.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka1.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData1.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu1.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 2)
@@ -2466,7 +2473,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        shireinput.txtRiekiritsu2.Text = ((decimal.Parse(shireinput.txtTanka2.Text) - decimal.Parse(shireinput.gbData2.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka2.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData2.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu2.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 3)
@@ -2482,7 +2492,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        shireinput.txtRiekiritsu3.Text = ((decimal.Parse(shireinput.txtTanka3.Text) - decimal.Parse(shireinput.gbData3.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka3.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData3.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu3.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 4)
@@ -2497,7 +2510,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        shireinput.txtRiekiritsu4.Text = ((decimal.Parse(shireinput.txtTanka4.Text) - decimal.Parse(shireinput.gbData4.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka4.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData4.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu4.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
                     }
                 }
                 else if (shireinput.shotCnt == 5)
@@ -2512,7 +2528,10 @@ namespace KATO.Form.A0030_ShireInput
                     }
                     else
                     {
-                        shireinput.txtRiekiritsu5.Text = ((decimal.Parse(shireinput.txtTanka5.Text) - decimal.Parse(shireinput.gbData5.txtTanka.Text)) / decimal.Parse(shireinput.txtTanka5.Text) * 100).ToString("0.0");
+                        decimal dectxtShiTanka = decimal.Round(decimal.Parse(shireinput.txtTanka1.Text), 2, MidpointRounding.AwayFromZero);
+                        decimal dectxtGbTanka = decimal.Round(decimal.Parse(shireinput.gbData5.txtTanka.Text), 2, MidpointRounding.AwayFromZero);
+
+                        shireinput.txtRiekiritsu5.Text = ((dectxtShiTanka - dectxtGbTanka) / dectxtGbTanka * 100).ToString("0.0");
                     }
                 }
             }
