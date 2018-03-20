@@ -2781,24 +2781,12 @@ namespace KATO.Form.A0010_JuchuInput
 
                     if (blRieki10)
                     {
-                        if (Math.Abs(getDecValue(cbJuchuTanka.Text)) < Math.Abs(getDecValue(cbSiireTanka.Text)) / decRitsu)
-                        {
-                            kyouseiFlg = true;
-                            BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", strRitsuMsg, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-                            //NOが押された場合
-                            if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
-                            {
-                                return false;
-                            }
-
-                            acceptFlg = true;
-                        }
-
-                        decimal decBaika = 0;
                         A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
                         try
                         {
                             DataTable dtShohin = juchuB.getShohin(txtShohinCd.Text);
+                            decimal decBaika  = 0;
+                            decimal decShiire = getDecValue(cbSiireTanka.Text);
 
                             if (dtShohin != null && dtShohin.Rows.Count > 0)
                             {
@@ -2806,6 +2794,24 @@ namespace KATO.Form.A0010_JuchuInput
                                 {
                                     decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
                                 }
+
+                                if (dtShohin.Rows[0]["仕入単価"] != null)
+                                {
+                                    decShiire = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                }
+                            }
+
+                            if (Math.Abs(getDecValue(cbJuchuTanka.Text)) < Math.Abs(decShiire) / decRitsu)
+                            {
+                                kyouseiFlg = true;
+                                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", strRitsuMsg, CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                                //NOが押された場合
+                                if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                                {
+                                    return false;
+                                }
+
+                                acceptFlg = true;
                             }
 
                             if (getDecValue(cbJuchuTanka.Text) < decBaika)

@@ -2259,8 +2259,42 @@ namespace KATO.Form.A0020_UriageInput
                             //メソッドRieki10へ
                             if (Rieki10(con))
                             {
+
+
+                                decimal decShiire = decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text);
+
+                                try
+                                {
+                                    DataTable dtShohin = uriageinputB.getShohin(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text, con);
+                                    //decimal decBaika = 0;
+
+                                    if (dtShohin != null && dtShohin.Rows.Count > 0)
+                                    {
+                                        //if (dtShohin.Rows[0]["標準売価"] != null)
+                                        //{
+                                        //    decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                        //}
+
+                                        if (dtShohin.Rows[0]["仕入単価"] != null)
+                                        {
+                                            decShiire = decimal.Round(decimal.Parse(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                        }
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    new CommonException(ex);
+                                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                    basemessagebox.ShowDialog();
+                                    return false;
+                                }
+
+
+
+
                                 //単価が(原価÷率)より小さい場合
-                                if (Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text)) < Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text) / decimal.Parse(Ritu.ToString())))
+                                if (Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text)) < Math.Abs(decShiire / decimal.Parse(Ritu.ToString())))
                                 {
                                     ((TextSet_Jucyu)cs1[0]).txtTankaElem5.ForeColor = Color.Red;
                                     reGood = false;

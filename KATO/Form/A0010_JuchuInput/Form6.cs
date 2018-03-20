@@ -3436,7 +3436,7 @@ namespace KATO.Form.A0010_JuchuInput
             foreach (Control cc in c)
             {
                 string sLbl = ((Label)cc.Controls["cate"]).Text;
-                if (!sLbl.Equals(labels[0]))
+                if (sLbl.Equals(labels[0]))
                 {
                     ALbl = labels[0];
                     break;
