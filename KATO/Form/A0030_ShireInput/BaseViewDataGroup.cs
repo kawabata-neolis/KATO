@@ -368,7 +368,61 @@ namespace KATO.Form.A0030_ShireInput
             //仕入入力で表示した注文Noと同じではない場合
             if (strShireChuNo != txtChumonNo.Text)
             {
-                getData();
+                //親画面の情報取得
+                A0030_ShireInput shireinput = (A0030_ShireInput)this.Parent;
+
+                try
+                {
+                    //発注番号が既にある場合
+                    if (shireinput.judHachuNoOverlap(txtChumonNo.Text))
+                    {
+                        //発注データが既に仕入済みであるということを伝えるメッセージ（OK）
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "仕入済の発注データです！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+
+                        txtNo.Clear();
+                        txtChumonNo.Clear();
+                        txtHin.Clear();
+                        txtSu.Clear();
+                        txtTanka.Clear();
+                        txtKin.Clear();
+                        txtBiko.Clear();
+                        labelSet_Eigyosho.codeTxt.Clear();
+                        labelSet_Eigyosho.chkTxtEigyousho();
+                        txtTeka.Clear();
+                        //txtTeka.Text = "0";
+                        txtChokinTanka.Clear();
+                        //txtChokinTanka.Text = "0";
+                        //txtChokinTanka.updPriceMethod();
+                        txtMasterTanka.Clear();
+                        //txtMasterTanka.Text = "0";
+                        //txtMasterTanka.updPriceMethod();
+                        txtJuchuNo.Clear();
+                        txtJuchuTanka.Clear();
+                        txtTankaSub.Clear();
+
+                        txtChumonNo.Focus();
+
+                        strShireChuNo = "";
+                        txtHin.TabStop = true;
+                        txtHin.Enabled = true;
+                        setGokeiKesan();
+                        return;
+                    }
+                    else
+                    {
+                        getData();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
             else if(txtChumonNo.blIsEmpty() == false)
             {
@@ -573,7 +627,7 @@ namespace KATO.Form.A0030_ShireInput
                             //仕入済み発注数が発注数量以上の場合
                             if (decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["仕入済数量"].ToString()) >= decimal.Parse(dtSetCd_B_Hachu.Rows[intCnt]["発注数量"].ToString()))
                             {
-                                //発注データが存在しないということを伝えるメッセージ（OK）
+                                //発注データが既に仕入済みであるということを伝えるメッセージ（OK）
                                 BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_ERROR, "仕入済の発注データです！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                                 basemessagebox.ShowDialog();
 

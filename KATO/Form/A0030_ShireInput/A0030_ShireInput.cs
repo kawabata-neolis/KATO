@@ -724,7 +724,7 @@ namespace KATO.Form.A0030_ShireInput
                         lstMesaiKoshin.Add(bvg[intCnt].txtC5.Text);                                             //C5
                         lstMesaiKoshin.Add(bvg[intCnt].txtC6.Text);                                             //C6
                         lstMesaiKoshin.Add(bvg[intCnt].txtSu.Text);                                             //数量
-                        lstMesaiKoshin.Add(string.Format("{0:0.#}", double.Parse(bvg[intCnt].txtTanka.Text)));  //仕入単価
+                        lstMesaiKoshin.Add(string.Format("{0:0.0#}", double.Parse(bvg[intCnt].txtTanka.Text)));  //仕入単価
                         lstMesaiKoshin.Add(bvg[intCnt].txtKin.Text);                                            //仕入金額
                         lstMesaiKoshin.Add(bvg[intCnt].txtBiko.Text);                                           //備考
                         lstMesaiKoshin.Add(bvg[intCnt].labelSet_Eigyosho.CodeTxtText);                          //入庫倉庫
@@ -3431,6 +3431,35 @@ namespace KATO.Form.A0030_ShireInput
             txtJuchu5.Text = "";
             txtTanka5.Text = "";
             txtRiekiritsu5.Text = "";
+        }
+
+        ///<summary>
+        ///judHachuNoOverlap
+        ///発注番号が既にあるかどうか確認
+        ///</summary>
+        public bool judHachuNoOverlap(string strHachuNo)
+        {
+            Boolean blHachuNoOverlap = false;
+
+            //ビジネス層のインスタンス生成
+            A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
+            try
+            {
+                //発注データの有無
+                DataTable dtHachuData = shireinputB.getHachuData(strHachuNo);
+
+                //取引先情報が１件以上ある場合
+                if (dtHachuData.Rows.Count != 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return blHachuNoOverlap;
         }
     }
 }
