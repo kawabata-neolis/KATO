@@ -2793,6 +2793,41 @@ namespace KATO.Form.A0010_JuchuInput
 
                             acceptFlg = true;
                         }
+
+                        decimal decBaika = 0;
+                        A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                        try
+                        {
+                            DataTable dtShohin = juchuB.getShohin(txtShohinCd.Text);
+
+                            if (dtShohin != null && dtShohin.Rows.Count > 0)
+                            {
+                                if (dtShohin.Rows[0]["標準売価"] != null)
+                                {
+                                    decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                }
+                            }
+
+                            if (getDecValue(cbJuchuTanka.Text) < decBaika)
+                            {
+                                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が標準売価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                                //NOが押された場合
+                                if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                                {
+                                    return false;
+                                }
+
+                                acceptFlg = true;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            new CommonException(ex);
+                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                            basemessagebox.ShowDialog();
+                            return false;
+                        }
+
                     }
                 }
             }
@@ -2840,24 +2875,24 @@ namespace KATO.Form.A0010_JuchuInput
 
                 DataTable dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, txtShohinCd.Text, null, null, null);
 
-                if (getDecValue(cbJuchuTanka.Text) < decShiire)
-                {
-                    BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が仕入単価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-                    //NOが押された場合
-                    if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
-                    {
-                        return 2;
-                    }
-                    else
-                    {
-                        return 1;
-                    }
-                }
+                //if (getDecValue(cbJuchuTanka.Text) < decShiire)
+                //{
+                //    BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が仕入単価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //    //NOが押された場合
+                //    if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                //    {
+                //        return 2;
+                //    }
+                //    else
+                //    {
+                //        return 1;
+                //    }
+                //}
                 // 商品別
                 #region
                 if (dtRieki != null && dtRieki.Rows.Count > 0)
                 {
-                    ret = 1;
+                    ret = 9;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
@@ -2895,7 +2930,7 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (dtCodes == null || dtCodes.Rows.Count == 0)
                 {
-                    return ret;
+                    return 0;
                 }
 
                 string strDaibunrui = dtCodes.Rows[0]["大分類コード"].ToString();
@@ -2905,11 +2940,11 @@ namespace KATO.Form.A0010_JuchuInput
 
                 // 大中メーカー
                 #region
-                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, txtShohinCd.Text, strDaibunrui, strChubunrui, strMaker);
+                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, null, strDaibunrui, strChubunrui, strMaker);
 
                 if (dtRieki != null && dtRieki.Rows.Count > 0)
                 {
-                    ret = 1;
+                    ret = 9;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
@@ -2941,11 +2976,11 @@ namespace KATO.Form.A0010_JuchuInput
 
                 // 大中
                 #region
-                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, txtShohinCd.Text, strDaibunrui, strChubunrui, null);
+                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, null, strDaibunrui, strChubunrui, null);
 
                 if (dtRieki != null && dtRieki.Rows.Count > 0)
                 {
-                    ret = 1;
+                    ret = 9;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
@@ -2977,11 +3012,11 @@ namespace KATO.Form.A0010_JuchuInput
 
                 //大メーカー
                 #region
-                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, txtShohinCd.Text, strDaibunrui, null, strMaker);
+                dtRieki = juchuB.getRiekiritsu(tsTokuisaki.CodeTxtText, null, strDaibunrui, null, strMaker);
 
                 if (dtRieki != null && dtRieki.Rows.Count > 0)
                 {
-                    ret = 1;
+                    ret = 9;
                     if (dtRieki.Rows[0]["利益率"] != null && !string.IsNullOrWhiteSpace(dtRieki.Rows[0]["利益率"].ToString()))
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))

@@ -528,7 +528,15 @@ namespace KATO.Business.A0010_JuchuInput
             string strQuery = "";
 
             strQuery += "SELECT *";
-            strQuery += "  FROM 商品別利益率";
+
+            if (strShohin != null)
+            {
+                strQuery += "  FROM 商品別利益率";
+            }
+            else
+            {
+                strQuery += "  FROM 商品分類別利益率";
+            }
             strQuery += " WHERE 削除 = 'N'";
             strQuery += "   AND 設定 = '1'";
             strQuery += "   AND 得意先コード = '" + strTokuisaki + "'";
