@@ -2596,6 +2596,9 @@
     <Content Include="SQL\D0320_SiireJissekiKakunin\D0320_SiireJissekiKakunin_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\D0360_JuchuzanKakunin\D0360_JuchuzanKakunin_Kako_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\D0910_ShohinKensaku\ShohinList_View.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

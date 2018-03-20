@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using KATO.Common.Util;
+using System.Collections.Generic;
 
 namespace KATO.Business.D0360_JuchuzanKakunin
 {
@@ -472,6 +473,79 @@ namespace KATO.Business.D0360_JuchuzanKakunin
             }
 
             return dtRet;
+        }
+
+        /// <summary>
+        /// getKakoList
+        /// 加工原価の取得
+        /// </summary>
+        public DataTable getKakoList(string strJuchuNo)
+        {
+            DataTable dtZanList = null;
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLSelect = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQLSelect.Add("D0360_JuchuzanKakunin");
+            lstSQLSelect.Add("D0360_JuchuzanKakunin_Kako_SELECT");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQLSelect);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return(dtZanList);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strJuchuNo);
+
+                //SQL接続後、該当データを取得
+                dtZanList = dbconnective.ReadSql(strSQLInput);
+
+                //データ分ループ
+                for (int intCnt = 0; intCnt < dtZanList.Rows.Count; intCnt++)
+                {
+                    //数量が空の場合
+                    if (Common.Util.StringUtl.blIsEmpty(dtZanList.Rows[intCnt]["数量"].ToString()) == false)
+                    {
+                        dtZanList.Rows[intCnt]["数量"] = "0";
+                    }
+                    //単価が空の場合
+                    if (Common.Util.StringUtl.blIsEmpty(dtZanList.Rows[intCnt]["単価"].ToString()) == false)
+                    {
+                        dtZanList.Rows[intCnt]["単価"] = "0";
+                    }
+                    //仕入数量が空の場合
+                    if (Common.Util.StringUtl.blIsEmpty(dtZanList.Rows[intCnt]["仕入数量"].ToString()) == false)
+                    {
+                        dtZanList.Rows[intCnt]["仕入数量"] = "0";
+                    }
+                }
+
+                return (dtZanList);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
         }
     }
 }

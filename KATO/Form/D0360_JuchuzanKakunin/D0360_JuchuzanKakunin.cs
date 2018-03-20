@@ -329,6 +329,61 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             hachuNo.HeaderText = "発注番号";
             #endregion
 
+
+
+            #region
+            DataGridViewTextBoxColumn kakoKbn = new DataGridViewTextBoxColumn();
+            kakoKbn.DataPropertyName = "区分";
+            kakoKbn.Name = "区分";
+            kakoKbn.HeaderText = "区分";
+
+            DataGridViewTextBoxColumn kakoDay = new DataGridViewTextBoxColumn();
+            kakoDay.DataPropertyName = "日付";
+            kakoDay.Name = "日付";
+            kakoDay.HeaderText = "日付";
+
+            DataGridViewTextBoxColumn kakoChuban = new DataGridViewTextBoxColumn();
+            kakoChuban.DataPropertyName = "注番";
+            kakoChuban.Name = "注番";
+            kakoChuban.HeaderText = "注番";
+
+            DataGridViewTextBoxColumn kakoHinmei = new DataGridViewTextBoxColumn();
+            kakoHinmei.DataPropertyName = "型番";
+            kakoHinmei.Name = "型番";
+            kakoHinmei.HeaderText = "品名・型番";
+
+            DataGridViewTextBoxColumn kakoSuryo = new DataGridViewTextBoxColumn();
+            kakoSuryo.DataPropertyName = "数量";
+            kakoSuryo.Name = "数量";
+            kakoSuryo.HeaderText = "数量";
+
+            DataGridViewTextBoxColumn kakoTanka = new DataGridViewTextBoxColumn();
+            kakoTanka.DataPropertyName = "単価";
+            kakoTanka.Name = "単価";
+            kakoTanka.HeaderText = "単価";
+
+            DataGridViewTextBoxColumn kakoNoki = new DataGridViewTextBoxColumn();
+            kakoNoki.DataPropertyName = "納期";
+            kakoNoki.Name = "納期";
+            kakoNoki.HeaderText = "納期／出庫";
+
+            DataGridViewTextBoxColumn kakoShiiremei = new DataGridViewTextBoxColumn();
+            kakoShiiremei.DataPropertyName = "仕入先名";
+            kakoShiiremei.Name = "仕入先名";
+            kakoShiiremei.HeaderText = "仕入先名";
+
+            DataGridViewTextBoxColumn kakoShiireDay = new DataGridViewTextBoxColumn();
+            kakoShiireDay.DataPropertyName = "仕入日";
+            kakoShiireDay.Name = "仕入日";
+            kakoShiireDay.HeaderText = "仕入日";
+
+            DataGridViewTextBoxColumn kakoShiireSu = new DataGridViewTextBoxColumn();
+            kakoShiireSu.DataPropertyName = "仕入数量";
+            kakoShiireSu.Name = "仕入数量";
+            kakoShiireSu.HeaderText = "仕入数量";
+
+            #endregion
+
             //バインド、個々の幅、文章の寄せの設定
             #region
             setColumn(juchubi,           DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null,      90);
@@ -358,7 +413,19 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             setColumn(tantosha,          DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     108);
             setColumn(hatchusha,         DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,     108);
             setColumn(hachuNo,           DataGridViewContentAlignment.MiddleLeft,  DataGridViewContentAlignment.MiddleCenter, null,       0);
+            #endregion
 
+            #region
+            setColumnKako(kakoKbn, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 64);
+            setColumnKako(kakoDay, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumnKako(kakoChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 95);
+            setColumnKako(kakoHinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 460);
+            setColumnKako(kakoSuryo, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnKako(kakoTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnKako(kakoNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 112);
+            setColumnKako(kakoShiiremei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 340);
+            setColumnKako(kakoShiireDay, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
+            setColumnKako(kakoShiireSu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
             #endregion
 
             //発注番号カラムの非表示
@@ -381,6 +448,23 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 if (fmt != null)
                 {
                     gridZanList.Columns[col.Name].DefaultCellStyle.Format = fmt;
+                }
+            }
+        }
+
+        private void setColumnKako(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
+        {
+            gridKakoList.Columns.Add(col);
+            if (gridKakoList.Columns[col.Name] != null)
+            {
+                gridKakoList.Columns[col.Name].Width = intLen;
+                gridKakoList.Columns[col.Name].DefaultCellStyle.Alignment = aliStyleDef;
+                gridKakoList.Columns[col.Name].HeaderCell.Style.Alignment = aliStyleHeader;
+                gridKakoList.Columns[col.Name].SortMode = DataGridViewColumnSortMode.Automatic;
+
+                if (fmt != null)
+                {
+                    gridKakoList.Columns[col.Name].DefaultCellStyle.Format = fmt;
                 }
             }
         }
@@ -461,6 +545,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             //フォーム上のデータを白紙
             this.delFormClear(this, gridZanList);
 
+            this.gridKakoList.DataSource = "";
+
             rsSearchKind.radbtn1.Checked = false;
             rsSearchKind.radbtn0.Checked = true;
 
@@ -523,6 +609,9 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 return;
             }
+
+            //加工グリッドの初期化
+            this.gridKakoList.DataSource = "";
 
             string[] listParam = new string[30];
 
@@ -1066,6 +1155,38 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         private void gridZanList_Sorted(object sender, EventArgs e)
         {
             lineMark();
+        }
+
+        /// <summary>
+        /// gridZanList_RowEnter
+        /// 加工原価確認グリッドの表示
+        /// </summary>
+        private void gridZanList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //残リストがない場合
+            if (gridZanList.Rows.Count <= 1)
+            {
+                return;
+            }
+
+            D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
+            try
+            {
+                int intRowIdx = e.RowIndex;
+
+                DataTable dtKakoList = bis.getKakoList(gridZanList.Rows[intRowIdx].Cells["受注番号"].Value.ToString());
+
+                gridKakoList.DataSource = dtKakoList;
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
         }
     }
 }
