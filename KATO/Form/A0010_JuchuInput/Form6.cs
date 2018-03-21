@@ -998,6 +998,9 @@ namespace KATO.Form.A0010_JuchuInput
             rdSouko.BringToFront();
             rdSouko.Visible = false;
 
+            rdSouko.radbtn1.Checked = false;
+            rdSouko.radbtn0.Checked = true;
+
             if (cat == cats[1] || cat == cats[3] || cat == cats[4] || cat == cats[5])
             {
                 lblSouko.Visible = true;
@@ -1976,7 +1979,8 @@ namespace KATO.Form.A0010_JuchuInput
                 string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
                 string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
 
-                if (((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
+                int jud = ((RadSet_2btn)cc.Controls["rdSouko"]).judCheckBtn();
+                if (jud == 1 || ((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
                 {
                     sSouko = "0002";
                 }
@@ -2682,9 +2686,9 @@ namespace KATO.Form.A0010_JuchuInput
             ((BaseText)c.Controls["txtSouko"]).Text = ((BaseText)c.Controls["txtEigyo"]).Text;
         }
 
-        public bool chkShiire()
+        public int chkShiire()
         {
-            bool ret = true;
+            int ret = 0;
 
             TableLayoutControlCollection c = tableLayoutPanel1.Controls;
 
@@ -2694,9 +2698,74 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (string.IsNullOrWhiteSpace(sHShiire))
                 {
-                    ret = false;
+                    ret = 1;
                     ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).Focus();
                     break;
+                }
+
+                DateTime endDateTime = DateTime.Parse(txtJuchuYMD.Text);
+                string strEndDay = endDateTime.AddYears(1).ToString("yyyy/MM/dd");
+
+                if (!string.IsNullOrWhiteSpace(strJuchuNo))
+                {
+                    A0024_KakohinJuchuInput_B juchuB = new A0024_KakohinJuchuInput_B();
+                    try
+                    {
+                        DataTable dtHatchu = juchuB.getShiireSuryouNoki(strJuchuNo);
+
+                        if (dtHatchu != null && dtHatchu.Rows.Count > 0)
+                        {
+                            String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
+                            if (decimal.Parse(strSuryo) > 0)
+                            {
+                                strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        new CommonException(ex);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        basemessagebox.ShowDialog();
+                        throw ex;
+                    }
+                }
+
+                if (!changeVal((Panel)cc))
+                {
+                    continue;
+                }
+                string sYMD = ((BaseCalendar)cc.Controls["txtNohki"]).Text;
+                if (sYMD.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
+                {
+                    ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
+                    ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                    ret = 2;
+                    break;
+                }
+
+                string sSuryo = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
+                if (!string.IsNullOrWhiteSpace(sSuryo) && decimal.Parse(sSuryo) > 0)
+                {
+                    if (sYMD.CompareTo(strEndDay) > 0)
+                    {
+                        ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
+                        ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                        ret = 3;
+                        break;
+                    }
+                }
+                if ((((Label)cc.Controls["cate"]).Text).Equals(labels[1]))
+                {
+                    string sLimit = ((DateTime.Now).AddDays(7)).ToString();
+
+                    if (sYMD.CompareTo(sLimit) > 0)
+                    {
+                        ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
+                        ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                        ret = 4;
+                        break;
+                    }
                 }
             }
 

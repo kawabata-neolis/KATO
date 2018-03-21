@@ -1750,9 +1750,25 @@ namespace KATO.Form.A0010_JuchuInput
             }
             if (f6 != null && f6.Visible)
             {
-                if (!f6.chkShiire())
+                int c = f6.chkShiire();
+                if (c != 0)
                 {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    BaseMessageBox basemessagebox;
+                    if (c == 2) {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は本日以降に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    }
+                    else if (c == 3) {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "納期は仕入済みの場合は６ケ月、未仕入の場合は１年間に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    }
+                    else if (c == 4)
+                    {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫予定日は７日以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    }
+                    else
+                    {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    }
+
                     basemessagebox.ShowDialog();
                     return;
                 }
