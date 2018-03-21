@@ -2767,6 +2767,21 @@ namespace KATO.Form.A0010_JuchuInput
                         break;
                     }
                 }
+                string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
+                if (string.IsNullOrWhiteSpace(sHSu))
+                {
+                    ret = 1;
+                    ((BaseTextMoney)cc.Controls["txtSuryo"]).Focus();
+                    break;
+                }
+                string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
+                if (string.IsNullOrWhiteSpace(sHTanka))
+                {
+                    ret = 1;
+                    ((BaseTextMoney)cc.Controls["txtTanka"]).Focus();
+                    break;
+                }
+
             }
 
             return ret;
