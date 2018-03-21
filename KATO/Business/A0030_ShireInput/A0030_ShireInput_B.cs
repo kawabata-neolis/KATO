@@ -946,6 +946,68 @@ namespace KATO.Business.A0030_ShireInput
         }
 
         ///<summary>
+        ///getHachuData
+        ///発注データの仕入単価更新の前、データの存在確認(発注データのデータ確保)
+        ///</summary>
+        public bool getShiireHachuData(string strHachuNo)
+        {
+
+            bool ret = false;
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                strSQLInput = "SELECT SUM(数量) AS 数 FROM 仕入明細 WHERE 発注番号 = " + strHachuNo + " AND 削除 = 'N'";
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                // 仕入がある場合は仕入数量の合計が発注数未満であることを確認
+                if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0)
+                {
+                    string s1 = dtSetCd_B.Rows[0]["数"].ToString();
+                    if (string.IsNullOrWhiteSpace(s1))
+                    {
+                        s1 = "0";
+                    }
+
+                    strSQLInput = "SELECT * FROM 発注 WHERE 発注番号 = " + strHachuNo + " AND 削除 = 'N'";
+
+                    dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                    if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0)
+                    {
+                        string s2 = dtSetCd_B.Rows[0]["発注数量"].ToString();
+
+                        // 発注数 - 仕入総数 が 0以下の場合、選択した発注は使用不可
+                        if (0 >= decimal.Parse(s2) - decimal.Parse(s1))
+                        {
+                            ret = true;
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+            return ret;
+        }
+
+        ///<summary>
         ///getTorihikisaki
         ///取引先データの取得
         ///</summary>

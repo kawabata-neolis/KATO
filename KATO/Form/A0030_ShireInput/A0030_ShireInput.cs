@@ -3445,14 +3445,9 @@ namespace KATO.Form.A0030_ShireInput
             A0030_ShireInput_B shireinputB = new A0030_ShireInput_B();
             try
             {
-                //発注データの有無
-                DataTable dtHachuData = shireinputB.getHachuData(strHachuNo);
-
-                //取引先情報が１件以上ある場合
-                if (dtHachuData.Rows.Count != 0)
-                {
-                    return true;
-                }
+                
+                return shireinputB.getShiireHachuData(strHachuNo);
+                
             }
             catch (Exception ex)
             {

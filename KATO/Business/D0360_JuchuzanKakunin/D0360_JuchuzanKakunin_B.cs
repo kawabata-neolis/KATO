@@ -246,7 +246,8 @@ namespace KATO.Business.D0360_JuchuzanKakunin
                 strQuery += "      ,ROUND(((a.発注数量 - a.仕入済数量 ) * a.発注単価), 0, 1) AS 仕入金額";
                 strQuery += "      ,a.注番";
                 strQuery += "      ,'' AS 仕入合計金額";
-                strQuery += "      ,'' AS 客先注番";
+                //strQuery += "      ,'' AS 客先注番";
+                strQuery += "      ,RTRIM(dbo.f_get注番文字FROM担当者 (a.発注者コード)) + CAST(a.発注番号 AS varchar(8)) AS 客先注番";
                 strQuery += "      ,b.得意先名称 AS 得意先名";
                 strQuery += "      ,dbo.f_get発注番号から仕入日(a.発注番号) AS 仕入日";
                 //strQuery += "      ,'' AS 仕入日";

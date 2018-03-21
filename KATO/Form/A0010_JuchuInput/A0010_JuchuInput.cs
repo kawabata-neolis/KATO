@@ -1748,12 +1748,14 @@ namespace KATO.Form.A0010_JuchuInput
             {
                 return;
             }
-            if (f6 != null)
+            if (f6 != null && f6.Visible)
             {
-                //if (!f6.chkData())
-                //{
-                //    return;
-                //}
+                if (!f6.chkShiire())
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "項目が空です。\r\n文字を入力してください", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
 
             string strMsg = "正常に登録されました";

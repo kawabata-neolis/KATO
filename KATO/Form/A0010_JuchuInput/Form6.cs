@@ -604,6 +604,14 @@ namespace KATO.Form.A0010_JuchuInput
                 ((BaseText)inputPanel.Controls["txtEigyo"]).Text = r["営業所コード"].ToString();
                 ((BaseText)inputPanel.Controls["txtSouko"]).Text = r["出庫倉庫"].ToString();
 
+                ((RadSet_2btn)inputPanel.Controls["rdSouko"]).radbtn1.Checked = false;
+                ((RadSet_2btn)inputPanel.Controls["rdSouko"]).radbtn0.Checked = true;
+                if ("0002".Equals(((BaseText)inputPanel.Controls["txtSouko"]).Text))
+                {
+                    ((RadSet_2btn)inputPanel.Controls["rdSouko"]).radbtn0.Checked = false;
+                    ((RadSet_2btn)inputPanel.Controls["rdSouko"]).radbtn1.Checked = true;
+                }
+
                 ((BaseCalendar)inputPanel.Controls["tmpHYMD"]).Text = r["発注年月日"].ToString();
                 ((BaseText)inputPanel.Controls["tmpHSha"]).Text = r["発注者コード"].ToString();
                 ((BaseText)inputPanel.Controls["tmpShiire"]).Text = r["仕入先コード"].ToString();
@@ -964,6 +972,38 @@ namespace KATO.Form.A0010_JuchuInput
             txtTanabanR.BringToFront();
             txtTanabanR.Name = "txtTanabanR";
             txtTanabanR.TabStop = false;
+
+            BaseLabel lblSouko = new BaseLabel();
+            lblSouko.AutoSize = true;
+            //lblTanaban.BackColor = Color.Transparent;
+            lblSouko.Text = "出庫倉庫";
+            basePanel.Controls.Add(lblSouko);
+            //lblTanaban.Location = new Point(841, 80);
+            //lblTanaban.Location = new Point(617, 80);
+            lblSouko.Location = new Point(869, 80);
+            lblSouko.BringToFront();
+            lblSouko.Visible = false;
+
+            RadSet_2btn rdSouko = new RadSet_2btn();
+            rdSouko.Width = 125;
+            rdSouko.Height = 15;
+            rdSouko.PositionRadbtn1_X = 0;
+            rdSouko.PositionRadbtn2_X = 70;
+            rdSouko.LabelTitle = "";
+            rdSouko.Radbtn1Text = "本社";
+            rdSouko.Radbtn2Text = "岐阜";
+            basePanel.Controls.Add(rdSouko);
+            rdSouko.Location = new Point(962, 80);
+            rdSouko.Name = "rdSouko";
+            rdSouko.BringToFront();
+            rdSouko.Visible = false;
+
+            if (cat == cats[1] || cat == cats[3] || cat == cats[4] || cat == cats[5])
+            {
+                lblSouko.Visible = true;
+                rdSouko.Visible = true;
+            }
+
             #endregion
 
             // 4行目
@@ -1935,6 +1975,16 @@ namespace KATO.Form.A0010_JuchuInput
                 string sShiireSu = ((BaseText)cc.Controls["txtShiireSu"]).Text;
                 string sShiireBi = ((BaseText)cc.Controls["txtShiireBi"]).Text;
                 string sSouko = ((BaseText)cc.Controls["txtSouko"]).Text;
+
+                if (((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
+                {
+                    sSouko = "0002";
+                }
+                else
+                {
+                    sSouko = "0001";
+                }
+
                 string sTmpSu = ((BaseTextMoney)cc.Controls["tmpSuryo"]).Text;
                 string sShiireMei = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).valueTextText;
                 string sEigyo = ((BaseText)cc.Controls["txtEigyo"]).Text;
@@ -2630,6 +2680,28 @@ namespace KATO.Form.A0010_JuchuInput
         {
             Panel c = (Panel)((BaseText)sender).Parent;
             ((BaseText)c.Controls["txtSouko"]).Text = ((BaseText)c.Controls["txtEigyo"]).Text;
+        }
+
+        public bool chkShiire()
+        {
+            bool ret = true;
+
+            TableLayoutControlCollection c = tableLayoutPanel1.Controls;
+
+            foreach (Control cc in c)
+            {
+                string sHShiire = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
+
+                if (string.IsNullOrWhiteSpace(sHShiire))
+                {
+                    ret = false;
+                    ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).Focus();
+                    break;
+                }
+            }
+
+            return ret;
+
         }
 
         public bool chkData()
