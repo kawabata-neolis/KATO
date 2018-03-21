@@ -2694,12 +2694,57 @@ namespace KATO.Form.A0010_JuchuInput
 
             foreach (Control cc in c)
             {
+                string sHYMD = ((BaseCalendar)cc.Controls["txtHYMD"]).Text;
                 string sHShiire = ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText;
+                string sHSha = ((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText;
+                string sHDai = ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText;
+                string sHChubun = ((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText;
+                string sHMak = ((LabelSet_Maker)cc.Controls["lsMaker"]).CodeTxtText;
+                string sHHin = ((BaseText)cc.Controls["txtHinmei"]).Text;
+                string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
+                string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
+
+                if (string.IsNullOrWhiteSpace(sHYMD))
+                {
+                    ((BaseCalendar)cc.Controls["txtHYMD"]).Focus();
+                    ret = 1;
+                    break;
+                }
 
                 if (string.IsNullOrWhiteSpace(sHShiire))
                 {
-                    ret = 1;
                     ((TextSet_Torihikisaki)cc.Controls["lsShiire"]).Focus();
+                    ret = 1;
+                    break;
+                }
+                if (string.IsNullOrWhiteSpace(sHSha))
+                {
+                    ((LabelSet_Tantousha)cc.Controls["lsHSha"]).Focus();
+                    ret = 1;
+                    break;
+                }
+                if (string.IsNullOrWhiteSpace(sHMak))
+                {
+                    ((LabelSet_Maker)cc.Controls["lsMaker"]).Focus();
+                    ret = 1;
+                    break;
+                }
+                if (string.IsNullOrWhiteSpace(sHDai))
+                {
+                    ((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).Focus();
+                    ret = 1;
+                    break;
+                }
+                if (string.IsNullOrWhiteSpace(sHChubun))
+                {
+                    ((LabelSet_Chubunrui)cc.Controls["lsChubun"]).Focus();
+                    ret = 1;
+                    break;
+                }
+                if (string.IsNullOrWhiteSpace(sHHin))
+                {
+                    ((BaseText)cc.Controls["txtHinmei"]).Focus();
+                    ret = 1;
                     break;
                 }
 
@@ -2736,6 +2781,13 @@ namespace KATO.Form.A0010_JuchuInput
                     continue;
                 }
                 string sYMD = ((BaseCalendar)cc.Controls["txtNohki"]).Text;
+
+                if (string.IsNullOrWhiteSpace(sYMD))
+                {
+                    ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                    ret = 1;
+                    break;
+                }
                 if (sYMD.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
                 {
                     ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
@@ -2745,6 +2797,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 string sSuryo = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
+
                 if (!string.IsNullOrWhiteSpace(sSuryo) && decimal.Parse(sSuryo) > 0)
                 {
                     if (sYMD.CompareTo(strEndDay) > 0)
@@ -2767,25 +2820,21 @@ namespace KATO.Form.A0010_JuchuInput
                         break;
                     }
                 }
-                string sHSu = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
                 if (string.IsNullOrWhiteSpace(sHSu))
                 {
                     ret = 1;
                     ((BaseTextMoney)cc.Controls["txtSuryo"]).Focus();
                     break;
                 }
-                string sHTanka = ((BaseTextMoney)cc.Controls["txtTanka"]).Text;
                 if (string.IsNullOrWhiteSpace(sHTanka))
                 {
                     ret = 1;
                     ((BaseTextMoney)cc.Controls["txtTanka"]).Focus();
                     break;
                 }
-
             }
 
             return ret;
-
         }
 
         public bool chkData()
