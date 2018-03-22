@@ -118,10 +118,10 @@
             this.txtTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTanka.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtTanka.intDeciSet = 2;
-            this.txtTanka.intIntederSet = 0;
+            this.txtTanka.intIntederSet = 10;
             this.txtTanka.intShishagonyu = 0;
             this.txtTanka.Location = new System.Drawing.Point(693, 13);
-            this.txtTanka.MaxLength = 8;
+            this.txtTanka.MaxLength = 13;
             this.txtTanka.MinusFlg = false;
             this.txtTanka.Name = "txtTanka";
             this.txtTanka.Size = new System.Drawing.Size(150, 22);

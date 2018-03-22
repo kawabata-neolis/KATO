@@ -1448,9 +1448,10 @@ namespace KATO.Form.A0030_ShireInput
                 //端数区分確保
                 intHasu = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
+                double dblKin = double.Parse(string.Format("{0:0.00}", txtSu.Text)) * (double.Parse(string.Format("{0:0.00}", txtTanka.Text)));
+
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound((double.Parse(string.Format("{0:0.#}", double.Parse(txtSu.Text))) * (double.Parse(string.Format("{0:0.#}", double.Parse(txtTanka.Text))))), 0, intHasu)).ToString();
-                txtKin.updPriceMethod();
+                txtKin.Text = (setRound(dblKin, 2, intHasu)).ToString();
 
                 //金額が-1になった場合
                 if (txtKin.Text == "-1")
@@ -1472,6 +1473,8 @@ namespace KATO.Form.A0030_ShireInput
 
                 //合計計算
                 setGokeiKesan();
+
+                txtKin.updPriceMethod();
             }
 
         }
@@ -1662,13 +1665,12 @@ namespace KATO.Form.A0030_ShireInput
                 shireinput.txtUnchin.Text = "0";
             }
 
-            decGokei = decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero);
-
             //運賃を追加
             decGokei = decGokei + Decimal.Parse(shireinput.txtUnchin.Text);
-                
+
             //合計に入れる
-            shireinput.txtGokei.Text = decGokei.ToString();
+            shireinput.txtGokei.Text = (decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero)).ToString();
+
             shireinput.txtGokei.updPriceMethod();
 
             //SQLファイルのパスとファイル名を入れる用
