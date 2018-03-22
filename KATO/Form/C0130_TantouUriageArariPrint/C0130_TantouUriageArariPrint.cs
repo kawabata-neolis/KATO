@@ -73,8 +73,10 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
             // 閲覧権限がある場合
             if ("1".Equals(etsuranFlg))
             {
-                txtYmdFrom.ReadOnly = false;
-                txtYmdTo.ReadOnly = false;
+                txtYmdFrom.Enabled = true;
+                txtYmdFrom.TabStop = true;
+                txtYmdTo.Enabled = true;
+                txtYmdTo.TabStop = true;
                 // F11;印刷表示
                 this.btnF11.Text = STR_FUNC_F11;
             }
