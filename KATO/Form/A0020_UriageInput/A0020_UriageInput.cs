@@ -1935,22 +1935,35 @@ namespace KATO.Form.A0020_UriageInput
                         //ビジネス層のインスタンス生成
                         try
                         {
-                            //ビジネス層、発注指示区分を取得する。
-                            dtSetView = uriageinputB.getHacyusijiKbn(lstString, con);
+                            //
+                            // 暫定対応
+                            // 利益率承認が下りている受注については
+                            // 売上単価・仕入単価の比較をスキップする
+                            // (2018/03/23 加藤社長相談の上 暫定対応実施)
+                            //
 
-                            if (dtSetView.Rows.Count > 0)
+                            if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
                             {
-                                //仕入品のみ対象
-                                if (dtSetView.Rows[0]["発注指示区分"].ToString() == "1")
+                            }
+                            else
+                            {
+                                //ビジネス層、発注指示区分を取得する。
+                                dtSetView = uriageinputB.getHacyusijiKbn(lstString, con);
+
+                                if (dtSetView.Rows.Count > 0)
                                 {
-                                    //赤伝は対象外
-                                    if (decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) > 0)
+                                    //仕入品のみ対象
+                                    if (dtSetView.Rows[0]["発注指示区分"].ToString() == "1")
                                     {
-                                        if (Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text)) <Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text)))
+                                        //赤伝は対象外
+                                        if (decimal.Parse(((TextSet_Jucyu)cs1[0]).txtSuuryoElem4.Text) > 0)
                                         {
-                                            BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "売上単価＜仕入単価の売上はできません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                                            basemessagebox.ShowDialog();
-                                            return false;
+                                            if (Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtTankaElem5.Text)) < Math.Abs(decimal.Parse(((TextSet_Jucyu)cs1[0]).txtGenkaElem7.Text)))
+                                            {
+                                                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "売上単価＜仕入単価の売上はできません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                                                basemessagebox.ShowDialog();
+                                                return false;
+                                            }
                                         }
                                     }
                                 }
