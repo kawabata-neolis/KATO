@@ -800,6 +800,178 @@ namespace KATO.Form.M1220_SyohinBunruiRiekiritsu
             return;
         }
 
-    }
+        ///<summary>
+        ///txtKensaku_KeyDown
+        ///キー入力判定(検索テキストボックス)
+        ///</summary>
+        private void txtKensaku_KeyDown(object sender, KeyEventArgs e)
+        {
+            //キー入力情報によって動作を変える
+            switch (e.KeyCode)
+            {
+                case Keys.Tab:
+                    break;
+                case Keys.Left:
+                    break;
+                case Keys.Right:
+                    break;
+                case Keys.Up:
+                    break;
+                case Keys.Down:
+                    break;
+                case Keys.Delete:
+                    break;
+                case Keys.Back:
+                    break;
+                case Keys.Enter:
+                    if (txtKensaku.blIsEmpty() == false)
+                    {
+                        //TABボタンと同じ効果
+                        SendKeys.Send("{TAB}");
+                    }
+                    else
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+                        this.showShohinList();
+                    }
+                    break;
+                case Keys.F1:
+                    break;
+                case Keys.F2:
+                    break;
+                case Keys.F3:
+                    break;
+                case Keys.F4:
+                    break;
+                case Keys.F5:
+                    break;
+                case Keys.F6:
+                    break;
+                case Keys.F7:
+                    break;
+                case Keys.F8:
+                    break;
+                case Keys.F9:
+                    //商品リスト移動メソッド
+                    showShohinList();
+                    break;
+                case Keys.F10:
+                    break;
+                case Keys.F11:
+                    break;
+                case Keys.F12:
+                    break;
 
+                default:
+                    break;
+            }
+        }
+
+
+        ///<summary>
+        ///showShohinList
+        ///商品リストの実行
+        ///</summary>
+        private void showShohinList()
+        {
+            ShouhinList shouhinlist = new ShouhinList(this);
+            try
+            {
+                //検索項目に一つでも記入がある場合
+                if (
+                    labelSet_DaibunruiS.codeTxt.blIsEmpty() == false &&
+                    labelSet_ChubunruiS.codeTxt.blIsEmpty() == false &&
+                    labelSet_MakerS.codeTxt.blIsEmpty() == false &&
+                    txtKensaku.blIsEmpty() == false)
+                {
+                    shouhinlist.blKensaku = false;
+                }
+                else
+                {
+                    shouhinlist.blKensaku = true;
+                }
+
+                ////表示していた品名を確保
+                //string strHinmeiBef = txtHinmei.Text;
+
+                ////検索項目が編集できる状態かどうか判断
+                //Boolean blEnabledTrue = false;
+
+                ////検索項目が編集できる状態だった場合
+                //if (labelSet_Daibunrui.Enabled == true)
+                //{
+                //    blEnabledTrue = true;
+                //}
+
+                ////編集可能にする
+                //labelSet_Daibunrui.Enabled = true;
+                //labelSet_Chubunrui.Enabled = true;
+                //labelSet_Maker.Enabled = true;
+                //txtHinmei.Enabled = true;
+                //lblHinmei.Enabled = true;
+
+                shouhinlist.intFrmKind = CommonTeisu.FRM_HACHUINPUT;
+                shouhinlist.lsDaibunrui = labelSet_DaibunruiS;
+                shouhinlist.lsChubunrui = labelSet_ChubunruiS;
+                shouhinlist.lsMaker = labelSet_MakerS;
+                //shouhinlist.btxtHinC1 = txtHinmei;
+                //shouhinlist.btxtHinC2 = txtData2;
+                //shouhinlist.btxtHinC3 = txtData3;
+                //shouhinlist.btxtHinC4 = txtData4;
+                //shouhinlist.btxtHinC5 = txtData5;
+                //shouhinlist.btxtHinC6 = txtData6;
+                shouhinlist.btxtShohinCd = txtShohinCd;
+                //shouhinlist.lblGrayTanabanH = lblGrayTanaHon;
+                //shouhinlist.lblGrayTanabanG = lblGrayTanaGihu;
+                //shouhinlist.cbShireTanka = cmbHachutan;
+                shouhinlist.btxtKensaku = txtKensaku;
+                shouhinlist.bmtxtTeika = txtTeka;
+                shouhinlist.lblGrayHinMakerDaiCdChuCdHinban = lblGrayShohin;
+
+                shouhinlist.ShowDialog();
+
+                //setcmbHachutanSetUp();
+
+                ////商品リストから新しく選ばれた場合
+                //if (strHinmeiBef != txtHinmei.Text)
+                //{
+                //    //編集不可能にする
+                //    labelSet_Daibunrui.Enabled = false;
+                //    labelSet_Chubunrui.Enabled = false;
+                //    labelSet_Maker.Enabled = false;
+                //    txtHinmei.Enabled = false;
+                //    lblHinmei.Enabled = false;
+
+                //    //データを確保
+                //    txtData1.Text = txtHinmei.Text;
+
+                //    //掛率の再計算
+                //    setKakeritsu();
+                //    txtHachusu.Focus();
+                //}
+                //else
+                //{
+                //    //商品リストに行く前に検索項目が編集できる状態ではない場合
+                //    if (blEnabledTrue == false)
+                //    {
+                //        //編集不可能にする
+                //        labelSet_Daibunrui.Enabled = false;
+                //        labelSet_Chubunrui.Enabled = false;
+                //        labelSet_Maker.Enabled = false;
+                //        txtHinmei.Enabled = false;
+                //        lblHinmei.Enabled = false;
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+        }
+    }
 }

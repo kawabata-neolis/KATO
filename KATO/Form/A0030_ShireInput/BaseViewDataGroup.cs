@@ -1708,340 +1708,343 @@ namespace KATO.Form.A0030_ShireInput
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
-                //データが1つ以上ある場合
-                if (dtSetCd_B.Rows[0][0].ToString() != "")
+                if (dtSetCd_B.Rows.Count > 0)
                 {
-                    //消費税区分確保
-                    intZeikbn = int.Parse(dtSetCd_B.Rows[0]["消費税区分"].ToString());
-
-                    //消費税端数計算区分確保
-                    intZeihasukbn = int.Parse(dtSetCd_B.Rows[0]["消費税端数計算区分"].ToString());
-
-                    //消費税計算区分確保
-                    decZeikesankbn = decimal.Parse(dtSetCd_B.Rows[0]["消費税計算区分"].ToString());
-
-                    //消費税計算区分が2の場合
-                    if (decZeikesankbn == 2)
+                    //データが1つ以上ある場合
+                    if (dtSetCd_B.Rows[0][0].ToString() != "")
                     {
-                        //消費税を0
-                        shireinput.txtShohizei.Text = "0";
-                        //総合計を合計と同じ数値
-                        shireinput.txtSogokei.Text = decGokei.ToString();
+                        //消費税区分確保
+                        intZeikbn = int.Parse(dtSetCd_B.Rows[0]["消費税区分"].ToString());
+
+                        //消費税端数計算区分確保
+                        intZeihasukbn = int.Parse(dtSetCd_B.Rows[0]["消費税端数計算区分"].ToString());
+
+                        //消費税計算区分確保
+                        decZeikesankbn = decimal.Parse(dtSetCd_B.Rows[0]["消費税計算区分"].ToString());
+
+                        //消費税計算区分が2の場合
+                        if (decZeikesankbn == 2)
+                        {
+                            //消費税を0
+                            shireinput.txtShohizei.Text = "0";
+                            //総合計を合計と同じ数値
+                            shireinput.txtSogokei.Text = decGokei.ToString();
+                            shireinput.txtSogokei.updPriceMethod();
+                            //運賃が0円の場合
+                            if (shireinput.txtUnchin.Text == "0")
+                            {
+                                shireinput.txtUnchin.Text = "";
+                            }
+                            return;
+                        }
+
+                        //消費税区分が1の場合
+                        if (intZeikbn == 1)
+                        {
+                            //消費税を0
+                            shireinput.txtShohizei.Text = "0";
+                            //総合計を合計と同じ数値
+                            shireinput.txtSogokei.Text = decGokei.ToString();
+                            shireinput.txtSogokei.updPriceMethod();
+                            //運賃が0円の場合
+                            if (shireinput.txtUnchin.Text == "0")
+                            {
+                                shireinput.txtUnchin.Text = "";
+                            }
+                            return;
+                        }
+
+                        //仕入入力画面の年月日に記入がない場合
+                        if (!StringUtl.blIsEmpty(shireinput.txtYMD.Text))
+                        {
+                            decZei = 0;
+                        }
+                        else
+                        {
+                            //消費税の確保
+                            dtZei = getShohizei(shireinput.txtYMD.Text);
+
+                            //データが一つ以上ある場合
+                            if (dtZei.Rows.Count > 0)
+                            {
+                                decZei = decimal.Parse(dtZei.Rows[0]["消費税率"].ToString());
+                            }
+                        }
+
+                        //税計算区分が0の場合
+                        if (decZeikesankbn == 0)
+                        {
+                            //１行目
+                            //金額無記入の場合
+                            if (shireinput.gbData1.txtKin.Text == "")
+                            {
+                                shireinput.gbData1.txtKin.Text = "0";
+                            }
+
+                            if (shireinput.gbData1.txtKin.Text != "0")
+                            {
+                                //税端数区分で判断、金額から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //金額と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //金額と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //金額と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            //金額0の場合
+                            if (shireinput.gbData2.txtKin.Text == "0")
+                            {
+                                shireinput.gbData2.txtKin.Text = "";
+                            }
+
+                            //２行目
+                            //金額無記入の場合
+                            if (shireinput.gbData2.txtKin.Text == "")
+                            {
+                                shireinput.gbData2.txtKin.Text = "0";
+                            }
+
+                            if (shireinput.gbData2.txtKin.Text != "0")
+                            {
+                                //税端数区分で判断、金額から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //金額と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //金額と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //金額と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            //金額0の場合
+                            if (shireinput.gbData2.txtKin.Text == "0")
+                            {
+                                shireinput.gbData2.txtKin.Text = "";
+                            }
+
+                            //３行目
+                            //金額無記入の場合
+                            if (shireinput.gbData3.txtKin.Text == "")
+                            {
+                                shireinput.gbData3.txtKin.Text = "0";
+                            }
+
+                            if (shireinput.gbData3.txtKin.Text != "0")
+                            {
+                                //税端数区分で判断、金額から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //金額と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //金額と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //金額と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            //金額0の場合
+                            if (shireinput.gbData3.txtKin.Text == "0")
+                            {
+                                shireinput.gbData3.txtKin.Text = "";
+                            }
+
+                            //４行目
+                            //金額無記入の場合
+                            if (shireinput.gbData4.txtKin.Text == "")
+                            {
+                                shireinput.gbData4.txtKin.Text = "0";
+                            }
+
+                            if (shireinput.gbData4.txtKin.Text != "0")
+                            {
+                                //税端数区分で判断、金額から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //金額と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //金額と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //金額と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            //金額0の場合
+                            if (shireinput.gbData4.txtKin.Text == "0")
+                            {
+                                shireinput.gbData4.txtKin.Text = "";
+                            }
+
+
+                            //５行目
+                            //金額無記入の場合
+                            if (shireinput.gbData5.txtKin.Text == "")
+                            {
+                                shireinput.gbData5.txtKin.Text = "0";
+                            }
+
+                            if (shireinput.gbData5.txtKin.Text != "0")
+                            {
+                                //税端数区分で判断、金額から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //金額と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //金額と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //金額と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            //金額0の場合
+                            if (shireinput.gbData5.txtKin.Text == "0")
+                            {
+                                shireinput.gbData5.txtKin.Text = "";
+                            }
+
+                            //0の場合
+                            if (txtKin.Text == "0")
+                            {
+                                txtKin.Text = "";
+                            }
+
+                            if (shireinput.txtUnchin.Text != "0")
+                            {
+                                //税端数区分で判断、運賃から税合計を取得
+                                switch (intZeihasukbn)
+                                {
+                                    case 0:
+                                        //運賃と税率、四捨五入による計算（モード0）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
+                                        break;
+                                    case 1:
+                                        //運賃と税率、四捨五入による計算（モード1）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
+                                        break;
+                                    case 2:
+                                        //運賃と税率、四捨五入による計算（モード2）
+                                        decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
+                                        break;
+                                }
+                            }
+
+                            decZeigokei = decimal.Round(decZeigokei, 2, MidpointRounding.AwayFromZero);
+
+                            //仕入入力画面の消費税に記入
+                            shireinput.txtShohizei.Text = decZeigokei.ToString();
+
+                            //運賃が0円の場合
+                            if (shireinput.txtUnchin.Text == "0")
+                            {
+                                shireinput.txtUnchin.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            //税端数区分で判断、合計金額から税合計を取得
+                            switch (intZeihasukbn)
+                            {
+                                case 0:
+                                    //合計金額と税率、四捨五入による計算（モード0）、仕入入力画面の消費税に記入
+                                    shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 0)).ToString();
+                                    break;
+                                case 1:
+                                    //合計金額と税率、四捨五入による計算（モード1）、仕入入力画面の消費税に記入
+                                    shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 1)).ToString();
+                                    break;
+                                case 2:
+                                    //合計金額と税率、四捨五入による計算（モード2）、仕入入力画面の消費税に記入
+                                    shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 2)).ToString();
+                                    break;
+                            }
+                        }
+
+                        string strGokei = shireinput.txtGokei.Text;
+
+                        if (strGokei == "0" || strGokei == "-1")
+                        {
+                            strGokei = "0";
+                        }
+
+                        string strShohizei = shireinput.txtShohizei.Text;
+
+                        if (strShohizei == "0" || strShohizei == "-1")
+                        {
+                            strShohizei = "0";
+                        }
+
+                        //仕入入力画面の総合計に記入
+                        shireinput.txtSogokei.Text = (decimal.Parse(strGokei) + decimal.Parse(strShohizei)).ToString("#");
                         shireinput.txtSogokei.updPriceMethod();
-                        //運賃が0円の場合
-                        if (shireinput.txtUnchin.Text == "0")
-                        {
-                            shireinput.txtUnchin.Text = "";
-                        }
-                        return;
-                    }
 
-                    //消費税区分が1の場合
-                    if (intZeikbn == 1)
-                    {
-                        //消費税を0
-                        shireinput.txtShohizei.Text = "0";
-                        //総合計を合計と同じ数値
-                        shireinput.txtSogokei.Text = decGokei.ToString();
+                        shireinput.txtGokei.updPriceMethod();
+                        shireinput.txtShohizei.updPriceMethod();
                         shireinput.txtSogokei.updPriceMethod();
-                        //運賃が0円の場合
-                        if (shireinput.txtUnchin.Text == "0")
-                        {
-                            shireinput.txtUnchin.Text = "";
-                        }
-                        return;
-                    }
 
-                    //仕入入力画面の年月日に記入がない場合
-                    if (!StringUtl.blIsEmpty(shireinput.txtYMD.Text))
-                    {
-                        decZei = 0;
-                    }
-                    else
-                    {
-                        //消費税の確保
-                        dtZei = getShohizei(shireinput.txtYMD.Text);
-
-                        //データが一つ以上ある場合
-                        if (dtZei.Rows.Count > 0)
+                        //マイナス１か０の場合
+                        if (shireinput.txtGokei.Text == "-1" || shireinput.txtGokei.Text == "0")
                         {
-                            decZei = decimal.Parse(dtZei.Rows[0]["消費税率"].ToString());
-                        }
-                    }
-
-                    //税計算区分が0の場合
-                    if (decZeikesankbn == 0)
-                    {
-                        //１行目
-                        //金額無記入の場合
-                        if (shireinput.gbData1.txtKin.Text == "")
-                        {
-                            shireinput.gbData1.txtKin.Text = "0";
+                            shireinput.txtGokei.Clear();
                         }
 
-                        if (shireinput.gbData1.txtKin.Text != "0")
+                        //マイナス１か０の場合
+                        if (shireinput.txtShohizei.Text == "-1" || shireinput.txtShohizei.Text == "0")
                         {
-                            //税端数区分で判断、金額から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData1.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
+                            shireinput.txtShohizei.Clear();
                         }
 
-                        //金額0の場合
-                        if (shireinput.gbData2.txtKin.Text == "0")
+                        //マイナス１か０の場合
+                        if (shireinput.txtSogokei.Text == "-1" || shireinput.txtSogokei.Text == "0")
                         {
-                            shireinput.gbData2.txtKin.Text = "";
+                            shireinput.txtSogokei.Clear();
                         }
 
-                        //２行目
-                        //金額無記入の場合
-                        if (shireinput.gbData2.txtKin.Text == "")
+                        //マイナス１か０の場合
+                        if (shireinput.txtUnchin.Text == "-1" || shireinput.txtUnchin.Text == "0")
                         {
-                            shireinput.gbData2.txtKin.Text = "0";
-                        }
-
-                        if (shireinput.gbData2.txtKin.Text != "0")
-                        {
-                            //税端数区分で判断、金額から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData2.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
-                        }
-
-                        //金額0の場合
-                        if (shireinput.gbData2.txtKin.Text == "0")
-                        {
-                            shireinput.gbData2.txtKin.Text = "";
-                        }
-
-                        //３行目
-                        //金額無記入の場合
-                        if (shireinput.gbData3.txtKin.Text == "")
-                        {
-                            shireinput.gbData3.txtKin.Text = "0";
-                        }
-
-                        if (shireinput.gbData3.txtKin.Text != "0")
-                        {
-                            //税端数区分で判断、金額から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData3.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
-                        }
-
-                        //金額0の場合
-                        if (shireinput.gbData3.txtKin.Text == "0")
-                        {
-                            shireinput.gbData3.txtKin.Text = "";
-                        }
-
-                        //４行目
-                        //金額無記入の場合
-                        if (shireinput.gbData4.txtKin.Text == "")
-                        {
-                            shireinput.gbData4.txtKin.Text = "0";
-                        }
-
-                        if (shireinput.gbData4.txtKin.Text != "0")
-                        {
-                            //税端数区分で判断、金額から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData4.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
-                        }
-
-                        //金額0の場合
-                        if (shireinput.gbData4.txtKin.Text == "0")
-                        {
-                            shireinput.gbData4.txtKin.Text = "";
-                        }
-
-
-                        //５行目
-                        //金額無記入の場合
-                        if (shireinput.gbData5.txtKin.Text == "")
-                        {
-                            shireinput.gbData5.txtKin.Text = "0";
-                        }
-
-                        if (shireinput.gbData5.txtKin.Text != "0")
-                        {
-                            //税端数区分で判断、金額から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //金額と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //金額と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //金額と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.gbData5.txtKin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
-                        }
-
-                        //金額0の場合
-                        if (shireinput.gbData5.txtKin.Text == "0")
-                        {
-                            shireinput.gbData5.txtKin.Text = "";
-                        }
-
-                        //0の場合
-                        if (txtKin.Text == "0")
-                        {
-                            txtKin.Text = "";
-                        }
-
-                        if (shireinput.txtUnchin.Text != "0")
-                        {
-                            //税端数区分で判断、運賃から税合計を取得
-                            switch (intZeihasukbn)
-                            {
-                                case 0:
-                                    //運賃と税率、四捨五入による計算（モード0）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 0)).ToString());
-                                    break;
-                                case 1:
-                                    //運賃と税率、四捨五入による計算（モード1）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 1)).ToString());
-                                    break;
-                                case 2:
-                                    //運賃と税率、四捨五入による計算（モード2）
-                                    decZeigokei = decZeigokei + decimal.Parse((setRound(double.Parse((decimal.Parse(shireinput.txtUnchin.Text) * decZei / 100).ToString()), 0, 2)).ToString());
-                                    break;
-                            }
-                        }
-
-                        decZeigokei = decimal.Round(decZeigokei, 2, MidpointRounding.AwayFromZero);
-
-                        //仕入入力画面の消費税に記入
-                        shireinput.txtShohizei.Text = decZeigokei.ToString();
-
-                        //運賃が0円の場合
-                        if (shireinput.txtUnchin.Text == "0")
-                        {
-                            shireinput.txtUnchin.Text = "";
+                            shireinput.txtUnchin.Clear();
                         }
                     }
-                    else
-                    {
-                        //税端数区分で判断、合計金額から税合計を取得
-                        switch (intZeihasukbn)
-                        {
-                            case 0:
-                                //合計金額と税率、四捨五入による計算（モード0）、仕入入力画面の消費税に記入
-                                shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 0)).ToString();
-                                break;
-                            case 1:
-                                //合計金額と税率、四捨五入による計算（モード1）、仕入入力画面の消費税に記入
-                                shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 1)).ToString();
-                                break;
-                            case 2:
-                                //合計金額と税率、四捨五入による計算（モード2）、仕入入力画面の消費税に記入
-                                shireinput.txtShohizei.Text = (setRound(double.Parse((decGokei * decZei / 100).ToString()), 0, 2)).ToString();
-                                break;
-                        }
-                    }
-
-                    string strGokei = shireinput.txtGokei.Text;
-
-                    if (strGokei == "0" || strGokei == "-1")
-                    {
-                        strGokei = "0";
-                    }
-
-                    string strShohizei = shireinput.txtShohizei.Text;
-
-                    if (strShohizei == "0" || strShohizei == "-1")
-                    {
-                        strShohizei = "0";
-                    }
-
-                    //仕入入力画面の総合計に記入
-                    shireinput.txtSogokei.Text = (decimal.Parse(strGokei) + decimal.Parse(strShohizei)).ToString("#");
-                    shireinput.txtSogokei.updPriceMethod();
-
-                    shireinput.txtGokei.updPriceMethod();
-                    shireinput.txtShohizei.updPriceMethod();
-                    shireinput.txtSogokei.updPriceMethod();
-
-                    //マイナス１か０の場合
-                    if (shireinput.txtGokei.Text == "-1" || shireinput.txtGokei.Text == "0")
-                    {
-                        shireinput.txtGokei.Clear();
-                    }
-
-                    //マイナス１か０の場合
-                    if (shireinput.txtShohizei.Text == "-1" || shireinput.txtShohizei.Text == "0")
-                    {
-                        shireinput.txtShohizei.Clear();
-                    }
-
-                    //マイナス１か０の場合
-                    if (shireinput.txtSogokei.Text == "-1" || shireinput.txtSogokei.Text == "0")
-                    {
-                        shireinput.txtSogokei.Clear();
-                    }
-
-                    //マイナス１か０の場合
-                    if (shireinput.txtUnchin.Text == "-1" || shireinput.txtUnchin.Text == "0")
-                    {
-                        shireinput.txtUnchin.Clear();
-                    }
-
                 }
+
                 return;
             }
             catch (Exception ex)

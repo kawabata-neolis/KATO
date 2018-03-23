@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridRiekiritsu = new KATO.Common.Ctl.BaseDataGridView();
             this.bgSerach = new System.Windows.Forms.GroupBox();
             this.lblSerach = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -57,6 +57,14 @@
             this.lblTitle = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblId = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtId = new KATO.Common.Ctl.BaseText();
+            this.lblKensaku = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtKensaku = new KATO.Common.Ctl.BaseText();
+            this.lblShohinCd = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtShohinCd = new KATO.Common.Ctl.BaseText();
+            this.lblTeka = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.txtTeka = new KATO.Common.Ctl.BaseTextMoney();
+            this.gbShohin = new System.Windows.Forms.GroupBox();
+            this.lblGrayShohin = new KATO.Common.Ctl.BaseLabelGray();
             ((System.ComponentModel.ISupportInitialize)(this.gridRiekiritsu)).BeginInit();
             this.bgSerach.SuspendLayout();
             this.labelSet_Maker.SuspendLayout();
@@ -64,6 +72,7 @@
             this.labelSet_Daibunrui.SuspendLayout();
             this.labelSet_Tokuisaki.SuspendLayout();
             this.radSetting.SuspendLayout();
+            this.gbShohin.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -129,35 +138,35 @@
             this.gridRiekiritsu.AllowUserToResizeColumns = false;
             this.gridRiekiritsu.AllowUserToResizeRows = false;
             this.gridRiekiritsu.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRiekiritsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRiekiritsu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.gridRiekiritsu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridRiekiritsu.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridRiekiritsu.DefaultCellStyle = dataGridViewCellStyle23;
             this.gridRiekiritsu.EnableHeadersVisualStyles = false;
             this.gridRiekiritsu.Location = new System.Drawing.Point(12, 216);
             this.gridRiekiritsu.Name = "gridRiekiritsu";
             this.gridRiekiritsu.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRiekiritsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRiekiritsu.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.gridRiekiritsu.RowHeadersVisible = false;
             this.gridRiekiritsu.RowTemplate.Height = 21;
             this.gridRiekiritsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -533,11 +542,119 @@
             this.txtId.TabStop = false;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // lblKensaku
+            // 
+            this.lblKensaku.AutoSize = true;
+            this.lblKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKensaku.Location = new System.Drawing.Point(578, 160);
+            this.lblKensaku.Name = "lblKensaku";
+            this.lblKensaku.Size = new System.Drawing.Size(87, 15);
+            this.lblKensaku.strToolTip = null;
+            this.lblKensaku.TabIndex = 98;
+            this.lblKensaku.Text = "検索文字列";
+            this.lblKensaku.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtKensaku
+            // 
+            this.txtKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtKensaku.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtKensaku.Location = new System.Drawing.Point(671, 157);
+            this.txtKensaku.MaxLength = 40;
+            this.txtKensaku.Name = "txtKensaku";
+            this.txtKensaku.Size = new System.Drawing.Size(330, 22);
+            this.txtKensaku.TabIndex = 99;
+            this.txtKensaku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtKensaku_KeyDown);
+            // 
+            // lblShohinCd
+            // 
+            this.lblShohinCd.AutoSize = true;
+            this.lblShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblShohinCd.Location = new System.Drawing.Point(578, 15);
+            this.lblShohinCd.Name = "lblShohinCd";
+            this.lblShohinCd.Size = new System.Drawing.Size(87, 15);
+            this.lblShohinCd.strToolTip = null;
+            this.lblShohinCd.TabIndex = 101;
+            this.lblShohinCd.Text = "商品コード";
+            this.lblShohinCd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShohinCd.Visible = false;
+            // 
+            // txtShohinCd
+            // 
+            this.txtShohinCd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtShohinCd.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.txtShohinCd.Location = new System.Drawing.Point(671, 12);
+            this.txtShohinCd.MaxLength = 40;
+            this.txtShohinCd.Name = "txtShohinCd";
+            this.txtShohinCd.Size = new System.Drawing.Size(84, 22);
+            this.txtShohinCd.TabIndex = 100;
+            this.txtShohinCd.TabStop = false;
+            this.txtShohinCd.Visible = false;
+            // 
+            // lblTeka
+            // 
+            this.lblTeka.AutoSize = true;
+            this.lblTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblTeka.Location = new System.Drawing.Point(1039, 159);
+            this.lblTeka.Name = "lblTeka";
+            this.lblTeka.Size = new System.Drawing.Size(39, 15);
+            this.lblTeka.strToolTip = null;
+            this.lblTeka.TabIndex = 102;
+            this.lblTeka.Text = "定価";
+            this.lblTeka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtTeka
+            // 
+            this.txtTeka.blnCommaOK = true;
+            this.txtTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtTeka.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtTeka.intDeciSet = 0;
+            this.txtTeka.intIntederSet = 10;
+            this.txtTeka.intShishagonyu = 0;
+            this.txtTeka.Location = new System.Drawing.Point(1096, 157);
+            this.txtTeka.MaxLength = 10;
+            this.txtTeka.MinusFlg = false;
+            this.txtTeka.Name = "txtTeka";
+            this.txtTeka.ReadOnly = true;
+            this.txtTeka.Size = new System.Drawing.Size(100, 22);
+            this.txtTeka.TabIndex = 103;
+            this.txtTeka.TabStop = false;
+            this.txtTeka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // gbShohin
+            // 
+            this.gbShohin.Controls.Add(this.lblGrayShohin);
+            this.gbShohin.Location = new System.Drawing.Point(672, 45);
+            this.gbShohin.Name = "gbShohin";
+            this.gbShohin.Size = new System.Drawing.Size(557, 101);
+            this.gbShohin.TabIndex = 105;
+            this.gbShohin.TabStop = false;
+            this.gbShohin.Text = "商品名";
+            // 
+            // lblGrayShohin
+            // 
+            this.lblGrayShohin.AutoEllipsis = true;
+            this.lblGrayShohin.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayShohin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayShohin.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayShohin.Location = new System.Drawing.Point(23, 20);
+            this.lblGrayShohin.Name = "lblGrayShohin";
+            this.lblGrayShohin.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayShohin.Size = new System.Drawing.Size(518, 66);
+            this.lblGrayShohin.TabIndex = 99;
+            this.lblGrayShohin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // M1220_SyohinBunruiRiekiritsu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 826);
+            this.Controls.Add(this.gbShohin);
+            this.Controls.Add(this.txtTeka);
+            this.Controls.Add(this.lblTeka);
+            this.Controls.Add(this.lblShohinCd);
+            this.Controls.Add(this.txtShohinCd);
+            this.Controls.Add(this.lblKensaku);
+            this.Controls.Add(this.txtKensaku);
             this.Controls.Add(this.radSetting);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtKakeritsu);
@@ -581,6 +698,13 @@
             this.Controls.SetChildIndex(this.txtKakeritsu, 0);
             this.Controls.SetChildIndex(this.txtId, 0);
             this.Controls.SetChildIndex(this.radSetting, 0);
+            this.Controls.SetChildIndex(this.txtKensaku, 0);
+            this.Controls.SetChildIndex(this.lblKensaku, 0);
+            this.Controls.SetChildIndex(this.txtShohinCd, 0);
+            this.Controls.SetChildIndex(this.lblShohinCd, 0);
+            this.Controls.SetChildIndex(this.lblTeka, 0);
+            this.Controls.SetChildIndex(this.txtTeka, 0);
+            this.Controls.SetChildIndex(this.gbShohin, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridRiekiritsu)).EndInit();
             this.bgSerach.ResumeLayout(false);
             this.bgSerach.PerformLayout();
@@ -594,6 +718,7 @@
             this.labelSet_Tokuisaki.PerformLayout();
             this.radSetting.ResumeLayout(false);
             this.radSetting.PerformLayout();
+            this.gbShohin.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -626,5 +751,13 @@
         private Common.Ctl.BaseLabel lblId;
         private Common.Ctl.BaseText txtId;
         private Common.Ctl.BaseLabel lblSerach;
+        private Common.Ctl.BaseLabel lblKensaku;
+        private Common.Ctl.BaseText txtKensaku;
+        private Common.Ctl.BaseLabel lblShohinCd;
+        private Common.Ctl.BaseText txtShohinCd;
+        private Common.Ctl.BaseLabel lblTeka;
+        private Common.Ctl.BaseTextMoney txtTeka;
+        private System.Windows.Forms.GroupBox gbShohin;
+        private Common.Ctl.BaseLabelGray lblGrayShohin;
     }
 }
