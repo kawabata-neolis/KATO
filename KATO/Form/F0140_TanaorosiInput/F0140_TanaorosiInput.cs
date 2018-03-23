@@ -412,6 +412,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             lstString.Add(txtShouhinCD.Text);
             lstString.Add(txtTanasuu.Text);
             lstString.Add(labelSet_Tanaban_Edit.CodeTxtText);
+            lstString.Add(txtBiko.Text);
 
             DBConnective con = null;
             KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B juchuB = new KATO.Business.A0010_JuchuInput.A0010_JuchuInput_B();
@@ -438,8 +439,6 @@ namespace KATO.Form.F0140_TanaorosiInput
                 //画面内削除
                 delFormClear(this, gridRireki);
 
-                setViewGrid();
-
                 //確保した値を元に戻す
                 txtYMD.Text = strYMD;
                 labelSet_Daibunrui.CodeTxtText = strDibunCd;
@@ -447,6 +446,8 @@ namespace KATO.Form.F0140_TanaorosiInput
                 labelSet_Eigyousho.CodeTxtText = strEigyoCd;
                 labelSet_Maker.CodeTxtText = strMakerCd;
                 labelSet_Tanaban.CodeTxtText = strTanaban;
+
+                setViewGrid();
 
                 //各ラベルセットのLeave処理
                 if (labelSet_Daibunrui.chkTxtDaibunrui())
@@ -880,23 +881,27 @@ namespace KATO.Form.F0140_TanaorosiInput
                 //戻り値のDatatableを取り込む
                 dtSelect = tanaorosiinputB.setSelectItem(lstString);
 
-                //各ラベル,テキストボックスに記入
-                txtShouhinCD.Text = strSelectSyouhinCD;
-                labelSet_Chubunrui_Edit.CodeTxtText = dtSelect.Rows[0]["中分類コード"].ToString();
-                labelSet_Tanaban_Edit.CodeTxtText = dtSelect.Rows[0]["棚番"].ToString();
-                labelSet_Maker_Edit.CodeTxtText = dtSelect.Rows[0]["メーカーコード"].ToString();
-                lblDspShouhin.Text = dtSelect.Rows[0]["品名型番"].ToString();
+                //存在チェック
+                if (dtSelect.Rows.Count > 0)
+                {
+                    //各ラベル,テキストボックスに記入
+                    txtShouhinCD.Text = strSelectSyouhinCD;
+                    labelSet_Chubunrui_Edit.CodeTxtText = dtSelect.Rows[0]["中分類コード"].ToString();
+                    labelSet_Tanaban_Edit.CodeTxtText = dtSelect.Rows[0]["棚番"].ToString();
+                    labelSet_Maker_Edit.CodeTxtText = dtSelect.Rows[0]["メーカーコード"].ToString();
+                    lblDspShouhin.Text = dtSelect.Rows[0]["品名型番"].ToString();
+                    txtBiko.Text = dtSelect.Rows[0]["備考"].ToString();
 
 
-                //文字列をDecimal型に変換、小数点以下を削除
-                decimal decElemTanasu = Math.Floor(decimal.Parse(dtSelect.Rows[0]["棚卸数量"].ToString()));
-                decimal decElemShitei = Math.Floor(decimal.Parse(dtSelect.Rows[0]["指定日在庫"].ToString()));
-                //各テキストボックスに記入
-                txtTanasuu.Text = decElemTanasu.ToString();
-                txtTyoubosuu.Text = decElemShitei.ToString();
+                    //文字列をDecimal型に変換、小数点以下を削除
+                    decimal decElemTanasu = Math.Floor(decimal.Parse(dtSelect.Rows[0]["棚卸数量"].ToString()));
+                    decimal decElemShitei = Math.Floor(decimal.Parse(dtSelect.Rows[0]["指定日在庫"].ToString()));
+                    //各テキストボックスに記入
+                    txtTanasuu.Text = decElemTanasu.ToString();
+                    txtTyoubosuu.Text = decElemShitei.ToString();
 
-                txtTanasuu.Focus();
-
+                    txtTanasuu.Focus();
+                }
             }
             catch (Exception ex)
             {
