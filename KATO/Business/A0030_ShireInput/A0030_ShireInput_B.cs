@@ -963,6 +963,24 @@ namespace KATO.Business.A0030_ShireInput
             DBConnective dbconnective = new DBConnective();
             try
             {
+                string s1 = "0";
+                string s2 = "0";
+
+                strSQLInput = "SELECT * FROM 発注 WHERE 発注番号 = " + strHachuNo + " AND 削除 = 'N'";
+
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0)
+                {
+                    s2 = dtSetCd_B.Rows[0]["発注数量"].ToString();
+                }
+
+                // 返品の場合はチェックをパスする
+                if (decimal.Parse(s2) < 0)
+                {
+                    return ret;
+                }
+
                 strSQLInput = "SELECT SUM(数量) AS 数 FROM 仕入明細 WHERE 発注番号 = " + strHachuNo + " AND 削除 = 'N'";
 
                 //SQL接続後、該当データを取得
@@ -971,29 +989,18 @@ namespace KATO.Business.A0030_ShireInput
                 // 仕入がある場合は仕入数量の合計が発注数未満であることを確認
                 if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0)
                 {
-                    string s1 = dtSetCd_B.Rows[0]["数"].ToString();
+                    s1 = dtSetCd_B.Rows[0]["数"].ToString();
                     if (string.IsNullOrWhiteSpace(s1))
                     {
                         s1 = "0";
                     }
-
-                    strSQLInput = "SELECT * FROM 発注 WHERE 発注番号 = " + strHachuNo + " AND 削除 = 'N'";
-
-                    dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-
-                    if (dtSetCd_B != null && dtSetCd_B.Rows.Count > 0)
-                    {
-                        string s2 = dtSetCd_B.Rows[0]["発注数量"].ToString();
-
-                        // 発注数 - 仕入総数 が 0以下の場合、選択した発注は使用不可
-                        if (0 >= decimal.Parse(s2) - decimal.Parse(s1))
-                        {
-                            ret = true;
-                        }
-                    }
-
                 }
 
+                // 発注数 - 仕入総数 が 0以下の場合、選択した発注は使用不可
+                if (0 >= decimal.Parse(s2) - decimal.Parse(s1))
+                {
+                    ret = true;
+                }
             }
             catch (Exception ex)
             {
