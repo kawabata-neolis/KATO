@@ -243,7 +243,7 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
                 CreatePdf pdf = new CreatePdf();
 
                 // ワークブックのデフォルトフォント、フォントサイズの指定
-                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ ゴシック";
+                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
                 XLWorkbook.DefaultStyle.Font.FontSize = 8;
 
 

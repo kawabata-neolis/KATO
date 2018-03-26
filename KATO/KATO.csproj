@@ -2611,10 +2611,16 @@
     <Content Include="SQL\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_SiiresakiSELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_DataKari_Kaburi_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\M1030_Shohin\Shohin_DataKari_ShohinCd_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1030_Shohin\Shohin_DataKari_SELECT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\M1030_Shohin\Shohin_Data_Kaburi_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\M1030_Shohin\Shohin_KariToroku_UPDATE.sql">
