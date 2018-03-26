@@ -806,7 +806,7 @@ namespace KATO.Form.M1030_Shohin
                         if (dtKataban.Rows.Count > 0)
                         {
                             //メッセージボックスの処理、登録完了のウィンドウ（OK）
-                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "同じ商品名が存在しています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "同じ商品名が存在しています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                             basemessageboxkaburi.ShowDialog();
 
                             return;
