@@ -991,6 +991,12 @@ namespace KATO.Form.Z0000
                     zaikohachu.ShowDialog();
                     break;
 
+                //商品在庫確認
+                case "155":
+                    D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin shohinzaikokakunin = new D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin(this);
+                    shohinzaikokakunin.ShowDialog();
+                    break;
+
             }
             txtShoriNo.Text = "";
             txtShoriNo.Focus();
@@ -1508,6 +1514,12 @@ namespace KATO.Form.Z0000
                     case "154":
                         A1540_ZaikohinHachu.A1540_ZaikohinHachu zaikohachu = new A1540_ZaikohinHachu.A1540_ZaikohinHachu(this);
                         zaikohachu.ShowDialog();
+                        break;
+
+                    //商品在庫確認
+                    case "155":
+                        D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin shohinzaikokakunin = new D1550_ShohinZaikoKakunin.D1550_ShohinZaikoKakunin(this);
+                        shohinzaikokakunin.ShowDialog();
                         break;
 
                     default:
