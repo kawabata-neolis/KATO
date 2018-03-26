@@ -77,21 +77,26 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             this.btnF11.Text = STR_FUNC_F11;
             this.btnF12.Text = STR_FUNC_F12;
 
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
-            {
-                //読み取り専用
-                lblsetTokuisakiCdclose.codeTxt.ReadOnly = false;
-                //タブ移動しない
-                lblsetTokuisakiCdclose.TabStop = true;
-            }
-            else
-            {
-                //読み取り専用
-                lblsetTokuisakiCdclose.codeTxt.ReadOnly = true;
-                //タブ移動しない
-                lblsetTokuisakiCdclose.TabStop = false;
-            }
+            //書き込み可能
+            lblsetTokuisakiCdclose.codeTxt.ReadOnly = false;
+            //タブ移動する
+            lblsetTokuisakiCdclose.TabStop = true;
+
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    //書き込み可能
+            //    lblsetTokuisakiCdclose.codeTxt.ReadOnly = false;
+            //    //タブ移動する
+            //    lblsetTokuisakiCdclose.TabStop = true;
+            //}
+            //else
+            //{
+            //    //読み取り専用
+            //    lblsetTokuisakiCdclose.codeTxt.ReadOnly = true;
+            //    //タブ移動しない
+            //    lblsetTokuisakiCdclose.TabStop = false;
+            //}
 
             lblsetTokuisakiCdopen.SearchOn = false;
             lblsetTokuisakiCdclose.SearchOn = false;
@@ -366,27 +371,38 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             if (StringUtl.blIsEmpty(lblsetTokuisakiCdopen.CodeTxtText) == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 lblsetTokuisakiCdopen.Focus();
                 return;
             }
 
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
+            //空チェック（終了得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
             {
-                //空チェック（終了得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
-                {
-                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-                    lblsetTokuisakiCdclose.Focus();
-                    return;
-                }
+                lblsetTokuisakiCdclose.Focus();
+                return;
             }
+
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    //空チェック（終了得意先コード）
+            //    if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+            //    {
+            //        // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //        basemessagebox.ShowDialog();
+
+            //        lblsetTokuisakiCdclose.Focus();
+            //        return;
+            //    }
+            //}
 
             //日付フォーマット生成、およびチェック
             strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
@@ -407,22 +423,48 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 txtYMopen.Text = strYMDformat;
             }
 
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
+            //初期化
+            strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMclose.Text);
+
+            //開始年月日の日付チェック
+            if (strYMDformat == "")
             {
-                //スルー
+                // メッセージボックスの処理、項目が日付でない場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "入力された日付が正しくありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYMclose.Focus();
+
+                return;
             }
             else
             {
-                //データチェック（年月度が同じの場合）
-                if (txtYMopen.Text == txtYMclose.Text)
-                {
-                    //一か月単位は出来ないメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    txtYMopen.Focus();
-                    return;
-                }
+                txtYMclose.Text = strYMDformat;
+            }
+
+            //年月日が空の場合
+            if (txtYMopen.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtYMopen.Focus();
+                return;
+
+            }
+
+            //年月日が空の場合
+            if (txtYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtYMclose.Focus();
+                return;
+
             }
 
             //検索開始得意先コードのチェック
@@ -446,15 +488,18 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             List<string> lstStringViewData = new List<string>();
 
             lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
-            {
-                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
-            }
-            else
-            {
-                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
-            }
+
+            lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+            //}
+            //else
+            //{
+            //    lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+            //}
 
             string strShuturyoku = "";
 
@@ -560,22 +605,35 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 return;
             }
 
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
+            //空チェック（終了得意先コード）
+            if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
             {
-                //空チェック（終了得意先コード）
-                if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
-                {
-                    this.Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;
 
-                    // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-                    lblsetTokuisakiCdclose.Focus();
-                    return;
-                }
+                lblsetTokuisakiCdclose.Focus();
+                return;
             }
+
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    //空チェック（終了得意先コード）
+            //    if (StringUtl.blIsEmpty(lblsetTokuisakiCdclose.CodeTxtText) == false)
+            //    {
+            //        this.Cursor = Cursors.Default;
+
+            //        // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //        basemessagebox.ShowDialog();
+
+            //        lblsetTokuisakiCdclose.Focus();
+            //        return;
+            //    }
+            //}
 
             //日付フォーマット生成、およびチェック
             strYMDformat = txtYMopen.chkDateYMDataFormat(txtYMopen.Text);
@@ -624,6 +682,28 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
 
             this.Cursor = Cursors.Default;
 
+            //年月日が空の場合
+            if (txtYMopen.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtYMopen.Focus();
+                return;
+
+            }
+
+            //年月日が空の場合
+            if (txtYMclose.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n日付を入力してください。 ", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtYMclose.Focus();
+                return;
+
+            }
+
             //検索開始得意先コードのチェック
             if (lblsetTokuisakiCdopen.chkTxtTorihikisaki() == true)
             {
@@ -640,23 +720,23 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
                 return;
             }
 
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
-            {
-                //スルー
-            }
-            else
-            {
-                //データチェック（年月度が同じの場合）
-                if (txtYMopen.Text == txtYMclose.Text)
-                {
-                    //一か月単位は出来ないメッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
-                    txtYMopen.Focus();
-                    return;
-                }
-            }
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    //スルー
+            //}
+            //else
+            //{
+            //    //データチェック（年月度が同じの場合）
+            //    if (txtYMopen.Text == txtYMclose.Text)
+            //    {
+            //        //一か月単位は出来ないメッセージ（OK）
+            //        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "１ケ月単位は指定できません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //        basemessagebox.ShowDialog();
+            //        txtYMopen.Focus();
+            //        return;
+            //    }
+            //}
 
             this.Cursor = Cursors.WaitCursor;
 
@@ -665,15 +745,18 @@ namespace KATO.Form.C0520_KaikakekinZandakaIchiranKakunin
             List<string> lstStringViewData = new List<string>();
 
             lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
-            //パワーユーザーの場合
-            if ("1".Equals(this.etsuranFlg))
-            {
-                lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
-            }
-            else
-            {
-                lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
-            }
+
+            lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+
+            ////パワーユーザーの場合
+            //if ("1".Equals(this.etsuranFlg))
+            //{
+            //    lstStringViewData.Add(lblsetTokuisakiCdclose.CodeTxtText);
+            //}
+            //else
+            //{
+            //    lstStringViewData.Add(lblsetTokuisakiCdopen.CodeTxtText);
+            //}
 
             string strShuturyoku = "";
 

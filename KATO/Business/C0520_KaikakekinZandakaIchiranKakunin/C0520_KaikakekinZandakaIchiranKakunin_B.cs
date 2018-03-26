@@ -36,18 +36,30 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("C0520_KaikakekinZandakaIchiranKakunin");
-            lstSQL.Add("C0520_KaikakekinZan_SELECT");
+            lstSQL.Add("C0520_KaikakekinZan_Print_SELECT");
+
+            ////出力順の設定
+            //string strShuturyoku = "";
+
+            //if (lstStringViewData[4].ToString() == "Tokuisaki")
+            //{
+            //    strShuturyoku = "T.取引先コード,K.年月日";
+            //}
+            //else
+            //{
+            //    strShuturyoku = "T.カナ,K.年月日";
+            //}
 
             //出力順の設定
             string strShuturyoku = "";
 
             if (lstStringViewData[4].ToString() == "Tokuisaki")
             {
-                strShuturyoku = "T.取引先コード,K.年月日";
+                strShuturyoku = "A.コード,A.年月";
             }
             else
             {
-                strShuturyoku = "T.カナ,K.年月日";
+                strShuturyoku = "A.フリガナ,A.年月";
             }
 
             //SQL発行
@@ -325,21 +337,21 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
                         //列幅の指定
                         headersheet.Column(1).Width = 5;    //ｺｰﾄﾞ
-                        headersheet.Column(2).Width = 30;   //得意先名
+                        headersheet.Column(2).Width = 25;   //得意先名
                         headersheet.Column(3).Width = 7;    //年月
-                        headersheet.Column(4).Width = 11;   //前月買掛残
-                        headersheet.Column(5).Width = 11;   //支払現金
-                        headersheet.Column(6).Width = 11;   //支払小切手
-                        headersheet.Column(7).Width = 11;   //支払振込
-                        headersheet.Column(8).Width = 11;   //支払手形
-                        headersheet.Column(9).Width = 11;   //支払相殺
-                        headersheet.Column(10).Width = 11;  //支払手数料
-                        headersheet.Column(11).Width = 11;  //支払その他
-                        headersheet.Column(12).Width = 11;  //繰越残高
-                        headersheet.Column(13).Width = 11;  //当月仕入高
-                        headersheet.Column(14).Width = 11;  //当月消費税
-                        headersheet.Column(15).Width = 11;  //当月残高
-                        headersheet.Column(16).Width = 4;   //税区
+                        headersheet.Column(4).Width = 10;   //前月買掛残
+                        headersheet.Column(5).Width = 10;   //支払現金
+                        headersheet.Column(6).Width = 10;   //支払小切手
+                        headersheet.Column(7).Width = 10;   //支払振込
+                        headersheet.Column(8).Width = 10;   //支払手形
+                        headersheet.Column(9).Width = 10;   //支払相殺
+                        headersheet.Column(10).Width = 10;  //支払手数料
+                        headersheet.Column(11).Width = 10;  //支払その他
+                        headersheet.Column(12).Width = 10;  //繰越残高
+                        headersheet.Column(13).Width = 10;  //当月仕入高
+                        headersheet.Column(14).Width = 10;  //当月消費税
+                        headersheet.Column(15).Width = 10;  //当月残高
+                        headersheet.Column(16).Width = 7;   //税区
 
                         //ヘッダー文字位置の指定
                         headersheet.Column(1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;   //ｺｰﾄﾞ
