@@ -549,5 +549,128 @@ namespace KATO.Business.M1030_Shohin
 
             return strGetDenpyo;
         }
+
+        ///<summary>
+        ///getKariDataKaburi
+        ///仮商品テーブルから同じ品名・型番のデータを取得
+        ///</summary>
+        public DataTable getKariDataKaburi(List<string> lstString)
+        {
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtKataban = new DataTable();
+
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQLKariShohin = new List<string>();
+            List<string> lstSQLShohin = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+            string strSQLOther = "";
+
+            strSQLOther = strSQLOther + "AND Ｃ１ = '" + lstString[4] + "'";
+
+            //Ｃ２がある場合
+            if (StringUtl.blIsEmpty(lstString[5].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND Ｃ２ = '" + lstString[5] + "'";
+
+            }
+
+            //Ｃ３がある場合
+            if (StringUtl.blIsEmpty(lstString[6].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND Ｃ３ = '" + lstString[6] + "'";
+
+            }
+
+            //Ｃ４がある場合
+            if (StringUtl.blIsEmpty(lstString[7].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND Ｃ４ = '" + lstString[7] + "'";
+
+            }
+
+            //Ｃ５がある場合
+            if (StringUtl.blIsEmpty(lstString[8].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND Ｃ５ = '" + lstString[8] + "'";
+
+            }
+
+            //Ｃ６がある場合
+            if (StringUtl.blIsEmpty(lstString[9].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND Ｃ６ = '" + lstString[9] + "'";
+
+            }
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQLKariShohin.Add("M1030_Shohin");
+            lstSQLKariShohin.Add("Shohin_DataKari_Kaburi_SELECT");
+
+            lstSQLShohin.Add("M1030_Shohin");
+            lstSQLShohin.Add("Shohin_Data_Kaburi_SELECT");
+
+            //SQL発行
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得(仮商品テーブル)
+                strSQLInput = opensql.setOpenSQL(lstSQLKariShohin);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtKataban);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            strSQLOther
+                                            );
+
+                //データ取得（ここから取得）
+                dtKataban = dbconnective.ReadSql(strSQLInput);
+
+                //データがある場合
+                if (dtKataban.Rows.Count > 0)
+                {
+                    return (dtKataban);
+                }
+
+                //SQLファイルのパス取得(商品テーブル)
+                strSQLInput = opensql.setOpenSQL(lstSQLShohin);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtKataban);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput,
+                                            strSQLOther
+                                            );
+
+                //データ取得（ここから取得）
+                dtKataban = dbconnective.ReadSql(strSQLInput);
+                
+                return (dtKataban);
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
     }
 }

@@ -565,6 +565,8 @@ namespace KATO.Form.M1030_Shohin
             //商品コードからデータ取り出し（確認メッセージ用）
             DataTable dtShohin = new DataTable();
 
+            DataTable dtKataban = new DataTable();
+
             //商品コードの最大値用
             string strShohinCdMax = "";
 
@@ -795,6 +797,22 @@ namespace KATO.Form.M1030_Shohin
                 //新規登録
                 if (radSet_2btn_Toroku.radbtn0.Checked == true)
                 {
+                    //権限がない場合
+                    if (blnKanri == false)
+                    {
+                        dtKataban = shohinB.getKariDataKaburi(lstString);
+
+                        //データがある場合
+                        if (dtKataban.Rows.Count > 0)
+                        {
+                            //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "同じ商品名が存在しています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                            basemessageboxkaburi.ShowDialog();
+
+                            return;
+                        }
+                    }
+
                     //商品コードの最大値を確保
                     strShohinCdMax = shohinB.getNewShohinNo(blnKanri);
 
