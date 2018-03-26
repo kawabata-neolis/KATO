@@ -129,6 +129,22 @@ namespace KATO.Common.Business
                             }
                         }
                         break;
+                    //取引先情報
+                    case CommonTeisu.FRM_TORIHIKISAKI_INFO:
+                        //全てのフォームの中から
+                        foreach (System.Windows.Forms.Form frm in Application.OpenForms)
+                        {
+                            //目的のフォームを探す
+                            if (frm.Name.Equals("M1071_TorihikisakiInfo"))
+                            {
+                                //データを連れてくるため、newをしないこと
+                                M1071_TorihikisakiInfo torihikisaki = (M1071_TorihikisakiInfo)frm;
+                                torihikisaki.setTorihikisaki(dtSelectData);
+                                break;
+                            }
+                        }
+                        break;
+
                     default:
                         break;
                 }
