@@ -1341,7 +1341,7 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                 }
 
-                if (getDecValue(txtHatchusu.Text)> 0)
+                if (!getDecValue(txtHatchusu.Text).Equals(0))
                 {
                     if (txtNoki.Text.CompareTo(strEndDay) > 0)
                     {
@@ -2375,7 +2375,7 @@ namespace KATO.Form.A0010_JuchuInput
                         return false;
                     }
 
-                    if (!string.IsNullOrWhiteSpace(txtHatchusu.Text) && getDecValue(txtHatchusu.Text) > 0)
+                    if (!string.IsNullOrWhiteSpace(txtHatchusu.Text) && !getDecValue(txtHatchusu.Text).Equals(0))
                     {
                         if (txtNoki.Text.CompareTo(strEndDay) > 0)
                         {
@@ -2387,7 +2387,7 @@ namespace KATO.Form.A0010_JuchuInput
                         }
                     }
 
-                    if (!string.IsNullOrWhiteSpace(txtHatchusu.Text) && decimal.Parse(txtHatchusu.Text) > 0)
+                    if (!string.IsNullOrWhiteSpace(txtHatchusu.Text) && !decimal.Parse(txtHatchusu.Text).Equals(0))
                     {
                         if (txtShiireNoki.Text.CompareTo(DateTime.Now.ToString("yyyy/MM/dd")) < 0)
                         {

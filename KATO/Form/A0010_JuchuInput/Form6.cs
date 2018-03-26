@@ -2665,7 +2665,7 @@ namespace KATO.Form.A0010_JuchuInput
 
             String sHachu = ((BaseTextMoney)c.Controls["txtHNo"]).Text;
 
-            if (!string.IsNullOrWhiteSpace(sHachu) && decimal.Parse(sHachu) > 0)
+            if (!string.IsNullOrWhiteSpace(sHachu) && !decimal.Parse(sHachu).Equals(0))
             {
                 if (sNoki.CompareTo(strEndDay) > 0)
                 {
@@ -2889,7 +2889,7 @@ namespace KATO.Form.A0010_JuchuInput
                 }
 
                 string sSuryo = ((BaseTextMoney)cc.Controls["txtSuryo"]).Text;
-                if (!string.IsNullOrWhiteSpace(sSuryo) && decimal.Parse(sSuryo) > 0)
+                if (!string.IsNullOrWhiteSpace(sSuryo) && !decimal.Parse(sSuryo).Equals(0))
                 {
                     if (sYMD.CompareTo(strEndDay) > 0)
                     {
