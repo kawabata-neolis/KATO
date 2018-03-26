@@ -800,13 +800,29 @@ namespace KATO.Form.M1030_Shohin
                     //権限がない場合
                     if (blnKanri == false)
                     {
+                        //仮商品から取り出す
                         dtKataban = shohinB.getKariDataKaburi(lstString);
 
                         //データがある場合
                         if (dtKataban.Rows.Count > 0)
                         {
                             //メッセージボックスの処理、登録完了のウィンドウ（OK）
-                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "同じ商品名が存在しています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "すでに申請されています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                            basemessageboxkaburi.ShowDialog();
+
+                            return;
+                        }
+
+                        dtKataban = new DataTable();
+
+                        //商品から取り出す
+                        dtKataban = shohinB.getDataKaburi(lstString);
+
+                        //データがある場合
+                        if (dtKataban.Rows.Count > 0)
+                        {
+                            //メッセージボックスの処理、登録完了のウィンドウ（OK）
+                            BaseMessageBox basemessageboxkaburi = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "すでに登録されています。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                             basemessageboxkaburi.ShowDialog();
 
                             return;
