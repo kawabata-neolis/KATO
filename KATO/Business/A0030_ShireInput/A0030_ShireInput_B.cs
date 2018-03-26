@@ -974,6 +974,11 @@ namespace KATO.Business.A0030_ShireInput
                 {
                     s2 = dtSetCd_B.Rows[0]["発注数量"].ToString();
                 }
+                // 発注が無い場合はここのチェックはOKとみなす（後続のチェックではねる
+                else
+                {
+                    return ret;
+                }
 
                 // 返品の場合はチェックをパスする
                 if (decimal.Parse(s2) < 0)

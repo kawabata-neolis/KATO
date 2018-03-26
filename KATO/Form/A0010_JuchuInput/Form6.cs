@@ -3404,50 +3404,58 @@ namespace KATO.Form.A0010_JuchuInput
 
         private bool changeVal(Panel cc)
         {
-            if (!((BaseCalendar)cc.Controls["txtHYMD"]).Text.Equals(((BaseCalendar)cc.Controls["tmpHYMD"]))) {
+            if (!((BaseCalendar)cc.Controls["txtHYMD"]).Text.Equals(((BaseCalendar)cc.Controls["tmpHYMD"]).Text)) {
                 return true;
             }
-            if (!((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpHSha"])))
+            if (!((LabelSet_Tantousha)cc.Controls["lsHSha"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpHSha"]).Text))
             {
                 return true;
             }
-            if (!((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpShiire"])))
+            if (!((TextSet_Torihikisaki)cc.Controls["lsShiire"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpShiire"]).Text))
             {
                 return true;
             }
-            if (!((BaseTextMoney)cc.Controls["txtHNo"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpHNo"])))
+            if (!((BaseTextMoney)cc.Controls["txtHNo"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpHNo"]).Text))
             {
                 return true;
             }
-            if (!((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpDaibun"])))
+            if (!((LabelSet_Daibunrui)cc.Controls["lsDaibun"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpDaibun"]).Text))
             {
                 return true;
             }
-            if (!((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpChubun"])))
+            if (!((LabelSet_Chubunrui)cc.Controls["lsChubun"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpChubun"]).Text))
             {
                 return true;
             }
-            if (!((LabelSet_Maker)cc.Controls["lsMaker"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpMaker"])))
+            if (!((LabelSet_Maker)cc.Controls["lsMaker"]).CodeTxtText.Equals(((BaseText)cc.Controls["tmpMaker"]).Text))
             {
                 return true;
             }
-            if (!((BaseText)cc.Controls["txtHinmei"]).Text.Equals(((BaseText)cc.Controls["tmpHinmei"])))
+            if (!((BaseText)cc.Controls["txtHinmei"]).Text.Equals(((BaseText)cc.Controls["tmpHinmei"]).Text))
             {
                 return true;
             }
-            if (!((BaseTextMoney)cc.Controls["txtSuryo"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpSuryo"])))
+            if (!((BaseTextMoney)cc.Controls["txtSuryo"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpSuryo"]).Text))
             {
                 return true;
             }
-            if (!((BaseTextMoney)cc.Controls["txtTanka"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpTanka"])))
+            if (!((BaseTextMoney)cc.Controls["txtTanka"]).Text.Equals(((BaseTextMoney)cc.Controls["tmpTanka"]).Text))
             {
                 return true;
             }
-            if (!((BaseCalendar)cc.Controls["txtNohki"]).Text.Equals(((BaseCalendar)cc.Controls["tmpNohki"])))
+            if (!((BaseCalendar)cc.Controls["txtNohki"]).Text.Equals(((BaseCalendar)cc.Controls["tmpNohki"]).Text))
             {
                 return true;
             }
-            if (!((BaseText)cc.Controls["txtChuban"]).Text.Equals(((BaseText)cc.Controls["tmpChuban"])))
+            if (!((BaseText)cc.Controls["txtChuban"]).Text.Equals(((BaseText)cc.Controls["tmpChuban"]).Text))
+            {
+                return true;
+            }
+            if (((BaseText)cc.Controls["txtSouko"]).Text.Equals("0001") && (((RadSet_2btn)cc.Controls["rdSouko"]).judCheckBtn() != 0 || ((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked))
+            {
+                return true;
+            }
+            if (((BaseText)cc.Controls["txtSouko"]).Text.Equals("0002") && (((RadSet_2btn)cc.Controls["rdSouko"]).judCheckBtn() != 1 || ((RadSet_2btn)cc.Controls["rdSouko"]).radbtn0.Checked))
             {
                 return true;
             }
