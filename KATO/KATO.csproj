@@ -853,12 +853,6 @@
     <Compile Include="Form\D0910_ShohinKensaku\D0910_ShohinKensaku.Designer.cs">
       <DependentUpon>D0910_ShohinKensaku.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\D1550_ShohinZaikoKakunin\D1550_ShohinZaikoKakunin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\D1550_ShohinZaikoKakunin\D1550_ShohinZaikoKakunin.Designer.cs">
-      <DependentUpon>D1550_ShohinZaikoKakunin.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1472,9 +1466,6 @@
     <EmbeddedResource Include="Form\D0910_ShohinKensaku\D0910_ShohinKensaku.resx">
       <DependentUpon>D0910_ShohinKensaku.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\D1550_ShohinZaikoKakunin\D1550_ShohinZaikoKakunin.resx">
-      <DependentUpon>D1550_ShohinZaikoKakunin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin.resx">
       <DependentUpon>E0330_TokuisakiMotocyoKakunin.cs</DependentUpon>
