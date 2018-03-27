@@ -472,15 +472,15 @@ namespace KATO.Business.A0010_JuchuInput
             DataTable dtRet = null;
             string strQuery = "";
 
-            strQuery += "SELECT H.伝票年月日, M.仕入単価, N.仕入先名称";
-            strQuery += "  FROM 仕入ヘッダ H, 仕入明細 M, 仕入先 N";
+            strQuery += "SELECT CONVERT(VARCHAR, H.伝票年月日, 111) as 伝票年月日, M.仕入単価, N.取引先名称";
+            strQuery += "  FROM 仕入ヘッダ H, 仕入明細 M, 取引先 N";
             strQuery += " WHERE H.削除='N'";
             strQuery += "   AND M.削除 = 'N'";
             strQuery += "   AND N.削除 = 'N'";
             strQuery += "   AND H.伝票番号 = M.伝票番号";
-            strQuery += "   AND H.仕入先コード = N.仕入先コード";
+            strQuery += "   AND H.仕入先コード = N.取引先コード";
             strQuery += "   AND M.商品コード = '" + strShohinCd + "'";
-            strQuery += "   ORDER BY H.伝票年月日 DESC";
+            strQuery += "   ORDER BY 伝票年月日 DESC";
 
             DBConnective dbCon = new DBConnective();
             try

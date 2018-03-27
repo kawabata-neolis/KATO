@@ -692,7 +692,7 @@
             // cbSiireTanka
             // 
             this.cbSiireTanka.blnBlankFlg = true;
-            this.cbSiireTanka.DropDownWidth = 416;
+            this.cbSiireTanka.DropDownWidth = 486;
             this.cbSiireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbSiireTanka.FormattingEnabled = true;
             this.cbSiireTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -706,7 +706,7 @@
             // cbJuchuTanka
             // 
             this.cbJuchuTanka.blnBlankFlg = true;
-            this.cbJuchuTanka.DropDownWidth = 416;
+            this.cbJuchuTanka.DropDownWidth = 486;
             this.cbJuchuTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbJuchuTanka.FormattingEnabled = true;
             this.cbJuchuTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1277,7 +1277,7 @@
             // cbKinShiireTanka
             // 
             this.cbKinShiireTanka.blnBlankFlg = true;
-            this.cbKinShiireTanka.DropDownWidth = 416;
+            this.cbKinShiireTanka.DropDownWidth = 486;
             this.cbKinShiireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbKinShiireTanka.FormattingEnabled = true;
             this.cbKinShiireTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;

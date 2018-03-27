@@ -1720,7 +1720,7 @@ namespace KATO.Form.A0010_JuchuInput
                         {
                             cbKinShiireTanka.Text = d.ToString("0.00");
                         }
-                        cbKinShiireTanka.Items.Add(d.ToString("0.00") + ":" + dtTanka.Rows[i]["仕入先名称"].ToString() + ":" + dtTanka.Rows[i]["伝票年月日"].ToString());
+                        cbKinShiireTanka.Items.Add(d.ToString("0.00") + ":" + dtTanka.Rows[i]["取引先名称"].ToString() + ":" + dtTanka.Rows[i]["伝票年月日"].ToString());
                     }
                 }
                 cbKinShiireTanka.Refresh();
