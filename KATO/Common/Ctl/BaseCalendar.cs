@@ -289,6 +289,13 @@ namespace KATO.Common.Ctl
                     //月部のみを取り出す
                     strM = strInData[0].Substring(0, strInData[0].Length -2);
 
+                    //月が一桁の場合
+                    if (strM.Length == 1)
+                    {
+                        //日部のみを取り出す
+                        strM = strM.PadLeft(2, '0');
+                    }
+
                     //日部のみを取り出す
                     strD = strInData[0].Substring(strInData[0].Length -2, 2);
                 }
