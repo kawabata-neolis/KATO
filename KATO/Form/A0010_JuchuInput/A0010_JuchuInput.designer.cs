@@ -692,6 +692,7 @@
             // cbSiireTanka
             // 
             this.cbSiireTanka.blnBlankFlg = true;
+            this.cbSiireTanka.DropDownWidth = 416;
             this.cbSiireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbSiireTanka.FormattingEnabled = true;
             this.cbSiireTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -705,6 +706,7 @@
             // cbJuchuTanka
             // 
             this.cbJuchuTanka.blnBlankFlg = true;
+            this.cbJuchuTanka.DropDownWidth = 416;
             this.cbJuchuTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbJuchuTanka.FormattingEnabled = true;
             this.cbJuchuTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -736,6 +738,7 @@
             this.txtJuchuSuryo.intShishagonyu = 0;
             this.txtJuchuSuryo.Location = new System.Drawing.Point(96, 198);
             this.txtJuchuSuryo.MaxLength = 7;
+            this.txtJuchuSuryo.MinusFlg = true;
             this.txtJuchuSuryo.Name = "txtJuchuSuryo";
             this.txtJuchuSuryo.Size = new System.Drawing.Size(63, 22);
             this.txtJuchuSuryo.TabIndex = 11;
@@ -772,6 +775,7 @@
             this.txtTeika.intShishagonyu = 0;
             this.txtTeika.Location = new System.Drawing.Point(283, 227);
             this.txtTeika.MaxLength = 8;
+            this.txtTeika.MinusFlg = true;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(129, 22);
             this.txtTeika.TabIndex = 59;
@@ -787,6 +791,7 @@
             this.txtHonshaShukko.intShishagonyu = 0;
             this.txtHonshaShukko.Location = new System.Drawing.Point(605, 227);
             this.txtHonshaShukko.MaxLength = 7;
+            this.txtHonshaShukko.MinusFlg = true;
             this.txtHonshaShukko.Name = "txtHonshaShukko";
             this.txtHonshaShukko.Size = new System.Drawing.Size(129, 22);
             this.txtHonshaShukko.TabIndex = 16;
@@ -803,6 +808,7 @@
             this.txtGihuShukko.intShishagonyu = 0;
             this.txtGihuShukko.Location = new System.Drawing.Point(605, 255);
             this.txtGihuShukko.MaxLength = 7;
+            this.txtGihuShukko.MinusFlg = true;
             this.txtGihuShukko.Name = "txtGihuShukko";
             this.txtGihuShukko.Size = new System.Drawing.Size(129, 22);
             this.txtGihuShukko.TabIndex = 17;
@@ -819,6 +825,7 @@
             this.txtHatchusu.intShishagonyu = 0;
             this.txtHatchusu.Location = new System.Drawing.Point(605, 284);
             this.txtHatchusu.MaxLength = 7;
+            this.txtHatchusu.MinusFlg = true;
             this.txtHatchusu.Name = "txtHatchusu";
             this.txtHatchusu.Size = new System.Drawing.Size(129, 22);
             this.txtHatchusu.TabIndex = 18;
@@ -1041,6 +1048,7 @@
             this.txtUriSuryo.intShishagonyu = 0;
             this.txtUriSuryo.Location = new System.Drawing.Point(605, 329);
             this.txtUriSuryo.MaxLength = 10;
+            this.txtUriSuryo.MinusFlg = true;
             this.txtUriSuryo.Name = "txtUriSuryo";
             this.txtUriSuryo.Size = new System.Drawing.Size(129, 22);
             this.txtUriSuryo.TabIndex = 54;
@@ -1269,6 +1277,7 @@
             // cbKinShiireTanka
             // 
             this.cbKinShiireTanka.blnBlankFlg = true;
+            this.cbKinShiireTanka.DropDownWidth = 416;
             this.cbKinShiireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.cbKinShiireTanka.FormattingEnabled = true;
             this.cbKinShiireTanka.ImeMode = System.Windows.Forms.ImeMode.NoControl;
