@@ -34,6 +34,8 @@ namespace KATO.Common.Form
 
         //前画面から取引先コードを取り出す枠（取引先コード初期値）
         public string strTorihiki = "";
+        //前画面から担当者コードを取り出す枠（取引先コード初期値）
+        public string strTanto = "";
 
         private string Title = "";
         public string _Title
@@ -98,6 +100,13 @@ namespace KATO.Common.Form
 
             //DataGridViewの初期設定
             setupGrid();
+
+            //初期データが設定されている場合
+            if (labelSet_Tantousha.CodeTxtText.Length > 0 ||
+                labelSet_Torihikisaki.CodeTxtText.Length > 0)
+            {
+                setKensaku();
+            }
         }
 
         /// <summary>
@@ -282,9 +291,17 @@ namespace KATO.Common.Form
         private void setTextData()
         {
             //取引先コード
-            if (strTorihiki.Length >= 1)
+            if (strTorihiki.Length > 0)
             {
                 labelSet_Torihikisaki.CodeTxtText = strTorihiki;
+                labelSet_Torihikisaki.chkTxtTorihikisaki();
+            }
+
+            //担当者コード
+            if (strTanto.Length > 0)
+            {
+                labelSet_Tantousha.CodeTxtText = strTanto;
+                labelSet_Tantousha.chkTxtTantosha();
             }
         }
 
@@ -478,6 +495,16 @@ namespace KATO.Common.Form
         ///検索ボタンを押したとき
         ///</summary>
         private void btnKensakuClick(object sender, EventArgs e)
+        {
+            //検索処理
+            setKensaku();
+        }
+
+        ///<summary>
+        ///setKensaku
+        ///検索処理
+        ///</summary>
+        private void setKensaku()
         {
             logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
 
