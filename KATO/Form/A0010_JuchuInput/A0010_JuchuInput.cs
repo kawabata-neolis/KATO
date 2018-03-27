@@ -888,6 +888,46 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     else if (decUriSuryo.Equals(decJuchuSuryo))
                     {
+                        if (selKakoFlg)
+                        {
+                            panel1.Visible = false;
+                            lblHonshaShukko.Visible = false;
+                            lblGihuShukko.Visible = false;
+                            lblHatchusu.Visible = false;
+                            txtHonshaShukko.Visible = false;
+                            txtGihuShukko.Visible = false;
+                            txtHatchusu.Visible = false;
+
+                            f6 = new Form6(this);
+                            f6.strJuchuNo = txtJuchuNo.Text;
+
+                            Screen s = null;
+                            Screen[] argScreen = Screen.AllScreens;
+                            if (argScreen.Length > 1)
+                            {
+                                s = argScreen[1];
+                            }
+                            else
+                            {
+                                s = argScreen[0];
+                            }
+
+                            f6.StartPosition = FormStartPosition.Manual;
+                            f6.Location = s.Bounds.Location;
+
+                            f6.strEigyoCd = txtEigyoshoCd.Text;
+                            f6.Show();
+                        }
+                        else
+                        {
+                            lblHonshaShukko.Visible = true;
+                            lblGihuShukko.Visible = true;
+                            lblHatchusu.Visible = true;
+                            txtHonshaShukko.Visible = true;
+                            txtGihuShukko.Visible = true;
+                            txtHatchusu.Visible = true;
+                        }
+
                         btnF01.Enabled = false;
                         btnF03.Enabled = false;
                         btnF08.Enabled = false;
@@ -938,6 +978,46 @@ namespace KATO.Form.A0010_JuchuInput
 
                             if (decUriSuryo.Equals(decShiireSuryo))
                             {
+                                if (selKakoFlg)
+                                {
+                                    panel1.Visible = false;
+                                    lblHonshaShukko.Visible = false;
+                                    lblGihuShukko.Visible = false;
+                                    lblHatchusu.Visible = false;
+                                    txtHonshaShukko.Visible = false;
+                                    txtGihuShukko.Visible = false;
+                                    txtHatchusu.Visible = false;
+
+                                    f6 = new Form6(this);
+                                    f6.strJuchuNo = txtJuchuNo.Text;
+
+                                    Screen s = null;
+                                    Screen[] argScreen = Screen.AllScreens;
+                                    if (argScreen.Length > 1)
+                                    {
+                                        s = argScreen[1];
+                                    }
+                                    else
+                                    {
+                                        s = argScreen[0];
+                                    }
+
+                                    f6.StartPosition = FormStartPosition.Manual;
+                                    f6.Location = s.Bounds.Location;
+
+                                    f6.strEigyoCd = txtEigyoshoCd.Text;
+                                    f6.Show();
+                                }
+                                else
+                                {
+                                    lblHonshaShukko.Visible = true;
+                                    lblGihuShukko.Visible = true;
+                                    lblHatchusu.Visible = true;
+                                    txtHonshaShukko.Visible = true;
+                                    txtGihuShukko.Visible = true;
+                                    txtHatchusu.Visible = true;
+                                }
+
                                 nokiFlg = true;
                                 txtJuchuSuryo.Enabled = true;
                                 BaseMessageBox basemessageboxEr1 = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "分納で売上済みです。受注数・納期・注番のみ変更可能です。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);

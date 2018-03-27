@@ -2646,7 +2646,7 @@ namespace KATO.Form.A0010_JuchuInput
                     if (dtHatchu != null && dtHatchu.Rows.Count > 0)
                     {
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
-                        if (decimal.Parse(strSuryo) > 0)
+                        if (decimal.Parse(strSuryo).CompareTo(0) > 0)
                         {
                             strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
                         }
@@ -2761,7 +2761,7 @@ namespace KATO.Form.A0010_JuchuInput
                         if (dtHatchu != null && dtHatchu.Rows.Count > 0)
                         {
                             String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
-                            if (decimal.Parse(strSuryo) > 0)
+                            if (decimal.Parse(strSuryo).CompareTo(0) > 0)
                             {
                                 strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
                             }
@@ -2858,7 +2858,7 @@ namespace KATO.Form.A0010_JuchuInput
                     if (dtHatchu != null && dtHatchu.Rows.Count > 0)
                     {
                         String strSuryo = dtHatchu.Rows[0]["仕入済数量"].ToString();
-                        if (decimal.Parse(strSuryo) > 0)
+                        if (decimal.Parse(strSuryo).CompareTo(0) > 0)
                         {
                             strEndDay = endDateTime.AddMonths(6).ToString("yyyy/MM/dd");
                         }
