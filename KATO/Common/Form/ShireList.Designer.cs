@@ -36,6 +36,8 @@
             this.gridShire = new KATO.Common.Ctl.BaseDataGridView();
             this.txtCalendarClose = new KATO.Common.Ctl.BaseCalendar();
             this.txtCalendarOpen = new KATO.Common.Ctl.BaseCalendar();
+            this.txtHachuNo = new KATO.Common.Ctl.BaseText();
+            this.lblHachuNo = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtHin = new KATO.Common.Ctl.BaseText();
             this.lblHin = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblSukima = new KATO.Common.Ctl.BaseLabel(this.components);
@@ -123,6 +125,30 @@
             this.txtCalendarOpen.Size = new System.Drawing.Size(90, 22);
             this.txtCalendarOpen.TabIndex = 2;
             this.txtCalendarOpen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtHachuNo
+            // 
+            this.txtHachuNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.txtHachuNo.Location = new System.Drawing.Point(117, 115);
+            this.txtHachuNo.MaxLength = 7;
+            this.txtHachuNo.Name = "txtHachuNo";
+            this.txtHachuNo.Size = new System.Drawing.Size(65, 22);
+            this.txtHachuNo.TabIndex = 5;
+            this.txtHachuNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHachuNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.judShiListTxtKeyDown);
+            this.txtHachuNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShireList_KeyUp);
+            // 
+            // lblHachuNo
+            // 
+            this.lblHachuNo.AutoSize = true;
+            this.lblHachuNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblHachuNo.Location = new System.Drawing.Point(12, 118);
+            this.lblHachuNo.Name = "lblHachuNo";
+            this.lblHachuNo.Size = new System.Drawing.Size(71, 15);
+            this.lblHachuNo.strToolTip = null;
+            this.lblHachuNo.TabIndex = 121;
+            this.lblHachuNo.Text = "注文番号";
+            this.lblHachuNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtHin
             // 
@@ -263,6 +289,8 @@
             this.Controls.Add(this.gridShire);
             this.Controls.Add(this.txtCalendarClose);
             this.Controls.Add(this.txtCalendarOpen);
+            this.Controls.Add(this.txtHachuNo);
+            this.Controls.Add(this.lblHachuNo);
             this.Controls.Add(this.txtHin);
             this.Controls.Add(this.lblHin);
             this.Controls.Add(this.lblSukima);
@@ -302,5 +330,7 @@
         private Ctl.BaseLabel object_641ac0e1_3bc7_4d87_a3ae_64129b936786;
         private Ctl.BaseButton btnF11;
         private Ctl.BaseButton btnF12;
+        private Ctl.BaseLabel lblHachuNo;
+        private Ctl.BaseText txtHachuNo;
     }
 }
