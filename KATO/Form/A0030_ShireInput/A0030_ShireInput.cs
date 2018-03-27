@@ -2227,6 +2227,7 @@ namespace KATO.Form.A0030_ShireInput
                 //取引先リストの表示、画面IDを渡す
                 shirelist.intFrmKind = CommonTeisu.FRM_SHIREINPUT;
                 shirelist.strTorihiki = txtCD.Text;
+                shirelist.strTanto = labelSet_Tantousha.CodeTxtText;
                 shirelist.ShowDialog();
             }
             catch (Exception ex)

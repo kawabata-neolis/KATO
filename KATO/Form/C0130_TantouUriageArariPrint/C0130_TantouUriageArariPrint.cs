@@ -302,7 +302,7 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 if (dtUriage != null && dtUriage.Rows.Count > 0)
                 {
                     // 印刷ダイアログ
-                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_B4, CommonTeisu.YOKO);
+                    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
                     pf.ShowDialog(this);
 
                     // プレビューの場合

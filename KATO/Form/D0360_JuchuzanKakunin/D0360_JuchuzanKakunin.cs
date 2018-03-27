@@ -56,6 +56,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             //中分類setデータを読めるようにする
             lsDaibunrui.Lschubundata = lsChubunrui;
+
+            SetUpGrid();
         }
 
         public D0360_JuchuzanKakunin(Control c, string stTokuisaki, BaseText baseTxtBox)
@@ -102,11 +104,21 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             this.rsSortOrder.radbtn0.Checked = false;
             this.rsSortOrder.radbtn1.Checked = true;
 
+            SetUpGrid();
+
+            ////txtJuchuNo.Focus();
+            //gridZanList.Focus();
+            //this.selZanList();
+            //searchedFlg = true;
+            //hatchuzanFlg = true;
+
             //txtJuchuNo.Focus();
-            gridZanList.Focus();
             this.selZanList();
             searchedFlg = true;
+
             hatchuzanFlg = true;
+
+            gridZanList.Focus();
         }
 
         public D0360_JuchuzanKakunin(Control c, string stTokuisaki, BaseText baseTxtBox, bool blShire)
@@ -152,14 +164,18 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
             this.rsSortOrder.radbtn1.Checked = false;
             this.rsSortOrder.radbtn0.Checked = true;
+
+            SetUpGrid();
+
             //txtJuchuNo.Focus();
-            gridZanList.Focus();
             this.selZanList();
             searchedFlg = true;
 
             //仕入入力から来た証明
             blShireInput = blShire;
             hatchuzanFlg = true;
+
+            gridZanList.Focus();
         }
 
         ///<summary>
@@ -175,7 +191,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 btnF09.Enabled = false;
             }
-            SetUpGrid();
+
+            
             //rsSortOrder.radbtn0.Checked = false;
             //rsSortOrder.radbtn1.Checked = true;
         }
@@ -1096,6 +1113,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
 
         private void gridZanList_DoubleClick(object sender, EventArgs e)
         {
+            //残リストがない場合
+            if (gridZanList.Rows.Count < 1)
+            {
+                return;
+            }
+
             int intIdx = gridZanList.CurrentCell.RowIndex;
             if (this.bBox != null) {
 
@@ -1116,6 +1139,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         {
             if (e.KeyCode == Keys.Enter)
             {
+                //残リストがない場合
+                if (gridZanList.Rows.Count < 1)
+                {
+                    return;
+                }
+
                 int intIdx = gridZanList.CurrentCell.RowIndex;
                 if (this.bBox != null)
                 {
@@ -1164,7 +1193,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
         private void gridZanList_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             //残リストがない場合
-            if (gridZanList.Rows.Count <= 1)
+            if (gridZanList.Rows.Count < 1)
             {
                 return;
             }
@@ -1173,6 +1202,8 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             try
             {
                 int intRowIdx = e.RowIndex;
+
+
 
                 DataTable dtKakoList = bis.getKakoList(gridZanList.Rows[intRowIdx].Cells["受注番号"].Value.ToString());
 

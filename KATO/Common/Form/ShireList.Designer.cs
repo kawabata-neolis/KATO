@@ -86,7 +86,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShire.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridShire.EnableHeadersVisualStyles = false;
-            this.gridShire.Location = new System.Drawing.Point(12, 117);
+            this.gridShire.Location = new System.Drawing.Point(12, 143);
             this.gridShire.Name = "gridShire";
             this.gridShire.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -100,7 +100,7 @@
             this.gridShire.RowHeadersVisible = false;
             this.gridShire.RowTemplate.Height = 21;
             this.gridShire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShire.Size = new System.Drawing.Size(1356, 544);
+            this.gridShire.Size = new System.Drawing.Size(1356, 518);
             this.gridShire.StandardTab = true;
             this.gridShire.TabIndex = 6;
             this.gridShire.DoubleClick += new System.EventHandler(this.gridUriage_DoubleClick);
