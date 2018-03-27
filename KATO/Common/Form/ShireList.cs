@@ -350,20 +350,14 @@ namespace KATO.Common.Form
             biko.Name = "備考";
             biko.HeaderText = "備   考";
 
-            DataGridViewTextBoxColumn chumonNo = new DataGridViewTextBoxColumn();
-            chumonNo.DataPropertyName = "注文番号";
-            chumonNo.Name = "注文番号";
-            chumonNo.HeaderText = "注文番号";
-
             //個々の幅、文章の寄せ
-            setColumn(denpyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 70);
-            setColumn(ymd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 90);
-            setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 265);
-            setColumn(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
-            setColumn(suu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#", 65);
-            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.00", 120);
+            setColumn(denpyo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(ymd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumn(tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumn(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 403);
+            setColumn(suu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
+            setColumn(tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,#.00", 100);
             setColumn(biko, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 280);
-            setColumn(chumonNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
         }
 
         /// <summary>
@@ -545,8 +539,6 @@ namespace KATO.Common.Form
             lstShireView.Add(txtCalendarClose.Text);
             //品名・型番[4]
             lstShireView.Add(txtHin.Text);
-            //注文番号(発注番号)[5]
-            lstShireView.Add(txtHachuNo.Text);
 
             //ビジネス層のインスタンス生成
             ShireList_B shirelistB = new ShireList_B();
@@ -564,10 +556,6 @@ namespace KATO.Common.Form
                     lblRecords.Text = "該当件数( " + gridShire.RowCount.ToString() + "件)";
 
                     gridShire.Focus();
-                }
-                else
-                {
-                    gridShire.DataSource = "";
                 }
             }
             catch (Exception ex)
@@ -607,6 +595,18 @@ namespace KATO.Common.Form
 
                 return cpForm;
             }
+        }
+
+        ///<summary>
+        ///txtUriage_KeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void txtUriage_KeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
 
         ///<summary>
@@ -668,18 +668,6 @@ namespace KATO.Common.Form
             {
                 e.Handled = true;
             }
-        }
-
-        ///<summary>
-        ///txtShireList_KeyUp
-        ///入力項目上でのキー判定と文字数判定
-        ///</summary>
-        private void txtShireList_KeyUp(object sender, KeyEventArgs e)
-        {
-            Control cActiveBefore = this.ActiveControl;
-
-            BaseText basetext = new BaseText();
-            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

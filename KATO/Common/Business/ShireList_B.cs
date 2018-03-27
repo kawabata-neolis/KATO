@@ -39,24 +39,24 @@ namespace KATO.Common.Business
             //担当者に記入がある場合
             if (StringUtl.blIsEmpty(lstShireView[0]))
             {
-                strWhere = strWhere + " AND H.担当者コード ='" + lstShireView[0] + "'";
+                strWhere = strWhere + " AND 担当者コード ='" + lstShireView[0] + "'";
             }
 
             //取引先（表示は得意先）に記入がある場合
             if (StringUtl.blIsEmpty(lstShireView[1]))
             {
-                strWhere = strWhere + " AND H.仕入先コード ='" + lstShireView[1] + "'";
+                strWhere = strWhere + " AND 仕入先コード ='" + lstShireView[1] + "'";
             }
 
             //伝票年月日（開始）
             if (StringUtl.blIsEmpty(lstShireView[2]))
             {
-                strWhere = strWhere + " AND H.伝票年月日 >='" + lstShireView[2] + "'";
+                strWhere = strWhere + " AND 伝票年月日 >='" + lstShireView[2] + "'";
             }
             //伝票年月日（終了）
             if (StringUtl.blIsEmpty(lstShireView[3]))
             {
-                strWhere = strWhere + " AND H.伝票年月日 <='" + lstShireView[3] + "'";
+                strWhere = strWhere + " AND 伝票年月日 <='" + lstShireView[3] + "'";
             }
             
             //品名・型番に記入がある場合
@@ -70,21 +70,14 @@ namespace KATO.Common.Business
                 strWhere = strWhere + " +  Rtrim(ISNULL(M.Ｃ６,'')) ) LIKE '%" + lstShireView[4] + "%' ";
             }
 
-            //発注番号（表示は注文番号）に記入がある場合
-            if (StringUtl.blIsEmpty(lstShireView[5]))
-            {
-                strWhere = strWhere + " AND M.発注番号 ='" + lstShireView[5] + "'";
-            }
-
             //SQL用に移動
             DBConnective dbconnective = new DBConnective();
             try
             {
                 dtGetTableGrid = dbconnective.ReadSql("SELECT H.伝票番号,H.伝票年月日,dbo.f_get取引先名称(H.仕入先コード) AS 仕入先名," +
                                                       "RTRIM(ISNULL(M.Ｃ１,'')) AS 品名型番," +
-                                                      "M.数量,M.仕入単価 AS 売上単価,M.備考," +
-                                                      "dbo.f_get担当者名(H.担当者コード) AS 担当者," +
-                                                      "M.発注番号 AS 注文番号 " +
+                                                      "M.数量,M.仕入単価,M.備考," +
+                                                      "dbo.f_get担当者名(H.担当者コード) AS 担当者 " +
                                                       "FROM 仕入ヘッダ H,仕入明細 M " +
                                                       strWhere +
                                                       " ORDER BY H.伝票年月日 DESC, H.仕入先コード");
