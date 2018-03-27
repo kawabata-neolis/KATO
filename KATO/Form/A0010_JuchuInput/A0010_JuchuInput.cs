@@ -1714,13 +1714,13 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     for (int i = 0; i < dtTanka.Rows.Count; i++)
                     {
-                        d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                        d = decimal.Round(getDecValue(dtTanka.Rows[i]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
 
                         if (i == 0)
                         {
                             cbKinShiireTanka.Text = d.ToString("0.00");
                         }
-                        cbKinShiireTanka.Items.Add(d.ToString("0.00") + ":" + dtTanka.Rows[0]["仕入先名称"].ToString() + ":" + dtTanka.Rows[0]["伝票年月日"].ToString());
+                        cbKinShiireTanka.Items.Add(d.ToString("0.00") + ":" + dtTanka.Rows[i]["仕入先名称"].ToString() + ":" + dtTanka.Rows[i]["伝票年月日"].ToString());
                     }
                 }
                 cbKinShiireTanka.Refresh();
