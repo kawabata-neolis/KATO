@@ -1599,6 +1599,9 @@ namespace KATO.Form.A0030_ShireInput
             //消費税計算区分
             decimal decZeikesankbn = 0;
 
+            //明細行円以下計算区分区分
+            int intHasukbn = 0;
+
             //消費税確保
             decimal decZei = 0;
 
@@ -1671,13 +1674,9 @@ namespace KATO.Form.A0030_ShireInput
             //運賃を追加
             decGokei = decGokei + Decimal.Parse(shireinput.txtUnchin.Text);
 
-            //合計に入れる
-            shireinput.txtGokei.Text = (decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero)).ToString();
-
-            shireinput.txtGokei.updPriceMethod();
-
             //SQLファイルのパスとファイル名を入れる用
             List<string> lstSQL = new List<string>();
+            List<string> lstSQLHasu = new List<string>();
 
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
@@ -1724,6 +1723,9 @@ namespace KATO.Form.A0030_ShireInput
 
                         //消費税計算区分確保
                         decZeikesankbn = decimal.Parse(dtSetCd_B.Rows[0]["消費税計算区分"].ToString());
+
+                        //明細行円以下計算区分確保
+                        intHasukbn = int.Parse(dtSetCd_B.Rows[0]["明細行円以下計算区分"].ToString());
 
                         //消費税計算区分が2の場合
                         if (decZeikesankbn == 2)
@@ -1999,6 +2001,30 @@ namespace KATO.Form.A0030_ShireInput
                                     break;
                             }
                         }
+
+                        //合計に入れる
+                        //取引先の端数区分を適用する
+                        switch (intHasukbn)
+                        {
+                            case 0:
+                                //切り捨て
+                                shireinput.txtGokei.Text = Math.Floor(decGokei).ToString();
+                                break;
+
+                            case 1:
+                                //四捨五入
+                                shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                break;
+
+                            case 2:
+                                //切り上げ
+                                shireinput.txtGokei.Text = Math.Ceiling(decGokei).ToString();
+                                break;
+                        }
+
+                        //shireinput.txtGokei.Text = (decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero)).ToString();
+
+                        shireinput.txtGokei.updPriceMethod();
 
                         string strGokei = shireinput.txtGokei.Text;
 
