@@ -752,14 +752,18 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     }
                     txtGokeiGenka.Focus();
                     //}
-                    if (this.bBox == null)
-                    {
-                        cNow.Focus();
-                    }
-                    else
-                    {
-                        gridZanList.Focus();
-                    }
+
+                    gridZanList.Focus();
+
+                    //if (this.bBox == null)
+                    //{
+                    //    cNow.Focus();
+                    //}
+                    //else
+                    //{
+                    //    gridZanList.Focus();
+                    //}
+
                 }
 
             }
@@ -1203,7 +1207,12 @@ namespace KATO.Form.D0360_JuchuzanKakunin
             {
                 int intRowIdx = e.RowIndex;
 
-
+                //受注番号がない場合
+                if (StringUtl.blIsEmpty(gridZanList.Rows[intRowIdx].Cells["受注番号"].Value.ToString()) == false)
+                {
+                    gridKakoList.DataSource = "";
+                    return;
+                }
 
                 DataTable dtKakoList = bis.getKakoList(gridZanList.Rows[intRowIdx].Cells["受注番号"].Value.ToString());
 
