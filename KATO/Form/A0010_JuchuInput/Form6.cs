@@ -2812,13 +2812,17 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     string sLimit = ((DateTime.Now).AddDays(7)).ToString();
 
-                    if (sYMD.CompareTo(sLimit) > 0)
-                    {
-                        ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
-                        ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
-                        ret = 4;
-                        break;
-                    }
+                    //
+                    // 暫定
+                    // 出庫の7日制限を無視
+                    //
+                    //if (sYMD.CompareTo(sLimit) > 0)
+                    //{
+                    //    ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
+                    //    ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                    //    ret = 4;
+                    //    break;
+                    //}
                 }
                 if (string.IsNullOrWhiteSpace(sHSu))
                 {
@@ -2904,14 +2908,19 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     string sLimit = ((DateTime.Now).AddDays(7)).ToString();
 
-                    if (sYMD.CompareTo(sLimit) < 0)
-                    {
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫予定日は７日以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
-                        basemessagebox.ShowDialog();
-                        ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
-                        ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
-                        return false;
-                    }
+                    //
+                    // 暫定
+                    // 出庫の7日制限を無視
+                    //
+                    //if (sYMD.CompareTo(sLimit) < 0)
+                    //{
+
+                    //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫予定日は７日以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    //    basemessagebox.ShowDialog();
+                    //    ((BaseCalendar)cc.Controls["txtNohki"]).Text = "";
+                    //    ((BaseCalendar)cc.Controls["txtNohki"]).Focus();
+                    //    return false;
+                    //}
                 }
             }
 
