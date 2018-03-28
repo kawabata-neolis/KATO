@@ -179,6 +179,10 @@ namespace KATO.Form.H0210_MitsumoriInput
             btnF11.Text = STR_FUNC_F11;
             btnF12.Text = STR_FUNC_F12;
 
+            lsDaibunrui.codeTxt.ReadOnly = true;
+            lsChubunrui.codeTxt.ReadOnly = true;
+            lsMaker.codeTxt.ReadOnly = true;
+
             H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
             try
             {
