@@ -253,7 +253,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShohin.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridShohin.EnableHeadersVisualStyles = false;
-            this.gridShohin.Location = new System.Drawing.Point(12, 51);
+            this.gridShohin.Location = new System.Drawing.Point(7, 53);
             this.gridShohin.Name = "gridShohin";
             this.gridShohin.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -295,7 +295,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridUriage.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridUriage.EnableHeadersVisualStyles = false;
-            this.gridUriage.Location = new System.Drawing.Point(12, 288);
+            this.gridUriage.Location = new System.Drawing.Point(6, 288);
             this.gridUriage.Name = "gridUriage";
             this.gridUriage.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -309,7 +309,7 @@
             this.gridUriage.RowHeadersVisible = false;
             this.gridUriage.RowTemplate.Height = 21;
             this.gridUriage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriage.Size = new System.Drawing.Size(510, 221);
+            this.gridUriage.Size = new System.Drawing.Size(503, 51);
             this.gridUriage.StandardTab = true;
             this.gridUriage.TabIndex = 92;
             // 
@@ -337,7 +337,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridJuchuZan.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridJuchuZan.EnableHeadersVisualStyles = false;
-            this.gridJuchuZan.Location = new System.Drawing.Point(535, 288);
+            this.gridJuchuZan.Location = new System.Drawing.Point(512, 288);
             this.gridJuchuZan.Name = "gridJuchuZan";
             this.gridJuchuZan.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -351,7 +351,7 @@
             this.gridJuchuZan.RowHeadersVisible = false;
             this.gridJuchuZan.RowTemplate.Height = 21;
             this.gridJuchuZan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridJuchuZan.Size = new System.Drawing.Size(510, 68);
+            this.gridJuchuZan.Size = new System.Drawing.Size(583, 51);
             this.gridJuchuZan.StandardTab = true;
             this.gridJuchuZan.TabIndex = 92;
             // 
@@ -379,7 +379,7 @@
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShohinMotocho.DefaultCellStyle = dataGridViewCellStyle11;
             this.gridShohinMotocho.EnableHeadersVisualStyles = false;
-            this.gridShohinMotocho.Location = new System.Drawing.Point(1060, 288);
+            this.gridShohinMotocho.Location = new System.Drawing.Point(1098, 288);
             this.gridShohinMotocho.Name = "gridShohinMotocho";
             this.gridShohinMotocho.ReadOnly = true;
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -393,7 +393,7 @@
             this.gridShohinMotocho.RowHeadersVisible = false;
             this.gridShohinMotocho.RowTemplate.Height = 21;
             this.gridShohinMotocho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShohinMotocho.Size = new System.Drawing.Size(510, 221);
+            this.gridShohinMotocho.Size = new System.Drawing.Size(480, 51);
             this.gridShohinMotocho.StandardTab = true;
             this.gridShohinMotocho.TabIndex = 92;
             // 
@@ -421,7 +421,7 @@
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridHachuZan.DefaultCellStyle = dataGridViewCellStyle14;
             this.gridHachuZan.EnableHeadersVisualStyles = false;
-            this.gridHachuZan.Location = new System.Drawing.Point(535, 463);
+            this.gridHachuZan.Location = new System.Drawing.Point(513, 451);
             this.gridHachuZan.Name = "gridHachuZan";
             this.gridHachuZan.ReadOnly = true;
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -435,7 +435,7 @@
             this.gridHachuZan.RowHeadersVisible = false;
             this.gridHachuZan.RowTemplate.Height = 21;
             this.gridHachuZan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridHachuZan.Size = new System.Drawing.Size(510, 143);
+            this.gridHachuZan.Size = new System.Drawing.Size(582, 143);
             this.gridHachuZan.StandardTab = true;
             this.gridHachuZan.TabIndex = 92;
             // 
@@ -463,7 +463,7 @@
             dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShire.DefaultCellStyle = dataGridViewCellStyle17;
             this.gridShire.EnableHeadersVisualStyles = false;
-            this.gridShire.Location = new System.Drawing.Point(12, 542);
+            this.gridShire.Location = new System.Drawing.Point(6, 542);
             this.gridShire.Name = "gridShire";
             this.gridShire.ReadOnly = true;
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -477,7 +477,7 @@
             this.gridShire.RowHeadersVisible = false;
             this.gridShire.RowTemplate.Height = 21;
             this.gridShire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShire.Size = new System.Drawing.Size(510, 224);
+            this.gridShire.Size = new System.Drawing.Size(503, 61);
             this.gridShire.StandardTab = true;
             this.gridShire.TabIndex = 92;
             // 
@@ -547,7 +547,7 @@
             dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShohinbetuTanka.DefaultCellStyle = dataGridViewCellStyle23;
             this.gridShohinbetuTanka.EnableHeadersVisualStyles = false;
-            this.gridShohinbetuTanka.Location = new System.Drawing.Point(1060, 542);
+            this.gridShohinbetuTanka.Location = new System.Drawing.Point(1098, 542);
             this.gridShohinbetuTanka.Name = "gridShohinbetuTanka";
             this.gridShohinbetuTanka.ReadOnly = true;
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -786,7 +786,7 @@
             // 
             this.lblUriage.AutoSize = true;
             this.lblUriage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblUriage.Location = new System.Drawing.Point(12, 270);
+            this.lblUriage.Location = new System.Drawing.Point(4, 270);
             this.lblUriage.Name = "lblUriage";
             this.lblUriage.Size = new System.Drawing.Size(39, 15);
             this.lblUriage.strToolTip = null;
@@ -798,7 +798,7 @@
             // 
             this.lblJuchuZan.AutoSize = true;
             this.lblJuchuZan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblJuchuZan.Location = new System.Drawing.Point(534, 270);
+            this.lblJuchuZan.Location = new System.Drawing.Point(510, 270);
             this.lblJuchuZan.Name = "lblJuchuZan";
             this.lblJuchuZan.Size = new System.Drawing.Size(55, 15);
             this.lblJuchuZan.strToolTip = null;
@@ -810,7 +810,7 @@
             // 
             this.lblShohinMotocho.AutoSize = true;
             this.lblShohinMotocho.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinMotocho.Location = new System.Drawing.Point(1059, 270);
+            this.lblShohinMotocho.Location = new System.Drawing.Point(1094, 270);
             this.lblShohinMotocho.Name = "lblShohinMotocho";
             this.lblShohinMotocho.Size = new System.Drawing.Size(71, 15);
             this.lblShohinMotocho.strToolTip = null;
@@ -834,7 +834,7 @@
             // 
             this.lblHachuZan.AutoSize = true;
             this.lblHachuZan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHachuZan.Location = new System.Drawing.Point(534, 445);
+            this.lblHachuZan.Location = new System.Drawing.Point(512, 433);
             this.lblHachuZan.Name = "lblHachuZan";
             this.lblHachuZan.Size = new System.Drawing.Size(55, 15);
             this.lblHachuZan.strToolTip = null;
@@ -870,7 +870,7 @@
             // 
             this.lblShohinbetuTanka.AutoSize = true;
             this.lblShohinbetuTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinbetuTanka.Location = new System.Drawing.Point(1059, 524);
+            this.lblShohinbetuTanka.Location = new System.Drawing.Point(1097, 524);
             this.lblShohinbetuTanka.Name = "lblShohinbetuTanka";
             this.lblShohinbetuTanka.Size = new System.Drawing.Size(87, 15);
             this.lblShohinbetuTanka.strToolTip = null;

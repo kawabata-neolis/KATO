@@ -1740,6 +1740,29 @@ namespace KATO.Form.A0030_ShireInput
                             {
                                 shireinput.txtUnchin.Text = "";
                             }
+
+                            //合計に入れる
+                            //取引先の端数区分を適用する
+                            switch (intHasukbn)
+                            {
+                                case 0:
+                                    //切り捨て
+                                    shireinput.txtGokei.Text = Math.Floor(decGokei).ToString();
+                                    break;
+
+                                case 1:
+                                    //四捨五入
+                                    shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                    break;
+
+                                case 2:
+                                    //切り上げ
+                                    shireinput.txtGokei.Text = Math.Ceiling(decGokei).ToString();
+                                    break;
+                            }
+
+                            shireinput.txtGokei.updPriceMethod();
+
                             return;
                         }
 
@@ -1756,6 +1779,29 @@ namespace KATO.Form.A0030_ShireInput
                             {
                                 shireinput.txtUnchin.Text = "";
                             }
+
+                            //合計に入れる
+                            //取引先の端数区分を適用する
+                            switch (intHasukbn)
+                            {
+                                case 0:
+                                    //切り捨て
+                                    shireinput.txtGokei.Text = Math.Floor(decGokei).ToString();
+                                    break;
+
+                                case 1:
+                                    //四捨五入
+                                    shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                    break;
+
+                                case 2:
+                                    //切り上げ
+                                    shireinput.txtGokei.Text = Math.Ceiling(decGokei).ToString();
+                                    break;
+                            }
+
+                            shireinput.txtGokei.updPriceMethod();
+
                             return;
                         }
 
@@ -2021,8 +2067,6 @@ namespace KATO.Form.A0030_ShireInput
                                 shireinput.txtGokei.Text = Math.Ceiling(decGokei).ToString();
                                 break;
                         }
-
-                        //shireinput.txtGokei.Text = (decimal.Round(decGokei, 2, MidpointRounding.AwayFromZero)).ToString();
 
                         shireinput.txtGokei.updPriceMethod();
 

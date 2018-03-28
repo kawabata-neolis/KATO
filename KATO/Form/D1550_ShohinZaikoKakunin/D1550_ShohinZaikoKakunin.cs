@@ -207,12 +207,100 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
             SetUpGridHachuzan();
             SetUpGridShohinMotocho();
+
+            //商品グリッド入れる用(テスト)
+            DataTable dtUriagem = new DataTable();
+            dtUriagem.Columns.Add("日付", Type.GetType("System.String"));
+            dtUriagem.Columns.Add("区分", Type.GetType("System.String"));
+            dtUriagem.Columns.Add("場所", Type.GetType("System.String"));
+            dtUriagem.Columns.Add("個数", Type.GetType("System.String"));
+
+            DataRow row1m = dtUriagem.NewRow();
+            row1m["日付"] = "18/03/19";
+            row1m["区分"] = "18/03/30";
+            row1m["場所"] = "123456789A123456789B123456789C";
+            row1m["個数"] = "10,000";
+            dtUriagem.Rows.Add(row1m);
+
+            DataRow row2m = dtUriagem.NewRow();
+            row2m["日付"] = "18/03/31";
+            row2m["区分"] = "18/04/10";
+            row2m["場所"] = "123456789A123456789B123456789C";
+            row2m["個数"] = "10,000";
+            dtUriagem.Rows.Add(row2m);
+
+            gridShohinMotocho.DataSource = dtUriagem;
+
             SetUpGridShire();
+
+            //商品グリッド入れる用(テスト)
+            DataTable dtshire = new DataTable();
+            dtshire.Columns.Add("日付", Type.GetType("System.String"));
+            dtshire.Columns.Add("仕入先", Type.GetType("System.String"));
+            dtshire.Columns.Add("個数", Type.GetType("System.String"));
+            dtshire.Columns.Add("単価", Type.GetType("System.String"));
+
+            DataRow row1s = dtshire.NewRow();
+            row1s["日付"] = "18/03/19";
+            row1s["仕入先"] = "123456789A123456789B123456789C";
+            row1s["個数"] = "10,000";
+            row1s["単価"] = "99,999,999";
+            dtshire.Rows.Add(row1s);
+
+            DataRow row2s = dtshire.NewRow();
+            row2s["日付"] = "18/03/31";
+            row2s["仕入先"] = "123456789A123456789B123456789C";
+            row2s["個数"] = "10,000";
+            row2s["単価"] = "99,999,999";
+            dtshire.Rows.Add(row2s);
+
+            gridShire.DataSource = dtshire;
+
             SetUpGridGetubetuUriage();
 
+            DataTable dtgetuuri = new DataTable();
+            dtgetuuri.Columns.Add("受注日", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("納期", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("取引先", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("個数", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("単価", Type.GetType("System.String"));
 
+            DataRow row1gs = dtgetuuri.NewRow();
+            row1gs["受注日"] = "18/03/19";
+            row1gs["納期"] = "18/03/30";
+            row1gs["取引先"] = "123456789A123456789B123456789C";
+            row1gs["個数"] = "10,000";
+            row1gs["単価"] = "99,999,999";
+            dtgetuuri.Rows.Add(row1gs);
+
+            DataRow row2gs = dtgetuuri.NewRow();
+            row2gs["受注日"] = "18/03/31";
+            row2gs["納期"] = "18/04/10";
+            row2gs["取引先"] = "123456789A123456789B123456789C";
+            row2gs["個数"] = "10,000";
+            row2gs["単価"] = "99,999,999";
+            dtgetuuri.Rows.Add(row2gs);
+
+            gridGetubetuUriage.DataSource = dtgetuuri;
+            
             SetUpGridGetubetuShire();
             SetUpGridShohinBetuTanka();
+
+            DataTable dtshohintanka = new DataTable();
+            dtshohintanka.Columns.Add("取引先", Type.GetType("System.String"));
+            dtshohintanka.Columns.Add("単価", Type.GetType("System.String"));
+
+            DataRow row1t = dtshohintanka.NewRow();
+            row1t["取引先"] = "123456789A123456789B123456789C";
+            row1t["単価"] = "99,999,999";
+            dtshohintanka.Rows.Add(row1t);
+
+            DataRow row2t = dtshohintanka.NewRow();
+            row2t["取引先"] = "123456789A123456789B123456789C";
+            row2t["単価"] = "99,999,999";
+            dtshohintanka.Rows.Add(row2t);
+
+            gridShohinbetuTanka.DataSource = dtshohintanka;
 
             lblsetHonTana.CodeTxtText = "A1A171";
             lblsetHonTana.chkTxtTanaban();
@@ -421,7 +509,7 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
         ///<summary>
         ///SetUpGridHachuzan
-        ///DataGridView初期設定(受注残)
+        ///DataGridView初期設定(発注残)
         ///</summary>
         private void SetUpGridHachuzan()
         {
@@ -461,7 +549,7 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
         ///<summary>
         ///setColumngridJuchuzan
-        ///DataGridViewの内部設定(受注残)
+        ///DataGridViewの内部設定(発注残)
         ///</summary>
         private void setColumngridHachuzan(DataGridViewTextBoxColumn col, DataGridViewContentAlignment aliStyleDef, DataGridViewContentAlignment aliStyleHeader, string fmt, int intLen)
         {
@@ -561,9 +649,9 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             Tanka.HeaderText = "単価";
 
             //個々の幅、文章の寄せ
-            setColumngridShire(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridShire(Shiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
-            setColumngridShire(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridShire(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridShire(Shiresaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumngridShire(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridShire(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
