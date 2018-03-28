@@ -75,9 +75,6 @@
             this.lblTateneShireTanka = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblHakosu = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblsetHonTana = new KATO.Common.Ctl.LabelSet_Tanaban();
-            this.lblsetGifuTana = new KATO.Common.Ctl.LabelSet_Tanaban();
-            this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGrayTeka = new KATO.Common.Ctl.BaseLabelGray();
             this.lblGrayHyojunbaika = new KATO.Common.Ctl.BaseLabelGray();
             this.lblGrayShireTanka = new KATO.Common.Ctl.BaseLabelGray();
@@ -93,6 +90,14 @@
             this.lblGetubetuUriage = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblGetubetuShire = new KATO.Common.Ctl.BaseLabel(this.components);
             this.lblShohinbetuTanka = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblGrayHyojunbaikaRitsu = new KATO.Common.Ctl.BaseLabelGray();
+            this.lblGrayShireTankaRitsu = new KATO.Common.Ctl.BaseLabelGray();
+            this.lblGrayHyokaTankaRitsu = new KATO.Common.Ctl.BaseLabelGray();
+            this.lblGraytateneShireTankaRitsu = new KATO.Common.Ctl.BaseLabelGray();
+            this.lblsetGifuTana = new KATO.Common.Ctl.LabelSet_Tanaban();
+            this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.lblGrayTekaRitsu = new KATO.Common.Ctl.BaseLabelGray();
             ((System.ComponentModel.ISupportInitialize)(this.gridShohin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridJuchuZan)).BeginInit();
@@ -101,9 +106,57 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridShire)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGetubetuUriage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridShohinbetuTanka)).BeginInit();
-            this.lblsetGifuTana.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGetubetuShire)).BeginInit();
+            this.lblsetGifuTana.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnF01
+            // 
+            this.btnF01.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF12
+            // 
+            this.btnF12.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF11
+            // 
+            this.btnF11.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF10
+            // 
+            this.btnF10.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF09
+            // 
+            this.btnF09.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF08
+            // 
+            this.btnF08.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF07
+            // 
+            this.btnF07.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF06
+            // 
+            this.btnF06.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF05
+            // 
+            this.btnF05.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF04
+            // 
+            this.btnF04.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF03
+            // 
+            this.btnF03.Click += new System.EventHandler(this.judFuncBtnClick);
+            // 
+            // btnF02
+            // 
+            this.btnF02.Click += new System.EventHandler(this.judFuncBtnClick);
             // 
             // labelSet_Daibunrui
             // 
@@ -171,7 +224,7 @@
             this.btnKensaku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.btnKensaku.Location = new System.Drawing.Point(1086, 15);
             this.btnKensaku.Name = "btnKensaku";
-            this.btnKensaku.Size = new System.Drawing.Size(50, 23);
+            this.btnKensaku.Size = new System.Drawing.Size(100, 23);
             this.btnKensaku.TabIndex = 90;
             this.btnKensaku.Text = "検索";
             this.btnKensaku.UseVisualStyleBackColor = true;
@@ -214,7 +267,7 @@
             this.gridShohin.RowHeadersVisible = false;
             this.gridShohin.RowTemplate.Height = 21;
             this.gridShohin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShohin.Size = new System.Drawing.Size(1320, 205);
+            this.gridShohin.Size = new System.Drawing.Size(1279, 205);
             this.gridShohin.StandardTab = true;
             this.gridShohin.TabIndex = 91;
             // 
@@ -298,7 +351,7 @@
             this.gridJuchuZan.RowHeadersVisible = false;
             this.gridJuchuZan.RowTemplate.Height = 21;
             this.gridJuchuZan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridJuchuZan.Size = new System.Drawing.Size(510, 143);
+            this.gridJuchuZan.Size = new System.Drawing.Size(510, 68);
             this.gridJuchuZan.StandardTab = true;
             this.gridJuchuZan.TabIndex = 92;
             // 
@@ -516,7 +569,7 @@
             // 
             this.lblTeka.AutoSize = true;
             this.lblTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTeka.Location = new System.Drawing.Point(1335, 51);
+            this.lblTeka.Location = new System.Drawing.Point(1300, 51);
             this.lblTeka.Name = "lblTeka";
             this.lblTeka.Size = new System.Drawing.Size(39, 15);
             this.lblTeka.strToolTip = null;
@@ -528,7 +581,7 @@
             // 
             this.lblHyojunBaika.AutoSize = true;
             this.lblHyojunBaika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyojunBaika.Location = new System.Drawing.Point(1335, 76);
+            this.lblHyojunBaika.Location = new System.Drawing.Point(1300, 76);
             this.lblHyojunBaika.Name = "lblHyojunBaika";
             this.lblHyojunBaika.Size = new System.Drawing.Size(71, 15);
             this.lblHyojunBaika.strToolTip = null;
@@ -540,7 +593,7 @@
             // 
             this.lblShireTanka.AutoSize = true;
             this.lblShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShireTanka.Location = new System.Drawing.Point(1335, 101);
+            this.lblShireTanka.Location = new System.Drawing.Point(1300, 101);
             this.lblShireTanka.Name = "lblShireTanka";
             this.lblShireTanka.Size = new System.Drawing.Size(71, 15);
             this.lblShireTanka.strToolTip = null;
@@ -552,7 +605,7 @@
             // 
             this.lblHyokaTanka.AutoSize = true;
             this.lblHyokaTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyokaTanka.Location = new System.Drawing.Point(1335, 126);
+            this.lblHyokaTanka.Location = new System.Drawing.Point(1300, 126);
             this.lblHyokaTanka.Name = "lblHyokaTanka";
             this.lblHyokaTanka.Size = new System.Drawing.Size(71, 15);
             this.lblHyokaTanka.strToolTip = null;
@@ -564,7 +617,7 @@
             // 
             this.lblTateneShireTanka.AutoSize = true;
             this.lblTateneShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTateneShireTanka.Location = new System.Drawing.Point(1335, 151);
+            this.lblTateneShireTanka.Location = new System.Drawing.Point(1300, 151);
             this.lblTateneShireTanka.Name = "lblTateneShireTanka";
             this.lblTateneShireTanka.Size = new System.Drawing.Size(103, 15);
             this.lblTateneShireTanka.strToolTip = null;
@@ -576,7 +629,7 @@
             // 
             this.lblHakosu.AutoSize = true;
             this.lblHakosu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHakosu.Location = new System.Drawing.Point(1335, 181);
+            this.lblHakosu.Location = new System.Drawing.Point(1300, 181);
             this.lblHakosu.Name = "lblHakosu";
             this.lblHakosu.Size = new System.Drawing.Size(55, 15);
             this.lblHakosu.strToolTip = null;
@@ -591,62 +644,17 @@
             this.lblsetHonTana.CodeTxtSize = 60;
             this.lblsetHonTana.CodeTxtText = "";
             this.lblsetHonTana.Enabled = false;
-            this.lblsetHonTana.LabelName = "本社棚番";
-            this.lblsetHonTana.Location = new System.Drawing.Point(1332, 209);
+            this.lblsetHonTana.LabelName = "";
+            this.lblsetHonTana.Location = new System.Drawing.Point(1297, 209);
             this.lblsetHonTana.Name = "lblsetHonTana";
             this.lblsetHonTana.ShowAppendFlg = false;
-            this.lblsetHonTana.Size = new System.Drawing.Size(247, 22);
+            this.lblsetHonTana.Size = new System.Drawing.Size(245, 22);
             this.lblsetHonTana.SpaceCodeValue = 4;
             this.lblsetHonTana.SpaceNameCode = 4;
             this.lblsetHonTana.SpaceValueAppend = 4;
             this.lblsetHonTana.TabIndex = 94;
-            this.lblsetHonTana.ValueLabelSize = 100;
+            this.lblsetHonTana.ValueLabelSize = 150;
             this.lblsetHonTana.ValueLabelText = "";
-            // 
-            // lblsetGifuTana
-            // 
-            this.lblsetGifuTana.AppendLabelSize = 0;
-            this.lblsetGifuTana.AppendLabelText = "";
-            this.lblsetGifuTana.CodeTxtSize = 60;
-            this.lblsetGifuTana.CodeTxtText = "";
-            this.lblsetGifuTana.Controls.Add(this.baseLabel4);
-            this.lblsetGifuTana.Controls.Add(this.nameLabel);
-            this.lblsetGifuTana.Enabled = false;
-            this.lblsetGifuTana.LabelName = "岐阜棚番";
-            this.lblsetGifuTana.Location = new System.Drawing.Point(1332, 234);
-            this.lblsetGifuTana.Name = "lblsetGifuTana";
-            this.lblsetGifuTana.ShowAppendFlg = false;
-            this.lblsetGifuTana.Size = new System.Drawing.Size(247, 22);
-            this.lblsetGifuTana.SpaceCodeValue = 4;
-            this.lblsetGifuTana.SpaceNameCode = 4;
-            this.lblsetGifuTana.SpaceValueAppend = 4;
-            this.lblsetGifuTana.TabIndex = 94;
-            this.lblsetGifuTana.ValueLabelSize = 100;
-            this.lblsetGifuTana.ValueLabelText = "";
-            // 
-            // baseLabel4
-            // 
-            this.baseLabel4.AutoSize = true;
-            this.baseLabel4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel4.Location = new System.Drawing.Point(2, 3);
-            this.baseLabel4.Name = "baseLabel4";
-            this.baseLabel4.Size = new System.Drawing.Size(71, 15);
-            this.baseLabel4.strToolTip = null;
-            this.baseLabel4.TabIndex = 0;
-            this.baseLabel4.Text = "岐阜棚番";
-            this.baseLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.nameLabel.Location = new System.Drawing.Point(2, 3);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(71, 15);
-            this.nameLabel.strToolTip = null;
-            this.nameLabel.TabIndex = 0;
-            this.nameLabel.Text = "本社棚番";
-            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblGrayTeka
             // 
@@ -654,7 +662,7 @@
             this.lblGrayTeka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayTeka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayTeka.Location = new System.Drawing.Point(1471, 47);
+            this.lblGrayTeka.Location = new System.Drawing.Point(1413, 47);
             this.lblGrayTeka.Name = "lblGrayTeka";
             this.lblGrayTeka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayTeka.Size = new System.Drawing.Size(90, 22);
@@ -668,7 +676,7 @@
             this.lblGrayHyojunbaika.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyojunbaika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyojunbaika.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyojunbaika.Location = new System.Drawing.Point(1471, 72);
+            this.lblGrayHyojunbaika.Location = new System.Drawing.Point(1413, 72);
             this.lblGrayHyojunbaika.Name = "lblGrayHyojunbaika";
             this.lblGrayHyojunbaika.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyojunbaika.Size = new System.Drawing.Size(90, 22);
@@ -682,7 +690,7 @@
             this.lblGrayShireTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayShireTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayShireTanka.Location = new System.Drawing.Point(1471, 97);
+            this.lblGrayShireTanka.Location = new System.Drawing.Point(1413, 97);
             this.lblGrayShireTanka.Name = "lblGrayShireTanka";
             this.lblGrayShireTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayShireTanka.Size = new System.Drawing.Size(90, 22);
@@ -696,7 +704,7 @@
             this.lblGrayHyokaTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyokaTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyokaTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyokaTanka.Location = new System.Drawing.Point(1471, 122);
+            this.lblGrayHyokaTanka.Location = new System.Drawing.Point(1413, 122);
             this.lblGrayHyokaTanka.Name = "lblGrayHyokaTanka";
             this.lblGrayHyokaTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyokaTanka.Size = new System.Drawing.Size(90, 22);
@@ -710,7 +718,7 @@
             this.lblGraytateneShireTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGraytateneShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGraytateneShireTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGraytateneShireTanka.Location = new System.Drawing.Point(1471, 147);
+            this.lblGraytateneShireTanka.Location = new System.Drawing.Point(1413, 147);
             this.lblGraytateneShireTanka.Name = "lblGraytateneShireTanka";
             this.lblGraytateneShireTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGraytateneShireTanka.Size = new System.Drawing.Size(90, 22);
@@ -724,12 +732,12 @@
             this.lblGrayHakosu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHakosu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHakosu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHakosu.Location = new System.Drawing.Point(1471, 177);
+            this.lblGrayHakosu.Location = new System.Drawing.Point(1413, 177);
             this.lblGrayHakosu.Name = "lblGrayHakosu";
             this.lblGrayHakosu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblGrayHakosu.Size = new System.Drawing.Size(90, 22);
+            this.lblGrayHakosu.Size = new System.Drawing.Size(59, 22);
             this.lblGrayHakosu.TabIndex = 99;
-            this.lblGrayHakosu.Text = "10,000,000";
+            this.lblGrayHakosu.Text = "99,999";
             this.lblGrayHakosu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // gridGetubetuShire
@@ -870,6 +878,119 @@
             this.lblShohinbetuTanka.Text = "商品別単価";
             this.lblShohinbetuTanka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblGrayHyojunbaikaRitsu
+            // 
+            this.lblGrayHyojunbaikaRitsu.AutoEllipsis = true;
+            this.lblGrayHyojunbaikaRitsu.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayHyojunbaikaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayHyojunbaikaRitsu.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayHyojunbaikaRitsu.Location = new System.Drawing.Point(1521, 72);
+            this.lblGrayHyojunbaikaRitsu.Name = "lblGrayHyojunbaikaRitsu";
+            this.lblGrayHyojunbaikaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayHyojunbaikaRitsu.Size = new System.Drawing.Size(50, 22);
+            this.lblGrayHyojunbaikaRitsu.TabIndex = 99;
+            this.lblGrayHyojunbaikaRitsu.Text = "999,9";
+            this.lblGrayHyojunbaikaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblGrayShireTankaRitsu
+            // 
+            this.lblGrayShireTankaRitsu.AutoEllipsis = true;
+            this.lblGrayShireTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayShireTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayShireTankaRitsu.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayShireTankaRitsu.Location = new System.Drawing.Point(1521, 97);
+            this.lblGrayShireTankaRitsu.Name = "lblGrayShireTankaRitsu";
+            this.lblGrayShireTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayShireTankaRitsu.Size = new System.Drawing.Size(50, 22);
+            this.lblGrayShireTankaRitsu.TabIndex = 99;
+            this.lblGrayShireTankaRitsu.Text = "999,9";
+            this.lblGrayShireTankaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblGrayHyokaTankaRitsu
+            // 
+            this.lblGrayHyokaTankaRitsu.AutoEllipsis = true;
+            this.lblGrayHyokaTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayHyokaTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayHyokaTankaRitsu.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayHyokaTankaRitsu.Location = new System.Drawing.Point(1521, 122);
+            this.lblGrayHyokaTankaRitsu.Name = "lblGrayHyokaTankaRitsu";
+            this.lblGrayHyokaTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayHyokaTankaRitsu.Size = new System.Drawing.Size(50, 22);
+            this.lblGrayHyokaTankaRitsu.TabIndex = 99;
+            this.lblGrayHyokaTankaRitsu.Text = "999,9";
+            this.lblGrayHyokaTankaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblGraytateneShireTankaRitsu
+            // 
+            this.lblGraytateneShireTankaRitsu.AutoEllipsis = true;
+            this.lblGraytateneShireTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGraytateneShireTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGraytateneShireTankaRitsu.ForeColor = System.Drawing.Color.Blue;
+            this.lblGraytateneShireTankaRitsu.Location = new System.Drawing.Point(1521, 147);
+            this.lblGraytateneShireTankaRitsu.Name = "lblGraytateneShireTankaRitsu";
+            this.lblGraytateneShireTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGraytateneShireTankaRitsu.Size = new System.Drawing.Size(50, 22);
+            this.lblGraytateneShireTankaRitsu.TabIndex = 99;
+            this.lblGraytateneShireTankaRitsu.Text = "999,9";
+            this.lblGraytateneShireTankaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblsetGifuTana
+            // 
+            this.lblsetGifuTana.AppendLabelSize = 0;
+            this.lblsetGifuTana.AppendLabelText = "";
+            this.lblsetGifuTana.CodeTxtSize = 60;
+            this.lblsetGifuTana.CodeTxtText = "";
+            this.lblsetGifuTana.Controls.Add(this.baseLabel1);
+            this.lblsetGifuTana.Controls.Add(this.nameLabel);
+            this.lblsetGifuTana.Enabled = false;
+            this.lblsetGifuTana.LabelName = "";
+            this.lblsetGifuTana.Location = new System.Drawing.Point(1297, 234);
+            this.lblsetGifuTana.Name = "lblsetGifuTana";
+            this.lblsetGifuTana.ShowAppendFlg = false;
+            this.lblsetGifuTana.Size = new System.Drawing.Size(245, 22);
+            this.lblsetGifuTana.SpaceCodeValue = 4;
+            this.lblsetGifuTana.SpaceNameCode = 4;
+            this.lblsetGifuTana.SpaceValueAppend = 4;
+            this.lblsetGifuTana.TabIndex = 94;
+            this.lblsetGifuTana.ValueLabelSize = 150;
+            this.lblsetGifuTana.ValueLabelText = "";
+            // 
+            // baseLabel1
+            // 
+            this.baseLabel1.AutoSize = true;
+            this.baseLabel1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel1.Location = new System.Drawing.Point(2, 3);
+            this.baseLabel1.Name = "baseLabel1";
+            this.baseLabel1.Size = new System.Drawing.Size(0, 15);
+            this.baseLabel1.strToolTip = null;
+            this.baseLabel1.TabIndex = 0;
+            this.baseLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.nameLabel.Location = new System.Drawing.Point(2, 3);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(0, 15);
+            this.nameLabel.strToolTip = null;
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblGrayTekaRitsu
+            // 
+            this.lblGrayTekaRitsu.AutoEllipsis = true;
+            this.lblGrayTekaRitsu.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblGrayTekaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblGrayTekaRitsu.ForeColor = System.Drawing.Color.Blue;
+            this.lblGrayTekaRitsu.Location = new System.Drawing.Point(1521, 47);
+            this.lblGrayTekaRitsu.Name = "lblGrayTekaRitsu";
+            this.lblGrayTekaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblGrayTekaRitsu.Size = new System.Drawing.Size(50, 22);
+            this.lblGrayTekaRitsu.TabIndex = 99;
+            this.lblGrayTekaRitsu.Text = "999,9";
+            this.lblGrayTekaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // D1550_ShohinZaikoKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -877,8 +998,13 @@
             this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.lblGrayHakosu);
             this.Controls.Add(this.lblGraytateneShireTanka);
+            this.Controls.Add(this.lblGraytateneShireTankaRitsu);
             this.Controls.Add(this.lblGrayHyokaTanka);
+            this.Controls.Add(this.lblGrayHyokaTankaRitsu);
+            this.Controls.Add(this.lblGrayShireTankaRitsu);
             this.Controls.Add(this.lblGrayShireTanka);
+            this.Controls.Add(this.lblGrayTekaRitsu);
+            this.Controls.Add(this.lblGrayHyojunbaikaRitsu);
             this.Controls.Add(this.lblGrayHyojunbaika);
             this.Controls.Add(this.lblGrayTeka);
             this.Controls.Add(this.lblsetGifuTana);
@@ -914,19 +1040,6 @@
             this.Text = "D1550_ShohinZaikoKakunin";
             this.Load += new System.EventHandler(this.D1550_ShohinZaikoKakunin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.D1550_ShohinZaikoKakunin_KeyDown);
-            this.Controls.SetChildIndex(this.btnF01, 0);
-            this.Controls.SetChildIndex(this.btnF02, 0);
-            this.Controls.SetChildIndex(this.btnF03, 0);
-            this.Controls.SetChildIndex(this.btnF04, 0);
-            this.Controls.SetChildIndex(this.btnF05, 0);
-            this.Controls.SetChildIndex(this.btnF06, 0);
-            this.Controls.SetChildIndex(this.btnF07, 0);
-            this.Controls.SetChildIndex(this.btnF08, 0);
-            this.Controls.SetChildIndex(this.btnF09, 0);
-            this.Controls.SetChildIndex(this.btnF10, 0);
-            this.Controls.SetChildIndex(this.btnF11, 0);
-            this.Controls.SetChildIndex(this.btnF12, 0);
-            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Chubunrui, 0);
             this.Controls.SetChildIndex(this.labelSet_Maker1, 0);
@@ -958,10 +1071,28 @@
             this.Controls.SetChildIndex(this.lblsetGifuTana, 0);
             this.Controls.SetChildIndex(this.lblGrayTeka, 0);
             this.Controls.SetChildIndex(this.lblGrayHyojunbaika, 0);
+            this.Controls.SetChildIndex(this.lblGrayHyojunbaikaRitsu, 0);
+            this.Controls.SetChildIndex(this.lblGrayTekaRitsu, 0);
             this.Controls.SetChildIndex(this.lblGrayShireTanka, 0);
+            this.Controls.SetChildIndex(this.lblGrayShireTankaRitsu, 0);
+            this.Controls.SetChildIndex(this.lblGrayHyokaTankaRitsu, 0);
             this.Controls.SetChildIndex(this.lblGrayHyokaTanka, 0);
+            this.Controls.SetChildIndex(this.lblGraytateneShireTankaRitsu, 0);
             this.Controls.SetChildIndex(this.lblGraytateneShireTanka, 0);
             this.Controls.SetChildIndex(this.lblGrayHakosu, 0);
+            this.Controls.SetChildIndex(this.btnF01, 0);
+            this.Controls.SetChildIndex(this.btnF02, 0);
+            this.Controls.SetChildIndex(this.btnF03, 0);
+            this.Controls.SetChildIndex(this.btnF04, 0);
+            this.Controls.SetChildIndex(this.btnF05, 0);
+            this.Controls.SetChildIndex(this.btnF06, 0);
+            this.Controls.SetChildIndex(this.btnF07, 0);
+            this.Controls.SetChildIndex(this.btnF08, 0);
+            this.Controls.SetChildIndex(this.btnF09, 0);
+            this.Controls.SetChildIndex(this.btnF10, 0);
+            this.Controls.SetChildIndex(this.btnF11, 0);
+            this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridShohin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridJuchuZan)).EndInit();
@@ -970,9 +1101,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridShire)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridGetubetuUriage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridShohinbetuTanka)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGetubetuShire)).EndInit();
             this.lblsetGifuTana.ResumeLayout(false);
             this.lblsetGifuTana.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGetubetuShire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -999,9 +1130,6 @@
         private Common.Ctl.BaseLabel lblTateneShireTanka;
         private Common.Ctl.BaseLabel lblHakosu;
         private Common.Ctl.LabelSet_Tanaban lblsetHonTana;
-        private Common.Ctl.LabelSet_Tanaban lblsetGifuTana;
-        private Common.Ctl.BaseLabel baseLabel4;
-        private Common.Ctl.BaseLabel nameLabel;
         private Common.Ctl.BaseLabelGray lblGrayTeka;
         private Common.Ctl.BaseLabelGray lblGrayHyojunbaika;
         private Common.Ctl.BaseLabelGray lblGrayShireTanka;
@@ -1017,5 +1145,13 @@
         private Common.Ctl.BaseLabel lblGetubetuUriage;
         private Common.Ctl.BaseLabel lblGetubetuShire;
         private Common.Ctl.BaseLabel lblShohinbetuTanka;
+        private Common.Ctl.BaseLabelGray lblGrayHyojunbaikaRitsu;
+        private Common.Ctl.BaseLabelGray lblGrayShireTankaRitsu;
+        private Common.Ctl.BaseLabelGray lblGrayHyokaTankaRitsu;
+        private Common.Ctl.BaseLabelGray lblGraytateneShireTankaRitsu;
+        private Common.Ctl.LabelSet_Tanaban lblsetGifuTana;
+        private Common.Ctl.BaseLabel baseLabel1;
+        private Common.Ctl.BaseLabel nameLabel;
+        private Common.Ctl.BaseLabelGray lblGrayTekaRitsu;
     }
 }

@@ -178,6 +178,33 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             gridGetubetuUriage.DataSource = dtGetubetuU;
 
             SetUpGridJuchuzan();
+
+            //商品グリッド入れる用(テスト)
+            DataTable dtUriagejz = new DataTable();
+            dtUriagejz.Columns.Add("受注日", Type.GetType("System.String"));
+            dtUriagejz.Columns.Add("納期", Type.GetType("System.String"));
+            dtUriagejz.Columns.Add("取引先", Type.GetType("System.String"));
+            dtUriagejz.Columns.Add("個数", Type.GetType("System.String"));
+            dtUriagejz.Columns.Add("単価", Type.GetType("System.String"));
+
+            DataRow row1jz = dtUriagejz.NewRow();
+            row1jz["受注日"] = "18/03/19";
+            row1jz["納期"] = "18/03/30";
+            row1jz["取引先"] = "123456789A123456789B123456789C";
+            row1jz["個数"] = "10,000";
+            row1jz["単価"] = "10,000,000";
+            dtUriagejz.Rows.Add(row1jz);
+
+            DataRow row2jz = dtUriagejz.NewRow();
+            row2jz["受注日"] = "18/03/31";
+            row2jz["納期"] = "18/04/10";
+            row2jz["取引先"] = "123456789A123456789B123456789C";
+            row2jz["個数"] = "10,000";
+            row2jz["単価"] = "10,000,000";
+            dtUriagejz.Rows.Add(row2jz);
+
+            gridJuchuZan.DataSource = dtUriagejz;
+
             SetUpGridHachuzan();
             SetUpGridShohinMotocho();
             SetUpGridShire();
@@ -247,15 +274,15 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             ShireTanka.HeaderText = "仕入単価";
 
             //個々の幅、文章の寄せ
-            setColumngridShohin(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 180);
-            setColumngridShohin(Chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 180);
-            setColumngridShohin(Hin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 340);
+            setColumngridShohin(Maker, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
+            setColumngridShohin(Chubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 170);
+            setColumngridShohin(Hin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 335);
             setColumngridShohin(HonZaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
             setColumngridShohin(HonFree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
             setColumngridShohin(GifuZaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
             setColumngridShohin(GifuFree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
-            setColumngridShohin(Teka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
-            setColumngridShohin(ShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumngridShohin(Teka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridShohin(ShireTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
         ///<summary>
@@ -306,9 +333,9 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             Tanka.HeaderText = "単価";
 
             //個々の幅、文章の寄せ
-            setColumngridUriage(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridUriage(Tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
-            setColumngridUriage(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridUriage(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridUriage(Tokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumngridUriage(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridUriage(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
@@ -366,9 +393,9 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
             //個々の幅、文章の寄せ
             setColumngridJuchuzan(Juchubi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridJuchuzan(Noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridJuchuzan(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
-            setColumngridJuchuzan(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridJuchuzan(Noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridJuchuzan(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumngridJuchuzan(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridJuchuzan(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
@@ -426,9 +453,9 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
             //個々の幅、文章の寄せ
             setColumngridHachuzan(Juchubi, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridHachuzan(Noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridHachuzan(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
-            setColumngridHachuzan(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridHachuzan(Noki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridHachuzan(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumngridHachuzan(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridHachuzan(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
@@ -480,10 +507,10 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             Kosu.HeaderText = "個数";
 
             //個々の幅、文章の寄せ
-            setColumngridShohinMotocho(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridShohinMotocho(kubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 80);
-            setColumngridShohinMotocho(Basho, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
-            setColumngridShohinMotocho(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridShohinMotocho(Hiduke, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridShohinMotocho(kubun, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 73);
+            setColumngridShohinMotocho(Basho, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
+            setColumngridShohinMotocho(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
         }
 
         ///<summary>
@@ -755,6 +782,19 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             }
         }
 
-
+        ///<summary>
+        ///画面下のファンクションボタン押下時
+        ///</summary>
+        private void judFuncBtnClick(object sender, EventArgs e)
+        {
+            // ファンクション機能のボタンの名前を取得・判別
+            switch (((Button)sender).Name)
+            {
+                case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
+                    this.Close();
+                    break;
+            }
+        }
     }
 }

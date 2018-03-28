@@ -102,7 +102,6 @@ namespace KATO.Form.M1030_Shohin
             if (blnKanri == false)
             {
                 this.btnF01.Text = "F1:仮登録";
-                this.btnF03.Enabled = false;
             }
             else
             {
@@ -925,17 +924,12 @@ namespace KATO.Form.M1030_Shohin
         ///</summary>
         public void delShohin()
         {
-            if (blnKanri == false)
-            {
-                return;
-            }
-
             //データ渡し用
             List<string> lstString = new List<string>();
 
             //データの取得用
             DataTable dtShohin = new DataTable();
-            
+
             //文字判定
             if (txtShohinCd.blIsEmpty() == false)
             {
@@ -952,63 +946,128 @@ namespace KATO.Form.M1030_Shohin
 
             ShouhinList_B shohinlistB = new ShouhinList_B();
 
-            dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text, chbxHontoroku.Checked);
-
-            //データがない場合
-            if (dtShohin.Rows.Count == 0)
+            if (blnKanri == false)
             {
-                //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
-                basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text, false);
+
+                //データがない場合
+                if (dtShohin.Rows.Count == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                M1030_Shohin_B shohinB = new M1030_Shohin_B();
+
+                lstString.Add(dtShohin.Rows[0]["商品コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["メーカーコード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["大分類コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["中分類コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ１"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ２"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ３"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ４"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ５"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ６"].ToString());
+                lstString.Add(dtShohin.Rows[0]["標準売価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["仕入単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["在庫管理区分"].ToString());
+                lstString.Add(dtShohin.Rows[0]["棚番本社"].ToString());
+                lstString.Add(dtShohin.Rows[0]["棚番岐阜"].ToString());
+                lstString.Add(dtShohin.Rows[0]["メモ"].ToString());
+                lstString.Add(dtShohin.Rows[0]["評価単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["定価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["箱入数"].ToString());
+                lstString.Add(dtShohin.Rows[0]["建値仕入単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["コメント"].ToString());
+
+                //ユーザー名
+                lstString.Add(SystemInformation.UserName);
+
+                try
+                {
+                    shohinB.delShohin(lstString, false);
+
+                    //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                    //テキストボックスを白紙にする
+                    delText();
+                    labelSet_Daibunrui.Focus();
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
             }
-
-            M1030_Shohin_B shohinB = new M1030_Shohin_B();
-
-            lstString.Add(dtShohin.Rows[0]["商品コード"].ToString());
-            lstString.Add(dtShohin.Rows[0]["メーカーコード"].ToString());
-            lstString.Add(dtShohin.Rows[0]["大分類コード"].ToString());
-            lstString.Add(dtShohin.Rows[0]["中分類コード"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ１"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ２"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ３"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ４"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ５"].ToString());
-            lstString.Add(dtShohin.Rows[0]["Ｃ６"].ToString());
-            lstString.Add(dtShohin.Rows[0]["標準売価"].ToString());
-            lstString.Add(dtShohin.Rows[0]["仕入単価"].ToString());
-            lstString.Add(dtShohin.Rows[0]["在庫管理区分"].ToString());
-            lstString.Add(dtShohin.Rows[0]["棚番本社"].ToString());
-            lstString.Add(dtShohin.Rows[0]["棚番岐阜"].ToString());
-            lstString.Add(dtShohin.Rows[0]["メモ"].ToString());
-            lstString.Add(dtShohin.Rows[0]["評価単価"].ToString());
-            lstString.Add(dtShohin.Rows[0]["定価"].ToString());
-            lstString.Add(dtShohin.Rows[0]["箱入数"].ToString());
-            lstString.Add(dtShohin.Rows[0]["建値仕入単価"].ToString());
-            lstString.Add(dtShohin.Rows[0]["コメント"].ToString());
-
-            //ユーザー名
-            lstString.Add(SystemInformation.UserName);
-
-            try
+            else
             {
-                shohinB.delShohin(lstString, chbxHontoroku.Checked);
+                dtShohin = shohinlistB.getSelectItem(txtShohinCd.Text, chbxHontoroku.Checked);
 
-                //メッセージボックスの処理、削除完了のウィンドウ(OK)
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
-                //テキストボックスを白紙にする
-                delText();
-                labelSet_Daibunrui.Focus();
-            }
-            catch (Exception ex)
-            {
-                //データロギング
-                new CommonException(ex);
-                //例外発生メッセージ（OK）
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
-                return;
+                //データがない場合
+                if (dtShohin.Rows.Count == 0)
+                {
+                    //メッセージボックスの処理、項目のデータがない場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_NOTDATA, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
+
+                M1030_Shohin_B shohinB = new M1030_Shohin_B();
+
+                lstString.Add(dtShohin.Rows[0]["商品コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["メーカーコード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["大分類コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["中分類コード"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ１"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ２"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ３"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ４"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ５"].ToString());
+                lstString.Add(dtShohin.Rows[0]["Ｃ６"].ToString());
+                lstString.Add(dtShohin.Rows[0]["標準売価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["仕入単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["在庫管理区分"].ToString());
+                lstString.Add(dtShohin.Rows[0]["棚番本社"].ToString());
+                lstString.Add(dtShohin.Rows[0]["棚番岐阜"].ToString());
+                lstString.Add(dtShohin.Rows[0]["メモ"].ToString());
+                lstString.Add(dtShohin.Rows[0]["評価単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["定価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["箱入数"].ToString());
+                lstString.Add(dtShohin.Rows[0]["建値仕入単価"].ToString());
+                lstString.Add(dtShohin.Rows[0]["コメント"].ToString());
+
+                //ユーザー名
+                lstString.Add(SystemInformation.UserName);
+
+                try
+                {
+                    shohinB.delShohin(lstString, chbxHontoroku.Checked);
+
+                    //メッセージボックスの処理、削除完了のウィンドウ(OK)
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, CommonTeisu.LABEL_DEL_AFTER, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+                    //テキストボックスを白紙にする
+                    delText();
+                    labelSet_Daibunrui.Focus();
+                }
+                catch (Exception ex)
+                {
+                    //データロギング
+                    new CommonException(ex);
+                    //例外発生メッセージ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return;
+                }
             }
         }
 
