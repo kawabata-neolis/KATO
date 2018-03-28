@@ -699,7 +699,7 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
 
             //個々の幅、文章の寄せ
             setColumngridGetubetuUriage(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 65);
-            setColumngridGetubetuUriage(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridGetubetuUriage(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridGetubetuUriage(HeikinTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 

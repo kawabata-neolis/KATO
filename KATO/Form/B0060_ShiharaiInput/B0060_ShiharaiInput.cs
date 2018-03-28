@@ -768,7 +768,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 if (!ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()].Controls["codeTxt"].Text.Equals(""))
                 {
                     // 入力チェック（取引区分）
-                    if (((LabelSet_Torihikikbn)ctlGb.Controls["lblsetTorihikikbn" + cnt.ToString()]).chkTxtTorihikikbn())
+                    if (((LabelSet_Torihikikbn)ctlGb.Controls["labelSet_TorihikiKbn" + cnt.ToString()]).chkTxtTorihikikbn())
                     {
                         return;
                     }
