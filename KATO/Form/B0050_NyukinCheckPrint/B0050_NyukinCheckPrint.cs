@@ -89,6 +89,10 @@ namespace KATO.Form.B0050_NyukinCheckPrint
             // 伝票年月日の設定
             txtDenpyoYMDStart.setUp(1);
             txtDenpyoYMDEnd.setUp(2);
+
+            // 初期設定
+            labelSet_TokuisakiCdFrom.SearchOn = false;
+            labelSet_TokuisakiCdTo.SearchOn = false;
         }
 
         /// <summary>
