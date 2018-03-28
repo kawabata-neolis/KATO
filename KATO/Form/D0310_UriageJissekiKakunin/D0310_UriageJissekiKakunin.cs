@@ -963,6 +963,10 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
 
                 //エラーロギング
                 new CommonException(ex);
+
+                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
                 return;
             }
 

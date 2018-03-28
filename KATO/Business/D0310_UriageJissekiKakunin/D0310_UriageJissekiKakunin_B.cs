@@ -321,7 +321,7 @@ namespace KATO.Business.D0310_UriageJissekiKakunin
                 string strSqltxt = opensql.setOpenSQL(listSqlPath);
                 string sql = string.Format(strSqltxt, startYmd, endYmd, andSql, orderbySql);
 
-                dtGetTableGrid = dbconnective.ReadSql(sql);
+                dtGetTableGrid = dbconnective.ReadSqlDelay(sql, 1800);
             }
             catch (Exception ex)
             {
