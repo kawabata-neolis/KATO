@@ -1730,17 +1730,6 @@ namespace KATO.Form.A0030_ShireInput
                         //消費税計算区分が2の場合
                         if (decZeikesankbn == 2)
                         {
-                            //消費税を0
-                            shireinput.txtShohizei.Text = "0";
-                            //総合計を合計と同じ数値
-                            shireinput.txtSogokei.Text = decGokei.ToString();
-                            shireinput.txtSogokei.updPriceMethod();
-                            //運賃が0円の場合
-                            if (shireinput.txtUnchin.Text == "0")
-                            {
-                                shireinput.txtUnchin.Text = "";
-                            }
-
                             //合計に入れる
                             //取引先の端数区分を適用する
                             switch (intHasukbn)
@@ -1762,6 +1751,17 @@ namespace KATO.Form.A0030_ShireInput
                             }
 
                             shireinput.txtGokei.updPriceMethod();
+
+                            //消費税を0
+                            shireinput.txtShohizei.Text = "0";
+                            //総合計を合計と同じ数値
+                            shireinput.txtSogokei.Text = shireinput.txtGokei.Text;
+                            shireinput.txtSogokei.updPriceMethod();
+                            //運賃が0円の場合
+                            if (shireinput.txtUnchin.Text == "0")
+                            {
+                                shireinput.txtUnchin.Text = "";
+                            }
 
                             return;
                         }
@@ -1769,17 +1769,6 @@ namespace KATO.Form.A0030_ShireInput
                         //消費税区分が1の場合
                         if (intZeikbn == 1)
                         {
-                            //消費税を0
-                            shireinput.txtShohizei.Text = "0";
-                            //総合計を合計と同じ数値
-                            shireinput.txtSogokei.Text = decGokei.ToString();
-                            shireinput.txtSogokei.updPriceMethod();
-                            //運賃が0円の場合
-                            if (shireinput.txtUnchin.Text == "0")
-                            {
-                                shireinput.txtUnchin.Text = "";
-                            }
-
                             //合計に入れる
                             //取引先の端数区分を適用する
                             switch (intHasukbn)
@@ -1802,6 +1791,16 @@ namespace KATO.Form.A0030_ShireInput
 
                             shireinput.txtGokei.updPriceMethod();
 
+                            //消費税を0
+                            shireinput.txtShohizei.Text = "0";
+                            //総合計を合計と同じ数値
+                            shireinput.txtSogokei.Text = shireinput.txtGokei.Text;
+                            shireinput.txtSogokei.updPriceMethod();
+                            //運賃が0円の場合
+                            if (shireinput.txtUnchin.Text == "0")
+                            {
+                                shireinput.txtUnchin.Text = "";
+                            }
                             return;
                         }
 
