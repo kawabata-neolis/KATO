@@ -97,7 +97,6 @@
             this.lblsetGifuTana = new KATO.Common.Ctl.LabelSet_Tanaban();
             this.baseLabel1 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.nameLabel = new KATO.Common.Ctl.BaseLabel(this.components);
-            this.lblGrayTekaRitsu = new KATO.Common.Ctl.BaseLabelGray();
             ((System.ComponentModel.ISupportInitialize)(this.gridShohin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridUriage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridJuchuZan)).BeginInit();
@@ -267,7 +266,7 @@
             this.gridShohin.RowHeadersVisible = false;
             this.gridShohin.RowTemplate.Height = 21;
             this.gridShohin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShohin.Size = new System.Drawing.Size(1279, 205);
+            this.gridShohin.Size = new System.Drawing.Size(1271, 203);
             this.gridShohin.StandardTab = true;
             this.gridShohin.TabIndex = 91;
             // 
@@ -309,7 +308,7 @@
             this.gridUriage.RowHeadersVisible = false;
             this.gridUriage.RowTemplate.Height = 21;
             this.gridUriage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriage.Size = new System.Drawing.Size(503, 51);
+            this.gridUriage.Size = new System.Drawing.Size(503, 220);
             this.gridUriage.StandardTab = true;
             this.gridUriage.TabIndex = 92;
             // 
@@ -351,7 +350,7 @@
             this.gridJuchuZan.RowHeadersVisible = false;
             this.gridJuchuZan.RowTemplate.Height = 21;
             this.gridJuchuZan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridJuchuZan.Size = new System.Drawing.Size(583, 51);
+            this.gridJuchuZan.Size = new System.Drawing.Size(583, 140);
             this.gridJuchuZan.StandardTab = true;
             this.gridJuchuZan.TabIndex = 92;
             // 
@@ -393,7 +392,7 @@
             this.gridShohinMotocho.RowHeadersVisible = false;
             this.gridShohinMotocho.RowTemplate.Height = 21;
             this.gridShohinMotocho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShohinMotocho.Size = new System.Drawing.Size(480, 51);
+            this.gridShohinMotocho.Size = new System.Drawing.Size(480, 220);
             this.gridShohinMotocho.StandardTab = true;
             this.gridShohinMotocho.TabIndex = 92;
             // 
@@ -421,7 +420,7 @@
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridHachuZan.DefaultCellStyle = dataGridViewCellStyle14;
             this.gridHachuZan.EnableHeadersVisualStyles = false;
-            this.gridHachuZan.Location = new System.Drawing.Point(513, 451);
+            this.gridHachuZan.Location = new System.Drawing.Point(513, 458);
             this.gridHachuZan.Name = "gridHachuZan";
             this.gridHachuZan.ReadOnly = true;
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -435,7 +434,7 @@
             this.gridHachuZan.RowHeadersVisible = false;
             this.gridHachuZan.RowTemplate.Height = 21;
             this.gridHachuZan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridHachuZan.Size = new System.Drawing.Size(582, 143);
+            this.gridHachuZan.Size = new System.Drawing.Size(582, 140);
             this.gridHachuZan.StandardTab = true;
             this.gridHachuZan.TabIndex = 92;
             // 
@@ -477,7 +476,7 @@
             this.gridShire.RowHeadersVisible = false;
             this.gridShire.RowTemplate.Height = 21;
             this.gridShire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShire.Size = new System.Drawing.Size(503, 61);
+            this.gridShire.Size = new System.Drawing.Size(503, 220);
             this.gridShire.StandardTab = true;
             this.gridShire.TabIndex = 92;
             // 
@@ -505,7 +504,7 @@
             dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridGetubetuUriage.DefaultCellStyle = dataGridViewCellStyle20;
             this.gridGetubetuUriage.EnableHeadersVisualStyles = false;
-            this.gridGetubetuUriage.Location = new System.Drawing.Point(535, 632);
+            this.gridGetubetuUriage.Location = new System.Drawing.Point(546, 628);
             this.gridGetubetuUriage.Name = "gridGetubetuUriage";
             this.gridGetubetuUriage.ReadOnly = true;
             dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -519,7 +518,7 @@
             this.gridGetubetuUriage.RowHeadersVisible = false;
             this.gridGetubetuUriage.RowTemplate.Height = 21;
             this.gridGetubetuUriage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridGetubetuUriage.Size = new System.Drawing.Size(245, 134);
+            this.gridGetubetuUriage.Size = new System.Drawing.Size(244, 134);
             this.gridGetubetuUriage.StandardTab = true;
             this.gridGetubetuUriage.TabIndex = 92;
             // 
@@ -547,7 +546,7 @@
             dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridShohinbetuTanka.DefaultCellStyle = dataGridViewCellStyle23;
             this.gridShohinbetuTanka.EnableHeadersVisualStyles = false;
-            this.gridShohinbetuTanka.Location = new System.Drawing.Point(1098, 542);
+            this.gridShohinbetuTanka.Location = new System.Drawing.Point(1097, 542);
             this.gridShohinbetuTanka.Name = "gridShohinbetuTanka";
             this.gridShohinbetuTanka.ReadOnly = true;
             dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -561,7 +560,7 @@
             this.gridShohinbetuTanka.RowHeadersVisible = false;
             this.gridShohinbetuTanka.RowTemplate.Height = 21;
             this.gridShohinbetuTanka.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridShohinbetuTanka.Size = new System.Drawing.Size(438, 224);
+            this.gridShohinbetuTanka.Size = new System.Drawing.Size(366, 220);
             this.gridShohinbetuTanka.StandardTab = true;
             this.gridShohinbetuTanka.TabIndex = 92;
             // 
@@ -569,7 +568,7 @@
             // 
             this.lblTeka.AutoSize = true;
             this.lblTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTeka.Location = new System.Drawing.Point(1300, 51);
+            this.lblTeka.Location = new System.Drawing.Point(1292, 51);
             this.lblTeka.Name = "lblTeka";
             this.lblTeka.Size = new System.Drawing.Size(39, 15);
             this.lblTeka.strToolTip = null;
@@ -581,7 +580,7 @@
             // 
             this.lblHyojunBaika.AutoSize = true;
             this.lblHyojunBaika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyojunBaika.Location = new System.Drawing.Point(1300, 76);
+            this.lblHyojunBaika.Location = new System.Drawing.Point(1292, 76);
             this.lblHyojunBaika.Name = "lblHyojunBaika";
             this.lblHyojunBaika.Size = new System.Drawing.Size(71, 15);
             this.lblHyojunBaika.strToolTip = null;
@@ -593,7 +592,7 @@
             // 
             this.lblShireTanka.AutoSize = true;
             this.lblShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShireTanka.Location = new System.Drawing.Point(1300, 101);
+            this.lblShireTanka.Location = new System.Drawing.Point(1292, 101);
             this.lblShireTanka.Name = "lblShireTanka";
             this.lblShireTanka.Size = new System.Drawing.Size(71, 15);
             this.lblShireTanka.strToolTip = null;
@@ -605,7 +604,7 @@
             // 
             this.lblHyokaTanka.AutoSize = true;
             this.lblHyokaTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHyokaTanka.Location = new System.Drawing.Point(1300, 126);
+            this.lblHyokaTanka.Location = new System.Drawing.Point(1292, 126);
             this.lblHyokaTanka.Name = "lblHyokaTanka";
             this.lblHyokaTanka.Size = new System.Drawing.Size(71, 15);
             this.lblHyokaTanka.strToolTip = null;
@@ -617,7 +616,7 @@
             // 
             this.lblTateneShireTanka.AutoSize = true;
             this.lblTateneShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTateneShireTanka.Location = new System.Drawing.Point(1300, 151);
+            this.lblTateneShireTanka.Location = new System.Drawing.Point(1292, 151);
             this.lblTateneShireTanka.Name = "lblTateneShireTanka";
             this.lblTateneShireTanka.Size = new System.Drawing.Size(103, 15);
             this.lblTateneShireTanka.strToolTip = null;
@@ -629,7 +628,7 @@
             // 
             this.lblHakosu.AutoSize = true;
             this.lblHakosu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHakosu.Location = new System.Drawing.Point(1300, 181);
+            this.lblHakosu.Location = new System.Drawing.Point(1292, 181);
             this.lblHakosu.Name = "lblHakosu";
             this.lblHakosu.Size = new System.Drawing.Size(55, 15);
             this.lblHakosu.strToolTip = null;
@@ -645,7 +644,7 @@
             this.lblsetHonTana.CodeTxtText = "";
             this.lblsetHonTana.Enabled = false;
             this.lblsetHonTana.LabelName = "";
-            this.lblsetHonTana.Location = new System.Drawing.Point(1297, 209);
+            this.lblsetHonTana.Location = new System.Drawing.Point(1289, 209);
             this.lblsetHonTana.Name = "lblsetHonTana";
             this.lblsetHonTana.ShowAppendFlg = false;
             this.lblsetHonTana.Size = new System.Drawing.Size(245, 22);
@@ -662,7 +661,7 @@
             this.lblGrayTeka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayTeka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayTeka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayTeka.Location = new System.Drawing.Point(1413, 47);
+            this.lblGrayTeka.Location = new System.Drawing.Point(1405, 47);
             this.lblGrayTeka.Name = "lblGrayTeka";
             this.lblGrayTeka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayTeka.Size = new System.Drawing.Size(90, 22);
@@ -676,7 +675,7 @@
             this.lblGrayHyojunbaika.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyojunbaika.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyojunbaika.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyojunbaika.Location = new System.Drawing.Point(1413, 72);
+            this.lblGrayHyojunbaika.Location = new System.Drawing.Point(1405, 72);
             this.lblGrayHyojunbaika.Name = "lblGrayHyojunbaika";
             this.lblGrayHyojunbaika.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyojunbaika.Size = new System.Drawing.Size(90, 22);
@@ -690,7 +689,7 @@
             this.lblGrayShireTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayShireTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayShireTanka.Location = new System.Drawing.Point(1413, 97);
+            this.lblGrayShireTanka.Location = new System.Drawing.Point(1405, 97);
             this.lblGrayShireTanka.Name = "lblGrayShireTanka";
             this.lblGrayShireTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayShireTanka.Size = new System.Drawing.Size(90, 22);
@@ -704,7 +703,7 @@
             this.lblGrayHyokaTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyokaTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyokaTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyokaTanka.Location = new System.Drawing.Point(1413, 122);
+            this.lblGrayHyokaTanka.Location = new System.Drawing.Point(1405, 122);
             this.lblGrayHyokaTanka.Name = "lblGrayHyokaTanka";
             this.lblGrayHyokaTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyokaTanka.Size = new System.Drawing.Size(90, 22);
@@ -718,7 +717,7 @@
             this.lblGraytateneShireTanka.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGraytateneShireTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGraytateneShireTanka.ForeColor = System.Drawing.Color.Blue;
-            this.lblGraytateneShireTanka.Location = new System.Drawing.Point(1413, 147);
+            this.lblGraytateneShireTanka.Location = new System.Drawing.Point(1405, 147);
             this.lblGraytateneShireTanka.Name = "lblGraytateneShireTanka";
             this.lblGraytateneShireTanka.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGraytateneShireTanka.Size = new System.Drawing.Size(90, 22);
@@ -732,7 +731,7 @@
             this.lblGrayHakosu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHakosu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHakosu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHakosu.Location = new System.Drawing.Point(1413, 177);
+            this.lblGrayHakosu.Location = new System.Drawing.Point(1405, 177);
             this.lblGrayHakosu.Name = "lblGrayHakosu";
             this.lblGrayHakosu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHakosu.Size = new System.Drawing.Size(59, 22);
@@ -764,7 +763,7 @@
             dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridGetubetuShire.DefaultCellStyle = dataGridViewCellStyle26;
             this.gridGetubetuShire.EnableHeadersVisualStyles = false;
-            this.gridGetubetuShire.Location = new System.Drawing.Point(799, 632);
+            this.gridGetubetuShire.Location = new System.Drawing.Point(810, 628);
             this.gridGetubetuShire.Name = "gridGetubetuShire";
             this.gridGetubetuShire.ReadOnly = true;
             dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -778,7 +777,7 @@
             this.gridGetubetuShire.RowHeadersVisible = false;
             this.gridGetubetuShire.RowTemplate.Height = 21;
             this.gridGetubetuShire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridGetubetuShire.Size = new System.Drawing.Size(245, 134);
+            this.gridGetubetuShire.Size = new System.Drawing.Size(244, 134);
             this.gridGetubetuShire.StandardTab = true;
             this.gridGetubetuShire.TabIndex = 92;
             // 
@@ -822,7 +821,7 @@
             // 
             this.lblShire.AutoSize = true;
             this.lblShire.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShire.Location = new System.Drawing.Point(12, 524);
+            this.lblShire.Location = new System.Drawing.Point(4, 524);
             this.lblShire.Name = "lblShire";
             this.lblShire.Size = new System.Drawing.Size(39, 15);
             this.lblShire.strToolTip = null;
@@ -834,7 +833,7 @@
             // 
             this.lblHachuZan.AutoSize = true;
             this.lblHachuZan.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblHachuZan.Location = new System.Drawing.Point(512, 433);
+            this.lblHachuZan.Location = new System.Drawing.Point(512, 440);
             this.lblHachuZan.Name = "lblHachuZan";
             this.lblHachuZan.Size = new System.Drawing.Size(55, 15);
             this.lblHachuZan.strToolTip = null;
@@ -846,7 +845,7 @@
             // 
             this.lblGetubetuUriage.AutoSize = true;
             this.lblGetubetuUriage.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGetubetuUriage.Location = new System.Drawing.Point(532, 614);
+            this.lblGetubetuUriage.Location = new System.Drawing.Point(543, 610);
             this.lblGetubetuUriage.Name = "lblGetubetuUriage";
             this.lblGetubetuUriage.Size = new System.Drawing.Size(71, 15);
             this.lblGetubetuUriage.strToolTip = null;
@@ -858,7 +857,7 @@
             // 
             this.lblGetubetuShire.AutoSize = true;
             this.lblGetubetuShire.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGetubetuShire.Location = new System.Drawing.Point(796, 614);
+            this.lblGetubetuShire.Location = new System.Drawing.Point(807, 610);
             this.lblGetubetuShire.Name = "lblGetubetuShire";
             this.lblGetubetuShire.Size = new System.Drawing.Size(71, 15);
             this.lblGetubetuShire.strToolTip = null;
@@ -870,7 +869,7 @@
             // 
             this.lblShohinbetuTanka.AutoSize = true;
             this.lblShohinbetuTanka.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblShohinbetuTanka.Location = new System.Drawing.Point(1097, 524);
+            this.lblShohinbetuTanka.Location = new System.Drawing.Point(1096, 524);
             this.lblShohinbetuTanka.Name = "lblShohinbetuTanka";
             this.lblShohinbetuTanka.Size = new System.Drawing.Size(87, 15);
             this.lblShohinbetuTanka.strToolTip = null;
@@ -884,7 +883,7 @@
             this.lblGrayHyojunbaikaRitsu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyojunbaikaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyojunbaikaRitsu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyojunbaikaRitsu.Location = new System.Drawing.Point(1521, 72);
+            this.lblGrayHyojunbaikaRitsu.Location = new System.Drawing.Point(1513, 72);
             this.lblGrayHyojunbaikaRitsu.Name = "lblGrayHyojunbaikaRitsu";
             this.lblGrayHyojunbaikaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyojunbaikaRitsu.Size = new System.Drawing.Size(50, 22);
@@ -898,7 +897,7 @@
             this.lblGrayShireTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayShireTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayShireTankaRitsu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayShireTankaRitsu.Location = new System.Drawing.Point(1521, 97);
+            this.lblGrayShireTankaRitsu.Location = new System.Drawing.Point(1513, 97);
             this.lblGrayShireTankaRitsu.Name = "lblGrayShireTankaRitsu";
             this.lblGrayShireTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayShireTankaRitsu.Size = new System.Drawing.Size(50, 22);
@@ -912,7 +911,7 @@
             this.lblGrayHyokaTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGrayHyokaTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGrayHyokaTankaRitsu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayHyokaTankaRitsu.Location = new System.Drawing.Point(1521, 122);
+            this.lblGrayHyokaTankaRitsu.Location = new System.Drawing.Point(1513, 122);
             this.lblGrayHyokaTankaRitsu.Name = "lblGrayHyokaTankaRitsu";
             this.lblGrayHyokaTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGrayHyokaTankaRitsu.Size = new System.Drawing.Size(50, 22);
@@ -926,7 +925,7 @@
             this.lblGraytateneShireTankaRitsu.BackColor = System.Drawing.Color.Gainsboro;
             this.lblGraytateneShireTankaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblGraytateneShireTankaRitsu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGraytateneShireTankaRitsu.Location = new System.Drawing.Point(1521, 147);
+            this.lblGraytateneShireTankaRitsu.Location = new System.Drawing.Point(1513, 147);
             this.lblGraytateneShireTankaRitsu.Name = "lblGraytateneShireTankaRitsu";
             this.lblGraytateneShireTankaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblGraytateneShireTankaRitsu.Size = new System.Drawing.Size(50, 22);
@@ -944,7 +943,7 @@
             this.lblsetGifuTana.Controls.Add(this.nameLabel);
             this.lblsetGifuTana.Enabled = false;
             this.lblsetGifuTana.LabelName = "";
-            this.lblsetGifuTana.Location = new System.Drawing.Point(1297, 234);
+            this.lblsetGifuTana.Location = new System.Drawing.Point(1289, 234);
             this.lblsetGifuTana.Name = "lblsetGifuTana";
             this.lblsetGifuTana.ShowAppendFlg = false;
             this.lblsetGifuTana.Size = new System.Drawing.Size(245, 22);
@@ -977,20 +976,6 @@
             this.nameLabel.TabIndex = 0;
             this.nameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblGrayTekaRitsu
-            // 
-            this.lblGrayTekaRitsu.AutoEllipsis = true;
-            this.lblGrayTekaRitsu.BackColor = System.Drawing.Color.Gainsboro;
-            this.lblGrayTekaRitsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblGrayTekaRitsu.ForeColor = System.Drawing.Color.Blue;
-            this.lblGrayTekaRitsu.Location = new System.Drawing.Point(1521, 47);
-            this.lblGrayTekaRitsu.Name = "lblGrayTekaRitsu";
-            this.lblGrayTekaRitsu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblGrayTekaRitsu.Size = new System.Drawing.Size(50, 22);
-            this.lblGrayTekaRitsu.TabIndex = 99;
-            this.lblGrayTekaRitsu.Text = "999,9";
-            this.lblGrayTekaRitsu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // D1550_ShohinZaikoKakunin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1003,7 +988,6 @@
             this.Controls.Add(this.lblGrayHyokaTankaRitsu);
             this.Controls.Add(this.lblGrayShireTankaRitsu);
             this.Controls.Add(this.lblGrayShireTanka);
-            this.Controls.Add(this.lblGrayTekaRitsu);
             this.Controls.Add(this.lblGrayHyojunbaikaRitsu);
             this.Controls.Add(this.lblGrayHyojunbaika);
             this.Controls.Add(this.lblGrayTeka);
@@ -1072,7 +1056,6 @@
             this.Controls.SetChildIndex(this.lblGrayTeka, 0);
             this.Controls.SetChildIndex(this.lblGrayHyojunbaika, 0);
             this.Controls.SetChildIndex(this.lblGrayHyojunbaikaRitsu, 0);
-            this.Controls.SetChildIndex(this.lblGrayTekaRitsu, 0);
             this.Controls.SetChildIndex(this.lblGrayShireTanka, 0);
             this.Controls.SetChildIndex(this.lblGrayShireTankaRitsu, 0);
             this.Controls.SetChildIndex(this.lblGrayHyokaTankaRitsu, 0);
@@ -1152,6 +1135,5 @@
         private Common.Ctl.LabelSet_Tanaban lblsetGifuTana;
         private Common.Ctl.BaseLabel baseLabel1;
         private Common.Ctl.BaseLabel nameLabel;
-        private Common.Ctl.BaseLabelGray lblGrayTekaRitsu;
     }
 }

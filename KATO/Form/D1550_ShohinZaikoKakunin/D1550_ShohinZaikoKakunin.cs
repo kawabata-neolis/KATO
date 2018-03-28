@@ -259,26 +259,20 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             SetUpGridGetubetuUriage();
 
             DataTable dtgetuuri = new DataTable();
-            dtgetuuri.Columns.Add("受注日", Type.GetType("System.String"));
-            dtgetuuri.Columns.Add("納期", Type.GetType("System.String"));
-            dtgetuuri.Columns.Add("取引先", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("年月", Type.GetType("System.String"));
             dtgetuuri.Columns.Add("個数", Type.GetType("System.String"));
-            dtgetuuri.Columns.Add("単価", Type.GetType("System.String"));
+            dtgetuuri.Columns.Add("平均単価", Type.GetType("System.String"));
 
             DataRow row1gs = dtgetuuri.NewRow();
-            row1gs["受注日"] = "18/03/19";
-            row1gs["納期"] = "18/03/30";
-            row1gs["取引先"] = "123456789A123456789B123456789C";
+            row1gs["年月"] = "18/03";
             row1gs["個数"] = "10,000";
-            row1gs["単価"] = "99,999,999";
+            row1gs["平均単価"] = "99,999,999";
             dtgetuuri.Rows.Add(row1gs);
 
             DataRow row2gs = dtgetuuri.NewRow();
-            row2gs["受注日"] = "18/03/31";
-            row2gs["納期"] = "18/04/10";
-            row2gs["取引先"] = "123456789A123456789B123456789C";
+            row2gs["年月"] = "18/03";
             row2gs["個数"] = "10,000";
-            row2gs["単価"] = "99,999,999";
+            row2gs["平均単価"] = "99,999,999";
             dtgetuuri.Rows.Add(row2gs);
 
             gridGetubetuUriage.DataSource = dtgetuuri;
@@ -698,7 +692,7 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             HeikinTanka.HeaderText = "平均単価";
 
             //個々の幅、文章の寄せ
-            setColumngridGetubetuUriage(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 65);
+            setColumngridGetubetuUriage(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridGetubetuUriage(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridGetubetuUriage(HeikinTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
@@ -746,8 +740,8 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             HeikinTanka.HeaderText = "平均単価";
 
             //個々の幅、文章の寄せ
-            setColumngridGetubetuShire(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 65);
-            setColumngridGetubetuShire(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumngridGetubetuShire(YM, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 64);
+            setColumngridGetubetuShire(Kosu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 64);
             setColumngridGetubetuShire(HeikinTanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
@@ -789,7 +783,7 @@ namespace KATO.Form.D1550_ShohinZaikoKakunin
             Tanka.HeaderText = "単価";
 
             //個々の幅、文章の寄せ
-            setColumngridShohinbetuTanka(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
+            setColumngridShohinbetuTanka(Torihikisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 250);
             setColumngridShohinbetuTanka(Tanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, null, 96);
         }
 
