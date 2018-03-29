@@ -850,6 +850,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
 
+                delText();
             }
             catch (Exception ex)
             {

@@ -78,6 +78,9 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
             radSet_2btn_Kesho.radbtn1.Checked = true;
             //住所①を使用にチェック
             radAtena1.Checked = true;
+            radAtena2.Checked = false;
+            radAtena3.Checked = false;
+            radAtena4.Checked = false;
         }
 
         /// <summary>
@@ -229,6 +232,13 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                     lblGrayYubin.Text = dtSetData.Rows[0]["請求書送付郵便番号"].ToString();
                     lblGrayJusho1.Text = dtSetData.Rows[0]["請求書送付住所１"].ToString();
                     lblGrayJusho2.Text = dtSetData.Rows[0]["請求書送付住所２"].ToString();
+                }
+                else
+                {
+                    lblGrayMeisho.Text = dtSetData.Rows[0]["取引先名称"].ToString();
+                    lblGrayYubin.Text = dtSetData.Rows[0]["郵便番号"].ToString();
+                    lblGrayJusho1.Text = dtSetData.Rows[0]["住所１"].ToString();
+                    lblGrayJusho2.Text = dtSetData.Rows[0]["住所２"].ToString();
                 }
 
                 //長４を選択
