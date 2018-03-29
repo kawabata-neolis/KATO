@@ -823,12 +823,12 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
 
                 if (dtKariTanka != null)
                 {
-                    listSqlPath = new List<string>();
-                    listSqlPath.Add("M1240_ShohinSiireKakakuSuii2");
-                    listSqlPath.Add("M1240_ShohinSiireKakakuSuii2_SELECT_hyoka");
-
                     foreach (DataRow dr in dtKariTanka.Rows)
                     {
+                        listSqlPath = new List<string>();
+                        listSqlPath.Add("M1240_ShohinSiireKakakuSuii2");
+                        listSqlPath.Add("M1240_ShohinSiireKakakuSuii2_SELECT_hyoka");
+
                         // 変数初期化
                         string syohinCd = "";
                         strSqltxt = "";
@@ -901,7 +901,7 @@ namespace KATO.Business.M1240_ShohinSiireKakakuSuii2
                 // コミット
                 dbconnective.Commit();
             }
-            catch
+            catch (Exception ex)
             {
                 // ロールバック処理
                 dbconnective.Rollback();

@@ -1,5 +1,5 @@
 SELECT 
  SUM(在庫数量*評価単価) AS 評価金額,
  SUM(在庫数量*仮単価) AS 仮金額 
-FROM [KATO].[dbo].商品仕入単価履歴TMP2 
+FROM 商品仕入単価履歴TMP2
 WHERE 在庫年月日='{0}'

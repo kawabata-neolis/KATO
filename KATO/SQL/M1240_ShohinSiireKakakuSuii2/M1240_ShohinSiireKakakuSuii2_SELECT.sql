@@ -2,7 +2,7 @@ SELECT
  a.商品コード,
  a.売上,
  a.仕入,
- [KATO].dbo.f_getメーカー名(b.メーカーコード) AS メーカー名,
+ dbo.f_getメーカー名(b.メーカーコード) AS メーカー名,
  a.型番,
  a.在庫数量,
  a.定価,
@@ -19,8 +19,8 @@ SELECT
  b.メーカーコード,
  b.大分類コード AS 大分類コード,
  b.中分類コード AS 中分類コード
-FROM [KATO].[dbo].[商品仕入単価履歴TMP2] AS a
-LEFT JOIN [KATO].[dbo].[商品] AS b
+FROM 商品仕入単価履歴TMP2 AS a
+LEFT JOIN 商品 AS b
 ON a.商品コード = b.商品コード
 AND b.削除 = 'N'
 WHERE 在庫年月日='{0}'

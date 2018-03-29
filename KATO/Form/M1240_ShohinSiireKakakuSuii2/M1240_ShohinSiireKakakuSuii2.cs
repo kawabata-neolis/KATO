@@ -534,6 +534,26 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 // 売上日、売上単価を取得
                 DataTable dtUriage = suii_B.getUriage(strShohinCd);
                 gridUriage.DataSource = dtUriage;
+
+                if (StringUtl.blIsEmpty(gridShohin.Rows[rowIndex].Cells[7].Value.ToString()) == true)
+                {
+                    txtHyokaTanka.Text = string.Format("{0:#,##0}", decimal.Parse(gridShohin.Rows[rowIndex].Cells[7].Value.ToString()));
+                }
+                else
+                {
+                    txtHyokaTanka.Text = "0";
+                }
+
+                if (StringUtl.blIsEmpty(gridShohin.Rows[rowIndex].Cells[9].Value.ToString()) == true)
+                {
+                    txtSetteiTanka.Text = string.Format("{0:#,##0}", decimal.Parse(gridShohin.Rows[rowIndex].Cells[9].Value.ToString()));
+                }
+                else
+                {
+                    txtSetteiTanka.Text = "0";
+                }
+
+                txtShohinCd.Text = strShohinCd;
             }
             catch (Exception ex)
             {
@@ -544,9 +564,6 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
             }
-            txtHyokaTanka.Text = string.Format("{0:#,##0}", decimal.Parse(gridShohin.Rows[rowIndex].Cells[7].Value.ToString()));
-            txtSetteiTanka.Text = string.Format("{0:#,##0}", decimal.Parse(gridShohin.Rows[rowIndex].Cells[9].Value.ToString()));
-            txtShohinCd.Text = strShohinCd;
         }
 
         /// <summary>
