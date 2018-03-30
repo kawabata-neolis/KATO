@@ -575,6 +575,14 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             txtKingakuHyoka.Text = "";
             txtKingakuSettei.Text = "";
 
+            DateTime dtTry = DateTime.Now;
+
+            //年月日として扱えない場合
+            if (DateTime.TryParse(txtKijunYmd.Text, out dtTry) == false)
+            {
+                return;
+            }
+
             try
             {
                 // 在庫金額合計にセット

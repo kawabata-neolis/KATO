@@ -346,7 +346,7 @@ namespace KATO.Business.B0060_ShiharaiInput_B
             }
             else
             {
-                strSql += " CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日), 111) AS 年月,";
+                strSql += " CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 111) AS 年月,";
             }
 
             strSql += " SUM(税抜合計金額) AS 税抜合計金額,";
@@ -387,7 +387,7 @@ namespace KATO.Business.B0060_ShiharaiInput_B
                }
                else
                {
-                   strSql += " GROUP BY CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日), 111)";
+                   strSql += " GROUP BY CONVERT(VARCHAR(7),DATEADD(MONTH, 1, DATEADD(DAY, -" + lstItem[1] + ", 伝票年月日)), 111)";
                }
             strSql += " ORDER BY 年月 DESC";
 
@@ -400,9 +400,9 @@ namespace KATO.Business.B0060_ShiharaiInput_B
 
                 return dtGetTableGrid;
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw(ex);
             }
             finally
             {

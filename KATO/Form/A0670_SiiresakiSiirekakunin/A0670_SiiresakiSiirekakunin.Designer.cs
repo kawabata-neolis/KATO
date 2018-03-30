@@ -178,6 +178,7 @@
             this.txtDenpyoYMDStart.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDenpyoYMDStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDStart.Location = new System.Drawing.Point(119, 93);
+            this.txtDenpyoYMDStart.MaxLength = 10;
             this.txtDenpyoYMDStart.Name = "txtDenpyoYMDStart";
             this.txtDenpyoYMDStart.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDStart.TabIndex = 1;
@@ -199,6 +200,7 @@
             this.txtDenpyoYMDEnd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtDenpyoYMDEnd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtDenpyoYMDEnd.Location = new System.Drawing.Point(246, 93);
+            this.txtDenpyoYMDEnd.MaxLength = 10;
             this.txtDenpyoYMDEnd.Name = "txtDenpyoYMDEnd";
             this.txtDenpyoYMDEnd.Size = new System.Drawing.Size(90, 22);
             this.txtDenpyoYMDEnd.TabIndex = 2;
@@ -292,6 +294,7 @@
             this.txtKataban.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtKataban.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtKataban.Location = new System.Drawing.Point(119, 150);
+            this.txtKataban.MaxLength = 100;
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(390, 22);
             this.txtKataban.TabIndex = 6;
@@ -302,6 +305,7 @@
             this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBiko.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtBiko.Location = new System.Drawing.Point(119, 179);
+            this.txtBiko.MaxLength = 100;
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(390, 22);
             this.txtBiko.TabIndex = 7;
