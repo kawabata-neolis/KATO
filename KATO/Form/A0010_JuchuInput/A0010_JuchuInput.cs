@@ -3003,6 +3003,7 @@ namespace KATO.Form.A0010_JuchuInput
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
                         {
                             kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3017,6 +3018,7 @@ namespace KATO.Form.A0010_JuchuInput
                         if (getDecValue(cbJuchuTanka.Text) < getDecValue(dtRieki.Rows[0]["単価"].ToString()))
                         {
                             kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "単価", "設定単価を下回っています。\r\n(設定単価=" + dtRieki.Rows[0]["単価"].ToString() + "円)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3054,6 +3056,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3067,6 +3071,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (getDecValue(txtJuchuTankaSub.Text) < getDecValue(dtRieki.Rows[0]["掛率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3090,6 +3096,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3103,6 +3111,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (getDecValue(txtJuchuTankaSub.Text) < getDecValue(dtRieki.Rows[0]["掛率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3126,6 +3136,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (decRitsu < getDecValue(dtRieki.Rows[0]["利益率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "利益率", "利益率を割っています。\r\n(設定利益率=" + dtRieki.Rows[0]["利益率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
@@ -3139,6 +3151,8 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         if (getDecValue(txtJuchuTankaSub.Text) < getDecValue(dtRieki.Rows[0]["掛率"].ToString()))
                         {
+                            kyouseiFlg = true;
+                            ret = 1;
                             BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "掛率", "設定掛率を下回っています。\r\n(設定掛率=" + dtRieki.Rows[0]["掛率"].ToString() + "％)\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                             //NOが押された場合
                             if (basemessageboxSa.ShowDialog() != DialogResult.Yes)

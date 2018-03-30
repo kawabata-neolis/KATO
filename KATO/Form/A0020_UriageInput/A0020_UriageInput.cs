@@ -726,7 +726,8 @@ namespace KATO.Form.A0020_UriageInput
                 /*[8]環境ユーザ*/
                 CyokuItem.Add(Environment.UserName);
 
-                if (txtCyoku.Text != "")
+                //if (txtCyoku.Text != "")
+                if (!string.IsNullOrWhiteSpace(txtCyoku.Text))
                 {
 
                     //直送先コードに該当するレコードの有無をチェック
@@ -1342,7 +1343,7 @@ namespace KATO.Form.A0020_UriageInput
             A0020_UriageInput_B uriageinputB = new A0020_UriageInput_B();
 
             #region
-            if (txtYMD.Text == "")
+            if (string.IsNullOrWhiteSpace(txtYMD.Text))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -1358,7 +1359,7 @@ namespace KATO.Form.A0020_UriageInput
                 return false;
             }
 
-            if (labelSet_txtCD.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(labelSet_txtCD.CodeTxtText))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -1390,7 +1391,7 @@ namespace KATO.Form.A0020_UriageInput
                 return false;
             }
 
-            if (labelSet_Torihikikbn.CodeTxtText == "")
+            if (string.IsNullOrWhiteSpace(labelSet_Torihikikbn.CodeTxtText))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -1426,31 +1427,31 @@ namespace KATO.Form.A0020_UriageInput
             int[] DoituTanka = new int[6];
 
             //明細1の入力チェック
-            if (textSet_Jucyu1.txtJucyuNoElem2.Text != "")
+            if (!string.IsNullOrWhiteSpace(textSet_Jucyu1.txtJucyuNoElem2.Text))
             {
                 ari = true;
             }
 
             //明細2の入力チェック
-            if (textSet_Jucyu2.txtJucyuNoElem2.Text != "")
+            if (!string.IsNullOrWhiteSpace(textSet_Jucyu2.txtJucyuNoElem2.Text))
             {
                 ari = true;
             }
 
             //明細3の入力チェック
-            if (textSet_Jucyu3.txtJucyuNoElem2.Text != "")
+            if (!string.IsNullOrWhiteSpace(textSet_Jucyu3.txtJucyuNoElem2.Text))
             {
                 ari = true;
             }
 
             //明細4の入力チェック
-            if (textSet_Jucyu4.txtJucyuNoElem2.Text != "")
+            if (!string.IsNullOrWhiteSpace(textSet_Jucyu4.txtJucyuNoElem2.Text))
             {
                 ari = true;
             }
 
             //明細5の入力チェック
-            if (textSet_Jucyu5.txtJucyuNoElem2.Text != "")
+            if (!string.IsNullOrWhiteSpace(textSet_Jucyu5.txtJucyuNoElem2.Text))
             {
                 ari = true;
             }
