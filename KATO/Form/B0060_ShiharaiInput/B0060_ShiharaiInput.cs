@@ -757,7 +757,7 @@ namespace KATO.Form.B0060_ShiharaiInput
             if (txtYMD.blIsEmpty() == false)
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtYMD.Focus();
                 return;
@@ -808,7 +808,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                     if (ctlGb.Controls["txtShiharai" + cnt.ToString()].Text.Equals(""))
                     {
                         // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                        BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                         basemessagebox.ShowDialog();
                         ctlGb.Controls["txtShiharai" + cnt.ToString()].Focus();
                         return;
@@ -873,6 +873,26 @@ namespace KATO.Form.B0060_ShiharaiInput
                     strInsertItem[cnt, 1] = ctlGb.Controls["txtShiharai" + cnt.ToString()].Text;
                     strInsertItem[cnt, 2] = ctlGb.Controls["txtTegataYMD" + cnt.ToString()].Text;
                     strInsertItem[cnt, 3] = ctlGb.Controls["txtBikou" + cnt.ToString()].Text;
+                }
+
+                Boolean blDataAri = false;
+
+                for (int intRow = 0; intRow <= 9; intRow++)
+                {
+                    for (int intCol = 0; intCol <= 3; intCol++)
+                    {
+                        //データがある場合
+                        if (StringUtl.blIsEmpty(strInsertItem[intRow,intCol].ToString()))
+                        {
+                            blDataAri = true;
+                        }
+                    }
+                }
+
+                //データがない場合
+                if (blDataAri == false)
+                {
+                    return;
                 }
 
                 // 表示中の支払を追加する処理
