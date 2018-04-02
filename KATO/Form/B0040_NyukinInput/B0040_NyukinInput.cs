@@ -1214,7 +1214,7 @@ namespace KATO.Form.B0040_NyukinInput
         }
 
         /// <summary>
-        /// delCurrentRow
+        /// getCurrentRow
         /// 選択行（０～９)番号を取得する。
         /// </summary>
         private void getCurrentRow(object sender, EventArgs e)

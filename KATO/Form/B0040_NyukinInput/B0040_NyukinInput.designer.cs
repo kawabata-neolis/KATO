@@ -344,6 +344,7 @@
             this.txtNyukin9.TabIndex = 37;
             this.txtNyukin9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin9.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin9.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin9.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -364,6 +365,7 @@
             this.txtNyukin8.TabIndex = 33;
             this.txtNyukin8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin8.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin8.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin8.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -384,6 +386,7 @@
             this.txtNyukin7.TabIndex = 29;
             this.txtNyukin7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin7.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin7.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin7.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -404,6 +407,7 @@
             this.txtNyukin6.TabIndex = 25;
             this.txtNyukin6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin6.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin6.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin6.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -424,6 +428,7 @@
             this.txtNyukin5.TabIndex = 21;
             this.txtNyukin5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin5.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin5.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin5.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -444,6 +449,7 @@
             this.txtNyukin4.TabIndex = 17;
             this.txtNyukin4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin4.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin4.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin4.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -464,6 +470,7 @@
             this.txtNyukin3.TabIndex = 13;
             this.txtNyukin3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin3.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin3.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin3.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -484,6 +491,7 @@
             this.txtNyukin2.TabIndex = 9;
             this.txtNyukin2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin2.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin2.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin2.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -504,6 +512,7 @@
             this.txtNyukin1.TabIndex = 5;
             this.txtNyukin1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin1.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin1.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin1.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -524,6 +533,7 @@
             this.txtNyukin0.TabIndex = 1;
             this.txtNyukin0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNyukin0.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtNyukin0.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtNyukin0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNyukin_KeyDown);
             this.txtNyukin0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             this.txtNyukin0.Leave += new System.EventHandler(this.txtNyukinX_Leave);
@@ -537,6 +547,7 @@
             this.txtTegataYMD9.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD9.TabIndex = 38;
             this.txtTegataYMD9.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD9.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD8
@@ -548,6 +559,7 @@
             this.txtTegataYMD8.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD8.TabIndex = 34;
             this.txtTegataYMD8.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD8.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD7
@@ -559,6 +571,7 @@
             this.txtTegataYMD7.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD7.TabIndex = 30;
             this.txtTegataYMD7.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD7.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD6
@@ -570,6 +583,7 @@
             this.txtTegataYMD6.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD6.TabIndex = 26;
             this.txtTegataYMD6.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD6.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD5
@@ -581,6 +595,7 @@
             this.txtTegataYMD5.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD5.TabIndex = 22;
             this.txtTegataYMD5.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD5.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD4
@@ -592,6 +607,7 @@
             this.txtTegataYMD4.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD4.TabIndex = 18;
             this.txtTegataYMD4.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD4.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD3
@@ -603,6 +619,7 @@
             this.txtTegataYMD3.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD3.TabIndex = 14;
             this.txtTegataYMD3.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD3.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD2
@@ -614,6 +631,7 @@
             this.txtTegataYMD2.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD2.TabIndex = 10;
             this.txtTegataYMD2.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD2.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD1
@@ -625,6 +643,7 @@
             this.txtTegataYMD1.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD1.TabIndex = 6;
             this.txtTegataYMD1.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD1.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // txtTegataYMD0
@@ -636,6 +655,7 @@
             this.txtTegataYMD0.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD0.TabIndex = 2;
             this.txtTegataYMD0.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtTegataYMD0.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
             // lblsetTorihikikbn9
@@ -666,6 +686,7 @@
             this.lblsetTorihikikbn9.ValueLabelSize = 170;
             this.lblsetTorihikikbn9.ValueLabelText = "";
             this.lblsetTorihikikbn9.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn9.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn9.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -806,6 +827,7 @@
             this.lblsetTorihikikbn8.ValueLabelSize = 170;
             this.lblsetTorihikikbn8.ValueLabelText = "";
             this.lblsetTorihikikbn8.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn8.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn8.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -934,6 +956,7 @@
             this.lblsetTorihikikbn7.ValueLabelSize = 170;
             this.lblsetTorihikikbn7.ValueLabelText = "";
             this.lblsetTorihikikbn7.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn7.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn7.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1050,6 +1073,7 @@
             this.lblsetTorihikikbn6.ValueLabelSize = 170;
             this.lblsetTorihikikbn6.ValueLabelText = "";
             this.lblsetTorihikikbn6.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn6.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn6.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1154,6 +1178,7 @@
             this.lblsetTorihikikbn5.ValueLabelSize = 170;
             this.lblsetTorihikikbn5.ValueLabelText = "";
             this.lblsetTorihikikbn5.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn5.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn5.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1246,6 +1271,7 @@
             this.lblsetTorihikikbn4.ValueLabelSize = 170;
             this.lblsetTorihikikbn4.ValueLabelText = "";
             this.lblsetTorihikikbn4.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn4.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn4.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1326,6 +1352,7 @@
             this.lblsetTorihikikbn3.ValueLabelSize = 170;
             this.lblsetTorihikikbn3.ValueLabelText = "";
             this.lblsetTorihikikbn3.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn3.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn3.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1394,6 +1421,7 @@
             this.lblsetTorihikikbn2.ValueLabelSize = 170;
             this.lblsetTorihikikbn2.ValueLabelText = "";
             this.lblsetTorihikikbn2.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn2.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn2.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1450,6 +1478,7 @@
             this.lblsetTorihikikbn1.ValueLabelSize = 170;
             this.lblsetTorihikikbn1.ValueLabelText = "";
             this.lblsetTorihikikbn1.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn1.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn1.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1493,6 +1522,7 @@
             this.lblsetTorihikikbn0.ValueLabelSize = 170;
             this.lblsetTorihikikbn0.ValueLabelText = "";
             this.lblsetTorihikikbn0.Click += new System.EventHandler(this.getCurrentRow);
+            this.lblsetTorihikikbn0.Enter += new System.EventHandler(this.getCurrentRow);
             this.lblsetTorihikikbn0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lblsetTorihikikbn_KeyDown);
             this.lblsetTorihikikbn0.Leave += new System.EventHandler(this.updTorihikiKbnLeave);
             // 
@@ -1531,6 +1561,7 @@
             this.txtBikou9.Size = new System.Drawing.Size(330, 22);
             this.txtBikou9.TabIndex = 39;
             this.txtBikou9.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou9.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1543,6 +1574,7 @@
             this.txtBikou8.Size = new System.Drawing.Size(330, 22);
             this.txtBikou8.TabIndex = 35;
             this.txtBikou8.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou8.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1555,6 +1587,7 @@
             this.txtBikou7.Size = new System.Drawing.Size(330, 22);
             this.txtBikou7.TabIndex = 31;
             this.txtBikou7.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou7.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1567,6 +1600,7 @@
             this.txtBikou6.Size = new System.Drawing.Size(330, 22);
             this.txtBikou6.TabIndex = 27;
             this.txtBikou6.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou6.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1579,6 +1613,7 @@
             this.txtBikou5.Size = new System.Drawing.Size(330, 22);
             this.txtBikou5.TabIndex = 23;
             this.txtBikou5.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou5.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1591,6 +1626,7 @@
             this.txtBikou4.Size = new System.Drawing.Size(330, 22);
             this.txtBikou4.TabIndex = 19;
             this.txtBikou4.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou4.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1603,6 +1639,7 @@
             this.txtBikou3.Size = new System.Drawing.Size(330, 22);
             this.txtBikou3.TabIndex = 15;
             this.txtBikou3.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou3.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1615,6 +1652,7 @@
             this.txtBikou2.Size = new System.Drawing.Size(330, 22);
             this.txtBikou2.TabIndex = 11;
             this.txtBikou2.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou2.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1627,6 +1665,7 @@
             this.txtBikou1.Size = new System.Drawing.Size(330, 22);
             this.txtBikou1.TabIndex = 7;
             this.txtBikou1.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou1.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1639,6 +1678,7 @@
             this.txtBikou0.Size = new System.Drawing.Size(330, 22);
             this.txtBikou0.TabIndex = 3;
             this.txtBikou0.Click += new System.EventHandler(this.getCurrentRow);
+            this.txtBikou0.Enter += new System.EventHandler(this.getCurrentRow);
             this.txtBikou0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBikou_KeyDown);
             this.txtBikou0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
