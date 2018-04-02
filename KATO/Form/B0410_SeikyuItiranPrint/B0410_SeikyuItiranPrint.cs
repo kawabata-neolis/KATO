@@ -79,6 +79,7 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
             //左寄せ
             txtSimekiribiCd.TextAlign = HorizontalAlignment.Left;
 
+            radSetSort.radbtn0.Checked = false;
             radSetSort.radbtn1.Checked = true;
 
             txtSimekiriYMD.Focus();
@@ -277,11 +278,11 @@ namespace KATO.Form.B0410_SeikyuItiranPrint
                 lstSearchItem.Add(labelSet_TokuisakiStart.CodeTxtText);
                 lstSearchItem.Add(labelSet_TokuisakiEnd.CodeTxtText);
                 lstSearchItem.Add(txtSimekiribiCd.Text);
-                if (radSetSort.judCheckBtn() == 0)
+                if (radSetSort.judCheckBtn() == 0 || radSetSort.radbtn0.Checked)
                 {
                     lstSearchItem.Add("1");
                 }
-                else if (radSetSort.judCheckBtn() == 1)
+                else if (radSetSort.judCheckBtn() == 1 || radSetSort.radbtn1.Checked)
                 {
                     lstSearchItem.Add("2");
                 }
