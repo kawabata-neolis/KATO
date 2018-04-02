@@ -755,6 +755,7 @@ namespace KATO.Form.A0010_JuchuInput
                     lsJuchusha.CodeTxtText = dtJuchuNoInfo.Rows[0]["受注者コード"].ToString();
                     lsJuchusha.chkTxtTantosha();
                     tsTokuisaki.CodeTxtText = dtJuchuNoInfo.Rows[0]["得意先コード"].ToString();
+                    tsTokuisaki.chkTxtTorihikisaki();
                     lsDaibunrui.CodeTxtText = dtJuchuNoInfo.Rows[0]["大分類コード"].ToString();
                     lsDaibunrui.chkTxtDaibunrui();
                     lsChubunrui.CodeTxtText = dtJuchuNoInfo.Rows[0]["中分類コード"].ToString();
@@ -767,6 +768,11 @@ namespace KATO.Form.A0010_JuchuInput
                     txtC4.Text = dtJuchuNoInfo.Rows[0]["Ｃ４"].ToString();
                     txtC5.Text = dtJuchuNoInfo.Rows[0]["Ｃ５"].ToString();
                     txtC6.Text = dtJuchuNoInfo.Rows[0]["Ｃ６"].ToString();
+
+                    if (!tsTokuisaki.valueTextText.Equals(dtJuchuNoInfo.Rows[0]["得意先名称"].ToString()))
+                    {
+                        tsTokuisaki.valueTextText = dtJuchuNoInfo.Rows[0]["得意先名称"].ToString();
+                    }
 
                     decimal dJSu = 0;
                     if (dtJuchuNoInfo.Rows[0]["受注数量"] != null)
@@ -1250,10 +1256,17 @@ namespace KATO.Form.A0010_JuchuInput
                     txtHatchusu.Text = (decimal.Round(dHatSu, 0)).ToString();
                     dSearchSuH = getDecValue(txtHatchusu.Text);
                     tsShiiresaki.CodeTxtText = dtHatchu.Rows[0]["仕入先コード"].ToString();
+                    tsShiiresaki.chkTxtTorihikisaki();
                     txtShiireNoki.Text = dtHatchu.Rows[0]["納期"].ToString();
                     txtShiireChuban.Text = dtHatchu.Rows[0]["注番"].ToString();
                     txtShiireTanto.Text = dtHatchu.Rows[0]["担当者コード"].ToString();
-                    tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
+                    //tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
+
+                    if (!tsShiiresaki.valueTextText.Equals(dtHatchu.Rows[0]["仕入先名称"].ToString()))
+                    {
+                        tsShiiresaki.valueTextText = dtHatchu.Rows[0]["仕入先名称"].ToString();
+                    }
+
                 }
                 else
                 {
@@ -1799,6 +1812,9 @@ namespace KATO.Form.A0010_JuchuInput
         // 受注追加
         private void addJuchu()
         {
+            string tokuiName = tsTokuisaki.valueTextText;
+            string shiireName = tsShiiresaki.valueTextText;
+
             if (string.IsNullOrWhiteSpace(txtHatchusu.Text) || (getDecValue(txtHatchusu.Text)).Equals(0))
             {
                 txtHatchushiji.Text = "0";
@@ -2062,7 +2078,7 @@ namespace KATO.Form.A0010_JuchuInput
                 List<String> aryPrm = new List<string>();
 
                 aryPrm.Add(tsTokuisaki.CodeTxtText);
-                aryPrm.Add(tsTokuisaki.valueTextText);
+                aryPrm.Add(tokuiName);
                 aryPrm.Add(txtJuchuYMD.Text);
                 aryPrm.Add(strJuchuNo);
                 aryPrm.Add(lsJuchusha.CodeTxtText);
@@ -2128,7 +2144,7 @@ namespace KATO.Form.A0010_JuchuInput
                     }
                     else
                     {
-                        string strHachuNo = addJuchuH(strJuchuNo, juchuB, con);
+                        string strHachuNo = addJuchuH(strJuchuNo, juchuB, shiireName, con);
                         d = getDecValue(txtHatchusu.Text);
                         //juchuB.updZaiko(true, txtEigyoshoCd.Text, txtShohinCd.Text, (d - dSearchSuH).ToString(), con);
                         juchuB.updZaiko(txtShohinCd.Text, txtEigyoshoCd.Text, txtShiireNoki.Text, Environment.UserName, con);
@@ -2190,7 +2206,7 @@ namespace KATO.Form.A0010_JuchuInput
                 con.DB_Disconnect();
             }
         }
-        private string addJuchuH(string strJuchuNo, A0010_JuchuInput_B juchuB, DBConnective con)
+        private string addJuchuH(string strJuchuNo, A0010_JuchuInput_B juchuB, string sName, DBConnective con)
         {
             string ret = "";
 
@@ -2267,7 +2283,7 @@ namespace KATO.Form.A0010_JuchuInput
             aryPrm.Add("0");
             aryPrm.Add(txtShiireChuban.Text);
             aryPrm.Add("0");
-            aryPrm.Add(tsShiiresaki.valueTextText);
+            aryPrm.Add(sName);
             aryPrm.Add(Environment.UserName);
 
             try

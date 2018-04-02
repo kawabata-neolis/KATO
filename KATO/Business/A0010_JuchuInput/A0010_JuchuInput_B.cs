@@ -260,7 +260,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,注番";
             strQuery += "      ,営業所コード";
             strQuery += "      ,担当者コード";
-            strQuery += "      ,得意先名称";
+            strQuery += "      ,RTRIM(ISNULL(得意先名称,'')) AS 得意先名称";
             strQuery += "      ,発注指示区分";
             strQuery += "      ,商品コード";
             strQuery += "      ,本社出庫数";
@@ -315,7 +315,7 @@ namespace KATO.Business.A0010_JuchuInput
             strQuery += "      ,CONVERT(VARCHAR, 納期, 111) as 納期";
             strQuery += "      ,注番";
             strQuery += "      ,担当者コード";
-            strQuery += "      ,仕入先名称";
+            strQuery += "      ,RTRIM(ISNULL(仕入先名称,'')) AS 仕入先名称";
             strQuery += "  FROM 発注";
             strQuery += " WHERE 発注番号 = " + strHatchuNo;
             strQuery += "   AND 削除     = 'N'";

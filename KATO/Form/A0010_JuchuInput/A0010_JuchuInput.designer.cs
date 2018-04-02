@@ -885,7 +885,6 @@
             this.txtJuchuYMD.Name = "txtJuchuYMD";
             this.txtJuchuYMD.Size = new System.Drawing.Size(87, 22);
             this.txtJuchuYMD.TabIndex = 0;
-            this.txtJuchuYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtHatchushiji
             // 
