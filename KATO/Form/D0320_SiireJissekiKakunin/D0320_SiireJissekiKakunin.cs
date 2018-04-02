@@ -131,6 +131,9 @@ namespace KATO.Form.D0320_SiireJissekiKakunin
             // 中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
 
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
+
             // DataGridViewの初期設定
             SetUpGrid();
         }

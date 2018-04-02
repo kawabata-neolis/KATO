@@ -869,6 +869,14 @@ namespace KATO.Form.A0100_HachuInput
                 return (blAddEnd);
             }
 
+            //仕入先名称の確保用
+            string strTorihikisakiSub = "";
+
+            //仕入先名称の確保
+            strTorihikisakiSub = textSet_Torihikisaki.valueTextText;
+
+            strTorihikisakiSub.Trim();
+
             //仕入先チェック
             if (textSet_Torihikisaki.chkTxtTorihikisaki())
             {
@@ -1110,7 +1118,7 @@ namespace KATO.Form.A0100_HachuInput
                 lstData.Add("0");								//発注フラグ
                 lstData.Add(txtChuban.Text);					//注番
                 lstData.Add("0");								//加工区分
-                lstData.Add(textSet_Torihikisaki.valueTextText);	//仕入先名称
+                lstData.Add(strTorihikisakiSub);	//仕入先名称
                 lstData.Add(SystemInformation.UserName);        //ユーザー名
 
                 //PROCに必要なカラム名の追加
@@ -1611,6 +1619,17 @@ namespace KATO.Form.A0100_HachuInput
                     txtHachuYMD.Text = dtSetCd.Rows[0]["発注年月日"].ToString();
                     labelSet_Hachusha.CodeTxtText = dtSetCd.Rows[0]["発注者コード"].ToString();
                     textSet_Torihikisaki.CodeTxtText = dtSetCd.Rows[0]["仕入先コード"].ToString();
+
+                    //仕入先データのチェック
+                    textSet_Torihikisaki.chkTxtTorihikisaki();
+
+                    //仕入先コードでの仕入先名称と発注テーブルの仕入先名称が違う場合
+                    if (textSet_Torihikisaki.valueTextText.Trim() != dtSetCd.Rows[0]["仕入先名称"].ToString().Trim())
+                    {
+                        //発注テーブルの仕入先名称に差し替える
+                        textSet_Torihikisaki.valueTextText = dtSetCd.Rows[0]["仕入先名称"].ToString().Trim();
+                    }
+
                     txtShohinCd.Text = dtSetCd.Rows[0]["商品コード"].ToString();
                     txtHachusu.Text = ((decimal)dtSetCd.Rows[0]["発注数量"]).ToString("#,#");
                     cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,0.0000");

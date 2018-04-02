@@ -77,6 +77,8 @@ namespace KATO.Form.D0310_UriageJissekiKakunin
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
 
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
         public D0310_UriageJissekiKakunin(H0210_MitsumoriInput.H0210_MitsumoriInput c)

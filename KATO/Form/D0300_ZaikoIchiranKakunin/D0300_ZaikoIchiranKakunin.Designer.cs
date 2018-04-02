@@ -457,7 +457,7 @@
             this.lblSiireKingakuName.Size = new System.Drawing.Size(71, 15);
             this.lblSiireKingakuName.strToolTip = null;
             this.lblSiireKingakuName.TabIndex = 124;
-            this.lblSiireKingakuName.Text = "仕入金額";
+            this.lblSiireKingakuName.Text = "仕入合計";
             this.lblSiireKingakuName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSiireKingaku
