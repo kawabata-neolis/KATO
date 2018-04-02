@@ -536,7 +536,6 @@
             this.txtTegataYMD9.Name = "txtTegataYMD9";
             this.txtTegataYMD9.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD9.TabIndex = 38;
-            this.txtTegataYMD9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD9.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -548,7 +547,6 @@
             this.txtTegataYMD8.Name = "txtTegataYMD8";
             this.txtTegataYMD8.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD8.TabIndex = 34;
-            this.txtTegataYMD8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD8.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -560,7 +558,6 @@
             this.txtTegataYMD7.Name = "txtTegataYMD7";
             this.txtTegataYMD7.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD7.TabIndex = 30;
-            this.txtTegataYMD7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD7.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -572,7 +569,6 @@
             this.txtTegataYMD6.Name = "txtTegataYMD6";
             this.txtTegataYMD6.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD6.TabIndex = 26;
-            this.txtTegataYMD6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD6.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -584,7 +580,6 @@
             this.txtTegataYMD5.Name = "txtTegataYMD5";
             this.txtTegataYMD5.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD5.TabIndex = 22;
-            this.txtTegataYMD5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD5.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -596,7 +591,6 @@
             this.txtTegataYMD4.Name = "txtTegataYMD4";
             this.txtTegataYMD4.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD4.TabIndex = 18;
-            this.txtTegataYMD4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD4.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -608,7 +602,6 @@
             this.txtTegataYMD3.Name = "txtTegataYMD3";
             this.txtTegataYMD3.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD3.TabIndex = 14;
-            this.txtTegataYMD3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD3.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -620,7 +613,6 @@
             this.txtTegataYMD2.Name = "txtTegataYMD2";
             this.txtTegataYMD2.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD2.TabIndex = 10;
-            this.txtTegataYMD2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD2.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -632,7 +624,6 @@
             this.txtTegataYMD1.Name = "txtTegataYMD1";
             this.txtTegataYMD1.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD1.TabIndex = 6;
-            this.txtTegataYMD1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD1.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -644,7 +635,6 @@
             this.txtTegataYMD0.Name = "txtTegataYMD0";
             this.txtTegataYMD0.Size = new System.Drawing.Size(90, 22);
             this.txtTegataYMD0.TabIndex = 2;
-            this.txtTegataYMD0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTegataYMD0.Click += new System.EventHandler(this.getCurrentRow);
             this.txtTegataYMD0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtNyukinKeyUp);
             // 
@@ -1728,7 +1718,6 @@
             this.gridSeikyuRireki.AllowUserToDeleteRows = false;
             this.gridSeikyuRireki.AllowUserToResizeColumns = false;
             this.gridSeikyuRireki.AllowUserToResizeRows = false;
-            this.gridSeikyuRireki.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
@@ -1785,7 +1774,6 @@
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
-            this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtYMDKeyDown);
             this.txtYMD.Leave += new System.EventHandler(this.updtxtYMD_Leave);
             // 

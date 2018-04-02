@@ -689,8 +689,40 @@ namespace KATO.Form.B0060_ShiharaiInput
             delFormClear(this, gridShireJisseki);
 
             txtYMD.Text = strDenpyoYMD;
-            labelSet_Tantousha.CodeTxtText = strTantousha;
             labelSet_Eigyosho.CodeTxtText = strEigyosho;
+            labelSet_Eigyosho.chkTxtEigyousho();
+
+            DataTable dtTantoshaCd = new DataTable();
+
+            B0060_ShiharaiInput_B shiharaiinputB = new B0060_ShiharaiInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = shiharaiinputB.getTantoshaCd(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0]["担当者コード"].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
+                labelSet_Tantousha.chkTxtTantosha();
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
 
             lblset_Siiresaki.Focus();
         }

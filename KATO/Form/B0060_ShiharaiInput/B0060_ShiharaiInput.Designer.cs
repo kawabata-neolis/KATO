@@ -278,7 +278,6 @@
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
-            this.txtYMD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtYMD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenpyoYMDKeyDown);
             this.txtYMD.Leave += new System.EventHandler(this.updDenpyoYMDLeave);
             // 

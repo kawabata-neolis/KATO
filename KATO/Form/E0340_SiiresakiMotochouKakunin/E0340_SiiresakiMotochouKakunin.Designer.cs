@@ -149,7 +149,6 @@
             this.txtYmEnd.Name = "txtYmEnd";
             this.txtYmEnd.Size = new System.Drawing.Size(65, 22);
             this.txtYmEnd.TabIndex = 3;
-            this.txtYmEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtYmStart
             // 
@@ -160,7 +159,6 @@
             this.txtYmStart.Name = "txtYmStart";
             this.txtYmStart.Size = new System.Drawing.Size(65, 22);
             this.txtYmStart.TabIndex = 2;
-            this.txtYmStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblaida1
             // 
@@ -458,7 +456,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(0, 15);
             this.lblTitle.strToolTip = null;

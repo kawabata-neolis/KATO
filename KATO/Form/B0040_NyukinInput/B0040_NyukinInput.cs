@@ -941,6 +941,40 @@ namespace KATO.Form.B0040_NyukinInput
 
             txtYMD.Text = strkensakuopen;
             labelSet_Eigyosho.CodeTxtText = streigyosyocd;
+            labelSet_Tantousha.chkTxtTantosha();
+
+            DataTable dtTantoshaCd = new DataTable();
+
+            B0040_NyukinInput_B nyukininputB = new B0040_NyukinInput_B();
+            try
+            {
+                //ログインＩＤから担当者コードを取り出す
+                dtTantoshaCd = nyukininputB.getTantoshaCd(SystemInformation.UserName);
+
+                //担当者データがある場合
+                if (dtTantoshaCd.Rows.Count > 0)
+                {
+                    //一行目にデータがない場合
+                    if (dtTantoshaCd.Rows[0]["担当者コード"].ToString() == "")
+                    {
+                        return;
+                    }
+                }
+
+                labelSet_Tantousha.CodeTxtText = dtTantoshaCd.Rows[0]["担当者コード"].ToString();
+                labelSet_Tantousha.chkTxtTantosha();
+                labelSet_Eigyosho.CodeTxtText = dtTantoshaCd.Rows[0]["営業所コード"].ToString();
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、削除失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+            }
+
 
             txtYMD.Focus();
 
