@@ -415,21 +415,25 @@
             // 
             this.txtYubin.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYubin.Location = new System.Drawing.Point(105, 18);
+            this.txtYubin.MaxLength = 8;
             this.txtYubin.Name = "txtYubin";
-            this.txtYubin.Size = new System.Drawing.Size(134, 22);
+            this.txtYubin.Size = new System.Drawing.Size(145, 22);
             this.txtYubin.TabIndex = 90;
             this.txtYubin.TabStop = false;
             this.txtYubin.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtYubin.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // txtAdr1
             // 
             this.txtAdr1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtAdr1.Location = new System.Drawing.Point(105, 44);
+            this.txtAdr1.MaxLength = 30;
             this.txtAdr1.Name = "txtAdr1";
             this.txtAdr1.Size = new System.Drawing.Size(329, 22);
             this.txtAdr1.TabIndex = 92;
             this.txtAdr1.TabStop = false;
             this.txtAdr1.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtAdr1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel2
             // 
@@ -447,11 +451,13 @@
             // 
             this.txtAdr2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtAdr2.Location = new System.Drawing.Point(105, 70);
+            this.txtAdr2.MaxLength = 30;
             this.txtAdr2.Name = "txtAdr2";
             this.txtAdr2.Size = new System.Drawing.Size(329, 22);
             this.txtAdr2.TabIndex = 94;
             this.txtAdr2.TabStop = false;
             this.txtAdr2.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtAdr2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel3
             // 
@@ -469,11 +475,13 @@
             // 
             this.txtTname.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTname.Location = new System.Drawing.Point(105, 96);
+            this.txtTname.MaxLength = 64;
             this.txtTname.Name = "txtTname";
             this.txtTname.Size = new System.Drawing.Size(329, 22);
             this.txtTname.TabIndex = 96;
             this.txtTname.TabStop = false;
             this.txtTname.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtTname.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel4
             // 
@@ -565,11 +573,13 @@
             // 
             this.txtTekiyo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtTekiyo.Location = new System.Drawing.Point(142, 550);
+            this.txtTekiyo.MaxLength = 30;
             this.txtTekiyo.Name = "txtTekiyo";
             this.txtTekiyo.Size = new System.Drawing.Size(329, 22);
             this.txtTekiyo.TabIndex = 6;
             this.txtTekiyo.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtTekiyo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtTekiyo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel11
             // 
@@ -608,48 +618,56 @@
             // txtBusyo_C
             // 
             this.txtBusyo_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtBusyo_C.Location = new System.Drawing.Point(322, 135);
+            this.txtBusyo_C.Location = new System.Drawing.Point(289, 137);
+            this.txtBusyo_C.MaxLength = 30;
             this.txtBusyo_C.Name = "txtBusyo_C";
-            this.txtBusyo_C.Size = new System.Drawing.Size(141, 22);
+            this.txtBusyo_C.Size = new System.Drawing.Size(248, 22);
             this.txtBusyo_C.TabIndex = 6;
             this.txtBusyo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtBusyo_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtBusyo_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // txtName_C
             // 
             this.txtName_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtName_C.Location = new System.Drawing.Point(85, 102);
+            this.txtName_C.Location = new System.Drawing.Point(85, 104);
+            this.txtName_C.MaxLength = 30;
             this.txtName_C.Name = "txtName_C";
-            this.txtName_C.Size = new System.Drawing.Size(319, 22);
+            this.txtName_C.Size = new System.Drawing.Size(250, 22);
             this.txtName_C.TabIndex = 4;
             this.txtName_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtName_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtName_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // txtTelNo_C
             // 
             this.txtTelNo_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTelNo_C.Location = new System.Drawing.Point(85, 135);
+            this.txtTelNo_C.Location = new System.Drawing.Point(85, 137);
+            this.txtTelNo_C.MaxLength = 12;
             this.txtTelNo_C.Name = "txtTelNo_C";
-            this.txtTelNo_C.Size = new System.Drawing.Size(141, 22);
+            this.txtTelNo_C.Size = new System.Drawing.Size(105, 22);
             this.txtTelNo_C.TabIndex = 5;
             this.txtTelNo_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtTelNo_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtTelNo_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // txtAdr2_C
             // 
             this.txtAdr2_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtAdr2_C.Location = new System.Drawing.Point(85, 68);
+            this.txtAdr2_C.Location = new System.Drawing.Point(85, 70);
+            this.txtAdr2_C.MaxLength = 30;
             this.txtAdr2_C.Name = "txtAdr2_C";
-            this.txtAdr2_C.Size = new System.Drawing.Size(319, 22);
+            this.txtAdr2_C.Size = new System.Drawing.Size(250, 22);
             this.txtAdr2_C.TabIndex = 3;
             this.txtAdr2_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtAdr2_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtAdr2_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel23
             // 
             this.baseLabel23.AutoSize = true;
             this.baseLabel23.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel23.Location = new System.Drawing.Point(245, 138);
+            this.baseLabel23.Location = new System.Drawing.Point(228, 140);
             this.baseLabel23.Name = "baseLabel23";
             this.baseLabel23.Size = new System.Drawing.Size(55, 15);
             this.baseLabel23.strToolTip = null;
@@ -661,7 +679,7 @@
             // 
             this.baseLabel16.AutoSize = true;
             this.baseLabel16.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel16.Location = new System.Drawing.Point(8, 105);
+            this.baseLabel16.Location = new System.Drawing.Point(8, 107);
             this.baseLabel16.Name = "baseLabel16";
             this.baseLabel16.Size = new System.Drawing.Size(71, 15);
             this.baseLabel16.strToolTip = null;
@@ -672,18 +690,20 @@
             // txtAdr1_C
             // 
             this.txtAdr1_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtAdr1_C.Location = new System.Drawing.Point(85, 40);
+            this.txtAdr1_C.Location = new System.Drawing.Point(85, 42);
+            this.txtAdr1_C.MaxLength = 30;
             this.txtAdr1_C.Name = "txtAdr1_C";
-            this.txtAdr1_C.Size = new System.Drawing.Size(319, 22);
+            this.txtAdr1_C.Size = new System.Drawing.Size(250, 22);
             this.txtAdr1_C.TabIndex = 2;
             this.txtAdr1_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtAdr1_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtAdr1_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel22
             // 
             this.baseLabel22.AutoSize = true;
             this.baseLabel22.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel22.Location = new System.Drawing.Point(8, 138);
+            this.baseLabel22.Location = new System.Drawing.Point(8, 140);
             this.baseLabel22.Name = "baseLabel22";
             this.baseLabel22.Size = new System.Drawing.Size(71, 15);
             this.baseLabel22.strToolTip = null;
@@ -695,7 +715,7 @@
             // 
             this.baseLabel15.AutoSize = true;
             this.baseLabel15.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel15.Location = new System.Drawing.Point(8, 71);
+            this.baseLabel15.Location = new System.Drawing.Point(8, 73);
             this.baseLabel15.Name = "baseLabel15";
             this.baseLabel15.Size = new System.Drawing.Size(55, 15);
             this.baseLabel15.strToolTip = null;
@@ -706,19 +726,21 @@
             // txtCyoku
             // 
             this.txtCyoku.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtCyoku.Location = new System.Drawing.Point(85, 12);
+            this.txtCyoku.Location = new System.Drawing.Point(85, 14);
+            this.txtCyoku.MaxLength = 4;
             this.txtCyoku.Name = "txtCyoku";
-            this.txtCyoku.Size = new System.Drawing.Size(141, 22);
+            this.txtCyoku.Size = new System.Drawing.Size(39, 22);
             this.txtCyoku.TabIndex = 0;
             this.txtCyoku.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtCyoku.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCyoku_KeyDown);
+            this.txtCyoku.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             this.txtCyoku.Leave += new System.EventHandler(this.txtCyoku_Leave);
             // 
             // baseLabel14
             // 
             this.baseLabel14.AutoSize = true;
             this.baseLabel14.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel14.Location = new System.Drawing.Point(8, 43);
+            this.baseLabel14.Location = new System.Drawing.Point(8, 45);
             this.baseLabel14.Name = "baseLabel14";
             this.baseLabel14.Size = new System.Drawing.Size(55, 15);
             this.baseLabel14.strToolTip = null;
@@ -730,7 +752,7 @@
             // 
             this.baseLabel13.AutoSize = true;
             this.baseLabel13.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel13.Location = new System.Drawing.Point(245, 16);
+            this.baseLabel13.Location = new System.Drawing.Point(212, 17);
             this.baseLabel13.Name = "baseLabel13";
             this.baseLabel13.Size = new System.Drawing.Size(71, 15);
             this.baseLabel13.strToolTip = null;
@@ -742,7 +764,7 @@
             // 
             this.baseLabel12.AutoSize = true;
             this.baseLabel12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.baseLabel12.Location = new System.Drawing.Point(8, 15);
+            this.baseLabel12.Location = new System.Drawing.Point(8, 17);
             this.baseLabel12.Name = "baseLabel12";
             this.baseLabel12.Size = new System.Drawing.Size(71, 15);
             this.baseLabel12.strToolTip = null;
@@ -753,12 +775,14 @@
             // txtYubin_C
             // 
             this.txtYubin_C.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYubin_C.Location = new System.Drawing.Point(322, 12);
+            this.txtYubin_C.Location = new System.Drawing.Point(289, 14);
+            this.txtYubin_C.MaxLength = 8;
             this.txtYubin_C.Name = "txtYubin_C";
-            this.txtYubin_C.Size = new System.Drawing.Size(82, 22);
+            this.txtYubin_C.Size = new System.Drawing.Size(72, 22);
             this.txtYubin_C.TabIndex = 1;
             this.txtYubin_C.ModifiedChanged += new System.EventHandler(this.txtModified);
             this.txtYubin_C.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.txtYubin_C.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // cboNounyu
             // 
@@ -770,6 +794,7 @@
             this.cboNounyu.SelectedIndexChanged += new System.EventHandler(this.txtModified);
             this.cboNounyu.TextUpdate += new System.EventHandler(this.txtModified);
             this.cboNounyu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTekiyo_KeyDown);
+            this.cboNounyu.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             // 
             // baseLabel17
             // 
@@ -1150,21 +1175,25 @@
             // txtDenNo
             // 
             this.txtDenNo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtDenNo.Location = new System.Drawing.Point(138, 39);
+            this.txtDenNo.Location = new System.Drawing.Point(151, 39);
+            this.txtDenNo.MaxLength = 10;
             this.txtDenNo.Name = "txtDenNo";
-            this.txtDenNo.Size = new System.Drawing.Size(112, 22);
+            this.txtDenNo.Size = new System.Drawing.Size(85, 22);
             this.txtDenNo.TabIndex = 100;
             this.txtDenNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDenNo_KeyDown);
+            this.txtDenNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             this.txtDenNo.Leave += new System.EventHandler(this.txtDenNo_Leave);
             // 
             // txtYMD
             // 
             this.txtYMD.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtYMD.Location = new System.Drawing.Point(22, 39);
+            this.txtYMD.MaxLength = 10;
             this.txtYMD.Name = "txtYMD";
             this.txtYMD.Size = new System.Drawing.Size(87, 22);
             this.txtYMD.TabIndex = 0;
             this.txtYMD.ModifiedChanged += new System.EventHandler(this.txtModified);
+            this.txtYMD.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtUriageKeyUp);
             this.txtYMD.Leave += new System.EventHandler(this.txtYMD_Leave);
             // 
             // labelSet_Tantousha

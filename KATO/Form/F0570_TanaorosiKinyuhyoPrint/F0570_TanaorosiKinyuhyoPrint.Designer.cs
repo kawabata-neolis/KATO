@@ -48,6 +48,11 @@
             this.bgSort.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnF01
+            // 
+            this.btnF01.TabStop = false;
+            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
+            // 
             // btnF12
             // 
             this.btnF12.TabIndex = 11;
@@ -103,11 +108,6 @@
             this.btnF02.TabStop = false;
             this.btnF02.Click += new System.EventHandler(this.judBtnClick);
             // 
-            // btnF01
-            // 
-            this.btnF01.TabStop = false;
-            this.btnF01.Click += new System.EventHandler(this.judBtnClick);
-            // 
             // labelSet_Eigyosho
             // 
             this.labelSet_Eigyosho.AppendLabelSize = 0;
@@ -157,7 +157,6 @@
             this.txtYmd.Name = "txtYmd";
             this.txtYmd.Size = new System.Drawing.Size(90, 22);
             this.txtYmd.TabIndex = 1;
-            this.txtYmd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblYmd
             // 
@@ -357,6 +356,7 @@
             this.Text = "F0570_TanaorosiKinyuhyoPrint";
             this.Load += new System.EventHandler(this.F0570_TanaorosiKinyuhyoPrint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.F0570_TanaorosiKinyuhyoPrint_KeyDown);
+            this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.labelSet_Eigyosho, 0);
             this.Controls.SetChildIndex(this.labelSet_Daibunrui, 0);
             this.Controls.SetChildIndex(this.lblYmd, 0);

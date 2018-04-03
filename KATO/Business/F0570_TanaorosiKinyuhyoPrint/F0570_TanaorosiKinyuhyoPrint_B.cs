@@ -201,6 +201,102 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
             return;
         }
 
+        /// <summary>
+        /// judTanaData
+        /// 棚卸データの取得、判定
+        /// </summary>
+        public int judTanaData(string strYMD)
+        {
+            //本社データ確認用
+            string strSQLHonSel = "";
+            //本社データ確認用
+            string strSQLGifuSel = "";
+
+            //取り出したデータの確保用
+            DataTable dtGetData = new DataTable();
+
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                strSQLHonSel = "SELECT COUNT(*) FROM 棚卸記入表 ";
+                strSQLHonSel = strSQLHonSel + " WHERE 営業所コード='0001' ";
+                strSQLHonSel = strSQLHonSel + " AND 棚卸年月日='" + strYMD + "' ";
+
+                // 本社棚卸データの検索を実行
+                dtGetData = dbconnective.ReadSql(strSQLHonSel);
+
+                //本社棚卸データがない場合
+                if (dtGetData.Rows[0][0].ToString() == "0")
+                {
+                    return (1);
+                }
+
+                strSQLGifuSel = "SELECT COUNT(*) FROM 棚卸記入表 ";
+                strSQLGifuSel = strSQLGifuSel + " WHERE 営業所コード='0002' ";
+                strSQLGifuSel = strSQLGifuSel + " AND 棚卸年月日='" + strYMD + "' ";
+
+                // 本社棚卸データの検索を実行
+                dtGetData = dbconnective.ReadSql(strSQLGifuSel);
+
+                //本社棚卸データがない場合
+                if (dtGetData.Rows[0][0].ToString() == "0")
+                {
+                    return (2);
+                }
+                return (3);
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        /// <summary>
+        /// updTanaData
+        /// 棚卸データの更新
+        /// </summary>
+        public void updTanaData(string strYMD, string strUser)
+        {
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                // トランザクション開始
+                dbconnective.BeginTrans();
+
+                // 棚卸更新_PROC(本社)を実行
+                dbconnective.RunSql("棚卸更新_PROC '" + strYMD + "','" +
+                                                          "0001" + "','" +
+                                                          strUser + "'");
+
+                // 棚卸更新_PROC(岐阜)を実行
+                dbconnective.RunSql("棚卸更新_PROC '" + strYMD + "','" +
+                                                          "0002" + "','" +
+                                                          strUser + "'");
+
+                // 棚卸更新_補足追加_PROCを実行
+                dbconnective.RunSql("棚卸更新_補足追加_PROC '" + strYMD + "','" +
+                                                          strUser + "'");
+
+                // コミット
+                dbconnective.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                // ロールバック処理
+                dbconnective.Rollback();
+                throw (ex);
+            }
+            finally
+            {
+                dbconnective.DB_Disconnect();
+            }
+        }
+
         /// -----------------------------------------------------------------------------
         /// <summary>
         ///     DataTableをもとにxlsxファイルを作成しPDF化</summary>

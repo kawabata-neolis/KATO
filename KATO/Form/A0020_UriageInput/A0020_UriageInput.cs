@@ -1346,7 +1346,7 @@ namespace KATO.Form.A0020_UriageInput
             if (string.IsNullOrWhiteSpace(txtYMD.Text))
             {
                 // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
                 txtYMD.Focus();
                 return false;
@@ -3476,8 +3476,6 @@ namespace KATO.Form.A0020_UriageInput
             //伝票の内容を表示するメソッドへ移動する。
             DispDenpyo();
 
-            txtDenNo.Enabled = false;
-
             MODY_FLAG = false;
             editFlg = false;
         }
@@ -3574,6 +3572,7 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 else
                 {
+                    this.Cursor = Cursors.Default;
                     //メッセージ
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力した伝票番号は見つかりませんでした。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -3743,6 +3742,8 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 else
                 {
+                    this.Cursor = Cursors.Default;
+
                     //メッセージ
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力した伝票番号は見つかりません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
@@ -3753,6 +3754,8 @@ namespace KATO.Form.A0020_UriageInput
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
+
                 //エラーロギング
                 new CommonException(ex);
                 return;
@@ -3808,6 +3811,7 @@ namespace KATO.Form.A0020_UriageInput
             //labelSet_Tantousha.chkTxtTantosha();
             //GetTantouCode(labelSet_Tantousha.CodeTxtText);
 
+            txtDenNo.Enabled = false;
         }
 
         /// <summary>
@@ -3950,10 +3954,24 @@ namespace KATO.Form.A0020_UriageInput
                 return;
             }
 
-            //日付範囲チェックのメソッドへ(入力日付が日付範囲外だった場合は処理終了。)
-            if (!GDateCheckEG(2, labelSet_Eigyosho.CodeTxtText, DateTime.Parse(txtYMD.Text)))
+            //年月日の日付フォーマット後を入れる用
+            string strYMDformat = "";
+
+            //日付フォーマット生成、およびチェック
+            strYMDformat = txtYMD.chkDateDataFormat(txtYMD.Text);
+
+            //年月日の日付チェック
+            if (strYMDformat == "")
             {
-                return;
+                txtYMD.Focus();
+            }
+            else
+            {
+                //日付範囲チェックのメソッドへ(入力日付が日付範囲外だった場合は処理終了。)
+                if (!GDateCheckEG(2, labelSet_Eigyosho.CodeTxtText, DateTime.Parse(txtYMD.Text)))
+                {
+                    return;
+                }
             }
         }
 
@@ -4199,6 +4217,18 @@ namespace KATO.Form.A0020_UriageInput
 
                 shohinmoto.Show();
             }
+        }
+
+        ///<summary>
+        ///judtxtUriageKeyUp
+        ///入力項目上でのキー判定と文字数判定
+        ///</summary>
+        private void judtxtUriageKeyUp(object sender, KeyEventArgs e)
+        {
+            Control cActiveBefore = this.ActiveControl;
+
+            BaseText basetext = new BaseText();
+            basetext.judKeyUp(cActiveBefore, e);
         }
     }
 }

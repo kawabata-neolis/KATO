@@ -642,7 +642,7 @@ namespace KATO.Common.Ctl
                 }
                 else
                 {
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "受注データが存在しません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this.Parent, CommonTeisu.TEXT_INPUT, "受注データが存在しません！！", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     basemessagebox.ShowDialog();
                     txtJucyuNoElem2.Text = "";
                     txtJucyuNoElem2.Focus();

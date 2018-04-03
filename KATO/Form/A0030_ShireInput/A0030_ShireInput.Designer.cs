@@ -265,7 +265,7 @@
             this.txtShireNameView.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtShireNameView.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtShireNameView.Location = new System.Drawing.Point(124, 109);
-            this.txtShireNameView.MaxLength = 30;
+            this.txtShireNameView.MaxLength = 64;
             this.txtShireNameView.Name = "txtShireNameView";
             this.txtShireNameView.Size = new System.Drawing.Size(250, 22);
             this.txtShireNameView.TabIndex = 14;
