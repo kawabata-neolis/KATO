@@ -603,6 +603,13 @@ namespace KATO.Business.M1030_Shohin
 
             }
 
+            //メーカーコードがある場合
+            if (StringUtl.blIsEmpty(lstString[1].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND メーカーコード = '" + lstString[1] + "'";
+
+            }
+
             //SQLファイルのパスとファイル名を追加
             lstSQLKariShohin.Add("M1030_Shohin");
             lstSQLKariShohin.Add("Shohin_DataKari_Kaburi_SELECT");
@@ -696,6 +703,13 @@ namespace KATO.Business.M1030_Shohin
             if (StringUtl.blIsEmpty(lstString[9].ToString()))
             {
                 strSQLOther = strSQLOther + "AND Ｃ６ = '" + lstString[9] + "'";
+
+            }
+
+            //メーカーコードがある場合
+            if (StringUtl.blIsEmpty(lstString[1].ToString()))
+            {
+                strSQLOther = strSQLOther + "AND メーカーコード = '" + lstString[1] + "'";
 
             }
 

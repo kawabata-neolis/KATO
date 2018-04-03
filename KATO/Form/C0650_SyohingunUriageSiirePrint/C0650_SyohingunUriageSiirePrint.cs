@@ -225,15 +225,15 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
 
 
                 // 検索するデータをリストに格納
-                lstSearchItem.Add(txtKamikiYMDopen.Text);
-                lstSearchItem.Add(txtKamikiYMDclose.Text);
-                lstSearchItem.Add(txtSimokiYMDopen.Text);
-                lstSearchItem.Add(txtSimokiYMDclose.Text);
-                //lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);
-                //lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);
-                //lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);
-                //lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);
-                //lstSearchItem.Add(labelSet_Maker.CodeTxtText);
+                lstSearchItem.Add(txtKamikiYMDopen.Text);               //[0]
+                lstSearchItem.Add(txtKamikiYMDclose.Text);              //[1]
+                lstSearchItem.Add(txtSimokiYMDopen.Text);               //[2]
+                lstSearchItem.Add(txtSimokiYMDclose.Text);              //[3]
+                //lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);   //[4]
+                //lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);      //[5]
+                //lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);      //[6]
+                //lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);      //[7]
+                //lstSearchItem.Add(labelSet_Maker.CodeTxtText);          //[8]
 
                 // 検索実行（印刷用）
                 DataTable dtSyohingunUriageSiire = syohingunuriagesiireprintB.getSyohingunUriageSiireItiran(lstSearchItem);
