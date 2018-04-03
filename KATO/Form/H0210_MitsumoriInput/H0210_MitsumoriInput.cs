@@ -2246,6 +2246,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                     txtMNum.Text = "";
                     oldNum = "";
                 }
+                txtMode.ReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -2586,6 +2587,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     intPrint = 0;
                 }
+                txtMode.ReadOnly = false;
             }
             catch (Exception ex)
             {
@@ -2822,6 +2824,9 @@ namespace KATO.Form.H0210_MitsumoriInput
             gridMitsmori.CurrentCell = gridMitsmori[0, 0];
             RowIndex = 0;
             ColIndex = 0;
+
+            txtMode.ReadOnly = false;
+
             txtMode.Focus();
             editFlg = true;
         }
