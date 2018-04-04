@@ -3061,6 +3061,287 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
         }
 
+        //public string dbToPdfMeisai(BaseDataGridViewEdit dt)
+        //{
+        //    string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+        //    string strFilePath = "./Template/H0210_ShiireDetail.xlsx";
+        //    string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
+
+        //    try
+        //    {
+        //        this.Cursor = Cursors.WaitCursor;
+        //        // excelのインスタンス生成
+        //        XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+
+        //        IXLWorksheet templatesheet1 = workbook.Worksheet(1);   // テンプレートシート
+        //        IXLWorksheet templatesheet2 = workbook.Worksheet(2);   // テンプレートシート（明細行のみ）
+        //        IXLWorksheet currentsheet = null;  // 処理中シート
+
+        //        int pageCnt = 0;    // ページ(シート枚数)カウント
+        //        int xlsRowCnt = 16;  // Excel出力行カウント（開始は出力行）
+
+        //        templatesheet1.CopyTo("Page" + pageCnt.ToString());
+        //        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+
+        //        currentsheet.Cell(5, "B").Value = tsTokuisaki.valueTextText;
+        //        currentsheet.Cell(6, "B").Value = txtTanto.Text;
+        //        currentsheet.Cell(7, "B").Value = txtKenmei.Text;
+        //        currentsheet.Cell(8, "B").Value = txtUriTotal.Text;
+        //        currentsheet.Cell(9, "B").Value = cbNoki.Text;
+        //        currentsheet.Cell(10, "B").Value = txtMNum.Text;
+        //        currentsheet.Cell(11, "B").Value = txtMYMD.Text;
+        //        currentsheet.Cell(12, "B").Value = lsTantousha.ValueLabelText;
+        //        currentsheet.Cell(13, "B").Value = txtBiko.Text;
+
+        //        int intMaxLine = 0;
+        //        for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
+        //            {
+        //                intMaxLine = i + 1;
+        //                break;
+        //            }
+        //        }
+
+        //        // ClosedXMLで1行ずつExcelに出力
+        //        for (int i = 0; i < intMaxLine; i++)
+        //        {
+        //            if (gridMitsmori[1, i].Value == null || !gridMitsmori[1, i].Value.ToString().Equals("1"))
+        //            {
+        //                continue;
+        //            }
+        //            if (xlsRowCnt == 49)
+        //            {
+        //                pageCnt++;
+        //                xlsRowCnt = 3;
+
+        //                // テンプレートシート（明細行のみ）からコピー
+        //                templatesheet2.CopyTo("Page" + pageCnt.ToString());
+        //                currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
+        //            }
+        //            string stKata = "";
+
+        //            H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+
+        //            stKata += inputB.getMakerName(getCellValue(gridMitsmori[89, i], false));
+        //            if (!string.IsNullOrWhiteSpace(stKata))
+        //            {
+        //                stKata += " ";
+        //            }
+        //            stKata += inputB.getCBunruiName(getCellValue(gridMitsmori[87, i], false), getCellValue(gridMitsmori[88, i], false));
+        //            if (!string.IsNullOrWhiteSpace(stKata))
+        //            {
+        //                stKata += " ";
+        //            }
+        //            stKata += getCellValue(gridMitsmori[2, i], false);
+
+        //            if (!string.IsNullOrWhiteSpace(stKata))
+        //            {
+        //                stKata = "'" + stKata;
+        //            }
+
+        //            currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
+        //            currentsheet.Cell(xlsRowCnt, "C").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false)); // 数量
+        //            //currentsheet.Cell(xlsRowCnt, "D").Value = "";
+        //            currentsheet.Cell(xlsRowCnt, "D").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false)); // 見積単価
+        //            currentsheet.Cell(xlsRowCnt, "E").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false)); // 金額
+        //            currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsmori[11, i], false);
+
+
+
+
+        //            string stShiiresaki = "";
+        //            string compShiiresaki = "";
+        //            string stSep = "";
+        //            decimal decMTanka = 0;
+        //            decimal decSu = 0;
+        //            decimal decTanka = 0;
+        //            decimal decRitsu = 0;
+
+        //            decSu = decimal.Parse(getCellValue(gridMitsmori[3, i], true));
+        //            decMTanka = decimal.Parse(getCellValue(gridMitsmori[5, i], true));
+
+        //            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[12, i], false)))
+        //            {
+        //                compShiiresaki = getCellValue(gridMitsmori[12, i], false);
+
+        //                if (compShiiresaki.Equals(getCellValue(gridMitsmori[15, i], false)))
+        //                {
+        //                    stShiiresaki = getCellValue(gridMitsmori[15, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[16, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[51, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[51, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[52, i], true));
+        //                    }
+        //                }
+        //                else if (compShiiresaki.Equals(getCellValue(gridMitsmori[21, i], false)))
+        //                {
+        //                    stShiiresaki = getCellValue(gridMitsmori[21, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[22, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[57, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[57, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[58, i], true));
+        //                    }
+        //                }
+        //                else if (compShiiresaki.Equals(getCellValue(gridMitsmori[27, i], false)))
+        //                {
+        //                    stShiiresaki = getCellValue(gridMitsmori[27, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[28, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[63, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[63, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[64, i], true));
+        //                    }
+        //                }
+        //                stSep = "、";
+        //            }
+
+        //            if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[99, i], false)))
+        //            {
+        //                compShiiresaki = getCellValue(gridMitsmori[99, i], false);
+
+        //                if (compShiiresaki.Equals(getCellValue(gridMitsmori[33, i], false)))
+        //                {
+        //                    stShiiresaki += stSep + getCellValue(gridMitsmori[33, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[34, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[69, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[69, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[70, i], true));
+        //                    }
+        //                }
+        //                else if (compShiiresaki.Equals(getCellValue(gridMitsmori[39, i], false)))
+        //                {
+        //                    stShiiresaki += stSep + getCellValue(gridMitsmori[39, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[40, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[75, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[75, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[76, i], true));
+        //                    }
+        //                }
+        //                else if (compShiiresaki.Equals(getCellValue(gridMitsmori[45, i], false)))
+        //                {
+        //                    stShiiresaki += stSep + getCellValue(gridMitsmori[45, i], false).TrimEnd();
+        //                    decTanka += decimal.Parse(getCellValue(gridMitsmori[46, i], true));
+
+        //                    if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[81, i], false)))
+        //                    {
+        //                        stShiiresaki += "、" + getCellValue(gridMitsmori[81, i], false).TrimEnd();
+        //                        decTanka += decimal.Parse(getCellValue(gridMitsmori[82, i], true));
+        //                    }
+        //                }
+        //            }
+
+        //            currentsheet.Cell(xlsRowCnt, "G").Value = zeroToBlank(decimal.Round(decTanka, 0).ToString("#,0"));
+        //            currentsheet.Cell(xlsRowCnt, "H").Value = zeroToBlank(decimal.Round(decTanka * decSu, 0).ToString("#,0"));
+
+        //            if (decMTanka.CompareTo(0) != 0)
+        //            {
+        //                currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(decimal.Round(((decMTanka - decTanka) / decMTanka) * 100, 1, MidpointRounding.AwayFromZero).ToString("#,0.0"));
+        //            }
+
+        //            currentsheet.Cell(xlsRowCnt, "J").Value = stShiiresaki;
+
+        //            //currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[15, i], false); // 名称
+        //            //currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(getCellValue(gridMitsmori[16, i], false)); // 単価
+        //            //currentsheet.Cell(xlsRowCnt, "J").Value = zeroToBlank(getCellValue(gridMitsmori[19, i], false)); // 率
+
+        //            //currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[21, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "L").Value = zeroToBlank(getCellValue(gridMitsmori[22, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "M").Value = zeroToBlank(getCellValue(gridMitsmori[25, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[27, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "O").Value = zeroToBlank(getCellValue(gridMitsmori[28, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "P").Value = zeroToBlank(getCellValue(gridMitsmori[31, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "Q").Value = getCellValue(gridMitsmori[33, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "R").Value = zeroToBlank(getCellValue(gridMitsmori[34, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "S").Value = zeroToBlank(getCellValue(gridMitsmori[37, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "T").Value = getCellValue(gridMitsmori[39, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "U").Value = zeroToBlank(getCellValue(gridMitsmori[40, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "V").Value = zeroToBlank(getCellValue(gridMitsmori[43, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "W").Value = getCellValue(gridMitsmori[45, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "X").Value = zeroToBlank(getCellValue(gridMitsmori[46, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "Y").Value = zeroToBlank(getCellValue(gridMitsmori[49, i], false));
+
+
+        //            //currentsheet.Cell(xlsRowCnt, "Z").Value = getCellValue(gridMitsmori[51, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AA").Value = zeroToBlank(getCellValue(gridMitsmori[52, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AB").Value = zeroToBlank(getCellValue(gridMitsmori[55, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "AC").Value = getCellValue(gridMitsmori[57, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AD").Value = zeroToBlank(getCellValue(gridMitsmori[58, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AE").Value = zeroToBlank(getCellValue(gridMitsmori[61, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "AF").Value = getCellValue(gridMitsmori[63, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AG").Value = zeroToBlank(getCellValue(gridMitsmori[64, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AH").Value = zeroToBlank(getCellValue(gridMitsmori[67, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "AI").Value = getCellValue(gridMitsmori[69, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AJ").Value = zeroToBlank(getCellValue(gridMitsmori[70, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AK").Value = zeroToBlank(getCellValue(gridMitsmori[73, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "AL").Value = getCellValue(gridMitsmori[75, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AM").Value = zeroToBlank(getCellValue(gridMitsmori[76, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AN").Value = zeroToBlank(getCellValue(gridMitsmori[79, i], false));
+
+        //            //currentsheet.Cell(xlsRowCnt, "AO").Value = getCellValue(gridMitsmori[81, i], false);
+        //            //currentsheet.Cell(xlsRowCnt, "AP").Value = zeroToBlank(getCellValue(gridMitsmori[82, i], false));
+        //            //currentsheet.Cell(xlsRowCnt, "AQ").Value = zeroToBlank(getCellValue(gridMitsmori[85, i], false));
+
+        //            xlsRowCnt++;
+        //        }
+
+        //        // テンプレートシート削除
+        //        templatesheet1.Delete();
+        //        templatesheet2.Delete();
+
+        //        // ページ数設定
+        //        for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
+        //        {
+        //            workbook.Worksheet(pageCnt).Cell("J49").Value = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
+        //        }
+
+        //        // workbookを保存
+        //        //string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+        //        string strOutXlsFile = strWorkPath + "_" + txtMNum.Text + "_M.xlsx";
+        //        workbook.SaveAs(strOutXlsFile);
+
+        //        // workbookを解放
+        //        workbook.Dispose();
+
+        //        // PDF化の処理
+        //        //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+        //        CreatePdf pdf = new CreatePdf();
+        //        return pdf.createPdf(strOutXlsFile, "_" + txtMNum.Text + "_M", 0);
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        // Workフォルダの全ファイルを取得
+        //        string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
+        //        // Workフォルダ内のファイル削除
+        //        foreach (string filepath in files)
+        //        {
+        //            //File.Delete(filepath);
+        //        }
+        //        this.Cursor = Cursors.Default;
+        //    }
+        //}
+
         public string dbToPdfMeisai(BaseDataGridViewEdit dt)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
@@ -3078,22 +3359,29 @@ namespace KATO.Form.H0210_MitsumoriInput
                 IXLWorksheet currentsheet = null;  // 処理中シート
 
                 int pageCnt = 0;    // ページ(シート枚数)カウント
-                int xlsRowCnt = 16;  // Excel出力行カウント（開始は出力行）
+                int xlsRowCnt = 11;  // Excel出力行カウント（開始は出力行）
 
                 templatesheet1.CopyTo("Page" + pageCnt.ToString());
                 currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                currentsheet.Cell(5, "B").Value = tsTokuisaki.valueTextText;
-                currentsheet.Cell(6, "B").Value = txtTanto.Text;
-                currentsheet.Cell(7, "B").Value = txtKenmei.Text;
+                // 1ページ目 ヘッダ部
+                currentsheet.Cell(3, "B").Value = tsTokuisaki.valueTextText;
+                currentsheet.Cell(3, "G").Value = txtTanto.Text;
+                currentsheet.Cell(3, "N").Value = txtMNum.Text;
+                currentsheet.Cell(4, "B").Value = txtKenmei.Text;
+                currentsheet.Cell(4, "G").Value = txtUriTotal.Text;
+                currentsheet.Cell(4, "N").Value = "'" + cbNoki.Text;
+                currentsheet.Cell(5, "B").Value = "'" + txtMYMD.Text;
+                currentsheet.Cell(5, "G").Value = lsTantousha.ValueLabelText;
+                currentsheet.Cell(6, "B").Value = "'" + txtBiko.Text;
+
                 currentsheet.Cell(8, "B").Value = txtUriTotal.Text;
-                currentsheet.Cell(9, "B").Value = cbNoki.Text;
-                currentsheet.Cell(10, "B").Value = txtMNum.Text;
-                currentsheet.Cell(11, "B").Value = txtMYMD.Text;
-                currentsheet.Cell(12, "B").Value = lsTantousha.ValueLabelText;
-                currentsheet.Cell(13, "B").Value = txtBiko.Text;
+                currentsheet.Cell(8, "F").Value = txtSiireTotal.Text;
+                currentsheet.Cell(8, "J").Value = txtArariTotal.Text;
+                currentsheet.Cell(8, "N").Value = txtArariRitsu.Text;
 
                 int intMaxLine = 0;
+                // grid の入力最終行を取得
                 for (int i = gridMitsmori.RowCount - 1; i >= 0; i--)
                 {
                     if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[2, i], false)))
@@ -3106,11 +3394,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ClosedXMLで1行ずつExcelに出力
                 for (int i = 0; i < intMaxLine; i++)
                 {
+                    // 印刷指定のない行はスキップ
                     if (gridMitsmori[1, i].Value == null || !gridMitsmori[1, i].Value.ToString().Equals("1"))
                     {
                         continue;
                     }
-                    if (xlsRowCnt == 49)
+                    // テンプレート末尾まで来たら 次ページへ切替
+                    if (xlsRowCnt >= 51)
                     {
                         pageCnt++;
                         xlsRowCnt = 3;
@@ -3123,6 +3413,8 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
 
+                    // 明細選択行
+                    #region
                     stKata += inputB.getMakerName(getCellValue(gridMitsmori[89, i], false));
                     if (!string.IsNullOrWhiteSpace(stKata))
                     {
@@ -3141,18 +3433,14 @@ namespace KATO.Form.H0210_MitsumoriInput
                     }
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = stKata;
-                    currentsheet.Cell(xlsRowCnt, "C").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false)); // 数量
+                    currentsheet.Cell(xlsRowCnt, "D").Value = zeroToBlank(getCellValue(gridMitsmori[3, i], false)); // 数量
                     //currentsheet.Cell(xlsRowCnt, "D").Value = "";
-                    currentsheet.Cell(xlsRowCnt, "D").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false)); // 見積単価
-                    currentsheet.Cell(xlsRowCnt, "E").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false)); // 金額
-                    currentsheet.Cell(xlsRowCnt, "F").Value = getCellValue(gridMitsmori[11, i], false);
+                    currentsheet.Cell(xlsRowCnt, "F").Value = zeroToBlank(getCellValue(gridMitsmori[5, i], false)); // 見積単価
+                    currentsheet.Cell(xlsRowCnt, "G").Value = zeroToBlank(getCellValue(gridMitsmori[7, i], false)); // 金額
+                    currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[11, i], false);
+                    #endregion
 
-
-
-
-                    string stShiiresaki = "";
                     string compShiiresaki = "";
-                    string stSep = "";
                     decimal decMTanka = 0;
                     decimal decSu = 0;
                     decimal decTanka = 0;
@@ -3161,145 +3449,149 @@ namespace KATO.Form.H0210_MitsumoriInput
                     decSu = decimal.Parse(getCellValue(gridMitsmori[3, i], true));
                     decMTanka = decimal.Parse(getCellValue(gridMitsmori[5, i], true));
 
+                    // 明細セット
+                    // 材料１
+                    #region
+                    currentsheet.Cell(xlsRowCnt + 2, "I").Value = getCellValue(gridMitsmori[15, i], false); // 仕入先名
+                    currentsheet.Cell(xlsRowCnt + 2, "H").Value = zeroToBlank(getCellValue(gridMitsmori[19, i], false)); // 粗利率
+                    currentsheet.Cell(xlsRowCnt + 3, "I").Value = getCellValue(gridMitsmori[21, i], false);
+                    currentsheet.Cell(xlsRowCnt + 3, "H").Value = zeroToBlank(getCellValue(gridMitsmori[25, i], false));
+                    currentsheet.Cell(xlsRowCnt + 4, "I").Value = getCellValue(gridMitsmori[27, i], false);
+                    currentsheet.Cell(xlsRowCnt + 4, "H").Value = zeroToBlank(getCellValue(gridMitsmori[31, i], false));
+
+                    currentsheet.Cell(xlsRowCnt + 2, "F").Value = zeroToBlank(getCellValue(gridMitsmori[16, i], false)); // 仕入単価
+                    currentsheet.Cell(xlsRowCnt + 2, "G").Value = zeroToBlank(getCellValue(gridMitsmori[17, i], false)); // 仕入金額
+                    currentsheet.Cell(xlsRowCnt + 3, "F").Value = zeroToBlank(getCellValue(gridMitsmori[22, i], false));
+                    currentsheet.Cell(xlsRowCnt + 3, "G").Value = zeroToBlank(getCellValue(gridMitsmori[23, i], false));
+                    currentsheet.Cell(xlsRowCnt + 4, "F").Value = zeroToBlank(getCellValue(gridMitsmori[28, i], false));
+                    currentsheet.Cell(xlsRowCnt + 4, "G").Value = zeroToBlank(getCellValue(gridMitsmori[29, i], false));
+
+                    // 加工１
+                    currentsheet.Cell(xlsRowCnt + 2, "O").Value = getCellValue(gridMitsmori[51, i], false); // 仕入先名
+                    currentsheet.Cell(xlsRowCnt + 3, "O").Value = getCellValue(gridMitsmori[57, i], false);
+                    currentsheet.Cell(xlsRowCnt + 4, "O").Value = getCellValue(gridMitsmori[63, i], false);
+
+                    currentsheet.Cell(xlsRowCnt + 2, "M").Value = zeroToBlank(getCellValue(gridMitsmori[52, i], false)); // 仕入単価
+                    currentsheet.Cell(xlsRowCnt + 2, "N").Value = zeroToBlank(getCellValue(gridMitsmori[53, i], false)); // 仕入金額
+                    currentsheet.Cell(xlsRowCnt + 3, "M").Value = zeroToBlank(getCellValue(gridMitsmori[58, i], false));
+                    currentsheet.Cell(xlsRowCnt + 3, "N").Value = zeroToBlank(getCellValue(gridMitsmori[59, i], false));
+                    currentsheet.Cell(xlsRowCnt + 4, "M").Value = zeroToBlank(getCellValue(gridMitsmori[64, i], false));
+                    currentsheet.Cell(xlsRowCnt + 4, "N").Value = zeroToBlank(getCellValue(gridMitsmori[65, i], false));
+                    #endregion
+
+                    // 材料２
+                    #region
+                    currentsheet.Cell(xlsRowCnt + 5, "I").Value = getCellValue(gridMitsmori[33, i], false); // 仕入先名
+                    currentsheet.Cell(xlsRowCnt + 6, "I").Value = getCellValue(gridMitsmori[39, i], false);
+                    currentsheet.Cell(xlsRowCnt + 7, "I").Value = getCellValue(gridMitsmori[45, i], false);
+
+                    currentsheet.Cell(xlsRowCnt + 5, "F").Value = zeroToBlank(getCellValue(gridMitsmori[34, i], false)); // 仕入単価
+                    currentsheet.Cell(xlsRowCnt + 5, "G").Value = zeroToBlank(getCellValue(gridMitsmori[35, i], false)); // 仕入金額
+                    currentsheet.Cell(xlsRowCnt + 6, "F").Value = zeroToBlank(getCellValue(gridMitsmori[40, i], false));
+                    currentsheet.Cell(xlsRowCnt + 6, "G").Value = zeroToBlank(getCellValue(gridMitsmori[41, i], false));
+                    currentsheet.Cell(xlsRowCnt + 7, "F").Value = zeroToBlank(getCellValue(gridMitsmori[46, i], false));
+                    currentsheet.Cell(xlsRowCnt + 7, "G").Value = zeroToBlank(getCellValue(gridMitsmori[47, i], false));
+
+                    // 加工２
+                    currentsheet.Cell(xlsRowCnt + 5, "O").Value = getCellValue(gridMitsmori[69, i], false);
+                    currentsheet.Cell(xlsRowCnt + 6, "O").Value = getCellValue(gridMitsmori[75, i], false);
+                    currentsheet.Cell(xlsRowCnt + 7, "O").Value = getCellValue(gridMitsmori[81, i], false);
+
+                    currentsheet.Cell(xlsRowCnt + 5, "M").Value = zeroToBlank(getCellValue(gridMitsmori[70, i], false)); // 仕入単価
+                    currentsheet.Cell(xlsRowCnt + 5, "N").Value = zeroToBlank(getCellValue(gridMitsmori[71, i], false)); // 仕入金額
+                    currentsheet.Cell(xlsRowCnt + 6, "M").Value = zeroToBlank(getCellValue(gridMitsmori[76, i], false));
+                    currentsheet.Cell(xlsRowCnt + 6, "N").Value = zeroToBlank(getCellValue(gridMitsmori[77, i], false));
+                    currentsheet.Cell(xlsRowCnt + 7, "M").Value = zeroToBlank(getCellValue(gridMitsmori[82, i], false));
+                    currentsheet.Cell(xlsRowCnt + 7, "N").Value = zeroToBlank(getCellValue(gridMitsmori[83, i], false));
+                    #endregion
+
+                    // 材料・加工１ 選択行確認、単価計計算
+                    #region
                     if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[12, i], false)))
                     {
                         compShiiresaki = getCellValue(gridMitsmori[12, i], false);
 
                         if (compShiiresaki.Equals(getCellValue(gridMitsmori[15, i], false)))
                         {
-                            stShiiresaki = getCellValue(gridMitsmori[15, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 2, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[16, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[51, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[51, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[52, i], true));
                             }
                         }
                         else if (compShiiresaki.Equals(getCellValue(gridMitsmori[21, i], false)))
                         {
-                            stShiiresaki = getCellValue(gridMitsmori[21, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 3, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[22, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[57, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[57, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[58, i], true));
                             }
                         }
                         else if (compShiiresaki.Equals(getCellValue(gridMitsmori[27, i], false)))
                         {
-                            stShiiresaki = getCellValue(gridMitsmori[27, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 4, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[28, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[63, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[63, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[64, i], true));
                             }
                         }
-                        stSep = "、";
                     }
+                    #endregion
 
+                    // 材料・加工２ 選択行確認、単価計計算
+                    #region
                     if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[99, i], false)))
                     {
                         compShiiresaki = getCellValue(gridMitsmori[99, i], false);
 
                         if (compShiiresaki.Equals(getCellValue(gridMitsmori[33, i], false)))
                         {
-                            stShiiresaki += stSep + getCellValue(gridMitsmori[33, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 5, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[34, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[69, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[69, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[70, i], true));
                             }
                         }
                         else if (compShiiresaki.Equals(getCellValue(gridMitsmori[39, i], false)))
                         {
-                            stShiiresaki += stSep + getCellValue(gridMitsmori[39, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 6, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[40, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[75, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[75, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[76, i], true));
                             }
                         }
                         else if (compShiiresaki.Equals(getCellValue(gridMitsmori[45, i], false)))
                         {
-                            stShiiresaki += stSep + getCellValue(gridMitsmori[45, i], false).TrimEnd();
+                            currentsheet.Cell(xlsRowCnt + 7, "D").Value = "〇";
                             decTanka += decimal.Parse(getCellValue(gridMitsmori[46, i], true));
 
                             if (!string.IsNullOrWhiteSpace(getCellValue(gridMitsmori[81, i], false)))
                             {
-                                stShiiresaki += "、" + getCellValue(gridMitsmori[81, i], false).TrimEnd();
                                 decTanka += decimal.Parse(getCellValue(gridMitsmori[82, i], true));
                             }
                         }
                     }
+                    #endregion
 
-                    currentsheet.Cell(xlsRowCnt, "G").Value = zeroToBlank(decimal.Round(decTanka, 0).ToString("#,0"));
-                    currentsheet.Cell(xlsRowCnt, "H").Value = zeroToBlank(decimal.Round(decTanka * decSu, 0).ToString("#,0"));
+                    currentsheet.Cell(xlsRowCnt, "M").Value = zeroToBlank(decimal.Round(decTanka, 0).ToString("#,0"));
+                    currentsheet.Cell(xlsRowCnt, "N").Value = zeroToBlank(decimal.Round(decTanka * decSu, 0).ToString("#,0"));
 
                     if (decMTanka.CompareTo(0) != 0)
                     {
-                        currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(decimal.Round(((decMTanka - decTanka) / decMTanka) * 100, 1, MidpointRounding.AwayFromZero).ToString("#,0.0"));
+                        currentsheet.Cell(xlsRowCnt, "O").Value = zeroToBlank(decimal.Round(((decMTanka - decTanka) / decMTanka) * 100, 1, MidpointRounding.AwayFromZero).ToString("#,0.0"));
                     }
 
-                    currentsheet.Cell(xlsRowCnt, "J").Value = stShiiresaki;
-
-                    //currentsheet.Cell(xlsRowCnt, "H").Value = getCellValue(gridMitsmori[15, i], false); // 名称
-                    //currentsheet.Cell(xlsRowCnt, "I").Value = zeroToBlank(getCellValue(gridMitsmori[16, i], false)); // 単価
-                    //currentsheet.Cell(xlsRowCnt, "J").Value = zeroToBlank(getCellValue(gridMitsmori[19, i], false)); // 率
-
-                    //currentsheet.Cell(xlsRowCnt, "K").Value = getCellValue(gridMitsmori[21, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "L").Value = zeroToBlank(getCellValue(gridMitsmori[22, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "M").Value = zeroToBlank(getCellValue(gridMitsmori[25, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "N").Value = getCellValue(gridMitsmori[27, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "O").Value = zeroToBlank(getCellValue(gridMitsmori[28, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "P").Value = zeroToBlank(getCellValue(gridMitsmori[31, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "Q").Value = getCellValue(gridMitsmori[33, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "R").Value = zeroToBlank(getCellValue(gridMitsmori[34, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "S").Value = zeroToBlank(getCellValue(gridMitsmori[37, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "T").Value = getCellValue(gridMitsmori[39, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "U").Value = zeroToBlank(getCellValue(gridMitsmori[40, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "V").Value = zeroToBlank(getCellValue(gridMitsmori[43, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "W").Value = getCellValue(gridMitsmori[45, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "X").Value = zeroToBlank(getCellValue(gridMitsmori[46, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "Y").Value = zeroToBlank(getCellValue(gridMitsmori[49, i], false));
-
-
-                    //currentsheet.Cell(xlsRowCnt, "Z").Value = getCellValue(gridMitsmori[51, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AA").Value = zeroToBlank(getCellValue(gridMitsmori[52, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AB").Value = zeroToBlank(getCellValue(gridMitsmori[55, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "AC").Value = getCellValue(gridMitsmori[57, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AD").Value = zeroToBlank(getCellValue(gridMitsmori[58, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AE").Value = zeroToBlank(getCellValue(gridMitsmori[61, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "AF").Value = getCellValue(gridMitsmori[63, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AG").Value = zeroToBlank(getCellValue(gridMitsmori[64, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AH").Value = zeroToBlank(getCellValue(gridMitsmori[67, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "AI").Value = getCellValue(gridMitsmori[69, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AJ").Value = zeroToBlank(getCellValue(gridMitsmori[70, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AK").Value = zeroToBlank(getCellValue(gridMitsmori[73, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "AL").Value = getCellValue(gridMitsmori[75, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AM").Value = zeroToBlank(getCellValue(gridMitsmori[76, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AN").Value = zeroToBlank(getCellValue(gridMitsmori[79, i], false));
-
-                    //currentsheet.Cell(xlsRowCnt, "AO").Value = getCellValue(gridMitsmori[81, i], false);
-                    //currentsheet.Cell(xlsRowCnt, "AP").Value = zeroToBlank(getCellValue(gridMitsmori[82, i], false));
-                    //currentsheet.Cell(xlsRowCnt, "AQ").Value = zeroToBlank(getCellValue(gridMitsmori[85, i], false));
-
-                    xlsRowCnt++;
+                    xlsRowCnt += 8;
                 }
 
                 // テンプレートシート削除
@@ -3309,7 +3601,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                 // ページ数設定
                 for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    workbook.Worksheet(pageCnt).Cell("J49").Value = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
+                    workbook.Worksheet(pageCnt).Cell("P52").Value = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString("0");      // No.
                 }
 
                 // workbookを保存
