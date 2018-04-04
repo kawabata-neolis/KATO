@@ -1741,7 +1741,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 case 1:
                                     //四捨五入
-                                    shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                    shireinput.txtGokei.Text = Math.Round(decGokei, MidpointRounding.AwayFromZero).ToString();
                                     break;
 
                                 case 2:
@@ -1780,7 +1780,7 @@ namespace KATO.Form.A0030_ShireInput
 
                                 case 1:
                                     //四捨五入
-                                    shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                    shireinput.txtGokei.Text = Math.Round(decGokei, MidpointRounding.AwayFromZero).ToString();
                                     break;
 
                                 case 2:
@@ -2058,7 +2058,7 @@ namespace KATO.Form.A0030_ShireInput
 
                             case 1:
                                 //四捨五入
-                                shireinput.txtGokei.Text = Math.Round(decGokei).ToString();
+                                shireinput.txtGokei.Text = Math.Round(decGokei, MidpointRounding.AwayFromZero).ToString();
                                 break;
 
                             case 2:
