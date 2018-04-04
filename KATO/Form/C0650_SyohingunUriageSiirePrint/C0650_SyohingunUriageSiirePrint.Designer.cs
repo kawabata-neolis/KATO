@@ -46,17 +46,17 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 6;
+            this.btnF12.TabIndex = 11;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.TabIndex = 5;
+            this.btnF11.TabIndex = 10;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 4;
+            this.btnF04.TabIndex = 9;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // baseLabel1
@@ -160,7 +160,6 @@
             this.labelSet_Torihikisaki.TabIndex = 4;
             this.labelSet_Torihikisaki.ValueLabelSize = 300;
             this.labelSet_Torihikisaki.ValueLabelText = "";
-            this.labelSet_Torihikisaki.Visible = false;
             // 
             // labelSet_Tantousha
             // 
@@ -179,7 +178,6 @@
             this.labelSet_Tantousha.TabIndex = 5;
             this.labelSet_Tantousha.ValueLabelSize = 120;
             this.labelSet_Tantousha.ValueLabelText = "";
-            this.labelSet_Tantousha.Visible = false;
             // 
             // labelSet_Daibunrui
             // 
@@ -203,7 +201,6 @@
             this.labelSet_Daibunrui.TabIndex = 6;
             this.labelSet_Daibunrui.ValueLabelSize = 200;
             this.labelSet_Daibunrui.ValueLabelText = "";
-            this.labelSet_Daibunrui.Visible = false;
             // 
             // labelSet_Chubunrui
             // 
@@ -223,7 +220,6 @@
             this.labelSet_Chubunrui.TabIndex = 7;
             this.labelSet_Chubunrui.ValueLabelSize = 200;
             this.labelSet_Chubunrui.ValueLabelText = "";
-            this.labelSet_Chubunrui.Visible = false;
             // 
             // labelSet_Maker
             // 
@@ -243,7 +239,6 @@
             this.labelSet_Maker.TabIndex = 8;
             this.labelSet_Maker.ValueLabelSize = 200;
             this.labelSet_Maker.ValueLabelText = "";
-            this.labelSet_Maker.Visible = false;
             // 
             // C0650_SyohingunUriageSiirePrint
             // 

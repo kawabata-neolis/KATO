@@ -39,17 +39,193 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
 
             //string strDaibun = "軸受";
 
-            List<string> lstTableName = new List<string>();
-            lstTableName.Add("@上期開始年月日");
-            lstTableName.Add("@上期終了年月日");
-            lstTableName.Add("@下期開始年月日");
-            lstTableName.Add("@下期終了年月日");
 
-            List<string> lstDataName = new List<string>();
-            lstDataName.Add(lstString[0]);
-            lstDataName.Add(lstString[1]);
-            lstDataName.Add(lstString[2]);
-            lstDataName.Add(lstString[3]);
+            string strSQL = "";
+
+            strSQL = strSQL + "SELECT distinct ";
+            strSQL = strSQL + " C.大分類コード,";
+            strSQL = strSQL + " dbo.f_get大分類名(C.大分類コード) AS 大分類名,";
+            strSQL = strSQL + " C.中分類コード,";
+            strSQL = strSQL + " C.中分類名,";
+            strSQL = strSQL + " IsNull(urikami.売上金額,'0') AS 上期売上額, ";
+            strSQL = strSQL + " IsNull(siikami.仕入金額,'0') AS 上期仕入額, ";
+            strSQL = strSQL + " IsNull(urisimo.売上金額,'0') AS 下期売上額,";
+            strSQL = strSQL + " IsNull(siisimo.仕入金額,'0') AS 下期仕入額,";
+            strSQL = strSQL + " IsNull(urikami.売上金額,'0') + IsNull(urisimo.売上金額,'0') AS 合計売上額,";
+            strSQL = strSQL + " IsNull(siikami.仕入金額,'0') + IsNull(siisimo.仕入金額,'0') AS 合計仕入額";
+            strSQL = strSQL + " FROM 中分類 C";
+
+            strSQL = strSQL + " left join (";
+            strSQL = strSQL + " SELECT SUM(売上明細.売上金額) as 売上金額,";
+            strSQL = strSQL + " 売上明細.大分類コード,";
+            strSQL = strSQL + " 売上明細.中分類コード";
+            strSQL = strSQL + " FROM 売上明細,売上ヘッダ";
+            strSQL = strSQL + " WHERE 売上明細.削除 = 'N'";
+
+            //大分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[6]))
+            {
+                strSQL = strSQL + " AND	売上明細.大分類コード = '" + lstString[6] + "'";
+            }
+
+            //中分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[7]))
+            {
+                strSQL = strSQL + " AND	売上明細.中分類コード = '" + lstString[7] + "'";
+            }
+
+            strSQL = strSQL + " AND 売上ヘッダ.伝票番号 = 売上明細.伝票番号";
+            strSQL = strSQL + " AND 売上ヘッダ.伝票年月日 >= '" + lstString[0] + "'";
+            strSQL = strSQL + " AND 売上ヘッダ.伝票年月日 <= '" + lstString[1] + "'";
+            strSQL = strSQL + " AND 売上ヘッダ.削除 = 'N'";
+            strSQL = strSQL + " group by 大分類コード,中分類コード";
+            strSQL = strSQL + " ) urikami";
+            strSQL = strSQL + " on C.大分類コード = urikami.大分類コード";
+            strSQL = strSQL + " and C.中分類コード = urikami.中分類コード";
+            strSQL = strSQL + " and urikami.売上金額 is not null";
+
+            strSQL = strSQL + " left join (";
+            strSQL = strSQL + " SELECT SUM(仕入明細.仕入金額) as 仕入金額,";
+            strSQL = strSQL + " 仕入明細.大分類コード,";
+            strSQL = strSQL + " 仕入明細.中分類コード";
+            strSQL = strSQL + " FROM 仕入明細,仕入ヘッダ";
+            strSQL = strSQL + " WHERE 仕入明細.削除 = 'N'";
+
+            //大分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[6]))
+            {
+                strSQL = strSQL + " AND	仕入明細.大分類コード = '" + lstString[6] + "'";
+            }
+
+            //中分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[7]))
+            {
+                strSQL = strSQL + " AND	仕入明細.中分類コード = '" + lstString[7] + "'";
+            }
+
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票番号 = 仕入明細.伝票番号";
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票年月日 >= '" + lstString[0] + "'";
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票年月日 <= '" + lstString[1] + "'";
+            strSQL = strSQL + " AND 仕入ヘッダ.削除 = 'N'";
+            strSQL = strSQL + " group by 仕入明細.大分類コード, 仕入明細.中分類コード";
+            strSQL = strSQL + " ) siikami";
+            strSQL = strSQL + " on C.大分類コード = siikami.大分類コード";
+            strSQL = strSQL + " and C.中分類コード = siikami.中分類コード";
+            strSQL = strSQL + " and siikami.仕入金額 is not null";
+
+            strSQL = strSQL + " left join (";
+            strSQL = strSQL + " SELECT SUM(売上明細.売上金額) as 売上金額,";
+            strSQL = strSQL + " 売上明細.大分類コード,";
+            strSQL = strSQL + " 売上明細.中分類コード";
+            strSQL = strSQL + " FROM 売上明細,売上ヘッダ";
+            strSQL = strSQL + " WHERE 売上明細.削除 = 'N'";
+
+            //大分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[6]))
+            {
+                strSQL = strSQL + " AND	売上明細.大分類コード = '" + lstString[6] + "'";
+            }
+
+            //中分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[7]))
+            {
+                strSQL = strSQL + " AND	売上明細.中分類コード = '" + lstString[7] + "'";
+            }
+
+            strSQL = strSQL + " AND 売上ヘッダ.伝票番号 = 売上明細.伝票番号";
+            strSQL = strSQL + " AND 売上ヘッダ.伝票年月日 >= '" + lstString[2] + "'";
+            strSQL = strSQL + " AND 売上ヘッダ.伝票年月日 <= '" + lstString[3] + "'";
+            strSQL = strSQL + " AND 売上ヘッダ.削除 = 'N'";
+            strSQL = strSQL + " group by 大分類コード, 中分類コード";
+            strSQL = strSQL + " ) urisimo";
+            strSQL = strSQL + " on C.大分類コード = urisimo.大分類コード";
+            strSQL = strSQL + " and C.中分類コード = urisimo.中分類コード";
+            strSQL = strSQL + " and urisimo.売上金額 is not null";
+
+            strSQL = strSQL + " left join (";
+            strSQL = strSQL + " SELECT SUM(仕入明細.仕入金額) as 仕入金額,";
+            strSQL = strSQL + " 仕入明細.大分類コード,";
+            strSQL = strSQL + " 仕入明細.中分類コード";
+            strSQL = strSQL + " FROM 仕入明細,仕入ヘッダ";
+            strSQL = strSQL + " WHERE 仕入明細.削除 = 'N'";
+
+            //大分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[6]))
+            {
+                strSQL = strSQL + " AND 仕入明細.大分類コード = '" + lstString[6] + "'";
+            }
+
+            //中分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[7]))
+            {
+                strSQL = strSQL + "AND 仕入明細.中分類コード = '" + lstString[7] + "'";
+            }
+
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票番号 = 仕入明細.伝票番号";
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票年月日 >= '" + lstString[2] + "'";
+            strSQL = strSQL + " AND 仕入ヘッダ.伝票年月日 <= '" + lstString[3] + "'";
+            strSQL = strSQL + " AND 仕入ヘッダ.削除 = 'N'";
+            strSQL = strSQL + " group by 仕入明細.大分類コード, 仕入明細.中分類コード";
+            strSQL = strSQL + " ) siisimo";
+            strSQL = strSQL + " on C.大分類コード = siisimo.大分類コード";
+            strSQL = strSQL + " and C.中分類コード = siisimo.中分類コード";
+            strSQL = strSQL + " and siisimo.仕入金額 is not null,";
+            strSQL = strSQL + " 売上明細 M,";
+            strSQL = strSQL + " 売上ヘッダ H";
+            strSQL = strSQL + " WHERE C.削除 = 'N'";
+            strSQL = strSQL + " AND M.削除 = 'N'";
+            strSQL = strSQL + " AND H.削除 = 'N'";
+            strSQL = strSQL + " AND C.中分類コード = M.中分類コード";
+            strSQL = strSQL + " AND C.大分類コード = M.大分類コード";
+            strSQL = strSQL + " AND M.伝票番号 = H.伝票番号";
+
+            //得意先コードがある場合
+            if (StringUtl.blIsEmpty(lstString[4]))
+            {
+                strSQL = strSQL + " AND	H.得意先コード = '" + lstString[4] + "'";
+            }
+
+            //担当者コードがある場合
+            if (StringUtl.blIsEmpty(lstString[5]))
+            {
+                strSQL = strSQL + " AND	H.担当者コード = '" + lstString[5] + "'";
+            }
+
+            //大分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[6]))
+            {
+                strSQL = strSQL + " AND	C.大分類コード = '" + lstString[6] + "'";
+            }
+
+            //中分類コードがある場合
+            if (StringUtl.blIsEmpty(lstString[7]))
+            {
+                strSQL = strSQL + " AND	C.中分類コード = '" + lstString[7] + "'";
+            }
+
+            //メーカーコードがある場合
+            if (StringUtl.blIsEmpty(lstString[8]))
+            {
+                strSQL = strSQL + " AND	M.メーカーコード = '" + lstString[8] + "'";
+            }
+
+            strSQL = strSQL + " AND (urikami.売上金額 is not null ";
+            strSQL = strSQL + " or siikami.仕入金額 is not null";
+            strSQL = strSQL + " or urisimo.売上金額 is not null";
+            strSQL = strSQL + " or siisimo.仕入金額 is not null)";
+            strSQL = strSQL + " ORDER BY 大分類コード,中分類コード";
+
+            //List<string> lstTableName = new List<string>();
+            //lstTableName.Add("@上期開始年月日");
+            //lstTableName.Add("@上期終了年月日");
+            //lstTableName.Add("@下期開始年月日");
+            //lstTableName.Add("@下期終了年月日");
+
+            //List<string> lstDataName = new List<string>();
+            //lstDataName.Add(lstString[0]);
+            //lstDataName.Add(lstString[1]);
+            //lstDataName.Add(lstString[2]);
+            //lstDataName.Add(lstString[3]);
 
             DBConnective dbconnective = new DBConnective();
             try
@@ -57,8 +233,23 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                 // トランザクション開始
                 dbconnective.BeginTrans();
 
-                //請求一覧表_PROCを実行
-                DtRet = dbconnective.RunSqlReDT("商品群別売上仕入管理表_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, null);
+                DtRet = dbconnective.ReadSqlDelay(strSQL,1800);
+
+                //
+                for (int intRow = 0; intRow < DtRet.Rows.Count; intRow++)
+                {
+                    //
+                    for (int intCol = 0; intCol < DtRet.Columns.Count; intCol++)
+                    {
+                        if(DtRet.Rows[intRow][intCol].ToString().Trim() == "")
+                        {
+                            DtRet.Rows[intRow][intCol] = "0";
+                        }
+                    }
+                }
+
+                ////請求一覧表_PROCを実行
+                //DtRet = dbconnective.RunSqlReDT("商品群別売上仕入管理表_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, null);
 
                 //DataRow[] dataRows = DataSet.Tables[DtRet].Select("大分類名 ''");
 
@@ -154,18 +345,18 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
 
                 // 大分類計（小計）
                 var daibunruiGoukei = from tbl in dtSyohingunUriageSiire.AsEnumerable()
-                                  group tbl by tbl.Field<string>("大分類コード") into g
-                                  select new
-                                  {
-                                      section = g.Key,
-                                      count = g.Count(),
-                                      kamikiUriagegaku = g.Sum(p => p.Field<decimal>("上期売上額")),
-                                      kamikiSiiregaku = g.Sum(p => p.Field<decimal>("上期仕入額")),
-                                      simokiUriagegaku = g.Sum(p => p.Field<decimal>("下期売上額")),
-                                      simokiSiiregaku = g.Sum(p => p.Field<decimal>("下期仕入額")),
-                                      goukeiUriagegaku = g.Sum(p => p.Field<decimal>("合計売上額")),
-                                      goukeiSiiregaku = g.Sum(p => p.Field<decimal>("合計仕入額")),
-                                  };
+                                      group tbl by tbl.Field<string>("大分類コード") into g
+                                      select new
+                                      {
+                                          section = g.Key,
+                                          count = g.Count(),
+                                          kamikiUriagegaku = g.Sum(p => p.Field<decimal>("上期売上額")),
+                                          kamikiSiiregaku = g.Sum(p => p.Field<decimal>("上期仕入額")),
+                                          simokiUriagegaku = g.Sum(p => p.Field<decimal>("下期売上額")),
+                                          simokiSiiregaku = g.Sum(p => p.Field<decimal>("下期仕入額")),
+                                          goukeiUriagegaku = g.Sum(p => p.Field<decimal>("合計売上額")),
+                                          goukeiSiiregaku = g.Sum(p => p.Field<decimal>("合計仕入額")),
+                                      };
 
                 // 大分類計（小計）の売上額（上期、下期、合計）、仕入額（上期、下期、合計）を算出
                 decimal[,] decKingakuDaibunrui = new decimal[daibunruiGoukei.Count(), 13];
@@ -178,7 +369,7 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                     decKingakuDaibunrui[cnt, 4] = daibunruiGoukei.ElementAt(cnt).goukeiUriagegaku;
                     decKingakuDaibunrui[cnt, 5] = daibunruiGoukei.ElementAt(cnt).goukeiSiiregaku;
                 }
-                
+
                 // リストをデータテーブルに変換
                 DataTable dtChkList = this.ConvertToDataTable(outDataAll);
 
@@ -205,7 +396,7 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
 
                 int daibunruiCnt = 0;
                 int daibunruiRowCnt = 0;
-                
+
                 string strSiireCode = "";
 
                 // ClosedXMLで1行ずつExcelに出力
@@ -222,7 +413,7 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                         titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         titleCell.Style.Font.FontSize = 14;
                         headersheet.Range("A1", "H1").Merge();
-                        
+
                         // ヘッダー出力（3行目のセル）
                         headersheet.Cell("A3").Value = "大分類名";
                         headersheet.Cell("B3").Value = "中分類名";
@@ -232,7 +423,7 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                         headersheet.Cell("F3").Value = "下期仕入高";
                         headersheet.Cell("G3").Value = "合計売上高";
                         headersheet.Cell("H3").Value = "合計仕入高";
-                        
+
                         // ヘッダー列
                         headersheet.Range("A3", "H3").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
@@ -271,13 +462,13 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
 
                     }
 
-                    
+
                     // 大分類名出力
                     if (daibunruiRowCnt == 0)
                     {
                         currentsheet.Cell(xlsRowCnt, 1).Value = drSyohingunUriageSiire[1];
                     }
-                    
+
                     // 1セルずつデータ出力
                     for (int colCnt = 2; colCnt < maxColCnt; colCnt++)
                     {
@@ -292,13 +483,13 @@ namespace KATO.Business.C0650_SyohingunUriageSiirePrint
                             kingakuCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                             kingakuCell.Value = str;
                         }
-                        
+
                         currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
 
                     }
 
                     // 1行分のセルの周囲に罫線を引く
-                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt,8).Style
+                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 8).Style
                             .Border.SetTopBorder(XLBorderStyleValues.Thin)
                                 .Border.SetBottomBorder(XLBorderStyleValues.Thin)
                                 .Border.SetLeftBorder(XLBorderStyleValues.Thin)

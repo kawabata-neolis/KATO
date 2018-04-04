@@ -152,7 +152,7 @@
             // txtYmd
             // 
             this.txtYmd.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtYmd.Location = new System.Drawing.Point(535, 117);
+            this.txtYmd.Location = new System.Drawing.Point(547, 117);
             this.txtYmd.MaxLength = 10;
             this.txtYmd.Name = "txtYmd";
             this.txtYmd.Size = new System.Drawing.Size(90, 22);
@@ -201,7 +201,7 @@
             this.labelSet_Maker.ShowAppendFlg = false;
             this.labelSet_Maker.Size = new System.Drawing.Size(331, 22);
             this.labelSet_Maker.SpaceCodeValue = 4;
-            this.labelSet_Maker.SpaceNameCode = 4;
+            this.labelSet_Maker.SpaceNameCode = 35;
             this.labelSet_Maker.SpaceValueAppend = 4;
             this.labelSet_Maker.strDaibunCd = null;
             this.labelSet_Maker.TabIndex = 5;
@@ -211,7 +211,7 @@
             // txtTanabanFrom
             // 
             this.txtTanabanFrom.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanabanFrom.Location = new System.Drawing.Point(487, 317);
+            this.txtTanabanFrom.Location = new System.Drawing.Point(547, 317);
             this.txtTanabanFrom.MaxLength = 6;
             this.txtTanabanFrom.Name = "txtTanabanFrom";
             this.txtTanabanFrom.Size = new System.Drawing.Size(60, 22);
@@ -233,7 +233,7 @@
             // 
             this.lblTanabanKara.AutoSize = true;
             this.lblTanabanKara.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.lblTanabanKara.Location = new System.Drawing.Point(555, 320);
+            this.lblTanabanKara.Location = new System.Drawing.Point(615, 320);
             this.lblTanabanKara.Name = "lblTanabanKara";
             this.lblTanabanKara.Size = new System.Drawing.Size(23, 15);
             this.lblTanabanKara.strToolTip = null;
@@ -244,7 +244,7 @@
             // txtTanabanTo
             // 
             this.txtTanabanTo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.txtTanabanTo.Location = new System.Drawing.Point(584, 317);
+            this.txtTanabanTo.Location = new System.Drawing.Point(644, 317);
             this.txtTanabanTo.MaxLength = 6;
             this.txtTanabanTo.Name = "txtTanabanTo";
             this.txtTanabanTo.Size = new System.Drawing.Size(60, 22);

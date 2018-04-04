@@ -174,7 +174,12 @@ namespace KATO.Form.F0140_TanaorosiInput
             DataGridViewTextBoxColumn gyousyoCD = new DataGridViewTextBoxColumn();
             gyousyoCD.DataPropertyName = "営業所コード";
             gyousyoCD.Name = "営業所コード";
-            gyousyoCD.HeaderText = "業所コード";
+            gyousyoCD.HeaderText = "営業所コード";
+
+            DataGridViewTextBoxColumn koshinUserName = new DataGridViewTextBoxColumn();
+            koshinUserName.DataPropertyName = "入力者名";
+            koshinUserName.Name = "入力者名";
+            koshinUserName.HeaderText = "入力者名";
 
             DataGridViewTextBoxColumn syouhinCD = new DataGridViewTextBoxColumn();
             syouhinCD.DataPropertyName = "商品コード";
@@ -189,6 +194,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             gridRireki.Columns.Add(tana);
             gridRireki.Columns.Add(koushin);
             gridRireki.Columns.Add(gyousyoCD);
+            gridRireki.Columns.Add(koshinUserName);
             gridRireki.Columns.Add(syouhinCD);
 
             //個々の幅、文章の寄せ
@@ -216,9 +222,13 @@ namespace KATO.Form.F0140_TanaorosiInput
             gridRireki.Columns["更新区分"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             gridRireki.Columns["更新区分"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            gridRireki.Columns["営業所コード"].Width = 120;
+            gridRireki.Columns["営業所コード"].Width = 130;
             gridRireki.Columns["営業所コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridRireki.Columns["営業所コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            gridRireki.Columns["入力者名"].Width = 110;
+            gridRireki.Columns["入力者名"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridRireki.Columns["入力者名"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             gridRireki.Columns["商品コード"].Width = 120;
             gridRireki.Columns["商品コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;

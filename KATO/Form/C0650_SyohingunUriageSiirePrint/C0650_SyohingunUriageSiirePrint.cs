@@ -16,7 +16,7 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
 {
     ///<summary>
     ///C0650_SyohingunUriageSiirePrint
-    ///請求一覧表
+    ///商品群別売上仕入管理表
     ///作成者：太田
     ///作成日：2017/07/20
     ///更新者：
@@ -103,6 +103,12 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 txtSimokiYMDclose.Text = (DateTime.Parse(txtKamikiYMDopen.Text).AddMonths(12)).ToString();
                 txtSimokiYMDclose.Text = (DateTime.Parse(txtSimokiYMDclose.Text).AddDays(-1)).ToString();
             }
+
+            //中分類setデータを読めるようにする
+            labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
+
+            //メーカーsetデータを読めるようにする
+            labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
         }
 
         /// <summary>
@@ -229,11 +235,11 @@ namespace KATO.Form.C0650_SyohingunUriageSiirePrint
                 lstSearchItem.Add(txtKamikiYMDclose.Text);              //[1]
                 lstSearchItem.Add(txtSimokiYMDopen.Text);               //[2]
                 lstSearchItem.Add(txtSimokiYMDclose.Text);              //[3]
-                //lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);   //[4]
-                //lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);      //[5]
-                //lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);      //[6]
-                //lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);      //[7]
-                //lstSearchItem.Add(labelSet_Maker.CodeTxtText);          //[8]
+                lstSearchItem.Add(labelSet_Torihikisaki.CodeTxtText);   //[4]
+                lstSearchItem.Add(labelSet_Tantousha.CodeTxtText);      //[5]
+                lstSearchItem.Add(labelSet_Daibunrui.CodeTxtText);      //[6]
+                lstSearchItem.Add(labelSet_Chubunrui.CodeTxtText);      //[7]
+                lstSearchItem.Add(labelSet_Maker.CodeTxtText);          //[8]
 
                 // 検索実行（印刷用）
                 DataTable dtSyohingunUriageSiire = syohingunuriagesiireprintB.getSyohingunUriageSiireItiran(lstSearchItem);
