@@ -93,6 +93,10 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
             labelSet_TantoushaCdTo.SearchOn = false;
             labelSet_TokuisakiCdFrom.SearchOn = false;
             labelSet_TokuisakiCdTo.SearchOn = false;
+
+            labelSet_EigyoshoCdFrom.SearchOn = false;
+            labelSet_EigyoshoCdTo.SearchOn = false;
+
         }
 
         /// <summary>
@@ -272,6 +276,25 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
                 lstSearchItem.Add(labelSet_TokuisakiCdTo.CodeTxtText);
             }
 
+            // 営業所コード（開始）が空の場合
+            if (labelSet_EigyoshoCdFrom.CodeTxtText.Equals(""))
+            {
+                lstSearchItem.Add("0000");
+            }
+            else
+            {
+                lstSearchItem.Add(labelSet_EigyoshoCdFrom.CodeTxtText);
+            }
+            // 営業所コード（終了）が空の場合
+            if (labelSet_EigyoshoCdTo.CodeTxtText.Equals(""))
+            {
+                lstSearchItem.Add("9999");
+            }
+            else
+            {
+                lstSearchItem.Add(labelSet_EigyoshoCdTo.CodeTxtText);
+            }
+            
             // ビジネス層のインスタンス生成
             C0630_TokuisakiUriageArariPrint_B uriagePrint_B = new C0630_TokuisakiUriageArariPrint_B();
             try
@@ -447,6 +470,22 @@ namespace KATO.Form.C0630_TokuisakiUriageArariPrint
             if (labelSet_GroupCdTo.chkTxtGroupCd() == true)
             {
                 labelSet_GroupCdTo.Focus();
+
+                return false;
+            }
+
+            //開始営業所コードのチェック
+            if (labelSet_EigyoshoCdFrom.chkTxtEigyousho() == true)
+            {
+                labelSet_EigyoshoCdFrom.Focus();
+
+                return false;
+            }
+
+            //終了営業所コードのチェック
+            if (labelSet_EigyoshoCdTo.chkTxtEigyousho() == true)
+            {
+                labelSet_EigyoshoCdTo.Focus();
 
                 return false;
             }

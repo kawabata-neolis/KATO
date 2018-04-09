@@ -1407,7 +1407,7 @@ namespace KATO.Form.A0030_ShireInput
                 double dblKin = double.Parse(string.Format("{0:0.00}", txtSu.Text)) * (double.Parse(string.Format("{0:0.00}", txtTanka.Text)));
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound(dblKin, 2, intHasu)).ToString();
+                txtKin.Text = (setRound(dblKin, 0, intHasu)).ToString();
 
                 //金額が-1になった場合
                 if (txtKin.Text == "-1")
@@ -1454,7 +1454,7 @@ namespace KATO.Form.A0030_ShireInput
                 double dblKin = double.Parse(string.Format("{0:0.00}", txtSu.Text)) * (double.Parse(string.Format("{0:0.00}", txtTanka.Text)));
 
                 //数量と単価、四捨五入による計算、金額に記入
-                txtKin.Text = (setRound(dblKin, 2, intHasu)).ToString();
+                txtKin.Text = (setRound(dblKin, 0, intHasu)).ToString();
 
                 //金額が-1になった場合
                 if (txtKin.Text == "-1")

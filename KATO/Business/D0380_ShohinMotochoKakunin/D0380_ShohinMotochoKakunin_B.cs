@@ -373,46 +373,6 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 {
                     decWSu3_2 = 0;
                 }
-
-//今後ロジックとDBが変わる
-//以下は試しに作ったもの
-                ////本社　最新在庫
-                //strSQL = "";
-                //dtView = dbconnective.ReadSql("SELECT dbo.f_get最新在庫数_在庫( '" + strEigyosyo1 + "','" + lstString[0] + "','" + DateTime.Today + "')");
-                //if (dtView.Rows.Count < 0)
-                //{
-                //    return (lstStringSet);
-                //}
-                //intData = decimal.ToInt32(Decimal.Parse(dtView.Rows[0]["Column1"].ToString()));
-
-                //if (intData != 0)
-                //{
-                //    decZaiko1 = intData;
-                //}
-                //else
-                //{
-                //    decZaiko1 = 0;
-                //}
-
-
-                ////本社　最新在庫
-                //strSQL = "";
-                //dtView = dbconnective.ReadSql("SELECT dbo.f_get最新在庫数_在庫( '" + strEigyosyo2 + "','" + lstString[0] + "','" + DateTime.Today + "')");
-                //if (dtView.Rows.Count < 0)
-                //{
-                //    return (lstStringSet);
-                //}
-                //intData = decimal.ToInt32(Decimal.Parse(dtView.Rows[0]["Column1"].ToString()));
-
-                //if (intData != 0)
-                //{
-                //    decZaiko2 = intData;
-                //}
-                //else
-                //{
-                //    decZaiko2 = 0;
-                //}
-//以上は試しに作ったもの
                 
                 //計算枠
                 lstStringSet.Add((decNyukoSu1 + decNyukoSu2 + decNyukoSu3 + decNyukoSu4).ToString());
@@ -421,9 +381,6 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 lstStringSet.Add((decWSu1_2 + decWSu2_2 + decWSu3_2).ToString());
                 lstStringSet.Add((Decimal.Parse(lstStringSet[0]) + Decimal.Parse(lstStringSet[2]) - Decimal.Parse(lstStringSet[4])).ToString());
                 lstStringSet.Add((Decimal.Parse(lstStringSet[1]) + Decimal.Parse(lstStringSet[3]) - Decimal.Parse(lstStringSet[5])).ToString());
-
-                //lstStringSet.Add(decZaiko1.ToString());
-                //lstStringSet.Add(decZaiko2.ToString());
 
                 return (lstStringSet);
             }

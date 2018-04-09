@@ -36,6 +36,8 @@ namespace KATO.Business.C0630_TokuisakiUriageArariPrint
             lstTableName.Add("@終了担当者コード");
             lstTableName.Add("@開始得意先コード");
             lstTableName.Add("@終了得意先コード");
+            lstTableName.Add("@開始営業所コード");
+            lstTableName.Add("@終了営業所コード");
 
             DBConnective dbconnective = new DBConnective();
             try

@@ -2972,11 +2972,17 @@ namespace KATO.Form.A0020_UriageInput
                 str = cControl.Name;
                 //末尾から1文字切り取り
                 str = str.Substring(str.Length - 1, 1);
+
                 //切り取った文字列が数字でなければ99を設定
                 if (!int.TryParse(str, out CurrentRow))
                 {
                     CurrentRow = 99;
                 }
+                else
+                {
+                    CurrentRow = int.Parse(str);
+                }
+
                 //数字が1～5の間でない場合、99を設定
                 if (CurrentRow < 1 && CurrentRow > 5)
                 {

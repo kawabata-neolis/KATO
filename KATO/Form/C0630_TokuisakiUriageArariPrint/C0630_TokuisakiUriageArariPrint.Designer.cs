@@ -48,11 +48,15 @@
             this.txtYmdFrom = new KATO.Common.Ctl.BaseCalendar();
             this.baseLabel4 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.baseLabel5 = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.labelSet_EigyoshoCdFrom = new KATO.Common.Ctl.LabelSet_Eigyosho();
+            this.labelSet_EigyoshoCdTo = new KATO.Common.Ctl.LabelSet_Eigyosho();
+            this.baseLabel6 = new KATO.Common.Ctl.BaseLabel(this.components);
             this.labelSet_GroupCdTo.SuspendLayout();
             this.labelSet_TantoushaCdTo.SuspendLayout();
             this.labelSet_TantoushaCdFrom.SuspendLayout();
             this.labelSet_TokuisakiCdTo.SuspendLayout();
             this.labelSet_TokuisakiCdFrom.SuspendLayout();
+            this.labelSet_EigyoshoCdTo.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnF01
@@ -123,7 +127,7 @@
             this.labelSet_GroupCdFrom.CodeTxtText = "";
             this.labelSet_GroupCdFrom.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCdFrom.LabelName = "グループコード";
-            this.labelSet_GroupCdFrom.Location = new System.Drawing.Point(479, 182);
+            this.labelSet_GroupCdFrom.Location = new System.Drawing.Point(479, 361);
             this.labelSet_GroupCdFrom.LsGroupCddata = null;
             this.labelSet_GroupCdFrom.Name = "labelSet_GroupCdFrom";
             this.labelSet_GroupCdFrom.ShowAppendFlg = false;
@@ -134,6 +138,7 @@
             this.labelSet_GroupCdFrom.TabIndex = 3;
             this.labelSet_GroupCdFrom.ValueLabelSize = 0;
             this.labelSet_GroupCdFrom.ValueLabelText = "";
+            this.labelSet_GroupCdFrom.Visible = false;
             // 
             // labelSet_GroupCdTo
             // 
@@ -144,7 +149,7 @@
             this.labelSet_GroupCdTo.Controls.Add(this.baseLabel1);
             this.labelSet_GroupCdTo.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.labelSet_GroupCdTo.LabelName = "～";
-            this.labelSet_GroupCdTo.Location = new System.Drawing.Point(651, 182);
+            this.labelSet_GroupCdTo.Location = new System.Drawing.Point(651, 361);
             this.labelSet_GroupCdTo.LsGroupCddata = null;
             this.labelSet_GroupCdTo.Name = "labelSet_GroupCdTo";
             this.labelSet_GroupCdTo.ShowAppendFlg = false;
@@ -155,6 +160,7 @@
             this.labelSet_GroupCdTo.TabIndex = 4;
             this.labelSet_GroupCdTo.ValueLabelSize = 0;
             this.labelSet_GroupCdTo.ValueLabelText = "";
+            this.labelSet_GroupCdTo.Visible = false;
             // 
             // baseLabel1
             // 
@@ -388,11 +394,62 @@
             this.baseLabel5.Text = "終了年月日";
             this.baseLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // labelSet_EigyoshoCdFrom
+            // 
+            this.labelSet_EigyoshoCdFrom.AppendLabelSize = 0;
+            this.labelSet_EigyoshoCdFrom.AppendLabelText = "";
+            this.labelSet_EigyoshoCdFrom.CodeTxtSize = 40;
+            this.labelSet_EigyoshoCdFrom.CodeTxtText = "";
+            this.labelSet_EigyoshoCdFrom.LabelName = "営業所コード";
+            this.labelSet_EigyoshoCdFrom.Location = new System.Drawing.Point(479, 183);
+            this.labelSet_EigyoshoCdFrom.Name = "labelSet_EigyoshoCdFrom";
+            this.labelSet_EigyoshoCdFrom.ShowAppendFlg = false;
+            this.labelSet_EigyoshoCdFrom.Size = new System.Drawing.Size(168, 22);
+            this.labelSet_EigyoshoCdFrom.SpaceCodeValue = 4;
+            this.labelSet_EigyoshoCdFrom.SpaceNameCode = 19;
+            this.labelSet_EigyoshoCdFrom.SpaceValueAppend = 4;
+            this.labelSet_EigyoshoCdFrom.TabIndex = 3;
+            this.labelSet_EigyoshoCdFrom.ValueLabelSize = 0;
+            this.labelSet_EigyoshoCdFrom.ValueLabelText = "";
+            // 
+            // labelSet_EigyoshoCdTo
+            // 
+            this.labelSet_EigyoshoCdTo.AppendLabelSize = 0;
+            this.labelSet_EigyoshoCdTo.AppendLabelText = "";
+            this.labelSet_EigyoshoCdTo.CodeTxtSize = 40;
+            this.labelSet_EigyoshoCdTo.CodeTxtText = "";
+            this.labelSet_EigyoshoCdTo.Controls.Add(this.baseLabel6);
+            this.labelSet_EigyoshoCdTo.LabelName = "～";
+            this.labelSet_EigyoshoCdTo.Location = new System.Drawing.Point(651, 183);
+            this.labelSet_EigyoshoCdTo.Name = "labelSet_EigyoshoCdTo";
+            this.labelSet_EigyoshoCdTo.ShowAppendFlg = false;
+            this.labelSet_EigyoshoCdTo.Size = new System.Drawing.Size(82, 22);
+            this.labelSet_EigyoshoCdTo.SpaceCodeValue = 4;
+            this.labelSet_EigyoshoCdTo.SpaceNameCode = 4;
+            this.labelSet_EigyoshoCdTo.SpaceValueAppend = 4;
+            this.labelSet_EigyoshoCdTo.TabIndex = 4;
+            this.labelSet_EigyoshoCdTo.ValueLabelSize = 0;
+            this.labelSet_EigyoshoCdTo.ValueLabelText = "";
+            // 
+            // baseLabel6
+            // 
+            this.baseLabel6.AutoSize = true;
+            this.baseLabel6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.baseLabel6.Location = new System.Drawing.Point(2, 3);
+            this.baseLabel6.Name = "baseLabel6";
+            this.baseLabel6.Size = new System.Drawing.Size(23, 15);
+            this.baseLabel6.strToolTip = null;
+            this.baseLabel6.TabIndex = 0;
+            this.baseLabel6.Text = "～";
+            this.baseLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // C0630_TokuisakiUriageArariPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.Controls.Add(this.labelSet_EigyoshoCdTo);
+            this.Controls.Add(this.labelSet_EigyoshoCdFrom);
             this.Controls.Add(this.txtYmdTo);
             this.Controls.Add(this.txtYmdFrom);
             this.Controls.Add(this.baseLabel5);
@@ -430,6 +487,8 @@
             this.Controls.SetChildIndex(this.baseLabel5, 0);
             this.Controls.SetChildIndex(this.txtYmdFrom, 0);
             this.Controls.SetChildIndex(this.txtYmdTo, 0);
+            this.Controls.SetChildIndex(this.labelSet_EigyoshoCdFrom, 0);
+            this.Controls.SetChildIndex(this.labelSet_EigyoshoCdTo, 0);
             this.labelSet_GroupCdTo.ResumeLayout(false);
             this.labelSet_GroupCdTo.PerformLayout();
             this.labelSet_TantoushaCdTo.ResumeLayout(false);
@@ -440,6 +499,8 @@
             this.labelSet_TokuisakiCdTo.PerformLayout();
             this.labelSet_TokuisakiCdFrom.ResumeLayout(false);
             this.labelSet_TokuisakiCdFrom.PerformLayout();
+            this.labelSet_EigyoshoCdTo.ResumeLayout(false);
+            this.labelSet_EigyoshoCdTo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -466,5 +527,8 @@
         private Common.Ctl.BaseCalendar txtYmdFrom;
         private Common.Ctl.BaseLabel baseLabel4;
         private Common.Ctl.BaseLabel baseLabel5;
+        private Common.Ctl.LabelSet_Eigyosho labelSet_EigyoshoCdFrom;
+        private Common.Ctl.LabelSet_Eigyosho labelSet_EigyoshoCdTo;
+        private Common.Ctl.BaseLabel baseLabel6;
     }
 }

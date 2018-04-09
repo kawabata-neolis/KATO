@@ -1201,6 +1201,9 @@ namespace KATO.Form.A0100_HachuInput
                     textSet_Torihikisaki.Focus();
                 }
 
+                //グリッドの表示
+                setGridData();
+
                 //登録完了判定
                 blAddEnd = true;
 

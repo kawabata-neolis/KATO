@@ -93,6 +93,7 @@
             this.label14.Size = new System.Drawing.Size(37, 15);
             this.label14.TabIndex = 0;
             this.label14.Text = "定価";
+            this.label14.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // label22
             // 
@@ -318,6 +319,7 @@
             this.txtArariElem8.Size = new System.Drawing.Size(94, 22);
             this.txtArariElem8.TabIndex = 4;
             this.txtArariElem8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtArariElem8.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtArariElem8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuuryoElem4_KeyDown);
             // 
             // txtKingakuElem6
@@ -335,6 +337,7 @@
             this.txtKingakuElem6.Size = new System.Drawing.Size(94, 22);
             this.txtKingakuElem6.TabIndex = 3;
             this.txtKingakuElem6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKingakuElem6.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtKingakuElem6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuuryoElem4_KeyDown);
             // 
             // labelSet_SoukoNoElem10
@@ -355,6 +358,7 @@
             this.labelSet_SoukoNoElem10.ValueLabelSize = 250;
             this.labelSet_SoukoNoElem10.ValueLabelText = "";
             this.labelSet_SoukoNoElem10.Click += new System.EventHandler(this.txtBox_Click);
+            this.labelSet_SoukoNoElem10.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtRitsuElem21
             // 
@@ -366,6 +370,7 @@
             this.txtRitsuElem21.intIntederSet = 0;
             this.txtRitsuElem21.intShishagonyu = 0;
             this.txtRitsuElem21.Location = new System.Drawing.Point(867, 39);
+            this.txtRitsuElem21.MaxLength = 0;
             this.txtRitsuElem21.MinusFlg = true;
             this.txtRitsuElem21.Name = "txtRitsuElem21";
             this.txtRitsuElem21.ReadOnly = true;
@@ -374,6 +379,7 @@
             this.txtRitsuElem21.TabStop = false;
             this.txtRitsuElem21.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRitsuElem21.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtRitsuElem21.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiireRitu
             // 
@@ -385,6 +391,7 @@
             this.txtCyokkinSiireRitu.intIntederSet = 0;
             this.txtCyokkinSiireRitu.intShishagonyu = 0;
             this.txtCyokkinSiireRitu.Location = new System.Drawing.Point(1025, 5);
+            this.txtCyokkinSiireRitu.MaxLength = 0;
             this.txtCyokkinSiireRitu.MinusFlg = true;
             this.txtCyokkinSiireRitu.Name = "txtCyokkinSiireRitu";
             this.txtCyokkinSiireRitu.ReadOnly = true;
@@ -393,6 +400,7 @@
             this.txtCyokkinSiireRitu.TabStop = false;
             this.txtCyokkinSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCyokkinSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtCyokkinSiireRitu.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiireRituA
             // 
@@ -404,6 +412,7 @@
             this.txtCyokkinSiireRituA.intIntederSet = 0;
             this.txtCyokkinSiireRituA.intShishagonyu = 0;
             this.txtCyokkinSiireRituA.Location = new System.Drawing.Point(1082, 5);
+            this.txtCyokkinSiireRituA.MaxLength = 0;
             this.txtCyokkinSiireRituA.MinusFlg = true;
             this.txtCyokkinSiireRituA.Name = "txtCyokkinSiireRituA";
             this.txtCyokkinSiireRituA.ReadOnly = true;
@@ -412,6 +421,7 @@
             this.txtCyokkinSiireRituA.TabStop = false;
             this.txtCyokkinSiireRituA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCyokkinSiireRituA.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtCyokkinSiireRituA.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtCyokkinSiire
             // 
@@ -423,6 +433,7 @@
             this.txtCyokkinSiire.intIntederSet = 0;
             this.txtCyokkinSiire.intShishagonyu = 0;
             this.txtCyokkinSiire.Location = new System.Drawing.Point(936, 5);
+            this.txtCyokkinSiire.MaxLength = 0;
             this.txtCyokkinSiire.MinusFlg = true;
             this.txtCyokkinSiire.Name = "txtCyokkinSiire";
             this.txtCyokkinSiire.ReadOnly = true;
@@ -431,6 +442,7 @@
             this.txtCyokkinSiire.TabStop = false;
             this.txtCyokkinSiire.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCyokkinSiire.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtCyokkinSiire.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtSuuryoElem4
             // 
@@ -441,12 +453,14 @@
             this.txtSuuryoElem4.intIntederSet = 0;
             this.txtSuuryoElem4.intShishagonyu = 0;
             this.txtSuuryoElem4.Location = new System.Drawing.Point(502, 5);
+            this.txtSuuryoElem4.MaxLength = 0;
             this.txtSuuryoElem4.MinusFlg = true;
             this.txtSuuryoElem4.Name = "txtSuuryoElem4";
             this.txtSuuryoElem4.Size = new System.Drawing.Size(94, 22);
             this.txtSuuryoElem4.TabIndex = 1;
             this.txtSuuryoElem4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSuuryoElem4.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtSuuryoElem4.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtSuuryoElem4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuuryoElem4_KeyDown);
             this.txtSuuryoElem4.Leave += new System.EventHandler(this.txtSuuryoElem4_Leave);
             // 
@@ -571,6 +585,7 @@
             this.txtJucyuRitu.intIntederSet = 0;
             this.txtJucyuRitu.intShishagonyu = 0;
             this.txtJucyuRitu.Location = new System.Drawing.Point(702, 5);
+            this.txtJucyuRitu.MaxLength = 0;
             this.txtJucyuRitu.MinusFlg = true;
             this.txtJucyuRitu.Name = "txtJucyuRitu";
             this.txtJucyuRitu.ReadOnly = true;
@@ -579,6 +594,7 @@
             this.txtJucyuRitu.TabStop = false;
             this.txtJucyuRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtJucyuRitu.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtJucyuRitu.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtTeika
             // 
@@ -589,6 +605,7 @@
             this.txtTeika.intIntederSet = 0;
             this.txtTeika.intShishagonyu = 0;
             this.txtTeika.Location = new System.Drawing.Point(502, 39);
+            this.txtTeika.MaxLength = 0;
             this.txtTeika.MinusFlg = true;
             this.txtTeika.Name = "txtTeika";
             this.txtTeika.Size = new System.Drawing.Size(94, 22);
@@ -596,6 +613,7 @@
             this.txtTeika.TabStop = false;
             this.txtTeika.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTeika.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtTeika.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtTankaElem5
             // 
@@ -606,12 +624,14 @@
             this.txtTankaElem5.intIntederSet = 0;
             this.txtTankaElem5.intShishagonyu = 0;
             this.txtTankaElem5.Location = new System.Drawing.Point(602, 5);
+            this.txtTankaElem5.MaxLength = 0;
             this.txtTankaElem5.MinusFlg = true;
             this.txtTankaElem5.Name = "txtTankaElem5";
             this.txtTankaElem5.Size = new System.Drawing.Size(94, 22);
             this.txtTankaElem5.TabIndex = 2;
             this.txtTankaElem5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTankaElem5.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtTankaElem5.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtTankaElem5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuuryoElem4_KeyDown);
             this.txtTankaElem5.Leave += new System.EventHandler(this.txtTankaElem5_Leave);
             // 
@@ -625,6 +645,7 @@
             this.txtSiireRitu.intIntederSet = 0;
             this.txtSiireRitu.intShishagonyu = 0;
             this.txtSiireRitu.Location = new System.Drawing.Point(702, 39);
+            this.txtSiireRitu.MaxLength = 0;
             this.txtSiireRitu.MinusFlg = true;
             this.txtSiireRitu.Name = "txtSiireRitu";
             this.txtSiireRitu.ReadOnly = true;
@@ -633,6 +654,7 @@
             this.txtSiireRitu.TabStop = false;
             this.txtSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtSiireRitu.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtGenkaElem7
             // 
@@ -643,12 +665,14 @@
             this.txtGenkaElem7.intIntederSet = 0;
             this.txtGenkaElem7.intShishagonyu = 0;
             this.txtGenkaElem7.Location = new System.Drawing.Point(602, 39);
+            this.txtGenkaElem7.MaxLength = 0;
             this.txtGenkaElem7.MinusFlg = true;
             this.txtGenkaElem7.Name = "txtGenkaElem7";
             this.txtGenkaElem7.Size = new System.Drawing.Size(94, 22);
             this.txtGenkaElem7.TabIndex = 4;
             this.txtGenkaElem7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGenkaElem7.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtGenkaElem7.Enter += new System.EventHandler(this.txtBox_Click);
             this.txtGenkaElem7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSuuryoElem4_KeyDown);
             this.txtGenkaElem7.Leave += new System.EventHandler(this.txtGenkaElem7_Leave);
             // 
@@ -662,6 +686,7 @@
             this.txtMasterSiireRituA.intIntederSet = 0;
             this.txtMasterSiireRituA.intShishagonyu = 0;
             this.txtMasterSiireRituA.Location = new System.Drawing.Point(1082, 39);
+            this.txtMasterSiireRituA.MaxLength = 0;
             this.txtMasterSiireRituA.MinusFlg = true;
             this.txtMasterSiireRituA.Name = "txtMasterSiireRituA";
             this.txtMasterSiireRituA.ReadOnly = true;
@@ -670,6 +695,7 @@
             this.txtMasterSiireRituA.TabStop = false;
             this.txtMasterSiireRituA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMasterSiireRituA.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtMasterSiireRituA.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtMasterSiireRitu
             // 
@@ -681,6 +707,7 @@
             this.txtMasterSiireRitu.intIntederSet = 0;
             this.txtMasterSiireRitu.intShishagonyu = 0;
             this.txtMasterSiireRitu.Location = new System.Drawing.Point(1025, 39);
+            this.txtMasterSiireRitu.MaxLength = 0;
             this.txtMasterSiireRitu.MinusFlg = true;
             this.txtMasterSiireRitu.Name = "txtMasterSiireRitu";
             this.txtMasterSiireRitu.ReadOnly = true;
@@ -689,6 +716,7 @@
             this.txtMasterSiireRitu.TabStop = false;
             this.txtMasterSiireRitu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMasterSiireRitu.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtMasterSiireRitu.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtMasterSiire
             // 
@@ -700,6 +728,7 @@
             this.txtMasterSiire.intIntederSet = 0;
             this.txtMasterSiire.intShishagonyu = 0;
             this.txtMasterSiire.Location = new System.Drawing.Point(936, 39);
+            this.txtMasterSiire.MaxLength = 0;
             this.txtMasterSiire.MinusFlg = true;
             this.txtMasterSiire.Name = "txtMasterSiire";
             this.txtMasterSiire.ReadOnly = true;
@@ -708,6 +737,7 @@
             this.txtMasterSiire.TabStop = false;
             this.txtMasterSiire.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtMasterSiire.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtMasterSiire.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtBikouElem9
             // 
@@ -719,6 +749,7 @@
             this.txtBikouElem9.Size = new System.Drawing.Size(258, 57);
             this.txtBikouElem9.TabIndex = 5;
             this.txtBikouElem9.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtBikouElem9.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtSinaBanElem3
             // 
@@ -731,6 +762,7 @@
             this.txtSinaBanElem3.TabIndex = 0;
             this.txtSinaBanElem3.TabStop = false;
             this.txtSinaBanElem3.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtSinaBanElem3.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // txtJucyuNoElem2
             // 
@@ -757,6 +789,7 @@
             this.txtNoElem1.TabIndex = 9999;
             this.txtNoElem1.TabStop = false;
             this.txtNoElem1.Click += new System.EventHandler(this.txtBox_Click);
+            this.txtNoElem1.Enter += new System.EventHandler(this.txtBox_Click);
             // 
             // TextSet_Jucyu
             // 
