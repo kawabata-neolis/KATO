@@ -444,7 +444,7 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                 strSQLInput = string.Format(strSQLInput, aryStr);
 
                 //検索データをデータテーブルに入れる
-                dtGetTableGrid = dbconnective.ReadSql(strSQLInput);
+                dtGetTableGrid = dbconnective.ReadSqlDelay(strSQLInput, 1800);
 
                 for (int intCnt = 0; intCnt < dtGetTableGrid.Rows.Count; intCnt++)
                 {
@@ -463,6 +463,23 @@ namespace KATO.Business.D0380_ShohinMotochoKakunin
                     if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["単価"].ToString()) == false)
                     {
                         dtGetTableGrid.Rows[intCnt]["単価"] = 0;
+                    }
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["定価"].ToString()) == false)
+                    {
+                        dtGetTableGrid.Rows[intCnt]["定価"] = 0;
+                    }
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["仕入単価"].ToString()) == false)
+                    {
+                        dtGetTableGrid.Rows[intCnt]["仕入単価"] = 0;
+                    }
+                    if (StringUtl.blIsEmpty(dtGetTableGrid.Rows[intCnt]["建値仕入単価"].ToString()) == false)
+                    {
+                        dtGetTableGrid.Rows[intCnt]["建値仕入単価"] = 0;
+                    }
+
+                    if (dtGetTableGrid.Rows[intCnt]["受注番号"].ToString().Trim() == "0")
+                    {
+                        dtGetTableGrid.Rows[intCnt]["受注番号"] = DBNull.Value;
                     }
 
                     if (intCnt == 0)
