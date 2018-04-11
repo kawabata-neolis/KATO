@@ -152,6 +152,24 @@ namespace KATO.Business.A1520_Uriageshonin_B
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
 
+
+
+                //掛率計算とデータ入れ
+                for (int intRowCnt = 0; intRowCnt < dtSetCd_B.Rows.Count; intRowCnt++)
+                {
+                    //定価か仕入単価が0の場合
+                    if (decimal.Parse(dtSetCd_B.Rows[intRowCnt]["仕入単価"].ToString().Split('.')[0]) == 0 ||
+                        decimal.Parse(dtSetCd_B.Rows[intRowCnt]["定価"].ToString().Split('.')[0]) == 0)
+
+                    {
+                        //スルー
+                    }
+                    else
+                    {
+                        dtSetCd_B.Rows[intRowCnt]["掛率"] = ((decimal.Parse(dtSetCd_B.Rows[intRowCnt]["仕入単価"].ToString()) / (decimal.Parse(dtSetCd_B.Rows[intRowCnt]["定価"].ToString())) * 100).ToString("0.0"));
+                    }
+                }
+
                 return (dtSetCd_B);
             }
             catch (Exception ex)

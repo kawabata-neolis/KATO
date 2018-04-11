@@ -257,8 +257,23 @@ namespace KATO.Form.A1520_Uriageshonin
             RTanto.Name = "担当者";
             RTanto.HeaderText = "担当者";
 
+            DataGridViewTextBoxColumn RTeka = new DataGridViewTextBoxColumn();
+            RTeka.DataPropertyName = "定価";
+            RTeka.Name = "定価";
+            RTeka.HeaderText = "定価";
+
+            DataGridViewTextBoxColumn RKakeritsu = new DataGridViewTextBoxColumn();
+            RKakeritsu.DataPropertyName = "掛率";
+            RKakeritsu.Name = "掛率";
+            RKakeritsu.HeaderText = "掛率";
+
+            DataGridViewTextBoxColumn RChokin = new DataGridViewTextBoxColumn();
+            RChokin.DataPropertyName = "直近仕入単価";
+            RChokin.Name = "直近仕入単価";
+            RChokin.HeaderText = "直近仕入単価";
+
             //個々の幅、文章の寄せ
-            setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
+            //setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnRiekiritsu(RShonin, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 21);
             setColumnRiekiritsu(RNoki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 88);
             setColumnRiekiritsu(RTokuisaki, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 200);//元330、省略記号がつく
@@ -271,9 +286,13 @@ namespace KATO.Form.A1520_Uriageshonin
             setColumnRiekiritsu(RChuban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 248);
             setColumnRiekiritsu(RShanaiMemo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 300);
             setColumnRiekiritsu(RTanto, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 109);
+            setColumnRiekiritsu(RTeka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 96);
+            setColumnRiekiritsu(RKakeritsu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.0", 64);
+            setColumnRiekiritsu(RChokin, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 128);
+            setColumnRiekiritsu(RJuchuNo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 96);
 
-            //受注番号非表示
-            RJuchuNo.Visible = false;
+            ////受注番号非表示
+            //RJuchuNo.Visible = false;
             
             //データをバインド
             DataGridViewTextBoxColumn UJuchuNo = new DataGridViewTextBoxColumn();

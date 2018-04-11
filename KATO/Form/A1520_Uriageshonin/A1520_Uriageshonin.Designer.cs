@@ -153,7 +153,7 @@
             this.gridHenpinNebiki.RowHeadersVisible = false;
             this.gridHenpinNebiki.RowTemplate.Height = 21;
             this.gridHenpinNebiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridHenpinNebiki.Size = new System.Drawing.Size(1368, 186);
+            this.gridHenpinNebiki.Size = new System.Drawing.Size(1530, 186);
             this.gridHenpinNebiki.StandardTab = true;
             this.gridHenpinNebiki.TabIndex = 2;
             this.gridHenpinNebiki.DoubleClick += new System.EventHandler(this.gridHenpinNebiki_DoubleClick);
@@ -166,7 +166,7 @@
             this.gbHenpinNebiki.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbHenpinNebiki.Location = new System.Drawing.Point(14, 34);
             this.gbHenpinNebiki.Name = "gbHenpinNebiki";
-            this.gbHenpinNebiki.Size = new System.Drawing.Size(1398, 233);
+            this.gbHenpinNebiki.Size = new System.Drawing.Size(1555, 233);
             this.gbHenpinNebiki.TabIndex = 0;
             this.gbHenpinNebiki.TabStop = false;
             this.gbHenpinNebiki.Text = "返品値引分売上承認入力";
@@ -209,7 +209,7 @@
             this.bgRiekiritsu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.bgRiekiritsu.Location = new System.Drawing.Point(14, 280);
             this.bgRiekiritsu.Name = "bgRiekiritsu";
-            this.bgRiekiritsu.Size = new System.Drawing.Size(1398, 233);
+            this.bgRiekiritsu.Size = new System.Drawing.Size(1555, 233);
             this.bgRiekiritsu.TabIndex = 1;
             this.bgRiekiritsu.TabStop = false;
             this.bgRiekiritsu.Text = "利益率承認";
@@ -263,7 +263,7 @@
             this.gridRiekiritsu.RowHeadersVisible = false;
             this.gridRiekiritsu.RowTemplate.Height = 21;
             this.gridRiekiritsu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridRiekiritsu.Size = new System.Drawing.Size(1368, 186);
+            this.gridRiekiritsu.Size = new System.Drawing.Size(1530, 186);
             this.gridRiekiritsu.StandardTab = true;
             this.gridRiekiritsu.TabIndex = 2;
             this.gridRiekiritsu.DoubleClick += new System.EventHandler(this.gridRiekiritsu_DoubleClick);
@@ -321,7 +321,7 @@
             this.gbUriagesakujo.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.gbUriagesakujo.Location = new System.Drawing.Point(14, 526);
             this.gbUriagesakujo.Name = "gbUriagesakujo";
-            this.gbUriagesakujo.Size = new System.Drawing.Size(1398, 233);
+            this.gbUriagesakujo.Size = new System.Drawing.Size(1555, 233);
             this.gbUriagesakujo.TabIndex = 2;
             this.gbUriagesakujo.TabStop = false;
             this.gbUriagesakujo.Text = "売上削除承認入力";
@@ -375,7 +375,7 @@
             this.gridUriagesakujo.RowHeadersVisible = false;
             this.gridUriagesakujo.RowTemplate.Height = 21;
             this.gridUriagesakujo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUriagesakujo.Size = new System.Drawing.Size(1368, 186);
+            this.gridUriagesakujo.Size = new System.Drawing.Size(1530, 186);
             this.gridUriagesakujo.StandardTab = true;
             this.gridUriagesakujo.TabIndex = 2;
             this.gridUriagesakujo.DoubleClick += new System.EventHandler(this.gridUriagesakujo_DoubleClick);
@@ -442,7 +442,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 826);
+            this.ClientSize = new System.Drawing.Size(1584, 826);
             this.Controls.Add(this.gbUriagesakujo);
             this.Controls.Add(this.bgRiekiritsu);
             this.Controls.Add(this.gbHenpinNebiki);
