@@ -2900,19 +2900,33 @@ namespace KATO.Form.A0010_JuchuInput
                         try
                         {
                             DataTable dtShohin = juchuB.getShohin(txtShohinCd.Text);
-                            decimal decBaika  = 0;
+                            //decimal decBaika  = 0;
                             decimal decShiire = getDecValue(cbSiireTanka.Text);
 
                             if (dtShohin != null && dtShohin.Rows.Count > 0)
                             {
-                                if (dtShohin.Rows[0]["標準売価"] != null)
-                                {
-                                    decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
-                                }
+                                //if (dtShohin.Rows[0]["標準売価"] != null)
+                                //{
+                                //    decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                //}
 
                                 if (dtShohin.Rows[0]["仕入単価"] != null)
                                 {
                                     decShiire = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                }
+                            }
+
+                            DataTable dtTanka = juchuB.getKinShiireTanka(txtShohinCd.Text);
+                            // 仕入単価 < 直近仕入単価の場合、判定には直近仕入単価を使用
+                            if (dtTanka != null && dtTanka.Rows.Count > 0)
+                            {
+                                if (dtTanka.Rows[0]["仕入単価"] != null)
+                                {
+                                    decimal d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                                    if (decShiire.CompareTo(d) < 0)
+                                    {
+                                        decShiire = d;
+                                    }
                                 }
                             }
 
@@ -2929,17 +2943,17 @@ namespace KATO.Form.A0010_JuchuInput
                                 acceptFlg = true;
                             }
 
-                            if (getDecValue(cbJuchuTanka.Text) < decBaika)
-                            {
-                                BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が標準売価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-                                //NOが押された場合
-                                if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
-                                {
-                                    return false;
-                                }
+                            //if (getDecValue(cbJuchuTanka.Text) < decBaika)
+                            //{
+                            //    BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が標準売価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                            //    //NOが押された場合
+                            //    if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                            //    {
+                            //        return false;
+                            //    }
 
-                                acceptFlg = true;
-                            }
+                            //    acceptFlg = true;
+                            //}
                         }
                         catch (Exception ex)
                         {
@@ -2961,6 +2975,63 @@ namespace KATO.Form.A0010_JuchuInput
                 return false;
             }
             #endregion
+
+            if (!acceptFlg && !"1".Equals(riekiritsuFlg))
+            {
+                A0010_JuchuInput_B juchuB = new A0010_JuchuInput_B();
+                try
+                {
+                    DataTable dtShohin = juchuB.getShohin(txtShohinCd.Text);
+                    decimal decShiire = 0;
+                    decimal decBaika = 0;
+
+                    if (dtShohin != null && dtShohin.Rows.Count > 0)
+                    {
+                        if (dtShohin.Rows[0]["仕入単価"] != null)
+                        {
+                            decShiire = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                        }
+                        if (dtShohin.Rows[0]["標準売価"] != null)
+                        {
+                            decBaika = decimal.Round(getDecValue(dtShohin.Rows[0]["標準売価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                        }
+                    }
+
+                    // 入力した仕入単価が商品の仕入単価を上回る場合
+                    if (decShiire.CompareTo(getDecValue(cbSiireTanka.Text)) < 0)
+                    {
+                        BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "仕入単価", "仕入単価が標準仕入単価を上回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                        //NOが押された場合
+                        if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                        {
+                            return false;
+                        }
+
+                        acceptFlg = true;
+                        return true;
+                    }
+
+                    // 入力した受注単価が商品の標準売価を下回る場合
+                    if (getDecValue(cbJuchuTanka.Text).CompareTo(decBaika) < 0)
+                    {
+                        BaseMessageBox basemessageboxSa = new BaseMessageBox(this, "受注単価", "受注単価が標準売価を下回っています。\r\n続行しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                        //NOが押された場合
+                        if (basemessageboxSa.ShowDialog() != DialogResult.Yes)
+                        {
+                            return false;
+                        }
+
+                        acceptFlg = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    new CommonException(ex);
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+                    return false;
+                }
+            }
 
             return true;
         }
@@ -2986,6 +3057,20 @@ namespace KATO.Form.A0010_JuchuInput
                     if (dtShohin.Rows[0]["仕入単価"] != null)
                     {
                         decShiire = decimal.Round(getDecValue(dtShohin.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                    }
+                }
+
+                DataTable dtTanka = juchuB.getKinShiireTanka(txtShohinCd.Text);
+
+                // 仕入単価 < 直近仕入単価の場合、判定には直近仕入単価を使用
+                if (dtTanka != null && dtTanka.Rows.Count > 0)
+                {
+                    if (dtTanka.Rows[0]["仕入単価"] != null)
+                    {
+                        decimal d = decimal.Round(getDecValue(dtTanka.Rows[0]["仕入単価"].ToString()), 2, MidpointRounding.AwayFromZero);
+                        if (decShiire.CompareTo(d) < 0) {
+                            decShiire = d;
+                        }
                     }
                 }
 
