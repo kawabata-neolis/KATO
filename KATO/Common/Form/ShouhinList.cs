@@ -201,11 +201,11 @@ namespace KATO.Common.Form
             this.btnF11.Text = "F11:検索";
             this.btnF12.Text = "F12:戻る";
 
-            //ウィンドウ位置をマニュアル
+            Screen s = null;
+
+            s = Screen.FromControl(c);
             this.StartPosition = FormStartPosition.Manual;
-            //親画面の中央を指定
-            this.Left = c.Left;
-            this.Top = c.Top;
+            this.Location = s.Bounds.Location;
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
