@@ -145,7 +145,7 @@ namespace KATO.Business.B0250_MOnyuryoku
         ///delMO
         ///削除処理
         ///</summary>
-        public void delMO (string strYM, string strShohinCd)
+        public void delMO(string strYM, string strShohinCd)
         {
             List<string> lstTableName = new List<string>();
             lstTableName.Add("@年月度");
@@ -198,6 +198,14 @@ namespace KATO.Business.B0250_MOnyuryoku
             //SQLファイルのパスとファイル名を入れる用(グリッドデータ取り出し用)
             List<string> lstSQLKataban2 = new List<string>();
 
+            //中分類コード用SQL
+            string strSQLChubun = "";
+
+            //中分類コードがある場合
+            if (lstStringViewData[3].ToString().Trim() != "")
+            {
+                strSQLChubun = "AND ＭＯ.中分類コード= '" + lstStringViewData[3] + "'";
+            }
 
             //マイナスの型番にチェックされている場合
             if (lstStringViewData[4] == "Minus")
@@ -220,10 +228,10 @@ namespace KATO.Business.B0250_MOnyuryoku
 
             lstSQLKataban2.Add("B0250_MOnyuryoku");
             lstSQLKataban2.Add("MOnyuryoku_SELECT_GetDataKataban2");
-           
+
             //SQL発行
             OpenSQL opensql = new OpenSQL();
-                        
+
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
             try
@@ -244,7 +252,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 if (dtChuban.Rows.Count > 0)
                 {
                     //データが空白の場合
-                    if(dtChuban.Rows[0]["注番文字"].ToString() == "")
+                    if (dtChuban.Rows[0]["注番文字"].ToString() == "")
                     {
                         return (dtKataban);
                     }
@@ -260,14 +268,14 @@ namespace KATO.Business.B0250_MOnyuryoku
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInputKata2 = string.Format(strSQLInputKata2, 
+                strSQLInputKata2 = string.Format(strSQLInputKata2,
                                             lstStringViewData[0],                   //年月度
                                             lstStringViewData[1],                   //メーカーコード
                                             lstStringViewData[2],                   //大分類コード
-                                            lstStringViewData[3],                   //中分類コード
+                                            strSQLChubun,                           //中分類コード
                                             lstStringViewData[6],                   //マイナス型番にチェックされてる場合の追加WHERE
                                             dtChuban.Rows[0]["注番文字"].ToString() //注番文字
-                                            ); 
+                                            );
 
                 //データ取得（ここから取得）
                 dtKataban = dbconnective.ReadSql(strSQLInputKata2);
@@ -305,6 +313,15 @@ namespace KATO.Business.B0250_MOnyuryoku
             lstSQL.Add("B0250_MOnyuryoku");
             lstSQL.Add("MOnyuryoku_SELECT_GetDataKataban");
 
+            //中分類コード用SQL
+            string strSQLChubun = "";
+
+            //中分類コードがある場合
+            if (lstStringViewData[3].ToString().Trim() != "")
+            {
+                strSQLChubun = "AND 中分類コード= '" + lstStringViewData[3] + "'";
+            }
+
             //SQL発行
             OpenSQL opensql = new OpenSQL();
 
@@ -326,7 +343,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                                             lstStringViewData[0],   //年月度
                                             lstStringViewData[1],   //メーカーコード
                                             lstStringViewData[2],   //大分類コード
-                                            lstStringViewData[3]   //中分類コード
+                                            strSQLChubun   //中分類コード
                                             );
 
                 //データ取得（ここから取得）
@@ -358,12 +375,21 @@ namespace KATO.Business.B0250_MOnyuryoku
             //SQLファイルのパス用（フォーマット後）
             string strSQLInput = "";
 
+            //中分類コード用SQL
+            string strSQLChubun = "";
+
             //SQLファイルのパスとファイル名を追加
             lstSQL.Add("B0250_MOnyuryoku");
             lstSQL.Add("MOnyuryoku_SELECT_GetDataCnt");
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
+
+            //中分類コードがある場合
+            if (lstString[3].ToString().Trim() != "")
+            {
+                strSQLChubun = "AND 中分類コード= '" + lstString[3] + "'";
+            }
 
             //SQL接続
             OpenSQL opensql = new OpenSQL();
@@ -382,11 +408,11 @@ namespace KATO.Business.B0250_MOnyuryoku
                 }
 
                 //SQLファイルと該当コードでフォーマット(引数：[年月度],[メーカーコード],[大分類コード],[中分類コード])
-                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1], lstString[2], lstString[3]);
+                strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1], lstString[2], strSQLChubun);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
-                                
+
                 return (dtSetCd_B);
             }
             catch (Exception ex)
@@ -419,8 +445,22 @@ namespace KATO.Business.B0250_MOnyuryoku
             dbconnective.BeginTrans();
             try
             {
-                //ＭＯデータ削除_PROCを実行
-                dbconnective.RunSqlRe("ＭＯデータ商品マスタチェック_PROC", CommandType.StoredProcedure, lstString, lstTableName);
+                //中分類が空の場合
+                if (lstString[3].Trim() == "")
+                {
+                    string strSQL = "ＭＯデータ商品マスタチェック_PROC '" + lstString[0] +
+                                                                    "','" + lstString[1] +
+                                                                    "','" + lstString[2] +
+                                                                    "', NULL" +
+                                                                    ",'"  + lstString[4] + "'";
+
+                    dbconnective.RunSql(strSQL);
+                }
+                else
+                {
+                    //ＭＯデータ商品マスタチェック_PROCを実行
+                    dbconnective.RunSqlRe("ＭＯデータ商品マスタチェック_PROC", CommandType.StoredProcedure, lstString, lstTableName);
+                }
 
                 //コミット
                 dbconnective.Commit();
@@ -429,7 +469,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-                throw(ex);
+                throw (ex);
             }
             finally
             {
@@ -470,7 +510,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             {
                 //ロールバック開始
                 dbconnective.Rollback();
-                throw(ex);
+                throw (ex);
             }
             finally
             {
@@ -669,7 +709,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 dbconnective.DB_Disconnect();
             }
         }
-        
+
         ///<summary>
         ///getYM
         ///年月情報のみの抜き取り
@@ -852,12 +892,8 @@ namespace KATO.Business.B0250_MOnyuryoku
             dbconnective.BeginTrans();
             try
             {
-                //ＭＯデータ削除_PROCを実行
-                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
-
-
                 //ＭＯデータの確定処理
-                                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
 
                 //コミット
                 dbconnective.Commit();
@@ -958,6 +994,15 @@ namespace KATO.Business.B0250_MOnyuryoku
             //SQL実行時に取り出したデータを入れる用
             DataTable dtSetCd_B = new DataTable();
 
+            //中分類コード用SQL
+            string strSQLChubun = "";
+
+            //中分類コードがある場合
+            if (lstPrintData[3].ToString().Trim() != "")
+            {
+                strSQLChubun = "AND 中分類コード= '" + lstPrintData[3] + "'";
+            }
+
             //SQL接続
             OpenSQL opensql = new OpenSQL();
 
@@ -975,7 +1020,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                 }
 
                 //SQLファイルと該当コードでフォーマット
-                strSQLInput = string.Format(strSQLInput, lstPrintData[0], lstPrintData[1], lstPrintData[2], lstPrintData[3]);
+                strSQLInput = string.Format(strSQLInput, lstPrintData[0], lstPrintData[1], lstPrintData[2], strSQLChubun);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
@@ -1124,7 +1169,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                     for (int colCnt = 1; colCnt <= maxColCnt; colCnt++)
                     {
                         //マージ
-                        currentsheet.Range("A"+ xlsRowCnt, "C" + xlsRowCnt).Merge();
+                        currentsheet.Range("A" + xlsRowCnt, "C" + xlsRowCnt).Merge();
 
                         string str = drSiireCheak[colCnt - 1].ToString();
 
@@ -1193,7 +1238,7 @@ namespace KATO.Business.B0250_MOnyuryoku
             }
             catch (Exception ex)
             {
-                throw(ex);
+                throw (ex);
             }
             finally
             {

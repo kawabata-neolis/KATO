@@ -231,7 +231,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             KHachuTantoshaCd.DataPropertyName = "発注担当者コード";
             KHachuTantoshaCd.Name = "発注担当者コード";
             KHachuTantoshaCd.HeaderText = "発注担当者コード";
-            
+
 
             //個々の幅、文章の寄せ
             setColumnKataban(KKataban, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 330);
@@ -817,15 +817,71 @@ namespace KATO.Form.B0250_MOnyuryoku
             decimal decTanka = 0;                           //単価
             string strNouki = "";                           //納期
             string strTorihiki = "";                        //取引先コード
-            string strCode = "";                          //商品コード
+            string strCode = "";                            //商品コード
             int intDenNo = 0;                               //伝票番号
 
             //データのチェック
-            if (chkTxtData() == false)
+            //年月度
+            if (txtYM.blIsEmpty() == false)
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtYM.Focus();
+                return;
+            }
+
+            //集計月数
+            if (txtShukeiM.blIsEmpty() == false)
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                txtShukeiM.Focus();
+                return;
+            }
+
+            //大分類
+            if (lblSetDaibunrui.CodeTxtText == "")
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n文字を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblSetDaibunrui.Focus();
+                return;
+            }
+
+            ////中分類
+            //if (lblSetChubunrui.CodeTxtText == "")
+            //{
+            //    //記入漏れ発生メッセージ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
+
+            //    lblSetChubunrui.Focus();
+            //    return;
+            //}
+
+            //メーカー
+            if (lblSetMaker.CodeTxtText == "")
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblSetMaker.Focus();
+                return;
+            }
+
+            //仕入先コード
+            if (lblSetShiresaki.CodeTxtText == "")
             {
                 return;
             }
-            
+
             DBConnective dbconnective = new DBConnective();
             try
             {
@@ -946,7 +1002,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         Business.B0250_MOnyuryoku.B0250_MOnyuryoku_B monyuB = new B0250_MOnyuryoku_B();
 
                         //戻り値は、エラーかどうか。既にエクセプションで受け取っているため不使用
-                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName,gridKataban2.Rows[intCnt].Cells["発注担当者コード"].Value.ToString());
+                        monyuB.updMO(txtYM.Text, strCode, strSijisU, decSu, decTanka, strNouki, strTorihiki, intDenNo, SystemInformation.UserName, gridKataban2.Rows[intCnt].Cells["発注担当者コード"].Value.ToString());
                     }
                 }
 
@@ -1025,6 +1081,12 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //上段グリッドの存在確認
             if (gridKataban.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            //上段入力項目チェック
+            if (chkTxtData() == false)
             {
                 return;
             }
@@ -1236,16 +1298,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            //中分類
-            if (lblSetChubunrui.CodeTxtText == "")
-            {
-                //記入漏れ発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                basemessagebox.ShowDialog();
+            ////中分類
+            //if (lblSetChubunrui.CodeTxtText == "")
+            //{
+            //    //記入漏れ発生メッセージ（OK）
+            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+            //    basemessagebox.ShowDialog();
 
-                lblSetChubunrui.Focus();
-                return;
-            }
+            //    lblSetChubunrui.Focus();
+            //    return;
+            //}
 
             //メーカー
             if (lblSetMaker.CodeTxtText == "")
@@ -1285,15 +1347,76 @@ namespace KATO.Form.B0250_MOnyuryoku
             {
 
                 //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力", "ＭＯデータを作成しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                BaseMessageBox basemessageboxMo = new BaseMessageBox(this, "ＭＯ入力", "ＭＯデータを作成しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
                 //NOが押された場合
-                if (basemessagebox.ShowDialog() == DialogResult.No)
+                if (basemessageboxMo.ShowDialog() == DialogResult.No)
                 {
                     return;
                 }
 
                 //メッセージボックスを閉じる
-                basemessagebox.Close();
+                basemessageboxMo.Close();
+
+                //年月度
+                if (txtYM.blIsEmpty() == false)
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtYM.Focus();
+                    return;
+                }
+
+                //集計月数
+                if (txtShukeiM.blIsEmpty() == false)
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n数値を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    txtShukeiM.Focus();
+                    return;
+                }
+
+                //大分類
+                if (lblSetDaibunrui.CodeTxtText == "")
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n文字を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblSetDaibunrui.Focus();
+                    return;
+                }
+
+                //中分類
+                if (lblSetChubunrui.CodeTxtText == "")
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblSetChubunrui.Focus();
+                    return;
+                }
+
+                //メーカー
+                if (lblSetMaker.CodeTxtText == "")
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
+
+                    lblSetMaker.Focus();
+                    return;
+                }
+
+                //仕入先コード
+                if (lblSetShiresaki.CodeTxtText == "")
+                {
+                    return;
+                }
 
                 //待機状態
                 Cursor.Current = Cursors.WaitCursor;
@@ -1398,7 +1521,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             try
             {
                 //ＭＯデータ商品マスタチェック_PROCを実行
-                monyuryokuB.getDataCount(lstString);
+                monyuryokuB.updMOMasterCheck(lstString);
             }
             catch (Exception ex)
             {
@@ -1487,7 +1610,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
                 try
                 {
-                    dtGridViewKataban = monyuryokuB.setGridKataban2(lstStringViewData);                    
+                    dtGridViewKataban = monyuryokuB.setGridKataban2(lstStringViewData);
 
                     //テーブルがある場合
                     if (dtGridViewKataban.Rows.Count > 0)
@@ -1746,9 +1869,9 @@ namespace KATO.Form.B0250_MOnyuryoku
         private void updSaikesan()
         {
             Control cActiveBefore = this.ActiveControl;
-            
+
             List<string> lstString = new List<string>();
-            
+
             //下段グリッドのデータがない場合
             if (gridKataban2.Rows.Count < 1)
             {
@@ -1790,7 +1913,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
                 //中段グリッド表示
                 showGridKataban2();
-                
+
             }
             catch (Exception ex)
             {
@@ -1996,10 +2119,10 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //選択行の金額選択
             txtKingaku.Text = decimal.Parse(gridKataban2.CurrentRow.Cells["金額"].Value.ToString()).ToString();
-            txtKingaku.setMoneyData(txtKingaku.Text,2);
+            txtKingaku.setMoneyData(txtKingaku.Text, 2);
 
             //選択行の納期取得
-            if(gridKataban2.CurrentRow.Cells["納期"].Value.ToString() == "")
+            if (gridKataban2.CurrentRow.Cells["納期"].Value.ToString() == "")
             {
                 dateYMD = DateTime.Parse(txtYM.Text);
 
@@ -2388,7 +2511,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     lblSetMaker.Focus();
                 }
             }
-            
+
             //エラーになってない場合
             if (blnGood == true)
             {
@@ -2670,7 +2793,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     return;
                 }
             }
-            
+
             //修正データがある場合
             if (intRow > 0)
             {
@@ -2709,7 +2832,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //SQL実行時に取り出したデータを入れる用
             DataTable dtPrintData = new DataTable();
-            
+
             //印刷用データを入れる用
             List<string> lstPrintData = new List<string>();
 
@@ -2932,7 +3055,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             DateTime dateYM = DateTime.Parse(txtYM.Text);
 
             //印刷ヘッダーに記載する
-            lstPrintHeader.Add(dateYM.Year + "年" + dateYM.Month +"月度");
+            lstPrintHeader.Add(dateYM.Year + "年" + dateYM.Month + "月度");
             lstPrintHeader.Add(lblSetShiresaki.ValueLabelText);
 
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
