@@ -1181,7 +1181,7 @@ namespace KATO.Common.Form
                 //在庫数の小数点以下を削除
                 DataColumnCollection columns = dtView.Columns;
 
-                //指定日在庫、棚卸数量の小数点切り下げ
+                //在庫の小数点切り下げ
                 for (int cnt = 0; cnt < dtView.Rows.Count; cnt++)
                 {
                     //本社在庫が空でない場合

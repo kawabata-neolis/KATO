@@ -157,6 +157,7 @@
     <Compile Include="Business\D0680_UriageJissekiKakuninAS400\D0680_UriageJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\D0690_SiireJissekiKakuninAS400\D0690_SiireJissekiKakuninAS400_B.cs" />
     <Compile Include="Business\D0910_ShohinKensaku\D0910_ShohinKensaku_B.cs" />
+    <Compile Include="Business\D1550_ShohinZaikoKakunin\D1550_ShohinZaikoKakunin_B.cs" />
     <Compile Include="Business\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_B.cs" />
     <Compile Include="Business\E0340_SiiresakiMotochouKakunin\E0340_SiiresakiMotochouKakunin_B.cs" />
     <Compile Include="Business\F0140_TanaorosiInput\F0140_TanaorosiInput_B.cs" />
@@ -2609,6 +2610,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\D0910_ShohinKensaku\ShohinList_View.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQL\D1550_ShohinZaikokakunin\D1550_ShohinZaikokakunin_ShohinView.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQL\E0330_TokuisakiMotocyoKakunin\E0330_TokuisakiMotocyoKakunin_SELECT.sql">
