@@ -150,10 +150,14 @@ namespace KATO.Form.H0210_MitsumoriInput
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+            //this.Left = c.Left + (intWindowWidth - this.Width) / 2;
+            //this.Top = c.Top + (intWindowHeight - this.Height) / 2;
+            this.Left = 0;
+            this.Top = 0;
+
 
             txtIdx.Text = "0";
+            txtMNum.ReadOnly = true;
 
             txtMode.Focus();
         }
@@ -2107,7 +2111,6 @@ namespace KATO.Form.H0210_MitsumoriInput
                     oldNum = txtMNum.Text;
                     getMitsumoriInfo();
                 }
-                txtMYMD.Focus();
             }
             else if (e.KeyCode == Keys.Enter)
             {
@@ -2130,7 +2133,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             txtMNum.Text = tmpN;
             txtMode.Text = tmpM;
 
-            if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("1"))
+            if ((!string.IsNullOrWhiteSpace(txtMode.Text)) && txtMode.Text.Equals("1"))
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "見積データをコピーします。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
@@ -2231,22 +2234,32 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 setText(0);
                 changeTotal();
+                oldNum = txtMNum.Text;
+
                 // 変更時、検索直後は未編集のため、印刷可能とする。
-                if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2"))
+                if ((!string.IsNullOrWhiteSpace(txtMode.Text)) && txtMode.Text.Equals("2"))
                 {
                     editFlg = false;
                 }
                 else
                 {
+                    txtMode.Text = "1";
                     txtMNum.Text = "";
                     oldNum = "";
                 }
-                if (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("1"))
+                if ((!string.IsNullOrWhiteSpace(txtMode.Text)) && txtMode.Text.Equals("1"))
                 {
                     txtMNum.Text = "";
                     oldNum = "";
                 }
+                else
+                {
+                    txtMode.Text = "2";
+                    editFlg = false;
+                }
                 txtMode.ReadOnly = true;
+                txtMNum.ReadOnly = true;
+                txtMYMD.Focus();
             }
             catch (Exception ex)
             {
@@ -2265,12 +2278,18 @@ namespace KATO.Form.H0210_MitsumoriInput
                 return;
             }
             H0210_MitsumoriInput_B inputB = new H0210_MitsumoriInput_B();
+            string strMNum = "";
+
+            // 見積書番号を確定させる
             try
             {
-                string strMNum = "";
-                inputB.beginTrance();
-
-                if (!string.IsNullOrWhiteSpace(txtMNum.Text) || (!string.IsNullOrWhiteSpace(txtMode.Text) && txtMode.Text.Equals("2")))
+                if (string.IsNullOrWhiteSpace(txtMNum.Text) || (!txtMode.Text.Equals("2")))
+                {
+                    //inputB.beginTrance();
+                    strMNum = inputB.getDenpyoNo("見積");
+                    //inputB.commit();
+                }
+                else
                 {
                     BaseMessageBox bb = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "上書きします。登録を続けますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_INFOMATION);
                     if (bb.ShowDialog() != DialogResult.Yes)
@@ -2280,12 +2299,20 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                     strMNum = txtMNum.Text;
                 }
-                else
-                {
-                    strMNum = inputB.getDenpyoNo("見積");
-                    txtMNum.Text = strMNum;
-                }
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //inputB.rollback();
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
 
+            try
+            {
                 changeTotal();
 
                 Form11 f = new Form11();
@@ -2346,6 +2373,7 @@ namespace KATO.Form.H0210_MitsumoriInput
 
                 if (UpdFlg)
                 {
+                    inputB.beginTrance();
                     this.Cursor = Cursors.WaitCursor;
 
                     //見積ヘッダ登録
@@ -2385,6 +2413,7 @@ namespace KATO.Form.H0210_MitsumoriInput
                         //}
 
                         // 商品コードが無い場合は商品登録
+                        #region
                         if (getCellValue(gridMitsmori[86, i], false).Equals(""))
                         {
                             if (getCellValue(gridMitsmori[3, i], false).Equals("") && getCellValue(gridMitsmori[5, i], false).Equals(""))
@@ -2430,7 +2459,10 @@ namespace KATO.Form.H0210_MitsumoriInput
                                 gridMitsmori[86, i].Value = strNewShohin;
                             }
                         }
+                        #endregion
 
+                        // 見積明細登録
+                        #region
                         aryPrm = new List<string>();
                         aryPrm.Add(strMNum);
                         aryPrm.Add(getCellValue(gridMitsmori[0, i], false));
@@ -2555,14 +2587,18 @@ namespace KATO.Form.H0210_MitsumoriInput
                         aryPrm.Add(Environment.UserName);
 
                         inputB.updMitsumoriM(aryPrm);
+                        #endregion
                     }
                     #endregion
 
                     inputB.commit();
+                    txtMNum.Text = strMNum;
 
+                    // PDF 生成
                     string stMitsumori;
                     string stMeisai;
                     stMitsumori = dbToPdf(gridMitsmori);
+                    stMeisai = dbToPdfMeisai(gridMitsmori);
 
                     editFlg = false;
                     this.Cursor = Cursors.Default;
@@ -2581,19 +2617,23 @@ namespace KATO.Form.H0210_MitsumoriInput
                     // 見積書＋見積明細印刷時
                     if (intPrint == 2)
                     {
-                        stMeisai = dbToPdfMeisai(gridMitsmori);
+                        //stMeisai = dbToPdfMeisai(gridMitsmori);
                         printDetail(stMeisai);
                     }
 
                     intPrint = 0;
                 }
                 txtMode.ReadOnly = false;
+                editFlg = false;
             }
             catch (Exception ex)
             {
                 //データロギング
                 new CommonException(ex);
-                inputB.rollback();
+                if (UpdFlg)
+                {
+                    inputB.rollback();
+                }
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
@@ -2715,6 +2755,7 @@ namespace KATO.Form.H0210_MitsumoriInput
             }
 
             txtMode.Text = "1";
+            txtMode.ReadOnly = true;
             txtMNum.Text = "";
             tsTokuisaki.CodeTxtText = "";
             tsTokuisaki.valueTextText = "";
@@ -4456,16 +4497,25 @@ namespace KATO.Form.H0210_MitsumoriInput
 
         private void txtMode_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMode.Text) || (!txtMode.Text.Equals("1") && !txtMode.Text.Equals("2")))
+            if (string.IsNullOrWhiteSpace(txtMode.Text) || ((!txtMode.Text.Equals("1")) && (!txtMode.Text.Equals("2"))))
             {
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "値は1または2で登録してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                 basemessagebox.ShowDialog();
                 txtMode.Focus();
                 return;
             }
-            if (txtMode.Text.Equals("1"))
+
+            if (!txtMode.Text.Equals("2"))
             {
+                txtMode.Text = "1";
                 txtMNum.Text = "";
+                txtMNum.ReadOnly = true;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(txtMNum.Text)) {
+                    txtMNum.ReadOnly = false;
+                }
             }
             oldNum = "";
             oldHinmei = "";
@@ -4496,6 +4546,43 @@ namespace KATO.Form.H0210_MitsumoriInput
             c.Value = (decimal.Round(d, 1, MidpointRounding.AwayFromZero)).ToString("0.0");
         }
 
+        private void txtMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{tab}");
+            }
+            else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+            {
+
+            }
+            else if (e.KeyCode == Keys.F1
+                || e.KeyCode == Keys.F2
+                || e.KeyCode == Keys.F3
+                || e.KeyCode == Keys.F4
+                || e.KeyCode == Keys.F5
+                || e.KeyCode == Keys.F6
+                || e.KeyCode == Keys.F7
+                || e.KeyCode == Keys.F8
+                || e.KeyCode == Keys.F9
+                || e.KeyCode == Keys.F10
+                || e.KeyCode == Keys.F11
+                || e.KeyCode == Keys.F12)
+            {
+
+            }
+            else
+            {
+                if (txtMode.ReadOnly == true)
+                {
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "編集モードを切り替えるときは、\r\n一度取消を行ってください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    basemessagebox.ShowDialog();
+                    txtMode.Focus();
+                    return;
+                }
+                editFlg = true;
+            }
+        }
     }
 
 }

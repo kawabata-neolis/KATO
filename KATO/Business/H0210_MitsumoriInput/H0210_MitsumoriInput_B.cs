@@ -223,15 +223,21 @@ namespace KATO.Business.H0210_MitsumoriInput
             lstDataName.Add(tableName);
 
             string strRet;
+            DBConnective dtCon = new DBConnective();
 
             try
             {
+                dtCon.DB_Connect();
                 // get伝票番号_PROC"を実行
-                strRet = con.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, "@番号");
+                strRet = dtCon.RunSqlRe("get伝票番号_PROC", CommandType.StoredProcedure, lstDataName, lstTableName, "@番号");
             }
             catch
             {
                 throw;
+            }
+            finally
+            {
+                dtCon.DB_Disconnect();
             }
 
             return strRet;

@@ -274,7 +274,7 @@
             this.txtMode.Size = new System.Drawing.Size(23, 22);
             this.txtMode.TabIndex = 0;
             this.txtMode.Text = "1";
-            this.txtMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTanto_KeyDown);
+            this.txtMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMode_KeyDown);
             this.txtMode.Leave += new System.EventHandler(this.txtMode_Leave);
             // 
             // label3
