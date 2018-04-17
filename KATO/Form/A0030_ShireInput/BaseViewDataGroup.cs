@@ -1525,6 +1525,15 @@ namespace KATO.Form.A0030_ShireInput
         ///</summary>
         public double setRound(double dblData, int intKetaInput, int intMode)
         {
+            Boolean blMinus = false;
+
+            //マイナスの場合、一度整数に
+            if (dblData < 0)
+            {
+               dblData = dblData * -1;
+               blMinus = true;
+            }
+
             //最後に足す数値を入れる用
             double dblAdd;
 
@@ -1577,6 +1586,12 @@ namespace KATO.Form.A0030_ShireInput
             }
 
             dblData = Math.Floor(dblData) / intKeta;
+
+            //マイナスの場合再びマイナスに
+            if(blMinus == true)
+            {
+                dblData = dblData * -1;
+            }
 
             return dblData;
         }
