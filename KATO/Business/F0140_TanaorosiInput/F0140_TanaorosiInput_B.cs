@@ -117,6 +117,8 @@ namespace KATO.Business.F0140_TanaorosiInput_B
 
             string strSQLName = "";
 
+            string strSQLanather = "";
+
             //データ渡し用
             List<string> lstStringSQL = new List<string>();
 
@@ -131,37 +133,34 @@ namespace KATO.Business.F0140_TanaorosiInput_B
 
             if (lstString[3] != "")
             {
-                strSQLInput = strSQLInput + " AND 棚卸記入表.中分類コード='" + lstString[3] + "'";
+                strSQLanather = strSQLanather + " AND 棚卸記入表.中分類コード='" + lstString[3] + "'";
             }
             if (lstString[4] != "")
             {
-                strSQLInput = strSQLInput + " AND 棚卸記入表.メーカーコード='" + lstString[4] + "'";
+                strSQLanather = strSQLanather + " AND 棚卸記入表.メーカーコード='" + lstString[4] + "'";
             }
             if (lstString[5] != "")
             {
-                strSQLInput = strSQLInput + " AND 棚卸記入表.棚番='" + lstString[5] + "'";
+                strSQLanather = strSQLanather + " AND 棚卸記入表.棚番='" + lstString[5] + "'";
             }
             if (lstString[6] == "1")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.品名型番";
+                strSQLanather = strSQLanather + " ORDER BY 棚卸記入表.品名型番";
             }
             if (lstString[6] == "2")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.メーカー名,棚卸記入表.品名型番";
+                strSQLanather = strSQLanather + " ORDER BY 棚卸記入表.メーカー名,棚卸記入表.品名型番";
             }
             if (lstString[6] == "3")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.棚番,棚卸記入表.メーカー名,棚卸記入表.品名型番";
+                strSQLanather = strSQLanather + " ORDER BY 棚卸記入表.棚番,棚卸記入表.メーカー名,棚卸記入表.品名型番";
             }
             if (lstString[6] == "4")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.棚番,棚卸記入表.品名型番";
+                strSQLanather = strSQLanather + " ORDER BY 棚卸記入表.棚番,棚卸記入表.品名型番";
             }
 
-            //配列設定
-            string[] aryStr = { lstString[0], lstString[1], lstString[2], lstString[3], lstString[4], lstString[5] };
-
-            strSQLInput = string.Format(strSQLInput, aryStr);
+            strSQLInput = string.Format(strSQLInput, lstString[0], lstString[1], lstString[2], strSQLanather);
 
             //SQLのインスタンス作成
             DBConnective dbconnective = new DBConnective();
