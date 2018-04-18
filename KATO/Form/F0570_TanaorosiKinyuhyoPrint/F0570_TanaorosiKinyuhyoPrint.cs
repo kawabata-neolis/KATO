@@ -227,8 +227,14 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                 // 印刷するにチェックが入っていない場合
                 if (chkPrintOnly.Checked == false)
                 {
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
                     // 棚卸記入表の件数を取得
                     DataTable dtTanaorosiCount = tanaorosiPrint_B.getTanaorosiCount(lstSearchItem);
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
 
                     // 対象データがある場合
                     if (dtTanaorosiCount != null && dtTanaorosiCount.Rows.Count > 0)
@@ -249,11 +255,21 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
 
                     try
                     {
+                        //待機状態
+                        Cursor.Current = Cursors.WaitCursor;
+
                         // 棚卸記入表テーブルに追加
                         tanaorosiPrint_B.addTanaorosi(lstSearchItem);
+
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
+
                     }
                     catch (Exception ex)
                     {
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
+
                         // エラーロギング
                         new CommonException(ex);
 
@@ -265,8 +281,14 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     }
                 }
 
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
                 // 検索実行
                 DataTable dtTanaorosi = tanaorosiPrint_B.getTanaorosi(lstSearchItemProc);
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
 
                 // 対象データがある場合
                 if (dtTanaorosi != null && dtTanaorosi.Rows.Count > 0)
@@ -321,11 +343,17 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.TATE);
                     pf.ShowDialog(this);
 
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
                     // プレビューの場合
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
                         // PDF作成
                         String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
 
                         // プレビュー
                         pf.execPreview(strFile);
@@ -335,6 +363,9 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     {
                         // PDF作成
                         String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+
+                        //元に戻す
+                        Cursor.Current = Cursors.Default;
 
                         // 一括印刷
                         pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
@@ -352,6 +383,9 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
             }
             catch (Exception ex)
             {
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 
@@ -494,8 +528,15 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
             F0570_TanaorosiKinyuhyoPrint_B tanaorosiPrint_B = new F0570_TanaorosiKinyuhyoPrint_B();
             try
             {
+
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
                 // 表示中の棚卸年月日の棚卸データの取得、判定
                 int intJud = tanaorosiPrint_B.judTanaData(txtYmd.Text);
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
 
                 //本社棚卸データがない場合
                 if (intJud == 1)
@@ -521,7 +562,10 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     {
                         return;
                     }
-                    
+
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
                     // 表示中の棚卸年月日を追加処理
                     tanaorosiPrint_B.updTanaData(txtYmd.Text, SystemInformation.UserName);
 
@@ -529,12 +573,18 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                     basemessagebox.ShowDialog();
 
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+
                     //初期化
                     delText();
                 }
             }
             catch (Exception ex)
             {
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
                 // エラーロギング
                 new CommonException(ex);
 

@@ -183,7 +183,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 }
 
                 // 棚卸記入表データ作成_PROCを実行
-                dbconnective.ReadSql(strProc);
+                dbconnective.ReadSqlDelay(strProc, 1800);
 
                 // コミット
                 dbconnective.Commit();

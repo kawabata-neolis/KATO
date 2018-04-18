@@ -854,16 +854,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            ////中分類
-            //if (lblSetChubunrui.CodeTxtText == "")
-            //{
-            //    //記入漏れ発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
+            //中分類
+            if (lblSetChubunrui.CodeTxtText == "")
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-            //    lblSetChubunrui.Focus();
-            //    return;
-            //}
+                lblSetChubunrui.Focus();
+                return;
+            }
 
             //メーカー
             if (lblSetMaker.CodeTxtText == "")
@@ -1209,7 +1209,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                         lstStringHachukoshin.Add(strShohinCd);                      //商品コード
                         lstStringHachukoshin.Add(lblSetMaker.CodeTxtText);          //メーカーコード
                         lstStringHachukoshin.Add(lblSetDaibunrui.CodeTxtText);      //大分類コード
-                        lstStringHachukoshin.Add(lblSetChubunrui.CodeTxtText);      //中分類コード
+
+                        if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+                        {
+                            lstStringHachukoshin.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+                        }
+                        else
+                        {
+                            lstStringHachukoshin.Add(null); //中分類コード
+                        }
+
                         lstStringHachukoshin.Add(strC1);                            //Ｃ１
                         lstStringHachukoshin.Add(strC2);                            //Ｃ２
                         lstStringHachukoshin.Add(strC3);                            //Ｃ３
@@ -1298,16 +1307,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            ////中分類
-            //if (lblSetChubunrui.CodeTxtText == "")
-            //{
-            //    //記入漏れ発生メッセージ（OK）
-            //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-            //    basemessagebox.ShowDialog();
+            //中分類
+            if (lblSetChubunrui.CodeTxtText == "")
+            {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
 
-            //    lblSetChubunrui.Focus();
-            //    return;
-            //}
+                lblSetChubunrui.Focus();
+                return;
+            }
 
             //メーカー
             if (lblSetMaker.CodeTxtText == "")
@@ -1390,16 +1399,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                     return;
                 }
 
-                ////中分類
-                //if (lblSetChubunrui.CodeTxtText == "")
-                //{
-                //    //記入漏れ発生メッセージ（OK）
-                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                //    basemessagebox.ShowDialog();
+                //中分類
+                if (lblSetChubunrui.CodeTxtText == "")
+                {
+                    //記入漏れ発生メッセージ（OK）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessagebox.ShowDialog();
 
-                //    lblSetChubunrui.Focus();
-                //    return;
-                //}
+                    lblSetChubunrui.Focus();
+                    return;
+                }
 
                 //メーカー
                 if (lblSetMaker.CodeTxtText == "")
@@ -1550,7 +1559,18 @@ namespace KATO.Form.B0250_MOnyuryoku
             lstStringMOdata.Add(txtShukeiM.Text);             //集計月数
             lstStringMOdata.Add(lblSetMaker.CodeTxtText);     //メーカーコード
             lstStringMOdata.Add(lblSetDaibunrui.CodeTxtText); //大分類コード
+
             lstStringMOdata.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+
+            //if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+            //{
+            //    lstStringMOdata.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+            //}
+            //else
+            //{
+            //    lstStringMOdata.Add(null); //中分類コード
+            //}
+
             lstStringMOdata.Add(lblSetShiresaki.CodeTxtText); //仕入先コード
             lstStringMOdata.Add(SystemInformation.UserName);  //ユーザー名
 
@@ -1593,7 +1613,17 @@ namespace KATO.Form.B0250_MOnyuryoku
                 lstStringViewData.Add(txtYM.Text);                  //年月度
                 lstStringViewData.Add(lblSetMaker.CodeTxtText);     //メーカーコード
                 lstStringViewData.Add(lblSetDaibunrui.CodeTxtText); //大分類コード
+
                 lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+
+                //if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+                //{
+                //    lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+                //}
+                //else
+                //{
+                //    lstStringViewData.Add(null); //中分類コード
+                //}
 
                 //マイナスの型番にチェックがある場合
                 if (radSet_2btn_PrintCheck.radbtn0.Checked == true)
@@ -1662,7 +1692,17 @@ namespace KATO.Form.B0250_MOnyuryoku
             lstStringViewData.Add(txtYM.Text);                  //年月度
             lstStringViewData.Add(lblSetMaker.CodeTxtText);     //メーカーコード
             lstStringViewData.Add(lblSetDaibunrui.CodeTxtText); //大分類コード
+
             lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+
+            //if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+            //{
+            //    lstStringViewData.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+            //}
+            //else
+            //{
+            //    lstStringViewData.Add(null); //中分類コード
+            //}
 
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
@@ -1903,7 +1943,18 @@ namespace KATO.Form.B0250_MOnyuryoku
                 lstString.Add(txtShukeiM.Text);             //集計月数
                 lstString.Add(lblSetMaker.CodeTxtText);     //メーカーコード
                 lstString.Add(lblSetDaibunrui.CodeTxtText); //大分類コード
+
                 lstString.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+
+                //if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+                //{
+                //    lstString.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+                //}
+                //else
+                //{
+                //    lstString.Add(null); //中分類コード
+                //}
+
                 lstString.Add(lblSetShiresaki.CodeTxtText); //仕入先コード
                 lstString.Add(SystemInformation.UserName);  //ユーザー名
 
