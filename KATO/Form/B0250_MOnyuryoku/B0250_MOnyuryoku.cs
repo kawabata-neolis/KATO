@@ -1210,14 +1210,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                         lstStringHachukoshin.Add(lblSetMaker.CodeTxtText);          //メーカーコード
                         lstStringHachukoshin.Add(lblSetDaibunrui.CodeTxtText);      //大分類コード
 
-                        if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
-                        {
-                            lstStringHachukoshin.Add(lblSetChubunrui.CodeTxtText); //中分類コード
-                        }
-                        else
-                        {
-                            lstStringHachukoshin.Add(null); //中分類コード
-                        }
+                        lstStringHachukoshin.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+
+                        //if (StringUtl.blIsEmpty(lblSetChubunrui.CodeTxtText))
+                        //{
+                        //    lstStringHachukoshin.Add(lblSetChubunrui.CodeTxtText); //中分類コード
+                        //}
+                        //else
+                        //{
+                        //    lstStringHachukoshin.Add(null); //中分類コード
+                        //}
 
                         lstStringHachukoshin.Add(strC1);                            //Ｃ１
                         lstStringHachukoshin.Add(strC2);                            //Ｃ２
