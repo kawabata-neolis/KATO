@@ -913,7 +913,7 @@ namespace KATO.Form.A0030_ShireInput
 
                         //運賃を仕入明細に追加用
                         //伝票番号
-                        lstShireUnchin.Add(txtDenpyoNo.Text);
+                        lstShireUnchin.Add(intDenpyoNo.ToString());
                         //行番号
                         lstShireUnchin.Add("99");
                         //発注番号

@@ -1685,9 +1685,6 @@ namespace KATO.Business.A0030_ShireInput
             {
                 dbconnective.RunSqlRe("仕入明細更新_PROC", CommandType.StoredProcedure, lstUnchinKoshin, lstUnchinKoshinName);
                 
-                //コミット開始
-                dbconnective.Commit();
-
                 return;
             }
             catch (Exception ex)
