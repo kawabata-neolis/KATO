@@ -244,7 +244,7 @@ namespace KATO.Form.B0040_NyukinInput
                 case Keys.F1:
                     if (this.btnF01.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                         this.addNyuukin();
                     }
                     break;
@@ -302,7 +302,7 @@ namespace KATO.Form.B0040_NyukinInput
                 case STR_BTN_F01: // 追加
                     if (this.btnF01.Enabled)
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                         this.addNyuukin();
                     }
                     break;
@@ -517,6 +517,7 @@ namespace KATO.Form.B0040_NyukinInput
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.setNyukinList();
                     break;
                 case Keys.F10:

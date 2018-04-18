@@ -782,7 +782,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                     //閲覧権限がある場合
                     if (("1").Equals(this.etsuranFlg))
                     {
-                        logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ"));
+                        logger.Info(LogUtil.getMessage(this._Title, "ＣＳＶ発行"));
                         this.saveCSV();
                     }
                     break;
@@ -1390,16 +1390,16 @@ namespace KATO.Form.B0250_MOnyuryoku
                     return;
                 }
 
-                //中分類
-                if (lblSetChubunrui.CodeTxtText == "")
-                {
-                    //記入漏れ発生メッセージ（OK）
-                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
-                    basemessagebox.ShowDialog();
+                ////中分類
+                //if (lblSetChubunrui.CodeTxtText == "")
+                //{
+                //    //記入漏れ発生メッセージ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                //    basemessagebox.ShowDialog();
 
-                    lblSetChubunrui.Focus();
-                    return;
-                }
+                //    lblSetChubunrui.Focus();
+                //    return;
+                //}
 
                 //メーカー
                 if (lblSetMaker.CodeTxtText == "")

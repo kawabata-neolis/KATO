@@ -84,6 +84,7 @@ namespace KATO.Form.M1071_TorihikisakiInfo
                     this.printTorihiki();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }
@@ -98,6 +99,7 @@ namespace KATO.Form.M1071_TorihikisakiInfo
             TorihikisakiList torihikisakilist = new TorihikisakiList(this);
             try
             {
+                logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                 //取引先リストの表示、画面IDを渡す
                 torihikisakilist.StartPosition = FormStartPosition.Manual;
                 //torihikisakilist.intFrmKind = CommonTeisu.FRM_TORIHIKISAKI;

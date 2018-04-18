@@ -245,6 +245,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -459,6 +460,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                     this.delText();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

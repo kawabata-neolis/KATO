@@ -270,6 +270,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                 case Keys.F3:
                     break;
                 case Keys.F4:
+                    logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
                     break;
                 case Keys.F5:
@@ -876,6 +877,12 @@ namespace KATO.Form.F0140_TanaorosiInput
             List<string> lstString = new List<string>();
 
             DataTable dtSelect = null;
+
+            //グリッドにデータがない場合
+            if (gridRireki.Rows.Count < 1)
+            {
+                return;
+            }
 
             //選択行の商品コード取得
             string strSelectSyouhinCD = (string)gridRireki.CurrentRow.Cells["商品コード"].Value;

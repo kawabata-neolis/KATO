@@ -541,7 +541,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     //印刷
                     if ("1".Equals(etsuranFlg))
                     {
-                        //PrintReport();
+                        PrintReportJuchu();
                     }
                     break;
                 case Keys.F12:
@@ -606,7 +606,7 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                     break;
                 case STR_BTN_F09: // 印刷
                     logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
-                    //this.PrintReport();
+                    this.PrintReportJuchu();
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -1226,6 +1226,120 @@ namespace KATO.Form.D0360_JuchuzanKakunin
                 //例外発生メッセージ（OK）
                 BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// PrintReportJuchu
+        /// PDF印刷を行う。()
+        /// </summary>
+        private void PrintReportJuchu()
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            // ビジネス層のインスタンス生成
+            D0360_JuchuzanKakunin_B bis = new D0360_JuchuzanKakunin_B();
+            try
+            {
+                //受注残データの取得
+
+
+
+                //// 対象データがある場合
+                //if (dtSetView1 != null && dtSetView1.Rows.Count > 0)
+                //{
+                //    //検索で使用したデータをリストに保持
+                //    List<string> lstSearchItem = new List<string>();
+                //    //[0]伝票番号
+                //    lstSearchItem.Add(Denno);
+                //    //[1]ユーザ名
+                //    lstSearchItem.Add(Environment.UserName);
+                //    //[2]再印刷フラグ
+                //    lstSearchItem.Add(Flag.ToString());
+                //    //[3]直送先フラグ
+                //    lstSearchItem.Add(ChokusoFLG.ToString());
+                //    //[4]得意先コード
+                //    lstSearchItem.Add(labelSet_txtCD.CodeTxtText);
+                //    //[5]直送先名称
+                //    lstSearchItem.Add(txtName_C.Text);
+
+
+                //    Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.TATE);
+
+
+                //    //SPAdminUserの場合は印刷ﾀﾞｲｱﾛｸﾞを表示、それ以外は直印刷
+                //    if (Environment.UserName != "SPAdminUser")
+                //    {
+                //        //pf.ShowDialog(this);
+                //        //if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
+                //        //{
+                //        //    //PDF作成
+                //        //    String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                //        //    pf.execPreview(@strFile);
+                //        //    pf.ShowDialog(this);
+                //        //}
+                //        //else if (this.printFlg == CommonTeisu.ACTION_PRINT)
+                //        //{
+                //        //    //PDF作成
+                //        //    String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                //        //    pf.execPrint(null, @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
+
+                //        //    //印刷済みにする。（プロシージャー）
+                //        //    Flag = 0;
+                //        //    uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+
+                //        //    //ラベルプリンターで印刷
+                //        //    uriageinput_B.dbToExcel();
+                //        //}
+                //        String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                //        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
+
+                //        //ラベルプリンターで印刷
+                //        uriageinput_B.printGenpinhyo(Denno, false);
+
+                //        //印刷済みにする。（プロシージャー）
+                //        Flag = 1;
+                //        uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+                //    }
+                //    else
+                //    {
+                //        //PDF作成
+                //        String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
+                //        pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, false);
+
+                //        //ラベルプリンターで印刷
+                //        uriageinput_B.printGenpinhyo(Denno, false);
+
+                //        //印刷済みにする。（プロシージャー）
+                //        Flag = 1;
+                //        uriageinput_B.updInsatuzumi(Denno, Environment.UserName, Flag);
+                //    }
+
+                //    pf.Dispose();
+
+                //}
+                //else
+                //{
+                //    // メッセージボックスの処理、対象データがない場合のウィンドウ（OK）
+                //    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "対象のデータはありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                //    basemessagebox.ShowDialog();
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+
+                // メッセージボックスの処理、PDF作成失敗の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "印刷が失敗しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                return;
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
     }

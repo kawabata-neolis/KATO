@@ -308,18 +308,21 @@ namespace KATO.Form.M1070_Torihikisaki
                 case STR_BTN_F01: // 登録
                     if (this.btnF01.Enabled)
                     {
+                        logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                         this.addTorihiki();
                     }
                     break;
                 case STR_BTN_F03: // 削除
                     if (this.btnF03.Enabled)
                     {
+                        logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
                         this.delTorihiki();
                     }
                     break;
                 case STR_BTN_F04: // 取り消し
                     if (this.btnF04.Enabled)
                     {
+                        logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                         this.delText();
                     }
                     break;
@@ -332,6 +335,7 @@ namespace KATO.Form.M1070_Torihikisaki
                     this.printTorihiki();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

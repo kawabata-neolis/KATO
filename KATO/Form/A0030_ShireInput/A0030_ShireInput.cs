@@ -238,6 +238,7 @@ namespace KATO.Form.A0030_ShireInput
                         shohinmoto.Close();
                     }
 
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -353,6 +354,7 @@ namespace KATO.Form.A0030_ShireInput
                         shohinmoto.Close();
                     }
 
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

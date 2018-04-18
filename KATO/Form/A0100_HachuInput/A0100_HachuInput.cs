@@ -284,6 +284,7 @@ namespace KATO.Form.A0100_HachuInput
                     printHachuInput();
                     break;
                 case Keys.F12:
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -559,8 +560,7 @@ namespace KATO.Form.A0100_HachuInput
                 case Keys.F11:
                     break;
                 case Keys.F12:
-                    //戻るボタン
-                    logger.Info(LogUtil.getMessage(this._Title, "戻る実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
@@ -599,6 +599,7 @@ namespace KATO.Form.A0100_HachuInput
                     this.printHachuInput();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }

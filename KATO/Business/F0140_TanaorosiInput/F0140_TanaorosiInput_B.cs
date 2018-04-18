@@ -131,31 +131,31 @@ namespace KATO.Business.F0140_TanaorosiInput_B
 
             if (lstString[3] != "")
             {
-                strSQLInput = strSQLInput + " AND 中分類コード='" + lstString[3] + "'";
+                strSQLInput = strSQLInput + " AND 棚卸記入表.中分類コード='" + lstString[3] + "'";
             }
             if (lstString[4] != "")
             {
-                strSQLInput = strSQLInput + " AND メーカーコード='" + lstString[4] + "'";
+                strSQLInput = strSQLInput + " AND 棚卸記入表.メーカーコード='" + lstString[4] + "'";
             }
             if (lstString[5] != "")
             {
-                strSQLInput = strSQLInput + " AND 棚番='" + lstString[5] + "'";
+                strSQLInput = strSQLInput + " AND 棚卸記入表.棚番='" + lstString[5] + "'";
             }
             if (lstString[6] == "1")
             {
-                strSQLInput = strSQLInput + " ORDER BY 品名型番";
+                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.品名型番";
             }
             if (lstString[6] == "2")
             {
-                strSQLInput = strSQLInput + " ORDER BY メーカー名,品名型番";
+                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.メーカー名,棚卸記入表.品名型番";
             }
             if (lstString[6] == "3")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚番,メーカー名,品名型番";
+                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.棚番,棚卸記入表.メーカー名,棚卸記入表.品名型番";
             }
             if (lstString[6] == "4")
             {
-                strSQLInput = strSQLInput + " ORDER BY 棚番,品名型番";
+                strSQLInput = strSQLInput + " ORDER BY 棚卸記入表.棚番,棚卸記入表.品名型番";
             }
 
             //配列設定

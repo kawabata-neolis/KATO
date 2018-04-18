@@ -212,7 +212,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addShiharai();
                     break;
                 case Keys.F2:
@@ -228,7 +228,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 case Keys.F5:
                     break;
                 case Keys.F6:
-                    logger.Info(LogUtil.getMessage(this._Title, "F1へフォーカス実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "終わり実行"));
                     this.btnF01.Focus();
                     break;
                 case Keys.F7:
@@ -268,7 +268,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                     this.addShiharai();
                     break;
                 case STR_BTN_F03: // 削除
-                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.delAllSakujo();
                     break;
                 case STR_BTN_F04: // 取消
@@ -276,7 +276,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                     this.delText();
                     break;
                 case STR_BTN_F06: // F1へフォーカス
-                    logger.Info(LogUtil.getMessage(this._Title, "F1へフォーカス実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "終わり実行"));
                     this.btnF01.Focus();
                     break;
                 case STR_BTN_F07: // 行削除
@@ -568,6 +568,7 @@ namespace KATO.Form.B0060_ShiharaiInput
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     this.setShiharaiList();  // 支払リスト表示
                     break;
                 case Keys.F10:

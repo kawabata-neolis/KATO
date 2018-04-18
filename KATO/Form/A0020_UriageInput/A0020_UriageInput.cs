@@ -340,6 +340,7 @@ namespace KATO.Form.A0020_UriageInput
                 case Keys.F10:
                     break;
                 case Keys.F11:
+                    logger.Info(LogUtil.getMessage(this._Title, "印刷実行"));
                     this.PrintReport(txtDenNo.Text,1);
                     break;
                 case Keys.F12:
@@ -362,6 +363,7 @@ namespace KATO.Form.A0020_UriageInput
                         shohinmoto.Close();
                     }
 
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
 
