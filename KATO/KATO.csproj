@@ -1644,6 +1644,9 @@
     <None Include="Template\C0140_TantouUriageArariNenkan.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Template\D0360_JuchuzanKakunin.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Template\H0210_MitsumoriSakuseiList.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
