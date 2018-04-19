@@ -227,6 +227,8 @@ namespace KATO.Business.A0670_SiiresakiSiirekakunin
                 string denNo = "";
                 string rowNo = "";
                 string status = "";
+
+                string strProc = "";
                 try
                 {
                     // トランザクション開始
@@ -236,11 +238,23 @@ namespace KATO.Business.A0670_SiiresakiSiirekakunin
                     rowNo = row["行番号"].ToString();
                     status = row["検収状態"].ToString();
 
-                    string strProc = "検収済仕入明細更新_PROC '" 
-                        + denNo + "' ,'"
-                        + rowNo + "' ,'"
-                        + status + "' ,'"
-                        + userName + "'";
+                    if (StringUtl.blIsEmpty(status))
+                    {
+                        strProc = "検収済仕入明細更新_PROC '"
+                                        + denNo + "' ,'"
+                                        + rowNo + "' ,'"
+                                        + status + "' ,'"
+                                        + userName + "'";
+                    }
+                    else
+                    {
+                        strProc = "検収済仕入明細更新_PROC '"
+                                        + denNo + "' ,'"
+                                        + rowNo + "' ,"
+                                        + "NULL ,'"
+                                        + userName + "'";
+
+                    }
 
                     // ストアド実行
                     dbconnective.ReadSql(strProc);

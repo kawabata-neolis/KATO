@@ -181,6 +181,8 @@ namespace KATO.Business.A0660_TokuisakiUriageKakunin
                 string denNo = "";
                 string rowNo = "";
                 string status = "";
+
+                string strProc = "";
                 try
                 {
                     // トランザクション開始
@@ -190,11 +192,23 @@ namespace KATO.Business.A0660_TokuisakiUriageKakunin
                     rowNo = row["行番号"].ToString();
                     status = row["検収状態"].ToString();
 
-                    string strProc = "検収済売上明細更新_PROC '"
-                        + denNo + "' ,'"
-                        + rowNo + "' ,'"
-                        + status + "' ,'"
-                        + userName + "'";
+                    if (StringUtl.blIsEmpty(status))
+                    {
+                        strProc = "検収済売上明細更新_PROC '"
+                                        + denNo + "' ,'"
+                                        + rowNo + "' ,'"
+                                        + status + "' ,'"
+                                        + userName + "'";
+
+                    }
+                    else
+                    {
+                        strProc = "検収済売上明細更新_PROC '"
+                                        + denNo + "' ,'"
+                                        + rowNo + "' ,"
+                                        + "NULL ,'"
+                                        + userName + "'";
+                    }
 
                     // ストアド実行
                     dbconnective.ReadSql(strProc);
