@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 
 using ClosedXML.Excel;
+using System.Runtime.InteropServices;
 
 namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
 {
@@ -303,26 +304,23 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
         /// <param name="dtTanaorosi">
         ///     棚卸記入表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtTanaorosi, List<string> lstItem)
+        public string dbToPdf(DataTable dtTanaorosi, List<string> lstItem, string p)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
+            string strFilePath = "./Template/F0570_TanaoroshiPreSheet.xlsx";
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+            Microsoft.Office.Interop.Excel.Application objExcel = null;
+            Microsoft.Office.Interop.Excel.Workbooks objWorkBooks = null;
+            Microsoft.Office.Interop.Excel.Workbook objWorkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
+            Microsoft.Office.Interop.Excel.Range objRange = null;
+
 
             try
             {
                 CreatePdf pdf = new CreatePdf();
-
-                // ワークブックのデフォルトフォント、フォントサイズの指定
-                XLWorkbook.DefaultStyle.Font.FontName = "ＭＳ 明朝";
-                XLWorkbook.DefaultStyle.Font.FontSize = 9;
-
-                // excelのインスタンス生成
-                XLWorkbook workbook = new XLWorkbook(XLEventTracking.Disabled);
-
-                IXLWorksheet worksheet = workbook.Worksheets.Add("Header");
-                IXLWorksheet headersheet = worksheet;   // ヘッダーシート
-                IXLWorksheet currentsheet = worksheet;  // 処理中シート
 
                 //Linqで必要なデータをselect
                 var outDataAll = dtTanaorosi.AsEnumerable()
@@ -342,133 +340,73 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 // リストをデータテーブルに変換
                 DataTable dtChkList = pdf.ConvertToDataTable(outDataAll);
 
-                int maxColCnt = dtChkList.Columns.Count;
-                int rowCnt = 1;     // datatable処理行カウント
-                int xlsRowCnt = 5;  // Excel出力行カウント（開始は出力行）
+                // excelのインスタンス生成
+                XLWorkbook workbook = new XLWorkbook(strFilePath, XLEventTracking.Disabled);
+                IXLWorksheet templatesheet1 = workbook.Worksheet(1);   // テンプレートシート
+                IXLWorksheet currentsheet = null;  // 処理中シート
+
+                int pageCnt = 0;    // ページ(シート枚数)カウント
+                int xlsRowCnt = 6;  // Excel出力行カウント（開始は出力行）
+
+                templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                currentsheet = workbook.Worksheet(1);
+
+                currentsheet.Cell(2, "A").Value = "棚卸プレシート";
+                currentsheet.Cell(4, "A").Value = "  " + dtChkList.Rows[0][6].ToString() + "    " + dtChkList.Rows[0][7].ToString().Trim();
+                currentsheet.Cell(4, "E").Value = "棚卸日：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0]));
 
                 string strDaibunruiCd = "";
 
-                // ClosedXMLで1行ずつExcelに出力
                 foreach (DataRow drTanaorosi in dtChkList.Rows)
                 {
-                    // 1ページ目のシート作成
-                    if (rowCnt == 1)
-                    {
-                        // タイトル出力（中央揃え、セル結合）
-                        IXLCell titleCell = headersheet.Cell("A1");
-                        titleCell.Value = "棚卸プレシート";
-                        titleCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                        titleCell.Style.Font.FontSize = 14.5;
-                        headersheet.Range("A1", "E1").Merge();
-
-                        // 棚卸日出力（E3のセル）
-                        IXLCell dateCell = headersheet.Cell("E3");
-                        dateCell.Value = "棚卸日：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0]));
-                        dateCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        dateCell.Style.Font.FontSize = 10;
-
-                        // ヘッダー出力（4行目のセル）
-                        headersheet.Cell("A4").Value = "棚番";
-                        headersheet.Cell("B4").Value = "メーカー名";
-                        headersheet.Cell("C4").Value = "品　名　・　型　番";
-                        headersheet.Cell("D4").Value = "帳簿在庫数";
-                        headersheet.Cell("E4").Value = "棚　卸　数";
-
-                        // ヘッダー列
-                        headersheet.Range("A4", "E4").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
-                        // セルの周囲に罫線を引く
-                        headersheet.Range("A4", "E4").Style
-                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
-                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
-
-                        // 列幅の指定
-                        headersheet.Column(1).Width = 10;
-                        headersheet.Column(2).Width = 12;
-                        headersheet.Column(3).Width = 50;
-                        headersheet.Column(4).Width = 12;
-                        headersheet.Column(5).Width = 12;
-
-                        // 印刷体裁（A4縦、印刷範囲、余白）
-                        headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
-                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Portrait;
-                        headersheet.PageSetup.Margins.Left = 0.5;
-                        headersheet.PageSetup.Margins.Right = 0.5;
-
-                        // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№57）");
-                    }
-
                     // 大分類コードが違う場合
-                    if (!strDaibunruiCd.Equals(drTanaorosi[5].ToString()))
+                    if (!string.IsNullOrWhiteSpace(strDaibunruiCd) && !strDaibunruiCd.Equals(drTanaorosi[5].ToString()))
                     {
-                        xlsRowCnt = 5;
+                        pageCnt++;
+                        xlsRowCnt = 6;
                         strDaibunruiCd = drTanaorosi[5].ToString();
 
-                        // ヘッダーシートのコピー
-                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, workbook.Worksheets.Count);
+                        // テンプレートシートからコピー
+                        templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                        // 営業所名、大分類名出力（A3のセル）
-                        IXLCell unitCell = currentsheet.Cell("A3");
-                        unitCell.Value = "  " + drTanaorosi[6].ToString() + "    " + drTanaorosi[7].ToString().Trim();
-                        unitCell.Style.Font.FontSize = 10;
+                        currentsheet.Cell(2, "A").Value = "棚卸プレシート";
+                        currentsheet.Cell(4, "A").Value = "  " + drTanaorosi[6].ToString() + "    " + drTanaorosi[7].ToString().Trim();
+                        currentsheet.Cell(4, "E").Value = "棚卸日：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0]));
                     }
 
-                    // 1セルずつデータ出力
-                    for (int colCnt = 1; colCnt <= maxColCnt - 4; colCnt++)
+                    if (xlsRowCnt >= 51)
                     {
-                        string str = drTanaorosi[colCnt - 1].ToString();
+                        pageCnt++;
+                        xlsRowCnt = 6;
+                        strDaibunruiCd = drTanaorosi[5].ToString();
 
-                        // 入金額セルの処理
-                        if (colCnt == 4 || colCnt == 5)
-                        {
-                            // 3桁毎に","を挿入する
-                            currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0");
-                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
-                        }
+                        // テンプレートシートからコピー
+                        templatesheet1.CopyTo("Page" + pageCnt.ToString());
+                        currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
-                        currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                        currentsheet.Cell(2, "A").Value = "棚卸プレシート";
+                        currentsheet.Cell(4, "A").Value = "  " + drTanaorosi[6].ToString() + "    " + drTanaorosi[7].ToString().Trim();
+                        currentsheet.Cell(4, "E").Value = "棚卸日：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0]));
                     }
 
-                    // 1行分のセルの周囲に罫線を引く
-                    currentsheet.Range(xlsRowCnt, 1, xlsRowCnt, 5).Style
-                            .Border.SetTopBorder(XLBorderStyleValues.Thin)
-                            .Border.SetBottomBorder(XLBorderStyleValues.Thin)
-                            .Border.SetLeftBorder(XLBorderStyleValues.Thin)
-                            .Border.SetRightBorder(XLBorderStyleValues.Thin);
+                    currentsheet.Cell(xlsRowCnt, "A").Value = drTanaorosi[0].ToString();
+                    currentsheet.Cell(xlsRowCnt, "B").Value = drTanaorosi[1].ToString();
+                    currentsheet.Cell(xlsRowCnt, "C").Value = drTanaorosi[2].ToString();
+                    currentsheet.Cell(xlsRowCnt, "D").Value = drTanaorosi[3].ToString();
+                    currentsheet.Cell(xlsRowCnt, "E").Value = drTanaorosi[4].ToString();
 
-                    // 45行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 49)
-                    {
-                        xlsRowCnt = 4;
-
-                        // ヘッダーシートのコピー
-                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, workbook.Worksheets.Count);
-
-                        // 営業所名、大分類名出力（A3のセル）
-                        IXLCell unitCell = currentsheet.Cell("A3");
-                        unitCell.Value = "  " + drTanaorosi[6].ToString() + "    " + drTanaorosi[7].ToString().Trim();
-                        unitCell.Style.Font.FontSize = 10;
-                    }
-
-                    rowCnt++;
                     xlsRowCnt++;
                 }
 
-                // ヘッダーシート削除
-                headersheet.Delete();
+                // テンプレートシート削除
+                templatesheet1.Delete();
 
-                // 各ページのヘッダー部を指定
-                int maxPage = workbook.Worksheets.Count;
-                for (int pageCnt = 1; pageCnt <= maxPage; pageCnt++)
+                // ページ数設定
+                for (pageCnt = 1; pageCnt <= workbook.Worksheets.Count; pageCnt++)
                 {
-                    // ヘッダー部に指定する情報を取得
-                    string strHeader = pdf.getHeader(pageCnt, maxPage, strNow);
-
-                    // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
-                    workbook.Worksheet(pageCnt).PageSetup.Header.Right.AddText(strHeader);
+                    string s = "'" + pageCnt.ToString() + "/" + (workbook.Worksheets.Count).ToString();
+                    workbook.Worksheet(pageCnt).Cell("E1").Value = s;      // No.
                 }
 
                 // workbookを保存
@@ -478,8 +416,73 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 // workbookを解放
                 workbook.Dispose();
 
+                objExcel = new Microsoft.Office.Interop.Excel.Application();
+
+                objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                objExcel.Visible = false;
+                objExcel.DisplayAlerts = false;
+
+                objWorkBooks = objExcel.Workbooks;
+
+                String strP = System.IO.Path.GetFullPath(strOutXlsFile);
+
+                objWorkBook = objWorkBooks.Open(strP, //_xslFile,     // FileName:ファイル名
+                                                Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
+                                                Type.Missing, // ReadOnly:ReadOnlyにするかどうか
+                                                Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
+                                                Type.Missing, // Password:開く際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // WriteResPassword:書き込む際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // IgnoreReadOnlyRecommended:[読み取り専用を推奨する]チェックがオンの場合でも[読み取り専用を推奨する]メッセージを非表示
+                                                Type.Missing, // Origin:テキストファイルの場合、プラットフォームを指定
+                                                Type.Missing, // Delimiter:テキストファイルで且つ引数Formatが6の場合に区切り文字を指定
+                                                Type.Missing, // Editable:Excel4.0アドインの場合、アドインウィンドウを出すか指定
+                                                Type.Missing, // Notify:ファイルが読み取りor書き込みモードで開けない場合に通知リストに追加するか指定
+                                                Type.Missing, // Converter:ファイルを開くときに最初に使用するファイルコンバーターのインデックス番号を指定
+                                                Type.Missing, // AddToMru:最近使用したファイルの一覧にブックを追加するか指定
+                                                Type.Missing, // Local:Excel言語設定に合わせてファイルを保存するか指定
+                                                Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
+                                                );
+
+
+                if (p != null)
+                {
+                    objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                          Type.Missing, // To:印刷終了のページ番号
+                                          1,            // Copies:印刷部数
+                                          Type.Missing, // Preview:印刷プレビューをするか指定
+                                          p, // ActivePrinter:プリンターの名称
+                                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                          true,         // Collate:部単位で印刷するか指定
+                                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                          );
+                }
+
+                //for (int i = 0; i < objWorkBook.Sheets.Count; i++)
+                //{
+                //    objWorkSheet = objWorkBook.Sheets[i + 1];
+
+                //    if (p != null)
+                //    {
+                //        objWorkSheet.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                //                          Type.Missing, // To:印刷終了のページ番号
+                //                          1,            // Copies:印刷部数
+                //                          Type.Missing, // Preview:印刷プレビューをするか指定
+                //                          p, // ActivePrinter:プリンターの名称
+                //                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                //                          true,         // Collate:部単位で印刷するか指定
+                //                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                //                          );
+                //    }
+                //}
+
+                string ret = "";
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                if (p == null)
+                {
+                    ret = pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                }
+                //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                return ret;
 
             }
             catch (Exception ex)
@@ -490,6 +493,35 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
             }
             finally
             {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
                 // Workフォルダの全ファイルを取得
                 string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
                 // Workフォルダ内のファイル削除

@@ -350,7 +350,7 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
                         // PDF作成
-                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem, null);
 
                         //元に戻す
                         Cursor.Current = Cursors.Default;
@@ -362,13 +362,13 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
                         // PDF作成
-                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem);
+                        String strFile = tanaorosiPrint_B.dbToPdf(dtTanaorosi, lstSearchItem, pf.printer);
 
                         //元に戻す
                         Cursor.Current = Cursors.Default;
 
                         // 一括印刷
-                        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
+                        //pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
                     }
 
                     pf.Dispose();

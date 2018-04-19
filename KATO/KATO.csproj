@@ -1647,6 +1647,9 @@
     <None Include="Template\D0360_JuchuzanKakunin.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Template\F0570_TanaoroshiPreSheet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Template\H0210_MitsumoriSakuseiList.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
