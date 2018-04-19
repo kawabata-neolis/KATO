@@ -921,9 +921,9 @@ namespace KATO.Form.A0030_ShireInput
                         //商品コード
                         lstShireUnchin.Add("00000");
                         //メーカーコード
-                        lstShireUnchin.Add("000");
+                        lstShireUnchin.Add("0168");
                         //大分類コード
-                        lstShireUnchin.Add("28");
+                        lstShireUnchin.Add("43");
                         //中分類コード
                         lstShireUnchin.Add("01");
                         //Ｃ１
