@@ -317,10 +317,12 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
             Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
             Microsoft.Office.Interop.Excel.Range objRange = null;
 
+            string strOutXlsFile = "";
+            CreatePdf pdf = null;
 
             try
             {
-                CreatePdf pdf = new CreatePdf();
+                pdf = new CreatePdf();
 
                 //Linqで必要なデータをselect
                 var outDataAll = dtTanaorosi.AsEnumerable()
@@ -349,7 +351,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 int xlsRowCnt = 6;  // Excel出力行カウント（開始は出力行）
 
                 templatesheet1.CopyTo("Page" + pageCnt.ToString());
-                currentsheet = workbook.Worksheet(1);
+                currentsheet = workbook.Worksheet(workbook.Worksheets.Count);
 
                 currentsheet.Cell(2, "A").Value = "棚卸プレシート";
                 currentsheet.Cell(4, "A").Value = "  " + dtChkList.Rows[0][6].ToString() + "    " + dtChkList.Rows[0][7].ToString().Trim();
@@ -364,7 +366,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                     {
                         pageCnt++;
                         xlsRowCnt = 6;
-                        strDaibunruiCd = drTanaorosi[5].ToString();
+                        //strDaibunruiCd = drTanaorosi[5].ToString();
 
                         // テンプレートシートからコピー
                         templatesheet1.CopyTo("Page" + pageCnt.ToString());
@@ -379,7 +381,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                     {
                         pageCnt++;
                         xlsRowCnt = 6;
-                        strDaibunruiCd = drTanaorosi[5].ToString();
+                        //strDaibunruiCd = drTanaorosi[5].ToString();
 
                         // テンプレートシートからコピー
                         templatesheet1.CopyTo("Page" + pageCnt.ToString());
@@ -389,6 +391,8 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                         currentsheet.Cell(4, "A").Value = "  " + drTanaorosi[6].ToString() + "    " + drTanaorosi[7].ToString().Trim();
                         currentsheet.Cell(4, "E").Value = "棚卸日：" + string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0]));
                     }
+
+                    strDaibunruiCd = drTanaorosi[5].ToString();
 
                     currentsheet.Cell(xlsRowCnt, "A").Value = drTanaorosi[0].ToString();
                     currentsheet.Cell(xlsRowCnt, "B").Value = drTanaorosi[1].ToString();
@@ -410,7 +414,7 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 }
 
                 // workbookを保存
-                string strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
+                strOutXlsFile = strWorkPath + strDateTime + ".xlsx";
                 workbook.SaveAs(strOutXlsFile);
 
                 // workbookを解放
@@ -456,26 +460,66 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                                           Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
                                           );
                 }
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+                throw;
+            }
+            finally
+            {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
 
-                //for (int i = 0; i < objWorkBook.Sheets.Count; i++)
-                //{
-                //    objWorkSheet = objWorkBook.Sheets[i + 1];
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
 
-                //    if (p != null)
-                //    {
-                //        objWorkSheet.PrintOut(Type.Missing, // From:印刷開始のページ番号
-                //                          Type.Missing, // To:印刷終了のページ番号
-                //                          1,            // Copies:印刷部数
-                //                          Type.Missing, // Preview:印刷プレビューをするか指定
-                //                          p, // ActivePrinter:プリンターの名称
-                //                          Type.Missing, // PrintToFile:ファイル出力をするか指定
-                //                          true,         // Collate:部単位で印刷するか指定
-                //                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
-                //                          );
-                //    }
-                //}
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
 
-                string ret = "";
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
+            }
+
+            //for (int i = 0; i < objWorkBook.Sheets.Count; i++)
+            //{
+            //    objWorkSheet = objWorkBook.Sheets[i + 1];
+
+            //    if (p != null)
+            //    {
+            //        objWorkSheet.PrintOut(Type.Missing, // From:印刷開始のページ番号
+            //                          Type.Missing, // To:印刷終了のページ番号
+            //                          1,            // Copies:印刷部数
+            //                          Type.Missing, // Preview:印刷プレビューをするか指定
+            //                          p, // ActivePrinter:プリンターの名称
+            //                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+            //                          true,         // Collate:部単位で印刷するか指定
+            //                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+            //                          );
+            //    }
+            //}
+
+            try {
+            string ret = "";
                 // PDF化の処理
                 if (p == null)
                 {
