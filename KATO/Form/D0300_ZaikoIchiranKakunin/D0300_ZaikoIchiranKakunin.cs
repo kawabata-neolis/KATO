@@ -567,7 +567,6 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
 
                         // プレビュー
                         pf.execPreview(strFile);
-                        pf.ShowDialog(this);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)

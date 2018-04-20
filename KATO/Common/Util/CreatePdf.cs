@@ -45,10 +45,16 @@ namespace KATO.Common.Util
                     var i = printsheet.PageSetup.PageHeight;
 
                     string no = no = (sheetCnt + 1).ToString();
+
                     if (no.Length == 1)
                     {
                         no = "0" + no;
                     }
+
+                    int intNo = int.Parse(no);
+
+                    //0パディング
+                    no = string.Format("{0:0000}", intNo);
 
                     if(intPaperSizeIndex == 4)
                     {
