@@ -31,9 +31,9 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelSet_Daibunrui = new KATO.Common.Ctl.LabelSet_Daibunrui();
             this.labelSet_Chubunrui = new KATO.Common.Ctl.LabelSet_Chubunrui();
             this.labelSet_Maker = new KATO.Common.Ctl.LabelSet_Maker();
@@ -207,6 +207,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtTanabanHonsha.Name = "txtTanabanHonsha";
             this.txtTanabanHonsha.Size = new System.Drawing.Size(100, 22);
             this.txtTanabanHonsha.TabIndex = 4;
+            this.txtTanabanHonsha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             // 
             // lblTanabanGifu
             // 
@@ -228,6 +229,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtTanabanGifu.Name = "txtTanabanGifu";
             this.txtTanabanGifu.Size = new System.Drawing.Size(100, 22);
             this.txtTanabanGifu.TabIndex = 5;
+            this.txtTanabanGifu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             // 
             // lblKataban
             // 
@@ -249,6 +251,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtKataban.Name = "txtKataban";
             this.txtKataban.Size = new System.Drawing.Size(100, 22);
             this.txtKataban.TabIndex = 6;
+            this.txtKataban.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             // 
             // lblHyojun
             // 
@@ -271,6 +274,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtHyojun.Size = new System.Drawing.Size(50, 22);
             this.txtHyojun.TabIndex = 8;
             this.txtHyojun.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHyojun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             this.txtHyojun.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commonTxtKeyPress);
             this.txtHyojun.Leave += new System.EventHandler(this.commonTxtLeave);
             // 
@@ -295,6 +299,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtSiire.Size = new System.Drawing.Size(50, 22);
             this.txtSiire.TabIndex = 9;
             this.txtSiire.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSiire.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             this.txtSiire.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commonTxtKeyPress);
             this.txtSiire.Leave += new System.EventHandler(this.commonTxtLeave);
             // 
@@ -319,6 +324,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtHyoka.Size = new System.Drawing.Size(50, 22);
             this.txtHyoka.TabIndex = 10;
             this.txtHyoka.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHyoka.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             this.txtHyoka.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commonTxtKeyPress);
             this.txtHyoka.Leave += new System.EventHandler(this.commonTxtLeave);
             // 
@@ -343,6 +349,7 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.txtTatene.Size = new System.Drawing.Size(50, 22);
             this.txtTatene.TabIndex = 11;
             this.txtTatene.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTatene.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShohinTankaIkkatsuUpdateTxt_KeyDown);
             this.txtTatene.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.commonTxtKeyPress);
             this.txtTatene.Leave += new System.EventHandler(this.commonTxtLeave);
             // 
@@ -460,34 +467,34 @@ namespace KATO.Form.M1150_ShohinTankaIkkatsuUpdate
             this.gridShohin.AllowUserToAddRows = false;
             this.gridShohin.AllowUserToResizeColumns = false;
             this.gridShohin.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShohin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShohin.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridShohin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridShohin.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridShohin.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridShohin.EnableHeadersVisualStyles = false;
             this.gridShohin.Location = new System.Drawing.Point(12, 201);
             this.gridShohin.Name = "gridShohin";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridShohin.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridShohin.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridShohin.RowHeadersVisible = false;
             this.gridShohin.RowTemplate.Height = 21;
             this.gridShohin.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;

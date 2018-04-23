@@ -56,13 +56,12 @@
             // 
             // btnF12
             // 
-            this.btnF12.TabIndex = 8;
+            this.btnF12.TabIndex = 9;
             this.btnF12.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF11
             // 
-            this.btnF11.TabIndex = 10;
-            this.btnF11.TabStop = false;
+            this.btnF11.TabIndex = 8;
             this.btnF11.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF10
@@ -97,7 +96,7 @@
             // 
             // btnF04
             // 
-            this.btnF04.TabIndex = 9;
+            this.btnF04.TabIndex = 10;
             this.btnF04.Click += new System.EventHandler(this.judBtnClick);
             // 
             // btnF03

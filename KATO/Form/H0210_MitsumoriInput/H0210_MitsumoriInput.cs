@@ -3440,6 +3440,13 @@ namespace KATO.Form.H0210_MitsumoriInput
                     {
                         continue;
                     }
+
+                    // 数量、見積単価の両方に値が無いものはコメント行として扱う（分類入力の対象外）
+                    if (getCellValue(gridMitsmori[3, i], false).Equals("") && getCellValue(gridMitsmori[5, i], false).Equals(""))
+                    {
+                        continue;
+                    }
+
                     // テンプレート末尾まで来たら 次ページへ切替
                     if (xlsRowCnt >= 51)
                     {

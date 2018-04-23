@@ -227,6 +227,9 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 return;
             }
 
+            //待機状態
+            Cursor.Current = Cursors.WaitCursor;
+
             // 検索するデータをリストに格納
             lstSearchItem.Add(txtYmdFrom.Text);
             lstSearchItem.Add(txtYmdTo.Text);
@@ -301,6 +304,9 @@ namespace KATO.Form.C0130_TantouUriageArariPrint
                 // 対象データがある場合
                 if (dtUriage != null && dtUriage.Rows.Count > 0)
                 {
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+
                     // 印刷ダイアログ
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_A4, CommonTeisu.YOKO);
                     pf.ShowDialog(this);
