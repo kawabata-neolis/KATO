@@ -102,7 +102,7 @@ namespace KATO.Common.Form
 
             //DataGridViewの初期設定
             SetUpGrid();
-            
+
             //型番がある場合は検索
             if (txtKataban.blIsEmpty() == true)
             {
@@ -172,7 +172,7 @@ namespace KATO.Common.Form
             ShohinCd.DataPropertyName = "商品コード";
             ShohinCd.Name = "商品コード";
             ShohinCd.HeaderText = "商品コード";
-            
+
             //個々の幅、文章の寄せ（売上数非表示）
             setColumnSeihin(TokuisakiCd, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 0);
             setColumnSeihin(ShimukesakiName, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 320);
@@ -427,6 +427,9 @@ namespace KATO.Common.Form
             //単価の取得
             btmTanka.Text = (string)gridSeihin.CurrentRow.Cells["単価"].Value.ToString();
             btmTanka.setMoneyData(btmTanka.Text, 0);
+
+            //商品コードの取得
+            btxtShohinCd.Text = (string)gridSeihin.CurrentRow.Cells["商品コード"].Value.ToString();
 
             this.Close();
         }
