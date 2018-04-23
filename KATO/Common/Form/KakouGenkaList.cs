@@ -276,7 +276,7 @@ namespace KATO.Common.Form
             try
             {
                 //受注番号が0の場合[-99999]とする
-                if (this.strJuchuNo == "0")
+                if (this.strJuchuNo == "0" || StringUtl.blIsEmpty(this.strJuchuNo) == false)
                 {
                     strJuchu = "-99999";
                 }
