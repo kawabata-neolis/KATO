@@ -115,6 +115,18 @@ namespace KATO.Form.F0140_TanaorosiInput
 
                     this.btnF01.Text = STR_FUNC_F1;
                     this.btnF04.Text = STR_FUNC_F4;
+
+                    //閲覧権限がある場合
+                    if (("1").Equals(etsuranFlg))
+                    {
+                        this.btnF05.Text = "F5:更新";
+                        this.btnF05.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnF05.Enabled = false;
+                    }
+
                     this.btnF12.Text = STR_FUNC_F12;
 
                 }
@@ -233,7 +245,6 @@ namespace KATO.Form.F0140_TanaorosiInput
             gridRireki.Columns["商品コード"].Width = 120;
             gridRireki.Columns["商品コード"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             gridRireki.Columns["商品コード"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
         }
 
         ///<summary>
@@ -274,6 +285,12 @@ namespace KATO.Form.F0140_TanaorosiInput
                     this.delText();
                     break;
                 case Keys.F5:
+                    // ファンクションボタン制御
+                    if (this.btnF05.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
+                        this.updKoshin();
+                    }
                     break;
                 case Keys.F6:
                     break;
@@ -382,6 +399,14 @@ namespace KATO.Form.F0140_TanaorosiInput
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delText();
+                    break;
+                case STR_BTN_F05: // 更新
+                    // ファンクションボタン制御
+                    if (this.btnF05.Enabled)
+                    {
+                        logger.Info(LogUtil.getMessage(this._Title, "更新実行"));
+                        this.updKoshin();
+                    }
                     break;
                 case STR_BTN_F12: // 終了
                     logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
@@ -1121,6 +1146,108 @@ namespace KATO.Form.F0140_TanaorosiInput
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// updKoshin
+        /// 更新実行
+        /// </summary>
+        private void updKoshin()
+        {
+            // 空文字判定（伝票年月日）
+            if (txtYMD.blIsEmpty() == false)
+            {
+                // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "項目が空です。日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                txtYMD.Focus();
+                return;
+            }
+
+            // 日付フォーマットチェック
+            string datedata = txtYMD.chkDateDataFormat(txtYMD.Text);
+            if ("".Equals(datedata))
+            {
+                // メッセージボックスの処理
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_DATE_ALERT, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
+            else
+            {
+                txtYMD.Text = datedata;
+            }
+
+            // ビジネス層のインスタンス生成
+            F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();
+            try
+            {
+
+                //待機状態
+                Cursor.Current = Cursors.WaitCursor;
+
+                // 表示中の棚卸年月日の棚卸データの取得、判定
+                int intJud = tanaorosiinputB.judTanaData(txtYMD.Text);
+
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
+                //本社棚卸データがない場合
+                if (intJud == 1)
+                {
+                    // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
+                    BaseMessageBox basemessageboxHon = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "本社の棚卸データがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessageboxHon.ShowDialog();
+                }
+                //岐阜棚卸データがない場合
+                else if (intJud == 2)
+                {
+                    // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
+                    BaseMessageBox basemessageboxHon = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "岐阜の棚卸データがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessageboxHon.ShowDialog();
+                }
+                else
+                {
+                    // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
+                    BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "指定した年月日の棚卸データを更新します。" + "\r\n" + "よろしいですか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                    // NOが押された場合
+                    if (basemessagebox.ShowDialog() == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    //待機状態
+                    Cursor.Current = Cursors.WaitCursor;
+
+                    // 表示中の棚卸年月日を追加処理
+                    tanaorosiinputB.updTanaData(txtYMD.Text, SystemInformation.UserName);
+
+                    // メッセージボックスの処理、追加成功の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, CommonTeisu.LABEL_TOUROKU, CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
+
+                    //元に戻す
+                    Cursor.Current = Cursors.Default;
+
+                    //初期化
+                    delText();
+                }
+            }
+            catch (Exception ex)
+            {
+                //元に戻す
+                Cursor.Current = Cursors.Default;
+
+                // エラーロギング
+                new CommonException(ex);
+
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+            }
+            return;
         }
 
         ///<summary>

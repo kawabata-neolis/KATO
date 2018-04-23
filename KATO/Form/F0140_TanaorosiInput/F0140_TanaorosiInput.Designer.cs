@@ -626,6 +626,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             // 
             this.txtBiko.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtBiko.Location = new System.Drawing.Point(1030, 749);
+            this.txtBiko.MaxLength = 100;
             this.txtBiko.Name = "txtBiko";
             this.txtBiko.Size = new System.Drawing.Size(327, 22);
             this.txtBiko.TabIndex = 10;
