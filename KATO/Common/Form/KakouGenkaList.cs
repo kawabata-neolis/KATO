@@ -269,12 +269,20 @@ namespace KATO.Common.Form
         /// </summary>
         private void setKakouGenka()
         {
+            string strJuchu = this.strJuchuNo;
+
             // ビジネス層のインスタンス生成
             KakouGenkaList_B kakouB = new KakouGenkaList_B();
             try
             {
+                //受注番号が0の場合[-99999]とする
+                if (this.strJuchuNo == "0")
+                {
+                    strJuchu = "-99999";
+                }
+
                 // 検索実行
-                DataTable dtKakouGenkaList = kakouB.getDatagridView(this.strJuchuNo);
+                DataTable dtKakouGenkaList = kakouB.getDatagridView(strJuchu);
 
                 // データテーブルからデータグリッドへセット
                 gridJuchu.DataSource = dtKakouGenkaList;
