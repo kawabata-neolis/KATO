@@ -624,10 +624,10 @@
             this.txtHachusu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
             this.txtHachusu.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.txtHachusu.intDeciSet = 0;
-            this.txtHachusu.intIntederSet = 0;
+            this.txtHachusu.intIntederSet = 6;
             this.txtHachusu.intShishagonyu = 0;
             this.txtHachusu.Location = new System.Drawing.Point(90, 752);
-            this.txtHachusu.MaxLength = 8;
+            this.txtHachusu.MaxLength = 6;
             this.txtHachusu.MinusFlg = true;
             this.txtHachusu.Name = "txtHachusu";
             this.txtHachusu.Size = new System.Drawing.Size(63, 22);

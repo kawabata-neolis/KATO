@@ -33,6 +33,9 @@ namespace KATO.Form.B0250_MOnyuryoku
         //履歴表示用
         DataTable dtRireki = new DataTable();
 
+        //登録されていないデータがあるフラグ
+        Boolean blNoToroku = false;
+
         ///<summary>
         ///MOnyuryoku
         ///フォームの初期設定
@@ -91,6 +94,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             //閲覧権限がある場合
             if (("1").Equals(etsuranFlg))
             {
+
                 this.btnF07.Text = "F7:ＣＳＶ";
                 this.btnF07.Enabled = true;
             }
@@ -879,7 +883,7 @@ namespace KATO.Form.B0250_MOnyuryoku
             if (lblSetMaker.CodeTxtText == "")
             {
                 //記入漏れ発生メッセージ（OK）
-                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n日付を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n文字を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
 
                 lblSetMaker.Focus();
@@ -889,6 +893,11 @@ namespace KATO.Form.B0250_MOnyuryoku
             //仕入先コード
             if (lblSetShiresaki.CodeTxtText == "")
             {
+                //記入漏れ発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "入力項目が空です。\r\n文字を入力してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+
+                lblSetMaker.Focus();
                 return;
             }
 
@@ -910,7 +919,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         StringUtl.blIsEmpty(gridKataban2.Rows[intCnt].Cells["発注番号"].Value.ToString()) == false
                         )
                     {
-                        //何もなし
+                        //スルー
                     }
                     //発注指が空白もしくは0の場合
                     else if (StringUtl.blIsEmpty(gridKataban2.Rows[intCnt].Cells["発注指"].Value.ToString()) == false ||
@@ -1040,6 +1049,9 @@ namespace KATO.Form.B0250_MOnyuryoku
 
                 //上段グリッドの表示
                 showGridKataban1();
+
+                //登録されていないフラグを落とす
+                blNoToroku = false;
             }
             catch (Exception ex)
             {
@@ -1080,6 +1092,9 @@ namespace KATO.Form.B0250_MOnyuryoku
             int intDenNo;
             string strShimuke;
 
+            //MOデータの存在チェック用
+            DataTable dtMOdata = new DataTable();
+
             //明細行円以下計算区分データの確保用
             DataTable dtMesaikbn = new DataTable();
 
@@ -1101,6 +1116,9 @@ namespace KATO.Form.B0250_MOnyuryoku
             //上段グリッドの存在確認
             if (gridKataban.Rows.Count <= 0)
             {
+                //メッセージボックスの処理、確定するデータが無いのウィンドウ（OK）
+                BaseMessageBox basemessageboxKakutei = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "確定するデータがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessageboxKakutei.ShowDialog();
                 return;
             }
 
@@ -1110,17 +1128,38 @@ namespace KATO.Form.B0250_MOnyuryoku
                 return;
             }
 
-            //メッセージボックスの処理、ＭＯ入力確定するか否かのウィンドウ(YES,NO)
-            BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力確定", "ＭＯ入力データを確定しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-            //NOが押された場合
-            if (basemessagebox.ShowDialog() == DialogResult.No)
+            //登録されていないフラグがある場合
+            if (blNoToroku)
             {
+                //メッセージボックスの処理、確定するデータが無いのウィンドウ（OK）
+                BaseMessageBox basemessageboxKakutei = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "登録されていないデータがあります。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessageboxKakutei.ShowDialog();
                 return;
             }
 
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
             {
+                //年月度でMOデータの取得
+                dtMOdata = monyuryokuB.getMOData(txtYM.Text);
+
+                //データが存在しない場合
+                if (dtMOdata.Rows.Count == 0)
+                {
+                    //メッセージボックスの処理、確定するデータが無いのウィンドウ（OK）
+                    BaseMessageBox basemessageboxKakutei = new BaseMessageBox(this, CommonTeisu.TEXT_TOUROKU, "指定した年月のMOデータがありません。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                    basemessageboxKakutei.ShowDialog();
+                    return;
+                }
+
+                //メッセージボックスの処理、ＭＯ入力確定するか否かのウィンドウ(YES,NO)
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, "ＭＯ入力確定", "ＭＯ入力データを確定しますか？", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+                //NOが押された場合
+                if (basemessagebox.ShowDialog() == DialogResult.No)
+                {
+                    return;
+                }
+
                 //上段グリッドのループ
                 for (int intCnt = 0; intCnt < gridKataban.Rows.Count; intCnt++)
                 {
@@ -1254,7 +1293,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         //並び替え
                         lstStringMOkakuteiChubunSub.Sort();
 
-                        //
+                        //中段グリッド内行分ループ
                         for (int intCntRow = 0; intCntRow < lstStringMOkakuteiChubunSub.Count; intCntRow++)
                         {
                             //被っていない場合
@@ -1296,7 +1335,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //エラーロギング
                 new CommonException(ex);
                 //例外発生メッセージ（OK）
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
             }
         }
@@ -1501,6 +1540,9 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //履歴情報確保
             getRIrekiData();
+
+            //登録されていないフラグを落とす
+            blNoToroku = false;
 
             return;
         }
@@ -1792,6 +1834,9 @@ namespace KATO.Form.B0250_MOnyuryoku
 
             //集計月数にフォーカス
             txtShukeiM.Focus();
+
+            //登録されていないフラグを落とす
+            blNoToroku = false;
         }
 
         ///<summary>
@@ -1975,6 +2020,8 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //中段グリッド表示
                 showGridKataban2();
 
+                //登録されていないフラグを落とす
+                blNoToroku = false;
             }
             catch (Exception ex)
             {
@@ -2403,7 +2450,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 if (txtHachusu.blIsEmpty())
                 {
                     //箱入数を発注数で割った時0以外の場合
-                    if (int.Parse(txtHachusu.Text) % Math.Floor(double.Parse(gridKataban2.Rows[intRow].Cells["箱入数"].Value.ToString())) != 0)
+                    if (double.Parse(txtHachusu.Text) % Math.Floor(double.Parse(gridKataban2.Rows[intRow].Cells["箱入数"].Value.ToString())) != 0)
                     {
                         //発注数を含む場合のウィンドウ（OK）
                         BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, "発注数は箱入数の倍数を入力してください。箱入数：" + (Math.Floor(double.Parse(gridKataban2.Rows[intRow].Cells["箱入数"].Value.ToString()))).ToString(), CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
@@ -2411,7 +2458,19 @@ namespace KATO.Form.B0250_MOnyuryoku
                         txtHachusu.Focus();
                         return;
                     }
-                    gridKataban2.Rows[intRow].Cells["発注数"].Value = txtHachusu.Text;
+
+                    // 削除する文字
+                    char[] removeChars = new char[] {','};
+
+                    string strHachusu = txtHachusu.Text;
+
+                    // "," を取り除く
+                    foreach (char c in removeChars)
+                    {
+                        strHachusu = txtHachusu.Text.Replace(c.ToString(), "");
+                    }
+                    
+                    gridKataban2.Rows[intRow].Cells["発注数"].Value = strHachusu;
                 }
 
                 //単価がある場合
@@ -2451,6 +2510,9 @@ namespace KATO.Form.B0250_MOnyuryoku
                     gridKataban2.Rows[intRow].Cells["発注担当者コード"].Value = lblSetHachuTantousha.CodeTxtText.ToString();
                     gridKataban2.Rows[intRow].Cells["発注担当者"].Value = lblSetHachuTantousha.ValueLabelText.ToString();
                 }
+
+                //登録されていないフラグ
+                blNoToroku = true;
             }
         }
 
@@ -3284,6 +3346,10 @@ namespace KATO.Form.B0250_MOnyuryoku
                         //メモ帳に書き込みとファイルを開く
                         monyuryokuB.setExcelData(strDirectoryPath, NasiKataban);
                     }
+
+                    //登録されていないフラグを落とす
+                    blNoToroku = false;
+
                 }
                 catch (Exception ex)
                 {

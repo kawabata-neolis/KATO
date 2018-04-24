@@ -365,6 +365,7 @@ namespace KATO.Form.A0160_ShukoIraiInput
                 case Keys.F8:
                     break;
                 case Keys.F9:
+                    logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
                     //商品リスト移動メソッド
                     showShohinList();
                     break;

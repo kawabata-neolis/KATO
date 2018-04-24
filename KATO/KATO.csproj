@@ -1847,6 +1847,9 @@
     <Content Include="SQL\A1540_ZaikohinHachu\ZaikohinHachu_Tantosha_SELECT.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_YM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQL\B0250_MOnyuryoku\MOnyuryoku_SELECT_Chuban.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

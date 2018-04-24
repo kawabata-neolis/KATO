@@ -313,7 +313,7 @@ namespace KATO.Form.A0470_Hachusuhenko
                     break;
                 case Keys.F5:
                     logger.Info(LogUtil.getMessage(this._Title, "選択実行"));
-                    //this.delText();
+                    setDataSelect();
                     break;
                 case Keys.F6:
                     break;

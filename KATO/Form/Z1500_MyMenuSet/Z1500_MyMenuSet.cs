@@ -237,9 +237,11 @@ namespace KATO.Form.Z1500_MyMenuSet
             switch (((Button)sender).Name)
             {
                 case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addMyMenu();
                     break;
                 case STR_BTN_F12: // 終了
+                    logger.Info(LogUtil.getMessage(this._Title, "終了実行"));
                     this.Close();
                     break;
             }
