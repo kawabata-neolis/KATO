@@ -533,7 +533,7 @@ namespace KATO.Form.A0100_HachuInput
                     }
 
                     //発注残確認に移動
-                    Form.D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, textSet_Torihikisaki.CodeTxtText, txtHachuban);
+                    Form.D0360_JuchuzanKakunin.D0360_JuchuzanKakunin juchuzankakunin = new D0360_JuchuzanKakunin.D0360_JuchuzanKakunin(this, textSet_Torihikisaki.CodeTxtText, txtHachuban, true);
                     try
                     {
                         juchuzankakunin.ShowDialog();
@@ -1612,12 +1612,12 @@ namespace KATO.Form.A0100_HachuInput
                                 strDay = strDay.PadLeft(2, '0');
                             }
 
-                            cmbHachutan.Items.Add(((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,#.0000") + ":" + (((DateTime)dtSetTanka.Rows[cnt]["日時"]).Year.ToString()).Substring(2) + "/" + strMonth + "/" + strDay);
+                            cmbHachutan.Items.Add(((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,#.00") + ":" + (((DateTime)dtSetTanka.Rows[cnt]["日時"]).Year.ToString()).Substring(2) + "/" + strMonth + "/" + strDay);
                         }
                     }
                     else
                     {
-                        cmbHachutan.Items.Add("0.0000");
+                        cmbHachutan.Items.Add("0.00");
                     }
 
                     txtHachuYMD.Text = dtSetCd.Rows[0]["発注年月日"].ToString();
@@ -1636,7 +1636,7 @@ namespace KATO.Form.A0100_HachuInput
 
                     txtShohinCd.Text = dtSetCd.Rows[0]["商品コード"].ToString();
                     txtHachusu.Text = ((decimal)dtSetCd.Rows[0]["発注数量"]).ToString("#,#");
-                    cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,0.0000");
+                    cmbHachutan.Text = ((decimal)dtSetCd.Rows[0]["発注単価"]).ToString("#,0.00");
                     txtNoki.Text = dtSetCd.Rows[0]["納期"].ToString();
                     txtChuban.Text = dtSetCd.Rows[0]["注番"].ToString();
                     txtJuchuban.Text = dtSetCd.Rows[0]["受注番号"].ToString();
@@ -1772,7 +1772,7 @@ namespace KATO.Form.A0100_HachuInput
                 cmbHachutan.Text = cmbHachutan.Text.Split(':')[0];
             }
 
-            cmbHachutan.Text = decimal.Parse(cmbHachutan.Text).ToString("#,#.0000");
+            cmbHachutan.Text = decimal.Parse(cmbHachutan.Text).ToString("#,#.00");
 
             return blCheckTrue = true;
         }
