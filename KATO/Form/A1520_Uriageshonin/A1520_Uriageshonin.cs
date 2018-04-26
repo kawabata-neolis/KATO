@@ -77,6 +77,7 @@ namespace KATO.Form.A1520_Uriageshonin
             this._Title = "売上承認";
             // フォームでもキーイベントを受け取る
             this.KeyPreview = true;
+            this.btnF03.Text = STR_FUNC_F3;
             this.btnF04.Text = STR_FUNC_F4;
             this.btnF12.Text = STR_FUNC_F12;
 
@@ -484,6 +485,8 @@ namespace KATO.Form.A1520_Uriageshonin
                 case Keys.F2:
                     break;
                 case Keys.F3:
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delRiekiritsu();
                     break;
                 case Keys.F4:
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
@@ -524,6 +527,10 @@ namespace KATO.Form.A1520_Uriageshonin
             //ボタン入力情報によって動作を変える
             switch (((Button)sender).Name)
             {
+                case STR_BTN_F03: // 削除
+                    logger.Info(LogUtil.getMessage(this._Title, "削除実行"));
+                    this.delRiekiritsu();
+                    break;
                 case STR_BTN_F04: // 取消
                     logger.Info(LogUtil.getMessage(this._Title, "取消実行"));
                     this.delView();
@@ -974,6 +981,80 @@ namespace KATO.Form.A1520_Uriageshonin
 
             //初期フォーカス位置
             radHenpin.Focus();
+        }
+
+        ///<summary>
+        ///delRiekiritsu
+        ///削除機能
+        ///引数　：なし
+        ///戻り値：なし
+        ///</summary>
+        private void delRiekiritsu()
+        {
+            //フォーカスが利益率承認グリッドではない場合
+            if (ActiveControl.Name != gridRiekiritsu.Name)
+            {
+                return;
+            }
+
+            //グリッドが空の場合
+            if (gridRiekiritsu.Rows.Count < 0)
+            {
+                return;
+            }
+
+            //削除しますかメッセージ
+            //メッセージボックスの処理、削除するか否かのウィンドウ(YES,NO)
+            BaseMessageBox basemessageboxRieki = new BaseMessageBox(this, CommonTeisu.TEXT_DEL, "選択中の利益率承認データを削除します。よろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+            //NOが押された場合
+            if (basemessageboxRieki.ShowDialog() == DialogResult.No)
+            {
+                return;
+            }
+
+            //データ登録用
+            List<string> lstGrid = new List<string>();
+
+            //承認フラグ登録用
+            int intShoninFlg = -1;
+
+            ////承認がNの場合
+            //if (gridRiekiritsu.CurrentRow.Cells["承認"].Value.ToString() == "N")
+            //{
+            //    //Yに変更
+            //    gridRiekiritsu.CurrentRow.Cells["承認"].Value = "Y";
+            //    intShoninFlg = 1;
+            //}
+            //else
+            //{
+            //    //Nに変更
+            //    gridRiekiritsu.CurrentRow.Cells["承認"].Value = "N";
+            //    intShoninFlg = 0;
+            //}
+
+            //承認情報
+            lstGrid.Add(gridRiekiritsu.CurrentRow.Cells["受注番号"].Value.ToString());
+            lstGrid.Add(intShoninFlg.ToString());
+            lstGrid.Add(DateTime.Now.ToString());
+            lstGrid.Add(SystemInformation.UserName);
+
+            A1520_Uriageshonin_B uriageshoninB = new A1520_Uriageshonin_B();
+            try
+            {
+                uriageshoninB.updRiekiritsu(lstGrid);
+
+                //利益率承認のグリッド表示
+                showGirdRiekiritsu();
+            }
+            catch (Exception ex)
+            {
+                //データロギング
+                new CommonException(ex);
+                //例外発生メッセージ（OK）
+                BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
+                basemessagebox.ShowDialog();
+                return;
+            }
         }
     }
 }

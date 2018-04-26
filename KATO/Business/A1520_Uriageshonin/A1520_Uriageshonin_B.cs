@@ -112,7 +112,7 @@ namespace KATO.Business.A1520_Uriageshonin_B
             //表示範囲によって分岐
             if (intShonin == 0)
             {
-                strShonin = "";
+                strShonin = "AND (承認フラグ = 0 OR 承認フラグ = 1) ";
             }
             else if (intShonin == 1)
             {

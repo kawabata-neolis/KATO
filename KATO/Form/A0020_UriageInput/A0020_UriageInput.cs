@@ -866,7 +866,6 @@ namespace KATO.Form.A0020_UriageInput
                         {
                             juchuB.updZaiko(dr["商品コード"].ToString(), labelSet_Eigyosho.CodeTxtText, txtYMD.Text, Environment.UserName, con);
                         }
-                        con.Commit();
                     }
 
                     // メッセージボックスの処理、削除成功の場合のウィンドウ（OK）
@@ -1945,7 +1944,7 @@ namespace KATO.Form.A0020_UriageInput
                             // (2018/03/23 加藤社長相談の上 暫定対応実施)
                             //
 
-                            if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
+                            if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) > 0)
                             {
                             }
                             else
@@ -2496,7 +2495,7 @@ namespace KATO.Form.A0020_UriageInput
             try
             {
                 // 利益率承認が下りている場合、利益率チェックは無視
-                if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) != 0)
+                if (uriageinputB.getRiekiAccept(((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text) > 0)
                 {
                     getSyohinbetuCheck = 9;
                     return getSyohinbetuCheck;

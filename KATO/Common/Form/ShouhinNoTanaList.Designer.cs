@@ -259,7 +259,7 @@
             // btnF11
             // 
             this.btnF11.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF11.Location = new System.Drawing.Point(1289, 40);
+            this.btnF11.Location = new System.Drawing.Point(1471, 40);
             this.btnF11.Name = "btnF11";
             this.btnF11.Size = new System.Drawing.Size(100, 23);
             this.btnF11.TabIndex = 5;
@@ -269,7 +269,7 @@
             // btnF12
             // 
             this.btnF12.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
-            this.btnF12.Location = new System.Drawing.Point(1289, 11);
+            this.btnF12.Location = new System.Drawing.Point(1471, 11);
             this.btnF12.Name = "btnF12";
             this.btnF12.Size = new System.Drawing.Size(100, 23);
             this.btnF12.TabIndex = 7;
@@ -314,7 +314,7 @@
             this.gridTorihiki.RowHeadersVisible = false;
             this.gridTorihiki.RowTemplate.Height = 21;
             this.gridTorihiki.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTorihiki.Size = new System.Drawing.Size(1385, 513);
+            this.gridTorihiki.Size = new System.Drawing.Size(1560, 513);
             this.gridTorihiki.StandardTab = true;
             this.gridTorihiki.TabIndex = 6;
             this.gridTorihiki.DoubleClick += new System.EventHandler(this.gridTorihiki_DoubleClick);
@@ -335,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1409, 675);
+            this.ClientSize = new System.Drawing.Size(1584, 675);
             this.Controls.Add(this.lblRecords);
             this.Controls.Add(this.gridTorihiki);
             this.Controls.Add(this.btnF11);

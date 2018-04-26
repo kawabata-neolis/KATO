@@ -516,6 +516,11 @@ namespace KATO.Common.Form
             teika.Name = "定価";
             teika.HeaderText = "定価";
 
+            DataGridViewTextBoxColumn hyojunbaika = new DataGridViewTextBoxColumn();
+            hyojunbaika.DataPropertyName = "標準売価";
+            hyojunbaika.Name = "標準売価";
+            hyojunbaika.HeaderText = "標準売価";
+
             DataGridViewTextBoxColumn kakeritu = new DataGridViewTextBoxColumn();
             kakeritu.DataPropertyName = "掛率";
             kakeritu.Name = "掛率";
@@ -525,6 +530,26 @@ namespace KATO.Common.Form
             shiretanka.DataPropertyName = "仕入単価";
             shiretanka.Name = "仕入単価";
             shiretanka.HeaderText = "仕入単価";
+
+            DataGridViewTextBoxColumn hyokatanka = new DataGridViewTextBoxColumn();
+            hyokatanka.DataPropertyName = "評価単価";
+            hyokatanka.Name = "評価単価";
+            hyokatanka.HeaderText = "評価単価";
+
+            DataGridViewTextBoxColumn tatene = new DataGridViewTextBoxColumn();
+            tatene.DataPropertyName = "建値仕入単価";
+            tatene.Name = "建値仕入単価";
+            tatene.HeaderText = "建値仕入単価";
+
+            DataGridViewTextBoxColumn tanabanHon = new DataGridViewTextBoxColumn();
+            tanabanHon.DataPropertyName = "棚番本社";
+            tanabanHon.Name = "棚番本社";
+            tanabanHon.HeaderText = "棚番本社";
+
+            DataGridViewTextBoxColumn tanabanGifu = new DataGridViewTextBoxColumn();
+            tanabanGifu.DataPropertyName = "棚番岐阜";
+            tanabanGifu.Name = "棚番岐阜";
+            tanabanGifu.HeaderText = "棚番岐阜";
 
             DataGridViewTextBoxColumn memo = new DataGridViewTextBoxColumn();
             memo.DataPropertyName = "メモ";
@@ -541,15 +566,28 @@ namespace KATO.Common.Form
             setColumnShohin(honshafree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(gihuzaiko, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
             setColumnShohin(gihufree, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
-            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 75);
+            setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 95);
+            setColumnShohin(hyojunbaika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 67);
             setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumnShohin(hyokatanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumnShohin(tatene, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 128);
+            setColumnShohin(tanabanHon, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 96);
+            setColumnShohin(tanabanGifu, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 96);
             setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 190);
 
             //メーカーコードと大分類コードの列を非表示
-            gridTorihiki.Columns[0].Visible = false;
-            gridTorihiki.Columns[1].Visible = false;
+            gridTorihiki.Columns["商品コード"].Visible = false;
+            gridTorihiki.Columns["大分類名"].Visible = false;
 
+            //商品マスタから来た場合
+            if (intFrmKind == CommonTeisu.FRM_SHOHIN)
+            {
+                gridTorihiki.Columns["本社在庫"].Visible = false;
+                gridTorihiki.Columns["本社ﾌﾘｰ"].Visible = false;
+                gridTorihiki.Columns["岐阜在庫"].Visible = false;
+                gridTorihiki.Columns["岐阜ﾌﾘｰ"].Visible = false;
+            }
         }
 
         ///<summary>

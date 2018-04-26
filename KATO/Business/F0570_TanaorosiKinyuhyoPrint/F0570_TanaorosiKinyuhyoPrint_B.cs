@@ -421,9 +421,17 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                 workbook.Dispose();
 
                 objExcel = new Microsoft.Office.Interop.Excel.Application();
-
-                objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
                 objExcel.Visible = false;
+
+                if (p != null)
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                }
+                else
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMaximized;
+                }
+
                 objExcel.DisplayAlerts = false;
 
                 objWorkBooks = objExcel.Workbooks;
@@ -447,7 +455,6 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                                                 Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
                                                 );
 
-
                 if (p != null)
                 {
                     objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
@@ -459,6 +466,21 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
                                           true,         // Collate:部単位で印刷するか指定
                                           Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
                                           );
+                }
+                else
+                {
+                    objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                          Type.Missing, // To:印刷終了のページ番号
+                                          1,            // Copies:印刷部数
+                                          true, // Preview:印刷プレビューをするか指定
+                                          p, // ActivePrinter:プリンターの名称
+                                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                          true,         // Collate:部単位で印刷するか指定
+                                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                          );
+                    objExcel.Visible = true;
+                    objWorkBook.Activate();
+
                 }
             }
             catch (Exception ex)
@@ -521,10 +543,10 @@ namespace KATO.Business.F0570_TanaorosiKinyuhyoPrint
             try {
             string ret = "";
                 // PDF化の処理
-                if (p == null)
-                {
-                    ret = pdf.createPdf(strOutXlsFile, strDateTime, 0);
-                }
+                //if (p == null)
+                //{
+                //    ret = pdf.createPdf(strOutXlsFile, strDateTime, 0);
+                //}
                 //return pdf.createPdf(strOutXlsFile, strDateTime, 0);
                 return ret;
 

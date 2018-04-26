@@ -172,8 +172,8 @@ namespace KATO.Common.Form
             //ウィンドウ位置をマニュアル
             this.StartPosition = FormStartPosition.Manual;
             //親画面の中央を指定
-            this.Left = c.Left + (intWindowWidth - this.Width) / 2;
-            this.Top = c.Top + 50;
+            this.Left = c.Left;
+            this.Top = c.Top;
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
@@ -402,6 +402,36 @@ namespace KATO.Common.Form
             memo.Name = "メモ";
             memo.HeaderText = "メモ";
 
+            DataGridViewTextBoxColumn teika = new DataGridViewTextBoxColumn();
+            teika.DataPropertyName = "定価";
+            teika.Name = "定価";
+            teika.HeaderText = "定価";
+
+            DataGridViewTextBoxColumn hyojunbaika = new DataGridViewTextBoxColumn();
+            hyojunbaika.DataPropertyName = "標準売価";
+            hyojunbaika.Name = "標準売価";
+            hyojunbaika.HeaderText = "標準売価";
+
+            DataGridViewTextBoxColumn kakeritu = new DataGridViewTextBoxColumn();
+            kakeritu.DataPropertyName = "掛率";
+            kakeritu.Name = "掛率";
+            kakeritu.HeaderText = "掛率";
+
+            DataGridViewTextBoxColumn shiretanka = new DataGridViewTextBoxColumn();
+            shiretanka.DataPropertyName = "仕入単価";
+            shiretanka.Name = "仕入単価";
+            shiretanka.HeaderText = "仕入単価";
+
+            DataGridViewTextBoxColumn hyokatanka = new DataGridViewTextBoxColumn();
+            hyokatanka.DataPropertyName = "評価単価";
+            hyokatanka.Name = "評価単価";
+            hyokatanka.HeaderText = "評価単価";
+
+            DataGridViewTextBoxColumn tatene = new DataGridViewTextBoxColumn();
+            tatene.DataPropertyName = "建値仕入単価";
+            tatene.Name = "建値仕入単価";
+            tatene.HeaderText = "建値仕入単価";
+
             DataGridViewTextBoxColumn TanaH = new DataGridViewTextBoxColumn();
             TanaH.DataPropertyName = "棚番本社";
             TanaH.Name = "棚番本社";
@@ -419,8 +449,14 @@ namespace KATO.Common.Form
             setColumnShohin(chubunrui, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 160);
             setColumnShohin(hinmei, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 328);
             setColumnShohin(memo, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 190);
-            setColumnShohin(TanaH, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 190);
-            setColumnShohin(TanaG, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 190);
+            setColumnShohin(TanaH, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnShohin(TanaG, DataGridViewContentAlignment.MiddleLeft, DataGridViewContentAlignment.MiddleCenter, null, 100);
+            setColumnShohin(teika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnShohin(hyojunbaika, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 100);
+            setColumnShohin(kakeritu, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0", 75);
+            setColumnShohin(shiretanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumnShohin(hyokatanka, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 120);
+            setColumnShohin(tatene, DataGridViewContentAlignment.MiddleRight, DataGridViewContentAlignment.MiddleCenter, "#,0.##", 130);
 
             //メーカーコードと大分類コードの列を非表示
             gridTorihiki.Columns[0].Visible = false;

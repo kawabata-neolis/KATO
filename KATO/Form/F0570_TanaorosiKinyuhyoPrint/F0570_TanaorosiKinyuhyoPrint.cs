@@ -356,7 +356,7 @@ namespace KATO.Form.F0570_TanaorosiKinyuhyoPrint
                         Cursor.Current = Cursors.Default;
 
                         // プレビュー
-                        pf.execPreview(strFile);
+                        //pf.execPreview(strFile);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)

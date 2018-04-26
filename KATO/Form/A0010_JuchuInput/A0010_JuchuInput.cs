@@ -2860,6 +2860,12 @@ namespace KATO.Form.A0010_JuchuInput
             }
             // 利益率チェック
             #region
+            // 数量または単価がマイナス（赤伝）の場合は利益率チェックはパス
+            if (getDecValue(cbJuchuTanka.Text).CompareTo(0) < 0 || getDecValue(txtJuchuSuryo.Text).CompareTo(0) < 0)
+            {
+                return true;
+            }
+
             int intRiekiFlg = 0;
 
             intRiekiFlg = judRiekiritsu();
