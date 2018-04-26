@@ -208,7 +208,7 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                 case Keys.Enter:
                     break;
                 case Keys.F1:
-                    logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTokuteimukesakiTanka();
                     break;
                 case Keys.F2:
@@ -261,8 +261,8 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         {
             switch (((Button)sender).Name)
             {
-                case STR_BTN_F01: // 追加
-                    logger.Info(LogUtil.getMessage(this._Title, "追加実行"));
+                case STR_BTN_F01: // 登録
+                    logger.Info(LogUtil.getMessage(this._Title, "登録実行"));
                     this.addTokuteimukesakiTanka();
                     break;
                 case STR_BTN_F03: // 削除
@@ -566,6 +566,8 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
         ///</summary>
         private void setShohinList()
         {
+            logger.Info(LogUtil.getMessage(this._Title, "検索実行"));
+
             if (blSelectFlag == false)
             {
                 ShouhinList shouhinlist = new ShouhinList(this);
@@ -639,7 +641,6 @@ namespace KATO.Form.M1160_TokuteimukesakiTanka
                     }
                 }
             }
-
         }
 
 

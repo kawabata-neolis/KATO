@@ -452,7 +452,7 @@ namespace KATO.Business.B0250_MOnyuryoku
                                                                     "','" + lstString[1] +
                                                                     "','" + lstString[2] +
                                                                     "', NULL" +
-                                                                    ",'"  + lstString[4] + "'";
+                                                                    ",'" + lstString[4] + "'";
 
                     dbconnective.RunSql(strSQL);
                 }
@@ -500,8 +500,24 @@ namespace KATO.Business.B0250_MOnyuryoku
             dbconnective.BeginTrans();
             try
             {
-                //ＭＯデータ削除_PROCを実行
-                dbconnective.RunSql("ＭＯデータ作成_PROC", CommandType.StoredProcedure, lstStringMOdata, lstTableName);
+                //中分類が空の場合
+                if (lstStringMOdata[5].Trim() == "")
+                {
+                    string strSQL = "ＭＯデータ作成_PROC '" + lstStringMOdata[0] +
+                                                "','" + lstStringMOdata[1] +
+                                                "','" + lstStringMOdata[2] +
+                                                "','" + lstStringMOdata[3] +
+                                                "','" + lstStringMOdata[4] +
+                                                "', NULL" +
+                                                ",'" + lstStringMOdata[6] +
+                                                "','" + lstStringMOdata[7] + "'";
+                    dbconnective.RunSql(strSQL);
+                }
+                else
+                {
+                    //ＭＯデータ削除_PROCを実行
+                    dbconnective.RunSql("ＭＯデータ作成_PROC", CommandType.StoredProcedure, lstStringMOdata, lstTableName);
+                }
 
                 //コミット
                 dbconnective.Commit();
@@ -637,8 +653,25 @@ namespace KATO.Business.B0250_MOnyuryoku
                 lstDataName.Add(lstString[6]);
                 lstDataName.Add(lstString[7]);
 
-                //ＭＯデータ初期更新_PROCを実行
-                dbconnective.RunSqlRe("ＭＯデータ初期更新_PROC", CommandType.StoredProcedure, lstDataName, lstTableName);
+                //中分類が空の場合
+                if (lstDataName[5].Trim() == "")
+                {
+                    string strSQL = "ＭＯデータ初期更新_PROC '" + lstDataName[0] +
+                                                "','" + lstDataName[1] +
+                                                "','" + lstDataName[2] +
+                                                "','" + lstDataName[3] +
+                                                "','" + lstDataName[4] +
+                                                "', NULL" +
+                                                ",'" + lstDataName[6] +
+                                                "','" + lstDataName[7] + "'";
+                    dbconnective.RunSql(strSQL);
+                }
+                else
+                {
+                    //ＭＯデータ初期更新_PROCを実行
+                    dbconnective.RunSqlRe("ＭＯデータ初期更新_PROC", CommandType.StoredProcedure, lstDataName, lstTableName);
+                }
+
 
                 //コミット
                 dbconnective.Commit();
@@ -854,7 +887,7 @@ namespace KATO.Business.B0250_MOnyuryoku
         ///updHachukoshin
         ///発注更新処理
         ///</summary>
-        public void updHachukoshin(List<string> lstStringHachukoshin)
+        public void updHachukoshin(List<string> lstStringHachukoshin, List<string> lstStringMOkakuteiChubun)
         {
             List<string> lstTableName = new List<string>();
             lstTableName.Add("@仕入先コード");
@@ -892,8 +925,13 @@ namespace KATO.Business.B0250_MOnyuryoku
             dbconnective.BeginTrans();
             try
             {
-                //ＭＯデータの確定処理
-                dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+                for (int intCntRow = 0; intCntRow < lstStringMOkakuteiChubun.Count; intCntRow++)
+                {
+                    lstStringHachukoshin[12] = lstStringMOkakuteiChubun[intCntRow];
+
+                    //ＭＯデータの確定処理
+                    dbconnective.RunSqlRe("発注更新_PROC", CommandType.StoredProcedure, lstStringHachukoshin, lstTableName);
+                }
 
                 //コミット
                 dbconnective.Commit();
@@ -1021,6 +1059,60 @@ namespace KATO.Business.B0250_MOnyuryoku
 
                 //SQLファイルと該当コードでフォーマット
                 strSQLInput = string.Format(strSQLInput, lstPrintData[0], lstPrintData[1], lstPrintData[2], strSQLChubun);
+
+                //SQL接続後、該当データを取得
+                dtSetCd_B = dbconnective.ReadSql(strSQLInput);
+
+                return (dtSetCd_B);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+            finally
+            {
+                //トランザクション終了
+                dbconnective.DB_Disconnect();
+            }
+        }
+
+        ///<summary>
+        ///getMOData
+        ///年月でMOデータを取得
+        ///</summary>
+        public DataTable getMOData(string strYMD)
+        {
+            //SQLファイルのパスとファイル名を入れる用
+            List<string> lstSQL = new List<string>();
+
+            //SQLファイルのパス用（フォーマット後）
+            string strSQLInput = "";
+
+            //SQLファイルのパスとファイル名を追加
+            lstSQL.Add("B0250_MOnyuryoku");
+            lstSQL.Add("MOnyuryoku_SELECT_YM");
+
+            //SQL実行時に取り出したデータを入れる用
+            DataTable dtSetCd_B = new DataTable();
+
+            //SQL接続
+            OpenSQL opensql = new OpenSQL();
+
+            //接続用クラスのインスタンス作成
+            DBConnective dbconnective = new DBConnective();
+            try
+            {
+                //SQLファイルのパス取得
+                strSQLInput = opensql.setOpenSQL(lstSQL);
+
+                //パスがなければ返す
+                if (strSQLInput == "")
+                {
+                    return (dtSetCd_B);
+                }
+
+                //SQLファイルと該当コードでフォーマット
+                strSQLInput = string.Format(strSQLInput, strYMD);
 
                 //SQL接続後、該当データを取得
                 dtSetCd_B = dbconnective.ReadSql(strSQLInput);
