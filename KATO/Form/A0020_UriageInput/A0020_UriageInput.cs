@@ -36,6 +36,8 @@ namespace KATO.Form.A0020_UriageInput
 
         public bool editFlg = false;
 
+        public string strEtsuranFlg = "";
+        
         bool noEditable = false;
         bool f1Flg = false;
 
@@ -195,6 +197,9 @@ namespace KATO.Form.A0020_UriageInput
             cmbSubWinShow.Items.Add("売上実績確認");
             cmbSubWinShow.Items.Add("受注残・発注残確認");
             cmbSubWinShow.Items.Add("商品元帳確認");
+
+            //閲覧フラグを確保
+            strEtsuranFlg = this.etsuranFlg;
         }
 
 
@@ -3621,7 +3626,8 @@ namespace KATO.Form.A0020_UriageInput
 
                         //受注番号が変更された場合の処理
                         ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2.Text = datarow["受注番号"].ToString();
-                        
+                        ((TextSet_Jucyu)cs1[0]).strChumonSub = datarow["受注番号"].ToString();
+
                         ((TextSet_Jucyu)cs1[0]).txtJucyuNoElem2_func();
 
                         Hinmei = "";
@@ -3806,11 +3812,11 @@ namespace KATO.Form.A0020_UriageInput
             {
                 if (!noEditable)
                 {
-                    textSet_Jucyu1.readOnly = false;
-                    textSet_Jucyu2.readOnly = false;
-                    textSet_Jucyu3.readOnly = false;
-                    textSet_Jucyu4.readOnly = false;
-                    textSet_Jucyu5.readOnly = false;
+                    //textSet_Jucyu1.readOnly = false;
+                    //textSet_Jucyu2.readOnly = false;
+                    //textSet_Jucyu3.readOnly = false;
+                    //textSet_Jucyu4.readOnly = false;
+                    //textSet_Jucyu5.readOnly = false;
                 }
             }
 

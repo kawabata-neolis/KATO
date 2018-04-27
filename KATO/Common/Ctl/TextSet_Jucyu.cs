@@ -19,6 +19,8 @@ namespace KATO.Common.Ctl
 
         public bool readOnly = false;
 
+        public string strChumonSub = "";
+
         public String strNo
         {
             get
@@ -320,14 +322,27 @@ namespace KATO.Common.Ctl
         //注文Noのフォーカスが外れた場合
         private void txtJucyuNoElem2_Leave(object sender, EventArgs e)
         {
+            //親画面の情報取得
+            A0020_UriageInput uriageinput = (A0020_UriageInput)this.Parent;
 
-            if (this.readOnly)
+            //
+            if (strChumonSub != txtJucyuNoElem2.Text)
+            {
+                if (!"1".Equals(uriageinput.strEtsuranFlg))
+                {
+                    if (this.readOnly)
+                    {
+                        return;
+                    }
+                }
+                this.Cursor = Cursors.WaitCursor;
+                txtJucyuNoElem2_func();
+                this.Cursor = Cursors.Default;
+            }
+            else
             {
                 return;
             }
-            this.Cursor = Cursors.WaitCursor;
-            txtJucyuNoElem2_func();
-            this.Cursor = Cursors.Default;
         }
 
         //注文Noのフォーカスが外れた場合の処理
@@ -355,7 +370,7 @@ namespace KATO.Common.Ctl
                 DataTable rs3;
 
                 string strSQLInput = " SELECT 得意先コード, 商品コード, メーカーコード, 大分類コード, 中分類コード, Ｃ１, Ｃ２, Ｃ３, Ｃ４, Ｃ５, Ｃ６, 受注数量, 受注単価, 仕入単価, 納期, 注番, 売上フラグ, 売上済数量, 得意先名称, 本社出庫数, 岐阜出庫数, 営業所コード, dbo.f_getメーカー名(受注.メーカーコード) AS メーカー名, 受注者コード ";
-                strSQLInput += " FROM 受注 WHERE 受注番号 = "+ txtJucyuNoElem2.Text +" AND 削除 = 'N' ";
+                strSQLInput += " FROM 受注 WHERE 受注番号 = "+ txtJucyuNoElem2. Text +" AND 削除 = 'N' ";
 
 
                 //SQLのインスタンス作成
@@ -1830,11 +1845,19 @@ namespace KATO.Common.Ctl
             switch (e.KeyCode)
             {
                 case Keys.F9:
-                    //受注残確認を開く
-                    if (this.readOnly)
+
+                    //親画面の情報取得
+                    A0020_UriageInput uriageinput = (A0020_UriageInput)this.Parent;
+
+                    if (!"1".Equals(uriageinput.strEtsuranFlg))
                     {
-                        return;
+                        //受注残確認を開く
+                        if (this.readOnly)
+                        {
+                            return;
+                        }
                     }
+
                     this.setJyucyuZanKakunin();
                     break;
                 case Keys.Enter:
