@@ -1697,7 +1697,7 @@ namespace KATO.Form.B0250_MOnyuryoku
 
 
                 //マイナスの型番にチェックがある場合
-                if (radSet_2btn_PrintCheck.radbtn0.Checked == true)
+                if (radSet_2btn_PrintCheck.radbtn0.Checked == true || radSet_2btn_PrintCheck.judCheckBtn() == 0)
                 {
                     lstStringViewData.Add("Minus");                 //マイナス判定
                 }

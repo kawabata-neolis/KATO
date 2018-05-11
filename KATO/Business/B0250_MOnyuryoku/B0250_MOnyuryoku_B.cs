@@ -202,16 +202,16 @@ namespace KATO.Business.B0250_MOnyuryoku
             string strSQLChubun = "";
 
             //中分類コードがある場合
-            if (lstStringViewData[3].ToString().Trim() != "")
+            if (!string.IsNullOrWhiteSpace(lstStringViewData[3].ToString().Trim()))
             {
                 strSQLChubun = "AND ＭＯ.中分類コード= '" + lstStringViewData[3] + "'";
             }
 
             //マイナスの型番にチェックされている場合
-            if (lstStringViewData[4] == "Minus")
+            if (lstStringViewData[4].Equals("Minus"))
             {
                 //lstStringViewData[6]
-                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量*" + lstStringViewData[5] + ") )<0");
+                lstStringViewData.Add(" AND (現在在庫数 + 発注残数量 - (売上数量 * " + lstStringViewData[5] + ")) < 0");
             }
             else
             {
