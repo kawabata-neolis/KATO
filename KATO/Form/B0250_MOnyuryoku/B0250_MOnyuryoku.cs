@@ -36,6 +36,9 @@ namespace KATO.Form.B0250_MOnyuryoku
         //登録されていないデータがあるフラグ
         Boolean blNoToroku = false;
 
+        int iRad = 0;
+        int iIdx = 0;
+
         ///<summary>
         ///MOnyuryoku
         ///フォームの初期設定
@@ -112,9 +115,12 @@ namespace KATO.Form.B0250_MOnyuryoku
             SetUpGrid();
 
             radSet_2btn_PrintCheck.radbtn1.Checked = true;
+            iRad = 1;
             txtYM.setUp(3);
             txtZaikoYMD.setUp(0);
             txtHachuYMD.setUp(0);
+            radSet_2btn_PrintCheck.radbtn0.Click += new EventHandler(radSet_2btn_PrintCheck_Click);
+            radSet_2btn_PrintCheck.radbtn1.Click += new EventHandler(radSet_2btn_PrintCheck_Click);
         }
 
         ///<summary>
@@ -1043,6 +1049,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                 //グリッドの初期化
                 gridKataban.DataSource = "";
                 gridKataban2.DataSource = "";
+                iIdx = 0;
 
                 //中段グリッドの表示
                 showGridKataban2();
@@ -1514,6 +1521,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             gridKataban2.DataSource = "";
             gridRireki.DataSource = "";
 
+            iIdx = 0;
+
             //待機状態
             Cursor.Current = Cursors.WaitCursor;
 
@@ -1678,6 +1687,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             //表示できたかどうか
             bool blGrid2VIew = false;
 
+            lblKensaku.Text = "";
+
             //YMD判定
             bool blGood = txtYM.updCalendarLeave(txtYM.Text);
 
@@ -1719,11 +1730,14 @@ namespace KATO.Form.B0250_MOnyuryoku
                         //グリッドビューの表示
                         gridKataban2.DataSource = dtGridViewKataban;
 
+                        lblKensaku.Text = (dtGridViewKataban.Rows.Count).ToString() + " 件";
+
                         //グリッドの文字色指定
                         setGridColor();
 
                         //表示成功
                         blGrid2VIew = true;
+                        gridKataban2.CurrentCell = gridKataban2[0, iIdx];
                     }
                     else
                     {
@@ -1735,6 +1749,7 @@ namespace KATO.Form.B0250_MOnyuryoku
                         gridKataban.DataSource = "";
                         gridKataban2.DataSource = "";
                         gridRireki.DataSource = "";
+                        iIdx = 0;
                     }
                 }
                 catch (Exception ex)
@@ -1819,11 +1834,13 @@ namespace KATO.Form.B0250_MOnyuryoku
             txtZaikoYMD.setUp(0);
             txtHachuYMD.setUp(0);
             radSet_2btn_PrintCheck.radbtn1.Checked = true;
+            iRad = 1;
 
             //グリッド部分
             gridKataban.DataSource = "";
             gridKataban2.DataSource = "";
             gridRireki.DataSource = "";
+            iIdx = 0;
 
             //非表示部分
             txtKingaku.Clear();
@@ -2082,11 +2099,12 @@ namespace KATO.Form.B0250_MOnyuryoku
                 dateOpenYMD = dateEndYMD;
 
                 //その月の最終日を求める
-                dateEndYMD = dateEndYMD.AddMonths(1);
+                //dateEndYMD = dateEndYMD.AddMonths(1);
+                dateEndYMD = dateEndYMD.AddMonths(-1);
                 dateEndYMD = dateEndYMD.AddDays(-1);
 
                 //開始年月日の確保
-                dateOpenYMD = dateOpenYMD.AddMonths(-int.Parse(txtShukeiM.Text));
+                dateOpenYMD = dateOpenYMD.AddMonths(-(int.Parse(txtShukeiM.Text) + 1));
             }
             else
             {
@@ -2096,7 +2114,8 @@ namespace KATO.Form.B0250_MOnyuryoku
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
             {
-                lstString.Add((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + dateOpenYMD.Day).ToString());
+                //lstString.Add((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + dateOpenYMD.Day).ToString());
+                lstString.Add((dateOpenYMD.Year + "/" + dateOpenYMD.Month + "/" + "1").ToString());
                 lstString.Add((dateEndYMD.Year + "/" + dateEndYMD.Month + "/" + dateEndYMD.Day).ToString());
                 lstString.Add(DateTime.Now.ToString());
                 lstString.Add(SystemInformation.UserName);
@@ -2146,8 +2165,10 @@ namespace KATO.Form.B0250_MOnyuryoku
             //選択行が空の場合
             if (gridKataban2.CurrentRow.Index == 0)
             {
-                return;
+                //return;
             }
+
+            iIdx = gridKataban2.CurrentCell.RowIndex;
 
             B0250_MOnyuryoku_B monyuryokuB = new B0250_MOnyuryoku_B();
             try
@@ -3386,6 +3407,24 @@ namespace KATO.Form.B0250_MOnyuryoku
                 SendKeys.Send("+{TAB}");
                 return;
             }
+        }
+
+        private void radSet_2btn_PrintCheck_Click(object sender, EventArgs e)
+        {
+            if (radSet_2btn_PrintCheck.judCheckBtn() != iRad)
+            {
+                gridKataban.DataSource = "";
+                gridKataban2.DataSource = "";
+                gridRireki.DataSource = "";
+                iIdx = 0;
+                setShiresakiEnterKey();
+            }
+            iRad = radSet_2btn_PrintCheck.judCheckBtn();
+        }
+
+        private void radSet_2btn_PrintCheck_MouseClick(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }

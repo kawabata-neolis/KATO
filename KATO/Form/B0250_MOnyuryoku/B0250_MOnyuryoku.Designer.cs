@@ -57,8 +57,6 @@
             this.lblSetShimukesaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
             this.btnInput = new KATO.Common.Ctl.BaseButton();
             this.btnChancel = new KATO.Common.Ctl.BaseButton();
-            this.gbPrintCheck = new System.Windows.Forms.GroupBox();
-            this.radSet_2btn_PrintCheck = new KATO.Common.Ctl.RadSet_2btn();
             this.lblSetHachuTantousha = new KATO.Common.Ctl.LabelSet_Tantousha();
             this.gridRireki = new KATO.Common.Ctl.BaseDataGridView();
             this.lblSetShiresaki = new KATO.Common.Ctl.LabelSet_Torihikisaki();
@@ -71,9 +69,10 @@
             this.txtHachuYMD = new KATO.Common.Ctl.BaseCalendar();
             this.lblHachuYMD = new KATO.Common.Ctl.BaseLabel(this.components);
             this.txtShukeiM = new KATO.Common.Ctl.BaseTextMoney();
+            this.lblKensu = new KATO.Common.Ctl.BaseLabel(this.components);
+            this.radSet_2btn_PrintCheck = new KATO.Common.Ctl.RadSet_2btn();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).BeginInit();
-            this.gbPrintCheck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).BeginInit();
             this.SuspendLayout();
             // 
@@ -459,32 +458,6 @@
             this.btnChancel.UseVisualStyleBackColor = true;
             this.btnChancel.Click += new System.EventHandler(this.btnChancel_Click);
             // 
-            // gbPrintCheck
-            // 
-            this.gbPrintCheck.Controls.Add(this.radSet_2btn_PrintCheck);
-            this.gbPrintCheck.Location = new System.Drawing.Point(1217, 707);
-            this.gbPrintCheck.Name = "gbPrintCheck";
-            this.gbPrintCheck.Size = new System.Drawing.Size(194, 38);
-            this.gbPrintCheck.TabIndex = 101;
-            this.gbPrintCheck.TabStop = false;
-            // 
-            // radSet_2btn_PrintCheck
-            // 
-            this.radSet_2btn_PrintCheck.intJudBtn = 0;
-            this.radSet_2btn_PrintCheck.LabelTitle = "";
-            this.radSet_2btn_PrintCheck.Location = new System.Drawing.Point(8, 12);
-            this.radSet_2btn_PrintCheck.Name = "radSet_2btn_PrintCheck";
-            this.radSet_2btn_PrintCheck.PositionLabelTitle_X = 0;
-            this.radSet_2btn_PrintCheck.PositionLabelTitle_Y = 0;
-            this.radSet_2btn_PrintCheck.PositionRadbtn1_X = 0;
-            this.radSet_2btn_PrintCheck.PositionRadbtn1_Y = 0;
-            this.radSet_2btn_PrintCheck.PositionRadbtn2_X = 110;
-            this.radSet_2btn_PrintCheck.PositionRadbtn2_Y = 0;
-            this.radSet_2btn_PrintCheck.Radbtn1Text = "ﾏｲﾅｽの型番";
-            this.radSet_2btn_PrintCheck.Radbtn2Text = "すべて";
-            this.radSet_2btn_PrintCheck.Size = new System.Drawing.Size(185, 21);
-            this.radSet_2btn_PrintCheck.TabIndex = 37;
-            // 
             // lblSetHachuTantousha
             // 
             this.lblSetHachuTantousha.AppendLabelSize = 0;
@@ -697,17 +670,45 @@
             this.txtShukeiM.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOnyuryokuTxt_KeyDown);
             this.txtShukeiM.KeyUp += new System.Windows.Forms.KeyEventHandler(this.judtxtMOKeyUp);
             // 
+            // lblKensu
+            // 
+            this.lblKensu.Font = new System.Drawing.Font("ＭＳ ゴシック", 11.25F);
+            this.lblKensu.Location = new System.Drawing.Point(1416, 716);
+            this.lblKensu.Name = "lblKensu";
+            this.lblKensu.Size = new System.Drawing.Size(155, 27);
+            this.lblKensu.strToolTip = null;
+            this.lblKensu.TabIndex = 102;
+            this.lblKensu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // radSet_2btn_PrintCheck
+            // 
+            this.radSet_2btn_PrintCheck.intJudBtn = 0;
+            this.radSet_2btn_PrintCheck.LabelTitle = "";
+            this.radSet_2btn_PrintCheck.Location = new System.Drawing.Point(1225, 719);
+            this.radSet_2btn_PrintCheck.Name = "radSet_2btn_PrintCheck";
+            this.radSet_2btn_PrintCheck.PositionLabelTitle_X = 0;
+            this.radSet_2btn_PrintCheck.PositionLabelTitle_Y = 0;
+            this.radSet_2btn_PrintCheck.PositionRadbtn1_X = 0;
+            this.radSet_2btn_PrintCheck.PositionRadbtn1_Y = 0;
+            this.radSet_2btn_PrintCheck.PositionRadbtn2_X = 110;
+            this.radSet_2btn_PrintCheck.PositionRadbtn2_Y = 0;
+            this.radSet_2btn_PrintCheck.Radbtn1Text = "ﾏｲﾅｽの型番";
+            this.radSet_2btn_PrintCheck.Radbtn2Text = "すべて";
+            this.radSet_2btn_PrintCheck.Size = new System.Drawing.Size(185, 21);
+            this.radSet_2btn_PrintCheck.TabIndex = 37;
+            // 
             // B0250_MOnyuryoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 826);
+            this.Controls.Add(this.radSet_2btn_PrintCheck);
+            this.Controls.Add(this.lblKensu);
             this.Controls.Add(this.txtShukeiM);
             this.Controls.Add(this.txtTanka);
             this.Controls.Add(this.lblSetShiresaki);
             this.Controls.Add(this.gridRireki);
             this.Controls.Add(this.lblSetHachuTantousha);
-            this.Controls.Add(this.gbPrintCheck);
             this.Controls.Add(this.btnChancel);
             this.Controls.Add(this.btnInput);
             this.Controls.Add(this.lblSetShimukesaki);
@@ -764,12 +765,12 @@
             this.Controls.SetChildIndex(this.lblSetShimukesaki, 0);
             this.Controls.SetChildIndex(this.btnInput, 0);
             this.Controls.SetChildIndex(this.btnChancel, 0);
-            this.Controls.SetChildIndex(this.gbPrintCheck, 0);
             this.Controls.SetChildIndex(this.lblSetHachuTantousha, 0);
             this.Controls.SetChildIndex(this.gridRireki, 0);
             this.Controls.SetChildIndex(this.lblSetShiresaki, 0);
             this.Controls.SetChildIndex(this.txtTanka, 0);
             this.Controls.SetChildIndex(this.txtShukeiM, 0);
+            this.Controls.SetChildIndex(this.lblKensu, 0);
             this.Controls.SetChildIndex(this.cmbSubWinShow, 0);
             this.Controls.SetChildIndex(this.btnF01, 0);
             this.Controls.SetChildIndex(this.btnF02, 0);
@@ -783,9 +784,9 @@
             this.Controls.SetChildIndex(this.btnF10, 0);
             this.Controls.SetChildIndex(this.btnF11, 0);
             this.Controls.SetChildIndex(this.btnF12, 0);
+            this.Controls.SetChildIndex(this.radSet_2btn_PrintCheck, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridKataban2)).EndInit();
-            this.gbPrintCheck.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridRireki)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -813,8 +814,6 @@
         private Common.Ctl.LabelSet_Torihikisaki lblSetShimukesaki;
         private Common.Ctl.BaseButton btnInput;
         private Common.Ctl.BaseButton btnChancel;
-        private System.Windows.Forms.GroupBox gbPrintCheck;
-        private Common.Ctl.RadSet_2btn radSet_2btn_PrintCheck;
         private Common.Ctl.LabelSet_Tantousha lblSetHachuTantousha;
         private Common.Ctl.BaseDataGridView gridRireki;
         private Common.Ctl.LabelSet_Torihikisaki lblSetShiresaki;
@@ -827,5 +826,7 @@
         private Common.Ctl.BaseCalendar txtHachuYMD;
         private Common.Ctl.BaseLabel lblHachuYMD;
         private Common.Ctl.BaseTextMoney txtShukeiM;
+        private Common.Ctl.BaseLabel lblKensu;
+        private Common.Ctl.RadSet_2btn radSet_2btn_PrintCheck;
     }
 }

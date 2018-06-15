@@ -501,6 +501,8 @@ namespace KATO.Form.A0020_UriageInput
                 }
                 #endregion
 
+                textSet_Jucyu1.GokeiKeisan();
+
                 //データチェック処理を行うメソッドへ。
                 if (!DataCheack(con))
                 {
@@ -1811,6 +1813,7 @@ namespace KATO.Form.A0020_UriageInput
 
                             //[1]型番
                             lstString.Add(Kataban);
+                            lstString.Add(((TextSet_Jucyu)cs1[0]).txtSyohinCdElem11.Text);
 
                             //ビジネス層、型番が一致する発注データをカウントする。
                             dtSetView = uriageinputB.getKatbanHacyuCount(lstString, con);

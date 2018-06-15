@@ -208,7 +208,7 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             string strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
             //配列設定
-            string[] aryStr = { lstString[0], lstString[1] };
+            string[] aryStr = { lstString[0], lstString[1], lstString[2] };
 
             strSQLInput = string.Format(strSQLInput, aryStr);
 

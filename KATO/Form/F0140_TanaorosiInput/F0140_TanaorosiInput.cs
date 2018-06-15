@@ -34,6 +34,8 @@ namespace KATO.Form.F0140_TanaorosiInput
         //編集中かどうかのフラグ
         Boolean blnEditting = false;
 
+        int gRowIndex = 0;
+
         ///<summary>
         ///F0140_TanaorosiInput
         ///棚卸入力（画面設定）
@@ -425,6 +427,8 @@ namespace KATO.Form.F0140_TanaorosiInput
             if (e.KeyData == Keys.Enter)
             {
                 setSelectItem();
+                e.Handled = true;
+                return;
             }
         }
 
@@ -797,6 +801,7 @@ namespace KATO.Form.F0140_TanaorosiInput
         ///</summary>
         private void btnView(object sender, EventArgs e)
         {
+            gRowIndex = 0;
             setViewGrid();
         }
 
@@ -866,6 +871,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                 if (gridRireki.RowCount > 0)
                 {
                     gridRireki.Focus();
+                    gridRireki.CurrentCell = gridRireki[0, gRowIndex];
                 }
                 else
                 {
@@ -915,6 +921,7 @@ namespace KATO.Form.F0140_TanaorosiInput
             //データ渡し用
             lstString.Add(txtYMD.Text);
             lstString.Add(strSelectSyouhinCD);
+            lstString.Add((string)gridRireki.CurrentRow.Cells["営業所コード"].Value);
 
             try
             {
@@ -942,6 +949,11 @@ namespace KATO.Form.F0140_TanaorosiInput
                     //各テキストボックスに記入
                     txtTanasuu.Text = decElemTanasu.ToString();
                     txtTyoubosuu.Text = decElemShitei.ToString();
+
+
+                    gRowIndex = gridRireki.CurrentCell.RowIndex;
+
+
 
                     txtTanasuu.Focus();
                 }
@@ -1107,6 +1119,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                         //データ渡し用
                         lstString.Add(txtYMD.Text);
                         lstString.Add(txtShouhinCD.Text);
+                        lstString.Add(labelSet_Eigyousho.CodeTxtText);
 
                         //処理部に移動
                         F0140_TanaorosiInput_B tanaorosiinputB = new F0140_TanaorosiInput_B();

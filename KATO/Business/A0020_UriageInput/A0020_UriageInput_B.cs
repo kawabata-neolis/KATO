@@ -1630,7 +1630,8 @@ namespace KATO.Business.A0020_UriageInput
             strSql = strSql + "SELECT COUNT(*) AS 型番発注カウント  FROM 発注 ";
             strSql = strSql + " WHERE 削除='N'";
             strSql = strSql + " AND 受注番号=" + lstString[0];
-            strSql = strSql + " AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'')= '" + lstString[1] + "' ";
+            //strSql = strSql + " AND REPLACE(ISNULL(Ｃ１,'')+ISNULL(Ｃ２,'')+ISNULL(Ｃ３,'')+ISNULL(Ｃ４,'')+ISNULL(Ｃ５,'')+ISNULL(Ｃ６,'') ,' ' ,'')= '" + lstString[1] + "' ";
+            strSql = strSql + " AND 商品コード = '" + lstString[2] + "' ";
 
 
             try

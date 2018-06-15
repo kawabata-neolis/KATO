@@ -1860,6 +1860,10 @@ namespace KATO.Form.A0010_JuchuInput
                     {
                         basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫予定日は７日以内に設定してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
                     }
+                    else if (c == 5)
+                    {
+                        basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, "出庫倉庫を選択してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_EXCLAMATION);
+                    }
 
                     else
                     {

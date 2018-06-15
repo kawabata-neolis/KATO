@@ -52,14 +52,17 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
             //出力順の設定
             string strShuturyoku = "";
+            string s = "";
 
             if (lstStringViewData[4].ToString() == "Tokuisaki")
             {
                 strShuturyoku = "A.コード,A.年月";
+                s = "1";
             }
             else
             {
                 strShuturyoku = "A.フリガナ,A.年月";
+                s = "2";
             }
 
             //SQL発行
@@ -67,6 +70,38 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                DateTime de = new DateTime(int.Parse(lstStringViewData[3].Substring(0, 4)), int.Parse(lstStringViewData[3].Substring(5, 2)), 1);
+                DateTime ds = new DateTime(int.Parse(lstStringViewData[2].Substring(0, 4)), int.Parse(lstStringViewData[2].Substring(5, 2)), 1);
+                de = de.AddMonths(1);
+                de = de.AddDays(-1);
+
+                while (true)
+                {
+                    ds = ds.AddMonths(1);
+                    //ds = ds.AddDays(-1);
+
+                    if ((ds.AddDays(-1)).CompareTo(de) > 0)
+                    {
+                        break;
+                    }
+                    string sq = "買掛金残高一覧表_PROC '" + (ds.AddDays(-1)).ToString("yyyy/MM/dd") + "', '"
+                        + lstStringViewData[0] + "', '" + lstStringViewData[1] + "', " + s + ", 'sys'";
+                    dbconnective.ReadSql(sq);
+                }
+
+
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+
             try
             {
                 //SQLファイルのパス取得
@@ -126,14 +161,17 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
             //出力順の設定
             string strShuturyoku = "";
+            string s = "";
 
             if (lstStringViewData[4].ToString() == "Tokuisaki")
             {
                 strShuturyoku = "A.コード,A.年月";
+                s = "1";
             }
             else
             {
                 strShuturyoku = "A.フリガナ,A.年月";
+                s = "2";
             }
 
             //SQL発行
@@ -141,6 +179,42 @@ namespace KATO.Business.C0520_KaikakekinZandakaIchiranKakunin_B
 
             //接続用クラスのインスタンス作成
             DBConnective dbconnective = new DBConnective();
+
+            try
+            {
+                DateTime de = new DateTime(int.Parse(lstStringViewData[3].Substring(0, 4)), int.Parse(lstStringViewData[3].Substring(5, 2)), 1);
+                DateTime ds = new DateTime(int.Parse(lstStringViewData[2].Substring(0, 4)), int.Parse(lstStringViewData[2].Substring(5, 2)), 1);
+                de = de.AddMonths(1);
+                de = de.AddDays(-1);
+
+                while (true)
+                {
+                    ds = ds.AddMonths(1);
+                    //ds = ds.AddDays(-1);
+
+                    if ((ds.AddDays(-1)).CompareTo(de) > 0)
+                    {
+                        break;
+                    }
+                    string sq = "買掛金残高一覧表_PROC '" + (ds.AddDays(-1)).ToString("yyyy/MM/dd") + "', '"
+                        + lstStringViewData[0] + "', '" + lstStringViewData[1] + "', " + s + ", 'sys'";
+                    dbconnective.ReadSql(sq);
+                }
+
+
+                dbconnective.Commit();
+            }
+            catch (Exception ex)
+            {
+                //ロールバック開始
+                dbconnective.Rollback();
+                throw (ex);
+            }
+
+
+
+
+
             try
             {
                 //SQLファイルのパス取得

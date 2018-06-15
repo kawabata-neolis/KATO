@@ -341,14 +341,14 @@ namespace KATO.Form.M0620_HushoAtenaInsatsu
                     Common.Form.PrintForm pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, TATE);
 
                     //長４の場合
-                    if (radSet_2btn_Yoshi.radbtn0.Checked == true)
+                    if (radSet_2btn_Yoshi.radbtn0.Checked == true || radSet_2btn_Yoshi.judCheckBtn() == 0)
                     {
                         blNaga4 = true;
                         //印刷ダイアログ
                         pf = new Common.Form.PrintForm(this, "", CommonTeisu.SIZE_NAGA4, false);
                         pf.ShowDialog(this);
                     }
-                    else if (radSet_2btn_Yoshi.radbtn1.Checked == true)
+                    else if (radSet_2btn_Yoshi.radbtn1.Checked == true || radSet_2btn_Yoshi.judCheckBtn() == 1)
                     {
                         blNaga4 = false;
                         //印刷ダイアログ

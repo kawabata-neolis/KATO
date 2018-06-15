@@ -1008,7 +1008,7 @@ namespace KATO.Form.A0010_JuchuInput
             rdSouko.Visible = false;
 
             rdSouko.radbtn1.Checked = false;
-            rdSouko.radbtn0.Checked = true;
+            rdSouko.radbtn0.Checked = false;
 
             if (cat == cats[1] || cat == cats[3] || cat == cats[4] || cat == cats[5])
             {
@@ -2853,6 +2853,12 @@ namespace KATO.Form.A0010_JuchuInput
                 {
                     ret = 1;
                     ((BaseTextMoney)cc.Controls["txtTanka"]).Focus();
+                    break;
+                }
+
+                if (!((RadSet_2btn)cc.Controls["rdSouko"]).radbtn0.Checked && !((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
+                {
+                    ret = 5;
                     break;
                 }
             }
