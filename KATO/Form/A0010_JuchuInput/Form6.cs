@@ -2858,8 +2858,12 @@ namespace KATO.Form.A0010_JuchuInput
 
                 if (!((RadSet_2btn)cc.Controls["rdSouko"]).radbtn0.Checked && !((RadSet_2btn)cc.Controls["rdSouko"]).radbtn1.Checked)
                 {
-                    ret = 5;
-                    break;
+                    string cat = ((Label)cc.Controls["cate"]).Text;
+                    if (cat.Equals(labels[1]) || cat.Equals(labels[3]) || cat.Equals(labels[4]) || cat.Equals(labels[5]))
+                    {
+                        ret = 5;
+                        break;
+                    }
                 }
             }
 

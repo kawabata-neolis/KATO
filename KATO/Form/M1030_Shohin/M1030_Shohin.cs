@@ -456,6 +456,12 @@ namespace KATO.Form.M1030_Shohin
 
                     shouhinlist.ShowDialog();
 
+
+                    shouhinlist.Close();
+                    shouhinlist.Dispose();
+                    shouhinlist = null;
+
+
                     //初回時用、二回目以降は無くても動作する
                     if (txtShohinCd.Text != "")
                     {

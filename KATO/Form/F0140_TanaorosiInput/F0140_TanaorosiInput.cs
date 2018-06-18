@@ -69,11 +69,11 @@ namespace KATO.Form.F0140_TanaorosiInput
 
             //中分類setデータを読めるようにする
             labelSet_Daibunrui.Lschubundata = labelSet_Chubunrui;
-            labelSet_Daibunrui.LsSubchubundata = labelSet_Chubunrui_Edit;
+            labelSet_Daibunrui_Edit.LsSubchubundata = labelSet_Chubunrui_Edit;
 
             //メーカーsetデータを読めるようにする
             labelSet_Daibunrui.Lsmakerdata = labelSet_Maker;
-            labelSet_Daibunrui.LsSubmakerdata = labelSet_Maker_Edit;
+            labelSet_Daibunrui_Edit.LsSubmakerdata = labelSet_Maker_Edit;
 
         }
 
@@ -572,14 +572,14 @@ namespace KATO.Form.F0140_TanaorosiInput
             }
             if (good)
             {                
-                good = StringUtl.blIsEmpty(labelSet_Daibunrui.CodeTxtText);
+                good = StringUtl.blIsEmpty(labelSet_Daibunrui_Edit.CodeTxtText);
 
                 if (good == false)
                 {
                     // メッセージボックスの処理、項目が空の場合のウィンドウ（OK）
                     BaseMessageBox basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_INPUT, CommonTeisu.LABEL_NULL, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                     basemessagebox.ShowDialog();
-                    labelSet_Daibunrui.Focus();
+                    labelSet_Daibunrui_Edit.Focus();
                 }
             }
             if (good)
@@ -707,7 +707,7 @@ namespace KATO.Form.F0140_TanaorosiInput
                 if (labelSet_Chubunrui_Edit.codeTxt.blIsEmpty())
                 {
                     //下段中分類チェック
-                    if (labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText))
+                    if (labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui_Edit.CodeTxtText))
                     {
                         good = false;
                     }
@@ -935,8 +935,10 @@ namespace KATO.Form.F0140_TanaorosiInput
                 {
                     //各ラベル,テキストボックスに記入
                     txtShouhinCD.Text = strSelectSyouhinCD;
+                    labelSet_Daibunrui_Edit.CodeTxtText = dtSelect.Rows[0]["大分類コード"].ToString();
+                    labelSet_Daibunrui_Edit.chkTxtDaibunrui();
                     labelSet_Chubunrui_Edit.CodeTxtText = dtSelect.Rows[0]["中分類コード"].ToString();
-                    labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText);
+                    labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui_Edit.CodeTxtText);
                     labelSet_Tanaban_Edit.CodeTxtText = dtSelect.Rows[0]["棚番"].ToString();
                     labelSet_Maker_Edit.CodeTxtText = dtSelect.Rows[0]["メーカーコード"].ToString();
                     lblDspShouhin.Text = dtSelect.Rows[0]["品名型番"].ToString();
@@ -1087,9 +1089,17 @@ namespace KATO.Form.F0140_TanaorosiInput
                     shouhinlist.intFrmKind = CommonTeisu.FRM_TANAOROSHI;
                     shouhinlist.strYMD = txtYMD.Text;
                     shouhinlist.strEigyoushoCode = labelSet_Eigyousho.CodeTxtText;
-                    shouhinlist.lsDaibunrui = labelSet_Daibunrui;
+                    shouhinlist.lsDaibunrui = labelSet_Daibunrui_Edit;
                     shouhinlist.lsChubunrui = labelSet_Chubunrui_Edit;
                     shouhinlist.lsMaker = labelSet_Maker_Edit;
+
+
+                    //shouhinlist.lsDaibunrui.CodeTxtText = "";
+                    //shouhinlist.lsChubunrui.CodeTxtText = "";
+                    //shouhinlist.lsMaker.CodeTxtText = "";
+
+
+
                     shouhinlist.btxtKensaku = txtKensaku;
                     shouhinlist.blKensaku = true;
                     shouhinlist.lblGrayHinChuHinban = lblDspShouhin;
@@ -1130,8 +1140,10 @@ namespace KATO.Form.F0140_TanaorosiInput
                         if (dtSelect.Rows.Count > 0)
                         {
                             //各ラベル,テキストボックスに記入
+                            labelSet_Daibunrui_Edit.CodeTxtText = dtSelect.Rows[0]["大分類コード"].ToString();
+                            labelSet_Daibunrui_Edit.chkTxtDaibunrui();
                             labelSet_Chubunrui_Edit.CodeTxtText = dtSelect.Rows[0]["中分類コード"].ToString();
-                            labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui.CodeTxtText);
+                            labelSet_Chubunrui_Edit.chkTxtChubunrui(labelSet_Daibunrui_Edit.CodeTxtText);
                             labelSet_Tanaban_Edit.CodeTxtText = dtSelect.Rows[0]["棚番"].ToString();
                             labelSet_Maker_Edit.CodeTxtText = dtSelect.Rows[0]["メーカーコード"].ToString();
                             lblDspShouhin.Text = dtSelect.Rows[0]["品名型番"].ToString();

@@ -1037,7 +1037,12 @@ namespace KATO.Form.A0020_UriageInput
                         pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE, true);
 
                         //ラベルプリンターで印刷
-                        uriageinput_B.printGenpinhyo(Denno, false);
+                        string sp = prtList.SelectedItem.ToString();
+
+                        if (sp.Contains("C840M") == false)
+                        {
+                            uriageinput_B.printGenpinhyo(Denno, false);
+                        }
 
                         //印刷済みにする。（プロシージャー）
                         Flag = 1;
@@ -1049,8 +1054,12 @@ namespace KATO.Form.A0020_UriageInput
                         String strFile = uriageinput_B.dbToPdf(dtSetView1, dtSetView2, dtSetView3, lstSearchItem);
                         pf.execPrint(prtList.SelectedItem.ToString(), @strFile, CommonTeisu.SIZE_A4, CommonTeisu.TATE,false);
 
-                        //ラベルプリンターで印刷
-                        uriageinput_B.printGenpinhyo(Denno, false);
+                        //ラベルプリンターで印刷（伝票をC840Mで出した場合、現品票は出さない）
+                        string sp = prtList.SelectedItem.ToString();
+
+                        if (sp.Contains("C840M") == false) {
+                            uriageinput_B.printGenpinhyo(Denno, false);
+                        }
 
                         //印刷済みにする。（プロシージャー）
                         Flag = 1;

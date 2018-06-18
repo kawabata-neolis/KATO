@@ -131,6 +131,15 @@ namespace KATO.Business.F0140_TanaorosiInput_B
             OpenSQL opensql = new OpenSQL();
             strSQLInput = opensql.setOpenSQL(lstStringSQL);
 
+            //if (lstString[1] != "")
+            //{
+            //    strSQLanather = strSQLanather + " AND 棚卸記入表.営業所コード='" + lstString[1] + "'";
+            //}
+            if (lstString[2] != "")
+            {
+                strSQLanather = strSQLanather + " AND 棚卸記入表.大分類コード='" + lstString[2] + "'";
+            }
+
             if (lstString[3] != "")
             {
                 strSQLanather = strSQLanather + " AND 棚卸記入表.中分類コード='" + lstString[3] + "'";
