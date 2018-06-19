@@ -484,7 +484,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         private void btnDataCreate_Click(object sender, EventArgs e)
         {
             // データ作成
-            this.dataCreate();
+            this.dataCreate(true);
         }
 
         /// <summary>
@@ -767,12 +767,31 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             M1240_ShohinSiireKakakuSuii2_B suii_B = new M1240_ShohinSiireKakakuSuii2_B();
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 // 評価単価を更新
                 suii_B.updHyokaTanaka(txtKijunYmd.Text);
+
+                this.dataCreate(false);
+                this.search();
 
                 // メッセージボックスの処理、更新完了の場合のウィンドウ（OK）
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "正常に更新しました。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
                 basemessagebox.ShowDialog();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -782,6 +801,10 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 //例外発生メッセージ（OK）
                 basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_ERROR, CommonTeisu.LABEL_ERROR_MESSAGE, CommonTeisu.BTN_OK, CommonTeisu.DIAG_ERROR);
                 basemessagebox.ShowDialog();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
 
             return;
@@ -1217,7 +1240,7 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
         ///     dataCreate
         ///     データ作成
         /// </summary>
-        private void dataCreate()
+        private void dataCreate(bool b)
         {
             // 商品仕入価格推移2_PROC用
             List<string> lstProcItem = new List<string>();
@@ -1234,23 +1257,26 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
             {
                 BaseMessageBox basemessagebox;
 
-                // データ件数を取得
-                //DataTable dtShohin = suii_B.getCount(txtKijunYmd.Text);
-                int cnt = suii_B.getRecordCount(txtKijunYmd.Text);
+                // F7経由の場合は強制で作成
+                if (b) {
+                    // データ件数を取得
+                    //DataTable dtShohin = suii_B.getCount(txtKijunYmd.Text);
+                    int cnt = suii_B.getRecordCount(txtKijunYmd.Text);
 
-                //if (dtShohin != null && dtShohin.Rows.Count > 0)
-                if (cnt > 0)
-                {
-
-                    // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
-                    basemessagebox = new BaseMessageBox(this, "確認", "すでにデータが存在します。再計算すると入力した単価が初期化されます。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
-
-                    // NOが押された場合
-                    if (basemessagebox.ShowDialog() == DialogResult.No)
+                    //if (dtShohin != null && dtShohin.Rows.Count > 0)
+                    if (cnt > 0)
                     {
-                        return;
-                    }
 
+                        // メッセージボックスの処理、の場合のウィンドウ（YES,NO）
+                        basemessagebox = new BaseMessageBox(this, "確認", "すでにデータが存在します。再計算すると入力した単価が初期化されます。\r\nよろしいですか。", CommonTeisu.BTN_YESNO, CommonTeisu.DIAG_QUESTION);
+
+                        // NOが押された場合
+                        if (basemessagebox.ShowDialog() == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                    }
                 }
                 // カーソルを待機状態にする
                 this.Cursor = Cursors.WaitCursor;
@@ -1272,11 +1298,14 @@ namespace KATO.Form.M1240_ShohinSiireKakakuSuii2
                 // カーソルを元に戻す
                 this.Cursor = Cursors.Default;
 
-                // メッセージボックスの処理、作成完了の場合のウィンドウ（OK）
-                basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "データ作成が完了しました。条件を入力して検索してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
-                basemessagebox.ShowDialog();
+                //F7経由は検索するのでダイアログ非表示
+                if (b) {
+                    // メッセージボックスの処理、作成完了の場合のウィンドウ（OK）
+                    basemessagebox = new BaseMessageBox(this, CommonTeisu.TEXT_VIEW, "データ作成が完了しました。条件を入力して検索してください。", CommonTeisu.BTN_OK, CommonTeisu.DIAG_INFOMATION);
+                    basemessagebox.ShowDialog();
 
-                labelSet_Daibunrui.Focus();
+                    labelSet_Daibunrui.Focus();
+                }
             }
             catch (Exception ex)
             {

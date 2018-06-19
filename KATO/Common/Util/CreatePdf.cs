@@ -428,7 +428,7 @@ namespace KATO.Common.Util
 
             // コンピュータ名、日付、ページ数
             string strHeader = "（ " + System.Windows.Forms.SystemInformation.ComputerName + " ）" +
-                strSpace + strNow + strSpace + page.ToString() + " / " + maxPage.ToString();
+                strSpace + strNow + strSpace + page.ToString() + " / " + maxPage.ToString() + "　";
 
             return strHeader;
         }

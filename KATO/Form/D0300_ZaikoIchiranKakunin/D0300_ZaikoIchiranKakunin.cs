@@ -563,19 +563,19 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                     if (this.printFlg == CommonTeisu.ACTION_PREVIEW)
                     {
                         // PDF作成
-                        String strFile = zaikoIchiran_B.dbToPdf(dtZaikoIchiran, lstSearchItem);
+                        String strFile = zaikoIchiran_B.dbToPdf(dtZaikoIchiran, lstSearchItem, null);
 
                         // プレビュー
-                        pf.execPreview(strFile);
+                        //pf.execPreview(strFile);
                     }
                     // 一括印刷の場合
                     else if (this.printFlg == CommonTeisu.ACTION_PRINT)
                     {
                         // PDF作成
-                        String strFile = zaikoIchiran_B.dbToPdf(dtZaikoIchiran, lstSearchItem);
+                        String strFile = zaikoIchiran_B.dbToPdf(dtZaikoIchiran, lstSearchItem, pf.printer);
 
                         // 一括印刷
-                        pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
+                        //pf.execPrint(null, strFile, CommonTeisu.SIZE_A4, CommonTeisu.YOKO, true);
                     }
 
                     pf.Dispose();

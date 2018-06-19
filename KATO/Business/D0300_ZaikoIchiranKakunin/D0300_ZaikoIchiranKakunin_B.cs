@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 
 using ClosedXML.Excel;
+using System.Runtime.InteropServices;
 
 namespace KATO.Business.D0300_ZaikoIchiranKakunin
 {
@@ -292,11 +293,17 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
         /// <param name="dtSiireCheakList">
         ///     仕入推移表のデータテーブル</param>
         /// -----------------------------------------------------------------------------
-        public string dbToPdf(DataTable dtZaikoIchiran, List<string> lstItem)
+        public string dbToPdf(DataTable dtZaikoIchiran, List<string> lstItem, string p)
         {
             string strWorkPath = System.Configuration.ConfigurationManager.AppSettings["workpath"];
             string strDateTime = DateTime.Now.ToString("yyyyMMddHHmmss");
             string strNow = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+            Microsoft.Office.Interop.Excel.Application objExcel = null;
+            Microsoft.Office.Interop.Excel.Workbooks objWorkBooks = null;
+            Microsoft.Office.Interop.Excel.Workbook objWorkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet objWorkSheet = null;
+            Microsoft.Office.Interop.Excel.Range objRange = null;
 
             try
             {
@@ -352,7 +359,8 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                 int maxPage = 0;    // 最大ページ数
 
                 // ページ数計算
-                double page = 1.0 * maxRowCnt / 29;
+                //double page = 1.0 * maxRowCnt / 29;
+                double page = 1.0 * maxRowCnt / 44;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -426,19 +434,19 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                         // 列幅の指定
-                        headersheet.Column(1).Width = 6;
-                        headersheet.Column(2).Width = 12;
-                        headersheet.Column(3).Width = 30;
-                        headersheet.Column(4).Width = 11;
-                        headersheet.Column(5).Width = 11;
-                        headersheet.Column(6).Width = 11;
-                        headersheet.Column(7).Width = 8;
-                        headersheet.Column(8).Width = 6;
-                        headersheet.Column(9).Width = 6;
-                        headersheet.Column(10).Width = 8;
-                        headersheet.Column(11).Width = 11;
-                        headersheet.Column(12).Width = 11;
-                        headersheet.Column(13).Width = 11;
+                        headersheet.Column(1).Width = 7;
+                        headersheet.Column(2).Width = 16;
+                        headersheet.Column(3).Width = 36;
+                        headersheet.Column(4).Width = 13;
+                        headersheet.Column(5).Width = 13;
+                        headersheet.Column(6).Width = 13;
+                        headersheet.Column(7).Width = 9;
+                        headersheet.Column(8).Width = 7;
+                        headersheet.Column(9).Width = 7;
+                        headersheet.Column(10).Width = 9;
+                        headersheet.Column(11).Width = 13;
+                        headersheet.Column(12).Width = 13;
+                        headersheet.Column(13).Width = 13;
 
                         // フォントサイズ変更
                         headersheet.Range("B4:C32").Style.Font.FontSize = 6;
@@ -489,7 +497,8 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                                 .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                     // 29行毎（ヘッダーを除いた行数）にシート作成
-                    if (xlsRowCnt == 32)
+                    //if (xlsRowCnt == 32)
+                    if (xlsRowCnt == 47)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
@@ -538,8 +547,71 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                 // workbookを解放
                 workbook.Dispose();
 
+                objExcel = new Microsoft.Office.Interop.Excel.Application();
+                objExcel.Visible = false;
+
+                if (p != null)
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMinimized;
+                }
+                else
+                {
+                    objExcel.WindowState = Microsoft.Office.Interop.Excel.XlWindowState.xlMaximized;
+                }
+
+                objExcel.DisplayAlerts = false;
+
+                objWorkBooks = objExcel.Workbooks;
+
+                String strP = System.IO.Path.GetFullPath(strOutXlsFile);
+
+                objWorkBook = objWorkBooks.Open(strP, //_xslFile,     // FileName:ファイル名
+                                                Type.Missing, // UpdateLinks:ファイル内の外部参照の更新方法
+                                                Type.Missing, // ReadOnly:ReadOnlyにするかどうか
+                                                Type.Missing, // Format: テキストファイルを開く場合に区切り文字を指定する
+                                                Type.Missing, // Password:開く際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // WriteResPassword:書き込む際にパスワードがある場合にパスワードを入力
+                                                Type.Missing, // IgnoreReadOnlyRecommended:[読み取り専用を推奨する]チェックがオンの場合でも[読み取り専用を推奨する]メッセージを非表示
+                                                Type.Missing, // Origin:テキストファイルの場合、プラットフォームを指定
+                                                Type.Missing, // Delimiter:テキストファイルで且つ引数Formatが6の場合に区切り文字を指定
+                                                Type.Missing, // Editable:Excel4.0アドインの場合、アドインウィンドウを出すか指定
+                                                Type.Missing, // Notify:ファイルが読み取りor書き込みモードで開けない場合に通知リストに追加するか指定
+                                                Type.Missing, // Converter:ファイルを開くときに最初に使用するファイルコンバーターのインデックス番号を指定
+                                                Type.Missing, // AddToMru:最近使用したファイルの一覧にブックを追加するか指定
+                                                Type.Missing, // Local:Excel言語設定に合わせてファイルを保存するか指定
+                                                Type.Missing  // CorruptLoad:使用できる定数は[xlNormalLoad][xlRepairFile][xlExtractData]。指定がない場合のは[xlNormalLoad]になりOMを通じて開始するときに回復は行われません。
+                                                );
+
+                if (p != null)
+                {
+                    objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                          Type.Missing, // To:印刷終了のページ番号
+                                          1,            // Copies:印刷部数
+                                          Type.Missing, // Preview:印刷プレビューをするか指定
+                                          p, // ActivePrinter:プリンターの名称
+                                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                          true,         // Collate:部単位で印刷するか指定
+                                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                          );
+                }
+                else
+                {
+                    objWorkBook.PrintOut(Type.Missing, // From:印刷開始のページ番号
+                                          Type.Missing, // To:印刷終了のページ番号
+                                          1,            // Copies:印刷部数
+                                          true, // Preview:印刷プレビューをするか指定
+                                          p, // ActivePrinter:プリンターの名称
+                                          Type.Missing, // PrintToFile:ファイル出力をするか指定
+                                          true,         // Collate:部単位で印刷するか指定
+                                          Type.Missing  // PrToFileName	:出力先ファイルの名前を指定するかどうか
+                                          );
+                    objExcel.Visible = true;
+                    objWorkBook.Activate();
+
+                }
+
                 // PDF化の処理
-                return pdf.createPdf(strOutXlsFile, strDateTime, 1);
+                //return pdf.createPdf(strOutXlsFile, strDateTime, 1);
 
             }
             catch
@@ -548,6 +620,81 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
             }
             finally
             {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
+            }
+
+            try
+            {
+                string ret = "";
+                
+                return ret;
+
+            }
+            catch (Exception ex)
+            {
+                // エラーロギング
+                new CommonException(ex);
+                throw;
+            }
+            finally
+            {
+                // EXCEL終了処理
+                if (objWorkSheet != null)
+                {
+                    Marshal.ReleaseComObject(objWorkSheet);     // オブジェクト参照を解放
+                    objWorkSheet = null;                        // オブジェクト解放
+                }
+
+                if (objWorkBook != null)
+                {
+                    objWorkBook.Close(false,
+                        Type.Missing, Type.Missing);            //ファイルを閉じる
+                    Marshal.ReleaseComObject(objWorkBook);      // オブジェクト参照を解放
+                    objWorkBook = null;                         // オブジェクト解放
+                }
+
+                if (objWorkBooks != null)
+                {
+                    Marshal.ReleaseComObject(objWorkBooks);     // オブジェクト参照を解放
+                    objWorkBooks = null;                        // オブジェクト解放
+                }
+                if (objExcel != null)
+                {
+                    objExcel.Quit();                            // EXCELを閉じる
+
+                    Marshal.ReleaseComObject(objExcel);         // オブジェクト参照を解放
+                    objExcel = null;                            // オブジェクト解放
+                }
+
+                System.GC.Collect();                            // オブジェクトを確実に削除
                 // Workフォルダの全ファイルを取得
                 string[] files = System.IO.Directory.GetFiles(strWorkPath, "*", System.IO.SearchOption.AllDirectories);
                 // Workフォルダ内のファイル削除
@@ -556,6 +703,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                     //File.Delete(filepath);
                 }
             }
+
         }
     }
 }
