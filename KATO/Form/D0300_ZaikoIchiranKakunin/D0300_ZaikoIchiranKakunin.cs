@@ -357,11 +357,11 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 {
                     // 検索実行（本社）
                     lstSearchItem[2] = "0001";
-                    DataTable dtZaikoIchiranHonsha = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    DataTable dtZaikoIchiranHonsha = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, false);
 
                     // 検索実行（岐阜）
                     lstSearchItem[2] = "0002";
-                    DataTable dtZaikoIchiranGifu = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    DataTable dtZaikoIchiranGifu = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, false);
 
                     // 本社データに岐阜データを追加
                     foreach (DataRow drGifu in dtZaikoIchiranGifu.Rows)
@@ -408,7 +408,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 else
                 {
                     // 検索実行
-                    dtZaikoIchiran = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    dtZaikoIchiran = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, false);
                 }
 
                 int rowsCnt = dtZaikoIchiran.Rows.Count;
@@ -498,11 +498,11 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 {
                     // 検索実行（本社）
                     lstSearchItem[2] = "0001";
-                    DataTable dtZaikoIchiranHonsha = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    DataTable dtZaikoIchiranHonsha = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, true);
 
                     // 検索実行（岐阜）
                     lstSearchItem[2] = "0002";
-                    DataTable dtZaikoIchiranGifu = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    DataTable dtZaikoIchiranGifu = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, true);
 
                     // 本社データに岐阜データを追加
                     foreach (DataRow drGifu in dtZaikoIchiranGifu.Rows)
@@ -549,7 +549,7 @@ namespace KATO.Form.D0300_ZaikoIchiranKakunin
                 else
                 {
                     // 検索実行
-                    dtZaikoIchiran = zaikoIchiran_B.getZaikoIchiran(lstSearchItem);
+                    dtZaikoIchiran = zaikoIchiran_B.getZaikoIchiran(lstSearchItem, true);
                 }
 
                 // 検索データがある場合

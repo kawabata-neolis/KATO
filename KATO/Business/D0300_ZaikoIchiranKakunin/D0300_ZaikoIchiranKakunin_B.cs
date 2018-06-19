@@ -59,7 +59,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
         /// getZaikoIchiran
         /// 在庫一覧を取得
         /// </summary>
-        public DataTable getZaikoIchiran(List<string> lstItem)
+        public DataTable getZaikoIchiran(List<string> lstItem, bool b)
         {
             string strSql;
             DataTable dtZaikoIchiran = new DataTable();
@@ -190,6 +190,11 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
             strSql += " FROM 商品";
             strSql += " WHERE 削除 = 'N'";
 
+            if (b)
+            {
+                strSql += " AND 評価単価 >= 0";
+            }
+
             // 大分類コードがある場合
             if (!lstItem[3].Equals(""))
             {
@@ -217,6 +222,19 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
             strSql += " OR ((dbo.f_get指定期間_売上数量_売上明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
             strSql += " dbo.f_get指定期間_出庫数量_出庫明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
             strSql += " dbo.f_get指定期間_移動出数_倉庫間移動_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "')) <> 0) ) ";
+
+            if (b)
+            {
+                strSql += "AND (dbo.f_get指定日の在庫数_棚卸専用('" + lstItem[2] + "', 商品コード, '" + dtYmd + "') ) +";
+                strSql += "(dbo.f_get指定期間_仕入数量_仕入明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
+                strSql += "dbo.f_get指定期間_入庫数量_出庫明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
+                strSql += "dbo.f_get指定期間_移動入数_倉庫間移動_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
+                strSql += "dbo.f_get指定期間_棚卸調整数_棚卸調整_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "')) - ";
+                strSql += "(dbo.f_get指定期間_売上数量_売上明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
+                strSql += "dbo.f_get指定期間_出庫数量_出庫明細_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "') +";
+                strSql += "dbo.f_get指定期間_移動出数_倉庫間移動_在庫一覧専用('" + lstItem[2] + "',商品コード, '" + lstItem[0] + "', '" + lstItem[1] + "')) > 0";
+            }
+
 
             // 期間中に仕入がある場合
             if (lstItem[7].Equals("0"))
@@ -360,7 +378,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
 
                 // ページ数計算
                 //double page = 1.0 * maxRowCnt / 29;
-                double page = 1.0 * maxRowCnt / 44;
+                double page = 1.0 * maxRowCnt / 68;
                 double decimalpart = page % 1;
                 if (decimalpart != 0)
                 {
@@ -402,9 +420,13 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                         headersheet.Cell("C2").Value = " " + drZaiko[13].ToString();
 
                         // 在庫期間出力（M2のセル）
-                        IXLCell kikanCell = headersheet.Cell("M2");
-                        kikanCell.Value = "在庫期間：：" +
-                            string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0])) + "～" +
+                        //IXLCell kikanCell = headersheet.Cell("M2");
+                        IXLCell kikanCell = headersheet.Cell("L2");
+
+                        //kikanCell.Value = "在庫期間：：" +
+                        //    string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[0])) + "～" +
+                        //    string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[1]));
+                        kikanCell.Value = "在庫年月日：" +
                             string.Format("{0:yyyy年MM月dd日}", DateTime.Parse(lstItem[1]));
                         kikanCell.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
 
@@ -413,14 +435,14 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                         headersheet.Cell("B3").Value = "メーカー名";
                         headersheet.Cell("C3").Value = "品　　名　･　型　　番";
                         headersheet.Cell("D3").Value = "仕入単価";
-                        headersheet.Cell("E3").Value = "評価単価";
+                        headersheet.Cell("E3").Value = "単価";  // 評価単価
                         headersheet.Cell("F3").Value = "建値仕入単価";
                         headersheet.Cell("G3").Value = "前月在庫";
                         headersheet.Cell("H3").Value = "入庫数";
                         headersheet.Cell("I3").Value = "出庫数";
-                        headersheet.Cell("J3").Value = "現在個数";
+                        headersheet.Cell("J3").Value = "数量";  // 現在個数
                         headersheet.Cell("K3").Value = "在庫仕入金額";
-                        headersheet.Cell("L3").Value = "在庫評価金額";
+                        headersheet.Cell("L3").Value = "金額";    // 在庫評価金額
                         headersheet.Cell("M3").Value = "在庫建値金額";
 
                         // ヘッダー列
@@ -434,26 +456,34 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                             .Border.SetRightBorder(XLBorderStyleValues.Thin);
 
                         // 列幅の指定
-                        headersheet.Column(1).Width = 7;
-                        headersheet.Column(2).Width = 16;
-                        headersheet.Column(3).Width = 36;
-                        headersheet.Column(4).Width = 13;
-                        headersheet.Column(5).Width = 13;
-                        headersheet.Column(6).Width = 13;
-                        headersheet.Column(7).Width = 9;
-                        headersheet.Column(8).Width = 7;
-                        headersheet.Column(9).Width = 7;
-                        headersheet.Column(10).Width = 9;
-                        headersheet.Column(11).Width = 13;
-                        headersheet.Column(12).Width = 13;
-                        headersheet.Column(13).Width = 13;
+                        headersheet.Column(1).Width = 9;
+                        headersheet.Column(2).Width = 22;
+                        headersheet.Column(3).Width = 44;
+                        headersheet.Column(4).Width = 0;    // 13
+                        headersheet.Column(5).Width = 16;
+                        headersheet.Column(6).Width = 0;    // 13
+                        headersheet.Column(7).Width = 0;    // 9
+                        headersheet.Column(8).Width = 0;    // 7
+                        headersheet.Column(9).Width = 0;    // 7
+                        headersheet.Column(10).Width = 11;
+                        headersheet.Column(11).Width = 0;  // 13
+                        headersheet.Column(12).Width = 17;
+                        headersheet.Column(13).Width = 0;  // 13
+
+                        headersheet.Column(4).Hide();
+                        headersheet.Column(6).Hide();
+                        headersheet.Column(7).Hide();
+                        headersheet.Column(8).Hide();
+                        headersheet.Column(9).Hide();
+                        headersheet.Column(11).Hide();
+                        headersheet.Column(13).Hide();
 
                         // フォントサイズ変更
-                        headersheet.Range("B4:C32").Style.Font.FontSize = 6;
+                        headersheet.Range("B4:C71").Style.Font.FontSize = 6;
 
                         // 印刷体裁（A4横、印刷範囲、余白）
                         headersheet.PageSetup.PaperSize = XLPaperSize.A4Paper;
-                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Landscape;
+                        headersheet.PageSetup.PageOrientation = XLPageOrientation.Portrait;
                         headersheet.PageSetup.Margins.Left = 0.2;
                         headersheet.PageSetup.Margins.Right = 0.2;
 
@@ -498,7 +528,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
 
                     // 29行毎（ヘッダーを除いた行数）にシート作成
                     //if (xlsRowCnt == 32)
-                    if (xlsRowCnt == 47)
+                    if (xlsRowCnt == 71)
                     {
                         pageCnt++;
                         if (pageCnt <= maxPage)
