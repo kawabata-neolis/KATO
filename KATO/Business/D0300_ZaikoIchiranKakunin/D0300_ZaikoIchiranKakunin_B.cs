@@ -435,12 +435,12 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                         headersheet.Cell("B3").Value = "メーカー名";
                         headersheet.Cell("C3").Value = "品　　名　･　型　　番";
                         headersheet.Cell("D3").Value = "仕入単価";
-                        headersheet.Cell("E3").Value = "単価";  // 評価単価
+                        headersheet.Cell("E3").Value = "数量";  // 評価単価
                         headersheet.Cell("F3").Value = "建値仕入単価";
                         headersheet.Cell("G3").Value = "前月在庫";
                         headersheet.Cell("H3").Value = "入庫数";
                         headersheet.Cell("I3").Value = "出庫数";
-                        headersheet.Cell("J3").Value = "数量";  // 現在個数
+                        headersheet.Cell("J3").Value = "単価";  // 現在個数
                         headersheet.Cell("K3").Value = "在庫仕入金額";
                         headersheet.Cell("L3").Value = "金額";    // 在庫評価金額
                         headersheet.Cell("M3").Value = "在庫建値金額";
@@ -488,10 +488,10 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                         headersheet.PageSetup.Margins.Right = 0.2;
 
                         // ヘッダー部の指定（番号）
-                        headersheet.PageSetup.Header.Left.AddText("（№30）");
+                        //headersheet.PageSetup.Header.Left.AddText("（№30）");
 
                         // ヘッダーシートのコピー、ヘッダー部の指定
-                        pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                        pdf.sheetCopy2(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                     }
 
                     // 1セルずつデータ出力
@@ -499,24 +499,51 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                     {
                         string str = drZaiko[colCnt - 1].ToString();
 
-                        // 数値、金額セルの処理
-                        if (colCnt >= 7 && colCnt <= 13)
+                        //// 数値、金額セルの処理
+                        //if (colCnt >= 7 && colCnt <= 13)
+                        //{
+                        //    // 3桁毎に","を挿入する
+                        //    //str = string.Format("{0:#,0}", decimal.Parse(str));
+                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0");
+                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //}
+
+                        //// 単価セルの処理
+                        //if (colCnt >= 4 && colCnt <= 6)
+                        //{
+                        //    // 3桁毎に","を挿入する、小数点第2位まで
+                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0.00");
+                        //    currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        //}
+
+                        if (colCnt == 5)
                         {
-                            // 3桁毎に","を挿入する
-                            //str = string.Format("{0:#,0}", decimal.Parse(str));
+                            currentsheet.Cell(xlsRowCnt, 10).Style.NumberFormat.SetFormat("#,##0.00");
+                            currentsheet.Cell(xlsRowCnt, 10).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+                        else if (colCnt == 10)
+                        {
+                            currentsheet.Cell(xlsRowCnt, 5).Style.NumberFormat.SetFormat("#,##0");
+                            currentsheet.Cell(xlsRowCnt, 5).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                        }
+                        else if (colCnt == 12)
+                        {
                             currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0");
                             currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
                         }
 
-                        // 単価セルの処理
-                        if (colCnt >= 4 && colCnt <= 6)
+                        if (colCnt == 5)
                         {
-                            // 3桁毎に","を挿入する、小数点第2位まで
-                            currentsheet.Cell(xlsRowCnt, colCnt).Style.NumberFormat.SetFormat("#,##0.00");
-                            currentsheet.Cell(xlsRowCnt, colCnt).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Right;
+                            currentsheet.Cell(xlsRowCnt, 10).Value = str;
                         }
-
-                        currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                        else if (colCnt == 10)
+                        {
+                            currentsheet.Cell(xlsRowCnt, 5).Value = str;
+                        }
+                        else
+                        {
+                            currentsheet.Cell(xlsRowCnt, colCnt).Value = str;
+                        }
                     }
 
                     // 1行分のセルの周囲に罫線を引く
@@ -536,7 +563,7 @@ namespace KATO.Business.D0300_ZaikoIchiranKakunin
                             xlsRowCnt = 3;
 
                             // ヘッダーシートのコピー、ヘッダー部の指定
-                            pdf.sheetCopy(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
+                            pdf.sheetCopy2(ref workbook, ref headersheet, ref currentsheet, pageCnt, maxPage, strNow);
                         }
                     }
 

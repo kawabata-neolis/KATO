@@ -414,6 +414,19 @@ namespace KATO.Common.Util
             currentsheet.PageSetup.Header.Right.AddText(strHeader);
         }
 
+        public void sheetCopy2(ref XLWorkbook workbook, ref IXLWorksheet headersheet, ref IXLWorksheet currentsheet, int page, int maxPage, string strNow)
+        {
+            // ヘッダー部に指定する情報を取得
+            //string strHeader = this.getHeader(page, maxPage, strNow);
+
+            // ヘッダーシートからコピー
+            headersheet.CopyTo("Page" + page.ToString());
+            currentsheet = workbook.Worksheet(page + 1);
+
+            // ヘッダー部の指定（コンピュータ名、日付、ページ数を出力）
+            currentsheet.PageSetup.Header.Right.AddText(page.ToString() + " / " + maxPage.ToString() + "　");
+        }
+
         /// -----------------------------------------------------------------------------
         /// <summary>
         /// ヘッダー部に指定する情報を取得
